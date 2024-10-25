@@ -32,6 +32,7 @@ namespace YrradiaSDL2.Common
         public static MainMenuScene mainMenuScene = new();
         public static ExtraGUIStatusPanel extraGUIStatusPanel = new();
         public static ExtraGUIActionMenu extraGUIActionMenu = new();
+        public static ExtraGUIActionDurationMeter extraGUIActionDurationMeter = new();
         public static MainScene mainScene = new();
         public static SceneManager sceneManager = new();
     }

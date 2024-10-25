@@ -23,6 +23,7 @@
             _.worldView.Render();
             _.extraGUIStatusPanel.Render();
             _.extraGUIActionMenu.Render();
+            _.extraGUIActionDurationMeter.Render();
         }
     }
 }

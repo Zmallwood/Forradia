@@ -14,8 +14,8 @@
         public float m_mp = 10.0f;
         public float m_maxMP = 10.0f;
         public string m_name = "Unnamed";
-        private int m_actionDurationTotal = 0;
-        private int m_actionDurationRemaining = 0;
+        public int m_actionDurationTotal = 0;
+        public int m_actionDurationRemaining = 0;
         private Action? m_currentAction = null;
         private int m_ticksLastActionUpdate = 0;
 

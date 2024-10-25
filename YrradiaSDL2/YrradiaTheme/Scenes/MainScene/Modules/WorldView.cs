@@ -75,6 +75,16 @@
 
                     }
 
+                    if (crdX == _.extraGUIActionMenu.m_clickedCoordinate.X && crdY == _.extraGUIActionMenu.m_clickedCoordinate.Y)
+                    {
+                        _.imageRenderer.DrawImage("ClickedTile", area.X, area.Y, area.Width, area.Height);
+                    }
+
+                    if (crdX == _.tileHovering.m_hoveredCoordinate.X && crdY == _.tileHovering.m_hoveredCoordinate.Y)
+                    {
+                        _.imageRenderer.DrawImage("HoveredTile", area.X, area.Y, area.Width, area.Height);
+                    }
+
                     foreach (var tangibleObject in tile.m_objects.All())
                     {
                         _.imageRenderer.DrawImage(tangibleObject.m_type, area.X, area.Y, area.Width, area.Height);

@@ -10,7 +10,7 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
         private const float k_width = 0.12f;
         private const float k_lineHeight = 0.5f;
         private Dictionary<int, PlayerAction> m_currentPlayerActions = new();
-        private System.Drawing.Point m_clickedCoordinate;
+        public System.Drawing.Point m_clickedCoordinate;
 
         public void Update()
         {
@@ -38,6 +38,7 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
                     {
                         action.Value.Perform(m_clickedCoordinate);
                         m_open = false;
+                        m_clickedCoordinate = new(-1, -1);
                         return;
                     }
                 }

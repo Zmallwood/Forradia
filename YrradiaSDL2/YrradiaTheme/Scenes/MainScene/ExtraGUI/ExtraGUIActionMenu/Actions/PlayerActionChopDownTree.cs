@@ -21,7 +21,10 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu.
                         if (tangibleObject.m_type == "ObjectTree1".GetHashCode() ||
                             tangibleObject.m_type == "ObjectTree2".GetHashCode())
                         {
-                            _.player.SetAction(() => { tile.m_objects.Remove(tangibleObject); }, 10);
+                            _.player.SetAction(() => {
+                                tile.m_objects.Remove(tangibleObject);
+                                tile.m_objects.Add("ObjectWoodLog");
+                            }, 10);
                             return;
                         }
                     }
