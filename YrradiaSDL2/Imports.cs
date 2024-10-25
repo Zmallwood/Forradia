@@ -7,6 +7,7 @@ global using YrradiaSDL2.Game.FPSCounter;
 global using YrradiaSDL2.Game.GameMath;
 global using YrradiaSDL2.Game.Graphics;
 global using YrradiaSDL2.Game.Input.Keyboard;
+global using YrradiaSDL2.Game.Input.Mouse;
 global using YrradiaSDL2.Game.ScenesCore;
 global using YrradiaSDL2.Game.Rendering;
 global using YrradiaSDL2.Game.WorldStructure;

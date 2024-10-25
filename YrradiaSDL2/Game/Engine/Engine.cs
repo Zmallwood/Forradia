@@ -14,6 +14,7 @@
             while (m_running)
             {
                 PollEvents();
+                _.cursor.ResetType();
                 _.sceneManager.UpdateCurrentScene();
                 _.fpsCounter.Update();
                 _.sdlDevice.ClearCanvas();
@@ -26,6 +27,11 @@
             _.imageBank.DestroyImages();
             _.textRenderer.DestroyFonts();
             _.sdlDevice.Destroy();
+        }
+
+        public void Stop()
+        {
+            m_running = false;
         }
 
         private void PollEvents()
@@ -44,6 +50,12 @@
                         break;
                     case EventType.KeyUp:
                         _.keyboardInput.RegisterKeyRelease(ev.Keyboard.Keysym.Sym);
+                        break;
+                    case EventType.MouseButtonDown:
+                        _.mouseInput.RegisterButtonPress(ev.Button.Button);
+                        break;
+                    case EventType.MouseButtonUp:
+                        _.mouseInput.RegisterButtonRelease(ev.Button.Button);
                         break;
                 }
             }

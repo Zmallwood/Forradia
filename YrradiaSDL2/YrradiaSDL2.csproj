@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Game\Input\Mouse\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="SDL-Sharp" Version="2.2.5" />
   </ItemGroup>
 

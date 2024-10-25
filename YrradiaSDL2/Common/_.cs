@@ -5,6 +5,7 @@ namespace YrradiaSDL2.Common
     public class _
     {
         public static KeyboardInput keyboardInput = new();
+        public static MouseInput mouseInput = new();
         public static FPSCounter fpsCounter = new();
         public static Game.Cursor.Cursor cursor = new();
         public static Engine engine = new();

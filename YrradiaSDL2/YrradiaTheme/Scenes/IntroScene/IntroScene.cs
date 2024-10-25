@@ -11,7 +11,7 @@
 
         protected override void UpdateDerived()
         {
-            if (_.keyboardInput.AnyKeyIsPressed())
+            if (_.mouseInput.AnyButtonHasBeenFiredPickResult() || _.keyboardInput.AnyKeyIsPressed())
             {
                 _.sceneManager.GoToScene("MainMenuScene");
             }

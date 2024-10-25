@@ -18,5 +18,21 @@
             SDL.GetDesktopDisplayMode(0, out displayMode);
             return new(displayMode.Width, displayMode.Height);
         }
+
+        public float GetAspectRatio()
+        {
+            var canvasSize = _.canvasUtilities.GetCanvasSize();
+            return (float)canvasSize.Width / canvasSize.Height;
+        }
+
+        public float ConvertWidthToHeight(float width)
+        {
+            return width * GetAspectRatio();
+        }
+
+        public float ConvertHeightToWidth(float height)
+        {
+            return height / GetAspectRatio();
+        }
     }
 }

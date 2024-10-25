@@ -10,9 +10,11 @@ namespace YrradiaSDL2.Game.GUICore
         private string m_backgroundHoveredImage;
         private SizeF? m_size;
         private bool m_hovered = false;
+        private Action m_action;
 
         public GUIButton(string text,
             PointF position,
+            Action action,
             bool centerAligned = false,
             Size? size = null,
             string backgroundImage = "GUIButtonDefaultBackground",
@@ -20,6 +22,7 @@ namespace YrradiaSDL2.Game.GUICore
         {
             m_text = text;
             m_position = position;
+            m_action = action;
             m_backgroundImage = backgroundImage;
             m_backgroundHoveredImage = backgroundHoveredImage;
             m_centerAligned = centerAligned;
@@ -28,7 +31,7 @@ namespace YrradiaSDL2.Game.GUICore
 
         private SizeF GetSize()
         {
-            return m_size != null ? (SizeF)m_size : new SizeF(0.08f, 0.03f);
+            return m_size != null ? (SizeF)m_size : new SizeF(0.08f, 0.035f);
         }
 
         protected override void UpdateDerived()
@@ -40,6 +43,14 @@ namespace YrradiaSDL2.Game.GUICore
             var mousePositionF = _.mouseUtilities.GetMousePositionF();
             var area = new RectangleF(finalX, finalY, finalSize.Width, finalSize.Height);
             m_hovered = area.Contains(mousePositionF);
+            if (m_hovered)
+            {
+                _.cursor.SetToHovering();
+                if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
+                {
+                    m_action();
+                }
+            }
         }
 
         protected override void RenderDerived()
