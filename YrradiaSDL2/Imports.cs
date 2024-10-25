@@ -11,6 +11,7 @@ global using YrradiaSDL2.Game.Input.Mouse;
 global using YrradiaSDL2.Game.ScenesCore;
 global using YrradiaSDL2.Game.Rendering;
 global using YrradiaSDL2.Game.WorldStructure;
+global using YrradiaSDL2.Game.TextOut;
 global using YrradiaSDL2.YrradiaTheme.Scenes.MainScene;
 global using YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI;
 global using YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu;

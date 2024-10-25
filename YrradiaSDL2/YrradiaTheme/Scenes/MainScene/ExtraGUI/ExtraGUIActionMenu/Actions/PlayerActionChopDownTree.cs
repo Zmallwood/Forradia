@@ -21,6 +21,13 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu.
                         if (tangibleObject.m_type == "ObjectTree1".GetHashCode() ||
                             tangibleObject.m_type == "ObjectTree2".GetHashCode())
                         {
+                            var absDx = Math.Abs(coordinate.X - _.player.m_position.X);
+                            var absDy = Math.Abs(coordinate.Y - _.player.m_position.Y);
+                            if (absDx > 1 || absDy > 1)
+                            {
+                                _.textOut.Print("You are too far away to chop down the tree.");
+                                return;
+                            }
                             _.player.SetAction(() => {
                                 tile.m_objects.Remove(tangibleObject);
                                 tile.m_objects.Add("ObjectWoodLog");

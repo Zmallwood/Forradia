@@ -7,6 +7,7 @@
             base.OnEnter();
 
             _.playerPositioner.EnsureGoodPlayerPosition();
+            _.textOut.Print("Entering the world.");
         }
 
         protected override void UpdateDerived()
@@ -21,6 +22,7 @@
         protected override void RenderDerived()
         {
             _.worldView.Render();
+            _.extraGUITextConsole.Render();
             _.extraGUIStatusPanel.Render();
             _.extraGUIActionMenu.Render();
             _.extraGUIActionDurationMeter.Render();

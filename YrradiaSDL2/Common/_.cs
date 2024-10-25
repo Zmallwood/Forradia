@@ -7,6 +7,7 @@ namespace YrradiaSDL2.Common
         public static KeyboardInput keyboardInput = new();
         public static MouseInput mouseInput = new();
         public static FPSCounter fpsCounter = new();
+        public static TextOut textOut = new();
         public static Game.Cursor.Cursor cursor = new();
         public static Engine engine = new();
         public static CanvasUtilities canvasUtilities = new();
@@ -33,6 +34,7 @@ namespace YrradiaSDL2.Common
         public static ExtraGUIStatusPanel extraGUIStatusPanel = new();
         public static ExtraGUIActionMenu extraGUIActionMenu = new();
         public static ExtraGUIActionDurationMeter extraGUIActionDurationMeter = new();
+        public static ExtraGUITextConsole extraGUITextConsole = new();
         public static MainScene mainScene = new();
         public static SceneManager sceneManager = new();
     }
