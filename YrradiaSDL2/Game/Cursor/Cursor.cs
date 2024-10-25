@@ -7,7 +7,8 @@
         private Dictionary<CursorTypes, string> m_cursorImageNames = new
         () {
             { CursorTypes.Default, "CursorDefault" },
-            { CursorTypes.Hovering, "CursorHovering" }
+            { CursorTypes.Hovering, "CursorHovering" },
+            { CursorTypes.Attack, "CursorAttack" }
         };
 
         public void HideSystemCursor()
@@ -23,6 +24,11 @@
         public void SetToHovering()
         {
             m_currentCursorType = CursorTypes.Hovering;
+        }
+
+        public void SetToAttack()
+        {
+            m_currentCursorType = CursorTypes.Attack;
         }
 
         public void Render()

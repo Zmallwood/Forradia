@@ -12,6 +12,7 @@
         protected override void UpdateDerived()
         {
             _.keyboardMovement.Update();
+            _.tileHovering.Update();
             _.mobMovement.Update();
         }
 

@@ -22,12 +22,12 @@
 
         public void Accelerate()
         {
-            m_movementSpeed = Math.Min(2.0f, m_movementSpeed + 0.1f);
+            m_movementSpeed = Math.Min(1.0f, m_movementSpeed + 0.05f);
         }
 
         public void Decelerate()
         {
-            m_movementSpeed = Math.Max(0.0f, m_movementSpeed - 0.1f);
+            m_movementSpeed = Math.Max(0.0f, m_movementSpeed - 0.05f);
         }
 
         public void ResetSpeed()

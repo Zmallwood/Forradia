@@ -3,6 +3,7 @@
     public enum CursorTypes
     {
         Default,
-        Hovering
+        Hovering,
+        Attack
     }
 }
