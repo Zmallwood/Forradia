@@ -32,6 +32,11 @@
             return false;
         }
 
+        public void Remove(TangibleObject tangibleObject)
+        {
+            m_objects.Remove(tangibleObject);
+        }
+
         public void Clear()
         {
             m_objects.Clear();

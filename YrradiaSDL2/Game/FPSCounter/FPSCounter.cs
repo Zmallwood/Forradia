@@ -19,7 +19,7 @@
         public void Render()
         {
             var canvasSize = _.canvasUtilities.GetCanvasSize();
-            _.textRenderer.DrawString("FPS: " + m_fps, new (canvasSize.Width - 200, 10), Colors.wheat);
+            _.textRenderer.DrawString("FPS: " + m_fps, new PointF (0.9f, 0.03f), Colors.wheat);
         }
     }
 }

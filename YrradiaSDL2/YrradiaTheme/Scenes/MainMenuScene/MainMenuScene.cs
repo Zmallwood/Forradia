@@ -5,7 +5,7 @@
         public MainMenuScene()
         {
             m_gui.AddComponent(new GUIButton("New game", new(0.5f, 0.33f), new(() => { _.sceneManager.GoToScene("WorldGenerationScene"); }), true));
-            m_gui.AddComponent(new GUIButton("Quit", new(0.5f, 0.40f), new(() => { _.engine.Stop(); }), true));
+            m_gui.AddComponent(new GUIButton("Quit", new(0.5f, 0.45f), new(() => { _.engine.Stop(); }), true));
         }
 
         protected override void UpdateDerived()

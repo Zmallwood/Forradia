@@ -2,6 +2,8 @@
 {
     public class TileHovering
     {
+        public System.Drawing.Point m_hoveredCoordinate;
+
         public void Update()
         {
             var mousePosition = _.mouseUtilities.GetMousePosition();
@@ -26,6 +28,8 @@
                         {
                             continue;
                         }
+
+                        m_hoveredCoordinate = new(crdX, crdY);
 
                         var tile = worldArea.GetTile(crdX, crdY);
 

@@ -30,6 +30,8 @@ namespace YrradiaSDL2.Common
         public static MobMovement mobMovement = new();
         public static IntroScene introScene = new();
         public static MainMenuScene mainMenuScene = new();
+        public static ExtraGUIStatusPanel extraGUIStatusPanel = new();
+        public static ExtraGUIActionMenu extraGUIActionMenu = new();
         public static MainScene mainScene = new();
         public static SceneManager sceneManager = new();
     }

@@ -143,6 +143,21 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.WorldGenerationScene.Modules
                     tile.m_objects.Add("ObjectBush1");
                 }
             }
+            var numBush2s = 100 + Random.Shared.Next(50);
+
+            for (var i = 0; i < numBush2s; i++)
+            {
+                var x = Random.Shared.Next(100);
+                var y = Random.Shared.Next(100);
+
+                var tile = worldArea.GetTile(x, y);
+
+                if (tile.m_ground == "GroundGrass".GetHashCode())
+                {
+                    tile.m_objects.Clear();
+                    tile.m_objects.Add("ObjectBush2");
+                }
+            }
 
             var numPinkFlowers = 100;
 

@@ -17,12 +17,15 @@
             }
         }
 
-        public Tile GetTile(int x, int y)
+        public Tile? GetTile(int x, int y)
         {
+            if (x < 0 || y < 0 || x >= 100 || y >= 100) { 
+                return null;
+            }
             return m_tiles[x][y];
         }
 
-        public Tile GetTile(System.Drawing.Point coordinate)
+        public Tile? GetTile(System.Drawing.Point coordinate)
         {
             return GetTile(coordinate.X, coordinate.Y);
         }

@@ -31,7 +31,7 @@ namespace YrradiaSDL2.Game.GUICore
 
         private SizeF GetSize()
         {
-            return m_size != null ? (SizeF)m_size : new SizeF(0.08f, 0.035f);
+            return m_size != null ? (SizeF)m_size : new SizeF(0.14f, 0.07f);
         }
 
         protected override void UpdateDerived()

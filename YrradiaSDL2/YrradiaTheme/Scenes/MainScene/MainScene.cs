@@ -14,12 +14,15 @@
             _.keyboardMovement.Update();
             _.tileHovering.Update();
             _.mobMovement.Update();
+            _.extraGUIActionMenu.Update();
+            _.player.UpdateActions();
         }
 
         protected override void RenderDerived()
         {
             _.worldView.Render();
-            //_.attackDirection.Render();
+            _.extraGUIStatusPanel.Render();
+            _.extraGUIActionMenu.Render();
         }
     }
 }

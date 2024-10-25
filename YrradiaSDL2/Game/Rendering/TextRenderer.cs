@@ -33,6 +33,11 @@
 
         public void DrawString(string text, System.Drawing.Point position, SDL_Sharp.Color color, FontSizes fontSize = FontSizes._24, bool centerAlign = false)
         {
+            if (text == "")
+            {
+                return;
+            }
+
             unsafe
             {
                 var textOutlineSurface = SDL_Sharp.Ttf.TTF.RenderText_Blended(m_fonts[fontSize].fontOutline, text, Colors.black);

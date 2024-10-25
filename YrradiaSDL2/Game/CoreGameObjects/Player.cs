@@ -7,6 +7,39 @@
         public int m_ticksLastSpeedChange = 0;
         public float m_movementSpeed = 0.0f;
         public System.Drawing.Point m_movementDirection = new (0, 0);
+        public float m_hp = 10.0f;
+        public float m_maxHP = 10.0f;
+        public float m_sp = 10.0f;
+        public float m_maxSP = 10.0f;
+        public float m_mp = 10.0f;
+        public float m_maxMP = 10.0f;
+        public string m_name = "Unnamed";
+        private int m_actionDurationTotal = 0;
+        private int m_actionDurationRemaining = 0;
+        private Action? m_currentAction = null;
+        private int m_ticksLastActionUpdate = 0;
+
+        public void SetAction(Action action, int actionDuration)
+        {
+            m_currentAction = action;
+            m_actionDurationTotal = actionDuration;
+            m_actionDurationRemaining = actionDuration;
+        }
+
+        public void UpdateActions()
+        {
+            if (Environment.TickCount > m_ticksLastActionUpdate + 500)
+            {
+                m_actionDurationRemaining--;
+                if (m_actionDurationRemaining == 0)
+                {
+                    m_currentAction();
+                    m_currentAction = null;
+                    m_actionDurationTotal = 0;
+                }
+                m_ticksLastActionUpdate = Environment.TickCount;
+            }
+        }
 
         public void Accelerate()
         {
@@ -23,14 +56,24 @@
             var newX = m_position.X + m_movementDirection.X;
             var newY = m_position.Y + m_movementDirection.Y;
 
-            if (_.world.GetCurrentWorldArea().GetTile(newX, newY).m_ground == "GroundWater".GetHashCode())
+            var tile = _.world.GetCurrentWorldArea().GetTile(newX, newY);
+
+            if (tile.m_ground == "GroundWater".GetHashCode())
             {
                 return;
             }
 
-            if (_.world.GetCurrentWorldArea().GetTile(newX, newY).m_mob != null)
+            if (tile.m_mob != null)
             {
                 return;
+            }
+
+            foreach (var tangibleObject in tile.m_objects.m_objects)
+            {
+                if (_.objectProperties.ObjectBlocksMovement(tangibleObject.m_type))
+                {
+                    return;
+                }
             }
 
             m_position = new(newX, newY);
