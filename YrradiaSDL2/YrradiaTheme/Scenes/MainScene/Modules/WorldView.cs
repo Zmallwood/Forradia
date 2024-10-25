@@ -84,15 +84,13 @@
                     {
                         var mobType = tile.m_mob.m_type;
                         _.imageRenderer.DrawImage(mobType, area.X, area.Y, area.Width, area.Height);
-                        _.textRenderer.DrawString(_.mobProperties.GetMobName(mobType) + " Lvl " + _.mobProperties.GetMobLevel(mobType), new(area.X + area.Width/2, area.Y), Colors.wheat, FontSizes._20, true);
+                        _.textRenderer.DrawString(_.mobProperties.GetMobName(mobType) + " Lvl " + _.mobProperties.GetMobLevel(mobType), new(area.X + area.Width/2, area.Y - area.Height/2), Colors.wheat, FontSizes._18, true);
                     }
 
                     if (crdX == _.player.m_position.X && crdY == _.player.m_position.Y)
                     {
                         _.imageRenderer.DrawImage("Player", area.X, area.Y, area.Width, area.Height);
                     }
-
-                    _.imageRenderer.DrawImage("Filter", area.X, area.Y, area.Width, area.Height);
 
                     var dx = crdX - _.player.m_position.X;
                     var dy = crdY - _.player.m_position.Y;
