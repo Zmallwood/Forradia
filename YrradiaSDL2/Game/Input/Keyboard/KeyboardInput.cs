@@ -28,5 +28,12 @@
         {
             return m_pressedKeys.Count > 0;
         }
+
+        public bool KeyIsPressedPickResult(Keycode key)
+        {
+            var result = m_pressedKeys.Contains(key);
+            m_pressedKeys.Remove(key);
+            return result;
+        }
     }
 }

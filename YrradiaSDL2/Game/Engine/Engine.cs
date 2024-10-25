@@ -44,6 +44,7 @@
                 {
                     case EventType.Quit:
                         m_running = false;
+                        return;
                         break;
                     case EventType.KeyDown:
                         _.keyboardInput.RegisterKeyPress(ev.Keyboard.Keysym.Sym);
