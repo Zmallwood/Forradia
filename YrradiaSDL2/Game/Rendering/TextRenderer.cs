@@ -3,7 +3,7 @@
     public class TextRenderer
     {
         private Dictionary<FontSizes, OutlinedFont> m_fonts = new();
-        private const int k_outlineSize = 3;
+        private const int k_outlineSize = 2;
 
         public TextRenderer()
         {

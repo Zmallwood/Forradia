@@ -7,8 +7,8 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
     {
         private bool m_open = false;
         private PointF m_position;
-        private const float k_width = 0.12f;
-        private const float k_lineHeight = 0.03f;
+        private const float k_width = 0.16f;
+        private const float k_lineHeight = 0.05f;
         private Dictionary<int, PlayerAction> m_currentPlayerActions = new();
         public System.Drawing.Point m_clickedCoordinate;
 
@@ -32,7 +32,7 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
             var row = 0;
             foreach (var action in m_currentPlayerActions)
             {
-                var menuRowPosition = new PointF(m_position.X + 0.005f, m_position.Y + 0.01f + row * k_lineHeight);
+                var menuRowPosition = new PointF(m_position.X + 0.013f, m_position.Y + 0.01f + row * k_lineHeight);
                 var menuRowRect = new RectangleF(menuRowPosition.X, menuRowPosition.Y, k_width, k_lineHeight);
                 action.Value.m_hovered = menuRowRect.Contains(mousePositionF);
                 if (action.Value.m_hovered)
@@ -60,12 +60,13 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
         {
             if (m_open)
             {
-                _.imageRenderer.DrawImage("GUIMenuDefaultBackground", m_position.X, m_position.Y, k_width, 0.2f);
+                var height = 0.01f + m_currentPlayerActions.Count * k_lineHeight;
+                _.imageRenderer.DrawImage("GUIMenuDefaultBackground", m_position.X, m_position.Y, k_width, height);
 
                 var row = 0;
                 foreach (var action in m_currentPlayerActions)
                 {
-                    var menuRowPosition = new PointF(m_position.X + 0.005f, m_position.Y + 0.01f + row * k_lineHeight);
+                    var menuRowPosition = new PointF(m_position.X + 0.013f, m_position.Y + 0.01f + row * k_lineHeight);
                     var menuRowRect = new RectangleF(menuRowPosition.X, menuRowPosition.Y, k_width, k_lineHeight);
                     var color = action.Value.m_hovered ? Colors.yellow : Colors.wheat;
                     _.textRenderer.DrawString(action.Value.GetLabel(), menuRowPosition, color, FontSizes._18);
