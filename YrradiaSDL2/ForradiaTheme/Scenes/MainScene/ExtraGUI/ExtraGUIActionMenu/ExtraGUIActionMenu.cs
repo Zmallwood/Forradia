@@ -8,7 +8,7 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
         private bool m_open = false;
         private PointF m_position;
         private const float k_width = 0.12f;
-        private const float k_lineHeight = 0.5f;
+        private const float k_lineHeight = 0.03f;
         private Dictionary<int, PlayerAction> m_currentPlayerActions = new();
         public System.Drawing.Point m_clickedCoordinate;
 
@@ -20,6 +20,11 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
                 m_open = true;
                 m_clickedCoordinate = _.tileHovering.m_hoveredCoordinate;
                 PopulateMenu();
+            }
+
+            if (!m_open)
+            {
+                return;
             }
 
             var mousePositionF = _.mouseUtilities.GetMousePositionF();
@@ -97,6 +102,25 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
                         if (!m_currentPlayerActions.ContainsKey(actionHash))
                         {
                             m_currentPlayerActions.Add(actionHash, newAction);
+                        }
+                    }
+                    else if (tangibleObject.m_type == "ObjectWoodLog".GetHashCode())
+                    {
+                        {
+                            var newAction = new PlayerActionCreateCampfire();
+                            var actionHash = newAction.GetLabel().GetHashCode();
+                            if (!m_currentPlayerActions.ContainsKey(actionHash))
+                            {
+                                m_currentPlayerActions.Add(actionHash, newAction);
+                            }
+                        }
+                        {
+                            var newAction = new PlayerActionCreateWoodPlank();
+                            var actionHash = newAction.GetLabel().GetHashCode();
+                            if (!m_currentPlayerActions.ContainsKey(actionHash))
+                            {
+                                m_currentPlayerActions.Add(actionHash, newAction);
+                            }
                         }
                     }
                 }

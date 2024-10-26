@@ -87,22 +87,38 @@
 
                     foreach (var tangibleObject in tile.m_objects.All())
                     {
-                        _.imageRenderer.DrawImage(tangibleObject.m_type, area.X, area.Y, area.Width, area.Height);
-                    }
-
-                    if (tile.m_mob != null)
-                    {
-                        var mobType = tile.m_mob.m_type;
-                        _.imageRenderer.DrawImage(mobType, area.X, area.Y, area.Width, area.Height);
-                        if (!_.mobIndex.MobIsUnlabeled(mobType))
+                        var objectType = tangibleObject.m_type;
+                        if (objectType == "ObjectTallGrass".GetHashCode())
                         {
-                            _.textRenderer.DrawString(_.mobIndex.GetMobName(mobType) + " Lvl " + _.mobIndex.GetMobLevel(mobType), new(area.X + area.Width / 2, area.Y - area.Height / 2), Colors.lightPink, FontSizes._18, true);
+                            var animIndex = ((Environment.TickCount + crdX*crdY) % 1200) / 300;
+                            objectType = ("ObjectTallGrass_" + animIndex).GetHashCode();
                         }
+                        else if (objectType == "ObjectTrain".GetHashCode())
+                        {
+                            var animIndex = ((Environment.TickCount + crdX * crdY) % 1200) / 400;
+                            objectType = ("ObjectTrain_" + animIndex).GetHashCode();
+                        }
+                        _.imageRenderer.DrawImage(objectType, area.X, area.Y, area.Width, area.Height);
                     }
 
                     if (crdX == _.player.m_position.X && crdY == _.player.m_position.Y)
                     {
                         _.imageRenderer.DrawImage("Player", area.X, area.Y, area.Width, area.Height);
+                    }
+
+                    if (tile.m_mob != null)
+                    {
+                        var mobType = tile.m_mob.m_type;
+                        if (mobType == "MobRedBird".GetHashCode())
+                        {
+                            var animIndex = ((Environment.TickCount + crdX * crdY) % 800) / 400;
+                            mobType = ("MobRedBird_" + animIndex).GetHashCode();
+                        }
+                        _.imageRenderer.DrawImage(mobType, area.X, area.Y, area.Width, area.Height);
+                        if (!_.mobIndex.MobIsUnlabeled(tile.m_mob.m_type))
+                        {
+                            _.textRenderer.DrawString(_.mobIndex.GetMobName(tile.m_mob.m_type) + " Lvl " + _.mobIndex.GetMobLevel(tile.m_mob.m_type), new(area.X + area.Width / 2, area.Y - area.Height / 2), Colors.lightPink, FontSizes._18, true);
+                        }
                     }
 
                     var dx = crdX - _.player.m_position.X;

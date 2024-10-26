@@ -2,11 +2,11 @@
 {
     public class Player
     {
-        public System.Drawing.Point m_position = new (50, 50);
+        public System.Drawing.Point m_position = new(50, 50);
         public int m_ticksLastMove = 0;
         public int m_ticksLastSpeedChange = 0;
         public float m_movementSpeed = 0.0f;
-        public System.Drawing.Point m_movementDirection = new (0, 0);
+        public System.Drawing.Point m_movementDirection = new(0, 0);
         public float m_hp = 10.0f;
         public float m_maxHP = 10.0f;
         public float m_sp = 10.0f;
@@ -65,7 +65,10 @@
 
             if (tile.m_mob != null)
             {
-                return;
+                if (!_.mobIndex.MobIsFlying(tile.m_mob.m_type))
+                {
+                    return;
+                }
             }
 
             foreach (var tangibleObject in tile.m_objects.m_objects)
@@ -103,7 +106,7 @@
         {
             m_movementDirection = new(0, 0);
         }
-        
+
         public void ResetMovementSpeed()
         {
             m_movementSpeed = 0.0f;

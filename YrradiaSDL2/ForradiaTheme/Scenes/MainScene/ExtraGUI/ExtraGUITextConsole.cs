@@ -13,7 +13,7 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI
             var row = 0;
             foreach (var textLine in _.textOut.m_text)
             {
-                _.textRenderer.DrawString(textLine, new PointF(m_bounds.X + 0.01f, m_bounds.Y + 0.03f + row * k_lineHeight), Colors.wheat);
+                _.textRenderer.DrawString(textLine, new PointF(m_bounds.X + 0.01f, m_bounds.Y + 0.03f + row * k_lineHeight), Colors.gold);
                 row++;
             }
         }

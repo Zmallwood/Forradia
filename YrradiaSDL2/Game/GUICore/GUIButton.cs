@@ -65,7 +65,9 @@ namespace YrradiaSDL2.Game.GUICore
             var finalTextX = finalX + finalSize.Width / 2;
             var finalTextY = finalY + finalSize.Height / 2;
 
-            _.textRenderer.DrawString(m_text, new PointF(finalTextX, finalTextY), Colors.wheat, FontSizes._20, true);
+            var color = m_hovered ? Colors.gold : Colors.darkWheat;
+
+            _.textRenderer.DrawString(m_text, new PointF(finalTextX, finalTextY), color, FontSizes._20, true);
         }
     }
 }
