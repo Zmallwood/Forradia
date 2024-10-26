@@ -70,7 +70,7 @@
 
             foreach (var tangibleObject in tile.m_objects.m_objects)
             {
-                if (_.objectProperties.ObjectBlocksMovement(tangibleObject.m_type))
+                if (_.objectIndex.ObjectBlocksMovement(tangibleObject.m_type))
                 {
                     return;
                 }

@@ -1,6 +1,4 @@
-﻿
-
-namespace YrradiaSDL2.Game.Configuration
+﻿namespace YrradiaSDL2.Game.Configuration
 {
     public enum ObjectFlags
     {

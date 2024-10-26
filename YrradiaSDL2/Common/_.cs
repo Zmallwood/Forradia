@@ -1,4 +1,4 @@
-﻿using YrradiaSDL2.YrradiaTheme.Scenes.MainMenuScene;
+﻿using YrradiaSDL2.ForradiaTheme.Scenes.MainMenuScene;
 
 namespace YrradiaSDL2.Common
 {
@@ -13,8 +13,8 @@ namespace YrradiaSDL2.Common
         public static CanvasUtilities canvasUtilities = new();
         public static MouseUtilities mouseUtilities = new();
         public static GameProperties gameProperties = new();
-        public static ObjectProperties objectProperties = new();
-        public static MobProperties mobProperties = new();
+        public static ObjectIndex objectIndex = new();
+        public static MobIndex mobIndex = new();
         public static TileGridMath tileGridMath = new();
         public static SDLDevice sdlDevice = new();
         public static TextRenderer textRenderer = new();

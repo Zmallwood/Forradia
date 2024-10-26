@@ -7,6 +7,7 @@
         public static SDL_Sharp.Color black = new(0, 0, 0, 255);
         public static SDL_Sharp.Color red = new(255, 0, 0, 255);
         public static SDL_Sharp.Color purple = new(255, 0, 255, 255);
+        public static SDL_Sharp.Color lightPink = new(255, 150, 255, 255);
         public static SDL_Sharp.Color yellow = new(255, 255, 0, 255);
     }
 }
