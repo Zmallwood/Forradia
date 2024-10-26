@@ -3,11 +3,15 @@
     public class MainScene : Scene
     {
         public bool m_paused = false;
+        public GUIComponent? m_windowCharacter = null;
+        public GUIComponent? m_windowInventory = null;
 
         public override void Initialize()
         {
-            m_gui.AddComponent(new GUIButton("", new(0.82f, 0.9f), () => { }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundCharacter", "GUIButtonRoundCharacterHovered"));
-            m_gui.AddComponent(new GUIButton("", new(0.88f, 0.9f), () => { }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundInventory", "GUIButtonRoundInventoryHovered"));
+            m_windowCharacter = m_gui.AddComponent(new GUIWindowCharacter());
+            m_windowInventory = m_gui.AddComponent(new GUIWindowInventory());
+            m_gui.AddComponent(new GUIButton("", new(0.82f, 0.9f), () => { m_windowCharacter.ToggleVisibility(); }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundCharacter", "GUIButtonRoundCharacterHovered"));
+            m_gui.AddComponent(new GUIButton("", new(0.88f, 0.9f), () => { m_windowInventory.ToggleVisibility(); }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundInventory", "GUIButtonRoundInventoryHovered"));
             m_gui.AddComponent(new GUIButton("", new(0.94f, 0.9f), () => { _.extraGUISystemMenu.ToggleVisibility(); }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundSystem", "GUIButtonRoundSystemHovered"));
         }
 
@@ -23,6 +27,7 @@
         {
             if (!m_paused)
             {
+                _.keyBindings.Update();
                 _.keyboardMovement.Update();
                 _.tileHovering.Update();
                 _.mobMovement.Update();

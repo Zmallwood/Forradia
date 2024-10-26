@@ -18,10 +18,9 @@ namespace YrradiaSDL2.Game.GUICore
             bool centerAligned = false,
             SizeF? size = null,
             string backgroundImage = "GUIButtonDefaultBackground",
-            string backgroundHoveredImage = "GUIButtonDefaultBackgroundHovered")
+            string backgroundHoveredImage = "GUIButtonDefaultBackgroundHovered") : base(position)
         {
             m_text = text;
-            m_position = position;
             m_action = action;
             m_backgroundImage = backgroundImage;
             m_backgroundHoveredImage = backgroundHoveredImage;
@@ -57,8 +56,8 @@ namespace YrradiaSDL2.Game.GUICore
         {
             base.RenderDerived();
             var finalSize = GetSize();
-            var finalX = m_position.X - (m_centerAligned ? finalSize.Width/2 : 0);
-            var finalY = m_position.Y - (m_centerAligned ? finalSize.Height/2 : 0);
+            var finalX = m_position.X - (m_centerAligned ? finalSize.Width / 2 : 0);
+            var finalY = m_position.Y - (m_centerAligned ? finalSize.Height / 2 : 0);
             var imageName = m_hovered ? m_backgroundHoveredImage : m_backgroundImage;
             _.imageRenderer.DrawImage(imageName, finalX, finalY, finalSize.Width, finalSize.Height);
 

@@ -5,10 +5,9 @@
         private string m_text;
         private bool m_centerAligned;
         
-        public GUILabel(string text, PointF position, bool centerAligned = false)
+        public GUILabel(string text, PointF position, bool centerAligned = false) : base(position)
         {
             m_text = text;
-            m_position = position;
             m_centerAligned = centerAligned;
         }
 

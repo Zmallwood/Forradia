@@ -13,6 +13,7 @@ global using YrradiaSDL2.Game.Rendering;
 global using YrradiaSDL2.Game.WorldStructure;
 global using YrradiaSDL2.Game.TextOut;
 global using YrradiaSDL2.ForradiaTheme.Scenes.MainScene;
+global using YrradiaSDL2.ForradiaTheme.Scenes.MainScene.MainSceneGUI;
 global using YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI;
 global using YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu;
 global using YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu.Actions;

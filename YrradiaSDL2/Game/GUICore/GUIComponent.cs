@@ -6,6 +6,11 @@
         protected PointF m_position = new(0,0);
         public bool m_visible = true;
 
+        public GUIComponent(PointF position)
+        {
+            m_position = position;
+        }
+
         public void Update()
         {
             if (!m_visible)
@@ -45,6 +50,11 @@
             m_components.Add(newComponent);
 
             return newComponent;
+        }
+
+        public void ToggleVisibility()
+        {
+            m_visible = !m_visible;
         }
     }
 }
