@@ -42,16 +42,6 @@
                 _.player.UpdateMovement();
 
                 _.player.m_ticksLastMove = Environment.TickCount;
-
-                var tileObjects = _.world.GetCurrentWorldArea().GetTile(_.player.m_position).m_objects;
-
-                if (tileObjects.Contains("ObjectTrain") || tileObjects.Contains("ObjectTrainWagon"))
-                {
-                    _.worldGenerator.GenerateWorld();
-                    _.player.m_position = new(50, 51);
-                    _.player.StopMove();
-                    _.player.ResetMovementSpeed();
-                }
             }
         }
     }

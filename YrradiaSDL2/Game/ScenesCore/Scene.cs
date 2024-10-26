@@ -17,6 +17,7 @@
         }
 
         public virtual void OnEnter() { }
+        public virtual void Initialize() { }
 
         protected abstract void UpdateDerived();
         protected abstract void RenderDerived();

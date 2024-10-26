@@ -2,7 +2,7 @@
 {
     public class MainMenuScene : Scene
     {
-        public MainMenuScene()
+        public override void Initialize()
         {
             m_gui.AddComponent(new GUIButton("New game", new(0.5f, 0.33f), new(() => { _.sceneManager.GoToScene("WorldGenerationScene"); }), true));
             m_gui.AddComponent(new GUIButton("Quit", new(0.5f, 0.45f), new(() => { _.engine.Stop(); }), true));

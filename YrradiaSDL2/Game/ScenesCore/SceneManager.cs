@@ -11,6 +11,12 @@
             m_scenes.Add("MainMenuScene".GetHashCode(), _.mainMenuScene);
             m_scenes.Add("MainScene".GetHashCode(), _.mainScene);
             m_scenes.Add("WorldGenerationScene".GetHashCode(), _.worldGenerationScene);
+
+            foreach (var scene in m_scenes)
+            {
+                scene.Value.Initialize();
+            }
+
             GoToScene("IntroScene");
         }
 

@@ -16,7 +16,7 @@ namespace YrradiaSDL2.Game.GUICore
             PointF position,
             Action action,
             bool centerAligned = false,
-            Size? size = null,
+            SizeF? size = null,
             string backgroundImage = "GUIButtonDefaultBackground",
             string backgroundHoveredImage = "GUIButtonDefaultBackgroundHovered")
         {

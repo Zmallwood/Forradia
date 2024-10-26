@@ -2,11 +2,11 @@
 
 namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu.Actions
 {
-    public class PlayerActionChopDownTree : PlayerAction
+    public class PlayerActionRideTrain : PlayerAction
     {
         public override string GetLabel()
         {
-            return "Chop down tree";
+            return "Ride train";
         }
 
         public override void Perform(System.Drawing.Point coordinate)
@@ -15,23 +15,23 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu.
             {
                 var tile = _.world.GetCurrentWorldArea().GetTile(coordinate.X, coordinate.Y);
 
-                if (tile != null) {
+                if (tile != null)
+                {
                     foreach (var tangibleObject in tile.m_objects.m_objects)
                     {
-                        if (tangibleObject.m_type == "ObjectTree1".GetHashCode() ||
-                            tangibleObject.m_type == "ObjectTree2".GetHashCode())
+                        if (tangibleObject.m_type == "ObjectTrain".GetHashCode() ||
+                            tangibleObject.m_type == "ObjectTrainWagon".GetHashCode())
                         {
                             var absDx = Math.Abs(coordinate.X - _.player.m_position.X);
                             var absDy = Math.Abs(coordinate.Y - _.player.m_position.Y);
                             if (absDx > 1 || absDy > 1)
                             {
-                                _.textOut.Print("You are too far away to chop down the tree.");
+                                _.textOut.Print("You are too far away to ride the train.");
                                 return;
                             }
                             _.player.SetAction(() => {
-                                tile.m_objects.Remove(tangibleObject);
-                                tile.m_objects.Add("ObjectWoodLog");
-                                _.textOut.Print("You chop down the tree.");
+                                _.worldGenerator.GenerateWorld();
+                                _.textOut.Print("You travel with the train to a new area.");
                             }, 10);
                             return;
                         }

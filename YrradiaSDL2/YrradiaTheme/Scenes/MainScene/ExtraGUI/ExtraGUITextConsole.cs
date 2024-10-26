@@ -8,7 +8,7 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI
 
         public void Render()
         {
-            _.imageRenderer.DrawImage("GUIPanelDefaultBackground", m_bounds.X, m_bounds.Y, m_bounds.Width, m_bounds.Height);
+            _.imageRenderer.DrawImage("GUITextConsoleBackground", m_bounds.X, m_bounds.Y, m_bounds.Width, m_bounds.Height);
 
             var row = 0;
             foreach (var textLine in _.textOut.m_text)

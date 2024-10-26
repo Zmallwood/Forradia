@@ -79,11 +79,25 @@ namespace YrradiaSDL2.YrradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
             {
                 foreach (var tangibleObject in tile.m_objects.m_objects)
                 {
-                    var newAction = new PlayerActionChopDownTree();
-                    var actionHash = newAction.GetLabel().GetHashCode();
-                    if (!m_currentPlayerActions.ContainsKey(actionHash))
+                    if (tangibleObject.m_type == "ObjectTree1".GetHashCode()
+                        || tangibleObject.m_type == "ObjectTree2".GetHashCode())
                     {
-                        m_currentPlayerActions.Add(actionHash, newAction);
+                        var newAction = new PlayerActionChopDownTree();
+                        var actionHash = newAction.GetLabel().GetHashCode();
+                        if (!m_currentPlayerActions.ContainsKey(actionHash))
+                        {
+                            m_currentPlayerActions.Add(actionHash, newAction);
+                        }
+                    }
+                    else if (tangibleObject.m_type == "ObjectTrain".GetHashCode()
+                        || tangibleObject.m_type == "ObjectTrainWagon".GetHashCode())
+                    {
+                        var newAction = new PlayerActionRideTrain();
+                        var actionHash = newAction.GetLabel().GetHashCode();
+                        if (!m_currentPlayerActions.ContainsKey(actionHash))
+                        {
+                            m_currentPlayerActions.Add(actionHash, newAction);
+                        }
                     }
                 }
             }

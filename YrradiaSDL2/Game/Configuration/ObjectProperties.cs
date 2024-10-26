@@ -10,6 +10,8 @@
             m_properties.Add("ObjectTree2".GetHashCode(), new("Tree", (int)ObjectFlags.BlocksMovement));
             m_properties.Add("ObjectBush1".GetHashCode(), new("Bush", (int)ObjectFlags.BlocksMovement));
             m_properties.Add("ObjectStoneBoulder".GetHashCode(), new("Stone boulder", (int)ObjectFlags.BlocksMovement));
+            m_properties.Add("ObjectTrain".GetHashCode(), new("Train", (int)ObjectFlags.BlocksMovement));
+            m_properties.Add("ObjectTrainWagon".GetHashCode(), new("Train wagon", (int)ObjectFlags.BlocksMovement));
         }
 
         public bool ObjectBlocksMovement(int objectNameHash)

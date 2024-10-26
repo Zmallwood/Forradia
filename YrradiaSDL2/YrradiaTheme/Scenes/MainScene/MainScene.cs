@@ -4,10 +4,15 @@
     {
         public bool m_paused = false;
 
+        public override void Initialize()
+        {
+            m_gui.AddComponent(new GUIButton("", new(0.6f, 0.92f), () => { }, false, new (0.05f, _.canvasUtilities.ConvertWidthToHeight(0.05f)), "GUIButtonRoundCharacter", "GUIButtonRoundCharacterHovered"));
+        }
+
         public override void OnEnter()
         {
             base.OnEnter();
-
+           
             _.playerPositioner.EnsureGoodPlayerPosition();
             _.textOut.Print("Entering the world.");
         }

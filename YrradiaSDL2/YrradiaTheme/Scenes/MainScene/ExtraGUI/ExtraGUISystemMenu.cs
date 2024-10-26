@@ -6,7 +6,7 @@
         {
             AddComponent(new GUIButton("Main menu", new PointF(0.5f, 0.3f), () => { _.sceneManager.GoToScene("MainMenuScene"); }, true));
             AddComponent(new GUIButton("Quit", new PointF(0.5f, 0.38f), () => { _.engine.Stop(); }, true));
-            AddComponent(new GUIButton("Resume", new PointF(0.5f, 0.5f), () => { m_visible = false;}, true));
+            AddComponent(new GUIButton("Resume", new PointF(0.5f, 0.5f), () => { m_visible = false; _.mainScene.m_paused = false; }, true));
 
             m_visible = false;
         }

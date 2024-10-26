@@ -4,7 +4,7 @@
     {
         private GUIComponent m_labelStartText;
 
-        public IntroScene()
+        public override void Initialize()
         {
             m_labelStartText = m_gui.AddComponent(new GUILabel("Press to start", new(0.5f, 0.55f), true));
         }
