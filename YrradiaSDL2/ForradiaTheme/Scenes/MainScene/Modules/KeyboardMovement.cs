@@ -4,6 +4,11 @@
     {
         public void Update()
         {
+            if (_.keyboardInput.KeyIsPressedPickResult(Keycode.D1))
+                _.world.GetCurrentWorldArea().GetTile(_.player.m_position ).m_elevation++;
+            if (_.keyboardInput.KeyIsPressedPickResult(Keycode.D2))
+                _.world.GetCurrentWorldArea().GetTile(_.player.m_position).m_elevation--;
+
             var wPressed = _.keyboardInput.KeyIsPressed(Keycode.W);
             var aPressed = _.keyboardInput.KeyIsPressed(Keycode.A);
             var sPressed = _.keyboardInput.KeyIsPressed(Keycode.S);

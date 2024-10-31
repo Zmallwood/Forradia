@@ -14,13 +14,16 @@
                 {
                     var image = SDL_Sharp.Image.IMG.LoadTexture(_.sdlDevice.m_renderer, file);
                     var fileName = Path.GetFileName(file);
-                    var imageName = fileName.Substring(0, fileName.LastIndexOf('.'));
-                    uint format;
-                    TextureAccess access;
-                    int width;
-                    int height;
-                    var size = SDL.QueryTexture(image, out format, out access, out width, out height);
-                    m_images.Add(imageName.GetHashCode(), new(image, new(width, height)));
+                    if (fileName.Substring(fileName.Length - 4) == ".png")
+                    {
+                        var imageName = fileName.Substring(0, fileName.LastIndexOf('.'));
+                        uint format;
+                        TextureAccess access;
+                        int width;
+                        int height;
+                        var size = SDL.QueryTexture(image, out format, out access, out width, out height);
+                        m_images.Add(imageName.GetHashCode(), new(image, new(width, height)));
+                    }
                 }
             }
         }
