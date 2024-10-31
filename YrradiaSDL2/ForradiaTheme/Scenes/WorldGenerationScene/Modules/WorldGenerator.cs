@@ -12,7 +12,7 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.WorldGenerationScene.Modules
             GenerateObjects();
             GenerateMountains();
             GenerateElevation();
-            GenerateTrainObjects();
+            //GenerateTrainObjects();
             GenerateMobs();
         }
 

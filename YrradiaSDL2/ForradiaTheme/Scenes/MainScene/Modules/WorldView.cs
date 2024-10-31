@@ -204,7 +204,7 @@
 
                         var elevDiffsSWInvComp = new Comps[][]
                         {
-                            new Comps[] { Comps.LTEQ, Comps.ANY, Comps.ANY},
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
                             new Comps[] { Comps.LTEQ, Comps.EQ, Comps.GTEQ},
                             new Comps[] { Comps.LTEQ, Comps.LT, Comps.GTEQ }
                         };
