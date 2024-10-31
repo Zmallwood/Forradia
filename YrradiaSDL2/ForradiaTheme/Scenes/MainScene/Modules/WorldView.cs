@@ -132,9 +132,9 @@
 
                         var elevDiffsEComp = new Comps[][]
                         {
-                            new Comps[] { Comps.ANY, Comps.ANY, Comps.LTEQ},
-                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LT},
-                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LT }
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LTEQ},
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.LTEQ }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsEComp))

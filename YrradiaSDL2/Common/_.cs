@@ -27,6 +27,7 @@ namespace YrradiaSDL2.Common
         public static WorldView worldView = new();
         public static PlayerPositioner playerPositioner = new();
         public static KeyboardMovement keyboardMovement = new();
+        public static MouseMovement mouseMovement = new();
         public static TileHovering tileHovering = new();
         public static KeyBindings keyBindings = new();
         public static MobMovement mobMovement = new();

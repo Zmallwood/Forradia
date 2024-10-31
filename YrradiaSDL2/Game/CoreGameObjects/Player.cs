@@ -3,6 +3,7 @@
     public class Player
     {
         public System.Drawing.Point m_position = new(50, 50);
+        public System.Drawing.Point m_destination = new(-1, -1);
         public int m_ticksLastMove = 0;
         public int m_ticksLastSpeedChange = 0;
         public float m_movementSpeed = 0.0f;

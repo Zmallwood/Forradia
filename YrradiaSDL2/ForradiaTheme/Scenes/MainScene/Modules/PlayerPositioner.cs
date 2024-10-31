@@ -1,10 +1,16 @@
-﻿namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.Modules
+﻿using YrradiaSDL2.Game.WorldStructure;
+
+namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.Modules
 {
     public class PlayerPositioner
     {
         public void EnsureGoodPlayerPosition()
         {
-            _.player.m_position = new(50, 51);
+            var worldArea = _.world.GetCurrentWorldArea();
+            while (worldArea.GetTile(_.player.m_position).m_ground == "GroundWater".GetHashCode())
+            {
+                _.player.m_position = new System.Drawing.Point(Random.Shared.Next(100), Random.Shared.Next(100));
+            }
         }
     }
 }

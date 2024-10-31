@@ -306,8 +306,6 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.WorldGenerationScene.Modules
         {
             var worldArea = _.world.GetCurrentWorldArea();
             var numMobs = 100 + Random.Shared.Next(50);
-            var mobIndex = Random.Shared.Next(_.mobIndex.m_properties.Count);
-            var mobType = _.mobIndex.m_properties.ElementAt(mobIndex).Key;
 
             for (var i = 0; i < numMobs; i++)
             {
@@ -318,24 +316,12 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.WorldGenerationScene.Modules
 
                 if (tile.m_ground != "GroundWater".GetHashCode())
                 {
+                    var mobIndex = Random.Shared.Next(_.mobIndex.m_properties.Count);
+                    var mobType = _.mobIndex.m_properties.ElementAt(mobIndex).Key;
                     var newMob = new Mob(mobType);
                     tile.m_mob = newMob;
                     worldArea.m_mobsMirror.Add(newMob, new(x, y));
                 }
-            }
-
-            var numRedBirds = 100;
-
-            for (var i = 0; i < numRedBirds; i++)
-            {
-                var x = Random.Shared.Next(100);
-                var y = Random.Shared.Next(100);
-
-                var tile = worldArea.GetTile(x, y);
-
-                var newBird = new Mob("MobRedBird");
-                tile.m_mob = newBird;
-                worldArea.m_mobsMirror.Add(newBird, new(x, y));
             }
         }
 

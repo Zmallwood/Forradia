@@ -4,10 +4,20 @@
     {
         public void Update()
         {
+
             var wPressed = _.keyboardInput.KeyIsPressed(Keycode.W);
             var aPressed = _.keyboardInput.KeyIsPressed(Keycode.A);
             var sPressed = _.keyboardInput.KeyIsPressed(Keycode.S);
             var dPressed = _.keyboardInput.KeyIsPressed(Keycode.D);
+
+
+            if (wPressed || aPressed || sPressed || dPressed)
+                _.player.m_destination = new System.Drawing.Point(-1, -1);
+
+            if (_.player.m_destination != new System.Drawing.Point(-1, -1))
+            {
+                return;
+            }
 
             if (Environment.TickCount > _.player.m_ticksLastSpeedChange + 100)
             {
@@ -36,13 +46,6 @@
 
             if (dPressed)
                 _.player.MoveEast();
-
-            if (Environment.TickCount > _.player.m_ticksLastMove + 1000 / _.player.m_movementSpeed)
-            {
-                _.player.UpdateMovement();
-
-                _.player.m_ticksLastMove = Environment.TickCount;
-            }
         }
     }
 }

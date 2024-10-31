@@ -28,10 +28,16 @@
             if (!m_paused)
             {
                 _.keyBindings.Update();
+                _.extraGUIActionMenu.Update();
                 _.keyboardMovement.Update();
+                _.mouseMovement.Update();
+                if (Environment.TickCount > _.player.m_ticksLastMove + 1000 / _.player.m_movementSpeed)
+                {
+                    _.player.UpdateMovement();
+                    _.player.m_ticksLastMove = Environment.TickCount;
+                }
                 _.tileHovering.Update();
                 _.mobMovement.Update();
-                _.extraGUIActionMenu.Update();
                 _.player.UpdateActions();
             }
             _.extraGUISystemMenu.Update();
