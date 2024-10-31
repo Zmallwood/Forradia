@@ -122,7 +122,7 @@
                         {
                             new Comps[] { Comps.ANY, Comps.ANY, Comps.LTEQ},
                             new Comps[] { Comps.LTEQ, Comps.EQ, Comps.LT},
-                            new Comps[] { Comps.LT, Comps.LT, Comps.LT }
+                            new Comps[] { Comps.LTEQ, Comps.LT, Comps.LT }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsSEComp))
@@ -134,7 +134,7 @@
                         {
                             new Comps[] { Comps.ANY, Comps.ANY, Comps.LTEQ},
                             new Comps[] { Comps.ANY, Comps.EQ, Comps.LT},
-                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.LT }
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LT }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsEComp))
@@ -144,8 +144,8 @@
 
                         var elevDiffsNEComp = new Comps[][]
                         {
-                            new Comps[] { Comps.ANY, Comps.LTEQ, Comps.LTEQ},
-                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LTEQ},
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.ANY},
                             new Comps[] { Comps.ANY, Comps.GT, Comps.LTEQ }
                         };
 
@@ -193,7 +193,7 @@
                         var elevDiffsWComp = new Comps[][]
                         {
                             new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
-                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.GT},
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.GT},
                             new Comps[] { Comps.ANY, Comps.EQ, Comps.GT }
                         };
 
@@ -204,7 +204,7 @@
 
                         var elevDiffsSWInvComp = new Comps[][]
                         {
-                            new Comps[] { Comps.LTEQ, Comps.LTEQ, Comps.LTEQ},
+                            new Comps[] { Comps.LTEQ, Comps.ANY, Comps.ANY},
                             new Comps[] { Comps.LTEQ, Comps.EQ, Comps.GTEQ},
                             new Comps[] { Comps.LTEQ, Comps.LT, Comps.GTEQ }
                         };
@@ -216,9 +216,9 @@
 
                         var elevDiffsSEInvComp = new Comps[][]
                         {
-                            new Comps[] { Comps.LT, Comps.LT, Comps.LT},
-                            new Comps[] { Comps.LT, Comps.EQ, Comps.EQ},
-                            new Comps[] { Comps.LT, Comps.EQ, Comps.LTEQ }
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.EQ},
+                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.LT }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsSEInvComp))
@@ -228,9 +228,9 @@
 
                         var elevDiffsNEInvComp = new Comps[][]
                         {
-                            new Comps[] { Comps.LTEQ, Comps.LTEQ, Comps.LT},
-                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.LT},
-                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.EQ }
+                            new Comps[] { Comps.LTEQ, Comps.LTEQ, Comps.LTEQ},
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LT},
+                            new Comps[] { Comps.ANY, Comps.GTEQ, Comps.EQ }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsNEInvComp))
