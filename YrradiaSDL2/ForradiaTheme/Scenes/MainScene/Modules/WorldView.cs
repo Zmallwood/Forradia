@@ -218,7 +218,7 @@
                         {
                             new Comps[] { Comps.ANY, Comps.ANY, Comps.ANY},
                             new Comps[] { Comps.ANY, Comps.EQ, Comps.EQ},
-                            new Comps[] { Comps.LTEQ, Comps.EQ, Comps.LT }
+                            new Comps[] { Comps.ANY, Comps.EQ, Comps.LT }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsSEInvComp))
@@ -230,7 +230,7 @@
                         {
                             new Comps[] { Comps.LTEQ, Comps.LTEQ, Comps.LTEQ},
                             new Comps[] { Comps.ANY, Comps.EQ, Comps.LT},
-                            new Comps[] { Comps.ANY, Comps.GTEQ, Comps.EQ }
+                            new Comps[] { Comps.ANY, Comps.ANY, Comps.EQ }
                         };
 
                         if (CompElevDiffs(elevDiffs, elevDiffsNEInvComp))
@@ -321,19 +321,19 @@
                         }
                     }
 
-                    var dx = crdX - _.player.m_position.X;
-                    var dy = crdY - _.player.m_position.Y;
+                    //var dx = crdX - _.player.m_position.X;
+                    //var dy = crdY - _.player.m_position.Y;
 
-                    var sightDist = Math.Sqrt(dx * dx + dy * dy) - 10;
+                    //var sightDist = Math.Sqrt(dx * dx + dy * dy) - 10;
 
-                    var sightFadeAmount = (int)(sightDist / 2);
-                    sightFadeAmount /= 2;
-                    sightFadeAmount *= 2;
+                    //var sightFadeAmount = (int)(sightDist / 2);
+                    //sightFadeAmount /= 2;
+                    //sightFadeAmount *= 2;
 
-                    for (var i = 0; i < sightFadeAmount; i++)
-                    {
-                        _.imageRenderer.DrawImage("SightFade", area.X, area.Y, area.Width, area.Height);
-                    }
+                    //for (var i = 0; i < sightFadeAmount; i++)
+                    //{
+                    //    _.imageRenderer.DrawImage("SightFade", area.X, area.Y, area.Width, area.Height);
+                    //}
                 }
             }
         }
