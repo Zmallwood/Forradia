@@ -29,6 +29,7 @@
             {
                 _.keyBindings.Update();
                 _.extraGUIActionMenu.Update();
+                _.itemMoving.Update();
                 _.keyboardMovement.Update();
                 _.mouseMovement.Update();
                 _.player.Update();
@@ -46,6 +47,7 @@
             _.extraGUIStatusPanel.Render();
             _.extraGUIActionMenu.Render();
             _.extraGUIActionDurationMeter.Render();
+            _.itemMoving.Render();
             _.extraGUISystemMenu.Render();
         }
     }

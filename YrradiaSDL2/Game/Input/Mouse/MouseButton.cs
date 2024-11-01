@@ -5,12 +5,24 @@
         private bool m_pressed = false;
         private bool m_hasBeenFired = false;
         private bool m_hasBeenReleased = false;
+        private int m_ticksLastClick = 0;
+        private bool m_hasBeenDoubleClicked = false;
+        private const int k_doubleClickSpeed = 300;
 
         public void RegisterPress()
         {
             m_pressed = true;
             m_hasBeenFired = true;
             m_hasBeenReleased = false;
+            if (Environment.TickCount - m_ticksLastClick < k_doubleClickSpeed)
+            {
+                m_hasBeenDoubleClicked = true;
+            }
+            else
+            {
+                m_hasBeenDoubleClicked = false;
+            }
+            m_ticksLastClick = Environment.TickCount;
         }
 
         public void RegisterRelease()
@@ -46,6 +58,18 @@
         {
             var result = m_hasBeenReleased;
             m_hasBeenReleased = false;
+            return result;
+        }
+
+        public bool GetHasBeenDoubleClickedLeaveResult()
+        {
+            return m_hasBeenDoubleClicked;
+        }
+
+        public bool GetHasBeenDoubleClickedPickResult()
+        {
+            var result = m_hasBeenDoubleClicked;
+            m_hasBeenDoubleClicked = false;
             return result;
         }
     }

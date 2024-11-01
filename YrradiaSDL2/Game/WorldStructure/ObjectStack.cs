@@ -9,6 +9,11 @@
             m_objects.Add(new(objectName.GetHashCode()));
         }
 
+        public void Add(TangibleObject tangibleObject)
+        {
+            m_objects.Add(tangibleObject);
+        }
+
         public int Count()
         {
             return m_objects.Count;
@@ -17,6 +22,17 @@
         public List<TangibleObject> All()
         {
             return m_objects;
+        }
+
+        public TangibleObject? Pop()
+        {
+            if (m_objects.Count > 0)
+            {
+                var result = m_objects.Last();
+                m_objects.Remove(result);
+                return result;
+            }
+            return null;
         }
 
         public bool Contains(string objectName)

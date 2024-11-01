@@ -46,7 +46,7 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
                 }
             }
 
-            if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
+            if (_.mouseInput.m_leftButton.GetHasBeenDoubleClickedPickResult())
             {
                 m_position = _.mouseUtilities.GetMousePositionF();
                 m_open = true;
