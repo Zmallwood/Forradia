@@ -3,7 +3,7 @@
     public class TextRenderer
     {
         private Dictionary<FontSizes, OutlinedFont> m_fonts = new();
-        private const int k_outlineSize = 2;
+        private const int k_outlineSize = 7;
 
         public TextRenderer()
         {
@@ -51,6 +51,7 @@
 
                 var texture = SDL.CreateTextureFromSurface(_.sdlDevice.m_renderer, textOutlineSurface);
                 var rect = new Rect(position.X, position.Y, textOutlineSurface->W, textOutlineSurface->H);
+                SDL.FreeSurface(textOutlineSurface);
 
                 if (centerAlign)
                 {
@@ -58,6 +59,7 @@
                     rect.Y -= rect.Height / 2;
                 }
                 SDL.RenderCopy(_.sdlDevice.m_renderer, texture, null, &rect);
+                SDL.DestroyTexture(texture);
             }
         }
 
