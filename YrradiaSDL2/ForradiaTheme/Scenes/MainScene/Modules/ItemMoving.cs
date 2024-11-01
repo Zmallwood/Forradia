@@ -3,6 +3,7 @@
     public class ItemMoving
     {
         public TangibleObject? m_objectInAir = null;
+        private PointF m_drawOffset = new PointF(0.0f, 0.0f);
 
         public void Update()
         {
@@ -15,6 +16,12 @@
                     if (topObject != null)
                     {
                         m_objectInAir = topObject;
+                        var mousePosition = _.mouseUtilities.GetMousePosition();
+                        var tileSize = _.tileGridMath.GetTileSize();
+                        var drawOffsetX = mousePosition.X % tileSize;
+                        var drawOffsetY = mousePosition.Y % tileSize;
+                        var canvasSize = _.canvasUtilities.GetCanvasSize();
+                        m_drawOffset = new(-(float)drawOffsetX / canvasSize.Width, -(float)drawOffsetY / canvasSize.Height);
                     }
                 }
             }
@@ -38,7 +45,7 @@
                 var tileWidth = (float)tileSize/_.canvasUtilities.GetCanvasSize().Width;
                 var tileHeight = _.canvasUtilities.ConvertWidthToHeight(tileWidth);
 
-                _.imageRenderer.DrawImage(m_objectInAir.m_type, mousePositionF.X - tileWidth, mousePositionF.Y - tileHeight, tileWidth, tileHeight);
+                _.imageRenderer.DrawImage(m_objectInAir.m_type, mousePositionF.X + m_drawOffset.X, mousePositionF.Y + m_drawOffset.Y, tileWidth, tileHeight);
             }
         }
     }

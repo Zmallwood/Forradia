@@ -123,6 +123,18 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
                             }
                         }
                     }
+                    else if (tangibleObject.m_type == "ObjectWoodPlank".GetHashCode())
+                    {
+
+                        {
+                            var newAction = new PlayerActionLayWooodFloor();
+                            var actionHash = newAction.GetLabel().GetHashCode();
+                            if (!m_currentPlayerActions.ContainsKey(actionHash))
+                            {
+                                m_currentPlayerActions.Add(actionHash, newAction);
+                            }
+                        }
+                    }
                 }
             }
         }
