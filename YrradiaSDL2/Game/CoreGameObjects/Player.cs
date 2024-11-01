@@ -44,43 +44,52 @@
 
         public void Accelerate()
         {
-            m_movementSpeed = Math.Min(3.0f, m_movementSpeed + 0.15f);
+            m_movementSpeed = Math.Min(5.0f, m_movementSpeed + 0.15f);
         }
 
         public void Decelerate()
         {
-            m_movementSpeed = Math.Max(0.0f, m_movementSpeed - 0.15f);
+            m_movementSpeed = Math.Max(0.0f, m_movementSpeed - 0.3f);
         }
 
-        public void UpdateMovement()
+        public void Update()
         {
-            var newX = m_position.X + m_movementDirection.X;
-            var newY = m_position.Y + m_movementDirection.Y;
+            UpdateMovement();
+        }
 
-            var tile = _.world.GetCurrentWorldArea().GetTile(newX, newY);
-
-            if (tile.m_ground == "GroundWater".GetHashCode())
+        private void UpdateMovement()
+        {
+            if (Environment.TickCount > _.player.m_ticksLastMove + 1000 / _.player.m_movementSpeed)
             {
-                return;
-            }
+                var newX = m_position.X + m_movementDirection.X;
+                var newY = m_position.Y + m_movementDirection.Y;
 
-            if (tile.m_mob != null)
-            {
-                if (!_.mobIndex.MobIsFlying(tile.m_mob.m_type))
+                var tile = _.world.GetCurrentWorldArea().GetTile(newX, newY);
+
+                if (tile.m_ground == "GroundWater".GetHashCode())
                 {
                     return;
                 }
-            }
 
-            foreach (var tangibleObject in tile.m_objects.m_objects)
-            {
-                if (_.objectIndex.ObjectBlocksMovement(tangibleObject.m_type))
+                if (tile.m_mob != null)
                 {
-                    return;
+                    if (!_.mobIndex.MobIsFlying(tile.m_mob.m_type))
+                    {
+                        return;
+                    }
                 }
-            }
 
-            m_position = new(newX, newY);
+                foreach (var tangibleObject in tile.m_objects.m_objects)
+                {
+                    if (_.objectIndex.ObjectBlocksMovement(tangibleObject.m_type))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = new(newX, newY);
+                _.player.m_ticksLastMove = Environment.TickCount;
+            }
         }
 
         public void MoveNorth()

@@ -22,7 +22,7 @@
 
         public void Accelerate()
         {
-            m_movementSpeed = Math.Min(1.0f, m_movementSpeed + 0.05f);
+            m_movementSpeed = Math.Min(3.0f, m_movementSpeed + 0.05f);
         }
 
         public void Decelerate()

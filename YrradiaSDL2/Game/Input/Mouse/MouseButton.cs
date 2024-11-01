@@ -25,6 +25,16 @@
             return m_pressed;
         }
 
+        public bool GetHasBeenFiredLeaveResult()
+        {
+            return m_hasBeenFired;
+        }
+
+        public bool GetHasBeenReleasedLeaveResult()
+        {
+            return m_hasBeenReleased;
+        }
+
         public bool GetHasBeenFiredPickResult()
         {
             var result = m_hasBeenFired;

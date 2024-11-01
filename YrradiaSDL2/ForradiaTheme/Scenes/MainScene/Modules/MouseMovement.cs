@@ -4,7 +4,7 @@
     {
         public void Update()
         {
-            if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
+            if (_.mouseInput.m_rightButton.GetHasBeenFiredPickResult())
             {
                 var destination = _.tileHovering.m_hoveredCoordinate;
                 _.player.m_destination = destination;

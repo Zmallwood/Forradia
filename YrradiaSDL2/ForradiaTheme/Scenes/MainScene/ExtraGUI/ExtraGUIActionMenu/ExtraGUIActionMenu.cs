@@ -14,45 +14,44 @@ namespace YrradiaSDL2.ForradiaTheme.Scenes.MainScene.ExtraGUI.ExtraGUIActionMenu
 
         public void Update()
         {
-            if (_.mouseInput.m_rightButton.GetHasBeenFiredPickResult())
+            if (m_open)
+            {
+                var mousePositionF = _.mouseUtilities.GetMousePositionF();
+
+                var row = 0;
+                foreach (var action in m_currentPlayerActions)
+                {
+                    var menuRowPosition = new PointF(m_position.X + 0.013f, m_position.Y + 0.01f + row * k_lineHeight);
+                    var menuRowRect = new RectangleF(menuRowPosition.X, menuRowPosition.Y, k_width, k_lineHeight);
+                    action.Value.m_hovered = menuRowRect.Contains(mousePositionF);
+                    if (action.Value.m_hovered)
+                    {
+                        _.cursor.SetToHovering();
+
+                        if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
+                        {
+                            action.Value.Perform(m_clickedCoordinate);
+                            m_open = false;
+                            m_clickedCoordinate = new(-1, -1);
+                            return;
+                        }
+                    }
+                    row++;
+                }
+
+                if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
+                {
+                    m_open = false;
+                    return;
+                }
+            }
+
+            if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
             {
                 m_position = _.mouseUtilities.GetMousePositionF();
                 m_open = true;
                 m_clickedCoordinate = _.tileHovering.m_hoveredCoordinate;
                 PopulateMenu();
-            }
-
-            if (!m_open)
-            {
-                return;
-            }
-
-            var mousePositionF = _.mouseUtilities.GetMousePositionF();
-
-            var row = 0;
-            foreach (var action in m_currentPlayerActions)
-            {
-                var menuRowPosition = new PointF(m_position.X + 0.013f, m_position.Y + 0.01f + row * k_lineHeight);
-                var menuRowRect = new RectangleF(menuRowPosition.X, menuRowPosition.Y, k_width, k_lineHeight);
-                action.Value.m_hovered = menuRowRect.Contains(mousePositionF);
-                if (action.Value.m_hovered)
-                {
-                    _.cursor.SetToHovering();
-
-                    if (_.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
-                    {
-                        action.Value.Perform(m_clickedCoordinate);
-                        m_open = false;
-                        m_clickedCoordinate = new(-1, -1);
-                        return;
-                    }
-                }
-                row++;
-            }
-
-            if (m_open && _.mouseInput.m_leftButton.GetHasBeenFiredPickResult())
-            {
-                m_open = false;
             }
         }
 
