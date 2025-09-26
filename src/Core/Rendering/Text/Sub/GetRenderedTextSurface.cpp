@@ -1,0 +1,23 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
+#include "GetRenderedTextSurface.hpp"
+
+namespace Forradia
+{
+    SDL_Surface *GetRenderedTextSurface(std::string_view text,
+                                        TTF_Font *fontRaw,
+                                        Color textColor)
+    {
+        auto sdlColor{textColor.ToSDLColor()};
+
+        auto surfaceResult{TTF_RenderText_Solid(
+            fontRaw,
+            text.data(),
+            sdlColor)};
+
+        return surfaceResult;
+    }
+}

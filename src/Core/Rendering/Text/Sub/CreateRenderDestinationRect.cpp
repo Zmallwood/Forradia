@@ -1,0 +1,33 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
+#include "CreateRenderDestinationRect.hpp"
+
+namespace Forradia
+{
+    SDL_Rect CreateRenderDestinationRect(float x,
+                                         float y,
+                                         Size textDimensions,
+                                         bool centerAlign)
+    {
+        SDL_Rect rectResult;
+
+        auto canvasSize{GetCanvasSize()};
+
+        rectResult.x = static_cast<int>(x * canvasSize.width);
+        rectResult.y = static_cast<int>(y * canvasSize.height);
+
+        rectResult.w = textDimensions.width;
+        rectResult.h = textDimensions.height;
+
+        if (centerAlign)
+        {
+            rectResult.x -= rectResult.w / 2;
+            rectResult.y -= rectResult.h / 2;
+        }
+
+        return rectResult;
+    }
+}

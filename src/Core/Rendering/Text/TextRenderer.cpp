@@ -4,8 +4,11 @@
  */
 
 #include "TextRenderer.hpp"
+#include "Sub/AddFonts.hpp"
+#include "Sub/GetRenderedTextSurface.hpp"
+#include "Sub/MeasureRenderedText.hpp"
+#include "Sub/CreateRenderDestinationRect.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
-#include "Sub/CreateFont.hpp"
 
 namespace Forradia
 {
@@ -13,18 +16,14 @@ namespace Forradia
     {
         TTF_Init();
 
-        AddFontSize(FontSizes::_20);
-        AddFontSize(FontSizes::_26);
+        AddFonts();
     }
 
-    void TextRenderer::AddFontSize(FontSizes fontSize)
+    void TextRenderer::AddFonts()
     {
-        auto fontPath{
-            std::string(SDL_GetBasePath()) + k_defaultFontPath};
-
-        auto newFont{CreateFont(fontPath, fontSize)};
-
-        m_fonts.insert({fontSize, newFont});
+        m_fonts = Forradia::AddFonts({FontSizes::_20,
+                                      FontSizes::_26},
+                                     k_defaultFontPath);
     }
 
     void TextRenderer::DrawString(std::string_view text,
@@ -34,48 +33,20 @@ namespace Forradia
                                   bool centerAlign,
                                   Color textColor) const
     {
-        auto font{m_fonts.at(fontSize).get()};
+        auto fontRaw{m_fonts.at(fontSize).get()};
 
-        auto renderer{
-            _<SDLDevice>().GetRenderer().get()};
+        auto surface{GetRenderedTextSurface(text, fontRaw, textColor)};
 
-        auto sdlColor{textColor.ToSDLColor()};
+        auto textDimensions{MeasureRenderedText(text, fontRaw)};
 
-        auto surface{
-            TTF_RenderText_Solid(
-                font,
-                text.data(),
-                sdlColor)};
-
-        int textWidth;
-        int textHeight;
-
-        TTF_SizeText(
-            font,
-            text.data(),
-            &textWidth,
-            &textHeight);
+        auto renderer{_<SDLDevice>().GetRenderer().get()};
 
         auto texture{
             SDL_CreateTextureFromSurface(renderer, surface)};
 
-        auto canvasSize{GetCanvasSize()};
+        auto destinationRect{CreateRenderDestinationRect(x, y, textDimensions, centerAlign)};
 
-        SDL_Rect rect;
-
-        rect.x = static_cast<int>(x * canvasSize.width);
-        rect.y = static_cast<int>(y * canvasSize.height);
-
-        rect.w = textWidth;
-        rect.h = textHeight;
-
-        if (centerAlign)
-        {
-            rect.x -= rect.w / 2;
-            rect.y -= rect.h / 2;
-        }
-
-        SDL_RenderCopy(renderer, texture, nullptr, &rect);
+        SDL_RenderCopy(renderer, texture, nullptr, &destinationRect);
 
         SDL_FreeSurface(surface);
         SDL_DestroyTexture(texture);

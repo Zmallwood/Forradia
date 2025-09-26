@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "FontSizes.hpp"
+#include "Sub/FontSizes.hpp"
 
 namespace Forradia
 {
@@ -22,6 +22,8 @@ namespace Forradia
                         Color textColor = Colors::wheat) const;
 
     private:
+        void AddFonts();
+
         void AddFontSize(FontSizes fontSize);
 
         const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
