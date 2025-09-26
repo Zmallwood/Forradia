@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #include "MainScene.hpp"
 #include "Theme0/Theme0Mechanics/WorldView/WorldView.hpp"
 #include "Theme0/Theme0Mechanics/PlayerMovement/UpdateKeyboardMovement.hpp"

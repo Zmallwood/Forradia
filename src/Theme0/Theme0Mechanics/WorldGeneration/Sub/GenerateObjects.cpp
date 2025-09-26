@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #include "GenerateObjects.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"

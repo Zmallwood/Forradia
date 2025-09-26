@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #include "UpdateKeyboardMovement.hpp"
 #include "Theme0/Theme0Mechanics/CoreGameObjects/Player.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
