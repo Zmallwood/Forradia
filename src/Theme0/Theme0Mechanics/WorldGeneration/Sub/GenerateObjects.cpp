@@ -12,7 +12,7 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        auto numFirTrees{1800 + RandomInt(50)};
+        auto numFirTrees{1000 + RandomInt(50)};
 
         for (auto i = 0; i < numFirTrees; i++)
         {
@@ -25,6 +25,22 @@ namespace Forradia
             {
                 tile->GetObjectsStack()->ClearObjects();
                 tile->GetObjectsStack()->AddTreeObject("ObjectFirTree");
+            }
+        }
+
+        auto numBirchTrees{1000 + RandomInt(50)};
+
+        for (auto i = 0; i < numBirchTrees; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && tile->GetGround() == Hash("GroundGrass"))
+            {
+                tile->GetObjectsStack()->ClearObjects();
+                tile->GetObjectsStack()->AddTreeObject("ObjectBirchTree");
             }
         }
 

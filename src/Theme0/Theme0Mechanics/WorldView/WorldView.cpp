@@ -162,6 +162,12 @@ namespace Forradia
                         ground = Hash("GroundGrassSlopeDiagonalNorthWestToSouthEast");
                     }
                 }
+                else if (ground == Hash("GroundWater"))
+                {
+                    auto animIndex { (GetTicks() + ( (xCoordinate + yCoordinate) * 100 ) ) / 500 % 3 };
+
+                    ground = Hash("GroundWater_" + std::to_string(animIndex));
+                }
 
                 _<ImageRenderer>().DrawImage(ground, xCanvas, yCanvas, widthCanvas, heightCanvas);
 
@@ -179,7 +185,7 @@ namespace Forradia
                     {
                         auto objectType{object->GetType()};
 
-                        if (objectType == Hash("ObjectFirTree"))
+                        if (objectType == Hash("ObjectFirTree") || objectType == Hash("ObjectBirchTree"))
                         {
                             auto treeObject{std::static_pointer_cast<TreeObject>(object)};
 
@@ -202,7 +208,18 @@ namespace Forradia
                                 auto trunkPartWidth{tileSize.width * 0.2f * widthDecreaseFactor};
                                 auto trunkPartHeight{tileSize.height * 0.2f};
 
-                                _<ImageRenderer>().DrawImage("ObjectFirTreeTrunkPart", trunkPartXCenter - trunkPartWidth / 2, trunkPartYCenter - trunkPartHeight / 2, trunkPartWidth, trunkPartHeight);
+                                std::string trunkPartName;
+
+                                if (objectType == Hash("ObjectFirTree"))
+                                {
+                                    trunkPartName = "ObjectFirTreeTrunkPart";
+                                }
+                                else if (objectType == Hash("ObjectBirchTree"))
+                                {
+                                    trunkPartName = "ObjectBirchTreeTrunkPart";
+                                }
+
+                                _<ImageRenderer>().DrawImage(trunkPartName, trunkPartXCenter - trunkPartWidth / 2, trunkPartYCenter - trunkPartHeight / 2, trunkPartWidth, trunkPartHeight);
 
                                 auto needleWidth{treeWidth};
                                 auto needleHeight{tileSize.height};
