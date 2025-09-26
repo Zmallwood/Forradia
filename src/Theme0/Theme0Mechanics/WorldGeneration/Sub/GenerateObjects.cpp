@@ -27,5 +27,80 @@ namespace Forradia
                 tile->GetObjectsStack()->AddTreeObject("ObjectFirTree");
             }
         }
+
+        auto numBush1s{400 + RandomInt(100)};
+
+        for (auto i = 0; i < numBush1s; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && tile->GetGround() == Hash("GroundGrass"))
+            {
+                tile->GetObjectsStack()->AddObject("ObjectBush1");
+            }
+        }
+
+        auto numBush2s{400 + RandomInt(100)};
+
+        for (auto i = 0; i < numBush2s; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && tile->GetGround() == Hash("GroundGrass"))
+            {
+                tile->GetObjectsStack()->AddObject("ObjectBush2");
+            }
+        }
+
+        auto numPinkFlowers{400 + RandomInt(100)};
+
+        for (auto i = 0; i < numPinkFlowers; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && tile->GetGround() == Hash("GroundGrass"))
+            {
+                tile->GetObjectsStack()->AddObject("ObjectPinkFlower");
+            }
+        }
+
+        auto numTallGrasses{400 + RandomInt(100)};
+
+        for (auto i = 0; i < numTallGrasses; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && tile->GetGround() == Hash("GroundGrass"))
+            {
+                tile->GetObjectsStack()->AddObject("ObjectTallGrass");
+            }
+        }
+
+        auto numStoneBoulders{200 + RandomInt(100)};
+
+        for (auto i = 0; i < numStoneBoulders; i++)
+        {
+            auto x{RandomInt(size.width)};
+            auto y{RandomInt(size.height)};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile && (tile->GetGround() == Hash("GroundGrass") || tile->GetGround() == Hash("GroundWater")))
+            {
+                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+            }
+        }
     }
 }

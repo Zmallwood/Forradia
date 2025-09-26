@@ -1,4 +1,4 @@
-#include "UpdateKeyboardBindings.hpp"
+#include "UpdateKeyboardBindingActions.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
 #include "Theme0/Theme0Mechanics/CoreGameObjects/Player.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    void UpdateKeyboardBindings()
+    void UpdateKeyboardBindingActions()
     {
         if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_1))
         {

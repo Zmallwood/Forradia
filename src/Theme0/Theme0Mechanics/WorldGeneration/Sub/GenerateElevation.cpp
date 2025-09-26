@@ -11,7 +11,7 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        auto numHills{40 + RandomInt(5)};
+        auto numHills{140 + RandomInt(30)};
 
         for (auto i = 0; i < numHills; i++)
         {
@@ -47,6 +47,18 @@ namespace Forradia
                                 auto tileNE{worldArea->GetTile(x + 1, y - 1)};
                                 auto tileSW{worldArea->GetTile(x - 1, y + 1)};
                                 auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+                                if ((tileN && tileN->GetGround() == Hash("GroundWater"))
+                                || (tileS && tileS->GetGround() == Hash("GroundWater"))
+                                || (tileW && tileW->GetGround() == Hash("GroundWater"))
+                                || (tileE && tileE->GetGround() == Hash("GroundWater"))
+                                || (tileNW && tileNW->GetGround() == Hash("GroundWater"))
+                                || (tileNE && tileNE->GetGround() == Hash("GroundWater"))
+                                || (tileSW && tileSW->GetGround() == Hash("GroundWater"))
+                                || (tileSE && tileSE->GetGround() == Hash("GroundWater")))
+                                {
+                                    continue;
+                                }
 
                                 if (tileN && tileN->GetElevation() < tile->GetElevation())
                                 {

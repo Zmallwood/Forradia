@@ -11,9 +11,9 @@ namespace Forradia
     {
         ClearWithGrass();
 
-        GenerateElevation();
-
         GenerateWater();
+
+        GenerateElevation();
 
         GenerateObjects();
 
