@@ -1,5 +1,5 @@
 #include "ImageRenderer.hpp"
-#include "Core/Assets/ImageBank.hpp"
+#include "Core/ImageAssets/ImageBank.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 
 namespace Forradia
