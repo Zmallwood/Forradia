@@ -1,0 +1,13 @@
+#include "WorldGenerationScene.hpp"
+#include "Theme0/Theme0Mechanics/WorldGeneration/GenerateNewWorld.hpp"
+#include "Core/ScenesCore/SceneManager.hpp"
+
+namespace Forradia
+{
+    void WorldGenerationScene::OnEnter()
+    {
+        GenerateNewWorld();
+
+        _<SceneManager>().GoToScene("MainScene");
+    }
+}

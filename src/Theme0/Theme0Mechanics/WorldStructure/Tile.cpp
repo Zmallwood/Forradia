@@ -1,0 +1,15 @@
+#include "Tile.hpp"
+#include "ObjectsStack.hpp"
+
+namespace Forradia
+{
+    Tile::Tile()
+        : m_objectsStack(std::make_shared<ObjectsStack>())
+    {
+    }
+
+    void Tile::SetGround(std::string_view groundName)
+    {
+        m_ground = Hash(groundName);
+    }
+}
