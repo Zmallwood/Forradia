@@ -7,7 +7,8 @@
 #include "Theme0/Theme0Mechanics/WorldView/WorldView.hpp"
 #include "Theme0/Theme0Mechanics/PlayerMovement/UpdateKeyboardMovement.hpp"
 #include "Theme0/Theme0Mechanics/MobMovement/UpdateMobMovement.hpp"
-#include "Theme0/Theme0Mechanics/General/UpdateKeyboardBindingActions.hpp"
+#include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
+#include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
 
 namespace Forradia
 {
@@ -16,6 +17,8 @@ namespace Forradia
         UpdateMobMovement();
 
         UpdateKeyboardMovement();
+
+        _<TileHovering>().Update();
 
         UpdateKeyboardBindingActions();
     }

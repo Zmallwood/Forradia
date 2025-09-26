@@ -15,6 +15,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/Object.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Mob.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/TreeObject.hpp"
+#include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
 
 namespace Forradia
 {
@@ -28,9 +29,11 @@ namespace Forradia
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
+        auto playerElevation{worldArea->GetTile(playerPosition)->GetElevation() * tileSize.height / 2};
+
         auto extraRows{8};
 
-        for (auto y = 0; y < gridSize.height + extraRows; y++)
+        for (auto y = -extraRows; y < gridSize.height + extraRows; y++)
         {
             for (auto x = 0; x < gridSize.width; x++)
             {
@@ -69,10 +72,10 @@ namespace Forradia
 
                 auto ground{tile ? tile->GetGround() : 0};
 
-                auto groundTypeRendered { ground };
+                auto groundTypeRendered{ground};
 
                 xCanvas = x * tileSize.width;
-                yCanvas = y * tileSize.height - tileNW->GetElevation() * tileSize.height / 2;
+                yCanvas = playerElevation + y * tileSize.height - tileNW->GetElevation() * tileSize.height / 2;
                 widthCanvas = tileSize.width;
                 heightCanvas = tileSize.height;
 
@@ -195,15 +198,15 @@ namespace Forradia
 
                 if (ground == Hash("GroundWater"))
                 {
-                    Point N {xCoordinate, yCoordinate - 1};
-                    Point S {xCoordinate, yCoordinate + 1};
-                    Point W {xCoordinate - 1, yCoordinate};
-                    Point E {xCoordinate + 1, yCoordinate};
+                    Point N{xCoordinate, yCoordinate - 1};
+                    Point S{xCoordinate, yCoordinate + 1};
+                    Point W{xCoordinate - 1, yCoordinate};
+                    Point E{xCoordinate + 1, yCoordinate};
 
-                    auto tileN {worldArea->IsValidCoordinate(N.x, N.y) ? worldArea->GetTile(N) : nullptr};
-                    auto tileS {worldArea->IsValidCoordinate(S.x, S.y) ? worldArea->GetTile(S) : nullptr};
-                    auto tileW {worldArea->IsValidCoordinate(W.x, W.y) ? worldArea->GetTile(W) : nullptr};
-                    auto tileE {worldArea->IsValidCoordinate(E.x, E.y) ? worldArea->GetTile(E) : nullptr};
+                    auto tileN{worldArea->IsValidCoordinate(N.x, N.y) ? worldArea->GetTile(N) : nullptr};
+                    auto tileS{worldArea->IsValidCoordinate(S.x, S.y) ? worldArea->GetTile(S) : nullptr};
+                    auto tileW{worldArea->IsValidCoordinate(W.x, W.y) ? worldArea->GetTile(W) : nullptr};
+                    auto tileE{worldArea->IsValidCoordinate(E.x, E.y) ? worldArea->GetTile(E) : nullptr};
 
                     if (tileN && tileN->GetGround() != Hash("GroundWater"))
                     {
@@ -226,11 +229,18 @@ namespace Forradia
                     }
                 }
 
+                auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
+
+                if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
+                {
+                    _<ImageRenderer>().DrawImage("HoveredTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                }
+
                 if (xCoordinate == playerPosition.x &&
                     yCoordinate == playerPosition.y)
                 {
                     _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
-                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - heightCanvas/2, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - heightCanvas / 2, widthCanvas, heightCanvas);
                 }
 
                 auto objectsStack{tile ? tile->GetObjectsStack() : nullptr};

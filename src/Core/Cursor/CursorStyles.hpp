@@ -10,7 +10,7 @@ namespace Forradia
     enum class CursorStyles
     {
         Default,
-        Hoverable,
-        Creature
+        HoveringGUI,
+        HoveringCreature
     };
 }
