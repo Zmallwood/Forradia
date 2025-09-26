@@ -2,6 +2,7 @@
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
+#include "Core/Cursor/Cursor.hpp"
 
 namespace Forradia
 {
@@ -18,6 +19,8 @@ namespace Forradia
             _<SDLDevice>().ClearCanvas();
 
             _<SceneManager>().RenderCurrentScene();
+
+            _<Cursor>().Render();
 
             _<SDLDevice>().PresentCanvas();
         }

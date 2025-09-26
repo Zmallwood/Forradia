@@ -27,4 +27,5 @@
 #include "Common/Utilities/CanvasUtilities.hpp"
 #include "Common/Utilities/TimeUtilities.hpp"
 #include "Common/Utilities/NumbersUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "Common/Hash.hpp"
