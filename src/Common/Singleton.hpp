@@ -3,7 +3,7 @@
 namespace Forradia
 {
     template <class T>
-    T& _()
+    T &_()
     {
         static T instance;
 

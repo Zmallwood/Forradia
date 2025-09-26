@@ -27,17 +27,17 @@ namespace Forradia
                     continue;
                 }
 
-                auto destination { mob->GetDestination() };
+                auto destination{mob->GetDestination()};
 
                 if (destination.x == -1 && destination.y == -1)
                 {
-                    auto newDestinationX { position.x + RandomInt(11) - 5 };
-                    auto newDestinationY { position.y + RandomInt(11) - 5 };
-                    mob->SetDestination({ newDestinationX, newDestinationY });
+                    auto newDestinationX{position.x + RandomInt(11) - 5};
+                    auto newDestinationY{position.y + RandomInt(11) - 5};
+                    mob->SetDestination({newDestinationX, newDestinationY});
                 }
 
-                auto dx { mob->GetDestination().x - position.x };
-                auto dy { mob->GetDestination().y - position.y };
+                auto dx{mob->GetDestination().x - position.x};
+                auto dy{mob->GetDestination().y - position.y};
 
                 auto normDx{0};
                 auto normDy{0};
@@ -60,7 +60,7 @@ namespace Forradia
 
                 if (newX == mob->GetDestination().x && newY == mob->GetDestination().y)
                 {
-                    mob->SetDestination({ -1, -1 });
+                    mob->SetDestination({-1, -1});
                 }
 
                 auto tile{worldArea->GetTile(newX, newY)};
@@ -73,13 +73,13 @@ namespace Forradia
                     tile->SetMob(mob);
                     mobsMirrorRef.erase(it);
                     mobsMirrorRef.insert({mob, {newX, newY}});
-                    
+
                     ++it;
                     continue;
                 }
                 else
                 {
-                    mob->SetDestination({ -1, -1 });
+                    mob->SetDestination({-1, -1});
                     ++it;
                     continue;
                 }

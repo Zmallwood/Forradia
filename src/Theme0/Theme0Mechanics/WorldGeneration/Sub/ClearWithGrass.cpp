@@ -7,15 +7,15 @@ namespace Forradia
 {
     void ClearWithGrass()
     {
-        auto worldArea { _<World>().GetCurrentWorldArea() };
+        auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto size { worldArea->GetSize() };
+        auto size{worldArea->GetSize()};
 
         for (auto y = 0; y < size.height; y++)
         {
             for (auto x = 0; x < size.width; x++)
             {
-                auto tile { worldArea->GetTile(x, y) };
+                auto tile{worldArea->GetTile(x, y)};
 
                 if (tile)
                 {

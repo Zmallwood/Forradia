@@ -12,7 +12,7 @@ namespace Forradia
             _<SceneManager>().GoToScene("WorldGenerationScene");
         }
     }
-    
+
     void MainMenuScene::RenderDerived() const
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);

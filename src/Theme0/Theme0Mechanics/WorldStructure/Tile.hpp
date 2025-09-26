@@ -46,6 +46,6 @@ namespace Forradia
         int m_ground{0};
         std::shared_ptr<ObjectsStack> m_objectsStack;
         std::shared_ptr<Mob> m_mob;
-        int m_elevation {0};
+        int m_elevation{0};
     };
 }

@@ -12,11 +12,11 @@ namespace Forradia
 
         auto numTrunkParts{25 + RandomInt(44)};
 
-        auto offsetX { 0.0f };
+        auto offsetX{0.0f};
 
         for (auto i = 0; i < numTrunkParts; i++)
         {
-            //auto offsetX{(RandomInt(20) - 10) / 100.0f};
+            // auto offsetX{(RandomInt(20) - 10) / 100.0f};
             offsetX += (RandomInt(20) - 10) / 100.0f;
             auto offsetY{i * 0.1f};
 

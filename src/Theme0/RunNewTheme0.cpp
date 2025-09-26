@@ -5,8 +5,6 @@ namespace Forradia
 {
     void RunNewTheme0()
     {
-        std::cout << "tjo\n";
-
         _<Game>().Start();
     }
 }

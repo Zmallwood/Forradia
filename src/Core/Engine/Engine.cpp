@@ -32,7 +32,7 @@ namespace Forradia
     {
         SDL_Event event;
 
-        while (SDL_PollEvent( &event ))
+        while (SDL_PollEvent(&event))
         {
             switch (event.type)
             {
@@ -45,16 +45,14 @@ namespace Forradia
             case SDL_KEYDOWN:
 
                 _<KeyboardInput>().RegisterKeyPress(
-                    event.key.keysym.sym
-                );
+                    event.key.keysym.sym);
 
                 break;
 
             case SDL_KEYUP:
 
                 _<KeyboardInput>().RegisterKeyRelease(
-                    event.key.keysym.sym
-                );
+                    event.key.keysym.sym);
 
                 break;
 

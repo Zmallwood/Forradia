@@ -2,28 +2,28 @@
 
 namespace Forradia
 {
-    void SDLDeleter::operator()( SDL_Window* window ) const
+    void SDLDeleter::operator()(SDL_Window *window) const
     {
-        SDL_DestroyWindow( window );
+        SDL_DestroyWindow(window);
     }
 
-    void SDLDeleter::operator()( SDL_Renderer* renderer ) const
+    void SDLDeleter::operator()(SDL_Renderer *renderer) const
     {
-        SDL_DestroyRenderer( renderer );
+        SDL_DestroyRenderer(renderer);
     }
 
-    void SDLDeleter::operator()( SDL_Surface* surface ) const
+    void SDLDeleter::operator()(SDL_Surface *surface) const
     {
-        SDL_FreeSurface( surface );
+        SDL_FreeSurface(surface);
     }
 
-    void SDLDeleter::operator()( SDL_Texture* texture ) const
+    void SDLDeleter::operator()(SDL_Texture *texture) const
     {
-        SDL_DestroyTexture( texture );
+        SDL_DestroyTexture(texture);
     }
 
-    void SDLDeleter::operator()( TTF_Font* font ) const
+    void SDLDeleter::operator()(TTF_Font *font) const
     {
-        TTF_CloseFont( font );
+        TTF_CloseFont(font);
     }
 }

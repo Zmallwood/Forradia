@@ -32,7 +32,7 @@ namespace Forradia
         {
             m_ticksLastMove = ticks;
         }
-    
+
     private:
         Point m_position{60, 50};
         float m_movementSpeed{5.0f};

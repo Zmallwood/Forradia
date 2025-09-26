@@ -2,5 +2,5 @@
 
 namespace Forradia
 {
-    float InvertMovementSpeed( float number );
+    float InvertMovementSpeed(float number);
 }

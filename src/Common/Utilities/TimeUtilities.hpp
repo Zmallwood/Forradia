@@ -2,5 +2,5 @@
 
 namespace Forradia
 {
-    const auto GetTicks { SDL_GetTicks };
+    const auto GetTicks{SDL_GetTicks};
 }

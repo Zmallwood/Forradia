@@ -9,18 +9,16 @@ namespace Forradia
         m_objects.clear();
     }
 
-    void ObjectsStack::AddObject( std::string_view objectTypeName )
+    void ObjectsStack::AddObject(std::string_view objectTypeName)
     {
         m_objects.push_back(
-            std::make_shared<Object>( objectTypeName )
-        ); 
+            std::make_shared<Object>(objectTypeName));
     }
 
-    void ObjectsStack::AddTreeObject( std::string_view objectTypeName )
+    void ObjectsStack::AddTreeObject(std::string_view objectTypeName)
     {
         m_objects.push_back(
-            std::make_shared<TreeObject>( objectTypeName )
-        ); 
+            std::make_shared<TreeObject>(objectTypeName));
     }
 
     int ObjectsStack::GetSize() const

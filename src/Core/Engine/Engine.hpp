@@ -12,6 +12,6 @@ namespace Forradia
         void PollEvents();
 
     private:
-        bool m_running {true};
+        bool m_running{true};
     };
 }

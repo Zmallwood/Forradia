@@ -27,6 +27,6 @@ namespace Forradia
     private:
         std::vector<PointF> m_trunkParts;
         std::vector<int> m_needleTypes;
-        float m_widthFactor { 1.0f};
+        float m_widthFactor{1.0f};
     };
 }

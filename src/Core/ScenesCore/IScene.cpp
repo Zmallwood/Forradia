@@ -3,7 +3,8 @@
 namespace Forradia
 {
     IScene::IScene()
-    {}
+    {
+    }
 
     void IScene::Update()
     {
