@@ -23,7 +23,9 @@ namespace Forradia
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        for (auto y = 0; y < gridSize.height; y++)
+        auto extraRows{8};
+
+        for (auto y = 0; y < gridSize.height + extraRows; y++)
         {
             for (auto x = 0; x < gridSize.width; x++)
             {

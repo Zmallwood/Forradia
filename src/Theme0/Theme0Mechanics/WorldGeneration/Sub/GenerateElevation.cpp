@@ -11,7 +11,7 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        auto numHills{20 + RandomInt(5)};
+        auto numHills{40 + RandomInt(5)};
 
         for (auto i = 0; i < numHills; i++)
         {

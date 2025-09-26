@@ -12,22 +12,6 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        // auto numTree1s { 200 + RandomInt( 50 ) };
-
-        // for (auto i = 0; i < numTree1s; i++)
-        // {
-        //     auto x { RandomInt( size.width ) };
-        //     auto y { RandomInt( size.height ) };
-
-        //     auto tile { worldArea->GetTile( x, y ) };
-
-        //     if (tile && tile->GetGround() == Hash( "GroundGrass" ))
-        //     {
-        //         tile->GetObjectsStack()->ClearObjects();
-        //         tile->GetObjectsStack()->AddObject( "ObjectTree1" );
-        //     }
-        // }
-
         auto numFirTrees{1800 + RandomInt(50)};
 
         for (auto i = 0; i < numFirTrees; i++)

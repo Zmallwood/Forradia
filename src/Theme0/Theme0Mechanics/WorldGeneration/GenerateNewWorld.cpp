@@ -11,11 +11,11 @@ namespace Forradia
     {
         ClearWithGrass();
 
+        GenerateElevation();
+
         GenerateWater();
 
         GenerateObjects();
-
-        GenerateElevation();
 
         GenerateMobs();
     }
