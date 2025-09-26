@@ -3,14 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "ClearWithGrass.hpp"
+#include "ClearWithDirt.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 
 namespace Forradia
 {
-    void ClearWithGrass()
+    void ClearWithDirt()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
@@ -24,7 +24,7 @@ namespace Forradia
 
                 if (tile)
                 {
-                    tile->SetGround("GroundGrass");
+                    tile->SetGround("GroundDirt");
                 }
             }
         }

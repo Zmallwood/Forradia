@@ -26,7 +26,7 @@ namespace Forradia
             numTrunkParts = 25 + RandomInt(14);
         }
 
-        m_widthFactor *= (RandomInt(5) + 1) / 2.0f + 0.5f;
+        m_widthFactor *= (RandomInt(5) + 1) / 2.0f + 1.0f;
 
         auto offsetX{0.0f};
 

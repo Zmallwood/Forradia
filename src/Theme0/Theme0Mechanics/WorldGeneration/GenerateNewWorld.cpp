@@ -4,7 +4,8 @@
  */
 
 #include "GenerateNewWorld.hpp"
-#include "Sub/ClearWithGrass.hpp"
+#include "Sub/ClearWithDirt.hpp"
+#include "Sub/GenerateGrass.hpp"
 #include "Sub/GenerateWater.hpp"
 #include "Sub/GenerateObjects.hpp"
 #include "Sub/GenerateMobs.hpp"
@@ -14,7 +15,9 @@ namespace Forradia
 {
     void GenerateNewWorld()
     {
-        ClearWithGrass();
+        ClearWithDirt();
+
+        GenerateGrass();
 
         GenerateWater();
 

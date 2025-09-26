@@ -76,39 +76,50 @@ namespace Forradia
                 widthCanvas = tileSize.width;
                 heightCanvas = tileSize.height;
 
-                if (ground == Hash("GroundGrass"))
+                if (ground != Hash("GroundWater"))
                 {
+                    std::string groundName;
+
+                    if (ground == Hash("GroundGrass"))
+                    {
+                        groundName = "GroundGrass";
+                    }
+                    else if (ground == Hash("GroundDirt"))
+                    {
+                        groundName = "GroundDirt";
+                    }
+
                     if (tileNW->GetElevation() > tileSW->GetElevation() &&
                         tileNE->GetElevation() > tileSE->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeSouth");
+                        groundTypeRendered = Hash(groundName + "SlopeSouth");
                     }
                     else if (tileNW->GetElevation() < tileSW->GetElevation() &&
                              tileNE->GetElevation() < tileSE->GetElevation())
                     {
                         heightCanvas -= tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeNorth");
+                        groundTypeRendered = Hash(groundName + "SlopeNorth");
                     }
                     else if (tileNE->GetElevation() > tileNW->GetElevation() &&
                              tileSE->GetElevation() > tileSW->GetElevation())
                     {
                         yCanvas -= tileSize.height / 2;
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeWest");
+                        groundTypeRendered = Hash(groundName + "SlopeWest");
                     }
                     else if (tileNW->GetElevation() > tileNE->GetElevation() &&
                              tileSW->GetElevation() > tileSE->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeEast");
+                        groundTypeRendered = Hash(groundName + "SlopeEast");
                     }
                     else if (tileNW->GetElevation() > tileNE->GetElevation() &&
                              tileNW->GetElevation() > tileSE->GetElevation() &&
                              tileNW->GetElevation() > tileSW->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeSouthEast");
+                        groundTypeRendered = Hash(groundName + "SlopeSouthEast");
                     }
                     else if (tileNE->GetElevation() > tileNW->GetElevation() &&
                              tileNE->GetElevation() > tileSE->GetElevation() &&
@@ -116,57 +127,57 @@ namespace Forradia
                     {
                         yCanvas -= tileSize.height / 2;
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeSouthWest");
+                        groundTypeRendered = Hash(groundName + "SlopeSouthWest");
                     }
                     else if (tileSW->GetElevation() > tileNW->GetElevation() &&
                              tileSW->GetElevation() > tileSE->GetElevation() &&
                              tileSW->GetElevation() > tileNE->GetElevation())
                     {
-                        groundTypeRendered = Hash("GroundGrassSlopeNorthEast");
+                        groundTypeRendered = Hash(groundName + "SlopeNorthEast");
                     }
                     else if (tileSE->GetElevation() > tileNW->GetElevation() &&
                              tileSE->GetElevation() > tileNE->GetElevation() &&
                              tileSE->GetElevation() > tileSW->GetElevation())
                     {
-                        groundTypeRendered = Hash("GroundGrassSlopeNorthWest");
+                        groundTypeRendered = Hash(groundName + "SlopeNorthWest");
                     }
                     else if (tileSW->GetElevation() < tileNW->GetElevation() &&
                              tileSW->GetElevation() < tileNE->GetElevation() &&
                              tileSW->GetElevation() < tileSE->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeSouthWestInverted");
+                        groundTypeRendered = Hash(groundName + "SlopeSouthWestInverted");
                     }
                     else if (tileSE->GetElevation() < tileNW->GetElevation() &&
                              tileSE->GetElevation() < tileNE->GetElevation() &&
                              tileSE->GetElevation() < tileSW->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeSouthEastInverted");
+                        groundTypeRendered = Hash(groundName + "SlopeSouthEastInverted");
                     }
                     else if (tileNW->GetElevation() < tileNE->GetElevation() &&
                              tileNW->GetElevation() < tileSW->GetElevation() &&
                              tileNW->GetElevation() < tileSE->GetElevation())
                     {
                         yCanvas -= tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeNorthWestInverted");
+                        groundTypeRendered = Hash(groundName + "SlopeNorthWestInverted");
                     }
                     else if (tileNE->GetElevation() < tileNW->GetElevation() &&
                              tileNE->GetElevation() < tileSW->GetElevation() &&
                              tileNE->GetElevation() < tileSE->GetElevation())
                     {
-                        groundTypeRendered = Hash("GroundGrassSlopeNorthEastInverted");
+                        groundTypeRendered = Hash(groundName + "SlopeNorthEastInverted");
                     }
                     else if (tileSW->GetElevation() == tileNE->GetElevation() && tileNW->GetElevation() < tileSW->GetElevation() && tileSE->GetElevation() < tileSW->GetElevation())
                     {
                         yCanvas -= tileSize.height / 2;
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeDiagonalSouthWestToNorthEast");
+                        groundTypeRendered = Hash(groundName + "SlopeDiagonalSouthWestToNorthEast");
                     }
                     else if (tileNW->GetElevation() == tileSE->GetElevation() && tileNE->GetElevation() < tileNW->GetElevation() && tileSW->GetElevation() < tileNW->GetElevation())
                     {
                         heightCanvas += tileSize.height / 2;
-                        groundTypeRendered = Hash("GroundGrassSlopeDiagonalNorthWestToSouthEast");
+                        groundTypeRendered = Hash(groundName + "SlopeDiagonalNorthWestToSouthEast");
                     }
                 }
                 else if (ground == Hash("GroundWater"))
