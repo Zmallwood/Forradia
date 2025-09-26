@@ -88,6 +88,10 @@ namespace Forradia
                     {
                         groundName = "GroundDirt";
                     }
+                    else if (ground == Hash("GroundRock"))
+                    {
+                        groundName = "GroundRock";
+                    }
 
                     if (tileNW->GetElevation() > tileSW->GetElevation() &&
                         tileNE->GetElevation() > tileSE->GetElevation())

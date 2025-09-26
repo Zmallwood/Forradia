@@ -26,7 +26,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
                 tile->GetObjectsStack()->AddTreeObject("ObjectFirTree");
@@ -42,7 +42,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
                 tile->GetObjectsStack()->AddTreeObject("ObjectBirchTree");
@@ -58,7 +58,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->AddObject("ObjectBush1");
             }
@@ -73,7 +73,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->AddObject("ObjectBush2");
             }
@@ -88,7 +88,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->AddObject("ObjectPinkFlower");
             }
@@ -103,7 +103,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater"))
+            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->AddObject("ObjectTallGrass");
             }
@@ -118,10 +118,7 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && (tile->GetGround() == Hash("GroundGrass") || tile->GetGround() == Hash("GroundWater")))
-            {
-                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
-            }
+            tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
         }
     }
 }

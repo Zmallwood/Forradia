@@ -7,5 +7,5 @@
 
 namespace Forradia
 {
-    void GenerateGrass();
+    void GenerateRock();
 }

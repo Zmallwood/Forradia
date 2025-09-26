@@ -3,20 +3,20 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
- #include "GenerateGrass.hpp"
+#include "GenerateGrass.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 
 namespace Forradia
 {
-    void GenerateGrass()
+    void GenerateRock()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto numGrassAreas {50 + RandomInt(20)};
+        auto numRockAreas{30 + RandomInt(10)};
 
-        for (auto i = 0; i < numGrassAreas; i++)
+        for (auto i = 0; i < numRockAreas; i++)
         {
             auto xCenter{RandomInt(worldArea->GetSize().width)};
             auto yCenter{RandomInt(worldArea->GetSize().height)};
@@ -38,7 +38,10 @@ namespace Forradia
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        tile->SetGround("GroundGrass");
+                        if (tile->GetElevation() > 0)
+                        {
+                            tile->SetGround("GroundRock");
+                        }
                     }
                 }
             }

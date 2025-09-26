@@ -10,6 +10,7 @@
 #include "Sub/GenerateObjects.hpp"
 #include "Sub/GenerateMobs.hpp"
 #include "Sub/GenerateElevation.hpp"
+#include "Sub/GenerateRock.hpp"
 
 namespace Forradia
 {
@@ -22,6 +23,8 @@ namespace Forradia
         GenerateWater();
 
         GenerateElevation();
+
+        GenerateRock();
 
         GenerateObjects();
 
