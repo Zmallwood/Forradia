@@ -7,11 +7,6 @@
 
 namespace Forradia
 {
-    void KeyboardInput::Reset()
-    {
-        m_pressedKeys.clear();
-    }
-
     void KeyboardInput::RegisterKeyPress(SDL_Keycode key)
     {
         m_pressedKeys.insert(key);
@@ -29,19 +24,19 @@ namespace Forradia
 
     bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
     {
-        auto result{m_pressedKeys.contains(key)};
+        auto keyIsPressedResult{m_pressedKeys.contains(key)};
 
         m_pressedKeys.erase(key);
 
-        return result;
+        return keyIsPressedResult;
     }
 
     bool KeyboardInput::AnyKeyIsPressedPickResult()
     {
-        auto result{m_pressedKeys.size() > 0};
+        auto anyKeyIsPressedResult{m_pressedKeys.size() > 0};
 
         m_pressedKeys.clear();
 
-        return result;
+        return anyKeyIsPressedResult;
     }
 }

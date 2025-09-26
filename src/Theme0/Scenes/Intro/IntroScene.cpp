@@ -21,6 +21,6 @@ namespace Forradia
     void IntroScene::RenderDerived() const
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-        _<ImageRenderer>().DrawImage("ForradiaLogo", 0.2f, 0.2f, 0.6f);
+        _<ImageRenderer>().DrawImageWithAutoHeight("ForradiaLogo", 0.2f, 0.2f, 0.6f);
     }
 }

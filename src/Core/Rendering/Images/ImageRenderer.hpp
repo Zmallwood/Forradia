@@ -22,7 +22,7 @@ namespace Forradia
                        float width,
                        float height) const;
 
-        void DrawImage(std::string_view imageName,
+        void DrawImageWithAutoHeight(std::string_view imageName,
                        float x,
                        float y,
                        float width) const;

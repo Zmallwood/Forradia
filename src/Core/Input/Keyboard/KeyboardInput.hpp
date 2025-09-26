@@ -10,8 +10,6 @@ namespace Forradia
     class KeyboardInput
     {
     public:
-        void Reset();
-
         void RegisterKeyPress(SDL_Keycode key);
 
         void RegisterKeyRelease(SDL_Keycode key);
