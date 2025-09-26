@@ -3,13 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "AddFonts.hpp"
+#include "CreateFonts.hpp"
 #include "CreateFont.hpp"
 
 namespace Forradia
 {
-    std::map<FontSizes, std::shared_ptr<TTF_Font>> AddFonts(std::vector<FontSizes> fontSizes,
-                                                            std::string_view relativeFontPath)
+    std::map<FontSizes, std::shared_ptr<TTF_Font>> CreateFonts(std::vector<FontSizes> fontSizes,
+                                                               std::string_view relativeFontPath)
     {
         std::map<FontSizes, std::shared_ptr<TTF_Font>> fontsResult;
 

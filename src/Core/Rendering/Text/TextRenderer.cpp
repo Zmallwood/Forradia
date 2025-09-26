@@ -4,11 +4,10 @@
  */
 
 #include "TextRenderer.hpp"
-#include "Sub/AddFonts.hpp"
+#include "Sub/CreateFonts.hpp"
 #include "Sub/GetRenderedTextSurface.hpp"
 #include "Sub/MeasureRenderedText.hpp"
-#include "Sub/CreateRenderDestinationRect.hpp"
-#include "Core/SDLDevice/SDLDevice.hpp"
+#include "Sub/RenderTextSurface.hpp"
 
 namespace Forradia
 {
@@ -21,9 +20,9 @@ namespace Forradia
 
     void TextRenderer::AddFonts()
     {
-        m_fonts = Forradia::AddFonts({FontSizes::_20,
-                                      FontSizes::_26},
-                                     k_defaultFontPath);
+        m_fonts = Forradia::CreateFonts({FontSizes::_20,
+                                         FontSizes::_26},
+                                        k_defaultFontPath);
     }
 
     void TextRenderer::DrawString(std::string_view text,
@@ -39,16 +38,8 @@ namespace Forradia
 
         auto textDimensions{MeasureRenderedText(text, fontRaw)};
 
-        auto renderer{_<SDLDevice>().GetRenderer().get()};
-
-        auto texture{
-            SDL_CreateTextureFromSurface(renderer, surface)};
-
-        auto destinationRect{CreateRenderDestinationRect(x, y, textDimensions, centerAlign)};
-
-        SDL_RenderCopy(renderer, texture, nullptr, &destinationRect);
+        RenderTextSurface(surface, x, y, textDimensions, centerAlign);
 
         SDL_FreeSurface(surface);
-        SDL_DestroyTexture(texture);
     }
 }
