@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    std::string Replace(std::string_view text,
-                        char replaced,
-                        char replacedWith);
+    float ConvertWidthToHeight(float width);
+
+    float ConvertHeightToWidth(float height);
 }

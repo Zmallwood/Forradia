@@ -29,14 +29,4 @@ namespace Forradia
 
         return aspectRatio;
     }
-
-    float ConvertWidthToHeight(float width)
-    {
-        return width * CalculateAspectRatio();
-    }
-
-    float ConvertHeightToWidth(float height)
-    {
-        return height / CalculateAspectRatio();
-    }
 }
