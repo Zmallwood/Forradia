@@ -169,7 +169,7 @@ namespace Forradia
                 }
                 else if (ground == Hash("GroundWater"))
                 {
-                    auto animIndex { (GetTicks() + ( (xCoordinate + yCoordinate) * 100 ) ) / 500 % 3 };
+                    auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 
                     ground = Hash("GroundWater_" + std::to_string(animIndex));
                 }
@@ -179,7 +179,8 @@ namespace Forradia
                 if (xCoordinate == playerPosition.x &&
                     yCoordinate == playerPosition.y)
                 {
-                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - heightCanvas/2, widthCanvas, heightCanvas);
                 }
 
                 auto objectsStack{tile ? tile->GetObjectsStack() : nullptr};
@@ -188,6 +189,11 @@ namespace Forradia
                 {
                     for (const auto &object : objectsStack->GetObjects())
                     {
+                        if (object->GetType() != Hash("ObjectPinkFlower"))
+                        {
+                            _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas, tileSize.width, tileSize.height);
+                        }
+
                         auto objectType{object->GetType()};
 
                         if (objectType == Hash("ObjectFirTree") || objectType == Hash("ObjectBirchTree"))

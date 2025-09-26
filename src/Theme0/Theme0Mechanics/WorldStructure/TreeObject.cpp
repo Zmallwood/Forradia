@@ -19,11 +19,11 @@ namespace Forradia
 
         if (objectTypeName == "ObjectFirTree")
         {
-            numTrunkParts = 35 + RandomInt(44);
+            numTrunkParts = 55 + RandomInt(44);
         }
         else if (objectTypeName == "ObjectBirchTree")
         {
-            numTrunkParts = 15 + RandomInt(14);
+            numTrunkParts = 25 + RandomInt(14);
         }
 
         m_widthFactor *= (RandomInt(5) + 1) / 2.0f + 0.5f;
