@@ -4,7 +4,8 @@
  */
 
 #include "ImageBank.hpp"
-#include "Sub/LoadSingleImage.hpp"
+#include "Sub/GetImageSize.hpp"
+#include "Sub/GetLoadedImages.hpp"
 
 namespace Forradia
 {
@@ -26,27 +27,7 @@ namespace Forradia
             return;
         }
 
-        std::filesystem::recursive_directory_iterator rdi{
-            imagesPath};
-
-        for (auto it : rdi)
-        {
-            auto filePath{
-                Replace(it.path().string(), '\\', '/')};
-
-            if (GetFileExtension(filePath) == "png")
-            {
-                auto fileName{
-                    GetFileNameNoExtension(filePath)};
-
-                auto hash{Hash(fileName)};
-
-                auto image{
-                    LoadSingleImage(filePath)};
-
-                m_images.insert({hash, image});
-            }
-        }
+        m_images = GetLoadedImages(imagesPath);
     }
 
     std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const
@@ -64,19 +45,9 @@ namespace Forradia
         if (m_images.contains(imageNameHash))
         {
             auto texture{
-                m_images.at(imageNameHash).get()};
+                m_images.at(imageNameHash)};
 
-            int width;
-            int height;
-
-            SDL_QueryTexture(
-                texture,
-                nullptr,
-                nullptr,
-                &width,
-                &height);
-
-            return {width, height};
+            return Forradia::GetImageSize(texture);
         }
 
         return {0, 0};

@@ -1,0 +1,39 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
+#include "GetLoadedImages.hpp"
+#include "LoadSingleImage.hpp"
+
+namespace Forradia
+{
+    std::map<int, std::shared_ptr<SDL_Texture>> GetLoadedImages(std::string_view imagesPath)
+    {
+        std::map<int, std::shared_ptr<SDL_Texture>> imagesResult;
+
+        std::filesystem::recursive_directory_iterator rdi{
+            imagesPath};
+
+        for (auto it : rdi)
+        {
+            auto filePath{
+                Replace(it.path().string(), '\\', '/')};
+
+            if (GetFileExtension(filePath) == "png")
+            {
+                auto fileName{
+                    GetFileNameNoExtension(filePath)};
+
+                auto hash{Hash(fileName)};
+
+                auto image{
+                    LoadSingleImage(filePath)};
+
+                imagesResult.insert({hash, image});
+            }
+        }
+
+        return imagesResult;
+    }
+}
