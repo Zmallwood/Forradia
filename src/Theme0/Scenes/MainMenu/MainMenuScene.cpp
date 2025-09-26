@@ -21,5 +21,6 @@ namespace Forradia
     void MainMenuScene::RenderDerived() const
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        _<ImageRenderer>().DrawImage("ForradiaLogo", 0.35f, 0.1f, 0.3f);
     }
 }
