@@ -15,7 +15,7 @@ namespace Forradia
         {
             auto xCenter{RandomInt(worldArea->GetSize().width)};
             auto yCenter{RandomInt(worldArea->GetSize().height)};
-            auto radius{4 + RandomInt(15)};
+            auto radius{3 + RandomInt(10)};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {

@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#pragma once
+ #pragma once
 
-namespace Forradia
-{
-    static constexpr int k_oneSecondMillis{1000};
-}
+ namespace Forradia
+ {
+     void PollEvents();
+ }
