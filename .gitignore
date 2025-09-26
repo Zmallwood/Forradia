@@ -19,4 +19,5 @@ CMakeUserPresets.json
 #cmake-build-*
 
 # Andreas
-build
+build/*
+!build/Resources
