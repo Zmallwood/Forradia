@@ -5,6 +5,7 @@
 
 #include "TextRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
+#include "Sub/CreateFont.hpp"
 
 namespace Forradia
 {
@@ -18,27 +19,10 @@ namespace Forradia
 
     void TextRenderer::AddFontSize(FontSizes fontSize)
     {
-        auto fontSizeN{static_cast<int>(fontSize)};
-
         auto fontPath{
             std::string(SDL_GetBasePath()) + k_defaultFontPath};
 
-        auto fontPathUnixStyle{
-            Replace(fontPath, '\\', '/')};
-
-        auto newFont{
-            std::shared_ptr<TTF_Font>(
-                TTF_OpenFont(
-                    fontPathUnixStyle.c_str(),
-                    fontSizeN),
-                SDLDeleter())};
-
-        if (!newFont)
-        {
-            std::cout << "Error loading font.\n";
-
-            return;
-        }
+        auto newFont{CreateFont(fontPath, fontSize)};
 
         m_fonts.insert({fontSize, newFont});
     }
