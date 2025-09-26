@@ -3,6 +3,7 @@
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
 #include "Core/Cursor/Cursor.hpp"
+#include "Core/FPSCounter/FPSCounter.hpp"
 
 namespace Forradia
 {
@@ -16,9 +17,13 @@ namespace Forradia
 
             _<SceneManager>().UpdateCurrentScene();
 
+            _<FPSCounter>().Update();
+
             _<SDLDevice>().ClearCanvas();
 
             _<SceneManager>().RenderCurrentScene();
+
+            _<FPSCounter>().Render();
 
             _<Cursor>().Render();
 

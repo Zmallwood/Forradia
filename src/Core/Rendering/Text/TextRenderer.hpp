@@ -6,6 +6,7 @@ namespace Forradia
 {
     class TextRenderer
     {
+    public:
         TextRenderer();
 
         void DrawString(std::string_view text,
@@ -15,6 +16,7 @@ namespace Forradia
                         bool centerAlign = false,
                         Color textColor = Colors::wheat) const;
 
+    private:
         void AddFontSize(FontSizes fontSize);
 
         const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
