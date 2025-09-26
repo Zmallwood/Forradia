@@ -1,5 +1,5 @@
 #include "Cursor.hpp"
-#include "Core/Rendering/ImageRenderer.hpp"
+#include "Core/Rendering/Images/ImageRenderer.hpp"
 
 namespace Forradia
 {

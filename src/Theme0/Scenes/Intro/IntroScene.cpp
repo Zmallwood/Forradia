@@ -1,7 +1,7 @@
 #include "IntroScene.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
-#include "Core/Rendering/ImageRenderer.hpp"
+#include "Core/Rendering/Images/ImageRenderer.hpp"
 
 namespace Forradia
 {

@@ -18,6 +18,7 @@
 #include "Common/Matter/Size.hpp"
 #include "Common/Matter/SizeF.hpp"
 #include "Common/Matter/Color.hpp"
+#include "Common/Matter/Colors.hpp"
 
 #include "Common/Constants.hpp"
 #include "Common/Singleton.hpp"

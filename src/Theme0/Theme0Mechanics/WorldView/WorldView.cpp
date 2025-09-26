@@ -1,5 +1,5 @@
 #include "WorldView.hpp"
-#include "Core/Rendering/ImageRenderer.hpp"
+#include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/ImageAssets/ImageBank.hpp"
 #include "Theme0/Theme0Mechanics/Math/TileGridMath.hpp"
 #include "Theme0/Theme0Mechanics/CoreGameObjects/Player.hpp"
