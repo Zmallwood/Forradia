@@ -10,6 +10,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIPanel.hpp"
 #include "Core/GUICore/GUIButton.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
@@ -41,6 +42,9 @@ namespace Forradia
                 {
                     _<Engine>().Stop();
                 }));
+
+        GetGUI()->AddChildComponent(
+            std::make_shared<GUITextConsole>());
     }
 
     void MainMenuScene::UpdateDerived()
