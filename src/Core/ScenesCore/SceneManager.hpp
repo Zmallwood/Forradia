@@ -14,14 +14,14 @@ namespace Forradia
     public:
         SceneManager();
 
-        void GoToScene(std::string_view sceneName);
+        void GoToScene(StringView sceneName);
 
         void UpdateCurrentScene();
 
         void RenderCurrentScene() const;
 
     private:
-        void AddScene(std::string_view sceneName,
+        void AddScene(StringView sceneName,
                       IScene &scene);
 
         std::map<int, IScene &> m_scenes;

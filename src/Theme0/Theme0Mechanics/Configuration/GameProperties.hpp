@@ -10,6 +10,8 @@ namespace Forradia
     class GameProperties
     {
     public:
+        static constexpr String k_gameWindowTitle {"Forradia"};
+
         static constexpr Color k_clearColor{0.0f, 0.3f, 0.8f, 1.0f};
 
         static constexpr int k_numGridRows{15};

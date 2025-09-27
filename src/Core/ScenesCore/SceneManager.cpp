@@ -22,7 +22,7 @@ namespace Forradia
         GoToScene("IntroScene");
     }
 
-    void SceneManager::AddScene(std::string_view sceneName,
+    void SceneManager::AddScene(StringView sceneName,
                                 IScene &scene)
     {
         scene.Initialize();
@@ -30,7 +30,7 @@ namespace Forradia
         m_scenes.insert({Hash(sceneName), scene});
     }
 
-    void SceneManager::GoToScene(std::string_view sceneName)
+    void SceneManager::GoToScene(StringView sceneName)
     {
         m_currentScene = Hash(sceneName);
 
