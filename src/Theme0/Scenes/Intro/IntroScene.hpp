@@ -9,11 +9,18 @@
 
 namespace Forradia
 {
+    class GUIComponent;
+
     class IntroScene : public IScene
     {
     protected:
+        void Initialize() override;
+
         void UpdateDerived() override;
 
         void RenderDerived() const override;
+
+    private:
+        std::shared_ptr<GUIComponent> m_startText;
     };
 }

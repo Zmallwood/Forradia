@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #include "GUIComponent.hpp"
 
 namespace Forradia
@@ -10,9 +15,11 @@ namespace Forradia
     {
     }
 
-    void GUIComponent::AddChildComponent(std::shared_ptr<GUIComponent> component)
+    std::shared_ptr<GUIComponent> GUIComponent::AddChildComponent(std::shared_ptr<GUIComponent> component)
     {
         m_childComponents.push_back(component);
+
+        return component;
     }
 
     void GUIComponent::Update()

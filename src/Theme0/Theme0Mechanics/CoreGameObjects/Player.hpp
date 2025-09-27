@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Sub/PlayerStats.hpp"
+
 namespace Forradia
 {
     class Player
@@ -59,5 +61,6 @@ namespace Forradia
         float m_movementSpeed{5.0f};
         int m_ticksLastMove{0};
         Point m_destination{-1, -1};
+        PlayerStats m_playerStats;
     };
 }

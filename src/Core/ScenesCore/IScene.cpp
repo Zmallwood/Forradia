@@ -15,11 +15,15 @@ namespace Forradia
 
     void IScene::Update()
     {
+        m_gui->Update();
+
         UpdateDerived();
     }
 
     void IScene::Render() const
     {
         RenderDerived();
+
+        m_gui->Render();
     }
 }

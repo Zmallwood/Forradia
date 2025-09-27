@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #pragma once
 
 namespace Forradia
@@ -10,13 +15,18 @@ namespace Forradia
                      float width,
                      float height);
 
-        void AddChildComponent(std::shared_ptr<GUIComponent> component);
+        std::shared_ptr<GUIComponent> AddChildComponent(std::shared_ptr<GUIComponent> component);
 
         void Update();
 
         void Render() const;
 
         void ToggleVisibility();
+
+        void SetVisible(bool value)
+        {
+            m_visible = value;
+        }
 
     protected:
         virtual void UpdateDerived() {}
@@ -26,11 +36,6 @@ namespace Forradia
         auto GetBounds() const
         {
             return m_bounds;
-        }
-
-        void SetVisible(bool value)
-        {
-            m_visible = value;
         }
 
     private:

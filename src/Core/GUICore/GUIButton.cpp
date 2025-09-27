@@ -1,3 +1,8 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
 #include "GUIButton.hpp"
 #include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Core/Input/Mouse/MouseInput.hpp"
