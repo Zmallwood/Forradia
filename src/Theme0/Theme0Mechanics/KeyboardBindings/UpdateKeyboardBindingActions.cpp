@@ -4,10 +4,17 @@
  */
 
 #include "UpdateKeyboardBindingActions.hpp"
+#include "Core/Input/Keyboard/KeyboardInput.hpp"
+#include "Theme0/Scenes/Main/MainScene.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
 
 namespace Forradia
 {
     void UpdateKeyboardBindingActions()
     {
+        if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE))
+        {
+            _<MainScene>().GetGUISystemMenu()->ToggleVisibility();
+        }
     }
 }

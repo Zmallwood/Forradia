@@ -1,0 +1,20 @@
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+
+#pragma once
+
+#include "Core/GUICore/GUIPanel.hpp"
+
+namespace Forradia
+{
+    class GUIPlayerStatusPanel : public GUIPanel
+    {
+    public:
+        GUIPlayerStatusPanel();
+
+    protected:
+        virtual void RenderDerived() const override;
+    };
+}
