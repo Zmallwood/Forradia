@@ -38,9 +38,20 @@ namespace Forradia
             m_ticksLastMove = ticks;
         }
 
+        auto GetDestination() const
+        {
+            return m_destination;
+        }
+
+        void SetDestination(Point destination)
+        {
+            m_destination = destination;
+        }
+
     private:
         Point m_position{60, 50};
         float m_movementSpeed{5.0f};
         int m_ticksLastMove{0};
+        Point m_destination{-1, -1};
     };
 }

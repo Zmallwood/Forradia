@@ -16,6 +16,11 @@ namespace Forradia
         auto downPressed{_<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
         auto leftPressed{_<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
 
+        if (upPressed || rightPressed || downPressed || leftPressed)
+        {
+            _<Player>().SetDestination({-1, -1});
+        }
+
         auto now{GetTicks()};
 
         if (now >= _<Player>().GetTicksLastMove() + InvertMovementSpeed(_<Player>().GetMovementSpeed()) && (upPressed || rightPressed || downPressed || leftPressed))

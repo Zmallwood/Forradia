@@ -240,8 +240,8 @@ namespace Forradia
                 if (xCoordinate == playerPosition.x &&
                     yCoordinate == playerPosition.y)
                 {
-                    _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas - tileSize.height/2, widthCanvas, heightCanvas);
-                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - tileSize.height, tileSize.width, tileSize.height);
+                    _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas, tileSize.width, tileSize.height);
                 }
 
                 auto objectsStack{tile ? tile->GetObjectsStack() : nullptr};
