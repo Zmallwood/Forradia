@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    String GetFileExtension(StringView path);
+    using String = std::string;
 
-    String GetFileNameNoExtension(StringView path);
+    using StringView = std::string_view;
 }

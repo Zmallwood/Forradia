@@ -18,6 +18,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "Common/Aliases.hpp"
+
 #include "Common/Matter/Point.hpp"
 #include "Common/Matter/PointF.hpp"
 #include "Common/Matter/Size.hpp"

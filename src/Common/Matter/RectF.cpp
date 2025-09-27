@@ -9,6 +9,9 @@ namespace Forradia
 {
     bool RectF::Contains(PointF point)
     {
-        return point.x >= x && point.y >= y && point.x < x + width && point.y < y + height;
+        return point.x >= x &&
+               point.y >= y &&
+               point.x < x + width &&
+               point.y < y + height;
     }
 }

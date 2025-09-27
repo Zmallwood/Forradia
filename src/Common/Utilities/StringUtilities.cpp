@@ -7,9 +7,9 @@
 
 namespace Forradia
 {
-    std::string Replace(std::string_view text,
-                        char replaced,
-                        char replacedWith)
+    String Replace(StringView text,
+                   char replaced,
+                   char replacedWith)
     {
         std::string textData{text.data()};
 
