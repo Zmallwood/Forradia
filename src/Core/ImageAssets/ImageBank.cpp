@@ -30,7 +30,7 @@ namespace Forradia
         m_images = GetLoadedImages(imagesPath);
     }
 
-    std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const
+    SharedPtr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const
     {
         if (m_images.contains(imageNameHash))
         {

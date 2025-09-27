@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    std::shared_ptr<SDL_Texture> LoadSingleImage(std::string_view path)
+    SharedPtr<SDL_Texture> LoadSingleImage(StringView path)
     {
         auto surface{
             std::shared_ptr<SDL_Surface>(

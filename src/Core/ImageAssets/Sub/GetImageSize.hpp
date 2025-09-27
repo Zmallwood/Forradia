@@ -5,5 +5,5 @@
 
 namespace Forradia
 {
-    Size GetImageSize(std::shared_ptr<SDL_Texture> texture);
+    Size GetImageSize(SharedPtr<SDL_Texture> texture);
 }

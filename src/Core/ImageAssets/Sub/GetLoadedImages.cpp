@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    std::map<int, std::shared_ptr<SDL_Texture>> GetLoadedImages(std::string_view imagesPath)
+    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView imagesPath)
     {
         std::map<int, std::shared_ptr<SDL_Texture>> imagesResult;
 

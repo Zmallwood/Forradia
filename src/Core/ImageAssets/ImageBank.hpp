@@ -12,7 +12,7 @@ namespace Forradia
     public:
         ImageBank();
 
-        std::shared_ptr<SDL_Texture> GetImage(int imageNameHash) const;
+        SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
 
         Size GetImageSize(int imageNameHash) const;
 
