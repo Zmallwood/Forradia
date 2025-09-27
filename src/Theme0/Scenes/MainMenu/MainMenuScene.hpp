@@ -12,6 +12,8 @@ namespace Forradia
     class MainMenuScene : public IScene
     {
     protected:
+        void Initialize() override;
+
         void UpdateDerived() override;
 
         void RenderDerived() const override;

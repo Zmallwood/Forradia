@@ -13,6 +13,11 @@ namespace Forradia
         SDL_ShowCursor(SDL_DISABLE);
     }
 
+    void Cursor::ResetStyleToDefault()
+    {
+        m_cursorStyle = CursorStyles::Default;
+    }
+
     void Cursor::Render()
     {
         auto mousePosition{GetNormalizedMousePosition()};
@@ -20,15 +25,22 @@ namespace Forradia
         auto width{k_cursorSize};
         auto height{ConvertWidthToHeight(k_cursorSize)};
 
+        std::string cursorImage;
+
         switch (m_cursorStyle)
         {
         case CursorStyles::Default:
-            _<ImageRenderer>().DrawImage(
-                "CursorDefault",
-                mousePosition.x - width / 2,
-                mousePosition.y - height / 2,
-                width, height);
+            cursorImage = "CursorDefault";
+            break;
+        case CursorStyles::HoveringClickableGUI:
+            cursorImage = "CursorHoveringClickableGUI";
             break;
         }
+
+        _<ImageRenderer>().DrawImage(
+            cursorImage,
+            mousePosition.x - width / 2,
+            mousePosition.y - height / 2,
+            width, height);
     }
 }

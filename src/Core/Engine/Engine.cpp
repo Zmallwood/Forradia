@@ -16,8 +16,12 @@ namespace Forradia
     {
         Randomize();
 
+        _<SDLDevice>();
+
         while (m_running)
         {
+            _<Cursor>().ResetStyleToDefault();
+
             PollEvents();
 
             _<SceneManager>().UpdateCurrentScene();

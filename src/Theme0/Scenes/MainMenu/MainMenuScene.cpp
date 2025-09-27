@@ -8,9 +8,43 @@
 #include "Core/Input/Mouse/MouseInput.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
+#include "Core/Engine/Engine.hpp"
+#include "Core/GUICore/GUI.hpp"
+#include "Core/GUICore/GUIPanel.hpp"
+#include "Core/GUICore/GUIButton.hpp"
 
 namespace Forradia
 {
+    void MainMenuScene::Initialize()
+    {
+        GetGUI()->AddChildComponent(
+            std::make_shared<GUIPanel>(0.4f, 0.32f, 0.2f, 0.2f));
+
+        GetGUI()->AddChildComponent(
+            std::make_shared<GUIButton>(
+                0.45f,
+                0.36f,
+                0.1f,
+                0.04f,
+                "Login",
+                []
+                {
+                    _<SceneManager>().GoToScene("WorldGenerationScene");
+                }));
+
+        GetGUI()->AddChildComponent(
+            std::make_shared<GUIButton>(
+                0.45f,
+                0.44f,
+                0.1f,
+                0.04f,
+                "Quit",
+                []
+                {
+                    _<Engine>().Stop();
+                }));
+    }
+
     void MainMenuScene::UpdateDerived()
     {
         if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||

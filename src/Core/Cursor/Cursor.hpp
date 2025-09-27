@@ -14,6 +14,8 @@ namespace Forradia
     public:
         Cursor();
 
+        void ResetStyleToDefault();
+
         void Render();
 
         auto SetCursorStyle(CursorStyles value)
