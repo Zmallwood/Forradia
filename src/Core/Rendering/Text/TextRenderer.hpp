@@ -14,7 +14,7 @@ namespace Forradia
     public:
         TextRenderer();
 
-        void DrawString(std::string_view text,
+        void DrawString(StringView text,
                         float x,
                         float y,
                         FontSizes fontSize = FontSizes::_20,

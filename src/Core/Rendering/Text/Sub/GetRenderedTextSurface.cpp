@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    SDL_Surface *GetRenderedTextSurface(std::string_view text,
+    SDL_Surface *GetRenderedTextSurface(StringView text,
                                         TTF_Font *fontRaw,
                                         Color textColor)
     {

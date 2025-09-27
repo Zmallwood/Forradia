@@ -9,6 +9,6 @@
 
 namespace Forradia
 {
-    std::shared_ptr<TTF_Font> CreateFont(std::string_view fontFilePath,
-                                         FontSizes fontSize);
+    SharedPtr<TTF_Font> CreateFont(StringView fontFilePath,
+                                   FontSizes fontSize);
 }

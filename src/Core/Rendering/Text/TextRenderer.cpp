@@ -25,7 +25,7 @@ namespace Forradia
                                         k_defaultFontPath);
     }
 
-    void TextRenderer::DrawString(std::string_view text,
+    void TextRenderer::DrawString(StringView text,
                                   float x,
                                   float y,
                                   FontSizes fontSize,

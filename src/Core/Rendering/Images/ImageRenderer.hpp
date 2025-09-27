@@ -10,7 +10,7 @@ namespace Forradia
     class ImageRenderer
     {
     public:
-        void DrawImage(std::string_view imageName,
+        void DrawImage(StringView imageName,
                        float x,
                        float y,
                        float width,
@@ -22,7 +22,7 @@ namespace Forradia
                        float width,
                        float height) const;
 
-        void DrawImageWithAutoHeight(std::string_view imageName,
+        void DrawImageWithAutoHeight(StringView imageName,
                        float x,
                        float y,
                        float width) const;

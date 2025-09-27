@@ -9,6 +9,6 @@
 
 namespace Forradia
 {
-    std::map<FontSizes, std::shared_ptr<TTF_Font>> CreateFonts(std::vector<FontSizes> fontSizes,
-                                                               std::string_view relativeFontPath);
+    Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
+                                                    StringView relativeFontPath);
 }

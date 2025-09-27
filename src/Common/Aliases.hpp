@@ -16,4 +16,7 @@ namespace Forradia
 
     template <class T, class U>
     using Map = std::map<T, U>;
+
+    template <class T>
+    using Vector = std::vector<T>;
 }

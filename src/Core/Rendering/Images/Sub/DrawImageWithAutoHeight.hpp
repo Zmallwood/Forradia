@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    void DrawImageWithAutoHeight(std::string_view imageName,
+    void DrawImageWithAutoHeight(StringView imageName,
                                  float x,
                                  float y,
                                  float width);

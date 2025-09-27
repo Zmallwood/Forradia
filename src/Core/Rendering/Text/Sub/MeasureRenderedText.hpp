@@ -7,6 +7,6 @@
 
 namespace Forradia
 {
-    Size MeasureRenderedText(std::string_view text,
-                     TTF_Font *fontRaw);
+    Size MeasureRenderedText(StringView text,
+                             TTF_Font *fontRaw);
 }
