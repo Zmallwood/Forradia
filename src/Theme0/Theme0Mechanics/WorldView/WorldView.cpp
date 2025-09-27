@@ -275,7 +275,11 @@ namespace Forradia
 
                                 auto treeWidth{tileSize.width * widthFactor * widthDecreaseFactor};
 
-                                auto trunkPartXCenter{xCanvas + tileSize.width / 2 + trunkPart.x * treeWidth};
+                                auto trunkPartX {trunkPart.x};
+
+                                trunkPartX *= static_cast<float>(i)/trunkParts.size() * std::sin(GetTicks()/500.0f);
+
+                                auto trunkPartXCenter{xCanvas + tileSize.width / 2 + trunkPartX * treeWidth};
                                 auto trunkPartYCenter{yCanvas + tileSize.height - trunkPart.y * tileSize.height};
                                 auto trunkPartWidth{tileSize.width * 0.2f * widthDecreaseFactor};
                                 auto trunkPartHeight{tileSize.height * 0.2f};
