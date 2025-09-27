@@ -8,7 +8,7 @@
 namespace Forradia
 {
     class Tile;
-    class Mob;
+    class Creature;
 
     class WorldArea
     {
@@ -25,13 +25,13 @@ namespace Forradia
 
         std::shared_ptr<Tile> GetTile(Point coordinate) const;
 
-        auto &GetMobsMirrorRef()
+        auto &GetCreaturesMirrorRef()
         {
-            return m_mobsMirror;
+            return m_creaturesMirror;
         }
 
     private:
         std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
-        std::map<std::shared_ptr<Mob>, Point> m_mobsMirror;
+        std::map<std::shared_ptr<Creature>, Point> m_creaturesMirror;
     };
 }

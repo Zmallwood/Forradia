@@ -13,7 +13,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/ObjectsStack.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Object.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Mob.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/TreeObject.hpp"
 #include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
 
@@ -315,19 +315,19 @@ namespace Forradia
                     }
                 }
 
-                auto mob{tile ? tile->GetMob() : nullptr};
+                auto creature{tile ? tile->GetCreature() : nullptr};
 
-                if (mob)
+                if (creature)
                 {
-                    auto mobType{mob->GetType()};
+                    auto creatureType{creature->GetType()};
 
-                    auto mobImageSize{
-                        _<ImageBank>().GetImageSize(mobType)};
+                    auto creatureImageSize{
+                        _<ImageBank>().GetImageSize(creatureType)};
 
-                    auto mobWidth{mobImageSize.width / 60.0f * tileSize.width};
-                    auto mobHeight{mobImageSize.height / 60.0f * tileSize.height};
+                    auto creatureWidth{creatureImageSize.width / 60.0f * tileSize.width};
+                    auto creatureHeight{creatureImageSize.height / 60.0f * tileSize.height};
 
-                    _<ImageRenderer>().DrawImage(mobType, xCanvas + tileSize.width / 2 - mobWidth / 2, yCanvas + tileSize.height - mobHeight, mobWidth, mobHeight);
+                    _<ImageRenderer>().DrawImage(creatureType, xCanvas + tileSize.width / 2 - creatureWidth / 2, yCanvas + tileSize.height - creatureHeight, creatureWidth, creatureHeight);
                 }
             }
         }

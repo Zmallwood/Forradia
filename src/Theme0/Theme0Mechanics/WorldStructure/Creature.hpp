@@ -7,10 +7,10 @@
 
 namespace Forradia
 {
-    class Mob
+    class Creature
     {
     public:
-        Mob(std::string_view typeName);
+        Creature(std::string_view typeName);
 
         auto GetType() const
         {
@@ -22,7 +22,7 @@ namespace Forradia
             return m_leader;
         }
 
-        void SetLeader(std::shared_ptr<Mob> leader)
+        void SetLeader(std::shared_ptr<Creature> leader)
         {
             m_leader = leader;
         }
@@ -74,7 +74,7 @@ namespace Forradia
 
     private:
         int m_type{0};
-        std::shared_ptr<Mob> m_leader;
+        std::shared_ptr<Creature> m_leader;
         bool m_isLeader{false};
         int m_ticksLastMove{0};
         float m_movementSpeed{2.0f};

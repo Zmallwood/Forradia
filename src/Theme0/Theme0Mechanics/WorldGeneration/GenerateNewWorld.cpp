@@ -8,7 +8,7 @@
 #include "Sub/GenerateGrass.hpp"
 #include "Sub/GenerateWater.hpp"
 #include "Sub/GenerateObjects.hpp"
-#include "Sub/GenerateMobs.hpp"
+#include "Sub/GenerateCreatures.hpp"
 #include "Sub/GenerateElevation.hpp"
 #include "Sub/GenerateRock.hpp"
 
@@ -28,6 +28,6 @@ namespace Forradia
 
         GenerateObjects();
 
-        GenerateMobs();
+        GenerateCreatures();
     }
 }

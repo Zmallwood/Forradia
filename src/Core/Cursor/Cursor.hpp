@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "CursorStyles.hpp"
+#include "Sub/CursorStyles.hpp"
 
 namespace Forradia
 {

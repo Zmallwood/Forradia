@@ -3,15 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "GenerateMobs.hpp"
+#include "GenerateCreatures.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Mob.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
 
 namespace Forradia
 {
-    void GenerateMobs()
+    void GenerateCreatures()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
@@ -27,10 +27,10 @@ namespace Forradia
 
             auto tileCenter{worldArea->GetTile(xCenter, yCenter)};
 
-            auto newLeader = std::make_shared<Mob>("MobRatKing");
+            auto newLeader = std::make_shared<Creature>("CreatureRatKing");
             newLeader->SetIsLeader(true);
-            tileCenter->SetMob(newLeader);
-            worldArea->GetMobsMirrorRef().insert({tileCenter->GetMob(), {xCenter, yCenter}});
+            tileCenter->SetCreature(newLeader);
+            worldArea->GetCreaturesMirrorRef().insert({tileCenter->GetCreature(), {xCenter, yCenter}});
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
@@ -43,13 +43,13 @@ namespace Forradia
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        if (tile && !tile->GetMob())
+                        if (tile && !tile->GetCreature())
                         {
-                            auto newMinion = std::make_shared<Mob>("MobRat");
+                            auto newMinion = std::make_shared<Creature>("CreatureRat");
                             newMinion->SetLeader(newLeader);
                             newMinion->SetOffsetLeader({dx, dy});
-                            tile->SetMob(newMinion);
-                            worldArea->GetMobsMirrorRef().insert({tile->GetMob(), {x, y}});
+                            tile->SetCreature(newMinion);
+                            worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
                         }
                     }
                 }

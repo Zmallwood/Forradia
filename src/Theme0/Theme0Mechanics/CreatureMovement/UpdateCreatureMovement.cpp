@@ -3,46 +3,46 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "UpdateMobMovement.hpp"
+#include "UpdateCreatureMovement.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Mob.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
 
 namespace Forradia
 {
-    void UpdateMobMovement()
+    void UpdateCreatureMovement()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto &mobsMirrorRef{worldArea->GetMobsMirrorRef()};
+        auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
 
-        for (auto it = mobsMirrorRef.begin(); it != mobsMirrorRef.end();)
+        for (auto it = creaturesMirrorRef.begin(); it != creaturesMirrorRef.end();)
         {
-            auto mob{it->first};
+            auto creature{it->first};
             auto position{it->second};
 
             auto now{GetTicks()};
 
-            if (mob->GetIsLeader())
+            if (creature->GetIsLeader())
             {
-                if (now < mob->GetTicksLastMove() + InvertMovementSpeed(mob->GetMovementSpeed()))
+                if (now < creature->GetTicksLastMove() + InvertMovementSpeed(creature->GetMovementSpeed()))
                 {
                     ++it;
                     continue;
                 }
 
-                auto destination{mob->GetDestination()};
+                auto destination{creature->GetDestination()};
 
                 if (destination.x == -1 && destination.y == -1)
                 {
                     auto newDestinationX{position.x + RandomInt(11) - 5};
                     auto newDestinationY{position.y + RandomInt(11) - 5};
-                    mob->SetDestination({newDestinationX, newDestinationY});
+                    creature->SetDestination({newDestinationX, newDestinationY});
                 }
 
-                auto dx{mob->GetDestination().x - position.x};
-                auto dy{mob->GetDestination().y - position.y};
+                auto dx{creature->GetDestination().x - position.x};
+                auto dy{creature->GetDestination().y - position.y};
 
                 auto normDx{0};
                 auto normDy{0};
@@ -63,54 +63,54 @@ namespace Forradia
                 auto newX{position.x + normDx};
                 auto newY{position.y + normDy};
 
-                if (newX == mob->GetDestination().x && newY == mob->GetDestination().y)
+                if (newX == creature->GetDestination().x && newY == creature->GetDestination().y)
                 {
-                    mob->SetDestination({-1, -1});
+                    creature->SetDestination({-1, -1});
                 }
 
                 auto tile{worldArea->GetTile(newX, newY)};
 
-                if (tile && !tile->GetMob() && tile->GetGround() != Hash("GroundWater"))
+                if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
                 {
-                    mob->SetTicksLastMove(now);
+                    creature->SetTicksLastMove(now);
                     auto oldTile{worldArea->GetTile(position.x, position.y)};
-                    oldTile->SetMob(nullptr);
-                    tile->SetMob(mob);
-                    mobsMirrorRef.erase(it);
-                    mobsMirrorRef.insert({mob, {newX, newY}});
+                    oldTile->SetCreature(nullptr);
+                    tile->SetCreature(creature);
+                    creaturesMirrorRef.erase(it);
+                    creaturesMirrorRef.insert({creature, {newX, newY}});
 
                     ++it;
                     continue;
                 }
                 else
                 {
-                    mob->SetDestination({-1, -1});
+                    creature->SetDestination({-1, -1});
                     ++it;
                     continue;
                 }
             }
             else
             {
-                if (now < mob->GetTicksLastMove() + InvertMovementSpeed(mob->GetMovementSpeed()))
+                if (now < creature->GetTicksLastMove() + InvertMovementSpeed(creature->GetMovementSpeed()))
                 {
                     ++it;
                     continue;
                 }
 
-                auto leader{mob->GetLeader()};
+                auto leader{creature->GetLeader()};
                 if (leader)
                 {
-                    if (now < mob->GetTicksLastMove() + InvertMovementSpeed(mob->GetMovementSpeed()))
+                    if (now < creature->GetTicksLastMove() + InvertMovementSpeed(creature->GetMovementSpeed()))
                     {
                         ++it;
                         continue;
                     }
 
-                    auto leaderPositionIt = mobsMirrorRef.find(leader);
-                    if (leaderPositionIt != mobsMirrorRef.end())
+                    auto leaderPositionIt = creaturesMirrorRef.find(leader);
+                    if (leaderPositionIt != creaturesMirrorRef.end())
                     {
                         auto leaderPosition{leaderPositionIt->second};
-                        auto offsetLeader{mob->GetOffsetLeader()};
+                        auto offsetLeader{creature->GetOffsetLeader()};
                         auto targetX{leaderPosition.x + offsetLeader.x};
                         auto targetY{leaderPosition.y + offsetLeader.y};
 
@@ -144,14 +144,14 @@ namespace Forradia
 
                         auto tile{worldArea->GetTile(newX, newY)};
 
-                        if (tile && !tile->GetMob() && tile->GetGround() != Hash("GroundWater"))
+                        if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
                         {
-                            mob->SetTicksLastMove(now);
+                            creature->SetTicksLastMove(now);
                             auto oldTile{worldArea->GetTile(position.x, position.y)};
-                            oldTile->SetMob(nullptr);
-                            tile->SetMob(mob);
-                            mobsMirrorRef.erase(it);
-                            mobsMirrorRef.insert({mob, {newX, newY}});
+                            oldTile->SetCreature(nullptr);
+                            tile->SetCreature(creature);
+                            creaturesMirrorRef.erase(it);
+                            creaturesMirrorRef.insert({creature, {newX, newY}});
                             ++it;
                             continue;
                         }

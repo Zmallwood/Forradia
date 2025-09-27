@@ -8,7 +8,7 @@
 namespace Forradia
 {
     class ObjectsStack;
-    class Mob;
+    class Creature;
 
     class Tile
     {
@@ -27,14 +27,14 @@ namespace Forradia
             return m_objectsStack;
         }
 
-        auto GetMob() const
+        auto GetCreature() const
         {
-            return m_mob;
+            return m_creature;
         }
 
-        void SetMob(std::shared_ptr<Mob> mob)
+        void SetCreature(std::shared_ptr<Creature> creature)
         {
-            m_mob = mob;
+            m_creature = creature;
         }
 
         auto GetElevation() const
@@ -50,7 +50,7 @@ namespace Forradia
     private:
         int m_ground{0};
         std::shared_ptr<ObjectsStack> m_objectsStack;
-        std::shared_ptr<Mob> m_mob;
+        std::shared_ptr<Creature> m_creature;
         int m_elevation{0};
     };
 }
