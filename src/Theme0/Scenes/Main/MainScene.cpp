@@ -37,7 +37,7 @@ namespace Forradia
                 "",
                 [this]
                 {
-                    m_playerStatsWindow->ToggleVisibility();
+                    _<GUIPlayerStatsWindow>().ToggleVisibility();
                 },
                 "GUIButtonStatsBackground",
                 "GUIButtonStatsHoveredBackground"));
@@ -65,15 +65,12 @@ namespace Forradia
                 "",
                 [this]
                 {
-                    m_guiSystemMenu->ToggleVisibility();
+                    _<GUISystemMenu>().ToggleVisibility();
                 },
                 "GUIButtonSystemBackground",
                 "GUIButtonSystemHoveredBackground"));
 
-        m_guiSystemMenu = std::make_shared<GUISystemMenu>();
-
-        GetGUI()->AddChildComponent(
-            m_guiSystemMenu);
+        GetGUI()->AddChildComponent(__<GUISystemMenu>());
 
         m_inventoryWindow = std::make_shared<GUIWindow>(
             0.5f,
@@ -84,14 +81,7 @@ namespace Forradia
         GetGUI()->AddChildComponent(
             m_inventoryWindow);
 
-        m_playerStatsWindow = std::make_shared<GUIPlayerStatsWindow>(
-            0.2f,
-            0.3f,
-            0.2f,
-            0.4f);
-
-        GetGUI()->AddChildComponent(
-            m_playerStatsWindow);
+        GetGUI()->AddChildComponent(__<GUIPlayerStatsWindow>());
     }
 
     void MainScene::UpdateDerived()

@@ -12,7 +12,10 @@ namespace Forradia
     class GUIPlayerStatsWindow : public GUIWindow
     {
     public:
-        using GUIWindow::GUIWindow;
+        GUIPlayerStatsWindow()
+            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f)
+        {
+        }
 
     protected:
         void RenderDerived() const override;

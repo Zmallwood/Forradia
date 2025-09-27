@@ -8,10 +8,16 @@
 namespace Forradia
 {
     template <class T>
-    T &_()
+    SharedPtr<T> __()
     {
-        static T instance;
+        static SharedPtr<T> instance = std::make_shared<T>();
 
         return instance;
+    }
+
+    template <class T>
+    T &_()
+    {
+        return *__<T>();
     }
 }
