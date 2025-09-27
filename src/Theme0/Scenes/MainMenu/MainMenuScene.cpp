@@ -5,6 +5,7 @@
 
 #include "MainMenuScene.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
+#include "Core/Input/Mouse/MouseInput.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 
@@ -12,7 +13,8 @@ namespace Forradia
 {
     void MainMenuScene::UpdateDerived()
     {
-        if (_<KeyboardInput>().AnyKeyIsPressedPickResult())
+        if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
+            _<MouseInput>().AnyMouseButtonIsPressedPickResult())
         {
             _<SceneManager>().GoToScene("WorldGenerationScene");
         }

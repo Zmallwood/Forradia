@@ -6,6 +6,7 @@
 #include "PollEvents.hpp"
 #include "Core/Engine/Engine.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
+#include "Core/Input/Mouse/MouseInput.hpp"
 
  namespace Forradia
  {
@@ -39,17 +40,17 @@
 
             case SDL_MOUSEBUTTONDOWN:
 
-                // _<MouseInput>().RegisterMouseButtonDown(
-                //     event.button.button
-                // );
+                _<MouseInput>().RegisterMouseButtonDown(
+                    event.button.button
+                );
 
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
-                // _<MouseInput>().RegisterMouseButtonUp(
-                //     event.button.button
-                // );
+                _<MouseInput>().RegisterMouseButtonUp(
+                    event.button.button
+                );
 
                 break;
             }
