@@ -55,6 +55,11 @@ namespace Forradia
             m_destination = destination;
         }
 
+        auto &GetPlayerStatsRef()
+        {
+            return m_playerStats;
+        }
+
     private:
         std::string m_name{"Unnamed Player"};
         Point m_position{60, 50};

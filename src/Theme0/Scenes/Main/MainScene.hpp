@@ -11,6 +11,7 @@ namespace Forradia
 {
     class GUISystemMenu;
     class GUIWindow;
+    class GUIPlayerStatsWindow;
 
     class MainScene : public IScene
     {
@@ -30,6 +31,6 @@ namespace Forradia
     private:
         std::shared_ptr<GUISystemMenu> m_guiSystemMenu;
         std::shared_ptr<GUIWindow> m_inventoryWindow;
-        std::shared_ptr<GUIWindow> m_statsWindow;
+        std::shared_ptr<GUIPlayerStatsWindow> m_playerStatsWindow;
     };
 }
