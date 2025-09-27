@@ -16,10 +16,7 @@ namespace Forradia
     class MainScene : public IScene
     {
     public:
-        auto GetGUISystemMenu() const
-        {
-            return m_guiSystemMenu;
-        }
+        auto GetGUISystemMenu() const { return m_guiSystemMenu; }
 
     protected:
         void InitializeDerived() override;

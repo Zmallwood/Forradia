@@ -12,7 +12,7 @@ namespace Forradia
     public:
         ImageBank()
         {
-            LoadImages();
+            Initialize();
         }
 
         SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
@@ -20,6 +20,8 @@ namespace Forradia
         Size GetImageSize(int imageNameHash) const;
 
     private:
+        void Initialize();
+
         void LoadImages();
 
         inline static const String k_relativeImagesPath{"./Resources/Images/"};

@@ -25,10 +25,7 @@ namespace Forradia
     protected:
         virtual void RenderDerived() const override;
 
-        void SetBackgroundImage(StringView value)
-        {
-            m_backgroundImage = value;
-        }
+        void SetBackgroundImage(StringView value) { m_backgroundImage = value; }
 
     private:
         inline static const String k_defaultBackgroundImage{"GUIPanelBackground"};

@@ -27,10 +27,7 @@ namespace Forradia
 
         virtual void RenderDerived() const {}
 
-        auto GetGUI() const
-        {
-            return m_gui;
-        }
+        auto GetGUI() const { return m_gui; }
 
     private:
         SharedPtr<GUI> m_gui;

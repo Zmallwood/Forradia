@@ -16,15 +16,9 @@ namespace Forradia
 
         void PresentCanvas() const;
 
-        auto GetWindow() const
-        {
-            return m_window;
-        }
+        auto GetWindow() const { return m_window; }
 
-        auto GetRenderer() const
-        {
-            return m_renderer;
-        }
+        auto GetRenderer() const { return m_renderer; }
 
     private:
         SharedPtr<SDL_Window> m_window;

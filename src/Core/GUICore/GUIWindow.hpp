@@ -18,7 +18,10 @@ namespace Forradia
                   float height)
             : GUIMovablePanel(x, y, width, height)
         {
-            SetVisible(false);
+            Initialize();
         }
+
+    private:
+        void Initialize();
     };
 }

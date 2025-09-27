@@ -21,10 +21,7 @@ namespace Forradia
 
         void Render();
 
-        auto SetCursorStyle(CursorStyles value)
-        {
-            m_cursorStyle = value;
-        }
+        auto SetCursorStyle(CursorStyles value) { m_cursorStyle = value; }
 
     private:
         void DisableSystemCursor();

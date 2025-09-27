@@ -10,45 +10,21 @@ namespace Forradia
     class PlayerStats
     {
     public:
-        auto GetOverallBodyStrength() const
-        {
-            return m_overallBodyStrength;
-        }
+        auto GetOverallBodyStrength() const { return m_overallBodyStrength; }
 
-        auto GetRightArmStrength() const
-        {
-            return m_rightArmStrength;
-        }
+        auto GetRightArmStrength() const { return m_rightArmStrength; }
 
-        auto GetLeftArmStrength() const
-        {
-            return m_leftArmStrength;
-        }
+        auto GetLeftArmStrength() const { return m_leftArmStrength; }
 
-        auto GetLegsStrength() const
-        {
-            return m_legsStrength;
-        }
+        auto GetLegsStrength() const { return m_legsStrength; }
 
-        auto GetOverallBodyEnergy() const
-        {
-            return m_overallBodyEnergy;
-        }
+        auto GetOverallBodyEnergy() const { return m_overallBodyEnergy; }
 
-        auto GetRightArmEnergy() const
-        {
-            return m_rightArmEnergy;
-        }
+        auto GetRightArmEnergy() const { return m_rightArmEnergy; }
 
-        auto GetLeftArmEnergy() const
-        {
-            return m_leftArmEnergy;
-        }
+        auto GetLeftArmEnergy() const { return m_leftArmEnergy; }
 
-        auto GetLegsEnergy() const
-        {
-            return m_legsEnergy;
-        }
+        auto GetLegsEnergy() const { return m_legsEnergy; }
 
     private:
         float m_overallBodyStrength{0.1f};

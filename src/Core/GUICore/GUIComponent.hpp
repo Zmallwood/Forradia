@@ -26,20 +26,14 @@ namespace Forradia
 
         void ToggleVisibility();
 
-        void SetVisible(bool value)
-        {
-            m_visible = value;
-        }
+        void SetVisible(bool value) { m_visible = value; }
 
     protected:
         virtual void UpdateDerived() {}
 
         virtual void RenderDerived() const {}
 
-        auto GetBounds() const
-        {
-            return m_bounds;
-        }
+        auto GetBounds() const { return m_bounds; }
 
     private:
         RectF m_bounds;

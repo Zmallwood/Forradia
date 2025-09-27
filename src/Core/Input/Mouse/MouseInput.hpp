@@ -18,15 +18,9 @@ namespace Forradia
 
         bool AnyMouseButtonIsPressedPickResult();
 
-        auto &GetLeftMouseButtonRef()
-        {
-            return m_leftMouseButton;
-        }
+        auto &GetLeftMouseButtonRef() { return m_leftMouseButton; }
 
-        auto &GetRightMouseButtonRef()
-        {
-            return m_leftMouseButton;
-        }
+        auto &GetRightMouseButtonRef() { return m_leftMouseButton; }
 
     private:
         MouseButton m_leftMouseButton;
