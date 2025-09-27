@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "FontSizes.hpp"
+#include "../FontSizes.hpp"
 
 namespace Forradia
 {

@@ -4,7 +4,7 @@
  */
 
 #include "CreateFonts.hpp"
-#include "CreateFont.hpp"
+#include "Sub/CreateFont.hpp"
 
 namespace Forradia
 {

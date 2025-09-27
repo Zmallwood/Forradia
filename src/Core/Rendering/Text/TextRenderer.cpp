@@ -4,7 +4,7 @@
  */
 
 #include "TextRenderer.hpp"
-#include "Sub/CreateFonts.hpp"
+#include "Sub/CreateFonts/CreateFonts.hpp"
 #include "Sub/GetRenderedTextSurface.hpp"
 #include "Sub/MeasureRenderedText.hpp"
 #include "Sub/RenderTextSurface.hpp"
