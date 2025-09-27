@@ -29,6 +29,20 @@ namespace Forradia
 
         GetGUI()->AddChildComponent(
             std::make_shared<GUIButton>(
+                0.78f,
+                0.9f,
+                0.05f,
+                ConvertWidthToHeight(0.05f),
+                "",
+                [this]
+                {
+                    m_statsWindow->ToggleVisibility();
+                },
+                "GUIButtonStatsBackground",
+                "GUIButtonStatsHoveredBackground"));
+
+        GetGUI()->AddChildComponent(
+            std::make_shared<GUIButton>(
                 0.85f,
                 0.9f,
                 0.05f,
@@ -61,13 +75,22 @@ namespace Forradia
             m_guiSystemMenu);
 
         m_inventoryWindow = std::make_shared<GUIWindow>(
-            0.2f,
-            0.4f,
+            0.5f,
+            0.3f,
             0.2f,
             0.4f);
 
         GetGUI()->AddChildComponent(
             m_inventoryWindow);
+
+        m_statsWindow = std::make_shared<GUIWindow>(
+            0.2f,
+            0.3f,
+            0.2f,
+            0.4f);
+
+        GetGUI()->AddChildComponent(
+            m_statsWindow);
     }
 
     void MainScene::UpdateDerived()

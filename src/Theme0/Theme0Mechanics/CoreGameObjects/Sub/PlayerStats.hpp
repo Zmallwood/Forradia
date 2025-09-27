@@ -15,5 +15,9 @@ namespace Forradia
         float m_rightArmStrength{0.1f};
         float m_leftArmStrength{0.1f};
         float m_legsStrength{0.1f};
+        float m_overallBodyEnergy {1.0f};
+        float m_rightArmEnergy {1.0f};
+        float m_leftArmEnergy {1.0f};
+        float m_legsEnergy {1.0f};
     };
 }

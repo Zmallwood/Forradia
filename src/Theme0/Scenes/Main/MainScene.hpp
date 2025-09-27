@@ -30,5 +30,6 @@ namespace Forradia
     private:
         std::shared_ptr<GUISystemMenu> m_guiSystemMenu;
         std::shared_ptr<GUIWindow> m_inventoryWindow;
+        std::shared_ptr<GUIWindow> m_statsWindow;
     };
 }
