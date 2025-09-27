@@ -12,7 +12,7 @@ namespace Forradia
                        float y,
                        float width,
                        float height,
-                       std::string_view text)
+                       StringView text)
         : GUIComponent(x, y, width, height),
           m_text(text)
     {

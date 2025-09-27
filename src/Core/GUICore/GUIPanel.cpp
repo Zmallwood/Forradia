@@ -12,7 +12,7 @@ namespace Forradia
                        float y,
                        float width,
                        float height,
-                       std::string_view backgroundImage)
+                       StringView backgroundImage)
         : GUIComponent(x, y, width, height),
           m_backgroundImage(backgroundImage)
     {

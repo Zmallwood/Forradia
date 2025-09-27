@@ -15,7 +15,7 @@ namespace Forradia
     {
     }
 
-    std::shared_ptr<GUIComponent> GUIComponent::AddChildComponent(std::shared_ptr<GUIComponent> component)
+    SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
     {
         m_childComponents.push_back(component);
 

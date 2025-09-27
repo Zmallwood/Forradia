@@ -15,7 +15,7 @@ namespace Forradia
                      float width,
                      float height);
 
-        std::shared_ptr<GUIComponent> AddChildComponent(std::shared_ptr<GUIComponent> component);
+        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> component);
 
         void Update();
 

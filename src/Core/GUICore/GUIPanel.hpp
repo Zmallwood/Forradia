@@ -16,7 +16,7 @@ namespace Forradia
                  float y,
                  float width,
                  float height,
-                 std::string_view backgroundImage = k_defaultBackgroundImage);
+                 StringView backgroundImage = k_defaultBackgroundImage);
 
     protected:
         virtual void RenderDerived() const override;

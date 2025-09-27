@@ -1,0 +1,5 @@
+Model player anathomy:
+* Have created stats for individual body parts: strength and energy.
+* Make strength stats increase on usage of skills.
+* Make max energy level increase on usage of skills also.
+* Make foods refill energy stats.

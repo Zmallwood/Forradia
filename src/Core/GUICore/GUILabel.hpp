@@ -16,7 +16,7 @@ namespace Forradia
                  float y,
                  float width,
                  float height,
-                 std::string_view text);
+                 StringView text);
 
     protected:
         virtual void RenderDerived() const override;

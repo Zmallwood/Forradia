@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    int Hash(std::string_view text)
+    int Hash(StringView text)
     {
         unsigned long hash{5381};
 

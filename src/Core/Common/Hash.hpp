@@ -7,5 +7,5 @@
 
 namespace Forradia
 {
-    int Hash(std::string_view text);
+    int Hash(StringView text);
 }

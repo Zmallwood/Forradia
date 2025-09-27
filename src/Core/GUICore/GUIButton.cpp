@@ -14,10 +14,10 @@ namespace Forradia
                          float y,
                          float width,
                          float height,
-                         std::string_view text,
+                         StringView text,
                          std::function<void()> action,
-                         std::string_view backgroundImage,
-                         std::string_view hoveredBackgroundImage)
+                         StringView backgroundImage,
+                         StringView hoveredBackgroundImage)
         : GUIPanel(x, y, width, height),
           m_text(text),
           m_action(action),

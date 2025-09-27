@@ -16,10 +16,10 @@ namespace Forradia
                   float y,
                   float width,
                   float height,
-                  std::string_view text,
+                  StringView text,
                   std::function<void()> action,
-                  std::string_view backgroundImage = k_backgroundImage,
-                  std::string_view hoveredBackgroundImage = k_hoveredBackgroundImage);
+                  StringView backgroundImage = k_backgroundImage,
+                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage);
 
     protected:
         virtual void UpdateDerived() override;
