@@ -18,6 +18,11 @@ namespace Forradia
 
         void MoveWest();
 
+        auto GetName() const
+        {
+            return m_name;
+        }
+
         auto GetPosition() const
         {
             return m_position;
@@ -49,6 +54,7 @@ namespace Forradia
         }
 
     private:
+        std::string m_name{"Unnamed Player"};
         Point m_position{60, 50};
         float m_movementSpeed{5.0f};
         int m_ticksLastMove{0};

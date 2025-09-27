@@ -4,10 +4,12 @@
  */
 
 #include "IScene.hpp"
+#include "Core/GUICore/GUI.hpp"
 
 namespace Forradia
 {
     IScene::IScene()
+        : m_gui(std::make_shared<GUI>())
     {
     }
 

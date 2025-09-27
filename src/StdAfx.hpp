@@ -13,6 +13,8 @@
 #include <filesystem>
 #include <algorithm>
 #include <vector>
+#include <functional>
+#include <ranges>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

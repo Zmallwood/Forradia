@@ -16,6 +16,11 @@ namespace Forradia
 
         void Render();
 
+        auto SetCursorStyle(CursorStyles value)
+        {
+            m_cursorStyle = value;
+        }
+
     private:
         constexpr static float k_cursorSize {0.05f};
 

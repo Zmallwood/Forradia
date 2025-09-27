@@ -7,6 +7,11 @@
 
 namespace Forradia
 {
+    void MouseButton::Reset()
+    {
+        m_isPressed = false;
+    }
+
     void MouseButton::RegisterPress()
     {
         m_isPressed = true;

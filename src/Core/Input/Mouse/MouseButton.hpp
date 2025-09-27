@@ -10,6 +10,8 @@ namespace Forradia
     class MouseButton
     {
     public:
+        void Reset();
+
         void RegisterPress();
 
         void RegisterRelease();

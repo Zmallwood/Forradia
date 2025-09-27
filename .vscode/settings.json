@@ -59,6 +59,9 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "variant": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "optional": "cpp",
+        "ranges": "cpp",
+        "span": "cpp"
     }
 }
