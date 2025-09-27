@@ -7,14 +7,6 @@
 
 namespace Forradia
 {
-    GUIComponent::GUIComponent(float x,
-                               float y,
-                               float width,
-                               float height)
-        : m_bounds({x, y, width, height})
-    {
-    }
-
     SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
     {
         m_childComponents.push_back(component);

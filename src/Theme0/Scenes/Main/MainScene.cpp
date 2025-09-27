@@ -20,7 +20,7 @@
 
 namespace Forradia
 {
-    void MainScene::Initialize()
+    void MainScene::InitializeDerived()
     {
         GetGUI()->AddChildComponent(
             std::make_shared<GUIPlayerStatusPanel>());

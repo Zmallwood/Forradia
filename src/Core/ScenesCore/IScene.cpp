@@ -8,9 +8,11 @@
 
 namespace Forradia
 {
-    IScene::IScene()
-        : m_gui(std::make_shared<GUI>())
+    void IScene::Initialize()
     {
+        m_gui = std::make_shared<GUI>();
+
+        InitializeDerived();
     }
 
     void IScene::Update()

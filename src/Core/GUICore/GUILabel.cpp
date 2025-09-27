@@ -8,16 +8,6 @@
 
 namespace Forradia
 {
-    GUILabel::GUILabel(float x,
-                       float y,
-                       float width,
-                       float height,
-                       StringView text)
-        : GUIComponent(x, y, width, height),
-          m_text(text)
-    {
-    }
-
     void GUILabel::RenderDerived() const
     {
         auto bounds{GetBounds()};

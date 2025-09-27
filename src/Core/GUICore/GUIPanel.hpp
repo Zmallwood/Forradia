@@ -16,7 +16,11 @@ namespace Forradia
                  float y,
                  float width,
                  float height,
-                 StringView backgroundImage = k_defaultBackgroundImage);
+                 StringView backgroundImage = k_defaultBackgroundImage)
+            : GUIComponent(x, y, width, height),
+              m_backgroundImage(backgroundImage)
+        {
+        }
 
     protected:
         virtual void RenderDerived() const override;

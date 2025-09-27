@@ -14,7 +14,7 @@
 
 namespace Forradia
 {
-    void MainMenuScene::Initialize()
+    void MainMenuScene::InitializeDerived()
     {
         GetGUI()->AddChildComponent(
             std::make_shared<GUIPanel>(0.4f, 0.32f, 0.2f, 0.2f));

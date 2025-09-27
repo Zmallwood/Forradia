@@ -10,7 +10,10 @@ namespace Forradia
     class ImageBank
     {
     public:
-        ImageBank();
+        ImageBank()
+        {
+            LoadImages();
+        }
 
         SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
 

@@ -10,22 +10,6 @@
 
 namespace Forradia
 {
-    GUIButton::GUIButton(float x,
-                         float y,
-                         float width,
-                         float height,
-                         StringView text,
-                         Function<void()> action,
-                         StringView backgroundImage,
-                         StringView hoveredBackgroundImage)
-        : GUIPanel(x, y, width, height),
-          m_text(text),
-          m_action(action),
-          m_backgroundImage(backgroundImage),
-          m_hoveredBackgroundImage(hoveredBackgroundImage)
-    {
-    }
-
     void GUIButton::UpdateDerived()
     {
         GUIPanel::UpdateDerived();
@@ -42,8 +26,6 @@ namespace Forradia
 
             if (_<MouseInput>().GetLeftMouseButtonRef().IsPressedPickResult())
             {
-                _<MouseInput>().GetLeftMouseButtonRef().Reset();
-
                 m_action();
             }
         }

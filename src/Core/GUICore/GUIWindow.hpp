@@ -15,6 +15,10 @@ namespace Forradia
         GUIWindow(float x,
                   float y,
                   float width,
-                  float height);
+                  float height)
+            : GUIMovablePanel(x, y, width, height)
+        {
+            SetVisible(false);
+        }
     };
 }

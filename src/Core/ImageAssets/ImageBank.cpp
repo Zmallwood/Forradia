@@ -9,11 +9,6 @@
 
 namespace Forradia
 {
-    ImageBank::ImageBank()
-    {
-        LoadImages();
-    }
-
     void ImageBank::LoadImages()
     {
         auto basePath{

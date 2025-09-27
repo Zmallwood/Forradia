@@ -13,7 +13,7 @@
 
 namespace Forradia
 {
-    void IntroScene::Initialize()
+    void IntroScene::InitializeDerived()
     {
         m_startText = GetGUI()->AddChildComponent(
             std::make_shared<GUILabel>(

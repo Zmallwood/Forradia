@@ -11,7 +11,7 @@
 
 namespace Forradia
 {
-    TextRenderer::TextRenderer()
+    void TextRenderer::Initialize()
     {
         TTF_Init();
 

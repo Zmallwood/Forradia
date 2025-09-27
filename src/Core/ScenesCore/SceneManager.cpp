@@ -5,23 +5,9 @@
 
 #include "SceneManager.hpp"
 #include "IScene.hpp"
-#include "Theme0/Scenes/Intro/IntroScene.hpp"
-#include "Theme0/Scenes/MainMenu/MainMenuScene.hpp"
-#include "Theme0/Scenes/WorldGeneration/WorldGenerationScene.hpp"
-#include "Theme0/Scenes/Main/MainScene.hpp"
 
 namespace Forradia
 {
-    SceneManager::SceneManager()
-    {
-        AddScene("IntroScene", _<IntroScene>());
-        AddScene("MainMenuScene", _<MainMenuScene>());
-        AddScene("WorldGenerationScene", _<WorldGenerationScene>());
-        AddScene("MainScene", _<MainScene>());
-
-        GoToScene("IntroScene");
-    }
-
     void SceneManager::AddScene(StringView sceneName,
                                 IScene &scene)
     {

@@ -8,16 +8,6 @@
 
 namespace Forradia
 {
-    GUIPanel::GUIPanel(float x,
-                       float y,
-                       float width,
-                       float height,
-                       StringView backgroundImage)
-        : GUIComponent(x, y, width, height),
-          m_backgroundImage(backgroundImage)
-    {
-    }
-
     void GUIPanel::RenderDerived() const
     {
         auto bounds{GetBounds()};

@@ -19,7 +19,14 @@ namespace Forradia
                   StringView text,
                   Function<void()> action,
                   StringView backgroundImage = k_backgroundImage,
-                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage);
+                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage)
+            : GUIPanel(x, y, width, height),
+              m_text(text),
+              m_action(action),
+              m_backgroundImage(backgroundImage),
+              m_hoveredBackgroundImage(hoveredBackgroundImage)
+        {
+        }
 
     protected:
         virtual void UpdateDerived() override;

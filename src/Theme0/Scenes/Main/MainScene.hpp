@@ -22,7 +22,7 @@ namespace Forradia
         }
 
     protected:
-        void Initialize() override;
+        void InitializeDerived() override;
 
         void UpdateDerived() override;
 

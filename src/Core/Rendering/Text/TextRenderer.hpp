@@ -12,7 +12,10 @@ namespace Forradia
     class TextRenderer
     {
     public:
-        TextRenderer();
+        TextRenderer()
+        {
+            Initialize();
+        }
 
         void DrawString(StringView text,
                         float x,
@@ -22,6 +25,8 @@ namespace Forradia
                         Color textColor = Colors::wheat) const;
 
     private:
+        void Initialize();
+
         void AddFonts();
 
         void AddFontSize(FontSizes fontSize);

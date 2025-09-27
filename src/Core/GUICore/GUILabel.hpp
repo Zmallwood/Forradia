@@ -16,7 +16,11 @@ namespace Forradia
                  float y,
                  float width,
                  float height,
-                 StringView text);
+                 StringView text)
+            : GUIComponent(x, y, width, height),
+              m_text(text)
+        {
+        }
 
     protected:
         virtual void RenderDerived() const override;

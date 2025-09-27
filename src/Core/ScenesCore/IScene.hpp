@@ -12,7 +12,7 @@ namespace Forradia
     class IScene
     {
     public:
-        IScene();
+        void Initialize();
 
         void Update();
 
@@ -20,9 +20,9 @@ namespace Forradia
 
         virtual void OnEnter() {}
 
-        virtual void Initialize() {}
-
     protected:
+        virtual void InitializeDerived() {}
+
         virtual void UpdateDerived() {}
 
         virtual void RenderDerived() const {}

@@ -12,7 +12,8 @@ namespace Forradia
     class SceneManager
     {
     public:
-        SceneManager();
+        void AddScene(StringView sceneName,
+                      IScene &scene);
 
         void GoToScene(StringView sceneName);
 
@@ -21,9 +22,6 @@ namespace Forradia
         void RenderCurrentScene() const;
 
     private:
-        void AddScene(StringView sceneName,
-                      IScene &scene);
-
         Map<int, IScene &> m_scenes;
         int m_currentScene{0};
     };
