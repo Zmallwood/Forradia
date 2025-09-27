@@ -1,5 +1,10 @@
-Model player anathomy:
-* Have created stats for individual body parts: strength and energy.
+Model player body/danathomy:
+* Have created stats for individual body parts: strength and energy. Arms determine what can be wielded in hands, and legs how fast player moves.
 * Make strength stats increase on usage of skills.
 * Make max energy level increase on usage of skills also.
 * Make foods refill energy stats.
+* Arms can have sub parts such as upper arms and hands.
+* Legs can have sub parts such as upper legs and feet.
+* Can maybe have awareness to increase spotting things when foraging.
+
+* Consider making into MMO
