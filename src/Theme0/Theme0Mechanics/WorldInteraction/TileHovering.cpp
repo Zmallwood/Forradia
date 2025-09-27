@@ -34,13 +34,9 @@ namespace Forradia
 
         auto topYCoordinate{static_cast<int>(playerPosition.y - (gridSize.height - 1) / 2) - extraRows};
 
-        auto playerElevation{worldArea->GetTile(playerPosition)->GetElevation()};
+        auto playerTile{worldArea->GetTile(playerPosition)};
 
-        auto topYElevation{worldArea->GetTile(hoveredXCoordinate, topYCoordinate)->GetElevation()};
-
-        auto topScreenYCoordinate{static_cast<int>(playerPosition.y - (gridSize.height - 1) / 2)};
-
-        auto topScreenElevation{worldArea->GetTile(hoveredXCoordinate, topScreenYCoordinate)->GetElevation()};
+        auto playerElevation{playerTile ? worldArea->GetTile(playerPosition)->GetElevation() : 0};
 
         auto screenRelativeYPx{-extraRows * tileSize.height};
 
@@ -49,11 +45,17 @@ namespace Forradia
             auto yCoordinate{static_cast<int>(playerPosition.y - (gridSize.height - 1) / 2 + y)};
             auto coordinate{Point{hoveredXCoordinate, yCoordinate}};
 
-            auto elevation{worldArea->GetTile(coordinate)->GetElevation()};
+            auto tile{worldArea->GetTile(coordinate)};
 
-            screenRelativeYPx = 0.5f + (y-(gridSize.height-1)/2)*tileSize.height + (playerElevation-elevation)*tileSize.height/2;
+            if (!tile)
+            {
+                screenRelativeYPx = 0.5f + (y - (gridSize.height - 1) / 2) * tileSize.height + playerElevation * tileSize.height / 2;
+                continue;
+            }
 
+            auto elevation{tile->GetElevation()};
 
+            screenRelativeYPx = 0.5f + (y - (gridSize.height - 1) / 2) * tileSize.height + (playerElevation - elevation) * tileSize.height / 2;
 
             auto coordNW{Point{coordinate.x, coordinate.y}};
             auto coordNE{Point{coordinate.x + 1, coordinate.y}};
@@ -72,6 +74,11 @@ namespace Forradia
             auto tileNE{worldArea->GetTile(coordNE)};
             auto tileSW{worldArea->GetTile(coordSW)};
             auto tileSE{worldArea->GetTile(coordSE)};
+
+            if (!tileNW || !tileNE || !tileSE || !tileSW)
+            {
+                continue;
+            }
 
             float localTileHeight;
 
@@ -156,7 +163,7 @@ namespace Forradia
                 localTileHeight = tileSize.height;
             }
 
-            auto rect{RectF{screenRelativeXPx, screenRelativeYPx, tileSize.width, localTileHeight}};
+            auto rect{RectF{screenRelativeXPx, screenRelativeYPx - localTileHeight / 2, tileSize.width, localTileHeight}};
 
             if (rect.Contains(mousePosition))
             {

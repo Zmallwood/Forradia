@@ -29,7 +29,7 @@ namespace Forradia
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto playerElevation{worldArea->GetTile(playerPosition)->GetElevation() * tileSize.height / 2};
+        auto playerElevation{worldArea->GetTile(playerPosition)->GetElevation()};
 
         auto extraRows{8};
 
@@ -75,7 +75,8 @@ namespace Forradia
                 auto groundTypeRendered{ground};
 
                 xCanvas = x * tileSize.width;
-                yCanvas = playerElevation + y * tileSize.height - tileNW->GetElevation() * tileSize.height / 2;
+                yCanvas = y * tileSize.height - tileNW->GetElevation() * tileSize.height / 2;
+                yCanvas += playerElevation* tileSize.height/2;
                 widthCanvas = tileSize.width;
                 heightCanvas = tileSize.height;
 
@@ -239,8 +240,8 @@ namespace Forradia
                 if (xCoordinate == playerPosition.x &&
                     yCoordinate == playerPosition.y)
                 {
-                    _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
-                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - heightCanvas / 2, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Shadow", xCanvas, yCanvas - tileSize.height/2, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("Player", xCanvas, yCanvas - tileSize.height, tileSize.width, tileSize.height);
                 }
 
                 auto objectsStack{tile ? tile->GetObjectsStack() : nullptr};
