@@ -20,45 +20,21 @@ namespace Forradia
 
         void MoveWest();
 
-        auto GetName() const
-        {
-            return m_name;
-        }
+        auto GetName() const { return m_name; }
 
-        auto GetPosition() const
-        {
-            return m_position;
-        }
+        auto GetPosition() const { return m_position; }
 
-        auto GetMovementSpeed() const
-        {
-            return m_movementSpeed;
-        }
+        auto GetMovementSpeed() const { return m_movementSpeed; }
 
-        auto GetTicksLastMove() const
-        {
-            return m_ticksLastMove;
-        }
+        auto GetTicksLastMove() const { return m_ticksLastMove; }
 
-        void SetTicksLastMove(int ticks)
-        {
-            m_ticksLastMove = ticks;
-        }
+        void SetTicksLastMove(int value) { m_ticksLastMove = value; }
 
-        auto GetDestination() const
-        {
-            return m_destination;
-        }
+        auto GetDestination() const { return m_destination; }
 
-        void SetDestination(Point destination)
-        {
-            m_destination = destination;
-        }
+        void SetDestination(Point value) { m_destination = value; }
 
-        auto &GetPlayerStatsRef()
-        {
-            return m_playerStats;
-        }
+        auto &GetPlayerStatsRef() { return m_playerStats; }
 
     private:
         String m_name{"Unnamed Player"};
