@@ -9,7 +9,7 @@ namespace Forradia
 {
     SharedPtr<SDL_Renderer> CreateRenderer(SharedPtr<SDL_Window> window)
     {
-        auto rendererResult{std::shared_ptr<SDL_Renderer>(
+        auto rendererResult{SharedPtr<SDL_Renderer>(
             SDL_CreateRenderer(
                 window.get(),
                 -1,

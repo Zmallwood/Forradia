@@ -82,7 +82,7 @@ namespace Forradia
 
                 if (ground != Hash("GroundWater"))
                 {
-                    std::string groundName;
+                    String groundName;
 
                     if (ground == Hash("GroundGrass"))
                     {

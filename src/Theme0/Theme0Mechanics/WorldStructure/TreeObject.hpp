@@ -12,7 +12,7 @@ namespace Forradia
     class TreeObject : public Object
     {
     public:
-        TreeObject(std::string_view objectTypeName);
+        TreeObject(StringView objectTypeName);
 
         auto GetTrunkparts() const
         {
@@ -30,8 +30,8 @@ namespace Forradia
         }
 
     private:
-        std::vector<PointF> m_trunkParts;
-        std::vector<int> m_needleTypes;
+        Vector<PointF> m_trunkParts;
+        Vector<int> m_needleTypes;
         float m_widthFactor{1.0f};
     };
 }

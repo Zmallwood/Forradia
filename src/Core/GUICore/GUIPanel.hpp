@@ -21,14 +21,14 @@ namespace Forradia
     protected:
         virtual void RenderDerived() const override;
 
-        void SetBackgroundImage(std::string_view value)
+        void SetBackgroundImage(StringView value)
         {
             m_backgroundImage = value;
         }
 
     private:
-        inline static const std::string k_defaultBackgroundImage{"GUIPanelBackground"};
+        inline static const String k_defaultBackgroundImage{"GUIPanelBackground"};
 
-        std::string m_backgroundImage;
+        String m_backgroundImage;
     };
 }

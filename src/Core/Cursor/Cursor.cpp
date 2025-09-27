@@ -25,7 +25,7 @@ namespace Forradia
         auto width{k_cursorSize};
         auto height{ConvertWidthToHeight(k_cursorSize)};
 
-        std::string cursorImage;
+        String cursorImage;
 
         switch (m_cursorStyle)
         {

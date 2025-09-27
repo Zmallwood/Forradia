@@ -10,7 +10,7 @@ namespace Forradia
     class Object
     {
     public:
-        Object(std::string_view objectTypeName);
+        Object(StringView objectTypeName);
 
         auto GetType() const
         {

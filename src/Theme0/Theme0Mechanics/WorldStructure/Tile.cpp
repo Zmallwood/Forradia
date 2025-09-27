@@ -13,7 +13,7 @@ namespace Forradia
     {
     }
 
-    void Tile::SetGround(std::string_view groundName)
+    void Tile::SetGround(StringView groundName)
     {
         m_ground = Hash(groundName);
     }

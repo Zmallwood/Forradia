@@ -17,7 +17,7 @@ namespace Forradia
     void ImageBank::LoadImages()
     {
         auto basePath{
-            std::string(SDL_GetBasePath())};
+            String(SDL_GetBasePath())};
 
         auto imagesPath{
             basePath + k_relativeImagesPath.data()};

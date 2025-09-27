@@ -11,7 +11,7 @@ namespace Forradia
                    char replaced,
                    char replacedWith)
     {
-        std::string textData{text.data()};
+        String textData{text.data()};
 
         std::replace(
             textData.begin(),

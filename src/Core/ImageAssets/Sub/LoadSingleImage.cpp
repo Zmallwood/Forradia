@@ -11,7 +11,7 @@ namespace Forradia
     SharedPtr<SDL_Texture> LoadSingleImage(StringView path)
     {
         auto surface{
-            std::shared_ptr<SDL_Surface>(
+            SharedPtr<SDL_Surface>(
                 IMG_Load(path.data()),
                 SDLDeleter())};
 
@@ -21,7 +21,7 @@ namespace Forradia
                 _<SDLDevice>().GetRenderer().get()};
 
             auto texture{
-                std::shared_ptr<SDL_Texture>(
+                SharedPtr<SDL_Texture>(
                     SDL_CreateTextureFromSurface(renderer,
                                                  surface.get()),
                     SDLDeleter())};

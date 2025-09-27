@@ -11,10 +11,10 @@ namespace Forradia
     Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
                                                     StringView relativeFontPath)
     {
-        std::map<FontSizes, std::shared_ptr<TTF_Font>> fontsResult;
+        Map<FontSizes, SharedPtr<TTF_Font>> fontsResult;
 
         auto absoluteFontPath{
-            std::string(SDL_GetBasePath()) + relativeFontPath.data()};
+            String(SDL_GetBasePath()) + relativeFontPath.data()};
 
         for (auto fontSize : fontSizes)
         {

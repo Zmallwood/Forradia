@@ -29,8 +29,8 @@ namespace Forradia
         void RenderDerived() const override;
 
     private:
-        std::shared_ptr<GUISystemMenu> m_guiSystemMenu;
-        std::shared_ptr<GUIWindow> m_inventoryWindow;
-        std::shared_ptr<GUIPlayerStatsWindow> m_playerStatsWindow;
+        SharedPtr<GUISystemMenu> m_guiSystemMenu;
+        SharedPtr<GUIWindow> m_inventoryWindow;
+        SharedPtr<GUIPlayerStatsWindow> m_playerStatsWindow;
     };
 }

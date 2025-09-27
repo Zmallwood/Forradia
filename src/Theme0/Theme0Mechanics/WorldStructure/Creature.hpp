@@ -10,7 +10,7 @@ namespace Forradia
     class Creature
     {
     public:
-        Creature(std::string_view typeName);
+        Creature(StringView typeName);
 
         auto GetType() const
         {

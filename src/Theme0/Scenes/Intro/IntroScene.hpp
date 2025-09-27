@@ -21,6 +21,6 @@ namespace Forradia
         void RenderDerived() const override;
 
     private:
-        std::shared_ptr<GUIComponent> m_startText;
+        SharedPtr<GUIComponent> m_startText;
     };
 }

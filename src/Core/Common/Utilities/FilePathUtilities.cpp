@@ -9,7 +9,7 @@ namespace Forradia
 {
     String GetFileExtension(StringView path)
     {
-        std::string extension{
+        String extension{
             path.substr(path.find_last_of('.') + 1).data()};
 
         return extension;
@@ -18,7 +18,7 @@ namespace Forradia
     String GetFileNameNoExtension(StringView path)
     {
         auto nameWithExtension{
-            std::string(
+            String(
                 path.substr(path.find_last_of('/') + 1))};
 
         return nameWithExtension.substr(

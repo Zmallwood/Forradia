@@ -15,7 +15,7 @@ namespace Forradia
     public:
         Tile();
 
-        void SetGround(std::string_view groundName);
+        void SetGround(StringView groundName);
 
         auto GetGround() const
         {
@@ -32,7 +32,7 @@ namespace Forradia
             return m_creature;
         }
 
-        void SetCreature(std::shared_ptr<Creature> creature)
+        void SetCreature(SharedPtr<Creature> creature)
         {
             m_creature = creature;
         }
@@ -49,8 +49,8 @@ namespace Forradia
 
     private:
         int m_ground{0};
-        std::shared_ptr<ObjectsStack> m_objectsStack;
-        std::shared_ptr<Creature> m_creature;
+        SharedPtr<ObjectsStack> m_objectsStack;
+        SharedPtr<Creature> m_creature;
         int m_elevation{0};
     };
 }

@@ -14,13 +14,13 @@ namespace Forradia
         m_objects.clear();
     }
 
-    void ObjectsStack::AddObject(std::string_view objectTypeName)
+    void ObjectsStack::AddObject(StringView objectTypeName)
     {
         m_objects.push_back(
             std::make_shared<Object>(objectTypeName));
     }
 
-    void ObjectsStack::AddTreeObject(std::string_view objectTypeName)
+    void ObjectsStack::AddTreeObject(StringView objectTypeName)
     {
         m_objects.push_back(
             std::make_shared<TreeObject>(objectTypeName));

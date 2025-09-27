@@ -16,7 +16,7 @@ namespace Forradia
         auto fontSizeN{static_cast<int>(fontSize)};
 
         auto newFont{
-            std::shared_ptr<TTF_Font>(
+            SharedPtr<TTF_Font>(
                 TTF_OpenFont(
                     fontPathUnixStyle.c_str(),
                     fontSizeN),

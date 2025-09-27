@@ -22,6 +22,6 @@ namespace Forradia
         virtual void RenderDerived() const override;
 
     private:
-        std::string m_text;
+        String m_text;
     };
 }

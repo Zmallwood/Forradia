@@ -24,7 +24,7 @@ namespace Forradia
         void AddScene(StringView sceneName,
                       IScene &scene);
 
-        std::map<int, IScene &> m_scenes;
+        Map<int, IScene &> m_scenes;
         int m_currentScene{0};
     };
 }

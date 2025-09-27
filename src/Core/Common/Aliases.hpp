@@ -19,4 +19,12 @@ namespace Forradia
 
     template <class T>
     using Vector = std::vector<T>;
+
+    template <class T>
+    using Function = std::function<T>;
+
+    template <class T>
+    using Set = std::set<T>;
+
+    using StringStream = std::stringstream;
 }

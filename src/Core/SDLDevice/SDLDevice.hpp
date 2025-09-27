@@ -27,7 +27,7 @@ namespace Forradia
         }
 
     private:
-        std::shared_ptr<SDL_Window> m_window;
-        std::shared_ptr<SDL_Renderer> m_renderer;
+        SharedPtr<SDL_Window> m_window;
+        SharedPtr<SDL_Renderer> m_renderer;
     };
 }

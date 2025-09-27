@@ -15,6 +15,6 @@ namespace Forradia
         GUITextConsole();
 
     private:
-        std::vector<std::string> m_textLines;
+        Vector<String> m_textLines;
     };
 }

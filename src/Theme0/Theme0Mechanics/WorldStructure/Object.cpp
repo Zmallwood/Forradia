@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    Object::Object(std::string_view objectTypeName)
+    Object::Object(StringView objectTypeName)
         : m_type(Hash(objectTypeName))
     {
     }

@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    Creature::Creature(std::string_view typeName)
+    Creature::Creature(StringView typeName)
         : m_type{Hash(typeName)}
     {
         m_movementSpeed *= (RandomInt(3) + 1) / 2.0f;

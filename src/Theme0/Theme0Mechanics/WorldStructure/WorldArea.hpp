@@ -20,10 +20,10 @@ namespace Forradia
         bool IsValidCoordinate(int x,
                                int y) const;
 
-        std::shared_ptr<Tile> GetTile(int x,
+        SharedPtr<Tile> GetTile(int x,
                                       int y) const;
 
-        std::shared_ptr<Tile> GetTile(Point coordinate) const;
+        SharedPtr<Tile> GetTile(Point coordinate) const;
 
         auto &GetCreaturesMirrorRef()
         {
@@ -31,7 +31,7 @@ namespace Forradia
         }
 
     private:
-        std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
-        std::map<std::shared_ptr<Creature>, Point> m_creaturesMirror;
+        Vector<Vector<SharedPtr<Tile>>> m_tiles;
+        Map<SharedPtr<Creature>, Point> m_creaturesMirror;
     };
 }

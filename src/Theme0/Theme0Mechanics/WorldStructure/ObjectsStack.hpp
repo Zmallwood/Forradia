@@ -14,9 +14,9 @@ namespace Forradia
     public:
         void ClearObjects();
 
-        void AddObject(std::string_view objectTypeName);
+        void AddObject(StringView objectTypeName);
 
-        void AddTreeObject(std::string_view objectTypeName);
+        void AddTreeObject(StringView objectTypeName);
 
         int GetSize() const;
 
@@ -26,6 +26,6 @@ namespace Forradia
         }
 
     private:
-        std::vector<std::shared_ptr<Object>> m_objects;
+        Vector<SharedPtr<Object>> m_objects;
     };
 }

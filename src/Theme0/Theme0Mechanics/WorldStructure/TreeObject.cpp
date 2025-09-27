@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    TreeObject::TreeObject(std::string_view objectTypeName)
+    TreeObject::TreeObject(StringView objectTypeName)
         : Object(objectTypeName)
     {
         if (objectTypeName != "ObjectFirTree" && objectTypeName != "ObjectBirchTree")
@@ -41,7 +41,7 @@ namespace Forradia
 
             m_trunkParts.push_back(position);
 
-            std::string needlesName;
+            String needlesName;
 
             if (objectTypeName == "ObjectFirTree")
             {

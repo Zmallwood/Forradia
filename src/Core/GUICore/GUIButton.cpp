@@ -15,7 +15,7 @@ namespace Forradia
                          float width,
                          float height,
                          StringView text,
-                         std::function<void()> action,
+                         Function<void()> action,
                          StringView backgroundImage,
                          StringView hoveredBackgroundImage)
         : GUIPanel(x, y, width, height),

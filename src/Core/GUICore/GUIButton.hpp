@@ -17,7 +17,7 @@ namespace Forradia
                   float width,
                   float height,
                   StringView text,
-                  std::function<void()> action,
+                  Function<void()> action,
                   StringView backgroundImage = k_backgroundImage,
                   StringView hoveredBackgroundImage = k_hoveredBackgroundImage);
 
@@ -27,12 +27,12 @@ namespace Forradia
         virtual void RenderDerived() const override;
 
     private:
-        inline static const std::string k_backgroundImage{"GUIButtonBackground"};
-        inline static const std::string k_hoveredBackgroundImage{"GUIButtonHoveredBackground"};
+        inline static const String k_backgroundImage{"GUIButtonBackground"};
+        inline static const String k_hoveredBackgroundImage{"GUIButtonHoveredBackground"};
 
-        std::string m_text;
-        std::function<void()> m_action;
-        std::string m_backgroundImage;
-        std::string m_hoveredBackgroundImage;
+        String m_text;
+        Function<void()> m_action;
+        String m_backgroundImage;
+        String m_hoveredBackgroundImage;
     };
 }

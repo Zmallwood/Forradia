@@ -16,7 +16,7 @@ namespace Forradia
             SDL_WINDOW_MAXIMIZED |
             SDL_WINDOW_FULLSCREEN_DESKTOP};
 
-        auto windowResult{std::shared_ptr<SDL_Window>(
+        auto windowResult{SharedPtr<SDL_Window>(
             SDL_CreateWindow(_<GameProperties>().k_gameWindowTitle.data(),
                              SDL_WINDOWPOS_CENTERED,
                              SDL_WINDOWPOS_CENTERED,
@@ -28,7 +28,7 @@ namespace Forradia
         if (!windowResult)
         {
             std::cout << "Window could not be created. SDL Error: "
-                      << std::string(SDL_GetError()) << std::endl;
+                      << String(SDL_GetError()) << std::endl;
         }
 
         return windowResult;

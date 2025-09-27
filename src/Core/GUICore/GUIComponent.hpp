@@ -40,7 +40,7 @@ namespace Forradia
 
     private:
         RectF m_bounds;
-        std::vector<std::shared_ptr<GUIComponent>> m_childComponents;
+        Vector<SharedPtr<GUIComponent>> m_childComponents;
         bool m_visible{true};
         bool m_enabled{true};
     };

@@ -19,8 +19,8 @@ namespace Forradia
     private:
         void LoadImages();
 
-        inline static const std::string k_relativeImagesPath{"./Resources/Images/"};
+        inline static const String k_relativeImagesPath{"./Resources/Images/"};
 
-        std::map<int, std::shared_ptr<SDL_Texture>> m_images;
+        Map<int, SharedPtr<SDL_Texture>> m_images;
     };
 }

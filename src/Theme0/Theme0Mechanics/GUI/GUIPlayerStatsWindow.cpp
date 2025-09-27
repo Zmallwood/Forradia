@@ -24,14 +24,14 @@ namespace Forradia
         auto leftArmEnergy {playerStats.GetLeftArmEnergy()};
         auto legsEnergy {playerStats.GetLegsEnergy()};
 
-        std::stringstream ssOverallBodyStrength;
-        std::stringstream ssRightArmStrength;
-        std::stringstream ssLeftArmStrength;
-        std::stringstream ssLegsStrength;
-        std::stringstream ssOverallBodyEnergy;
-        std::stringstream ssRightArmEnergy;
-        std::stringstream ssLeftArmEnergy;
-        std::stringstream ssLegsEnergy;
+        StringStream ssOverallBodyStrength;
+        StringStream ssRightArmStrength;
+        StringStream ssLeftArmStrength;
+        StringStream ssLegsStrength;
+        StringStream ssOverallBodyEnergy;
+        StringStream ssRightArmEnergy;
+        StringStream ssLeftArmEnergy;
+        StringStream ssLegsEnergy;
 
         ssOverallBodyStrength << overallBodyStrength;
         ssRightArmStrength << rightArmStrength;
