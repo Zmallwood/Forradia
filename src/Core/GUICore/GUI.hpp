@@ -13,8 +13,6 @@ namespace Forradia
     {
     public:
         GUI()
-            : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
-        {
-        }
+            : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {}
     };
 }

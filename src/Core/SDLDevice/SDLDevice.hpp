@@ -10,7 +10,10 @@ namespace Forradia
     class SDLDevice
     {
     public:
-        SDLDevice();
+        SDLDevice()
+        {
+            Initialize();
+        }
 
         void ClearCanvas() const;
 
@@ -21,6 +24,8 @@ namespace Forradia
         auto GetRenderer() const { return m_renderer; }
 
     private:
+        void Initialize();
+
         SharedPtr<SDL_Window> m_window;
         SharedPtr<SDL_Renderer> m_renderer;
     };

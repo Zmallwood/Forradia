@@ -24,9 +24,7 @@ namespace Forradia
               m_text(text),
               m_action(action),
               m_backgroundImage(backgroundImage),
-              m_hoveredBackgroundImage(hoveredBackgroundImage)
-        {
-        }
+              m_hoveredBackgroundImage(hoveredBackgroundImage) {}
 
     protected:
         virtual void UpdateDerived() override;

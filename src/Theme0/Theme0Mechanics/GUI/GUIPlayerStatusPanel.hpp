@@ -13,9 +13,7 @@ namespace Forradia
     {
     public:
         GUIPlayerStatusPanel()
-            : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
-        {
-        }
+            : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
     protected:
         virtual void RenderDerived() const override;

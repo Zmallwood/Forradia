@@ -16,8 +16,6 @@ namespace Forradia
                         float y,
                         float width,
                         float height)
-            : GUIPanel(x, y, width, height)
-        {
-        }
+            : GUIPanel(x, y, width, height) {}
     };
 }

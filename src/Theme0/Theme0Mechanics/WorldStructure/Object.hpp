@@ -11,9 +11,7 @@ namespace Forradia
     {
     public:
         Object(StringView objectTypeName)
-            : m_type(Hash(objectTypeName))
-        {
-        }
+            : m_type(Hash(objectTypeName)) {}
 
         auto GetType() const { return m_type; }
 

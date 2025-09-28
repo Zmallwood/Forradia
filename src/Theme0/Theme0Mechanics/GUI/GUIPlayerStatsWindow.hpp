@@ -13,9 +13,7 @@ namespace Forradia
     {
     public:
         GUIPlayerStatsWindow()
-            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f, "Player stats")
-        {
-        }
+            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f, "Player stats") {}
 
     protected:
         void RenderDerived() const override;

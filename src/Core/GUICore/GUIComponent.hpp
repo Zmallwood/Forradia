@@ -14,9 +14,7 @@ namespace Forradia
                      float y,
                      float width,
                      float height)
-            : m_bounds({x, y, width, height})
-        {
-        }
+            : m_bounds({x, y, width, height}) {}
 
         SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> component);
 
