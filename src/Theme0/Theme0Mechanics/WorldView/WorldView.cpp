@@ -220,7 +220,7 @@ namespace Forradia
                     else if (ground == Hash("GroundWater") && i == 1)
                     {
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-                        _<ImageRenderer>().DrawImage("GroundWaterEdge_New", xCanvas - widthCanvas * 0.1f, yCanvas - heightCanvas * 0.1f, widthCanvas * 1.2f, heightCanvas * 1.2f);
+                        _<ImageRenderer>().DrawImage("GroundWaterEdge_New", xCanvas - widthCanvas * 0.2f, yCanvas - heightCanvas * 0.2f, widthCanvas * 1.4f, heightCanvas * 1.4f);
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
