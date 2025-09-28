@@ -11,3 +11,4 @@ Model player body/danathomy:
 
 * Fridge to store food, driven by electricity from water turbine or wind power or solar power
 * Also, can be electric furnace, oven and other tools driven by electrity to make tools etc.
+* Start with a cart with a fridge, electric furnace, oven etc, is its to heavey to carry in inventory

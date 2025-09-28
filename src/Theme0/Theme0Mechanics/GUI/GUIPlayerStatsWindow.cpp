@@ -53,13 +53,13 @@ namespace Forradia
 
         auto bounds{GetBounds()};
 
-        _<TextRenderer>().DrawString("Overall body strength: " + ssOverallBodyStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 1*0.03f);
-        _<TextRenderer>().DrawString("Right arm strength: " + ssRightArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 2*0.03f);
-        _<TextRenderer>().DrawString("Left arm strength: " + ssLeftArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 3*0.03f);
-        _<TextRenderer>().DrawString("Legs strength: " + ssLegsStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 4*0.03f);
-        _<TextRenderer>().DrawString("Overall body energy: " + ssOverallBodyEnergy.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 5*0.03f);
-        _<TextRenderer>().DrawString("Overall right arm energy: " + ssRightArmEnergy.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 6*0.03f);
-        _<TextRenderer>().DrawString("Overall left arm energy: " + ssLeftArmEnergy.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 7*0.03f);
-        _<TextRenderer>().DrawString("Overall legs energy: " + ssLegsEnergy.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 8*0.03f);
+        _<TextRenderer>().DrawString("Overall body strength: " + ssOverallBodyStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 1*0.03f);
+        _<TextRenderer>().DrawString("Right arm strength: " + ssRightArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 2*0.03f);
+        _<TextRenderer>().DrawString("Left arm strength: " + ssLeftArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 3*0.03f);
+        _<TextRenderer>().DrawString("Legs strength: " + ssLegsStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 4*0.03f);
+        _<TextRenderer>().DrawString("Overall body energy: " + ssOverallBodyEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 5*0.03f);
+        _<TextRenderer>().DrawString("Overall right arm energy: " + ssRightArmEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 6*0.03f);
+        _<TextRenderer>().DrawString("Overall left arm energy: " + ssLeftArmEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 7*0.03f);
+        _<TextRenderer>().DrawString("Overall legs energy: " + ssLegsEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 8*0.03f);
     }
 }

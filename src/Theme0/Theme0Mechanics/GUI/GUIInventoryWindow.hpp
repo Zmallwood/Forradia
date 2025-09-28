@@ -13,7 +13,7 @@ namespace Forradia
     {
     public:
         GUIInventoryWindow()
-            : GUIWindow(0.5f, 0.3f, 0.2f, 0.4f, "Inventory")
+            : GUIWindow(0.5f, 0.3f, 0.2f, 0.5f, "Inventory")
         {
         }
 
