@@ -22,10 +22,13 @@ namespace Forradia
         auto now{GetTicks()};
 
         creature->SetTicksLastMove(now);
+
         auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
-        oldTile->SetCreature(nullptr);
         auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
+
+        oldTile->SetCreature(nullptr);
         newTile->SetCreature(creature);
+        
         creaturesMirrorRef.erase(creature);
         creaturesMirrorRef.insert({creature, {newPosition.x, newPosition.y}});
     }

@@ -8,4 +8,6 @@
 namespace Forradia
 {
     float InvertMovementSpeed(float number);
+
+    int Normalize(int value);
 }

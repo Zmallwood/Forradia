@@ -18,4 +18,18 @@ namespace Forradia
             return 0.0f;
         }
     }
+
+    int Normalize(int value)
+    {
+        auto absValue {std::abs(value)};
+
+        auto normalized {0};
+
+        if (value)
+        {
+            normalized = value / absValue;
+        }
+
+        return normalized;
+    }
 }

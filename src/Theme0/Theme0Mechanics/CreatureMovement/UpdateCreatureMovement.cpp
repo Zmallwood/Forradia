@@ -43,21 +43,8 @@ namespace Forradia
             auto dx{creature->GetDestination().x - position.x};
             auto dy{creature->GetDestination().y - position.y};
 
-            auto normDx{0};
-            auto normDy{0};
-
-            auto absDx{std::abs(dx)};
-            auto absDy{std::abs(dy)};
-
-            if (dx)
-            {
-                normDx = dx / absDx;
-            }
-
-            if (dy)
-            {
-                normDy = dy / absDy;
-            }
+            auto normDx{Normalize(dx)};
+            auto normDy{Normalize(dy)};
 
             auto newX{position.x + normDx};
             auto newY{position.y + normDy};
@@ -72,15 +59,10 @@ namespace Forradia
             if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
                 MoveCreatureToNewLocation(creature, position, {newX, newY});
-
-                ++it;
-                continue;
             }
             else
             {
                 creature->SetDestination({-1, -1});
-                ++it;
-                continue;
             }
 
             ++it;
