@@ -257,6 +257,13 @@ namespace Forradia
                     _<ImageRenderer>().DrawImage("HoveredTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
                 }
 
+                auto playerDestination {_<Player>().GetDestination()};
+
+                if (xCoordinate == playerDestination.x && yCoordinate == playerDestination.y)
+                {
+                    _<ImageRenderer>().DrawImage("DestinationTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                }
+
                 if (xCoordinate == playerPosition.x &&
                     yCoordinate == playerPosition.y)
                 {
