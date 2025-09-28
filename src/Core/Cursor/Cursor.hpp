@@ -14,7 +14,7 @@ namespace Forradia
     public:
         Cursor()
         {
-            DisableSystemCursor();
+            Initialize();
         }
 
         void ResetStyleToDefault();
@@ -24,6 +24,8 @@ namespace Forradia
         auto SetCursorStyle(CursorStyles value) { m_cursorStyle = value; }
 
     private:
+        void Initialize();
+
         void DisableSystemCursor();
 
         constexpr static float k_cursorSize{0.05f};

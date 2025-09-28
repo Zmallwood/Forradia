@@ -18,5 +18,6 @@ namespace Forradia
         int m_fps{0};
         int m_framesCount{0};
         int m_ticksLastUpdate{0};
+        const PointF k_position{0.93f, 0.02f};
     };
 }

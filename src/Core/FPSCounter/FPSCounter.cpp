@@ -28,7 +28,7 @@ namespace Forradia
 
         _<TextRenderer>().DrawString(
             fpsText,
-            0.93f,
-            0.02f);
+            k_position.x,
+            k_position.y);
     }
 }

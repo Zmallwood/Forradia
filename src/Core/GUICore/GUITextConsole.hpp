@@ -13,11 +13,13 @@ namespace Forradia
     {
     public:
         GUITextConsole()
-            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, "GUIPanelSemiTransparentBackground")
+            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived)
         {
         }
 
     private:
+        constexpr static StringView k_defaultBackgroundImageDerived{"GUIPanelSemiTransparentBackground"};
+
         Vector<String> m_textLines;
     };
 }

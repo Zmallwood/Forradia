@@ -8,6 +8,16 @@
 
 namespace Forradia
 {
+    void Cursor::Initialize()
+    {
+        DisableSystemCursor();
+    }
+
+    void Cursor::DisableSystemCursor()
+    {
+        SDL_ShowCursor(SDL_DISABLE);
+    }
+
     void Cursor::ResetStyleToDefault()
     {
         m_cursorStyle = CursorStyles::Default;
@@ -37,10 +47,5 @@ namespace Forradia
             mousePosition.x - width / 2,
             mousePosition.y - height / 2,
             width, height);
-    }
-
-    void Cursor::DisableSystemCursor()
-    {
-        SDL_ShowCursor(SDL_DISABLE);
     }
 }
