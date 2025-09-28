@@ -6,6 +6,7 @@
 #include "Player.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
@@ -17,6 +18,11 @@ namespace Forradia
         auto size{worldArea->GetSize()};
 
         m_position = {size.width / 2, size.height / 2};
+
+        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
+        {
+            m_position = {RandomInt(size.width), RandomInt(size.height)};
+        }
     }
 
     void Player::MoveNorth()

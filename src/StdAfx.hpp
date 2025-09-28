@@ -33,6 +33,7 @@
 #include "Core/Common/Constants.hpp"
 #include "Core/Common/Singleton.hpp"
 #include "Core/Common/SDLDeleter.hpp"
+#include "Core/Common/Utilities/CastUtilities.hpp"
 #include "Core/Common/Utilities/RandomizeUtilities.hpp"
 #include "Core/Common/Utilities/StringUtilities.hpp"
 #include "Core/Common/Utilities/FilePathUtilities.hpp"
