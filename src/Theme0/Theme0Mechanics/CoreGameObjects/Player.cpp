@@ -13,6 +13,11 @@ namespace Forradia
 {
     void Player::Initialize()
     {
+        MoveToSuitablePosition();
+    }
+
+    void Player::MoveToSuitablePosition()
+    {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto size{worldArea->GetSize()};

@@ -44,6 +44,8 @@ namespace Forradia
     private:
         void Initialize();
 
+        void MoveToSuitablePosition();
+
         String m_name{"Unnamed Player"};
         Point m_position{60, 50};
         float m_movementSpeed{5.0f};
