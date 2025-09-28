@@ -53,8 +53,6 @@ namespace Forradia
 
         auto bounds{GetBounds()};
 
-        _<TextRenderer>().DrawString("Player stats", bounds.x + 0.01f, bounds.y + 0.01f);
-
         _<TextRenderer>().DrawString("Overall body strength: " + ssOverallBodyStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 1*0.03f);
         _<TextRenderer>().DrawString("Right arm strength: " + ssRightArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 2*0.03f);
         _<TextRenderer>().DrawString("Left arm strength: " + ssLeftArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.01f + 0.03f + 3*0.03f);

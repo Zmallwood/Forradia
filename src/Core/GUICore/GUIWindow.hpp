@@ -15,13 +15,21 @@ namespace Forradia
         GUIWindow(float x,
                   float y,
                   float width,
-                  float height)
-            : GUIMovablePanel(x, y, width, height)
+                  float height,
+                  StringView windowTitle)
+            : GUIMovablePanel(x, y, width, height),
+              k_windowTitle(windowTitle)
         {
             Initialize();
         }
 
+    protected:
+        void RenderDerived() const override;
+
     private:
         void Initialize();
+
+        const String k_windowTitle;
+        const float k_titleBarHeight{0.04f};
     };
 }
