@@ -5,47 +5,25 @@
 
 #pragma once
 
+#include "BodyPart.hpp"
+
 namespace Forradia
 {
     class PlayerBody
     {
     public:
-        auto GetOverallBodyStrength() const { return m_overallBodyStrength; }
+        auto &GetOverallBodyRef() { return m_overallBody; }
 
-        auto GetRightArmStrength() const { return m_rightArmStrength; }
+        auto &GetRightArmRef() { return m_rightArm; }
 
-        auto GetLeftArmStrength() const { return m_leftArmStrength; }
+        auto &GetLeftArmRef() { return m_leftArm; }
 
-        auto GetLegsStrength() const { return m_legsStrength; }
-
-        auto GetOverallBodyMaxEnergy() const { return m_overallBodyMaxEnergy; }
-
-        auto GetRightArmMaxEnergy() const { return m_rightArmMaxEnergy; }
-
-        auto GetLeftArmMaxEnergy() const { return m_leftArmMaxEnergy; }
-
-        auto GetLegsMaxEnergy() const { return m_legsMaxEnergy; }
-
-        auto GetOverallBodyHealth() const { return m_overallBodyHealth; }
-
-        auto GetRightArmHealth() const { return m_rightArmHealth; }
-
-        auto GetLeftArmHealth() const { return m_leftArmHealth; }
-
-        auto GetLegsHealth() const { return m_legsHealth; }
+        auto &GetLegsRef() { return m_legs; }
 
     private:
-        float m_overallBodyStrength{0.1f};
-        float m_rightArmStrength{0.1f};
-        float m_leftArmStrength{0.1f};
-        float m_legsStrength{0.1f};
-        float m_overallBodyMaxEnergy{1.0f};
-        float m_rightArmMaxEnergy{1.0f};
-        float m_leftArmMaxEnergy{1.0f};
-        float m_legsMaxEnergy{1.0f};
-        float m_overallBodyHealth{1.0f};
-        float m_rightArmHealth{1.0f};
-        float m_leftArmHealth{1.0f};
-        float m_legsHealth{1.0f};
+        BodyPart m_overallBody;
+        BodyPart m_rightArm;
+        BodyPart m_leftArm;
+        BodyPart m_legs;
     };
 }
