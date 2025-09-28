@@ -118,7 +118,10 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+            if (tile->GetWaterDepth() < 4)
+            {
+                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+            }
         }
     }
 }
