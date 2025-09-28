@@ -18,22 +18,22 @@ namespace Forradia
 
         auto GetLegsStrength() const { return m_legsStrength; }
 
-        auto GetOverallBodyEnergy() const { return m_overallBodyEnergy; }
+        auto GetOverallBodyMaxEnergy() const { return m_overallBodyMaxEnergy; }
 
-        auto GetRightArmEnergy() const { return m_rightArmEnergy; }
+        auto GetRightArmMaxEnergy() const { return m_rightArmMaxEnergy; }
 
-        auto GetLeftArmEnergy() const { return m_leftArmEnergy; }
+        auto GetLeftArmMaxEnergy() const { return m_leftArmMaxEnergy; }
 
-        auto GetLegsEnergy() const { return m_legsEnergy; }
+        auto GetLegsMaxEnergy() const { return m_legsMaxEnergy; }
 
     private:
         float m_overallBodyStrength{0.1f};
         float m_rightArmStrength{0.1f};
         float m_leftArmStrength{0.1f};
         float m_legsStrength{0.1f};
-        float m_overallBodyEnergy{1.0f};
-        float m_rightArmEnergy{1.0f};
-        float m_leftArmEnergy{1.0f};
-        float m_legsEnergy{1.0f};
+        float m_overallBodyMaxEnergy{1.0f};
+        float m_rightArmMaxEnergy{1.0f};
+        float m_leftArmMaxEnergy{1.0f};
+        float m_legsMaxEnergy{1.0f};
     };
 }
