@@ -9,6 +9,5 @@ namespace Forradia
 {
     class Creature;
 
-    void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
-                                   Point newPosition);
+    void GenerateNewCreatureDestination(SharedPtr<Creature> creature);
 }

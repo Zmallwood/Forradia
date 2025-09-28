@@ -12,12 +12,13 @@
 namespace Forradia
 {
     void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
-                                   Point oldPosition,
                                    Point newPosition)
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
+
+        auto oldPosition {creaturesMirrorRef.at(creature)};
 
         auto now{GetTicks()};
 
@@ -28,7 +29,7 @@ namespace Forradia
 
         oldTile->SetCreature(nullptr);
         newTile->SetCreature(creature);
-        
+
         creaturesMirrorRef.erase(creature);
         creaturesMirrorRef.insert({creature, {newPosition.x, newPosition.y}});
     }

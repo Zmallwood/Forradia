@@ -5,6 +5,7 @@
 
 #include "UpdateCreatureMovement.hpp"
 #include "Sub/MoveCreatureToNewLocation.hpp"
+#include "Sub/GenerateNewCreatureDestination.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
@@ -31,14 +32,7 @@ namespace Forradia
                 continue;
             }
 
-            auto destination{creature->GetDestination()};
-
-            if (destination.x == -1 && destination.y == -1)
-            {
-                auto newDestinationX{position.x + RandomInt(11) - 5};
-                auto newDestinationY{position.y + RandomInt(11) - 5};
-                creature->SetDestination({newDestinationX, newDestinationY});
-            }
+            GenerateNewCreatureDestination(creature);
 
             auto dx{creature->GetDestination().x - position.x};
             auto dy{creature->GetDestination().y - position.y};
@@ -58,7 +52,7 @@ namespace Forradia
 
             if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
-                MoveCreatureToNewLocation(creature, position, {newX, newY});
+                MoveCreatureToNewLocation(creature, {newX, newY});
             }
             else
             {
