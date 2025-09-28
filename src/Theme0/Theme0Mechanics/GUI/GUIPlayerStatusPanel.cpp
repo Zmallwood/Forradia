@@ -9,10 +9,6 @@
 
 namespace Forradia
 {
-    GUIPlayerStatusPanel::GUIPlayerStatusPanel()
-    : GUIPanel( 0.0f, 0.0f, 0.2f, 0.14f )
-    {}
-
     void GUIPlayerStatusPanel::RenderDerived() const
     {
         GUIPanel::RenderDerived();

@@ -15,3 +15,5 @@ Model player body/danathomy:
 
 * Can be an idea that need to explore alot to find clay to make pots for cooking in the beginning,
 and find metals such as copper, iron in mountains
+
+* Can have certain areas which contains one type of creature, and spread the areas across the world map, so that one grind for different at different levels in different areas

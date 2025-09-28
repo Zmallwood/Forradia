@@ -9,8 +9,7 @@
 
 namespace Forradia
 {
-    GUISystemMenu::GUISystemMenu()
-        : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+    void GUISystemMenu::Initialize()
     {
         SetVisible(false);
     }

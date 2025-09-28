@@ -20,10 +20,7 @@ namespace Forradia
 
         int GetSize() const;
 
-        auto GetObjects() const
-        {
-            return m_objects;
-        }
+        auto GetObjects() const { return m_objects; }
 
     private:
         Vector<SharedPtr<Object>> m_objects;

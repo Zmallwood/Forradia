@@ -7,8 +7,7 @@
 
 namespace Forradia
 {
-    TreeObject::TreeObject(StringView objectTypeName)
-        : Object(objectTypeName)
+    void TreeObject::Initialize(StringView objectTypeName)
     {
         if (objectTypeName != "ObjectFirTree" && objectTypeName != "ObjectBirchTree")
         {

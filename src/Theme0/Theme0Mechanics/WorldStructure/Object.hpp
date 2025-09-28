@@ -10,12 +10,12 @@ namespace Forradia
     class Object
     {
     public:
-        Object(StringView objectTypeName);
-
-        auto GetType() const
+        Object(StringView objectTypeName)
+            : m_type(Hash(objectTypeName))
         {
-            return m_type;
         }
+
+        auto GetType() const { return m_type; }
 
     private:
         int m_type{0};

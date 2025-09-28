@@ -8,9 +8,9 @@
 
 namespace Forradia
 {
-    Tile::Tile()
-        : m_objectsStack(std::make_shared<ObjectsStack>())
+    void Tile::Initialize()
     {
+        m_objectsStack = std::make_shared<ObjectsStack>();
     }
 
     void Tile::SetGround(StringView groundName)

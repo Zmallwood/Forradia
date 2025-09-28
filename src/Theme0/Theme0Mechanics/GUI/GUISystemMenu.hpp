@@ -12,9 +12,15 @@ namespace Forradia
     class GUISystemMenu : public GUIComponent
     {
     public:
-        GUISystemMenu();
+        GUISystemMenu()
+            : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        {
+            Initialize();
+        }
 
     protected:
+        void Initialize();
+
         virtual void UpdateDerived() override;
 
         virtual void RenderDerived() const override;

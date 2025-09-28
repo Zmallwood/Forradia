@@ -10,39 +10,27 @@ namespace Forradia
     class Creature
     {
     public:
-        Creature(StringView typeName);
-
-        auto GetType() const
+        Creature(StringView typeName)
+            : m_type{Hash(typeName)}
         {
-            return m_type;
+            Initialize();
         }
 
-        auto GetTicksLastMove() const
-        {
-            return m_ticksLastMove;
-        }
+        auto GetType() const { return m_type; }
 
-        void SetTicksLastMove(int ticksLastMove)
-        {
-            m_ticksLastMove = ticksLastMove;
-        }
+        auto GetTicksLastMove() const { return m_ticksLastMove; }
 
-        auto GetMovementSpeed() const
-        {
-            return m_movementSpeed;
-        }
+        void SetTicksLastMove(int value) { m_ticksLastMove = value; }
 
-        auto GetDestination() const
-        {
-            return m_destination;
-        }
+        auto GetMovementSpeed() const { return m_movementSpeed; }
 
-        void SetDestination(Point destination)
-        {
-            m_destination = destination;
-        }
+        auto GetDestination() const { return m_destination; }
+
+        void SetDestination(Point value) { m_destination = value; }
 
     private:
+        void Initialize();
+
         int m_type{0};
         int m_ticksLastMove{0};
         float m_movementSpeed{2.0f};

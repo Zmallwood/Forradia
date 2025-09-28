@@ -13,7 +13,10 @@ namespace Forradia
     class WorldArea
     {
     public:
-        WorldArea();
+        WorldArea()
+        {
+            Initialize();
+        }
 
         Size GetSize() const;
 
@@ -21,7 +24,7 @@ namespace Forradia
                                int y) const;
 
         SharedPtr<Tile> GetTile(int x,
-                                      int y) const;
+                                int y) const;
 
         SharedPtr<Tile> GetTile(Point coordinate) const;
 
@@ -31,6 +34,8 @@ namespace Forradia
         }
 
     private:
+        void Initialize();
+
         Vector<Vector<SharedPtr<Tile>>> m_tiles;
         Map<SharedPtr<Creature>, Point> m_creaturesMirror;
     };

@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    WorldArea::WorldArea()
+    void WorldArea::Initialize()
     {
         auto size{GameProperties::k_worldAreaSize};
 

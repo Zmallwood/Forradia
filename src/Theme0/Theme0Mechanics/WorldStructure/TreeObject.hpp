@@ -12,24 +12,21 @@ namespace Forradia
     class TreeObject : public Object
     {
     public:
-        TreeObject(StringView objectTypeName);
-
-        auto GetTrunkparts() const
+        TreeObject(StringView objectTypeName)
+            : Object(objectTypeName)
         {
-            return m_trunkParts;
+            Initialize(objectTypeName);
         }
 
-        auto GetNeedleTypes() const
-        {
-            return m_needleTypes;
-        }
+        auto GetTrunkparts() const { return m_trunkParts; }
 
-        auto GetWidthFactor() const
-        {
-            return m_widthFactor;
-        }
+        auto GetNeedleTypes() const { return m_needleTypes; }
+
+        auto GetWidthFactor() const { return m_widthFactor; }
 
     private:
+        void Initialize(StringView objectTypeName);
+
         Vector<PointF> m_trunkParts;
         Vector<int> m_needleTypes;
         float m_widthFactor{1.0f};

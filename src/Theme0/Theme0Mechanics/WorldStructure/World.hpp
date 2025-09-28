@@ -12,14 +12,16 @@ namespace Forradia
     class World
     {
     public:
-        World();
-
-        auto GetCurrentWorldArea() const
+        World()
         {
-            return m_currentWorldArea;
+            Initialize();
         }
 
+        auto GetCurrentWorldArea() const { return m_currentWorldArea; }
+
     private:
+        void Initialize();
+
         SharedPtr<WorldArea> m_currentWorldArea;
     };
 }
