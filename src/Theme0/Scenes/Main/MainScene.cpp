@@ -10,7 +10,7 @@
 #include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
 #include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
 #include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
-#include "Sub/AddGUIComponents.hpp"
+#include "AddGUIComponents/AddGUIComponents.hpp"
 
 namespace Forradia
 {
