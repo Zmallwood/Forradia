@@ -27,8 +27,7 @@ namespace Forradia
 
         if (!windowResult)
         {
-            std::cout << "Window could not be created. SDL Error: "
-                      << String(SDL_GetError()) << std::endl;
+            PrintLine("Window could not be created. SDL Error: " + String(SDL_GetError()));
         }
 
         return windowResult;

@@ -18,8 +18,7 @@ namespace Forradia
 
         if (!rendererResult)
         {
-            std::cout << "Renderer could not be created. SDL Error: "
-                      << std::string(SDL_GetError()) << std::endl;
+            PrintLine("Renderer could not be created. SDL Error: " + std::string(SDL_GetError()));
         }
 
         return rendererResult;

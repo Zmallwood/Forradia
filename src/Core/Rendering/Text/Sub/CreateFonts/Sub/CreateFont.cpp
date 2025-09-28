@@ -24,7 +24,7 @@ namespace Forradia
 
         if (!newFont)
         {
-            std::cout << "Error loading font.\n";
+            PrintLine("Error loading font.");
 
             return nullptr;
         }
