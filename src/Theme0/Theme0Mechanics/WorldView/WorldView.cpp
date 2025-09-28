@@ -348,7 +348,7 @@ namespace Forradia
 
                                     auto trunkPartX{trunkPart.x};
 
-                                    trunkPartX *= static_cast<float>(i) / trunkParts.size() * std::sin(GetTicks() / 700.0f);
+                                    trunkPartX *= static_cast<float>(i) / trunkParts.size() * std::sin(GetTicks() / 700.0f + xCoordinate*yCoordinate);
 
                                     auto trunkPartXCenter{xCanvas + tileSize.width / 2 + trunkPartX * treeWidth};
                                     auto trunkPartYCenter{yCanvas + tileSize.height - trunkPart.y * tileSize.height};

@@ -16,7 +16,7 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        auto numRivers{40 + RandomInt(10)};
+        auto numRivers{20 + RandomInt(10)};
 
         for (auto i = 0; i < numRivers; i++)
         {
@@ -24,7 +24,7 @@ namespace Forradia
             auto y{static_cast<float>(RandomInt(size.height))};
 
             auto angle{RandomInt(360)};
-            auto length{15 + RandomInt(40)};
+            auto length{25 + RandomInt(40)};
 
             for (auto j = 0; j < length; j++)
             {
