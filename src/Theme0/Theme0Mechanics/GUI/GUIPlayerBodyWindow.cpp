@@ -3,26 +3,26 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "GUIPlayerStatsWindow.hpp"
+#include "GUIPlayerBodyWindow.hpp"
 #include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Theme0/Theme0Mechanics/CoreGameObjects/Player.hpp"
 
 namespace Forradia
 {
-    void GUIPlayerStatsWindow::RenderDerived() const
+    void GUIPlayerBodyWindow::RenderDerived() const
     {
         GUIWindow::RenderDerived();
 
-        auto &playerStats{_<Player>().GetPlayerStatsRef()};
+        auto &playerBody{_<Player>().GetPlayerBodyRef()};
 
-        auto overallBodyStrength {playerStats.GetOverallBodyStrength()};
-        auto rightArmStrength {playerStats.GetRightArmStrength()};
-        auto leftArmStrength {playerStats.GetLeftArmStrength()};
-        auto legsStrength {playerStats.GetLegsStrength()};
-        auto overallBodyMaxEnergy {playerStats.GetOverallBodyMaxEnergy()};
-        auto rightArmMaxEnergy {playerStats.GetRightArmMaxEnergy()};
-        auto leftArmMaxEnergy {playerStats.GetLeftArmMaxEnergy()};
-        auto legsMaxEnergy {playerStats.GetLegsMaxEnergy()};
+        auto overallBodyStrength {playerBody.GetOverallBodyStrength()};
+        auto rightArmStrength {playerBody.GetRightArmStrength()};
+        auto leftArmStrength {playerBody.GetLeftArmStrength()};
+        auto legsStrength {playerBody.GetLegsStrength()};
+        auto overallBodyMaxEnergy {playerBody.GetOverallBodyMaxEnergy()};
+        auto rightArmMaxEnergy {playerBody.GetRightArmMaxEnergy()};
+        auto leftArmMaxEnergy {playerBody.GetLeftArmMaxEnergy()};
+        auto legsMaxEnergy {playerBody.GetLegsMaxEnergy()};
 
         StringStream ssOverallBodyStrength;
         StringStream ssRightArmStrength;

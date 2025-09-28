@@ -3,14 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "AddMainScenePlayerStatsWindowButton.hpp"
+#include "AddMainScenePlayerBodyWindowButton.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatsWindow.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
 
 namespace Forradia
 {
-    void AddMainScenePlayerStatsWindowButton(SharedPtr<GUI> mainSceneGUI)
+    void AddMainScenePlayerBodyWindowButton(SharedPtr<GUI> mainSceneGUI)
     {
         mainSceneGUI->AddChildComponent(
             std::make_shared<GUIButton>(
@@ -21,9 +21,9 @@ namespace Forradia
                 "",
                 []
                 {
-                    _<GUIPlayerStatsWindow>().ToggleVisibility();
+                    _<GUIPlayerBodyWindow>().ToggleVisibility();
                 },
-                "GUIButtonStatsBackground",
-                "GUIButtonStatsHoveredBackground"));
+                "GUIButtonPlayerBodyBackground",
+                "GUIButtonPlayerBodyHoveredBackground"));
     }
 }

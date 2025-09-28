@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Sub/PlayerStats.hpp"
+#include "Sub/PlayerBody.hpp"
 
 namespace Forradia
 {
@@ -39,7 +39,7 @@ namespace Forradia
 
         void SetDestination(Point value) { m_destination = value; }
 
-        auto &GetPlayerStatsRef() { return m_playerStats; }
+        auto &GetPlayerBodyRef() { return m_playerBody; }
 
     private:
         void Initialize();
@@ -49,6 +49,6 @@ namespace Forradia
         float m_movementSpeed{5.0f};
         int m_ticksLastMove{0};
         Point m_destination{-1, -1};
-        PlayerStats m_playerStats;
+        PlayerBody m_playerBody;
     };
 }

@@ -9,5 +9,5 @@ namespace Forradia
 {
     class GUI;
 
-    void AddMainScenePlayerStatsWindowButton(SharedPtr<GUI> mainSceneGUI);
+    void AddMainScenePlayerBodyWindowButton(SharedPtr<GUI> mainSceneGUI);
 }

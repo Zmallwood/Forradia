@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    class PlayerStats
+    class PlayerBody
     {
     public:
         auto GetOverallBodyStrength() const { return m_overallBodyStrength; }

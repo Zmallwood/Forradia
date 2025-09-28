@@ -4,7 +4,7 @@
  */
 
 #include "AddMainSceneGUIButtons.hpp"
-#include "Sub/AddMainScenePlayerStatsWindowButton.hpp"
+#include "Sub/AddMainScenePlayerBodyWindowButton.hpp"
 #include "Sub/AddMainSceneInventoryWindowButton.hpp"
 #include "Sub/AddMainSceneSystemWindowButton.hpp"
 
@@ -12,7 +12,7 @@ namespace Forradia
 {
     void AddMainSceneGUIButtons(SharedPtr<GUI> mainSceneGUI)
     {
-        AddMainScenePlayerStatsWindowButton(mainSceneGUI);
+        AddMainScenePlayerBodyWindowButton(mainSceneGUI);
 
         AddMainSceneInventoryWindowButton(mainSceneGUI);
 

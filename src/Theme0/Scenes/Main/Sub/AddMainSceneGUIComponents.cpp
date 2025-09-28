@@ -10,7 +10,7 @@
 #include "Core/GUICore/GUIWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatusPanel.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatsWindow.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
 
 namespace Forradia
@@ -29,6 +29,6 @@ namespace Forradia
 
         mainSceneGUI->AddChildComponent(__<GUIInventoryWindow>());
 
-        mainSceneGUI->AddChildComponent(__<GUIPlayerStatsWindow>());
+        mainSceneGUI->AddChildComponent(__<GUIPlayerBodyWindow>());
     }
 }

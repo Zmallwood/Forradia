@@ -9,11 +9,11 @@
 
 namespace Forradia
 {
-    class GUIPlayerStatsWindow : public GUIWindow
+    class GUIPlayerBodyWindow : public GUIWindow
     {
     public:
-        GUIPlayerStatsWindow()
-            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f, "Player stats") {}
+        GUIPlayerBodyWindow()
+            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f, "Player body") {}
 
     protected:
         void RenderDerived() const override;
