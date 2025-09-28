@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "AddGUIButtons.hpp"
+#include "AddMainSceneGUIButtons.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
@@ -12,7 +12,7 @@
 
 namespace Forradia
 {
-    void AddGUIButtons(SharedPtr<GUI> mainSceneGUI)
+    void AddMainSceneGUIButtons(SharedPtr<GUI> mainSceneGUI)
     {
         mainSceneGUI->AddChildComponent(
             std::make_shared<GUIButton>(

@@ -10,13 +10,13 @@
 #include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
 #include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
 #include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
-#include "AddGUIComponents/AddGUIComponents.hpp"
+#include "AddMainSceneGUIComponents/AddMainSceneGUIComponents.hpp"
 
 namespace Forradia
 {
     void MainScene::InitializeDerived()
     {
-        AddGUIComponents(GetGUI());
+        AddMainSceneGUIComponents(GetGUI());
     }
 
     void MainScene::UpdateDerived()

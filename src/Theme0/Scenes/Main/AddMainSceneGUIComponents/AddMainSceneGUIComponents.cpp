@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "AddGUIComponents.hpp"
-#include "Sub/AddGUIButtons.hpp"
+#include "AddMainSceneGUIComponents.hpp"
+#include "Sub/AddMainSceneGUIButtons.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/GUICore/GUIWindow.hpp"
@@ -15,7 +15,7 @@
 
 namespace Forradia
 {
-    void AddGUIComponents(std::shared_ptr<GUI> mainSceneGUI)
+    void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI)
     {
         mainSceneGUI->AddChildComponent(
             std::make_shared<GUIPlayerStatusPanel>());
@@ -23,7 +23,7 @@ namespace Forradia
         mainSceneGUI->AddChildComponent(
             std::make_shared<GUITextConsole>());
 
-        AddGUIButtons(mainSceneGUI);
+        AddMainSceneGUIButtons(mainSceneGUI);
 
         mainSceneGUI->AddChildComponent(__<GUISystemMenu>());
 

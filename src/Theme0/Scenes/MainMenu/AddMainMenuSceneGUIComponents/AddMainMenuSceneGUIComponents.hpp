@@ -9,5 +9,5 @@ namespace Forradia
 {
     class GUI;
 
-    void AddGUIComponents(std::shared_ptr<GUI> mainSceneGUI);
+    void AddMainMenuSceneGUIComponents(SharedPtr<GUI> mainMenuSceneGUI);
 }
