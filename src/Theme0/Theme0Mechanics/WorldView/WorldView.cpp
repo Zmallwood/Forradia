@@ -197,13 +197,24 @@ namespace Forradia
 
                 _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas, yCanvas, widthCanvas, heightCanvas);
 
-                if (ground == Hash("GroundRock"))
+                if (ground == Hash("GroundGrass"))
                 {
-                    _<ImageRenderer>().DrawImage("GroundRockLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                    _<ImageRenderer>().DrawImage("GroundGrassLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                }
+                if (ground == Hash("GroundWater"))
+                {
+                    for (auto i = 0; i < tile->GetWaterDepth(); i++)
+                    {
+                    _<ImageRenderer>().DrawImage("GroundWaterDepth", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                    }
                 }
                 else if (ground == Hash("GroundDirt"))
                 {
                     _<ImageRenderer>().DrawImage("GroundDirtLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                }
+                else if (ground == Hash("GroundRock"))
+                {
+                    _<ImageRenderer>().DrawImage("GroundRockLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
                 }
 
                 if (ground == Hash("GroundWater"))

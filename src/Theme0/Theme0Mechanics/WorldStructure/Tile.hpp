@@ -47,10 +47,21 @@ namespace Forradia
             m_elevation = elevation;
         }
 
+        auto GetWaterDepth() const
+        {
+            return m_waterDepth;
+        }
+
+        void SetWaterDepth(int value)
+        {
+            m_waterDepth = value;
+        }
+
     private:
         int m_ground{0};
         SharedPtr<ObjectsStack> m_objectsStack;
         SharedPtr<Creature> m_creature;
         int m_elevation{0};
+        int m_waterDepth {0};
     };
 }
