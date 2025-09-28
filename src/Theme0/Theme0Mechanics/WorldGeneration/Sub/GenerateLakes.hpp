@@ -7,5 +7,5 @@
 
 namespace Forradia
 {
-    void GenerateWater();
+    void GenerateLakes();
 }

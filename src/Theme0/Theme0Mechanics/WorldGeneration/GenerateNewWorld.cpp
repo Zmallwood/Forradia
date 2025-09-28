@@ -6,11 +6,12 @@
 #include "GenerateNewWorld.hpp"
 #include "Sub/ClearWithDirt.hpp"
 #include "Sub/GenerateGrass.hpp"
-#include "Sub/GenerateWater.hpp"
+#include "Sub/GenerateLakes.hpp"
 #include "Sub/GenerateObjects.hpp"
 #include "Sub/GenerateCreatures.hpp"
 #include "Sub/GenerateElevation.hpp"
 #include "Sub/GenerateRock.hpp"
+#include "Sub/GenerateRivers.hpp"
 
 namespace Forradia
 {
@@ -20,11 +21,13 @@ namespace Forradia
 
         GenerateGrass();
 
-        GenerateWater();
+        GenerateLakes();
 
         GenerateElevation();
 
         GenerateRock();
+
+        GenerateRivers();
 
         GenerateObjects();
 
