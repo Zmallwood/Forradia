@@ -219,26 +219,28 @@ namespace Forradia
                     }
                     else if (ground == Hash("GroundWater") && i == 1)
                     {
-                        _<ImageRenderer>().DrawImage("GroundWaterEdge_New", xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
+                        auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+                        _<ImageRenderer>().DrawImage("GroundWaterEdge_New", xCanvas - widthCanvas * 0.1f, yCanvas - heightCanvas * 0.1f, widthCanvas * 1.2f, heightCanvas * 1.2f);
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+                        _<ImageRenderer>().DrawImage("GroundWater_" + std::to_string(animIndex) + "_Old", xCanvas, yCanvas, widthCanvas, heightCanvas);
 
                         for (auto i = 0; i < tile->GetElevation(); i++)
                         {
-                            _<ImageRenderer>().DrawImage("GroundWaterHeight_New", xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
+                            _<ImageRenderer>().DrawImage("GroundWaterHeight_New", xCanvas, yCanvas, widthCanvas, heightCanvas);
                         }
 
-                        groundTypeRendered = Hash("GroundWater_" + std::to_string(animIndex) + "_New");
+                        // groundTypeRendered = Hash("GroundWater_" + std::to_string(animIndex) + "_New");
 
-                        _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
+                        // _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
 
                         if (ground == Hash("GroundWater"))
                         {
                             for (auto i = 0; i < tile->GetWaterDepth(); i++)
                             {
-                                _<ImageRenderer>().DrawImage("GroundWaterDepth_New", xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
+                                _<ImageRenderer>().DrawImage("GroundWaterDepth_New", xCanvas, yCanvas, widthCanvas, heightCanvas);
                             }
                         }
                     }
@@ -348,7 +350,7 @@ namespace Forradia
 
                                     auto trunkPartX{trunkPart.x};
 
-                                    trunkPartX *= static_cast<float>(i) / trunkParts.size() * std::sin(GetTicks() / 700.0f + xCoordinate*yCoordinate);
+                                    trunkPartX *= static_cast<float>(i) / trunkParts.size() * std::sin(GetTicks() / 700.0f + xCoordinate * yCoordinate);
 
                                     auto trunkPartXCenter{xCanvas + tileSize.width / 2 + trunkPartX * treeWidth};
                                     auto trunkPartYCenter{yCanvas + tileSize.height - trunkPart.y * tileSize.height};
