@@ -223,11 +223,15 @@ namespace Forradia
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
-                        auto animIndex{(GetTicks()/2 + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+                        auto animIndex{(GetTicks() / 2 + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+
+                        for (auto i = 0; i < tile->GetElevation(); i++)
+                        {
+                            _<ImageRenderer>().DrawImage("GroundWaterHeight_New", xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
+                        }
 
                         groundTypeRendered = Hash("GroundWater_" + std::to_string(animIndex) + "_New");
 
-                        _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas, yCanvas, widthCanvas, heightCanvas);
                         _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas - tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2, tileSize.width * 4, tileSize.height * 4);
 
                         if (ground == Hash("GroundWater"))

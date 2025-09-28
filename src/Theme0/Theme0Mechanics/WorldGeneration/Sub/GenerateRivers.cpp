@@ -24,12 +24,12 @@ namespace Forradia
             auto y{static_cast<float>(RandomInt(size.height))};
 
             auto angle{RandomInt(360)};
-            auto length {15 + RandomInt(40)};
+            auto length{15 + RandomInt(40)};
 
             for (auto j = 0; j < length; j++)
             {
-                auto xCoordinate {static_cast<int>(x)};
-                auto yCoordinate {static_cast<int>(y)};
+                auto xCoordinate{static_cast<int>(x)};
+                auto yCoordinate{static_cast<int>(y)};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {
@@ -43,8 +43,8 @@ namespace Forradia
                     tile->SetGround("GroundWater");
                 }
 
-                auto dx = std::cos(angle*M_PI/180.0f);
-                auto dy = std::sin(angle*M_PI/180.0f);
+                auto dx = std::cos(angle * M_PI / 180.0f);
+                auto dy = std::sin(angle * M_PI / 180.0f);
 
                 x += dx;
                 y += dy;
