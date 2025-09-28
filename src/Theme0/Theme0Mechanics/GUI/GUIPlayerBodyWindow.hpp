@@ -13,7 +13,7 @@ namespace Forradia
     {
     public:
         GUIPlayerBodyWindow()
-            : GUIWindow(0.2f, 0.3f, 0.2f, 0.4f, "Player body") {}
+            : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body") {}
 
     protected:
         void RenderDerived() const override;

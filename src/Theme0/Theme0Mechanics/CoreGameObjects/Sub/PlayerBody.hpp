@@ -26,6 +26,14 @@ namespace Forradia
 
         auto GetLegsMaxEnergy() const { return m_legsMaxEnergy; }
 
+        auto GetOverallBodyHealth() const { return m_overallBodyHealth; }
+
+        auto GetRightArmHealth() const { return m_rightArmHealth; }
+
+        auto GetLeftArmHealth() const { return m_leftArmHealth; }
+
+        auto GetLegsHealth() const { return m_legsHealth; }
+
     private:
         float m_overallBodyStrength{0.1f};
         float m_rightArmStrength{0.1f};
@@ -35,5 +43,9 @@ namespace Forradia
         float m_rightArmMaxEnergy{1.0f};
         float m_leftArmMaxEnergy{1.0f};
         float m_legsMaxEnergy{1.0f};
+        float m_overallBodyHealth{1.0f};
+        float m_rightArmHealth{1.0f};
+        float m_leftArmHealth{1.0f};
+        float m_legsHealth{1.0f};
     };
 }
