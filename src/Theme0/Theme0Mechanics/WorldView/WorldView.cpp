@@ -197,6 +197,11 @@ namespace Forradia
 
                 _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas, yCanvas, widthCanvas, heightCanvas);
 
+                if (ground == Hash("GroundRock"))
+                {
+                _<ImageRenderer>().DrawImage("GroundRockLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                }
+
                 if (ground == Hash("GroundWater"))
                 {
                     Point N{xCoordinate, yCoordinate - 1};
