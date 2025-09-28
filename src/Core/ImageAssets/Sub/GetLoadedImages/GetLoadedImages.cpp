@@ -4,13 +4,21 @@
  */
 
 #include "GetLoadedImages.hpp"
-#include "LoadSingleImage.hpp"
+#include "../LoadSingleImage.hpp"
+#include "Sub/ConstructAbsoluteImagesPath.hpp"
 
 namespace Forradia
 {
-    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView imagesPath)
+    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView relativeImagesPath)
     {
         Map<int, SharedPtr<SDL_Texture>> imagesResult;
+
+        auto imagesPath{ConstructAbsoluteImagesPath(relativeImagesPath)};
+
+        if (!std::filesystem::exists(imagesPath))
+        {
+            return imagesResult;
+        }
 
         std::filesystem::recursive_directory_iterator rdi{
             imagesPath};

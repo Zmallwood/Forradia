@@ -21,22 +21,18 @@ namespace Forradia
             case SDL_QUIT:
                 _<Engine>().Stop();
                 break;
-
             case SDL_KEYDOWN:
                 _<KeyboardInput>().RegisterKeyPress(
                     event.key.keysym.sym);
                 break;
-
             case SDL_KEYUP:
                 _<KeyboardInput>().RegisterKeyRelease(
                     event.key.keysym.sym);
                 break;
-
             case SDL_MOUSEBUTTONDOWN:
                 _<MouseInput>().RegisterMouseButtonDown(
                     event.button.button);
                 break;
-
             case SDL_MOUSEBUTTONUP:
                 _<MouseInput>().RegisterMouseButtonUp(
                     event.button.button);

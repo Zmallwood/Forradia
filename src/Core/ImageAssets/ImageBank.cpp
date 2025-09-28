@@ -5,7 +5,7 @@
 
 #include "ImageBank.hpp"
 #include "Sub/GetImageSize.hpp"
-#include "Sub/GetLoadedImages.hpp"
+#include "Sub/GetLoadedImages/GetLoadedImages.hpp"
 
 namespace Forradia
 {
@@ -16,18 +16,7 @@ namespace Forradia
 
     void ImageBank::LoadImages()
     {
-        auto basePath{
-            String(SDL_GetBasePath())};
-
-        auto imagesPath{
-            basePath + k_relativeImagesPath.data()};
-
-        if (!std::filesystem::exists(imagesPath))
-        {
-            return;
-        }
-
-        m_images = GetLoadedImages(imagesPath);
+        m_images = GetLoadedImages(k_relativeImagesPath);
     }
 
     SharedPtr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const

@@ -7,5 +7,5 @@
 
 namespace Forradia
 {
-    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView imagesPath);
+    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView relativeImagesPath);
 }
