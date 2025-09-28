@@ -4,8 +4,9 @@
  */
 
 #include "UpdateCreatureMovement.hpp"
-#include "Sub/MoveCreatureToNewLocation.hpp"
 #include "Sub/GenerateNewCreatureDestination.hpp"
+#include "Sub/CalculateNewCreaturePosition.hpp"
+#include "Sub/MoveCreatureToNewLocation.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
@@ -34,25 +35,18 @@ namespace Forradia
 
             GenerateNewCreatureDestination(creature);
 
-            auto dx{creature->GetDestination().x - position.x};
-            auto dy{creature->GetDestination().y - position.y};
+            auto newPosition {CalculateNewCreaturePosition(creature)};
 
-            auto normDx{Normalize(dx)};
-            auto normDy{Normalize(dy)};
-
-            auto newX{position.x + normDx};
-            auto newY{position.y + normDy};
-
-            if (newX == creature->GetDestination().x && newY == creature->GetDestination().y)
+            if (newPosition == creature->GetDestination())
             {
                 creature->SetDestination({-1, -1});
             }
 
-            auto tile{worldArea->GetTile(newX, newY)};
+            auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
             if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
-                MoveCreatureToNewLocation(creature, {newX, newY});
+                MoveCreatureToNewLocation(creature, {newPosition.x, newPosition.y});
             }
             else
             {
