@@ -7,6 +7,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
 {
@@ -15,6 +16,9 @@ namespace Forradia
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto size{worldArea->GetSize()};
+
+        size.width *= _<GameProperties>().k_worldScalingFactor;
+        size.height *= _<GameProperties>().k_worldScalingFactor;
 
         for (auto y = 0; y < size.height; y++)
         {

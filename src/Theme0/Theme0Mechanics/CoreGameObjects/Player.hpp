@@ -12,6 +12,11 @@ namespace Forradia
     class Player
     {
     public:
+        Player()
+        {
+            Initialize();
+        }
+
         void MoveNorth();
 
         void MoveEast();
@@ -37,6 +42,8 @@ namespace Forradia
         auto &GetPlayerStatsRef() { return m_playerStats; }
 
     private:
+        void Initialize();
+
         String m_name{"Unnamed Player"};
         Point m_position{60, 50};
         float m_movementSpeed{5.0f};

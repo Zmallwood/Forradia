@@ -4,9 +4,21 @@
  */
 
 #include "Player.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
 {
+    void Player::Initialize()
+    {
+        auto worldArea{_<World>().GetCurrentWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        m_position = {size.width / 2, size.height / 2};
+    }
+
     void Player::MoveNorth()
     {
         m_position.y -= 1;

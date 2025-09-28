@@ -7,6 +7,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
 {
@@ -15,6 +16,8 @@ namespace Forradia
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto size{worldArea->GetSize()};
+        
+        auto scale{_<GameProperties>().k_worldScalingFactor};
 
         auto numHills{140 + RandomInt(30)};
 
@@ -22,7 +25,7 @@ namespace Forradia
         {
             auto xCenter{RandomInt(size.width)};
             auto yCenter{RandomInt(size.height)};
-            auto maxRadius{5 + RandomInt(5)};
+            auto maxRadius{5* scale + RandomInt(5* scale)};
 
             for (auto r = maxRadius; r >= 0; r--)
             {

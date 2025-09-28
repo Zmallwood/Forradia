@@ -17,5 +17,7 @@ namespace Forradia
         static constexpr int k_numGridRows{15};
 
         static constexpr Size k_worldAreaSize{120, 100};
+
+        static constexpr float k_worldScalingFactor{5.0f};
     };
 }

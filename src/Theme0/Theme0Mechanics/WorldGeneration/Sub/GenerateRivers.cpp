@@ -7,6 +7,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
 {
@@ -15,8 +16,10 @@ namespace Forradia
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto size{worldArea->GetSize()};
+        
+        auto scale{_<GameProperties>().k_worldScalingFactor};
 
-        auto numRivers{20 + RandomInt(5)};
+        auto numRivers{20* scale + RandomInt(5* scale)};
 
         for (auto i = 0; i < numRivers; i++)
         {

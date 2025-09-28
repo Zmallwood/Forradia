@@ -8,6 +8,7 @@
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
 namespace Forradia
 {
@@ -17,7 +18,9 @@ namespace Forradia
 
         auto size{worldArea->GetSize()};
 
-        auto numRats{200 + RandomInt(15)};
+        auto scale{_<GameProperties>().k_worldScalingFactor};
+
+        auto numRats{200* scale + RandomInt(15* scale)};
 
         for (auto i = 0; i < numRats; i++)
         {

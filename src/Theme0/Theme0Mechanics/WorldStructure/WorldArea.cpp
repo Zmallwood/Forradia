@@ -13,6 +13,9 @@ namespace Forradia
     {
         auto size{GameProperties::k_worldAreaSize};
 
+        size.width *= _<GameProperties>().k_worldScalingFactor;
+        size.height *= _<GameProperties>().k_worldScalingFactor;
+
         for (auto x = 0; x < size.width; x++)
         {
             m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
