@@ -20,13 +20,13 @@ namespace Forradia
 
         auto canvasSize{GetCanvasSize()};
 
-        auto xPx{static_cast<int>(x * canvasSize.width)};
+        auto xPx{CInt(x * canvasSize.width)};
 
-        auto yPx{static_cast<int>(y * canvasSize.height)};
+        auto yPx{CInt(y * canvasSize.height)};
 
-        auto widthPx{static_cast<int>(width * canvasSize.width)};
+        auto widthPx{CInt(width * canvasSize.width)};
 
-        auto heightPx{static_cast<int>(height * canvasSize.height)};
+        auto heightPx{CInt(height * canvasSize.height)};
 
         SDL_Rect sdlRectangle{xPx, yPx, widthPx, heightPx};
 

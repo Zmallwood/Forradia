@@ -26,7 +26,7 @@ namespace Forradia
         auto tileSize{CalculateTileSize()};
 
         auto numGridColumns{
-            static_cast<int>(1.0f / tileSize.width) + 1};
+            CInt(1.0f / tileSize.width) + 1};
 
         auto numGridRows{_<GameProperties>().k_numGridRows};
 

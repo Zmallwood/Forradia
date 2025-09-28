@@ -13,7 +13,7 @@ namespace Forradia
         auto fontPathUnixStyle{
             Replace(fontFilePath, '\\', '/')};
 
-        auto fontSizeN{static_cast<int>(fontSize)};
+        auto fontSizeN{CInt(fontSize)};
 
         auto newFont{
             SharedPtr<TTF_Font>(

@@ -20,7 +20,7 @@ namespace Forradia
 
         auto tileSize{CalculateTileSize()};
 
-        auto screenRelativeX{static_cast<int>(mousePosition.x / tileSize.width)};
+        auto screenRelativeX{CInt(mousePosition.x / tileSize.width)};
 
         auto gridSize{CalculateGridSize()};
 
@@ -32,7 +32,7 @@ namespace Forradia
 
         auto extraRows{8};
 
-        auto topYCoordinate{static_cast<int>(playerPosition.y - (gridSize.height - 1) / 2) - extraRows};
+        auto topYCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2) - extraRows};
 
         auto playerTile{worldArea->GetTile(playerPosition)};
 
@@ -42,7 +42,7 @@ namespace Forradia
 
         for (auto y = -extraRows; y < gridSize.height + extraRows; y++)
         {
-            auto yCoordinate{static_cast<int>(playerPosition.y - (gridSize.height - 1) / 2 + y)};
+            auto yCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2 + y)};
             auto coordinate{Point{hoveredXCoordinate, yCoordinate}};
 
             auto tile{worldArea->GetTile(coordinate)};

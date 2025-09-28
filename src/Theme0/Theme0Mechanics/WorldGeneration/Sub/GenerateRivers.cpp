@@ -23,8 +23,8 @@ namespace Forradia
 
         for (auto i = 0; i < numRivers; i++)
         {
-            auto x{static_cast<float>(RandomInt(size.width))};
-            auto y{static_cast<float>(RandomInt(size.height))};
+            auto x{CFloat(RandomInt(size.width))};
+            auto y{CFloat(RandomInt(size.height))};
 
             auto startAngle{RandomInt(360)};
             auto length{45 + RandomInt(20)};
@@ -38,8 +38,8 @@ namespace Forradia
             {
                 auto angle {startAngle + std::sin(j*M_PI/10.0f)*45};
 
-                auto xCoordinate{static_cast<int>(x)};
-                auto yCoordinate{static_cast<int>(y)};
+                auto xCoordinate{CInt(x)};
+                auto yCoordinate{CInt(y)};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {

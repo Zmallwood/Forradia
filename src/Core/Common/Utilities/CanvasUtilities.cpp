@@ -25,7 +25,7 @@ namespace Forradia
         auto canvasSize{GetCanvasSize()};
 
         auto aspectRatio{
-            static_cast<float>(canvasSize.width) / canvasSize.height};
+            CFloat(canvasSize.width) / canvasSize.height};
 
         return aspectRatio;
     }

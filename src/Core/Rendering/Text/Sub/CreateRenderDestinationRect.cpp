@@ -16,8 +16,8 @@ namespace Forradia
 
         auto canvasSize{GetCanvasSize()};
 
-        rectResult.x = static_cast<int>(x * canvasSize.width);
-        rectResult.y = static_cast<int>(y * canvasSize.height);
+        rectResult.x = CInt(x * canvasSize.width);
+        rectResult.y = CInt(y * canvasSize.height);
 
         rectResult.w = textDimensions.width;
         rectResult.h = textDimensions.height;

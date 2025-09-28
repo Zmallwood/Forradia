@@ -16,6 +16,6 @@ namespace Forradia
             hash = 33 * hash + (unsigned char)text[i];
         }
 
-        return static_cast<int>(hash);
+        return CInt(hash);
     }
 }

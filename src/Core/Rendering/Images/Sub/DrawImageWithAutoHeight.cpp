@@ -20,7 +20,7 @@ namespace Forradia
             _<ImageBank>().GetImageSize(imageNameHash)};
 
         auto aspectRatio{
-            static_cast<float>(imageSize.width) / imageSize.height};
+            CFloat(imageSize.width) / imageSize.height};
 
         auto height{width / aspectRatio};
 

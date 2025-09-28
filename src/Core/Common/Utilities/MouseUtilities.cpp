@@ -17,7 +17,7 @@ namespace Forradia
 
         auto canvasSize{GetCanvasSize()};
 
-        return {static_cast<float>(xPx) / canvasSize.width,
-                static_cast<float>(yPx) / canvasSize.height};
+        return {CFloat(xPx) / canvasSize.width,
+                CFloat(yPx) / canvasSize.height};
     }
 }
