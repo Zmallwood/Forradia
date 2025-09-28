@@ -9,51 +9,18 @@
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatsWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
+#include "Sub/AddMainScenePlayerStatsWindowButton.hpp"
+#include "Sub/AddMainSceneInventoryWindowButton.hpp"
+#include "Sub/AddMainSceneSystemWindowButton.hpp"
 
 namespace Forradia
 {
     void AddMainSceneGUIButtons(SharedPtr<GUI> mainSceneGUI)
     {
-        mainSceneGUI->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.78f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                []
-                {
-                    _<GUIPlayerStatsWindow>().ToggleVisibility();
-                },
-                "GUIButtonStatsBackground",
-                "GUIButtonStatsHoveredBackground"));
+        AddMainScenePlayerStatsWindowButton(mainSceneGUI);
 
-        mainSceneGUI->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.85f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                []
-                {
-                    _<GUIInventoryWindow>().ToggleVisibility();
-                },
-                "GUIButtonInventoryBackground",
-                "GUIButtonInventoryHoveredBackground"));
+        AddMainSceneInventoryWindowButton(mainSceneGUI);
 
-        mainSceneGUI->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.92f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                []
-                {
-                    _<GUISystemMenu>().ToggleVisibility();
-                },
-                "GUIButtonSystemBackground",
-                "GUIButtonSystemHoveredBackground"));
+        AddMainSceneSystemWindowButton(mainSceneGUI);
     }
 }

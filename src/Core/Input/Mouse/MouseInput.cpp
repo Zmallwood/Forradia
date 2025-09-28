@@ -14,7 +14,6 @@ namespace Forradia
         case SDL_BUTTON_LEFT:
             m_leftMouseButton.RegisterPress();
             break;
-
         case SDL_BUTTON_RIGHT:
             m_rightMouseButton.RegisterPress();
             break;
@@ -28,7 +27,6 @@ namespace Forradia
         case SDL_BUTTON_LEFT:
             m_leftMouseButton.RegisterRelease();
             break;
-
         case SDL_BUTTON_RIGHT:
             m_rightMouseButton.RegisterRelease();
             break;
