@@ -10,78 +10,13 @@
 #include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
 #include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
 #include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
-#include "Core/GUICore/GUI.hpp"
-#include "Core/GUICore/GUIButton.hpp"
-#include "Core/GUICore/GUITextConsole.hpp"
-#include "Core/GUICore/GUIWindow.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatusPanel.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatsWindow.hpp"
+#include "Sub/AddGUIComponents.hpp"
 
 namespace Forradia
 {
     void MainScene::InitializeDerived()
     {
-        GetGUI()->AddChildComponent(
-            std::make_shared<GUIPlayerStatusPanel>());
-
-        GetGUI()->AddChildComponent(
-            std::make_shared<GUITextConsole>());
-
-        GetGUI()->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.78f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                [this]
-                {
-                    _<GUIPlayerStatsWindow>().ToggleVisibility();
-                },
-                "GUIButtonStatsBackground",
-                "GUIButtonStatsHoveredBackground"));
-
-        GetGUI()->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.85f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                [this]
-                {
-                    m_inventoryWindow->ToggleVisibility();
-                },
-                "GUIButtonInventoryBackground",
-                "GUIButtonInventoryHoveredBackground"));
-
-        GetGUI()->AddChildComponent(
-            std::make_shared<GUIButton>(
-                0.92f,
-                0.9f,
-                0.05f,
-                ConvertWidthToHeight(0.05f),
-                "",
-                [this]
-                {
-                    _<GUISystemMenu>().ToggleVisibility();
-                },
-                "GUIButtonSystemBackground",
-                "GUIButtonSystemHoveredBackground"));
-
-        GetGUI()->AddChildComponent(__<GUISystemMenu>());
-
-        m_inventoryWindow = std::make_shared<GUIWindow>(
-            0.5f,
-            0.3f,
-            0.2f,
-            0.4f);
-
-        GetGUI()->AddChildComponent(
-            m_inventoryWindow);
-
-        GetGUI()->AddChildComponent(__<GUIPlayerStatsWindow>());
+        AddGUIComponents(GetGUI());
     }
 
     void MainScene::UpdateDerived()

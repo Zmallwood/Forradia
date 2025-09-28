@@ -9,8 +9,6 @@
 
 namespace Forradia
 {
-    class GUIWindow;
-
     class MainScene : public IScene
     {
     protected:
@@ -19,8 +17,5 @@ namespace Forradia
         void UpdateDerived() override;
 
         void RenderDerived() const override;
-
-    private:
-        SharedPtr<GUIWindow> m_inventoryWindow;
     };
 }
