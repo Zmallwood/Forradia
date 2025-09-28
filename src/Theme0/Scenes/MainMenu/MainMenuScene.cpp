@@ -25,7 +25,7 @@ namespace Forradia
                 0.36f,
                 0.1f,
                 0.04f,
-                "Login",
+                "New game",
                 []
                 {
                     _<SceneManager>().GoToScene("WorldGenerationScene");
