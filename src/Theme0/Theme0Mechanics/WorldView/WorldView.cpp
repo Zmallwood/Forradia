@@ -217,6 +217,130 @@ namespace Forradia
                     {
                         _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas, yCanvas, widthCanvas, heightCanvas);
                     }
+                    else if (ground != Hash("GroundWater") && i == 1)
+                    {
+                        Vector<Directions> riverDirections{
+                            tile->GetRiverDirection1(),
+                            tile->GetRiverDirection2()};
+
+                        auto riverPartWidth{0.4f * widthCanvas};
+                        auto riverPartHeight{0.4f * heightCanvas};
+
+                        auto partLenght {2.5f};
+
+                        auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+
+                        for (auto j = 0; j < 2; j++)
+                        {
+                            switch (riverDirections.at(j))
+                            {
+                            case Directions::North:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2 - k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::East:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 + k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::South:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2,
+                                        yCanvas + heightCanvas/2 + riverPartHeight / 2 + k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::West:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 - k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::NorthEast:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 + k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2 - k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::SouthEast:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 + k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2 + k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::SouthWest:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 - k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2 + k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            case Directions::NorthWest:
+                            {
+                                for (auto k = 0.0f; k < partLenght; k += 0.5f)
+                                {
+                                    RectF bounds{
+                                        xCanvas + widthCanvas / 2 - riverPartWidth / 2 - k * riverPartWidth,
+                                        yCanvas + heightCanvas/2 - riverPartHeight / 2 - k * riverPartHeight,
+                                        riverPartWidth,
+                                        riverPartHeight};
+                                    _<ImageRenderer>().DrawImage("RiverPart_" + std::to_string(animIndex), bounds.x, bounds.y, bounds.width, bounds.height);
+                                }
+                            }
+                            break;
+                            }
+                        }
+                    }
                     else if (ground == Hash("GroundWater") && i == 1)
                     {
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
@@ -224,6 +348,7 @@ namespace Forradia
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
+
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
                         _<ImageRenderer>().DrawImage("GroundWater_" + std::to_string(animIndex) + "_Old", xCanvas, yCanvas, widthCanvas, heightCanvas);
 
