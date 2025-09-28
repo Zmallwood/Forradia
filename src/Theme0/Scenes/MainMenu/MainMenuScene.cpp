@@ -4,7 +4,7 @@
  */
 
 #include "MainMenuScene.hpp"
-#include "AddMainMenuSceneGUIComponents/AddMainMenuSceneGUIComponents.hpp"
+#include "Sub/AddMainMenuSceneGUIComponents/AddMainMenuSceneGUIComponents.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 
 namespace Forradia
