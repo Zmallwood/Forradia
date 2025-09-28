@@ -4,6 +4,7 @@
  */
 
 #include "UpdateCreatureMovement.hpp"
+#include "Sub/MoveCreatureToNewLocation.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
@@ -17,12 +18,12 @@ namespace Forradia
 
         auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
 
+        auto now{GetTicks()};
+
         for (auto it = creaturesMirrorRef.begin(); it != creaturesMirrorRef.end();)
         {
             auto creature{it->first};
             auto position{it->second};
-
-            auto now{GetTicks()};
 
             if (now < creature->GetTicksLastMove() + InvertMovementSpeed(creature->GetMovementSpeed()))
             {
@@ -70,12 +71,7 @@ namespace Forradia
 
             if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
-                creature->SetTicksLastMove(now);
-                auto oldTile{worldArea->GetTile(position.x, position.y)};
-                oldTile->SetCreature(nullptr);
-                tile->SetCreature(creature);
-                creaturesMirrorRef.erase(it);
-                creaturesMirrorRef.insert({creature, {newX, newY}});
+                MoveCreatureToNewLocation(creature, position, {newX, newY});
 
                 ++it;
                 continue;
@@ -86,7 +82,7 @@ namespace Forradia
                 ++it;
                 continue;
             }
-            
+
             ++it;
         }
     }
