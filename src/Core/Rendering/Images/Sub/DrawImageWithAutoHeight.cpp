@@ -19,10 +19,12 @@ namespace Forradia
         auto imageSize{
             _<ImageBank>().GetImageSize(imageNameHash)};
 
-        auto aspectRatio{
+        auto canvasAspectRatio{CalculateAspectRatio()};
+
+        auto imageAspectRatio{
             CFloat(imageSize.width) / imageSize.height};
 
-        auto height{width / aspectRatio};
+        auto height{width / imageAspectRatio * canvasAspectRatio};
 
         DrawImage(Hash(imageName), x, y, width, height);
     }

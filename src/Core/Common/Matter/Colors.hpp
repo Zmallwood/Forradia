@@ -13,7 +13,7 @@ namespace Forradia
     {
         constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f};
 
-        constexpr Color wheat{1.0f, 1.0f, 0.85f, 1.0f};
+        constexpr Color wheat{1.0f, 1.0f, 0.75f, 1.0f};
 
         constexpr Color yellow{1.0f, 1.0f, 0.0f, 1.0f};
     }
