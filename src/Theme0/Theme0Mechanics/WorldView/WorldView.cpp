@@ -223,7 +223,7 @@ namespace Forradia
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
-                        auto animIndex{(GetTicks() / 2 + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+                        auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 
                         for (auto i = 0; i < tile->GetElevation(); i++)
                         {
