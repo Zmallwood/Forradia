@@ -4,11 +4,6 @@
  */
 
 #include "AddMainSceneGUIButtons.hpp"
-#include "Core/GUICore/GUI.hpp"
-#include "Core/GUICore/GUIButton.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatsWindow.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
 #include "Sub/AddMainScenePlayerStatsWindowButton.hpp"
 #include "Sub/AddMainSceneInventoryWindowButton.hpp"
 #include "Sub/AddMainSceneSystemWindowButton.hpp"
