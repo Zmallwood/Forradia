@@ -11,6 +11,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUILabel.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
+#include "Core/Cursor/Cursor.hpp"
 
 namespace Forradia
 {
@@ -34,6 +35,8 @@ namespace Forradia
     {
         m_startText->SetVisible((GetTicks() % 800) < 400);
 
+        _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+
         if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
             _<MouseInput>().AnyMouseButtonIsPressedPickResult())
         {
@@ -44,6 +47,6 @@ namespace Forradia
     void IntroScene::RenderDerived() const
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-        _<ImageRenderer>().DrawImageWithAutoHeight("ForradiaLogo", 0.2f, 0.2f, 0.6f);
+        _<ImageRenderer>().DrawImageWithAutoHeight("ForradiaLogo", 0.25f, 0.2f, 0.5f);
     }
 }
