@@ -11,5 +11,5 @@ namespace Forradia
 
     int Normalize(int value);
 
-    float Ceil(float number, int decimals);
+    float Ceil(float number, float k);
 }

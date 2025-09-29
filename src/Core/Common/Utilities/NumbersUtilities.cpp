@@ -33,8 +33,10 @@ namespace Forradia
         return normalized;
     }
 
-    float Ceil(float number, int decimals)
+    float Ceil(float number, float k)
     {
-        return std::ceil(number * std::pow(10.0, decimals)) / std::pow(10.0, decimals);
+        auto p{std::pow(10.0, k)};
+
+        return std::ceil(number * p) / p;
     }
 }

@@ -80,7 +80,7 @@ namespace Forradia
                     yCanvas = y * tileSize.height - tileNW->GetElevation() * tileSize.height / 2;
                     yCanvas += playerElevation * tileSize.height / 2;
                     widthCanvas = tileSize.width;
-                    heightCanvas = Ceil(tileSize.height, 2);
+                    heightCanvas = Ceil(tileSize.height, 2.5f);
 
                     // if (ground != Hash("GroundWater"))
                     if (true)
