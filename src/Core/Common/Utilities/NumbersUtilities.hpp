@@ -10,4 +10,6 @@ namespace Forradia
     float InvertMovementSpeed(float number);
 
     int Normalize(int value);
+
+    float Ceil(float number, int decimals);
 }

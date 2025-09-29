@@ -21,9 +21,9 @@ namespace Forradia
 
     int Normalize(int value)
     {
-        auto absValue {std::abs(value)};
+        auto absValue{std::abs(value)};
 
-        auto normalized {0};
+        auto normalized{0};
 
         if (value)
         {
@@ -31,5 +31,10 @@ namespace Forradia
         }
 
         return normalized;
+    }
+
+    float Ceil(float number, int decimals)
+    {
+        return std::ceil(number * std::pow(10.0, decimals)) / std::pow(10.0, decimals);
     }
 }
