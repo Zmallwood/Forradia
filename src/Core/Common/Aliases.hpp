@@ -25,6 +25,4 @@ namespace Forradia
 
     template <class T>
     using Set = std::set<T>;
-
-    using StringStream = std::stringstream;
 }

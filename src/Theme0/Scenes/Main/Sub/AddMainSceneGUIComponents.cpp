@@ -8,6 +8,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/GUICore/Windows/GUIWindow.hpp"
+#include "Core/GUICore/GUIFPSPanel.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatusPanel.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
@@ -30,5 +31,7 @@ namespace Forradia
         mainSceneGUI->AddChildComponent(__<GUIInventoryWindow>());
 
         mainSceneGUI->AddChildComponent(__<GUIPlayerBodyWindow>());
+
+        mainSceneGUI->AddChildComponent(std::make_shared<GUIFPSPanel>());
     }
 }

@@ -19,4 +19,10 @@ namespace Forradia
     {
         return {x, y};
     }
+
+    void RectF::Offset(PointF offset)
+    {
+        x += offset.x;
+        y += offset.y;
+    }
 }

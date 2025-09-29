@@ -22,7 +22,7 @@ namespace Forradia
 
         void Render() const;
 
-        auto GetBounds() const { return m_bounds; }
+        RectF GetBounds() const;
 
         void ToggleVisibility();
 

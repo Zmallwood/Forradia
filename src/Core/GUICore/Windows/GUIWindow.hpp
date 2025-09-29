@@ -25,8 +25,6 @@ namespace Forradia
         }
 
     protected:
-        void UpdateDerived() override;
-
         void RenderDerived() const override;
 
         RectF GetDraggableArea() override;

@@ -23,7 +23,8 @@ namespace Forradia
                 0.5f,
                 0.1f,
                 0.04f,
-                "Press to start"));
+                "Press to start",
+                true));
     }
 
     void IntroScene::OnEnterDerived()

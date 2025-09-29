@@ -38,8 +38,6 @@ namespace Forradia
 
             _<SceneManager>().RenderCurrentScene();
 
-            _<FPSCounter>().Render();
-
             _<Cursor>().Render();
 
             _<SDLDevice>().PresentCanvas();

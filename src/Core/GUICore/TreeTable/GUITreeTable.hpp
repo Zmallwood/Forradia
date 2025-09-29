@@ -5,12 +5,14 @@
 
 #pragma once
 
-#include "GUIComponent.hpp"
+#include "../GUIComponent.hpp"
 
 namespace Forradia
 {
     class GUITreeTable : public GUIComponent
     {
     public:
+
+    private:
     };
 }

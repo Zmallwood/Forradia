@@ -12,7 +12,7 @@ namespace Forradia
     public:
         void Update();
 
-        void Render() const;
+        auto GetFPS() const { return m_fps; }
 
     private:
         int m_fps{0};

@@ -12,11 +12,20 @@ namespace Forradia
     {
         auto bounds{GetBounds()};
 
+        auto x {bounds.x};
+        auto y {bounds.y};
+
+        if (m_centerAlign)
+        {
+            bounds.x += bounds.width / 2;
+            bounds.y += bounds.height / 2;
+        }
+
         _<TextRenderer>().DrawString(
             m_text,
-            bounds.x + bounds.width / 2,
-            bounds.y + bounds.height / 2,
+            bounds.x,
+            bounds.y,
             FontSizes::_20,
-            true);
+            m_centerAlign);
     }
 }

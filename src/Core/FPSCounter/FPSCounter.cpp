@@ -4,7 +4,6 @@
  */
 
 #include "FPSCounter.hpp"
-#include "Core/Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {
@@ -20,15 +19,5 @@ namespace Forradia
         }
 
         ++m_framesCount;
-    }
-
-    void FPSCounter::Render() const
-    {
-        auto fpsText{"FPS: " + std::to_string(m_fps)};
-
-        _<TextRenderer>().DrawString(
-            fpsText,
-            k_position.x,
-            k_position.y);
     }
 }

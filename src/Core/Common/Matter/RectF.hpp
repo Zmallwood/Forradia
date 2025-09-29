@@ -16,6 +16,8 @@ namespace Forradia
 
         PointF GetPosition() const;
 
+        void Offset(PointF offset);
+
         float x{0.0f};
         float y{0.0f};
         float width{0.0f};

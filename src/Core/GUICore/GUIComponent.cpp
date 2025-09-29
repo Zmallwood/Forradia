@@ -46,6 +46,20 @@ namespace Forradia
         }
     }
 
+    RectF GUIComponent::GetBounds() const
+    {
+        auto boundsResult{m_bounds};
+
+        if (m_parentComponent)
+        {
+            auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
+
+            boundsResult.Offset(parentPosition);
+        }
+
+        return boundsResult;
+    }
+
     void GUIComponent::ToggleVisibility()
     {
         m_visible = !m_visible;
