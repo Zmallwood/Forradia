@@ -15,6 +15,11 @@ namespace Forradia
         InitializeDerived();
     }
 
+    void IScene::OnEnter()
+    {
+        OnEnterDerived();
+    }
+
     void IScene::Update()
     {
         m_gui->Update();

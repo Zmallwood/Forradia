@@ -23,10 +23,10 @@ namespace Forradia
         auto rightArmMaxEnergy{playerBody.GetRightArmRef().GetMaxEnergy()};
         auto leftArmMaxEnergy{playerBody.GetLeftArmRef().GetMaxEnergy()};
         auto legsMaxEnergy{playerBody.GetLegsRef().GetMaxEnergy()};
-        auto overallBodyHealth{playerBody.GetOverallBodyRef().GetHealth()};
-        auto rightArmHealth{playerBody.GetRightArmRef().GetHealth()};
-        auto leftArmHealth{playerBody.GetLeftArmRef().GetHealth()};
-        auto legsHealth{playerBody.GetLegsRef().GetHealth()};
+        auto overallBodyTemperature{playerBody.GetOverallBodyRef().GetTemperature()};
+        auto rightArmTemperature{playerBody.GetRightArmRef().GetTemperature()};
+        auto leftArmTemperature{playerBody.GetLeftArmRef().GetTemperature()};
+        auto legsTemperature{playerBody.GetLegsRef().GetTemperature()};
 
         StringStream ssOverallBodyStrength;
         StringStream ssRightArmStrength;
@@ -36,10 +36,10 @@ namespace Forradia
         StringStream ssRightArmMaxEnergy;
         StringStream ssLeftArmMaxEnergy;
         StringStream ssLegsMaxEnergy;
-        StringStream ssOverallBodyHealth;
-        StringStream ssRightArmHealth;
-        StringStream ssLeftArmHealth;
-        StringStream ssLegsHealth;
+        StringStream ssOverallBodyTemperature;
+        StringStream ssRightArmTemperature;
+        StringStream ssLeftArmTemperature;
+        StringStream ssLegsTemperature;
 
         ssOverallBodyStrength << overallBodyStrength;
         ssRightArmStrength << rightArmStrength;
@@ -49,10 +49,10 @@ namespace Forradia
         ssRightArmMaxEnergy << rightArmMaxEnergy;
         ssLeftArmMaxEnergy << leftArmMaxEnergy;
         ssLegsMaxEnergy << legsMaxEnergy;
-        ssOverallBodyHealth << overallBodyHealth;
-        ssRightArmHealth << rightArmHealth;
-        ssLeftArmHealth << leftArmHealth;
-        ssLegsHealth << legsHealth;
+        ssOverallBodyTemperature << overallBodyTemperature;
+        ssRightArmTemperature << rightArmTemperature;
+        ssLeftArmTemperature << leftArmTemperature;
+        ssLegsTemperature << legsTemperature;
 
         ssOverallBodyStrength.precision(2);
         ssRightArmStrength.precision(2);
@@ -62,10 +62,10 @@ namespace Forradia
         ssRightArmMaxEnergy.precision(2);
         ssLeftArmMaxEnergy.precision(2);
         ssLegsMaxEnergy.precision(2);
-        ssOverallBodyHealth.precision(2);
-        ssRightArmHealth.precision(2);
-        ssLeftArmHealth.precision(2);
-        ssLegsHealth.precision(2);
+        ssOverallBodyTemperature.precision(2);
+        ssRightArmTemperature.precision(2);
+        ssLeftArmTemperature.precision(2);
+        ssLegsTemperature.precision(2);
 
         auto bounds{GetBounds()};
 
@@ -77,9 +77,9 @@ namespace Forradia
         _<TextRenderer>().DrawString("Overall right arm max energy: " + ssRightArmMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 6 * 0.03f);
         _<TextRenderer>().DrawString("Overall left arm max energy: " + ssLeftArmMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 7 * 0.03f);
         _<TextRenderer>().DrawString("Overall legs max energy: " + ssLegsMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 8 * 0.03f);
-        _<TextRenderer>().DrawString("Overall body health: " + ssLegsHealth.str(), bounds.x + 0.01f, bounds.y + 0.04f + 9 * 0.03f);
-        _<TextRenderer>().DrawString("Right arm health: " + ssLegsHealth.str(), bounds.x + 0.01f, bounds.y + 0.04f + 10 * 0.03f);
-        _<TextRenderer>().DrawString("Left arm health: " + ssLegsHealth.str(), bounds.x + 0.01f, bounds.y + 0.04f + 11 * 0.03f);
-        _<TextRenderer>().DrawString("Legs health: " + ssLegsHealth.str(), bounds.x + 0.01f, bounds.y + 0.04f + 12 * 0.03f);
+        _<TextRenderer>().DrawString("Overall body temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 9 * 0.03f);
+        _<TextRenderer>().DrawString("Right arm temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 10 * 0.03f);
+        _<TextRenderer>().DrawString("Left arm temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 11 * 0.03f);
+        _<TextRenderer>().DrawString("Legs temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 12 * 0.03f);
     }
 }

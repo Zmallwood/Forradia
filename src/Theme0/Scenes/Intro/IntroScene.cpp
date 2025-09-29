@@ -10,6 +10,7 @@
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUILabel.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
@@ -22,6 +23,11 @@ namespace Forradia
                 0.1f,
                 0.04f,
                 "Press to start"));
+    }
+
+    void IntroScene::OnEnterDerived()
+    {
+        _<GUITextConsole>().Print("Game started.");
     }
 
     void IntroScene::UpdateDerived()

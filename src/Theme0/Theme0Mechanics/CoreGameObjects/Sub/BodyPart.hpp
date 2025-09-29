@@ -12,11 +12,11 @@ namespace Forradia
     public:
         auto GetStrength() const { return m_strength; }
         auto GetMaxEnergy() const { return m_maxEnergy; }
-        auto GetHealth() const { return m_health; }
+        auto GetTemperature() const { return m_temperature; }
 
     private:
         float m_strength{0.1f};
         float m_maxEnergy{1.0f};
-        float m_health{1.0f};
+        float m_temperature{37.0f};
     };
 }

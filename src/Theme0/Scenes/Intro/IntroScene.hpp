@@ -16,6 +16,8 @@ namespace Forradia
     protected:
         void InitializeDerived() override;
 
+        void OnEnterDerived() override;
+
         void UpdateDerived() override;
 
         void RenderDerived() const override;

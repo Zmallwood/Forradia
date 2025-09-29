@@ -21,7 +21,7 @@ namespace Forradia
             std::make_shared<GUIPlayerStatusPanel>());
 
         mainSceneGUI->AddChildComponent(
-            std::make_shared<GUITextConsole>());
+            __<GUITextConsole>());
 
         AddMainSceneGUIButtons(mainSceneGUI);
 

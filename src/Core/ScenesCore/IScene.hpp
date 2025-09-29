@@ -18,10 +18,12 @@ namespace Forradia
 
         void Render() const;
 
-        virtual void OnEnter() {}
+        void OnEnter();
 
     protected:
         virtual void InitializeDerived() {}
+
+        virtual void OnEnterDerived() {} 
 
         virtual void UpdateDerived() {}
 

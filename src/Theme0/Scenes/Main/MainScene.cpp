@@ -10,6 +10,7 @@
 #include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
 #include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
 #include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 #include "Sub/AddMainSceneGUIComponents.hpp"
 
 namespace Forradia
@@ -17,6 +18,11 @@ namespace Forradia
     void MainScene::InitializeDerived()
     {
         AddMainSceneGUIComponents(GetGUI());
+    }
+
+    void MainScene::OnEnterDerived()
+    {
+        _<GUITextConsole>().Print("You have entered the world.");
     }
 
     void MainScene::UpdateDerived()

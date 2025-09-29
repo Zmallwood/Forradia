@@ -19,6 +19,6 @@ namespace Forradia
         AddMainMenuSceneGUIButtons(mainMenuSceneGUI);
 
         mainMenuSceneGUI->AddChildComponent(
-            std::make_shared<GUITextConsole>());
+            __<GUITextConsole>());
     }
 }

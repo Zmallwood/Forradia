@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    void WorldGenerationScene::OnEnter()
+    void WorldGenerationScene::OnEnterDerived()
     {
         GenerateNewWorld();
 

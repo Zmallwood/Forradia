@@ -12,6 +12,6 @@ namespace Forradia
     class WorldGenerationScene : public IScene
     {
     protected:
-        void OnEnter() override;
+        void OnEnterDerived() override;
     };
 }
