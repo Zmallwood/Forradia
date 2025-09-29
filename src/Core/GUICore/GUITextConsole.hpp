@@ -20,7 +20,7 @@ namespace Forradia
         void Print(StringView text);
 
     private:
-        constexpr static StringView k_defaultBackgroundImageDerived{"GUIPanelSemiTransparentBackground"};
+        constexpr static StringView k_defaultBackgroundImageDerived{"GUITextConsoleBackground"};
         inline static const float k_lineHeight{0.025f};
         inline static const float k_separatorHeight{0.003f};
         inline static const float k_margin{0.008f};
