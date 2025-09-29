@@ -28,58 +28,32 @@ namespace Forradia
         auto leftArmTemperature{playerBody.GetLeftArmRef().GetTemperature()};
         auto legsTemperature{playerBody.GetLegsRef().GetTemperature()};
 
-        StringStream ssOverallBodyStrength;
-        StringStream ssRightArmStrength;
-        StringStream ssLeftArmStrength;
-        StringStream ssLegsStrength;
-        StringStream ssOverallBodyMaxEnergy;
-        StringStream ssRightArmMaxEnergy;
-        StringStream ssLeftArmMaxEnergy;
-        StringStream ssLegsMaxEnergy;
-        StringStream ssOverallBodyTemperature;
-        StringStream ssRightArmTemperature;
-        StringStream ssLeftArmTemperature;
-        StringStream ssLegsTemperature;
-
-        ssOverallBodyStrength << overallBodyStrength;
-        ssRightArmStrength << rightArmStrength;
-        ssLeftArmStrength << leftArmStrength;
-        ssLegsStrength << legsStrength;
-        ssOverallBodyMaxEnergy << overallBodyMaxEnergy;
-        ssRightArmMaxEnergy << rightArmMaxEnergy;
-        ssLeftArmMaxEnergy << leftArmMaxEnergy;
-        ssLegsMaxEnergy << legsMaxEnergy;
-        ssOverallBodyTemperature << overallBodyTemperature;
-        ssRightArmTemperature << rightArmTemperature;
-        ssLeftArmTemperature << leftArmTemperature;
-        ssLegsTemperature << legsTemperature;
-
-        ssOverallBodyStrength.precision(2);
-        ssRightArmStrength.precision(2);
-        ssLeftArmStrength.precision(2);
-        ssLegsStrength.precision(2);
-        ssOverallBodyMaxEnergy.precision(2);
-        ssRightArmMaxEnergy.precision(2);
-        ssLeftArmMaxEnergy.precision(2);
-        ssLegsMaxEnergy.precision(2);
-        ssOverallBodyTemperature.precision(2);
-        ssRightArmTemperature.precision(2);
-        ssLeftArmTemperature.precision(2);
-        ssLegsTemperature.precision(2);
+        auto ssOverallBodyStrength {fmt::format("Overall body strength: {:.2f}", overallBodyStrength)};
+        auto ssRightArmStrength {fmt::format("Right arm strength: {:.2f}", rightArmStrength)};
+        auto ssLeftArmStrength {fmt::format("Left arm strength: {:.2f}", leftArmStrength)};
+        auto ssLegsStrength {fmt::format("Legs strength: {:.2f}", legsStrength)};
+        auto ssOverallBodyMaxEnergy {fmt::format("Overall body max energy: {:.2f}", overallBodyMaxEnergy)};
+        auto ssRightArmMaxEnergy {fmt::format("Right arm max energy: {:.2f}", rightArmMaxEnergy)};
+        auto ssLeftArmMaxEnergy {fmt::format("Left arm max energy: {:.2f}", leftArmMaxEnergy)};
+        auto ssLegsMaxEnergy {fmt::format("Legs max energy: {:.2f}", legsMaxEnergy)};
+        auto ssOverallBodyTemperature {fmt::format("Overall body temperature: {:.2f}", overallBodyTemperature)};
+        auto ssRightArmTemperature {fmt::format("Right arm temperature: {:.2f}", rightArmTemperature)};
+        auto ssLeftArmTemperature {fmt::format("Left arm temperature: {:.2f}", leftArmTemperature)};
+        auto ssLegsTemperature {fmt::format("Legs temperature: {:.2f}", legsTemperature)};
 
         auto bounds{GetBounds()};
 
-        _<TextRenderer>().DrawString("Overall body strength: " + ssOverallBodyStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 1 * 0.03f);
-        _<TextRenderer>().DrawString("Right arm strength: " + ssRightArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 2 * 0.03f);
-        _<TextRenderer>().DrawString("Left arm strength: " + ssLeftArmStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 3 * 0.03f);
-        _<TextRenderer>().DrawString("Legs strength: " + ssLegsStrength.str(), bounds.x + 0.01f, bounds.y + 0.04f + 4 * 0.03f);
-        _<TextRenderer>().DrawString("Overall body max energy: " + ssOverallBodyMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 5 * 0.03f);
-        _<TextRenderer>().DrawString("Overall right arm max energy: " + ssRightArmMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 6 * 0.03f);
-        _<TextRenderer>().DrawString("Overall left arm max energy: " + ssLeftArmMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 7 * 0.03f);
-        _<TextRenderer>().DrawString("Overall legs max energy: " + ssLegsMaxEnergy.str(), bounds.x + 0.01f, bounds.y + 0.04f + 8 * 0.03f);
-        _<TextRenderer>().DrawString("Overall body temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 9 * 0.03f);
-        _<TextRenderer>().DrawString("Right arm temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 10 * 0.03f);
-        _<TextRenderer>().DrawString("Left arm temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 11 * 0.03f);
-        _<TextRenderer>().DrawString("Legs temperature: " + ssLegsTemperature.str(), bounds.x + 0.01f, bounds.y + 0.04f + 12 * 0.03f);
+        _<TextRenderer>().DrawString(ssOverallBodyStrength.data(), bounds.x + 0.01f, bounds.y + 0.04f + 1 * 0.03f);
+        _<TextRenderer>().DrawString(ssRightArmStrength, bounds.x + 0.01f, bounds.y + 0.04f + 2 * 0.03f);
+        _<TextRenderer>().DrawString(ssLeftArmStrength, bounds.x + 0.01f, bounds.y + 0.04f + 3 * 0.03f);
+        _<TextRenderer>().DrawString(ssLegsStrength, bounds.x + 0.01f, bounds.y + 0.04f + 4 * 0.03f);
+        _<TextRenderer>().DrawString(ssOverallBodyMaxEnergy, bounds.x + 0.01f, bounds.y + 0.04f + 5 * 0.03f);
+        _<TextRenderer>().DrawString(ssRightArmMaxEnergy, bounds.x + 0.01f, bounds.y + 0.04f + 6 * 0.03f);
+        _<TextRenderer>().DrawString(ssLeftArmMaxEnergy, bounds.x + 0.01f, bounds.y + 0.04f + 7 * 0.03f);
+        _<TextRenderer>().DrawString(ssLegsMaxEnergy, bounds.x + 0.01f, bounds.y + 0.04f + 8 * 0.03f);
+        _<TextRenderer>().DrawString(ssOverallBodyTemperature, bounds.x + 0.01f, bounds.y + 0.04f + 9 * 0.03f);
+        _<TextRenderer>().DrawString(ssRightArmTemperature, bounds.x + 0.01f, bounds.y + 0.04f + 10 * 0.03f);
+        _<TextRenderer>().DrawString(ssLeftArmTemperature, bounds.x + 0.01f, bounds.y + 0.04f + 11 * 0.03f);
+        _<TextRenderer>().DrawString(ssLegsTemperature, bounds.x + 0.01f, bounds.y + 0.04f + 12 * 0.03f);
     }
 }

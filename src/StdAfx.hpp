@@ -20,6 +20,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+#include <fmt/core.h>
+
 #include "Core/Common/Aliases.hpp"
 
 #include "Core/Common/Matter/Point.hpp"

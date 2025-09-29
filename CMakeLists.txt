@@ -13,7 +13,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(Forradia ${SOURCES})
 
-target_link_libraries(Forradia PRIVATE SDL2 SDL2_image SDL2_ttf)
+target_link_libraries(Forradia PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
 
 target_precompile_headers(Forradia PRIVATE src/StdAfx.hpp)
 
