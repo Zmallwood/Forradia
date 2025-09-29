@@ -344,17 +344,17 @@ namespace Forradia
                     else if (ground == Hash("GroundWater") && i == 1)
                     {
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-                        _<ImageRenderer>().DrawImage("GroundWaterEdge_New", xCanvas - widthCanvas * 0.2f, yCanvas - heightCanvas * 0.2f, widthCanvas * 1.4f, heightCanvas * 1.4f);
+                        _<ImageRenderer>().DrawImage("GroundWaterEdge", xCanvas - widthCanvas * 0.2f, yCanvas - heightCanvas * 0.2f, widthCanvas * 1.4f, heightCanvas * 1.4f);
                     }
                     else if (ground == Hash("GroundWater") && i == 2)
                     {
 
                         auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-                        _<ImageRenderer>().DrawImage("GroundWater_" + std::to_string(animIndex) + "_Old", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                        _<ImageRenderer>().DrawImage("GroundWater_" + std::to_string(animIndex), xCanvas, yCanvas, widthCanvas, heightCanvas);
 
                         for (auto i = 0; i < tile->GetElevation(); i++)
                         {
-                            _<ImageRenderer>().DrawImage("GroundWaterHeight_New", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                            _<ImageRenderer>().DrawImage("GroundWaterHeight", xCanvas, yCanvas, widthCanvas, heightCanvas);
                         }
 
                         // groundTypeRendered = Hash("GroundWater_" + std::to_string(animIndex) + "_New");
@@ -365,7 +365,7 @@ namespace Forradia
                         {
                             for (auto i = 0; i < tile->GetWaterDepth(); i++)
                             {
-                                _<ImageRenderer>().DrawImage("GroundWaterDepth_New", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                                _<ImageRenderer>().DrawImage("GroundWaterDepth", xCanvas, yCanvas, widthCanvas, heightCanvas);
                             }
                         }
                     }

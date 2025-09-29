@@ -9,6 +9,8 @@ namespace Forradia
 {
     SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
     {
+        component->SetParentComponent(this);
+
         m_childComponents.push_back(component);
 
         return component;

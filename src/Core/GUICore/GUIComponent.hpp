@@ -28,6 +28,8 @@ namespace Forradia
 
         void SetVisible(bool value) { m_visible = value; }
 
+        void SetParentComponent(GUIComponent *value) { m_parentComponent = value; }
+
     protected:
         virtual void UpdateDerived() {}
 
@@ -40,5 +42,6 @@ namespace Forradia
         Vector<SharedPtr<GUIComponent>> m_childComponents;
         bool m_visible{true};
         bool m_enabled{true};
+        GUIComponent *m_parentComponent{nullptr};
     };
 }
