@@ -18,7 +18,15 @@ namespace Forradia
 
         bool IsPressedPickResult();
 
+        bool GetHasBeenFiredPickResult();
+
+        bool GetHasBeenFiredDontPickResult();
+
+        bool GetHasBeenReleasedPickResult();
+
     private:
         bool m_isPressed{false};
+        bool m_hasBeenFired {false};
+        bool m_hasBeenReleased {false};
     };
 }

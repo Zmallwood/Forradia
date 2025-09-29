@@ -7,7 +7,7 @@
 #include "Sub/AddMainSceneGUIButtons.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
-#include "Core/GUICore/GUIWindow.hpp"
+#include "Core/GUICore/Windows/GUIWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatusPanel.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"

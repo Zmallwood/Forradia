@@ -5,7 +5,8 @@
 
 #pragma once
 
-#include "GUIMovablePanel.hpp"
+#include "../GUIMovablePanel.hpp"
+#include "Sub/GUIWindowTitleBar.hpp"
 
 namespace Forradia
 {
@@ -16,20 +17,26 @@ namespace Forradia
                   float y,
                   float width,
                   float height,
-                  StringView windowTitle)
+                  StringView windowTitleText)
             : GUIMovablePanel(x, y, width, height),
-              k_windowTitle(windowTitle)
+              m_guiWindowTitleBar(*this, windowTitleText)
         {
             Initialize();
         }
 
+        void SetIsBeingMoved(bool value) { m_isBeingMoved = value; }
+
     protected:
+        void UpdateDerived() override;
+
         void RenderDerived() const override;
 
     private:
         void Initialize();
 
-        const String k_windowTitle;
         const float k_titleBarHeight{0.04f};
+
+        GUIWindowTitleBar m_guiWindowTitleBar;
+        bool m_isBeingMoved{false};
     };
 }

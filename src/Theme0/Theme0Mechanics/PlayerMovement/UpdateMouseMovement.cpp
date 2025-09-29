@@ -12,7 +12,7 @@ namespace Forradia
 {
     void UpdateMouseMovement()
     {
-        if (_<MouseInput>().GetLeftMouseButtonRef().IsPressedPickResult())
+        if (_<MouseInput>().GetLeftMouseButtonRef().GetHasBeenFiredPickResult())
         {
             auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
