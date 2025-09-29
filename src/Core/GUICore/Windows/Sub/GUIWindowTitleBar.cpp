@@ -25,7 +25,7 @@ namespace Forradia
                                      parentWindowBounds.y + 0.01f,
                                      FontSizes::_20,
                                      false,
-                                     Colors::yellow);
+                                     Colors::Yellow);
     }
 
     RectF GUIWindowTitleBar::GetBounds() const

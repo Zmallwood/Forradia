@@ -12,7 +12,7 @@ namespace Forradia
     public:
         static constexpr String k_gameWindowTitle{"Forradia"};
 
-        static constexpr Color k_clearColor{Colors::black};
+        static constexpr Color k_clearColor{Colors::Black};
 
         static constexpr int k_numGridRows{15};
 

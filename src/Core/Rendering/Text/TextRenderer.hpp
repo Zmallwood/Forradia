@@ -22,7 +22,7 @@ namespace Forradia
                         float y,
                         FontSizes fontSize = FontSizes::_20,
                         bool centerAlign = false,
-                        Color textColor = Colors::wheat) const;
+                        Color textColor = Colors::WheatTransparent) const;
 
     private:
         void Initialize();
