@@ -7,33 +7,9 @@
 #include "../GUIWindow.hpp"
 #include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
-#include "Core/Input/Mouse/MouseInput.hpp"
-#include "Core/Cursor/Cursor.hpp"
 
 namespace Forradia
 {
-    void GUIWindowTitleBar::Update()
-    {
-        auto mousePosition{GetNormalizedMousePosition()};
-
-        auto bounds{GetBounds()};
-
-        if (bounds.Contains(mousePosition))
-        {
-            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-
-            if (_<MouseInput>().GetLeftMouseButtonRef().GetHasBeenFiredPickResult())
-            {
-                m_parentWindow.SetIsBeingMoved(true);
-            }
-        }
-
-        if (_<MouseInput>().GetLeftMouseButtonRef().GetHasBeenReleasedPickResult())
-        {
-            m_parentWindow.SetIsBeingMoved(false);
-        }
-    }
-
     void GUIWindowTitleBar::Render() const
     {
         auto parentWindowBounds{m_parentWindow.GetBounds()};

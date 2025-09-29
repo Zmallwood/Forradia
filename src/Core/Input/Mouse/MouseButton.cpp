@@ -61,4 +61,9 @@ namespace Forradia
 
         return hasBeenReleasedResult;
     }
+
+    bool MouseButton::GetHasBeenReleasedDontPickResult()
+    {
+        return m_hasBeenReleased;
+    }
 }

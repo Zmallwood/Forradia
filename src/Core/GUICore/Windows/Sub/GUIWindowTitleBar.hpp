@@ -17,8 +17,6 @@ namespace Forradia
             : m_parentWindow(parentWindow),
               k_windowTitleText(windowTitleText) {}
 
-        void Update();
-
         void Render() const;
 
         RectF GetBounds() const;

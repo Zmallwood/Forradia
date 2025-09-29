@@ -24,7 +24,7 @@ namespace Forradia
         
         auto xCenter{minX + RandomInt(maxX - minX)};
         auto yCenter{minY + RandomInt(maxY - minY)};
-        auto radius{3* scale + RandomInt(5* scale)};
+        auto radius{CInt(3* scale + RandomInt(5* scale))};
 
         for (auto r = radius; r >= 0; r--)
         {

@@ -17,5 +17,25 @@ namespace Forradia
                         float width,
                         float height)
             : GUIPanel(x, y, width, height) {}
+
+    protected:
+        void UpdateDerived() override;
+
+        void StartMoving();
+
+        void StopMoving();
+
+        virtual RectF GetDraggableArea();
+
+        auto GetIsBeingMoved() const { return m_isBeingMoved; }
+
+        auto GetMoveStartPosition() const { return m_moveStartPosition; }
+
+        auto GetMoveStartMousePosition() const { return m_moveStartMousePosition; }
+
+    private:
+        bool m_isBeingMoved{false};
+        PointF m_moveStartPosition{-1, -1};
+        PointF m_moveStartMousePosition{-1, -1};
     };
 }

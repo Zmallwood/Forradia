@@ -24,7 +24,7 @@ namespace Forradia
 
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-            if (_<MouseInput>().GetLeftMouseButtonRef().IsPressedPickResult())
+            if (_<MouseInput>().GetLeftMouseButtonRef().GetHasBeenFiredPickResult())
             {
                 m_action();
             }

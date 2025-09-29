@@ -14,4 +14,9 @@ namespace Forradia
                point.x < x + width &&
                point.y < y + height;
     }
+
+    PointF RectF::GetPosition() const
+    {
+        return {x, y};
+    }
 }

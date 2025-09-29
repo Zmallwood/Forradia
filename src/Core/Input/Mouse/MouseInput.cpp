@@ -7,6 +7,13 @@
 
 namespace Forradia
 {
+    void MouseInput::Reset()
+    {
+        m_leftMouseButton.Reset();
+
+        m_rightMouseButton.Reset();
+    }
+
     void MouseInput::RegisterMouseButtonDown(Uint8 mouseButton)
     {
         switch (mouseButton)

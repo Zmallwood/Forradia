@@ -33,6 +33,8 @@ namespace Forradia
 
         virtual void RenderDerived() const {}
 
+        void SetPosition(PointF newPosition);
+
     private:
         RectF m_bounds;
         Vector<SharedPtr<GUIComponent>> m_childComponents;

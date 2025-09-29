@@ -7,6 +7,11 @@
 
 namespace Forradia
 {
+    void KeyboardInput::Reset()
+    {
+        m_pressedKeys.clear();
+    }
+
     void KeyboardInput::RegisterKeyPress(SDL_Keycode key)
     {
         m_pressedKeys.insert(key);

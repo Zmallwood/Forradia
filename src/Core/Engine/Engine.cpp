@@ -8,6 +8,8 @@
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/Cursor/Cursor.hpp"
 #include "Core/FPSCounter/FPSCounter.hpp"
+#include "Core/Input/Keyboard/KeyboardInput.hpp"
+#include "Core/Input/Mouse/MouseInput.hpp"
 #include "Sub/PollEvents.hpp"
 
 namespace Forradia
@@ -20,6 +22,10 @@ namespace Forradia
 
         while (m_running)
         {
+            _<KeyboardInput>().Reset();
+
+            _<MouseInput>().Reset();
+
             _<Cursor>().ResetStyleToDefault();
 
             PollEvents();

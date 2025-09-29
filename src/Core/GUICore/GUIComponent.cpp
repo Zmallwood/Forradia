@@ -48,4 +48,10 @@ namespace Forradia
     {
         m_visible = !m_visible;
     }
+
+    void GUIComponent::SetPosition(PointF newPosition)
+    {
+        m_bounds.x = newPosition.x;
+        m_bounds.y = newPosition.y;
+    }
 }

@@ -12,6 +12,8 @@ namespace Forradia
     class MouseInput
     {
     public:
+        void Reset();
+
         void RegisterMouseButtonDown(Uint8 mouseButton);
 
         void RegisterMouseButtonUp(Uint8 mouseButton);

@@ -14,6 +14,8 @@ namespace Forradia
     public:
         bool Contains(PointF point);
 
+        PointF GetPosition() const;
+
         float x{0.0f};
         float y{0.0f};
         float width{0.0f};

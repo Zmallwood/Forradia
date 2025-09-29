@@ -24,12 +24,12 @@ namespace Forradia
             Initialize();
         }
 
-        void SetIsBeingMoved(bool value) { m_isBeingMoved = value; }
-
     protected:
         void UpdateDerived() override;
 
         void RenderDerived() const override;
+
+        RectF GetDraggableArea() override;
 
     private:
         void Initialize();
@@ -37,6 +37,5 @@ namespace Forradia
         const float k_titleBarHeight{0.04f};
 
         GUIWindowTitleBar m_guiWindowTitleBar;
-        bool m_isBeingMoved{false};
     };
 }
