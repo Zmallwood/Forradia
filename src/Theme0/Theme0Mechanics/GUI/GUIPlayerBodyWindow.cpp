@@ -15,15 +15,15 @@ namespace Forradia
 
         auto &playerBody{_<Player>().GetPlayerBodyRef()};
 
-        auto overallBodyStrength{playerBody.GetOverallBodyRef().GetStrength()};
+        auto overallBodyStrength{playerBody.GetStrength()};
         auto rightArmStrength{playerBody.GetRightArmRef().GetStrength()};
         auto leftArmStrength{playerBody.GetLeftArmRef().GetStrength()};
         auto legsStrength{playerBody.GetLegsRef().GetStrength()};
-        auto overallBodyMaxEnergy{playerBody.GetOverallBodyRef().GetMaxEnergy()};
+        auto overallBodyMaxEnergy{playerBody.GetMaxEnergy()};
         auto rightArmMaxEnergy{playerBody.GetRightArmRef().GetMaxEnergy()};
         auto leftArmMaxEnergy{playerBody.GetLeftArmRef().GetMaxEnergy()};
         auto legsMaxEnergy{playerBody.GetLegsRef().GetMaxEnergy()};
-        auto overallBodyTemperature{playerBody.GetOverallBodyRef().GetTemperature()};
+        auto overallBodyTemperature{playerBody.GetTemperature()};
         auto rightArmTemperature{playerBody.GetRightArmRef().GetTemperature()};
         auto leftArmTemperature{playerBody.GetLeftArmRef().GetTemperature()};
         auto legsTemperature{playerBody.GetLegsRef().GetTemperature()};

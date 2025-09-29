@@ -9,11 +9,9 @@
 
 namespace Forradia
 {
-    class PlayerBody
+    class PlayerBody : public BodyPart
     {
     public:
-        auto &GetOverallBodyRef() { return m_overallBody; }
-
         auto &GetRightArmRef() { return m_rightArm; }
 
         auto &GetLeftArmRef() { return m_leftArm; }
