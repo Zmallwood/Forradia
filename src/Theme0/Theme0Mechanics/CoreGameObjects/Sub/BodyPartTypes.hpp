@@ -5,14 +5,14 @@
 
 #pragma once
 
-#include "../GUIComponent.hpp"
-
 namespace Forradia
 {
-    class GUITreeTable : public GUIComponent
+    enum class BodyPartTypes
     {
-    public:
-
-    private:
+        None,
+        OverallBody,
+        RightArm,
+        LeftArm,
+        Legs
     };
 }

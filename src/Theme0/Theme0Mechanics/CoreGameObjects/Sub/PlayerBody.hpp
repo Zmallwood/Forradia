@@ -6,22 +6,23 @@
 #pragma once
 
 #include "BodyPart.hpp"
+#include "BodyPartTypes.hpp"
 
 namespace Forradia
 {
-    class PlayerBody : public BodyPart
+    class PlayerBody
     {
     public:
-        auto &GetRightArmRef() { return m_rightArm; }
+        PlayerBody()
+        {
+            Initialize();
+        }
 
-        auto &GetLeftArmRef() { return m_leftArm; }
-
-        auto &GetLegsRef() { return m_legs; }
+        BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
 
     private:
-        BodyPart m_overallBody;
-        BodyPart m_rightArm;
-        BodyPart m_leftArm;
-        BodyPart m_legs;
+        void Initialize();
+
+        Map<BodyPartTypes, BodyPart> m_bodyParts;
     };
 }

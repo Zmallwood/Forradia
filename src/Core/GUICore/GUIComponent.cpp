@@ -23,12 +23,12 @@ namespace Forradia
             return;
         }
 
-        UpdateDerived();
-
         for (auto component : std::views::reverse(m_childComponents))
         {
             component->Update();
         }
+
+        UpdateDerived();
     }
 
     void GUIComponent::Render() const

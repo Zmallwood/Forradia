@@ -63,6 +63,7 @@
         "optional": "cpp",
         "ranges": "cpp",
         "span": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "any": "cpp"
     }
 }

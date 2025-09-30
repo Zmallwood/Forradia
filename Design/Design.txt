@@ -19,3 +19,5 @@ and find metals such as copper, iron in mountains
 * Can have certain areas which contains one type of creature, and spread the areas across the world map, so that one grind for different at different levels in different areas
 
 * Maybe make a website for the game too to practice web development, where user can login to account, see character body status and world map etc.
+
+* Eventually model the body with images instead of text
