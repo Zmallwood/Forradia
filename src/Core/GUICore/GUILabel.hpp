@@ -17,10 +17,12 @@ namespace Forradia
                  float width,
                  float height,
                  StringView text = "",
-                 bool centerAlign = false)
+                 bool centerAlign = false,
+                 Color color = Colors::WheatTransparent)
             : GUIComponent(x, y, width, height),
               m_text(text),
-              m_centerAlign(centerAlign) {}
+              m_centerAlign(centerAlign),
+              m_color(color) {}
 
         void SetText(StringView value) { m_text = value; }
 
@@ -30,5 +32,6 @@ namespace Forradia
     private:
         String m_text;
         bool m_centerAlign{false};
+        Color m_color;
     };
 }

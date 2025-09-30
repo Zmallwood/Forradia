@@ -12,8 +12,8 @@ namespace Forradia
     {
         auto bounds{GetBounds()};
 
-        auto x {bounds.x};
-        auto y {bounds.y};
+        auto x{bounds.x};
+        auto y{bounds.y};
 
         if (m_centerAlign)
         {
@@ -26,6 +26,7 @@ namespace Forradia
             bounds.x,
             bounds.y,
             FontSizes::_20,
-            m_centerAlign);
+            m_centerAlign,
+            m_color);
     }
 }

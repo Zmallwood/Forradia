@@ -40,7 +40,7 @@ namespace Forradia
 
         AddChildComponent(legsImageButton);
 
-        m_labelBodyPartName = std::make_shared<GUILabel>(0.01f, 0.3f, 0.2f, 0.05f, "Body part: ");
+        m_labelBodyPartName = std::make_shared<GUILabel>(0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false, Colors::YellowTransparent);
         m_labelBodyPartStrength = std::make_shared<GUILabel>(0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
         m_labelBodyPartEnergy = std::make_shared<GUILabel>(0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
         m_labelBodyPartTemperature = std::make_shared<GUILabel>(0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
@@ -67,10 +67,11 @@ namespace Forradia
             m_labelBodyPartName->SetText("Body part: Overall body");
             auto strength{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetStrength()};
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
-            auto energy{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetMaxEnergy()};
-            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f}", energy));
+            auto maxEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetMaxEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetCurrentEnergy()};
+            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
             auto temperature{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetTemperature()};
-            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f}", temperature));
+            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
         break;
         case BodyPartTypes::RightArm:
@@ -78,10 +79,11 @@ namespace Forradia
             m_labelBodyPartName->SetText("Body part: Right arm");
             auto strength{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetStrength()};
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
-            auto energy{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetMaxEnergy()};
-            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f}", energy));
+            auto maxEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetMaxEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetCurrentEnergy()};
+            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
             auto temperature{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetTemperature()};
-            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f}", temperature));
+            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
         break;
         case BodyPartTypes::LeftArm:
@@ -89,10 +91,11 @@ namespace Forradia
             m_labelBodyPartName->SetText("Body part: Left arm");
             auto strength{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetStrength()};
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
-            auto energy{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetMaxEnergy()};
-            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f}", energy));
+            auto maxEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetMaxEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetCurrentEnergy()};
+            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
             auto temperature{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetTemperature()};
-            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f}", temperature));
+            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
         break;
         case BodyPartTypes::Legs:
@@ -100,10 +103,11 @@ namespace Forradia
             m_labelBodyPartName->SetText("Body part: Legs");
             auto strength{playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetStrength()};
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
-            auto energy{playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetMaxEnergy()};
-            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f}", energy));
+            auto maxEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetMaxEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetCurrentEnergy()};
+            m_labelBodyPartEnergy->SetText(fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
             auto temperature{playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetTemperature()};
-            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f}", temperature));
+            m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
         break;
         }

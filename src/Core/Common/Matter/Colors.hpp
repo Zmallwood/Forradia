@@ -18,5 +18,7 @@ namespace Forradia
         constexpr Color WheatTransparent{1.0f, 1.0f, 0.65f, 0.7f};
 
         constexpr Color Yellow{1.0f, 1.0f, 0.0f, 1.0f};
+
+        constexpr Color YellowTransparent{1.0f, 1.0f, 0.0f, 0.7f};
     }
 }
