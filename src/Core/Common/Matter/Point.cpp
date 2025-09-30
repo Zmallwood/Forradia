@@ -5,10 +5,9 @@
 
 #include "Point.hpp"
 
-namespace Forradia
-{
-    bool Point::operator==(const Point& other) const
-    {
-        return other.x == x && other.y == y;
-    }
+namespace Forradia {
+  bool Point::operator==(const Point &other) const {
+    // Compare x and y dimensions.
+    return other.x == x && other.y == y;
+  }
 }

@@ -5,17 +5,14 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Object
-    {
-    public:
-        Object(StringView objectTypeName)
-            : m_type(Hash(objectTypeName)) {}
+namespace Forradia {
+  class Object {
+  public:
+    Object(StringView objectTypeName) : m_type(Hash(objectTypeName)) {}
 
-        auto GetType() const { return m_type; }
+    auto GetType() const { return m_type; }
 
-    private:
-        int m_type{0};
-    };
+  private:
+    int m_type{0};
+  };
 }

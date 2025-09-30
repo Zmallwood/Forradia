@@ -6,30 +6,26 @@
 #include "TileGridMath.hpp"
 #include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
-namespace Forradia
-{
-    SizeF CalculateTileSize()
-    {
-        auto numGridRows{_<GameProperties>().k_numGridRows};
+namespace Forradia {
+  SizeF CalculateTileSize() {
+    auto numGridRows{_<GameProperties>().k_numGridRows};
 
-        auto tileHeight{1.0f / numGridRows};
+    auto tileHeight{1.0f / numGridRows};
 
-        auto aspectRatio{CalculateAspectRatio()};
+    auto aspectRatio{CalculateAspectRatio()};
 
-        auto tileWidth{tileHeight / aspectRatio};
+    auto tileWidth{tileHeight / aspectRatio};
 
-        return {tileWidth, tileHeight};
-    }
+    return {tileWidth, tileHeight};
+  }
 
-    Size CalculateGridSize()
-    {
-        auto tileSize{CalculateTileSize()};
+  Size CalculateGridSize() {
+    auto tileSize{CalculateTileSize()};
 
-        auto numGridColumns{
-            CInt(1.0f / tileSize.width) + 1};
+    auto numGridColumns{CInt(1.0f / tileSize.width) + 1};
 
-        auto numGridRows{_<GameProperties>().k_numGridRows};
+    auto numGridRows{_<GameProperties>().k_numGridRows};
 
-        return {numGridColumns, numGridRows};
-    }
+    return {numGridColumns, numGridRows};
+  }
 }

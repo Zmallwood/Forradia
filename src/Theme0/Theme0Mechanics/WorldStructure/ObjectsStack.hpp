@@ -5,24 +5,22 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Object;
+namespace Forradia {
+  class Object;
 
-    class ObjectsStack
-    {
-    public:
-        void ClearObjects();
+  class ObjectsStack {
+  public:
+    void ClearObjects();
 
-        void AddObject(StringView objectTypeName);
+    void AddObject(StringView objectTypeName);
 
-        void AddTreeObject(StringView objectTypeName);
+    void AddTreeObject(StringView objectTypeName);
 
-        int GetSize() const;
+    int GetSize() const;
 
-        auto GetObjects() const { return m_objects; }
+    auto GetObjects() const { return m_objects; }
 
-    private:
-        Vector<SharedPtr<Object>> m_objects;
-    };
+  private:
+    Vector<SharedPtr<Object>> m_objects;
+  };
 }

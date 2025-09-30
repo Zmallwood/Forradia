@@ -6,10 +6,8 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia
-{
-    void World::Initialize()
-    {
-        m_currentWorldArea = std::make_shared<WorldArea>();
-    }
+namespace Forradia {
+  void World::Initialize() {
+    m_currentWorldArea = std::make_shared<WorldArea>();
+  }
 }

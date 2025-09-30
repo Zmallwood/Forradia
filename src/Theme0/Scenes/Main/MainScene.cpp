@@ -4,42 +4,33 @@
  */
 
 #include "MainScene.hpp"
-#include "Theme0/Theme0Mechanics/WorldView/WorldView.hpp"
-#include "Theme0/Theme0Mechanics/PlayerMovement/UpdateKeyboardMovement.hpp"
-#include "Theme0/Theme0Mechanics/PlayerMovement/UpdateMouseMovement.hpp"
-#include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
-#include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
-#include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Sub/AddMainSceneGUIComponents.hpp"
+#include "Theme0/Theme0Mechanics/CreatureMovement/UpdateCreatureMovement.hpp"
+#include "Theme0/Theme0Mechanics/KeyboardBindings/UpdateKeyboardBindingActions.hpp"
+#include "Theme0/Theme0Mechanics/PlayerMovement/UpdateKeyboardMovement.hpp"
+#include "Theme0/Theme0Mechanics/PlayerMovement/UpdateMouseMovement.hpp"
+#include "Theme0/Theme0Mechanics/WorldInteraction/TileHovering.hpp"
+#include "Theme0/Theme0Mechanics/WorldView/WorldView.hpp"
 
-namespace Forradia
-{
-    void MainScene::InitializeDerived()
-    {
-        AddMainSceneGUIComponents(GetGUI());
-    }
+namespace Forradia {
+  void MainScene::InitializeDerived() { AddMainSceneGUIComponents(GetGUI()); }
 
-    void MainScene::OnEnterDerived()
-    {
-        _<GUITextConsole>().Print("You have entered the world.");
-    }
+  void MainScene::OnEnterDerived() {
+    _<GUITextConsole>().Print("You have entered the world.");
+  }
 
-    void MainScene::UpdateDerived()
-    {
-        UpdateCreatureMovement();
+  void MainScene::UpdateDerived() {
+    UpdateCreatureMovement();
 
-        UpdateMouseMovement();
+    UpdateMouseMovement();
 
-        UpdateKeyboardMovement();
+    UpdateKeyboardMovement();
 
-        _<TileHovering>().Update();
+    _<TileHovering>().Update();
 
-        UpdateKeyboardBindingActions();
-    }
+    UpdateKeyboardBindingActions();
+  }
 
-    void MainScene::RenderDerived() const
-    {
-        _<WorldView>().Render();
-    }
+  void MainScene::RenderDerived() const { _<WorldView>().Render(); }
 }

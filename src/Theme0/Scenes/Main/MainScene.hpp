@@ -7,17 +7,15 @@
 
 #include "Core/ScenesCore/IScene.hpp"
 
-namespace Forradia
-{
-    class MainScene : public IScene
-    {
-    protected:
-        void InitializeDerived() override;
-        
-        void OnEnterDerived() override;
+namespace Forradia {
+  class MainScene : public IScene {
+  protected:
+    void InitializeDerived() override;
 
-        void UpdateDerived() override;
+    void OnEnterDerived() override;
 
-        void RenderDerived() const override;
-    };
+    void UpdateDerived() override;
+
+    void RenderDerived() const override;
+  };
 }

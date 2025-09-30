@@ -5,30 +5,28 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class MouseButton
-    {
-    public:
-        void Reset();
+namespace Forradia {
+  class MouseButton {
+  public:
+    void Reset();
 
-        void RegisterPress();
+    void RegisterPress();
 
-        void RegisterRelease();
+    void RegisterRelease();
 
-        bool IsPressedPickResult();
+    bool IsPressedPickResult();
 
-        bool GetHasBeenFiredPickResult();
+    bool GetHasBeenFiredPickResult();
 
-        bool GetHasBeenFiredDontPickResult();
+    bool GetHasBeenFiredDontPickResult();
 
-        bool GetHasBeenReleasedPickResult();
+    bool GetHasBeenReleasedPickResult();
 
-        bool GetHasBeenReleasedDontPickResult();
+    bool GetHasBeenReleasedDontPickResult();
 
-    private:
-        bool m_isPressed{false};
-        bool m_hasBeenFired {false};
-        bool m_hasBeenReleased {false};
-    };
+  private:
+    bool m_isPressed{false};
+    bool m_hasBeenFired{false};
+    bool m_hasBeenReleased{false};
+  };
 }

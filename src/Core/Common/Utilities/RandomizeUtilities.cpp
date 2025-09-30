@@ -5,15 +5,8 @@
 
 #include "RandomizeUtilities.hpp"
 
-namespace Forradia
-{
-    void Randomize()
-    {
-        srand(time(nullptr));
-    }
+namespace Forradia {
+  void Randomize() { srand(time(nullptr)); }
 
-    int RandomInt(int upperLimit)
-    {
-        return rand() % upperLimit;
-    }
+  int RandomInt(int upperLimit) { return rand() % upperLimit; }
 }

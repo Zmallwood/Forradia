@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class GUI;
+namespace Forradia {
+  class GUI;
 
-    void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI);
+  void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI);
 }

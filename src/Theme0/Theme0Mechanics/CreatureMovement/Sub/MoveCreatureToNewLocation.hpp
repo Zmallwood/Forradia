@@ -5,10 +5,9 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Creature;
+namespace Forradia {
+  class Creature;
 
-    void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
-                                   Point newPosition);
+  void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
+                                 Point newPosition);
 }

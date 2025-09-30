@@ -6,31 +6,24 @@
 #include "IScene.hpp"
 #include "Core/GUICore/GUI.hpp"
 
-namespace Forradia
-{
-    void IScene::Initialize()
-    {
-        m_gui = std::make_shared<GUI>();
+namespace Forradia {
+  void IScene::Initialize() {
+    m_gui = std::make_shared<GUI>();
 
-        InitializeDerived();
-    }
+    InitializeDerived();
+  }
 
-    void IScene::OnEnter()
-    {
-        OnEnterDerived();
-    }
+  void IScene::OnEnter() { OnEnterDerived(); }
 
-    void IScene::Update()
-    {
-        m_gui->Update();
+  void IScene::Update() {
+    m_gui->Update();
 
-        UpdateDerived();
-    }
+    UpdateDerived();
+  }
 
-    void IScene::Render() const
-    {
-        RenderDerived();
+  void IScene::Render() const {
+    RenderDerived();
 
-        m_gui->Render();
-    }
+    m_gui->Render();
+  }
 }

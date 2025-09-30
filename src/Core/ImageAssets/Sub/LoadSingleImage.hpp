@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    SharedPtr<SDL_Texture> LoadSingleImage(StringView path);
+namespace Forradia {
+  SharedPtr<SDL_Texture> LoadSingleImage(StringView path);
 }

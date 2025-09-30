@@ -6,27 +6,21 @@
 #include "CanvasUtilities.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 
-namespace Forradia
-{
-    Size GetCanvasSize()
-    {
-        Size canvasSize;
+namespace Forradia {
+  Size GetCanvasSize() {
+    Size canvasSize;
 
-        SDL_GetWindowSize(
-            _<SDLDevice>().GetWindow().get(),
-            &canvasSize.width,
-            &canvasSize.height);
+    SDL_GetWindowSize(_<SDLDevice>().GetWindow().get(), &canvasSize.width,
+                      &canvasSize.height);
 
-        return canvasSize;
-    }
+    return canvasSize;
+  }
 
-    float CalculateAspectRatio()
-    {
-        auto canvasSize{GetCanvasSize()};
+  float CalculateAspectRatio() {
+    auto canvasSize{GetCanvasSize()};
 
-        auto aspectRatio{
-            CFloat(canvasSize.width) / canvasSize.height};
+    auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
 
-        return aspectRatio;
-    }
+    return aspectRatio;
+  }
 }

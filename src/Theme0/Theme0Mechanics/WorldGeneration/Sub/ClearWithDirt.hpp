@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void ClearWithDirt();
+namespace Forradia {
+  void ClearWithDirt();
 }

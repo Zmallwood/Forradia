@@ -4,24 +4,21 @@
  */
 
 #include "GUIFPSPanel.hpp"
-#include "GUILabel.hpp"
 #include "Core/FPSCounter/FPSCounter.hpp"
+#include "GUILabel.hpp"
 
-namespace Forradia
-{
-    void GUIFPSPanel::Initialize()
-    {
-        m_fpsTextPanel = std::make_shared<GUILabel>(0.01f, 0.01f, 0.1f, 0.05f);
+namespace Forradia {
+  void GUIFPSPanel::Initialize() {
+    m_fpsTextPanel = std::make_shared<GUILabel>(0.01f, 0.01f, 0.1f, 0.05f);
 
-        AddChildComponent(m_fpsTextPanel);
-    }
+    AddChildComponent(m_fpsTextPanel);
+  }
 
-    void GUIFPSPanel::UpdateDerived()
-    {
-        GUIMovablePanel::UpdateDerived();
+  void GUIFPSPanel::UpdateDerived() {
+    GUIMovablePanel::UpdateDerived();
 
-        auto fps{_<FPSCounter>().GetFPS()};
+    auto fps{_<FPSCounter>().GetFPS()};
 
-        m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
-    }
+    m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
+  }
 }

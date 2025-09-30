@@ -5,38 +5,28 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Tile;
-    class Creature;
+namespace Forradia {
+  class Tile;
+  class Creature;
 
-    class WorldArea
-    {
-    public:
-        WorldArea()
-        {
-            Initialize();
-        }
+  class WorldArea {
+  public:
+    WorldArea() { Initialize(); }
 
-        Size GetSize() const;
+    Size GetSize() const;
 
-        bool IsValidCoordinate(int x,
-                               int y) const;
+    bool IsValidCoordinate(int x, int y) const;
 
-        SharedPtr<Tile> GetTile(int x,
-                                int y) const;
+    SharedPtr<Tile> GetTile(int x, int y) const;
 
-        SharedPtr<Tile> GetTile(Point coordinate) const;
+    SharedPtr<Tile> GetTile(Point coordinate) const;
 
-        auto &GetCreaturesMirrorRef()
-        {
-            return m_creaturesMirror;
-        }
+    auto &GetCreaturesMirrorRef() { return m_creaturesMirror; }
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        Vector<Vector<SharedPtr<Tile>>> m_tiles;
-        Map<SharedPtr<Creature>, Point> m_creaturesMirror;
-    };
+    Vector<Vector<SharedPtr<Tile>>> m_tiles;
+    Map<SharedPtr<Creature>, Point> m_creaturesMirror;
+  };
 }

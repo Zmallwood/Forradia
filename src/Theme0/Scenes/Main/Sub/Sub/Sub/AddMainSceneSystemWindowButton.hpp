@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class GUI;
+namespace Forradia {
+  class GUI;
 
-    void AddMainSceneSystemWindowButton(SharedPtr<GUI> mainSceneGUI);
+  void AddMainSceneSystemWindowButton(SharedPtr<GUI> mainSceneGUI);
 }

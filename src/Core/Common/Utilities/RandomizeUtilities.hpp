@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void Randomize();
+namespace Forradia {
+  void Randomize();
 
-    int RandomInt(int upperLimit);
+  int RandomInt(int upperLimit);
 }

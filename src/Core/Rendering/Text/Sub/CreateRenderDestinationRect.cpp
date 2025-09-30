@@ -5,29 +5,24 @@
 
 #include "CreateRenderDestinationRect.hpp"
 
-namespace Forradia
-{
-    SDL_Rect CreateRenderDestinationRect(float x,
-                                         float y,
-                                         Size textDimensions,
-                                         bool centerAlign)
-    {
-        SDL_Rect rectResult;
+namespace Forradia {
+  SDL_Rect CreateRenderDestinationRect(float x, float y, Size textDimensions,
+                                       bool centerAlign) {
+    SDL_Rect rectResult;
 
-        auto canvasSize{GetCanvasSize()};
+    auto canvasSize{GetCanvasSize()};
 
-        rectResult.x = CInt(x * canvasSize.width);
-        rectResult.y = CInt(y * canvasSize.height);
+    rectResult.x = CInt(x * canvasSize.width);
+    rectResult.y = CInt(y * canvasSize.height);
 
-        rectResult.w = textDimensions.width;
-        rectResult.h = textDimensions.height;
+    rectResult.w = textDimensions.width;
+    rectResult.h = textDimensions.height;
 
-        if (centerAlign)
-        {
-            rectResult.x -= rectResult.w / 2;
-            rectResult.y -= rectResult.h / 2;
-        }
-
-        return rectResult;
+    if (centerAlign) {
+      rectResult.x -= rectResult.w / 2;
+      rectResult.y -= rectResult.h / 2;
     }
+
+    return rectResult;
+  }
 }

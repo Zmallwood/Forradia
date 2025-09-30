@@ -7,31 +7,19 @@
 #include "Sub/DrawImage.hpp"
 #include "Sub/DrawImageWithAutoHeight.hpp"
 
-namespace Forradia
-{
-    void ImageRenderer::DrawImage(StringView imageName,
-                                  float x,
-                                  float y,
-                                  float width,
-                                  float height) const
-    {
-        DrawImage(Hash(imageName), x, y, width, height);
-    }
+namespace Forradia {
+  void ImageRenderer::DrawImage(StringView imageName, float x, float y,
+                                float width, float height) const {
+    DrawImage(Hash(imageName), x, y, width, height);
+  }
 
-    void ImageRenderer::DrawImage(int imageNameHash,
-                                  float x,
-                                  float y,
-                                  float width,
-                                  float height) const
-    {
-        Forradia::DrawImage(imageNameHash, x, y, width, height);
-    }
+  void ImageRenderer::DrawImage(int imageNameHash, float x, float y,
+                                float width, float height) const {
+    Forradia::DrawImage(imageNameHash, x, y, width, height);
+  }
 
-    void ImageRenderer::DrawImageWithAutoHeight(StringView imageName,
-                                  float x,
-                                  float y,
-                                  float width) const
-    {
-        Forradia::DrawImageWithAutoHeight(imageName, x, y, width);
-    }
+  void ImageRenderer::DrawImageWithAutoHeight(StringView imageName, float x,
+                                              float y, float width) const {
+    Forradia::DrawImageWithAutoHeight(imageName, x, y, width);
+  }
 }

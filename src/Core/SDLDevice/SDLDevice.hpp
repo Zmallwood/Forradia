@@ -5,28 +5,23 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class SDLDevice
-    {
-    public:
-        SDLDevice()
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class SDLDevice {
+  public:
+    SDLDevice() { Initialize(); }
 
-        void ClearCanvas() const;
+    void ClearCanvas() const;
 
-        void PresentCanvas() const;
+    void PresentCanvas() const;
 
-        auto GetWindow() const { return m_window; }
+    auto GetWindow() const { return m_window; }
 
-        auto GetRenderer() const { return m_renderer; }
+    auto GetRenderer() const { return m_renderer; }
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        SharedPtr<SDL_Window> m_window;
-        SharedPtr<SDL_Renderer> m_renderer;
-    };
+    SharedPtr<SDL_Window> m_window;
+    SharedPtr<SDL_Renderer> m_renderer;
+  };
 }

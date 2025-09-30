@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void RunNewTheme0();
+namespace Forradia {
+  void RunNewTheme0();
 }

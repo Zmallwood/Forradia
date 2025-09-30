@@ -7,25 +7,21 @@
 
 #include "GUIMovablePanel.hpp"
 
-namespace Forradia
-{
-    class GUILabel;
+namespace Forradia {
+  class GUILabel;
 
-    class GUIFPSPanel : public GUIMovablePanel
-    {
-    public:
-        GUIFPSPanel()
-            : GUIMovablePanel(0.92f, 0.02f, 0.07f, 0.04f)
-        {
-            Initialize();
-        }
+  class GUIFPSPanel : public GUIMovablePanel {
+  public:
+    GUIFPSPanel() : GUIMovablePanel(0.92f, 0.02f, 0.07f, 0.04f) {
+      Initialize();
+    }
 
-    protected:
-        void UpdateDerived() override;
+  protected:
+    void UpdateDerived() override;
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        SharedPtr<GUILabel> m_fpsTextPanel;
-    };
+    SharedPtr<GUILabel> m_fpsTextPanel;
+  };
 }

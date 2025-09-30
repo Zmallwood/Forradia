@@ -5,7 +5,9 @@
 
 #pragma once
 
-namespace Forradia
-{
-    static constexpr int k_oneSecondMillis{1000};
+namespace Forradia {
+  // Constants that may be used throughout the project.
+
+  static constexpr int k_oneSecondMillis{
+      1000}; ///< Number of milliseconds in one second.
 }

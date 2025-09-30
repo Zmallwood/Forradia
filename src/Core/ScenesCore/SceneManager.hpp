@@ -5,24 +5,21 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class IScene;
+namespace Forradia {
+  class IScene;
 
-    class SceneManager
-    {
-    public:
-        void AddScene(StringView sceneName,
-                      IScene &scene);
+  class SceneManager {
+  public:
+    void AddScene(StringView sceneName, IScene &scene);
 
-        void GoToScene(StringView sceneName);
+    void GoToScene(StringView sceneName);
 
-        void UpdateCurrentScene();
+    void UpdateCurrentScene();
 
-        void RenderCurrentScene() const;
+    void RenderCurrentScene() const;
 
-    private:
-        Map<int, IScene &> m_scenes;
-        int m_currentScene{0};
-    };
+  private:
+    Map<int, IScene &> m_scenes;
+    int m_currentScene{0};
+  };
 }

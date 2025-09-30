@@ -5,10 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    SDL_Rect CreateRenderDestinationRect(float x,
-                                         float y,
-                                         Size textDimensions,
-                                         bool centerAlign);
+namespace Forradia {
+  SDL_Rect CreateRenderDestinationRect(float x, float y, Size textDimensions,
+                                       bool centerAlign);
 }

@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    String GetFileExtension(StringView path);
+namespace Forradia {
+  String GetFileExtension(StringView path);
 
-    String GetFileNameNoExtension(StringView path);
+  String GetFileNameNoExtension(StringView path);
 }

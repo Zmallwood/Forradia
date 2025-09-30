@@ -5,19 +5,17 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class GameProperties
-    {
-    public:
-        static constexpr String k_gameWindowTitle{"Forradia"};
+namespace Forradia {
+  class GameProperties {
+  public:
+    static constexpr String k_gameWindowTitle{"Forradia"};
 
-        static constexpr Color k_clearColor{Colors::Black};
+    static constexpr Color k_clearColor{Colors::Black};
 
-        static constexpr int k_numGridRows{15};
+    static constexpr int k_numGridRows{15};
 
-        static constexpr Size k_worldAreaSize{120, 100};
+    static constexpr Size k_worldAreaSize{120, 100};
 
-        static constexpr float k_worldScalingFactor{5.0f};
-    };
+    static constexpr float k_worldScalingFactor{5.0f};
+  };
 }

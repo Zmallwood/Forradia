@@ -6,15 +6,12 @@
 #include "CanvasConvertUtilities.hpp"
 #include "CanvasUtilities.hpp"
 
-namespace Forradia
-{
-    float ConvertWidthToHeight(float width)
-    {
-        return width * CalculateAspectRatio();
-    }
+namespace Forradia {
+  float ConvertWidthToHeight(float width) {
+    return width * CalculateAspectRatio();
+  }
 
-    float ConvertHeightToWidth(float height)
-    {
-        return height / CalculateAspectRatio();
-    }
+  float ConvertHeightToWidth(float height) {
+    return height / CalculateAspectRatio();
+  }
 }

@@ -7,22 +7,20 @@
 
 #include "Core/ScenesCore/IScene.hpp"
 
-namespace Forradia
-{
-    class GUIComponent;
+namespace Forradia {
+  class GUIComponent;
 
-    class IntroScene : public IScene
-    {
-    protected:
-        void InitializeDerived() override;
+  class IntroScene : public IScene {
+  protected:
+    void InitializeDerived() override;
 
-        void OnEnterDerived() override;
+    void OnEnterDerived() override;
 
-        void UpdateDerived() override;
+    void UpdateDerived() override;
 
-        void RenderDerived() const override;
+    void RenderDerived() const override;
 
-    private:
-        SharedPtr<GUIComponent> m_startText;
-    };
+  private:
+    SharedPtr<GUIComponent> m_startText;
+  };
 }

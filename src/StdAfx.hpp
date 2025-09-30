@@ -15,7 +15,6 @@
 #include <vector>
 #include <functional>
 #include <ranges>
-#include <any>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

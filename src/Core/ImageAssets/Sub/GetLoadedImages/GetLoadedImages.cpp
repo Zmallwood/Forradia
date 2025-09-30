@@ -7,41 +7,33 @@
 #include "../LoadSingleImage.hpp"
 #include "Sub/ConstructAbsoluteImagesPath.hpp"
 
-namespace Forradia
-{
-    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView relativeImagesPath)
-    {
-        Map<int, SharedPtr<SDL_Texture>> imagesResult;
+namespace Forradia {
+  Map<int, SharedPtr<SDL_Texture>>
+  GetLoadedImages(StringView relativeImagesPath) {
+    Map<int, SharedPtr<SDL_Texture>> imagesResult;
 
-        auto imagesPath{ConstructAbsoluteImagesPath(relativeImagesPath)};
+    auto imagesPath{ConstructAbsoluteImagesPath(relativeImagesPath)};
 
-        if (!std::filesystem::exists(imagesPath))
-        {
-            return imagesResult;
-        }
-
-        std::filesystem::recursive_directory_iterator rdi{
-            imagesPath};
-
-        for (auto it : rdi)
-        {
-            auto filePath{
-                Replace(it.path().string(), '\\', '/')};
-
-            if (GetFileExtension(filePath) == "png")
-            {
-                auto fileName{
-                    GetFileNameNoExtension(filePath)};
-
-                auto hash{Hash(fileName)};
-
-                auto image{
-                    LoadSingleImage(filePath)};
-
-                imagesResult.insert({hash, image});
-            }
-        }
-
-        return imagesResult;
+    if (!std::filesystem::exists(imagesPath)) {
+      return imagesResult;
     }
+
+    std::filesystem::recursive_directory_iterator rdi{imagesPath};
+
+    for (auto it : rdi) {
+      auto filePath{Replace(it.path().string(), '\\', '/')};
+
+      if (GetFileExtension(filePath) == "png") {
+        auto fileName{GetFileNameNoExtension(filePath)};
+
+        auto hash{Hash(fileName)};
+
+        auto image{LoadSingleImage(filePath)};
+
+        imagesResult.insert({hash, image});
+      }
+    }
+
+    return imagesResult;
+  }
 }

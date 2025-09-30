@@ -7,8 +7,7 @@
 
 #include "../FontSizes.hpp"
 
-namespace Forradia
-{
-    Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
-                                                    StringView relativeFontPath);
+namespace Forradia {
+  Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
+                                                  StringView relativeFontPath);
 }

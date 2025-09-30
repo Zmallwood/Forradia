@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    Map<int, SharedPtr<SDL_Texture>> GetLoadedImages(StringView relativeImagesPath);
+namespace Forradia {
+  Map<int, SharedPtr<SDL_Texture>>
+  GetLoadedImages(StringView relativeImagesPath);
 }

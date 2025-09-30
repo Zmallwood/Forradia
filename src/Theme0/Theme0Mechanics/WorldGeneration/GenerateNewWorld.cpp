@@ -5,32 +5,30 @@
 
 #include "GenerateNewWorld.hpp"
 #include "Sub/ClearWithDirt.hpp"
+#include "Sub/GenerateCreatures.hpp"
+#include "Sub/GenerateElevation.hpp"
 #include "Sub/GenerateGrass.hpp"
 #include "Sub/GenerateLakes.hpp"
 #include "Sub/GenerateObjects.hpp"
-#include "Sub/GenerateCreatures.hpp"
-#include "Sub/GenerateElevation.hpp"
-#include "Sub/GenerateRock.hpp"
 #include "Sub/GenerateRivers.hpp"
+#include "Sub/GenerateRock.hpp"
 
-namespace Forradia
-{
-    void GenerateNewWorld()
-    {
-        ClearWithDirt();
+namespace Forradia {
+  void GenerateNewWorld() {
+    ClearWithDirt();
 
-        GenerateGrass();
+    GenerateGrass();
 
-        GenerateLakes();
+    GenerateLakes();
 
-        GenerateElevation();
+    GenerateElevation();
 
-        GenerateRock();
+    GenerateRock();
 
-        GenerateRivers();
+    GenerateRivers();
 
-        GenerateObjects();
+    GenerateObjects();
 
-        GenerateCreatures();
-    }
+    GenerateCreatures();
+  }
 }

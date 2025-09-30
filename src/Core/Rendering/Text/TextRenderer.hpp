@@ -7,32 +7,25 @@
 
 #include "Sub/FontSizes.hpp"
 
-namespace Forradia
-{
-    class TextRenderer
-    {
-    public:
-        TextRenderer()
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class TextRenderer {
+  public:
+    TextRenderer() { Initialize(); }
 
-        void DrawString(StringView text,
-                        float x,
-                        float y,
-                        FontSizes fontSize = FontSizes::_20,
-                        bool centerAlign = false,
-                        Color textColor = Colors::WheatTransparent) const;
+    void DrawString(StringView text, float x, float y,
+                    FontSizes fontSize = FontSizes::_20,
+                    bool centerAlign = false,
+                    Color textColor = Colors::WheatTransparent) const;
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        void AddFonts();
+    void AddFonts();
 
-        void AddFontSize(FontSizes fontSize);
+    void AddFontSize(FontSizes fontSize);
 
-        const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
+    const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
 
-        Map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
-    };
+    Map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
+  };
 }

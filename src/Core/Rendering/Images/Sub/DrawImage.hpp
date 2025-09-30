@@ -5,11 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void DrawImage(int imageNameHash,
-                   float x,
-                   float y,
-                   float width,
-                   float height);
+namespace Forradia {
+  void DrawImage(int imageNameHash, float x, float y, float width,
+                 float height);
 }

@@ -5,26 +5,16 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class ImageRenderer
-    {
-    public:
-        void DrawImage(StringView imageName,
-                       float x,
-                       float y,
-                       float width,
-                       float height) const;
+namespace Forradia {
+  class ImageRenderer {
+  public:
+    void DrawImage(StringView imageName, float x, float y, float width,
+                   float height) const;
 
-        void DrawImage(int imageNameHash,
-                       float x,
-                       float y,
-                       float width,
-                       float height) const;
+    void DrawImage(int imageNameHash, float x, float y, float width,
+                   float height) const;
 
-        void DrawImageWithAutoHeight(StringView imageName,
-                       float x,
-                       float y,
-                       float width) const;
-    };
+    void DrawImageWithAutoHeight(StringView imageName, float x, float y,
+                                 float width) const;
+  };
 }

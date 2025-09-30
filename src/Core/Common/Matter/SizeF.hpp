@@ -5,12 +5,13 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class SizeF
-    {
-    public:
-        float width{0.0f};
-        float height{0.0f};
-    };
+namespace Forradia {
+  /**
+   * \brief Size in 2D space with dimensions of float values.
+   */
+  class SizeF {
+  public:
+    float width{0.0f};  ///< Width.
+    float height{0.0f}; ///< Height.
+  };
 }

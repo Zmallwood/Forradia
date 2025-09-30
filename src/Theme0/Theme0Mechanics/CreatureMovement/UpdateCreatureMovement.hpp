@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void UpdateCreatureMovement();
+namespace Forradia {
+  void UpdateCreatureMovement();
 }

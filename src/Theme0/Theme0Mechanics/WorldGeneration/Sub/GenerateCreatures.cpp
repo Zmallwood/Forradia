@@ -4,37 +4,35 @@
  */
 
 #include "GenerateCreatures.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Creature.hpp"
-#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
-namespace Forradia
-{
-    void GenerateCreatures()
-    {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+namespace Forradia {
+  void GenerateCreatures() {
+    auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto size{worldArea->GetSize()};
+    auto size{worldArea->GetSize()};
 
-        auto scale{_<GameProperties>().k_worldScalingFactor};
+    auto scale{_<GameProperties>().k_worldScalingFactor};
 
-        auto numRats{200* scale + RandomInt(15* scale)};
+    auto numRats{200 * scale + RandomInt(15 * scale)};
 
-        for (auto i = 0; i < numRats; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
+    for (auto i = 0; i < numRats; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+      auto tile{worldArea->GetTile(x, y)};
 
-            if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
-            {
-                auto newCreature = std::make_shared<Creature>("CreatureRat");
-                tile->SetCreature(newCreature);
-                worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
-            }
-        }
+      if (tile && !tile->GetCreature() &&
+          tile->GetGround() != Hash("GroundWater")) {
+        auto newCreature = std::make_shared<Creature>("CreatureRat");
+        tile->SetCreature(newCreature);
+        worldArea->GetCreaturesMirrorRef().insert(
+            {tile->GetCreature(), {x, y}});
+      }
     }
+  }
 }

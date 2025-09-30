@@ -5,11 +5,10 @@
 
 #pragma once
 
-namespace Forradia
-{
-    float InvertMovementSpeed(float number);
+namespace Forradia {
+  float InvertMovementSpeed(float number);
 
-    int Normalize(int value);
+  int Normalize(int value);
 
-    float Ceil(float number, float k);
+  float Ceil(float number, float k);
 }

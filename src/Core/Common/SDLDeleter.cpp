@@ -5,30 +5,29 @@
 
 #include "SDLDeleter.hpp"
 
-namespace Forradia
-{
-    void SDLDeleter::operator()(SDL_Window *window) const
-    {
-        SDL_DestroyWindow(window);
-    }
+namespace Forradia {
+  void SDLDeleter::operator()(SDL_Window *window) const {
+    // Free up resources from a SDL_Window object.
+    SDL_DestroyWindow(window);
+  }
 
-    void SDLDeleter::operator()(SDL_Renderer *renderer) const
-    {
-        SDL_DestroyRenderer(renderer);
-    }
+  void SDLDeleter::operator()(SDL_Renderer *renderer) const {
+    // Free up resources from a SDL_Renderer object.
+    SDL_DestroyRenderer(renderer);
+  }
 
-    void SDLDeleter::operator()(SDL_Surface *surface) const
-    {
-        SDL_FreeSurface(surface);
-    }
+  void SDLDeleter::operator()(SDL_Surface *surface) const {
+    // Free up resources from a SDL_Surface object.
+    SDL_FreeSurface(surface);
+  }
 
-    void SDLDeleter::operator()(SDL_Texture *texture) const
-    {
-        SDL_DestroyTexture(texture);
-    }
+  void SDLDeleter::operator()(SDL_Texture *texture) const {
+    // Free up resources from a SDL_Texture object.
+    SDL_DestroyTexture(texture);
+  }
 
-    void SDLDeleter::operator()(TTF_Font *font) const
-    {
-        TTF_CloseFont(font);
-    }
+  void SDLDeleter::operator()(TTF_Font *font) const {
+    // Free up resources from a TTF_Font object.
+    TTF_CloseFont(font);
+  }
 }

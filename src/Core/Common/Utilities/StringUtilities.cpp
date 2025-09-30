@@ -5,20 +5,12 @@
 
 #include "StringUtilities.hpp"
 
-namespace Forradia
-{
-    String Replace(StringView text,
-                   char replaced,
-                   char replacedWith)
-    {
-        String textData{text.data()};
+namespace Forradia {
+  String Replace(StringView text, char replaced, char replacedWith) {
+    String textData{text.data()};
 
-        std::replace(
-            textData.begin(),
-            textData.end(),
-            replaced,
-            replacedWith);
+    std::replace(textData.begin(), textData.end(), replaced, replacedWith);
 
-        return textData;
-    }
+    return textData;
+  }
 }

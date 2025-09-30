@@ -6,29 +6,19 @@
 #include "LoadSingleImage.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 
-namespace Forradia
-{
-    SharedPtr<SDL_Texture> LoadSingleImage(StringView path)
-    {
-        auto surface{
-            SharedPtr<SDL_Surface>(
-                IMG_Load(path.data()),
-                SDLDeleter())};
+namespace Forradia {
+  SharedPtr<SDL_Texture> LoadSingleImage(StringView path) {
+    auto surface{SharedPtr<SDL_Surface>(IMG_Load(path.data()), SDLDeleter())};
 
-        if (surface)
-        {
-            auto renderer{
-                _<SDLDevice>().GetRenderer().get()};
+    if (surface) {
+      auto renderer{_<SDLDevice>().GetRenderer().get()};
 
-            auto texture{
-                SharedPtr<SDL_Texture>(
-                    SDL_CreateTextureFromSurface(renderer,
-                                                 surface.get()),
-                    SDLDeleter())};
+      auto texture{SharedPtr<SDL_Texture>(
+          SDL_CreateTextureFromSurface(renderer, surface.get()), SDLDeleter())};
 
-            return texture;
-        }
-
-        return nullptr;
+      return texture;
     }
+
+    return nullptr;
+  }
 }

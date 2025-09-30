@@ -7,28 +7,24 @@
 
 #include "Object.hpp"
 
-namespace Forradia
-{
-    class TreeObject : public Object
-    {
-    public:
-        TreeObject(StringView objectTypeName)
-            : Object(objectTypeName)
-        {
-            Initialize(objectTypeName);
-        }
+namespace Forradia {
+  class TreeObject : public Object {
+  public:
+    TreeObject(StringView objectTypeName) : Object(objectTypeName) {
+      Initialize(objectTypeName);
+    }
 
-        auto GetTrunkparts() const { return m_trunkParts; }
+    auto GetTrunkparts() const { return m_trunkParts; }
 
-        auto GetNeedleTypes() const { return m_needleTypes; }
+    auto GetNeedleTypes() const { return m_needleTypes; }
 
-        auto GetWidthFactor() const { return m_widthFactor; }
+    auto GetWidthFactor() const { return m_widthFactor; }
 
-    private:
-        void Initialize(StringView objectTypeName);
+  private:
+    void Initialize(StringView objectTypeName);
 
-        Vector<PointF> m_trunkParts;
-        Vector<int> m_needleTypes;
-        float m_widthFactor{1.0f};
-    };
+    Vector<PointF> m_trunkParts;
+    Vector<int> m_needleTypes;
+    float m_widthFactor{1.0f};
+  };
 }

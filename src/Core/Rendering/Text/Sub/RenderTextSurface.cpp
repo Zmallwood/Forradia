@@ -7,22 +7,18 @@
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "CreateRenderDestinationRect.hpp"
 
-namespace Forradia
-{
-    void RenderTextSurface(SDL_Surface *surface,
-                           float x,
-                           float y,
-                           Size textDimensions,
-                           bool centerAlign)
-    {
-        auto destinationRect{CreateRenderDestinationRect(x, y, textDimensions, centerAlign)};
+namespace Forradia {
+  void RenderTextSurface(SDL_Surface *surface, float x, float y,
+                         Size textDimensions, bool centerAlign) {
+    auto destinationRect{
+        CreateRenderDestinationRect(x, y, textDimensions, centerAlign)};
 
-        auto renderer{_<SDLDevice>().GetRenderer().get()};
+    auto renderer{_<SDLDevice>().GetRenderer().get()};
 
-        auto texture{SDL_CreateTextureFromSurface(renderer, surface)};
+    auto texture{SDL_CreateTextureFromSurface(renderer, surface)};
 
-        SDL_RenderCopy(renderer, texture, nullptr, &destinationRect);
+    SDL_RenderCopy(renderer, texture, nullptr, &destinationRect);
 
-        SDL_DestroyTexture(texture);
-    }
+    SDL_DestroyTexture(texture);
+  }
 }

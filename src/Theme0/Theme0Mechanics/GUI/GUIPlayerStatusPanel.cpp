@@ -7,19 +7,13 @@
 #include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Theme0/Theme0Mechanics/CoreGameObjects/Player.hpp"
 
-namespace Forradia
-{
-    void GUIPlayerStatusPanel::RenderDerived() const
-    {
-        GUIPanel::RenderDerived();
-        
-        auto bounds { GetBounds() };
-        
-        _<TextRenderer>().DrawString(
-            _<Player>().GetName(),
-            bounds.x + 0.01f,
-            bounds.y + 0.01f,
-            FontSizes::_26
-        );
-    }
+namespace Forradia {
+  void GUIPlayerStatusPanel::RenderDerived() const {
+    GUIPanel::RenderDerived();
+
+    auto bounds{GetBounds()};
+
+    _<TextRenderer>().DrawString(_<Player>().GetName(), bounds.x + 0.01f,
+                                 bounds.y + 0.01f, FontSizes::_26);
+  }
 }

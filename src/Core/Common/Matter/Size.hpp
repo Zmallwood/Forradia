@@ -5,12 +5,13 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Size
-    {
-    public:
-        int width{0};
-        int height{0};
-    };
+namespace Forradia {
+  /**
+   * \brief Size in 2D space, with the dimensions as int values.
+   */
+  class Size {
+  public:
+    int width{0};  ///< Width.
+    int height{0}; /// Height.
+  };
 }

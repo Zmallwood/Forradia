@@ -5,24 +5,22 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class KeyboardInput
-    {
-    public:
-        void Reset();
+namespace Forradia {
+  class KeyboardInput {
+  public:
+    void Reset();
 
-        void RegisterKeyPress(SDL_Keycode key);
+    void RegisterKeyPress(SDL_Keycode key);
 
-        void RegisterKeyRelease(SDL_Keycode key);
+    void RegisterKeyRelease(SDL_Keycode key);
 
-        bool KeyIsPressed(SDL_Keycode key) const;
+    bool KeyIsPressed(SDL_Keycode key) const;
 
-        bool KeyIsPressedPickResult(SDL_Keycode key);
+    bool KeyIsPressedPickResult(SDL_Keycode key);
 
-        bool AnyKeyIsPressedPickResult();
+    bool AnyKeyIsPressedPickResult();
 
-    private:
-        Set<SDL_Keycode> m_pressedKeys;
-    };
+  private:
+    Set<SDL_Keycode> m_pressedKeys;
+  };
 }

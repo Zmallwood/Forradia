@@ -5,8 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    Size MeasureRenderedText(StringView text,
-                             TTF_Font *fontRaw);
+namespace Forradia {
+  Size MeasureRenderedText(StringView text, TTF_Font *fontRaw);
 }

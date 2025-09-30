@@ -3,9 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
- #pragma once
+#pragma once
 
-namespace Forradia
-{
-    void GenerateRock();
+namespace Forradia {
+  void GenerateRock();
 }

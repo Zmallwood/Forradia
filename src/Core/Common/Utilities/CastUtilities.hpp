@@ -5,20 +5,10 @@
 
 #pragma once
 
-namespace Forradia
-{
-    int CInt(auto value)
-    {
-        return static_cast<int>(value);
-    }
+namespace Forradia {
+  int CInt(auto value) { return static_cast<int>(value); }
 
-    float CFloat(auto value)
-    {
-        return static_cast<float>(value);
-    }
+  float CFloat(auto value) { return static_cast<float>(value); }
 
-    Uint8 CUint8(auto value)
-    {
-        return static_cast<Uint8>(value);
-    }
+  Uint8 CUint8(auto value) { return static_cast<Uint8>(value); }
 }

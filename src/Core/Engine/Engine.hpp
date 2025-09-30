@@ -5,16 +5,14 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Engine
-    {
-    public:
-        void Run();
+namespace Forradia {
+  class Engine {
+  public:
+    void Run();
 
-        void Stop();
+    void Stop();
 
-    private:
-        bool m_running{true};
-    };
+  private:
+    bool m_running{true};
+  };
 }

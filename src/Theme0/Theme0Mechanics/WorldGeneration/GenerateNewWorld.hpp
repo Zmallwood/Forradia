@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void GenerateNewWorld();
+namespace Forradia {
+  void GenerateNewWorld();
 }

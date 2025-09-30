@@ -5,10 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void DrawImageWithAutoHeight(StringView imageName,
-                                 float x,
-                                 float y,
-                                 float width);
+namespace Forradia {
+  void DrawImageWithAutoHeight(StringView imageName, float x, float y,
+                               float width);
 }

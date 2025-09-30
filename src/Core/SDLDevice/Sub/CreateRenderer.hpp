@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    SharedPtr<SDL_Renderer> CreateRenderer(SharedPtr<SDL_Window> window);
+namespace Forradia {
+  SharedPtr<SDL_Renderer> CreateRenderer(SharedPtr<SDL_Window> window);
 }

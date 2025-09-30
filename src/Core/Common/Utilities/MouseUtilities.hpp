@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    PointF GetNormalizedMousePosition();
+namespace Forradia {
+  PointF GetNormalizedMousePosition();
 }

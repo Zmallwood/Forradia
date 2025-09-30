@@ -5,25 +5,18 @@
 
 #include "UpdateKeyboardBindingActions.hpp"
 #include "Core/Input/Keyboard/KeyboardInput.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
 
-namespace Forradia
-{
-    void UpdateKeyboardBindingActions()
-    {
-        if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE))
-        {
-            _<GUISystemMenu>().ToggleVisibility();
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c))
-        {
-            _<GUIPlayerBodyWindow>().ToggleVisibility();
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b))
-        {
-            _<GUIInventoryWindow>().ToggleVisibility();
-        }
+namespace Forradia {
+  void UpdateKeyboardBindingActions() {
+    if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
+      _<GUISystemMenu>().ToggleVisibility();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {
+      _<GUIPlayerBodyWindow>().ToggleVisibility();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
+      _<GUIInventoryWindow>().ToggleVisibility();
     }
+  }
 }

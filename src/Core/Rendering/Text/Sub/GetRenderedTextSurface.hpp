@@ -5,9 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    SDL_Surface *GetRenderedTextSurface(StringView text,
-                                        TTF_Font *fontRaw,
-                                        Color textColor);
+namespace Forradia {
+  SDL_Surface *GetRenderedTextSurface(StringView text, TTF_Font *fontRaw,
+                                      Color textColor);
 }

@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void GenerateCreatures();
+namespace Forradia {
+  void GenerateCreatures();
 }

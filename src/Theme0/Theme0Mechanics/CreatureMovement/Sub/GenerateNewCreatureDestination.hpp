@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Creature;
+namespace Forradia {
+  class Creature;
 
-    void GenerateNewCreatureDestination(SharedPtr<Creature> creature);
+  void GenerateNewCreatureDestination(SharedPtr<Creature> creature);
 }

@@ -5,20 +5,13 @@
 
 #include "MeasureRenderedText.hpp"
 
-namespace Forradia
-{
-    Size MeasureRenderedText(StringView text,
-                             TTF_Font *fontRaw)
-    {
-        int textWidth;
-        int textHeight;
+namespace Forradia {
+  Size MeasureRenderedText(StringView text, TTF_Font *fontRaw) {
+    int textWidth;
+    int textHeight;
 
-        TTF_SizeText(
-            fontRaw,
-            text.data(),
-            &textWidth,
-            &textHeight);
+    TTF_SizeText(fontRaw, text.data(), &textWidth, &textHeight);
 
-        return {textWidth, textHeight};
-    }
+    return {textWidth, textHeight};
+  }
 }

@@ -5,23 +5,18 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class WorldArea;
+namespace Forradia {
+  class WorldArea;
 
-    class World
-    {
-    public:
-        World()
-        {
-            Initialize();
-        }
+  class World {
+  public:
+    World() { Initialize(); }
 
-        auto GetCurrentWorldArea() const { return m_currentWorldArea; }
+    auto GetCurrentWorldArea() const { return m_currentWorldArea; }
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        SharedPtr<WorldArea> m_currentWorldArea;
-    };
+    SharedPtr<WorldArea> m_currentWorldArea;
+  };
 }

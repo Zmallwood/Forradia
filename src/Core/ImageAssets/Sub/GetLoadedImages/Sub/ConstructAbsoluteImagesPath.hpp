@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    String ConstructAbsoluteImagesPath(StringView relativeImagesPath);
+namespace Forradia {
+  String ConstructAbsoluteImagesPath(StringView relativeImagesPath);
 }

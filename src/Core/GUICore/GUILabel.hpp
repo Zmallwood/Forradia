@@ -7,31 +7,22 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
-{
-    class GUILabel : public GUIComponent
-    {
-    public:
-        GUILabel(float x,
-                 float y,
-                 float width,
-                 float height,
-                 StringView text = "",
-                 bool centerAlign = false,
-                 Color color = Colors::WheatTransparent)
-            : GUIComponent(x, y, width, height),
-              m_text(text),
-              m_centerAlign(centerAlign),
-              m_color(color) {}
+namespace Forradia {
+  class GUILabel : public GUIComponent {
+  public:
+    GUILabel(float x, float y, float width, float height, StringView text = "",
+             bool centerAlign = false, Color color = Colors::WheatTransparent)
+        : GUIComponent(x, y, width, height), m_text(text),
+          m_centerAlign(centerAlign), m_color(color) {}
 
-        void SetText(StringView value) { m_text = value; }
+    void SetText(StringView value) { m_text = value; }
 
-    protected:
-        virtual void RenderDerived() const override;
+  protected:
+    virtual void RenderDerived() const override;
 
-    private:
-        String m_text;
-        bool m_centerAlign{false};
-        Color m_color;
-    };
+  private:
+    String m_text;
+    bool m_centerAlign{false};
+    Color m_color;
+  };
 }

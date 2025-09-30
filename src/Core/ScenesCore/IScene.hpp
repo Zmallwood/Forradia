@@ -5,33 +5,31 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class GUI;
+namespace Forradia {
+  class GUI;
 
-    class IScene
-    {
-    public:
-        void Initialize();
+  class IScene {
+  public:
+    void Initialize();
 
-        void Update();
+    void Update();
 
-        void Render() const;
+    void Render() const;
 
-        void OnEnter();
+    void OnEnter();
 
-    protected:
-        virtual void InitializeDerived() {}
+  protected:
+    virtual void InitializeDerived() {}
 
-        virtual void OnEnterDerived() {} 
+    virtual void OnEnterDerived() {}
 
-        virtual void UpdateDerived() {}
+    virtual void UpdateDerived() {}
 
-        virtual void RenderDerived() const {}
+    virtual void RenderDerived() const {}
 
-        auto GetGUI() const { return m_gui; }
+    auto GetGUI() const { return m_gui; }
 
-    private:
-        SharedPtr<GUI> m_gui;
-    };
+  private:
+    SharedPtr<GUI> m_gui;
+  };
 }

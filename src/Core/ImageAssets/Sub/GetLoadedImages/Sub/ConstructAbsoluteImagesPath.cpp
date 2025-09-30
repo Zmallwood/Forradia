@@ -5,16 +5,12 @@
 
 #include "ConstructAbsoluteImagesPath.hpp"
 
-namespace Forradia
-{
-    String ConstructAbsoluteImagesPath(StringView relativeImagesPath)
-    {
-        auto basePath{
-            String(SDL_GetBasePath())};
+namespace Forradia {
+  String ConstructAbsoluteImagesPath(StringView relativeImagesPath) {
+    auto basePath{String(SDL_GetBasePath())};
 
-        auto imagesPath{
-            basePath + relativeImagesPath.data()};
+    auto imagesPath{basePath + relativeImagesPath.data()};
 
-        return imagesPath;
-    }
+    return imagesPath;
+  }
 }

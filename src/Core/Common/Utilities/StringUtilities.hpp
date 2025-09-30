@@ -5,9 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    String Replace(StringView text,
-                   char replaced,
-                   char replacedWith);
+namespace Forradia {
+  String Replace(StringView text, char replaced, char replacedWith);
 }

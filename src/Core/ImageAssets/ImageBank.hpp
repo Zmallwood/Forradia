@@ -5,27 +5,22 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class ImageBank
-    {
-    public:
-        ImageBank()
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class ImageBank {
+  public:
+    ImageBank() { Initialize(); }
 
-        SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
+    SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
 
-        Size GetImageSize(int imageNameHash) const;
+    Size GetImageSize(int imageNameHash) const;
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        void LoadImages();
+    void LoadImages();
 
-        inline static const String k_relativeImagesPath{"./Resources/Images/"};
+    inline static const String k_relativeImagesPath{"./Resources/Images/"};
 
-        Map<int, SharedPtr<SDL_Texture>> m_images;
-    };
+    Map<int, SharedPtr<SDL_Texture>> m_images;
+  };
 }

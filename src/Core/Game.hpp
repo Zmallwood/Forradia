@@ -5,11 +5,9 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Game
-    {
-    public:
-        void Start() const;
-    };
+namespace Forradia {
+  class Game {
+  public:
+    void Start() const;
+  };
 }

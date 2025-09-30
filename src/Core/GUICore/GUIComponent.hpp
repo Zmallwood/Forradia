@@ -5,43 +5,39 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class GUIComponent
-    {
-    public:
-        GUIComponent(float x,
-                     float y,
-                     float width,
-                     float height)
-            : m_bounds({x, y, width, height}) {}
+namespace Forradia {
+  class GUIComponent {
+  public:
+    GUIComponent(float x, float y, float width, float height)
+        : m_bounds({x, y, width, height}) {}
 
-        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> component);
+    SharedPtr<GUIComponent>
+    AddChildComponent(SharedPtr<GUIComponent> component);
 
-        void Update();
+    void Update();
 
-        void Render() const;
+    void Render() const;
 
-        RectF GetBounds() const;
+    RectF GetBounds() const;
 
-        void ToggleVisibility();
+    void ToggleVisibility();
 
-        void SetVisible(bool value) { m_visible = value; }
+    void SetVisible(bool value) { m_visible = value; }
 
-        void SetParentComponent(GUIComponent *value) { m_parentComponent = value; }
+    void SetParentComponent(GUIComponent *value) { m_parentComponent = value; }
 
-    protected:
-        virtual void UpdateDerived() {}
+  protected:
+    virtual void UpdateDerived() {}
 
-        virtual void RenderDerived() const {}
+    virtual void RenderDerived() const {}
 
-        void SetPosition(PointF newPosition);
+    void SetPosition(PointF newPosition);
 
-    private:
-        RectF m_bounds;
-        Vector<SharedPtr<GUIComponent>> m_childComponents;
-        bool m_visible{true};
-        bool m_enabled{true};
-        GUIComponent *m_parentComponent{nullptr};
-    };
+  private:
+    RectF m_bounds;
+    Vector<SharedPtr<GUIComponent>> m_childComponents;
+    bool m_visible{true};
+    bool m_enabled{true};
+    GUIComponent *m_parentComponent{nullptr};
+  };
 }

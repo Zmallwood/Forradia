@@ -5,14 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    enum class BodyPartTypes
-    {
-        None,
-        OverallBody,
-        RightArm,
-        LeftArm,
-        Legs
-    };
+namespace Forradia {
+  enum class BodyPartTypes { None, OverallBody, RightArm, LeftArm, Legs };
 }

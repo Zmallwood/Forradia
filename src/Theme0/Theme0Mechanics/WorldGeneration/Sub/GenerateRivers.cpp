@@ -4,129 +4,118 @@
  */
 
 #include "GenerateRivers.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
-#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
-namespace Forradia
-{
-    void GenerateRivers()
-    {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+namespace Forradia {
+  void GenerateRivers() {
+    auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto size{worldArea->GetSize()};
-        
-        auto scale{_<GameProperties>().k_worldScalingFactor};
+    auto size{worldArea->GetSize()};
 
-        auto numRivers{20* scale + RandomInt(5* scale)};
+    auto scale{_<GameProperties>().k_worldScalingFactor};
 
-        for (auto i = 0; i < numRivers; i++)
-        {
-            auto x{CFloat(RandomInt(size.width))};
-            auto y{CFloat(RandomInt(size.height))};
+    auto numRivers{20 * scale + RandomInt(5 * scale)};
 
-            auto startAngle{RandomInt(360)};
-            auto length{45 + RandomInt(20)};
+    for (auto i = 0; i < numRivers; i++) {
+      auto x{CFloat(RandomInt(size.width))};
+      auto y{CFloat(RandomInt(size.height))};
 
-            auto prevXCoordinate{-1};
-            auto prevYCoordinate{-1};
+      auto startAngle{RandomInt(360)};
+      auto length{45 + RandomInt(20)};
 
-            SharedPtr<Tile> prevTile;
+      auto prevXCoordinate{-1};
+      auto prevYCoordinate{-1};
 
-            for (auto j = 0; j < length; j++)
-            {
-                auto angle {startAngle + std::sin(j*M_PI/10.0f)*45};
+      SharedPtr<Tile> prevTile;
 
-                auto xCoordinate{CInt(x)};
-                auto yCoordinate{CInt(y)};
+      for (auto j = 0; j < length; j++) {
+        auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
 
-                if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
-                {
-                    continue;
-                }
+        auto xCoordinate{CInt(x)};
+        auto yCoordinate{CInt(y)};
 
-                auto tile = worldArea->GetTile(xCoordinate, yCoordinate);
-
-                if (tile && prevTile)
-                {
-                    //tile->SetGround("GroundWater");
-
-                    if (xCoordinate == prevXCoordinate && yCoordinate > prevYCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::South);
-                        tile->SetRiverDirection2(Directions::North);
-                    }
-                    else if (xCoordinate == prevXCoordinate && yCoordinate < prevYCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::North);
-                        tile->SetRiverDirection2(Directions::South);
-                    }
-                    else if (yCoordinate == prevYCoordinate && xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::East);
-                        tile->SetRiverDirection2(Directions::West);
-                    }
-                    else if (yCoordinate == prevYCoordinate && xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::West);
-                        tile->SetRiverDirection2(Directions::East);
-                    }
-                    else if (yCoordinate < prevYCoordinate && xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::NorthEast);
-                        tile->SetRiverDirection2(Directions::SouthWest);
-                    }
-                    else if (yCoordinate > prevYCoordinate && xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::SouthEast);
-                        tile->SetRiverDirection2(Directions::NorthWest);
-                    }
-                    else if (yCoordinate < prevYCoordinate && xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::NorthWest);
-                        tile->SetRiverDirection2(Directions::SouthEast);
-                    }
-                    else if (yCoordinate > prevYCoordinate && xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(Directions::SouthWest);
-                        tile->SetRiverDirection2(Directions::NorthEast);
-                    }
-                }
-
-                // if (xCoordinate != prevXCoordinate && yCoordinate != prevYCoordinate && prevXCoordinate != -1 && prevYCoordinate != -1)
-                // {
-                //     if (xCoordinate < prevXCoordinate)
-                //     {
-                //         auto tileAdjacentEast{worldArea->GetTile(xCoordinate + 1, yCoordinate)};
-
-                //         if (tileAdjacentEast)
-                //         {
-                //             tileAdjacentEast->SetGround("GroundWater");
-                //         }
-                //     }
-                //     else
-                //     {
-                //         auto tileAdjacentWest{worldArea->GetTile(xCoordinate - 1, yCoordinate)};
-
-                //         if (tileAdjacentWest)
-                //         {
-                //             tileAdjacentWest->SetGround("GroundWater");
-                //         }
-                //     }
-                // }
-
-                auto dx = std::cos(angle * M_PI / 180.0f);
-                auto dy = std::sin(angle * M_PI / 180.0f);
-
-                x += dx;
-                y += dy;
-
-                prevXCoordinate = xCoordinate;
-                prevYCoordinate = yCoordinate;
-
-                prevTile = tile;
-            }
+        if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate)) {
+          continue;
         }
+
+        auto tile = worldArea->GetTile(xCoordinate, yCoordinate);
+
+        if (tile && prevTile) {
+          // tile->SetGround("GroundWater");
+
+          if (xCoordinate == prevXCoordinate && yCoordinate > prevYCoordinate) {
+            prevTile->SetRiverDirection1(Directions::South);
+            tile->SetRiverDirection2(Directions::North);
+          } else if (xCoordinate == prevXCoordinate &&
+                     yCoordinate < prevYCoordinate) {
+            prevTile->SetRiverDirection1(Directions::North);
+            tile->SetRiverDirection2(Directions::South);
+          } else if (yCoordinate == prevYCoordinate &&
+                     xCoordinate > prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::East);
+            tile->SetRiverDirection2(Directions::West);
+          } else if (yCoordinate == prevYCoordinate &&
+                     xCoordinate < prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::West);
+            tile->SetRiverDirection2(Directions::East);
+          } else if (yCoordinate < prevYCoordinate &&
+                     xCoordinate > prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::NorthEast);
+            tile->SetRiverDirection2(Directions::SouthWest);
+          } else if (yCoordinate > prevYCoordinate &&
+                     xCoordinate > prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::SouthEast);
+            tile->SetRiverDirection2(Directions::NorthWest);
+          } else if (yCoordinate < prevYCoordinate &&
+                     xCoordinate < prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::NorthWest);
+            tile->SetRiverDirection2(Directions::SouthEast);
+          } else if (yCoordinate > prevYCoordinate &&
+                     xCoordinate < prevXCoordinate) {
+            prevTile->SetRiverDirection1(Directions::SouthWest);
+            tile->SetRiverDirection2(Directions::NorthEast);
+          }
+        }
+
+        // if (xCoordinate != prevXCoordinate && yCoordinate != prevYCoordinate
+        // && prevXCoordinate != -1 && prevYCoordinate != -1)
+        // {
+        //     if (xCoordinate < prevXCoordinate)
+        //     {
+        //         auto tileAdjacentEast{worldArea->GetTile(xCoordinate + 1,
+        //         yCoordinate)};
+
+        //         if (tileAdjacentEast)
+        //         {
+        //             tileAdjacentEast->SetGround("GroundWater");
+        //         }
+        //     }
+        //     else
+        //     {
+        //         auto tileAdjacentWest{worldArea->GetTile(xCoordinate - 1,
+        //         yCoordinate)};
+
+        //         if (tileAdjacentWest)
+        //         {
+        //             tileAdjacentWest->SetGround("GroundWater");
+        //         }
+        //     }
+        // }
+
+        auto dx = std::cos(angle * M_PI / 180.0f);
+        auto dy = std::sin(angle * M_PI / 180.0f);
+
+        x += dx;
+        y += dy;
+
+        prevXCoordinate = xCoordinate;
+        prevYCoordinate = yCoordinate;
+
+        prevTile = tile;
+      }
     }
+  }
 }

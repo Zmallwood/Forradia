@@ -8,21 +8,16 @@
 #include "BodyPart.hpp"
 #include "BodyPartTypes.hpp"
 
-namespace Forradia
-{
-    class PlayerBody
-    {
-    public:
-        PlayerBody()
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class PlayerBody {
+  public:
+    PlayerBody() { Initialize(); }
 
-        BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
+    BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        Map<BodyPartTypes, BodyPart> m_bodyParts;
-    };
+    Map<BodyPartTypes, BodyPart> m_bodyParts;
+  };
 }

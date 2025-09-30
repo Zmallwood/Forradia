@@ -5,17 +5,16 @@
 
 #include "Hash.hpp"
 
-namespace Forradia
-{
-    int Hash(StringView text)
-    {
-        unsigned long hash{5381};
+namespace Forradia {
+  int Hash(StringView text) {
+    // Use algorithm from forgotten source.
 
-        for (size_t i = 0; i < text.size(); ++i)
-        {
-            hash = 33 * hash + (unsigned char)text[i];
-        }
+    unsigned long hash{5381};
 
-        return CInt(hash);
+    for (size_t i = 0; i < text.size(); ++i) {
+      hash = 33 * hash + (unsigned char)text[i];
     }
+
+    return CInt(hash);
+  }
 }

@@ -6,18 +6,15 @@
 #include "MouseUtilities.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 
-namespace Forradia
-{
-    PointF GetNormalizedMousePosition()
-    {
-        int xPx;
-        int yPx;
+namespace Forradia {
+  PointF GetNormalizedMousePosition() {
+    int xPx;
+    int yPx;
 
-        SDL_GetMouseState(&xPx, &yPx);
+    SDL_GetMouseState(&xPx, &yPx);
 
-        auto canvasSize{GetCanvasSize()};
+    auto canvasSize{GetCanvasSize()};
 
-        return {CFloat(xPx) / canvasSize.width,
-                CFloat(yPx) / canvasSize.height};
-    }
+    return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
+  }
 }

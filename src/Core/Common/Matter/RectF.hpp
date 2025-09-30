@@ -7,20 +7,38 @@
 
 #include "Point.hpp"
 
-namespace Forradia
-{
-    class RectF
-    {
-    public:
-        bool Contains(PointF point);
+namespace Forradia {
+  /**
+   * \brief A rectangle in 2D space using dimensions of float type.
+   */
+  class RectF {
+  public:
+    /**
+     * \brief Check if this rectangle contains a certian point.
+     *
+     * \param point Point to check if it is contained in this rectangle.
+     * \return True of the Point is within this rectangle, otherwise false.
+     */
+    bool Contains(PointF point);
 
-        PointF GetPosition() const;
+    /**
+     * \brief Returns only the position of this rectangle.
+     *
+     * \return The position.
+     */
+    PointF GetPosition() const;
 
-        void Offset(PointF offset);
+    /**
+     * \brief Adds an offset to this rectangle, with the dimensions altered
+     * separately.
+     *
+     * \param offset The offset to add.
+     */
+    void Offset(PointF offset);
 
-        float x{0.0f};
-        float y{0.0f};
-        float width{0.0f};
-        float height{0.0f};
-    };
+    float x{0.0f};      ///< The x coordinate.
+    float y{0.0f};      ///< The y coordinate.
+    float width{0.0f};  ///< The width, in the x dimension.
+    float height{0.0f}; ///< The height, in the y dimension.
+  };
 }

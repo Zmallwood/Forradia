@@ -7,29 +7,24 @@
 
 #include "Sub/CursorStyles.hpp"
 
-namespace Forradia
-{
-    class Cursor
-    {
-    public:
-        Cursor()
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class Cursor {
+  public:
+    Cursor() { Initialize(); }
 
-        void ResetStyleToDefault();
+    void ResetStyleToDefault();
 
-        void Render();
+    void Render();
 
-        auto SetCursorStyle(CursorStyles value) { m_cursorStyle = value; }
+    auto SetCursorStyle(CursorStyles value) { m_cursorStyle = value; }
 
-    private:
-        void Initialize();
+  private:
+    void Initialize();
 
-        void DisableSystemCursor();
+    void DisableSystemCursor();
 
-        constexpr static float k_cursorSize{0.05f};
+    constexpr static float k_cursorSize{0.05f};
 
-        CursorStyles m_cursorStyle{CursorStyles::Default};
-    };
+    CursorStyles m_cursorStyle{CursorStyles::Default};
+  };
 }

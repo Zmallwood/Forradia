@@ -5,19 +5,17 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class FPSCounter
-    {
-    public:
-        void Update();
+namespace Forradia {
+  class FPSCounter {
+  public:
+    void Update();
 
-        auto GetFPS() const { return m_fps; }
+    auto GetFPS() const { return m_fps; }
 
-    private:
-        int m_fps{0};
-        int m_framesCount{0};
-        int m_ticksLastUpdate{0};
-        const PointF k_position{0.93f, 0.02f};
-    };
+  private:
+    int m_fps{0};
+    int m_framesCount{0};
+    int m_ticksLastUpdate{0};
+    const PointF k_position{0.93f, 0.02f};
+  };
 }

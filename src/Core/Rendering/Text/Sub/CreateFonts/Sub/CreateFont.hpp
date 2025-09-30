@@ -7,8 +7,6 @@
 
 #include "../../FontSizes.hpp"
 
-namespace Forradia
-{
-    SharedPtr<TTF_Font> CreateFont(StringView fontFilePath,
-                                   FontSizes fontSize);
+namespace Forradia {
+  SharedPtr<TTF_Font> CreateFont(StringView fontFilePath, FontSizes fontSize);
 }

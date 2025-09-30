@@ -5,30 +5,21 @@
 
 #include "CreateFont.hpp"
 
-namespace Forradia
-{
-    SharedPtr<TTF_Font> CreateFont(StringView fontFilePath,
-                                   FontSizes fontSize)
-    {
-        auto fontPathUnixStyle{
-            Replace(fontFilePath, '\\', '/')};
+namespace Forradia {
+  SharedPtr<TTF_Font> CreateFont(StringView fontFilePath, FontSizes fontSize) {
+    auto fontPathUnixStyle{Replace(fontFilePath, '\\', '/')};
 
-        auto fontSizeN{CInt(fontSize)};
+    auto fontSizeN{CInt(fontSize)};
 
-        auto newFont{
-            SharedPtr<TTF_Font>(
-                TTF_OpenFont(
-                    fontPathUnixStyle.c_str(),
-                    fontSizeN),
-                SDLDeleter())};
+    auto newFont{SharedPtr<TTF_Font>(
+        TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN), SDLDeleter())};
 
-        if (!newFont)
-        {
-            PrintLine("Error loading font.");
+    if (!newFont) {
+      PrintLine("Error loading font.");
 
-            return nullptr;
-        }
-
-        return newFont;
+      return nullptr;
     }
+
+    return newFont;
+  }
 }

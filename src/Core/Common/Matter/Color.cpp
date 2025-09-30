@@ -5,15 +5,13 @@
 
 #include "Color.hpp"
 
-namespace Forradia
-{
-    SDL_Color Color::ToSDLColor() const
-    {
-        auto rInt{CUint8(r * 255)};
-        auto gInt{CUint8(g * 255)};
-        auto bInt{CUint8(b * 255)};
-        auto aInt{CUint8(a * 255)};
-
-        return {rInt, gInt, bInt, aInt};
-    }
+namespace Forradia {
+  SDL_Color Color::ToSDLColor() const {
+    // Calculate individual color components.
+    auto rInt{CUint8(r * 255)};
+    auto gInt{CUint8(g * 255)};
+    auto bInt{CUint8(b * 255)};
+    auto aInt{CUint8(a * 255)};
+    return {rInt, gInt, bInt, aInt};
+  }
 }

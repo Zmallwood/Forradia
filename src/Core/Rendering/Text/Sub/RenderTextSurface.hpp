@@ -5,11 +5,7 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void RenderTextSurface(SDL_Surface *surface,
-                           float x,
-                           float y,
-                           Size textDimensions,
-                           bool centerAlign);
+namespace Forradia {
+  void RenderTextSurface(SDL_Surface *surface, float x, float y,
+                         Size textDimensions, bool centerAlign);
 }

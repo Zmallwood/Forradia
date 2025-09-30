@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    SizeF CalculateTileSize();
+namespace Forradia {
+  SizeF CalculateTileSize();
 
-    Size CalculateGridSize();
+  Size CalculateGridSize();
 }

@@ -5,7 +5,13 @@
 
 #pragma once
 
-namespace Forradia
-{
-    int Hash(StringView text);
+namespace Forradia {
+  /**
+   * \brief Compute hash code from a given input text, which
+   *        gets computed the same every game start.
+   *
+   * \param text Text to compute hash code for.
+   * \return Computed hash code.
+   */
+  int Hash(StringView text);
 }

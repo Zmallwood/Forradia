@@ -6,17 +6,11 @@
 #include "GUIPanel.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIPanel::RenderDerived() const
-    {
-        auto bounds{GetBounds()};
+namespace Forradia {
+  void GUIPanel::RenderDerived() const {
+    auto bounds{GetBounds()};
 
-        _<ImageRenderer>().DrawImage(
-            m_backgroundImage,
-            bounds.x,
-            bounds.y,
-            bounds.width,
-            bounds.height);
-    }
+    _<ImageRenderer>().DrawImage(m_backgroundImage, bounds.x, bounds.y,
+                                 bounds.width, bounds.height);
+  }
 }

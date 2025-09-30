@@ -3,24 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
- #include "GetImageSize.hpp"
+#include "GetImageSize.hpp"
 
- namespace Forradia
- {
-    Size GetImageSize(SharedPtr<SDL_Texture> texture)
-    {
-        Size size;
+namespace Forradia {
+  Size GetImageSize(SharedPtr<SDL_Texture> texture) {
+    Size size;
 
-        if (texture)
-        {
-            SDL_QueryTexture(
-                texture.get(),
-                nullptr,
-                nullptr,
-                &size.width,
-                &size.height);
-        }
-
-        return size;
+    if (texture) {
+      SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.width,
+                       &size.height);
     }
- }
+
+    return size;
+  }
+}

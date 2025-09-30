@@ -7,25 +7,23 @@
 
 #include "MouseButton.hpp"
 
-namespace Forradia
-{
-    class MouseInput
-    {
-    public:
-        void Reset();
+namespace Forradia {
+  class MouseInput {
+  public:
+    void Reset();
 
-        void RegisterMouseButtonDown(Uint8 mouseButton);
+    void RegisterMouseButtonDown(Uint8 mouseButton);
 
-        void RegisterMouseButtonUp(Uint8 mouseButton);
+    void RegisterMouseButtonUp(Uint8 mouseButton);
 
-        bool AnyMouseButtonIsPressedPickResult();
+    bool AnyMouseButtonIsPressedPickResult();
 
-        auto &GetLeftMouseButtonRef() { return m_leftMouseButton; }
+    auto &GetLeftMouseButtonRef() { return m_leftMouseButton; }
 
-        auto &GetRightMouseButtonRef() { return m_leftMouseButton; }
+    auto &GetRightMouseButtonRef() { return m_leftMouseButton; }
 
-    private:
-        MouseButton m_leftMouseButton;
-        MouseButton m_rightMouseButton;
-    };
+  private:
+    MouseButton m_leftMouseButton;
+    MouseButton m_rightMouseButton;
+  };
 }

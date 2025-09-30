@@ -4,34 +4,30 @@
  */
 
 #include "AddMainSceneGUIComponents.hpp"
-#include "Sub/AddMainSceneGUIButtons.hpp"
 #include "Core/GUICore/GUI.hpp"
+#include "Core/GUICore/GUIFPSPanel.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/GUICore/Windows/GUIWindow.hpp"
-#include "Core/GUICore/GUIFPSPanel.hpp"
+#include "Sub/AddMainSceneGUIButtons.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
+#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUIPlayerStatusPanel.hpp"
 #include "Theme0/Theme0Mechanics/GUI/GUISystemMenu.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIPlayerBodyWindow.hpp"
-#include "Theme0/Theme0Mechanics/GUI/GUIInventoryWindow.hpp"
 
-namespace Forradia
-{
-    void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI)
-    {
-        mainSceneGUI->AddChildComponent(
-            std::make_shared<GUIPlayerStatusPanel>());
+namespace Forradia {
+  void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI) {
+    mainSceneGUI->AddChildComponent(std::make_shared<GUIPlayerStatusPanel>());
 
-        mainSceneGUI->AddChildComponent(
-            __<GUITextConsole>());
+    mainSceneGUI->AddChildComponent(__<GUITextConsole>());
 
-        AddMainSceneGUIButtons(mainSceneGUI);
+    AddMainSceneGUIButtons(mainSceneGUI);
 
-        mainSceneGUI->AddChildComponent(__<GUISystemMenu>());
+    mainSceneGUI->AddChildComponent(__<GUISystemMenu>());
 
-        mainSceneGUI->AddChildComponent(__<GUIInventoryWindow>());
+    mainSceneGUI->AddChildComponent(__<GUIInventoryWindow>());
 
-        mainSceneGUI->AddChildComponent(__<GUIPlayerBodyWindow>());
+    mainSceneGUI->AddChildComponent(__<GUIPlayerBodyWindow>());
 
-        mainSceneGUI->AddChildComponent(std::make_shared<GUIFPSPanel>());
-    }
+    mainSceneGUI->AddChildComponent(std::make_shared<GUIFPSPanel>());
+  }
 }

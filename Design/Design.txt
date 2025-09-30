@@ -7,8 +7,6 @@ Model player body/danathomy:
 * Legs can have sub parts such as upper legs and feet.
 * Can maybe have awareness to increase spotting things when foraging.
 
-* Consider making into MMO
-
 * Fridge to store food, driven by electricity from water turbine or wind power or solar power
 * Also, can be electric furnace, oven and other tools driven by electrity to make tools etc.
 * Start with a cart with a fridge, electric furnace, oven etc, is its to heavey to carry in inventory
@@ -21,3 +19,7 @@ and find metals such as copper, iron in mountains
 * Maybe make a website for the game too to practice web development, where user can login to account, see character body status and world map etc.
 
 * Eventually model the body with images instead of text
+
+* Next to implement: Digging (clay) and creating pots (might add hands to PlayerBody)
+
+* NPCs the player can talk with with conversation options and/or custom text. Maybe develop some kind of AI for this. And need fantasy name generator.

@@ -6,23 +6,19 @@
 #include "CreateFonts.hpp"
 #include "Sub/CreateFont.hpp"
 
-namespace Forradia
-{
-    Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
-                                                    StringView relativeFontPath)
-    {
-        Map<FontSizes, SharedPtr<TTF_Font>> fontsResult;
+namespace Forradia {
+  Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
+                                                  StringView relativeFontPath) {
+    Map<FontSizes, SharedPtr<TTF_Font>> fontsResult;
 
-        auto absoluteFontPath{
-            String(SDL_GetBasePath()) + relativeFontPath.data()};
+    auto absoluteFontPath{String(SDL_GetBasePath()) + relativeFontPath.data()};
 
-        for (auto fontSize : fontSizes)
-        {
-            auto newFont{CreateFont(absoluteFontPath, fontSize)};
+    for (auto fontSize : fontSizes) {
+      auto newFont{CreateFont(absoluteFontPath, fontSize)};
 
-            fontsResult.insert({fontSize, newFont});
-        }
-
-        return fontsResult;
+      fontsResult.insert({fontSize, newFont});
     }
+
+    return fontsResult;
+  }
 }

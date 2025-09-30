@@ -5,12 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    enum class CursorStyles
-    {
-        Default,
-        HoveringClickableGUI,
-        HoveringCreature
-    };
+namespace Forradia {
+  enum class CursorStyles { Default, HoveringClickableGUI, HoveringCreature };
 }

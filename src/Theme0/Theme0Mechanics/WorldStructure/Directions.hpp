@@ -5,18 +5,16 @@
 
 #pragma once
 
-namespace Forradia
-{
-    enum class Directions
-    {
-        None,
-        North,
-        East,
-        South,
-        West,
-        NorthEast,
-        SouthEast,
-        SouthWest,
-        NorthWest
-    };
+namespace Forradia {
+  enum class Directions {
+    None,
+    North,
+    East,
+    South,
+    West,
+    NorthEast,
+    SouthEast,
+    SouthWest,
+    NorthWest
+  };
 }

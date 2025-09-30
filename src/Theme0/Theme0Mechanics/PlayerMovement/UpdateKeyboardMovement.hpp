@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void UpdateKeyboardMovement();
+namespace Forradia {
+  void UpdateKeyboardMovement();
 }

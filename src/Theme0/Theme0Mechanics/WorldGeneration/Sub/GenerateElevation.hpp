@@ -5,7 +5,6 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void GenerateElevation();
+namespace Forradia {
+  void GenerateElevation();
 }

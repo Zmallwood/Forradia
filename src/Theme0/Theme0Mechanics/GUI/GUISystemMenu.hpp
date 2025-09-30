@@ -7,22 +7,16 @@
 
 #include "Core/GUICore/GUIComponent.hpp"
 
-namespace Forradia
-{
-    class GUISystemMenu : public GUIComponent
-    {
-    public:
-        GUISystemMenu()
-            : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
-        {
-            Initialize();
-        }
+namespace Forradia {
+  class GUISystemMenu : public GUIComponent {
+  public:
+    GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) { Initialize(); }
 
-    protected:
-        void Initialize();
+  protected:
+    void Initialize();
 
-        virtual void UpdateDerived() override;
+    virtual void UpdateDerived() override;
 
-        virtual void RenderDerived() const override;
-    };
+    virtual void RenderDerived() const override;
+  };
 }

@@ -4,132 +4,122 @@
  */
 
 #include "GenerateObjects.hpp"
+#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/ObjectsStack.hpp"
+#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/World.hpp"
 #include "Theme0/Theme0Mechanics/WorldStructure/WorldArea.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/Tile.hpp"
-#include "Theme0/Theme0Mechanics/WorldStructure/ObjectsStack.hpp"
-#include "Theme0/Theme0Mechanics/Configuration/GameProperties.hpp"
 
-namespace Forradia
-{
-    void GenerateObjects()
-    {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+namespace Forradia {
+  void GenerateObjects() {
+    auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto size{worldArea->GetSize()};
-        
-        auto scale{_<GameProperties>().k_worldScalingFactor};
+    auto size{worldArea->GetSize()};
 
-        auto numFirTrees{1000 * scale+ RandomInt(50)};
+    auto scale{_<GameProperties>().k_worldScalingFactor};
 
-        for (auto i = 0; i < numFirTrees; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
+    auto numFirTrees{1000 * scale + RandomInt(50)};
 
-            auto tile{worldArea->GetTile(x, y)};
+    for (auto i = 0; i < numFirTrees; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
 
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddTreeObject("ObjectFirTree");
-            }
-        }
-        
-        auto numBirchTrees{1000* scale + RandomInt(50)};
+      auto tile{worldArea->GetTile(x, y)};
 
-        for (auto i = 0; i < numBirchTrees; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddTreeObject("ObjectBirchTree");
-            }
-        }
-
-        auto numBush1s{400* scale + RandomInt(100)};
-
-        for (auto i = 0; i < numBush1s; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectBush1");
-            }
-        }
-
-        auto numBush2s{400* scale + RandomInt(100)};
-
-        for (auto i = 0; i < numBush2s; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectBush2");
-            }
-        }
-        
-        auto numPinkFlowers{400* scale + RandomInt(100)};
-
-        for (auto i = 0; i < numPinkFlowers; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectPinkFlower");
-            }
-        }
-
-        auto numTallGrasses{400* scale + RandomInt(100)};
-
-        for (auto i = 0; i < numTallGrasses; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetGround() != Hash("GroundWater") && tile->GetGround() != Hash("GroundRock"))
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectTallGrass");
-            }
-        }
-
-        auto numStoneBoulders{200* scale + RandomInt(100)};
-
-        for (auto i = 0; i < numStoneBoulders; i++)
-        {
-            auto x{RandomInt(size.width)};
-            auto y{RandomInt(size.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile && tile->GetWaterDepth() < 4)
-            {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
-            }
-        }
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddTreeObject("ObjectFirTree");
+      }
     }
+
+    auto numBirchTrees{1000 * scale + RandomInt(50)};
+
+    for (auto i = 0; i < numBirchTrees; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddTreeObject("ObjectBirchTree");
+      }
+    }
+
+    auto numBush1s{400 * scale + RandomInt(100)};
+
+    for (auto i = 0; i < numBush1s; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddObject("ObjectBush1");
+      }
+    }
+
+    auto numBush2s{400 * scale + RandomInt(100)};
+
+    for (auto i = 0; i < numBush2s; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddObject("ObjectBush2");
+      }
+    }
+
+    auto numPinkFlowers{400 * scale + RandomInt(100)};
+
+    for (auto i = 0; i < numPinkFlowers; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddObject("ObjectPinkFlower");
+      }
+    }
+
+    auto numTallGrasses{400 * scale + RandomInt(100)};
+
+    for (auto i = 0; i < numTallGrasses; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetGround() != Hash("GroundWater") &&
+          tile->GetGround() != Hash("GroundRock")) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddObject("ObjectTallGrass");
+      }
+    }
+
+    auto numStoneBoulders{200 * scale + RandomInt(100)};
+
+    for (auto i = 0; i < numStoneBoulders; i++) {
+      auto x{RandomInt(size.width)};
+      auto y{RandomInt(size.height)};
+
+      auto tile{worldArea->GetTile(x, y)};
+
+      if (tile && tile->GetWaterDepth() < 4) {
+        tile->GetObjectsStack()->ClearObjects();
+        tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+      }
+    }
+  }
 }

@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Creature;
+namespace Forradia {
+  class Creature;
 
-    Point CalculateNewCreaturePosition(SharedPtr<Creature> creature);
+  Point CalculateNewCreaturePosition(SharedPtr<Creature> creature);
 }

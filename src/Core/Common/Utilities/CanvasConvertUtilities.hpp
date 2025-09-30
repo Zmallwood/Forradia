@@ -5,9 +5,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    float ConvertWidthToHeight(float width);
+namespace Forradia {
+  float ConvertWidthToHeight(float width);
 
-    float ConvertHeightToWidth(float height);
+  float ConvertHeightToWidth(float height);
 }

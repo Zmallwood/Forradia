@@ -9,16 +9,13 @@
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Sub/AddMainMenuSceneGUIButtons.hpp"
 
-namespace Forradia
-{
-    void AddMainMenuSceneGUIComponents(SharedPtr<GUI> mainMenuSceneGUI)
-    {
-        mainMenuSceneGUI->AddChildComponent(
-            std::make_shared<GUIPanel>(0.4f, 0.32f, 0.2f, 0.2f));
+namespace Forradia {
+  void AddMainMenuSceneGUIComponents(SharedPtr<GUI> mainMenuSceneGUI) {
+    mainMenuSceneGUI->AddChildComponent(
+        std::make_shared<GUIPanel>(0.4f, 0.32f, 0.2f, 0.2f));
 
-        AddMainMenuSceneGUIButtons(mainMenuSceneGUI);
+    AddMainMenuSceneGUIButtons(mainMenuSceneGUI);
 
-        mainMenuSceneGUI->AddChildComponent(
-            __<GUITextConsole>());
-    }
+    mainMenuSceneGUI->AddChildComponent(__<GUITextConsole>());
+  }
 }

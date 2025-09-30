@@ -5,10 +5,6 @@
 
 #include "GUIInventoryWindow.hpp"
 
-namespace Forradia
-{
-    void GUIInventoryWindow::RenderDerived() const
-    {
-        GUIWindow::RenderDerived();
-    }
+namespace Forradia {
+  void GUIInventoryWindow::RenderDerived() const { GUIWindow::RenderDerived(); }
 }

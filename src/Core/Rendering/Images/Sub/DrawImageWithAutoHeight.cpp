@@ -7,25 +7,19 @@
 #include "Core/ImageAssets/ImageBank.hpp"
 #include "DrawImage.hpp"
 
-namespace Forradia
-{
-    void DrawImageWithAutoHeight(StringView imageName,
-                                 float x,
-                                 float y,
-                                 float width)
-    {
-        auto imageNameHash{Hash(imageName)};
+namespace Forradia {
+  void DrawImageWithAutoHeight(StringView imageName, float x, float y,
+                               float width) {
+    auto imageNameHash{Hash(imageName)};
 
-        auto imageSize{
-            _<ImageBank>().GetImageSize(imageNameHash)};
+    auto imageSize{_<ImageBank>().GetImageSize(imageNameHash)};
 
-        auto canvasAspectRatio{CalculateAspectRatio()};
+    auto canvasAspectRatio{CalculateAspectRatio()};
 
-        auto imageAspectRatio{
-            CFloat(imageSize.width) / imageSize.height};
+    auto imageAspectRatio{CFloat(imageSize.width) / imageSize.height};
 
-        auto height{width / imageAspectRatio * canvasAspectRatio};
+    auto height{width / imageAspectRatio * canvasAspectRatio};
 
-        DrawImage(Hash(imageName), x, y, width, height);
-    }
+    DrawImage(Hash(imageName), x, y, width, height);
+  }
 }
