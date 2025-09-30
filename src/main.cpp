@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "Theme0/RunNewTheme0.hpp"
+#include "theme_0/RunNewTheme0.hpp"
 
 int main(int argc, char **argv)
 {
