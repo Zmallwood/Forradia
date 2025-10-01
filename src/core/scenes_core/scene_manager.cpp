@@ -2,11 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "scene_manager.hpp"
 #include "i_scene.hpp"
 
-namespace Forradia {
+namespace forr {
   void SceneManager::AddScene(StringView sceneName, IScene &scene) {
     scene.Initialize();
     m_scenes.insert({Hash(sceneName), scene});

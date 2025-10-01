@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia {
+namespace forr {
   int CInt(auto value) { return static_cast<int>(value); }
 
   float CFloat(auto value) { return static_cast<float>(value); }

@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "create_render_destination_rect.hpp"
 
-namespace Forradia {
+namespace forr {
   SDL_Rect CreateRenderDestinationRect(float x, float y, Size textDimensions,
                                        bool centerAlign) {
     SDL_Rect rectResult;

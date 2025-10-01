@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "mouse_button.hpp"
 
-namespace Forradia {
+namespace forr {
   void MouseButton::Reset() {
     m_isPressed = false;
     m_hasBeenFired = false;

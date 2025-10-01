@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "fps_counter.hpp"
 
-namespace Forradia {
+namespace forr {
   void FPSCounter::Update() {
     auto now{GetTicks()};
     if (now > m_ticksLastUpdate + k_oneSecondMillis) {

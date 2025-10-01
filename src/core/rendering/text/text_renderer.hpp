@@ -7,7 +7,7 @@
 
 #include "sub/font_sizes.hpp"
 
-namespace Forradia {
+namespace forr {
   class TextRenderer {
   public:
     TextRenderer() { Initialize(); }

@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "core/scenes_core/i_scene.hpp"
 
-namespace Forradia {
+namespace forr {
   class MainScene : public IScene {
   protected:
     void InitializeDerived() override;

@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "update_keyboard_movement.hpp"
 #include "core/input/keyboard/keyboard_input.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
-namespace Forradia {
+namespace forr {
   void UpdateKeyboardMovement() {
     auto upPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_UP)};
     auto rightPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};

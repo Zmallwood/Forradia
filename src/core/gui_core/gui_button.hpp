@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "gui_panel.hpp"
 
-namespace Forradia {
+namespace forr {
   class GUIButton : public GUIPanel {
   public:
     GUIButton(float x, float y, float width, float height, StringView text,

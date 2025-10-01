@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "update_creature_movement.hpp"
 #include "sub/calculate_new_creature_position.hpp"
 #include "sub/generate_new_creature_destination.hpp"
@@ -12,7 +11,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void UpdateCreatureMovement() {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};

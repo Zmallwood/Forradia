@@ -2,11 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "create_window.hpp"
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
-namespace Forradia {
+namespace forr {
   SharedPtr<SDL_Window> CreateWindow() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};

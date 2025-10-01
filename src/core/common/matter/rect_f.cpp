@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "rect_f.hpp"
 
-namespace Forradia {
+namespace forr {
   bool RectF::Contains(PointF point) {
     // Create condition by checking against the boundaries of this rectangle.
     return point.x >= x && point.y >= y && point.x < x + width &&

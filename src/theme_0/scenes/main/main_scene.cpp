@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "main_scene.hpp"
 #include "core/gui_core/gui_text_console.hpp"
 #include "sub/add_main_scene_gui_components.hpp"
@@ -13,7 +12,7 @@
 #include "theme_0/theme_0_mechanics/world_interaction/tile_hovering.hpp"
 #include "theme_0/theme_0_mechanics/world_view/world_view.hpp"
 
-namespace Forradia {
+namespace forr {
   void MainScene::InitializeDerived() { AddMainSceneGUIComponents(GetGUI()); }
 
   void MainScene::OnEnterDerived() {

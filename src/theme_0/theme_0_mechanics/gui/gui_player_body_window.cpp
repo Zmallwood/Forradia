@@ -2,14 +2,13 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_player_body_window.hpp"
 #include "core/gui_core/gui_button.hpp"
 #include "core/gui_core/gui_label.hpp"
 #include "core/rendering/text/text_renderer.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
-namespace Forradia {
+namespace forr {
   void GUIPlayerBodyWindow::Initialize() {
     auto imageWidth{0.07f};
     auto imageHeight{ConvertWidthToHeight(imageWidth)};

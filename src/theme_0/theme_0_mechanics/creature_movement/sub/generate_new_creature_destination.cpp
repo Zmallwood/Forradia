@@ -2,13 +2,12 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "generate_new_creature_destination.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/creature.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void GenerateNewCreatureDestination(SharedPtr<Creature> creature) {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};

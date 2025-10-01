@@ -2,13 +2,12 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "poll_events.hpp"
 #include "core/engine/engine.hpp"
 #include "core/input/keyboard/keyboard_input.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 
-namespace Forradia {
+namespace forr {
   void PollEvents() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {

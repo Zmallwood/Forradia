@@ -2,14 +2,13 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "generate_rock.hpp"
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/tile.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void GenerateRock() {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};

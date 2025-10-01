@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "world_view.hpp"
 #include "core/image_assets/image_bank.hpp"
 #include "core/rendering/images/image_renderer.hpp"
@@ -17,7 +16,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void WorldView::Render() const {
     auto gridSize{CalculateGridSize()};
     auto tileSize{CalculateTileSize()};

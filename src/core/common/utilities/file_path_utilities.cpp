@@ -5,7 +5,7 @@
 
 #include "file_path_utilities.hpp"
 
-namespace Forradia {
+namespace forr {
   String GetFileExtension(StringView path) {
     String extension{path.substr(path.find_last_of('.') + 1).data()};
     return extension;

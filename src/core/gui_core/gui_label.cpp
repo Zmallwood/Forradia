@@ -2,11 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_label.hpp"
 #include "core/rendering/text/text_renderer.hpp"
 
-namespace Forradia {
+namespace forr {
   void GUILabel::RenderDerived() const {
     auto bounds{GetBounds()};
     auto x{bounds.x};

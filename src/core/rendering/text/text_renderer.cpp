@@ -9,14 +9,14 @@
 #include "sub/render_text_surface.hpp"
 #include "sub/create_fonts/create_fonts.hpp"
 
-namespace Forradia {
+namespace forr {
   void TextRenderer::Initialize() {
     TTF_Init();
     AddFonts();
   }
 
   void TextRenderer::AddFonts() {
-    m_fonts = Forradia::CreateFonts({FontSizes::_20, FontSizes::_26},
+    m_fonts = forr::CreateFonts({FontSizes::_20, FontSizes::_26},
                                     k_defaultFontPath);
   }
 

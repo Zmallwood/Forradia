@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "numbers_utilities.hpp"
 
-namespace Forradia {
+namespace forr {
   float InvertMovementSpeed(float number) {
     if (number) {
       return k_oneSecondMillis / number;

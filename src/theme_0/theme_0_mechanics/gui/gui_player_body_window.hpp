@@ -2,13 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "core/gui_core/windows/gui_window.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/sub/body_part_types.hpp"
 
-namespace Forradia {
+namespace forr {
   class GUILabel;
 
   class GUIPlayerBodyWindow : public GUIWindow {

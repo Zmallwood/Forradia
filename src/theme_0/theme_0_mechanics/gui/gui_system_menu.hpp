@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "core/gui_core/gui_component.hpp"
 
-namespace Forradia {
+namespace forr {
   class GUISystemMenu : public GUIComponent {
   public:
     GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) { Initialize(); }

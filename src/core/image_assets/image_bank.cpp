@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "image_bank.hpp"
 #include "sub/get_image_size.hpp"
 #include "sub/get_loaded_images/get_loaded_images.hpp"
 
-namespace Forradia {
+namespace forr {
   void ImageBank::Initialize() { LoadImages(); }
 
   void ImageBank::LoadImages() {
@@ -24,7 +23,7 @@ namespace Forradia {
   Size ImageBank::GetImageSize(int imageNameHash) const {
     if (m_images.contains(imageNameHash)) {
       auto texture{m_images.at(imageNameHash)};
-      return Forradia::GetImageSize(texture);
+      return forr::GetImageSize(texture);
     }
     return {0, 0};
   }

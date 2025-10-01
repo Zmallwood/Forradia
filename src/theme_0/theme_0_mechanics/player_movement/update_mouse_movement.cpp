@@ -2,13 +2,12 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "update_mouse_movement.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 #include "theme_0/theme_0_mechanics/world_interaction/tile_hovering.hpp"
 
-namespace Forradia {
+namespace forr {
   void UpdateMouseMovement() {
     if (GetSingleton<MouseInput>()
             .GetLeftMouseButtonRef()

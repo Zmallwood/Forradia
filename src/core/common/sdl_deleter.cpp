@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "sdl_deleter.hpp"
 
-namespace Forradia {
+namespace forr {
   void SDLDeleter::operator()(SDL_Window *window) const {
     // Free up resources from a SDL_Window object.
     SDL_DestroyWindow(window);

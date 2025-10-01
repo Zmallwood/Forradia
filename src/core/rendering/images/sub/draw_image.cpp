@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "draw_image.hpp"
 #include "core/image_assets/image_bank.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace Forradia {
+namespace forr {
   void DrawImage(int imageNameHash, float x, float y, float width,
                  float height) {
     auto image{GetSingleton<ImageBank>().GetImage(imageNameHash)};

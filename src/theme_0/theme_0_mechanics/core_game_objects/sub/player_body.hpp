@@ -2,13 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "body_part.hpp"
 #include "body_part_types.hpp"
 
-namespace Forradia {
+namespace forr {
   class PlayerBody {
   public:
     PlayerBody() { Initialize(); }

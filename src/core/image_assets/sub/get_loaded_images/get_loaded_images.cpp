@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "get_loaded_images.hpp"
 #include "../load_single_image.hpp"
 #include "sub/construct_absolute_images_path.hpp"
 
-namespace Forradia {
+namespace forr {
   Map<int, SharedPtr<SDL_Texture>>
   GetLoadedImages(StringView relativeImagesPath) {
     Map<int, SharedPtr<SDL_Texture>> imagesResult;

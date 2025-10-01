@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "point_f.hpp"
 
-namespace Forradia {
+namespace forr {
   PointF PointF::operator+(const PointF &other) const {
     // Sum the dimensions of the two points.
     return {x + other.x, y + other.y};

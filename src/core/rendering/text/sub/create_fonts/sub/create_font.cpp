@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "create_font.hpp"
 
-namespace Forradia {
+namespace forr {
   SharedPtr<TTF_Font> CreateFont(StringView fontFilePath, FontSizes fontSize) {
     auto fontPathUnixStyle{Replace(fontFilePath, '\\', '/')};
     auto fontSizeN{CInt(fontSize)};

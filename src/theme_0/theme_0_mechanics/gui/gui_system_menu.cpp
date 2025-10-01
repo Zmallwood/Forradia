@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_system_menu.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace Forradia {
+namespace forr {
   void GUISystemMenu::Initialize() { SetVisible(false); }
 
   void GUISystemMenu::UpdateDerived() {

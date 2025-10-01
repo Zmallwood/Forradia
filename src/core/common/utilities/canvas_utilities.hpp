@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia {
+namespace forr {
   Size GetCanvasSize();
 
   float CalculateAspectRatio();

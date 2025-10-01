@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "sub/player_body.hpp"
 
-namespace Forradia {
+namespace forr {
   class Player {
   public:
     Player() { Initialize(); }

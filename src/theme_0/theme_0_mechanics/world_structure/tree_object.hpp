@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "object.hpp"
 
-namespace Forradia {
+namespace forr {
   class TreeObject : public Object {
   public:
     TreeObject(StringView objectTypeName) : Object(objectTypeName) {

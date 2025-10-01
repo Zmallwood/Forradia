@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "sub/cursor_styles.hpp"
 
-namespace Forradia {
+namespace forr {
   class Cursor {
   public:
     Cursor() { Initialize(); }

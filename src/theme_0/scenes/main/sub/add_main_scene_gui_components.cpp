@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "add_main_scene_gui_components.hpp"
 #include "core/gui_core/gui.hpp"
 #include "core/gui_core/gui_fps_panel.hpp"
@@ -14,7 +13,7 @@
 #include "theme_0/theme_0_mechanics/gui/gui_player_status_panel.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_system_menu.hpp"
 
-namespace Forradia {
+namespace forr {
   void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI) {
     mainSceneGUI->AddChildComponent(std::make_shared<GUIPlayerStatusPanel>());
     mainSceneGUI->AddChildComponent(GetSingletonPtr<GUITextConsole>());

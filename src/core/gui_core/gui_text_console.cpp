@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_text_console.hpp"
 #include "core/rendering/images/image_renderer.hpp"
 #include "core/rendering/text/text_renderer.hpp"
 
-namespace Forradia {
+namespace forr {
   void GUITextConsole::RenderDerived() const {
     GUIPanel::RenderDerived();
     auto bounds{GetBounds()};

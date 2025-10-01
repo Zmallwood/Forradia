@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "create_renderer.hpp"
 
-namespace Forradia {
+namespace forr {
   SharedPtr<SDL_Renderer> CreateRenderer(SharedPtr<SDL_Window> window) {
     auto rendererResult{SharedPtr<SDL_Renderer>(
         SDL_CreateRenderer(window.get(), -1, SDL_RENDERER_ACCELERATED),

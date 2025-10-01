@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "hash.hpp"
 
-namespace Forradia {
+namespace forr {
   int Hash(StringView text) {
     // Use algorithm from forgotten source.
     unsigned long hash{5381};

@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "intro_scene.hpp"
 #include "core/cursor/cursor.hpp"
 #include "core/gui_core/gui.hpp"
@@ -13,7 +12,7 @@
 #include "core/rendering/images/image_renderer.hpp"
 #include "core/scenes_core/scene_manager.hpp"
 
-namespace Forradia {
+namespace forr {
   void IntroScene::InitializeDerived() {
     m_startText = GetGUI()->AddChildComponent(std::make_shared<GUILabel>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));

@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_player_status_panel.hpp"
 #include "core/rendering/text/text_renderer.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
-namespace Forradia {
+namespace forr {
   void GUIPlayerStatusPanel::RenderDerived() const {
     GUIPanel::RenderDerived();
     auto bounds{GetBounds()};

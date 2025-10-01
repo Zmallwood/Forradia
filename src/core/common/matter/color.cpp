@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "color.hpp"
 
-namespace Forradia {
+namespace forr {
   SDL_Color Color::ToSDLColor() const {
     // Calculate individual color components.
     auto rInt{CUint8(r * 255)};

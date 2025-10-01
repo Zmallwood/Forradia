@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "tile_hovering.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 #include "theme_0/theme_0_mechanics/math/tile_grid_math.hpp"
@@ -10,7 +9,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void TileHovering::Update() {
     auto playerPosition{GetSingleton<Player>().GetPosition()};
     auto mousePosition{GetNormalizedMousePosition()};

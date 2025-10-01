@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "mouse_input.hpp"
 
-namespace Forradia {
+namespace forr {
   void MouseInput::Reset() {
     m_leftMouseButton.Reset();
     m_rightMouseButton.Reset();

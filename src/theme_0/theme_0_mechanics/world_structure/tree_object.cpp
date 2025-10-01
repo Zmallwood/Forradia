@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "tree_object.hpp"
 
-namespace Forradia {
+namespace forr {
   void TreeObject::Initialize(StringView objectTypeName) {
     if (objectTypeName != "ObjectFirTree" &&
         objectTypeName != "ObjectBirchTree") {

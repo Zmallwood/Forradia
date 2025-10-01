@@ -2,7 +2,6 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "generate_objects.hpp"
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/objects_stack.hpp"
@@ -10,7 +9,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
-namespace Forradia {
+namespace forr {
   void GenerateObjects() {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};

@@ -2,12 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #pragma once
-
 #include "gui_panel.hpp"
 
-namespace Forradia {
+namespace forr {
   class GUIMovablePanel : public GUIPanel {
   public:
     GUIMovablePanel(float x, float y, float width, float height)

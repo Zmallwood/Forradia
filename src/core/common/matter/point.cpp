@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "point.hpp"
 
-namespace Forradia {
+namespace forr {
   bool Point::operator==(const Point &other) const {
     // Compare x and y dimensions.
     return other.x == x && other.y == y;

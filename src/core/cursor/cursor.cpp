@@ -2,11 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "cursor.hpp"
 #include "core/rendering/images/image_renderer.hpp"
 
-namespace Forradia {
+namespace forr {
   void Cursor::Initialize() { DisableSystemCursor(); }
 
   void Cursor::DisableSystemCursor() { SDL_ShowCursor(SDL_DISABLE); }

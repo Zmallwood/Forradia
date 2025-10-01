@@ -2,10 +2,9 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "gui_component.hpp"
 
-namespace Forradia {
+namespace forr {
   SharedPtr<GUIComponent>
   GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component) {
     component->SetParentComponent(this);

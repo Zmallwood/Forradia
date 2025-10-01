@@ -2,11 +2,10 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "create_fonts.hpp"
 #include "sub/create_font.hpp"
 
-namespace Forradia {
+namespace forr {
   Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
                                                   StringView relativeFontPath) {
     Map<FontSizes, SharedPtr<TTF_Font>> fontsResult;

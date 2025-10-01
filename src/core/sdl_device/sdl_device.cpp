@@ -2,13 +2,12 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "sdl_device.hpp"
 #include "sub/create_renderer.hpp"
 #include "sub/create_window.hpp"
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
-namespace Forradia {
+namespace forr {
   void SDLDevice::Initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
     m_window = CreateWindow();

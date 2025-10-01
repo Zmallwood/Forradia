@@ -3,6 +3,6 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-namespace Forradia {
+namespace forr {
   Size GetImageSize(SharedPtr<SDL_Texture> texture);
 }

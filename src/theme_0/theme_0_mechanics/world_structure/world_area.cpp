@@ -2,12 +2,11 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-
 #include "world_area.hpp"
 #include "tile.hpp"
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
-namespace Forradia {
+namespace forr {
   void WorldArea::Initialize() {
     auto size{GameProperties::k_worldAreaSize};
     size.width *= GetSingleton<GameProperties>().k_worldScalingFactor;
