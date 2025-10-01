@@ -14,7 +14,8 @@ namespace forr {
     auto isHovered{GetBounds().Contains(mousePosition)};
     if (isHovered) {
       SetBackgroundImage(m_hoveredBackgroundImage);
-      GetSingleton<cursor>().SetCursorStyle(cursor_styles::HoveringClickableGUI);
+      GetSingleton<cursor>().SetCursorStyle(
+          cursor_styles::HoveringClickableGUI);
       if (GetSingleton<mouse_input>()
               .GetLeftMouseButtonRef()
               .GetHasBeenFiredPickResult()) {
@@ -28,8 +29,8 @@ namespace forr {
   void gui_button::RenderDerived() const {
     gui_panel::RenderDerived();
     auto bounds{GetBounds()};
-    GetSingleton<text_renderer>().DrawString(m_text, bounds.x + bounds.width / 2,
-                                            bounds.y + bounds.height / 2,
-                                            font_sizes::_20, true);
+    GetSingleton<text_renderer>().DrawString(
+        m_text, bounds.x + bounds.width / 2, bounds.y + bounds.height / 2,
+        font_sizes::_20, true);
   }
 }
