@@ -8,9 +8,9 @@
 
 namespace forr {
   std::map<int, s_ptr<SDL_Texture>>
-  GetLoadedImages(str_view relativeImagesPath) {
+  get_loaded_images(str_view relativeImagesPath) {
     std::map<int, s_ptr<SDL_Texture>> imagesResult;
-    auto imagesPath{ConstructAbsoluteImagesPath(relativeImagesPath)};
+    auto imagesPath{construct_absolute_images_path(relativeImagesPath)};
     if (!std::filesystem::exists(imagesPath)) {
       return imagesResult;
     }
@@ -20,7 +20,7 @@ namespace forr {
       if (GetFileExtension(filePath) == "png") {
         auto fileName{GetFileNameNoExtension(filePath)};
         auto hash{Hash(fileName)};
-        auto image{LoadSingleImage(filePath)};
+        auto image{load_single_image(filePath)};
         imagesResult.insert({hash, image});
       }
     }

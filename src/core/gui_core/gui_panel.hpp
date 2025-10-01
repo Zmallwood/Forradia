@@ -14,9 +14,9 @@ namespace forr {
           m_backgroundImage(backgroundImage) {}
 
   protected:
-    virtual void RenderDerived() const override;
+    virtual void render_derived() const override;
 
-    void SetBackgroundImage(str_view value) { m_backgroundImage = value; }
+    void set_background_image(str_view value) { m_backgroundImage = value; }
 
   private:
     inline static const str k_defaultBackgroundImage{"GUIPanelBackground"};

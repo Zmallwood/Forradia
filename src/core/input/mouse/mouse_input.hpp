@@ -8,17 +8,17 @@
 namespace forr {
   class mouse_input {
   public:
-    void Reset();
+    void reset();
 
-    void RegisterMouseButtonDown(Uint8 mouseButton);
+    void register_mouse_button_down(Uint8 mouseButton);
 
-    void RegisterMouseButtonUp(Uint8 mouseButton);
+    void register_mouse_button_up(Uint8 mouseButton);
 
-    bool AnyMouseButtonIsPressedPickResult();
+    bool any_mouse_button_is_pressed_pick_result();
 
-    auto &GetLeftMouseButtonRef() { return m_leftMouseButton; }
+    auto &get_left_mouse_button_ref() { return m_leftMouseButton; }
 
-    auto &GetRightMouseButtonRef() { return m_leftMouseButton; }
+    auto &get_right_mouse_button_ref() { return m_leftMouseButton; }
 
   private:
     mouse_button m_leftMouseButton;

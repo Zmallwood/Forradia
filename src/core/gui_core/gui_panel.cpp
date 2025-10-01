@@ -6,9 +6,9 @@
 #include "core/rendering/images/image_renderer.hpp"
 
 namespace forr {
-  void gui_panel::RenderDerived() const {
-    auto bounds{GetBounds()};
-    GetSingleton<image_renderer>().DrawImage(m_backgroundImage, bounds.x, bounds.y,
-                                 bounds.width, bounds.height);
+  void gui_panel::render_derived() const {
+    auto bounds{get_bounds()};
+    GetSingleton<image_renderer>().draw_image(
+        m_backgroundImage, bounds.x, bounds.y, bounds.width, bounds.height);
   }
 }

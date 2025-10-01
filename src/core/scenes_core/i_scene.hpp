@@ -7,26 +7,26 @@
 namespace forr {
   class gui;
 
-  class i_scene{
+  class i_scene {
   public:
-    void Initialize();
+    void initialize();
 
-    void Update();
+    void update();
 
-    void Render() const;
+    void render() const;
 
-    void OnEnter();
+    void on_enter();
 
   protected:
-    virtual void InitializeDerived() {}
+    virtual void initialize_derived() {}
 
-    virtual void OnEnterDerived() {}
+    virtual void on_enter_derived() {}
 
-    virtual void UpdateDerived() {}
+    virtual void update_derived() {}
 
-    virtual void RenderDerived() const {}
+    virtual void render_derived() const {}
 
-    auto GetGUI() const { return m_gui; }
+    auto get_gui() const { return m_gui; }
 
   private:
     s_ptr<gui> m_gui;

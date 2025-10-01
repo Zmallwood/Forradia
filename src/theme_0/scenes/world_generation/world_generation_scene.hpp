@@ -8,6 +8,6 @@
 namespace forr {
   class world_generation_scene : public i_scene {
   protected:
-    void OnEnterDerived() override;
+    void on_enter_derived() override;
   };
 }

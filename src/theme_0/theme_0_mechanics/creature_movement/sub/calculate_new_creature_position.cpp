@@ -9,11 +9,11 @@
 
 namespace forr {
   point CalculateNewCreaturePosition(s_ptr<creature> creature) {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
     auto position{creaturesMirrorRef.at(creature)};
-    auto dx{creature->GetDestination().x - position.x};
-    auto dy{creature->GetDestination().y - position.y};
+    auto dx{creature->get_destination().x - position.x};
+    auto dy{creature->get_destination().y - position.y};
     auto normDx{Normalize(dx)};
     auto normDy{Normalize(dy)};
     auto newX{position.x + normDx};

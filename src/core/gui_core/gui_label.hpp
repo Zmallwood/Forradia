@@ -9,14 +9,14 @@ namespace forr {
   class gui_label : public gui_component {
   public:
     gui_label(float x, float y, float width, float height, str_view text = "",
-             bool centerAlign = false, color color = colors::WheatTransparent)
+              bool centerAlign = false, color color = colors::WheatTransparent)
         : gui_component(x, y, width, height), m_text(text),
           m_centerAlign(centerAlign), m_color(color) {}
 
-    void SetText(str_view value) { m_text = value; }
+    void set_text(str_view value) { m_text = value; }
 
   protected:
-    virtual void RenderDerived() const override;
+    virtual void render_derived() const override;
 
   private:
     str m_text;

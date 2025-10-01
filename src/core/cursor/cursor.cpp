@@ -6,13 +6,15 @@
 #include "core/rendering/images/image_renderer.hpp"
 
 namespace forr {
-  void cursor::Initialize() { DisableSystemCursor(); }
+  void cursor::initialize() { disable_system_cursor(); }
 
-  void cursor::DisableSystemCursor() { SDL_ShowCursor(SDL_DISABLE); }
+  void cursor::disable_system_cursor() { SDL_ShowCursor(SDL_DISABLE); }
 
-  void cursor::ResetStyleToDefault() { m_cursorStyle = cursor_styles::Default; }
+  void cursor::reset_style_to_default() {
+    m_cursorStyle = cursor_styles::Default;
+  }
 
-  void cursor::Render() {
+  void cursor::render() {
     auto mousePosition{GetNormalizedMousePosition()};
     auto width{k_cursorSize};
     auto height{ConvertWidthToHeight(k_cursorSize)};
@@ -25,7 +27,7 @@ namespace forr {
       cursorImage = "CursorHoveringClickableGUI";
       break;
     }
-    GetSingleton<image_renderer>().DrawImage(
+    GetSingleton<image_renderer>().draw_image(
         cursorImage, mousePosition.x - width / 2, mousePosition.y - height / 2,
         width, height);
   }

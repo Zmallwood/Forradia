@@ -8,10 +8,10 @@
 #include "theme_0/theme_0_mechanics/world_generation/generate_new_world.hpp"
 
 namespace forr {
-  void world_generation_scene::OnEnterDerived() {
-    GetSingleton<gui_text_console>().Print("Generating new world...");
+  void world_generation_scene::on_enter_derived() {
+    GetSingleton<gui_text_console>().print("Generating new world...");
     GenerateNewWorld();
-    GetSingleton<gui_text_console>().Print("World generation completed.");
-    GetSingleton<scene_manager>().GoToScene("MainScene");
+    GetSingleton<gui_text_console>().print("World generation completed.");
+    GetSingleton<scene_manager>().go_to_scene("MainScene");
   }
 }

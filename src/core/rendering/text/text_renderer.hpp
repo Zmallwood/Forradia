@@ -10,19 +10,19 @@
 namespace forr {
   class text_renderer {
   public:
-    text_renderer() { Initialize(); }
+    text_renderer() { initialize(); }
 
-    void DrawString(str_view text, float x, float y,
-                    font_sizes fontSize = font_sizes::_20,
-                    bool centerAlign = false,
-                    color textColor = colors::WheatTransparent) const;
+    void draw_string(str_view text, float x, float y,
+                     font_sizes fontSize = font_sizes::_20,
+                     bool centerAlign = false,
+                     color textColor = colors::WheatTransparent) const;
 
   private:
-    void Initialize();
+    void initialize();
 
-    void AddFonts();
+    void add_fonts();
 
-    void AddFontSize(font_sizes fontSize);
+    void add_font_size(font_sizes fontSize);
 
     const str k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
 

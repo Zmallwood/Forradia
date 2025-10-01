@@ -13,29 +13,29 @@
 
 namespace forr {
   void UpdateCreatureMovement() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
     auto now{GetTicks()};
     for (auto it = creaturesMirrorRef.begin();
          it != creaturesMirrorRef.end();) {
       auto creature{it->first};
       auto position{it->second};
-      if (now < creature->GetTicksLastMove() +
-                    InvertMovementSpeed(creature->GetMovementSpeed())) {
+      if (now < creature->get_ticks_last_move() +
+                    InvertMovementSpeed(creature->get_movement_speed())) {
         ++it;
         continue;
       }
       GenerateNewCreatureDestination(creature);
       auto newPosition{CalculateNewCreaturePosition(creature)};
-      if (newPosition == creature->GetDestination()) {
-        creature->SetDestination({-1, -1});
+      if (newPosition == creature->get_destination()) {
+        creature->set_destination({-1, -1});
       }
-      auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
-      if (tile && !tile->GetCreature() &&
-          tile->GetGround() != Hash("GroundWater")) {
+      auto tile{worldArea->get_tile(newPosition.x, newPosition.y)};
+      if (tile && !tile->get_creature() &&
+          tile->get_ground() != Hash("GroundWater")) {
         MoveCreatureToNewLocation(creature, {newPosition.x, newPosition.y});
       } else {
-        creature->SetDestination({-1, -1});
+        creature->set_destination({-1, -1});
       }
       ++it;
     }

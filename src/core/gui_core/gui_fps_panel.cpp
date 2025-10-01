@@ -7,14 +7,14 @@
 #include "gui_label.hpp"
 
 namespace forr {
-  void gui_fps_panel::Initialize() {
+  void gui_fps_panel::initialize() {
     m_fpsTextPanel = std::make_shared<gui_label>(0.01f, 0.01f, 0.1f, 0.05f);
-    AddChildComponent(m_fpsTextPanel);
+    add_child_component(m_fpsTextPanel);
   }
 
-  void gui_fps_panel::UpdateDerived() {
-    gui_movable_panel::UpdateDerived();
-    auto fps{GetSingleton<fps_counter>().GetFPS()};
-    m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
+  void gui_fps_panel::update_derived() {
+    gui_movable_panel::update_derived();
+    auto fps{GetSingleton<fps_counter>().get_fps()};
+    m_fpsTextPanel->set_text(fmt::format("FPS: {}", fps));
   }
 }

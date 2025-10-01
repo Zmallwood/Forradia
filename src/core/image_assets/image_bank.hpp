@@ -7,16 +7,16 @@
 namespace forr {
   class image_bank {
   public:
-    image_bank() { Initialize(); }
+    image_bank() { initialize(); }
 
-    s_ptr<SDL_Texture> GetImage(int imageNameHash) const;
+    s_ptr<SDL_Texture> get_image(int imageNameHash) const;
 
-    size GetImageSize(int imageNameHash) const;
+    size get_image_size(int imageNameHash) const;
 
   private:
-    void Initialize();
+    void initialize();
 
-    void LoadImages();
+    void load_images();
 
     inline static const str k_relativeImagesPath{"./Resources/Images/"};
 

@@ -7,6 +7,6 @@
 namespace forr {
   class game {
   public:
-    void Start() const;
+    void start() const;
   };
 }

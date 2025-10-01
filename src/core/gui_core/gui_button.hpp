@@ -9,17 +9,17 @@ namespace forr {
   class gui_button : public gui_panel {
   public:
     gui_button(float x, float y, float width, float height, str_view text,
-              func<void()> action,
-              str_view backgroundImage = k_backgroundImage,
-              str_view hoveredBackgroundImage = k_hoveredBackgroundImage)
+               func<void()> action,
+               str_view backgroundImage = k_backgroundImage,
+               str_view hoveredBackgroundImage = k_hoveredBackgroundImage)
         : gui_panel(x, y, width, height), m_text(text), m_action(action),
           m_backgroundImage(backgroundImage),
           m_hoveredBackgroundImage(hoveredBackgroundImage) {}
 
   protected:
-    virtual void UpdateDerived() override;
+    virtual void update_derived() override;
 
-    virtual void RenderDerived() const override;
+    virtual void render_derived() const override;
 
   private:
     inline static const str k_backgroundImage{"GUIButtonBackground"};

@@ -7,21 +7,21 @@
 namespace forr {
   class mouse_button {
   public:
-    void Reset();
+    void reset();
 
-    void RegisterPress();
+    void register_press();
 
-    void RegisterRelease();
+    void register_release();
 
-    bool IsPressedPickResult();
+    bool is_pressed_pick_result();
 
-    bool GetHasBeenFiredPickResult();
+    bool get_has_been_fired_pick_result();
 
-    bool GetHasBeenFiredDontPickResult();
+    bool get_has_been_fired_dont_pick_result();
 
-    bool GetHasBeenReleasedPickResult();
+    bool get_has_been_released_pick_result();
 
-    bool GetHasBeenReleasedDontPickResult();
+    bool get_has_been_released_dont_pick_result();
 
   private:
     bool m_isPressed{false};

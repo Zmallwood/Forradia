@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  SDL_Surface *GetRenderedTextSurface(str_view text, TTF_Font *fontRaw,
-                                      color textColor);
+  SDL_Surface *get_rendered_text_surface(str_view text, TTF_Font *fontRaw,
+                                         color textColor);
 }

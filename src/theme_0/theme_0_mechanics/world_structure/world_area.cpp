@@ -7,7 +7,7 @@
 #include "tile.hpp"
 
 namespace forr {
-  void world_area::Initialize() {
+  void world_area::initialize() {
     auto size{game_properties::k_worldAreaSize};
     size.width *= GetSingleton <game_properties>().k_worldScalingFactor;
     size.height *= GetSingleton<game_properties>().k_worldScalingFactor;
@@ -19,7 +19,7 @@ namespace forr {
     }
   }
 
-  size world_area::GetSize() const {
+  size world_area::get_size() const {
     auto width{CInt(m_tiles.size())};
     auto height{0};
     if (width) {
@@ -28,19 +28,19 @@ namespace forr {
     return {width, height};
   }
 
-  bool world_area::IsValidCoordinate(int x, int y) const {
-    auto size{GetSize()};
+  bool world_area::is_valid_coordinate(int x, int y) const {
+    auto size{get_size()};
     return x >= 0 && y >= 0 && x < size.width && y < size.height;
   }
 
-  s_ptr<tile> world_area::GetTile(int x, int y) const {
-    if (IsValidCoordinate(x, y)) {
+  s_ptr<tile> world_area::get_tile(int x, int y) const {
+    if (is_valid_coordinate(x, y)) {
       return m_tiles.at(x).at(y);
     }
     return nullptr;
   }
 
-  s_ptr<tile> world_area::GetTile(point coordinate) const {
-    return GetTile(coordinate.x, coordinate.y);
+  s_ptr<tile> world_area::get_tile(point coordinate) const {
+    return get_tile(coordinate.x, coordinate.y);
   }
 }

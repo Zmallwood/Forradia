@@ -7,22 +7,22 @@
 namespace forr {
   class creature {
   public:
-    creature(str_view typeName) : m_type{Hash(typeName)} { Initialize(); }
+    creature(str_view typeName) : m_type{Hash(typeName)} { initialize(); }
 
-    auto GetType() const { return m_type; }
+    auto get_type() const { return m_type; }
 
-    auto GetTicksLastMove() const { return m_ticksLastMove; }
+    auto get_ticks_last_move() const { return m_ticksLastMove; }
 
-    void SetTicksLastMove(int value) { m_ticksLastMove = value; }
+    void set_ticks_last_move(int value) { m_ticksLastMove = value; }
 
-    auto GetMovementSpeed() const { return m_movementSpeed; }
+    auto get_movement_speed() const { return m_movementSpeed; }
 
-    auto GetDestination() const { return m_destination; }
+    auto get_destination() const { return m_destination; }
 
-    void SetDestination(point value) { m_destination = value; }
+    void set_destination(point value) { m_destination = value; }
 
   private:
-    void Initialize();
+    void initialize();
 
     int m_type{0};
     int m_ticksLastMove{0};

@@ -8,28 +8,28 @@
 #include "core/rendering/text/text_renderer.hpp"
 
 namespace forr {
-  void gui_button::UpdateDerived() {
-    gui_panel::UpdateDerived();
+  void gui_button::update_derived() {
+    gui_panel::update_derived();
     auto mousePosition{GetNormalizedMousePosition()};
-    auto isHovered{GetBounds().Contains(mousePosition)};
+    auto isHovered{get_bounds().contains(mousePosition)};
     if (isHovered) {
-      SetBackgroundImage(m_hoveredBackgroundImage);
-      GetSingleton<cursor>().SetCursorStyle(
+      set_background_image(m_hoveredBackgroundImage);
+      GetSingleton<cursor>().set_cursor_style(
           cursor_styles::HoveringClickableGUI);
       if (GetSingleton<mouse_input>()
-              .GetLeftMouseButtonRef()
-              .GetHasBeenFiredPickResult()) {
+              .get_left_mouse_button_ref()
+              .get_has_been_fired_pick_result()) {
         m_action();
       }
     } else {
-      SetBackgroundImage(m_backgroundImage);
+      set_background_image(m_backgroundImage);
     }
   }
 
-  void gui_button::RenderDerived() const {
-    gui_panel::RenderDerived();
-    auto bounds{GetBounds()};
-    GetSingleton<text_renderer>().DrawString(
+  void gui_button::render_derived() const {
+    gui_panel::render_derived();
+    auto bounds{get_bounds()};
+    GetSingleton<text_renderer>().draw_string(
         m_text, bounds.x + bounds.width / 2, bounds.y + bounds.height / 2,
         font_sizes::_20, true);
   }

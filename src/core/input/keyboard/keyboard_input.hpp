@@ -5,19 +5,19 @@
 #pragma once
 
 namespace forr {
-  class keyboard_input{
+  class keyboard_input {
   public:
-    void Reset();
+    void reset();
 
-    void RegisterKeyPress(SDL_Keycode key);
+    void register_key_press(SDL_Keycode key);
 
-    void RegisterKeyRelease(SDL_Keycode key);
+    void register_key_release(SDL_Keycode key);
 
-    bool KeyIsPressed(SDL_Keycode key) const;
+    bool key_is_pressed(SDL_Keycode key) const;
 
-    bool KeyIsPressedPickResult(SDL_Keycode key);
+    bool key_is_pressed_pick_result(SDL_Keycode key);
 
-    bool AnyKeyIsPressedPickResult();
+    bool any_key_is_pressed_pick_result();
 
   private:
     std::set<SDL_Keycode> m_pressedKeys;

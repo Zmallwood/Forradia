@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  void DrawImageWithAutoHeight(str_view imageName, float x, float y,
-                               float width);
+  void draw_image_with_auto_height(str_view imageName, float x, float y,
+                                   float width);
 }

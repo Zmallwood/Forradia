@@ -7,18 +7,18 @@
 namespace forr {
   class sdl_device {
   public:
-    sdl_device() { Initialize(); }
+    sdl_device() { initialize(); }
 
-    void ClearCanvas() const;
+    void clear_canvas() const;
 
-    void PresentCanvas() const;
+    void present_canvas() const;
 
-    auto GetWindow() const { return m_window; }
+    auto get_window() const { return m_window; }
 
-    auto GetRenderer() const { return m_renderer; }
+    auto get_renderer() const { return m_renderer; }
 
   private:
-    void Initialize();
+    void initialize();
 
     s_ptr<SDL_Window> m_window;
     s_ptr<SDL_Renderer> m_renderer;

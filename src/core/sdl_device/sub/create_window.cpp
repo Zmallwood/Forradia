@@ -6,7 +6,7 @@
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  s_ptr<SDL_Window> CreateWindow() {
+  s_ptr<SDL_Window> create_window() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto windowResult{s_ptr<SDL_Window>(

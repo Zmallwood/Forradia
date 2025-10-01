@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  s_ptr<SDL_Window> CreateWindow();
+  s_ptr<SDL_Window> create_window();
 }

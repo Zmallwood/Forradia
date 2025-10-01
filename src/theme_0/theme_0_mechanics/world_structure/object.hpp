@@ -9,7 +9,7 @@ namespace forr {
   public:
     object(str_view objectTypeName) : m_type(Hash(objectTypeName)) {}
 
-    auto GetType() const { return m_type; }
+    auto get_type() const { return m_type; }
 
   private:
     int m_type{0};

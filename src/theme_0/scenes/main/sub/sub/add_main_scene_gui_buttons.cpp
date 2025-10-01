@@ -8,9 +8,9 @@
 #include "sub/add_main_scene_system_menu_button.hpp"
 
 namespace forr {
-  void AddMainSceneGUIButtons(s_ptr<gui> mainSceneGUI) {
-    AddMainScenePlayerBodyWindowButton(mainSceneGUI);
-    AddMainSceneInventoryWindowButton(mainSceneGUI);
-    AddMainSceneSystemMenuButton(mainSceneGUI);
+  void add_main_scene_gui_buttons(s_ptr<gui> mainSceneGUI) {
+    add_main_scene_player_body_window_button(mainSceneGUI);
+    add_main_scene_inventory_window_button(mainSceneGUI);
+    add_main_scene_system_menu_button(mainSceneGUI);
   }
 }

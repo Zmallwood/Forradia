@@ -7,21 +7,21 @@
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
-  void gui_system_menu::Initialize() { SetVisible(false); }
+  void gui_system_menu::initialize() { set_visible(false); }
 
-  void gui_system_menu::UpdateDerived() {
-    gui_component::UpdateDerived();
-    GetSingleton<mouse_input>().GetLeftMouseButtonRef().Reset();
+  void gui_system_menu::update_derived() {
+    gui_component::update_derived();
+    GetSingleton<mouse_input>().get_left_mouse_button_ref().reset();
   }
 
-  void gui_system_menu::RenderDerived() const {
-    gui_component::RenderDerived();
+  void gui_system_menu::render_derived() const {
+    gui_component::render_derived();
     auto canvasSize{GetCanvasSize()};
     auto rect{SDL_Rect{0, 0, canvasSize.width, canvasSize.height}};
-    SDL_SetRenderDrawBlendMode(GetSingleton<sdl_device>().GetRenderer().get(),
+    SDL_SetRenderDrawBlendMode(GetSingleton<sdl_device>().get_renderer().get(),
                                SDL_BLENDMODE_BLEND);
-    SDL_SetRenderDrawColor(GetSingleton<sdl_device>().GetRenderer().get(), 200,
+    SDL_SetRenderDrawColor(GetSingleton<sdl_device>().get_renderer().get(), 200,
                            0, 255, 50);
-    SDL_RenderFillRect(GetSingleton<sdl_device>().GetRenderer().get(), &rect);
+    SDL_RenderFillRect(GetSingleton<sdl_device>().get_renderer().get(), &rect);
   }
 }

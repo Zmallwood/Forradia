@@ -5,9 +5,9 @@
 #include "get_rendered_text_surface.hpp"
 
 namespace forr {
-  SDL_Surface *GetRenderedTextSurface(str_view text, TTF_Font *fontRaw,
-                                      color textColor) {
-    auto sdlColor{textColor.ToSDLColor()};
+  SDL_Surface *get_rendered_text_surface(str_view text, TTF_Font *fontRaw,
+                                         color textColor) {
+    auto sdlColor{textColor.to_sdl_color()};
     auto surfaceResult{TTF_RenderText_Solid(fontRaw, text.data(), sdlColor)};
     return surfaceResult;
   }

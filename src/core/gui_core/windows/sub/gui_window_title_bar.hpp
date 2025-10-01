@@ -12,9 +12,9 @@ namespace forr {
     gui_window_title_bar(gui_window &parentWindow, str_view windowTitleText)
         : m_parentWindow(parentWindow), k_windowTitleText(windowTitleText) {}
 
-    void Render() const;
+    void render() const;
 
-    rect_f GetBounds() const;
+    rect_f get_bounds() const;
 
   private:
     inline static const float k_height{0.04f};

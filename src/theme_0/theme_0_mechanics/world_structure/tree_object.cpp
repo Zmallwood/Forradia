@@ -5,7 +5,7 @@
 #include "tree_object.hpp"
 
 namespace forr {
-  void tree_object::Initialize(str_view objectTypeName) {
+  void tree_object::initialize(str_view objectTypeName) {
     if (objectTypeName != "ObjectFirTree" &&
         objectTypeName != "ObjectBirchTree") {
       return;

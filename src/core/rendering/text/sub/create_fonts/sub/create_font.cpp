@@ -5,7 +5,7 @@
 #include "create_font.hpp"
 
 namespace forr {
-  s_ptr<TTF_Font> CreateFont(str_view fontFilePath, font_sizes fontSize) {
+  s_ptr<TTF_Font> create_font(str_view fontFilePath, font_sizes fontSize) {
     auto fontPathUnixStyle{Replace(fontFilePath, '\\', '/')};
     auto fontSizeN{CInt(fontSize)};
     auto newFont{s_ptr<TTF_Font>(

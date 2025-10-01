@@ -13,16 +13,16 @@ namespace forr {
                str_view windowTitleText)
         : gui_movable_panel(x, y, width, height),
           m_guiWindowTitleBar(*this, windowTitleText) {
-      Initialize();
+      initialize();
     }
 
   protected:
-    void RenderDerived() const override;
+    void render_derived() const override;
 
-    rect_f GetDraggableArea() override;
+    rect_f get_draggable_area() override;
 
   private:
-    void Initialize();
+    void initialize();
 
     const float k_titleBarHeight{0.04f};
 

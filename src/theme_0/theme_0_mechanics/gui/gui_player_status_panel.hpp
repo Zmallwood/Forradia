@@ -11,6 +11,6 @@ namespace forr {
     gui_player_status_panel() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
   protected:
-    virtual void RenderDerived() const override;
+    virtual void render_derived() const override;
   };
 }

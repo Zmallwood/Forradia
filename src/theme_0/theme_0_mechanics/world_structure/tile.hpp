@@ -11,36 +11,36 @@ namespace forr {
 
   class tile {
   public:
-    tile() { Initialize(); }
+    tile() { initialize(); }
 
-    void SetGround(str_view groundName);
+    void set_ground(str_view groundName);
 
-    auto GetGround() const { return m_ground; }
+    auto get_ground() const { return m_ground; }
 
-    auto GetObjectsStack() const { return m_objectsStack; }
+    auto get_objects_stack() const { return m_objectsStack; }
 
-    auto GetCreature() const { return m_creature; }
+    auto get_creature() const { return m_creature; }
 
-    void SetCreature(s_ptr<creature> value) { m_creature = value; }
+    void set_creature(s_ptr<creature> value) { m_creature = value; }
 
-    auto GetElevation() const { return m_elevation; }
+    auto get_elevation() const { return m_elevation; }
 
-    void SetElevation(int value) { m_elevation = value; }
+    void set_elevation(int value) { m_elevation = value; }
 
-    auto GetWaterDepth() const { return m_waterDepth; }
+    auto get_water_depth() const { return m_waterDepth; }
 
-    void SetWaterDepth(int value) { m_waterDepth = value; }
+    void set_water_depth(int value) { m_waterDepth = value; }
 
-    auto GetRiverDirection1() const { return m_riverDirection1; }
+    auto get_river_direction_1() const { return m_riverDirection1; }
 
-    void SetRiverDirection1(directions value) { m_riverDirection1 = value; }
+    void set_river_direction_1(directions value) { m_riverDirection1 = value; }
 
-    auto GetRiverDirection2() const { return m_riverDirection2; }
+    auto get_river_direction_2() const { return m_riverDirection2; }
 
-    void SetRiverDirection2(directions value) { m_riverDirection2 = value; }
+    void set_river_direction_2(directions value) { m_riverDirection2 = value; }
 
   private:
-    void Initialize();
+    void initialize();
 
     int m_ground{0};
     s_ptr<objects_stack> m_objectsStack;

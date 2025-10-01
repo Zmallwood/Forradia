@@ -12,19 +12,21 @@ namespace forr {
         : gui_panel(x, y, width, height) {}
 
   protected:
-    void UpdateDerived() override;
+    void update_derived() override;
 
-    void StartMoving();
+    void start_moving();
 
-    void StopMoving();
+    void stop_moving();
 
-    virtual rect_f GetDraggableArea();
+    virtual rect_f get_draggable_area();
 
-    auto GetIsBeingMoved() const { return m_isBeingMoved; }
+    auto get_is_being_moved() const { return m_isBeingMoved; }
 
-    auto GetMoveStartPosition() const { return m_moveStartPosition; }
+    auto get_move_start_position() const { return m_moveStartPosition; }
 
-    auto GetMoveStartMousePosition() const { return m_moveStartMousePosition; }
+    auto get_move_start_mouse_position() const {
+      return m_moveStartMousePosition;
+    }
 
   private:
     bool m_isBeingMoved{false};

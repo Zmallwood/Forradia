@@ -9,15 +9,15 @@ namespace forr {
 
   class objects_stack {
   public:
-    void ClearObjects();
+    void clear_objects();
 
-    void AddObject(str_view objectTypeName);
+    void add_object(str_view objectTypeName);
 
-    void AddTreeObject(str_view objectTypeName);
+    void add_tree_object(str_view objectTypeName);
 
-    int GetSize() const;
+    int get_size() const;
 
-    auto GetObjects() const { return m_objects; }
+    auto get_objects() const { return m_objects; }
 
   private:
     vec<s_ptr<object>> m_objects;

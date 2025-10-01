@@ -10,8 +10,8 @@
 
 namespace forr {
   void GenerateElevation() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto size{worldArea->GetSize()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto size{worldArea->get_size()};
     auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numHills{140 + RandomInt(30)};
     for (auto i = 0; i < numHills; i++) {
@@ -21,57 +21,57 @@ namespace forr {
       for (auto r = maxRadius; r >= 0; r--) {
         for (auto y = yCenter - r; y <= yCenter + r; y++) {
           for (auto x = xCenter - r; x <= xCenter + r; x++) {
-            if (!worldArea->IsValidCoordinate(x, y)) {
+            if (!worldArea->is_valid_coordinate(x, y)) {
               continue;
             }
             auto dx{x - xCenter};
             auto dy{y - yCenter};
             if (dx * dx + dy * dy <= r * r) {
-              auto tile{worldArea->GetTile(x, y)};
-              if (tile && tile->GetGround() != Hash("GroundWater")) {
-                auto tileN{worldArea->GetTile(x, y - 1)};
-                auto tileS{worldArea->GetTile(x, y + 1)};
-                auto tileW{worldArea->GetTile(x - 1, y)};
-                auto tileE{worldArea->GetTile(x + 1, y)};
-                auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-                auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-                auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-                auto tileSE{worldArea->GetTile(x + 1, y + 1)};
-                if ((tileN && tileN->GetGround() == Hash("GroundWater")) ||
-                    (tileS && tileS->GetGround() == Hash("GroundWater")) ||
-                    (tileW && tileW->GetGround() == Hash("GroundWater")) ||
-                    (tileE && tileE->GetGround() == Hash("GroundWater")) ||
-                    (tileNW && tileNW->GetGround() == Hash("GroundWater")) ||
-                    (tileNE && tileNE->GetGround() == Hash("GroundWater")) ||
-                    (tileSW && tileSW->GetGround() == Hash("GroundWater")) ||
-                    (tileSE && tileSE->GetGround() == Hash("GroundWater"))) {
+              auto tile{worldArea->get_tile(x, y)};
+              if (tile && tile->get_ground() != Hash("GroundWater")) {
+                auto tileN{worldArea->get_tile(x, y - 1)};
+                auto tileS{worldArea->get_tile(x, y + 1)};
+                auto tileW{worldArea->get_tile(x - 1, y)};
+                auto tileE{worldArea->get_tile(x + 1, y)};
+                auto tileNW{worldArea->get_tile(x - 1, y - 1)};
+                auto tileNE{worldArea->get_tile(x + 1, y - 1)};
+                auto tileSW{worldArea->get_tile(x - 1, y + 1)};
+                auto tileSE{worldArea->get_tile(x + 1, y + 1)};
+                if ((tileN && tileN->get_ground() == Hash("GroundWater")) ||
+                    (tileS && tileS->get_ground() == Hash("GroundWater")) ||
+                    (tileW && tileW->get_ground() == Hash("GroundWater")) ||
+                    (tileE && tileE->get_ground() == Hash("GroundWater")) ||
+                    (tileNW && tileNW->get_ground() == Hash("GroundWater")) ||
+                    (tileNE && tileNE->get_ground() == Hash("GroundWater")) ||
+                    (tileSW && tileSW->get_ground() == Hash("GroundWater")) ||
+                    (tileSE && tileSE->get_ground() == Hash("GroundWater"))) {
                   continue;
                 }
-                if (tileN && tileN->GetElevation() < tile->GetElevation()) {
+                if (tileN && tileN->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileS && tileS->GetElevation() < tile->GetElevation()) {
+                if (tileS && tileS->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileW && tileW->GetElevation() < tile->GetElevation()) {
+                if (tileW && tileW->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileE && tileE->GetElevation() < tile->GetElevation()) {
+                if (tileE && tileE->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileNW && tileNW->GetElevation() < tile->GetElevation()) {
+                if (tileNW && tileNW->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileNE && tileNE->GetElevation() < tile->GetElevation()) {
+                if (tileNE && tileNE->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileSW && tileSW->GetElevation() < tile->GetElevation()) {
+                if (tileSW && tileSW->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                if (tileSE && tileSE->GetElevation() < tile->GetElevation()) {
+                if (tileSE && tileSE->get_elevation() < tile->get_elevation()) {
                   continue;
                 }
-                tile->SetElevation(tile->GetElevation() + 1);
+                tile->set_elevation(tile->get_elevation() + 1);
               }
             }
           }

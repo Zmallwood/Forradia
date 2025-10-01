@@ -10,20 +10,20 @@ namespace forr {
 
   class world_area {
   public:
-    world_area() { Initialize(); }
+    world_area() { initialize(); }
 
-    size GetSize() const;
+    size get_size() const;
 
-    bool IsValidCoordinate(int x, int y) const;
+    bool is_valid_coordinate(int x, int y) const;
 
-    s_ptr<tile> GetTile(int x, int y) const;
+    s_ptr<tile> get_tile(int x, int y) const;
 
-    s_ptr<tile> GetTile(point coordinate) const;
+    s_ptr<tile> get_tile(point coordinate) const;
 
-    auto &GetCreaturesMirrorRef() { return m_creaturesMirror; }
+    auto &get_creatures_mirror_ref() { return m_creaturesMirror; }
 
   private:
-    void Initialize();
+    void initialize();
 
     vec<vec<s_ptr<tile>>> m_tiles;
     std::map<s_ptr<creature>, point> m_creaturesMirror;

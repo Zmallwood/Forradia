@@ -9,17 +9,16 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void MoveCreatureToNewLocation(s_ptr<creature> creature,
-                                 point newPosition) {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
+  void MoveCreatureToNewLocation(s_ptr<creature> creature, point newPosition) {
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
     auto oldPosition{creaturesMirrorRef.at(creature)};
     auto now{GetTicks()};
-    creature->SetTicksLastMove(now);
-    auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
-    auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
-    oldTile->SetCreature(nullptr);
-    newTile->SetCreature(creature);
+    creature->set_ticks_last_move(now);
+    auto oldTile{worldArea->get_tile(oldPosition.x, oldPosition.y)};
+    auto newTile{worldArea->get_tile(newPosition.x, newPosition.y)};
+    oldTile->set_creature(nullptr);
+    newTile->set_creature(creature);
     creaturesMirrorRef.erase(creature);
     creaturesMirrorRef.insert({creature, {newPosition.x, newPosition.y}});
   }

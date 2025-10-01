@@ -5,7 +5,7 @@
 #include "gui_inventory_window.hpp"
 
 namespace forr {
-  void gui_inventory_window::RenderDerived() const {
-    gui_window::RenderDerived();
+  void gui_inventory_window::render_derived() const {
+    gui_window::render_derived();
   }
 }

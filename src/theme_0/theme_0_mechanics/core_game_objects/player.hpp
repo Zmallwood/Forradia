@@ -8,36 +8,36 @@
 namespace forr {
   class player {
   public:
-    player() { Initialize(); }
+    player() { initialize(); }
 
-    void MoveNorth();
+    void move_north();
 
-    void MoveEast();
+    void move_east();
 
-    void MoveSouth();
+    void move_south();
 
-    void MoveWest();
+    void move_west();
 
-    auto GetName() const { return m_name; }
+    auto get_name() const { return m_name; }
 
-    auto GetPosition() const { return m_position; }
+    auto get_position() const { return m_position; }
 
-    auto GetMovementSpeed() const { return m_movementSpeed; }
+    auto get_movement_speed() const { return m_movementSpeed; }
 
-    auto GetTicksLastMove() const { return m_ticksLastMove; }
+    auto get_ticks_last_move() const { return m_ticksLastMove; }
 
-    void SetTicksLastMove(int value) { m_ticksLastMove = value; }
+    void set_ticks_last_move(int value) { m_ticksLastMove = value; }
 
-    auto GetDestination() const { return m_destination; }
+    auto get_destination() const { return m_destination; }
 
-    void SetDestination(point value) { m_destination = value; }
+    void set_destination(point value) { m_destination = value; }
 
-    auto &GetPlayerBodyRef() { return m_playerBody; }
+    auto &get_player_body_ref() { return m_playerBody; }
 
   private:
-    void Initialize();
+    void initialize();
 
-    void MoveToSuitablePosition();
+    void move_to_suitable_position();
 
     str m_name{"Unnamed Player"};
     point m_position{60, 50};

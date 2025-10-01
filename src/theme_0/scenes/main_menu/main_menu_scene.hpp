@@ -8,10 +8,10 @@
 namespace forr {
   class main_menu_scene : public i_scene {
   protected:
-    void InitializeDerived() override;
+    void initialize_derived() override;
 
-    void UpdateDerived() override;
+    void update_derived() override;
 
-    void RenderDerived() const override;
+    void render_derived() const override;
   };
 }

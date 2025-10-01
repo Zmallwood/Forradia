@@ -12,22 +12,22 @@
 #include "sub/poll_events.hpp"
 
 namespace forr {
-  void engine::Run() {
+  void engine::run() {
     Randomize();
     GetSingleton<sdl_device>();
     while (m_running) {
-      GetSingleton<keyboard_input>().Reset();
-      GetSingleton<mouse_input>().Reset();
-      GetSingleton<cursor>().ResetStyleToDefault();
+      GetSingleton<keyboard_input>().reset();
+      GetSingleton<mouse_input>().reset();
+      GetSingleton<cursor>().reset_style_to_default();
       PollEvents();
-      GetSingleton<scene_manager>().UpdateCurrentScene();
-      GetSingleton<fps_counter>().Update();
-      GetSingleton<sdl_device>().ClearCanvas();
-      GetSingleton<scene_manager>().RenderCurrentScene();
-      GetSingleton<cursor>().Render();
-      GetSingleton<sdl_device>().PresentCanvas();
+      GetSingleton<scene_manager>().update_current_scene();
+      GetSingleton<fps_counter>().update();
+      GetSingleton<sdl_device>().clear_canvas();
+      GetSingleton<scene_manager>().render_current_scene();
+      GetSingleton<cursor>().render();
+      GetSingleton<sdl_device>().present_canvas();
     }
   }
 
-  void engine::Stop() { m_running = false; }
+  void engine::stop() { m_running = false; }
 }

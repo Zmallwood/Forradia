@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  void RenderTextSurface(SDL_Surface *surface, float x, float y,
-                         size textDimensions, bool centerAlign);
+  void render_text_surface(SDL_Surface *surface, float x, float y,
+                           size textDimensions, bool centerAlign);
 }

@@ -7,9 +7,10 @@
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
+  // Canvas util functions
   size GetCanvasSize() {
     size canvasSize;
-    SDL_GetWindowSize(GetSingleton<sdl_device>().GetWindow().get(),
+    SDL_GetWindowSize(GetSingleton<sdl_device>().get_window().get(),
                       &canvasSize.width, &canvasSize.height);
     return canvasSize;
   }
@@ -28,6 +29,7 @@ namespace forr {
     return height / CalculateAspectRatio();
   }
 
+  // File path util functions
   str GetFileExtension(str_view path) {
     str extension{path.substr(path.find_last_of('.') + 1).data()};
     return extension;
@@ -38,6 +40,7 @@ namespace forr {
     return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
   }
 
+  // Numbers util functions
   point_f GetNormalizedMousePosition() {
     int xPx;
     int yPx;
@@ -68,10 +71,12 @@ namespace forr {
     return std::ceil(number * p) / p;
   }
 
+  // Randomization util functions
   void Randomize() { srand(time(nullptr)); }
 
   int RandomInt(int upperLimit) { return rand() % upperLimit; }
 
+  // String util functions
   str Replace(str_view text, char replaced, char replacedWith) {
     str textData{text.data()};
     std::replace(textData.begin(), textData.end(), replaced, replacedWith);

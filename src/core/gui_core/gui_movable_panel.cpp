@@ -7,47 +7,48 @@
 #include "core/input/mouse/mouse_input.hpp"
 
 namespace forr {
-  void gui_movable_panel::UpdateDerived() {
+  void gui_movable_panel::update_derived() {
     auto mousePosition{GetNormalizedMousePosition()};
-    auto draggableArea{GetDraggableArea()};
-    if (draggableArea.Contains(mousePosition)) {
-      GetSingleton<cursor>().SetCursorStyle(cursor_styles::HoveringClickableGUI);
+    auto draggableArea{get_draggable_area()};
+    if (draggableArea.contains(mousePosition)) {
+      GetSingleton<cursor>().set_cursor_style(
+          cursor_styles::HoveringClickableGUI);
       if (GetSingleton<mouse_input>()
-              .GetLeftMouseButtonRef()
-              .GetHasBeenFiredPickResult()) {
-        StartMoving();
+              .get_left_mouse_button_ref()
+              .get_has_been_fired_pick_result()) {
+        start_moving();
       }
     }
     if (GetSingleton<mouse_input>()
-            .GetLeftMouseButtonRef()
-            .GetHasBeenReleasedDontPickResult()) {
-      StopMoving();
+            .get_left_mouse_button_ref()
+            .get_has_been_released_dont_pick_result()) {
+      stop_moving();
     }
-    auto bounds{GetBounds()};
-    if (bounds.Contains(mousePosition)) {
+    auto bounds{get_bounds()};
+    if (bounds.contains(mousePosition)) {
       if (GetSingleton<mouse_input>()
-              .GetLeftMouseButtonRef()
-              .GetHasBeenFiredDontPickResult()) {
-        GetSingleton<mouse_input>().GetLeftMouseButtonRef().Reset();
+              .get_left_mouse_button_ref()
+              .get_has_been_fired_dont_pick_result()) {
+        GetSingleton<mouse_input>().get_left_mouse_button_ref().reset();
       }
     }
-    if (GetIsBeingMoved()) {
-      auto moveStartPosition{GetMoveStartPosition()};
-      auto moveStartMousePosition{GetMoveStartMousePosition()};
+    if (get_is_being_moved()) {
+      auto moveStartPosition{get_move_start_position()};
+      auto moveStartMousePosition{get_move_start_mouse_position()};
       auto currentMousePosition{GetNormalizedMousePosition()};
       auto newPosition{moveStartPosition + currentMousePosition -
                        moveStartMousePosition};
-      SetPosition(newPosition);
+      set_position(newPosition);
     }
   }
 
-  void gui_movable_panel::StartMoving() {
+  void gui_movable_panel::start_moving() {
     m_isBeingMoved = true;
-    m_moveStartPosition = GetBounds().GetPosition();
+    m_moveStartPosition = get_bounds().get_position();
     m_moveStartMousePosition = GetNormalizedMousePosition();
   }
 
-  void gui_movable_panel::StopMoving() { m_isBeingMoved = false; }
+  void gui_movable_panel::stop_moving() { m_isBeingMoved = false; }
 
-  rect_f gui_movable_panel::GetDraggableArea() { return GetBounds(); }
+  rect_f gui_movable_panel::get_draggable_area() { return get_bounds(); }
 }

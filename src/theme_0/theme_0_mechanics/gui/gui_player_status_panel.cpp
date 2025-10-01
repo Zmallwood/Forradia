@@ -7,11 +7,11 @@
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
 namespace forr {
-  void gui_player_status_panel::RenderDerived() const {
-    gui_panel::RenderDerived();
-    auto bounds{GetBounds()};
-    GetSingleton<text_renderer>().DrawString(GetSingleton<player>().GetName(),
-                                             bounds.x + 0.01f, bounds.y + 0.01f,
-                                             font_sizes::_26);
+  void gui_player_status_panel::render_derived() const {
+    gui_panel::render_derived();
+    auto bounds{get_bounds()};
+    GetSingleton<text_renderer>().draw_string(
+        GetSingleton<player>().get_name(), bounds.x + 0.01f, bounds.y + 0.01f,
+        font_sizes::_26);
   }
 }

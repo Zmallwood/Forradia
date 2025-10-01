@@ -11,6 +11,6 @@ namespace forr {
     gui_inventory_window() : gui_window(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
 
   protected:
-    void RenderDerived() const override;
+    void render_derived() const override;
   };
 }

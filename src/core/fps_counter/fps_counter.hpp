@@ -7,9 +7,9 @@
 namespace forr {
   class fps_counter {
   public:
-    void Update();
+    void update();
 
-    auto GetFPS() const { return m_fps; }
+    auto get_fps() const { return m_fps; }
 
   private:
     int m_fps{0};

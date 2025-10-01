@@ -8,13 +8,13 @@
 namespace forr {
   class gui_system_menu : public gui_component {
   public:
-    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { Initialize(); }
+    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { initialize(); }
 
   protected:
-    void Initialize();
+    void initialize();
 
-    virtual void UpdateDerived() override;
+    virtual void update_derived() override;
 
-    virtual void RenderDerived() const override;
+    virtual void render_derived() const override;
   };
 }

@@ -10,8 +10,8 @@
 
 namespace forr {
   void GenerateRock() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto size{worldArea->GetSize()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto size{worldArea->get_size()};
     auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numRockAreas{30 + RandomInt(10)};
     for (auto i = 0; i < numRockAreas; i++) {
@@ -20,15 +20,15 @@ namespace forr {
       auto radius{3 * scale + RandomInt(10 * scale)};
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
-          if (!worldArea->IsValidCoordinate(x, y)) {
+          if (!worldArea->is_valid_coordinate(x, y)) {
             continue;
           }
           auto dx{x - xCenter};
           auto dy{y - yCenter};
           if (dx * dx + dy * dy <= radius * radius) {
-            auto tile{worldArea->GetTile(x, y)};
-            if (tile->GetElevation() > 0) {
-              tile->SetGround("GroundRock");
+            auto tile{worldArea->get_tile(x, y)};
+            if (tile->get_elevation() > 0) {
+              tile->set_ground("GroundRock");
             }
           }
         }

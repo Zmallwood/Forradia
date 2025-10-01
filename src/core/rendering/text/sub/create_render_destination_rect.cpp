@@ -5,8 +5,8 @@
 #include "create_render_destination_rect.hpp"
 
 namespace forr {
-  SDL_Rect CreateRenderDestinationRect(float x, float y, size textDimensions,
-                                       bool centerAlign) {
+  SDL_Rect create_render_destination_rect(float x, float y, size textDimensions,
+                                          bool centerAlign) {
     SDL_Rect rectResult;
     auto canvasSize{GetCanvasSize()};
     rectResult.x = CInt(x * canvasSize.width);

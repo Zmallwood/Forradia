@@ -7,9 +7,9 @@
 namespace forr {
   class tile_hovering {
   public:
-    void Update();
+    void update();
 
-    auto GetHoveredCoordinate() const { return m_hoveredCoordinate; }
+    auto get_hovered_coordinate() const { return m_hoveredCoordinate; }
 
   private:
     point m_hoveredCoordinate{-1, -1};

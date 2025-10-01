@@ -8,18 +8,18 @@
 namespace forr {
   class cursor {
   public:
-    cursor() { Initialize(); }
+    cursor() { initialize(); }
 
-    void ResetStyleToDefault();
+    void reset_style_to_default();
 
-    void Render();
+    void render();
 
-    auto SetCursorStyle(cursor_styles value) { m_cursorStyle = value; }
+    auto set_cursor_style(cursor_styles value) { m_cursorStyle = value; }
 
   private:
-    void Initialize();
+    void initialize();
 
-    void DisableSystemCursor();
+    void disable_system_cursor();
 
     constexpr static float k_cursorSize{0.05f};
 

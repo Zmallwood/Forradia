@@ -13,19 +13,22 @@ namespace forr {
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
       case SDL_QUIT:
-        GetSingleton<engine>().Stop();
+        GetSingleton<engine>().stop();
         break;
       case SDL_KEYDOWN:
-        GetSingleton<keyboard_input>().RegisterKeyPress(event.key.keysym.sym);
+        GetSingleton<keyboard_input>().register_key_press(event.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        GetSingleton<keyboard_input>().RegisterKeyRelease(event.key.keysym.sym);
+        GetSingleton<keyboard_input>().register_key_release(
+            event.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        GetSingleton<mouse_input>().RegisterMouseButtonDown(event.button.button);
+        GetSingleton<mouse_input>().register_mouse_button_down(
+            event.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        GetSingleton<mouse_input>().RegisterMouseButtonUp(event.button.button);
+        GetSingleton<mouse_input>().register_mouse_button_up(
+            event.button.button);
         break;
       }
     }

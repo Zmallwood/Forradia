@@ -76,14 +76,14 @@ namespace forr {
      * \param point Point to check if it is contained in this rectangle.
      * \return True if the Point is within this rectangle, otherwise false.
      */
-    bool Contains(point_f point);
+    bool contains(point_f point);
 
     /**
      * \brief Returns only the position of this rectangle.
      *
      * \return The position.
      */
-    point_f GetPosition() const;
+    point_f get_position() const;
 
     /**
      * \brief Adds an offset to this rectangle, with the dimensions altered
@@ -91,7 +91,7 @@ namespace forr {
      *
      * \param offset The offset to add.
      */
-    void Offset(point_f offset);
+    void offset(point_f offset);
 
     float x{0.0f};      ///< The x coordinate.
     float y{0.0f};      ///< The y coordinate.
@@ -109,7 +109,7 @@ namespace forr {
      *
      * \return Corresponding SDL_Color object.
      */
-    SDL_Color ToSDLColor() const;
+    SDL_Color to_sdl_color() const;
 
     float r{0.0f};
     float g{0.0f};

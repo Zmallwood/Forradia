@@ -9,22 +9,23 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void player::Initialize() { MoveToSuitablePosition(); }
+  void player::initialize() { move_to_suitable_position(); }
 
-  void player::MoveToSuitablePosition() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto size{worldArea->GetSize()};
+  void player::move_to_suitable_position() {
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto size{worldArea->get_size()};
     m_position = {size.width / 2, size.height / 2};
-    while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
+    while (worldArea->get_tile(m_position)->get_ground() ==
+           Hash("GroundWater")) {
       m_position = {RandomInt(size.width), RandomInt(size.height)};
     }
   }
 
-  void player::MoveNorth() { m_position.y -= 1; }
+  void player::move_north() { m_position.y -= 1; }
 
-  void player::MoveEast() { m_position.x += 1; }
+  void player::move_east() { m_position.x += 1; }
 
-  void player::MoveSouth() { m_position.y += 1; }
+  void player::move_south() { m_position.y += 1; }
 
-  void player::MoveWest() { m_position.x -= 1; }
+  void player::move_west() { m_position.x -= 1; }
 }

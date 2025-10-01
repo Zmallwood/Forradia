@@ -10,13 +10,13 @@ namespace forr {
 
   class intro_scene : public i_scene {
   protected:
-    void InitializeDerived() override;
+    void initialize_derived() override;
 
-    void OnEnterDerived() override;
+    void on_enter_derived() override;
 
-    void UpdateDerived() override;
+    void update_derived() override;
 
-    void RenderDerived() const override;
+    void render_derived() const override;
 
   private:
     s_ptr<gui_component> m_startText;

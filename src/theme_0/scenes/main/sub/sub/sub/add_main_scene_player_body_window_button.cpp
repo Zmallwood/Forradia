@@ -8,10 +8,10 @@
 #include "theme_0/theme_0_mechanics/gui/gui_player_body_window.hpp"
 
 namespace forr {
-  void AddMainScenePlayerBodyWindowButton(s_ptr<gui> mainSceneGUI) {
-    mainSceneGUI->AddChildComponent(std::make_shared<gui_button>(
+  void add_main_scene_player_body_window_button(s_ptr<gui> mainSceneGUI) {
+    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
         0.78f, 0.9f, 0.05f, ConvertWidthToHeight(0.05f), "",
-        [] { GetSingleton<gui_player_body_window>().ToggleVisibility(); },
+        [] { GetSingleton<gui_player_body_window>().toggle_visibility(); },
         "GUIButtonPlayerBodyBackground",
         "GUIButtonPlayerBodyHoveredBackground"));
   }

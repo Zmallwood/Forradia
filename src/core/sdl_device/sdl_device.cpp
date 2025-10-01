@@ -8,23 +8,23 @@
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  void sdl_device::Initialize() {
+  void sdl_device::initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
-    m_window = CreateWindow();
+    m_window = create_window();
     if (m_window) {
-      m_renderer = CreateRenderer(m_window);
+      m_renderer = create_renderer(m_window);
     }
   }
 
-  void sdl_device::ClearCanvas() const {
+  void sdl_device::clear_canvas() const {
     SDL_Color clearColor{
-        GetSingleton<game_properties>().k_clearColor.ToSDLColor()};
+        GetSingleton<game_properties>().k_clearColor.to_sdl_color()};
     SDL_SetRenderDrawColor(m_renderer.get(), clearColor.r, clearColor.g,
                            clearColor.b, 255);
     SDL_RenderClear(m_renderer.get());
   }
 
-  void sdl_device::PresentCanvas() const {
+  void sdl_device::present_canvas() const {
     SDL_RenderPresent(m_renderer.get());
   }
 }

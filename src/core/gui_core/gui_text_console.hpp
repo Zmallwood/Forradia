@@ -11,9 +11,9 @@ namespace forr {
     gui_text_console()
         : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived) {}
 
-    void RenderDerived() const override;
+    void render_derived() const override;
 
-    void Print(str_view text);
+    void print(str_view text);
 
   private:
     constexpr static str_view k_defaultBackgroundImageDerived{

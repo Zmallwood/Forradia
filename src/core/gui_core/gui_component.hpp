@@ -10,26 +10,28 @@ namespace forr {
     gui_component(float x, float y, float width, float height)
         : m_bounds({x, y, width, height}) {}
 
-    s_ptr<gui_component> AddChildComponent(s_ptr<gui_component> component);
+    s_ptr<gui_component> add_child_component(s_ptr<gui_component> component);
 
-    void Update();
+    void update();
 
-    void Render() const;
+    void render() const;
 
-    rect_f GetBounds() const;
+    rect_f get_bounds() const;
 
-    void ToggleVisibility();
+    void toggle_visibility();
 
-    void SetVisible(bool value) { m_visible = value; }
+    void set_visible(bool value) { m_visible = value; }
 
-    void SetParentComponent(gui_component *value) { m_parentComponent = value; }
+    void set_parent_component(gui_component *value) {
+      m_parentComponent = value;
+    }
 
   protected:
-    virtual void UpdateDerived() {}
+    virtual void update_derived() {}
 
-    virtual void RenderDerived() const {}
+    virtual void render_derived() const {}
 
-    void SetPosition(point_f newPosition);
+    void set_position(point_f newPosition);
 
   private:
     rect_f m_bounds;

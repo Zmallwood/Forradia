@@ -7,9 +7,9 @@
 namespace forr {
   class engine {
   public:
-    void Run();
+    void run();
 
-    void Stop();
+    void stop();
 
   private:
     bool m_running{true};

@@ -10,8 +10,8 @@
 
 namespace forr {
   void GenerateGrass() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto size{worldArea->GetSize()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto size{worldArea->get_size()};
     auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numGrassAreas{50 + RandomInt(20)};
     for (auto i = 0; i < numGrassAreas; i++) {
@@ -20,14 +20,14 @@ namespace forr {
       auto radius{3 * scale + RandomInt(10 * scale)};
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
-          if (!worldArea->IsValidCoordinate(x, y)) {
+          if (!worldArea->is_valid_coordinate(x, y)) {
             continue;
           }
           auto dx{x - xCenter};
           auto dy{y - yCenter};
           if (dx * dx + dy * dy <= radius * radius) {
-            auto tile{worldArea->GetTile(x, y)};
-            tile->SetGround("GroundGrass");
+            auto tile{worldArea->get_tile(x, y)};
+            tile->set_ground("GroundGrass");
           }
         }
       }

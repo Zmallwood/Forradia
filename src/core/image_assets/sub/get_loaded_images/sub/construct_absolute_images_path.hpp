@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  str ConstructAbsoluteImagesPath(str_view relativeImagesPath);
+  str construct_absolute_images_path(str_view relativeImagesPath);
 }

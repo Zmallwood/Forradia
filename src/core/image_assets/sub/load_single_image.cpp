@@ -6,10 +6,10 @@
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
-  s_ptr<SDL_Texture> LoadSingleImage(str_view path) {
+  s_ptr<SDL_Texture> load_single_image(str_view path) {
     auto surface{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
     if (surface) {
-      auto renderer{GetSingleton<sdl_device>().GetRenderer().get()};
+      auto renderer{GetSingleton<sdl_device>().get_renderer().get()};
       auto texture{s_ptr<SDL_Texture>(
           SDL_CreateTextureFromSurface(renderer, surface.get()),
           sdl_deleter())};

@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  SDL_Rect CreateRenderDestinationRect(float x, float y, size textDimensions,
-                                       bool centerAlign);
+  SDL_Rect create_render_destination_rect(float x, float y, size textDimensions,
+                                          bool centerAlign);
 }

@@ -7,6 +7,6 @@
 namespace forr {
   class world_view {
   public:
-    void Render() const;
+    void render() const;
   };
 }

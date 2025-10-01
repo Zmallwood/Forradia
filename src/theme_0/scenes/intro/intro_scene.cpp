@@ -13,30 +13,31 @@
 #include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {
-  void intro_scene::InitializeDerived() {
-    m_startText = GetGUI()->AddChildComponent(std::make_shared<gui_label>(
+  void intro_scene::initialize_derived() {
+    m_startText = get_gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }
 
-  void intro_scene::OnEnterDerived() {
-    GetSingleton<gui_text_console>().Print("Game started.");
+  void intro_scene::on_enter_derived() {
+    GetSingleton<gui_text_console>().print("Game started.");
   }
 
-  void intro_scene::UpdateDerived() {
-    m_startText->SetVisible((GetTicks() % 800) < 400);
+  void intro_scene::update_derived() {
+    m_startText->set_visible((GetTicks() % 800) < 400);
 
-    GetSingleton<cursor>().SetCursorStyle(cursor_styles::HoveringClickableGUI);
+    GetSingleton<cursor>().set_cursor_style(
+        cursor_styles::HoveringClickableGUI);
 
-    if (GetSingleton<keyboard_input>().AnyKeyIsPressedPickResult() ||
-        GetSingleton<mouse_input>().AnyMouseButtonIsPressedPickResult()) {
-      GetSingleton<scene_manager>().GoToScene("MainMenuScene");
+    if (GetSingleton<keyboard_input>().any_key_is_pressed_pick_result() ||
+        GetSingleton<mouse_input>().any_mouse_button_is_pressed_pick_result()) {
+      GetSingleton<scene_manager>().go_to_scene("MainMenuScene");
     }
   }
 
-  void intro_scene::RenderDerived() const {
-    GetSingleton<image_renderer>().DrawImage("DefaultSceneBackground", 0.0f,
-                                             0.0f, 1.0f, 1.0f);
-    GetSingleton<image_renderer>().DrawImageWithAutoHeight("ForradiaLogo",
-                                                           0.25f, 0.2f, 0.5f);
+  void intro_scene::render_derived() const {
+    GetSingleton<image_renderer>().draw_image("DefaultSceneBackground", 0.0f,
+                                              0.0f, 1.0f, 1.0f);
+    GetSingleton<image_renderer>().draw_image_with_auto_height(
+        "ForradiaLogo", 0.25f, 0.2f, 0.5f);
   }
 }

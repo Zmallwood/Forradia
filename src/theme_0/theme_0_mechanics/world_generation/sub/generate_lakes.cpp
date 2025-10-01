@@ -14,7 +14,7 @@ namespace forr {
     if (recursive == 0) {
       return;
     }
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
     auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto xCenter{minX + RandomInt(maxX - minX)};
     auto yCenter{minY + RandomInt(maxY - minY)};
@@ -25,7 +25,7 @@ namespace forr {
           auto dx{x - xCenter};
           auto dy{y - yCenter};
           if (dx * dx + dy * dy <= r * r) {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->get_tile(x, y)};
             if (tile) {
               point N{x, y - 1};
               point E{x + 1, y};
@@ -43,47 +43,47 @@ namespace forr {
               point NENE{x + 2, y - 2};
               point SESE{x + 2, y + 2};
               point SWSW{x - 2, y + 2};
-              auto tileN{worldArea->GetTile(N)};
-              auto tileE{worldArea->GetTile(E)};
-              auto tileS{worldArea->GetTile(S)};
-              auto tileW{worldArea->GetTile(W)};
-              auto tileNW{worldArea->GetTile(NW)};
-              auto tileNE{worldArea->GetTile(NE)};
-              auto tileSE{worldArea->GetTile(SE)};
-              auto tileSW{worldArea->GetTile(SW)};
-              auto tileNN{worldArea->GetTile(NN)};
-              auto tileWW{worldArea->GetTile(WW)};
-              auto tileEE{worldArea->GetTile(EE)};
-              auto tileSS{worldArea->GetTile(SS)};
-              auto tileNWNW{worldArea->GetTile(NWNW)};
-              auto tileNENE{worldArea->GetTile(NENE)};
-              auto tileSESE{worldArea->GetTile(SESE)};
-              auto tileSWSW{worldArea->GetTile(SWSW)};
-              auto elevationN{tileN ? tileN->GetElevation() : 0};
-              auto elevationE{tileE ? tileE->GetElevation() : 0};
-              auto elevationS{tileS ? tileS->GetElevation() : 0};
-              auto elevationW{tileW ? tileW->GetElevation() : 0};
-              auto elevationNW{tileNW ? tileNW->GetElevation() : 0};
-              auto elevationNE{tileNE ? tileNE->GetElevation() : 0};
-              auto elevationSE{tileSE ? tileSE->GetElevation() : 0};
-              auto elevationSW{tileSW ? tileSW->GetElevation() : 0};
-              auto elevationNN{tileNN ? tileNN->GetElevation() : 0};
-              auto elevationWW{tileWW ? tileWW->GetElevation() : 0};
-              auto elevationEE{tileEE ? tileEE->GetElevation() : 0};
-              auto elevationSS{tileSS ? tileSS->GetElevation() : 0};
-              auto elevationNWNW{tileNWNW ? tileNWNW->GetElevation() : 0};
-              auto elevationNENE{tileNENE ? tileNENE->GetElevation() : 0};
-              auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0};
-              auto elevationSWSW{tileSWSW ? tileSWSW->GetElevation() : 0};
+              auto tileN{worldArea->get_tile(N)};
+              auto tileE{worldArea->get_tile(E)};
+              auto tileS{worldArea->get_tile(S)};
+              auto tileW{worldArea->get_tile(W)};
+              auto tileNW{worldArea->get_tile(NW)};
+              auto tileNE{worldArea->get_tile(NE)};
+              auto tileSE{worldArea->get_tile(SE)};
+              auto tileSW{worldArea->get_tile(SW)};
+              auto tileNN{worldArea->get_tile(NN)};
+              auto tileWW{worldArea->get_tile(WW)};
+              auto tileEE{worldArea->get_tile(EE)};
+              auto tileSS{worldArea->get_tile(SS)};
+              auto tileNWNW{worldArea->get_tile(NWNW)};
+              auto tileNENE{worldArea->get_tile(NENE)};
+              auto tileSESE{worldArea->get_tile(SESE)};
+              auto tileSWSW{worldArea->get_tile(SWSW)};
+              auto elevationN{tileN ? tileN->get_elevation() : 0};
+              auto elevationE{tileE ? tileE->get_elevation() : 0};
+              auto elevationS{tileS ? tileS->get_elevation() : 0};
+              auto elevationW{tileW ? tileW->get_elevation() : 0};
+              auto elevationNW{tileNW ? tileNW->get_elevation() : 0};
+              auto elevationNE{tileNE ? tileNE->get_elevation() : 0};
+              auto elevationSE{tileSE ? tileSE->get_elevation() : 0};
+              auto elevationSW{tileSW ? tileSW->get_elevation() : 0};
+              auto elevationNN{tileNN ? tileNN->get_elevation() : 0};
+              auto elevationWW{tileWW ? tileWW->get_elevation() : 0};
+              auto elevationEE{tileEE ? tileEE->get_elevation() : 0};
+              auto elevationSS{tileSS ? tileSS->get_elevation() : 0};
+              auto elevationNWNW{tileNWNW ? tileNWNW->get_elevation() : 0};
+              auto elevationNENE{tileNENE ? tileNENE->get_elevation() : 0};
+              auto elevationSESE{tileSESE ? tileSESE->get_elevation() : 0};
+              auto elevationSWSW{tileSWSW ? tileSWSW->get_elevation() : 0};
               if (elevationN == 0 && elevationE == 0 && elevationS == 0 &&
                   elevationW == 0 && elevationNW == 0 && elevationNE == 0 &&
                   elevationSE == 0 && elevationSW == 0 && elevationNN == 0 &&
                   elevationWW == 0 && elevationEE == 0 && elevationSS == 0 &&
                   elevationNWNW == 0 && elevationNENE == 0 &&
                   elevationSESE == 0 && elevationSWSW == 0) {
-                tile->SetGround("GroundWater");
+                tile->set_ground("GroundWater");
               }
-              tile->SetWaterDepth(tile->GetWaterDepth() + 1);
+              tile->set_water_depth(tile->get_water_depth() + 1);
             }
           }
         }
@@ -94,8 +94,8 @@ namespace forr {
   }
 
   void GenerateLakes() {
-    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
-    auto size{worldArea->GetSize()};
+    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto size{worldArea->get_size()};
     auto numLakes{20 + RandomInt(5)};
     for (auto i = 0; i < numLakes; i++) {
       GenerateSingleLake(0, 0, size.width, size.height, 2 + RandomInt(5));
