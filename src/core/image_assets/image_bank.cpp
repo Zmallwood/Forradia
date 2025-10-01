@@ -13,7 +13,7 @@ namespace forr {
     m_images = GetLoadedImages(k_relativeImagesPath);
   }
 
-  SharedPtr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const {
+  s_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const {
     if (m_images.contains(imageNameHash)) {
       return m_images.at(imageNameHash);
     }

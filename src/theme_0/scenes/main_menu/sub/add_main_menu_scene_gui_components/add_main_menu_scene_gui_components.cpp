@@ -9,7 +9,7 @@
 #include "sub/add_main_menu_scene_gui_buttons.hpp"
 
 namespace forr {
-  void AddMainMenuSceneGUIComponents(SharedPtr<GUI> mainMenuSceneGUI) {
+  void AddMainMenuSceneGUIComponents(s_ptr<GUI> mainMenuSceneGUI) {
     mainMenuSceneGUI->AddChildComponent(
         std::make_shared<GUIPanel>(0.4f, 0.32f, 0.2f, 0.2f));
     AddMainMenuSceneGUIButtons(mainMenuSceneGUI);

@@ -12,9 +12,9 @@ namespace forr {
    * \tparam T Type to get singleton for.
    * \return The singleton object as a SharedPtr.
    */
-  template <class T> SharedPtr<T> GetSingletonPtr() {
+  template <class T> s_ptr<T> GetSingletonPtr() {
     // Create singleton instance only once.
-    static SharedPtr<T> instance = std::make_shared<T>();
+    static s_ptr<T> instance = std::make_shared<T>();
     return instance;
   }
 

@@ -8,10 +8,10 @@
 namespace forr {
   class GUIButton : public GUIPanel {
   public:
-    GUIButton(float x, float y, float width, float height, StringView text,
-              Function<void()> action,
-              StringView backgroundImage = k_backgroundImage,
-              StringView hoveredBackgroundImage = k_hoveredBackgroundImage)
+    GUIButton(float x, float y, float width, float height, str_view text,
+              func<void()> action,
+              str_view backgroundImage = k_backgroundImage,
+              str_view hoveredBackgroundImage = k_hoveredBackgroundImage)
         : GUIPanel(x, y, width, height), m_text(text), m_action(action),
           m_backgroundImage(backgroundImage),
           m_hoveredBackgroundImage(hoveredBackgroundImage) {}
@@ -22,13 +22,13 @@ namespace forr {
     virtual void RenderDerived() const override;
 
   private:
-    inline static const String k_backgroundImage{"GUIButtonBackground"};
-    inline static const String k_hoveredBackgroundImage{
+    inline static const str k_backgroundImage{"GUIButtonBackground"};
+    inline static const str k_hoveredBackgroundImage{
         "GUIButtonHoveredBackground"};
 
-    String m_text;
-    Function<void()> m_action;
-    String m_backgroundImage;
-    String m_hoveredBackgroundImage;
+    str m_text;
+    func<void()> m_action;
+    str m_backgroundImage;
+    str m_hoveredBackgroundImage;
   };
 }

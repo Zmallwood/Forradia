@@ -61,7 +61,7 @@ namespace forr {
           heightCanvas = Ceil(tileSize.height, 2.5f);
           // if (ground != Hash("GroundWater"))
           if (true) {
-            String groundName;
+            str groundName;
             if (ground == Hash("GroundGrass")) {
               groundName = "GroundGrass";
             } else if (ground == Hash("GroundWater")) {
@@ -71,7 +71,7 @@ namespace forr {
             } else if (ground == Hash("GroundRock")) {
               groundName = "GroundRock";
             }
-            String fullGroundName{groundName};
+            str fullGroundName{groundName};
             if (tileNW->GetElevation() > tileSW->GetElevation() &&
                 tileNE->GetElevation() > tileSE->GetElevation()) {
               heightCanvas += tileSize.height / 2;
@@ -160,7 +160,7 @@ namespace forr {
                                                     yCanvas, widthCanvas,
                                                     heightCanvas);
           } else if (ground != Hash("GroundWater") && i == 1) {
-            Vector<Directions> riverDirections{tile->GetRiverDirection1(),
+            vec<Directions> riverDirections{tile->GetRiverDirection1(),
                                                tile->GetRiverDirection2()};
             auto riverPartWidth{0.4f * widthCanvas};
             auto riverPartHeight{0.4f * heightCanvas};
@@ -400,7 +400,7 @@ namespace forr {
                   auto trunkPartWidth{tileSize.width * 0.2f *
                                       widthDecreaseFactor};
                   auto trunkPartHeight{tileSize.height * 0.2f};
-                  String trunkPartName;
+                  str trunkPartName;
                   if (objectType == Hash("ObjectFirTree")) {
                     trunkPartName = "ObjectFirTreeTrunkPart";
                   } else if (objectType == Hash("ObjectBirchTree")) {

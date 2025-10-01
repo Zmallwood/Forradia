@@ -10,8 +10,8 @@ namespace forr {
     GUIComponent(float x, float y, float width, float height)
         : m_bounds({x, y, width, height}) {}
 
-    SharedPtr<GUIComponent>
-    AddChildComponent(SharedPtr<GUIComponent> component);
+    s_ptr<GUIComponent>
+    AddChildComponent(s_ptr<GUIComponent> component);
 
     void Update();
 
@@ -34,7 +34,7 @@ namespace forr {
 
   private:
     RectF m_bounds;
-    Vector<SharedPtr<GUIComponent>> m_childComponents;
+    vec<s_ptr<GUIComponent>> m_childComponents;
     bool m_visible{true};
     bool m_enabled{true};
     GUIComponent *m_parentComponent{nullptr};

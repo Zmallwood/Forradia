@@ -8,7 +8,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void GenerateNewCreatureDestination(SharedPtr<Creature> creature) {
+  void GenerateNewCreatureDestination(s_ptr<Creature> creature) {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
     auto position{creaturesMirrorRef.at(creature)};

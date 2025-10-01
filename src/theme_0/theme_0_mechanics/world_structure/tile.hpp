@@ -13,7 +13,7 @@ namespace forr {
   public:
     Tile() { Initialize(); }
 
-    void SetGround(StringView groundName);
+    void SetGround(str_view groundName);
 
     auto GetGround() const { return m_ground; }
 
@@ -21,7 +21,7 @@ namespace forr {
 
     auto GetCreature() const { return m_creature; }
 
-    void SetCreature(SharedPtr<Creature> value) { m_creature = value; }
+    void SetCreature(s_ptr<Creature> value) { m_creature = value; }
 
     auto GetElevation() const { return m_elevation; }
 
@@ -43,8 +43,8 @@ namespace forr {
     void Initialize();
 
     int m_ground{0};
-    SharedPtr<ObjectsStack> m_objectsStack;
-    SharedPtr<Creature> m_creature;
+    s_ptr<ObjectsStack> m_objectsStack;
+    s_ptr<Creature> m_creature;
     int m_elevation{0};
     int m_waterDepth{0};
     Directions m_riverDirection1{Directions::None};

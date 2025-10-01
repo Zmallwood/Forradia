@@ -8,7 +8,7 @@
 #include "theme_0/theme_0_mechanics/gui/gui_inventory_window.hpp"
 
 namespace forr {
-  void AddMainSceneInventoryWindowButton(SharedPtr<GUI> mainSceneGUI) {
+  void AddMainSceneInventoryWindowButton(s_ptr<GUI> mainSceneGUI) {
     mainSceneGUI->AddChildComponent(std::make_shared<GUIButton>(
         0.85f, 0.9f, 0.05f, ConvertWidthToHeight(0.05f), "",
         [] { GetSingleton<GUIInventoryWindow>().ToggleVisibility(); },

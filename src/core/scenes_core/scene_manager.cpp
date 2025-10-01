@@ -6,12 +6,12 @@
 #include "i_scene.hpp"
 
 namespace forr {
-  void SceneManager::AddScene(StringView sceneName, IScene &scene) {
+  void SceneManager::AddScene(str_view sceneName, IScene &scene) {
     scene.Initialize();
     m_scenes.insert({Hash(sceneName), scene});
   }
 
-  void SceneManager::GoToScene(StringView sceneName) {
+  void SceneManager::GoToScene(str_view sceneName) {
     m_currentScene = Hash(sceneName);
     if (m_scenes.contains(m_currentScene)) {
       m_scenes.at(m_currentScene).OnEnter();

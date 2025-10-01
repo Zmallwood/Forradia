@@ -7,13 +7,13 @@
 namespace forr {
   class ImageRenderer {
   public:
-    void DrawImage(StringView imageName, float x, float y, float width,
+    void DrawImage(str_view imageName, float x, float y, float width,
                    float height) const;
 
     void DrawImage(int imageNameHash, float x, float y, float width,
                    float height) const;
 
-    void DrawImageWithAutoHeight(StringView imageName, float x, float y,
+    void DrawImageWithAutoHeight(str_view imageName, float x, float y,
                                  float width) const;
   };
 }

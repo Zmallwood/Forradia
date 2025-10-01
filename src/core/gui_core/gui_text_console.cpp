@@ -22,7 +22,7 @@ namespace forr {
         separatorRect.height);
   }
 
-  void GUITextConsole::Print(StringView text) {
+  void GUITextConsole::Print(str_view text) {
     m_textLines.push_back(text.data());
   }
 }

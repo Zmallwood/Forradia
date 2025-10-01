@@ -5,7 +5,7 @@
 #include "measure_rendered_text.hpp"
 
 namespace forr {
-  Size MeasureRenderedText(StringView text, TTF_Font *fontRaw) {
+  Size MeasureRenderedText(str_view text, TTF_Font *fontRaw) {
     int textWidth;
     int textHeight;
     TTF_SizeText(fontRaw, text.data(), &textWidth, &textHeight);

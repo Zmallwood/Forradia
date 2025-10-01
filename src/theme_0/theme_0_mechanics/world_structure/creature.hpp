@@ -7,7 +7,7 @@
 namespace forr {
   class Creature {
   public:
-    Creature(StringView typeName) : m_type{Hash(typeName)} { Initialize(); }
+    Creature(str_view typeName) : m_type{Hash(typeName)} { Initialize(); }
 
     auto GetType() const { return m_type; }
 

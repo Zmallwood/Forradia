@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  String ConstructAbsoluteImagesPath(StringView relativeImagesPath);
+  str ConstructAbsoluteImagesPath(str_view relativeImagesPath);
 }

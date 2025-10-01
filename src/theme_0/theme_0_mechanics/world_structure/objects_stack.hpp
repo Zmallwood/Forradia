@@ -11,15 +11,15 @@ namespace forr {
   public:
     void ClearObjects();
 
-    void AddObject(StringView objectTypeName);
+    void AddObject(str_view objectTypeName);
 
-    void AddTreeObject(StringView objectTypeName);
+    void AddTreeObject(str_view objectTypeName);
 
     int GetSize() const;
 
     auto GetObjects() const { return m_objects; }
 
   private:
-    Vector<SharedPtr<Object>> m_objects;
+    vec<s_ptr<Object>> m_objects;
   };
 }

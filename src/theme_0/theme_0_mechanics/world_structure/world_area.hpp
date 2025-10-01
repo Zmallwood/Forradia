@@ -16,16 +16,16 @@ namespace forr {
 
     bool IsValidCoordinate(int x, int y) const;
 
-    SharedPtr<Tile> GetTile(int x, int y) const;
+    s_ptr<Tile> GetTile(int x, int y) const;
 
-    SharedPtr<Tile> GetTile(Point coordinate) const;
+    s_ptr<Tile> GetTile(Point coordinate) const;
 
     auto &GetCreaturesMirrorRef() { return m_creaturesMirror; }
 
   private:
     void Initialize();
 
-    Vector<Vector<SharedPtr<Tile>>> m_tiles;
-    Map<SharedPtr<Creature>, Point> m_creaturesMirror;
+    vec<vec<s_ptr<Tile>>> m_tiles;
+    std::map<s_ptr<Creature>, Point> m_creaturesMirror;
   };
 }

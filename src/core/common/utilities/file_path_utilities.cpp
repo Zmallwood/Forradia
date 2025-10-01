@@ -6,13 +6,13 @@
 #include "file_path_utilities.hpp"
 
 namespace forr {
-  String GetFileExtension(StringView path) {
-    String extension{path.substr(path.find_last_of('.') + 1).data()};
+  str GetFileExtension(str_view path) {
+    str extension{path.substr(path.find_last_of('.') + 1).data()};
     return extension;
   }
 
-  String GetFileNameNoExtension(StringView path) {
-    auto nameWithExtension{String(path.substr(path.find_last_of('/') + 1))};
+  str GetFileNameNoExtension(str_view path) {
+    auto nameWithExtension{str(path.substr(path.find_last_of('/') + 1))};
     return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
   }
 }

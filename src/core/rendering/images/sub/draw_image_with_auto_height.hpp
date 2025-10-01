@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  void DrawImageWithAutoHeight(StringView imageName, float x, float y,
+  void DrawImageWithAutoHeight(str_view imageName, float x, float y,
                                float width);
 }

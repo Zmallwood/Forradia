@@ -4,5 +4,5 @@
  */
 
 namespace forr {
-  Size GetImageSize(SharedPtr<SDL_Texture> texture);
+  Size GetImageSize(s_ptr<SDL_Texture> texture);
 }

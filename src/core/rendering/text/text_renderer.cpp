@@ -20,7 +20,7 @@ namespace forr {
                                     k_defaultFontPath);
   }
 
-  void TextRenderer::DrawString(StringView text, float x, float y,
+  void TextRenderer::DrawString(str_view text, float x, float y,
                                 FontSizes fontSize, bool centerAlign,
                                 Color textColor) const {
     auto fontRaw{m_fonts.at(fontSize).get()};

@@ -7,9 +7,9 @@
 #include "sub/construct_absolute_images_path.hpp"
 
 namespace forr {
-  Map<int, SharedPtr<SDL_Texture>>
-  GetLoadedImages(StringView relativeImagesPath) {
-    Map<int, SharedPtr<SDL_Texture>> imagesResult;
+  std::map<int, s_ptr<SDL_Texture>>
+  GetLoadedImages(str_view relativeImagesPath) {
+    std::map<int, s_ptr<SDL_Texture>> imagesResult;
     auto imagesPath{ConstructAbsoluteImagesPath(relativeImagesPath)};
     if (!std::filesystem::exists(imagesPath)) {
       return imagesResult;

@@ -7,7 +7,7 @@
 namespace forr {
   class Object {
   public:
-    Object(StringView objectTypeName) : m_type(Hash(objectTypeName)) {}
+    Object(str_view objectTypeName) : m_type(Hash(objectTypeName)) {}
 
     auto GetType() const { return m_type; }
 

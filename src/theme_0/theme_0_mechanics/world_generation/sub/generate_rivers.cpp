@@ -21,7 +21,7 @@ namespace forr {
       auto length{45 + RandomInt(20)};
       auto prevXCoordinate{-1};
       auto prevYCoordinate{-1};
-      SharedPtr<Tile> prevTile;
+      s_ptr<Tile> prevTile;
       for (auto j = 0; j < length; j++) {
         auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
         auto xCoordinate{CInt(x)};

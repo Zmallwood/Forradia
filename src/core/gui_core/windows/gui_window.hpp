@@ -10,7 +10,7 @@ namespace forr {
   class GUIWindow : public GUIMovablePanel {
   public:
     GUIWindow(float x, float y, float width, float height,
-              StringView windowTitleText)
+              str_view windowTitleText)
         : GUIMovablePanel(x, y, width, height),
           m_guiWindowTitleBar(*this, windowTitleText) {
       Initialize();

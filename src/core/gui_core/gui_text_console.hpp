@@ -13,15 +13,15 @@ namespace forr {
 
     void RenderDerived() const override;
 
-    void Print(StringView text);
+    void Print(str_view text);
 
   private:
-    constexpr static StringView k_defaultBackgroundImageDerived{
+    constexpr static str_view k_defaultBackgroundImageDerived{
         "GUITextConsoleBackground"};
     inline static const float k_lineHeight{0.025f};
     inline static const float k_separatorHeight{0.003f};
     inline static const float k_margin{0.008f};
 
-    Vector<String> m_textLines;
+    vec<str> m_textLines;
   };
 }

@@ -5,7 +5,7 @@
 #include "hash.hpp"
 
 namespace forr {
-  int Hash(StringView text) {
+  int Hash(str_view text) {
     // Use algorithm from forgotten source.
     unsigned long hash{5381};
     for (size_t i = 0; i < text.size(); ++i) {

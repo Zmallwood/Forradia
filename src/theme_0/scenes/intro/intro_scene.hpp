@@ -19,6 +19,6 @@ namespace forr {
     void RenderDerived() const override;
 
   private:
-    SharedPtr<GUIComponent> m_startText;
+    s_ptr<GUIComponent> m_startText;
   };
 }

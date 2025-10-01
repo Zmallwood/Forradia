@@ -9,7 +9,7 @@
 #include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {
-  void AddMainMenuSceneGUIButtons(SharedPtr<GUI> mainMenuSceneGUI) {
+  void AddMainMenuSceneGUIButtons(s_ptr<GUI> mainMenuSceneGUI) {
     mainMenuSceneGUI->AddChildComponent(
         std::make_shared<GUIButton>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
           GetSingleton<SceneManager>().GoToScene("WorldGenerationScene");

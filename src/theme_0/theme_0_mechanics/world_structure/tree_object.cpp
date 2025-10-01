@@ -5,7 +5,7 @@
 #include "tree_object.hpp"
 
 namespace forr {
-  void TreeObject::Initialize(StringView objectTypeName) {
+  void TreeObject::Initialize(str_view objectTypeName) {
     if (objectTypeName != "ObjectFirTree" &&
         objectTypeName != "ObjectBirchTree") {
       return;
@@ -24,7 +24,7 @@ namespace forr {
       auto position{PointF{offsetX, offsetY}};
       auto needlesType{RandomInt(5)};
       m_trunkParts.push_back(position);
-      String needlesName;
+      str needlesName;
       if (objectTypeName == "ObjectFirTree") {
         needlesName = "ObjectFirTreeNeedles";
       } else if (objectTypeName == "ObjectBirchTree") {

@@ -7,6 +7,6 @@
 namespace forr {
   class Creature;
 
-  void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
+  void MoveCreatureToNewLocation(s_ptr<Creature> creature,
                                  Point newPosition);
 }

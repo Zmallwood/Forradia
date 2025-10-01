@@ -8,5 +8,5 @@
 namespace forr {
   void Tile::Initialize() { m_objectsStack = std::make_shared<ObjectsStack>(); }
 
-  void Tile::SetGround(StringView groundName) { m_ground = Hash(groundName); }
+  void Tile::SetGround(str_view groundName) { m_ground = Hash(groundName); }
 }

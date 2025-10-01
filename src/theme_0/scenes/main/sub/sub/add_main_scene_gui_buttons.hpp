@@ -7,5 +7,5 @@
 namespace forr {
   class GUI;
 
-  void AddMainSceneGUIButtons(SharedPtr<GUI> mainSceneGUI);
+  void AddMainSceneGUIButtons(s_ptr<GUI> mainSceneGUI);
 }

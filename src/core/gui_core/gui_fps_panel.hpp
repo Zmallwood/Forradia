@@ -20,6 +20,6 @@ namespace forr {
   private:
     void Initialize();
 
-    SharedPtr<GUILabel> m_fpsTextPanel;
+    s_ptr<GUILabel> m_fpsTextPanel;
   };
 }

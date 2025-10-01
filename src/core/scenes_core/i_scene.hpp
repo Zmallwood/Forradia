@@ -29,6 +29,6 @@ namespace forr {
     auto GetGUI() const { return m_gui; }
 
   private:
-    SharedPtr<GUI> m_gui;
+    s_ptr<GUI> m_gui;
   };
 }

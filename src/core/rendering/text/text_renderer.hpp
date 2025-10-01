@@ -12,7 +12,7 @@ namespace forr {
   public:
     TextRenderer() { Initialize(); }
 
-    void DrawString(StringView text, float x, float y,
+    void DrawString(str_view text, float x, float y,
                     FontSizes fontSize = FontSizes::_20,
                     bool centerAlign = false,
                     Color textColor = Colors::WheatTransparent) const;
@@ -24,8 +24,8 @@ namespace forr {
 
     void AddFontSize(FontSizes fontSize);
 
-    const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
+    const str k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
 
-    Map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
+    std::map<FontSizes, s_ptr<TTF_Font>> m_fonts;
   };
 }

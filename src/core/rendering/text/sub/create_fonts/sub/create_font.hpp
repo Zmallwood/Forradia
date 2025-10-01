@@ -6,5 +6,5 @@
 #include "../../font_sizes.hpp"
 
 namespace forr {
-  SharedPtr<TTF_Font> CreateFont(StringView fontFilePath, FontSizes fontSize);
+  s_ptr<TTF_Font> CreateFont(str_view fontFilePath, FontSizes fontSize);
 }

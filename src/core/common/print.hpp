@@ -10,12 +10,12 @@ namespace forr {
    *
    * \param text Text to print.
    */
-  void Print(StringView text);
+  void Print(str_view text);
 
   /**
    * \brief Print out a string of text, with an added line break at the end.
    *
    * \param text Text to print.
    */
-  void PrintLine(StringView text);
+  void PrintLine(str_view text);
 }

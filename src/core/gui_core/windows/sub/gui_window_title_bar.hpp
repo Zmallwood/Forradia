@@ -9,7 +9,7 @@ namespace forr {
 
   class GUIWindowTitleBar {
   public:
-    GUIWindowTitleBar(GUIWindow &parentWindow, StringView windowTitleText)
+    GUIWindowTitleBar(GUIWindow &parentWindow, str_view windowTitleText)
         : m_parentWindow(parentWindow), k_windowTitleText(windowTitleText) {}
 
     void Render() const;
@@ -18,7 +18,7 @@ namespace forr {
 
   private:
     inline static const float k_height{0.04f};
-    const String k_windowTitleText;
+    const str k_windowTitleText;
 
     GUIWindow &m_parentWindow;
   };

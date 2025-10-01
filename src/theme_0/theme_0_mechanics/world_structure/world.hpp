@@ -16,6 +16,6 @@ namespace forr {
   private:
     void Initialize();
 
-    SharedPtr<WorldArea> m_currentWorldArea;
+    s_ptr<WorldArea> m_currentWorldArea;
   };
 }

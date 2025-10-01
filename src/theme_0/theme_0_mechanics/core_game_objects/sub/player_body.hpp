@@ -16,6 +16,6 @@ namespace forr {
   private:
     void Initialize();
 
-    Map<BodyPartTypes, BodyPart> m_bodyParts;
+    std::map<BodyPartTypes, BodyPart> m_bodyParts;
   };
 }

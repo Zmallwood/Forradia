@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  String GetFileExtension(StringView path);
+  str GetFileExtension(str_view path);
 
-  String GetFileNameNoExtension(StringView path);
+  str GetFileNameNoExtension(str_view path);
 }

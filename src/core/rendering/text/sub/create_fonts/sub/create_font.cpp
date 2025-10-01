@@ -5,10 +5,10 @@
 #include "create_font.hpp"
 
 namespace forr {
-  SharedPtr<TTF_Font> CreateFont(StringView fontFilePath, FontSizes fontSize) {
+  s_ptr<TTF_Font> CreateFont(str_view fontFilePath, FontSizes fontSize) {
     auto fontPathUnixStyle{Replace(fontFilePath, '\\', '/')};
     auto fontSizeN{CInt(fontSize)};
-    auto newFont{SharedPtr<TTF_Font>(
+    auto newFont{s_ptr<TTF_Font>(
         TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN), SDLDeleter())};
     if (!newFont) {
       PrintLine("Error loading font.");

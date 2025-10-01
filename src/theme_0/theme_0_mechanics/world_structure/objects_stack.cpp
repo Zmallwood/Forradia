@@ -9,11 +9,11 @@
 namespace forr {
   void ObjectsStack::ClearObjects() { m_objects.clear(); }
 
-  void ObjectsStack::AddObject(StringView objectTypeName) {
+  void ObjectsStack::AddObject(str_view objectTypeName) {
     m_objects.push_back(std::make_shared<Object>(objectTypeName));
   }
 
-  void ObjectsStack::AddTreeObject(StringView objectTypeName) {
+  void ObjectsStack::AddTreeObject(str_view objectTypeName) {
     m_objects.push_back(std::make_shared<TreeObject>(objectTypeName));
   }
 

@@ -6,10 +6,10 @@
 #include "sub/create_font.hpp"
 
 namespace forr {
-  Map<FontSizes, SharedPtr<TTF_Font>> CreateFonts(Vector<FontSizes> fontSizes,
-                                                  StringView relativeFontPath) {
-    Map<FontSizes, SharedPtr<TTF_Font>> fontsResult;
-    auto absoluteFontPath{String(SDL_GetBasePath()) + relativeFontPath.data()};
+  std::map<FontSizes, s_ptr<TTF_Font>> CreateFonts(vec<FontSizes> fontSizes,
+                                                  str_view relativeFontPath) {
+    std::map<FontSizes, s_ptr<TTF_Font>> fontsResult;
+    auto absoluteFontPath{str(SDL_GetBasePath()) + relativeFontPath.data()};
     for (auto fontSize : fontSizes) {
       auto newFont{CreateFont(absoluteFontPath, fontSize)};
       fontsResult.insert({fontSize, newFont});

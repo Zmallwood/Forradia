@@ -16,7 +16,7 @@ namespace forr {
     auto mousePosition{GetNormalizedMousePosition()};
     auto width{k_cursorSize};
     auto height{ConvertWidthToHeight(k_cursorSize)};
-    String cursorImage;
+    str cursorImage;
     switch (m_cursorStyle) {
     case CursorStyles::Default:
       cursorImage = "CursorDefault";

@@ -5,8 +5,8 @@
 #include "gui_component.hpp"
 
 namespace forr {
-  SharedPtr<GUIComponent>
-  GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component) {
+  s_ptr<GUIComponent>
+  GUIComponent::AddChildComponent(s_ptr<GUIComponent> component) {
     component->SetParentComponent(this);
     m_childComponents.push_back(component);
     return component;

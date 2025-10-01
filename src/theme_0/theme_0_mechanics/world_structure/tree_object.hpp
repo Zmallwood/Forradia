@@ -8,7 +8,7 @@
 namespace forr {
   class TreeObject : public Object {
   public:
-    TreeObject(StringView objectTypeName) : Object(objectTypeName) {
+    TreeObject(str_view objectTypeName) : Object(objectTypeName) {
       Initialize(objectTypeName);
     }
 
@@ -19,10 +19,10 @@ namespace forr {
     auto GetWidthFactor() const { return m_widthFactor; }
 
   private:
-    void Initialize(StringView objectTypeName);
+    void Initialize(str_view objectTypeName);
 
-    Vector<PointF> m_trunkParts;
-    Vector<int> m_needleTypes;
+    vec<PointF> m_trunkParts;
+    vec<int> m_needleTypes;
     float m_widthFactor{1.0f};
   };
 }

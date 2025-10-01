@@ -12,7 +12,7 @@ namespace forr {
     size.width *= GetSingleton<GameProperties>().k_worldScalingFactor;
     size.height *= GetSingleton<GameProperties>().k_worldScalingFactor;
     for (auto x = 0; x < size.width; x++) {
-      m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
+      m_tiles.push_back(vec<std::shared_ptr<Tile>>());
       for (auto y = 0; y < size.height; y++) {
         m_tiles[x].push_back(std::make_shared<Tile>());
       }
@@ -33,14 +33,14 @@ namespace forr {
     return x >= 0 && y >= 0 && x < size.width && y < size.height;
   }
 
-  SharedPtr<Tile> WorldArea::GetTile(int x, int y) const {
+  s_ptr<Tile> WorldArea::GetTile(int x, int y) const {
     if (IsValidCoordinate(x, y)) {
       return m_tiles.at(x).at(y);
     }
     return nullptr;
   }
 
-  SharedPtr<Tile> WorldArea::GetTile(Point coordinate) const {
+  s_ptr<Tile> WorldArea::GetTile(Point coordinate) const {
     return GetTile(coordinate.x, coordinate.y);
   }
 }

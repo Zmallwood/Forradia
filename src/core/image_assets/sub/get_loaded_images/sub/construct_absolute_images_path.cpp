@@ -5,8 +5,8 @@
 #include "construct_absolute_images_path.hpp"
 
 namespace forr {
-  String ConstructAbsoluteImagesPath(StringView relativeImagesPath) {
-    auto basePath{String(SDL_GetBasePath())};
+  str ConstructAbsoluteImagesPath(str_view relativeImagesPath) {
+    auto basePath{str(SDL_GetBasePath())};
     auto imagesPath{basePath + relativeImagesPath.data()};
     return imagesPath;
   }

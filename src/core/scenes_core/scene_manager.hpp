@@ -9,16 +9,16 @@ namespace forr {
 
   class SceneManager {
   public:
-    void AddScene(StringView sceneName, IScene &scene);
+    void AddScene(str_view sceneName, IScene &scene);
 
-    void GoToScene(StringView sceneName);
+    void GoToScene(str_view sceneName);
 
     void UpdateCurrentScene();
 
     void RenderCurrentScene() const;
 
   private:
-    Map<int, IScene &> m_scenes;
+    std::map<int, IScene &> m_scenes;
     int m_currentScene{0};
   };
 }

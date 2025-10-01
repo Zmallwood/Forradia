@@ -9,7 +9,7 @@ namespace forr {
   public:
     ImageBank() { Initialize(); }
 
-    SharedPtr<SDL_Texture> GetImage(int imageNameHash) const;
+    s_ptr<SDL_Texture> GetImage(int imageNameHash) const;
 
     Size GetImageSize(int imageNameHash) const;
 
@@ -18,8 +18,8 @@ namespace forr {
 
     void LoadImages();
 
-    inline static const String k_relativeImagesPath{"./Resources/Images/"};
+    inline static const str k_relativeImagesPath{"./Resources/Images/"};
 
-    Map<int, SharedPtr<SDL_Texture>> m_images;
+    std::map<int, s_ptr<SDL_Texture>> m_images;
   };
 }

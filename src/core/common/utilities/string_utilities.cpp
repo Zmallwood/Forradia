@@ -5,8 +5,8 @@
 #include "string_utilities.hpp"
 
 namespace forr {
-  String Replace(StringView text, char replaced, char replacedWith) {
-    String textData{text.data()};
+  str Replace(str_view text, char replaced, char replacedWith) {
+    str textData{text.data()};
     std::replace(textData.begin(), textData.end(), replaced, replacedWith);
     return textData;
   }

@@ -5,12 +5,12 @@
 #include "print.hpp"
 
 namespace forr {
-  void Print(StringView text) {
+  void Print(str_view text) {
     // Print out text without a following line break.
     std::cout << text;
   }
 
-  void PrintLine(StringView text) {
+  void PrintLine(str_view text) {
     // Print out text with a following line break.
     std::cout << text << std::endl;
   }

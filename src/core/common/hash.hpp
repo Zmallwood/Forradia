@@ -12,5 +12,5 @@ namespace forr {
    * \param text Text to compute hash code for.
    * \return Computed hash code.
    */
-  int Hash(StringView text);
+  int Hash(str_view text);
 }

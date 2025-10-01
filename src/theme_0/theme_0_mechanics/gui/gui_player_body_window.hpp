@@ -24,9 +24,9 @@ namespace forr {
     void UpdateBodyPartInformationLabels();
 
     BodyPartTypes m_selectedBodyPart{BodyPartTypes::None};
-    SharedPtr<GUILabel> m_labelBodyPartName;
-    SharedPtr<GUILabel> m_labelBodyPartStrength;
-    SharedPtr<GUILabel> m_labelBodyPartEnergy;
-    SharedPtr<GUILabel> m_labelBodyPartTemperature;
+    s_ptr<GUILabel> m_labelBodyPartName;
+    s_ptr<GUILabel> m_labelBodyPartStrength;
+    s_ptr<GUILabel> m_labelBodyPartEnergy;
+    s_ptr<GUILabel> m_labelBodyPartTemperature;
   };
 }

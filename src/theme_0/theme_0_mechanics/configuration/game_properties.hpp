@@ -7,7 +7,7 @@
 namespace forr {
   class GameProperties {
   public:
-    static constexpr String k_gameWindowTitle{"Forradia"};
+    static constexpr str k_gameWindowTitle{"Forradia"};
     static constexpr Color k_clearColor{Colors::Black};
     static constexpr int k_numGridRows{15};
     static constexpr Size k_worldAreaSize{120, 100};

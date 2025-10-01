@@ -9,7 +9,7 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void MoveCreatureToNewLocation(SharedPtr<Creature> creature,
+  void MoveCreatureToNewLocation(s_ptr<Creature> creature,
                                  Point newPosition) {
     auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};

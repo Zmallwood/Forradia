@@ -39,7 +39,7 @@ namespace forr {
 
     void MoveToSuitablePosition();
 
-    String m_name{"Unnamed Player"};
+    str m_name{"Unnamed Player"};
     Point m_position{60, 50};
     float m_movementSpeed{5.0f};
     int m_ticksLastMove{0};

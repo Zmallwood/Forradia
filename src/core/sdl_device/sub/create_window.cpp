@@ -6,17 +6,17 @@
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  SharedPtr<SDL_Window> CreateWindow() {
+  s_ptr<SDL_Window> CreateWindow() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
-    auto windowResult{SharedPtr<SDL_Window>(
+    auto windowResult{s_ptr<SDL_Window>(
         SDL_CreateWindow(
             GetSingleton<GameProperties>().k_gameWindowTitle.data(),
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660, 660, flags),
         SDLDeleter())};
     if (!windowResult) {
       PrintLine("Window could not be created. SDL Error: " +
-                String(SDL_GetError()));
+                str(SDL_GetError()));
     }
     return windowResult;
   }

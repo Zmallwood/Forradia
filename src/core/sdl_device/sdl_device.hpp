@@ -20,7 +20,7 @@ namespace forr {
   private:
     void Initialize();
 
-    SharedPtr<SDL_Window> m_window;
-    SharedPtr<SDL_Renderer> m_renderer;
+    s_ptr<SDL_Window> m_window;
+    s_ptr<SDL_Renderer> m_renderer;
   };
 }

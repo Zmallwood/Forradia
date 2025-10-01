@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  SharedPtr<SDL_Texture> LoadSingleImage(StringView path);
+  s_ptr<SDL_Texture> LoadSingleImage(str_view path);
 }

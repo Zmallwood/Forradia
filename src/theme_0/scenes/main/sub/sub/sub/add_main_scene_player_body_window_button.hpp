@@ -7,5 +7,5 @@
 namespace forr {
   class GUI;
 
-  void AddMainScenePlayerBodyWindowButton(SharedPtr<GUI> mainSceneGUI);
+  void AddMainScenePlayerBodyWindowButton(s_ptr<GUI> mainSceneGUI);
 }
