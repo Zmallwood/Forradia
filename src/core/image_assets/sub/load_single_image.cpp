@@ -7,11 +7,12 @@
 
 namespace forr {
   s_ptr<SDL_Texture> LoadSingleImage(str_view path) {
-    auto surface{s_ptr<SDL_Surface>(IMG_Load(path.data()), SDLDeleter())};
+    auto surface{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
     if (surface) {
-      auto renderer{GetSingleton<SDLDevice>().GetRenderer().get()};
+      auto renderer{GetSingleton<sdl_device>().GetRenderer().get()};
       auto texture{s_ptr<SDL_Texture>(
-          SDL_CreateTextureFromSurface(renderer, surface.get()), SDLDeleter())};
+          SDL_CreateTextureFromSurface(renderer, surface.get()),
+          sdl_deleter())};
       return texture;
     }
     return nullptr;

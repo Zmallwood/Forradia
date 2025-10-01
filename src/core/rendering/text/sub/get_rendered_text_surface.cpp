@@ -6,7 +6,7 @@
 
 namespace forr {
   SDL_Surface *GetRenderedTextSurface(str_view text, TTF_Font *fontRaw,
-                                      Color textColor) {
+                                      color textColor) {
     auto sdlColor{textColor.ToSDLColor()};
     auto surfaceResult{TTF_RenderText_Solid(fontRaw, text.data(), sdlColor)};
     return surfaceResult;

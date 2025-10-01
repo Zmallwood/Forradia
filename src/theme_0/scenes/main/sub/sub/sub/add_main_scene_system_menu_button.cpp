@@ -8,10 +8,10 @@
 #include "theme_0/theme_0_mechanics/gui/gui_system_menu.hpp"
 
 namespace forr {
-  void AddMainSceneSystemMenuButton(s_ptr<GUI> mainSceneGUI) {
-    mainSceneGUI->AddChildComponent(std::make_shared<GUIButton>(
+  void AddMainSceneSystemMenuButton(s_ptr<gui> mainSceneGUI) {
+    mainSceneGUI->AddChildComponent(std::make_shared<gui_button>(
         0.92f, 0.9f, 0.05f, ConvertWidthToHeight(0.05f), "",
-        [] { GetSingleton<GUISystemMenu>().ToggleVisibility(); },
+        [] { GetSingleton<gui_system_menu>().ToggleVisibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
   }
 }

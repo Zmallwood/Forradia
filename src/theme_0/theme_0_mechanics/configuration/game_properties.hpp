@@ -5,12 +5,12 @@
 #pragma once
 
 namespace forr {
-  class GameProperties {
+  class game_properties {
   public:
     static constexpr str k_gameWindowTitle{"Forradia"};
-    static constexpr Color k_clearColor{Colors::Black};
+    static constexpr color k_clearColor{colors::Black};
     static constexpr int k_numGridRows{15};
-    static constexpr Size k_worldAreaSize{120, 100};
+    static constexpr size k_worldAreaSize{120, 100};
     static constexpr float k_worldScalingFactor{5.0f};
   };
 }

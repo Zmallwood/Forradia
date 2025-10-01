@@ -8,31 +8,31 @@
 
 namespace forr {
   void UpdateKeyboardMovement() {
-    auto upPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_UP)};
-    auto rightPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
-    auto downPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
-    auto leftPressed{GetSingleton<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
+    auto upPressed{GetSingleton<keyboard_input>().KeyIsPressed(SDLK_UP)};
+    auto rightPressed{GetSingleton<keyboard_input>().KeyIsPressed(SDLK_RIGHT)};
+    auto downPressed{GetSingleton<keyboard_input>().KeyIsPressed(SDLK_DOWN)};
+    auto leftPressed{GetSingleton<keyboard_input>().KeyIsPressed(SDLK_LEFT)};
     if (upPressed || rightPressed || downPressed || leftPressed) {
-      GetSingleton<Player>().SetDestination({-1, -1});
+      GetSingleton<player>().SetDestination({-1, -1});
     }
     auto now{GetTicks()};
-    if (now >= GetSingleton<Player>().GetTicksLastMove() +
+    if (now >= GetSingleton<player>().GetTicksLastMove() +
                    InvertMovementSpeed(
-                       GetSingleton<Player>().GetMovementSpeed()) &&
+                       GetSingleton<player>().GetMovementSpeed()) &&
         (upPressed || rightPressed || downPressed || leftPressed)) {
       if (upPressed) {
-        GetSingleton<Player>().MoveNorth();
+        GetSingleton<player>().MoveNorth();
       }
       if (rightPressed) {
-        GetSingleton<Player>().MoveEast();
+        GetSingleton<player>().MoveEast();
       }
       if (downPressed) {
-        GetSingleton<Player>().MoveSouth();
+        GetSingleton<player>().MoveSouth();
       }
       if (leftPressed) {
-        GetSingleton<Player>().MoveWest();
+        GetSingleton<player>().MoveWest();
       }
-      GetSingleton<Player>().SetTicksLastMove(now);
+      GetSingleton<player>().SetTicksLastMove(now);
     }
   }
 }

@@ -8,7 +8,7 @@
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  void SDLDevice::Initialize() {
+  void sdl_device::Initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
     m_window = CreateWindow();
     if (m_window) {
@@ -16,13 +16,15 @@ namespace forr {
     }
   }
 
-  void SDLDevice::ClearCanvas() const {
+  void sdl_device::ClearCanvas() const {
     SDL_Color clearColor{
-        GetSingleton<GameProperties>().k_clearColor.ToSDLColor()};
+        GetSingleton<game_properties>().k_clearColor.ToSDLColor()};
     SDL_SetRenderDrawColor(m_renderer.get(), clearColor.r, clearColor.g,
                            clearColor.b, 255);
     SDL_RenderClear(m_renderer.get());
   }
 
-  void SDLDevice::PresentCanvas() const { SDL_RenderPresent(m_renderer.get()); }
+  void sdl_device::PresentCanvas() const {
+    SDL_RenderPresent(m_renderer.get());
+  }
 }

@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  enum struct FontSizes { _20 = 20, _26 = 26 };
+  enum struct font_sizes { _20 = 20, _26 = 26 };
 }

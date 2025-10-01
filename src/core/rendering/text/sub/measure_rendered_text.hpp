@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  Size MeasureRenderedText(str_view text, TTF_Font *fontRaw);
+  size MeasureRenderedText(str_view text, TTF_Font *fontRaw);
 }

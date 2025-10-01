@@ -10,9 +10,9 @@
 
 namespace forr {
   void GenerateElevation() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numHills{140 + RandomInt(30)};
     for (auto i = 0; i < numHills; i++) {
       auto xCenter{RandomInt(size.width)};

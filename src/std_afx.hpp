@@ -23,13 +23,8 @@
 
 #include "core/common/aliases.hpp"
 
-#include "core/common/matter/point.hpp"
-#include "core/common/matter/point_f.hpp"
-#include "core/common/matter/size.hpp"
-#include "core/common/matter/size_f.hpp"
-#include "core/common/matter/rect_f.hpp"
-#include "core/common/matter/color.hpp"
-#include "core/common/matter/colors.hpp"
+#include "core/common/matter.hpp"
+#include "core/common/colors.hpp"
 
 #include "core/common/constants.hpp"
 #include "core/common/singleton.hpp"

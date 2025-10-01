@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class BodyPart {
+  class body_part {
   public:
     auto GetStrength() const { return m_strength; }
     auto GetCurrentEnergy() const { return m_currentEnergy; }

@@ -6,7 +6,9 @@
 #include "objects_stack.hpp"
 
 namespace forr {
-  void Tile::Initialize() { m_objectsStack = std::make_shared<ObjectsStack>(); }
+  void tile::Initialize() {
+    m_objectsStack = std::make_shared<objects_stack>();
+  }
 
-  void Tile::SetGround(str_view groundName) { m_ground = Hash(groundName); }
+  void tile::SetGround(str_view groundName) { m_ground = Hash(groundName); }
 }

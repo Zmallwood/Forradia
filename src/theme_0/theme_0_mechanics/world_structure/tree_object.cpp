@@ -5,7 +5,7 @@
 #include "tree_object.hpp"
 
 namespace forr {
-  void TreeObject::Initialize(str_view objectTypeName) {
+  void tree_object::Initialize(str_view objectTypeName) {
     if (objectTypeName != "ObjectFirTree" &&
         objectTypeName != "ObjectBirchTree") {
       return;
@@ -21,7 +21,7 @@ namespace forr {
     for (auto i = 0; i < numTrunkParts; i++) {
       offsetX += (RandomInt(20) - 10) / 100.0f;
       auto offsetY{i * 0.1f};
-      auto position{PointF{offsetX, offsetY}};
+      auto position{point_f{offsetX, offsetY}};
       auto needlesType{RandomInt(5)};
       m_trunkParts.push_back(position);
       str needlesName;

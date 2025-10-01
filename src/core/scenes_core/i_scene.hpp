@@ -5,9 +5,9 @@
 #pragma once
 
 namespace forr {
-  class GUI;
+  class gui;
 
-  class IScene {
+  class i_scene{
   public:
     void Initialize();
 
@@ -29,6 +29,6 @@ namespace forr {
     auto GetGUI() const { return m_gui; }
 
   private:
-    s_ptr<GUI> m_gui;
+    s_ptr<gui> m_gui;
   };
 }

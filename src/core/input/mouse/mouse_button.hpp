@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class MouseButton {
+  class mouse_button {
   public:
     void Reset();
 

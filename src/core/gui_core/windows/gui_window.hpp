@@ -7,11 +7,11 @@
 #include "sub/gui_window_title_bar.hpp"
 
 namespace forr {
-  class GUIWindow : public GUIMovablePanel {
+  class gui_window : public gui_movable_panel {
   public:
-    GUIWindow(float x, float y, float width, float height,
-              str_view windowTitleText)
-        : GUIMovablePanel(x, y, width, height),
+    gui_window(float x, float y, float width, float height,
+               str_view windowTitleText)
+        : gui_movable_panel(x, y, width, height),
           m_guiWindowTitleBar(*this, windowTitleText) {
       Initialize();
     }
@@ -19,13 +19,13 @@ namespace forr {
   protected:
     void RenderDerived() const override;
 
-    RectF GetDraggableArea() override;
+    rect_f GetDraggableArea() override;
 
   private:
     void Initialize();
 
     const float k_titleBarHeight{0.04f};
 
-    GUIWindowTitleBar m_guiWindowTitleBar;
+    gui_window_title_bar m_guiWindowTitleBar;
   };
 }

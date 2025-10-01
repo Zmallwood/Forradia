@@ -9,9 +9,9 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void MoveCreatureToNewLocation(s_ptr<Creature> creature,
-                                 Point newPosition) {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+  void MoveCreatureToNewLocation(s_ptr<creature> creature,
+                                 point newPosition) {
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
     auto oldPosition{creaturesMirrorRef.at(creature)};
     auto now{GetTicks()};

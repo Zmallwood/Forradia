@@ -5,8 +5,7 @@
 #pragma once
 
 namespace forr {
-  class Creature;
+  class creature;
 
-  void MoveCreatureToNewLocation(s_ptr<Creature> creature,
-                                 Point newPosition);
+  void MoveCreatureToNewLocation(s_ptr<creature> creature, point newPosition);
 }

@@ -6,18 +6,18 @@
 #include "theme_0/theme_0_mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  SizeF CalculateTileSize() {
-    auto numGridRows{GetSingleton<GameProperties>().k_numGridRows};
+  size_f CalculateTileSize() {
+    auto numGridRows{GetSingleton<game_properties>().k_numGridRows};
     auto tileHeight{1.0f / numGridRows};
     auto aspectRatio{CalculateAspectRatio()};
     auto tileWidth{tileHeight / aspectRatio};
     return {tileWidth, tileHeight};
   }
 
-  Size CalculateGridSize() {
+  size CalculateGridSize() {
     auto tileSize{CalculateTileSize()};
     auto numGridColumns{CInt(1.0f / tileSize.width) + 1};
-    auto numGridRows{GetSingleton<GameProperties>().k_numGridRows};
+    auto numGridRows{GetSingleton<game_properties>().k_numGridRows};
     return {numGridColumns, numGridRows};
   }
 }

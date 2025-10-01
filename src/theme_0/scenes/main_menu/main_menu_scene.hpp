@@ -6,7 +6,7 @@
 #include "core/scenes_core/i_scene.hpp"
 
 namespace forr {
-  class MainMenuScene : public IScene {
+  class main_menu_scene : public i_scene {
   protected:
     void InitializeDerived() override;
 

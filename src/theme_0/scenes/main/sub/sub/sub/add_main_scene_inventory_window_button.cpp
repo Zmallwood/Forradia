@@ -8,10 +8,10 @@
 #include "theme_0/theme_0_mechanics/gui/gui_inventory_window.hpp"
 
 namespace forr {
-  void AddMainSceneInventoryWindowButton(s_ptr<GUI> mainSceneGUI) {
-    mainSceneGUI->AddChildComponent(std::make_shared<GUIButton>(
+  void AddMainSceneInventoryWindowButton(s_ptr<gui> mainSceneGUI) {
+    mainSceneGUI->AddChildComponent(std::make_shared<gui_button>(
         0.85f, 0.9f, 0.05f, ConvertWidthToHeight(0.05f), "",
-        [] { GetSingleton<GUIInventoryWindow>().ToggleVisibility(); },
+        [] { GetSingleton<gui_inventory_window>().ToggleVisibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
   }
 }

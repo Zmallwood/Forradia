@@ -6,5 +6,5 @@
 
 namespace forr {
   void RenderTextSurface(SDL_Surface *surface, float x, float y,
-                         Size textDimensions, bool centerAlign);
+                         size textDimensions, bool centerAlign);
 }

@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class KeyboardInput {
+  class keyboard_input{
   public:
     void Reset();
 

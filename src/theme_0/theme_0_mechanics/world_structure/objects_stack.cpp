@@ -7,15 +7,15 @@
 #include "tree_object.hpp"
 
 namespace forr {
-  void ObjectsStack::ClearObjects() { m_objects.clear(); }
+  void objects_stack::ClearObjects() { m_objects.clear(); }
 
-  void ObjectsStack::AddObject(str_view objectTypeName) {
-    m_objects.push_back(std::make_shared<Object>(objectTypeName));
+  void objects_stack::AddObject(str_view objectTypeName) {
+    m_objects.push_back(std::make_shared<object>(objectTypeName));
   }
 
-  void ObjectsStack::AddTreeObject(str_view objectTypeName) {
-    m_objects.push_back(std::make_shared<TreeObject>(objectTypeName));
+  void objects_stack::AddTreeObject(str_view objectTypeName) {
+    m_objects.push_back(std::make_shared<tree_object>(objectTypeName));
   }
 
-  int ObjectsStack::GetSize() const { return m_objects.size(); }
+  int objects_stack::GetSize() const { return m_objects.size(); }
 }

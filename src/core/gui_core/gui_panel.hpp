@@ -6,11 +6,11 @@
 #include "gui_component.hpp"
 
 namespace forr {
-  class GUIPanel : public GUIComponent {
+  class gui_panel : public gui_component {
   public:
-    GUIPanel(float x, float y, float width, float height,
-             str_view backgroundImage = k_defaultBackgroundImage)
-        : GUIComponent(x, y, width, height),
+    gui_panel(float x, float y, float width, float height,
+              str_view backgroundImage = k_defaultBackgroundImage)
+        : gui_component(x, y, width, height),
           m_backgroundImage(backgroundImage) {}
 
   protected:

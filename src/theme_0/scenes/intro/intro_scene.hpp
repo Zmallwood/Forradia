@@ -6,9 +6,9 @@
 #include "core/scenes_core/i_scene.hpp"
 
 namespace forr {
-  class GUIComponent;
+  class gui_component;
 
-  class IntroScene : public IScene {
+  class intro_scene : public i_scene {
   protected:
     void InitializeDerived() override;
 
@@ -19,6 +19,6 @@ namespace forr {
     void RenderDerived() const override;
 
   private:
-    s_ptr<GUIComponent> m_startText;
+    s_ptr<gui_component> m_startText;
   };
 }

@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class Creature;
+  class creature;
 
-  Point CalculateNewCreaturePosition(s_ptr<Creature> creature);
+  point CalculateNewCreaturePosition(s_ptr<creature> creature);
 }

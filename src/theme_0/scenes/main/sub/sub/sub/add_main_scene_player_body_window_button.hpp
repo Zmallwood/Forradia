@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class GUI;
+  class gui;
 
-  void AddMainScenePlayerBodyWindowButton(s_ptr<GUI> mainSceneGUI);
+  void AddMainScenePlayerBodyWindowButton(s_ptr<gui> mainSceneGUI);
 }

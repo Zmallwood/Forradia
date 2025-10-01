@@ -11,9 +11,9 @@
 
 namespace forr {
   void GenerateObjects() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numFirTrees{1000 * scale + RandomInt(50)};
     for (auto i = 0; i < numFirTrees; i++) {
       auto x{RandomInt(size.width)};

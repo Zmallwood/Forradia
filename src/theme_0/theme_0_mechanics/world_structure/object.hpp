@@ -5,9 +5,9 @@
 #pragma once
 
 namespace forr {
-  class Object {
+  class object {
   public:
-    Object(str_view objectTypeName) : m_type(Hash(objectTypeName)) {}
+    object(str_view objectTypeName) : m_type(Hash(objectTypeName)) {}
 
     auto GetType() const { return m_type; }
 

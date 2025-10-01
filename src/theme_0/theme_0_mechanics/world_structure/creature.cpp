@@ -5,5 +5,5 @@
 #include "creature.hpp"
 
 namespace forr {
-  void Creature::Initialize() { m_movementSpeed *= (RandomInt(3) + 1) / 2.0f; }
+  void creature::Initialize() { m_movementSpeed *= (RandomInt(3) + 1) / 2.0f; }
 }

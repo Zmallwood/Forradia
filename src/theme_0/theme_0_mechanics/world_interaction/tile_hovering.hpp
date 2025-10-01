@@ -5,13 +5,13 @@
 #pragma once
 
 namespace forr {
-  class TileHovering {
+  class tile_hovering {
   public:
     void Update();
 
     auto GetHoveredCoordinate() const { return m_hoveredCoordinate; }
 
   private:
-    Point m_hoveredCoordinate{-1, -1};
+    point m_hoveredCoordinate{-1, -1};
   };
 }

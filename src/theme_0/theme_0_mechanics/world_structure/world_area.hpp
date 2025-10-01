@@ -5,27 +5,27 @@
 #pragma once
 
 namespace forr {
-  class Tile;
-  class Creature;
+  class tile;
+  class creature;
 
-  class WorldArea {
+  class world_area {
   public:
-    WorldArea() { Initialize(); }
+    world_area() { Initialize(); }
 
-    Size GetSize() const;
+    size GetSize() const;
 
     bool IsValidCoordinate(int x, int y) const;
 
-    s_ptr<Tile> GetTile(int x, int y) const;
+    s_ptr<tile> GetTile(int x, int y) const;
 
-    s_ptr<Tile> GetTile(Point coordinate) const;
+    s_ptr<tile> GetTile(point coordinate) const;
 
     auto &GetCreaturesMirrorRef() { return m_creaturesMirror; }
 
   private:
     void Initialize();
 
-    vec<vec<s_ptr<Tile>>> m_tiles;
-    std::map<s_ptr<Creature>, Point> m_creaturesMirror;
+    vec<vec<s_ptr<tile>>> m_tiles;
+    std::map<s_ptr<creature>, point> m_creaturesMirror;
   };
 }

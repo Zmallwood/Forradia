@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class Game {
+  class game {
   public:
     void Start() const;
   };

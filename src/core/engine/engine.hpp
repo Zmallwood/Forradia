@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class Engine {
+  class engine {
   public:
     void Run();
 

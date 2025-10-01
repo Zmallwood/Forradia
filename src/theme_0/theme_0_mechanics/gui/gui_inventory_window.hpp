@@ -6,9 +6,9 @@
 #include "core/gui_core/windows/gui_window.hpp"
 
 namespace forr {
-  class GUIInventoryWindow : public GUIWindow {
+  class gui_inventory_window : public gui_window {
   public:
-    GUIInventoryWindow() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+    gui_inventory_window() : gui_window(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
 
   protected:
     void RenderDerived() const override;

@@ -6,15 +6,15 @@
 #include "sub/cursor_styles.hpp"
 
 namespace forr {
-  class Cursor {
+  class cursor {
   public:
-    Cursor() { Initialize(); }
+    cursor() { Initialize(); }
 
     void ResetStyleToDefault();
 
     void Render();
 
-    auto SetCursorStyle(CursorStyles value) { m_cursorStyle = value; }
+    auto SetCursorStyle(cursor_styles value) { m_cursorStyle = value; }
 
   private:
     void Initialize();
@@ -23,6 +23,6 @@ namespace forr {
 
     constexpr static float k_cursorSize{0.05f};
 
-    CursorStyles m_cursorStyle{CursorStyles::Default};
+    cursor_styles m_cursorStyle{cursor_styles::Default};
   };
 }

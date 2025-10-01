@@ -5,9 +5,9 @@
 #pragma once
 
 namespace forr {
-  class Object;
+  class object;
 
-  class ObjectsStack {
+  class objects_stack {
   public:
     void ClearObjects();
 
@@ -20,6 +20,6 @@ namespace forr {
     auto GetObjects() const { return m_objects; }
 
   private:
-    vec<s_ptr<Object>> m_objects;
+    vec<s_ptr<object>> m_objects;
   };
 }

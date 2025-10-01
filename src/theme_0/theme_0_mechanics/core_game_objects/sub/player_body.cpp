@@ -5,14 +5,14 @@
 #include "player_body.hpp"
 
 namespace forr {
-  void PlayerBody::Initialize() {
-    m_bodyParts.insert({BodyPartTypes::OverallBody, BodyPart()});
-    m_bodyParts.insert({BodyPartTypes::RightArm, BodyPart()});
-    m_bodyParts.insert({BodyPartTypes::LeftArm, BodyPart()});
-    m_bodyParts.insert({BodyPartTypes::Legs, BodyPart()});
+  void player_body::Initialize() {
+    m_bodyParts.insert({body_part_types::OverallBody, body_part()});
+    m_bodyParts.insert({body_part_types::RightArm, body_part()});
+    m_bodyParts.insert({body_part_types::LeftArm, body_part()});
+    m_bodyParts.insert({body_part_types::Legs, body_part()});
   }
 
-  BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes bodyPartType) {
+  body_part *player_body::GetBodyPartPtr(body_part_types bodyPartType) {
     if (m_bodyParts.contains(bodyPartType)) {
       return &m_bodyParts.at(bodyPartType);
     }

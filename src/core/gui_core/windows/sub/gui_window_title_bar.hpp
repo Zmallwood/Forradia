@@ -5,21 +5,21 @@
 #pragma once
 
 namespace forr {
-  class GUIWindow;
+  class gui_window;
 
-  class GUIWindowTitleBar {
+  class gui_window_title_bar {
   public:
-    GUIWindowTitleBar(GUIWindow &parentWindow, str_view windowTitleText)
+    gui_window_title_bar(gui_window &parentWindow, str_view windowTitleText)
         : m_parentWindow(parentWindow), k_windowTitleText(windowTitleText) {}
 
     void Render() const;
 
-    RectF GetBounds() const;
+    rect_f GetBounds() const;
 
   private:
     inline static const float k_height{0.04f};
     const str k_windowTitleText;
 
-    GUIWindow &m_parentWindow;
+    gui_window &m_parentWindow;
   };
 }

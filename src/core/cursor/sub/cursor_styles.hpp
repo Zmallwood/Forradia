@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  enum class CursorStyles { Default, HoveringClickableGUI, HoveringCreature };
+  enum class cursor_styles { Default, HoveringClickableGUI, HoveringCreature };
 }

@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class Creature;
+  class creature;
 
-  void GenerateNewCreatureDestination(s_ptr<Creature> creature);
+  void GenerateNewCreatureDestination(s_ptr<creature> creature);
 }

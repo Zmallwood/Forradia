@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class WorldView {
+  class world_view {
   public:
     void Render() const;
   };

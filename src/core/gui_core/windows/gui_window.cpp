@@ -5,14 +5,14 @@
 #include "gui_window.hpp"
 
 namespace forr {
-  void GUIWindow::Initialize() { SetVisible(false); }
+  void gui_window::Initialize() { SetVisible(false); }
 
-  void GUIWindow::RenderDerived() const {
-    GUIMovablePanel::RenderDerived();
+  void gui_window::RenderDerived() const {
+    gui_movable_panel::RenderDerived();
     m_guiWindowTitleBar.Render();
   }
 
-  RectF GUIWindow::GetDraggableArea() {
+  rect_f gui_window::GetDraggableArea() {
     return m_guiWindowTitleBar.GetBounds();
   }
 }

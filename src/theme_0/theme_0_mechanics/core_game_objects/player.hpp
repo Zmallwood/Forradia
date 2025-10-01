@@ -6,9 +6,9 @@
 #include "sub/player_body.hpp"
 
 namespace forr {
-  class Player {
+  class player {
   public:
-    Player() { Initialize(); }
+    player() { Initialize(); }
 
     void MoveNorth();
 
@@ -30,7 +30,7 @@ namespace forr {
 
     auto GetDestination() const { return m_destination; }
 
-    void SetDestination(Point value) { m_destination = value; }
+    void SetDestination(point value) { m_destination = value; }
 
     auto &GetPlayerBodyRef() { return m_playerBody; }
 
@@ -40,10 +40,10 @@ namespace forr {
     void MoveToSuitablePosition();
 
     str m_name{"Unnamed Player"};
-    Point m_position{60, 50};
+    point m_position{60, 50};
     float m_movementSpeed{5.0f};
     int m_ticksLastMove{0};
-    Point m_destination{-1, -1};
-    PlayerBody m_playerBody;
+    point m_destination{-1, -1};
+    player_body m_playerBody;
   };
 }

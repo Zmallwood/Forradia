@@ -6,7 +6,7 @@
 #include "core/rendering/text/text_renderer.hpp"
 
 namespace forr {
-  void GUILabel::RenderDerived() const {
+  void gui_label::RenderDerived() const {
     auto bounds{GetBounds()};
     auto x{bounds.x};
     auto y{bounds.y};
@@ -14,7 +14,7 @@ namespace forr {
       bounds.x += bounds.width / 2;
       bounds.y += bounds.height / 2;
     }
-    GetSingleton<TextRenderer>().DrawString(
-        m_text, bounds.x, bounds.y, FontSizes::_20, m_centerAlign, m_color);
+    GetSingleton<text_renderer>().DrawString(
+        m_text, bounds.x, bounds.y, font_sizes::_20, m_centerAlign, m_color);
   }
 }

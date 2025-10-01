@@ -11,9 +11,9 @@ namespace forr {
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto windowResult{s_ptr<SDL_Window>(
         SDL_CreateWindow(
-            GetSingleton<GameProperties>().k_gameWindowTitle.data(),
+            GetSingleton<game_properties>().k_gameWindowTitle.data(),
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660, 660, flags),
-        SDLDeleter())};
+        sdl_deleter())};
     if (!windowResult) {
       PrintLine("Window could not be created. SDL Error: " +
                 str(SDL_GetError()));

@@ -6,9 +6,9 @@
 #include "object.hpp"
 
 namespace forr {
-  class TreeObject : public Object {
+  class tree_object : public object {
   public:
-    TreeObject(str_view objectTypeName) : Object(objectTypeName) {
+    tree_object(str_view objectTypeName) : object(objectTypeName) {
       Initialize(objectTypeName);
     }
 
@@ -21,7 +21,7 @@ namespace forr {
   private:
     void Initialize(str_view objectTypeName);
 
-    vec<PointF> m_trunkParts;
+    vec<point_f> m_trunkParts;
     vec<int> m_needleTypes;
     float m_widthFactor{1.0f};
   };

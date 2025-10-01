@@ -6,9 +6,9 @@
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
-  Size GetCanvasSize() {
-    Size canvasSize;
-    SDL_GetWindowSize(GetSingleton<SDLDevice>().GetWindow().get(),
+  size GetCanvasSize() {
+    size canvasSize;
+    SDL_GetWindowSize(GetSingleton<sdl_device>().GetWindow().get(),
                       &canvasSize.width, &canvasSize.height);
     return canvasSize;
   }

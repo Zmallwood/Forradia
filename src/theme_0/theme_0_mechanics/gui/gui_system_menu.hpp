@@ -6,9 +6,9 @@
 #include "core/gui_core/gui_component.hpp"
 
 namespace forr {
-  class GUISystemMenu : public GUIComponent {
+  class gui_system_menu : public gui_component {
   public:
-    GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) { Initialize(); }
+    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { Initialize(); }
 
   protected:
     void Initialize();

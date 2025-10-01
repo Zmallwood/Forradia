@@ -5,7 +5,7 @@
 #include "mouse_utilities.hpp"
 
 namespace forr {
-  PointF GetNormalizedMousePosition() {
+  point_f GetNormalizedMousePosition() {
     int xPx;
     int yPx;
     SDL_GetMouseState(&xPx, &yPx);

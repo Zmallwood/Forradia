@@ -6,12 +6,12 @@
 #include "directions.hpp"
 
 namespace forr {
-  class ObjectsStack;
-  class Creature;
+  class objects_stack;
+  class creature;
 
-  class Tile {
+  class tile {
   public:
-    Tile() { Initialize(); }
+    tile() { Initialize(); }
 
     void SetGround(str_view groundName);
 
@@ -21,7 +21,7 @@ namespace forr {
 
     auto GetCreature() const { return m_creature; }
 
-    void SetCreature(s_ptr<Creature> value) { m_creature = value; }
+    void SetCreature(s_ptr<creature> value) { m_creature = value; }
 
     auto GetElevation() const { return m_elevation; }
 
@@ -33,21 +33,21 @@ namespace forr {
 
     auto GetRiverDirection1() const { return m_riverDirection1; }
 
-    void SetRiverDirection1(Directions value) { m_riverDirection1 = value; }
+    void SetRiverDirection1(directions value) { m_riverDirection1 = value; }
 
     auto GetRiverDirection2() const { return m_riverDirection2; }
 
-    void SetRiverDirection2(Directions value) { m_riverDirection2 = value; }
+    void SetRiverDirection2(directions value) { m_riverDirection2 = value; }
 
   private:
     void Initialize();
 
     int m_ground{0};
-    s_ptr<ObjectsStack> m_objectsStack;
-    s_ptr<Creature> m_creature;
+    s_ptr<objects_stack> m_objectsStack;
+    s_ptr<creature> m_creature;
     int m_elevation{0};
     int m_waterDepth{0};
-    Directions m_riverDirection1{Directions::None};
-    Directions m_riverDirection2{Directions::None};
+    directions m_riverDirection1{directions::None};
+    directions m_riverDirection2{directions::None};
   };
 }

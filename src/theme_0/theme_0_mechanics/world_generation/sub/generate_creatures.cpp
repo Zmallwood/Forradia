@@ -11,9 +11,9 @@
 
 namespace forr {
   void GenerateCreatures() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numRats{200 * scale + RandomInt(15 * scale)};
     for (auto i = 0; i < numRats; i++) {
       auto x{RandomInt(size.width)};
@@ -21,7 +21,7 @@ namespace forr {
       auto tile{worldArea->GetTile(x, y)};
       if (tile && !tile->GetCreature() &&
           tile->GetGround() != Hash("GroundWater")) {
-        auto newCreature = std::make_shared<Creature>("CreatureRat");
+        auto newCreature = std::make_shared<creature>("CreatureRat");
         tile->SetCreature(newCreature);
         worldArea->GetCreaturesMirrorRef().insert(
             {tile->GetCreature(), {x, y}});

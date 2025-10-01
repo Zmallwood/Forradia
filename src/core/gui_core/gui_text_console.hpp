@@ -6,10 +6,10 @@
 #include "gui_panel.hpp"
 
 namespace forr {
-  class GUITextConsole : public GUIPanel {
+  class gui_text_console : public gui_panel {
   public:
-    GUITextConsole()
-        : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived) {}
+    gui_text_console()
+        : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived) {}
 
     void RenderDerived() const override;
 

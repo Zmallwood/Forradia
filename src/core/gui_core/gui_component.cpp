@@ -5,14 +5,14 @@
 #include "gui_component.hpp"
 
 namespace forr {
-  s_ptr<GUIComponent>
-  GUIComponent::AddChildComponent(s_ptr<GUIComponent> component) {
+  s_ptr<gui_component>
+  gui_component::AddChildComponent(s_ptr<gui_component> component) {
     component->SetParentComponent(this);
     m_childComponents.push_back(component);
     return component;
   }
 
-  void GUIComponent::Update() {
+  void gui_component::Update() {
     if (!m_visible || !m_enabled) {
       return;
     }
@@ -22,17 +22,17 @@ namespace forr {
     UpdateDerived();
   }
 
-  void GUIComponent::Render() const {
+  void gui_component::Render() const {
     if (!m_visible) {
       return;
     }
     RenderDerived();
-    for (std::shared_ptr<GUIComponent> component : m_childComponents) {
+    for (std::shared_ptr<gui_component> component : m_childComponents) {
       component->Render();
     }
   }
 
-  RectF GUIComponent::GetBounds() const {
+  rect_f gui_component::GetBounds() const {
     auto boundsResult{m_bounds};
     if (m_parentComponent) {
       auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
@@ -41,9 +41,9 @@ namespace forr {
     return boundsResult;
   }
 
-  void GUIComponent::ToggleVisibility() { m_visible = !m_visible; }
+  void gui_component::ToggleVisibility() { m_visible = !m_visible; }
 
-  void GUIComponent::SetPosition(PointF newPosition) {
+  void gui_component::SetPosition(point_f newPosition) {
     m_bounds.x = newPosition.x;
     m_bounds.y = newPosition.y;
   }

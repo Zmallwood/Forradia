@@ -5,9 +5,9 @@
 #pragma once
 
 namespace forr {
-  class SDLDevice {
+  class sdl_device {
   public:
-    SDLDevice() { Initialize(); }
+    sdl_device() { Initialize(); }
 
     void ClearCanvas() const;
 

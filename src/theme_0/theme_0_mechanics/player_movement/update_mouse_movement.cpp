@@ -9,39 +9,39 @@
 
 namespace forr {
   void UpdateMouseMovement() {
-    if (GetSingleton<MouseInput>()
+    if (GetSingleton<mouse_input>()
             .GetLeftMouseButtonRef()
             .GetHasBeenFiredPickResult()) {
-      auto newDestination{GetSingleton<TileHovering>().GetHoveredCoordinate()};
-      GetSingleton<Player>().SetDestination(newDestination);
+      auto newDestination{GetSingleton<tile_hovering>().GetHoveredCoordinate()};
+      GetSingleton<player>().SetDestination(newDestination);
     }
-    auto playerPosition{GetSingleton<Player>().GetPosition()};
-    auto destination{GetSingleton<Player>().GetDestination()};
-    if (destination == Point{-1, -1}) {
+    auto playerPosition{GetSingleton<player>().GetPosition()};
+    auto destination{GetSingleton<player>().GetDestination()};
+    if (destination == point{-1, -1}) {
       return;
     }
     auto now{GetTicks()};
     if (now >=
-        GetSingleton<Player>().GetTicksLastMove() +
-            InvertMovementSpeed(GetSingleton<Player>().GetMovementSpeed())) {
+        GetSingleton<player>().GetTicksLastMove() +
+            InvertMovementSpeed(GetSingleton<player>().GetMovementSpeed())) {
       auto dx{destination.x - playerPosition.x};
       auto dy{destination.y - playerPosition.y};
       if (dx < 0) {
-        GetSingleton<Player>().MoveWest();
+        GetSingleton<player>().MoveWest();
       }
       if (dy < 0) {
-        GetSingleton<Player>().MoveNorth();
+        GetSingleton<player>().MoveNorth();
       }
       if (dx > 0) {
-        GetSingleton<Player>().MoveEast();
+        GetSingleton<player>().MoveEast();
       }
       if (dy > 0) {
-        GetSingleton<Player>().MoveSouth();
+        GetSingleton<player>().MoveSouth();
       }
       if (destination == playerPosition) {
-        GetSingleton<Player>().SetDestination({-1, -1});
+        GetSingleton<player>().SetDestination({-1, -1});
       }
-      GetSingleton<Player>().SetTicksLastMove(now);
+      GetSingleton<player>().SetTicksLastMove(now);
     }
   }
 }

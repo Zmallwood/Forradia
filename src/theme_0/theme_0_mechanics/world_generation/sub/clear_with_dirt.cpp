@@ -10,10 +10,10 @@
 
 namespace forr {
   void ClearWithDirt() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    size.width *= GetSingleton<GameProperties>().k_worldScalingFactor;
-    size.height *= GetSingleton<GameProperties>().k_worldScalingFactor;
+    size.width *= GetSingleton<game_properties>().k_worldScalingFactor;
+    size.height *= GetSingleton<game_properties>().k_worldScalingFactor;
     for (auto y = 0; y < size.height; y++) {
       for (auto x = 0; x < size.width; x++) {
         auto tile{worldArea->GetTile(x, y)};

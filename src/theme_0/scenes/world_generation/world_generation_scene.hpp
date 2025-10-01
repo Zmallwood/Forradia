@@ -6,7 +6,7 @@
 #include "core/scenes_core/i_scene.hpp"
 
 namespace forr {
-  class WorldGenerationScene : public IScene {
+  class world_generation_scene : public i_scene {
   protected:
     void OnEnterDerived() override;
   };

@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class ImageRenderer {
+  class image_renderer {
   public:
     void DrawImage(str_view imageName, float x, float y, float width,
                    float height) const;

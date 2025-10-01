@@ -13,19 +13,21 @@
 #include "theme_0/theme_0_mechanics/world_view/world_view.hpp"
 
 namespace forr {
-  void MainScene::InitializeDerived() { AddMainSceneGUIComponents(GetGUI()); }
+  void main_scene::InitializeDerived() { AddMainSceneGUIComponents(GetGUI()); }
 
-  void MainScene::OnEnterDerived() {
-    GetSingleton<GUITextConsole>().Print("You have entered the world.");
+  void main_scene::OnEnterDerived() {
+    GetSingleton<gui_text_console>().Print("You have entered the world.");
   }
 
-  void MainScene::UpdateDerived() {
+  void main_scene::UpdateDerived() {
     UpdateCreatureMovement();
     UpdateMouseMovement();
     UpdateKeyboardMovement();
-    GetSingleton<TileHovering>().Update();
+    GetSingleton<tile_hovering>().Update();
     UpdateKeyboardBindingActions();
   }
 
-  void MainScene::RenderDerived() const { GetSingleton<WorldView>().Render(); }
+  void main_scene::RenderDerived() const {
+    GetSingleton<world_view>().Render();
+  }
 }

@@ -8,8 +8,8 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  Point CalculateNewCreaturePosition(s_ptr<Creature> creature) {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+  point CalculateNewCreaturePosition(s_ptr<creature> creature) {
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
     auto position{creaturesMirrorRef.at(creature)};
     auto dx{creature->GetDestination().x - position.x};

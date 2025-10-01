@@ -5,11 +5,11 @@
 #pragma once
 
 namespace forr {
-  class IScene;
+  class i_scene;
 
-  class SceneManager {
+  class scene_manager {
   public:
-    void AddScene(str_view sceneName, IScene &scene);
+    void AddScene(str_view sceneName, i_scene &scene);
 
     void GoToScene(str_view sceneName);
 
@@ -18,7 +18,7 @@ namespace forr {
     void RenderCurrentScene() const;
 
   private:
-    std::map<int, IScene &> m_scenes;
+    std::map<int, i_scene &> m_scenes;
     int m_currentScene{0};
   };
 }

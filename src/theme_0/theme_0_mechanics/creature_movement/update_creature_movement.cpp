@@ -13,7 +13,7 @@
 
 namespace forr {
   void UpdateCreatureMovement() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto &creaturesMirrorRef{worldArea->GetCreaturesMirrorRef()};
     auto now{GetTicks()};
     for (auto it = creaturesMirrorRef.begin();

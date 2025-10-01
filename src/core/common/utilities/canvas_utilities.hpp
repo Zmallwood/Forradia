@@ -6,7 +6,7 @@
 #pragma once
 
 namespace forr {
-  Size GetCanvasSize();
+  size GetCanvasSize();
 
   float CalculateAspectRatio();
 }

@@ -9,7 +9,7 @@ namespace forr {
    * \brief Class used for SharedPtrs of SDL objects,
    *        which handles automaticallyfreeing up resources at object deletion.
    */
-  class SDLDeleter {
+  class sdl_deleter{
   public:
     /**
      * \brief Operator overloading for SDL_Window objects.

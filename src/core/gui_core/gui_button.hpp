@@ -6,13 +6,13 @@
 #include "gui_panel.hpp"
 
 namespace forr {
-  class GUIButton : public GUIPanel {
+  class gui_button : public gui_panel {
   public:
-    GUIButton(float x, float y, float width, float height, str_view text,
+    gui_button(float x, float y, float width, float height, str_view text,
               func<void()> action,
               str_view backgroundImage = k_backgroundImage,
               str_view hoveredBackgroundImage = k_hoveredBackgroundImage)
-        : GUIPanel(x, y, width, height), m_text(text), m_action(action),
+        : gui_panel(x, y, width, height), m_text(text), m_action(action),
           m_backgroundImage(backgroundImage),
           m_hoveredBackgroundImage(hoveredBackgroundImage) {}
 

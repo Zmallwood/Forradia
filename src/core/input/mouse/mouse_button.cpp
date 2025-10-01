@@ -5,43 +5,43 @@
 #include "mouse_button.hpp"
 
 namespace forr {
-  void MouseButton::Reset() {
+  void mouse_button::Reset() {
     m_isPressed = false;
     m_hasBeenFired = false;
     m_hasBeenReleased = false;
   }
 
-  void MouseButton::RegisterPress() {
+  void mouse_button::RegisterPress() {
     m_isPressed = true;
     m_hasBeenFired = true;
   }
 
-  void MouseButton::RegisterRelease() {
+  void mouse_button::RegisterRelease() {
     m_isPressed = false;
     m_hasBeenReleased = true;
   }
 
-  bool MouseButton::IsPressedPickResult() {
+  bool mouse_button::IsPressedPickResult() {
     auto isPressedResult{m_isPressed};
     m_isPressed = false;
     return isPressedResult;
   }
 
-  bool MouseButton::GetHasBeenFiredPickResult() {
+  bool mouse_button::GetHasBeenFiredPickResult() {
     auto hasBeenFiredResult{m_hasBeenFired};
     m_hasBeenFired = false;
     return hasBeenFiredResult;
   }
 
-  bool MouseButton::GetHasBeenFiredDontPickResult() { return m_hasBeenFired; }
+  bool mouse_button::GetHasBeenFiredDontPickResult() { return m_hasBeenFired; }
 
-  bool MouseButton::GetHasBeenReleasedPickResult() {
+  bool mouse_button::GetHasBeenReleasedPickResult() {
     auto hasBeenReleasedResult{m_hasBeenReleased};
     m_hasBeenReleased = false;
     return hasBeenReleasedResult;
   }
 
-  bool MouseButton::GetHasBeenReleasedDontPickResult() {
+  bool mouse_button::GetHasBeenReleasedDontPickResult() {
     return m_hasBeenReleased;
   }
 }

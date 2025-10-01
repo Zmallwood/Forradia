@@ -13,30 +13,30 @@
 #include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {
-  void IntroScene::InitializeDerived() {
-    m_startText = GetGUI()->AddChildComponent(std::make_shared<GUILabel>(
+  void intro_scene::InitializeDerived() {
+    m_startText = GetGUI()->AddChildComponent(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }
 
-  void IntroScene::OnEnterDerived() {
-    GetSingleton<GUITextConsole>().Print("Game started.");
+  void intro_scene::OnEnterDerived() {
+    GetSingleton<gui_text_console>().Print("Game started.");
   }
 
-  void IntroScene::UpdateDerived() {
+  void intro_scene::UpdateDerived() {
     m_startText->SetVisible((GetTicks() % 800) < 400);
 
-    GetSingleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    GetSingleton<cursor>().SetCursorStyle(cursor_styles::HoveringClickableGUI);
 
-    if (GetSingleton<KeyboardInput>().AnyKeyIsPressedPickResult() ||
-        GetSingleton<MouseInput>().AnyMouseButtonIsPressedPickResult()) {
-      GetSingleton<SceneManager>().GoToScene("MainMenuScene");
+    if (GetSingleton<keyboard_input>().AnyKeyIsPressedPickResult() ||
+        GetSingleton<mouse_input>().AnyMouseButtonIsPressedPickResult()) {
+      GetSingleton<scene_manager>().GoToScene("MainMenuScene");
     }
   }
 
-  void IntroScene::RenderDerived() const {
-    GetSingleton<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f,
-                                            0.0f, 1.0f, 1.0f);
-    GetSingleton<ImageRenderer>().DrawImageWithAutoHeight("ForradiaLogo", 0.25f,
-                                                          0.2f, 0.5f);
+  void intro_scene::RenderDerived() const {
+    GetSingleton<image_renderer>().DrawImage("DefaultSceneBackground", 0.0f,
+                                             0.0f, 1.0f, 1.0f);
+    GetSingleton<image_renderer>().DrawImageWithAutoHeight("ForradiaLogo",
+                                                           0.25f, 0.2f, 0.5f);
   }
 }

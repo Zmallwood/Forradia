@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  PointF GetNormalizedMousePosition();
+  point_f GetNormalizedMousePosition();
 }

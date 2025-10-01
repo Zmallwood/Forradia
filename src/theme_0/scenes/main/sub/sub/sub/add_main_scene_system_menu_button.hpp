@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class GUI;
+  class gui;
 
-  void AddMainSceneSystemMenuButton(s_ptr<GUI> mainSceneGUI);
+  void AddMainSceneSystemMenuButton(s_ptr<gui> mainSceneGUI);
 }

@@ -6,9 +6,9 @@
 #include "core/gui_core/gui_panel.hpp"
 
 namespace forr {
-  class GUIPlayerStatusPanel : public GUIPanel {
+  class gui_player_status_panel : public gui_panel {
   public:
-    GUIPlayerStatusPanel() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f) {}
+    gui_player_status_panel() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
   protected:
     virtual void RenderDerived() const override;

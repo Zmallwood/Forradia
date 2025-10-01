@@ -6,9 +6,9 @@
 #include "sub/create_font.hpp"
 
 namespace forr {
-  std::map<FontSizes, s_ptr<TTF_Font>> CreateFonts(vec<FontSizes> fontSizes,
-                                                  str_view relativeFontPath) {
-    std::map<FontSizes, s_ptr<TTF_Font>> fontsResult;
+  std::map<font_sizes, s_ptr<TTF_Font>> CreateFonts(vec<font_sizes> fontSizes,
+                                                    str_view relativeFontPath) {
+    std::map<font_sizes, s_ptr<TTF_Font>> fontsResult;
     auto absoluteFontPath{str(SDL_GetBasePath()) + relativeFontPath.data()};
     for (auto fontSize : fontSizes) {
       auto newFont{CreateFont(absoluteFontPath, fontSize)};

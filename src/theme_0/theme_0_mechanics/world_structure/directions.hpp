@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  enum class Directions {
+  enum class directions {
     None,
     North,
     East,

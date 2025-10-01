@@ -5,13 +5,13 @@
 #pragma once
 
 namespace forr {
-  class ImageBank {
+  class image_bank {
   public:
-    ImageBank() { Initialize(); }
+    image_bank() { Initialize(); }
 
     s_ptr<SDL_Texture> GetImage(int imageNameHash) const;
 
-    Size GetImageSize(int imageNameHash) const;
+    size GetImageSize(int imageNameHash) const;
 
   private:
     void Initialize();

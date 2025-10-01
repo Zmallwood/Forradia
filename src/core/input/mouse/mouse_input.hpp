@@ -6,7 +6,7 @@
 #include "mouse_button.hpp"
 
 namespace forr {
-  class MouseInput {
+  class mouse_input {
   public:
     void Reset();
 
@@ -21,7 +21,7 @@ namespace forr {
     auto &GetRightMouseButtonRef() { return m_leftMouseButton; }
 
   private:
-    MouseButton m_leftMouseButton;
-    MouseButton m_rightMouseButton;
+    mouse_button m_leftMouseButton;
+    mouse_button m_rightMouseButton;
   };
 }

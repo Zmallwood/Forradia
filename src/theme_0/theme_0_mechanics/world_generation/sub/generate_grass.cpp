@@ -10,9 +10,9 @@
 
 namespace forr {
   void GenerateGrass() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numGrassAreas{50 + RandomInt(20)};
     for (auto i = 0; i < numGrassAreas; i++) {
       auto xCenter{RandomInt(size.width)};

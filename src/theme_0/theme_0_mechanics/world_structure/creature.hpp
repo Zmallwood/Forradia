@@ -5,9 +5,9 @@
 #pragma once
 
 namespace forr {
-  class Creature {
+  class creature {
   public:
-    Creature(str_view typeName) : m_type{Hash(typeName)} { Initialize(); }
+    creature(str_view typeName) : m_type{Hash(typeName)} { Initialize(); }
 
     auto GetType() const { return m_type; }
 
@@ -19,7 +19,7 @@ namespace forr {
 
     auto GetDestination() const { return m_destination; }
 
-    void SetDestination(Point value) { m_destination = value; }
+    void SetDestination(point value) { m_destination = value; }
 
   private:
     void Initialize();
@@ -27,6 +27,6 @@ namespace forr {
     int m_type{0};
     int m_ticksLastMove{0};
     float m_movementSpeed{2.0f};
-    Point m_destination{-1, -1};
+    point m_destination{-1, -1};
   };
 }

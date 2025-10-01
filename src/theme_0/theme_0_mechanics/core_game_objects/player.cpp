@@ -9,10 +9,10 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void Player::Initialize() { MoveToSuitablePosition(); }
+  void player::Initialize() { MoveToSuitablePosition(); }
 
-  void Player::MoveToSuitablePosition() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+  void player::MoveToSuitablePosition() {
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
     m_position = {size.width / 2, size.height / 2};
     while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
@@ -20,11 +20,11 @@ namespace forr {
     }
   }
 
-  void Player::MoveNorth() { m_position.y -= 1; }
+  void player::MoveNorth() { m_position.y -= 1; }
 
-  void Player::MoveEast() { m_position.x += 1; }
+  void player::MoveEast() { m_position.x += 1; }
 
-  void Player::MoveSouth() { m_position.y += 1; }
+  void player::MoveSouth() { m_position.y += 1; }
 
-  void Player::MoveWest() { m_position.x -= 1; }
+  void player::MoveWest() { m_position.x -= 1; }
 }

@@ -6,10 +6,10 @@
 #include "gui_panel.hpp"
 
 namespace forr {
-  class GUIMovablePanel : public GUIPanel {
+  class gui_movable_panel : public gui_panel {
   public:
-    GUIMovablePanel(float x, float y, float width, float height)
-        : GUIPanel(x, y, width, height) {}
+    gui_movable_panel(float x, float y, float width, float height)
+        : gui_panel(x, y, width, height) {}
 
   protected:
     void UpdateDerived() override;
@@ -18,7 +18,7 @@ namespace forr {
 
     void StopMoving();
 
-    virtual RectF GetDraggableArea();
+    virtual rect_f GetDraggableArea();
 
     auto GetIsBeingMoved() const { return m_isBeingMoved; }
 
@@ -28,7 +28,7 @@ namespace forr {
 
   private:
     bool m_isBeingMoved{false};
-    PointF m_moveStartPosition{-1, -1};
-    PointF m_moveStartMousePosition{-1, -1};
+    point_f m_moveStartPosition{-1, -1};
+    point_f m_moveStartMousePosition{-1, -1};
   };
 }

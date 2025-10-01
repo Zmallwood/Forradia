@@ -5,12 +5,12 @@
 #include "mouse_input.hpp"
 
 namespace forr {
-  void MouseInput::Reset() {
+  void mouse_input::Reset() {
     m_leftMouseButton.Reset();
     m_rightMouseButton.Reset();
   }
 
-  void MouseInput::RegisterMouseButtonDown(Uint8 mouseButton) {
+  void mouse_input::RegisterMouseButtonDown(Uint8 mouseButton) {
     switch (mouseButton) {
     case SDL_BUTTON_LEFT:
       m_leftMouseButton.RegisterPress();
@@ -21,7 +21,7 @@ namespace forr {
     }
   }
 
-  void MouseInput::RegisterMouseButtonUp(Uint8 mouseButton) {
+  void mouse_input::RegisterMouseButtonUp(Uint8 mouseButton) {
     switch (mouseButton) {
     case SDL_BUTTON_LEFT:
       m_leftMouseButton.RegisterRelease();
@@ -32,7 +32,7 @@ namespace forr {
     }
   }
 
-  bool MouseInput::AnyMouseButtonIsPressedPickResult() {
+  bool mouse_input::AnyMouseButtonIsPressedPickResult() {
     auto anyMouseButtonIsPressedResult{m_leftMouseButton.IsPressedPickResult()};
     anyMouseButtonIsPressedResult |= m_rightMouseButton.IsPressedPickResult();
     return anyMouseButtonIsPressedResult;

@@ -12,15 +12,15 @@
 
 namespace forr {
   void RunNewTheme0() {
-    GetSingleton<SceneManager>().AddScene("IntroScene",
-                                          GetSingleton<IntroScene>());
-    GetSingleton<SceneManager>().AddScene("MainMenuScene",
-                                          GetSingleton<MainMenuScene>());
-    GetSingleton<SceneManager>().AddScene("WorldGenerationScene",
-                                          GetSingleton<WorldGenerationScene>());
-    GetSingleton<SceneManager>().AddScene("MainScene",
-                                          GetSingleton<MainScene>());
-    GetSingleton<SceneManager>().GoToScene("IntroScene");
-    GetSingleton<Game>().Start();
+    GetSingleton<scene_manager>().AddScene("IntroScene",
+                                           GetSingleton<intro_scene>());
+    GetSingleton<scene_manager>().AddScene("MainMenuScene",
+                                           GetSingleton<main_menu_scene>());
+    GetSingleton<scene_manager>().AddScene(
+        "WorldGenerationScene", GetSingleton<world_generation_scene>());
+    GetSingleton<scene_manager>().AddScene("MainScene",
+                                           GetSingleton<main_scene>());
+    GetSingleton<scene_manager>().GoToScene("IntroScene");
+    GetSingleton<game>().Start();
   }
 }

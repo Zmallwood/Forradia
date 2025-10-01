@@ -6,19 +6,19 @@
 #include "core/gui_core/gui.hpp"
 
 namespace forr {
-  void IScene::Initialize() {
-    m_gui = std::make_shared<GUI>();
+  void i_scene::Initialize() {
+    m_gui = std::make_shared<gui>();
     InitializeDerived();
   }
 
-  void IScene::OnEnter() { OnEnterDerived(); }
+  void i_scene::OnEnter() { OnEnterDerived(); }
 
-  void IScene::Update() {
+  void i_scene::Update() {
     m_gui->Update();
     UpdateDerived();
   }
 
-  void IScene::Render() const {
+  void i_scene::Render() const {
     RenderDerived();
     m_gui->Render();
   }

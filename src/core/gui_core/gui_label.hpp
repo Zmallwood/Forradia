@@ -6,11 +6,11 @@
 #include "gui_component.hpp"
 
 namespace forr {
-  class GUILabel : public GUIComponent {
+  class gui_label : public gui_component {
   public:
-    GUILabel(float x, float y, float width, float height, str_view text = "",
-             bool centerAlign = false, Color color = Colors::WheatTransparent)
-        : GUIComponent(x, y, width, height), m_text(text),
+    gui_label(float x, float y, float width, float height, str_view text = "",
+             bool centerAlign = false, color color = colors::WheatTransparent)
+        : gui_component(x, y, width, height), m_text(text),
           m_centerAlign(centerAlign), m_color(color) {}
 
     void SetText(str_view value) { m_text = value; }
@@ -21,6 +21,6 @@ namespace forr {
   private:
     str m_text;
     bool m_centerAlign{false};
-    Color m_color;
+    color m_color;
   };
 }

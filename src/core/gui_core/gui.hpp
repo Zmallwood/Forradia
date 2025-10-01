@@ -6,8 +6,8 @@
 #include "gui_component.hpp"
 
 namespace forr {
-  class GUI : public GUIComponent {
+  class gui : public gui_component {
   public:
-    GUI() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {}
+    gui() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) {}
   };
 }

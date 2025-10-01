@@ -10,8 +10,8 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void TileHovering::Update() {
-    auto playerPosition{GetSingleton<Player>().GetPosition()};
+  void tile_hovering::Update() {
+    auto playerPosition{GetSingleton<player>().GetPosition()};
     auto mousePosition{GetNormalizedMousePosition()};
     auto tileSize{CalculateTileSize()};
     auto screenRelativeX{CInt(mousePosition.x / tileSize.width)};
@@ -21,7 +21,7 @@ namespace forr {
     auto screenRelativeXPx{
         (hoveredXCoordinate - (playerPosition.x - (gridSize.width - 1) / 2)) *
         tileSize.width};
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto extraRows{8};
     auto topYCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2) -
                         extraRows};
@@ -31,7 +31,7 @@ namespace forr {
     auto screenRelativeYPx{-extraRows * tileSize.height};
     for (auto y = -extraRows; y < gridSize.height + extraRows; y++) {
       auto yCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2 + y)};
-      auto coordinate{Point{hoveredXCoordinate, yCoordinate}};
+      auto coordinate{point{hoveredXCoordinate, yCoordinate}};
       auto tile{worldArea->GetTile(coordinate)};
       if (!tile) {
         screenRelativeYPx = 0.5f +
@@ -43,10 +43,10 @@ namespace forr {
       screenRelativeYPx = 0.5f +
                           (y - (gridSize.height - 1) / 2) * tileSize.height +
                           (playerElevation - elevation) * tileSize.height / 2;
-      auto coordNW{Point{coordinate.x, coordinate.y}};
-      auto coordNE{Point{coordinate.x + 1, coordinate.y}};
-      auto coordSW{Point{coordinate.x, coordinate.y + 1}};
-      auto coordSE{Point{coordinate.x + 1, coordinate.y + 1}};
+      auto coordNW{point{coordinate.x, coordinate.y}};
+      auto coordNE{point{coordinate.x + 1, coordinate.y}};
+      auto coordSW{point{coordinate.x, coordinate.y + 1}};
+      auto coordSE{point{coordinate.x + 1, coordinate.y + 1}};
       if (!worldArea->IsValidCoordinate(coordNW.x, coordNW.y) ||
           !worldArea->IsValidCoordinate(coordNE.x, coordNE.y) ||
           !worldArea->IsValidCoordinate(coordSW.x, coordSW.y) ||
@@ -116,7 +116,7 @@ namespace forr {
       } else {
         localTileHeight = tileSize.height;
       }
-      auto rect{RectF{screenRelativeXPx,
+      auto rect{rect_f{screenRelativeXPx,
                       screenRelativeYPx - localTileHeight / 2, tileSize.width,
                       localTileHeight}};
       if (rect.Contains(mousePosition)) {

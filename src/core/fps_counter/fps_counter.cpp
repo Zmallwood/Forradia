@@ -5,7 +5,7 @@
 #include "fps_counter.hpp"
 
 namespace forr {
-  void FPSCounter::Update() {
+  void fps_counter::Update() {
     auto now{GetTicks()};
     if (now > m_ticksLastUpdate + k_oneSecondMillis) {
       m_fps = m_framesCount;

@@ -5,17 +5,17 @@
 #pragma once
 
 namespace forr {
-  class WorldArea;
+  class world_area;
 
-  class World {
+  class world {
   public:
-    World() { Initialize(); }
+    world() { Initialize(); }
 
     auto GetCurrentWorldArea() const { return m_currentWorldArea; }
 
   private:
     void Initialize();
 
-    s_ptr<WorldArea> m_currentWorldArea;
+    s_ptr<world_area> m_currentWorldArea;
   };
 }

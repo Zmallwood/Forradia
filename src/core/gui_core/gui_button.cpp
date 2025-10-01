@@ -8,14 +8,14 @@
 #include "core/rendering/text/text_renderer.hpp"
 
 namespace forr {
-  void GUIButton::UpdateDerived() {
-    GUIPanel::UpdateDerived();
+  void gui_button::UpdateDerived() {
+    gui_panel::UpdateDerived();
     auto mousePosition{GetNormalizedMousePosition()};
     auto isHovered{GetBounds().Contains(mousePosition)};
     if (isHovered) {
       SetBackgroundImage(m_hoveredBackgroundImage);
-      GetSingleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (GetSingleton<MouseInput>()
+      GetSingleton<cursor>().SetCursorStyle(cursor_styles::HoveringClickableGUI);
+      if (GetSingleton<mouse_input>()
               .GetLeftMouseButtonRef()
               .GetHasBeenFiredPickResult()) {
         m_action();
@@ -25,11 +25,11 @@ namespace forr {
     }
   }
 
-  void GUIButton::RenderDerived() const {
-    GUIPanel::RenderDerived();
+  void gui_button::RenderDerived() const {
+    gui_panel::RenderDerived();
     auto bounds{GetBounds()};
-    GetSingleton<TextRenderer>().DrawString(m_text, bounds.x + bounds.width / 2,
+    GetSingleton<text_renderer>().DrawString(m_text, bounds.x + bounds.width / 2,
                                             bounds.y + bounds.height / 2,
-                                            FontSizes::_20, true);
+                                            font_sizes::_20, true);
   }
 }

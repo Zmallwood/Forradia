@@ -9,49 +9,49 @@
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
 namespace forr {
-  void GUIPlayerBodyWindow::Initialize() {
+  void gui_player_body_window::Initialize() {
     auto imageWidth{0.07f};
     auto imageHeight{ConvertWidthToHeight(imageWidth)};
-    auto overallBodyImageButton{std::make_shared<GUIButton>(
+    auto overallBodyImageButton{std::make_shared<gui_button>(
         0.1f - imageWidth / 2, 0.04f, imageWidth, imageHeight, "",
         [this] {
-          SelectBodyPart(BodyPartTypes::OverallBody);
+          SelectBodyPart(body_part_types::OverallBody);
           UpdateBodyPartInformationLabels();
         },
         "GUIImageOverallBody", "GUIImageOverallBodyHovered")};
     AddChildComponent(overallBodyImageButton);
-    auto rightArmBodyImageButton{std::make_shared<GUIButton>(
+    auto rightArmBodyImageButton{std::make_shared<gui_button>(
         0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth, imageHeight, "",
         [this] {
-          SelectBodyPart(BodyPartTypes::RightArm);
+          SelectBodyPart(body_part_types::RightArm);
           UpdateBodyPartInformationLabels();
         },
         "GUIImageRightArm", "GUIImageRightArmHovered")};
     AddChildComponent(rightArmBodyImageButton);
-    auto leftArmBodyImageButton{std::make_shared<GUIButton>(
+    auto leftArmBodyImageButton{std::make_shared<gui_button>(
         0.1f - imageWidth / 2 + imageWidth, 0.04f, imageWidth, imageHeight, "",
         [this] {
-          SelectBodyPart(BodyPartTypes::LeftArm);
+          SelectBodyPart(body_part_types::LeftArm);
           UpdateBodyPartInformationLabels();
         },
         "GUIImageLeftArm", "GUIImageLeftArmHovered")};
     AddChildComponent(leftArmBodyImageButton);
-    auto legsImageButton{std::make_shared<GUIButton>(
+    auto legsImageButton{std::make_shared<gui_button>(
         0.1f - imageWidth / 2, 0.04f + imageHeight, imageWidth, imageHeight, "",
         [this] {
-          SelectBodyPart(BodyPartTypes::Legs);
+          SelectBodyPart(body_part_types::Legs);
           UpdateBodyPartInformationLabels();
         },
         "GUIImageLegs", "GUIImageLegsHovered")};
     AddChildComponent(legsImageButton);
-    m_labelBodyPartName = std::make_shared<GUILabel>(0.01f, 0.3f, 0.2f, 0.05f,
-                                                     "Body part: ", false,
-                                                     Colors::YellowTransparent);
-    m_labelBodyPartStrength = std::make_shared<GUILabel>(
+    m_labelBodyPartName = std::make_shared<gui_label>(
+        0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
+        colors::YellowTransparent);
+    m_labelBodyPartStrength = std::make_shared<gui_label>(
         0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
-    m_labelBodyPartEnergy = std::make_shared<GUILabel>(
+    m_labelBodyPartEnergy = std::make_shared<gui_label>(
         0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
-    m_labelBodyPartTemperature = std::make_shared<GUILabel>(
+    m_labelBodyPartTemperature = std::make_shared<gui_label>(
         0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
     AddChildComponent(m_labelBodyPartName);
     AddChildComponent(m_labelBodyPartStrength);
@@ -59,78 +59,79 @@ namespace forr {
     AddChildComponent(m_labelBodyPartTemperature);
   }
 
-  void GUIPlayerBodyWindow::SelectBodyPart(BodyPartTypes bodyPartType) {
+  void gui_player_body_window::SelectBodyPart(body_part_types bodyPartType) {
     m_selectedBodyPart = bodyPartType;
   }
 
-  void GUIPlayerBodyWindow::UpdateBodyPartInformationLabels() {
-    auto &playerBody{GetSingleton<Player>().GetPlayerBodyRef()};
+  void gui_player_body_window::UpdateBodyPartInformationLabels() {
+    auto &playerBody{GetSingleton<player>().GetPlayerBodyRef()};
     switch (m_selectedBodyPart) {
-    case BodyPartTypes::OverallBody: {
+    case body_part_types::OverallBody: {
       m_labelBodyPartName->SetText("Body part: Overall body");
-      auto strength{
-          playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)->GetStrength()};
+      auto strength{playerBody.GetBodyPartPtr(body_part_types::OverallBody)
+                        ->GetStrength()};
       m_labelBodyPartStrength->SetText(
           fmt::format("Strength: {:.2f}", strength));
-      auto maxEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)
+      auto maxEnergy{playerBody.GetBodyPartPtr(body_part_types::OverallBody)
                          ->GetMaxEnergy()};
-      auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)
-                             ->GetCurrentEnergy()};
+      auto currentEnergy{
+          playerBody.GetBodyPartPtr(body_part_types::OverallBody)
+              ->GetCurrentEnergy()};
       m_labelBodyPartEnergy->SetText(
           fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
-      auto temperature{playerBody.GetBodyPartPtr(BodyPartTypes::OverallBody)
+      auto temperature{playerBody.GetBodyPartPtr(body_part_types::OverallBody)
                            ->GetTemperature()};
       m_labelBodyPartTemperature->SetText(
           fmt::format("Temperature: {:.2f} C", temperature));
     } break;
-    case BodyPartTypes::RightArm: {
+    case body_part_types::RightArm: {
       m_labelBodyPartName->SetText("Body part: Right arm");
       auto strength{
-          playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetStrength()};
+          playerBody.GetBodyPartPtr(body_part_types::RightArm)->GetStrength()};
       m_labelBodyPartStrength->SetText(
           fmt::format("Strength: {:.2f}", strength));
       auto maxEnergy{
-          playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetMaxEnergy()};
-      auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)
+          playerBody.GetBodyPartPtr(body_part_types::RightArm)->GetMaxEnergy()};
+      auto currentEnergy{playerBody.GetBodyPartPtr(body_part_types::RightArm)
                              ->GetCurrentEnergy()};
       m_labelBodyPartEnergy->SetText(
           fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
-      auto temperature{
-          playerBody.GetBodyPartPtr(BodyPartTypes::RightArm)->GetTemperature()};
+      auto temperature{playerBody.GetBodyPartPtr(body_part_types::RightArm)
+                           ->GetTemperature()};
       m_labelBodyPartTemperature->SetText(
           fmt::format("Temperature: {:.2f} C", temperature));
     } break;
-    case BodyPartTypes::LeftArm: {
+    case body_part_types::LeftArm: {
       m_labelBodyPartName->SetText("Body part: Left arm");
       auto strength{
-          playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetStrength()};
+          playerBody.GetBodyPartPtr(body_part_types::LeftArm)->GetStrength()};
       m_labelBodyPartStrength->SetText(
           fmt::format("Strength: {:.2f}", strength));
       auto maxEnergy{
-          playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetMaxEnergy()};
-      auto currentEnergy{playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)
+          playerBody.GetBodyPartPtr(body_part_types::LeftArm)->GetMaxEnergy()};
+      auto currentEnergy{playerBody.GetBodyPartPtr(body_part_types::LeftArm)
                              ->GetCurrentEnergy()};
       m_labelBodyPartEnergy->SetText(
           fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
-      auto temperature{
-          playerBody.GetBodyPartPtr(BodyPartTypes::LeftArm)->GetTemperature()};
+      auto temperature{playerBody.GetBodyPartPtr(body_part_types::LeftArm)
+                           ->GetTemperature()};
       m_labelBodyPartTemperature->SetText(
           fmt::format("Temperature: {:.2f} C", temperature));
     } break;
-    case BodyPartTypes::Legs: {
+    case body_part_types::Legs: {
       m_labelBodyPartName->SetText("Body part: Legs");
       auto strength{
-          playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetStrength()};
+          playerBody.GetBodyPartPtr(body_part_types::Legs)->GetStrength()};
       m_labelBodyPartStrength->SetText(
           fmt::format("Strength: {:.2f}", strength));
       auto maxEnergy{
-          playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetMaxEnergy()};
+          playerBody.GetBodyPartPtr(body_part_types::Legs)->GetMaxEnergy()};
       auto currentEnergy{
-          playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetCurrentEnergy()};
+          playerBody.GetBodyPartPtr(body_part_types::Legs)->GetCurrentEnergy()};
       m_labelBodyPartEnergy->SetText(
           fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
       auto temperature{
-          playerBody.GetBodyPartPtr(BodyPartTypes::Legs)->GetTemperature()};
+          playerBody.GetBodyPartPtr(body_part_types::Legs)->GetTemperature()};
       m_labelBodyPartTemperature->SetText(
           fmt::format("Temperature: {:.2f} C", temperature));
     } break;

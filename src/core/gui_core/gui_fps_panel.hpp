@@ -6,11 +6,11 @@
 #include "gui_movable_panel.hpp"
 
 namespace forr {
-  class GUILabel;
+  class gui_label;
 
-  class GUIFPSPanel : public GUIMovablePanel {
+  class gui_fps_panel : public gui_movable_panel {
   public:
-    GUIFPSPanel() : GUIMovablePanel(0.92f, 0.02f, 0.07f, 0.04f) {
+    gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f) {
       Initialize();
     }
 
@@ -20,6 +20,6 @@ namespace forr {
   private:
     void Initialize();
 
-    s_ptr<GUILabel> m_fpsTextPanel;
+    s_ptr<gui_label> m_fpsTextPanel;
   };
 }

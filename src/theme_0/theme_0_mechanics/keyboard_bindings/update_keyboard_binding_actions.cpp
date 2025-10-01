@@ -10,12 +10,12 @@
 
 namespace forr {
   void UpdateKeyboardBindingActions() {
-    if (GetSingleton<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
-      GetSingleton<GUISystemMenu>().ToggleVisibility();
-    } else if (GetSingleton<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {
-      GetSingleton<GUIPlayerBodyWindow>().ToggleVisibility();
-    } else if (GetSingleton<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
-      GetSingleton<GUIInventoryWindow>().ToggleVisibility();
+    if (GetSingleton<keyboard_input>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
+      GetSingleton<gui_system_menu>().ToggleVisibility();
+    } else if (GetSingleton<keyboard_input>().KeyIsPressedPickResult(SDLK_c)) {
+      GetSingleton<gui_player_body_window>().ToggleVisibility();
+    } else if (GetSingleton<keyboard_input>().KeyIsPressedPickResult(SDLK_b)) {
+      GetSingleton<gui_inventory_window>().ToggleVisibility();
     }
   }
 }

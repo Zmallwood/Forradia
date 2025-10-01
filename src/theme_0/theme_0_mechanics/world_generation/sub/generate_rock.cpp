@@ -10,9 +10,9 @@
 
 namespace forr {
   void GenerateRock() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numRockAreas{30 + RandomInt(10)};
     for (auto i = 0; i < numRockAreas; i++) {
       auto xCenter{RandomInt(size.width)};

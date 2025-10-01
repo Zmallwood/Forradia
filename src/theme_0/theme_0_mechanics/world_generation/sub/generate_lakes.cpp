@@ -14,8 +14,8 @@ namespace forr {
     if (recursive == 0) {
       return;
     }
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto xCenter{minX + RandomInt(maxX - minX)};
     auto yCenter{minY + RandomInt(maxY - minY)};
     auto radius{CInt(3 * scale + RandomInt(5 * scale))};
@@ -27,22 +27,22 @@ namespace forr {
           if (dx * dx + dy * dy <= r * r) {
             auto tile{worldArea->GetTile(x, y)};
             if (tile) {
-              Point N{x, y - 1};
-              Point E{x + 1, y};
-              Point S{x, y + 1};
-              Point W{x - 1, y};
-              Point NW{x - 1, y - 1};
-              Point NE{x + 1, y - 1};
-              Point SE{x + 1, y + 1};
-              Point SW{x - 1, y + 1};
-              Point NN{x, y - 2};
-              Point WW{x - 2, y};
-              Point EE{x + 2, y};
-              Point SS{x, y + 2};
-              Point NWNW{x - 2, y - 2};
-              Point NENE{x + 2, y - 2};
-              Point SESE{x + 2, y + 2};
-              Point SWSW{x - 2, y + 2};
+              point N{x, y - 1};
+              point E{x + 1, y};
+              point S{x, y + 1};
+              point W{x - 1, y};
+              point NW{x - 1, y - 1};
+              point NE{x + 1, y - 1};
+              point SE{x + 1, y + 1};
+              point SW{x - 1, y + 1};
+              point NN{x, y - 2};
+              point WW{x - 2, y};
+              point EE{x + 2, y};
+              point SS{x, y + 2};
+              point NWNW{x - 2, y - 2};
+              point NENE{x + 2, y - 2};
+              point SESE{x + 2, y + 2};
+              point SWSW{x - 2, y + 2};
               auto tileN{worldArea->GetTile(N)};
               auto tileE{worldArea->GetTile(E)};
               auto tileS{worldArea->GetTile(S)};
@@ -94,7 +94,7 @@ namespace forr {
   }
 
   void GenerateLakes() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
     auto numLakes{20 + RandomInt(5)};
     for (auto i = 0; i < numLakes; i++) {

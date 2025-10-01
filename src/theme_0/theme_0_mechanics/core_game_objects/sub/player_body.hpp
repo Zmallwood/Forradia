@@ -7,15 +7,15 @@
 #include "body_part_types.hpp"
 
 namespace forr {
-  class PlayerBody {
+  class player_body {
   public:
-    PlayerBody() { Initialize(); }
+    player_body() { Initialize(); }
 
-    BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
+    body_part *GetBodyPartPtr(body_part_types bodyPartType);
 
   private:
     void Initialize();
 
-    std::map<BodyPartTypes, BodyPart> m_bodyParts;
+    std::map<body_part_types, body_part> m_bodyParts;
   };
 }

@@ -7,20 +7,20 @@
 #include "sub/get_loaded_images/get_loaded_images.hpp"
 
 namespace forr {
-  void ImageBank::Initialize() { LoadImages(); }
+  void image_bank::Initialize() { LoadImages(); }
 
-  void ImageBank::LoadImages() {
+  void image_bank::LoadImages() {
     m_images = GetLoadedImages(k_relativeImagesPath);
   }
 
-  s_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash) const {
+  s_ptr<SDL_Texture> image_bank::GetImage(int imageNameHash) const {
     if (m_images.contains(imageNameHash)) {
       return m_images.at(imageNameHash);
     }
     return nullptr;
   }
 
-  Size ImageBank::GetImageSize(int imageNameHash) const {
+  size image_bank::GetImageSize(int imageNameHash) const {
     if (m_images.contains(imageNameHash)) {
       auto texture{m_images.at(imageNameHash)};
       return forr::GetImageSize(texture);

@@ -10,9 +10,9 @@
 
 namespace forr {
   void GenerateRivers() {
-    auto worldArea{GetSingleton<World>().GetCurrentWorldArea()};
+    auto worldArea{GetSingleton<world>().GetCurrentWorldArea()};
     auto size{worldArea->GetSize()};
-    auto scale{GetSingleton<GameProperties>().k_worldScalingFactor};
+    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
     auto numRivers{20 * scale + RandomInt(5 * scale)};
     for (auto i = 0; i < numRivers; i++) {
       auto x{CFloat(RandomInt(size.width))};
@@ -21,7 +21,7 @@ namespace forr {
       auto length{45 + RandomInt(20)};
       auto prevXCoordinate{-1};
       auto prevYCoordinate{-1};
-      s_ptr<Tile> prevTile;
+      s_ptr<tile> prevTile;
       for (auto j = 0; j < length; j++) {
         auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
         auto xCoordinate{CInt(x)};
@@ -33,36 +33,36 @@ namespace forr {
         if (tile && prevTile) {
           // tile->SetGround("GroundWater");
           if (xCoordinate == prevXCoordinate && yCoordinate > prevYCoordinate) {
-            prevTile->SetRiverDirection1(Directions::South);
-            tile->SetRiverDirection2(Directions::North);
+            prevTile->SetRiverDirection1(directions::South);
+            tile->SetRiverDirection2(directions::North);
           } else if (xCoordinate == prevXCoordinate &&
                      yCoordinate < prevYCoordinate) {
-            prevTile->SetRiverDirection1(Directions::North);
-            tile->SetRiverDirection2(Directions::South);
+            prevTile->SetRiverDirection1(directions::North);
+            tile->SetRiverDirection2(directions::South);
           } else if (yCoordinate == prevYCoordinate &&
                      xCoordinate > prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::East);
-            tile->SetRiverDirection2(Directions::West);
+            prevTile->SetRiverDirection1(directions::East);
+            tile->SetRiverDirection2(directions::West);
           } else if (yCoordinate == prevYCoordinate &&
                      xCoordinate < prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::West);
-            tile->SetRiverDirection2(Directions::East);
+            prevTile->SetRiverDirection1(directions::West);
+            tile->SetRiverDirection2(directions::East);
           } else if (yCoordinate < prevYCoordinate &&
                      xCoordinate > prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::NorthEast);
-            tile->SetRiverDirection2(Directions::SouthWest);
+            prevTile->SetRiverDirection1(directions::NorthEast);
+            tile->SetRiverDirection2(directions::SouthWest);
           } else if (yCoordinate > prevYCoordinate &&
                      xCoordinate > prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::SouthEast);
-            tile->SetRiverDirection2(Directions::NorthWest);
+            prevTile->SetRiverDirection1(directions::SouthEast);
+            tile->SetRiverDirection2(directions::NorthWest);
           } else if (yCoordinate < prevYCoordinate &&
                      xCoordinate < prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::NorthWest);
-            tile->SetRiverDirection2(Directions::SouthEast);
+            prevTile->SetRiverDirection1(directions::NorthWest);
+            tile->SetRiverDirection2(directions::SouthEast);
           } else if (yCoordinate > prevYCoordinate &&
                      xCoordinate < prevXCoordinate) {
-            prevTile->SetRiverDirection1(Directions::SouthWest);
-            tile->SetRiverDirection2(Directions::NorthEast);
+            prevTile->SetRiverDirection1(directions::SouthWest);
+            tile->SetRiverDirection2(directions::NorthEast);
           }
         }
         // if (xCoordinate != prevXCoordinate && yCoordinate != prevYCoordinate

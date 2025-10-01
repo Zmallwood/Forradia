@@ -7,16 +7,16 @@
 #include "sub/add_main_menu_scene_gui_components/add_main_menu_scene_gui_components.hpp"
 
 namespace forr {
-  void MainMenuScene::InitializeDerived() {
+  void main_menu_scene::InitializeDerived() {
     AddMainMenuSceneGUIComponents(GetGUI());
   }
 
-  void MainMenuScene::UpdateDerived() {}
+  void main_menu_scene::UpdateDerived() {}
 
-  void MainMenuScene::RenderDerived() const {
-    GetSingleton<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f,
-                                            0.0f, 1.0f, 1.0f);
-    GetSingleton<ImageRenderer>().DrawImageWithAutoHeight("ForradiaLogo", 0.35f,
-                                                          0.1f, 0.3f);
+  void main_menu_scene::RenderDerived() const {
+    GetSingleton<image_renderer>().DrawImage("DefaultSceneBackground", 0.0f,
+                                             0.0f, 1.0f, 1.0f);
+    GetSingleton<image_renderer>().DrawImageWithAutoHeight("ForradiaLogo",
+                                                           0.35f, 0.1f, 0.3f);
   }
 }

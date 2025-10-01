@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class FPSCounter {
+  class fps_counter {
   public:
     void Update();
 
@@ -15,6 +15,6 @@ namespace forr {
     int m_fps{0};
     int m_framesCount{0};
     int m_ticksLastUpdate{0};
-    const PointF k_position{0.93f, 0.02f};
+    const point_f k_position{0.93f, 0.02f};
   };
 }

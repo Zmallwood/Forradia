@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class GUI;
+  class gui;
 
-  void AddMainSceneGUIComponents(std::shared_ptr<GUI> mainSceneGUI);
+  void AddMainSceneGUIComponents(std::shared_ptr<gui> mainSceneGUI);
 }

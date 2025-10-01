@@ -5,8 +5,8 @@
 #include "get_image_size.hpp"
 
 namespace forr {
-  Size GetImageSize(s_ptr<SDL_Texture> texture) {
-    Size size;
+  size GetImageSize(s_ptr<SDL_Texture> texture) {
+    size size;
     if (texture) {
       SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.width,
                        &size.height);

@@ -8,18 +8,18 @@
 #include "core/rendering/text/text_renderer.hpp"
 
 namespace forr {
-  void GUIWindowTitleBar::Render() const {
+  void gui_window_title_bar::Render() const {
     auto parentWindowBounds{m_parentWindow.GetBounds()};
-    GetSingleton<ImageRenderer>().DrawImage(
+    GetSingleton<image_renderer>().DrawImage(
         "GUIWindowTitleBarBackground", parentWindowBounds.x,
         parentWindowBounds.y, parentWindowBounds.width, k_height);
-    GetSingleton<TextRenderer>().DrawString(
+    GetSingleton<text_renderer>().DrawString(
         k_windowTitleText, parentWindowBounds.x + 0.01f,
-        parentWindowBounds.y + 0.01f, FontSizes::_20, false, Colors::Yellow);
+        parentWindowBounds.y + 0.01f, font_sizes::_20, false, colors::Yellow);
   }
 
-  RectF GUIWindowTitleBar::GetBounds() const {
-    RectF boundsResult;
+  rect_f gui_window_title_bar::GetBounds() const {
+    rect_f boundsResult;
     auto parentWindowBounds{m_parentWindow.GetBounds()};
     boundsResult.x = parentWindowBounds.x;
     boundsResult.y = parentWindowBounds.y;
