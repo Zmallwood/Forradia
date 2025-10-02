@@ -11,7 +11,6 @@
 
 namespace forr {
   void generate_npcs() {
-    return;
     auto world_area{get_singleton<world>().get_current_world_area()};
     auto size{world_area->get_size()};
     auto scale{get_singleton<game_properties>().k_world_scaling_factor};

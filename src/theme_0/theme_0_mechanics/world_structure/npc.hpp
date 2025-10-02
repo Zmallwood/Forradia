@@ -9,6 +9,8 @@ namespace forr {
   public:
     npc(str_view type_name) : m_type{hash(type_name)} { initialize(); }
 
+    auto get_type() const { return m_type; }
+
   private:
     void initialize();
 

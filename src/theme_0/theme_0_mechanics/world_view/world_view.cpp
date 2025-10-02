@@ -9,6 +9,7 @@
 #include "theme_0/theme_0_mechanics/math/tile_grid_math.hpp"
 #include "theme_0/theme_0_mechanics/world_interaction/tile_hovering.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/creature.hpp"
+#include "theme_0/theme_0_mechanics/world_structure/npc.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/object.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/objects_stack.hpp"
 #include "theme_0/theme_0_mechanics/world_structure/tile.hpp"
@@ -453,6 +454,17 @@ namespace forr {
                 creature_type, x_canvas + tile_size.w / 2 - creature_width / 2,
                 y_canvas + tile_size.h - creature_height, creature_width,
                 creature_height);
+          }
+          auto npc{tile ? tile->get_npc() : nullptr};
+          if (npc) {
+            auto npc_type{npc->get_type()};
+            auto npc_image_size{
+                get_singleton<image_bank>().get_image_size(npc_type)};
+            auto npc_width{npc_image_size.w / 60.0f * tile_size.w};
+            auto npc_height{npc_image_size.h / 60.0f * tile_size.h};
+            get_singleton<image_renderer>().draw_image(
+                npc_type, x_canvas + tile_size.w / 2 - npc_width / 2,
+                y_canvas + tile_size.h - npc_height, npc_width, npc_height);
           }
         }
       }
