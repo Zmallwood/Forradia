@@ -9,9 +9,9 @@
 
 namespace forr {
   void world_generation_scene::on_enter_derived() {
-    GetSingleton<gui_text_console>().print("Generating new world...");
-    GenerateNewWorld();
-    GetSingleton<gui_text_console>().print("World generation completed.");
-    GetSingleton<scene_manager>().go_to_scene("MainScene");
+    get_singleton<gui_text_console>().print("Generating new world...");
+    generate_new_world();
+    get_singleton<gui_text_console>().print("World generation completed.");
+    get_singleton<scene_manager>().go_to_scene("MainScene");
   }
 }

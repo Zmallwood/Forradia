@@ -7,5 +7,5 @@
 namespace forr {
   class creature;
 
-  point CalculateNewCreaturePosition(s_ptr<creature> creature);
+  point calculate_new_creature_position(s_ptr<creature> creature);
 }

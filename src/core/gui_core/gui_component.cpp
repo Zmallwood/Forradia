@@ -6,18 +6,18 @@
 
 namespace forr {
   s_ptr<gui_component>
-  gui_component::add_child_component(s_ptr<gui_component> component) {
-    component->set_parent_component(this);
-    m_childComponents.push_back(component);
-    return component;
+  gui_component::add_child_component(s_ptr<gui_component> comp) {
+    comp->set_parent_component(this);
+    m_childComponents.push_back(comp);
+    return comp;
   }
 
   void gui_component::update() {
     if (!m_visible || !m_enabled) {
       return;
     }
-    for (auto component : std::views::reverse(m_childComponents)) {
-      component->update();
+    for (auto comp : std::views::reverse(m_childComponents)) {
+      comp->update();
     }
     update_derived();
   }
@@ -27,8 +27,8 @@ namespace forr {
       return;
     }
     render_derived();
-    for (std::shared_ptr<gui_component> component : m_childComponents) {
-      component->render();
+    for (auto comp : m_childComponents) {
+      comp->render();
     }
   }
 

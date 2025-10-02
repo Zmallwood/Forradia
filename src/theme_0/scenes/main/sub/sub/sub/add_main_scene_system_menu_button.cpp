@@ -10,8 +10,8 @@
 namespace forr {
   void add_main_scene_system_menu_button(s_ptr<gui> mainSceneGUI) {
     mainSceneGUI->add_child_component(std::make_shared<gui_button>(
-        0.92f, 0.9f, 0.05f, ConvertWidthToHeight(0.05f), "",
-        [] { GetSingleton<gui_system_menu>().toggle_visibility(); },
+        0.92f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
+        [] { get_singleton<gui_system_menu>().toggle_visibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
   }
 }

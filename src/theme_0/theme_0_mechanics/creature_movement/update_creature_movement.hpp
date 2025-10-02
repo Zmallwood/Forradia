@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void UpdateCreatureMovement();
+  void update_creature_movement();
 }

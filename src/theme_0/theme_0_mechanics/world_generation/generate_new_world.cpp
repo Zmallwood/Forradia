@@ -13,14 +13,14 @@
 #include "sub/generate_rock.hpp"
 
 namespace forr {
-  void GenerateNewWorld() {
-    ClearWithDirt();
-    GenerateGrass();
-    GenerateLakes();
-    GenerateElevation();
-    GenerateRock();
-    GenerateRivers();
-    GenerateObjects();
-    GenerateCreatures();
+  void generate_new_world() {
+    clear_with_dirt();
+    generate_grass();
+    generate_lakes();
+    generate_elevation();
+    generate_rock();
+    generate_rivers();
+    generate_objects();
+    generate_creatures();
   }
 }

@@ -16,10 +16,10 @@ namespace forr {
     }
     std::filesystem::recursive_directory_iterator rdi{imagesPath};
     for (auto it : rdi) {
-      auto filePath{Replace(it.path().string(), '\\', '/')};
-      if (GetFileExtension(filePath) == "png") {
-        auto fileName{GetFileNameNoExtension(filePath)};
-        auto hash{Hash(fileName)};
+      auto filePath{replace(it.path().string(), '\\', '/')};
+      if (get_file_extension(filePath) == "png") {
+        auto fileName{get_file_name_no_extension(filePath)};
+        auto hash{forr::hash(fileName)};
         auto image{load_single_image(filePath)};
         imagesResult.insert({hash, image});
       }

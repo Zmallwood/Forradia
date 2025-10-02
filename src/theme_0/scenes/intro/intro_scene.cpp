@@ -19,25 +19,26 @@ namespace forr {
   }
 
   void intro_scene::on_enter_derived() {
-    GetSingleton<gui_text_console>().print("Game started.");
+    get_singleton<gui_text_console>().print("Game started.");
   }
 
   void intro_scene::update_derived() {
-    m_startText->set_visible((GetTicks() % 800) < 400);
+    m_startText->set_visible((get_ticks() % 800) < 400);
 
-    GetSingleton<cursor>().set_cursor_style(
+    get_singleton<cursor>().set_cursor_style(
         cursor_styles::HoveringClickableGUI);
 
-    if (GetSingleton<keyboard_input>().any_key_is_pressed_pick_result() ||
-        GetSingleton<mouse_input>().any_mouse_button_is_pressed_pick_result()) {
-      GetSingleton<scene_manager>().go_to_scene("MainMenuScene");
+    if (get_singleton<keyboard_input>().any_key_is_pressed_pick_result() ||
+        get_singleton<mouse_input>()
+            .any_mouse_button_is_pressed_pick_result()) {
+      get_singleton<scene_manager>().go_to_scene("MainMenuScene");
     }
   }
 
   void intro_scene::render_derived() const {
-    GetSingleton<image_renderer>().draw_image("DefaultSceneBackground", 0.0f,
-                                              0.0f, 1.0f, 1.0f);
-    GetSingleton<image_renderer>().draw_image_with_auto_height(
+    get_singleton<image_renderer>().draw_image("DefaultSceneBackground", 0.0f,
+                                               0.0f, 1.0f, 1.0f);
+    get_singleton<image_renderer>().draw_image_with_auto_height(
         "ForradiaLogo", 0.25f, 0.2f, 0.5f);
   }
 }

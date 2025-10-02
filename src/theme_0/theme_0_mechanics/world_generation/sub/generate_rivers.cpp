@@ -9,23 +9,23 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void GenerateRivers() {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void generate_rivers() {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
-    auto numRivers{20 * scale + RandomInt(5 * scale)};
+    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
+    auto numRivers{20 * scale + random_int(5 * scale)};
     for (auto i = 0; i < numRivers; i++) {
-      auto x{CFloat(RandomInt(size.width))};
-      auto y{CFloat(RandomInt(size.height))};
-      auto startAngle{RandomInt(360)};
-      auto length{45 + RandomInt(20)};
+      auto x{c_float(random_int(size.width))};
+      auto y{c_float(random_int(size.height))};
+      auto startAngle{random_int(360)};
+      auto length{45 + random_int(20)};
       auto prevXCoordinate{-1};
       auto prevYCoordinate{-1};
       s_ptr<tile> prevTile;
       for (auto j = 0; j < length; j++) {
         auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
-        auto xCoordinate{CInt(x)};
-        auto yCoordinate{CInt(y)};
+        auto xCoordinate{c_int(x)};
+        auto yCoordinate{c_int(y)};
         if (!worldArea->is_valid_coordinate(xCoordinate, yCoordinate)) {
           continue;
         }

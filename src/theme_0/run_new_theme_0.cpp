@@ -11,16 +11,16 @@
 #include "theme_0/scenes/world_generation/world_generation_scene.hpp"
 
 namespace forr {
-  void RunNewTheme0() {
-    GetSingleton<scene_manager>().add_scene("IntroScene",
-                                            GetSingleton<intro_scene>());
-    GetSingleton<scene_manager>().add_scene("MainMenuScene",
-                                            GetSingleton<main_menu_scene>());
-    GetSingleton<scene_manager>().add_scene(
-        "WorldGenerationScene", GetSingleton<world_generation_scene>());
-    GetSingleton<scene_manager>().add_scene("MainScene",
-                                            GetSingleton<main_scene>());
-    GetSingleton<scene_manager>().go_to_scene("IntroScene");
-    GetSingleton<game>().start();
+  void run_new_theme_0() {
+    get_singleton<scene_manager>().add_scene("IntroScene",
+                                             get_singleton<intro_scene>());
+    get_singleton<scene_manager>().add_scene("MainMenuScene",
+                                             get_singleton<main_menu_scene>());
+    get_singleton<scene_manager>().add_scene(
+        "WorldGenerationScene", get_singleton<world_generation_scene>());
+    get_singleton<scene_manager>().add_scene("MainScene",
+                                             get_singleton<main_scene>());
+    get_singleton<scene_manager>().go_to_scene("IntroScene");
+    get_singleton<game>().start();
   }
 }

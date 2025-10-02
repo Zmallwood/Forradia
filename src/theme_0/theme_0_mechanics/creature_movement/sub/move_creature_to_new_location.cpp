@@ -9,11 +9,12 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void MoveCreatureToNewLocation(s_ptr<creature> creature, point newPosition) {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void move_creature_to_new_location(s_ptr<creature> creature,
+                                     point newPosition) {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
     auto oldPosition{creaturesMirrorRef.at(creature)};
-    auto now{GetTicks()};
+    auto now{get_ticks()};
     creature->set_ticks_last_move(now);
     auto oldTile{worldArea->get_tile(oldPosition.x, oldPosition.y)};
     auto newTile{worldArea->get_tile(newPosition.x, newPosition.y)};

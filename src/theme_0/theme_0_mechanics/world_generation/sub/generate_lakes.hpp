@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateLakes();
+  void generate_lakes();
 }

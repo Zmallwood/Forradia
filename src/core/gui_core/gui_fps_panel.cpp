@@ -14,7 +14,7 @@ namespace forr {
 
   void gui_fps_panel::update_derived() {
     gui_movable_panel::update_derived();
-    auto fps{GetSingleton<fps_counter>().get_fps()};
+    auto fps{get_singleton<fps_counter>().get_fps()};
     m_fpsTextPanel->set_text(fmt::format("FPS: {}", fps));
   }
 }

@@ -7,5 +7,5 @@
 namespace forr {
   class creature;
 
-  void GenerateNewCreatureDestination(s_ptr<creature> creature);
+  void generate_new_creature_destination(s_ptr<creature> creature);
 }

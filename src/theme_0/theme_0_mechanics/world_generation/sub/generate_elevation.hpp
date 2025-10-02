@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateElevation();
+  void generate_elevation();
 }

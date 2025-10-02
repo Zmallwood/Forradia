@@ -9,25 +9,51 @@
 #include "core/input/mouse/mouse_input.hpp"
 #include "core/scenes_core/scene_manager.hpp"
 #include "core/sdl_device/sdl_device.hpp"
-#include "sub/poll_events.hpp"
 
 namespace forr {
   void engine::run() {
-    Randomize();
-    GetSingleton<sdl_device>();
+    randomize();
+    get_singleton<sdl_device>();
     while (m_running) {
-      GetSingleton<keyboard_input>().reset();
-      GetSingleton<mouse_input>().reset();
-      GetSingleton<cursor>().reset_style_to_default();
-      PollEvents();
-      GetSingleton<scene_manager>().update_current_scene();
-      GetSingleton<fps_counter>().update();
-      GetSingleton<sdl_device>().clear_canvas();
-      GetSingleton<scene_manager>().render_current_scene();
-      GetSingleton<cursor>().render();
-      GetSingleton<sdl_device>().present_canvas();
+      get_singleton<keyboard_input>().reset();
+      get_singleton<mouse_input>().reset();
+      get_singleton<cursor>().reset_style_to_default();
+      poll_events();
+      get_singleton<scene_manager>().update_current_scene();
+      get_singleton<fps_counter>().update();
+      get_singleton<sdl_device>().clear_canvas();
+      get_singleton<scene_manager>().render_current_scene();
+      get_singleton<cursor>().render();
+      get_singleton<sdl_device>().present_canvas();
     }
   }
 
   void engine::stop() { m_running = false; }
+
+  void engine::poll_events() {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+      case SDL_QUIT:
+        m_running = false;
+        break;
+      case SDL_KEYDOWN:
+        get_singleton<keyboard_input>().register_key_press(
+            event.key.keysym.sym);
+        break;
+      case SDL_KEYUP:
+        get_singleton<keyboard_input>().register_key_release(
+            event.key.keysym.sym);
+        break;
+      case SDL_MOUSEBUTTONDOWN:
+        get_singleton<mouse_input>().register_mouse_button_down(
+            event.button.button);
+        break;
+      case SDL_MOUSEBUTTONUP:
+        get_singleton<mouse_input>().register_mouse_button_up(
+            event.button.button);
+        break;
+      }
+    }
+  }
 }

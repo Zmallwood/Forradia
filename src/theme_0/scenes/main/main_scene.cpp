@@ -18,18 +18,18 @@ namespace forr {
   }
 
   void main_scene::on_enter_derived() {
-    GetSingleton<gui_text_console>().print("You have entered the world.");
+    get_singleton<gui_text_console>().print("You have entered the world.");
   }
 
   void main_scene::update_derived() {
-    UpdateCreatureMovement();
-    UpdateMouseMovement();
-    UpdateKeyboardMovement();
-    GetSingleton<tile_hovering>().update();
-    UpdateKeyboardBindingActions();
+    update_creature_movement();
+    update_mouse_movement();
+    update_keyboard_movement();
+    get_singleton<tile_hovering>().update();
+    update_keyboard_binding_actions();
   }
 
   void main_scene::render_derived() const {
-    GetSingleton<world_view>().render();
+    get_singleton<world_view>().render();
   }
 }

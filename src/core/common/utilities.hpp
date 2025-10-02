@@ -6,44 +6,69 @@
 
 namespace forr {
   // Canvas util functions
-  size GetCanvasSize();
+  size get_canvas_size();
 
-  float CalculateAspectRatio();
+  float calculate_aspect_ratio();
 
-  float ConvertWidthToHeight(float width);
+  float convert_width_to_height(float width);
 
-  float ConvertHeightToWidth(float height);
+  float convert_height_to_width(float height);
 
   // File path util functions
-  str GetFileExtension(str_view path);
+  str get_file_extension(str_view path);
 
-  str GetFileNameNoExtension(str_view path);
+  str get_file_name_no_extension(str_view path);
 
   // Mouse util functions
-  point_f GetNormalizedMousePosition();
+  point_f get_normalized_mouse_position();
 
   // Numbers util functions
-  float InvertMovementSpeed(float number);
+  float invert_movement_speed(float number);
 
-  int Normalize(int value);
+  int normalize(int value);
 
-  float Ceil(float number, float k);
+  float ceil(float number, float k);
 
   // Randomization util functions
-  void Randomize();
+  void randomize();
 
-  int RandomInt(int upperLimit);
+  int random_int(int upperLimit);
 
   // String util functions
-  str Replace(str_view text, char replaced, char replacedWith);
+  str replace(str_view text, char replaced, char replacedWith);
 
   // Time util functions
-  const auto GetTicks{SDL_GetTicks};
+  const auto get_ticks{SDL_GetTicks};
+
+  // Hash util functions
+  /**
+   * \brief Compute hash code from a given input text, which
+   *        gets computed the same every game start.
+   *
+   * \param text Text to compute hash code for.
+   * \return Computed hash code.
+   */
+  int hash(str_view text);
+
+  // Print util functions
+  /**
+   * \brief Print out a string of text, without a following line break.
+   *
+   * \param text Text to print.
+   */
+  void print(str_view text);
+
+  /**
+   * \brief Print out a string of text, with an added line break at the end.
+   *
+   * \param text Text to print.
+   */
+  void print_line(str_view text);
 
   // Cast util functions
-  int CInt(auto value) { return static_cast<int>(value); }
+  int c_int(auto value) { return static_cast<int>(value); }
 
-  float CFloat(auto value) { return static_cast<float>(value); }
+  float c_float(auto value) { return static_cast<float>(value); }
 
-  Uint8 CUint8(auto value) { return static_cast<Uint8>(value); }
+  Uint8 c_uint8(auto value) { return static_cast<Uint8>(value); }
 }

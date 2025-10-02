@@ -9,11 +9,11 @@
 namespace forr {
   void draw_image_with_auto_height(str_view imageName, float x, float y,
                                    float width) {
-    auto imageNameHash{Hash(imageName)};
-    auto imageSize{GetSingleton<image_bank>().get_image_size(imageNameHash)};
-    auto canvasAspectRatio{CalculateAspectRatio()};
-    auto imageAspectRatio{CFloat(imageSize.width) / imageSize.height};
+    auto imageNameHash{hash(imageName)};
+    auto imageSize{get_singleton<image_bank>().get_image_size(imageNameHash)};
+    auto canvasAspectRatio{calculate_aspect_ratio()};
+    auto imageAspectRatio{c_float(imageSize.width) / imageSize.height};
     auto height{width / imageAspectRatio * canvasAspectRatio};
-    draw_image(Hash(imageName), x, y, width, height);
+    draw_image(hash(imageName), x, y, width, height);
   }
 }

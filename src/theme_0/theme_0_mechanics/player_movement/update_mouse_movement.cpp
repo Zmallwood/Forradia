@@ -8,41 +8,41 @@
 #include "theme_0/theme_0_mechanics/world_interaction/tile_hovering.hpp"
 
 namespace forr {
-  void UpdateMouseMovement() {
-    if (GetSingleton<mouse_input>()
+  void update_mouse_movement() {
+    if (get_singleton<mouse_input>()
             .get_left_mouse_button_ref()
             .get_has_been_fired_pick_result()) {
       auto newDestination{
-          GetSingleton<tile_hovering>().get_hovered_coordinate()};
-      GetSingleton<player>().set_destination(newDestination);
+          get_singleton<tile_hovering>().get_hovered_coordinate()};
+      get_singleton<player>().set_destination(newDestination);
     }
-    auto playerPosition{GetSingleton<player>().get_position()};
-    auto destination{GetSingleton<player>().get_destination()};
+    auto playerPosition{get_singleton<player>().get_position()};
+    auto destination{get_singleton<player>().get_destination()};
     if (destination == point{-1, -1}) {
       return;
     }
-    auto now{GetTicks()};
-    if (now >=
-        GetSingleton<player>().get_ticks_last_move() +
-            InvertMovementSpeed(GetSingleton<player>().get_movement_speed())) {
+    auto now{get_ticks()};
+    if (now >= get_singleton<player>().get_ticks_last_move() +
+                   invert_movement_speed(
+                       get_singleton<player>().get_movement_speed())) {
       auto dx{destination.x - playerPosition.x};
       auto dy{destination.y - playerPosition.y};
       if (dx < 0) {
-        GetSingleton<player>().move_west();
+        get_singleton<player>().move_west();
       }
       if (dy < 0) {
-        GetSingleton<player>().move_north();
+        get_singleton<player>().move_north();
       }
       if (dx > 0) {
-        GetSingleton<player>().move_east();
+        get_singleton<player>().move_east();
       }
       if (dy > 0) {
-        GetSingleton<player>().move_south();
+        get_singleton<player>().move_south();
       }
       if (destination == playerPosition) {
-        GetSingleton<player>().set_destination({-1, -1});
+        get_singleton<player>().set_destination({-1, -1});
       }
-      GetSingleton<player>().set_ticks_last_move(now);
+      get_singleton<player>().set_ticks_last_move(now);
     }
   }
 }

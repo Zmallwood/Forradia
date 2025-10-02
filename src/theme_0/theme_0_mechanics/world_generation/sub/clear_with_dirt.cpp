@@ -9,11 +9,11 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void ClearWithDirt() {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void clear_with_dirt() {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    size.width *= GetSingleton<game_properties>().k_worldScalingFactor;
-    size.height *= GetSingleton<game_properties>().k_worldScalingFactor;
+    size.width *= get_singleton<game_properties>().k_worldScalingFactor;
+    size.height *= get_singleton<game_properties>().k_worldScalingFactor;
     for (auto y = 0; y < size.height; y++) {
       for (auto x = 0; x < size.width; x++) {
         auto tile{worldArea->get_tile(x, y)};

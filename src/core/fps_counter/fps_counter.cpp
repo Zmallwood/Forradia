@@ -6,7 +6,7 @@
 
 namespace forr {
   void fps_counter::update() {
-    auto now{GetTicks()};
+    auto now{get_ticks()};
     if (now > m_ticksLastUpdate + k_oneSecondMillis) {
       m_fps = m_framesCount;
       m_framesCount = 0;

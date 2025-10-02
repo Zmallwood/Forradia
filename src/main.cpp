@@ -6,6 +6,6 @@
 
 int main(int argc, char **argv) {
   using namespace forr;
-  RunNewTheme0();
+  run_new_theme_0();
   return 0;
 }

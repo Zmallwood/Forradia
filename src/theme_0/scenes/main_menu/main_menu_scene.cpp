@@ -14,9 +14,9 @@ namespace forr {
   void main_menu_scene::update_derived() {}
 
   void main_menu_scene::render_derived() const {
-    GetSingleton<image_renderer>().draw_image("DefaultSceneBackground", 0.0f,
-                                              0.0f, 1.0f, 1.0f);
-    GetSingleton<image_renderer>().draw_image_with_auto_height(
+    get_singleton<image_renderer>().draw_image("DefaultSceneBackground", 0.0f,
+                                               0.0f, 1.0f, 1.0f);
+    get_singleton<image_renderer>().draw_image_with_auto_height(
         "ForradiaLogo", 0.35f, 0.1f, 0.3f);
   }
 }

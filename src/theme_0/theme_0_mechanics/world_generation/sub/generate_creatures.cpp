@@ -10,17 +10,17 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void GenerateCreatures() {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void generate_creatures() {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
-    auto numRats{200 * scale + RandomInt(15 * scale)};
+    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
+    auto numRats{200 * scale + random_int(15 * scale)};
     for (auto i = 0; i < numRats; i++) {
-      auto x{RandomInt(size.width)};
-      auto y{RandomInt(size.height)};
+      auto x{random_int(size.width)};
+      auto y{random_int(size.height)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && !tile->get_creature() &&
-          tile->get_ground() != Hash("GroundWater")) {
+          tile->get_ground() != hash("GroundWater")) {
         auto newCreature = std::make_shared<creature>("CreatureRat");
         tile->set_creature(newCreature);
         worldArea->get_creatures_mirror_ref().insert(

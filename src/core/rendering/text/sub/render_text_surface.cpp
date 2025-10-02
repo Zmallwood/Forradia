@@ -11,7 +11,7 @@ namespace forr {
                            size textDimensions, bool centerAlign) {
     auto destinationRect{
         create_render_destination_rect(x, y, textDimensions, centerAlign)};
-    auto renderer{GetSingleton<sdl_device>().get_renderer().get()};
+    auto renderer{get_singleton<sdl_device>().get_renderer().get()};
     auto texture{SDL_CreateTextureFromSurface(renderer, surface)};
     SDL_RenderCopy(renderer, texture, nullptr, &destinationRect);
     SDL_DestroyTexture(texture);

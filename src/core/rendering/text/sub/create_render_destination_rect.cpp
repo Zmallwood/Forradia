@@ -8,9 +8,9 @@ namespace forr {
   SDL_Rect create_render_destination_rect(float x, float y, size textDimensions,
                                           bool centerAlign) {
     SDL_Rect rectResult;
-    auto canvasSize{GetCanvasSize()};
-    rectResult.x = CInt(x * canvasSize.width);
-    rectResult.y = CInt(y * canvasSize.height);
+    auto canvasSize{get_canvas_size()};
+    rectResult.x = c_int(x * canvasSize.width);
+    rectResult.y = c_int(y * canvasSize.height);
     rectResult.w = textDimensions.width;
     rectResult.h = textDimensions.height;
     if (centerAlign) {

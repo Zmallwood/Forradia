@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void RunNewTheme0();
+  void run_new_theme_0();
 }

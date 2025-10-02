@@ -9,15 +9,15 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void GenerateRock() {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void generate_rock() {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
-    auto numRockAreas{30 + RandomInt(10)};
+    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
+    auto numRockAreas{30 + random_int(10)};
     for (auto i = 0; i < numRockAreas; i++) {
-      auto xCenter{RandomInt(size.width)};
-      auto yCenter{RandomInt(size.height)};
-      auto radius{3 * scale + RandomInt(10 * scale)};
+      auto xCenter{random_int(size.width)};
+      auto yCenter{random_int(size.height)};
+      auto radius{3 * scale + random_int(10 * scale)};
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
           if (!worldArea->is_valid_coordinate(x, y)) {

@@ -18,10 +18,10 @@
 
 namespace forr {
   void world_view::render() const {
-    auto gridSize{CalculateGridSize()};
-    auto tileSize{CalculateTileSize()};
-    auto playerPosition{GetSingleton<player>().get_position()};
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto gridSize{calculate_grid_size()};
+    auto tileSize{calculate_tile_size()};
+    auto playerPosition{get_singleton<player>().get_position()};
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto playerElevation{worldArea->get_tile(playerPosition)->get_elevation()};
     auto extraRows{8};
     for (auto i = 0; i < 3; i++) {
@@ -58,17 +58,17 @@ namespace forr {
                     tileNW->get_elevation() * tileSize.height / 2;
           yCanvas += playerElevation * tileSize.height / 2;
           widthCanvas = tileSize.width;
-          heightCanvas = Ceil(tileSize.height, 2.5f);
+          heightCanvas = ceil(tileSize.height, 2.5f);
           // if (ground != Hash("GroundWater"))
           if (true) {
             str groundName;
-            if (ground == Hash("GroundGrass")) {
+            if (ground == hash("GroundGrass")) {
               groundName = "GroundGrass";
-            } else if (ground == Hash("GroundWater")) {
+            } else if (ground == hash("GroundWater")) {
               groundName = "GroundDirt";
-            } else if (ground == Hash("GroundDirt")) {
+            } else if (ground == hash("GroundDirt")) {
               groundName = "GroundDirt";
-            } else if (ground == Hash("GroundRock")) {
+            } else if (ground == hash("GroundRock")) {
               groundName = "GroundRock";
             }
             str fullGroundName{groundName};
@@ -146,7 +146,7 @@ namespace forr {
             //     fullGroundName = fullGroundName + "_" +
             //     std::to_string(animIndex);
             // }
-            groundTypeRendered = Hash(fullGroundName);
+            groundTypeRendered = hash(fullGroundName);
           }
           // else if (ground == Hash("GroundWater"))
           // {
@@ -156,16 +156,16 @@ namespace forr {
           //     std::to_string(animIndex) + "_New");
           // }
           if (i == 0) {
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 groundTypeRendered, xCanvas, yCanvas, widthCanvas,
                 heightCanvas);
-          } else if (ground != Hash("GroundWater") && i == 1) {
+          } else if (ground != hash("GroundWater") && i == 1) {
             vec<directions> riverDirections{tile->get_river_direction_1(),
                                             tile->get_river_direction_2()};
             auto riverPartWidth{0.4f * widthCanvas};
             auto riverPartHeight{0.4f * heightCanvas};
             auto partLenght{2.5f};
-            auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) /
+            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
                            500 % 3};
             for (auto j = 0; j < 2; j++) {
               switch (riverDirections.at(j)) {
@@ -175,7 +175,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2 - k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -187,7 +187,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -198,7 +198,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 +
                                     riverPartHeight / 2 + k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -210,7 +210,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -222,7 +222,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2 - k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -234,7 +234,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2 + k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -246,7 +246,7 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2 + k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
@@ -258,30 +258,30 @@ namespace forr {
                                 yCanvas + heightCanvas / 2 -
                                     riverPartHeight / 2 - k * riverPartHeight,
                                 riverPartWidth, riverPartHeight};
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       "RiverPart_" + std::to_string(animIndex), bounds.x,
                       bounds.y, bounds.width, bounds.height);
                 }
               } break;
               }
             }
-          } else if (ground == Hash("GroundWater") && i == 1) {
-            auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) /
+          } else if (ground == hash("GroundWater") && i == 1) {
+            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
                            500 % 3};
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "GroundWaterEdge", xCanvas - widthCanvas * 0.2f,
                 yCanvas - heightCanvas * 0.2f, widthCanvas * 1.4f,
                 heightCanvas * 1.4f);
-          } else if (ground == Hash("GroundWater") && i == 2) {
+          } else if (ground == hash("GroundWater") && i == 2) {
 
-            auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) /
+            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
                            500 % 3};
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "GroundWater_" + std::to_string(animIndex), xCanvas, yCanvas,
                 widthCanvas, heightCanvas);
 
             for (auto i = 0; i < tile->get_elevation(); i++) {
-              GetSingleton<image_renderer>().draw_image(
+              get_singleton<image_renderer>().draw_image(
                   "GroundWaterHeight", xCanvas, yCanvas, widthCanvas,
                   heightCanvas);
             }
@@ -291,23 +291,23 @@ namespace forr {
             // _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas -
             // tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2,
             // tileSize.width * 4, tileSize.height * 4);
-            if (ground == Hash("GroundWater")) {
+            if (ground == hash("GroundWater")) {
               for (auto i = 0; i < tile->get_water_depth(); i++) {
-                GetSingleton<image_renderer>().draw_image(
+                get_singleton<image_renderer>().draw_image(
                     "GroundWaterDepth", xCanvas, yCanvas, widthCanvas,
                     heightCanvas);
               }
             }
           }
-          if (ground == Hash("GroundGrass")) {
-            GetSingleton<image_renderer>().draw_image(
+          if (ground == hash("GroundGrass")) {
+            get_singleton<image_renderer>().draw_image(
                 "GroundGrassLayer", xCanvas, yCanvas, widthCanvas,
                 heightCanvas);
-          } else if (ground == Hash("GroundDirt")) {
-            GetSingleton<image_renderer>().draw_image(
+          } else if (ground == hash("GroundDirt")) {
+            get_singleton<image_renderer>().draw_image(
                 "GroundDirtLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
-          } else if (ground == Hash("GroundRock")) {
-            GetSingleton<image_renderer>().draw_image(
+          } else if (ground == hash("GroundRock")) {
+            get_singleton<image_renderer>().draw_image(
                 "GroundRockLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
           }
           if (i < 2) {
@@ -349,36 +349,36 @@ namespace forr {
           //     }
           // }
           auto hoveredCoordinate{
-              GetSingleton<tile_hovering>().get_hovered_coordinate()};
+              get_singleton<tile_hovering>().get_hovered_coordinate()};
           if (xCoordinate == hoveredCoordinate.x &&
               yCoordinate == hoveredCoordinate.y) {
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "HoveredTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
           }
-          auto playerDestination{GetSingleton<player>().get_destination()};
+          auto playerDestination{get_singleton<player>().get_destination()};
           if (xCoordinate == playerDestination.x &&
               yCoordinate == playerDestination.y) {
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "DestinationTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
           }
           if (xCoordinate == playerPosition.x &&
               yCoordinate == playerPosition.y) {
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 "Player", xCanvas, yCanvas, tileSize.width, tileSize.height);
           }
           auto objectsStack{tile ? tile->get_objects_stack() : nullptr};
           if (objectsStack) {
             for (const auto &object : objectsStack->get_objects()) {
-              if (object->get_type() != Hash("ObjectPinkFlower")) {
-                GetSingleton<image_renderer>().draw_image(
+              if (object->get_type() != hash("ObjectPinkFlower")) {
+                get_singleton<image_renderer>().draw_image(
                     "Shadow", xCanvas, yCanvas, tileSize.width,
                     tileSize.height);
               }
               auto objectType{object->get_type()};
-              if (objectType == Hash("ObjectFirTree") ||
-                  objectType == Hash("ObjectBirchTree")) {
+              if (objectType == hash("ObjectFirTree") ||
+                  objectType == hash("ObjectBirchTree")) {
                 auto treeObject{std::static_pointer_cast<tree_object>(object)};
                 auto trunkParts{treeObject->get_trunk_parts()};
                 auto needleTypes{treeObject->get_needle_types()};
@@ -388,13 +388,13 @@ namespace forr {
                   auto needleType{needleTypes.at(i)};
                   auto widthDecreaseFactor{0.5f +
                                            (trunkParts.size() - i) /
-                                               CFloat(trunkParts.size()) / 2};
+                                               c_float(trunkParts.size()) / 2};
                   auto treeWidth{tileSize.width * widthFactor *
                                  widthDecreaseFactor};
                   auto trunkPartX{trunkPart.x};
-                  trunkPartX *=
-                      CFloat(i) / trunkParts.size() *
-                      std::sin(GetTicks() / 700.0f + xCoordinate * yCoordinate);
+                  trunkPartX *= c_float(i) / trunkParts.size() *
+                                std::sin(get_ticks() / 700.0f +
+                                         xCoordinate * yCoordinate);
                   auto trunkPartXCenter{xCanvas + tileSize.width / 2 +
                                         trunkPartX * treeWidth};
                   auto trunkPartYCenter{yCanvas + tileSize.height -
@@ -403,19 +403,19 @@ namespace forr {
                                       widthDecreaseFactor};
                   auto trunkPartHeight{tileSize.height * 0.2f};
                   str trunkPartName;
-                  if (objectType == Hash("ObjectFirTree")) {
+                  if (objectType == hash("ObjectFirTree")) {
                     trunkPartName = "ObjectFirTreeTrunkPart";
-                  } else if (objectType == Hash("ObjectBirchTree")) {
+                  } else if (objectType == hash("ObjectBirchTree")) {
                     trunkPartName = "ObjectBirchTreeTrunkPart";
                   }
-                  GetSingleton<image_renderer>().draw_image(
+                  get_singleton<image_renderer>().draw_image(
                       trunkPartName, trunkPartXCenter - trunkPartWidth / 2,
                       trunkPartYCenter - trunkPartHeight / 2, trunkPartWidth,
                       trunkPartHeight);
                   auto needleWidth{treeWidth};
                   auto needleHeight{tileSize.height};
                   if (needleType) {
-                    GetSingleton<image_renderer>().draw_image(
+                    get_singleton<image_renderer>().draw_image(
                         needleType, trunkPartXCenter - needleWidth / 2,
                         trunkPartYCenter - needleHeight / 2, needleWidth,
                         needleHeight);
@@ -424,11 +424,11 @@ namespace forr {
                 continue;
               }
               auto objectImageSize{
-                  GetSingleton<image_bank>().get_image_size(objectType)};
+                  get_singleton<image_bank>().get_image_size(objectType)};
               auto objectWidth{objectImageSize.width / 60.0f * tileSize.width};
               auto objectHeight{objectImageSize.height / 60.0f *
                                 tileSize.height};
-              GetSingleton<image_renderer>().draw_image(
+              get_singleton<image_renderer>().draw_image(
                   objectType, xCanvas + tileSize.width / 2 - objectWidth / 2,
                   yCanvas + tileSize.height - objectHeight, objectWidth,
                   objectHeight);
@@ -438,12 +438,12 @@ namespace forr {
           if (creature) {
             auto creatureType{creature->get_type()};
             auto creatureImageSize{
-                GetSingleton<image_bank>().get_image_size(creatureType)};
+                get_singleton<image_bank>().get_image_size(creatureType)};
             auto creatureWidth{creatureImageSize.width / 60.0f *
                                tileSize.width};
             auto creatureHeight{creatureImageSize.height / 60.0f *
                                 tileSize.height};
-            GetSingleton<image_renderer>().draw_image(
+            get_singleton<image_renderer>().draw_image(
                 creatureType, xCanvas + tileSize.width / 2 - creatureWidth / 2,
                 yCanvas + tileSize.height - creatureHeight, creatureWidth,
                 creatureHeight);

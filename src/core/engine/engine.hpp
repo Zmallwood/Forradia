@@ -12,6 +12,8 @@ namespace forr {
     void stop();
 
   private:
+    void poll_events();
+
     bool m_running{true};
   };
 }

@@ -9,7 +9,7 @@
 namespace forr {
   void image_renderer::draw_image(str_view imageName, float x, float y,
                                   float width, float height) const {
-    draw_image(Hash(imageName), x, y, width, height);
+    draw_image(hash(imageName), x, y, width, height);
   }
 
   void image_renderer::draw_image(int imageNameHash, float x, float y,

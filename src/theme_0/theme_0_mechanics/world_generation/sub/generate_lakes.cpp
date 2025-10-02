@@ -9,16 +9,16 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void GenerateSingleLake(int minX, int minY, int maxX, int maxY,
-                          int recursive) {
+  void generate_single_lake(int minX, int minY, int maxX, int maxY,
+                            int recursive) {
     if (recursive == 0) {
       return;
     }
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
-    auto scale{GetSingleton<game_properties>().k_worldScalingFactor};
-    auto xCenter{minX + RandomInt(maxX - minX)};
-    auto yCenter{minY + RandomInt(maxY - minY)};
-    auto radius{CInt(3 * scale + RandomInt(5 * scale))};
+    auto worldArea{get_singleton<world>().get_current_world_area()};
+    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
+    auto xCenter{minX + random_int(maxX - minX)};
+    auto yCenter{minY + random_int(maxY - minY)};
+    auto radius{c_int(3 * scale + random_int(5 * scale))};
     for (auto r = radius; r >= 0; r--) {
       for (auto y = yCenter - r; y <= yCenter + r; y++) {
         for (auto x = xCenter - r; x <= xCenter + r; x++) {
@@ -89,16 +89,16 @@ namespace forr {
         }
       }
     }
-    GenerateSingleLake(xCenter - radius, yCenter - radius, xCenter + radius,
-                       yCenter + radius, recursive - 1);
+    generate_single_lake(xCenter - radius, yCenter - radius, xCenter + radius,
+                         yCenter + radius, recursive - 1);
   }
 
-  void GenerateLakes() {
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+  void generate_lakes() {
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    auto numLakes{20 + RandomInt(5)};
+    auto numLakes{20 + random_int(5)};
     for (auto i = 0; i < numLakes; i++) {
-      GenerateSingleLake(0, 0, size.width, size.height, 2 + RandomInt(5));
+      generate_single_lake(0, 0, size.width, size.height, 2 + random_int(5));
     }
   }
 }

@@ -12,17 +12,17 @@ namespace forr {
     }
     int numTrunkParts;
     if (objectTypeName == "ObjectFirTree") {
-      numTrunkParts = 55 + RandomInt(44);
+      numTrunkParts = 55 + random_int(44);
     } else if (objectTypeName == "ObjectBirchTree") {
-      numTrunkParts = 25 + RandomInt(14);
+      numTrunkParts = 25 + random_int(14);
     }
-    m_widthFactor *= (RandomInt(5) + 1) / 2.0f + 1.0f;
+    m_widthFactor *= (random_int(5) + 1) / 2.0f + 1.0f;
     auto offsetX{0.0f};
     for (auto i = 0; i < numTrunkParts; i++) {
-      offsetX += (RandomInt(20) - 10) / 100.0f;
+      offsetX += (random_int(20) - 10) / 100.0f;
       auto offsetY{i * 0.1f};
       auto position{point_f{offsetX, offsetY}};
-      auto needlesType{RandomInt(5)};
+      auto needlesType{random_int(5)};
       m_trunkParts.push_back(position);
       str needlesName;
       if (objectTypeName == "ObjectFirTree") {
@@ -35,7 +35,7 @@ namespace forr {
         needlesName = "ObjectBirchTreeBranch";
       }
       m_needleTypes.push_back(
-          needlesType ? Hash(needlesName + std::to_string(needlesType)) : 0);
+          needlesType ? hash(needlesName + std::to_string(needlesType)) : 0);
     }
   }
 }

@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateRock();
+  void generate_rock();
 }

@@ -15,9 +15,9 @@ namespace forr {
   }
 
   void cursor::render() {
-    auto mousePosition{GetNormalizedMousePosition()};
+    auto mousePosition{get_normalized_mouse_position()};
     auto width{k_cursorSize};
-    auto height{ConvertWidthToHeight(k_cursorSize)};
+    auto height{convert_width_to_height(k_cursorSize)};
     str cursorImage;
     switch (m_cursorStyle) {
     case cursor_styles::Default:
@@ -27,7 +27,7 @@ namespace forr {
       cursorImage = "CursorHoveringClickableGUI";
       break;
     }
-    GetSingleton<image_renderer>().draw_image(
+    get_singleton<image_renderer>().draw_image(
         cursorImage, mousePosition.x - width / 2, mousePosition.y - height / 2,
         width, height);
   }

@@ -10,5 +10,5 @@ namespace forr {
     m_objectsStack = std::make_shared<objects_stack>();
   }
 
-  void tile::set_ground(str_view groundName) { m_ground = Hash(groundName); }
+  void tile::set_ground(str_view groundName) { m_ground = hash(groundName); }
 }

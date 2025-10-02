@@ -14,7 +14,7 @@ namespace forr {
       bounds.x += bounds.width / 2;
       bounds.y += bounds.height / 2;
     }
-    GetSingleton<text_renderer>().draw_string(
+    get_singleton<text_renderer>().draw_string(
         m_text, bounds.x, bounds.y, font_sizes::_20, m_centerAlign, m_color);
   }
 }

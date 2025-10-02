@@ -8,48 +8,48 @@
 
 namespace forr {
   // Canvas util functions
-  size GetCanvasSize() {
+  size get_canvas_size() {
     size canvasSize;
-    SDL_GetWindowSize(GetSingleton<sdl_device>().get_window().get(),
+    SDL_GetWindowSize(get_singleton<sdl_device>().get_window().get(),
                       &canvasSize.width, &canvasSize.height);
     return canvasSize;
   }
 
-  float CalculateAspectRatio() {
-    auto canvasSize{GetCanvasSize()};
-    auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
+  float calculate_aspect_ratio() {
+    auto canvasSize{get_canvas_size()};
+    auto aspectRatio{c_float(canvasSize.width) / canvasSize.height};
     return aspectRatio;
   }
 
-  float ConvertWidthToHeight(float width) {
-    return width * CalculateAspectRatio();
+  float convert_width_to_height(float width) {
+    return width * calculate_aspect_ratio();
   }
 
-  float ConvertHeightToWidth(float height) {
-    return height / CalculateAspectRatio();
+  float convert_height_to_width(float height) {
+    return height / calculate_aspect_ratio();
   }
 
   // File path util functions
-  str GetFileExtension(str_view path) {
+  str get_file_extension(str_view path) {
     str extension{path.substr(path.find_last_of('.') + 1).data()};
     return extension;
   }
 
-  str GetFileNameNoExtension(str_view path) {
+  str get_file_name_no_extension(str_view path) {
     auto nameWithExtension{str(path.substr(path.find_last_of('/') + 1))};
     return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
   }
 
   // Numbers util functions
-  point_f GetNormalizedMousePosition() {
+  point_f get_normalized_mouse_position() {
     int xPx;
     int yPx;
     SDL_GetMouseState(&xPx, &yPx);
-    auto canvasSize{GetCanvasSize()};
-    return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
+    auto canvasSize{get_canvas_size()};
+    return {c_float(xPx) / canvasSize.width, c_float(yPx) / canvasSize.height};
   }
 
-  float InvertMovementSpeed(float number) {
+  float invert_movement_speed(float number) {
     if (number) {
       return k_oneSecondMillis / number;
     } else {
@@ -57,7 +57,7 @@ namespace forr {
     }
   }
 
-  int Normalize(int value) {
+  int normalize(int value) {
     auto absValue{std::abs(value)};
     auto normalized{0};
     if (value) {
@@ -66,20 +66,41 @@ namespace forr {
     return normalized;
   }
 
-  float Ceil(float number, float k) {
+  float ceil(float number, float k) {
     auto p{std::pow(10.0, k)};
     return std::ceil(number * p) / p;
   }
 
   // Randomization util functions
-  void Randomize() { srand(time(nullptr)); }
+  void randomize() { srand(time(nullptr)); }
 
-  int RandomInt(int upperLimit) { return rand() % upperLimit; }
+  int random_int(int upperLimit) { return rand() % upperLimit; }
 
   // String util functions
-  str Replace(str_view text, char replaced, char replacedWith) {
+  str replace(str_view text, char replaced, char replacedWith) {
     str textData{text.data()};
     std::replace(textData.begin(), textData.end(), replaced, replacedWith);
     return textData;
+  }
+
+  // Hash util functions
+  int hash(str_view text) {
+    // Use algorithm from forgotten source.
+    unsigned long hash{5381};
+    for (size_t i = 0; i < text.size(); ++i) {
+      hash = 33 * hash + (unsigned char)text[i];
+    }
+    return c_int(hash);
+  }
+
+  // Print util functions
+  void print(str_view text) {
+    // Print out text without a following line break.
+    std::cout << text;
+  }
+
+  void print_line(str_view text) {
+    // Print out text with a following line break.
+    std::cout << text << std::endl;
   }
 }

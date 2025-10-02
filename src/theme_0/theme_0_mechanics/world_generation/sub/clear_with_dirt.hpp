@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void ClearWithDirt();
+  void clear_with_dirt();
 }

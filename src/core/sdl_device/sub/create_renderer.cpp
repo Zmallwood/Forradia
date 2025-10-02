@@ -10,8 +10,8 @@ namespace forr {
         SDL_CreateRenderer(window.get(), -1, SDL_RENDERER_ACCELERATED),
         sdl_deleter())};
     if (!rendererResult) {
-      PrintLine("Renderer could not be created. SDL Error: " +
-                std::string(SDL_GetError()));
+      print_line("Renderer could not be created. SDL Error: " +
+                 std::string(SDL_GetError()));
     }
     return rendererResult;
   }

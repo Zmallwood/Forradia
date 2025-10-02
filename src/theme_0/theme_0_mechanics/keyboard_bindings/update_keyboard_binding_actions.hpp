@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void UpdateKeyboardBindingActions();
+  void update_keyboard_binding_actions();
 }

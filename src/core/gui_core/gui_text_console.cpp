@@ -12,13 +12,13 @@ namespace forr {
     auto bounds{get_bounds()};
     auto y{bounds.y + k_margin};
     for (auto &textLine : m_textLines) {
-      GetSingleton<text_renderer>().draw_string(textLine, bounds.x + k_margin,
-                                                y);
+      get_singleton<text_renderer>().draw_string(textLine, bounds.x + k_margin,
+                                                 y);
       y += k_lineHeight;
     }
     auto separatorRect{rect_f{bounds.x, bounds.y + bounds.height - k_lineHeight,
                               bounds.width, k_separatorHeight}};
-    GetSingleton<image_renderer>().draw_image(
+    get_singleton<image_renderer>().draw_image(
         "Black", separatorRect.x, separatorRect.y, separatorRect.width,
         separatorRect.height);
   }

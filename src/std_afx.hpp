@@ -29,5 +29,3 @@
 #include "core/common/singleton.hpp"
 #include "core/common/sdl_deleter.hpp"
 #include "core/common/utilities.hpp"
-#include "core/common/hash.hpp"
-#include "core/common/print.hpp"

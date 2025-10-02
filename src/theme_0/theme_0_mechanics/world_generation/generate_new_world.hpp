@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateNewWorld();
+  void generate_new_world();
 }

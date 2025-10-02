@@ -6,5 +6,5 @@
 #include "engine/engine.hpp"
 
 namespace forr {
-  void game::start() const { GetSingleton<engine>().run(); }
+  void game::start() const { get_singleton<engine>().run(); }
 }

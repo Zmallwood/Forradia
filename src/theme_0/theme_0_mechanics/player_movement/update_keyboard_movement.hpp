@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void UpdateKeyboardMovement();
+  void update_keyboard_movement();
 }

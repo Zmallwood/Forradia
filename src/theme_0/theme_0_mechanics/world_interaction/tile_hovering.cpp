@@ -11,26 +11,26 @@
 
 namespace forr {
   void tile_hovering::update() {
-    auto playerPosition{GetSingleton<player>().get_position()};
-    auto mousePosition{GetNormalizedMousePosition()};
-    auto tileSize{CalculateTileSize()};
-    auto screenRelativeX{CInt(mousePosition.x / tileSize.width)};
-    auto gridSize{CalculateGridSize()};
+    auto playerPosition{get_singleton<player>().get_position()};
+    auto mousePosition{get_normalized_mouse_position()};
+    auto tileSize{calculate_tile_size()};
+    auto screenRelativeX{c_int(mousePosition.x / tileSize.width)};
+    auto gridSize{calculate_grid_size()};
     auto hoveredXCoordinate{playerPosition.x - (gridSize.width - 1) / 2 +
                             screenRelativeX};
     auto screenRelativeXPx{
         (hoveredXCoordinate - (playerPosition.x - (gridSize.width - 1) / 2)) *
         tileSize.width};
-    auto worldArea{GetSingleton<world>().get_current_world_area()};
+    auto worldArea{get_singleton<world>().get_current_world_area()};
     auto extraRows{8};
-    auto topYCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2) -
+    auto topYCoordinate{c_int(playerPosition.y - (gridSize.height - 1) / 2) -
                         extraRows};
     auto playerTile{worldArea->get_tile(playerPosition)};
     auto playerElevation{
         playerTile ? worldArea->get_tile(playerPosition)->get_elevation() : 0};
     auto screenRelativeYPx{-extraRows * tileSize.height};
     for (auto y = -extraRows; y < gridSize.height + extraRows; y++) {
-      auto yCoordinate{CInt(playerPosition.y - (gridSize.height - 1) / 2 + y)};
+      auto yCoordinate{c_int(playerPosition.y - (gridSize.height - 1) / 2 + y)};
       auto coordinate{point{hoveredXCoordinate, yCoordinate}};
       auto tile{worldArea->get_tile(coordinate)};
       if (!tile) {

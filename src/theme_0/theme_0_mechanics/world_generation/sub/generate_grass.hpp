@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateGrass();
+  void generate_grass();
 }

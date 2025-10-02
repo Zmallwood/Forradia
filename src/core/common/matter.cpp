@@ -39,10 +39,10 @@ namespace forr {
 
   SDL_Color color::to_sdl_color() const {
     // Calculate individual color components.
-    auto rInt{CUint8(r * 255)};
-    auto gInt{CUint8(g * 255)};
-    auto bInt{CUint8(b * 255)};
-    auto aInt{CUint8(a * 255)};
+    auto rInt{c_uint8(r * 255)};
+    auto gInt{c_uint8(g * 255)};
+    auto bInt{c_uint8(b * 255)};
+    auto aInt{c_uint8(a * 255)};
     return {rInt, gInt, bInt, aInt};
   }
 }

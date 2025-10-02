@@ -18,7 +18,7 @@ namespace forr {
 
   void sdl_device::clear_canvas() const {
     SDL_Color clearColor{
-        GetSingleton<game_properties>().k_clearColor.to_sdl_color()};
+        get_singleton<game_properties>().k_clearColor.to_sdl_color()};
     SDL_SetRenderDrawColor(m_renderer.get(), clearColor.r, clearColor.g,
                            clearColor.b, 255);
     SDL_RenderClear(m_renderer.get());

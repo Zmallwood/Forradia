@@ -11,17 +11,17 @@ namespace forr {
 
   void gui_system_menu::update_derived() {
     gui_component::update_derived();
-    GetSingleton<mouse_input>().get_left_mouse_button_ref().reset();
+    get_singleton<mouse_input>().get_left_mouse_button_ref().reset();
   }
 
   void gui_system_menu::render_derived() const {
     gui_component::render_derived();
-    auto canvasSize{GetCanvasSize()};
+    auto canvasSize{get_canvas_size()};
     auto rect{SDL_Rect{0, 0, canvasSize.width, canvasSize.height}};
-    SDL_SetRenderDrawBlendMode(GetSingleton<sdl_device>().get_renderer().get(),
+    SDL_SetRenderDrawBlendMode(get_singleton<sdl_device>().get_renderer().get(),
                                SDL_BLENDMODE_BLEND);
-    SDL_SetRenderDrawColor(GetSingleton<sdl_device>().get_renderer().get(), 200,
-                           0, 255, 50);
-    SDL_RenderFillRect(GetSingleton<sdl_device>().get_renderer().get(), &rect);
+    SDL_SetRenderDrawColor(get_singleton<sdl_device>().get_renderer().get(),
+                           200, 0, 255, 50);
+    SDL_RenderFillRect(get_singleton<sdl_device>().get_renderer().get(), &rect);
   }
 }

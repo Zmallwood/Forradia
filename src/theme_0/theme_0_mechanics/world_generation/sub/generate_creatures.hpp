@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void GenerateCreatures();
+  void generate_creatures();
 }

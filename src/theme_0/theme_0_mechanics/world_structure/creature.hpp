@@ -7,7 +7,7 @@
 namespace forr {
   class creature {
   public:
-    creature(str_view typeName) : m_type{Hash(typeName)} { initialize(); }
+    creature(str_view typeName) : m_type{hash(typeName)} { initialize(); }
 
     auto get_type() const { return m_type; }
 

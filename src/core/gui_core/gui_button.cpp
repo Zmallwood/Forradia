@@ -10,13 +10,13 @@
 namespace forr {
   void gui_button::update_derived() {
     gui_panel::update_derived();
-    auto mousePosition{GetNormalizedMousePosition()};
+    auto mousePosition{get_normalized_mouse_position()};
     auto isHovered{get_bounds().contains(mousePosition)};
     if (isHovered) {
       set_background_image(m_hoveredBackgroundImage);
-      GetSingleton<cursor>().set_cursor_style(
+      get_singleton<cursor>().set_cursor_style(
           cursor_styles::HoveringClickableGUI);
-      if (GetSingleton<mouse_input>()
+      if (get_singleton<mouse_input>()
               .get_left_mouse_button_ref()
               .get_has_been_fired_pick_result()) {
         m_action();
@@ -29,7 +29,7 @@ namespace forr {
   void gui_button::render_derived() const {
     gui_panel::render_derived();
     auto bounds{get_bounds()};
-    GetSingleton<text_renderer>().draw_string(
+    get_singleton<text_renderer>().draw_string(
         m_text, bounds.x + bounds.width / 2, bounds.y + bounds.height / 2,
         font_sizes::_20, true);
   }

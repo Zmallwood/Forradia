@@ -9,16 +9,16 @@
 #include "theme_0/theme_0_mechanics/gui/gui_system_menu.hpp"
 
 namespace forr {
-  void UpdateKeyboardBindingActions() {
-    if (GetSingleton<keyboard_input>().key_is_pressed_pick_result(
+  void update_keyboard_binding_actions() {
+    if (get_singleton<keyboard_input>().key_is_pressed_pick_result(
             SDLK_ESCAPE)) {
-      GetSingleton<gui_system_menu>().toggle_visibility();
-    } else if (GetSingleton<keyboard_input>().key_is_pressed_pick_result(
+      get_singleton<gui_system_menu>().toggle_visibility();
+    } else if (get_singleton<keyboard_input>().key_is_pressed_pick_result(
                    SDLK_c)) {
-      GetSingleton<gui_player_body_window>().toggle_visibility();
-    } else if (GetSingleton<keyboard_input>().key_is_pressed_pick_result(
+      get_singleton<gui_player_body_window>().toggle_visibility();
+    } else if (get_singleton<keyboard_input>().key_is_pressed_pick_result(
                    SDLK_b)) {
-      GetSingleton<gui_inventory_window>().toggle_visibility();
+      get_singleton<gui_inventory_window>().toggle_visibility();
     }
   }
 }

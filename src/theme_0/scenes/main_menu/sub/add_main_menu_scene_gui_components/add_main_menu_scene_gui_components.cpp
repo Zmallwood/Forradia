@@ -13,6 +13,7 @@ namespace forr {
     mainMenuSceneGUI->add_child_component(
         std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
     add_main_menu_scene_gui_buttons(mainMenuSceneGUI);
-    mainMenuSceneGUI->add_child_component(GetSingletonPtr<gui_text_console>());
+    mainMenuSceneGUI->add_child_component(
+        get_singleton_ptr<gui_text_console>());
   }
 }
