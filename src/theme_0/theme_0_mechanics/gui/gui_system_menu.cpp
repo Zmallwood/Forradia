@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_system_menu.hpp"
+#include "core/core.hpp"
 #include "core/input/mouse/mouse_input.hpp"
-#include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
   void gui_system_menu::initialize() { set_visible(false); }

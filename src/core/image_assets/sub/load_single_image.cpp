@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "load_single_image.hpp"
-#include "core/sdl_device/sdl_device.hpp"
+#include "core/core.hpp"
 
 namespace forr {
   s_ptr<SDL_Texture> load_single_image(str_view path) {

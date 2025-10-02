@@ -5,5 +5,9 @@
 #pragma once
 
 namespace forr {
-
+  class npc {
+  public:
+  private:
+    str m_name;
+  };
 }

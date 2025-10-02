@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_button.hpp"
-#include "core/cursor/cursor.hpp"
+#include "core/core.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 #include "core/rendering/text/text_renderer.hpp"
 

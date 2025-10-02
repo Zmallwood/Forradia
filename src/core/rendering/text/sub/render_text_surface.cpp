@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "render_text_surface.hpp"
-#include "core/sdl_device/sdl_device.hpp"
+#include "core/core.hpp"
 #include "create_render_destination_rect.hpp"
 
 namespace forr {

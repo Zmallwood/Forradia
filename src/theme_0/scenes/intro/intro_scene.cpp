@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "intro_scene.hpp"
-#include "core/cursor/cursor.hpp"
+#include "core/core.hpp"
 #include "core/gui_core/gui.hpp"
 #include "core/gui_core/gui_label.hpp"
 #include "core/gui_core/gui_text_console.hpp"

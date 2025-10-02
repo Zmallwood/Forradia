@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_fps_panel.hpp"
-#include "core/fps_counter/fps_counter.hpp"
+#include "core/core.hpp"
 #include "gui_label.hpp"
 
 namespace forr {

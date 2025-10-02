@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_movable_panel.hpp"
-#include "core/cursor/cursor.hpp"
+#include "core/core.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 
 namespace forr {

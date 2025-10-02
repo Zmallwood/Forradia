@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "draw_image.hpp"
+#include "core/core.hpp"
 #include "core/image_assets/image_bank.hpp"
-#include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
   void draw_image(int image_name_hash, float x, float y, float width,
