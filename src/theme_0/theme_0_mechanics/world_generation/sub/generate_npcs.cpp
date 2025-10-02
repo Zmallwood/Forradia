@@ -11,15 +11,16 @@
 
 namespace forr {
   void generate_npcs() {
+    return;
     auto world_area{get_singleton<world>().get_current_world_area()};
     auto size{world_area->get_size()};
     auto scale{get_singleton<game_properties>().k_world_scaling_factor};
-    auto num_rats{200 * scale + random_int(15 * scale)};
-    for (auto i = 0; i < num_rats; i++) {
+    auto num_npc_0s{200 * scale + random_int(15 * scale)};
+    for (auto i = 0; i < num_npc_0s; i++) {
       auto x{random_int(size.w)};
       auto y{random_int(size.h)};
       auto tile{world_area->get_tile(x, y)};
-      if (tile && !tile->get_creature() &&
+      if (tile && !tile->get_npc() &&
           tile->get_ground() != hash("GroundWater")) {
         auto new_npc = std::make_shared<npc>("NPC0");
         tile->set_npc(new_npc);

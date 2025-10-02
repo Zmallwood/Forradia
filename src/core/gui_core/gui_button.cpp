@@ -5,7 +5,7 @@
 #include "gui_button.hpp"
 #include "core/core.hpp"
 #include "core/input/mouse/mouse_input.hpp"
-#include "core/rendering/text/text_renderer.hpp"
+#include "core/rend/text/text_renderer.hpp"
 
 namespace forr {
   void gui_button::update_derived() {

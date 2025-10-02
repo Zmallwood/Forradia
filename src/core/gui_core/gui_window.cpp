@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_window.hpp"
-#include "core/rendering/images/image_renderer.hpp"
-#include "core/rendering/text/sub/font_sizes.hpp"
-#include "core/rendering/text/text_renderer.hpp"
+#include "core/rend/images/image_renderer.hpp"
+#include "core/rend/text/sub/font_sizes.hpp"
+#include "core/rend/text/text_renderer.hpp"
 
 namespace forr {
   void gui_window_title_bar::render() const {

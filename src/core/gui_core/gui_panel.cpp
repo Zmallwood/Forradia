@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_panel.hpp"
-#include "core/rendering/images/image_renderer.hpp"
+#include "core/rend/images/image_renderer.hpp"
 
 namespace forr {
   void gui_panel::render_derived() const {

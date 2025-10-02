@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_label.hpp"
-#include "core/rendering/text/text_renderer.hpp"
+#include "core/rend/text/text_renderer.hpp"
 
 namespace forr {
   void gui_label::render_derived() const {

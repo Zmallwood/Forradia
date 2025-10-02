@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_text_console.hpp"
-#include "core/rendering/images/image_renderer.hpp"
-#include "core/rendering/text/text_renderer.hpp"
+#include "core/rend/images/image_renderer.hpp"
+#include "core/rend/text/text_renderer.hpp"
 
 namespace forr {
   void gui_text_console::render_derived() const {

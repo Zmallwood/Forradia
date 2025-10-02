@@ -9,7 +9,7 @@
 #include "core/gui_core/gui_text_console.hpp"
 #include "core/input/keyboard/keyboard_input.hpp"
 #include "core/input/mouse/mouse_input.hpp"
-#include "core/rendering/images/image_renderer.hpp"
+#include "core/rend/images/image_renderer.hpp"
 #include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {

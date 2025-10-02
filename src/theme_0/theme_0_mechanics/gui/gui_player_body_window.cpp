@@ -5,7 +5,7 @@
 #include "gui_player_body_window.hpp"
 #include "core/gui_core/gui_button.hpp"
 #include "core/gui_core/gui_label.hpp"
-#include "core/rendering/text/text_renderer.hpp"
+#include "core/rend/text/text_renderer.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
 namespace forr {
