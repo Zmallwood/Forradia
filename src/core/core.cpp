@@ -3,8 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "core.hpp"
-#include "core/input/keyboard/keyboard_input.hpp"
-#include "core/input/mouse/mouse_input.hpp"
+#include "core/input.hpp"
 #include "core/rend/images/image_renderer.hpp"
 #include "core/scenes_core.hpp"
 #include "theme_0/mechanics/configuration/game_properties.hpp"

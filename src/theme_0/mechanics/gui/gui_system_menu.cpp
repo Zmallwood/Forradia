@@ -4,7 +4,7 @@
  */
 #include "gui_system_menu.hpp"
 #include "core/core.hpp"
-#include "core/input/mouse/mouse_input.hpp"
+#include "core/input.hpp"
 
 namespace forr {
   void gui_system_menu::initialize() { set_visible(false); }

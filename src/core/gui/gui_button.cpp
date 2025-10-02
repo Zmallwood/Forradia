@@ -4,7 +4,7 @@
  */
 #include "gui_button.hpp"
 #include "core/core.hpp"
-#include "core/input/mouse/mouse_input.hpp"
+#include "core/input.hpp"
 #include "core/rend/text/text_renderer.hpp"
 
 namespace forr {

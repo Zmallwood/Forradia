@@ -4,7 +4,7 @@
  */
 #include "gui_movable_panel.hpp"
 #include "core/core.hpp"
-#include "core/input/mouse/mouse_input.hpp"
+#include "core/input.hpp"
 
 namespace forr {
   void gui_movable_panel::update_derived() {

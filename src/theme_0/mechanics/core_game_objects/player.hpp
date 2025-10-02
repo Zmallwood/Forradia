@@ -34,6 +34,8 @@ namespace forr {
 
     auto &get_player_body_ref() { return m_player_body; }
 
+    auto get_money() const { return m_money; }
+
   private:
     void initialize();
 
@@ -45,5 +47,6 @@ namespace forr {
     int m_ticks_last_move{0};
     point m_destination{-1, -1};
     player_body m_player_body;
+    int m_money{0};
   };
 }

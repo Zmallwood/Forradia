@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_keyboard_movement.hpp"
-#include "core/input/keyboard/keyboard_input.hpp"
+#include "core/input.hpp"
 #include "theme_0/mechanics/core_game_objects/player.hpp"
 
 namespace forr {

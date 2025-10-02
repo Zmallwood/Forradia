@@ -7,8 +7,7 @@
 #include "core/gui/gui.hpp"
 #include "core/gui/gui_label.hpp"
 #include "core/gui/gui_text_console.hpp"
-#include "core/input/keyboard/keyboard_input.hpp"
-#include "core/input/mouse/mouse_input.hpp"
+#include "core/input.hpp"
 #include "core/rend/images/image_renderer.hpp"
 
 namespace forr {
