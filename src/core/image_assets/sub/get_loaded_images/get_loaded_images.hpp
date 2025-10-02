@@ -6,5 +6,5 @@
 
 namespace forr {
   std::map<int, s_ptr<SDL_Texture>>
-  get_loaded_images(str_view relativeImagesPath);
+  get_loaded_images(str_view relative_images_path);
 }

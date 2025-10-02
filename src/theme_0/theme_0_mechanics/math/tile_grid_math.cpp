@@ -7,17 +7,17 @@
 
 namespace forr {
   size_f calculate_tile_size() {
-    auto numGridRows{get_singleton<game_properties>().k_numGridRows};
-    auto tileHeight{1.0f / numGridRows};
-    auto aspectRatio{calculate_aspect_ratio()};
-    auto tileWidth{tileHeight / aspectRatio};
-    return {tileWidth, tileHeight};
+    auto num_grid_rows{get_singleton<game_properties>().k_num_grid_rows};
+    auto tile_height{1.0f / num_grid_rows};
+    auto aspect_ratio{calculate_aspect_ratio()};
+    auto tile_width{tile_height / aspect_ratio};
+    return {tile_width, tile_height};
   }
 
   size calculate_grid_size() {
-    auto tileSize{calculate_tile_size()};
-    auto numGridColumns{c_int(1.0f / tileSize.w) + 1};
-    auto numGridRows{get_singleton<game_properties>().k_numGridRows};
-    return {numGridColumns, numGridRows};
+    auto tile_size{calculate_tile_size()};
+    auto num_grid_columns{c_int(1.0f / tile_size.w) + 1};
+    auto num_grid_rows{get_singleton<game_properties>().k_num_grid_rows};
+    return {num_grid_columns, num_grid_rows};
   }
 }

@@ -7,11 +7,11 @@
 namespace forr {
   void fps_counter::update() {
     auto now{get_ticks()};
-    if (now > m_ticksLastUpdate + k_one_second_millis) {
-      m_fps = m_framesCount;
-      m_framesCount = 0;
-      m_ticksLastUpdate = now;
+    if (now > m_ticks_last_update + k_one_second_millis) {
+      m_fps = m_frames_count;
+      m_frames_count = 0;
+      m_ticks_last_update = now;
     }
-    ++m_framesCount;
+    ++m_frames_count;
   }
 }

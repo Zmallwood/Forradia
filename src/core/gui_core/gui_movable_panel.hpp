@@ -20,17 +20,17 @@ namespace forr {
 
     virtual rect_f get_draggable_area();
 
-    auto get_is_being_moved() const { return m_isBeingMoved; }
+    auto get_is_being_moved() const { return m_is_being_moved; }
 
-    auto get_move_start_position() const { return m_moveStartPosition; }
+    auto get_move_start_position() const { return m_move_start_position; }
 
     auto get_move_start_mouse_position() const {
-      return m_moveStartMousePosition;
+      return m_move_start_mouse_position;
     }
 
   private:
-    bool m_isBeingMoved{false};
-    point_f m_moveStartPosition{-1, -1};
-    point_f m_moveStartMousePosition{-1, -1};
+    bool m_is_being_moved{false};
+    point_f m_move_start_position{-1, -1};
+    point_f m_move_start_mouse_position{-1, -1};
   };
 }

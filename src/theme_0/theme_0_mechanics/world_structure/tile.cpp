@@ -7,8 +7,8 @@
 
 namespace forr {
   void tile::initialize() {
-    m_objectsStack = std::make_shared<objects_stack>();
+    m_objects_stack = std::make_shared<objects_stack>();
   }
 
-  void tile::set_ground(str_view groundName) { m_ground = hash(groundName); }
+  void tile::set_ground(str_view ground_name) { m_ground = hash(ground_name); }
 }

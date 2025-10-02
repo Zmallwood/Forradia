@@ -9,13 +9,13 @@
 #include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {
-  void add_main_menu_scene_gui_buttons(s_ptr<gui> mainMenuSceneGUI) {
-    mainMenuSceneGUI->add_child_component(
+  void add_main_menu_scene_gui_buttons(s_ptr<gui> main_menu_scene_gui) {
+    main_menu_scene_gui->add_child_component(
         std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
           get_singleton<scene_manager>().go_to_scene("WorldGenerationScene");
         }));
 
-    mainMenuSceneGUI->add_child_component(
+    main_menu_scene_gui->add_child_component(
         std::make_shared<gui_button>(0.45f, 0.44f, 0.1f, 0.04f, "Quit",
                                      [] { get_singleton<engine>().stop(); }));
   }

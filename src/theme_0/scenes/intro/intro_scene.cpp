@@ -14,7 +14,7 @@
 
 namespace forr {
   void intro_scene::initialize_derived() {
-    m_startText = get_gui()->add_child_component(std::make_shared<gui_label>(
+    m_start_text = get_gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }
 
@@ -23,10 +23,10 @@ namespace forr {
   }
 
   void intro_scene::update_derived() {
-    m_startText->set_visible((get_ticks() % 800) < 400);
+    m_start_text->set_visible((get_ticks() % 800) < 400);
 
     get_singleton<cursor>().set_cursor_style(
-        cursor_styles::HoveringClickableGUI);
+        cursor_styles::hovering_clickable_gui);
 
     if (get_singleton<keyboard_input>().any_key_is_pressed_pick_result() ||
         get_singleton<mouse_input>()

@@ -13,8 +13,8 @@ namespace forr {
 
   private:
     int m_fps{0};
-    int m_framesCount{0};
-    int m_ticksLastUpdate{0};
+    int m_frames_count{0};
+    int m_ticks_last_update{0};
     const point_f k_position{0.93f, 0.02f};
   };
 }

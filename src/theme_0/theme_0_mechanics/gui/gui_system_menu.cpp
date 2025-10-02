@@ -16,8 +16,8 @@ namespace forr {
 
   void gui_system_menu::render_derived() const {
     gui_component::render_derived();
-    auto canvasSize{get_canvas_size()};
-    auto rect{SDL_Rect{0, 0, canvasSize.w, canvasSize.h}};
+    auto canvas_size{get_canvas_size()};
+    auto rect{SDL_Rect{0, 0, canvas_size.w, canvas_size.h}};
     SDL_SetRenderDrawBlendMode(get_singleton<sdl_device>().get_renderer().get(),
                                SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(get_singleton<sdl_device>().get_renderer().get(),

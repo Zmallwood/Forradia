@@ -10,9 +10,9 @@ namespace forr {
   class gui_window : public gui_movable_panel {
   public:
     gui_window(float x, float y, float width, float height,
-               str_view windowTitleText)
+               str_view window_title_text)
         : gui_movable_panel(x, y, width, height),
-          m_guiWindowTitleBar(*this, windowTitleText) {
+          m_gui_window_title_bar(*this, window_title_text) {
       initialize();
     }
 
@@ -24,8 +24,8 @@ namespace forr {
   private:
     void initialize();
 
-    const float k_titleBarHeight{0.04f};
+    //const float k_title_bar_height{0.04f};
 
-    gui_window_title_bar m_guiWindowTitleBar;
+    gui_window_title_bar m_gui_window_title_bar;
   };
 }

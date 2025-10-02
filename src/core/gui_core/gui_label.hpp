@@ -9,9 +9,9 @@ namespace forr {
   class gui_label : public gui_component {
   public:
     gui_label(float x, float y, float width, float height, str_view text = "",
-              bool centerAlign = false, color color = colors::wheat_transp)
+              bool center_align = false, color color = colors::wheat_transp)
         : gui_component(x, y, width, height), m_text(text),
-          m_centerAlign(centerAlign), m_color(color) {}
+          m_center_align(center_align), m_color(color) {}
 
     void set_text(str_view value) { m_text = value; }
 
@@ -20,7 +20,7 @@ namespace forr {
 
   private:
     str m_text;
-    bool m_centerAlign{false};
+    bool m_center_align{false};
     color m_color;
   };
 }

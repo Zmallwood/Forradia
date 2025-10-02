@@ -6,27 +6,27 @@
 #include "i_scene.hpp"
 
 namespace forr {
-  void scene_manager::add_scene(str_view sceneName, i_scene &scene) {
+  void scene_manager::add_scene(str_view scene_name, i_scene &scene) {
     scene.initialize();
-    m_scenes.insert({hash(sceneName), scene});
+    m_scenes.insert({hash(scene_name), scene});
   }
 
-  void scene_manager::go_to_scene(str_view sceneName) {
-    m_currentScene = hash(sceneName);
-    if (m_scenes.contains(m_currentScene)) {
-      m_scenes.at(m_currentScene).on_enter();
+  void scene_manager::go_to_scene(str_view scene_name) {
+    m_current_scene = hash(scene_name);
+    if (m_scenes.contains(m_current_scene)) {
+      m_scenes.at(m_current_scene).on_enter();
     }
   }
 
   void scene_manager::update_current_scene() {
-    if (m_scenes.contains(m_currentScene)) {
-      m_scenes.at(m_currentScene).update();
+    if (m_scenes.contains(m_current_scene)) {
+      m_scenes.at(m_current_scene).update();
     }
   }
 
   void scene_manager::render_current_scene() const {
-    if (m_scenes.contains(m_currentScene)) {
-      m_scenes.at(m_currentScene).render();
+    if (m_scenes.contains(m_current_scene)) {
+      m_scenes.at(m_current_scene).render();
     }
   }
 }

@@ -11,114 +11,116 @@
 
 namespace forr {
   void tile_hovering::update() {
-    auto playerPosition{get_singleton<player>().get_position()};
-    auto mousePosition{get_normalized_mouse_position()};
-    auto tileSize{calculate_tile_size()};
-    auto screenRelativeX{c_int(mousePosition.x / tileSize.w)};
-    auto gridSize{calculate_grid_size()};
-    auto hoveredXCoordinate{playerPosition.x - (gridSize.w - 1) / 2 +
-                            screenRelativeX};
-    auto screenRelativeXPx{
-        (hoveredXCoordinate - (playerPosition.x - (gridSize.w - 1) / 2)) *
-        tileSize.w};
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto extraRows{8};
-    auto topYCoordinate{c_int(playerPosition.y - (gridSize.h - 1) / 2) -
-                        extraRows};
-    auto playerTile{worldArea->get_tile(playerPosition)};
-    auto playerElevation{
-        playerTile ? worldArea->get_tile(playerPosition)->get_elevation() : 0};
-    auto screenRelativeYPx{-extraRows * tileSize.h};
-    for (auto y = -extraRows; y < gridSize.h + extraRows; y++) {
-      auto yCoordinate{c_int(playerPosition.y - (gridSize.h - 1) / 2 + y)};
-      auto coordinate{point{hoveredXCoordinate, yCoordinate}};
-      auto tile{worldArea->get_tile(coordinate)};
+    auto player_position{get_singleton<player>().get_position()};
+    auto mouse_position{get_normalized_mouse_position()};
+    auto tile_size{calculate_tile_size()};
+    auto screen_relative_x{c_int(mouse_position.x / tile_size.w)};
+    auto grid_size{calculate_grid_size()};
+    auto hovered_x_coord{player_position.x - (grid_size.w - 1) / 2 +
+                         screen_relative_x};
+    auto screen_relative_x_px{
+        (hovered_x_coord - (player_position.x - (grid_size.w - 1) / 2)) *
+        tile_size.w};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto extra_rows{8};
+    auto top_y_coord{c_int(player_position.y - (grid_size.h - 1) / 2) -
+                     extra_rows};
+    auto player_tile{world_area->get_tile(player_position)};
+    auto player_elev{
+        player_tile ? world_area->get_tile(player_position)->get_elevation()
+                    : 0};
+    auto screen_relative_y_px{-extra_rows * tile_size.h};
+    for (auto y = -extra_rows; y < grid_size.h + extra_rows; y++) {
+      auto y_coord{c_int(player_position.y - (grid_size.h - 1) / 2 + y)};
+      auto coord{point{hovered_x_coord, y_coord}};
+      auto tile{world_area->get_tile(coord)};
       if (!tile) {
-        screenRelativeYPx = 0.5f + (y - (gridSize.h - 1) / 2) * tileSize.h +
-                            playerElevation * tileSize.h / 2;
+        screen_relative_y_px = 0.5f +
+                               (y - (grid_size.h - 1) / 2) * tile_size.h +
+                               player_elev * tile_size.h / 2;
         continue;
       }
-      auto elevation{tile->get_elevation()};
-      screenRelativeYPx = 0.5f + (y - (gridSize.h - 1) / 2) * tileSize.h +
-                          (playerElevation - elevation) * tileSize.h / 2;
-      auto coordNW{point{coordinate.x, coordinate.y}};
-      auto coordNE{point{coordinate.x + 1, coordinate.y}};
-      auto coordSW{point{coordinate.x, coordinate.y + 1}};
-      auto coordSE{point{coordinate.x + 1, coordinate.y + 1}};
-      if (!worldArea->is_valid_coordinate(coordNW.x, coordNW.y) ||
-          !worldArea->is_valid_coordinate(coordNE.x, coordNE.y) ||
-          !worldArea->is_valid_coordinate(coordSW.x, coordSW.y) ||
-          !worldArea->is_valid_coordinate(coordSE.x, coordSE.y)) {
+      auto elev{tile->get_elevation()};
+      screen_relative_y_px = 0.5f + (y - (grid_size.h - 1) / 2) * tile_size.h +
+                             (player_elev - elev) * tile_size.h / 2;
+      auto coord_nw{point{coord.x, coord.y}};
+      auto coord_ne{point{coord.x + 1, coord.y}};
+      auto coord_sw{point{coord.x, coord.y + 1}};
+      auto coord_se{point{coord.x + 1, coord.y + 1}};
+      if (!world_area->is_valid_coordinate(coord_nw.x, coord_nw.y) ||
+          !world_area->is_valid_coordinate(coord_ne.x, coord_ne.y) ||
+          !world_area->is_valid_coordinate(coord_sw.x, coord_sw.y) ||
+          !world_area->is_valid_coordinate(coord_se.x, coord_se.y)) {
         continue;
       }
-      auto tileNW{worldArea->get_tile(coordNW)};
-      auto tileNE{worldArea->get_tile(coordNE)};
-      auto tileSW{worldArea->get_tile(coordSW)};
-      auto tileSE{worldArea->get_tile(coordSE)};
-      if (!tileNW || !tileNE || !tileSE || !tileSW) {
+      auto tile_nw{world_area->get_tile(coord_nw)};
+      auto tile_ne{world_area->get_tile(coord_ne)};
+      auto tile_sw{world_area->get_tile(coord_sw)};
+      auto tile_se{world_area->get_tile(coord_se)};
+      if (!tile_nw || !tile_ne || !tile_se || !tile_sw) {
         continue;
       }
-      float localTileHeight;
-      if (tileNW->get_elevation() > tileSW->get_elevation() &&
-          tileNE->get_elevation() > tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNW->get_elevation() < tileSW->get_elevation() &&
-                 tileNE->get_elevation() < tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 0.5f;
-      } else if (tileNE->get_elevation() > tileNW->get_elevation() &&
-                 tileSE->get_elevation() > tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNW->get_elevation() > tileNE->get_elevation() &&
-                 tileSW->get_elevation() > tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNW->get_elevation() > tileNE->get_elevation() &&
-                 tileNW->get_elevation() > tileSE->get_elevation() &&
-                 tileNW->get_elevation() > tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNE->get_elevation() > tileNW->get_elevation() &&
-                 tileNE->get_elevation() > tileSE->get_elevation() &&
-                 tileNE->get_elevation() > tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileSW->get_elevation() > tileNW->get_elevation() &&
-                 tileSW->get_elevation() > tileSE->get_elevation() &&
-                 tileSW->get_elevation() > tileNE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.0f;
-      } else if (tileSE->get_elevation() > tileNW->get_elevation() &&
-                 tileSE->get_elevation() > tileNE->get_elevation() &&
-                 tileSE->get_elevation() > tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.0f;
-      } else if (tileSW->get_elevation() < tileNW->get_elevation() &&
-                 tileSW->get_elevation() < tileNE->get_elevation() &&
-                 tileSW->get_elevation() < tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileSE->get_elevation() < tileNW->get_elevation() &&
-                 tileSE->get_elevation() < tileNE->get_elevation() &&
-                 tileSE->get_elevation() < tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNW->get_elevation() < tileNE->get_elevation() &&
-                 tileNW->get_elevation() < tileSW->get_elevation() &&
-                 tileNW->get_elevation() < tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.0f;
-      } else if (tileNE->get_elevation() < tileNW->get_elevation() &&
-                 tileNE->get_elevation() < tileSW->get_elevation() &&
-                 tileNE->get_elevation() < tileSE->get_elevation()) {
-        localTileHeight = tileSize.h * 1.0f;
-      } else if (tileSW->get_elevation() == tileNE->get_elevation() &&
-                 tileNW->get_elevation() < tileSW->get_elevation() &&
-                 tileSE->get_elevation() < tileSW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
-      } else if (tileNW->get_elevation() == tileSE->get_elevation() &&
-                 tileNE->get_elevation() < tileNW->get_elevation() &&
-                 tileSW->get_elevation() < tileNW->get_elevation()) {
-        localTileHeight = tileSize.h * 1.5f;
+      float local_tile_height;
+      if (tile_nw->get_elevation() > tile_sw->get_elevation() &&
+          tile_ne->get_elevation() > tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                 tile_ne->get_elevation() < tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 0.5f;
+      } else if (tile_ne->get_elevation() > tile_nw->get_elevation() &&
+                 tile_se->get_elevation() > tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_nw->get_elevation() > tile_ne->get_elevation() &&
+                 tile_sw->get_elevation() > tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_nw->get_elevation() > tile_ne->get_elevation() &&
+                 tile_nw->get_elevation() > tile_se->get_elevation() &&
+                 tile_nw->get_elevation() > tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_ne->get_elevation() > tile_nw->get_elevation() &&
+                 tile_ne->get_elevation() > tile_se->get_elevation() &&
+                 tile_ne->get_elevation() > tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_sw->get_elevation() > tile_nw->get_elevation() &&
+                 tile_sw->get_elevation() > tile_se->get_elevation() &&
+                 tile_sw->get_elevation() > tile_ne->get_elevation()) {
+        local_tile_height = tile_size.h * 1.0f;
+      } else if (tile_se->get_elevation() > tile_nw->get_elevation() &&
+                 tile_se->get_elevation() > tile_ne->get_elevation() &&
+                 tile_se->get_elevation() > tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.0f;
+      } else if (tile_sw->get_elevation() < tile_nw->get_elevation() &&
+                 tile_sw->get_elevation() < tile_ne->get_elevation() &&
+                 tile_sw->get_elevation() < tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_se->get_elevation() < tile_nw->get_elevation() &&
+                 tile_se->get_elevation() < tile_ne->get_elevation() &&
+                 tile_se->get_elevation() < tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_nw->get_elevation() < tile_ne->get_elevation() &&
+                 tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                 tile_nw->get_elevation() < tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 1.0f;
+      } else if (tile_ne->get_elevation() < tile_nw->get_elevation() &&
+                 tile_ne->get_elevation() < tile_sw->get_elevation() &&
+                 tile_ne->get_elevation() < tile_se->get_elevation()) {
+        local_tile_height = tile_size.h * 1.0f;
+      } else if (tile_sw->get_elevation() == tile_ne->get_elevation() &&
+                 tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                 tile_se->get_elevation() < tile_sw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
+      } else if (tile_nw->get_elevation() == tile_se->get_elevation() &&
+                 tile_ne->get_elevation() < tile_nw->get_elevation() &&
+                 tile_sw->get_elevation() < tile_nw->get_elevation()) {
+        local_tile_height = tile_size.h * 1.5f;
       } else {
-        localTileHeight = tileSize.h;
+        local_tile_height = tile_size.h;
       }
-      auto rect{rect_f{screenRelativeXPx,
-                       screenRelativeYPx - localTileHeight / 2, tileSize.w,
-                       localTileHeight}};
-      if (rect.contains(mousePosition)) {
-        m_hoveredCoordinate = {hoveredXCoordinate, yCoordinate};
+      auto rect{rect_f{screen_relative_x_px,
+                       screen_relative_y_px - local_tile_height / 2,
+                       tile_size.w, local_tile_height}};
+      if (rect.contains(mouse_position)) {
+        m_hovered_coordinate = {hovered_x_coord, y_coord};
         return;
       }
     }

@@ -9,18 +9,18 @@ namespace forr {
   class gui_panel : public gui_component {
   public:
     gui_panel(float x, float y, float width, float height,
-              str_view backgroundImage = k_defaultBackgroundImage)
+              str_view background_image = k_default_background_image)
         : gui_component(x, y, width, height),
-          m_backgroundImage(backgroundImage) {}
+          m_background_image(background_image) {}
 
   protected:
     virtual void render_derived() const override;
 
-    void set_background_image(str_view value) { m_backgroundImage = value; }
+    void set_background_image(str_view value) { m_background_image = value; }
 
   private:
-    inline static const str k_defaultBackgroundImage{"GUIPanelBackground"};
+    inline static const str k_default_background_image{"GUIPanelBackground"};
 
-    str m_backgroundImage;
+    str m_background_image;
   };
 }

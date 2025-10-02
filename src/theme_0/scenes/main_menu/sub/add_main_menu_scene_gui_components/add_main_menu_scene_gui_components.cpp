@@ -9,11 +9,11 @@
 #include "sub/add_main_menu_scene_gui_buttons.hpp"
 
 namespace forr {
-  void add_main_menu_scene_gui_components(s_ptr<gui> mainMenuSceneGUI) {
-    mainMenuSceneGUI->add_child_component(
+  void add_main_menu_scene_gui_components(s_ptr<gui> main_menu_scene_gui) {
+    main_menu_scene_gui->add_child_component(
         std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
-    add_main_menu_scene_gui_buttons(mainMenuSceneGUI);
-    mainMenuSceneGUI->add_child_component(
+    add_main_menu_scene_gui_buttons(main_menu_scene_gui);
+    main_menu_scene_gui->add_child_component(
         get_singleton_ptr<gui_text_console>());
   }
 }

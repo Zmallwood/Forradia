@@ -24,8 +24,8 @@ namespace forr {
     bool get_has_been_released_dont_pick_result();
 
   private:
-    bool m_isPressed{false};
-    bool m_hasBeenFired{false};
-    bool m_hasBeenReleased{false};
+    bool m_is_pressed{false};
+    bool m_has_been_fired{false};
+    bool m_has_been_released{false};
   };
 }

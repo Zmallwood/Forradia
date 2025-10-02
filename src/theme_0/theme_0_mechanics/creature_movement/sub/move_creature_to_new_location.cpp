@@ -10,17 +10,17 @@
 
 namespace forr {
   void move_creature_to_new_location(s_ptr<creature> creature,
-                                     point newPosition) {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
-    auto oldPosition{creaturesMirrorRef.at(creature)};
+                                     point new_position) {
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto &creatures_mirror_ref{world_area->get_creatures_mirror_ref()};
+    auto old_position{creatures_mirror_ref.at(creature)};
     auto now{get_ticks()};
     creature->set_ticks_last_move(now);
-    auto oldTile{worldArea->get_tile(oldPosition.x, oldPosition.y)};
-    auto newTile{worldArea->get_tile(newPosition.x, newPosition.y)};
-    oldTile->set_creature(nullptr);
-    newTile->set_creature(creature);
-    creaturesMirrorRef.erase(creature);
-    creaturesMirrorRef.insert({creature, {newPosition.x, newPosition.y}});
+    auto old_tile{world_area->get_tile(old_position.x, old_position.y)};
+    auto new_tile{world_area->get_tile(new_position.x, new_position.y)};
+    old_tile->set_creature(nullptr);
+    new_tile->set_creature(creature);
+    creatures_mirror_ref.erase(creature);
+    creatures_mirror_ref.insert({creature, {new_position.x, new_position.y}});
   }
 }

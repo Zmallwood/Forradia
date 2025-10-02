@@ -32,10 +32,10 @@ namespace forr {
   // Randomization util functions
   void randomize();
 
-  int random_int(int upperLimit);
+  int random_int(int upper_limit);
 
   // String util functions
-  str replace(str_view text, char replaced, char replacedWith);
+  str replace(str_view text, char replaced, char replaced_with);
 
   // Time util functions
   const auto get_ticks{SDL_GetTicks};

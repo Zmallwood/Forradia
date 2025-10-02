@@ -9,8 +9,9 @@ namespace forr {
 
   class gui_window_title_bar {
   public:
-    gui_window_title_bar(gui_window &parentWindow, str_view windowTitleText)
-        : m_parentWindow(parentWindow), k_windowTitleText(windowTitleText) {}
+    gui_window_title_bar(gui_window &parent_window, str_view window_title_text)
+        : m_parent_window(parent_window),
+          k_window_title_text(window_title_text) {}
 
     void render() const;
 
@@ -18,8 +19,8 @@ namespace forr {
 
   private:
     inline static const float k_height{0.04f};
-    const str k_windowTitleText;
+    const str k_window_title_text;
 
-    gui_window &m_parentWindow;
+    gui_window &m_parent_window;
   };
 }

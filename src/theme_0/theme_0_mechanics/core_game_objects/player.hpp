@@ -22,17 +22,17 @@ namespace forr {
 
     auto get_position() const { return m_position; }
 
-    auto get_movement_speed() const { return m_movementSpeed; }
+    auto get_movement_speed() const { return m_movement_speed; }
 
-    auto get_ticks_last_move() const { return m_ticksLastMove; }
+    auto get_ticks_last_move() const { return m_ticks_last_move; }
 
-    void set_ticks_last_move(int value) { m_ticksLastMove = value; }
+    void set_ticks_last_move(int value) { m_ticks_last_move = value; }
 
     auto get_destination() const { return m_destination; }
 
     void set_destination(point value) { m_destination = value; }
 
-    auto &get_player_body_ref() { return m_playerBody; }
+    auto &get_player_body_ref() { return m_player_body; }
 
   private:
     void initialize();
@@ -41,9 +41,9 @@ namespace forr {
 
     str m_name{"Unnamed Player"};
     point m_position{60, 50};
-    float m_movementSpeed{5.0f};
-    int m_ticksLastMove{0};
+    float m_movement_speed{5.0f};
+    int m_ticks_last_move{0};
     point m_destination{-1, -1};
-    player_body m_playerBody;
+    player_body m_player_body;
   };
 }

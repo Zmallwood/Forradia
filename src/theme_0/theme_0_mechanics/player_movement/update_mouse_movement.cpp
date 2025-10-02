@@ -12,11 +12,11 @@ namespace forr {
     if (get_singleton<mouse_input>()
             .get_left_mouse_button_ref()
             .get_has_been_fired_pick_result()) {
-      auto newDestination{
+      auto new_destination{
           get_singleton<tile_hovering>().get_hovered_coordinate()};
-      get_singleton<player>().set_destination(newDestination);
+      get_singleton<player>().set_destination(new_destination);
     }
-    auto playerPosition{get_singleton<player>().get_position()};
+    auto player_position{get_singleton<player>().get_position()};
     auto destination{get_singleton<player>().get_destination()};
     if (destination == point{-1, -1}) {
       return;
@@ -25,8 +25,8 @@ namespace forr {
     if (now >= get_singleton<player>().get_ticks_last_move() +
                    invert_movement_speed(
                        get_singleton<player>().get_movement_speed())) {
-      auto dx{destination.x - playerPosition.x};
-      auto dy{destination.y - playerPosition.y};
+      auto dx{destination.x - player_position.x};
+      auto dy{destination.y - player_position.y};
       if (dx < 0) {
         get_singleton<player>().move_west();
       }
@@ -39,7 +39,7 @@ namespace forr {
       if (dy > 0) {
         get_singleton<player>().move_south();
       }
-      if (destination == playerPosition) {
+      if (destination == player_position) {
         get_singleton<player>().set_destination({-1, -1});
       }
       get_singleton<player>().set_ticks_last_move(now);

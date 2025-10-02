@@ -9,22 +9,22 @@
 
 namespace forr {
   void gui_window_title_bar::render() const {
-    auto parentWindowBounds{m_parentWindow.get_bounds()};
+    auto parent_window_bounds{m_parent_window.get_bounds()};
     get_singleton<image_renderer>().draw_image(
-        "GUIWindowTitleBarBackground", parentWindowBounds.x,
-        parentWindowBounds.y, parentWindowBounds.w, k_height);
+        "GUIWindowTitleBarBackground", parent_window_bounds.x,
+        parent_window_bounds.y, parent_window_bounds.w, k_height);
     get_singleton<text_renderer>().draw_string(
-        k_windowTitleText, parentWindowBounds.x + 0.01f,
-        parentWindowBounds.y + 0.01f, font_sizes::_20, false, colors::yellow);
+        k_window_title_text, parent_window_bounds.x + 0.01f,
+        parent_window_bounds.y + 0.01f, font_sizes::_20, false, colors::yellow);
   }
 
   rect_f gui_window_title_bar::get_bounds() const {
-    rect_f boundsResult;
-    auto parentWindowBounds{m_parentWindow.get_bounds()};
-    boundsResult.x = parentWindowBounds.x;
-    boundsResult.y = parentWindowBounds.y;
-    boundsResult.w = parentWindowBounds.w;
-    boundsResult.h = k_height;
-    return boundsResult;
+    rect_f bounds_result;
+    auto parent_window_bounds{m_parent_window.get_bounds()};
+    bounds_result.x = parent_window_bounds.x;
+    bounds_result.y = parent_window_bounds.y;
+    bounds_result.w = parent_window_bounds.w;
+    bounds_result.h = k_height;
+    return bounds_result;
   }
 }

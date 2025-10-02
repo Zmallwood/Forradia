@@ -10,23 +10,23 @@
 
 namespace forr {
   void generate_grass() {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto size{worldArea->get_size()};
-    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
-    auto numGrassAreas{50 + random_int(20)};
-    for (auto i = 0; i < numGrassAreas; i++) {
-      auto xCenter{random_int(size.w)};
-      auto yCenter{random_int(size.h)};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto size{world_area->get_size()};
+    auto scale{get_singleton<game_properties>().k_world_scaling_factor};
+    auto num_grass_areas{50 + random_int(20)};
+    for (auto i = 0; i < num_grass_areas; i++) {
+      auto x_center{random_int(size.w)};
+      auto y_center{random_int(size.h)};
       auto radius{3 * scale + random_int(10 * scale)};
-      for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
-        for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
-          if (!worldArea->is_valid_coordinate(x, y)) {
+      for (auto y = y_center - radius; y <= y_center + radius; y++) {
+        for (auto x = x_center - radius; x <= x_center + radius; x++) {
+          if (!world_area->is_valid_coordinate(x, y)) {
             continue;
           }
-          auto dx{x - xCenter};
-          auto dy{y - yCenter};
+          auto dx{x - x_center};
+          auto dy{y - y_center};
           if (dx * dx + dy * dy <= radius * radius) {
-            auto tile{worldArea->get_tile(x, y)};
+            auto tile{world_area->get_tile(x, y)};
             tile->set_ground("GroundGrass");
           }
         }

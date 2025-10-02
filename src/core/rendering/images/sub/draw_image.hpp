@@ -5,6 +5,6 @@
 #pragma once
 
 namespace forr {
-  void draw_image(int imageNameHash, float x, float y, float width,
+  void draw_image(int image_name_hash, float x, float y, float width,
                   float height);
 }

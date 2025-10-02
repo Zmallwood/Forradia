@@ -6,13 +6,13 @@
 
 namespace forr {
   s_ptr<SDL_Renderer> create_renderer(s_ptr<SDL_Window> window) {
-    auto rendererResult{s_ptr<SDL_Renderer>(
+    auto renderer_result{s_ptr<SDL_Renderer>(
         SDL_CreateRenderer(window.get(), -1, SDL_RENDERER_ACCELERATED),
         sdl_deleter())};
-    if (!rendererResult) {
+    if (!renderer_result) {
       print_line("Renderer could not be created. SDL Error: " +
                  std::string(SDL_GetError()));
     }
-    return rendererResult;
+    return renderer_result;
   }
 }

@@ -17,16 +17,16 @@ namespace forr {
 
   void text_renderer::add_fonts() {
     m_fonts = forr::create_fonts({font_sizes::_20, font_sizes::_26},
-                                 k_defaultFontPath);
+                                 k_default_font_path);
   }
 
   void text_renderer::draw_string(str_view text, float x, float y,
-                                  font_sizes fontSize, bool centerAlign,
-                                  color textColor) const {
-    auto fontRaw{m_fonts.at(fontSize).get()};
-    auto surface{get_rendered_text_surface(text, fontRaw, textColor)};
-    auto textDimensions{measure_rendered_text(text, fontRaw)};
-    render_text_surface(surface, x, y, textDimensions, centerAlign);
+                                  font_sizes font_size, bool center_align,
+                                  color text_color) const {
+    auto font_raw{m_fonts.at(font_size).get()};
+    auto surface{get_rendered_text_surface(text, font_raw, text_color)};
+    auto text_dimensions{measure_rendered_text(text, font_raw)};
+    render_text_surface(surface, x, y, text_dimensions, center_align);
     SDL_FreeSurface(surface);
   }
 }

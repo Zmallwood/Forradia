@@ -11,9 +11,9 @@ namespace forr {
   public:
     void clear_objects();
 
-    void add_object(str_view objectTypeName);
+    void add_object(str_view object_type_name);
 
-    void add_tree_object(str_view objectTypeName);
+    void add_tree_object(str_view object_type_name);
 
     int get_size() const;
 

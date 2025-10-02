@@ -6,14 +6,14 @@
 
 namespace forr {
   enum class directions {
-    None,
-    North,
-    East,
-    South,
-    West,
-    NorthEast,
-    SouthEast,
-    SouthWest,
-    NorthWest
+    none,
+    north,
+    east,
+    south,
+    west,
+    north_east,
+    south_east,
+    south_west,
+    north_west
   };
 }

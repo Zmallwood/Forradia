@@ -13,11 +13,11 @@
 
 namespace forr {
   void update_creature_movement() {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto &creatures_mirror_ref{world_area->get_creatures_mirror_ref()};
     auto now{get_ticks()};
-    for (auto it = creaturesMirrorRef.begin();
-         it != creaturesMirrorRef.end();) {
+    for (auto it = creatures_mirror_ref.begin();
+         it != creatures_mirror_ref.end();) {
       auto creature{it->first};
       auto position{it->second};
       if (now < creature->get_ticks_last_move() +
@@ -26,14 +26,15 @@ namespace forr {
         continue;
       }
       generate_new_creature_destination(creature);
-      auto newPosition{calculate_new_creature_position(creature)};
-      if (newPosition == creature->get_destination()) {
+      auto new_position{calculate_new_creature_position(creature)};
+      if (new_position == creature->get_destination()) {
         creature->set_destination({-1, -1});
       }
-      auto tile{worldArea->get_tile(newPosition.x, newPosition.y)};
+      auto tile{world_area->get_tile(new_position.x, new_position.y)};
       if (tile && !tile->get_creature() &&
           tile->get_ground() != hash("GroundWater")) {
-        move_creature_to_new_location(creature, {newPosition.x, newPosition.y});
+        move_creature_to_new_location(creature,
+                                      {new_position.x, new_position.y});
       } else {
         creature->set_destination({-1, -1});
       }

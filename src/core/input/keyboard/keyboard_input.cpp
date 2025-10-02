@@ -5,29 +5,29 @@
 #include "keyboard_input.hpp"
 
 namespace forr {
-  void keyboard_input::reset() { m_pressedKeys.clear(); }
+  void keyboard_input::reset() { m_pressed_keys.clear(); }
 
   void keyboard_input::register_key_press(SDL_Keycode key) {
-    m_pressedKeys.insert(key);
+    m_pressed_keys.insert(key);
   }
 
   void keyboard_input::register_key_release(SDL_Keycode key) {
-    m_pressedKeys.erase(key);
+    m_pressed_keys.erase(key);
   }
 
   bool keyboard_input::key_is_pressed(SDL_Keycode key) const {
-    return m_pressedKeys.contains(key);
+    return m_pressed_keys.contains(key);
   }
 
   bool keyboard_input::key_is_pressed_pick_result(SDL_Keycode key) {
-    auto keyIsPressedResult{m_pressedKeys.contains(key)};
-    m_pressedKeys.erase(key);
-    return keyIsPressedResult;
+    auto key_is_pressed_result{m_pressed_keys.contains(key)};
+    m_pressed_keys.erase(key);
+    return key_is_pressed_result;
   }
 
   bool keyboard_input::any_key_is_pressed_pick_result() {
-    auto anyKeyIsPressedResult{m_pressedKeys.size() > 0};
-    m_pressedKeys.clear();
-    return anyKeyIsPressedResult;
+    auto any_key_is_pressed_result{m_pressed_keys.size() > 0};
+    m_pressed_keys.clear();
+    return any_key_is_pressed_result;
   }
 }

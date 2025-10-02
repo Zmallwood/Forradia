@@ -7,5 +7,5 @@
 namespace forr {
   class gui;
 
-  void add_main_scene_gui_components(std::shared_ptr<gui> mainSceneGUI);
+  void add_main_scene_gui_components(std::shared_ptr<gui> main_scene_gui);
 }

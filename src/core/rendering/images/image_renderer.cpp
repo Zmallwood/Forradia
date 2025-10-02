@@ -7,18 +7,18 @@
 #include "sub/draw_image_with_auto_height.hpp"
 
 namespace forr {
-  void image_renderer::draw_image(str_view imageName, float x, float y,
+  void image_renderer::draw_image(str_view image_name, float x, float y,
                                   float width, float height) const {
-    draw_image(hash(imageName), x, y, width, height);
+    draw_image(hash(image_name), x, y, width, height);
   }
 
-  void image_renderer::draw_image(int imageNameHash, float x, float y,
+  void image_renderer::draw_image(int image_name_hash, float x, float y,
                                   float width, float height) const {
-    forr::draw_image(imageNameHash, x, y, width, height);
+    forr::draw_image(image_name_hash, x, y, width, height);
   }
 
-  void image_renderer::draw_image_with_auto_height(str_view imageName, float x,
+  void image_renderer::draw_image_with_auto_height(str_view image_name, float x,
                                                    float y, float width) const {
-    forr::draw_image_with_auto_height(imageName, x, y, width);
+    forr::draw_image_with_auto_height(image_name, x, y, width);
   }
 }

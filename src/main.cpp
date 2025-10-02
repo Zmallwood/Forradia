@@ -5,7 +5,6 @@
 #include "theme_0/run_new_theme_0.hpp"
 
 int main(int argc, char **argv) {
-  using namespace forr;
-  run_new_theme_0();
+  forr::run_new_theme_0();
   return 0;
 }

@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  enum class body_part_types { None, OverallBody, RightArm, LeftArm, Legs };
+  enum class body_part_types { none, overall_body, right_arm, left_arm, legs };
 }

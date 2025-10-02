@@ -14,30 +14,30 @@
 #include "theme_0/theme_0_mechanics/gui/gui_system_menu.hpp"
 
 namespace forr {
-  void add_main_scene_gui_components(std::shared_ptr<gui> mainSceneGUI) {
-    mainSceneGUI->add_child_component(
+  void add_main_scene_gui_components(std::shared_ptr<gui> main_scene_gui) {
+    main_scene_gui->add_child_component(
         std::make_shared<gui_player_status_panel>());
-    mainSceneGUI->add_child_component(get_singleton_ptr<gui_text_console>());
-    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+    main_scene_gui->add_child_component(get_singleton_ptr<gui_text_console>());
+    main_scene_gui->add_child_component(std::make_shared<gui_button>(
         0.78f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
         [] { get_singleton<gui_player_body_window>().toggle_visibility(); },
         "GUIButtonPlayerBodyBackground",
         "GUIButtonPlayerBodyHoveredBackground"));
 
-    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+    main_scene_gui->add_child_component(std::make_shared<gui_button>(
         0.85f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
         [] { get_singleton<gui_inventory_window>().toggle_visibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
-    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+    main_scene_gui->add_child_component(std::make_shared<gui_button>(
         0.92f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
         [] { get_singleton<gui_system_menu>().toggle_visibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
-    mainSceneGUI->add_child_component(get_singleton_ptr<gui_system_menu>());
-    mainSceneGUI->add_child_component(
+    main_scene_gui->add_child_component(get_singleton_ptr<gui_system_menu>());
+    main_scene_gui->add_child_component(
         get_singleton_ptr<gui_inventory_window>());
-    mainSceneGUI->add_child_component(
+    main_scene_gui->add_child_component(
         get_singleton_ptr<gui_player_body_window>());
-    mainSceneGUI->add_child_component(std::make_shared<gui_fps_panel>());
+    main_scene_gui->add_child_component(std::make_shared<gui_fps_panel>());
   }
 }

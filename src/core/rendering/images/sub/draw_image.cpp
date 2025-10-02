@@ -7,16 +7,16 @@
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
-  void draw_image(int imageNameHash, float x, float y, float width,
+  void draw_image(int image_name_hash, float x, float y, float width,
                   float height) {
-    auto image{get_singleton<image_bank>().get_image(imageNameHash)};
-    auto canvasSize{get_canvas_size()};
-    auto xPx{c_int(x * canvasSize.w)};
-    auto yPx{c_int(y * canvasSize.h)};
-    auto widthPx{c_int(width * canvasSize.w)};
-    auto heightPx{c_int(height * canvasSize.h)};
-    SDL_Rect sdlRectangle{xPx, yPx, widthPx, heightPx};
+    auto image{get_singleton<image_bank>().get_image(image_name_hash)};
+    auto canvas_size{get_canvas_size()};
+    auto x_px{c_int(x * canvas_size.w)};
+    auto y_px{c_int(y * canvas_size.h)};
+    auto width_px{c_int(width * canvas_size.w)};
+    auto height_px{c_int(height * canvas_size.h)};
+    SDL_Rect sdl_rect{x_px, y_px, width_px, height_px};
     SDL_RenderCopy(get_singleton<sdl_device>().get_renderer().get(),
-                   image.get(), nullptr, &sdlRectangle);
+                   image.get(), nullptr, &sdl_rect);
   }
 }

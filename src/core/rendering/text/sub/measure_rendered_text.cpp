@@ -5,10 +5,10 @@
 #include "measure_rendered_text.hpp"
 
 namespace forr {
-  size measure_rendered_text(str_view text, TTF_Font *fontRaw) {
-    int textWidth;
-    int textHeight;
-    TTF_SizeText(fontRaw, text.data(), &textWidth, &textHeight);
-    return {textWidth, textHeight};
+  size measure_rendered_text(str_view text, TTF_Font *font_raw) {
+    int text_width;
+    int text_height;
+    TTF_SizeText(font_raw, text.data(), &text_width, &text_height);
+    return {text_width, text_height};
   }
 }

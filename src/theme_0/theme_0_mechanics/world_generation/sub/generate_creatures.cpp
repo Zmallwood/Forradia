@@ -11,19 +11,19 @@
 
 namespace forr {
   void generate_creatures() {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto size{worldArea->get_size()};
-    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
-    auto numRats{200 * scale + random_int(15 * scale)};
-    for (auto i = 0; i < numRats; i++) {
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto size{world_area->get_size()};
+    auto scale{get_singleton<game_properties>().k_world_scaling_factor};
+    auto num_rats{200 * scale + random_int(15 * scale)};
+    for (auto i = 0; i < num_rats; i++) {
       auto x{random_int(size.w)};
       auto y{random_int(size.h)};
-      auto tile{worldArea->get_tile(x, y)};
+      auto tile{world_area->get_tile(x, y)};
       if (tile && !tile->get_creature() &&
           tile->get_ground() != hash("GroundWater")) {
-        auto newCreature = std::make_shared<creature>("CreatureRat");
-        tile->set_creature(newCreature);
-        worldArea->get_creatures_mirror_ref().insert(
+        auto new_creature = std::make_shared<creature>("CreatureRat");
+        tile->set_creature(new_creature);
+        world_area->get_creatures_mirror_ref().insert(
             {tile->get_creature(), {x, y}});
       }
     }

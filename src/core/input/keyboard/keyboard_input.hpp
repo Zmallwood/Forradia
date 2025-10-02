@@ -20,6 +20,6 @@ namespace forr {
     bool any_key_is_pressed_pick_result();
 
   private:
-    std::set<SDL_Keycode> m_pressedKeys;
+    std::set<SDL_Keycode> m_pressed_keys;
   };
 }

@@ -5,18 +5,19 @@
 #include "create_render_destination_rect.hpp"
 
 namespace forr {
-  SDL_Rect create_render_destination_rect(float x, float y, size textDimensions,
-                                          bool centerAlign) {
-    SDL_Rect rectResult;
-    auto canvasSize{get_canvas_size()};
-    rectResult.x = c_int(x * canvasSize.w);
-    rectResult.y = c_int(y * canvasSize.h);
-    rectResult.w = textDimensions.w;
-    rectResult.h = textDimensions.h;
-    if (centerAlign) {
-      rectResult.x -= rectResult.w / 2;
-      rectResult.y -= rectResult.h / 2;
+  SDL_Rect create_render_destination_rect(float x, float y,
+                                          size text_dimensions,
+                                          bool center_align) {
+    SDL_Rect rect_result;
+    auto canvas_size{get_canvas_size()};
+    rect_result.x = c_int(x * canvas_size.w);
+    rect_result.y = c_int(y * canvas_size.h);
+    rect_result.w = text_dimensions.w;
+    rect_result.h = text_dimensions.h;
+    if (center_align) {
+      rect_result.x -= rect_result.w / 2;
+      rect_result.y -= rect_result.h / 2;
     }
-    return rectResult;
+    return rect_result;
   }
 }

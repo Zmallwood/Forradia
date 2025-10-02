@@ -9,9 +9,9 @@ namespace forr {
 
   class scene_manager {
   public:
-    void add_scene(str_view sceneName, i_scene &scene);
+    void add_scene(str_view scene_name, i_scene &scene);
 
-    void go_to_scene(str_view sceneName);
+    void go_to_scene(str_view scene_name);
 
     void update_current_scene();
 
@@ -19,6 +19,6 @@ namespace forr {
 
   private:
     std::map<int, i_scene &> m_scenes;
-    int m_currentScene{0};
+    int m_current_scene{0};
   };
 }

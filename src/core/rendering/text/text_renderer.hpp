@@ -13,18 +13,18 @@ namespace forr {
     text_renderer() { initialize(); }
 
     void draw_string(str_view text, float x, float y,
-                     font_sizes fontSize = font_sizes::_20,
-                     bool centerAlign = false,
-                     color textColor = colors::wheat_transp) const;
+                     font_sizes font_size = font_sizes::_20,
+                     bool center_align = false,
+                     color text_color = colors::wheat_transp) const;
 
   private:
     void initialize();
 
     void add_fonts();
 
-    void add_font_size(font_sizes fontSize);
+    void add_font_size(font_sizes font_size);
 
-    const str k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
+    const str k_default_font_path{"./Resources/Fonts/PixeloidSans.ttf"};
 
     std::map<font_sizes, s_ptr<TTF_Font>> m_fonts;
   };

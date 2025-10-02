@@ -20,12 +20,12 @@ namespace forr {
 
     s_ptr<tile> get_tile(point coordinate) const;
 
-    auto &get_creatures_mirror_ref() { return m_creaturesMirror; }
+    auto &get_creatures_mirror_ref() { return m_creatures_mirror; }
 
   private:
     void initialize();
 
     vec<vec<s_ptr<tile>>> m_tiles;
-    std::map<s_ptr<creature>, point> m_creaturesMirror;
+    std::map<s_ptr<creature>, point> m_creatures_mirror;
   };
 }

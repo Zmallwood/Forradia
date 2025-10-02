@@ -8,21 +8,21 @@
 namespace forr {
   class tree_object : public object {
   public:
-    tree_object(str_view objectTypeName) : object(objectTypeName) {
-      initialize(objectTypeName);
+    tree_object(str_view object_type_name) : object(object_type_name) {
+      initialize(object_type_name);
     }
 
-    auto get_trunk_parts() const { return m_trunkParts; }
+    auto get_trunk_parts() const { return m_trunk_parts; }
 
-    auto get_needle_types() const { return m_needleTypes; }
+    auto get_needle_types() const { return m_needle_types; }
 
-    auto get_width_factor() const { return m_widthFactor; }
+    auto get_width_factor() const { return m_width_factor; }
 
   private:
-    void initialize(str_view objectTypeName);
+    void initialize(str_view object_type_name);
 
-    vec<point_f> m_trunkParts;
-    vec<int> m_needleTypes;
-    float m_widthFactor{1.0f};
+    vec<point_f> m_trunk_parts;
+    vec<int> m_needle_types;
+    float m_width_factor{1.0f};
   };
 }

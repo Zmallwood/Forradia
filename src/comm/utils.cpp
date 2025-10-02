@@ -9,16 +9,16 @@
 namespace forr {
   // Canvas util functions
   size get_canvas_size() {
-    size canvasSize;
+    size canvas_size;
     SDL_GetWindowSize(get_singleton<sdl_device>().get_window().get(),
-                      &canvasSize.w, &canvasSize.h);
-    return canvasSize;
+                      &canvas_size.w, &canvas_size.h);
+    return canvas_size;
   }
 
   float calculate_aspect_ratio() {
-    auto canvasSize{get_canvas_size()};
-    auto aspectRatio{c_float(canvasSize.w) / canvasSize.h};
-    return aspectRatio;
+    auto canvas_size{get_canvas_size()};
+    auto aspect_ratio{c_float(canvas_size.w) / canvas_size.h};
+    return aspect_ratio;
   }
 
   float convert_width_to_height(float width) {
@@ -36,17 +36,17 @@ namespace forr {
   }
 
   str get_file_name_no_extension(str_view path) {
-    auto nameWithExtension{str(path.substr(path.find_last_of('/') + 1))};
-    return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
+    auto name_with_extension{str(path.substr(path.find_last_of('/') + 1))};
+    return name_with_extension.substr(0, name_with_extension.find_last_of('.'));
   }
 
   // Numbers util functions
   point_f get_normalized_mouse_position() {
-    int xPx;
-    int yPx;
-    SDL_GetMouseState(&xPx, &yPx);
-    auto canvasSize{get_canvas_size()};
-    return {c_float(xPx) / canvasSize.w, c_float(yPx) / canvasSize.h};
+    int x_px;
+    int y_px;
+    SDL_GetMouseState(&x_px, &y_px);
+    auto canvas_size{get_canvas_size()};
+    return {c_float(x_px) / canvas_size.w, c_float(y_px) / canvas_size.h};
   }
 
   float invert_movement_speed(float number) {
@@ -58,10 +58,10 @@ namespace forr {
   }
 
   int normalize(int value) {
-    auto absValue{std::abs(value)};
+    auto abs_value{std::abs(value)};
     auto normalized{0};
     if (value) {
-      normalized = value / absValue;
+      normalized = value / abs_value;
     }
     return normalized;
   }
@@ -74,13 +74,13 @@ namespace forr {
   // Randomization util functions
   void randomize() { srand(time(nullptr)); }
 
-  int random_int(int upperLimit) { return rand() % upperLimit; }
+  int random_int(int upper_limit) { return rand() % upper_limit; }
 
   // String util functions
-  str replace(str_view text, char replaced, char replacedWith) {
-    str textData{text.data()};
-    std::replace(textData.begin(), textData.end(), replaced, replacedWith);
-    return textData;
+  str replace(str_view text, char replaced, char replaced_with) {
+    str text_data{text.data()};
+    std::replace(text_data.begin(), text_data.end(), replaced, replaced_with);
+    return text_data;
   }
 
   // Hash util functions

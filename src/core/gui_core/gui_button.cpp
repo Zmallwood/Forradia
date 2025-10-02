@@ -10,19 +10,19 @@
 namespace forr {
   void gui_button::update_derived() {
     gui_panel::update_derived();
-    auto mousePosition{get_normalized_mouse_position()};
-    auto isHovered{get_bounds().contains(mousePosition)};
-    if (isHovered) {
-      set_background_image(m_hoveredBackgroundImage);
+    auto mouse_position{get_normalized_mouse_position()};
+    auto is_hovered{get_bounds().contains(mouse_position)};
+    if (is_hovered) {
+      set_background_image(m_hovered_background_image);
       get_singleton<cursor>().set_cursor_style(
-          cursor_styles::HoveringClickableGUI);
+          cursor_styles::hovering_clickable_gui);
       if (get_singleton<mouse_input>()
               .get_left_mouse_button_ref()
               .get_has_been_fired_pick_result()) {
         m_action();
       }
     } else {
-      set_background_image(m_backgroundImage);
+      set_background_image(m_background_image);
     }
   }
 

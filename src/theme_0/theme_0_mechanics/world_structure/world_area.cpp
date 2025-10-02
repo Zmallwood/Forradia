@@ -8,9 +8,9 @@
 
 namespace forr {
   void world_area::initialize() {
-    auto size{game_properties::k_worldAreaSize};
-    size.w *= get_singleton<game_properties>().k_worldScalingFactor;
-    size.h *= get_singleton<game_properties>().k_worldScalingFactor;
+    auto size{game_properties::k_world_area_size};
+    size.w *= get_singleton<game_properties>().k_world_scaling_factor;
+    size.h *= get_singleton<game_properties>().k_world_scaling_factor;
     for (auto x = 0; x < size.w; x++) {
       m_tiles.push_back(vec<std::shared_ptr<tile>>());
       for (auto y = 0; y < size.h; y++) {

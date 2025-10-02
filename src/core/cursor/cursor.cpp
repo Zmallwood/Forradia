@@ -11,24 +11,24 @@ namespace forr {
   void cursor::disable_system_cursor() { SDL_ShowCursor(SDL_DISABLE); }
 
   void cursor::reset_style_to_default() {
-    m_cursorStyle = cursor_styles::Default;
+    m_cursor_style = cursor_styles::normal;
   }
 
   void cursor::render() {
-    auto mousePosition{get_normalized_mouse_position()};
-    auto width{k_cursorSize};
-    auto height{convert_width_to_height(k_cursorSize)};
-    str cursorImage;
-    switch (m_cursorStyle) {
-    case cursor_styles::Default:
-      cursorImage = "CursorDefault";
+    auto mouse_position{get_normalized_mouse_position()};
+    auto width{k_cursor_size};
+    auto height{convert_width_to_height(k_cursor_size)};
+    str cursor_image;
+    switch (m_cursor_style) {
+    case cursor_styles::normal:
+      cursor_image = "CursorDefault";
       break;
-    case cursor_styles::HoveringClickableGUI:
-      cursorImage = "CursorHoveringClickableGUI";
+    case cursor_styles::hovering_clickable_gui:
+      cursor_image = "CursorHoveringClickableGUI";
       break;
     }
     get_singleton<image_renderer>().draw_image(
-        cursorImage, mousePosition.x - width / 2, mousePosition.y - height / 2,
-        width, height);
+        cursor_image, mouse_position.x - width / 2,
+        mouse_position.y - height / 2, width, height);
   }
 }

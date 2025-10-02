@@ -18,125 +18,128 @@
 
 namespace forr {
   void world_view::render() const {
-    auto gridSize{calculate_grid_size()};
-    auto tileSize{calculate_tile_size()};
-    auto playerPosition{get_singleton<player>().get_position()};
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto playerElevation{worldArea->get_tile(playerPosition)->get_elevation()};
-    auto extraRows{8};
+    auto grid_size{calculate_grid_size()};
+    auto tile_size{calculate_tile_size()};
+    auto player_position{get_singleton<player>().get_position()};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto player_elev{world_area->get_tile(player_position)->get_elevation()};
+    auto extra_rows{8};
     for (auto i = 0; i < 3; i++) {
-      for (auto y = -extraRows; y < gridSize.h + extraRows; y++) {
-        for (auto x = 0; x < gridSize.w; x++) {
-          auto xCoordinate{playerPosition.x - (gridSize.w - 1) / 2 + x};
-          auto yCoordinate{playerPosition.y - (gridSize.h - 1) / 2 + y};
-          if (!worldArea->is_valid_coordinate(xCoordinate, yCoordinate)) {
+      for (auto y = -extra_rows; y < grid_size.h + extra_rows; y++) {
+        for (auto x = 0; x < grid_size.w; x++) {
+          auto x_coord{player_position.x - (grid_size.w - 1) / 2 + x};
+          auto y_coord{player_position.y - (grid_size.h - 1) / 2 + y};
+          if (!world_area->is_valid_coordinate(x_coord, y_coord)) {
             continue;
           }
-          auto tile{worldArea->get_tile(xCoordinate, yCoordinate)};
-          float xCanvas;
-          float yCanvas;
-          float widthCanvas;
-          float heightCanvas;
-          auto coordNW{point{xCoordinate, yCoordinate}};
-          auto coordNE{point{xCoordinate + 1, yCoordinate}};
-          auto coordSW{point{xCoordinate, yCoordinate + 1}};
-          auto coordSE{point{xCoordinate + 1, yCoordinate + 1}};
-          if (!worldArea->is_valid_coordinate(coordNW.x, coordNW.y) ||
-              !worldArea->is_valid_coordinate(coordNE.x, coordNE.y) ||
-              !worldArea->is_valid_coordinate(coordSW.x, coordSW.y) ||
-              !worldArea->is_valid_coordinate(coordSE.x, coordSE.y)) {
+          auto tile{world_area->get_tile(x_coord, y_coord)};
+          float x_canvas;
+          float y_canvas;
+          float width_canvas;
+          float height_canvas;
+          auto coord_nw{point{x_coord, y_coord}};
+          auto coord_ne{point{x_coord + 1, y_coord}};
+          auto coord_sw{point{x_coord, y_coord + 1}};
+          auto coord_se{point{x_coord + 1, y_coord + 1}};
+          if (!world_area->is_valid_coordinate(coord_nw.x, coord_nw.y) ||
+              !world_area->is_valid_coordinate(coord_ne.x, coord_ne.y) ||
+              !world_area->is_valid_coordinate(coord_sw.x, coord_sw.y) ||
+              !world_area->is_valid_coordinate(coord_se.x, coord_se.y)) {
             continue;
           }
-          auto tileNW{worldArea->get_tile(coordNW)};
-          auto tileNE{worldArea->get_tile(coordNE)};
-          auto tileSW{worldArea->get_tile(coordSW)};
-          auto tileSE{worldArea->get_tile(coordSE)};
+          auto tile_nw{world_area->get_tile(coord_nw)};
+          auto tile_ne{world_area->get_tile(coord_ne)};
+          auto tile_sw{world_area->get_tile(coord_sw)};
+          auto tile_se{world_area->get_tile(coord_se)};
           auto ground{tile ? tile->get_ground() : 0};
-          auto groundTypeRendered{ground};
-          xCanvas = x * tileSize.w;
-          yCanvas = y * tileSize.h - tileNW->get_elevation() * tileSize.h / 2;
-          yCanvas += playerElevation * tileSize.h / 2;
-          widthCanvas = tileSize.w;
-          heightCanvas = ceil(tileSize.h, 2.5f);
+          auto ground_type_rendered{ground};
+          x_canvas = x * tile_size.w;
+          y_canvas =
+              y * tile_size.h - tile_nw->get_elevation() * tile_size.h / 2;
+          y_canvas += player_elev * tile_size.h / 2;
+          width_canvas = tile_size.w;
+          height_canvas = ceil(tile_size.h, 2.5f);
           // if (ground != Hash("GroundWater"))
           if (true) {
-            str groundName;
+            str ground_name;
             if (ground == hash("GroundGrass")) {
-              groundName = "GroundGrass";
+              ground_name = "GroundGrass";
             } else if (ground == hash("GroundWater")) {
-              groundName = "GroundDirt";
+              ground_name = "GroundDirt";
             } else if (ground == hash("GroundDirt")) {
-              groundName = "GroundDirt";
+              ground_name = "GroundDirt";
             } else if (ground == hash("GroundRock")) {
-              groundName = "GroundRock";
+              ground_name = "GroundRock";
             }
-            str fullGroundName{groundName};
-            if (tileNW->get_elevation() > tileSW->get_elevation() &&
-                tileNE->get_elevation() > tileSE->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeSouth";
-            } else if (tileNW->get_elevation() < tileSW->get_elevation() &&
-                       tileNE->get_elevation() < tileSE->get_elevation()) {
-              heightCanvas -= tileSize.h / 2;
-              fullGroundName = groundName + "SlopeNorth";
-            } else if (tileNE->get_elevation() > tileNW->get_elevation() &&
-                       tileSE->get_elevation() > tileSW->get_elevation()) {
-              yCanvas -= tileSize.h / 2;
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeWest";
-            } else if (tileNW->get_elevation() > tileNE->get_elevation() &&
-                       tileSW->get_elevation() > tileSE->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeEast";
-            } else if (tileNW->get_elevation() > tileNE->get_elevation() &&
-                       tileNW->get_elevation() > tileSE->get_elevation() &&
-                       tileNW->get_elevation() > tileSW->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeSouthEast";
-            } else if (tileNE->get_elevation() > tileNW->get_elevation() &&
-                       tileNE->get_elevation() > tileSE->get_elevation() &&
-                       tileNE->get_elevation() > tileSW->get_elevation()) {
-              yCanvas -= tileSize.h / 2;
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeSouthWest";
-            } else if (tileSW->get_elevation() > tileNW->get_elevation() &&
-                       tileSW->get_elevation() > tileSE->get_elevation() &&
-                       tileSW->get_elevation() > tileNE->get_elevation()) {
-              fullGroundName = groundName + "SlopeNorthEast";
-            } else if (tileSE->get_elevation() > tileNW->get_elevation() &&
-                       tileSE->get_elevation() > tileNE->get_elevation() &&
-                       tileSE->get_elevation() > tileSW->get_elevation()) {
-              fullGroundName = groundName + "SlopeNorthWest";
-            } else if (tileSW->get_elevation() < tileNW->get_elevation() &&
-                       tileSW->get_elevation() < tileNE->get_elevation() &&
-                       tileSW->get_elevation() < tileSE->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeSouthWestInverted";
-            } else if (tileSE->get_elevation() < tileNW->get_elevation() &&
-                       tileSE->get_elevation() < tileNE->get_elevation() &&
-                       tileSE->get_elevation() < tileSW->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeSouthEastInverted";
-            } else if (tileNW->get_elevation() < tileNE->get_elevation() &&
-                       tileNW->get_elevation() < tileSW->get_elevation() &&
-                       tileNW->get_elevation() < tileSE->get_elevation()) {
-              yCanvas -= tileSize.h / 2;
-              fullGroundName = groundName + "SlopeNorthWestInverted";
-            } else if (tileNE->get_elevation() < tileNW->get_elevation() &&
-                       tileNE->get_elevation() < tileSW->get_elevation() &&
-                       tileNE->get_elevation() < tileSE->get_elevation()) {
-              fullGroundName = groundName + "SlopeNorthEastInverted";
-            } else if (tileSW->get_elevation() == tileNE->get_elevation() &&
-                       tileNW->get_elevation() < tileSW->get_elevation() &&
-                       tileSE->get_elevation() < tileSW->get_elevation()) {
-              yCanvas -= tileSize.h / 2;
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeDiagonalSouthWestToNorthEast";
-            } else if (tileNW->get_elevation() == tileSE->get_elevation() &&
-                       tileNE->get_elevation() < tileNW->get_elevation() &&
-                       tileSW->get_elevation() < tileNW->get_elevation()) {
-              heightCanvas += tileSize.h / 2;
-              fullGroundName = groundName + "SlopeDiagonalNorthWestToSouthEast";
+            str full_ground_name{ground_name};
+            if (tile_nw->get_elevation() > tile_sw->get_elevation() &&
+                tile_ne->get_elevation() > tile_se->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeSouth";
+            } else if (tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                       tile_ne->get_elevation() < tile_se->get_elevation()) {
+              height_canvas -= tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeNorth";
+            } else if (tile_ne->get_elevation() > tile_nw->get_elevation() &&
+                       tile_se->get_elevation() > tile_sw->get_elevation()) {
+              y_canvas -= tile_size.h / 2;
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeWest";
+            } else if (tile_nw->get_elevation() > tile_ne->get_elevation() &&
+                       tile_sw->get_elevation() > tile_se->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeEast";
+            } else if (tile_nw->get_elevation() > tile_ne->get_elevation() &&
+                       tile_nw->get_elevation() > tile_se->get_elevation() &&
+                       tile_nw->get_elevation() > tile_sw->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeSouthEast";
+            } else if (tile_ne->get_elevation() > tile_nw->get_elevation() &&
+                       tile_ne->get_elevation() > tile_se->get_elevation() &&
+                       tile_ne->get_elevation() > tile_sw->get_elevation()) {
+              y_canvas -= tile_size.h / 2;
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeSouthWest";
+            } else if (tile_sw->get_elevation() > tile_nw->get_elevation() &&
+                       tile_sw->get_elevation() > tile_se->get_elevation() &&
+                       tile_sw->get_elevation() > tile_ne->get_elevation()) {
+              full_ground_name = ground_name + "SlopeNorthEast";
+            } else if (tile_se->get_elevation() > tile_nw->get_elevation() &&
+                       tile_se->get_elevation() > tile_ne->get_elevation() &&
+                       tile_se->get_elevation() > tile_sw->get_elevation()) {
+              full_ground_name = ground_name + "SlopeNorthWest";
+            } else if (tile_sw->get_elevation() < tile_nw->get_elevation() &&
+                       tile_sw->get_elevation() < tile_ne->get_elevation() &&
+                       tile_sw->get_elevation() < tile_se->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeSouthWestInverted";
+            } else if (tile_se->get_elevation() < tile_nw->get_elevation() &&
+                       tile_se->get_elevation() < tile_ne->get_elevation() &&
+                       tile_se->get_elevation() < tile_sw->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeSouthEastInverted";
+            } else if (tile_nw->get_elevation() < tile_ne->get_elevation() &&
+                       tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                       tile_nw->get_elevation() < tile_se->get_elevation()) {
+              y_canvas -= tile_size.h / 2;
+              full_ground_name = ground_name + "SlopeNorthWestInverted";
+            } else if (tile_ne->get_elevation() < tile_nw->get_elevation() &&
+                       tile_ne->get_elevation() < tile_sw->get_elevation() &&
+                       tile_ne->get_elevation() < tile_se->get_elevation()) {
+              full_ground_name = ground_name + "SlopeNorthEastInverted";
+            } else if (tile_sw->get_elevation() == tile_ne->get_elevation() &&
+                       tile_nw->get_elevation() < tile_sw->get_elevation() &&
+                       tile_se->get_elevation() < tile_sw->get_elevation()) {
+              y_canvas -= tile_size.h / 2;
+              height_canvas += tile_size.h / 2;
+              full_ground_name =
+                  ground_name + "SlopeDiagonalSouthWestToNorthEast";
+            } else if (tile_nw->get_elevation() == tile_se->get_elevation() &&
+                       tile_ne->get_elevation() < tile_nw->get_elevation() &&
+                       tile_sw->get_elevation() < tile_nw->get_elevation()) {
+              height_canvas += tile_size.h / 2;
+              full_ground_name =
+                  ground_name + "SlopeDiagonalNorthWestToSouthEast";
             }
             // if (ground == Hash("GroundWater"))
             // {
@@ -145,7 +148,7 @@ namespace forr {
             //     fullGroundName = fullGroundName + "_" +
             //     std::to_string(animIndex);
             // }
-            groundTypeRendered = hash(fullGroundName);
+            ground_type_rendered = hash(full_ground_name);
           }
           // else if (ground == Hash("GroundWater"))
           // {
@@ -156,133 +159,139 @@ namespace forr {
           // }
           if (i == 0) {
             get_singleton<image_renderer>().draw_image(
-                groundTypeRendered, xCanvas, yCanvas, widthCanvas,
-                heightCanvas);
+                ground_type_rendered, x_canvas, y_canvas, width_canvas,
+                height_canvas);
           } else if (ground != hash("GroundWater") && i == 1) {
-            vec<directions> riverDirections{tile->get_river_direction_1(),
-                                            tile->get_river_direction_2()};
-            auto riverPartWidth{0.4f * widthCanvas};
-            auto riverPartHeight{0.4f * heightCanvas};
-            auto partLenght{2.5f};
-            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
-                           500 % 3};
+            vec<directions> river_directions{tile->get_river_direction_1(),
+                                             tile->get_river_direction_2()};
+            auto river_part_width{0.4f * width_canvas};
+            auto river_part_height{0.4f * height_canvas};
+            auto part_length{2.5f};
+            auto anim_index{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+                            3};
             for (auto j = 0; j < 2; j++) {
-              switch (riverDirections.at(j)) {
-              case directions::North: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2 - k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              switch (river_directions.at(j)) {
+              case directions::north: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{
+                      x_canvas + width_canvas / 2 - river_part_width / 2,
+                      y_canvas + height_canvas / 2 - river_part_height / 2 -
+                          k * river_part_height,
+                      river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::East: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 +
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2,
-                                riverPartWidth, riverPartHeight};
+              case directions::east: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 + k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::South: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2,
-                                yCanvas + heightCanvas / 2 +
-                                    riverPartHeight / 2 + k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              case directions::south: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{
+                      x_canvas + width_canvas / 2 - river_part_width / 2,
+                      y_canvas + height_canvas / 2 + river_part_height / 2 +
+                          k * river_part_height,
+                      river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::West: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 -
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2,
-                                riverPartWidth, riverPartHeight};
+              case directions::west: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 - k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::NorthEast: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 +
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2 - k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              case directions::north_east: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 + k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2 -
+                                    k * river_part_height,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::SouthEast: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 +
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2 + k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              case directions::south_east: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 + k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2 +
+                                    k * river_part_height,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::SouthWest: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 -
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2 + k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              case directions::south_west: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 - k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2 +
+                                    k * river_part_height,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
-              case directions::NorthWest: {
-                for (auto k = 0.0f; k < partLenght; k += 0.5f) {
-                  rect_f bounds{xCanvas + widthCanvas / 2 - riverPartWidth / 2 -
-                                    k * riverPartWidth,
-                                yCanvas + heightCanvas / 2 -
-                                    riverPartHeight / 2 - k * riverPartHeight,
-                                riverPartWidth, riverPartHeight};
+              case directions::north_west: {
+                for (auto k = 0.0f; k < part_length; k += 0.5f) {
+                  rect_f bounds{x_canvas + width_canvas / 2 -
+                                    river_part_width / 2 - k * river_part_width,
+                                y_canvas + height_canvas / 2 -
+                                    river_part_height / 2 -
+                                    k * river_part_height,
+                                river_part_width, river_part_height};
                   get_singleton<image_renderer>().draw_image(
-                      "RiverPart_" + std::to_string(animIndex), bounds.x,
+                      "RiverPart_" + std::to_string(anim_index), bounds.x,
                       bounds.y, bounds.w, bounds.h);
                 }
               } break;
               }
             }
           } else if (ground == hash("GroundWater") && i == 1) {
-            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
-                           500 % 3};
+            auto anim_index{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+                            3};
             get_singleton<image_renderer>().draw_image(
-                "GroundWaterEdge", xCanvas - widthCanvas * 0.2f,
-                yCanvas - heightCanvas * 0.2f, widthCanvas * 1.4f,
-                heightCanvas * 1.4f);
+                "GroundWaterEdge", x_canvas - width_canvas * 0.2f,
+                y_canvas - height_canvas * 0.2f, width_canvas * 1.4f,
+                height_canvas * 1.4f);
           } else if (ground == hash("GroundWater") && i == 2) {
 
-            auto animIndex{(get_ticks() + ((xCoordinate + yCoordinate) * 100)) /
-                           500 % 3};
+            auto anim_index{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+                            3};
             get_singleton<image_renderer>().draw_image(
-                "GroundWater_" + std::to_string(animIndex), xCanvas, yCanvas,
-                widthCanvas, heightCanvas);
+                "GroundWater_" + std::to_string(anim_index), x_canvas, y_canvas,
+                width_canvas, height_canvas);
 
             for (auto i = 0; i < tile->get_elevation(); i++) {
               get_singleton<image_renderer>().draw_image(
-                  "GroundWaterHeight", xCanvas, yCanvas, widthCanvas,
-                  heightCanvas);
+                  "GroundWaterHeight", x_canvas, y_canvas, width_canvas,
+                  height_canvas);
             }
 
             // groundTypeRendered = Hash("GroundWater_" +
@@ -293,21 +302,23 @@ namespace forr {
             if (ground == hash("GroundWater")) {
               for (auto i = 0; i < tile->get_water_depth(); i++) {
                 get_singleton<image_renderer>().draw_image(
-                    "GroundWaterDepth", xCanvas, yCanvas, widthCanvas,
-                    heightCanvas);
+                    "GroundWaterDepth", x_canvas, y_canvas, width_canvas,
+                    height_canvas);
               }
             }
           }
           if (ground == hash("GroundGrass")) {
             get_singleton<image_renderer>().draw_image(
-                "GroundGrassLayer", xCanvas, yCanvas, widthCanvas,
-                heightCanvas);
+                "GroundGrassLayer", x_canvas, y_canvas, width_canvas,
+                height_canvas);
           } else if (ground == hash("GroundDirt")) {
             get_singleton<image_renderer>().draw_image(
-                "GroundDirtLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                "GroundDirtLayer", x_canvas, y_canvas, width_canvas,
+                height_canvas);
           } else if (ground == hash("GroundRock")) {
             get_singleton<image_renderer>().draw_image(
-                "GroundRockLayer", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                "GroundRockLayer", x_canvas, y_canvas, width_canvas,
+                height_canvas);
           }
           if (i < 2) {
             continue;
@@ -347,100 +358,101 @@ namespace forr {
           //         widthCanvas, heightCanvas);
           //     }
           // }
-          auto hoveredCoordinate{
+          auto hovered_coord{
               get_singleton<tile_hovering>().get_hovered_coordinate()};
-          if (xCoordinate == hoveredCoordinate.x &&
-              yCoordinate == hoveredCoordinate.y) {
+          if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
             get_singleton<image_renderer>().draw_image(
-                "HoveredTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                "HoveredTile", x_canvas, y_canvas, width_canvas, height_canvas);
           }
-          auto playerDestination{get_singleton<player>().get_destination()};
-          if (xCoordinate == playerDestination.x &&
-              yCoordinate == playerDestination.y) {
+          auto player_dest{get_singleton<player>().get_destination()};
+          if (x_coord == player_dest.x && y_coord == player_dest.y) {
             get_singleton<image_renderer>().draw_image(
-                "DestinationTile", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                "DestinationTile", x_canvas, y_canvas, width_canvas,
+                height_canvas);
           }
-          if (xCoordinate == playerPosition.x &&
-              yCoordinate == playerPosition.y) {
+          if (x_coord == player_position.x && y_coord == player_position.y) {
             get_singleton<image_renderer>().draw_image(
-                "Shadow", xCanvas, yCanvas, widthCanvas, heightCanvas);
+                "Shadow", x_canvas, y_canvas, width_canvas, height_canvas);
             get_singleton<image_renderer>().draw_image(
-                "Player", xCanvas, yCanvas, tileSize.w, tileSize.h);
+                "Player", x_canvas, y_canvas, tile_size.w, tile_size.h);
           }
-          auto objectsStack{tile ? tile->get_objects_stack() : nullptr};
-          if (objectsStack) {
-            for (const auto &object : objectsStack->get_objects()) {
+          auto objects_stack{tile ? tile->get_objects_stack() : nullptr};
+          if (objects_stack) {
+            for (const auto &object : objects_stack->get_objects()) {
               if (object->get_type() != hash("ObjectPinkFlower")) {
                 get_singleton<image_renderer>().draw_image(
-                    "Shadow", xCanvas, yCanvas, tileSize.w, tileSize.h);
+                    "Shadow", x_canvas, y_canvas, tile_size.w, tile_size.h);
               }
-              auto objectType{object->get_type()};
-              if (objectType == hash("ObjectFirTree") ||
-                  objectType == hash("ObjectBirchTree")) {
-                auto treeObject{std::static_pointer_cast<tree_object>(object)};
-                auto trunkParts{treeObject->get_trunk_parts()};
-                auto needleTypes{treeObject->get_needle_types()};
-                auto widthFactor{treeObject->get_width_factor()};
-                for (auto i = 0; i < trunkParts.size(); i++) {
-                  auto trunkPart{trunkParts.at(i)};
-                  auto needleType{needleTypes.at(i)};
-                  auto widthDecreaseFactor{0.5f +
-                                           (trunkParts.size() - i) /
-                                               c_float(trunkParts.size()) / 2};
-                  auto treeWidth{tileSize.w * widthFactor *
-                                 widthDecreaseFactor};
-                  auto trunkPartX{trunkPart.x};
-                  trunkPartX *= c_float(i) / trunkParts.size() *
-                                std::sin(get_ticks() / 700.0f +
-                                         xCoordinate * yCoordinate);
-                  auto trunkPartXCenter{xCanvas + tileSize.w / 2 +
-                                        trunkPartX * treeWidth};
-                  auto trunkPartYCenter{yCanvas + tileSize.h -
-                                        trunkPart.y * tileSize.h};
-                  auto trunkPartWidth{tileSize.w * 0.2f * widthDecreaseFactor};
-                  auto trunkPartHeight{tileSize.h * 0.2f};
-                  str trunkPartName;
-                  if (objectType == hash("ObjectFirTree")) {
-                    trunkPartName = "ObjectFirTreeTrunkPart";
-                  } else if (objectType == hash("ObjectBirchTree")) {
-                    trunkPartName = "ObjectBirchTreeTrunkPart";
+              auto object_type{object->get_type()};
+              if (object_type == hash("ObjectFirTree") ||
+                  object_type == hash("ObjectBirchTree")) {
+                auto tree_object{
+                    std::static_pointer_cast<forr::tree_object>(object)};
+                auto trunk_parts{tree_object->get_trunk_parts()};
+                auto needleTypes{tree_object->get_needle_types()};
+                auto width_factor{tree_object->get_width_factor()};
+                for (auto i = 0; i < trunk_parts.size(); i++) {
+                  auto trunk_part{trunk_parts.at(i)};
+                  auto needle_type{needleTypes.at(i)};
+                  auto width_decrease_factor{
+                      0.5f + (trunk_parts.size() - i) /
+                                 c_float(trunk_parts.size()) / 2};
+                  auto tree_width{tile_size.w * width_factor *
+                                  width_decrease_factor};
+                  auto trunk_part_x{trunk_part.x};
+                  trunk_part_x *=
+                      c_float(i) / trunk_parts.size() *
+                      std::sin(get_ticks() / 700.0f + x_coord * y_coord);
+                  auto trunk_part_x_center{x_canvas + tile_size.w / 2 +
+                                           trunk_part_x * tree_width};
+                  auto trunk_part_y_center{y_canvas + tile_size.h -
+                                           trunk_part.y * tile_size.h};
+                  auto trunk_part_width{tile_size.w * 0.2f *
+                                        width_decrease_factor};
+                  auto trunk_part_height{tile_size.h * 0.2f};
+                  str trunk_part_name;
+                  if (object_type == hash("ObjectFirTree")) {
+                    trunk_part_name = "ObjectFirTreeTrunkPart";
+                  } else if (object_type == hash("ObjectBirchTree")) {
+                    trunk_part_name = "ObjectBirchTreeTrunkPart";
                   }
                   get_singleton<image_renderer>().draw_image(
-                      trunkPartName, trunkPartXCenter - trunkPartWidth / 2,
-                      trunkPartYCenter - trunkPartHeight / 2, trunkPartWidth,
-                      trunkPartHeight);
-                  auto needleWidth{treeWidth};
-                  auto needleHeight{tileSize.h};
-                  if (needleType) {
+                      trunk_part_name,
+                      trunk_part_x_center - trunk_part_width / 2,
+                      trunk_part_y_center - trunk_part_height / 2,
+                      trunk_part_width, trunk_part_height);
+                  auto needle_width{tree_width};
+                  auto needle_height{tile_size.h};
+                  if (needle_type) {
                     get_singleton<image_renderer>().draw_image(
-                        needleType, trunkPartXCenter - needleWidth / 2,
-                        trunkPartYCenter - needleHeight / 2, needleWidth,
-                        needleHeight);
+                        needle_type, trunk_part_x_center - needle_width / 2,
+                        trunk_part_y_center - needle_height / 2, needle_width,
+                        needle_height);
                   }
                 }
                 continue;
               }
-              auto objectImageSize{
-                  get_singleton<image_bank>().get_image_size(objectType)};
-              auto objectWidth{objectImageSize.w / 60.0f * tileSize.w};
-              auto objectHeight{objectImageSize.h / 60.0f * tileSize.h};
+              auto object_image_size{
+                  get_singleton<image_bank>().get_image_size(object_type)};
+              auto object_width{object_image_size.w / 60.0f * tile_size.w};
+              auto object_height{object_image_size.h / 60.0f * tile_size.h};
               get_singleton<image_renderer>().draw_image(
-                  objectType, xCanvas + tileSize.w / 2 - objectWidth / 2,
-                  yCanvas + tileSize.h - objectHeight, objectWidth,
-                  objectHeight);
+                  object_type, x_canvas + tile_size.w / 2 - object_width / 2,
+                  y_canvas + tile_size.h - object_height, object_width,
+                  object_height);
             }
           }
           auto creature{tile ? tile->get_creature() : nullptr};
           if (creature) {
-            auto creatureType{creature->get_type()};
-            auto creatureImageSize{
-                get_singleton<image_bank>().get_image_size(creatureType)};
-            auto creatureWidth{creatureImageSize.w / 60.0f * tileSize.w};
-            auto creatureHeight{creatureImageSize.h / 60.0f * tileSize.h};
+            auto creature_type{creature->get_type()};
+            auto creature_image_size{
+                get_singleton<image_bank>().get_image_size(creature_type)};
+            auto creature_width{creature_image_size.w / 60.0f * tile_size.w};
+            auto creature_height{creature_image_size.h / 60.0f * tile_size.h};
             get_singleton<image_renderer>().draw_image(
-                creatureType, xCanvas + tileSize.w / 2 - creatureWidth / 2,
-                yCanvas + tileSize.h - creatureHeight, creatureWidth,
-                creatureHeight);
+                creature_type, x_canvas + tile_size.w / 2 - creature_width / 2,
+                y_canvas + tile_size.h - creature_height, creature_width,
+                creature_height);
           }
         }
       }

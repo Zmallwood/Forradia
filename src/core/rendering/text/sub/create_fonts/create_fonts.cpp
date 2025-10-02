@@ -7,13 +7,13 @@
 
 namespace forr {
   std::map<font_sizes, s_ptr<TTF_Font>>
-  create_fonts(vec<font_sizes> fontSizes, str_view relativeFontPath) {
-    std::map<font_sizes, s_ptr<TTF_Font>> fontsResult;
-    auto absoluteFontPath{str(SDL_GetBasePath()) + relativeFontPath.data()};
-    for (auto fontSize : fontSizes) {
-      auto newFont{create_font(absoluteFontPath, fontSize)};
-      fontsResult.insert({fontSize, newFont});
+  create_fonts(vec<font_sizes> font_sizes, str_view relative_font_path) {
+    std::map<forr::font_sizes, s_ptr<TTF_Font>> fonts_result;
+    auto absolute_font_path{str(SDL_GetBasePath()) + relative_font_path.data()};
+    for (auto font_size : font_sizes) {
+      auto new_font{create_font(absolute_font_path, font_size)};
+      fonts_result.insert({font_size, new_font});
     }
-    return fontsResult;
+    return fonts_result;
   }
 }

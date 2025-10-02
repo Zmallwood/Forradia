@@ -9,78 +9,77 @@
 #include "theme_0/theme_0_mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  void generate_single_lake(int minX, int minY, int maxX, int maxY,
+  void generate_single_lake(int min_x, int min_y, int max_x, int max_y,
                             int recursive) {
     if (recursive == 0) {
       return;
     }
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto scale{get_singleton<game_properties>().k_worldScalingFactor};
-    auto xCenter{minX + random_int(maxX - minX)};
-    auto yCenter{minY + random_int(maxY - minY)};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto scale{get_singleton<game_properties>().k_world_scaling_factor};
+    auto x_center{min_x + random_int(max_x - min_x)};
+    auto y_center{min_y + random_int(max_y - min_y)};
     auto radius{c_int(3 * scale + random_int(5 * scale))};
     for (auto r = radius; r >= 0; r--) {
-      for (auto y = yCenter - r; y <= yCenter + r; y++) {
-        for (auto x = xCenter - r; x <= xCenter + r; x++) {
-          auto dx{x - xCenter};
-          auto dy{y - yCenter};
+      for (auto y = y_center - r; y <= y_center + r; y++) {
+        for (auto x = x_center - r; x <= x_center + r; x++) {
+          auto dx{x - x_center};
+          auto dy{y - y_center};
           if (dx * dx + dy * dy <= r * r) {
-            auto tile{worldArea->get_tile(x, y)};
+            auto tile{world_area->get_tile(x, y)};
             if (tile) {
-              point N{x, y - 1};
-              point E{x + 1, y};
-              point S{x, y + 1};
-              point W{x - 1, y};
-              point NW{x - 1, y - 1};
-              point NE{x + 1, y - 1};
-              point SE{x + 1, y + 1};
-              point SW{x - 1, y + 1};
-              point NN{x, y - 2};
-              point WW{x - 2, y};
-              point EE{x + 2, y};
-              point SS{x, y + 2};
-              point NWNW{x - 2, y - 2};
-              point NENE{x + 2, y - 2};
-              point SESE{x + 2, y + 2};
-              point SWSW{x - 2, y + 2};
-              auto tileN{worldArea->get_tile(N)};
-              auto tileE{worldArea->get_tile(E)};
-              auto tileS{worldArea->get_tile(S)};
-              auto tileW{worldArea->get_tile(W)};
-              auto tileNW{worldArea->get_tile(NW)};
-              auto tileNE{worldArea->get_tile(NE)};
-              auto tileSE{worldArea->get_tile(SE)};
-              auto tileSW{worldArea->get_tile(SW)};
-              auto tileNN{worldArea->get_tile(NN)};
-              auto tileWW{worldArea->get_tile(WW)};
-              auto tileEE{worldArea->get_tile(EE)};
-              auto tileSS{worldArea->get_tile(SS)};
-              auto tileNWNW{worldArea->get_tile(NWNW)};
-              auto tileNENE{worldArea->get_tile(NENE)};
-              auto tileSESE{worldArea->get_tile(SESE)};
-              auto tileSWSW{worldArea->get_tile(SWSW)};
-              auto elevationN{tileN ? tileN->get_elevation() : 0};
-              auto elevationE{tileE ? tileE->get_elevation() : 0};
-              auto elevationS{tileS ? tileS->get_elevation() : 0};
-              auto elevationW{tileW ? tileW->get_elevation() : 0};
-              auto elevationNW{tileNW ? tileNW->get_elevation() : 0};
-              auto elevationNE{tileNE ? tileNE->get_elevation() : 0};
-              auto elevationSE{tileSE ? tileSE->get_elevation() : 0};
-              auto elevationSW{tileSW ? tileSW->get_elevation() : 0};
-              auto elevationNN{tileNN ? tileNN->get_elevation() : 0};
-              auto elevationWW{tileWW ? tileWW->get_elevation() : 0};
-              auto elevationEE{tileEE ? tileEE->get_elevation() : 0};
-              auto elevationSS{tileSS ? tileSS->get_elevation() : 0};
-              auto elevationNWNW{tileNWNW ? tileNWNW->get_elevation() : 0};
-              auto elevationNENE{tileNENE ? tileNENE->get_elevation() : 0};
-              auto elevationSESE{tileSESE ? tileSESE->get_elevation() : 0};
-              auto elevationSWSW{tileSWSW ? tileSWSW->get_elevation() : 0};
-              if (elevationN == 0 && elevationE == 0 && elevationS == 0 &&
-                  elevationW == 0 && elevationNW == 0 && elevationNE == 0 &&
-                  elevationSE == 0 && elevationSW == 0 && elevationNN == 0 &&
-                  elevationWW == 0 && elevationEE == 0 && elevationSS == 0 &&
-                  elevationNWNW == 0 && elevationNENE == 0 &&
-                  elevationSESE == 0 && elevationSWSW == 0) {
+              point n{x, y - 1};
+              point e{x + 1, y};
+              point s{x, y + 1};
+              point w{x - 1, y};
+              point nw{x - 1, y - 1};
+              point ne{x + 1, y - 1};
+              point se{x + 1, y + 1};
+              point sw{x - 1, y + 1};
+              point nn{x, y - 2};
+              point ww{x - 2, y};
+              point ee{x + 2, y};
+              point ss{x, y + 2};
+              point nwnw{x - 2, y - 2};
+              point nene{x + 2, y - 2};
+              point sese{x + 2, y + 2};
+              point swsw{x - 2, y + 2};
+              auto tile_n{world_area->get_tile(n)};
+              auto tile_e{world_area->get_tile(e)};
+              auto tile_s{world_area->get_tile(s)};
+              auto tile_w{world_area->get_tile(w)};
+              auto tile_nw{world_area->get_tile(nw)};
+              auto tile_ne{world_area->get_tile(ne)};
+              auto tile_se{world_area->get_tile(se)};
+              auto tile_sw{world_area->get_tile(sw)};
+              auto tile_nn{world_area->get_tile(nn)};
+              auto tile_ww{world_area->get_tile(ww)};
+              auto tile_ee{world_area->get_tile(ee)};
+              auto tile_ss{world_area->get_tile(ss)};
+              auto tile_nwnw{world_area->get_tile(nwnw)};
+              auto tile_nene{world_area->get_tile(nene)};
+              auto tile_sese{world_area->get_tile(sese)};
+              auto tile_swsw{world_area->get_tile(swsw)};
+              auto elev_n{tile_n ? tile_n->get_elevation() : 0};
+              auto elev_e{tile_e ? tile_e->get_elevation() : 0};
+              auto elev_s{tile_s ? tile_s->get_elevation() : 0};
+              auto elev_w{tile_w ? tile_w->get_elevation() : 0};
+              auto elev_nw{tile_nw ? tile_nw->get_elevation() : 0};
+              auto elev_ne{tile_ne ? tile_ne->get_elevation() : 0};
+              auto elev_se{tile_se ? tile_se->get_elevation() : 0};
+              auto elev_sw{tile_sw ? tile_sw->get_elevation() : 0};
+              auto elev_nn{tile_nn ? tile_nn->get_elevation() : 0};
+              auto elev_ww{tile_ww ? tile_ww->get_elevation() : 0};
+              auto elev_ee{tile_ee ? tile_ee->get_elevation() : 0};
+              auto elev_ss{tile_ss ? tile_ss->get_elevation() : 0};
+              auto elev_nwnw{tile_nwnw ? tile_nwnw->get_elevation() : 0};
+              auto elev_nene{tile_nene ? tile_nene->get_elevation() : 0};
+              auto elev_sese{tile_sese ? tile_sese->get_elevation() : 0};
+              auto elev_swsw{tile_swsw ? tile_swsw->get_elevation() : 0};
+              if (elev_n == 0 && elev_e == 0 && elev_s == 0 && elev_w == 0 &&
+                  elev_nw == 0 && elev_ne == 0 && elev_se == 0 &&
+                  elev_sw == 0 && elev_nn == 0 && elev_ww == 0 &&
+                  elev_ee == 0 && elev_ss == 0 && elev_nwnw == 0 &&
+                  elev_nene == 0 && elev_sese == 0 && elev_swsw == 0) {
                 tile->set_ground("GroundWater");
               }
               tile->set_water_depth(tile->get_water_depth() + 1);
@@ -89,15 +88,15 @@ namespace forr {
         }
       }
     }
-    generate_single_lake(xCenter - radius, yCenter - radius, xCenter + radius,
-                         yCenter + radius, recursive - 1);
+    generate_single_lake(x_center - radius, y_center - radius,
+                         x_center + radius, y_center + radius, recursive - 1);
   }
 
   void generate_lakes() {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto size{worldArea->get_size()};
-    auto numLakes{20 + random_int(5)};
-    for (auto i = 0; i < numLakes; i++) {
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto size{world_area->get_size()};
+    auto num_lakes{20 + random_int(5)};
+    for (auto i = 0; i < num_lakes; i++) {
       generate_single_lake(0, 0, size.w, size.h, 2 + random_int(5));
     }
   }

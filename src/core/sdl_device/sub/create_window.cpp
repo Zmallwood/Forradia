@@ -9,15 +9,15 @@ namespace forr {
   s_ptr<SDL_Window> create_window() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
-    auto windowResult{s_ptr<SDL_Window>(
+    auto window_result{s_ptr<SDL_Window>(
         SDL_CreateWindow(
-            get_singleton<game_properties>().k_gameWindowTitle.data(),
+            get_singleton<game_properties>().k_game_window_title.data(),
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660, 660, flags),
         sdl_deleter())};
-    if (!windowResult) {
+    if (!window_result) {
       print_line("Window could not be created. SDL Error: " +
                  str(SDL_GetError()));
     }
-    return windowResult;
+    return window_result;
   }
 }

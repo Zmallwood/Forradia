@@ -9,10 +9,10 @@ namespace forr {
 
   void gui_window::render_derived() const {
     gui_movable_panel::render_derived();
-    m_guiWindowTitleBar.render();
+    m_gui_window_title_bar.render();
   }
 
   rect_f gui_window::get_draggable_area() {
-    return m_guiWindowTitleBar.get_bounds();
+    return m_gui_window_title_bar.get_bounds();
   }
 }

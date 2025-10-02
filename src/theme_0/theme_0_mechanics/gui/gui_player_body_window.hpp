@@ -20,14 +20,14 @@ namespace forr {
     void initialize();
 
   private:
-    void select_body_part(body_part_types bodyPartType);
+    void select_body_part(body_part_types body_part_type);
 
     void update_body_part_information_labels();
 
-    body_part_types m_selectedBodyPart{body_part_types::None};
-    s_ptr<gui_label> m_labelBodyPartName;
-    s_ptr<gui_label> m_labelBodyPartStrength;
-    s_ptr<gui_label> m_labelBodyPartEnergy;
-    s_ptr<gui_label> m_labelBodyPartTemperature;
+    body_part_types m_selected_body_part{body_part_types::none};
+    s_ptr<gui_label> m_label_body_part_name;
+    s_ptr<gui_label> m_label_body_part_strength;
+    s_ptr<gui_label> m_label_body_part_energy;
+    s_ptr<gui_label> m_label_body_part_temperature;
   };
 }

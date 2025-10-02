@@ -10,11 +10,11 @@ namespace forr {
     auto bounds{get_bounds()};
     auto x{bounds.x};
     auto y{bounds.y};
-    if (m_centerAlign) {
+    if (m_center_align) {
       bounds.x += bounds.w / 2;
       bounds.y += bounds.h / 2;
     }
     get_singleton<text_renderer>().draw_string(
-        m_text, bounds.x, bounds.y, font_sizes::_20, m_centerAlign, m_color);
+        m_text, bounds.x, bounds.y, font_sizes::_20, m_center_align, m_color);
   }
 }

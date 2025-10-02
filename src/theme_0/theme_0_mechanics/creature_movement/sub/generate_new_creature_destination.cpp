@@ -9,14 +9,14 @@
 
 namespace forr {
   void generate_new_creature_destination(s_ptr<creature> creature) {
-    auto worldArea{get_singleton<world>().get_current_world_area()};
-    auto &creaturesMirrorRef{worldArea->get_creatures_mirror_ref()};
-    auto position{creaturesMirrorRef.at(creature)};
+    auto world_area{get_singleton<world>().get_current_world_area()};
+    auto &creatures_mirror_ref{world_area->get_creatures_mirror_ref()};
+    auto position{creatures_mirror_ref.at(creature)};
     auto destination{creature->get_destination()};
     if (destination.x == -1 && destination.y == -1) {
-      auto newDestinationX{position.x + random_int(11) - 5};
-      auto newDestinationY{position.y + random_int(11) - 5};
-      creature->set_destination({newDestinationX, newDestinationY});
+      auto new_destination_x{position.x + random_int(11) - 5};
+      auto new_destination_y{position.y + random_int(11) - 5};
+      creature->set_destination({new_destination_x, new_destination_y});
     }
   }
 }

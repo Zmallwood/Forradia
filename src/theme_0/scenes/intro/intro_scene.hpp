@@ -19,6 +19,6 @@ namespace forr {
     void render_derived() const override;
 
   private:
-    s_ptr<gui_component> m_startText;
+    s_ptr<gui_component> m_start_text;
   };
 }
