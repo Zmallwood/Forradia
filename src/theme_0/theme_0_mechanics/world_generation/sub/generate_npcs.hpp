@@ -5,15 +5,5 @@
 #pragma once
 
 namespace forr {
-  class npc {
-  public:
-    npc() { initialize(); }
 
-  private:
-    void initialize();
-
-    void generate_name();
-
-    str m_name;
-  };
 }
