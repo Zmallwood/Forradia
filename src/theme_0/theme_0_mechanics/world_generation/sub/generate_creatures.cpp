@@ -16,8 +16,8 @@ namespace forr {
     auto scale{get_singleton<game_properties>().k_worldScalingFactor};
     auto numRats{200 * scale + random_int(15 * scale)};
     for (auto i = 0; i < numRats; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && !tile->get_creature() &&
           tile->get_ground() != hash("GroundWater")) {

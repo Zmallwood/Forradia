@@ -29,8 +29,8 @@ namespace forr {
   void gui_button::render_derived() const {
     gui_panel::render_derived();
     auto bounds{get_bounds()};
-    get_singleton<text_renderer>().draw_string(
-        m_text, bounds.x + bounds.width / 2, bounds.y + bounds.height / 2,
-        font_sizes::_20, true);
+    get_singleton<text_renderer>().draw_string(m_text, bounds.x + bounds.w / 2,
+                                               bounds.y + bounds.h / 2,
+                                               font_sizes::_20, true);
   }
 }

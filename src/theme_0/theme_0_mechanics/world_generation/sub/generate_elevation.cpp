@@ -15,8 +15,8 @@ namespace forr {
     auto scale{get_singleton<game_properties>().k_worldScalingFactor};
     auto numHills{140 + random_int(30)};
     for (auto i = 0; i < numHills; i++) {
-      auto xCenter{random_int(size.width)};
-      auto yCenter{random_int(size.height)};
+      auto xCenter{random_int(size.w)};
+      auto yCenter{random_int(size.h)};
       auto maxRadius{5 * scale + random_int(5 * scale)};
       for (auto r = maxRadius; r >= 0; r--) {
         for (auto y = yCenter - r; y <= yCenter + r; y++) {

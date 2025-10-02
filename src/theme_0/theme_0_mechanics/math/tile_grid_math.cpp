@@ -16,7 +16,7 @@ namespace forr {
 
   size calculate_grid_size() {
     auto tileSize{calculate_tile_size()};
-    auto numGridColumns{c_int(1.0f / tileSize.width) + 1};
+    auto numGridColumns{c_int(1.0f / tileSize.w) + 1};
     auto numGridRows{get_singleton<game_properties>().k_numGridRows};
     return {numGridColumns, numGridRows};
   }

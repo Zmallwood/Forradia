@@ -16,11 +16,11 @@ namespace forr {
                                                  y);
       y += k_lineHeight;
     }
-    auto separatorRect{rect_f{bounds.x, bounds.y + bounds.height - k_lineHeight,
-                              bounds.width, k_separatorHeight}};
-    get_singleton<image_renderer>().draw_image(
-        "Black", separatorRect.x, separatorRect.y, separatorRect.width,
-        separatorRect.height);
+    auto separatorRect{rect_f{bounds.x, bounds.y + bounds.h - k_lineHeight,
+                              bounds.h, k_separatorHeight}};
+    get_singleton<image_renderer>().draw_image("Black", separatorRect.x,
+                                               separatorRect.y, separatorRect.w,
+                                               separatorRect.h);
   }
 
   void gui_text_console::print(str_view text) {

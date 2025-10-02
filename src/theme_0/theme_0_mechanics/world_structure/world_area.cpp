@@ -9,11 +9,11 @@
 namespace forr {
   void world_area::initialize() {
     auto size{game_properties::k_worldAreaSize};
-    size.width *= get_singleton<game_properties>().k_worldScalingFactor;
-    size.height *= get_singleton<game_properties>().k_worldScalingFactor;
-    for (auto x = 0; x < size.width; x++) {
+    size.w *= get_singleton<game_properties>().k_worldScalingFactor;
+    size.h *= get_singleton<game_properties>().k_worldScalingFactor;
+    for (auto x = 0; x < size.w; x++) {
       m_tiles.push_back(vec<std::shared_ptr<tile>>());
-      for (auto y = 0; y < size.height; y++) {
+      for (auto y = 0; y < size.h; y++) {
         m_tiles[x].push_back(std::make_shared<tile>());
       }
     }
@@ -30,7 +30,7 @@ namespace forr {
 
   bool world_area::is_valid_coordinate(int x, int y) const {
     auto size{get_size()};
-    return x >= 0 && y >= 0 && x < size.width && y < size.height;
+    return x >= 0 && y >= 0 && x < size.w && y < size.h;
   }
 
   s_ptr<tile> world_area::get_tile(int x, int y) const {

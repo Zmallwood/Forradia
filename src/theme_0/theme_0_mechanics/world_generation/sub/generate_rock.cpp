@@ -15,8 +15,8 @@ namespace forr {
     auto scale{get_singleton<game_properties>().k_worldScalingFactor};
     auto numRockAreas{30 + random_int(10)};
     for (auto i = 0; i < numRockAreas; i++) {
-      auto xCenter{random_int(size.width)};
-      auto yCenter{random_int(size.height)};
+      auto xCenter{random_int(size.w)};
+      auto yCenter{random_int(size.h)};
       auto radius{3 * scale + random_int(10 * scale)};
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {

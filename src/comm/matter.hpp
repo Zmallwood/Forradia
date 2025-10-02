@@ -13,10 +13,10 @@ namespace forr {
     /**
      * \brief Equality operator between two Points.
      *
-     * \param other Other Point to check equality against.
+     * \param p Other Point to check equality against.
      * \return True if the two points are equal, otherwise false.
      */
-    bool operator==(const point &other) const;
+    bool operator==(const point &p) const;
 
     int x{0};
     int y{0};
@@ -30,18 +30,18 @@ namespace forr {
     /**
      * \brief Summing operator for the two points.
      *
-     * \param other The other PointF to add to this point.
+     * \param p The other PointF to add to this point.
      * \return The resulting PointF with the dimensions added separately.
      */
-    point_f operator+(const point_f &other) const;
+    point_f operator+(const point_f &p) const;
 
     /**
      * \brief Subtraction operator for the two points.
      *
-     * \param other The other PointF to subtract from this point.
+     * \param p The other PointF to subtract from this point.
      * \return The resulting PointF with the dimensions subtracted separetely.
      */
-    point_f operator-(const point_f &other) const;
+    point_f operator-(const point_f &p) const;
 
     float x{0.0f}; ///< The x dimension.
     float y{0.0f}; ///< The y dimension.
@@ -52,8 +52,8 @@ namespace forr {
    */
   class size {
   public:
-    int width{0};  ///< Width.
-    int height{0}; /// Height.
+    int w{0}; ///< Width.
+    int h{0}; /// Height.
   };
 
   /**
@@ -61,8 +61,8 @@ namespace forr {
    */
   class size_f {
   public:
-    float width{0.0f};  ///< Width.
-    float height{0.0f}; ///< Height.
+    float w{0.0f}; ///< Width.
+    float h{0.0f}; ///< Height.
   };
 
   /**
@@ -73,10 +73,10 @@ namespace forr {
     /**
      * \brief Check if this rectangle contains a certian point.
      *
-     * \param point Point to check if it is contained in this rectangle.
+     * \param p Point to check if it is contained in this rectangle.
      * \return True if the Point is within this rectangle, otherwise false.
      */
-    bool contains(point_f point);
+    bool contains(point_f p);
 
     /**
      * \brief Returns only the position of this rectangle.
@@ -89,14 +89,14 @@ namespace forr {
      * \brief Adds an offset to this rectangle, with the dimensions altered
      * separately.
      *
-     * \param offset The offset to add.
+     * \param offs The offset to add.
      */
-    void offset(point_f offset);
+    void offset(point_f offs);
 
-    float x{0.0f};      ///< The x coordinate.
-    float y{0.0f};      ///< The y coordinate.
-    float width{0.0f};  ///< The width, in the x dimension.
-    float height{0.0f}; ///< The height, in the y dimension.
+    float x{0.0f}; ///< The x coordinate.
+    float y{0.0f}; ///< The y coordinate.
+    float w{0.0f}; ///< The width, in the x dimension.
+    float h{0.0f}; ///< The height, in the y dimension.
   };
 
   /**
@@ -121,16 +121,16 @@ namespace forr {
    * \brief Contains a palette of colors.
    */
   namespace colors {
-    constexpr color Black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
+    constexpr color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 
-    constexpr color Wheat{1.0f, 1.0f, 0.65f, 1.0f}; ///< Wheat color.
+    constexpr color wheat{1.0f, 1.0f, 0.65f, 1.0f}; ///< Wheat color.
 
-    constexpr color WheatTransparent{1.0f, 1.0f, 0.65f,
-                                     0.7f}; ///< Transparent wheat color.
+    constexpr color wheat_transp{1.0f, 1.0f, 0.65f,
+                                 0.7f}; ///< Transparent wheat color.
 
-    constexpr color Yellow{1.0f, 1.0f, 0.0f, 1.0f}; ///< Yellow color.
+    constexpr color yellow{1.0f, 1.0f, 0.0f, 1.0f}; ///< Yellow color.
 
-    constexpr color YellowTransparent{1.0f, 1.0f, 0.0f,
-                                      0.7f}; ///< Transparent yellow color.
+    constexpr color yellow_transp{1.0f, 1.0f, 0.0f,
+                                  0.7f}; ///< Transparent yellow color.
   }
 }

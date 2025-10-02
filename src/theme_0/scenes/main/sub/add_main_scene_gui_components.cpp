@@ -4,10 +4,10 @@
  */
 #include "add_main_scene_gui_components.hpp"
 #include "core/gui_core/gui.hpp"
+#include "core/gui_core/gui_button.hpp"
 #include "core/gui_core/gui_fps_panel.hpp"
 #include "core/gui_core/gui_text_console.hpp"
 #include "core/gui_core/windows/gui_window.hpp"
-#include "sub/add_main_scene_gui_buttons.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_inventory_window.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_player_body_window.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_player_status_panel.hpp"
@@ -18,7 +18,21 @@ namespace forr {
     mainSceneGUI->add_child_component(
         std::make_shared<gui_player_status_panel>());
     mainSceneGUI->add_child_component(get_singleton_ptr<gui_text_console>());
-    add_main_scene_gui_buttons(mainSceneGUI);
+    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+        0.78f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
+        [] { get_singleton<gui_player_body_window>().toggle_visibility(); },
+        "GUIButtonPlayerBodyBackground",
+        "GUIButtonPlayerBodyHoveredBackground"));
+
+    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+        0.85f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
+        [] { get_singleton<gui_inventory_window>().toggle_visibility(); },
+        "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
+
+    mainSceneGUI->add_child_component(std::make_shared<gui_button>(
+        0.92f, 0.9f, 0.05f, convert_width_to_height(0.05f), "",
+        [] { get_singleton<gui_system_menu>().toggle_visibility(); },
+        "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
     mainSceneGUI->add_child_component(get_singleton_ptr<gui_system_menu>());
     mainSceneGUI->add_child_component(
         get_singleton_ptr<gui_inventory_window>());

@@ -12,10 +12,10 @@ namespace forr {
     auto parentWindowBounds{m_parentWindow.get_bounds()};
     get_singleton<image_renderer>().draw_image(
         "GUIWindowTitleBarBackground", parentWindowBounds.x,
-        parentWindowBounds.y, parentWindowBounds.width, k_height);
+        parentWindowBounds.y, parentWindowBounds.w, k_height);
     get_singleton<text_renderer>().draw_string(
         k_windowTitleText, parentWindowBounds.x + 0.01f,
-        parentWindowBounds.y + 0.01f, font_sizes::_20, false, colors::Yellow);
+        parentWindowBounds.y + 0.01f, font_sizes::_20, false, colors::yellow);
   }
 
   rect_f gui_window_title_bar::get_bounds() const {
@@ -23,8 +23,8 @@ namespace forr {
     auto parentWindowBounds{m_parentWindow.get_bounds()};
     boundsResult.x = parentWindowBounds.x;
     boundsResult.y = parentWindowBounds.y;
-    boundsResult.width = parentWindowBounds.width;
-    boundsResult.height = k_height;
+    boundsResult.w = parentWindowBounds.w;
+    boundsResult.h = k_height;
     return boundsResult;
   }
 }

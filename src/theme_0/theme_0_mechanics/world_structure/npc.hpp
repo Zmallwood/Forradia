@@ -5,7 +5,5 @@
 #pragma once
 
 namespace forr {
-  class gui;
 
-  void add_main_scene_inventory_window_button(s_ptr<gui> mainSceneGUI);
 }

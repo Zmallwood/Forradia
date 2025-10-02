@@ -8,8 +8,7 @@ namespace forr {
   size get_image_size(s_ptr<SDL_Texture> texture) {
     size size;
     if (texture) {
-      SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.width,
-                       &size.height);
+      SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.w, &size.h);
     }
     return size;
   }

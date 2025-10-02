@@ -21,11 +21,6 @@
 
 #include <fmt/core.h>
 
-#include "core/common/aliases.hpp"
-
-#include "core/common/matter.hpp"
-
-#include "core/common/constants.hpp"
-#include "core/common/singleton.hpp"
-#include "core/common/sdl_deleter.hpp"
-#include "core/common/utilities.hpp"
+#include "comm/convenience.hpp"
+#include "comm/matter.hpp"
+#include "comm/utils.hpp"

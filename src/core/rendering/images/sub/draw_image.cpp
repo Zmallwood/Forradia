@@ -11,10 +11,10 @@ namespace forr {
                   float height) {
     auto image{get_singleton<image_bank>().get_image(imageNameHash)};
     auto canvasSize{get_canvas_size()};
-    auto xPx{c_int(x * canvasSize.width)};
-    auto yPx{c_int(y * canvasSize.height)};
-    auto widthPx{c_int(width * canvasSize.width)};
-    auto heightPx{c_int(height * canvasSize.height)};
+    auto xPx{c_int(x * canvasSize.w)};
+    auto yPx{c_int(y * canvasSize.h)};
+    auto widthPx{c_int(width * canvasSize.w)};
+    auto heightPx{c_int(height * canvasSize.h)};
     SDL_Rect sdlRectangle{xPx, yPx, widthPx, heightPx};
     SDL_RenderCopy(get_singleton<sdl_device>().get_renderer().get(),
                    image.get(), nullptr, &sdlRectangle);

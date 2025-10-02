@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "utilities.hpp"
+#include "utils.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
 namespace forr {
@@ -11,13 +11,13 @@ namespace forr {
   size get_canvas_size() {
     size canvasSize;
     SDL_GetWindowSize(get_singleton<sdl_device>().get_window().get(),
-                      &canvasSize.width, &canvasSize.height);
+                      &canvasSize.w, &canvasSize.h);
     return canvasSize;
   }
 
   float calculate_aspect_ratio() {
     auto canvasSize{get_canvas_size()};
-    auto aspectRatio{c_float(canvasSize.width) / canvasSize.height};
+    auto aspectRatio{c_float(canvasSize.w) / canvasSize.h};
     return aspectRatio;
   }
 
@@ -46,12 +46,12 @@ namespace forr {
     int yPx;
     SDL_GetMouseState(&xPx, &yPx);
     auto canvasSize{get_canvas_size()};
-    return {c_float(xPx) / canvasSize.width, c_float(yPx) / canvasSize.height};
+    return {c_float(xPx) / canvasSize.w, c_float(yPx) / canvasSize.h};
   }
 
   float invert_movement_speed(float number) {
     if (number) {
-      return k_oneSecondMillis / number;
+      return k_one_second_millis / number;
     } else {
       return 0.0f;
     }

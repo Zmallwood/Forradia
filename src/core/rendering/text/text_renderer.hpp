@@ -15,7 +15,7 @@ namespace forr {
     void draw_string(str_view text, float x, float y,
                      font_sizes fontSize = font_sizes::_20,
                      bool centerAlign = false,
-                     color textColor = colors::WheatTransparent) const;
+                     color textColor = colors::wheat_transp) const;
 
   private:
     void initialize();

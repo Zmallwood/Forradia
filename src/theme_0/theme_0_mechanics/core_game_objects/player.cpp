@@ -14,10 +14,10 @@ namespace forr {
   void player::move_to_suitable_position() {
     auto worldArea{get_singleton<world>().get_current_world_area()};
     auto size{worldArea->get_size()};
-    m_position = {size.width / 2, size.height / 2};
+    m_position = {size.w / 2, size.h / 2};
     while (worldArea->get_tile(m_position)->get_ground() ==
            hash("GroundWater")) {
-      m_position = {random_int(size.width), random_int(size.height)};
+      m_position = {random_int(size.w), random_int(size.h)};
     }
   }
 

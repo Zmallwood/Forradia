@@ -98,7 +98,7 @@ namespace forr {
     auto size{worldArea->get_size()};
     auto numLakes{20 + random_int(5)};
     for (auto i = 0; i < numLakes; i++) {
-      generate_single_lake(0, 0, size.width, size.height, 2 + random_int(5));
+      generate_single_lake(0, 0, size.w, size.h, 2 + random_int(5));
     }
   }
 }

@@ -16,8 +16,8 @@ namespace forr {
     auto scale{get_singleton<game_properties>().k_worldScalingFactor};
     auto numFirTrees{1000 * scale + random_int(50)};
     for (auto i = 0; i < numFirTrees; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -27,8 +27,8 @@ namespace forr {
     }
     auto numBirchTrees{1000 * scale + random_int(50)};
     for (auto i = 0; i < numBirchTrees; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -38,8 +38,8 @@ namespace forr {
     }
     auto numBush1s{400 * scale + random_int(100)};
     for (auto i = 0; i < numBush1s; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -49,8 +49,8 @@ namespace forr {
     }
     auto numBush2s{400 * scale + random_int(100)};
     for (auto i = 0; i < numBush2s; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -60,8 +60,8 @@ namespace forr {
     }
     auto numPinkFlowers{400 * scale + random_int(100)};
     for (auto i = 0; i < numPinkFlowers; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -71,8 +71,8 @@ namespace forr {
     }
     auto numTallGrasses{400 * scale + random_int(100)};
     for (auto i = 0; i < numTallGrasses; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_ground() != hash("GroundWater") &&
           tile->get_ground() != hash("GroundRock")) {
@@ -82,8 +82,8 @@ namespace forr {
     }
     auto numStoneBoulders{200 * scale + random_int(100)};
     for (auto i = 0; i < numStoneBoulders; i++) {
-      auto x{random_int(size.width)};
-      auto y{random_int(size.height)};
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
       auto tile{worldArea->get_tile(x, y)};
       if (tile && tile->get_water_depth() < 4) {
         tile->get_objects_stack()->clear_objects();

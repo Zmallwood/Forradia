@@ -15,8 +15,8 @@ namespace forr {
     auto scale{get_singleton<game_properties>().k_worldScalingFactor};
     auto numRivers{20 * scale + random_int(5 * scale)};
     for (auto i = 0; i < numRivers; i++) {
-      auto x{c_float(random_int(size.width))};
-      auto y{c_float(random_int(size.height))};
+      auto x{c_float(random_int(size.w))};
+      auto y{c_float(random_int(size.h))};
       auto startAngle{random_int(360)};
       auto length{45 + random_int(20)};
       auto prevXCoordinate{-1};

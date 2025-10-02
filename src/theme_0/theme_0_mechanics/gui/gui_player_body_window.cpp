@@ -46,7 +46,7 @@ namespace forr {
     add_child_component(legsImageButton);
     m_labelBodyPartName = std::make_shared<gui_label>(
         0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
-        colors::YellowTransparent);
+        colors::yellow_transp);
     m_labelBodyPartStrength = std::make_shared<gui_label>(
         0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
     m_labelBodyPartEnergy = std::make_shared<gui_label>(

@@ -12,7 +12,7 @@ namespace forr {
     auto imageNameHash{hash(imageName)};
     auto imageSize{get_singleton<image_bank>().get_image_size(imageNameHash)};
     auto canvasAspectRatio{calculate_aspect_ratio()};
-    auto imageAspectRatio{c_float(imageSize.width) / imageSize.height};
+    auto imageAspectRatio{c_float(imageSize.w) / imageSize.h};
     auto height{width / imageAspectRatio * canvasAspectRatio};
     draw_image(hash(imageName), x, y, width, height);
   }
