@@ -21,6 +21,4 @@
 
 #include <fmt/core.h>
 
-#include "comm/convenience.hpp"
-#include "comm/matter.hpp"
-#include "comm/utils.hpp"
+#include "comm.hpp"
