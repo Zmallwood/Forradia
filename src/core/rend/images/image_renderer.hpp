@@ -6,7 +6,7 @@
 
 namespace forr {
   class image_renderer {
-  public:
+   public:
     void draw_image(str_view image_name, float x, float y, float width,
                     float height) const;
 

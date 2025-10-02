@@ -8,7 +8,7 @@ namespace forr {
   class object;
 
   class objects_stack {
-  public:
+   public:
     void clear_objects();
 
     void add_object(str_view object_type_name);
@@ -19,7 +19,7 @@ namespace forr {
 
     auto get_objects() const { return m_objects; }
 
-  private:
+   private:
     vec<s_ptr<object>> m_objects;
   };
 }

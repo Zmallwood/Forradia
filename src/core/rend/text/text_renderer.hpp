@@ -9,7 +9,7 @@
 
 namespace forr {
   class text_renderer {
-  public:
+   public:
     text_renderer() { initialize(); }
 
     void draw_string(str_view text, float x, float y,
@@ -17,7 +17,7 @@ namespace forr {
                      bool center_align = false,
                      color text_color = colors::wheat_transp) const;
 
-  private:
+   private:
     void initialize();
 
     void add_fonts();

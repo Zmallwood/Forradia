@@ -6,7 +6,7 @@
 
 namespace forr {
   class gui_component {
-  public:
+   public:
     gui_component(float x, float y, float width, float height)
         : m_bounds({x, y, width, height}) {}
 
@@ -26,14 +26,14 @@ namespace forr {
       m_parent_component = value;
     }
 
-  protected:
+   protected:
     virtual void update_derived() {}
 
     virtual void render_derived() const {}
 
     void set_position(point_f new_position);
 
-  private:
+   private:
     rect_f m_bounds;
     vec<s_ptr<gui_component>> m_child_components;
     bool m_visible{true};

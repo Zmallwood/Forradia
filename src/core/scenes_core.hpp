@@ -8,7 +8,7 @@ namespace forr {
   class gui;
 
   class i_scene {
-  public:
+   public:
     void initialize();
 
     void update();
@@ -17,7 +17,7 @@ namespace forr {
 
     void on_enter();
 
-  protected:
+   protected:
     virtual void initialize_derived() {}
 
     virtual void on_enter_derived() {}
@@ -28,12 +28,12 @@ namespace forr {
 
     auto get_gui() const { return m_gui; }
 
-  private:
+   private:
     s_ptr<gui> m_gui;
   };
 
   class scene_manager {
-  public:
+   public:
     void add_scene(str_view scene_name, i_scene &scene);
 
     void go_to_scene(str_view scene_name);
@@ -42,7 +42,7 @@ namespace forr {
 
     void render_current_scene() const;
 
-  private:
+   private:
     std::map<int, i_scene &> m_scenes;
     int m_current_scene{0};
   };

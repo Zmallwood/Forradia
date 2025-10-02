@@ -6,7 +6,7 @@
 
 namespace forr {
   class game_properties {
-  public:
+   public:
     static constexpr str k_game_window_title{"Forradia"};
     static constexpr color k_clear_color{colors::black};
     static constexpr int k_num_grid_rows{15};

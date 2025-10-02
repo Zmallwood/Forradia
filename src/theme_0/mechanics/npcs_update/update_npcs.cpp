@@ -3,6 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_npcs.hpp"
+#include "core/gui/gui_text_console.hpp"
 #include "theme_0/mechanics/world_structure/npc.hpp"
 #include "theme_0/mechanics/world_structure/tile.hpp"
 #include "theme_0/mechanics/world_structure/world.hpp"
@@ -16,6 +17,19 @@ namespace forr {
     for (auto it = npcs_mirror_ref.begin(); it != npcs_mirror_ref.end();) {
       auto npc{it->first};
       auto position{it->second};
+
+      if (now > npc->get_ticks_next_spontaneous_speech()) {
+        auto name{npc->get_name()};
+        if (random_int(20) == 0) {
+          get_singleton<gui_text_console>().print(
+              name + ": Buying blueberries, one gold each.");
+        } else {
+          get_singleton<gui_text_console>().print(name + ": Hello all!");
+        }
+        npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_second_millis +
+                                               (6000 * k_one_second_millis));
+      }
+
       if (now < npc->get_ticks_last_move() +
                     invert_movement_speed(npc->get_movement_speed())) {
         ++it;

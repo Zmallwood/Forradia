@@ -13,7 +13,7 @@ namespace forr {
 
   void engine::run() {
     randomize();
-    get_singleton<sdl_device>(); 
+    get_singleton<sdl_device>();
     while (m_running) {
       get_singleton<keyboard_input>().reset();
       get_singleton<mouse_input>().reset();

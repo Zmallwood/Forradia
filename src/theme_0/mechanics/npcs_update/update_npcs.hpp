@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-    void update_npcs();
+  void update_npcs();
 }

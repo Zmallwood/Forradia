@@ -52,7 +52,7 @@ namespace forr {
    *        which handles automaticallyfreeing up resources at object deletion.
    */
   class sdl_deleter {
-  public:
+   public:
     /**
      * \brief Operator overloading for SDL_Window objects.
      *
@@ -96,7 +96,7 @@ namespace forr {
    * \brief Point in 2D space, using dimensions of int type.
    */
   class point {
-  public:
+   public:
     /**
      * \brief Equality operator between two Points.
      *
@@ -113,7 +113,7 @@ namespace forr {
    * \brief Point in 2D space using dimensions of float type.
    */
   class point_f {
-  public:
+   public:
     /**
      * \brief Summing operator for the two points.
      *
@@ -138,7 +138,7 @@ namespace forr {
    * \brief Size in 2D space, with the dimensions as int values.
    */
   class size {
-  public:
+   public:
     int w{0}; ///< Width.
     int h{0}; /// Height.
   };
@@ -147,7 +147,7 @@ namespace forr {
    * \brief Size in 2D space with dimensions of float values.
    */
   class size_f {
-  public:
+   public:
     float w{0.0f}; ///< Width.
     float h{0.0f}; ///< Height.
   };
@@ -156,7 +156,7 @@ namespace forr {
    * \brief A rectangle in 2D space using dimensions of float type.
    */
   class rect_f {
-  public:
+   public:
     /**
      * \brief Check if this rectangle contains a certian point.
      *
@@ -190,7 +190,7 @@ namespace forr {
    * \brief A RGBA color with components defined with float values.
    */
   class color {
-  public:
+   public:
     /**
      * \brief Convert this color to a corresponding SDL_Color object.
      *

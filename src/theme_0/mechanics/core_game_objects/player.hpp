@@ -7,7 +7,7 @@
 
 namespace forr {
   class player {
-  public:
+   public:
     player() { initialize(); }
 
     void move_north();
@@ -36,7 +36,7 @@ namespace forr {
 
     auto get_money() const { return m_money; }
 
-  private:
+   private:
     void initialize();
 
     void move_to_suitable_position();

@@ -8,12 +8,12 @@ namespace forr {
   class world_area;
 
   class world {
-  public:
+   public:
     world() { initialize(); }
 
     auto get_current_world_area() const { return m_current_world_area; }
 
-  private:
+   private:
     void initialize();
 
     s_ptr<world_area> m_current_world_area;

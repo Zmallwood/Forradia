@@ -10,7 +10,7 @@ namespace forr {
   class npc;
 
   class world_area {
-  public:
+   public:
     world_area() { initialize(); }
 
     size get_size() const;
@@ -25,7 +25,7 @@ namespace forr {
 
     auto &get_npcs_mirror_ref() { return m_npcs_mirror; }
 
-  private:
+   private:
     void initialize();
 
     vec<vec<s_ptr<tile>>> m_tiles;

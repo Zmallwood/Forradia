@@ -6,7 +6,7 @@
 
 namespace forr {
   class creature {
-  public:
+   public:
     creature(str_view type_name) : m_type{hash(type_name)} { initialize(); }
 
     auto get_type() const { return m_type; }
@@ -21,7 +21,7 @@ namespace forr {
 
     void set_destination(point value) { m_destination = value; }
 
-  private:
+   private:
     void initialize();
 
     int m_type{0};

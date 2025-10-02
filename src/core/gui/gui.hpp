@@ -7,7 +7,7 @@
 
 namespace forr {
   class gui : public gui_component {
-  public:
+   public:
     gui() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) {}
   };
 }

@@ -6,12 +6,12 @@
 
 namespace forr {
   class tile_hovering {
-  public:
+   public:
     void update();
 
     auto get_hovered_coordinate() const { return m_hovered_coordinate; }
 
-  private:
+   private:
     point m_hovered_coordinate{-1, -1};
   };
 }

@@ -7,7 +7,7 @@
 
 namespace forr {
   class gui_label : public gui_component {
-  public:
+   public:
     gui_label(float x, float y, float width, float height, str_view text = "",
               bool center_align = false, color color = colors::wheat_transp)
         : gui_component(x, y, width, height), m_text(text),
@@ -15,10 +15,10 @@ namespace forr {
 
     void set_text(str_view value) { m_text = value; }
 
-  protected:
+   protected:
     virtual void render_derived() const override;
 
-  private:
+   private:
     str m_text;
     bool m_center_align{false};
     color m_color;

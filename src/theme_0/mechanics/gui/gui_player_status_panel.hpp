@@ -7,10 +7,10 @@
 
 namespace forr {
   class gui_player_status_panel : public gui_panel {
-  public:
+   public:
     gui_player_status_panel() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
-  protected:
+   protected:
     virtual void render_derived() const override;
   };
 }

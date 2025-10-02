@@ -11,7 +11,7 @@ namespace forr {
   class npc;
 
   class tile {
-  public:
+   public:
     tile() { initialize(); }
 
     void set_ground(str_view ground_name);
@@ -48,7 +48,7 @@ namespace forr {
       m_river_direction_2 = value;
     }
 
-  private:
+   private:
     void initialize();
 
     int m_ground{0};

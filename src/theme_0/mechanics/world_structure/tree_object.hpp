@@ -7,7 +7,7 @@
 
 namespace forr {
   class tree_object : public object {
-  public:
+   public:
     tree_object(str_view object_type_name) : object(object_type_name) {
       initialize(object_type_name);
     }
@@ -18,7 +18,7 @@ namespace forr {
 
     auto get_width_factor() const { return m_width_factor; }
 
-  private:
+   private:
     void initialize(str_view object_type_name);
 
     vec<point_f> m_trunk_parts;

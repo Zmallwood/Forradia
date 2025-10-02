@@ -10,8 +10,14 @@ namespace forr {
   void gui_text_console::render_derived() const {
     gui_panel::render_derived();
     auto bounds{get_bounds()};
+    auto max_num_lines{c_int(bounds.h / k_line_height - 1)};
     auto y{bounds.y + k_margin};
-    for (auto &text_line : m_text_lines) {
+    for (auto i = 0; i < max_num_lines; i++) {
+      auto idx{m_text_lines.size() - max_num_lines + i};
+      if (idx < 0 || idx >= m_text_lines.size()) {
+        continue;
+      }
+      auto text_line = m_text_lines.at(idx);
       get_singleton<text_renderer>().draw_string(text_line, bounds.x + k_margin,
                                                  y);
       y += k_line_height;

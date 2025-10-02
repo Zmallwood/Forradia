@@ -8,10 +8,10 @@
 #include "sub/generate_elevation.hpp"
 #include "sub/generate_grass.hpp"
 #include "sub/generate_lakes.hpp"
+#include "sub/generate_npcs.hpp"
 #include "sub/generate_objects.hpp"
 #include "sub/generate_rivers.hpp"
 #include "sub/generate_rock.hpp"
-#include "sub/generate_npcs.hpp"
 
 namespace forr {
   void generate_new_world() {

@@ -7,11 +7,11 @@
 
 namespace forr {
   class gui_movable_panel : public gui_panel {
-  public:
+   public:
     gui_movable_panel(float x, float y, float width, float height)
         : gui_panel(x, y, width, height) {}
 
-  protected:
+   protected:
     void update_derived() override;
 
     void start_moving();
@@ -28,7 +28,7 @@ namespace forr {
       return m_move_start_mouse_position;
     }
 
-  private:
+   private:
     bool m_is_being_moved{false};
     point_f m_move_start_position{-1, -1};
     point_f m_move_start_mouse_position{-1, -1};

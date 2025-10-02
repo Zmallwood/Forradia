@@ -7,7 +7,7 @@
 
 namespace forr {
   class gui_text_console : public gui_panel {
-  public:
+   public:
     gui_text_console()
         : gui_panel(0.0f, 0.8f, 0.4f, 0.2f,
                     k_default_background_image_derived) {}
@@ -16,7 +16,7 @@ namespace forr {
 
     void print(str_view text);
 
-  private:
+   private:
     constexpr static str_view k_default_background_image_derived{
         "GUITextConsoleBackground"};
     inline static const float k_line_height{0.025f};

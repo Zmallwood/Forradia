@@ -6,12 +6,12 @@
 
 namespace forr {
   class object {
-  public:
+   public:
     object(str_view object_type_name) : m_type(hash(object_type_name)) {}
 
     auto get_type() const { return m_type; }
 
-  private:
+   private:
     int m_type{0};
   };
 }

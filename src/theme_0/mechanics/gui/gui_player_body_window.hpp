@@ -10,16 +10,16 @@ namespace forr {
   class gui_label;
 
   class gui_player_body_window : public gui_window {
-  public:
+   public:
     gui_player_body_window()
         : gui_window(0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
       initialize();
     }
 
-  protected:
+   protected:
     void initialize();
 
-  private:
+   private:
     void select_body_part(body_part_types body_part_type);
 
     void update_body_part_information_labels();

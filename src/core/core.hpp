@@ -6,24 +6,24 @@
 
 namespace forr {
   class game {
-  public:
+   public:
     void start() const;
   };
 
   class engine {
-  public:
+   public:
     void run();
 
     void stop();
 
-  private:
+   private:
     void poll_events();
 
     bool m_running{true};
   };
 
   class sdl_device {
-  public:
+   public:
     sdl_device() { initialize(); }
 
     void clear_canvas() const;
@@ -34,7 +34,7 @@ namespace forr {
 
     auto get_renderer() const { return m_renderer; }
 
-  private:
+   private:
     void initialize();
 
     s_ptr<SDL_Window> create_window();
@@ -46,12 +46,12 @@ namespace forr {
   };
 
   class fps_counter {
-  public:
+   public:
     void update();
 
     auto get_fps() const { return m_fps; }
 
-  private:
+   private:
     int m_fps{0};
     int m_frames_count{0};
     int m_ticks_last_update{0};
@@ -65,7 +65,7 @@ namespace forr {
   };
 
   class cursor {
-  public:
+   public:
     cursor() { initialize(); }
 
     void reset_style_to_default();
@@ -74,7 +74,7 @@ namespace forr {
 
     auto set_cursor_style(cursor_styles value) { m_cursor_style = value; }
 
-  private:
+   private:
     void initialize();
 
     void disable_system_cursor();
