@@ -4,7 +4,6 @@
  */
 #include "world_generation_scene.hpp"
 #include "core/gui/gui_text_console.hpp"
-#include "core/scenes_core/scene_manager.hpp"
 #include "theme_0/theme_0_mechanics/world_generation/generate_new_world.hpp"
 
 namespace forr {

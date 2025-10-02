@@ -6,7 +6,7 @@
 #include "core/core.hpp"
 #include "core/gui/gui.hpp"
 #include "core/gui/gui_button.hpp"
-#include "core/scenes_core/scene_manager.hpp"
+#include "core/scenes_core.hpp"
 
 namespace forr {
   void add_main_menu_scene_gui_buttons(s_ptr<gui> main_menu_scene_gui) {

@@ -10,7 +10,6 @@
 #include "core/input/keyboard/keyboard_input.hpp"
 #include "core/input/mouse/mouse_input.hpp"
 #include "core/rend/images/image_renderer.hpp"
-#include "core/scenes_core/scene_manager.hpp"
 
 namespace forr {
   void intro_scene::initialize_derived() {
