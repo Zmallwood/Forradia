@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "main_scene.hpp"
-#include "core/gui_core/gui_text_console.hpp"
+#include "core/gui/gui_text_console.hpp"
 #include "sub/add_main_scene_gui_components.hpp"
 #include "theme_0/theme_0_mechanics/creature_movement/update_creature_movement.hpp"
 #include "theme_0/theme_0_mechanics/keyboard_bindings/update_keyboard_binding_actions.hpp"

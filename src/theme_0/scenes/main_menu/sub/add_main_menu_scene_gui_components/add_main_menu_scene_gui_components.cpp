@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "add_main_menu_scene_gui_components.hpp"
-#include "core/gui_core/gui.hpp"
-#include "core/gui_core/gui_panel.hpp"
-#include "core/gui_core/gui_text_console.hpp"
+#include "core/gui/gui.hpp"
+#include "core/gui/gui_panel.hpp"
+#include "core/gui/gui_text_console.hpp"
 #include "sub/add_main_menu_scene_gui_buttons.hpp"
 
 namespace forr {

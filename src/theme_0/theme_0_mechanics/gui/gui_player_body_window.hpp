@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "core/gui_core/gui_window.hpp"
+#include "core/gui/gui_window.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/sub/body_part_types.hpp"
 
 namespace forr {

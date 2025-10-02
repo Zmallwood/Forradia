@@ -3,11 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "add_main_scene_gui_components.hpp"
-#include "core/gui_core/gui.hpp"
-#include "core/gui_core/gui_button.hpp"
-#include "core/gui_core/gui_fps_panel.hpp"
-#include "core/gui_core/gui_text_console.hpp"
-#include "core/gui_core/gui_window.hpp"
+#include "core/gui/gui.hpp"
+#include "core/gui/gui_button.hpp"
+#include "core/gui/gui_fps_panel.hpp"
+#include "core/gui/gui_text_console.hpp"
+#include "core/gui/gui_window.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_inventory_window.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_player_body_window.hpp"
 #include "theme_0/theme_0_mechanics/gui/gui_player_status_panel.hpp"

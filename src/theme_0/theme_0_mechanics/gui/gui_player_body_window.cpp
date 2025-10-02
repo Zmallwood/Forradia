@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_player_body_window.hpp"
-#include "core/gui_core/gui_button.hpp"
-#include "core/gui_core/gui_label.hpp"
+#include "core/gui/gui_button.hpp"
+#include "core/gui/gui_label.hpp"
 #include "core/rend/text/text_renderer.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 
