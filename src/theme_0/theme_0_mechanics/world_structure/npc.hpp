@@ -7,13 +7,14 @@
 namespace forr {
   class npc {
   public:
-    npc() { initialize(); }
+    npc(str_view type_name) : m_type{hash(type_name)} { initialize(); }
 
   private:
     void initialize();
 
     void generate_name();
 
+    int m_type{0};
     str m_name;
   };
 }

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_view.hpp"
-#include "core/image_assets/image_bank.hpp"
+#include "core/images/image_bank.hpp"
 #include "core/rendering/images/image_renderer.hpp"
 #include "theme_0/theme_0_mechanics/core_game_objects/player.hpp"
 #include "theme_0/theme_0_mechanics/math/tile_grid_math.hpp"

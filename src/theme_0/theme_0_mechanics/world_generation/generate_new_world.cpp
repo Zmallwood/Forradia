@@ -11,6 +11,7 @@
 #include "sub/generate_objects.hpp"
 #include "sub/generate_rivers.hpp"
 #include "sub/generate_rock.hpp"
+#include "sub/generate_npcs.hpp"
 
 namespace forr {
   void generate_new_world() {
@@ -22,5 +23,6 @@ namespace forr {
     generate_rivers();
     generate_objects();
     generate_creatures();
+    generate_npcs();
   }
 }

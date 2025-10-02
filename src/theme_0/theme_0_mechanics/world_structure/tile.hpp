@@ -8,6 +8,7 @@
 namespace forr {
   class objects_stack;
   class creature;
+  class npc;
 
   class tile {
   public:
@@ -22,6 +23,10 @@ namespace forr {
     auto get_creature() const { return m_creature; }
 
     void set_creature(s_ptr<creature> value) { m_creature = value; }
+
+    auto get_npc() const { return m_npc; }
+
+    void set_npc(s_ptr<npc> value) { m_npc = value; }
 
     auto get_elevation() const { return m_elevation; }
 
@@ -49,6 +54,7 @@ namespace forr {
     int m_ground{0};
     s_ptr<objects_stack> m_objects_stack;
     s_ptr<creature> m_creature;
+    s_ptr<npc> m_npc;
     int m_elevation{0};
     int m_water_depth{0};
     directions m_river_direction_1{directions::none};

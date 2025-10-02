@@ -4,7 +4,7 @@
  */
 #include "draw_image.hpp"
 #include "core/core.hpp"
-#include "core/image_assets/image_bank.hpp"
+#include "core/images/image_bank.hpp"
 
 namespace forr {
   void draw_image(int image_name_hash, float x, float y, float width,

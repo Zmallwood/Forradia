@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-
+  void generate_npcs();
 }
