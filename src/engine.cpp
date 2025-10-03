@@ -6,12 +6,11 @@
 #include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "theme_0/func/game_props.hpp"
 
 namespace forr {
-  void engine::run() {
+  void engine::run(str_view game_win_title, color clear_color) {
     randomize();
-    _<sdl_device>();
+    _<sdl_device>().init(game_win_title, clear_color);
     while (m_running) {
       _<kb_input>().reset();
       _<mouse_input>().reset();
@@ -51,7 +50,9 @@ namespace forr {
     }
   }
 
-  void sdl_device::init() {
+  void sdl_device::init(str_view game_win_title, color clear_color) {
+    m_game_win_title = game_win_title;
+    m_clear_color = clear_color;
     SDL_Init(SDL_INIT_EVERYTHING);
     m_win = create_win();
     if (m_win) {
@@ -60,7 +61,7 @@ namespace forr {
   }
 
   void sdl_device::clear_canv() const {
-    SDL_Color clear_color{_<game_props>().k_clear_color.to_sdl_color()};
+    SDL_Color clear_color{m_clear_color.to_sdl_color()};
     SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
     SDL_RenderClear(m_rend.get());
@@ -72,7 +73,7 @@ namespace forr {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto win_res{s_ptr<SDL_Window>(
-        SDL_CreateWindow(_<game_props>().k_game_win_title.data(),
+        SDL_CreateWindow(m_game_win_title.data(),
                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
                          660, flags),
         sdl_del())};

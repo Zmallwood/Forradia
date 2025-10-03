@@ -8,7 +8,7 @@
 namespace forr {
   class engine {
    public:
-    void run();
+    void run(str_view game_win_title, color clear_color);
 
     void stop();
 
@@ -20,7 +20,7 @@ namespace forr {
 
   class sdl_device {
    public:
-    sdl_device() { init(); }
+    void init(str_view game_win_title, color clear_color);
 
     void clear_canv() const;
 
@@ -31,14 +31,14 @@ namespace forr {
     auto get_rend() const { return m_rend; }
 
    private:
-    void init();
-
     s_ptr<SDL_Window> create_win();
 
     s_ptr<SDL_Renderer> create_rend();
 
     s_ptr<SDL_Window> m_win;
     s_ptr<SDL_Renderer> m_rend;
+    str m_game_win_title;
+    color m_clear_color;
   };
 
   class fps_counter {

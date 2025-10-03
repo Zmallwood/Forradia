@@ -23,7 +23,8 @@ namespace forr {
     _<scene_mngr>().go_to_scene("IntroScene");
     _<world>().init(_<game_props>().k_w_area_sz,
                     _<game_props>().k_world_scaling);
-    _<engine>().run();
+    _<engine>().run(_<game_props>().k_game_win_title,
+                    _<game_props>().k_clear_color);
   }
 
   void intro_scene::init_derived() {
