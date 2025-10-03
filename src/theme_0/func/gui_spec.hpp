@@ -7,7 +7,33 @@
 #include "theme_0/func/player.hpp"
 
 namespace forr {
-  class gui_label;
+  class gui_player_status_panel : public gui_panel {
+   public:
+    gui_player_status_panel() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
+
+   protected:
+    virtual void render_derived() const override;
+  };
+
+  class gui_system_menu : public gui_component {
+   public:
+    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+
+   protected:
+    void init();
+
+    virtual void update_derived() override;
+
+    virtual void render_derived() const override;
+  };
+
+  class gui_inventory_window : public gui_window {
+   public:
+    gui_inventory_window() : gui_window(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+
+   protected:
+    void render_derived() const override;
+  };
 
   class gui_player_body_window : public gui_window {
    public:

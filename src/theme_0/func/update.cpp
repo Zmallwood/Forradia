@@ -6,9 +6,7 @@
 #include "engine.hpp"
 #include "input.hpp"
 #include "player.hpp"
-#include "theme_0/func/gui/gui_inventory_window.hpp"
-#include "theme_0/func/gui/gui_player_body_window.hpp"
-#include "theme_0/func/gui/gui_system_menu.hpp"
+#include "theme_0/func/gui_spec.hpp"
 #include "tile_grid_math.hpp"
 #include "world_struct.hpp"
 
