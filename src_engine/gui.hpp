@@ -16,7 +16,7 @@ namespace forr {
 
     void render() const;
 
-    rect_f get_bounds() const;
+    rect_f bounds() const;
 
     void toggle_visibility();
 
@@ -116,11 +116,11 @@ namespace forr {
 
     virtual rect_f get_drag_area();
 
-    auto get_being_moved() const { return being_moved_; }
+    auto being_moved() const { return being_moved_; }
 
-    auto get_move_start_pos() const { return move_start_pos_; }
+    auto move_start_pos() const { return move_start_pos_; }
 
-    auto get_move_start_mouse_pos() const { return move_start_mouse_pos_; }
+    auto move_start_mouse_pos() const { return move_start_mouse_pos_; }
 
    private:
     bool being_moved_{false};

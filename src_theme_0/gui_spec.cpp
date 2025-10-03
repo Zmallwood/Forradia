@@ -10,7 +10,7 @@
 namespace forr {
   void gui_player_status_panel::render_derived() const {
     gui_panel::render_derived();
-    auto b{get_bounds()};
+    auto b{bounds()};
     _<text_renderer>().draw_str(_<player>().get_name(), b.x + 0.01f,
                                 b.y + 0.01f, font_sizes::_26);
   }
@@ -24,12 +24,12 @@ namespace forr {
 
   void gui_system_menu::render_derived() const {
     gui_component::render_derived();
-    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
-    auto rect{SDL_Rect{0, 0, canv_sz.w, canv_sz.h}};
-    SDL_SetRenderDrawBlendMode(_<sdl_device>().get_rend().get(),
+    auto c_sz{canv_sz(_<sdl_device>().win())};
+    auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
+    SDL_SetRenderDrawBlendMode(_<sdl_device>().rend().get(),
                                SDL_BLENDMODE_BLEND);
-    SDL_SetRenderDrawColor(_<sdl_device>().get_rend().get(), 200, 0, 255, 50);
-    SDL_RenderFillRect(_<sdl_device>().get_rend().get(), &rect);
+    SDL_SetRenderDrawColor(_<sdl_device>().rend().get(), 200, 0, 255, 50);
+    SDL_RenderFillRect(_<sdl_device>().rend().get(), &rect);
   }
 
   void gui_inventory_window::render_derived() const {
@@ -38,7 +38,7 @@ namespace forr {
 
   void gui_player_body_window::init() {
     auto img_w{0.07f};
-    auto img_h{conv_w_to_h(img_w, _<sdl_device>().get_win())};
+    auto img_h{conv_w_to_h(img_w, _<sdl_device>().win())};
     auto overall_body_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2, 0.04f, img_w, img_h, "",
         [this] {

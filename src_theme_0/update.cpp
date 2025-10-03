@@ -29,7 +29,7 @@ namespace forr {
     if (up_press || right_press || down_press || left_press) {
       _<player>().set_dest({-1, -1});
     }
-    auto now{get_ticks()};
+    auto now{ticks()};
     if (now >= _<player>().get_ticks_last_move() +
                    inv_movem_spd(_<player>().get_movem_spd()) &&
         (up_press || right_press || down_press || left_press)) {
@@ -59,7 +59,7 @@ namespace forr {
     if (dest == pt{-1, -1}) {
       return;
     }
-    auto now{get_ticks()};
+    auto now{ticks()};
     if (now >= _<player>().get_ticks_last_move() +
                    inv_movem_spd(_<player>().get_movem_spd())) {
       auto dx{dest.x - player_pos.x};
@@ -86,7 +86,7 @@ namespace forr {
   void update_crea_movem() {
     auto w_area{_<world>().get_curr_w_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
-    auto now{get_ticks()};
+    auto now{ticks()};
     for (auto it = creas.begin(); it != creas.end();) {
       auto crea{it->first};
       auto pos{it->second};
@@ -134,7 +134,7 @@ namespace forr {
   void update_npcs() {
     auto w_area{_<world>().get_curr_w_area()};
     auto &npcs{w_area->get_npcs_mirror_ref()};
-    auto now{get_ticks()};
+    auto now{ticks()};
     for (auto it = npcs.begin(); it != npcs.end();) {
       auto npc{it->first};
       auto pos{it->second};
@@ -191,7 +191,7 @@ namespace forr {
 
   void tile_hovering::update() {
     auto player_pos{_<player>().get_pos()};
-    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
+    auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
     auto tl_sz{calc_tl_sz()};
     auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
     auto grid_sz{calc_grid_sz()};

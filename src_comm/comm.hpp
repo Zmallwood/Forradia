@@ -184,7 +184,7 @@ namespace forr {
      *
      * \return The position.
      */
-    pt_f get_pos() const;
+    pt_f pos() const;
 
     /**
      * \brief Adds an offset to this rectangle, with the dimensions altered
@@ -239,7 +239,7 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  sz get_canv_sz(s_ptr<SDL_Window> win);
+  sz canv_sz(s_ptr<SDL_Window> win);
 
   float calc_aspect_ratio(s_ptr<SDL_Window> win);
 
@@ -248,12 +248,12 @@ namespace forr {
   float conv_h_to_w(float h, s_ptr<SDL_Window> win);
 
   // File path util functions
-  str get_file_ext(str_view path);
+  str file_ext(str_view path);
 
-  str get_file_name_no_ext(str_view path);
+  str file_name_no_ext(str_view path);
 
   // Mouse util functions
-  pt_f get_norm_mouse_pos(s_ptr<SDL_Window> win);
+  pt_f norm_mouse_pos(s_ptr<SDL_Window> win);
 
   // Numbers util functions
   float inv_movem_spd(float num);
@@ -271,7 +271,7 @@ namespace forr {
   str repl(str_view text, char repl, char repl_with);
 
   // Time util functions
-  const auto get_ticks{SDL_GetTicks};
+  const auto ticks{SDL_GetTicks};
 
   // Hash util functions
   /**

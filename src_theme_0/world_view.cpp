@@ -159,7 +159,7 @@ namespace forr {
             auto river_part_w{0.4f * w_canv};
             auto river_part_h{0.4f * h_canv};
             auto part_len{2.5f};
-            auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+            auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
             for (auto j = 0; j < 2; j++) {
               switch (river_dirs.at(j)) {
@@ -254,14 +254,14 @@ namespace forr {
               }
             }
           } else if (ground == hash("GroundWater") && i == 1) {
-            auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+            auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
             _<image_renderer>().draw_img(
                 "GroundWaterEdge", x_canv - w_canv * 0.2f,
                 y_canv - h_canv * 0.2f, w_canv * 1.4f, h_canv * 1.4f);
           } else if (ground == hash("GroundWater") && i == 2) {
 
-            auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
+            auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
             _<image_renderer>().draw_img("GroundWater_" +
                                              std::to_string(anim_idx),
@@ -372,7 +372,7 @@ namespace forr {
                   auto trunk_part_x{trunk_part.x};
                   trunk_part_x *=
                       c_float(i) / trunk_parts.size() *
-                      std::sin(get_ticks() / 700.0f + x_coord * y_coord);
+                      std::sin(ticks() / 700.0f + x_coord * y_coord);
                   auto trunk_part_x_center{x_canv + tl_sz.w / 2 +
                                            trunk_part_x * tree_w};
                   auto trunk_part_y_center{y_canv + tl_sz.h -

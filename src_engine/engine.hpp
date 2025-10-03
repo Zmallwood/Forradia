@@ -8,7 +8,9 @@
 namespace forr {
   class engine {
    public:
-    void run(str_view game_win_title, color clear_color);
+    void init(str_view game_win_title, color clear_color) const;
+
+    void run();
 
     void stop();
 
@@ -26,9 +28,9 @@ namespace forr {
 
     void present_canv() const;
 
-    auto get_win() const { return win_; }
+    auto win() const { return win_; }
 
-    auto get_rend() const { return rend_; }
+    auto rend() const { return rend_; }
 
    private:
     s_ptr<SDL_Window> create_win();
@@ -45,7 +47,7 @@ namespace forr {
    public:
     void update();
 
-    auto get_fps() const { return fps_; }
+    auto fps() const { return fps_; }
 
    private:
     int fps_{0};
@@ -121,10 +123,10 @@ namespace forr {
 
     virtual void render_derived() const {}
 
-    auto get_gui() const { return gui_; }
+    auto gui() const { return gui_; }
 
    private:
-    s_ptr<gui> gui_;
+    s_ptr<forr::gui> gui_;
   };
 
   class scene_mngr {

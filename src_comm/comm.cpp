@@ -56,7 +56,7 @@ namespace forr {
     return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
   }
 
-  pt_f rect_f::get_pos() const {
+  pt_f rect_f::pos() const {
     // Return only the coordinates.
     return {x, y};
   }
@@ -80,15 +80,15 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  sz get_canv_sz(s_ptr<SDL_Window> win) {
+  sz canv_sz(s_ptr<SDL_Window> win) {
     sz canv_sz;
     SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
     return canv_sz;
   }
 
   float calc_aspect_ratio(s_ptr<SDL_Window> win) {
-    auto canv_sz{get_canv_sz(win)};
-    auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
+    auto c_sz{canv_sz(win)};
+    auto asp_rat{c_float(c_sz.w) / c_sz.h};
     return asp_rat;
   }
 
@@ -101,23 +101,23 @@ namespace forr {
   }
 
   // File path util functions
-  str get_file_ext(str_view path) {
+  str file_ext(str_view path) {
     str ext{path.substr(path.find_last_of('.') + 1).data()};
     return ext;
   }
 
-  str get_file_name_no_ext(str_view path) {
+  str file_name_no_ext(str_view path) {
     auto name_with_ext{str(path.substr(path.find_last_of('/') + 1))};
     return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
   }
 
   // Numbers util functions
-  pt_f get_norm_mouse_pos(s_ptr<SDL_Window> win) {
+  pt_f norm_mouse_pos(s_ptr<SDL_Window> win) {
     int x_px;
     int y_px;
     SDL_GetMouseState(&x_px, &y_px);
-    auto canv_sz{get_canv_sz(win)};
-    return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
+    auto c_sz{canv_sz(win)};
+    return {c_float(x_px) / c_sz.w, c_float(y_px) / c_sz.h};
   }
 
   float inv_movem_spd(float num) {

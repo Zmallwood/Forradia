@@ -4,18 +4,20 @@
  */
 #include "core.hpp"
 #include "engine.hpp"
-#include "world_grator.hpp"
+#include "game_props.hpp"
 #include "gui.hpp"
+#include "gui_spec.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "game_props.hpp"
-#include "gui_spec.hpp"
 #include "update.hpp"
-#include "world_view.hpp"
+#include "world_grator.hpp"
 #include "world_struct.hpp"
+#include "world_view.hpp"
 
 namespace forr {
   void run_new_theme_0() {
+    _<engine>().init(_<game_props>().k_game_win_title,
+                     _<game_props>().k_clear_color);
     _<scene_mngr>().add_scene("IntroScene", _<intro_scene>());
     _<scene_mngr>().add_scene("MainMenuScene", _<main_menu_scene>());
     _<scene_mngr>().add_scene("WorldGenScene", _<world_gen_scene>());
@@ -23,12 +25,11 @@ namespace forr {
     _<scene_mngr>().go_to_scene("IntroScene");
     _<world>().init(_<game_props>().k_w_area_sz,
                     _<game_props>().k_world_scaling);
-    _<engine>().run(_<game_props>().k_game_win_title,
-                    _<game_props>().k_clear_color);
+    _<engine>().run();
   }
 
   void intro_scene::init_derived() {
-    start_text_ = get_gui()->add_child_component(std::make_shared<gui_label>(
+    start_text_ = gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }
 
@@ -37,7 +38,7 @@ namespace forr {
   }
 
   void intro_scene::update_derived() {
-    start_text_->set_visible((get_ticks() % 800) < 400);
+    start_text_->set_visible((ticks() % 800) < 400);
 
     _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
 
@@ -54,16 +55,16 @@ namespace forr {
   }
 
   void main_menu_scene::init_derived() {
-    get_gui()->add_child_component(
+    gui()->add_child_component(
         std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
-    get_gui()->add_child_component(
+    gui()->add_child_component(
         std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
           _<scene_mngr>().go_to_scene("WorldGenScene");
         }));
 
-    get_gui()->add_child_component(std::make_shared<gui_button>(
+    gui()->add_child_component(std::make_shared<gui_button>(
         0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { _<engine>().stop(); }));
-    get_gui()->add_child_component(__<gui_text_console>());
+    gui()->add_child_component(__<gui_text_console>());
   }
 
   void main_menu_scene::update_derived() {}
@@ -82,27 +83,34 @@ namespace forr {
   }
 
   void main_scene::init_derived() {
-    get_gui()->add_child_component(std::make_shared<gui_player_status_panel>());
-    get_gui()->add_child_component(__<gui_text_console>());
-    get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
-        [] { _<gui_player_body_window>().toggle_visibility(); },
+    gui()->add_child_component(std::make_shared<gui_player_status_panel>());
+    gui()->add_child_component(__<gui_text_console>());
+    //gui()->add_child_component(std::make_shared<gui_button>(
+//        0.78f, 0.9f, 0.05f, conv_w_to_h(.05f, _<sdl_device>().win()), "hej", [] {},
+//        "GUIButtonPlayerBodyBackground",
+//        "GUIButtonPlayerBodyHoveredBackground"));
+    gui()->add_child_component(std::make_shared<gui_button>(
+        0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+        [] {
+      _<gui_player_body_window>().toggle_visibility(); },
         "GUIButtonPlayerBodyBackground",
         "GUIButtonPlayerBodyHoveredBackground"));
 
-    get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
-        [] { _<gui_inventory_window>().toggle_visibility(); },
+    gui()->add_child_component(std::make_shared<gui_button>(
+        0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+        [] {
+      _<gui_inventory_window>().toggle_visibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
-    get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
-        [] { _<gui_system_menu>().toggle_visibility(); },
+    gui()->add_child_component(std::make_shared<gui_button>(
+        0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+        [] {
+      _<gui_system_menu>().toggle_visibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
-    get_gui()->add_child_component(__<gui_system_menu>());
-    get_gui()->add_child_component(__<gui_inventory_window>());
-    get_gui()->add_child_component(__<gui_player_body_window>());
-    get_gui()->add_child_component(std::make_shared<gui_fps_panel>());
+    gui()->add_child_component(__<gui_system_menu>());
+    gui()->add_child_component(__<gui_inventory_window>());
+    gui()->add_child_component(__<gui_player_body_window>());
+    gui()->add_child_component(std::make_shared<gui_fps_panel>());
   }
 
   void main_scene::on_enter_derived() {

@@ -8,9 +8,12 @@
 #include "rend.hpp"
 
 namespace forr {
-  void engine::run(str_view game_win_title, color clear_color) {
+  void engine::init(str_view game_win_title, color clear_color) const {
     randomize();
     _<sdl_device>().init(game_win_title, clear_color);
+  }
+
+  void engine::run() {
     while (running_) {
       _<kb_input>().reset();
       _<mouse_input>().reset();
@@ -95,7 +98,7 @@ namespace forr {
   }
 
   void fps_counter::update() {
-    auto now{get_ticks()};
+    auto now{ticks()};
     if (now > ticks_last_update_ + k_one_sec_millis) {
       fps_ = frames_count_;
       frames_count_ = 0;
@@ -111,9 +114,9 @@ namespace forr {
   void cursor::reset_style_to_default() { curs_style_ = cursor_styles::normal; }
 
   void cursor::render() {
-    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
+    auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
     auto w{k_curs_sz};
-    auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().get_win())};
+    auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().win())};
     str curs_img;
     switch (curs_style_) {
     case cursor_styles::normal:
@@ -138,8 +141,8 @@ namespace forr {
     std::filesystem::recursive_directory_iterator rdi{imgs_path};
     for (auto it : rdi) {
       auto file_path{repl(it.path().string(), '\\', '/')};
-      if (get_file_ext(file_path) == "png") {
-        auto file_name{get_file_name_no_ext(file_path)};
+      if (file_ext(file_path) == "png") {
+        auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
         auto img{load_single_img(file_path)};
         images_.insert({hash, img});
@@ -169,7 +172,7 @@ namespace forr {
   s_ptr<SDL_Texture> image_bank::load_single_img(str_view path) {
     auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_del())};
     if (surf) {
-      auto rend{_<sdl_device>().get_rend().get()};
+      auto rend{_<sdl_device>().rend().get()};
       auto tex{s_ptr<SDL_Texture>(
           SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
       return tex;
@@ -178,7 +181,7 @@ namespace forr {
   }
 
   void i_scene::init() {
-    gui_ = std::make_shared<gui>();
+    gui_ = std::make_shared<forr::gui>();
     init_derived();
   }
 

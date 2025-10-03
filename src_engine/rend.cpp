@@ -14,13 +14,13 @@ namespace forr {
   void image_renderer::draw_img(int img_name_hash, float x, float y, float w,
                                 float h) const {
     auto img{_<image_bank>().get_img(img_name_hash)};
-    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
-    auto x_px{c_int(x * canv_sz.w)};
-    auto y_px{c_int(y * canv_sz.h)};
-    auto w_px{c_int(w * canv_sz.w)};
-    auto h_px{c_int(h * canv_sz.h)};
+    auto c_sz{canv_sz(_<sdl_device>().win())};
+    auto x_px{c_int(x * c_sz.w)};
+    auto y_px{c_int(y * c_sz.h)};
+    auto w_px{c_int(w * c_sz.w)};
+    auto h_px{c_int(h * c_sz.h)};
     SDL_Rect sdl_rect{x_px, y_px, w_px, h_px};
-    SDL_RenderCopy(_<sdl_device>().get_rend().get(), img.get(), nullptr,
+    SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr,
                    &sdl_rect);
   }
 
@@ -28,7 +28,7 @@ namespace forr {
                                        float w) const {
     auto img_name_hash{hash(img_name)};
     auto img_sz{_<image_bank>().get_img_sz(img_name_hash)};
-    auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().get_win())};
+    auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
     auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
     auto h{w / img_asp_rat * canv_asp_rat};
     draw_img(hash(img_name), x, y, w, h);
@@ -63,16 +63,16 @@ namespace forr {
     sz text_dim;
     TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
     SDL_Rect dest_rect;
-    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
-    dest_rect.x = c_int(x * canv_sz.w);
-    dest_rect.y = c_int(y * canv_sz.h);
+    auto c_sz{canv_sz(_<sdl_device>().win())};
+    dest_rect.x = c_int(x * c_sz.w);
+    dest_rect.y = c_int(y * c_sz.h);
     dest_rect.w = text_dim.w;
     dest_rect.h = text_dim.h;
     if (cent_align) {
       dest_rect.x -= dest_rect.w / 2;
       dest_rect.y -= dest_rect.h / 2;
     }
-    auto rend{_<sdl_device>().get_rend().get()};
+    auto rend{_<sdl_device>().rend().get()};
     auto tex{SDL_CreateTextureFromSurface(rend, surf)};
     SDL_RenderCopy(rend, tex, nullptr, &dest_rect);
     SDL_DestroyTexture(tex);

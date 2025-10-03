@@ -11,7 +11,7 @@ namespace forr {
     gen_name();
 
     m_ticks_next_spontaneous_speech =
-        get_ticks() + rand_int(300 * k_one_sec_millis);
+        ticks() + rand_int(300 * k_one_sec_millis);
   }
 
   void npc::gen_name() {
