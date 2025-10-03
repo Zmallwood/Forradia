@@ -4,7 +4,7 @@
  */
 #include "update_mouse_movem.hpp"
 #include "input.hpp"
-#include "theme_0/func/core_objs/player.hpp"
+#include "theme_0/func/player.hpp"
 #include "theme_0/func/world_interact/tile_hovering.hpp"
 
 namespace forr {

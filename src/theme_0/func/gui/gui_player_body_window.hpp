@@ -4,7 +4,7 @@
  */
 #pragma once
 #include "gui.hpp"
-#include "theme_0/func/core_objs/sub/body_part_types.hpp"
+#include "theme_0/func/player.hpp"
 
 namespace forr {
   class gui_label;

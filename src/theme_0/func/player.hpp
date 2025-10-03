@@ -3,9 +3,36 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "sub/player_body.hpp"
 
 namespace forr {
+  enum class body_part_types { none, overall_body, right_arm, left_arm, legs };
+
+  class body_part {
+   public:
+    auto get_str() const { return m_str; }
+    auto get_curr_energy() const { return m_curr_energy; }
+    auto get_max_energy() const { return m_max_energy; }
+    auto get_temp() const { return m_temp; }
+
+   private:
+    float m_str{0.1f};
+    float m_curr_energy{1.0f};
+    float m_max_energy{1.0f};
+    float m_temp{37.0f};
+  };
+
+  class player_body {
+   public:
+    player_body() { init(); }
+
+    body_part *get_body_part_ptr(body_part_types type);
+
+   private:
+    void init();
+
+    std::map<body_part_types, body_part> m_parts;
+  };
+
   class player {
    public:
     player() { init(); }

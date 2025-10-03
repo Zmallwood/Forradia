@@ -4,7 +4,7 @@
  */
 #include "gui_player_status_panel.hpp"
 #include "rend.hpp"
-#include "theme_0/func/core_objs/player.hpp"
+#include "theme_0/func/player.hpp"
 
 namespace forr {
   void gui_player_status_panel::render_derived() const {

@@ -5,7 +5,7 @@
 #include "world_view.hpp"
 #include "core.hpp"
 #include "rend.hpp"
-#include "theme_0/func/core_objs/player.hpp"
+#include "theme_0/func/player.hpp"
 #include "theme_0/func/math/tile_grid_math.hpp"
 #include "theme_0/func/world_interact/tile_hovering.hpp"
 #include "theme_0/func/world_struct/creature.hpp"

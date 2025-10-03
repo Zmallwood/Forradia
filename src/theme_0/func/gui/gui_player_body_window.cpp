@@ -5,7 +5,7 @@
 #include "gui_player_body_window.hpp"
 #include "core.hpp"
 #include "gui.hpp"
-#include "theme_0/func/core_objs/player.hpp"
+#include "theme_0/func/player.hpp"
 
 namespace forr {
   void gui_player_body_window::init() {
