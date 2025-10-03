@@ -3,12 +3,23 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "main_menu_scene.hpp"
+#include "core.hpp"
+#include "gui.hpp"
 #include "rend.hpp"
-#include "sub/add_main_menu_scene_gui_components/add_main_menu_scene_gui_components.hpp"
+#include "scenes.hpp"
 
 namespace forr {
   void main_menu_scene::init_derived() {
-    add_main_menu_scene_gui_components(get_gui());
+    get_gui()->add_child_component(
+        std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
+    get_gui()->add_child_component(
+        std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
+          _<scene_mngr>().go_to_scene("WorldGenScene");
+        }));
+
+    get_gui()->add_child_component(std::make_shared<gui_button>(
+        0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { _<engine>().stop(); }));
+    get_gui()->add_child_component(__<gui_text_console>());
   }
 
   void main_menu_scene::update_derived() {}

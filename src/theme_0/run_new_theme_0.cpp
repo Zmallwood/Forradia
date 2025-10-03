@@ -7,14 +7,13 @@
 #include "theme_0/scenes/intro/intro_scene.hpp"
 #include "theme_0/scenes/main/main_scene.hpp"
 #include "theme_0/scenes/main_menu/main_menu_scene.hpp"
-#include "theme_0/scenes/world_generation/world_generation_scene.hpp"
+#include "theme_0/scenes/world_gen/world_gen_scene.hpp"
 
 namespace forr {
   void run_new_theme_0() {
     _<scene_mngr>().add_scene("IntroScene", _<intro_scene>());
     _<scene_mngr>().add_scene("MainMenuScene", _<main_menu_scene>());
-    _<scene_mngr>().add_scene("WorldGenerationScene",
-                              _<world_generation_scene>());
+    _<scene_mngr>().add_scene("WorldGenScene", _<world_gen_scene>());
     _<scene_mngr>().add_scene("MainScene", _<main_scene>());
     _<scene_mngr>().go_to_scene("IntroScene");
     _<game>().start();

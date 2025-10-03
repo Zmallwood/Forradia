@@ -6,8 +6,8 @@
 #include "scenes.hpp"
 
 namespace forr {
-  class world_generation_scene : public i_scene {
-  protected:
+  class world_gen_scene : public i_scene {
+   protected:
     void on_enter_derived() override;
   };
 }
