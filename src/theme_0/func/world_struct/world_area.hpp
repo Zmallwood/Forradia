@@ -11,7 +11,9 @@ namespace forr {
 
   class world_area {
    public:
-    world_area() { init(); }
+    world_area(size w_area_sz, float world_scaling) {
+      init(w_area_sz, world_scaling);
+    }
 
     size get_sz() const;
 
@@ -26,7 +28,7 @@ namespace forr {
     auto &get_npcs_mirror_ref() { return m_npcs_mirror; }
 
    private:
-    void init();
+    void init(size w_area_sz, float world_scaling);
 
     vec<vec<s_ptr<tile>>> m_tiles;
     std::map<s_ptr<creature>, point> m_creatures_mirror;

@@ -9,13 +9,11 @@ namespace forr {
 
   class world {
    public:
-    world() { init(); }
+    void init(size w_area_sz, float world_scaling);
 
     auto get_curr_w_area() const { return m_curr_w_area; }
 
    private:
-    void init();
-
     s_ptr<world_area> m_curr_w_area;
   };
 }

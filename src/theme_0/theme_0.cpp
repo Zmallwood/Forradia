@@ -8,11 +8,13 @@
 #include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
+#include "theme_0/func/game_props.hpp"
 #include "theme_0/func/gui/gui_inventory_window.hpp"
 #include "theme_0/func/gui/gui_player_body_window.hpp"
 #include "theme_0/func/gui/gui_player_status_panel.hpp"
 #include "theme_0/func/gui/gui_system_menu.hpp"
 #include "theme_0/func/update.hpp"
+#include "theme_0/func/world_struct/world.hpp"
 #include "theme_0/func/world_view.hpp"
 
 namespace forr {
@@ -22,6 +24,8 @@ namespace forr {
     _<scene_mngr>().add_scene("WorldGenScene", _<world_gen_scene>());
     _<scene_mngr>().add_scene("MainScene", _<main_scene>());
     _<scene_mngr>().go_to_scene("IntroScene");
+    _<world>().init(_<game_props>().k_w_area_sz,
+                    _<game_props>().k_world_scaling);
     _<game>().start();
   }
 
