@@ -6,7 +6,7 @@
 #include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "theme_0/func/conf/game_props.hpp"
+#include "theme_0/func/game_props.hpp"
 
 namespace forr {
   void game::start() const { _<engine>().run(); }
@@ -93,7 +93,7 @@ namespace forr {
       print_ln("Renderer could not be created. SDL Error: " +
                std::string(SDL_GetError()));
     }
-    return rend_res;
+    return rend_res; 
   }
 
   void fps_counter::update() {
@@ -115,9 +115,9 @@ namespace forr {
   }
 
   void cursor::render() {
-    auto mouse_pos{get_norm_mouse_pos()};
+    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
     auto w{k_curs_sz};
-    auto h{conv_w_to_h(k_curs_sz)};
+    auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().get_win())}; 
     str curs_img;
     switch (m_curs_style) {
     case cursor_styles::normal:

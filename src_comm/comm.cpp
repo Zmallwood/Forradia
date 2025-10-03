@@ -3,7 +3,6 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "comm.hpp"
-#include "core.hpp"
 
 namespace forr {
   ////////////////////
@@ -81,21 +80,25 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canv_sz() {
+  size get_canv_sz(s_ptr<SDL_Window> win) {
     size canv_sz;
-    SDL_GetWindowSize(_<sdl_device>().get_win().get(), &canv_sz.w, &canv_sz.h);
+    SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
     return canv_sz;
   }
 
-  float calc_aspect_ratio() {
-    auto canv_sz{get_canv_sz()};
+  float calc_aspect_ratio(s_ptr<SDL_Window> win) {
+    auto canv_sz{get_canv_sz(win)};
     auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
     return asp_rat;
   }
 
-  float conv_w_to_h(float w) { return w * calc_aspect_ratio(); }
+  float conv_w_to_h(float w, s_ptr<SDL_Window> win) {
+    return w * calc_aspect_ratio(win);
+  }
 
-  float conv_h_to_w(float h) { return h / calc_aspect_ratio(); }
+  float conv_h_to_w(float h, s_ptr<SDL_Window> win) {
+    return h / calc_aspect_ratio(win);
+  }
 
   // File path util functions
   str get_file_ext(str_view path) {
@@ -109,11 +112,11 @@ namespace forr {
   }
 
   // Numbers util functions
-  point_f get_norm_mouse_pos() {
+  point_f get_norm_mouse_pos(s_ptr<SDL_Window> win) {
     int x_px;
     int y_px;
     SDL_GetMouseState(&x_px, &y_px);
-    auto canv_sz{get_canv_sz()};
+    auto canv_sz{get_canv_sz(win)};
     return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
   }
 

@@ -70,7 +70,7 @@ namespace forr {
 
   void gui_button::update_derived() {
     gui_panel::update_derived();
-    auto mouse_pos{get_norm_mouse_pos()};
+    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
     auto hovered{get_bounds().contains(mouse_pos)};
     if (hovered) {
       set_bg_img(m_hovered_bg_img);
@@ -91,7 +91,7 @@ namespace forr {
   }
 
   void gui_movable_panel::update_derived() {
-    auto mouse_pos{get_norm_mouse_pos()};
+    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
     auto drag_area{get_drag_area()};
     if (drag_area.contains(mouse_pos)) {
       _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
@@ -115,7 +115,7 @@ namespace forr {
     if (get_being_moved()) {
       auto move_start_pos{get_move_start_pos()};
       auto move_start_mouse_pos{get_move_start_mouse_pos()};
-      auto curr_mouse_pos{get_norm_mouse_pos()};
+      auto curr_mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
       auto new_pos{move_start_pos + curr_mouse_pos - move_start_mouse_pos};
       set_pos(new_pos);
     }
@@ -124,7 +124,7 @@ namespace forr {
   void gui_movable_panel::start_move() {
     m_being_moved = true;
     m_move_start_pos = get_bounds().get_pos();
-    m_move_start_mouse_pos = get_norm_mouse_pos();
+    m_move_start_mouse_pos = get_norm_mouse_pos(_<sdl_device>().get_win());
   }
 
   void gui_movable_panel::stop_move() { m_being_moved = false; }

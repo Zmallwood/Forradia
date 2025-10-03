@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_area.hpp"
-#include "theme_0/func/conf/game_props.hpp"
+#include "theme_0/func/game_props.hpp"
 #include "tile.hpp"
 
 namespace forr {

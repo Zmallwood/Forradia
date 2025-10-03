@@ -3,6 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "tile_hovering.hpp"
+#include "core.hpp"
 #include "theme_0/func/core_objs/player.hpp"
 #include "theme_0/func/math/tile_grid_math.hpp"
 #include "theme_0/func/world_struct/tile.hpp"
@@ -12,7 +13,7 @@
 namespace forr {
   void tile_hovering::update() {
     auto player_pos{_<player>().get_pos()};
-    auto mouse_pos{get_norm_mouse_pos()};
+    auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
     auto tl_sz{calc_tl_sz()};
     auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
     auto grid_sz{calc_grid_sz()};

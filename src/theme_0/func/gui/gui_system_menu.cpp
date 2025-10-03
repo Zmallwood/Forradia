@@ -16,7 +16,7 @@ namespace forr {
 
   void gui_system_menu::render_derived() const {
     gui_component::render_derived();
-    auto canv_sz{get_canv_sz()};
+    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
     auto rect{SDL_Rect{0, 0, canv_sz.w, canv_sz.h}};
     SDL_SetRenderDrawBlendMode(_<sdl_device>().get_rend().get(),
                                SDL_BLENDMODE_BLEND);

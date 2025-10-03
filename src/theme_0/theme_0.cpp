@@ -88,18 +88,18 @@ namespace forr {
     get_gui()->add_child_component(std::make_shared<gui_player_status_panel>());
     get_gui()->add_child_component(__<gui_text_console>());
     get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f), "",
+        0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
         [] { _<gui_player_body_window>().toggle_visibility(); },
         "GUIButtonPlayerBodyBackground",
         "GUIButtonPlayerBodyHoveredBackground"));
 
     get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f), "",
+        0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
         [] { _<gui_inventory_window>().toggle_visibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
     get_gui()->add_child_component(std::make_shared<gui_button>(
-        0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f), "",
+        0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().get_win()), "",
         [] { _<gui_system_menu>().toggle_visibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
     get_gui()->add_child_component(__<gui_system_menu>());

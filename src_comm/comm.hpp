@@ -3,9 +3,23 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <algorithm>
+#include <filesystem>
+#include <fmt/core.h>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <memory>
+#include <ranges>
+#include <set>
+#include <string>
+#include <vector>
 
 namespace forr {
-  ////////////////////
+  //////////////////// 
   // Convenience
   ////////////////////
   // A set of aliases for commonly used types.
@@ -225,13 +239,13 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canv_sz();
+  size get_canv_sz(s_ptr<SDL_Window> win);
 
-  float calc_aspect_ratio();
+  float calc_aspect_ratio(s_ptr<SDL_Window> win);
 
-  float conv_w_to_h(float w);
+  float conv_w_to_h(float w, s_ptr<SDL_Window> win);
 
-  float conv_h_to_w(float h);
+  float conv_h_to_w(float h, s_ptr<SDL_Window> win);
 
   // File path util functions
   str get_file_ext(str_view path);
@@ -239,7 +253,7 @@ namespace forr {
   str get_file_name_no_ext(str_view path);
 
   // Mouse util functions
-  point_f get_norm_mouse_pos();
+  point_f get_norm_mouse_pos(s_ptr<SDL_Window> win);
 
   // Numbers util functions
   float inv_movem_spd(float num);

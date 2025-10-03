@@ -45,7 +45,7 @@ namespace forr {
     s_ptr<SDL_Renderer> m_rend;
   };
 
-  class fps_counter {
+  class fps_counter {  
    public:
     void update();
 
@@ -79,12 +79,12 @@ namespace forr {
 
     void disable_sys_curs();
 
-    constexpr static float k_curs_sz{0.05f};
+    constexpr static float k_curs_sz{0.05f}; 
 
     cursor_styles m_curs_style{cursor_styles::normal};
   };
 
-  class image_bank {
+  class image_bank {  
    public:
     image_bank() { init(); }
 
@@ -104,7 +104,7 @@ namespace forr {
     std::map<int, s_ptr<SDL_Texture>> m_images;
   };
 
-  class gui; 
+  class gui;  
 
   class i_scene {
    public:

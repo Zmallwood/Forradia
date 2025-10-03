@@ -7,15 +7,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+
+
+add_library(ForradiaComm src_comm/comm.cpp)
+
+target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
+
+
 include_directories("src")
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(Forradia ${SOURCES})
 
-target_link_libraries(Forradia PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
+target_link_libraries(Forradia PRIVATE SDL2 SDL2_image SDL2_ttf fmt ForradiaComm)
 
-add_definitions(-include std_afx.hpp)
+#add_definitions(-include std_afx.hpp)
+add_definitions(-include ../src_comm/comm.hpp)
 
 #target_precompile_headers(Forradia PRIVATE src/std_afx.hpp)
 

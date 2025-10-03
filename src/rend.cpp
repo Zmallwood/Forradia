@@ -14,7 +14,7 @@ namespace forr {
   void image_renderer::draw_img(int img_name_hash, float x, float y, float w,
                                 float h) const {
     auto img{_<image_bank>().get_img(img_name_hash)};
-    auto canv_sz{get_canv_sz()};
+    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
     auto x_px{c_int(x * canv_sz.w)};
     auto y_px{c_int(y * canv_sz.h)};
     auto w_px{c_int(w * canv_sz.w)};
@@ -28,7 +28,7 @@ namespace forr {
                                        float w) const {
     auto img_name_hash{hash(img_name)};
     auto img_sz{_<image_bank>().get_img_sz(img_name_hash)};
-    auto canv_asp_rat{calc_aspect_ratio()};
+    auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().get_win())};
     auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
     auto h{w / img_asp_rat * canv_asp_rat};
     draw_img(hash(img_name), x, y, w, h);
@@ -63,7 +63,7 @@ namespace forr {
     size text_dim;
     TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
     SDL_Rect dest_rect;
-    auto canv_sz{get_canv_sz()};
+    auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};
     dest_rect.x = c_int(x * canv_sz.w);
     dest_rect.y = c_int(y * canv_sz.h);
     dest_rect.w = text_dim.w;

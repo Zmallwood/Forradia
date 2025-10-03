@@ -3,13 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_player_body_window.hpp"
+#include "core.hpp"
 #include "gui.hpp"
 #include "theme_0/func/core_objs/player.hpp"
 
 namespace forr {
   void gui_player_body_window::init() {
     auto img_w{0.07f};
-    auto img_h{conv_w_to_h(img_w)};
+    auto img_h{conv_w_to_h(img_w, _<sdl_device>().get_win())};
     auto overall_body_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2, 0.04f, img_w, img_h, "",
         [this] {
