@@ -6,6 +6,6 @@
 #include "../font_sizes.hpp"
 
 namespace forr {
-  std::map<font_sizes, s_ptr<TTF_Font>>
-  create_fonts(vec<font_sizes> font_sizes, str_view relative_font_path);
+  std::map<font_sizes, s_ptr<TTF_Font>> create_fonts(vec<font_sizes> font_szs,
+                                                     str_view rel_font_path);
 }

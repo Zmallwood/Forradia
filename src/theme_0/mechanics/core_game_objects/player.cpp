@@ -12,20 +12,19 @@ namespace forr {
   void player::initialize() { move_to_suitable_position(); }
 
   void player::move_to_suitable_position() {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto size{world_area->get_size()};
-    m_position = {size.w / 2, size.h / 2};
-    while (world_area->get_tile(m_position)->get_ground() ==
-           hash("GroundWater")) {
-      m_position = {random_int(size.w), random_int(size.h)};
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto sz{w_area->get_size()};
+    m_pos = {sz.w / 2, sz.h / 2};
+    while (w_area->get_tile(m_pos)->get_ground() == hash("GroundWater")) {
+      m_pos = {random_int(sz.w), random_int(sz.h)};
     }
   }
 
-  void player::move_north() { m_position.y -= 1; }
+  void player::move_north() { m_pos.y -= 1; }
 
-  void player::move_east() { m_position.x += 1; }
+  void player::move_east() { m_pos.x += 1; }
 
-  void player::move_south() { m_position.y += 1; }
+  void player::move_south() { m_pos.y += 1; }
 
-  void player::move_west() { m_position.x -= 1; }
+  void player::move_west() { m_pos.x -= 1; }
 }

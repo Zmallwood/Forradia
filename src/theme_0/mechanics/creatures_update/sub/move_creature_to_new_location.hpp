@@ -7,6 +7,5 @@
 namespace forr {
   class creature;
 
-  void move_creature_to_new_location(s_ptr<creature> creature,
-                                     point new_position);
+  void move_creature_to_new_location(s_ptr<creature> crea, point new_pos);
 }

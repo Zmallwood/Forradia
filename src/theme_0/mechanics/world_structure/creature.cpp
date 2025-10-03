@@ -6,6 +6,6 @@
 
 namespace forr {
   void creature::initialize() {
-    m_movement_speed *= (random_int(3) + 1) / 2.0f;
+    m_movem_spd *= (random_int(3) + 1) / 2.0f;
   }
 }

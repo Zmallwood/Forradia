@@ -229,9 +229,9 @@ namespace forr {
 
   float calculate_aspect_ratio();
 
-  float convert_width_to_height(float width);
+  float convert_width_to_height(float w);
 
-  float convert_height_to_width(float height);
+  float convert_height_to_width(float h);
 
   // File path util functions
   str get_file_extension(str_view path);
@@ -242,19 +242,19 @@ namespace forr {
   point_f get_normalized_mouse_position();
 
   // Numbers util functions
-  float invert_movement_speed(float number);
+  float invert_movement_speed(float num);
 
-  int normalize(int value);
+  int normalize(int val);
 
-  float ceil(float number, float k);
+  float ceil(float num, float k);
 
   // Randomization util functions
   void randomize();
 
-  int random_int(int upper_limit);
+  int random_int(int upper_lim);
 
   // String util functions
-  str replace(str_view text, char replaced, char replaced_with);
+  str replace(str_view text, char repl, char repl_with);
 
   // Time util functions
   const auto get_ticks{SDL_GetTicks};
@@ -285,9 +285,9 @@ namespace forr {
   void print_line(str_view text);
 
   // Cast util functions
-  int c_int(auto value) { return static_cast<int>(value); }
+  int c_int(auto val) { return static_cast<int>(val); }
 
-  float c_float(auto value) { return static_cast<float>(value); }
+  float c_float(auto val) { return static_cast<float>(val); }
 
-  Uint8 c_uint8(auto value) { return static_cast<Uint8>(value); }
+  Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
 }

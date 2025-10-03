@@ -9,32 +9,32 @@
 
 namespace forr {
   void gui_window_title_bar::render() const {
-    auto parent_window_bounds{m_parent_window.get_bounds()};
-    get_singleton<image_renderer>().draw_image(
-        "GUIWindowTitleBarBackground", parent_window_bounds.x,
-        parent_window_bounds.y, parent_window_bounds.w, k_height);
+    auto parent_win_b{m_parent_win.get_bounds()};
+    get_singleton<image_renderer>().draw_image("GUIWindowTitleBarBackground",
+                                               parent_win_b.x, parent_win_b.y,
+                                               parent_win_b.w, k_h);
     get_singleton<text_renderer>().draw_string(
-        k_window_title_text, parent_window_bounds.x + 0.01f,
-        parent_window_bounds.y + 0.01f, font_sizes::_20, false, colors::yellow);
+        k_win_title, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
+        font_sizes::_20, false, colors::yellow);
   }
 
   rect_f gui_window_title_bar::get_bounds() const {
-    rect_f bounds_result;
-    auto parent_window_bounds{m_parent_window.get_bounds()};
-    bounds_result.x = parent_window_bounds.x;
-    bounds_result.y = parent_window_bounds.y;
-    bounds_result.w = parent_window_bounds.w;
-    bounds_result.h = k_height;
-    return bounds_result;
+    rect_f b_res;
+    auto parent_win_b{m_parent_win.get_bounds()};
+    b_res.x = parent_win_b.x;
+    b_res.y = parent_win_b.y;
+    b_res.w = parent_win_b.w;
+    b_res.h = k_h;
+    return b_res;
   }
   void gui_window::initialize() { set_visible(false); }
 
   void gui_window::render_derived() const {
     gui_movable_panel::render_derived();
-    m_gui_window_title_bar.render();
+    m_gui_win_title_bar.render();
   }
 
   rect_f gui_window::get_draggable_area() {
-    return m_gui_window_title_bar.get_bounds();
+    return m_gui_win_title_bar.get_bounds();
   }
 }

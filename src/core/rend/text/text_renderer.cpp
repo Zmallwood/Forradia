@@ -21,12 +21,12 @@ namespace forr {
   }
 
   void text_renderer::draw_string(str_view text, float x, float y,
-                                  font_sizes font_size, bool center_align,
+                                  font_sizes font_sz, bool cent_align,
                                   color text_color) const {
-    auto font_raw{m_fonts.at(font_size).get()};
-    auto surface{get_rendered_text_surface(text, font_raw, text_color)};
-    auto text_dimensions{measure_rendered_text(text, font_raw)};
-    render_text_surface(surface, x, y, text_dimensions, center_align);
-    SDL_FreeSurface(surface);
+    auto font_raw{m_fonts.at(font_sz).get()};
+    auto surf{get_rendered_text_surface(text, font_raw, text_color)};
+    auto text_dim{measure_rendered_text(text, font_raw)};
+    render_text_surface(surf, x, y, text_dim, cent_align);
+    SDL_FreeSurface(surf);
   }
 }

@@ -9,9 +9,9 @@ namespace forr {
    public:
     void update();
 
-    auto get_hovered_coordinate() const { return m_hovered_coordinate; }
+    auto get_hovered_coordinate() const { return m_hovered_coord; }
 
    private:
-    point m_hovered_coordinate{-1, -1};
+    point m_hovered_coord{-1, -1};
   };
 }

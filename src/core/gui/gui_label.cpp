@@ -7,14 +7,14 @@
 
 namespace forr {
   void gui_label::render_derived() const {
-    auto bounds{get_bounds()};
-    auto x{bounds.x};
-    auto y{bounds.y};
-    if (m_center_align) {
-      bounds.x += bounds.w / 2;
-      bounds.y += bounds.h / 2;
+    auto b{get_bounds()};
+    auto x{b.x};
+    auto y{b.y};
+    if (m_cent_align) {
+      b.x += b.w / 2;
+      b.y += b.h / 2;
     }
     get_singleton<text_renderer>().draw_string(
-        m_text, bounds.x, bounds.y, font_sizes::_20, m_center_align, m_color);
+        m_text, b.x, b.y, font_sizes::_20, m_cent_align, m_color);
   }
 }

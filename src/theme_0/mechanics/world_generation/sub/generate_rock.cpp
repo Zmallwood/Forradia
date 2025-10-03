@@ -10,25 +10,25 @@
 
 namespace forr {
   void generate_rock() {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto size{world_area->get_size()};
-    auto scale{get_singleton<game_properties>().k_world_scaling_factor};
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto sz{w_area->get_size()};
+    auto scale{get_singleton<game_properties>().k_world_scaling};
     auto num_rock_areas{30 + random_int(10)};
     for (auto i = 0; i < num_rock_areas; i++) {
-      auto x_center{random_int(size.w)};
-      auto y_center{random_int(size.h)};
-      auto radius{3 * scale + random_int(10 * scale)};
-      for (auto y = y_center - radius; y <= y_center + radius; y++) {
-        for (auto x = x_center - radius; x <= x_center + radius; x++) {
-          if (!world_area->is_valid_coordinate(x, y)) {
+      auto x_center{random_int(sz.w)};
+      auto y_center{random_int(sz.h)};
+      auto r{3 * scale + random_int(10 * scale)};
+      for (auto y = y_center - r; y <= y_center + r; y++) {
+        for (auto x = x_center - r; x <= x_center + r; x++) {
+          if (!w_area->is_valid_coordinate(x, y)) {
             continue;
           }
           auto dx{x - x_center};
           auto dy{y - y_center};
-          if (dx * dx + dy * dy <= radius * radius) {
-            auto tile{world_area->get_tile(x, y)};
-            if (tile->get_elevation() > 0) {
-              tile->set_ground("GroundRock");
+          if (dx * dx + dy * dy <= r * r) {
+            auto tl{w_area->get_tile(x, y)};
+            if (tl->get_elevation() > 0) {
+              tl->set_ground("GroundRock");
             }
           }
         }

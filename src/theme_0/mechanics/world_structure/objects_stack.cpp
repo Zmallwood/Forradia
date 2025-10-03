@@ -9,12 +9,12 @@
 namespace forr {
   void objects_stack::clear_objects() { m_objects.clear(); }
 
-  void objects_stack::add_object(str_view object_type_name) {
-    m_objects.push_back(std::make_shared<object>(object_type_name));
+  void objects_stack::add_object(str_view obj_type_name) {
+    m_objects.push_back(std::make_shared<object>(obj_type_name));
   }
 
-  void objects_stack::add_tree_object(str_view object_type_name) {
-    m_objects.push_back(std::make_shared<tree_object>(object_type_name));
+  void objects_stack::add_tree_object(str_view obj_type_name) {
+    m_objects.push_back(std::make_shared<tree_object>(obj_type_name));
   }
 
   int objects_stack::get_size() const { return m_objects.size(); }

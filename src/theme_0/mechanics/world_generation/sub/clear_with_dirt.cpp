@@ -10,15 +10,15 @@
 
 namespace forr {
   void clear_with_dirt() {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto size{world_area->get_size()};
-    size.w *= get_singleton<game_properties>().k_world_scaling_factor;
-    size.h *= get_singleton<game_properties>().k_world_scaling_factor;
-    for (auto y = 0; y < size.h; y++) {
-      for (auto x = 0; x < size.w; x++) {
-        auto tile{world_area->get_tile(x, y)};
-        if (tile) {
-          tile->set_ground("GroundDirt");
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto sz{w_area->get_size()};
+    sz.w *= get_singleton<game_properties>().k_world_scaling;
+    sz.h *= get_singleton<game_properties>().k_world_scaling;
+    for (auto y = 0; y < sz.h; y++) {
+      for (auto x = 0; x < sz.w; x++) {
+        auto tl{w_area->get_tile(x, y)};
+        if (tl) {
+          tl->set_ground("GroundDirt");
         }
       }
     }

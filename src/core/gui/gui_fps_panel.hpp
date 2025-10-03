@@ -20,6 +20,6 @@ namespace forr {
    private:
     void initialize();
 
-    s_ptr<gui_label> m_fps_text_panel;
+    s_ptr<gui_label> m_fps_text_pnl;
   };
 }

@@ -7,14 +7,13 @@
 #include "draw_image.hpp"
 
 namespace forr {
-  void draw_image_with_auto_height(str_view image_name, float x, float y,
-                                   float width) {
-    auto image_name_hash{hash(image_name)};
-    auto image_size{
-        get_singleton<image_bank>().get_image_size(image_name_hash)};
-    auto canvas_aspect_ratio{calculate_aspect_ratio()};
-    auto image_aspect_ratio{c_float(image_size.w) / image_size.h};
-    auto height{width / image_aspect_ratio * canvas_aspect_ratio};
-    draw_image(hash(image_name), x, y, width, height);
+  void draw_image_with_auto_height(str_view img_name, float x, float y,
+                                   float w) {
+    auto img_name_hash{hash(img_name)};
+    auto img_sz{get_singleton<image_bank>().get_image_size(img_name_hash)};
+    auto canv_asp_rat{calculate_aspect_ratio()};
+    auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
+    auto h{w / img_asp_rat * canv_asp_rat};
+    draw_image(hash(img_name), x, y, w, h);
   }
 }

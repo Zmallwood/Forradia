@@ -8,16 +8,16 @@
 #include "theme_0/mechanics/world_structure/world_area.hpp"
 
 namespace forr {
-  point calculate_new_creature_position(s_ptr<creature> creature) {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto &creatures_mirror_ref{world_area->get_creatures_mirror_ref()};
-    auto position{creatures_mirror_ref.at(creature)};
-    auto dx{creature->get_destination().x - position.x};
-    auto dy{creature->get_destination().y - position.y};
+  point calculate_new_creature_position(s_ptr<creature> crea) {
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto &creas{w_area->get_creatures_mirror_ref()};
+    auto pos{creas.at(crea)};
+    auto dx{crea->get_destination().x - pos.x};
+    auto dy{crea->get_destination().y - pos.y};
     auto norm_dx{normalize(dx)};
     auto norm_dy{normalize(dy)};
-    auto new_x{position.x + norm_dx};
-    auto new_y{position.y + norm_dy};
+    auto new_x{pos.x + norm_dx};
+    auto new_y{pos.y + norm_dy};
     return {new_x, new_y};
   }
 }

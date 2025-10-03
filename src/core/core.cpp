@@ -31,27 +31,24 @@ namespace forr {
   void engine::stop() { m_running = false; }
 
   void engine::poll_events() {
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) {
-      switch (event.type) {
+    SDL_Event ev;
+    while (SDL_PollEvent(&ev)) {
+      switch (ev.type) {
       case SDL_QUIT:
         m_running = false;
         break;
       case SDL_KEYDOWN:
-        get_singleton<keyboard_input>().register_key_press(
-            event.key.keysym.sym);
+        get_singleton<keyboard_input>().register_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        get_singleton<keyboard_input>().register_key_release(
-            event.key.keysym.sym);
+        get_singleton<keyboard_input>().register_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
         get_singleton<mouse_input>().register_mouse_button_down(
-            event.button.button);
+            ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        get_singleton<mouse_input>().register_mouse_button_up(
-            event.button.button);
+        get_singleton<mouse_input>().register_mouse_button_up(ev.button.button);
         break;
       }
     }
@@ -59,48 +56,46 @@ namespace forr {
 
   void sdl_device::initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
-    m_window = create_window();
-    if (m_window) {
-      m_renderer = create_renderer();
+    m_win = create_window();
+    if (m_win) {
+      m_rend = create_renderer();
     }
   }
 
   void sdl_device::clear_canvas() const {
     SDL_Color clear_color{
         get_singleton<game_properties>().k_clear_color.to_sdl_color()};
-    SDL_SetRenderDrawColor(m_renderer.get(), clear_color.r, clear_color.g,
+    SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
-    SDL_RenderClear(m_renderer.get());
+    SDL_RenderClear(m_rend.get());
   }
 
-  void sdl_device::present_canvas() const {
-    SDL_RenderPresent(m_renderer.get());
-  }
+  void sdl_device::present_canvas() const { SDL_RenderPresent(m_rend.get()); }
 
   s_ptr<SDL_Window> sdl_device::create_window() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
-    auto window_result{s_ptr<SDL_Window>(
+    auto win_res{s_ptr<SDL_Window>(
         SDL_CreateWindow(
-            get_singleton<game_properties>().k_game_window_title.data(),
+            get_singleton<game_properties>().k_game_win_title.data(),
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660, 660, flags),
         sdl_deleter())};
-    if (!window_result) {
+    if (!win_res) {
       print_line("Window could not be created. SDL Error: " +
                  str(SDL_GetError()));
     }
-    return window_result;
+    return win_res;
   }
 
   s_ptr<SDL_Renderer> sdl_device::create_renderer() {
-    auto renderer_result{s_ptr<SDL_Renderer>(
-        SDL_CreateRenderer(m_window.get(), -1, SDL_RENDERER_ACCELERATED),
+    auto rend_res{s_ptr<SDL_Renderer>(
+        SDL_CreateRenderer(m_win.get(), -1, SDL_RENDERER_ACCELERATED),
         sdl_deleter())};
-    if (!renderer_result) {
+    if (!rend_res) {
       print_line("Renderer could not be created. SDL Error: " +
                  std::string(SDL_GetError()));
     }
-    return renderer_result;
+    return rend_res;
   }
 
   void fps_counter::update() {
@@ -118,60 +113,59 @@ namespace forr {
   void cursor::disable_system_cursor() { SDL_ShowCursor(SDL_DISABLE); }
 
   void cursor::reset_style_to_default() {
-    m_cursor_style = cursor_styles::normal;
+    m_curs_style = cursor_styles::normal;
   }
 
   void cursor::render() {
-    auto mouse_position{get_normalized_mouse_position()};
-    auto width{k_cursor_size};
-    auto height{convert_width_to_height(k_cursor_size)};
-    str cursor_image;
-    switch (m_cursor_style) {
+    auto mouse_pos{get_normalized_mouse_position()};
+    auto w{k_curs_sz};
+    auto h{convert_width_to_height(k_curs_sz)};
+    str curs_img;
+    switch (m_curs_style) {
     case cursor_styles::normal:
-      cursor_image = "CursorDefault";
+      curs_img = "CursorDefault";
       break;
     case cursor_styles::hovering_clickable_gui:
-      cursor_image = "CursorHoveringClickableGUI";
+      curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    get_singleton<image_renderer>().draw_image(
-        cursor_image, mouse_position.x - width / 2,
-        mouse_position.y - height / 2, width, height);
+    get_singleton<image_renderer>().draw_image(curs_img, mouse_pos.x - w / 2,
+                                               mouse_pos.y - h / 2, w, h);
   }
 
   void image_bank::initialize() { load_images(); }
 
   void image_bank::load_images() {
     auto base_path{str(SDL_GetBasePath())};
-    auto images_path{base_path + k_relative_images_path.data()};
-    if (!std::filesystem::exists(images_path)) {
+    auto imgs_path{base_path + k_rel_imgs_path.data()};
+    if (!std::filesystem::exists(imgs_path)) {
       return;
     }
-    std::filesystem::recursive_directory_iterator rdi{images_path};
+    std::filesystem::recursive_directory_iterator rdi{imgs_path};
     for (auto it : rdi) {
       auto file_path{replace(it.path().string(), '\\', '/')};
       if (get_file_extension(file_path) == "png") {
         auto file_name{get_file_name_no_extension(file_path)};
         auto hash{forr::hash(file_name)};
-        auto image{load_single_image(file_path)};
-        m_images.insert({hash, image});
+        auto img{load_single_image(file_path)};
+        m_images.insert({hash, img});
       }
     }
   }
 
-  s_ptr<SDL_Texture> image_bank::get_image(int image_name_hash) const {
-    if (m_images.contains(image_name_hash)) {
-      return m_images.at(image_name_hash);
+  s_ptr<SDL_Texture> image_bank::get_image(int img_name_hash) const {
+    if (m_images.contains(img_name_hash)) {
+      return m_images.at(img_name_hash);
     }
     return nullptr;
   }
 
-  size image_bank::get_image_size(int image_name_hash) const {
-    if (m_images.contains(image_name_hash)) {
-      auto texture{m_images.at(image_name_hash)};
+  size image_bank::get_image_size(int img_name_hash) const {
+    if (m_images.contains(img_name_hash)) {
+      auto tex{m_images.at(img_name_hash)};
       size size;
-      if (texture) {
-        SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.w, &size.h);
+      if (tex) {
+        SDL_QueryTexture(tex.get(), nullptr, nullptr, &size.w, &size.h);
       }
       return size;
     }
@@ -179,13 +173,12 @@ namespace forr {
   }
 
   s_ptr<SDL_Texture> image_bank::load_single_image(str_view path) {
-    auto surface{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
-    if (surface) {
-      auto renderer{get_singleton<sdl_device>().get_renderer().get()};
-      auto texture{s_ptr<SDL_Texture>(
-          SDL_CreateTextureFromSurface(renderer, surface.get()),
-          sdl_deleter())};
-      return texture;
+    auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
+    if (surf) {
+      auto rend{get_singleton<sdl_device>().get_renderer().get()};
+      auto tex{s_ptr<SDL_Texture>(
+          SDL_CreateTextureFromSurface(rend, surf.get()), sdl_deleter())};
+      return tex;
     }
     return nullptr;
   }

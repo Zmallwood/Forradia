@@ -22,31 +22,27 @@ namespace forr {
 
     auto get_creature() const { return m_creature; }
 
-    void set_creature(s_ptr<creature> value) { m_creature = value; }
+    void set_creature(s_ptr<creature> val) { m_creature = val; }
 
     auto get_npc() const { return m_npc; }
 
-    void set_npc(s_ptr<npc> value) { m_npc = value; }
+    void set_npc(s_ptr<npc> val) { m_npc = val; }
 
-    auto get_elevation() const { return m_elevation; }
+    auto get_elevation() const { return m_elev; }
 
-    void set_elevation(int value) { m_elevation = value; }
+    void set_elevation(int val) { m_elev = val; }
 
     auto get_water_depth() const { return m_water_depth; }
 
-    void set_water_depth(int value) { m_water_depth = value; }
+    void set_water_depth(int val) { m_water_depth = val; }
 
-    auto get_river_direction_1() const { return m_river_direction_1; }
+    auto get_river_direction_1() const { return m_river_dir_1; }
 
-    void set_river_direction_1(directions value) {
-      m_river_direction_1 = value;
-    }
+    void set_river_direction_1(directions val) { m_river_dir_1 = val; }
 
-    auto get_river_direction_2() const { return m_river_direction_2; }
+    auto get_river_direction_2() const { return m_river_dir_2; }
 
-    void set_river_direction_2(directions value) {
-      m_river_direction_2 = value;
-    }
+    void set_river_direction_2(directions val) { m_river_dir_2 = val; }
 
    private:
     void initialize();
@@ -55,9 +51,9 @@ namespace forr {
     s_ptr<objects_stack> m_objects_stack;
     s_ptr<creature> m_creature;
     s_ptr<npc> m_npc;
-    int m_elevation{0};
+    int m_elev{0};
     int m_water_depth{0};
-    directions m_river_direction_1{directions::none};
-    directions m_river_direction_2{directions::none};
+    directions m_river_dir_1{directions::none};
+    directions m_river_dir_2{directions::none};
   };
 }

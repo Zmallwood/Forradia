@@ -7,8 +7,8 @@
 namespace forr {
   class gui_component {
    public:
-    gui_component(float x, float y, float width, float height)
-        : m_bounds({x, y, width, height}) {}
+    gui_component(float x, float y, float w, float h)
+        : m_bounds({x, y, w, h}) {}
 
     s_ptr<gui_component> add_child_component(s_ptr<gui_component> comp);
 
@@ -22,9 +22,7 @@ namespace forr {
 
     void set_visible(bool value) { m_visible = value; }
 
-    void set_parent_component(gui_component *value) {
-      m_parent_component = value;
-    }
+    void set_parent_component(gui_component *value) { m_parent_comp = value; }
 
    protected:
     virtual void update_derived() {}
@@ -35,9 +33,9 @@ namespace forr {
 
    private:
     rect_f m_bounds;
-    vec<s_ptr<gui_component>> m_child_components;
+    vec<s_ptr<gui_component>> m_children;
     bool m_visible{true};
     bool m_enabled{true};
-    gui_component *m_parent_component{nullptr};
+    gui_component *m_parent_comp{nullptr};
   };
 }

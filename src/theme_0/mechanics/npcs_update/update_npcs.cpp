@@ -11,12 +11,12 @@
 
 namespace forr {
   void update_npcs() {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto &npcs_mirror_ref{world_area->get_npcs_mirror_ref()};
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto &npcs{w_area->get_npcs_mirror_ref()};
     auto now{get_ticks()};
-    for (auto it = npcs_mirror_ref.begin(); it != npcs_mirror_ref.end();) {
+    for (auto it = npcs.begin(); it != npcs.end();) {
       auto npc{it->first};
-      auto position{it->second};
+      auto pos{it->second};
 
       if (now > npc->get_ticks_next_spontaneous_speech()) {
         auto name{npc->get_name()};
@@ -35,33 +35,32 @@ namespace forr {
         ++it;
         continue;
       }
-      auto destination{npc->get_destination()};
-      if (destination.x == -1 && destination.y == -1) {
-        auto new_destination_x{position.x + random_int(11) - 5};
-        auto new_destination_y{position.y + random_int(11) - 5};
-        npc->set_destination({new_destination_x, new_destination_y});
+      auto dest{npc->get_destination()};
+      if (dest.x == -1 && dest.y == -1) {
+        auto new_dest_x{pos.x + random_int(11) - 5};
+        auto new_dest_y{pos.y + random_int(11) - 5};
+        npc->set_destination({new_dest_x, new_dest_y});
       }
-      auto dx{npc->get_destination().x - position.x};
-      auto dy{npc->get_destination().y - position.y};
+      auto dx{npc->get_destination().x - pos.x};
+      auto dy{npc->get_destination().y - pos.y};
       auto norm_dx{normalize(dx)};
       auto norm_dy{normalize(dy)};
-      auto new_x{position.x + norm_dx};
-      auto new_y{position.y + norm_dy};
-      auto new_position{point{new_x, new_y}};
-      if (new_position == npc->get_destination()) {
+      auto new_x{pos.x + norm_dx};
+      auto new_y{pos.y + norm_dy};
+      auto new_pos{point{new_x, new_y}};
+      if (new_pos == npc->get_destination()) {
         npc->set_destination({-1, -1});
       }
-      auto tile{world_area->get_tile(new_position.x, new_position.y)};
-      if (tile && !tile->get_npc() &&
-          tile->get_ground() != hash("GroundWater")) {
-        auto old_position{position};
+      auto tl{w_area->get_tile(new_pos.x, new_pos.y)};
+      if (tl && !tl->get_npc() && tl->get_ground() != hash("GroundWater")) {
+        auto old_pos{pos};
         npc->set_ticks_last_move(now);
-        auto old_tile{world_area->get_tile(old_position.x, old_position.y)};
-        auto new_tile{world_area->get_tile(new_position.x, new_position.y)};
-        old_tile->set_npc(nullptr);
-        new_tile->set_npc(npc);
-        npcs_mirror_ref.erase(npc);
-        npcs_mirror_ref.insert({npc, {new_position.x, new_position.y}});
+        auto old_tl{w_area->get_tile(old_pos.x, old_pos.y)};
+        auto new_tl{w_area->get_tile(new_pos.x, new_pos.y)};
+        old_tl->set_npc(nullptr);
+        new_tl->set_npc(npc);
+        npcs.erase(npc);
+        npcs.insert({npc, {new_pos.x, new_pos.y}});
       } else {
         npc->set_destination({-1, -1});
       }

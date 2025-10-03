@@ -8,7 +8,7 @@ namespace forr {
   s_ptr<gui_component>
   gui_component::add_child_component(s_ptr<gui_component> comp) {
     comp->set_parent_component(this);
-    m_child_components.push_back(comp);
+    m_children.push_back(comp);
     return comp;
   }
 
@@ -16,7 +16,7 @@ namespace forr {
     if (!m_visible || !m_enabled) {
       return;
     }
-    for (auto comp : std::views::reverse(m_child_components)) {
+    for (auto comp : std::views::reverse(m_children)) {
       comp->update();
     }
     update_derived();
@@ -27,24 +27,24 @@ namespace forr {
       return;
     }
     render_derived();
-    for (auto comp : m_child_components) {
+    for (auto comp : m_children) {
       comp->render();
     }
   }
 
   rect_f gui_component::get_bounds() const {
-    auto bounds_result{m_bounds};
-    if (m_parent_component) {
-      auto parent_position{m_parent_component->get_bounds().get_position()};
-      bounds_result.offset(parent_position);
+    auto b_res{m_bounds};
+    if (m_parent_comp) {
+      auto parent_pos{m_parent_comp->get_bounds().get_position()};
+      b_res.offset(parent_pos);
     }
-    return bounds_result;
+    return b_res;
   }
 
   void gui_component::toggle_visibility() { m_visible = !m_visible; }
 
-  void gui_component::set_position(point_f new_position) {
-    m_bounds.x = new_position.x;
-    m_bounds.y = new_position.y;
+  void gui_component::set_position(point_f new_pos) {
+    m_bounds.x = new_pos.x;
+    m_bounds.y = new_pos.y;
   }
 }

@@ -6,9 +6,9 @@
 
 namespace forr {
   size measure_rendered_text(str_view text, TTF_Font *font_raw) {
-    int text_width;
-    int text_height;
-    TTF_SizeText(font_raw, text.data(), &text_width, &text_height);
-    return {text_width, text_height};
+    int text_w;
+    int text_h;
+    TTF_SizeText(font_raw, text.data(), &text_w, &text_h);
+    return {text_w, text_h};
   }
 }

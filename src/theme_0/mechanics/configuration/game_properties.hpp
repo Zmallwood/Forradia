@@ -7,10 +7,10 @@
 namespace forr {
   class game_properties {
    public:
-    static constexpr str k_game_window_title{"Forradia"};
+    static constexpr str k_game_win_title{"Forradia"};
     static constexpr color k_clear_color{colors::black};
     static constexpr int k_num_grid_rows{15};
-    static constexpr size k_world_area_size{120, 100};
-    static constexpr float k_world_scaling_factor{5.0f};
+    static constexpr size k_w_area_sz{120, 100};
+    static constexpr float k_world_scaling{5.0f};
   };
 }

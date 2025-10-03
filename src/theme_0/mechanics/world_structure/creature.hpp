@@ -15,18 +15,18 @@ namespace forr {
 
     void set_ticks_last_move(int value) { m_ticks_last_move = value; }
 
-    auto get_movement_speed() const { return m_movement_speed; }
+    auto get_movement_speed() const { return m_movem_spd; }
 
-    auto get_destination() const { return m_destination; }
+    auto get_destination() const { return m_dest; }
 
-    void set_destination(point value) { m_destination = value; }
+    void set_destination(point val) { m_dest = val; }
 
    private:
     void initialize();
 
     int m_type{0};
     int m_ticks_last_move{0};
-    float m_movement_speed{2.0f};
-    point m_destination{-1, -1};
+    float m_movem_spd{2.0f};
+    point m_dest{-1, -1};
   };
 }

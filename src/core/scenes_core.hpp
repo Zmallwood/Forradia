@@ -44,6 +44,6 @@ namespace forr {
 
    private:
     std::map<int, i_scene &> m_scenes;
-    int m_current_scene{0};
+    int m_curr_scene{0};
   };
 }

@@ -70,11 +70,11 @@ namespace forr {
 
   SDL_Color color::to_sdl_color() const {
     // Calculate individual color components.
-    auto r_int{c_uint8(r * 255)};
-    auto g_int{c_uint8(g * 255)};
-    auto b_int{c_uint8(b * 255)};
-    auto a_int{c_uint8(a * 255)};
-    return {r_int, g_int, b_int, a_int};
+    auto r_n{c_uint8(r * 255)};
+    auto g_n{c_uint8(g * 255)};
+    auto b_n{c_uint8(b * 255)};
+    auto a_n{c_uint8(a * 255)};
+    return {r_n, g_n, b_n, a_n};
   }
 
   ////////////////////
@@ -82,35 +82,35 @@ namespace forr {
   ////////////////////
   // Canvas util functions
   size get_canvas_size() {
-    size canvas_size;
+    size canv_sz;
     SDL_GetWindowSize(get_singleton<sdl_device>().get_window().get(),
-                      &canvas_size.w, &canvas_size.h);
-    return canvas_size;
+                      &canv_sz.w, &canv_sz.h);
+    return canv_sz;
   }
 
   float calculate_aspect_ratio() {
-    auto canvas_size{get_canvas_size()};
-    auto aspect_ratio{c_float(canvas_size.w) / canvas_size.h};
-    return aspect_ratio;
+    auto canv_sz{get_canvas_size()};
+    auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
+    return asp_rat;
   }
 
-  float convert_width_to_height(float width) {
-    return width * calculate_aspect_ratio();
+  float convert_width_to_height(float w) {
+    return w * calculate_aspect_ratio();
   }
 
-  float convert_height_to_width(float height) {
-    return height / calculate_aspect_ratio();
+  float convert_height_to_width(float h) {
+    return h / calculate_aspect_ratio();
   }
 
   // File path util functions
   str get_file_extension(str_view path) {
-    str extension{path.substr(path.find_last_of('.') + 1).data()};
-    return extension;
+    str ext{path.substr(path.find_last_of('.') + 1).data()};
+    return ext;
   }
 
   str get_file_name_no_extension(str_view path) {
-    auto name_with_extension{str(path.substr(path.find_last_of('/') + 1))};
-    return name_with_extension.substr(0, name_with_extension.find_last_of('.'));
+    auto name_with_ext{str(path.substr(path.find_last_of('/') + 1))};
+    return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
   }
 
   // Numbers util functions
@@ -118,42 +118,42 @@ namespace forr {
     int x_px;
     int y_px;
     SDL_GetMouseState(&x_px, &y_px);
-    auto canvas_size{get_canvas_size()};
-    return {c_float(x_px) / canvas_size.w, c_float(y_px) / canvas_size.h};
+    auto canv_sz{get_canvas_size()};
+    return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
   }
 
-  float invert_movement_speed(float number) {
-    if (number) {
-      return k_one_second_millis / number;
+  float invert_movement_speed(float num) {
+    if (num) {
+      return k_one_second_millis / num;
     } else {
       return 0.0f;
     }
   }
 
-  int normalize(int value) {
-    auto abs_value{std::abs(value)};
-    auto normalized{0};
-    if (value) {
-      normalized = value / abs_value;
+  int normalize(int val) {
+    auto abs_val{std::abs(val)};
+    auto norm{0};
+    if (val) {
+      norm = val / abs_val;
     }
-    return normalized;
+    return norm;
   }
 
-  float ceil(float number, float k) {
+  float ceil(float num, float k) {
     auto p{std::pow(10.0, k)};
-    return std::ceil(number * p) / p;
+    return std::ceil(num * p) / p;
   }
 
   // Randomization util functions
   void randomize() { srand(time(nullptr)); }
 
-  int random_int(int upper_limit) { return rand() % upper_limit; }
+  int random_int(int upper_lim) { return rand() % upper_lim; }
 
   // String util functions
-  str replace(str_view text, char replaced, char replaced_with) {
-    str text_data{text.data()};
-    std::replace(text_data.begin(), text_data.end(), replaced, replaced_with);
-    return text_data;
+  str replace(str_view text, char repl, char repl_with) {
+    str res{text.data()};
+    std::replace(res.begin(), res.end(), repl, repl_with);
+    return res;
   }
 
   // Hash util functions

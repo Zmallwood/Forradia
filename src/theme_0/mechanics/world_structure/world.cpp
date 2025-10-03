@@ -7,6 +7,6 @@
 
 namespace forr {
   void world::initialize() {
-    m_current_world_area = std::make_shared<world_area>();
+    m_curr_w_area = std::make_shared<world_area>();
   }
 }

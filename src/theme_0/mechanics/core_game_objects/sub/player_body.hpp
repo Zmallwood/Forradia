@@ -11,11 +11,11 @@ namespace forr {
    public:
     player_body() { initialize(); }
 
-    body_part *get_body_part_ptr(body_part_types body_part_type);
+    body_part *get_body_part_ptr(body_part_types type);
 
    private:
     void initialize();
 
-    std::map<body_part_types, body_part> m_body_parts;
+    std::map<body_part_types, body_part> m_parts;
   };
 }

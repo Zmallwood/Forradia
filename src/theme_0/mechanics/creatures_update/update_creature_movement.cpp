@@ -13,30 +13,28 @@
 
 namespace forr {
   void update_creature_movement() {
-    auto world_area{get_singleton<world>().get_current_world_area()};
-    auto &creatures_mirror_ref{world_area->get_creatures_mirror_ref()};
+    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto &creas{w_area->get_creatures_mirror_ref()};
     auto now{get_ticks()};
-    for (auto it = creatures_mirror_ref.begin();
-         it != creatures_mirror_ref.end();) {
-      auto creature{it->first};
-      auto position{it->second};
-      if (now < creature->get_ticks_last_move() +
-                    invert_movement_speed(creature->get_movement_speed())) {
+    for (auto it = creas.begin(); it != creas.end();) {
+      auto crea{it->first};
+      auto pos{it->second};
+      if (now < crea->get_ticks_last_move() +
+                    invert_movement_speed(crea->get_movement_speed())) {
         ++it;
         continue;
       }
-      generate_new_creature_destination(creature);
-      auto new_position{calculate_new_creature_position(creature)};
-      if (new_position == creature->get_destination()) {
-        creature->set_destination({-1, -1});
+      generate_new_creature_destination(crea);
+      auto new_pos{calculate_new_creature_position(crea)};
+      if (new_pos == crea->get_destination()) {
+        crea->set_destination({-1, -1});
       }
-      auto tile{world_area->get_tile(new_position.x, new_position.y)};
-      if (tile && !tile->get_creature() &&
-          tile->get_ground() != hash("GroundWater")) {
-        move_creature_to_new_location(creature,
-                                      {new_position.x, new_position.y});
+      auto tl{w_area->get_tile(new_pos.x, new_pos.y)};
+      if (tl && !tl->get_creature() &&
+          tl->get_ground() != hash("GroundWater")) {
+        move_creature_to_new_location(crea, {new_pos.x, new_pos.y});
       } else {
-        creature->set_destination({-1, -1});
+        crea->set_destination({-1, -1});
       }
       ++it;
     }

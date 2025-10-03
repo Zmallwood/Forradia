@@ -19,7 +19,7 @@ namespace forr {
 
     s_ptr<tile> get_tile(int x, int y) const;
 
-    s_ptr<tile> get_tile(point coordinate) const;
+    s_ptr<tile> get_tile(point coord) const;
 
     auto &get_creatures_mirror_ref() { return m_creatures_mirror; }
 

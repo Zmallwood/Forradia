@@ -5,12 +5,11 @@
 #include "create_font.hpp"
 
 namespace forr {
-  s_ptr<TTF_Font> create_font(str_view font_file_path, font_sizes font_size) {
+  s_ptr<TTF_Font> create_font(str_view font_file_path, font_sizes font_sz) {
     auto font_path_unix_style{replace(font_file_path, '\\', '/')};
-    auto font_size_n{c_int(font_size)};
-    auto new_font{
-        s_ptr<TTF_Font>(TTF_OpenFont(font_path_unix_style.c_str(), font_size_n),
-                        sdl_deleter())};
+    auto font_sz_n{c_int(font_sz)};
+    auto new_font{s_ptr<TTF_Font>(
+        TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), sdl_deleter())};
     if (!new_font) {
       print_line("Error loading font.");
       return nullptr;

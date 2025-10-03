@@ -7,8 +7,8 @@
 
 namespace forr {
   void gui_panel::render_derived() const {
-    auto bounds{get_bounds()};
-    get_singleton<image_renderer>().draw_image(m_background_image, bounds.x,
-                                               bounds.y, bounds.w, bounds.h);
+    auto b{get_bounds()};
+    get_singleton<image_renderer>().draw_image(m_bg_img, b.x, b.y,
+                                               b.w, b.h);
   }
 }
