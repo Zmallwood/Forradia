@@ -13,7 +13,7 @@
 #include "theme_0/func/gui/gui_player_status_panel.hpp"
 #include "theme_0/func/gui/gui_system_menu.hpp"
 #include "theme_0/func/update.hpp"
-#include "theme_0/func/world_view/world_view.hpp"
+#include "theme_0/func/world_view.hpp"
 
 namespace forr {
   void run_new_theme_0() {
