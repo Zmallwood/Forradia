@@ -4,14 +4,14 @@
  */
 #include "core.hpp"
 #include "engine.hpp"
-#include "func/world_gen/gen_new_world.hpp"
+#include "world_grator.hpp"
 #include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "theme_0/func/game_props.hpp"
-#include "theme_0/func/gui_spec.hpp"
-#include "theme_0/func/update.hpp"
-#include "theme_0/func/world_view.hpp"
+#include "game_props.hpp"
+#include "gui_spec.hpp"
+#include "update.hpp"
+#include "world_view.hpp"
 #include "world_struct.hpp"
 
 namespace forr {
@@ -76,7 +76,7 @@ namespace forr {
 
   void world_gen_scene::on_enter_derived() {
     _<gui_text_console>().print("Generating new world...");
-    gen_new_world();
+    _<world_grator>().gen_new_world();
     _<gui_text_console>().print("World generation completed.");
     _<scene_mngr>().go_to_scene("MainScene");
   }

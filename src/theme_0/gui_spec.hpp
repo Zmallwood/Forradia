@@ -4,7 +4,7 @@
  */
 #pragma once
 #include "gui.hpp"
-#include "theme_0/func/player.hpp"
+#include "player.hpp"
 
 namespace forr {
   class gui_player_status_panel : public gui_panel {

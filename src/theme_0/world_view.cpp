@@ -5,9 +5,9 @@
 #include "world_view.hpp"
 #include "engine.hpp"
 #include "rend.hpp"
-#include "theme_0/func/player.hpp"
-#include "theme_0/func/tile_grid_math.hpp"
-#include "theme_0/func/update.hpp"
+#include "player.hpp"
+#include "tile_grid_math.hpp"
+#include "update.hpp"
 #include "world_struct.hpp"
 
 namespace forr {

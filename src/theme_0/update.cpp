@@ -6,7 +6,7 @@
 #include "engine.hpp"
 #include "input.hpp"
 #include "player.hpp"
-#include "theme_0/func/gui_spec.hpp"
+#include "gui_spec.hpp"
 #include "tile_grid_math.hpp"
 #include "world_struct.hpp"
 

@@ -4,7 +4,7 @@
  */
 #include "tile_grid_math.hpp"
 #include "engine.hpp"
-#include "theme_0/func/game_props.hpp"
+#include "game_props.hpp"
 
 namespace forr {
   sz_f calc_tl_sz() {

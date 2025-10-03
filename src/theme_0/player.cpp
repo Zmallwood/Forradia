@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "player.hpp"
-#include "theme_0/func/game_props.hpp"
+#include "game_props.hpp"
 #include "world_struct.hpp"
 
 namespace forr {
