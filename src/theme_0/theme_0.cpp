@@ -8,16 +8,11 @@
 #include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "theme_0/func/creas_update/update_crea_movem.hpp"
 #include "theme_0/func/gui/gui_inventory_window.hpp"
 #include "theme_0/func/gui/gui_player_body_window.hpp"
 #include "theme_0/func/gui/gui_player_status_panel.hpp"
 #include "theme_0/func/gui/gui_system_menu.hpp"
-#include "theme_0/func/kb_bindings/update_kb_actions.hpp"
-#include "theme_0/func/npcs_update/update_npcs.hpp"
-#include "theme_0/func/player_movem/update_kb_movem.hpp"
-#include "theme_0/func/player_movem/update_mouse_movem.hpp"
-#include "theme_0/func/world_interact/tile_hovering.hpp"
+#include "theme_0/func/update.hpp"
 #include "theme_0/func/world_view/world_view.hpp"
 
 namespace forr {

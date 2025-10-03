@@ -5,6 +5,16 @@
 #pragma once
 
 namespace forr {
+  void update_kb_actions();
+
+  void update_kb_movem();
+
+  void update_mouse_movem();
+
+  void update_crea_movem();
+
+  void update_npcs();
+
   class tile_hovering {
    public:
     void update();
