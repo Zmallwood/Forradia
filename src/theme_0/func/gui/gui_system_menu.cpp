@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_system_menu.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "input.hpp"
 
 namespace forr {

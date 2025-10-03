@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "rend.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 
 namespace forr {
   void image_renderer::draw_img(str_view img_name, float x, float y, float w,

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_player_body_window.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "gui.hpp"
 #include "theme_0/func/player.hpp"
 

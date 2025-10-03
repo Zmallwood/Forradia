@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "tile_grid_math.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "theme_0/func/game_props.hpp"
 
 namespace forr {

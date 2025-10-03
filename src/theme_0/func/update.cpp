@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "input.hpp"
 #include "player.hpp"
 #include "theme_0/func/gui/gui_inventory_window.hpp"

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "input.hpp"
 #include "rend.hpp"
 

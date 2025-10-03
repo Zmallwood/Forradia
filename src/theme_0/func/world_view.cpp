@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_view.hpp"
-#include "core.hpp"
+#include "engine.hpp"
 #include "rend.hpp"
 #include "theme_0/func/player.hpp"
 #include "theme_0/func/tile_grid_math.hpp"

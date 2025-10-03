@@ -2,8 +2,8 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "theme_0.hpp"
 #include "core.hpp"
+#include "engine.hpp"
 #include "func/world_gen/gen_new_world.hpp"
 #include "gui.hpp"
 #include "input.hpp"
@@ -26,7 +26,7 @@ namespace forr {
     _<scene_mngr>().go_to_scene("IntroScene");
     _<world>().init(_<game_props>().k_w_area_sz,
                     _<game_props>().k_world_scaling);
-    _<game>().start();
+    _<engine>().run();
   }
 
   void intro_scene::init_derived() {
