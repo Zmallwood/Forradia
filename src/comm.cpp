@@ -57,12 +57,12 @@ namespace forr {
     return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
   }
 
-  point_f rect_f::get_position() const {
+  point_f rect_f::get_pos() const {
     // Return only the coordinates.
     return {x, y};
   }
 
-  void rect_f::offset(point_f offs) {
+  void rect_f::offs(point_f offs) {
     // Add the offset to the dimensions separately.
     x += offs.x;
     y += offs.y;
@@ -81,48 +81,44 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canvas_size() {
+  size get_canv_sz() {
     size canv_sz;
-    SDL_GetWindowSize(get_singleton<sdl_device>().get_window().get(),
-                      &canv_sz.w, &canv_sz.h);
+    SDL_GetWindowSize(get_ston<sdl_device>().get_win().get(), &canv_sz.w,
+                      &canv_sz.h);
     return canv_sz;
   }
 
-  float calculate_aspect_ratio() {
-    auto canv_sz{get_canvas_size()};
+  float calc_aspect_ratio() {
+    auto canv_sz{get_canv_sz()};
     auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
     return asp_rat;
   }
 
-  float convert_width_to_height(float w) {
-    return w * calculate_aspect_ratio();
-  }
+  float conv_w_to_h(float w) { return w * calc_aspect_ratio(); }
 
-  float convert_height_to_width(float h) {
-    return h / calculate_aspect_ratio();
-  }
+  float conv_h_to_w(float h) { return h / calc_aspect_ratio(); }
 
   // File path util functions
-  str get_file_extension(str_view path) {
+  str get_file_ext(str_view path) {
     str ext{path.substr(path.find_last_of('.') + 1).data()};
     return ext;
   }
 
-  str get_file_name_no_extension(str_view path) {
+  str get_file_name_no_ext(str_view path) {
     auto name_with_ext{str(path.substr(path.find_last_of('/') + 1))};
     return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
   }
 
   // Numbers util functions
-  point_f get_normalized_mouse_position() {
+  point_f get_norm_mouse_pos() {
     int x_px;
     int y_px;
     SDL_GetMouseState(&x_px, &y_px);
-    auto canv_sz{get_canvas_size()};
+    auto canv_sz{get_canv_sz()};
     return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
   }
 
-  float invert_movement_speed(float num) {
+  float inv_movem_spd(float num) {
     if (num) {
       return k_one_second_millis / num;
     } else {
@@ -147,10 +143,10 @@ namespace forr {
   // Randomization util functions
   void randomize() { srand(time(nullptr)); }
 
-  int random_int(int upper_lim) { return rand() % upper_lim; }
+  int rand_int(int upper_lim) { return rand() % upper_lim; }
 
   // String util functions
-  str replace(str_view text, char repl, char repl_with) {
+  str repl(str_view text, char repl, char repl_with) {
     str res{text.data()};
     std::replace(res.begin(), res.end(), repl, repl_with);
     return res;
@@ -172,7 +168,7 @@ namespace forr {
     std::cout << text;
   }
 
-  void print_line(str_view text) {
+  void print_ln(str_view text) {
     // Print out text with a following line break.
     std::cout << text << std::endl;
   }

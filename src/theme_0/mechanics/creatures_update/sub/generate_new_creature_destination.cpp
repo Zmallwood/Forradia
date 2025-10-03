@@ -9,13 +9,13 @@
 
 namespace forr {
   void generate_new_creature_destination(s_ptr<creature> crea) {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
     auto pos{creas.at(crea)};
     auto dest{crea->get_destination()};
     if (dest.x == -1 && dest.y == -1) {
-      auto new_dest{pos.x + random_int(11) - 5};
-      auto new_destination_y{pos.y + random_int(11) - 5};
+      auto new_dest{pos.x + rand_int(11) - 5};
+      auto new_destination_y{pos.y + rand_int(11) - 5};
       crea->set_destination({new_dest, new_destination_y});
     }
   }

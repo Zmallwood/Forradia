@@ -12,17 +12,17 @@ namespace forr {
     }
     int num_trunk_parts;
     if (obj_type_name == "ObjectFirTree") {
-      num_trunk_parts = 55 + random_int(44);
+      num_trunk_parts = 55 + rand_int(44);
     } else if (obj_type_name == "ObjectBirchTree") {
-      num_trunk_parts = 25 + random_int(14);
+      num_trunk_parts = 25 + rand_int(14);
     }
-    m_w_factor *= (random_int(5) + 1) / 2.0f + 1.0f;
+    m_w_factor *= (rand_int(5) + 1) / 2.0f + 1.0f;
     auto offs_x{0.0f};
     for (auto i = 0; i < num_trunk_parts; i++) {
-      offs_x += (random_int(20) - 10) / 100.0f;
+      offs_x += (rand_int(20) - 10) / 100.0f;
       auto offset_y{i * 0.1f};
       auto pos{point_f{offs_x, offset_y}};
-      auto needles_type{random_int(5)};
+      auto needles_type{rand_int(5)};
       m_trunk_parts.push_back(pos);
       str needles_name;
       if (obj_type_name == "ObjectFirTree") {

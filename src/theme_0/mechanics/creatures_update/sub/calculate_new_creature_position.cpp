@@ -9,7 +9,7 @@
 
 namespace forr {
   point calculate_new_creature_position(s_ptr<creature> crea) {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
     auto pos{creas.at(crea)};
     auto dx{crea->get_destination().x - pos.x};

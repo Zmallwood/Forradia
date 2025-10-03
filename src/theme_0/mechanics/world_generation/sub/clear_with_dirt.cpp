@@ -10,10 +10,10 @@
 
 namespace forr {
   void clear_with_dirt() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
-    sz.w *= get_singleton<game_properties>().k_world_scaling;
-    sz.h *= get_singleton<game_properties>().k_world_scaling;
+    sz.w *= get_ston<game_properties>().k_world_scaling;
+    sz.h *= get_ston<game_properties>().k_world_scaling;
     for (auto y = 0; y < sz.h; y++) {
       for (auto x = 0; x < sz.w; x++) {
         auto tl{w_area->get_tile(x, y)};

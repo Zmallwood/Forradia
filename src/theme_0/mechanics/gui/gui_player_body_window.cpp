@@ -11,7 +11,7 @@
 namespace forr {
   void gui_player_body_window::initialize() {
     auto img_w{0.07f};
-    auto img_h{convert_width_to_height(img_w)};
+    auto img_h{conv_w_to_h(img_w)};
     auto overall_body_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2, 0.04f, img_w, img_h, "",
         [this] {
@@ -63,7 +63,7 @@ namespace forr {
   }
 
   void gui_player_body_window::update_body_part_information_labels() {
-    auto &p_body{get_singleton<player>().get_player_body_ref()};
+    auto &p_body{get_ston<player>().get_player_body_ref()};
     switch (m_sel_body_part) {
     case body_part_types::overall_body: {
       m_lbl_body_part_name->set_text("Body part: Overall body");

@@ -12,15 +12,15 @@ namespace forr {
    public:
     void reset();
 
-    void register_key_press(SDL_Keycode key);
+    void reg_key_press(SDL_Keycode key);
 
-    void register_key_release(SDL_Keycode key);
+    void reg_key_release(SDL_Keycode key);
 
-    bool key_is_pressed(SDL_Keycode key) const;
+    bool key_pressed(SDL_Keycode key) const;
 
-    bool key_is_pressed_pick_result(SDL_Keycode key);
+    bool key_pressed_pick_result(SDL_Keycode key);
 
-    bool any_key_is_pressed_pick_result();
+    bool any_key_pressed_pick_result();
 
    private:
     std::set<SDL_Keycode> m_pressed;
@@ -33,19 +33,19 @@ namespace forr {
    public:
     void reset();
 
-    void register_press();
+    void reg_press();
 
-    void register_release();
+    void reg_release();
 
-    bool is_pressed_pick_result();
+    bool pressed_pick_result();
 
-    bool get_has_been_fired_pick_result();
+    bool get_been_fired_pick_result();
 
-    bool get_has_been_fired_dont_pick_result();
+    bool get_been_fired_dont_pick_result();
 
-    bool get_has_been_released_pick_result();
+    bool get_been_released_pick_result();
 
-    bool get_has_been_released_dont_pick_result();
+    bool get_been_released_dont_pick_result();
 
    private:
     bool m_pressed{false};
@@ -57,15 +57,15 @@ namespace forr {
    public:
     void reset();
 
-    void register_mouse_button_down(Uint8 btn);
+    void reg_mouse_button_down(Uint8 btn);
 
-    void register_mouse_button_up(Uint8 btn);
+    void reg_mouse_button_up(Uint8 btn);
 
-    bool any_mouse_button_is_pressed_pick_result();
+    bool any_mouse_button_pressed_pick_result();
 
-    auto &get_left_mouse_button_ref() { return m_left_btn; }
+    auto &get_left_btn_ref() { return m_left_btn; }
 
-    auto &get_right_mouse_button_ref() { return m_right_btn; }
+    auto &get_right_btn_ref() { return m_right_btn; }
 
    private:
     mouse_button m_left_btn;

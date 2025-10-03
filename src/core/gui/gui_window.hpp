@@ -28,16 +28,16 @@ namespace forr {
    public:
     gui_window(float x, float y, float w, float h, str_view win_title)
         : gui_movable_panel(x, y, w, h), m_gui_win_title_bar(*this, win_title) {
-      initialize();
+      init();
     }
 
    protected:
     void render_derived() const override;
 
-    rect_f get_draggable_area() override;
+    rect_f get_drag_area() override;
 
    private:
-    void initialize();
+    void init();
 
     gui_window_title_bar m_gui_win_title_bar;
   };

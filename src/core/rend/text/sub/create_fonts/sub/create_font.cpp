@@ -6,12 +6,12 @@
 
 namespace forr {
   s_ptr<TTF_Font> create_font(str_view font_file_path, font_sizes font_sz) {
-    auto font_path_unix_style{replace(font_file_path, '\\', '/')};
+    auto font_path_unix_style{repl(font_file_path, '\\', '/')};
     auto font_sz_n{c_int(font_sz)};
     auto new_font{s_ptr<TTF_Font>(
         TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), sdl_deleter())};
     if (!new_font) {
-      print_line("Error loading font.");
+      print_ln("Error loading font.");
       return nullptr;
     }
     return new_font;

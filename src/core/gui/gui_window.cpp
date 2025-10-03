@@ -10,10 +10,10 @@
 namespace forr {
   void gui_window_title_bar::render() const {
     auto parent_win_b{m_parent_win.get_bounds()};
-    get_singleton<image_renderer>().draw_image("GUIWindowTitleBarBackground",
-                                               parent_win_b.x, parent_win_b.y,
-                                               parent_win_b.w, k_h);
-    get_singleton<text_renderer>().draw_string(
+    get_ston<image_renderer>().draw_img("GUIWindowTitleBarBackground",
+                                          parent_win_b.x, parent_win_b.y,
+                                          parent_win_b.w, k_h);
+    get_ston<text_renderer>().draw_string(
         k_win_title, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
         font_sizes::_20, false, colors::yellow);
   }
@@ -27,14 +27,14 @@ namespace forr {
     b_res.h = k_h;
     return b_res;
   }
-  void gui_window::initialize() { set_visible(false); }
+  void gui_window::init() { set_visible(false); }
 
   void gui_window::render_derived() const {
     gui_movable_panel::render_derived();
     m_gui_win_title_bar.render();
   }
 
-  rect_f gui_window::get_draggable_area() {
+  rect_f gui_window::get_drag_area() {
     return m_gui_win_title_bar.get_bounds();
   }
 }

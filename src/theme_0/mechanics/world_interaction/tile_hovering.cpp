@@ -11,15 +11,15 @@
 
 namespace forr {
   void tile_hovering::update() {
-    auto player_pos{get_singleton<player>().get_position()};
-    auto mouse_pos{get_normalized_mouse_position()};
+    auto player_pos{get_ston<player>().get_position()};
+    auto mouse_pos{get_norm_mouse_pos()};
     auto tl_sz{calculate_tile_size()};
     auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
     auto grid_sz{calculate_grid_size()};
     auto hovered_x_coord{player_pos.x - (grid_sz.w - 1) / 2 + screen_rel_x};
     auto screen_rel_x_px{
         (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) * tl_sz.w};
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto extra_rows{8};
     auto top_y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2) - extra_rows};
     auto player_tl{w_area->get_tile(player_pos)};

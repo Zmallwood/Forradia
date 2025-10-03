@@ -9,22 +9,22 @@
 #include "theme_0/mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  void game::start() const { get_singleton<engine>().run(); }
+  void game::start() const { get_ston<engine>().run(); }
 
   void engine::run() {
     randomize();
-    get_singleton<sdl_device>();
+    get_ston<sdl_device>();
     while (m_running) {
-      get_singleton<keyboard_input>().reset();
-      get_singleton<mouse_input>().reset();
-      get_singleton<cursor>().reset_style_to_default();
+      get_ston<keyboard_input>().reset();
+      get_ston<mouse_input>().reset();
+      get_ston<cursor>().reset_style_to_default();
       poll_events();
-      get_singleton<scene_manager>().update_current_scene();
-      get_singleton<fps_counter>().update();
-      get_singleton<sdl_device>().clear_canvas();
-      get_singleton<scene_manager>().render_current_scene();
-      get_singleton<cursor>().render();
-      get_singleton<sdl_device>().present_canvas();
+      get_ston<scene_manager>().update_current_scene();
+      get_ston<fps_counter>().update();
+      get_ston<sdl_device>().clear_canv();
+      get_ston<scene_manager>().render_current_scene();
+      get_ston<cursor>().render();
+      get_ston<sdl_device>().present_canv();
     }
   }
 
@@ -38,61 +38,60 @@ namespace forr {
         m_running = false;
         break;
       case SDL_KEYDOWN:
-        get_singleton<keyboard_input>().register_key_press(ev.key.keysym.sym);
+        get_ston<keyboard_input>().reg_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        get_singleton<keyboard_input>().register_key_release(ev.key.keysym.sym);
+        get_ston<keyboard_input>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        get_singleton<mouse_input>().register_mouse_button_down(
-            ev.button.button);
+        get_ston<mouse_input>().reg_mouse_button_down(ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        get_singleton<mouse_input>().register_mouse_button_up(ev.button.button);
+        get_ston<mouse_input>().reg_mouse_button_up(ev.button.button);
         break;
       }
     }
   }
 
-  void sdl_device::initialize() {
+  void sdl_device::init() {
     SDL_Init(SDL_INIT_EVERYTHING);
-    m_win = create_window();
+    m_win = create_win();
     if (m_win) {
-      m_rend = create_renderer();
+      m_rend = create_rend();
     }
   }
 
-  void sdl_device::clear_canvas() const {
+  void sdl_device::clear_canv() const {
     SDL_Color clear_color{
-        get_singleton<game_properties>().k_clear_color.to_sdl_color()};
+        get_ston<game_properties>().k_clear_color.to_sdl_color()};
     SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
     SDL_RenderClear(m_rend.get());
   }
 
-  void sdl_device::present_canvas() const { SDL_RenderPresent(m_rend.get()); }
+  void sdl_device::present_canv() const { SDL_RenderPresent(m_rend.get()); }
 
-  s_ptr<SDL_Window> sdl_device::create_window() {
+  s_ptr<SDL_Window> sdl_device::create_win() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto win_res{s_ptr<SDL_Window>(
-        SDL_CreateWindow(
-            get_singleton<game_properties>().k_game_win_title.data(),
-            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660, 660, flags),
+        SDL_CreateWindow(get_ston<game_properties>().k_game_win_title.data(),
+                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
+                         660, flags),
         sdl_deleter())};
     if (!win_res) {
-      print_line("Window could not be created. SDL Error: " +
+      print_ln("Window could not be created. SDL Error: " +
                  str(SDL_GetError()));
     }
     return win_res;
   }
 
-  s_ptr<SDL_Renderer> sdl_device::create_renderer() {
+  s_ptr<SDL_Renderer> sdl_device::create_rend() {
     auto rend_res{s_ptr<SDL_Renderer>(
         SDL_CreateRenderer(m_win.get(), -1, SDL_RENDERER_ACCELERATED),
         sdl_deleter())};
     if (!rend_res) {
-      print_line("Renderer could not be created. SDL Error: " +
+      print_ln("Renderer could not be created. SDL Error: " +
                  std::string(SDL_GetError()));
     }
     return rend_res;
@@ -108,18 +107,18 @@ namespace forr {
     ++m_frames_count;
   }
 
-  void cursor::initialize() { disable_system_cursor(); }
+  void cursor::init() { disable_sys_curs(); }
 
-  void cursor::disable_system_cursor() { SDL_ShowCursor(SDL_DISABLE); }
+  void cursor::disable_sys_curs() { SDL_ShowCursor(SDL_DISABLE); }
 
   void cursor::reset_style_to_default() {
     m_curs_style = cursor_styles::normal;
   }
 
   void cursor::render() {
-    auto mouse_pos{get_normalized_mouse_position()};
+    auto mouse_pos{get_norm_mouse_pos()};
     auto w{k_curs_sz};
-    auto h{convert_width_to_height(k_curs_sz)};
+    auto h{conv_w_to_h(k_curs_sz)};
     str curs_img;
     switch (m_curs_style) {
     case cursor_styles::normal:
@@ -129,13 +128,13 @@ namespace forr {
       curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    get_singleton<image_renderer>().draw_image(curs_img, mouse_pos.x - w / 2,
-                                               mouse_pos.y - h / 2, w, h);
+    get_ston<image_renderer>().draw_img(curs_img, mouse_pos.x - w / 2,
+                                          mouse_pos.y - h / 2, w, h);
   }
 
-  void image_bank::initialize() { load_images(); }
+  void image_bank::init() { load_imgs(); }
 
-  void image_bank::load_images() {
+  void image_bank::load_imgs() {
     auto base_path{str(SDL_GetBasePath())};
     auto imgs_path{base_path + k_rel_imgs_path.data()};
     if (!std::filesystem::exists(imgs_path)) {
@@ -143,24 +142,24 @@ namespace forr {
     }
     std::filesystem::recursive_directory_iterator rdi{imgs_path};
     for (auto it : rdi) {
-      auto file_path{replace(it.path().string(), '\\', '/')};
-      if (get_file_extension(file_path) == "png") {
-        auto file_name{get_file_name_no_extension(file_path)};
+      auto file_path{repl(it.path().string(), '\\', '/')};
+      if (get_file_ext(file_path) == "png") {
+        auto file_name{get_file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
-        auto img{load_single_image(file_path)};
+        auto img{load_single_img(file_path)};
         m_images.insert({hash, img});
       }
     }
   }
 
-  s_ptr<SDL_Texture> image_bank::get_image(int img_name_hash) const {
+  s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
     if (m_images.contains(img_name_hash)) {
       return m_images.at(img_name_hash);
     }
     return nullptr;
   }
 
-  size image_bank::get_image_size(int img_name_hash) const {
+  size image_bank::get_img_sz(int img_name_hash) const {
     if (m_images.contains(img_name_hash)) {
       auto tex{m_images.at(img_name_hash)};
       size size;
@@ -172,10 +171,10 @@ namespace forr {
     return {0, 0};
   }
 
-  s_ptr<SDL_Texture> image_bank::load_single_image(str_view path) {
+  s_ptr<SDL_Texture> image_bank::load_single_img(str_view path) {
     auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
     if (surf) {
-      auto rend{get_singleton<sdl_device>().get_renderer().get()};
+      auto rend{get_ston<sdl_device>().get_rend().get()};
       auto tex{s_ptr<SDL_Texture>(
           SDL_CreateTextureFromSurface(rend, surf.get()), sdl_deleter())};
       return tex;

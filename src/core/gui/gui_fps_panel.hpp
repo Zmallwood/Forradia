@@ -10,15 +10,13 @@ namespace forr {
 
   class gui_fps_panel : public gui_movable_panel {
    public:
-    gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f) {
-      initialize();
-    }
+    gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f) { init(); }
 
    protected:
     void update_derived() override;
 
    private:
-    void initialize();
+    void init();
 
     s_ptr<gui_label> m_fps_text_pnl;
   };

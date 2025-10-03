@@ -24,22 +24,22 @@ namespace forr {
 
   class sdl_device {
    public:
-    sdl_device() { initialize(); }
+    sdl_device() { init(); }
 
-    void clear_canvas() const;
+    void clear_canv() const;
 
-    void present_canvas() const;
+    void present_canv() const;
 
-    auto get_window() const { return m_win; }
+    auto get_win() const { return m_win; }
 
-    auto get_renderer() const { return m_rend; }
+    auto get_rend() const { return m_rend; }
 
    private:
-    void initialize();
+    void init();
 
-    s_ptr<SDL_Window> create_window();
+    s_ptr<SDL_Window> create_win();
 
-    s_ptr<SDL_Renderer> create_renderer();
+    s_ptr<SDL_Renderer> create_rend();
 
     s_ptr<SDL_Window> m_win;
     s_ptr<SDL_Renderer> m_rend;
@@ -66,18 +66,18 @@ namespace forr {
 
   class cursor {
    public:
-    cursor() { initialize(); }
+    cursor() { init(); }
 
     void reset_style_to_default();
 
     void render();
 
-    auto set_cursor_style(cursor_styles val) { m_curs_style = val; }
+    auto set_curs_style(cursor_styles val) { m_curs_style = val; }
 
    private:
-    void initialize();
+    void init();
 
-    void disable_system_cursor();
+    void disable_sys_curs();
 
     constexpr static float k_curs_sz{0.05f};
 
@@ -86,18 +86,18 @@ namespace forr {
 
   class image_bank {
    public:
-    image_bank() { initialize(); }
+    image_bank() { init(); }
 
-    s_ptr<SDL_Texture> get_image(int img_name_hash) const;
+    s_ptr<SDL_Texture> get_img(int img_name_hash) const;
 
-    size get_image_size(int img_name_hash) const;
+    size get_img_sz(int img_name_hash) const;
 
    private:
-    void initialize();
+    void init();
 
-    void load_images();
+    void load_imgs();
 
-    s_ptr<SDL_Texture> load_single_image(str_view path);
+    s_ptr<SDL_Texture> load_single_img(str_view path);
 
     inline static const str k_rel_imgs_path{"./Resources/Images/"};
 

@@ -8,7 +8,7 @@ namespace forr {
   SDL_Rect create_render_destination_rect(float x, float y, size text_dim,
                                           bool cent_align) {
     SDL_Rect rect_res;
-    auto canv_sz{get_canvas_size()};
+    auto canv_sz{get_canv_sz()};
     rect_res.x = c_int(x * canv_sz.w);
     rect_res.y = c_int(y * canv_sz.h);
     rect_res.w = text_dim.w;

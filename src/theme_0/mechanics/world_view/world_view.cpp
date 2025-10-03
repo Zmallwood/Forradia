@@ -21,8 +21,8 @@ namespace forr {
   void world_view::render() const {
     auto grid_sz{calculate_grid_size()};
     auto tl_sz{calculate_tile_size()};
-    auto player_pos{get_singleton<player>().get_position()};
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto player_pos{get_ston<player>().get_position()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto player_elev{w_area->get_tile(player_pos)->get_elevation()};
     auto extra_rows{8};
     for (auto i = 0; i < 3; i++) {
@@ -158,8 +158,8 @@ namespace forr {
           //     std::to_string(animIndex) + "_New");
           // }
           if (i == 0) {
-            get_singleton<image_renderer>().draw_image(ground_type_rend, x_canv,
-                                                       y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img(ground_type_rend, x_canv,
+                                                  y_canv, w_canv, h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
             vec<directions> river_dirs{tl->get_river_direction_1(),
                                        tl->get_river_direction_2()};
@@ -176,7 +176,7 @@ namespace forr {
                            y_canv + h_canv / 2 - river_part_h / 2 -
                                k * river_part_h,
                            river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -187,7 +187,7 @@ namespace forr {
                                k * river_part_w,
                            y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                            river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -198,7 +198,7 @@ namespace forr {
                            y_canv + h_canv / 2 + river_part_h / 2 +
                                k * river_part_h,
                            river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -209,7 +209,7 @@ namespace forr {
                                k * river_part_w,
                            y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                            river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -220,7 +220,7 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                       river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -231,7 +231,7 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                       river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -242,7 +242,7 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                       river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -253,7 +253,7 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                       river_part_w, river_part_h};
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       "RiverPart_" + std::to_string(anim_idx), b.x, b.y, b.w,
                       b.h);
                 }
@@ -263,20 +263,20 @@ namespace forr {
           } else if (ground == hash("GroundWater") && i == 1) {
             auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
-            get_singleton<image_renderer>().draw_image(
+            get_ston<image_renderer>().draw_img(
                 "GroundWaterEdge", x_canv - w_canv * 0.2f,
                 y_canv - h_canv * 0.2f, w_canv * 1.4f, h_canv * 1.4f);
           } else if (ground == hash("GroundWater") && i == 2) {
 
             auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
-            get_singleton<image_renderer>().draw_image(
+            get_ston<image_renderer>().draw_img(
                 "GroundWater_" + std::to_string(anim_idx), x_canv, y_canv,
                 w_canv, h_canv);
 
             for (auto i = 0; i < tl->get_elevation(); i++) {
-              get_singleton<image_renderer>().draw_image(
-                  "GroundWaterHeight", x_canv, y_canv, w_canv, h_canv);
+              get_ston<image_renderer>().draw_img("GroundWaterHeight", x_canv,
+                                                    y_canv, w_canv, h_canv);
             }
 
             // groundTypeRendered = Hash("GroundWater_" +
@@ -286,20 +286,20 @@ namespace forr {
             // tileSize.width * 4, tileSize.height * 4);
             if (ground == hash("GroundWater")) {
               for (auto i = 0; i < tl->get_water_depth(); i++) {
-                get_singleton<image_renderer>().draw_image(
+                get_ston<image_renderer>().draw_img(
                     "GroundWaterDepth", x_canv, y_canv, w_canv, h_canv);
               }
             }
           }
           if (ground == hash("GroundGrass")) {
-            get_singleton<image_renderer>().draw_image(
-                "GroundGrassLayer", x_canv, y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("GroundGrassLayer", x_canv,
+                                                  y_canv, w_canv, h_canv);
           } else if (ground == hash("GroundDirt")) {
-            get_singleton<image_renderer>().draw_image(
-                "GroundDirtLayer", x_canv, y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("GroundDirtLayer", x_canv,
+                                                  y_canv, w_canv, h_canv);
           } else if (ground == hash("GroundRock")) {
-            get_singleton<image_renderer>().draw_image(
-                "GroundRockLayer", x_canv, y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("GroundRockLayer", x_canv,
+                                                  y_canv, w_canv, h_canv);
           }
           if (i < 2) {
             continue;
@@ -340,28 +340,28 @@ namespace forr {
           //     }
           // }
           auto hovered_coord{
-              get_singleton<tile_hovering>().get_hovered_coordinate()};
+              get_ston<tile_hovering>().get_hovered_coordinate()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
-            get_singleton<image_renderer>().draw_image("HoveredTile", x_canv,
-                                                       y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("HoveredTile", x_canv, y_canv,
+                                                  w_canv, h_canv);
           }
-          auto player_dest{get_singleton<player>().get_destination()};
+          auto player_dest{get_ston<player>().get_destination()};
           if (x_coord == player_dest.x && y_coord == player_dest.y) {
-            get_singleton<image_renderer>().draw_image(
-                "DestinationTile", x_canv, y_canv, w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("DestinationTile", x_canv,
+                                                  y_canv, w_canv, h_canv);
           }
           if (x_coord == player_pos.x && y_coord == player_pos.y) {
-            get_singleton<image_renderer>().draw_image("Shadow", x_canv, y_canv,
-                                                       w_canv, h_canv);
-            get_singleton<image_renderer>().draw_image("Player", x_canv, y_canv,
-                                                       tl_sz.w, tl_sz.h);
+            get_ston<image_renderer>().draw_img("Shadow", x_canv, y_canv,
+                                                  w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("Player", x_canv, y_canv,
+                                                  tl_sz.w, tl_sz.h);
           }
           auto objs_stack{tl ? tl->get_objects_stack() : nullptr};
           if (objs_stack) {
             for (const auto &obj : objs_stack->get_objects()) {
               if (obj->get_type() != hash("ObjectPinkFlower")) {
-                get_singleton<image_renderer>().draw_image(
-                    "Shadow", x_canv, y_canv, tl_sz.w, tl_sz.h);
+                get_ston<image_renderer>().draw_img("Shadow", x_canv, y_canv,
+                                                      tl_sz.w, tl_sz.h);
               }
               auto obj_type{obj->get_type()};
               if (obj_type == hash("ObjectFirTree") ||
@@ -393,7 +393,7 @@ namespace forr {
                   } else if (obj_type == hash("ObjectBirchTree")) {
                     trunk_part_name = "ObjectBirchTreeTrunkPart";
                   }
-                  get_singleton<image_renderer>().draw_image(
+                  get_ston<image_renderer>().draw_img(
                       trunk_part_name,
                       trunk_part_x_center - trunk_part_width / 2,
                       trunk_part_y_center - trunk_part_height / 2,
@@ -401,18 +401,17 @@ namespace forr {
                   auto needle_w{tree_w};
                   auto needle_h{tl_sz.h};
                   if (needle_type) {
-                    get_singleton<image_renderer>().draw_image(
+                    get_ston<image_renderer>().draw_img(
                         needle_type, trunk_part_x_center - needle_w / 2,
                         trunk_part_y_center - needle_h / 2, needle_w, needle_h);
                   }
                 }
                 continue;
               }
-              auto obj_img_sz{
-                  get_singleton<image_bank>().get_image_size(obj_type)};
+              auto obj_img_sz{get_ston<image_bank>().get_img_sz(obj_type)};
               auto obj_w{obj_img_sz.w / 60.0f * tl_sz.w};
               auto obj_h{obj_img_sz.h / 60.0f * tl_sz.h};
-              get_singleton<image_renderer>().draw_image(
+              get_ston<image_renderer>().draw_img(
                   obj_type, x_canv + tl_sz.w / 2 - obj_w / 2,
                   y_canv + tl_sz.h - obj_h, obj_w, obj_h);
             }
@@ -420,22 +419,20 @@ namespace forr {
           auto crea{tl ? tl->get_creature() : nullptr};
           if (crea) {
             auto crea_type{crea->get_type()};
-            auto crea_img_sz{
-                get_singleton<image_bank>().get_image_size(crea_type)};
+            auto crea_img_sz{get_ston<image_bank>().get_img_sz(crea_type)};
             auto crea_w{crea_img_sz.w / 60.0f * tl_sz.w};
             auto crea_h{crea_img_sz.h / 60.0f * tl_sz.h};
-            get_singleton<image_renderer>().draw_image(
+            get_ston<image_renderer>().draw_img(
                 crea_type, x_canv + tl_sz.w / 2 - crea_w / 2,
                 y_canv + tl_sz.h - crea_h, crea_w, crea_h);
           }
           auto npc{tl ? tl->get_npc() : nullptr};
           if (npc) {
             auto npc_type{npc->get_type()};
-            auto npc_img_sz{
-                get_singleton<image_bank>().get_image_size(npc_type)};
+            auto npc_img_sz{get_ston<image_bank>().get_img_sz(npc_type)};
             auto npc_w{npc_img_sz.w / 60.0f * tl_sz.w};
             auto npc_h{npc_img_sz.h / 60.0f * tl_sz.h};
-            get_singleton<image_renderer>().draw_image(
+            get_ston<image_renderer>().draw_img(
                 npc_type, x_canv + tl_sz.w / 2 - npc_w / 2,
                 y_canv + tl_sz.h - npc_h, npc_w, npc_h);
           }

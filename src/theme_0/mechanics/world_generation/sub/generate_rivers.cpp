@@ -10,15 +10,15 @@
 
 namespace forr {
   void generate_rivers() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
-    auto scale{get_singleton<game_properties>().k_world_scaling};
-    auto num_rivers{20 * scale + random_int(5 * scale)};
+    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto num_rivers{20 * scale + rand_int(5 * scale)};
     for (auto i = 0; i < num_rivers; i++) {
-      auto x{c_float(random_int(sz.w))};
-      auto y{c_float(random_int(sz.h))};
-      auto start_angle{random_int(360)};
-      auto len{45 + random_int(20)};
+      auto x{c_float(rand_int(sz.w))};
+      auto y{c_float(rand_int(sz.h))};
+      auto start_angle{rand_int(360)};
+      auto len{45 + rand_int(20)};
       auto prev_x_coord{-1};
       auto prev_y_coord{-1};
       s_ptr<tile> prev_tl;

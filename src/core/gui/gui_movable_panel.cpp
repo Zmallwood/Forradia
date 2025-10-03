@@ -8,46 +8,46 @@
 
 namespace forr {
   void gui_movable_panel::update_derived() {
-    auto mouse_pos{get_normalized_mouse_position()};
-    auto drag_area{get_draggable_area()};
+    auto mouse_pos{get_norm_mouse_pos()};
+    auto drag_area{get_drag_area()};
     if (drag_area.contains(mouse_pos)) {
-      get_singleton<cursor>().set_cursor_style(
+      get_ston<cursor>().set_curs_style(
           cursor_styles::hovering_clickable_gui);
-      if (get_singleton<mouse_input>()
-              .get_left_mouse_button_ref()
-              .get_has_been_fired_pick_result()) {
-        start_moving();
+      if (get_ston<mouse_input>()
+              .get_left_btn_ref()
+              .get_been_fired_pick_result()) {
+        start_move();
       }
     }
-    if (get_singleton<mouse_input>()
-            .get_left_mouse_button_ref()
-            .get_has_been_released_dont_pick_result()) {
-      stop_moving();
+    if (get_ston<mouse_input>()
+            .get_left_btn_ref()
+            .get_been_released_dont_pick_result()) {
+      stop_move();
     }
     auto b{get_bounds()};
     if (b.contains(mouse_pos)) {
-      if (get_singleton<mouse_input>()
-              .get_left_mouse_button_ref()
-              .get_has_been_fired_dont_pick_result()) {
-        get_singleton<mouse_input>().get_left_mouse_button_ref().reset();
+      if (get_ston<mouse_input>()
+              .get_left_btn_ref()
+              .get_been_fired_dont_pick_result()) {
+        get_ston<mouse_input>().get_left_btn_ref().reset();
       }
     }
-    if (get_is_being_moved()) {
-      auto move_start_pos{get_move_start_position()};
-      auto move_start_mouse_pos{get_move_start_mouse_position()};
-      auto curr_mouse_pos{get_normalized_mouse_position()};
+    if (get_being_moved()) {
+      auto move_start_pos{get_move_start_pos()};
+      auto move_start_mouse_pos{get_move_start_mouse_pos()};
+      auto curr_mouse_pos{get_norm_mouse_pos()};
       auto new_pos{move_start_pos + curr_mouse_pos - move_start_mouse_pos};
-      set_position(new_pos);
+      set_pos(new_pos);
     }
   }
 
-  void gui_movable_panel::start_moving() {
+  void gui_movable_panel::start_move() {
     m_being_moved = true;
-    m_move_start_pos = get_bounds().get_position();
-    m_move_start_mouse_pos = get_normalized_mouse_position();
+    m_move_start_pos = get_bounds().get_pos();
+    m_move_start_mouse_pos = get_norm_mouse_pos();
   }
 
-  void gui_movable_panel::stop_moving() { m_being_moved = false; }
+  void gui_movable_panel::stop_move() { m_being_moved = false; }
 
-  rect_f gui_movable_panel::get_draggable_area() { return get_bounds(); }
+  rect_f gui_movable_panel::get_drag_area() { return get_bounds(); }
 }

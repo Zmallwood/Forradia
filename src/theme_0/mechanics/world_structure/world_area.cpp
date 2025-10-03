@@ -9,8 +9,8 @@
 namespace forr {
   void world_area::initialize() {
     auto sz{game_properties::k_w_area_sz};
-    sz.w *= get_singleton<game_properties>().k_world_scaling;
-    sz.h *= get_singleton<game_properties>().k_world_scaling;
+    sz.w *= get_ston<game_properties>().k_world_scaling;
+    sz.h *= get_ston<game_properties>().k_world_scaling;
     for (auto x = 0; x < sz.w; x++) {
       m_tiles.push_back(vec<std::shared_ptr<tile>>());
       for (auto y = 0; y < sz.h; y++) {

@@ -18,12 +18,12 @@ namespace forr {
         continue;
       }
       auto text_line = m_lines.at(idx);
-      get_singleton<text_renderer>().draw_string(text_line, b.x + k_marg, y);
+      get_ston<text_renderer>().draw_string(text_line, b.x + k_marg, y);
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    get_singleton<image_renderer>().draw_image("Black", sep_rect.x, sep_rect.y,
-                                               sep_rect.w, sep_rect.h);
+    get_ston<image_renderer>().draw_img("Black", sep_rect.x, sep_rect.y,
+                                          sep_rect.w, sep_rect.h);
   }
 
   void gui_text_console::print(str_view text) {

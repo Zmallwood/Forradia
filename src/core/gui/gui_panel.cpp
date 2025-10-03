@@ -8,7 +8,6 @@
 namespace forr {
   void gui_panel::render_derived() const {
     auto b{get_bounds()};
-    get_singleton<image_renderer>().draw_image(m_bg_img, b.x, b.y,
-                                               b.w, b.h);
+    get_ston<image_renderer>().draw_img(m_bg_img, b.x, b.y, b.w, b.h);
   }
 }

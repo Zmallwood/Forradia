@@ -27,7 +27,7 @@ namespace forr {
    * \tparam T Type to get singleton for.
    * \return The singleton object as a SharedPtr.
    */
-  template <class T> s_ptr<T> get_singleton_ptr() {
+  template <class T> s_ptr<T> get_ston_ptr() {
     // Create singleton instance only once.
     static s_ptr<T> inst = std::make_shared<T>();
     return inst;
@@ -40,10 +40,10 @@ namespace forr {
    * \tparam T Type to get singleton for.
    * \return The singleton object as a reference.
    */
-  template <class T> T &get_singleton() {
+  template <class T> T &get_ston() {
     // Use the SharedPtr singleton function to obtain
     // the singleton, but return a reference to it.
-    return *get_singleton_ptr<T>();
+    return *get_ston_ptr<T>();
   }
 
   // Convenience classes
@@ -170,7 +170,7 @@ namespace forr {
      *
      * \return The position.
      */
-    point_f get_position() const;
+    point_f get_pos() const;
 
     /**
      * \brief Adds an offset to this rectangle, with the dimensions altered
@@ -178,7 +178,7 @@ namespace forr {
      *
      * \param offs The offset to add.
      */
-    void offset(point_f offs);
+    void offs(point_f offs);
 
     float x{0.0f}; ///< The x coordinate.
     float y{0.0f}; ///< The y coordinate.
@@ -225,24 +225,24 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canvas_size();
+  size get_canv_sz();
 
-  float calculate_aspect_ratio();
+  float calc_aspect_ratio();
 
-  float convert_width_to_height(float w);
+  float conv_w_to_h(float w);
 
-  float convert_height_to_width(float h);
+  float conv_h_to_w(float h);
 
   // File path util functions
-  str get_file_extension(str_view path);
+  str get_file_ext(str_view path);
 
-  str get_file_name_no_extension(str_view path);
+  str get_file_name_no_ext(str_view path);
 
   // Mouse util functions
-  point_f get_normalized_mouse_position();
+  point_f get_norm_mouse_pos();
 
   // Numbers util functions
-  float invert_movement_speed(float num);
+  float inv_movem_spd(float num);
 
   int normalize(int val);
 
@@ -251,10 +251,10 @@ namespace forr {
   // Randomization util functions
   void randomize();
 
-  int random_int(int upper_lim);
+  int rand_int(int upper_lim);
 
   // String util functions
-  str replace(str_view text, char repl, char repl_with);
+  str repl(str_view text, char repl, char repl_with);
 
   // Time util functions
   const auto get_ticks{SDL_GetTicks};
@@ -282,7 +282,7 @@ namespace forr {
    *
    * \param text Text to print.
    */
-  void print_line(str_view text);
+  void print_ln(str_view text);
 
   // Cast util functions
   int c_int(auto val) { return static_cast<int>(val); }

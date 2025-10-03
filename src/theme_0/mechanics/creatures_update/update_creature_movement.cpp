@@ -13,14 +13,14 @@
 
 namespace forr {
   void update_creature_movement() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
     auto now{get_ticks()};
     for (auto it = creas.begin(); it != creas.end();) {
       auto crea{it->first};
       auto pos{it->second};
       if (now < crea->get_ticks_last_move() +
-                    invert_movement_speed(crea->get_movement_speed())) {
+                    inv_movem_spd(crea->get_movement_speed())) {
         ++it;
         continue;
       }

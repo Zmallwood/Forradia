@@ -14,19 +14,17 @@ namespace forr {
    protected:
     void update_derived() override;
 
-    void start_moving();
+    void start_move();
 
-    void stop_moving();
+    void stop_move();
 
-    virtual rect_f get_draggable_area();
+    virtual rect_f get_drag_area();
 
-    auto get_is_being_moved() const { return m_being_moved; }
+    auto get_being_moved() const { return m_being_moved; }
 
-    auto get_move_start_position() const { return m_move_start_pos; }
+    auto get_move_start_pos() const { return m_move_start_pos; }
 
-    auto get_move_start_mouse_position() const {
-      return m_move_start_mouse_pos;
-    }
+    auto get_move_start_mouse_pos() const { return m_move_start_mouse_pos; }
 
    private:
     bool m_being_moved{false};

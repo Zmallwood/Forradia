@@ -7,7 +7,7 @@
 namespace forr {
   s_ptr<gui_component>
   gui_component::add_child_component(s_ptr<gui_component> comp) {
-    comp->set_parent_component(this);
+    comp->set_parent_comp(this);
     m_children.push_back(comp);
     return comp;
   }
@@ -35,15 +35,15 @@ namespace forr {
   rect_f gui_component::get_bounds() const {
     auto b_res{m_bounds};
     if (m_parent_comp) {
-      auto parent_pos{m_parent_comp->get_bounds().get_position()};
-      b_res.offset(parent_pos);
+      auto parent_pos{m_parent_comp->get_bounds().get_pos()};
+      b_res.offs(parent_pos);
     }
     return b_res;
   }
 
   void gui_component::toggle_visibility() { m_visible = !m_visible; }
 
-  void gui_component::set_position(point_f new_pos) {
+  void gui_component::set_pos(point_f new_pos) {
     m_bounds.x = new_pos.x;
     m_bounds.y = new_pos.y;
   }

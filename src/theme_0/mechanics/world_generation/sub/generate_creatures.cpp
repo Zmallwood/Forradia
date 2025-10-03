@@ -11,13 +11,13 @@
 
 namespace forr {
   void generate_creatures() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
-    auto scale{get_singleton<game_properties>().k_world_scaling};
-    auto num_rats{200 * scale + random_int(15 * scale)};
+    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto num_rats{200 * scale + rand_int(15 * scale)};
     for (auto i = 0; i < num_rats; i++) {
-      auto x{random_int(sz.w)};
-      auto y{random_int(sz.h)};
+      auto x{rand_int(sz.w)};
+      auto y{rand_int(sz.h)};
       auto tl{w_area->get_tile(x, y)};
       if (tl && !tl->get_creature() &&
           tl->get_ground() != hash("GroundWater")) {
@@ -26,10 +26,10 @@ namespace forr {
         w_area->get_creatures_mirror_ref().insert({tl->get_creature(), {x, y}});
       }
     }
-    auto num_butterflies{200 * scale + random_int(15 * scale)};
+    auto num_butterflies{200 * scale + rand_int(15 * scale)};
     for (auto i = 0; i < num_butterflies; i++) {
-      auto x{random_int(sz.w)};
-      auto y{random_int(sz.h)};
+      auto x{rand_int(sz.w)};
+      auto y{rand_int(sz.h)};
       auto tl{w_area->get_tile(x, y)};
       if (tl && !tl->get_creature() &&
           tl->get_ground() != hash("GroundWater")) {

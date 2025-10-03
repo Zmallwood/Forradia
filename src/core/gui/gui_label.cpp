@@ -14,7 +14,7 @@ namespace forr {
       b.x += b.w / 2;
       b.y += b.h / 2;
     }
-    get_singleton<text_renderer>().draw_string(
-        m_text, b.x, b.y, font_sizes::_20, m_cent_align, m_color);
+    get_ston<text_renderer>().draw_string(m_text, b.x, b.y, font_sizes::_20,
+                                          m_cent_align, m_color);
   }
 }

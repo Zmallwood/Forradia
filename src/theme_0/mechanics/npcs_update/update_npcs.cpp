@@ -11,7 +11,7 @@
 
 namespace forr {
   void update_npcs() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto &npcs{w_area->get_npcs_mirror_ref()};
     auto now{get_ticks()};
     for (auto it = npcs.begin(); it != npcs.end();) {
@@ -20,25 +20,25 @@ namespace forr {
 
       if (now > npc->get_ticks_next_spontaneous_speech()) {
         auto name{npc->get_name()};
-        if (random_int(20) == 0) {
-          get_singleton<gui_text_console>().print(
+        if (rand_int(20) == 0) {
+          get_ston<gui_text_console>().print(
               name + ": Buying blueberries, one gold each.");
         } else {
-          get_singleton<gui_text_console>().print(name + ": Hello all!");
+          get_ston<gui_text_console>().print(name + ": Hello all!");
         }
         npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_second_millis +
                                                (6000 * k_one_second_millis));
       }
 
       if (now < npc->get_ticks_last_move() +
-                    invert_movement_speed(npc->get_movement_speed())) {
+                    inv_movem_spd(npc->get_movement_speed())) {
         ++it;
         continue;
       }
       auto dest{npc->get_destination()};
       if (dest.x == -1 && dest.y == -1) {
-        auto new_dest_x{pos.x + random_int(11) - 5};
-        auto new_dest_y{pos.y + random_int(11) - 5};
+        auto new_dest_x{pos.x + rand_int(11) - 5};
+        auto new_dest_y{pos.y + rand_int(11) - 5};
         npc->set_destination({new_dest_x, new_dest_y});
       }
       auto dx{npc->get_destination().x - pos.x};

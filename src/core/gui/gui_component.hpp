@@ -20,16 +20,16 @@ namespace forr {
 
     void toggle_visibility();
 
-    void set_visible(bool value) { m_visible = value; }
+    void set_visible(bool val) { m_visible = val; }
 
-    void set_parent_component(gui_component *value) { m_parent_comp = value; }
+    void set_parent_comp(gui_component *value) { m_parent_comp = value; }
 
    protected:
     virtual void update_derived() {}
 
     virtual void render_derived() const {}
 
-    void set_position(point_f new_position);
+    void set_pos(point_f new_pos);
 
    private:
     rect_f m_bounds;

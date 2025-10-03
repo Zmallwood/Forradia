@@ -10,14 +10,14 @@
 
 namespace forr {
   void generate_elevation() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
-    auto scale{get_singleton<game_properties>().k_world_scaling};
-    auto num_hills{140 + random_int(30)};
+    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto num_hills{140 + rand_int(30)};
     for (auto i = 0; i < num_hills; i++) {
-      auto x_cent{random_int(sz.w)};
-      auto y_cent{random_int(sz.h)};
-      auto max_r{5 * scale + random_int(5 * scale)};
+      auto x_cent{rand_int(sz.w)};
+      auto y_cent{rand_int(sz.h)};
+      auto max_r{5 * scale + rand_int(5 * scale)};
       for (auto r = max_r; r >= 0; r--) {
         for (auto y = y_cent - r; y <= y_cent + r; y++) {
           for (auto x = x_cent - r; x <= x_cent + r; x++) {

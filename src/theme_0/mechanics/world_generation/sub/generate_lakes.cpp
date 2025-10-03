@@ -14,11 +14,11 @@ namespace forr {
     if (recurs == 0) {
       return;
     }
-    auto w_area{get_singleton<world>().get_current_world_area()};
-    auto scale{get_singleton<game_properties>().k_world_scaling};
-    auto x_cent{min_x + random_int(max_x - min_x)};
-    auto y_cent{min_y + random_int(max_y - min_y)};
-    auto max_r{c_int(3 * scale + random_int(5 * scale))};
+    auto w_area{get_ston<world>().get_current_world_area()};
+    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto x_cent{min_x + rand_int(max_x - min_x)};
+    auto y_cent{min_y + rand_int(max_y - min_y)};
+    auto max_r{c_int(3 * scale + rand_int(5 * scale))};
     for (auto r = max_r; r >= 0; r--) {
       for (auto y = y_cent - r; y <= y_cent + r; y++) {
         for (auto x = x_cent - r; x <= x_cent + r; x++) {
@@ -93,11 +93,11 @@ namespace forr {
   }
 
   void generate_lakes() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
-    auto num_lakes{20 + random_int(5)};
+    auto num_lakes{20 + rand_int(5)};
     for (auto i = 0; i < num_lakes; i++) {
-      generate_single_lake(0, 0, sz.w, sz.h, 2 + random_int(5));
+      generate_single_lake(0, 0, sz.w, sz.h, 2 + rand_int(5));
     }
   }
 }

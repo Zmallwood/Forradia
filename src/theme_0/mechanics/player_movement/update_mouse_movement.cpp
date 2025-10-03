@@ -9,39 +9,39 @@
 
 namespace forr {
   void update_mouse_movement() {
-    if (get_singleton<mouse_input>()
-            .get_left_mouse_button_ref()
-            .get_has_been_fired_pick_result()) {
-      auto new_dest{get_singleton<tile_hovering>().get_hovered_coordinate()};
-      get_singleton<player>().set_destination(new_dest);
+    if (get_ston<mouse_input>()
+            .get_left_btn_ref()
+            .get_been_fired_pick_result()) {
+      auto new_dest{get_ston<tile_hovering>().get_hovered_coordinate()};
+      get_ston<player>().set_destination(new_dest);
     }
-    auto player_pos{get_singleton<player>().get_position()};
-    auto dest{get_singleton<player>().get_destination()};
+    auto player_pos{get_ston<player>().get_position()};
+    auto dest{get_ston<player>().get_destination()};
     if (dest == point{-1, -1}) {
       return;
     }
     auto now{get_ticks()};
-    if (now >= get_singleton<player>().get_ticks_last_move() +
-                   invert_movement_speed(
-                       get_singleton<player>().get_movement_speed())) {
+    if (now >=
+        get_ston<player>().get_ticks_last_move() +
+            inv_movem_spd(get_ston<player>().get_movement_speed())) {
       auto dx{dest.x - player_pos.x};
       auto dy{dest.y - player_pos.y};
       if (dx < 0) {
-        get_singleton<player>().move_west();
+        get_ston<player>().move_west();
       }
       if (dy < 0) {
-        get_singleton<player>().move_north();
+        get_ston<player>().move_north();
       }
       if (dx > 0) {
-        get_singleton<player>().move_east();
+        get_ston<player>().move_east();
       }
       if (dy > 0) {
-        get_singleton<player>().move_south();
+        get_ston<player>().move_south();
       }
       if (dest == player_pos) {
-        get_singleton<player>().set_destination({-1, -1});
+        get_ston<player>().set_destination({-1, -1});
       }
-      get_singleton<player>().set_ticks_last_move(now);
+      get_ston<player>().set_ticks_last_move(now);
     }
   }
 }

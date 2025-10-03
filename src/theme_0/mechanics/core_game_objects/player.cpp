@@ -12,11 +12,11 @@ namespace forr {
   void player::initialize() { move_to_suitable_position(); }
 
   void player::move_to_suitable_position() {
-    auto w_area{get_singleton<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_current_world_area()};
     auto sz{w_area->get_size()};
     m_pos = {sz.w / 2, sz.h / 2};
     while (w_area->get_tile(m_pos)->get_ground() == hash("GroundWater")) {
-      m_pos = {random_int(sz.w), random_int(sz.h)};
+      m_pos = {rand_int(sz.w), rand_int(sz.h)};
     }
   }
 
