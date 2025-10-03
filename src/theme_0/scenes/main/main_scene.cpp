@@ -5,13 +5,13 @@
 #include "main_scene.hpp"
 #include "core/gui/gui_text_console.hpp"
 #include "sub/add_main_scene_gui_components.hpp"
-#include "theme_0/mechanics/creatures_update/update_crea_movem.hpp"
-#include "theme_0/mechanics/keyboard_bindings/update_kb_binding_actions.hpp"
-#include "theme_0/mechanics/npcs_update/update_npcs.hpp"
-#include "theme_0/mechanics/player_movement/update_kb_movem.hpp"
-#include "theme_0/mechanics/player_movement/update_mouse_movem.hpp"
-#include "theme_0/mechanics/world_interaction/tile_hovering.hpp"
-#include "theme_0/mechanics/world_view/world_view.hpp"
+#include "theme_0/func/creatures_update/update_crea_movem.hpp"
+#include "theme_0/func/keyboard_bindings/update_kb_binding_actions.hpp"
+#include "theme_0/func/npcs_update/update_npcs.hpp"
+#include "theme_0/func/player_movement/update_kb_movem.hpp"
+#include "theme_0/func/player_movement/update_mouse_movem.hpp"
+#include "theme_0/func/world_interaction/tile_hovering.hpp"
+#include "theme_0/func/world_view/world_view.hpp"
 
 namespace forr {
   void main_scene::init_derived() { add_main_scene_gui_components(get_gui()); }

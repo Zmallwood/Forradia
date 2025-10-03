@@ -4,7 +4,7 @@
  */
 #include "world_generation_scene.hpp"
 #include "core/gui/gui_text_console.hpp"
-#include "theme_0/mechanics/world_generation/gen_new_world.hpp"
+#include "theme_0/func/world_generation/gen_new_world.hpp"
 
 namespace forr {
   void world_generation_scene::on_enter_derived() {

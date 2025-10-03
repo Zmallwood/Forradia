@@ -8,10 +8,10 @@
 #include "core/gui/gui_fps_panel.hpp"
 #include "core/gui/gui_text_console.hpp"
 #include "core/gui/gui_window.hpp"
-#include "theme_0/mechanics/gui/gui_inventory_window.hpp"
-#include "theme_0/mechanics/gui/gui_player_body_window.hpp"
-#include "theme_0/mechanics/gui/gui_player_status_panel.hpp"
-#include "theme_0/mechanics/gui/gui_system_menu.hpp"
+#include "theme_0/func/gui/gui_inventory_window.hpp"
+#include "theme_0/func/gui/gui_player_body_window.hpp"
+#include "theme_0/func/gui/gui_player_status_panel.hpp"
+#include "theme_0/func/gui/gui_system_menu.hpp"
 
 namespace forr {
   void add_main_scene_gui_components(std::shared_ptr<gui> main_scene_gui) {

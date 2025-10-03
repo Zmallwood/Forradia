@@ -6,7 +6,7 @@
 #include "core/input.hpp"
 #include "core/rend/images/image_renderer.hpp"
 #include "core/scenes_core.hpp"
-#include "theme_0/mechanics/configuration/game_properties.hpp"
+#include "theme_0/func/configuration/game_properties.hpp"
 
 namespace forr {
   void game::start() const { get_ston<engine>().run(); }
