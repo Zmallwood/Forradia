@@ -8,14 +8,7 @@
 #include "theme_0/func/player.hpp"
 #include "theme_0/func/tile_grid_math.hpp"
 #include "theme_0/func/update.hpp"
-#include "theme_0/func/world_struct/creature.hpp"
-#include "theme_0/func/world_struct/npc.hpp"
-#include "theme_0/func/world_struct/object.hpp"
-#include "theme_0/func/world_struct/objects_stack.hpp"
-#include "theme_0/func/world_struct/tile.hpp"
-#include "theme_0/func/world_struct/tree_object.hpp"
-#include "theme_0/func/world_struct/world.hpp"
-#include "theme_0/func/world_struct/world_area.hpp"
+#include "theme_0/func/world_struct.hpp"
 
 namespace forr {
   void world_view::render() const {

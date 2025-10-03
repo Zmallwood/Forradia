@@ -10,11 +10,7 @@
 #include "theme_0/func/gui/gui_player_body_window.hpp"
 #include "theme_0/func/gui/gui_system_menu.hpp"
 #include "tile_grid_math.hpp"
-#include "world_struct/creature.hpp"
-#include "world_struct/npc.hpp"
-#include "world_struct/tile.hpp"
-#include "world_struct/world.hpp"
-#include "world_struct/world_area.hpp"
+#include "world_struct.hpp"
 
 namespace forr {
   void update_kb_actions() {

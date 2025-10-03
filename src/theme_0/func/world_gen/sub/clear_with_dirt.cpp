@@ -4,9 +4,7 @@
  */
 #include "clear_with_dirt.hpp"
 #include "theme_0/func/game_props.hpp"
-#include "theme_0/func/world_struct/tile.hpp"
-#include "theme_0/func/world_struct/world.hpp"
-#include "theme_0/func/world_struct/world_area.hpp"
+#include "theme_0/func/world_struct.hpp"
 
 namespace forr {
   void clear_with_dirt() {
