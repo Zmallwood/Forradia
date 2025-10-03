@@ -119,7 +119,7 @@ namespace forr {
 
   float inv_movem_spd(float num) {
     if (num) {
-      return k_one_second_millis / num;
+      return k_one_sec_millis / num;
     } else {
       return 0.0f;
     }

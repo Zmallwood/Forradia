@@ -3,15 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "core.hpp"
+#include "gui.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "gui.hpp"
 #include "theme_0/func/conf/game_props.hpp"
 
 namespace forr {
   void game::start() const { _<engine>().run(); }
 
-  void engine::run() { 
+  void engine::run() {
     randomize();
     _<sdl_device>();
     while (m_running) {
@@ -98,7 +98,7 @@ namespace forr {
 
   void fps_counter::update() {
     auto now{get_ticks()};
-    if (now > m_ticks_last_update + k_one_second_millis) {
+    if (now > m_ticks_last_update + k_one_sec_millis) {
       m_fps = m_frames_count;
       m_frames_count = 0;
       m_ticks_last_update = now;

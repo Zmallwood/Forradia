@@ -16,7 +16,7 @@ namespace forr {
   template <class T> using func = std::function<T>;
 
   // Constants that may be used throughout the project.
-  static constexpr int k_one_second_millis{
+  static constexpr int k_one_sec_millis{
       1000}; ///< Number of milliseconds in one second.
 
   // Singleton functions

@@ -26,8 +26,8 @@ namespace forr {
         } else {
           _<gui_text_console>().print(name + ": Hello all!");
         }
-        npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_second_millis +
-                                               (6000 * k_one_second_millis));
+        npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_sec_millis +
+                                               (6000 * k_one_sec_millis));
       }
 
       if (now <
