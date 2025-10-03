@@ -11,13 +11,12 @@
 
 namespace forr {
   void run_new_theme_0() {
-    get_ston<scene_manager>().add_scene("IntroScene", get_ston<intro_scene>());
-    get_ston<scene_manager>().add_scene("MainMenuScene",
-                                        get_ston<main_menu_scene>());
-    get_ston<scene_manager>().add_scene("WorldGenerationScene",
-                                        get_ston<world_generation_scene>());
-    get_ston<scene_manager>().add_scene("MainScene", get_ston<main_scene>());
-    get_ston<scene_manager>().go_to_scene("IntroScene");
-    get_ston<game>().start();
+    _<scene_manager>().add_scene("IntroScene", _<intro_scene>());
+    _<scene_manager>().add_scene("MainMenuScene", _<main_menu_scene>());
+    _<scene_manager>().add_scene("WorldGenerationScene",
+                                 _<world_generation_scene>());
+    _<scene_manager>().add_scene("MainScene", _<main_scene>());
+    _<scene_manager>().go_to_scene("IntroScene");
+    _<game>().start();
   }
 }

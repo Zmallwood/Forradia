@@ -9,7 +9,7 @@
 
 namespace forr {
   void gen_new_crea_dest(s_ptr<creature> crea) {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
     auto pos{creas.at(crea)};
     auto dest{crea->get_dest()};

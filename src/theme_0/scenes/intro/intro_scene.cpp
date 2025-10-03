@@ -15,24 +15,23 @@ namespace forr {
   }
 
   void intro_scene::on_enter_derived() {
-    get_ston<gui_text_console>().print("Game started.");
+    _<gui_text_console>().print("Game started.");
   }
 
   void intro_scene::update_derived() {
     m_start_text->set_visible((get_ticks() % 800) < 400);
 
-    get_ston<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
+    _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
 
-    if (get_ston<keyboard_input>().any_key_pressed_pick_result() ||
-        get_ston<mouse_input>().any_mouse_button_pressed_pick_result()) {
-      get_ston<scene_manager>().go_to_scene("MainMenuScene");
+    if (_<keyboard_input>().any_key_pressed_pick_result() ||
+        _<mouse_input>().any_mouse_button_pressed_pick_result()) {
+      _<scene_manager>().go_to_scene("MainMenuScene");
     }
   }
 
   void intro_scene::render_derived() const {
-    get_ston<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f,
-                                        1.0f, 1.0f);
-    get_ston<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f,
-                                               0.5f);
+    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                 1.0f);
+    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
   }
 }

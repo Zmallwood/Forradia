@@ -8,30 +8,30 @@
 
 namespace forr {
   void update_kb_movem() {
-    auto up_press{get_ston<keyboard_input>().key_pressed(SDLK_UP)};
-    auto right_press{get_ston<keyboard_input>().key_pressed(SDLK_RIGHT)};
-    auto down_press{get_ston<keyboard_input>().key_pressed(SDLK_DOWN)};
-    auto left_press{get_ston<keyboard_input>().key_pressed(SDLK_LEFT)};
+    auto up_press{_<keyboard_input>().key_pressed(SDLK_UP)};
+    auto right_press{_<keyboard_input>().key_pressed(SDLK_RIGHT)};
+    auto down_press{_<keyboard_input>().key_pressed(SDLK_DOWN)};
+    auto left_press{_<keyboard_input>().key_pressed(SDLK_LEFT)};
     if (up_press || right_press || down_press || left_press) {
-      get_ston<player>().set_dest({-1, -1});
+      _<player>().set_dest({-1, -1});
     }
     auto now{get_ticks()};
-    if (now >= get_ston<player>().get_ticks_last_move() +
-                   inv_movem_spd(get_ston<player>().get_movem_spd()) &&
+    if (now >= _<player>().get_ticks_last_move() +
+                   inv_movem_spd(_<player>().get_movem_spd()) &&
         (up_press || right_press || down_press || left_press)) {
       if (up_press) {
-        get_ston<player>().move_n();
+        _<player>().move_n();
       }
       if (right_press) {
-        get_ston<player>().move_e();
+        _<player>().move_e();
       }
       if (down_press) {
-        get_ston<player>().move_s();
+        _<player>().move_s();
       }
       if (left_press) {
-        get_ston<player>().move_w();
+        _<player>().move_w();
       }
-      get_ston<player>().set_ticks_last_move(now);
+      _<player>().set_ticks_last_move(now);
     }
   }
 }

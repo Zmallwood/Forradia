@@ -11,7 +11,7 @@ namespace forr {
   ////////////////////
   void sdl_del::operator()(SDL_Window *win) const {
     // Free up resources from a SDL_Window object.
-    SDL_DestroyWindow(win); 
+    SDL_DestroyWindow(win);
   }
 
   void sdl_del::operator()(SDL_Renderer *rend) const {
@@ -83,8 +83,7 @@ namespace forr {
   // Canvas util functions
   size get_canv_sz() {
     size canv_sz;
-    SDL_GetWindowSize(get_ston<sdl_device>().get_win().get(), &canv_sz.w,
-                      &canv_sz.h);
+    SDL_GetWindowSize(_<sdl_device>().get_win().get(), &canv_sz.w, &canv_sz.h);
     return canv_sz;
   }
 

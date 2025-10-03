@@ -14,9 +14,8 @@ namespace forr {
   void main_menu_scene::update_derived() {}
 
   void main_menu_scene::render_derived() const {
-    get_ston<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f,
-                                          1.0f, 1.0f);
-    get_ston<image_renderer>().draw_img_auto_h("ForradiaLogo",
-                                                           0.35f, 0.1f, 0.3f);
+    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                 1.0f);
+    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
   }
 }

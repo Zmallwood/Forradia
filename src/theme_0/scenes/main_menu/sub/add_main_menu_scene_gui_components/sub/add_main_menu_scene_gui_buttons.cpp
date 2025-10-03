@@ -11,10 +11,10 @@ namespace forr {
   void add_main_menu_scene_gui_buttons(s_ptr<gui> main_menu_scene_gui) {
     main_menu_scene_gui->add_child_component(
         std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
-          get_ston<scene_manager>().go_to_scene("WorldGenerationScene");
+          _<scene_manager>().go_to_scene("WorldGenerationScene");
         }));
 
     main_menu_scene_gui->add_child_component(std::make_shared<gui_button>(
-        0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { get_ston<engine>().stop(); }));
+        0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { _<engine>().stop(); }));
   }
 }

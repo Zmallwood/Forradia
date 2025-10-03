@@ -8,23 +8,23 @@
 #include "core/scenes_core.hpp"
 #include "theme_0/func/conf/game_properties.hpp"
 
-namespace forr { 
-  void game::start() const { get_ston<engine>().run(); }
+namespace forr {
+  void game::start() const { _<engine>().run(); }
 
   void engine::run() {
     randomize();
-    get_ston<sdl_device>();
+    _<sdl_device>();
     while (m_running) {
-      get_ston<keyboard_input>().reset();
-      get_ston<mouse_input>().reset();
-      get_ston<cursor>().reset_style_to_default();
+      _<keyboard_input>().reset();
+      _<mouse_input>().reset();
+      _<cursor>().reset_style_to_default();
       poll_events();
-      get_ston<scene_manager>().update_curr_scene();
-      get_ston<fps_counter>().update();
-      get_ston<sdl_device>().clear_canv();
-      get_ston<scene_manager>().render_curr_scene();
-      get_ston<cursor>().render();
-      get_ston<sdl_device>().present_canv();
+      _<scene_manager>().update_curr_scene();
+      _<fps_counter>().update();
+      _<sdl_device>().clear_canv();
+      _<scene_manager>().render_curr_scene();
+      _<cursor>().render();
+      _<sdl_device>().present_canv();
     }
   }
 
@@ -38,16 +38,16 @@ namespace forr {
         m_running = false;
         break;
       case SDL_KEYDOWN:
-        get_ston<keyboard_input>().reg_key_press(ev.key.keysym.sym);
+        _<keyboard_input>().reg_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        get_ston<keyboard_input>().reg_key_release(ev.key.keysym.sym);
+        _<keyboard_input>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        get_ston<mouse_input>().reg_mouse_button_down(ev.button.button);
+        _<mouse_input>().reg_mouse_button_down(ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        get_ston<mouse_input>().reg_mouse_button_up(ev.button.button);
+        _<mouse_input>().reg_mouse_button_up(ev.button.button);
         break;
       }
     }
@@ -62,8 +62,7 @@ namespace forr {
   }
 
   void sdl_device::clear_canv() const {
-    SDL_Color clear_color{
-        get_ston<game_properties>().k_clear_color.to_sdl_color()};
+    SDL_Color clear_color{_<game_properties>().k_clear_color.to_sdl_color()};
     SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
     SDL_RenderClear(m_rend.get());
@@ -75,7 +74,7 @@ namespace forr {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto win_res{s_ptr<SDL_Window>(
-        SDL_CreateWindow(get_ston<game_properties>().k_game_win_title.data(),
+        SDL_CreateWindow(_<game_properties>().k_game_win_title.data(),
                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
                          660, flags),
         sdl_del())};
@@ -128,8 +127,8 @@ namespace forr {
       curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    get_ston<image_renderer>().draw_img(curs_img, mouse_pos.x - w / 2,
-                                        mouse_pos.y - h / 2, w, h);
+    _<image_renderer>().draw_img(curs_img, mouse_pos.x - w / 2,
+                                 mouse_pos.y - h / 2, w, h);
   }
 
   void image_bank::init() { load_imgs(); }
@@ -174,7 +173,7 @@ namespace forr {
   s_ptr<SDL_Texture> image_bank::load_single_img(str_view path) {
     auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_del())};
     if (surf) {
-      auto rend{get_ston<sdl_device>().get_rend().get()};
+      auto rend{_<sdl_device>().get_rend().get()};
       auto tex{s_ptr<SDL_Texture>(
           SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
       return tex;

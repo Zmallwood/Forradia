@@ -13,8 +13,8 @@ namespace forr {
     if (recurs == 0) {
       return;
     }
-    auto w_area{get_ston<world>().get_curr_w_area()};
-    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto w_area{_<world>().get_curr_w_area()};
+    auto scale{_<game_properties>().k_world_scaling};
     auto x_cent{min_x + rand_int(max_x - min_x)};
     auto y_cent{min_y + rand_int(max_y - min_y)};
     auto max_r{c_int(3 * scale + rand_int(5 * scale))};
@@ -92,7 +92,7 @@ namespace forr {
   }
 
   void gen_lakes() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
     auto num_lakes{20 + rand_int(5)};
     for (auto i = 0; i < num_lakes; i++) {

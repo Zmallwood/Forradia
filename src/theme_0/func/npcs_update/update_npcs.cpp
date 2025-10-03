@@ -11,7 +11,7 @@
 
 namespace forr {
   void update_npcs() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto &npcs{w_area->get_npcs_mirror_ref()};
     auto now{get_ticks()};
     for (auto it = npcs.begin(); it != npcs.end();) {
@@ -21,10 +21,10 @@ namespace forr {
       if (now > npc->get_ticks_next_spontaneous_speech()) {
         auto name{npc->get_name()};
         if (rand_int(20) == 0) {
-          get_ston<gui_text_console>().print(
-              name + ": Buying blueberries, one gold each.");
+          _<gui_text_console>().print(name +
+                                      ": Buying blueberries, one gold each.");
         } else {
-          get_ston<gui_text_console>().print(name + ": Hello all!");
+          _<gui_text_console>().print(name + ": Hello all!");
         }
         npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_second_millis +
                                                (6000 * k_one_second_millis));

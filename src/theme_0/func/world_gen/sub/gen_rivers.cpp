@@ -10,9 +10,9 @@
 
 namespace forr {
   void gen_rivers() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
-    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto scale{_<game_properties>().k_world_scaling};
     auto num_rivers{20 * scale + rand_int(5 * scale)};
     for (auto i = 0; i < num_rivers; i++) {
       auto x{c_float(rand_int(sz.w))};

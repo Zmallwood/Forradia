@@ -12,7 +12,7 @@ namespace forr {
   void player::init() { move_to_suitable_pos(); }
 
   void player::move_to_suitable_pos() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
     m_pos = {sz.w / 2, sz.h / 2};
     while (w_area->get_tl(m_pos)->get_ground() == hash("GroundWater")) {

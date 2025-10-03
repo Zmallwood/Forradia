@@ -45,7 +45,7 @@ namespace forr {
       dest_rect.x -= dest_rect.w / 2;
       dest_rect.y -= dest_rect.h / 2;
     }
-    auto rend{get_ston<sdl_device>().get_rend().get()};
+    auto rend{_<sdl_device>().get_rend().get()};
     auto tex{SDL_CreateTextureFromSurface(rend, surf)};
     SDL_RenderCopy(rend, tex, nullptr, &dest_rect);
     SDL_DestroyTexture(tex);

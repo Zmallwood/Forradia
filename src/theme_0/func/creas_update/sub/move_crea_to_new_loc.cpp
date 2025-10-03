@@ -10,7 +10,7 @@
 
 namespace forr {
   void move_crea_to_new_loc(s_ptr<creature> crea, point new_pos) {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto &creas{w_area->get_creatures_mirror_ref()};
     auto old_pos{creas.at(crea)};
     auto now{get_ticks()};

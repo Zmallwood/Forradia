@@ -17,7 +17,7 @@ namespace forr {
   void main_scene::init_derived() { add_main_scene_gui_components(get_gui()); }
 
   void main_scene::on_enter_derived() {
-    get_ston<gui_text_console>().print("You have entered the world.");
+    _<gui_text_console>().print("You have entered the world.");
   }
 
   void main_scene::update_derived() {
@@ -25,9 +25,9 @@ namespace forr {
     update_crea_movem();
     update_mouse_movem();
     update_kb_binding_actions();
-    get_ston<tile_hovering>().update();
+    _<tile_hovering>().update();
     update_kb_binding_actions();
   }
 
-  void main_scene::render_derived() const { get_ston<world_view>().render(); }
+  void main_scene::render_derived() const { _<world_view>().render(); }
 }

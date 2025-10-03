@@ -62,12 +62,12 @@ namespace forr {
   }
 
   void gui_player_body_window::update_body_part_info_lbls() {
-    auto &p_body{get_ston<player>().get_body_ref()};
+    auto &p_body{_<player>().get_body_ref()};
     switch (m_sel_body_part) {
     case body_part_types::overall_body: {
       m_lbl_body_part_name->set_text("Body part: Overall body");
-      auto str{p_body.get_body_part_ptr(body_part_types::overall_body)
-                   ->get_str()};
+      auto str{
+          p_body.get_body_part_ptr(body_part_types::overall_body)->get_str()};
       m_lbl_body_part_str->set_text(fmt::format("Strength: {:.2f}", str));
       auto max_energy{p_body.get_body_part_ptr(body_part_types::overall_body)
                           ->get_max_energy()};
@@ -75,15 +75,14 @@ namespace forr {
                            ->get_curr_energy()};
       m_lbl_body_part_energy->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-      auto temp{p_body.get_body_part_ptr(body_part_types::overall_body)
-                    ->get_temp()};
+      auto temp{
+          p_body.get_body_part_ptr(body_part_types::overall_body)->get_temp()};
       m_lbl_body_part_temp->set_text(
           fmt::format("Temperature: {:.2f} C", temp));
     } break;
     case body_part_types::right_arm: {
       m_lbl_body_part_name->set_text("Body part: Right arm");
-      auto str{
-          p_body.get_body_part_ptr(body_part_types::right_arm)->get_str()};
+      auto str{p_body.get_body_part_ptr(body_part_types::right_arm)->get_str()};
       m_lbl_body_part_str->set_text(fmt::format("Strength: {:.2f}", str));
       auto max_energy{p_body.get_body_part_ptr(body_part_types::right_arm)
                           ->get_max_energy()};
@@ -91,15 +90,14 @@ namespace forr {
                            ->get_curr_energy()};
       m_lbl_body_part_energy->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-      auto temp{p_body.get_body_part_ptr(body_part_types::right_arm)
-                    ->get_temp()};
+      auto temp{
+          p_body.get_body_part_ptr(body_part_types::right_arm)->get_temp()};
       m_lbl_body_part_temp->set_text(
           fmt::format("Temperature: {:.2f} C", temp));
     } break;
     case body_part_types::left_arm: {
       m_lbl_body_part_name->set_text("Body part: Left arm");
-      auto str{
-          p_body.get_body_part_ptr(body_part_types::left_arm)->get_str()};
+      auto str{p_body.get_body_part_ptr(body_part_types::left_arm)->get_str()};
       m_lbl_body_part_str->set_text(fmt::format("Strength: {:.2f}", str));
       auto max_energy{p_body.get_body_part_ptr(body_part_types::left_arm)
                           ->get_max_energy()};
@@ -107,8 +105,8 @@ namespace forr {
                            ->get_curr_energy()};
       m_lbl_body_part_energy->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-      auto temp{p_body.get_body_part_ptr(body_part_types::left_arm)
-                    ->get_temp()};
+      auto temp{
+          p_body.get_body_part_ptr(body_part_types::left_arm)->get_temp()};
       m_lbl_body_part_temp->set_text(
           fmt::format("Temperature: {:.2f} C", temp));
     } break;
@@ -118,12 +116,11 @@ namespace forr {
       m_lbl_body_part_str->set_text(fmt::format("Strength: {:.2f}", str));
       auto max_energy{
           p_body.get_body_part_ptr(body_part_types::legs)->get_max_energy()};
-      auto curr_energy{p_body.get_body_part_ptr(body_part_types::legs)
-                           ->get_curr_energy()};
+      auto curr_energy{
+          p_body.get_body_part_ptr(body_part_types::legs)->get_curr_energy()};
       m_lbl_body_part_energy->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-      auto temp{
-          p_body.get_body_part_ptr(body_part_types::legs)->get_temp()};
+      auto temp{p_body.get_body_part_ptr(body_part_types::legs)->get_temp()};
       m_lbl_body_part_temp->set_text(
           fmt::format("Temperature: {:.2f} C", temp));
     } break;

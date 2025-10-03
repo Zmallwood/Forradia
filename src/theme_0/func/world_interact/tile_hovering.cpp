@@ -11,7 +11,7 @@
 
 namespace forr {
   void tile_hovering::update() {
-    auto player_pos{get_ston<player>().get_pos()};
+    auto player_pos{_<player>().get_pos()};
     auto mouse_pos{get_norm_mouse_pos()};
     auto tl_sz{calc_tl_sz()};
     auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
@@ -19,12 +19,11 @@ namespace forr {
     auto hovered_x_coord{player_pos.x - (grid_sz.w - 1) / 2 + screen_rel_x};
     auto screen_rel_x_px{
         (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) * tl_sz.w};
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto extra_rows{8};
     auto top_y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2) - extra_rows};
     auto player_tl{w_area->get_tl(player_pos)};
-    auto player_elev{player_tl ? w_area->get_tl(player_pos)->get_elev()
-                               : 0};
+    auto player_elev{player_tl ? w_area->get_tl(player_pos)->get_elev() : 0};
     auto screen_rel_y_px{-extra_rows * tl_sz.h};
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       auto y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2 + y)};

@@ -11,9 +11,9 @@
 
 namespace forr {
   void gen_objs() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
-    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto scale{_<game_properties>().k_world_scaling};
     auto num_fir_trees{1000 * scale + rand_int(50)};
     for (auto i = 0; i < num_fir_trees; i++) {
       auto x{rand_int(sz.w)};

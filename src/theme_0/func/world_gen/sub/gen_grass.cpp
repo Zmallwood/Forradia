@@ -10,9 +10,9 @@
 
 namespace forr {
   void gen_grass() {
-    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
-    auto scale{get_ston<game_properties>().k_world_scaling};
+    auto scale{_<game_properties>().k_world_scaling};
     auto num_grass_areas{50 + rand_int(20)};
     for (auto i = 0; i < num_grass_areas; i++) {
       auto x_cent{rand_int(sz.w)};

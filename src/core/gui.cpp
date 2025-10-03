@@ -60,13 +60,13 @@ namespace forr {
       b.x += b.w / 2;
       b.y += b.h / 2;
     }
-    get_ston<text_renderer>().draw_str(m_text, b.x, b.y, font_sizes::_20,
-                                       m_cent_align, m_color);
+    _<text_renderer>().draw_str(m_text, b.x, b.y, font_sizes::_20, m_cent_align,
+                                m_color);
   }
 
   void gui_panel::render_derived() const {
     auto b{get_bounds()};
-    get_ston<image_renderer>().draw_img(m_bg_img, b.x, b.y, b.w, b.h);
+    _<image_renderer>().draw_img(m_bg_img, b.x, b.y, b.w, b.h);
   }
 
   void gui_button::update_derived() {
@@ -75,10 +75,8 @@ namespace forr {
     auto hovered{get_bounds().contains(mouse_pos)};
     if (hovered) {
       set_bg_img(m_hovered_bg_img);
-      get_ston<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
-      if (get_ston<mouse_input>()
-              .get_left_btn_ref()
-              .get_been_fired_pick_result()) {
+      _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
+      if (_<mouse_input>().get_left_btn_ref().get_been_fired_pick_result()) {
         m_action();
       }
     } else {
@@ -89,32 +87,30 @@ namespace forr {
   void gui_button::render_derived() const {
     gui_panel::render_derived();
     auto b{get_bounds()};
-    get_ston<text_renderer>().draw_str(m_text, b.x + b.w / 2, b.y + b.h / 2,
-                                       font_sizes::_20, true);
+    _<text_renderer>().draw_str(m_text, b.x + b.w / 2, b.y + b.h / 2,
+                                font_sizes::_20, true);
   }
 
   void gui_movable_panel::update_derived() {
     auto mouse_pos{get_norm_mouse_pos()};
     auto drag_area{get_drag_area()};
     if (drag_area.contains(mouse_pos)) {
-      get_ston<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
-      if (get_ston<mouse_input>()
-              .get_left_btn_ref()
-              .get_been_fired_pick_result()) {
+      _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
+      if (_<mouse_input>().get_left_btn_ref().get_been_fired_pick_result()) {
         start_move();
       }
     }
-    if (get_ston<mouse_input>()
+    if (_<mouse_input>()
             .get_left_btn_ref()
             .get_been_released_dont_pick_result()) {
       stop_move();
     }
     auto b{get_bounds()};
     if (b.contains(mouse_pos)) {
-      if (get_ston<mouse_input>()
+      if (_<mouse_input>()
               .get_left_btn_ref()
               .get_been_fired_dont_pick_result()) {
-        get_ston<mouse_input>().get_left_btn_ref().reset();
+        _<mouse_input>().get_left_btn_ref().reset();
       }
     }
     if (get_being_moved()) {
@@ -138,22 +134,21 @@ namespace forr {
 
   void gui_window::gui_window_title_bar::render() const {
     auto parent_win_b{m_parent_win.get_bounds()};
-    get_ston<image_renderer>().draw_img("GUIWindowTitleBarBackground",
-                                        parent_win_b.x, parent_win_b.y,
-                                        parent_win_b.w, k_h);
-    get_ston<text_renderer>().draw_str(k_win_title, parent_win_b.x + 0.01f,
-                                       parent_win_b.y + 0.01f, font_sizes::_20,
-                                       false, colors::yellow);
+    _<image_renderer>().draw_img("GUIWindowTitleBarBackground", parent_win_b.x,
+                                 parent_win_b.y, parent_win_b.w, k_h);
+    _<text_renderer>().draw_str(k_win_title, parent_win_b.x + 0.01f,
+                                parent_win_b.y + 0.01f, font_sizes::_20, false,
+                                colors::yellow);
   }
 
   rect_f gui_window::gui_window_title_bar::get_bounds() const {
     rect_f b_res;
     auto parent_win_b{m_parent_win.get_bounds()};
-    b_res.x = parent_win_b.x; 
+    b_res.x = parent_win_b.x;
     b_res.y = parent_win_b.y;
     b_res.w = parent_win_b.w;
     b_res.h = k_h;
-    return b_res; 
+    return b_res;
   }
   void gui_window::init() { set_visible(false); }
 
@@ -173,7 +168,7 @@ namespace forr {
 
   void gui_fps_panel::update_derived() {
     gui_movable_panel::update_derived();
-    auto fps{get_ston<fps_counter>().get_fps()};
+    auto fps{_<fps_counter>().get_fps()};
     m_fps_text_pnl->set_text(fmt::format("FPS: {}", fps));
   }
 
@@ -188,12 +183,12 @@ namespace forr {
         continue;
       }
       auto text_line = m_lines.at(idx);
-      get_ston<text_renderer>().draw_str(text_line, b.x + k_marg, y);
+      _<text_renderer>().draw_str(text_line, b.x + k_marg, y);
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    get_ston<image_renderer>().draw_img("Black", sep_rect.x, sep_rect.y,
-                                        sep_rect.w, sep_rect.h);
+    _<image_renderer>().draw_img("Black", sep_rect.x, sep_rect.y, sep_rect.w,
+                                 sep_rect.h);
   }
 
   void gui_text_console::print(str_view text) {
