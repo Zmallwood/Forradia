@@ -273,29 +273,29 @@ namespace forr {
         if (tl && prev_tl) {
           // tile->SetGround("GroundWater");
           if (x_coord == prev_x_coord && y_coord > prev_y_coord) {
-            prev_tl->set_river_dir_1(directions::south);
-            tl->set_river_dir_2(directions::north);
+            prev_tl->set_river_dir_1(dirs::south);
+            tl->set_river_dir_2(dirs::north);
           } else if (x_coord == prev_x_coord && y_coord < prev_y_coord) {
-            prev_tl->set_river_dir_1(directions::north);
-            tl->set_river_dir_2(directions::south);
+            prev_tl->set_river_dir_1(dirs::north);
+            tl->set_river_dir_2(dirs::south);
           } else if (y_coord == prev_y_coord && x_coord > prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::east);
-            tl->set_river_dir_2(directions::west);
+            prev_tl->set_river_dir_1(dirs::east);
+            tl->set_river_dir_2(dirs::west);
           } else if (y_coord == prev_y_coord && x_coord < prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::west);
-            tl->set_river_dir_2(directions::east);
+            prev_tl->set_river_dir_1(dirs::west);
+            tl->set_river_dir_2(dirs::east);
           } else if (y_coord < prev_y_coord && x_coord > prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::north_east);
-            tl->set_river_dir_2(directions::south_west);
+            prev_tl->set_river_dir_1(dirs::north_east);
+            tl->set_river_dir_2(dirs::south_west);
           } else if (y_coord > prev_y_coord && x_coord > prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::south_east);
-            tl->set_river_dir_2(directions::north_west);
+            prev_tl->set_river_dir_1(dirs::south_east);
+            tl->set_river_dir_2(dirs::north_west);
           } else if (y_coord < prev_y_coord && x_coord < prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::north_west);
-            tl->set_river_dir_2(directions::south_east);
+            prev_tl->set_river_dir_1(dirs::north_west);
+            tl->set_river_dir_2(dirs::south_east);
           } else if (y_coord > prev_y_coord && x_coord < prev_x_coord) {
-            prev_tl->set_river_dir_1(directions::south_west);
-            tl->set_river_dir_2(directions::north_east);
+            prev_tl->set_river_dir_1(dirs::south_west);
+            tl->set_river_dir_2(dirs::north_east);
           }
         }
         auto dx = std::cos(angle * M_PI / 180.0f);

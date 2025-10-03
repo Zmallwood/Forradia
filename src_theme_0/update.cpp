@@ -4,9 +4,9 @@
  */
 #include "update.hpp"
 #include "engine.hpp"
+#include "gui_spec.hpp"
 #include "input.hpp"
 #include "player.hpp"
-#include "gui_spec.hpp"
 #include "tile_grid_math.hpp"
 #include "world_struct.hpp"
 
@@ -292,7 +292,7 @@ namespace forr {
       auto rect{rect_f{screen_rel_x_px, screen_rel_y_px - local_tl_h / 2,
                        tl_sz.w, local_tl_h}};
       if (rect.contains(mouse_pos)) {
-        m_hovered_coord = {hovered_x_coord, y_coord};
+        hovered_coord_ = {hovered_x_coord, y_coord};
         return;
       }
     }

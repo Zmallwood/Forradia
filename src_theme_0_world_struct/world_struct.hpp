@@ -6,7 +6,7 @@
 #include "comm.hpp"
 
 namespace forr {
-  enum class directions {
+  enum class dirs {
     none,
     north,
     east,
@@ -156,11 +156,11 @@ namespace forr {
 
     auto get_river_dir_1() const { return m_river_dir_1; }
 
-    void set_river_dir_1(directions val) { m_river_dir_1 = val; }
+    void set_river_dir_1(dirs val) { m_river_dir_1 = val; }
 
     auto get_river_dir_2() const { return m_river_dir_2; }
 
-    void set_river_dir_2(directions val) { m_river_dir_2 = val; }
+    void set_river_dir_2(dirs val) { m_river_dir_2 = val; }
 
    private:
     void init();
@@ -171,8 +171,8 @@ namespace forr {
     s_ptr<npc> m_npc;
     int m_elev{0};
     int m_water_depth{0};
-    directions m_river_dir_1{directions::none};
-    directions m_river_dir_2{directions::none};
+    dirs m_river_dir_1{dirs::none};
+    dirs m_river_dir_2{dirs::none};
   };
 
   class world_area {

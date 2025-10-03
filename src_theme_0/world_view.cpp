@@ -154,7 +154,7 @@ namespace forr {
             _<image_renderer>().draw_img(ground_type_rend, x_canv, y_canv,
                                          w_canv, h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
-            vec<directions> river_dirs{tl->get_river_dir_1(),
+            vec<dirs> river_dirs{tl->get_river_dir_1(),
                                        tl->get_river_dir_2()};
             auto river_part_w{0.4f * w_canv};
             auto river_part_h{0.4f * h_canv};
@@ -163,7 +163,7 @@ namespace forr {
                           3};
             for (auto j = 0; j < 2; j++) {
               switch (river_dirs.at(j)) {
-              case directions::north: {
+              case dirs::north: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 - river_part_h / 2 -
@@ -174,7 +174,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::east: {
+              case dirs::east: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 +
                                k * river_part_w,
@@ -185,7 +185,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::south: {
+              case dirs::south: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 + river_part_h / 2 +
@@ -196,7 +196,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::west: {
+              case dirs::west: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 -
                                k * river_part_w,
@@ -207,7 +207,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::north_east: {
+              case dirs::north_east: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -218,7 +218,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::south_east: {
+              case dirs::south_east: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -229,7 +229,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::south_west: {
+              case dirs::south_west: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
@@ -240,7 +240,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case directions::north_west: {
+              case dirs::north_west: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,

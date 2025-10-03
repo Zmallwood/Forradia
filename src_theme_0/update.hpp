@@ -20,9 +20,9 @@ namespace forr {
    public:
     void update();
 
-    auto get_hovered_coord() const { return m_hovered_coord; }
+    auto get_hovered_coord() const { return hovered_coord_; }
 
    private:
-    pt m_hovered_coord{-1, -1};
+    pt hovered_coord_{-1, -1};
   };
 }

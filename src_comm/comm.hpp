@@ -19,7 +19,7 @@
 #include <vector>
 
 namespace forr {
-  //////////////////// 
+  ////////////////////
   // Convenience
   ////////////////////
   // A set of aliases for commonly used types.
