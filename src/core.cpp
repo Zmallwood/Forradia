@@ -15,7 +15,7 @@ namespace forr {
     randomize();
     _<sdl_device>();
     while (m_running) {
-      _<keyboard_input>().reset();
+      _<kb_input>().reset();
       _<mouse_input>().reset();
       _<cursor>().reset_style_to_default();
       poll_events();
@@ -38,10 +38,10 @@ namespace forr {
         m_running = false;
         break;
       case SDL_KEYDOWN:
-        _<keyboard_input>().reg_key_press(ev.key.keysym.sym);
+        _<kb_input>().reg_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        _<keyboard_input>().reg_key_release(ev.key.keysym.sym);
+        _<kb_input>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
         _<mouse_input>().reg_mouse_button_down(ev.button.button);

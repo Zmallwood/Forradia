@@ -8,7 +8,7 @@ namespace forr {
   ////////////////////
   // Keyboard
   ////////////////////
-  class keyboard_input {
+  class kb_input {
    public:
     void reset();
 

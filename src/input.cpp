@@ -8,27 +8,23 @@ namespace forr {
   ////////////////////
   // Keyboard
   ////////////////////
-  void keyboard_input::reset() { m_pressed.clear(); }
+  void kb_input::reset() { m_pressed.clear(); }
 
-  void keyboard_input::reg_key_press(SDL_Keycode key) {
-    m_pressed.insert(key);
-  }
+  void kb_input::reg_key_press(SDL_Keycode key) { m_pressed.insert(key); }
 
-  void keyboard_input::reg_key_release(SDL_Keycode key) {
-    m_pressed.erase(key);
-  }
+  void kb_input::reg_key_release(SDL_Keycode key) { m_pressed.erase(key); }
 
-  bool keyboard_input::key_pressed(SDL_Keycode key) const {
+  bool kb_input::key_pressed(SDL_Keycode key) const {
     return m_pressed.contains(key);
   }
 
-  bool keyboard_input::key_pressed_pick_result(SDL_Keycode key) {
+  bool kb_input::key_pressed_pick_result(SDL_Keycode key) {
     auto res{m_pressed.contains(key)};
     m_pressed.erase(key);
     return res;
   }
 
-  bool keyboard_input::any_key_pressed_pick_result() {
+  bool kb_input::any_key_pressed_pick_result() {
     auto res{m_pressed.size() > 0};
     m_pressed.clear();
     return res;
@@ -65,9 +61,7 @@ namespace forr {
     return res;
   }
 
-  bool mouse_button::get_been_fired_dont_pick_result() {
-    return m_been_fired;
-  }
+  bool mouse_button::get_been_fired_dont_pick_result() { return m_been_fired; }
 
   bool mouse_button::get_been_released_pick_result() {
     auto res{m_been_released};

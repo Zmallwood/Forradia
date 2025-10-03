@@ -8,10 +8,10 @@
 
 namespace forr {
   void update_kb_movem() {
-    auto up_press{_<keyboard_input>().key_pressed(SDLK_UP)};
-    auto right_press{_<keyboard_input>().key_pressed(SDLK_RIGHT)};
-    auto down_press{_<keyboard_input>().key_pressed(SDLK_DOWN)};
-    auto left_press{_<keyboard_input>().key_pressed(SDLK_LEFT)};
+    auto up_press{_<kb_input>().key_pressed(SDLK_UP)};
+    auto right_press{_<kb_input>().key_pressed(SDLK_RIGHT)};
+    auto down_press{_<kb_input>().key_pressed(SDLK_DOWN)};
+    auto left_press{_<kb_input>().key_pressed(SDLK_LEFT)};
     if (up_press || right_press || down_press || left_press) {
       _<player>().set_dest({-1, -1});
     }
