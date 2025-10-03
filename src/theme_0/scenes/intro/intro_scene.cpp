@@ -6,7 +6,7 @@
 #include "core/core.hpp"
 #include "core/gui.hpp"
 #include "core/input.hpp"
-#include "core/rend/images/image_renderer.hpp"
+#include "core/rend/image_renderer.hpp"
 
 namespace forr {
   void intro_scene::init_derived() {

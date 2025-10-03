@@ -11,7 +11,7 @@ namespace forr {
   ////////////////////
   void sdl_del::operator()(SDL_Window *win) const {
     // Free up resources from a SDL_Window object.
-    SDL_DestroyWindow(win);
+    SDL_DestroyWindow(win); 
   }
 
   void sdl_del::operator()(SDL_Renderer *rend) const {

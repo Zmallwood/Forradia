@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "sub/font_sizes.hpp"
-
 namespace forr {
+  enum struct font_sizes { _20 = 20, _26 = 26 };
+
   class text_renderer {
    public:
     text_renderer() { init(); }

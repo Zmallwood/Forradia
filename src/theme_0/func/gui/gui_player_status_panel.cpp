@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_player_status_panel.hpp"
-#include "core/rend/text/text_renderer.hpp"
+#include "core/rend/text_renderer.hpp"
 #include "theme_0/func/core_objs/player.hpp"
 
 namespace forr {

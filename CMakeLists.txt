@@ -15,6 +15,8 @@ add_executable(Forradia ${SOURCES})
 
 target_link_libraries(Forradia PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
 
-target_precompile_headers(Forradia PRIVATE src/std_afx.hpp)
+add_definitions(-include std_afx.hpp)
+
+#target_precompile_headers(Forradia PRIVATE src/std_afx.hpp)
 
 install(TARGETS Forradia RUNTIME DESTINATION bin)

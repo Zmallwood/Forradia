@@ -4,11 +4,11 @@
  */
 #include "core.hpp"
 #include "core/input.hpp"
-#include "core/rend/images/image_renderer.hpp"
+#include "core/rend/image_renderer.hpp"
 #include "core/scenes_core.hpp"
 #include "theme_0/func/conf/game_properties.hpp"
 
-namespace forr {
+namespace forr { 
   void game::start() const { get_ston<engine>().run(); }
 
   void engine::run() {

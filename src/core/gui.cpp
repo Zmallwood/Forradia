@@ -5,8 +5,8 @@
 #include "gui.hpp"
 #include "core/core.hpp"
 #include "core/input.hpp"
-#include "rend/images/image_renderer.hpp"
-#include "rend/text/text_renderer.hpp"
+#include "rend/image_renderer.hpp"
+#include "rend/text_renderer.hpp"
 
 namespace forr {
   s_ptr<gui_component>
@@ -149,7 +149,7 @@ namespace forr {
   rect_f gui_window::gui_window_title_bar::get_bounds() const {
     rect_f b_res;
     auto parent_win_b{m_parent_win.get_bounds()};
-    b_res.x = parent_win_b.x;
+    b_res.x = parent_win_b.x; 
     b_res.y = parent_win_b.y;
     b_res.w = parent_win_b.w;
     b_res.h = k_h;

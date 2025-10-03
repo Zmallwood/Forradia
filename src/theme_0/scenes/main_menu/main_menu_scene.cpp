@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "main_menu_scene.hpp"
-#include "core/rend/images/image_renderer.hpp"
+#include "core/rend/image_renderer.hpp"
 #include "sub/add_main_menu_scene_gui_components/add_main_menu_scene_gui_components.hpp"
 
 namespace forr {
