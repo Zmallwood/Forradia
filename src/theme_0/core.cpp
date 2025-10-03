@@ -11,8 +11,8 @@
 #include "theme_0/func/game_props.hpp"
 #include "theme_0/func/gui_spec.hpp"
 #include "theme_0/func/update.hpp"
-#include "theme_0/func/world_struct.hpp"
 #include "theme_0/func/world_view.hpp"
+#include "world_struct.hpp"
 
 namespace forr {
   void run_new_theme_0() {

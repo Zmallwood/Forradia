@@ -8,7 +8,7 @@
 #include "theme_0/func/player.hpp"
 #include "theme_0/func/tile_grid_math.hpp"
 #include "theme_0/func/update.hpp"
-#include "theme_0/func/world_struct.hpp"
+#include "world_struct.hpp"
 
 namespace forr {
   void world_view::render() const {

@@ -91,7 +91,7 @@ namespace forr {
     }
   }
 
-  size world_area::get_sz() const {
+  size world_area::get_sz() const { 
     auto w{c_int(m_tiles.size())};
     auto h{0};
     if (w) {

@@ -4,7 +4,7 @@
  */
 #include "gen_grass.hpp"
 #include "theme_0/func/game_props.hpp"
-#include "theme_0/func/world_struct.hpp"
+#include "world_struct.hpp"
 
 namespace forr {
   void gen_grass() {
