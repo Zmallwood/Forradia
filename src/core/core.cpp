@@ -138,4 +138,55 @@ namespace forr {
         cursor_image, mouse_position.x - width / 2,
         mouse_position.y - height / 2, width, height);
   }
+
+  void image_bank::initialize() { load_images(); }
+
+  void image_bank::load_images() {
+    auto base_path{str(SDL_GetBasePath())};
+    auto images_path{base_path + k_relative_images_path.data()};
+    if (!std::filesystem::exists(images_path)) {
+      return;
+    }
+    std::filesystem::recursive_directory_iterator rdi{images_path};
+    for (auto it : rdi) {
+      auto file_path{replace(it.path().string(), '\\', '/')};
+      if (get_file_extension(file_path) == "png") {
+        auto file_name{get_file_name_no_extension(file_path)};
+        auto hash{forr::hash(file_name)};
+        auto image{load_single_image(file_path)};
+        m_images.insert({hash, image});
+      }
+    }
+  }
+
+  s_ptr<SDL_Texture> image_bank::get_image(int image_name_hash) const {
+    if (m_images.contains(image_name_hash)) {
+      return m_images.at(image_name_hash);
+    }
+    return nullptr;
+  }
+
+  size image_bank::get_image_size(int image_name_hash) const {
+    if (m_images.contains(image_name_hash)) {
+      auto texture{m_images.at(image_name_hash)};
+      size size;
+      if (texture) {
+        SDL_QueryTexture(texture.get(), nullptr, nullptr, &size.w, &size.h);
+      }
+      return size;
+    }
+    return {0, 0};
+  }
+
+  s_ptr<SDL_Texture> image_bank::load_single_image(str_view path) {
+    auto surface{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
+    if (surface) {
+      auto renderer{get_singleton<sdl_device>().get_renderer().get()};
+      auto texture{s_ptr<SDL_Texture>(
+          SDL_CreateTextureFromSurface(renderer, surface.get()),
+          sdl_deleter())};
+      return texture;
+    }
+    return nullptr;
+  }
 }

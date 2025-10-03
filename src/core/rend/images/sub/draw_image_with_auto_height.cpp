@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "draw_image_with_auto_height.hpp"
-#include "core/images/image_bank.hpp"
+#include "core/core.hpp"
 #include "draw_image.hpp"
 
 namespace forr {

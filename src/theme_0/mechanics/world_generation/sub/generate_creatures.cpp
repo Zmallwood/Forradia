@@ -27,5 +27,18 @@ namespace forr {
             {tile->get_creature(), {x, y}});
       }
     }
+    auto num_butterflies{200 * scale + random_int(15 * scale)};
+    for (auto i = 0; i < num_butterflies; i++) {
+      auto x{random_int(size.w)};
+      auto y{random_int(size.h)};
+      auto tile{world_area->get_tile(x, y)};
+      if (tile && !tile->get_creature() &&
+          tile->get_ground() != hash("GroundWater")) {
+        auto new_creature = std::make_shared<creature>("CreatureButterfly");
+        tile->set_creature(new_creature);
+        world_area->get_creatures_mirror_ref().insert(
+            {tile->get_creature(), {x, y}});
+      }
+    }
   }
 }

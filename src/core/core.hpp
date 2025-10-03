@@ -83,4 +83,24 @@ namespace forr {
 
     cursor_styles m_cursor_style{cursor_styles::normal};
   };
+
+  class image_bank {
+   public:
+    image_bank() { initialize(); }
+
+    s_ptr<SDL_Texture> get_image(int image_name_hash) const;
+
+    size get_image_size(int image_name_hash) const;
+
+   private:
+    void initialize();
+
+    void load_images();
+
+    s_ptr<SDL_Texture> load_single_image(str_view path);
+
+    inline static const str k_relative_images_path{"./Resources/Images/"};
+
+    std::map<int, s_ptr<SDL_Texture>> m_images;
+  };
 }
