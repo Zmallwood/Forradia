@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "core/scenes_core.hpp"
+#include "scenes_core.hpp"
 
 namespace forr {
   class world_generation_scene : public i_scene {

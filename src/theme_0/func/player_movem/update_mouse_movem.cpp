@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_mouse_movem.hpp"
-#include "core/input.hpp"
+#include "input.hpp"
 #include "theme_0/func/core_objs/player.hpp"
 #include "theme_0/func/world_interact/tile_hovering.hpp"
 

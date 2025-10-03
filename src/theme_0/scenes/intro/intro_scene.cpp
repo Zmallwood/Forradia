@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "intro_scene.hpp"
-#include "core/core.hpp"
-#include "core/gui.hpp"
-#include "core/input.hpp"
-#include "core/rend.hpp"
+#include "core.hpp"
+#include "gui.hpp"
+#include "input.hpp"
+#include "rend.hpp"
 
 namespace forr {
   void intro_scene::init_derived() {

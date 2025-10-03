@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_system_menu.hpp"
-#include "core/core.hpp"
-#include "core/input.hpp"
+#include "core.hpp"
+#include "input.hpp"
 
 namespace forr {
   void gui_system_menu::init() { set_visible(false); }

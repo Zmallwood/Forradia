@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_npcs.hpp"
-#include "core/gui.hpp"
+#include "gui.hpp"
 #include "theme_0/func/world_struct/npc.hpp"
 #include "theme_0/func/world_struct/tile.hpp"
 #include "theme_0/func/world_struct/world.hpp"

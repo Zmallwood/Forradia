@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_generation_scene.hpp"
-#include "core/gui.hpp"
+#include "gui.hpp"
 #include "theme_0/func/world_gen/gen_new_world.hpp"
 
 namespace forr {

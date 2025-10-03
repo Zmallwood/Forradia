@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_kb_binding_actions.hpp"
-#include "core/input.hpp"
+#include "input.hpp"
 #include "theme_0/func/gui/gui_inventory_window.hpp"
 #include "theme_0/func/gui/gui_player_body_window.hpp"
 #include "theme_0/func/gui/gui_system_menu.hpp"

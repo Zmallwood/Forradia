@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "add_main_menu_scene_gui_components.hpp"
-#include "core/gui.hpp"
+#include "gui.hpp"
 #include "sub/add_main_menu_scene_gui_buttons.hpp"
 
 namespace forr {

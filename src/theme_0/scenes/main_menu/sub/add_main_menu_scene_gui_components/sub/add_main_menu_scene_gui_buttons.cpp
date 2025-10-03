@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "add_main_menu_scene_gui_buttons.hpp"
-#include "core/core.hpp"
-#include "core/gui.hpp"
-#include "core/scenes_core.hpp"
+#include "core.hpp"
+#include "gui.hpp"
+#include "scenes_core.hpp"
 
 namespace forr {
   void add_main_menu_scene_gui_buttons(s_ptr<gui> main_menu_scene_gui) {

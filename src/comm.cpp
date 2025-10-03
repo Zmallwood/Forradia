@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "comm.hpp"
-#include "core/core.hpp"
+#include "core.hpp"
 
 namespace forr {
   ////////////////////

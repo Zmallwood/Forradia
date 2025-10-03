@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "core.hpp"
-#include "core/input.hpp"
-#include "core/rend.hpp"
-#include "core/scenes_core.hpp"
+#include "input.hpp"
+#include "rend.hpp"
+#include "scenes_core.hpp"
 #include "theme_0/func/conf/game_properties.hpp"
 
 namespace forr {

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "core/gui.hpp"
+#include "gui.hpp"
 
 namespace forr {
   class gui_system_menu : public gui_component {

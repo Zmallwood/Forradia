@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui.hpp"
-#include "core/core.hpp"
-#include "core/input.hpp"
+#include "core.hpp"
+#include "input.hpp"
 #include "rend.hpp"
 
 namespace forr {

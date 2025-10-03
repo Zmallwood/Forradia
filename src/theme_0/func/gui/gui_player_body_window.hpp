@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "core/gui.hpp"
+#include "gui.hpp"
 #include "theme_0/func/core_objs/sub/body_part_types.hpp"
 
 namespace forr {

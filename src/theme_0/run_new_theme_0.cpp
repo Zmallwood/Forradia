@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "run_new_theme_0.hpp"
-#include "core/core.hpp"
+#include "core.hpp"
 #include "theme_0/scenes/intro/intro_scene.hpp"
 #include "theme_0/scenes/main/main_scene.hpp"
 #include "theme_0/scenes/main_menu/main_menu_scene.hpp"
