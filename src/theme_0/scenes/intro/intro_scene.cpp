@@ -4,9 +4,7 @@
  */
 #include "intro_scene.hpp"
 #include "core/core.hpp"
-#include "core/gui/gui.hpp"
-#include "core/gui/gui_label.hpp"
-#include "core/gui/gui_text_console.hpp"
+#include "core/gui.hpp"
 #include "core/input.hpp"
 #include "core/rend/images/image_renderer.hpp"
 
@@ -33,8 +31,8 @@ namespace forr {
 
   void intro_scene::render_derived() const {
     get_ston<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f,
-                                          1.0f, 1.0f);
-    get_ston<image_renderer>().draw_img_auto_h("ForradiaLogo",
-                                                           0.25f, 0.2f, 0.5f);
+                                        1.0f, 1.0f);
+    get_ston<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f,
+                                               0.5f);
   }
 }

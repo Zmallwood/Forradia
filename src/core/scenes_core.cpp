@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "scenes_core.hpp"
-#include "gui/gui.hpp"
+#include "gui.hpp"
 
 namespace forr {
   void i_scene::init() {

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "core/gui/gui_panel.hpp"
+#include "core/gui.hpp"
 
 namespace forr {
   class gui_player_status_panel : public gui_panel {

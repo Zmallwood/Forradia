@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update_npcs.hpp"
-#include "core/gui/gui_text_console.hpp"
+#include "core/gui.hpp"
 #include "theme_0/func/world_structure/npc.hpp"
 #include "theme_0/func/world_structure/tile.hpp"
 #include "theme_0/func/world_structure/world.hpp"
@@ -30,8 +30,8 @@ namespace forr {
                                                (6000 * k_one_second_millis));
       }
 
-      if (now < npc->get_ticks_last_move() +
-                    inv_movem_spd(npc->get_movem_spd())) {
+      if (now <
+          npc->get_ticks_last_move() + inv_movem_spd(npc->get_movem_spd())) {
         ++it;
         continue;
       }

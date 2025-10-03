@@ -4,8 +4,7 @@
  */
 #include "add_main_menu_scene_gui_buttons.hpp"
 #include "core/core.hpp"
-#include "core/gui/gui.hpp"
-#include "core/gui/gui_button.hpp"
+#include "core/gui.hpp"
 #include "core/scenes_core.hpp"
 
 namespace forr {
