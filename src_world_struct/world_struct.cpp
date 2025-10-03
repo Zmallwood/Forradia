@@ -45,7 +45,7 @@ namespace forr {
     for (auto i = 0; i < num_trunk_parts; i++) {
       offs_x += (rand_int(20) - 10) / 100.0f;
       auto offset_y{i * 0.1f};
-      auto pos{point_f{offs_x, offset_y}};
+      auto pos{pt_f{offs_x, offset_y}};
       auto needles_type{rand_int(5)};
       m_trunk_parts.push_back(pos);
       str needles_name;
@@ -79,7 +79,7 @@ namespace forr {
 
   void tile::set_ground(str_view ground_name) { m_ground = hash(ground_name); }
 
-  void world_area::init(size w_area_sz, float world_scaling) {
+  void world_area::init(sz w_area_sz, float world_scaling) {
     auto sz{w_area_sz};
     sz.w *= world_scaling;
     sz.h *= world_scaling;
@@ -91,7 +91,7 @@ namespace forr {
     }
   }
 
-  size world_area::get_sz() const { 
+  sz world_area::get_sz() const { 
     auto w{c_int(m_tiles.size())};
     auto h{0};
     if (w) {
@@ -112,11 +112,11 @@ namespace forr {
     return nullptr;
   }
 
-  s_ptr<tile> world_area::get_tl(point coord) const {
+  s_ptr<tile> world_area::get_tl(pt coord) const {
     return get_tl(coord.x, coord.y);
   }
 
-  void world::init(size w_area_sz, float world_scaling) {
+  void world::init(sz w_area_sz, float world_scaling) {
     m_curr_w_area = std::make_shared<world_area>(w_area_sz, world_scaling);
   }
 }

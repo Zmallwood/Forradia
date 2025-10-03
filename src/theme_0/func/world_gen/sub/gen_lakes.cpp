@@ -24,22 +24,22 @@ namespace forr {
           if (dx * dx + dy * dy <= r * r) {
             auto tl{w_area->get_tl(x, y)};
             if (tl) {
-              point n{x, y - 1};
-              point e{x + 1, y};
-              point s{x, y + 1};
-              point w{x - 1, y};
-              point nw{x - 1, y - 1};
-              point ne{x + 1, y - 1};
-              point se{x + 1, y + 1};
-              point sw{x - 1, y + 1};
-              point nn{x, y - 2};
-              point ww{x - 2, y};
-              point ee{x + 2, y};
-              point ss{x, y + 2};
-              point nwnw{x - 2, y - 2};
-              point nene{x + 2, y - 2};
-              point sese{x + 2, y + 2};
-              point swsw{x - 2, y + 2};
+              pt n{x, y - 1};
+              pt e{x + 1, y};
+              pt s{x, y + 1};
+              pt w{x - 1, y};
+              pt nw{x - 1, y - 1};
+              pt ne{x + 1, y - 1};
+              pt se{x + 1, y + 1};
+              pt sw{x - 1, y + 1};
+              pt nn{x, y - 2};
+              pt ww{x - 2, y};
+              pt ee{x + 2, y};
+              pt ss{x, y + 2};
+              pt nwnw{x - 2, y - 2};
+              pt nene{x + 2, y - 2};
+              pt sese{x + 2, y + 2};
+              pt swsw{x - 2, y + 2};
               auto tl_n{w_area->get_tl(n)};
               auto tl_e{w_area->get_tl(e)};
               auto tl_s{w_area->get_tl(s)};

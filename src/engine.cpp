@@ -156,10 +156,10 @@ namespace forr {
     return nullptr;
   }
 
-  size image_bank::get_img_sz(int img_name_hash) const {
+  sz image_bank::get_img_sz(int img_name_hash) const {
     if (m_images.contains(img_name_hash)) {
       auto tex{m_images.at(img_name_hash)};
-      size size;
+      sz size;
       if (tex) {
         SDL_QueryTexture(tex.get(), nullptr, nullptr, &size.w, &size.h);
       }

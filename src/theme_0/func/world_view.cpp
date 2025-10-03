@@ -31,10 +31,10 @@ namespace forr {
           float y_canv;
           float w_canv;
           float h_canv;
-          auto coord_nw{point{x_coord, y_coord}};
-          auto coord_ne{point{x_coord + 1, y_coord}};
-          auto coord_sw{point{x_coord, y_coord + 1}};
-          auto coord_se{point{x_coord + 1, y_coord + 1}};
+          auto coord_nw{pt{x_coord, y_coord}};
+          auto coord_ne{pt{x_coord + 1, y_coord}};
+          auto coord_sw{pt{x_coord, y_coord + 1}};
+          auto coord_se{pt{x_coord + 1, y_coord + 1}};
           if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
               !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
               !w_area->is_valid_coord(coord_sw.x, coord_sw.y) ||

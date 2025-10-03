@@ -109,7 +109,7 @@ namespace forr {
   /**
    * \brief Point in 2D space, using dimensions of int type.
    */
-  class point {
+  class pt {
    public:
     /**
      * \brief Equality operator between two Points.
@@ -117,7 +117,7 @@ namespace forr {
      * \param p Other Point to check equality against.
      * \return True if the two points are equal, otherwise false.
      */
-    bool operator==(const point &p) const;
+    bool operator==(const pt &p) const;
 
     int x{0};
     int y{0};
@@ -126,7 +126,7 @@ namespace forr {
   /**
    * \brief Point in 2D space using dimensions of float type.
    */
-  class point_f {
+  class pt_f {
    public:
     /**
      * \brief Summing operator for the two points.
@@ -134,7 +134,7 @@ namespace forr {
      * \param p The other PointF to add to this point.
      * \return The resulting PointF with the dimensions added separately.
      */
-    point_f operator+(const point_f &p) const;
+    pt_f operator+(const pt_f &p) const;
 
     /**
      * \brief Subtraction operator for the two points.
@@ -142,7 +142,7 @@ namespace forr {
      * \param p The other PointF to subtract from this point.
      * \return The resulting PointF with the dimensions subtracted separetely.
      */
-    point_f operator-(const point_f &p) const;
+    pt_f operator-(const pt_f &p) const;
 
     float x{0.0f}; ///< The x dimension.
     float y{0.0f}; ///< The y dimension.
@@ -151,7 +151,7 @@ namespace forr {
   /**
    * \brief Size in 2D space, with the dimensions as int values.
    */
-  class size {
+  class sz {
    public:
     int w{0}; ///< Width.
     int h{0}; /// Height.
@@ -160,7 +160,7 @@ namespace forr {
   /**
    * \brief Size in 2D space with dimensions of float values.
    */
-  class size_f {
+  class sz_f {
    public:
     float w{0.0f}; ///< Width.
     float h{0.0f}; ///< Height.
@@ -177,14 +177,14 @@ namespace forr {
      * \param p Point to check if it is contained in this rectangle.
      * \return True if the Point is within this rectangle, otherwise false.
      */
-    bool contains(point_f p);
+    bool contains(pt_f p);
 
     /**
      * \brief Returns only the position of this rectangle.
      *
      * \return The position.
      */
-    point_f get_pos() const;
+    pt_f get_pos() const;
 
     /**
      * \brief Adds an offset to this rectangle, with the dimensions altered
@@ -192,7 +192,7 @@ namespace forr {
      *
      * \param offs The offset to add.
      */
-    void offs(point_f offs);
+    void offs(pt_f offs);
 
     float x{0.0f}; ///< The x coordinate.
     float y{0.0f}; ///< The y coordinate.
@@ -239,7 +239,7 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canv_sz(s_ptr<SDL_Window> win);
+  sz get_canv_sz(s_ptr<SDL_Window> win);
 
   float calc_aspect_ratio(s_ptr<SDL_Window> win);
 
@@ -253,7 +253,7 @@ namespace forr {
   str get_file_name_no_ext(str_view path);
 
   // Mouse util functions
-  point_f get_norm_mouse_pos(s_ptr<SDL_Window> win);
+  pt_f get_norm_mouse_pos(s_ptr<SDL_Window> win);
 
   // Numbers util functions
   float inv_movem_spd(float num);

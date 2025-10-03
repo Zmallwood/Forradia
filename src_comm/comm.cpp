@@ -36,32 +36,32 @@ namespace forr {
   ////////////////////
   // Matter
   ////////////////////
-  bool point::operator==(const point &p) const {
+  bool pt::operator==(const pt &p) const {
     // Compare x and y dimensions.
     return p.x == x && p.y == y;
   }
 
-  point_f point_f::operator+(const point_f &p) const {
+  pt_f pt_f::operator+(const pt_f &p) const {
     // Sum the dimensions of the two points.
     return {x + p.x, y + p.y};
   }
 
-  point_f point_f::operator-(const point_f &p) const {
+  pt_f pt_f::operator-(const pt_f &p) const {
     // Subract the dimensions of the other point from this point.
     return {x - p.x, y - p.y};
   }
 
-  bool rect_f::contains(point_f p) {
+  bool rect_f::contains(pt_f p) {
     // Create condition by checking against the boundaries of this rectangle.
     return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
   }
 
-  point_f rect_f::get_pos() const {
+  pt_f rect_f::get_pos() const {
     // Return only the coordinates.
     return {x, y};
   }
 
-  void rect_f::offs(point_f offs) {
+  void rect_f::offs(pt_f offs) {
     // Add the offset to the dimensions separately.
     x += offs.x;
     y += offs.y;
@@ -80,8 +80,8 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  size get_canv_sz(s_ptr<SDL_Window> win) {
-    size canv_sz;
+  sz get_canv_sz(s_ptr<SDL_Window> win) {
+    sz canv_sz;
     SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
     return canv_sz;
   }
@@ -112,7 +112,7 @@ namespace forr {
   }
 
   // Numbers util functions
-  point_f get_norm_mouse_pos(s_ptr<SDL_Window> win) {
+  pt_f get_norm_mouse_pos(s_ptr<SDL_Window> win) {
     int x_px;
     int y_px;
     SDL_GetMouseState(&x_px, &y_px);

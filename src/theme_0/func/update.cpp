@@ -56,7 +56,7 @@ namespace forr {
     }
     auto player_pos{_<player>().get_pos()};
     auto dest{_<player>().get_dest()};
-    if (dest == point{-1, -1}) {
+    if (dest == pt{-1, -1}) {
       return;
     }
     auto now{get_ticks()};
@@ -109,7 +109,7 @@ namespace forr {
       auto norm_dy{normalize(dy)};
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
-      point new_pos{new_x, new_y};
+      pt new_pos{new_x, new_y};
       if (new_pos == crea->get_dest()) {
         crea->set_dest({-1, -1});
       }
@@ -168,7 +168,7 @@ namespace forr {
       auto norm_dy{normalize(dy)};
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
-      auto new_pos{point{new_x, new_y}};
+      auto new_pos{pt{new_x, new_y}};
       if (new_pos == npc->get_dest()) {
         npc->set_dest({-1, -1});
       }
@@ -206,7 +206,7 @@ namespace forr {
     auto screen_rel_y_px{-extra_rows * tl_sz.h};
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       auto y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2 + y)};
-      auto coord{point{hovered_x_coord, y_coord}};
+      auto coord{pt{hovered_x_coord, y_coord}};
       auto tl{w_area->get_tl(coord)};
       if (!tl) {
         screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
@@ -216,10 +216,10 @@ namespace forr {
       auto elev{tl->get_elev()};
       screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
                         (player_elev - elev) * tl_sz.h / 2;
-      auto coord_nw{point{coord.x, coord.y}};
-      auto coord_ne{point{coord.x + 1, coord.y}};
-      auto coord_sw{point{coord.x, coord.y + 1}};
-      auto coord_se{point{coord.x + 1, coord.y + 1}};
+      auto coord_nw{pt{coord.x, coord.y}};
+      auto coord_ne{pt{coord.x + 1, coord.y}};
+      auto coord_sw{pt{coord.x, coord.y + 1}};
+      auto coord_se{pt{coord.x + 1, coord.y + 1}};
       if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
           !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
           !w_area->is_valid_coord(coord_sw.x, coord_sw.y) ||

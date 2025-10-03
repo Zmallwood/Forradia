@@ -60,7 +60,7 @@ namespace forr {
     auto font_raw{m_fonts.at(font_sz).get()};
     auto sdl_color{text_color.to_sdl_color()};
     auto surf{TTF_RenderText_Solid(font_raw, text.data(), sdl_color)};
-    size text_dim;
+    sz text_dim;
     TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
     SDL_Rect dest_rect;
     auto canv_sz{get_canv_sz(_<sdl_device>().get_win())};

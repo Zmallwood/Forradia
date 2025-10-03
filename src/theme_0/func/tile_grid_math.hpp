@@ -6,7 +6,7 @@
 #include "comm.hpp"
 
 namespace forr {
-  size_f calc_tl_sz();
+  sz_f calc_tl_sz();
 
-  size calc_grid_sz();
+  sz calc_grid_sz();
 }

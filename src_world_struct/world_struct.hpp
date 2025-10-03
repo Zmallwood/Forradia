@@ -32,7 +32,7 @@ namespace forr {
 
     auto get_dest() const { return m_dest; }
 
-    void set_dest(point val) { m_dest = val; }
+    void set_dest(pt val) { m_dest = val; }
 
    private:
     void init();
@@ -40,7 +40,7 @@ namespace forr {
     int m_type{0};
     int m_ticks_last_move{0};
     float m_movem_spd{2.0f};
-    point m_dest{-1, -1};
+    pt m_dest{-1, -1};
   };
 
   class npc {
@@ -59,7 +59,7 @@ namespace forr {
 
     auto get_dest() const { return m_dest; }
 
-    void set_dest(point val) { m_dest = val; }
+    void set_dest(pt val) { m_dest = val; }
 
     auto get_ticks_next_spontaneous_speech() const {
       return m_ticks_next_spontaneous_speech;
@@ -78,7 +78,7 @@ namespace forr {
     str m_name;
     int m_ticks_last_move{0};
     float m_movem_spd{2.0f};
-    point m_dest{-1, -1};
+    pt m_dest{-1, -1};
     int m_ticks_next_spontaneous_speech{0};
   };
 
@@ -107,7 +107,7 @@ namespace forr {
    private:
     void init(str_view obj_type_name);
 
-    vec<point_f> m_trunk_parts;
+    vec<pt_f> m_trunk_parts;
     vec<int> m_needle_types;
     float m_w_factor{1.0f};
   };
@@ -177,33 +177,33 @@ namespace forr {
 
   class world_area {
    public:
-    world_area(size w_area_sz, float world_scaling) {
+    world_area(sz w_area_sz, float world_scaling) {
       init(w_area_sz, world_scaling);
     }
 
-    size get_sz() const;
+    sz get_sz() const;
 
     bool is_valid_coord(int x, int y) const;
 
     s_ptr<tile> get_tl(int x, int y) const;
 
-    s_ptr<tile> get_tl(point coord) const;
+    s_ptr<tile> get_tl(pt coord) const;
 
     auto &get_creatures_mirror_ref() { return m_creatures_mirror; }
 
     auto &get_npcs_mirror_ref() { return m_npcs_mirror; }
 
    private:
-    void init(size w_area_sz, float world_scaling);
+    void init(sz w_area_sz, float world_scaling);
 
     vec<vec<s_ptr<tile>>> m_tiles;
-    std::map<s_ptr<creature>, point> m_creatures_mirror;
-    std::map<s_ptr<npc>, point> m_npcs_mirror;
+    std::map<s_ptr<creature>, pt> m_creatures_mirror;
+    std::map<s_ptr<npc>, pt> m_npcs_mirror;
   };
 
   class world {
    public:
-    void init(size w_area_sz, float world_scaling);
+    void init(sz w_area_sz, float world_scaling);
 
     auto get_curr_w_area() const { return m_curr_w_area; }
 

@@ -58,7 +58,7 @@ namespace forr {
 
     auto get_dest() const { return m_dest; }
 
-    void set_dest(point val) { m_dest = val; }
+    void set_dest(pt val) { m_dest = val; }
 
     auto &get_body_ref() { return m_body; }
 
@@ -70,10 +70,10 @@ namespace forr {
     void move_to_suitable_pos();
 
     str m_name{"Unnamed Player"};
-    point m_pos{60, 50};
+    pt m_pos{60, 50};
     float m_movem_spd{5.0f};
     int m_ticks_last_move{0};
-    point m_dest{-1, -1};
+    pt m_dest{-1, -1};
     player_body m_body;
     int m_money{0};
   };

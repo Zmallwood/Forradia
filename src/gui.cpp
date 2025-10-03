@@ -46,7 +46,7 @@ namespace forr {
 
   void gui_component::toggle_visibility() { m_visible = !m_visible; }
 
-  void gui_component::set_pos(point_f new_pos) {
+  void gui_component::set_pos(pt_f new_pos) {
     m_bounds.x = new_pos.x;
     m_bounds.y = new_pos.y;
   }

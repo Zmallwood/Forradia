@@ -30,7 +30,7 @@ namespace forr {
 
     virtual void render_derived() const {}
 
-    void set_pos(point_f new_pos);
+    void set_pos(pt_f new_pos);
 
    private:
     rect_f m_bounds;
@@ -125,8 +125,8 @@ namespace forr {
 
    private:
     bool m_being_moved{false};
-    point_f m_move_start_pos{-1, -1};
-    point_f m_move_start_mouse_pos{-1, -1};
+    pt_f m_move_start_pos{-1, -1};
+    pt_f m_move_start_mouse_pos{-1, -1};
   };
 
   class gui_window : public gui_movable_panel {

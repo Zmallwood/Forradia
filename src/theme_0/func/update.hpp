@@ -23,6 +23,6 @@ namespace forr {
     auto get_hovered_coord() const { return m_hovered_coord; }
 
    private:
-    point m_hovered_coord{-1, -1};
+    pt m_hovered_coord{-1, -1};
   };
 }

@@ -7,7 +7,7 @@
 #include "theme_0/func/game_props.hpp"
 
 namespace forr {
-  size_f calc_tl_sz() {
+  sz_f calc_tl_sz() {
     auto num_grid_rows{_<game_props>().k_num_grid_rows};
     auto tl_h{1.0f / num_grid_rows};
     auto asp_rat{calc_aspect_ratio(_<sdl_device>().get_win())};
@@ -15,7 +15,7 @@ namespace forr {
     return {tl_w, tl_h};
   }
 
-  size calc_grid_sz() {
+  sz calc_grid_sz() {
     auto tl_sz{calc_tl_sz()};
     auto num_grid_cols{c_int(1.0f / tl_sz.w) + 1};
     auto num_grid_rows{_<game_props>().k_num_grid_rows};

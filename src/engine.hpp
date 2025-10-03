@@ -51,7 +51,7 @@ namespace forr {
     int m_fps{0};
     int m_frames_count{0};
     int m_ticks_last_update{0};
-    const point_f k_position{0.93f, 0.02f};
+    const pt_f k_position{0.93f, 0.02f};
   };
 
   enum class cursor_styles {
@@ -86,7 +86,7 @@ namespace forr {
 
     s_ptr<SDL_Texture> get_img(int img_name_hash) const;
 
-    size get_img_sz(int img_name_hash) const;
+    sz get_img_sz(int img_name_hash) const;
 
    private:
     void init();
