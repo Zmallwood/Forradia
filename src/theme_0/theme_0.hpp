@@ -6,6 +6,8 @@
 #include "core.hpp"
 
 namespace forr {
+  void run_new_theme_0();
+
   class gui_component;
 
   class intro_scene : public i_scene {

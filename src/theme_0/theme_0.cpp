@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "scenes.hpp"
+#include "theme_0.hpp"
 #include "core.hpp"
 #include "func/world_gen/gen_new_world.hpp"
 #include "gui.hpp"
@@ -21,6 +21,15 @@
 #include "theme_0/func/world_view/world_view.hpp"
 
 namespace forr {
+  void run_new_theme_0() {
+    _<scene_mngr>().add_scene("IntroScene", _<intro_scene>());
+    _<scene_mngr>().add_scene("MainMenuScene", _<main_menu_scene>());
+    _<scene_mngr>().add_scene("WorldGenScene", _<world_gen_scene>());
+    _<scene_mngr>().add_scene("MainScene", _<main_scene>());
+    _<scene_mngr>().go_to_scene("IntroScene");
+    _<game>().start();
+  }
+
   void intro_scene::init_derived() {
     m_start_text = get_gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
