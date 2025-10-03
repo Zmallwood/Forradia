@@ -15,11 +15,11 @@ target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
 
 
 
-add_library(ForradiaWorldStruct src_world_struct/world_struct.cpp)
+add_library(ForradiaTheme0WorldStruct src_theme_0_world_struct/world_struct.cpp)
 
-target_include_directories(ForradiaWorldStruct PRIVATE "src_comm")
+target_include_directories(ForradiaTheme0WorldStruct PRIVATE "src_comm")
 
-target_link_libraries(ForradiaWorldStruct ForradiaComm)
+target_link_libraries(ForradiaTheme0WorldStruct ForradiaComm)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
@@ -27,9 +27,9 @@ add_executable(Forradia ${SOURCES})
 
 target_include_directories(Forradia PRIVATE "src")
 target_include_directories(Forradia PRIVATE "src_comm")
-target_include_directories(Forradia PRIVATE "src_world_struct")
+target_include_directories(Forradia PRIVATE "src_theme_0_world_struct")
 
-target_link_libraries(Forradia PRIVATE ForradiaComm ForradiaWorldStruct)
+target_link_libraries(Forradia PRIVATE ForradiaComm ForradiaTheme0WorldStruct)
 
 #add_definitions(-include std_afx.hpp)
 #add_definitions(-include ../src_comm/comm.hpp)
