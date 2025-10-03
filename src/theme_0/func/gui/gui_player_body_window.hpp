@@ -4,7 +4,7 @@
  */
 #pragma once
 #include "core/gui.hpp"
-#include "theme_0/func/core_game_objects/sub/body_part_types.hpp"
+#include "theme_0/func/core_objs/sub/body_part_types.hpp"
 
 namespace forr {
   class gui_label;

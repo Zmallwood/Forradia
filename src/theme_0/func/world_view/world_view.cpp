@@ -5,17 +5,17 @@
 #include "world_view.hpp"
 #include "core/core.hpp"
 #include "core/rend/images/image_renderer.hpp"
-#include "theme_0/func/core_game_objects/player.hpp"
+#include "theme_0/func/core_objs/player.hpp"
 #include "theme_0/func/math/tile_grid_math.hpp"
-#include "theme_0/func/world_interaction/tile_hovering.hpp"
-#include "theme_0/func/world_structure/creature.hpp"
-#include "theme_0/func/world_structure/npc.hpp"
-#include "theme_0/func/world_structure/object.hpp"
-#include "theme_0/func/world_structure/objects_stack.hpp"
-#include "theme_0/func/world_structure/tile.hpp"
-#include "theme_0/func/world_structure/tree_object.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_interact/tile_hovering.hpp"
+#include "theme_0/func/world_struct/creature.hpp"
+#include "theme_0/func/world_struct/npc.hpp"
+#include "theme_0/func/world_struct/object.hpp"
+#include "theme_0/func/world_struct/objects_stack.hpp"
+#include "theme_0/func/world_struct/tile.hpp"
+#include "theme_0/func/world_struct/tree_object.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void world_view::render() const {
@@ -159,7 +159,7 @@ namespace forr {
           // }
           if (i == 0) {
             get_ston<image_renderer>().draw_img(ground_type_rend, x_canv,
-                                                  y_canv, w_canv, h_canv);
+                                                y_canv, w_canv, h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
             vec<directions> river_dirs{tl->get_river_dir_1(),
                                        tl->get_river_dir_2()};
@@ -270,13 +270,13 @@ namespace forr {
 
             auto anim_idx{(get_ticks() + ((x_coord + y_coord) * 100)) / 500 %
                           3};
-            get_ston<image_renderer>().draw_img(
-                "GroundWater_" + std::to_string(anim_idx), x_canv, y_canv,
-                w_canv, h_canv);
+            get_ston<image_renderer>().draw_img("GroundWater_" +
+                                                    std::to_string(anim_idx),
+                                                x_canv, y_canv, w_canv, h_canv);
 
             for (auto i = 0; i < tl->get_elev(); i++) {
               get_ston<image_renderer>().draw_img("GroundWaterHeight", x_canv,
-                                                    y_canv, w_canv, h_canv);
+                                                  y_canv, w_canv, h_canv);
             }
 
             // groundTypeRendered = Hash("GroundWater_" +
@@ -286,20 +286,20 @@ namespace forr {
             // tileSize.width * 4, tileSize.height * 4);
             if (ground == hash("GroundWater")) {
               for (auto i = 0; i < tl->get_water_depth(); i++) {
-                get_ston<image_renderer>().draw_img(
-                    "GroundWaterDepth", x_canv, y_canv, w_canv, h_canv);
+                get_ston<image_renderer>().draw_img("GroundWaterDepth", x_canv,
+                                                    y_canv, w_canv, h_canv);
               }
             }
           }
           if (ground == hash("GroundGrass")) {
             get_ston<image_renderer>().draw_img("GroundGrassLayer", x_canv,
-                                                  y_canv, w_canv, h_canv);
+                                                y_canv, w_canv, h_canv);
           } else if (ground == hash("GroundDirt")) {
             get_ston<image_renderer>().draw_img("GroundDirtLayer", x_canv,
-                                                  y_canv, w_canv, h_canv);
+                                                y_canv, w_canv, h_canv);
           } else if (ground == hash("GroundRock")) {
             get_ston<image_renderer>().draw_img("GroundRockLayer", x_canv,
-                                                  y_canv, w_canv, h_canv);
+                                                y_canv, w_canv, h_canv);
           }
           if (i < 2) {
             continue;
@@ -339,29 +339,28 @@ namespace forr {
           //         widthCanvas, heightCanvas);
           //     }
           // }
-          auto hovered_coord{
-              get_ston<tile_hovering>().get_hovered_coord()};
+          auto hovered_coord{get_ston<tile_hovering>().get_hovered_coord()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
             get_ston<image_renderer>().draw_img("HoveredTile", x_canv, y_canv,
-                                                  w_canv, h_canv);
+                                                w_canv, h_canv);
           }
           auto player_dest{get_ston<player>().get_dest()};
           if (x_coord == player_dest.x && y_coord == player_dest.y) {
             get_ston<image_renderer>().draw_img("DestinationTile", x_canv,
-                                                  y_canv, w_canv, h_canv);
+                                                y_canv, w_canv, h_canv);
           }
           if (x_coord == player_pos.x && y_coord == player_pos.y) {
             get_ston<image_renderer>().draw_img("Shadow", x_canv, y_canv,
-                                                  w_canv, h_canv);
+                                                w_canv, h_canv);
             get_ston<image_renderer>().draw_img("Player", x_canv, y_canv,
-                                                  tl_sz.w, tl_sz.h);
+                                                tl_sz.w, tl_sz.h);
           }
           auto objs_stack{tl ? tl->get_objects_stack() : nullptr};
           if (objs_stack) {
             for (const auto &obj : objs_stack->get_objs()) {
               if (obj->get_type() != hash("ObjectPinkFlower")) {
                 get_ston<image_renderer>().draw_img("Shadow", x_canv, y_canv,
-                                                      tl_sz.w, tl_sz.h);
+                                                    tl_sz.w, tl_sz.h);
               }
               auto obj_type{obj->get_type()};
               if (obj_type == hash("ObjectFirTree") ||

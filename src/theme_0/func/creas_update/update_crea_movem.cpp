@@ -6,10 +6,10 @@
 #include "sub/calc_new_crea_pos.hpp"
 #include "sub/gen_new_crea_dest.hpp"
 #include "sub/move_crea_to_new_loc.hpp"
-#include "theme_0/func/world_structure/creature.hpp"
-#include "theme_0/func/world_structure/tile.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_struct/creature.hpp"
+#include "theme_0/func/world_struct/tile.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void update_crea_movem() {

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "tile_grid_math.hpp"
-#include "theme_0/func/configuration/game_properties.hpp"
+#include "theme_0/func/conf/game_properties.hpp"
 
 namespace forr {
   size_f calc_tl_sz() {

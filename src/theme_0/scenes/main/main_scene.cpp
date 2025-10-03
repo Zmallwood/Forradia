@@ -5,12 +5,12 @@
 #include "main_scene.hpp"
 #include "core/gui.hpp"
 #include "sub/add_main_scene_gui_components.hpp"
-#include "theme_0/func/creatures_update/update_crea_movem.hpp"
-#include "theme_0/func/keyboard_bindings/update_kb_binding_actions.hpp"
+#include "theme_0/func/creas_update/update_crea_movem.hpp"
+#include "theme_0/func/kb_bindings/update_kb_binding_actions.hpp"
 #include "theme_0/func/npcs_update/update_npcs.hpp"
-#include "theme_0/func/player_movement/update_kb_movem.hpp"
-#include "theme_0/func/player_movement/update_mouse_movem.hpp"
-#include "theme_0/func/world_interaction/tile_hovering.hpp"
+#include "theme_0/func/player_movem/update_kb_movem.hpp"
+#include "theme_0/func/player_movem/update_mouse_movem.hpp"
+#include "theme_0/func/world_interact/tile_hovering.hpp"
 #include "theme_0/func/world_view/world_view.hpp"
 
 namespace forr {

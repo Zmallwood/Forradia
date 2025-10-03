@@ -4,7 +4,7 @@
  */
 #include "update_kb_movem.hpp"
 #include "core/input.hpp"
-#include "theme_0/func/core_game_objects/player.hpp"
+#include "theme_0/func/core_objs/player.hpp"
 
 namespace forr {
   void update_kb_movem() {

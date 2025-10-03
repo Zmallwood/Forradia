@@ -3,11 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "tile_hovering.hpp"
-#include "theme_0/func/core_game_objects/player.hpp"
+#include "theme_0/func/core_objs/player.hpp"
 #include "theme_0/func/math/tile_grid_math.hpp"
-#include "theme_0/func/world_structure/tile.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_struct/tile.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void tile_hovering::update() {

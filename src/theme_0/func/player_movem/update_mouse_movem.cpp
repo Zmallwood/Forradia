@@ -4,8 +4,8 @@
  */
 #include "update_mouse_movem.hpp"
 #include "core/input.hpp"
-#include "theme_0/func/core_game_objects/player.hpp"
-#include "theme_0/func/world_interaction/tile_hovering.hpp"
+#include "theme_0/func/core_objs/player.hpp"
+#include "theme_0/func/world_interact/tile_hovering.hpp"
 
 namespace forr {
   void update_mouse_movem() {

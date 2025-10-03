@@ -19,9 +19,8 @@ namespace forr {
     for (auto font_sz : {font_sizes::_20, font_sizes::_26}) {
       auto font_path_unix_style{repl(abs_font_path, '\\', '/')};
       auto font_sz_n{c_int(font_sz)};
-      auto new_font{
-          s_ptr<TTF_Font>(TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n),
-                          sdl_deleter())};
+      auto new_font{s_ptr<TTF_Font>(
+          TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), sdl_del())};
       if (!new_font) {
         print_ln("Error loading font.");
         return;
@@ -31,8 +30,8 @@ namespace forr {
   }
 
   void text_renderer::draw_str(str_view text, float x, float y,
-                                  font_sizes font_sz, bool cent_align,
-                                  color text_color) const {
+                               font_sizes font_sz, bool cent_align,
+                               color text_color) const {
     auto font_raw{m_fonts.at(font_sz).get()};
     auto surf{get_rend_text_surf(text, font_raw, text_color)};
     auto text_dim{measure_rend_text(text, font_raw)};

@@ -3,11 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gen_npcs.hpp"
-#include "theme_0/func/configuration/game_properties.hpp"
-#include "theme_0/func/world_structure/npc.hpp"
-#include "theme_0/func/world_structure/tile.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/conf/game_properties.hpp"
+#include "theme_0/func/world_struct/npc.hpp"
+#include "theme_0/func/world_struct/tile.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void gen_npcs() {

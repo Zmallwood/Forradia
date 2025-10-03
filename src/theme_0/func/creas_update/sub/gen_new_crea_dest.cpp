@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gen_new_crea_dest.hpp"
-#include "theme_0/func/world_structure/creature.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_struct/creature.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void gen_new_crea_dest(s_ptr<creature> crea) {

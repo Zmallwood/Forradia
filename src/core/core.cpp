@@ -6,7 +6,7 @@
 #include "core/input.hpp"
 #include "core/rend/images/image_renderer.hpp"
 #include "core/scenes_core.hpp"
-#include "theme_0/func/configuration/game_properties.hpp"
+#include "theme_0/func/conf/game_properties.hpp"
 
 namespace forr {
   void game::start() const { get_ston<engine>().run(); }
@@ -78,10 +78,10 @@ namespace forr {
         SDL_CreateWindow(get_ston<game_properties>().k_game_win_title.data(),
                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
                          660, flags),
-        sdl_deleter())};
+        sdl_del())};
     if (!win_res) {
       print_ln("Window could not be created. SDL Error: " +
-                 str(SDL_GetError()));
+               str(SDL_GetError()));
     }
     return win_res;
   }
@@ -89,10 +89,10 @@ namespace forr {
   s_ptr<SDL_Renderer> sdl_device::create_rend() {
     auto rend_res{s_ptr<SDL_Renderer>(
         SDL_CreateRenderer(m_win.get(), -1, SDL_RENDERER_ACCELERATED),
-        sdl_deleter())};
+        sdl_del())};
     if (!rend_res) {
       print_ln("Renderer could not be created. SDL Error: " +
-                 std::string(SDL_GetError()));
+               std::string(SDL_GetError()));
     }
     return rend_res;
   }
@@ -129,7 +129,7 @@ namespace forr {
       break;
     }
     get_ston<image_renderer>().draw_img(curs_img, mouse_pos.x - w / 2,
-                                          mouse_pos.y - h / 2, w, h);
+                                        mouse_pos.y - h / 2, w, h);
   }
 
   void image_bank::init() { load_imgs(); }
@@ -172,11 +172,11 @@ namespace forr {
   }
 
   s_ptr<SDL_Texture> image_bank::load_single_img(str_view path) {
-    auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_deleter())};
+    auto surf{s_ptr<SDL_Surface>(IMG_Load(path.data()), sdl_del())};
     if (surf) {
       auto rend{get_ston<sdl_device>().get_rend().get()};
       auto tex{s_ptr<SDL_Texture>(
-          SDL_CreateTextureFromSurface(rend, surf.get()), sdl_deleter())};
+          SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
       return tex;
     }
     return nullptr;

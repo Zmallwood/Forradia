@@ -3,9 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "calc_new_crea_pos.hpp"
-#include "theme_0/func/world_structure/creature.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_struct/creature.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   point calc_new_crea_pos(s_ptr<creature> crea) {

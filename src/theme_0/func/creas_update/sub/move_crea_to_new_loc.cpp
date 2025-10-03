@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "move_crea_to_new_loc.hpp"
-#include "theme_0/func/world_structure/creature.hpp"
-#include "theme_0/func/world_structure/tile.hpp"
-#include "theme_0/func/world_structure/world.hpp"
-#include "theme_0/func/world_structure/world_area.hpp"
+#include "theme_0/func/world_struct/creature.hpp"
+#include "theme_0/func/world_struct/tile.hpp"
+#include "theme_0/func/world_struct/world.hpp"
+#include "theme_0/func/world_struct/world_area.hpp"
 
 namespace forr {
   void move_crea_to_new_loc(s_ptr<creature> crea, point new_pos) {
