@@ -5,8 +5,8 @@
 #include "core.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-#include "scenes_core.hpp"
-#include "theme_0/func/conf/game_properties.hpp"
+#include "scenes.hpp"
+#include "theme_0/func/conf/game_props.hpp"
 
 namespace forr {
   void game::start() const { _<engine>().run(); }
@@ -19,10 +19,10 @@ namespace forr {
       _<mouse_input>().reset();
       _<cursor>().reset_style_to_default();
       poll_events();
-      _<scene_manager>().update_curr_scene();
+      _<scene_mngr>().update_curr_scene();
       _<fps_counter>().update();
       _<sdl_device>().clear_canv();
-      _<scene_manager>().render_curr_scene();
+      _<scene_mngr>().render_curr_scene();
       _<cursor>().render();
       _<sdl_device>().present_canv();
     }
@@ -62,7 +62,7 @@ namespace forr {
   }
 
   void sdl_device::clear_canv() const {
-    SDL_Color clear_color{_<game_properties>().k_clear_color.to_sdl_color()};
+    SDL_Color clear_color{_<game_props>().k_clear_color.to_sdl_color()};
     SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
     SDL_RenderClear(m_rend.get());
@@ -74,7 +74,7 @@ namespace forr {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto win_res{s_ptr<SDL_Window>(
-        SDL_CreateWindow(_<game_properties>().k_game_win_title.data(),
+        SDL_CreateWindow(_<game_props>().k_game_win_title.data(),
                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
                          660, flags),
         sdl_del())};

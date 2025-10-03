@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "player.hpp"
-#include "theme_0/func/conf/game_properties.hpp"
+#include "theme_0/func/conf/game_props.hpp"
 #include "theme_0/func/world_struct/tile.hpp"
 #include "theme_0/func/world_struct/world.hpp"
 #include "theme_0/func/world_struct/world_area.hpp"

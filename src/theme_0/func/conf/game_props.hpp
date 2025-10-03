@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  class game_properties {
+  class game_props {
    public:
     static constexpr str k_game_win_title{"Forradia"};
     static constexpr color k_clear_color{colors::black};

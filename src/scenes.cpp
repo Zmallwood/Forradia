@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "scenes_core.hpp"
+#include "scenes.hpp"
 #include "gui.hpp"
 
 namespace forr {
@@ -23,25 +23,25 @@ namespace forr {
     m_gui->render();
   }
 
-  void scene_manager::add_scene(str_view scene_name, i_scene &scene) {
+  void scene_mngr::add_scene(str_view scene_name, i_scene &scene) {
     scene.init();
     m_scenes.insert({hash(scene_name), scene});
   }
 
-  void scene_manager::go_to_scene(str_view scene_name) {
+  void scene_mngr::go_to_scene(str_view scene_name) {
     m_curr_scene = hash(scene_name);
     if (m_scenes.contains(m_curr_scene)) {
       m_scenes.at(m_curr_scene).on_enter();
     }
   }
 
-  void scene_manager::update_curr_scene() {
+  void scene_mngr::update_curr_scene() {
     if (m_scenes.contains(m_curr_scene)) {
       m_scenes.at(m_curr_scene).update();
     }
   }
 
-  void scene_manager::render_curr_scene() const {
+  void scene_mngr::render_curr_scene() const {
     if (m_scenes.contains(m_curr_scene)) {
       m_scenes.at(m_curr_scene).render();
     }

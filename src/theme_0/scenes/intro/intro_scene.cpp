@@ -25,7 +25,7 @@ namespace forr {
 
     if (_<kb_input>().any_key_pressed_pick_result() ||
         _<mouse_input>().any_mouse_button_pressed_pick_result()) {
-      _<scene_manager>().go_to_scene("MainMenuScene");
+      _<scene_mngr>().go_to_scene("MainMenuScene");
     }
   }
 

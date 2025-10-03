@@ -6,7 +6,7 @@
 #include "gui.hpp"
 #include "sub/add_main_scene_gui_components.hpp"
 #include "theme_0/func/creas_update/update_crea_movem.hpp"
-#include "theme_0/func/kb_bindings/update_kb_binding_actions.hpp"
+#include "theme_0/func/kb_bindings/update_kb_actions.hpp"
 #include "theme_0/func/npcs_update/update_npcs.hpp"
 #include "theme_0/func/player_movem/update_kb_movem.hpp"
 #include "theme_0/func/player_movem/update_mouse_movem.hpp"
@@ -24,9 +24,9 @@ namespace forr {
     update_npcs();
     update_crea_movem();
     update_mouse_movem();
-    update_kb_binding_actions();
+    update_kb_movem();
     _<tile_hovering>().update();
-    update_kb_binding_actions();
+    update_kb_actions();
   }
 
   void main_scene::render_derived() const { _<world_view>().render(); }

@@ -5,5 +5,5 @@
 #pragma once
 
 namespace forr {
-  void update_kb_binding_actions();
+  void update_kb_actions();
 }

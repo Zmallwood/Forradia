@@ -32,7 +32,7 @@ namespace forr {
     s_ptr<gui> m_gui;
   };
 
-  class scene_manager {
+  class scene_mngr {
    public:
     void add_scene(str_view scene_name, i_scene &scene);
 

@@ -5,13 +5,13 @@
 #include "add_main_menu_scene_gui_buttons.hpp"
 #include "core.hpp"
 #include "gui.hpp"
-#include "scenes_core.hpp"
+#include "scenes.hpp"
 
 namespace forr {
   void add_main_menu_scene_gui_buttons(s_ptr<gui> main_menu_scene_gui) {
     main_menu_scene_gui->add_child_component(
         std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
-          _<scene_manager>().go_to_scene("WorldGenerationScene");
+          _<scene_mngr>().go_to_scene("WorldGenerationScene");
         }));
 
     main_menu_scene_gui->add_child_component(std::make_shared<gui_button>(

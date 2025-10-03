@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gen_objs.hpp"
-#include "theme_0/func/conf/game_properties.hpp"
+#include "theme_0/func/conf/game_props.hpp"
 #include "theme_0/func/world_struct/objects_stack.hpp"
 #include "theme_0/func/world_struct/tile.hpp"
 #include "theme_0/func/world_struct/world.hpp"
@@ -13,7 +13,7 @@ namespace forr {
   void gen_objs() {
     auto w_area{_<world>().get_curr_w_area()};
     auto sz{w_area->get_sz()};
-    auto scale{_<game_properties>().k_world_scaling};
+    auto scale{_<game_props>().k_world_scaling};
     auto num_fir_trees{1000 * scale + rand_int(50)};
     for (auto i = 0; i < num_fir_trees; i++) {
       auto x{rand_int(sz.w)};

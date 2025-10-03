@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gen_lakes.hpp"
-#include "theme_0/func/conf/game_properties.hpp"
+#include "theme_0/func/conf/game_props.hpp"
 #include "theme_0/func/world_struct/tile.hpp"
 #include "theme_0/func/world_struct/world.hpp"
 #include "theme_0/func/world_struct/world_area.hpp"
@@ -14,7 +14,7 @@ namespace forr {
       return;
     }
     auto w_area{_<world>().get_curr_w_area()};
-    auto scale{_<game_properties>().k_world_scaling};
+    auto scale{_<game_props>().k_world_scaling};
     auto x_cent{min_x + rand_int(max_x - min_x)};
     auto y_cent{min_y + rand_int(max_y - min_y)};
     auto max_r{c_int(3 * scale + rand_int(5 * scale))};

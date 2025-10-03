@@ -11,6 +11,6 @@ namespace forr {
     _<gui_text_console>().print("Generating new world...");
     gen_new_world();
     _<gui_text_console>().print("World generation completed.");
-    _<scene_manager>().go_to_scene("MainScene");
+    _<scene_mngr>().go_to_scene("MainScene");
   }
 }

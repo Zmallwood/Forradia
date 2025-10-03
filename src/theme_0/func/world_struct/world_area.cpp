@@ -3,14 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_area.hpp"
-#include "theme_0/func/conf/game_properties.hpp"
+#include "theme_0/func/conf/game_props.hpp"
 #include "tile.hpp"
 
 namespace forr {
   void world_area::init() {
-    auto sz{game_properties::k_w_area_sz};
-    sz.w *= _<game_properties>().k_world_scaling;
-    sz.h *= _<game_properties>().k_world_scaling;
+    auto sz{game_props::k_w_area_sz};
+    sz.w *= _<game_props>().k_world_scaling;
+    sz.h *= _<game_props>().k_world_scaling;
     for (auto x = 0; x < sz.w; x++) {
       m_tiles.push_back(vec<std::shared_ptr<tile>>());
       for (auto y = 0; y < sz.h; y++) {

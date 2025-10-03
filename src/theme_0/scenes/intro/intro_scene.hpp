@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "scenes_core.hpp"
+#include "scenes.hpp"
 
 namespace forr {
   class gui_component;
