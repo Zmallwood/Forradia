@@ -6,7 +6,6 @@
 #include "core.hpp"
 #include "gui.hpp"
 #include "rend.hpp"
-#include "scenes.hpp"
 
 namespace forr {
   void main_menu_scene::init_derived() {
