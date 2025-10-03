@@ -18,7 +18,11 @@ namespace forr {
 
     rect_f bounds() const;
 
+    void set_pos(pt_f new_pos);
+
     void toggle_visibility();
+
+    auto visible() const { return visible_; }
 
     void set_visible(bool val) { visible_ = val; }
 
@@ -28,8 +32,6 @@ namespace forr {
     virtual void update_derived() {}
 
     virtual void render_derived() const {}
-
-    void set_pos(pt_f new_pos);
 
    private:
     rect_f bounds_;

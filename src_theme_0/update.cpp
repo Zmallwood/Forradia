@@ -21,6 +21,17 @@ namespace forr {
     }
   }
 
+  void update_mouse_actions() {
+    if (_<mouse_input>().right_btn_ref().been_fired_pick_result()) {
+      _<gui_interact_menu>().set_visible(true);
+      _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
+    }
+    if (_<gui_interact_menu>().visible() &&
+        _<mouse_input>().left_btn_ref().been_fired_pick_result()) {
+      _<gui_interact_menu>().set_visible(false);
+    }
+  }
+
   void update_kb_movem() {
     auto up_press{_<kb_input>().key_pressed(SDLK_UP)};
     auto right_press{_<kb_input>().key_pressed(SDLK_RIGHT)};
@@ -90,8 +101,7 @@ namespace forr {
     for (auto it = creas.begin(); it != creas.end();) {
       auto crea{it->first};
       auto pos{it->second};
-      if (now <
-          crea->ticks_last_move() + inv_movem_spd(crea->movem_spd())) {
+      if (now < crea->ticks_last_move() + inv_movem_spd(crea->movem_spd())) {
         ++it;
         continue;
       }
@@ -114,8 +124,7 @@ namespace forr {
         crea->set_dest({-1, -1});
       }
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
-      if (tl && !tl->creature() &&
-          tl->ground() != hash("GroundWater")) {
+      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto old_pos{creas.at(crea)};
         crea->set_ticks_last_move(now);
         auto old_tile{w_area->get_tl(old_pos.x, old_pos.y)};
@@ -151,8 +160,7 @@ namespace forr {
                                                (6000 * k_one_sec_millis));
       }
 
-      if (now <
-          npc->ticks_last_move() + inv_movem_spd(npc->movem_spd())) {
+      if (now < npc->ticks_last_move() + inv_movem_spd(npc->movem_spd())) {
         ++it;
         continue;
       }
@@ -234,8 +242,7 @@ namespace forr {
         continue;
       }
       float local_tl_h;
-      if (tl_nw->elev() > tl_sw->elev() &&
-          tl_ne->elev() > tl_se->elev()) {
+      if (tl_nw->elev() > tl_sw->elev() && tl_ne->elev() > tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
       } else if (tl_nw->elev() < tl_sw->elev() &&
                  tl_ne->elev() < tl_se->elev()) {

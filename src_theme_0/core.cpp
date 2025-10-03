@@ -87,26 +87,24 @@ namespace forr {
     gui()->add_child_component(__<gui_text_console>());
     gui()->add_child_component(std::make_shared<gui_button>(
         0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] {
-      _<gui_player_body_window>().toggle_visibility(); },
+        [] { _<gui_player_body_window>().toggle_visibility(); },
         "GUIButtonPlayerBodyBackground",
         "GUIButtonPlayerBodyHoveredBackground"));
 
     gui()->add_child_component(std::make_shared<gui_button>(
         0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] {
-      _<gui_inventory_window>().toggle_visibility(); },
+        [] { _<gui_inventory_window>().toggle_visibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
     gui()->add_child_component(std::make_shared<gui_button>(
         0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] {
-      _<gui_system_menu>().toggle_visibility(); },
+        [] { _<gui_system_menu>().toggle_visibility(); },
         "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
     gui()->add_child_component(__<gui_system_menu>());
     gui()->add_child_component(__<gui_inventory_window>());
     gui()->add_child_component(__<gui_player_body_window>());
     gui()->add_child_component(std::make_shared<gui_fps_panel>());
+    gui()->add_child_component(__<gui_interact_menu>());
   }
 
   void main_scene::on_enter_derived() {
@@ -114,12 +112,13 @@ namespace forr {
   }
 
   void main_scene::update_derived() {
+    update_kb_actions();
+    update_mouse_actions();
     update_npcs();
     update_crea_movem();
     update_mouse_movem();
     update_kb_movem();
     _<tile_hovering>().update();
-    update_kb_actions();
   }
 
   void main_scene::render_derived() const { _<world_view>().render(); }

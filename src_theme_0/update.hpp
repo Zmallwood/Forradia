@@ -8,6 +8,8 @@
 namespace forr {
   void update_kb_actions();
 
+  void update_mouse_actions();
+
   void update_kb_movem();
 
   void update_mouse_movem();

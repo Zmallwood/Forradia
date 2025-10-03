@@ -56,4 +56,18 @@ namespace forr {
     s_ptr<gui_label> lbl_body_part_energy_;
     s_ptr<gui_label> lbl_body_part_temp_;
   };
+
+  class gui_interact_menu : public gui_panel {
+   public:
+    gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
+
+   protected:
+    void init();
+
+    virtual void update_derived() override;
+
+    virtual void render_derived() const override;
+
+   private:
+  };
 }

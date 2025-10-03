@@ -99,16 +99,12 @@ namespace forr {
         start_move();
       }
     }
-    if (_<mouse_input>()
-            .left_btn_ref()
-            .been_released_dont_pick_result()) {
+    if (_<mouse_input>().left_btn_ref().been_released_dont_pick_result()) {
       stop_move();
     }
     auto b{bounds()};
     if (b.contains(mouse_pos)) {
-      if (_<mouse_input>()
-              .left_btn_ref()
-              .been_fired_dont_pick_result()) {
+      if (_<mouse_input>().left_btn_ref().been_fired_dont_pick_result()) {
         _<mouse_input>().left_btn_ref().reset();
       }
     }
