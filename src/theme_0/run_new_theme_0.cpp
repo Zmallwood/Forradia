@@ -4,10 +4,7 @@
  */
 #include "run_new_theme_0.hpp"
 #include "core.hpp"
-#include "theme_0/scenes/intro/intro_scene.hpp"
-#include "theme_0/scenes/main/main_scene.hpp"
-#include "theme_0/scenes/main_menu/main_menu_scene.hpp"
-#include "theme_0/scenes/world_gen/world_gen_scene.hpp"
+#include "scenes.hpp"
 
 namespace forr {
   void run_new_theme_0() {

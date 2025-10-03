@@ -2,8 +2,12 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "main_scene.hpp"
+#include "scenes.hpp"
+#include "core.hpp"
+#include "func/world_gen/gen_new_world.hpp"
 #include "gui.hpp"
+#include "input.hpp"
+#include "rend.hpp"
 #include "theme_0/func/creas_update/update_crea_movem.hpp"
 #include "theme_0/func/gui/gui_inventory_window.hpp"
 #include "theme_0/func/gui/gui_player_body_window.hpp"
@@ -17,6 +21,60 @@
 #include "theme_0/func/world_view/world_view.hpp"
 
 namespace forr {
+  void intro_scene::init_derived() {
+    m_start_text = get_gui()->add_child_component(std::make_shared<gui_label>(
+        0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
+  }
+
+  void intro_scene::on_enter_derived() {
+    _<gui_text_console>().print("Game started.");
+  }
+
+  void intro_scene::update_derived() {
+    m_start_text->set_visible((get_ticks() % 800) < 400);
+
+    _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
+
+    if (_<kb_input>().any_key_pressed_pick_result() ||
+        _<mouse_input>().any_mouse_button_pressed_pick_result()) {
+      _<scene_mngr>().go_to_scene("MainMenuScene");
+    }
+  }
+
+  void intro_scene::render_derived() const {
+    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                 1.0f);
+    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
+  }
+
+  void main_menu_scene::init_derived() {
+    get_gui()->add_child_component(
+        std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
+    get_gui()->add_child_component(
+        std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
+          _<scene_mngr>().go_to_scene("WorldGenScene");
+        }));
+
+    get_gui()->add_child_component(std::make_shared<gui_button>(
+        0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { _<engine>().stop(); }));
+    get_gui()->add_child_component(__<gui_text_console>());
+  }
+
+  void main_menu_scene::update_derived() {}
+
+  void main_menu_scene::render_derived() const {
+    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                 1.0f);
+    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
+  }
+
+  void world_gen_scene::on_enter_derived() {
+    _<gui_text_console>().print("Generating new world...");
+    gen_new_world();
+    _<gui_text_console>().print("World generation completed.");
+    _<scene_mngr>().go_to_scene("MainScene");
+  }
+
   void main_scene::init_derived() {
     get_gui()->add_child_component(std::make_shared<gui_player_status_panel>());
     get_gui()->add_child_component(__<gui_text_console>());
