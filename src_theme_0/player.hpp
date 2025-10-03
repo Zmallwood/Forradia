@@ -10,16 +10,16 @@ namespace forr {
 
   class body_part {
    public:
-    auto get_str() const { return m_str; }
-    auto get_curr_energy() const { return m_curr_energy; }
-    auto get_max_energy() const { return m_max_energy; }
-    auto get_temp() const { return m_temp; }
+    auto get_str() const { return str_; }
+    auto get_curr_energy() const { return curr_energy_; }
+    auto get_max_energy() const { return max_energy_; }
+    auto get_temp() const { return temp_; }
 
    private:
-    float m_str{0.1f};
-    float m_curr_energy{1.0f};
-    float m_max_energy{1.0f};
-    float m_temp{37.0f};
+    float str_{0.1f};
+    float curr_energy_{1.0f};
+    float max_energy_{1.0f};
+    float temp_{37.0f};
   };
 
   class player_body {
@@ -31,7 +31,7 @@ namespace forr {
    private:
     void init();
 
-    std::map<body_part_types, body_part> m_parts;
+    std::map<body_part_types, body_part> parts_;
   };
 
   class player {
@@ -46,35 +46,35 @@ namespace forr {
 
     void move_w();
 
-    auto get_name() const { return m_name; }
+    auto get_name() const { return name_; }
 
-    auto get_pos() const { return m_pos; }
+    auto get_pos() const { return pos_; }
 
-    auto get_movem_spd() const { return m_movem_spd; }
+    auto get_movem_spd() const { return movem_spd_; }
 
-    auto get_ticks_last_move() const { return m_ticks_last_move; }
+    auto get_ticks_last_move() const { return ticks_last_move_; }
 
-    void set_ticks_last_move(int val) { m_ticks_last_move = val; }
+    void set_ticks_last_move(int val) { ticks_last_move_ = val; }
 
-    auto get_dest() const { return m_dest; }
+    auto get_dest() const { return dest_; }
 
-    void set_dest(pt val) { m_dest = val; }
+    void set_dest(pt val) { dest_ = val; }
 
-    auto &get_body_ref() { return m_body; }
+    auto &get_body_ref() { return body_; }
 
-    auto get_money() const { return m_money; }
+    auto get_money() const { return money_; }
 
    private:
     void init();
 
     void move_to_suitable_pos();
 
-    str m_name{"Unnamed Player"};
-    pt m_pos{60, 50};
-    float m_movem_spd{5.0f};
-    int m_ticks_last_move{0};
-    pt m_dest{-1, -1};
-    player_body m_body;
-    int m_money{0};
+    str name_{"Unnamed Player"};
+    pt pos_{60, 50};
+    float movem_spd_{5.0f};
+    int ticks_last_move_{0};
+    pt dest_{-1, -1};
+    player_body body_;
+    int money_{0};
   };
 }

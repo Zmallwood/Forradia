@@ -11,7 +11,7 @@ namespace forr {
   void engine::run(str_view game_win_title, color clear_color) {
     randomize();
     _<sdl_device>().init(game_win_title, clear_color);
-    while (m_running) {
+    while (running_) {
       _<kb_input>().reset();
       _<mouse_input>().reset();
       _<cursor>().reset_style_to_default();
@@ -25,14 +25,14 @@ namespace forr {
     }
   }
 
-  void engine::stop() { m_running = false; }
+  void engine::stop() { running_ = false; }
 
   void engine::poll_events() {
     SDL_Event ev;
     while (SDL_PollEvent(&ev)) {
       switch (ev.type) {
       case SDL_QUIT:
-        m_running = false;
+        running_ = false;
         break;
       case SDL_KEYDOWN:
         _<kb_input>().reg_key_press(ev.key.keysym.sym);
@@ -51,31 +51,30 @@ namespace forr {
   }
 
   void sdl_device::init(str_view game_win_title, color clear_color) {
-    m_game_win_title = game_win_title;
-    m_clear_color = clear_color;
+    game_win_title_ = game_win_title;
+    clear_color_ = clear_color;
     SDL_Init(SDL_INIT_EVERYTHING);
-    m_win = create_win();
-    if (m_win) {
-      m_rend = create_rend();
+    win_ = create_win();
+    if (win_) {
+      rend_ = create_rend();
     }
   }
 
   void sdl_device::clear_canv() const {
-    SDL_Color clear_color{m_clear_color.to_sdl_color()};
-    SDL_SetRenderDrawColor(m_rend.get(), clear_color.r, clear_color.g,
+    SDL_Color clear_color{clear_color_.to_sdl_color()};
+    SDL_SetRenderDrawColor(rend_.get(), clear_color.r, clear_color.g,
                            clear_color.b, 255);
-    SDL_RenderClear(m_rend.get());
+    SDL_RenderClear(rend_.get());
   }
 
-  void sdl_device::present_canv() const { SDL_RenderPresent(m_rend.get()); }
+  void sdl_device::present_canv() const { SDL_RenderPresent(rend_.get()); }
 
   s_ptr<SDL_Window> sdl_device::create_win() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP};
     auto win_res{s_ptr<SDL_Window>(
-        SDL_CreateWindow(m_game_win_title.data(),
-                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 660,
-                         660, flags),
+        SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
+                         SDL_WINDOWPOS_CENTERED, 660, 660, flags),
         sdl_del())};
     if (!win_res) {
       print_ln("Window could not be created. SDL Error: " +
@@ -86,7 +85,7 @@ namespace forr {
 
   s_ptr<SDL_Renderer> sdl_device::create_rend() {
     auto rend_res{s_ptr<SDL_Renderer>(
-        SDL_CreateRenderer(m_win.get(), -1, SDL_RENDERER_ACCELERATED),
+        SDL_CreateRenderer(win_.get(), -1, SDL_RENDERER_ACCELERATED),
         sdl_del())};
     if (!rend_res) {
       print_ln("Renderer could not be created. SDL Error: " +
@@ -97,28 +96,26 @@ namespace forr {
 
   void fps_counter::update() {
     auto now{get_ticks()};
-    if (now > m_ticks_last_update + k_one_sec_millis) {
-      m_fps = m_frames_count;
-      m_frames_count = 0;
-      m_ticks_last_update = now;
+    if (now > ticks_last_update_ + k_one_sec_millis) {
+      fps_ = frames_count_;
+      frames_count_ = 0;
+      ticks_last_update_ = now;
     }
-    ++m_frames_count;
+    ++frames_count_;
   }
 
   void cursor::init() { disable_sys_curs(); }
 
   void cursor::disable_sys_curs() { SDL_ShowCursor(SDL_DISABLE); }
 
-  void cursor::reset_style_to_default() {
-    m_curs_style = cursor_styles::normal;
-  }
+  void cursor::reset_style_to_default() { curs_style_ = cursor_styles::normal; }
 
   void cursor::render() {
     auto mouse_pos{get_norm_mouse_pos(_<sdl_device>().get_win())};
     auto w{k_curs_sz};
     auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().get_win())};
     str curs_img;
-    switch (m_curs_style) {
+    switch (curs_style_) {
     case cursor_styles::normal:
       curs_img = "CursorDefault";
       break;
@@ -145,21 +142,21 @@ namespace forr {
         auto file_name{get_file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
         auto img{load_single_img(file_path)};
-        m_images.insert({hash, img});
+        images_.insert({hash, img});
       }
     }
   }
 
   s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
-    if (m_images.contains(img_name_hash)) {
-      return m_images.at(img_name_hash);
+    if (images_.contains(img_name_hash)) {
+      return images_.at(img_name_hash);
     }
     return nullptr;
   }
 
   sz image_bank::get_img_sz(int img_name_hash) const {
-    if (m_images.contains(img_name_hash)) {
-      auto tex{m_images.at(img_name_hash)};
+    if (images_.contains(img_name_hash)) {
+      auto tex{images_.at(img_name_hash)};
       sz size;
       if (tex) {
         SDL_QueryTexture(tex.get(), nullptr, nullptr, &size.w, &size.h);
@@ -181,43 +178,43 @@ namespace forr {
   }
 
   void i_scene::init() {
-    m_gui = std::make_shared<gui>();
+    gui_ = std::make_shared<gui>();
     init_derived();
   }
 
   void i_scene::on_enter() { on_enter_derived(); }
 
   void i_scene::update() {
-    m_gui->update();
+    gui_->update();
     update_derived();
   }
 
   void i_scene::render() const {
     render_derived();
-    m_gui->render();
+    gui_->render();
   }
 
   void scene_mngr::add_scene(str_view scene_name, i_scene &scene) {
     scene.init();
-    m_scenes.insert({hash(scene_name), scene});
+    scenes_.insert({hash(scene_name), scene});
   }
 
   void scene_mngr::go_to_scene(str_view scene_name) {
-    m_curr_scene = hash(scene_name);
-    if (m_scenes.contains(m_curr_scene)) {
-      m_scenes.at(m_curr_scene).on_enter();
+    curr_scene_ = hash(scene_name);
+    if (scenes_.contains(curr_scene_)) {
+      scenes_.at(curr_scene_).on_enter();
     }
   }
 
   void scene_mngr::update_curr_scene() {
-    if (m_scenes.contains(m_curr_scene)) {
-      m_scenes.at(m_curr_scene).update();
+    if (scenes_.contains(curr_scene_)) {
+      scenes_.at(curr_scene_).update();
     }
   }
 
   void scene_mngr::render_curr_scene() const {
-    if (m_scenes.contains(m_curr_scene)) {
-      m_scenes.at(m_curr_scene).render();
+    if (scenes_.contains(curr_scene_)) {
+      scenes_.at(curr_scene_).render();
     }
   }
 }

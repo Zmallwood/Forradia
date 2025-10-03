@@ -50,10 +50,10 @@ namespace forr {
 
     void update_body_part_info_lbls();
 
-    body_part_types m_sel_body_part{body_part_types::none};
-    s_ptr<gui_label> m_lbl_body_part_name;
-    s_ptr<gui_label> m_lbl_body_part_str;
-    s_ptr<gui_label> m_lbl_body_part_energy;
-    s_ptr<gui_label> m_lbl_body_part_temp;
+    body_part_types sel_body_part_{body_part_types::none};
+    s_ptr<gui_label> lbl_body_part_name_;
+    s_ptr<gui_label> lbl_body_part_str_;
+    s_ptr<gui_label> lbl_body_part_energy_;
+    s_ptr<gui_label> lbl_body_part_temp_;
   };
 }

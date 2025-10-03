@@ -24,7 +24,7 @@ namespace forr {
     bool any_key_pressed_pick_result();
 
    private:
-    std::set<SDL_Keycode> m_pressed;
+    std::set<SDL_Keycode> pressed_;
   };
 
   ////////////////////
@@ -49,9 +49,9 @@ namespace forr {
     bool get_been_released_dont_pick_result();
 
    private:
-    bool m_pressed{false};
-    bool m_been_fired{false};
-    bool m_been_released{false};
+    bool pressed_{false};
+    bool been_fired_{false};
+    bool been_released_{false};
   };
 
   class mouse_input {
@@ -64,12 +64,12 @@ namespace forr {
 
     bool any_mouse_button_pressed_pick_result();
 
-    auto &get_left_btn_ref() { return m_left_btn; }
+    auto &get_left_btn_ref() { return left_btn_; }
 
-    auto &get_right_btn_ref() { return m_right_btn; }
+    auto &get_right_btn_ref() { return right_btn_; }
 
    private:
-    mouse_button m_left_btn;
-    mouse_button m_right_btn;
+    mouse_button left_btn_;
+    mouse_button right_btn_;
   };
 }

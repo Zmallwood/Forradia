@@ -15,7 +15,7 @@ namespace forr {
    private:
     void poll_events();
 
-    bool m_running{true};
+    bool running_{true};
   };
 
   class sdl_device {
@@ -26,31 +26,31 @@ namespace forr {
 
     void present_canv() const;
 
-    auto get_win() const { return m_win; }
+    auto get_win() const { return win_; }
 
-    auto get_rend() const { return m_rend; }
+    auto get_rend() const { return rend_; }
 
    private:
     s_ptr<SDL_Window> create_win();
 
     s_ptr<SDL_Renderer> create_rend();
 
-    s_ptr<SDL_Window> m_win;
-    s_ptr<SDL_Renderer> m_rend;
-    str m_game_win_title;
-    color m_clear_color;
+    s_ptr<SDL_Window> win_;
+    s_ptr<SDL_Renderer> rend_;
+    str game_win_title_;
+    color clear_color_;
   };
 
   class fps_counter {
    public:
     void update();
 
-    auto get_fps() const { return m_fps; }
+    auto get_fps() const { return fps_; }
 
    private:
-    int m_fps{0};
-    int m_frames_count{0};
-    int m_ticks_last_update{0};
+    int fps_{0};
+    int frames_count_{0};
+    int ticks_last_update_{0};
     const pt_f k_position{0.93f, 0.02f};
   };
 
@@ -68,7 +68,7 @@ namespace forr {
 
     void render();
 
-    auto set_curs_style(cursor_styles val) { m_curs_style = val; }
+    auto set_curs_style(cursor_styles val) { curs_style_ = val; }
 
    private:
     void init();
@@ -77,7 +77,7 @@ namespace forr {
 
     constexpr static float k_curs_sz{0.05f};
 
-    cursor_styles m_curs_style{cursor_styles::normal};
+    cursor_styles curs_style_{cursor_styles::normal};
   };
 
   class image_bank {
@@ -97,7 +97,7 @@ namespace forr {
 
     inline static const str k_rel_imgs_path{"./Resources/Images/"};
 
-    std::map<int, s_ptr<SDL_Texture>> m_images;
+    std::map<int, s_ptr<SDL_Texture>> images_;
   };
 
   class gui;
@@ -121,10 +121,10 @@ namespace forr {
 
     virtual void render_derived() const {}
 
-    auto get_gui() const { return m_gui; }
+    auto get_gui() const { return gui_; }
 
    private:
-    s_ptr<gui> m_gui;
+    s_ptr<gui> gui_;
   };
 
   class scene_mngr {
@@ -138,7 +138,7 @@ namespace forr {
     void render_curr_scene() const;
 
    private:
-    std::map<int, i_scene &> m_scenes;
-    int m_curr_scene{0};
+    std::map<int, i_scene &> scenes_;
+    int curr_scene_{0};
   };
 }

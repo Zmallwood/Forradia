@@ -28,7 +28,7 @@ namespace forr {
   }
 
   void intro_scene::init_derived() {
-    m_start_text = get_gui()->add_child_component(std::make_shared<gui_label>(
+    start_text_ = get_gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }
 
@@ -37,7 +37,7 @@ namespace forr {
   }
 
   void intro_scene::update_derived() {
-    m_start_text->set_visible((get_ticks() % 800) < 400);
+    start_text_->set_visible((get_ticks() % 800) < 400);
 
     _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
 

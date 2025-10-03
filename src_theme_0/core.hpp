@@ -21,7 +21,7 @@ namespace forr {
     void render_derived() const override;
 
    private:
-    s_ptr<gui_component> m_start_text;
+    s_ptr<gui_component> start_text_;
   };
 
   class main_menu_scene : public i_scene {

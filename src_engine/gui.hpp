@@ -8,8 +8,7 @@
 namespace forr {
   class gui_component {
    public:
-    gui_component(float x, float y, float w, float h)
-        : m_bounds({x, y, w, h}) {}
+    gui_component(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
 
     s_ptr<gui_component> add_child_component(s_ptr<gui_component> comp);
 
@@ -21,9 +20,9 @@ namespace forr {
 
     void toggle_visibility();
 
-    void set_visible(bool val) { m_visible = val; }
+    void set_visible(bool val) { visible_ = val; }
 
-    void set_parent_comp(gui_component *value) { m_parent_comp = value; }
+    void set_parent_comp(gui_component *value) { parent_comp_ = value; }
 
    protected:
     virtual void update_derived() {}
@@ -33,11 +32,11 @@ namespace forr {
     void set_pos(pt_f new_pos);
 
    private:
-    rect_f m_bounds;
-    vec<s_ptr<gui_component>> m_children;
-    bool m_visible{true};
-    bool m_enabled{true};
-    gui_component *m_parent_comp{nullptr};
+    rect_f bounds_;
+    vec<s_ptr<gui_component>> children_;
+    bool visible_{true};
+    bool enabled_{true};
+    gui_component *parent_comp_{nullptr};
   };
 
   class gui : public gui_component {
@@ -49,35 +48,35 @@ namespace forr {
    public:
     gui_label(float x, float y, float w, float h, str_view text = "",
               bool cent_align = false, color color = colors::wheat_transp)
-        : gui_component(x, y, w, h), m_text(text), m_cent_align(cent_align),
-          m_color(color) {}
+        : gui_component(x, y, w, h), text_(text), cent_align_(cent_align),
+          color_(color) {}
 
-    void set_text(str_view val) { m_text = val; }
+    void set_text(str_view val) { text_ = val; }
 
    protected:
     virtual void render_derived() const override;
 
    private:
-    str m_text;
-    bool m_cent_align{false};
-    color m_color;
+    str text_;
+    bool cent_align_{false};
+    color color_;
   };
 
   class gui_panel : public gui_component {
    public:
     gui_panel(float x, float y, float w, float h,
               str_view bg_img = k_default_bg_img)
-        : gui_component(x, y, w, h), m_bg_img(bg_img) {}
+        : gui_component(x, y, w, h), bg_img_(bg_img) {}
 
    protected:
     virtual void render_derived() const override;
 
-    void set_bg_img(str_view val) { m_bg_img = val; }
+    void set_bg_img(str_view val) { bg_img_ = val; }
 
    private:
     inline static const str k_default_bg_img{"GUIPanelBackground"};
 
-    str m_bg_img;
+    str bg_img_;
   };
 
   class gui_button : public gui_panel {
@@ -85,8 +84,8 @@ namespace forr {
     gui_button(float x, float y, float w, float h, str_view text,
                func<void()> action, str_view bg_img = k_bg_img,
                str_view hovered_bg_img = k_hovered_bg_img)
-        : gui_panel(x, y, w, h), m_text(text), m_action(action),
-          m_bg_img(bg_img), m_hovered_bg_img(hovered_bg_img) {}
+        : gui_panel(x, y, w, h), text_(text), action_(action), bg_img_(bg_img),
+          hovered_bg_img_(hovered_bg_img) {}
 
    protected:
     virtual void update_derived() override;
@@ -97,10 +96,10 @@ namespace forr {
     inline static const str k_bg_img{"GUIButtonBackground"};
     inline static const str k_hovered_bg_img{"GUIButtonHoveredBackground"};
 
-    str m_text;
-    func<void()> m_action;
-    str m_bg_img;
-    str m_hovered_bg_img;
+    str text_;
+    func<void()> action_;
+    str bg_img_;
+    str hovered_bg_img_;
   };
 
   class gui_movable_panel : public gui_panel {
@@ -117,22 +116,22 @@ namespace forr {
 
     virtual rect_f get_drag_area();
 
-    auto get_being_moved() const { return m_being_moved; }
+    auto get_being_moved() const { return being_moved_; }
 
-    auto get_move_start_pos() const { return m_move_start_pos; }
+    auto get_move_start_pos() const { return move_start_pos_; }
 
-    auto get_move_start_mouse_pos() const { return m_move_start_mouse_pos; }
+    auto get_move_start_mouse_pos() const { return move_start_mouse_pos_; }
 
    private:
-    bool m_being_moved{false};
-    pt_f m_move_start_pos{-1, -1};
-    pt_f m_move_start_mouse_pos{-1, -1};
+    bool being_moved_{false};
+    pt_f move_start_pos_{-1, -1};
+    pt_f move_start_mouse_pos_{-1, -1};
   };
 
   class gui_window : public gui_movable_panel {
    public:
     gui_window(float x, float y, float w, float h, str_view win_title)
-        : gui_movable_panel(x, y, w, h), m_gui_win_title_bar(*this, win_title) {
+        : gui_movable_panel(x, y, w, h), gui_win_title_bar_(*this, win_title) {
       init();
     }
 
@@ -147,7 +146,7 @@ namespace forr {
     class gui_window_title_bar {
      public:
       gui_window_title_bar(gui_window &parent_win, str_view win_title)
-          : m_parent_win(parent_win), k_win_title(win_title) {}
+          : parent_win_(parent_win), k_win_title(win_title) {}
 
       void render() const;
 
@@ -157,10 +156,10 @@ namespace forr {
       inline static const float k_h{0.04f};
       const str k_win_title;
 
-      gui_window &m_parent_win;
+      gui_window &parent_win_;
     };
 
-    gui_window_title_bar m_gui_win_title_bar;
+    gui_window_title_bar gui_win_title_bar_;
   };
 
   class gui_fps_panel : public gui_movable_panel {
@@ -173,7 +172,7 @@ namespace forr {
    private:
     void init();
 
-    s_ptr<gui_label> m_fps_text_pnl;
+    s_ptr<gui_label> fps_text_pnl_;
   };
 
   class gui_text_console : public gui_panel {
@@ -192,6 +191,6 @@ namespace forr {
     inline static const float k_sep_h{0.003f};
     inline static const float k_marg{0.008f};
 
-    vec<str> m_lines;
+    vec<str> lines_;
   };
 }
