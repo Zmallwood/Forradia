@@ -4,7 +4,7 @@
  */
 #include "world_view.hpp"
 #include "core/core.hpp"
-#include "core/rend/image_renderer.hpp"
+#include "core/rend.hpp"
 #include "theme_0/func/core_objs/player.hpp"
 #include "theme_0/func/math/tile_grid_math.hpp"
 #include "theme_0/func/world_interact/tile_hovering.hpp"

@@ -5,8 +5,7 @@
 #include "gui.hpp"
 #include "core/core.hpp"
 #include "core/input.hpp"
-#include "rend/image_renderer.hpp"
-#include "rend/text_renderer.hpp"
+#include "rend.hpp"
 
 namespace forr {
   s_ptr<gui_component>

@@ -4,7 +4,7 @@
  */
 #include "core.hpp"
 #include "core/input.hpp"
-#include "core/rend/image_renderer.hpp"
+#include "core/rend.hpp"
 #include "core/scenes_core.hpp"
 #include "theme_0/func/conf/game_properties.hpp"
 
