@@ -5,14 +5,14 @@
 #include "npc.hpp"
 
 namespace forr {
-  void npc::initialize() {
-    generate_name();
+  void npc::init() {
+    gen_name();
 
     m_ticks_next_spontaneous_speech =
         get_ticks() + rand_int(300 * k_one_second_millis);
   }
 
-  void npc::generate_name() {
+  void npc::gen_name() {
     vec<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
     vec<char> consonants{'q', 'w', 'r', 't', 'p', 's', 'd', 'f', 'g', 'h',
                          'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};

@@ -7,7 +7,7 @@
 namespace forr {
   class npc {
    public:
-    npc(str_view type_name) : m_type{hash(type_name)} { initialize(); }
+    npc(str_view type_name) : m_type{hash(type_name)} { init(); }
 
     auto get_type() const { return m_type; }
 
@@ -17,11 +17,11 @@ namespace forr {
 
     void set_ticks_last_move(int value) { m_ticks_last_move = value; }
 
-    auto get_movement_speed() const { return m_movem_spd; }
+    auto get_movem_spd() const { return m_movem_spd; }
 
-    auto get_destination() const { return m_dest; }
+    auto get_dest() const { return m_dest; }
 
-    void set_destination(point val) { m_dest = val; }
+    void set_dest(point val) { m_dest = val; }
 
     auto get_ticks_next_spontaneous_speech() const {
       return m_ticks_next_spontaneous_speech;
@@ -32,9 +32,9 @@ namespace forr {
     }
 
    private:
-    void initialize();
+    void init();
 
-    void generate_name();
+    void gen_name();
 
     int m_type{0};
     str m_name;

@@ -11,7 +11,7 @@
 #include "core/rend/images/image_renderer.hpp"
 
 namespace forr {
-  void intro_scene::initialize_derived() {
+  void intro_scene::init_derived() {
     m_start_text = get_gui()->add_child_component(std::make_shared<gui_label>(
         0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
   }

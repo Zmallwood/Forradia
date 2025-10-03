@@ -7,7 +7,7 @@
 #include "sub/add_main_menu_scene_gui_components/add_main_menu_scene_gui_components.hpp"
 
 namespace forr {
-  void main_menu_scene::initialize_derived() {
+  void main_menu_scene::init_derived() {
     add_main_menu_scene_gui_components(get_gui());
   }
 

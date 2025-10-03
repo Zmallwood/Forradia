@@ -10,7 +10,7 @@ namespace forr {
 
   class intro_scene : public i_scene {
   protected:
-    void initialize_derived() override;
+    void init_derived() override;
 
     void on_enter_derived() override;
 

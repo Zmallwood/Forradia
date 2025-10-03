@@ -18,7 +18,7 @@ namespace forr {
         continue;
       }
       auto text_line = m_lines.at(idx);
-      get_ston<text_renderer>().draw_string(text_line, b.x + k_marg, y);
+      get_ston<text_renderer>().draw_str(text_line, b.x + k_marg, y);
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};

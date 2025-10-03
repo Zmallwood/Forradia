@@ -8,7 +8,7 @@
 namespace forr {
   class main_menu_scene : public i_scene {
   protected:
-    void initialize_derived() override;
+    void init_derived() override;
 
     void update_derived() override;
 

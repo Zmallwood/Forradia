@@ -6,7 +6,7 @@
 #include "objects_stack.hpp"
 
 namespace forr {
-  void tile::initialize() {
+  void tile::init() {
     m_objects_stack = std::make_shared<objects_stack>();
   }
 

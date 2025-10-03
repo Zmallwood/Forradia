@@ -7,7 +7,7 @@
 #include "core/input.hpp"
 
 namespace forr {
-  void gui_system_menu::initialize() { set_visible(false); }
+  void gui_system_menu::init() { set_visible(false); }
 
   void gui_system_menu::update_derived() {
     gui_component::update_derived();

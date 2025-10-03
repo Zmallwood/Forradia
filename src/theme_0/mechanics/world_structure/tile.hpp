@@ -12,7 +12,7 @@ namespace forr {
 
   class tile {
    public:
-    tile() { initialize(); }
+    tile() { init(); }
 
     void set_ground(str_view ground_name);
 
@@ -28,24 +28,24 @@ namespace forr {
 
     void set_npc(s_ptr<npc> val) { m_npc = val; }
 
-    auto get_elevation() const { return m_elev; }
+    auto get_elev() const { return m_elev; }
 
-    void set_elevation(int val) { m_elev = val; }
+    void set_elev(int val) { m_elev = val; }
 
     auto get_water_depth() const { return m_water_depth; }
 
     void set_water_depth(int val) { m_water_depth = val; }
 
-    auto get_river_direction_1() const { return m_river_dir_1; }
+    auto get_river_dir_1() const { return m_river_dir_1; }
 
-    void set_river_direction_1(directions val) { m_river_dir_1 = val; }
+    void set_river_dir_1(directions val) { m_river_dir_1 = val; }
 
-    auto get_river_direction_2() const { return m_river_dir_2; }
+    auto get_river_dir_2() const { return m_river_dir_2; }
 
-    void set_river_direction_2(directions val) { m_river_dir_2 = val; }
+    void set_river_dir_2(directions val) { m_river_dir_2 = val; }
 
    private:
-    void initialize();
+    void init();
 
     int m_ground{0};
     s_ptr<objects_stack> m_objects_stack;

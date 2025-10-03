@@ -9,7 +9,7 @@ namespace forr {
 
   class i_scene {
    public:
-    void initialize();
+    void init();
 
     void update();
 
@@ -18,7 +18,7 @@ namespace forr {
     void on_enter();
 
    protected:
-    virtual void initialize_derived() {}
+    virtual void init_derived() {}
 
     virtual void on_enter_derived() {}
 
@@ -38,9 +38,9 @@ namespace forr {
 
     void go_to_scene(str_view scene_name);
 
-    void update_current_scene();
+    void update_curr_scene();
 
-    void render_current_scene() const;
+    void render_curr_scene() const;
 
    private:
     std::map<int, i_scene &> m_scenes;

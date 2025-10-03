@@ -11,7 +11,7 @@
 
 namespace forr {
   void update_npcs() {
-    auto w_area{get_ston<world>().get_current_world_area()};
+    auto w_area{get_ston<world>().get_curr_w_area()};
     auto &npcs{w_area->get_npcs_mirror_ref()};
     auto now{get_ticks()};
     for (auto it = npcs.begin(); it != npcs.end();) {
@@ -31,38 +31,38 @@ namespace forr {
       }
 
       if (now < npc->get_ticks_last_move() +
-                    inv_movem_spd(npc->get_movement_speed())) {
+                    inv_movem_spd(npc->get_movem_spd())) {
         ++it;
         continue;
       }
-      auto dest{npc->get_destination()};
+      auto dest{npc->get_dest()};
       if (dest.x == -1 && dest.y == -1) {
         auto new_dest_x{pos.x + rand_int(11) - 5};
         auto new_dest_y{pos.y + rand_int(11) - 5};
-        npc->set_destination({new_dest_x, new_dest_y});
+        npc->set_dest({new_dest_x, new_dest_y});
       }
-      auto dx{npc->get_destination().x - pos.x};
-      auto dy{npc->get_destination().y - pos.y};
+      auto dx{npc->get_dest().x - pos.x};
+      auto dy{npc->get_dest().y - pos.y};
       auto norm_dx{normalize(dx)};
       auto norm_dy{normalize(dy)};
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
       auto new_pos{point{new_x, new_y}};
-      if (new_pos == npc->get_destination()) {
-        npc->set_destination({-1, -1});
+      if (new_pos == npc->get_dest()) {
+        npc->set_dest({-1, -1});
       }
-      auto tl{w_area->get_tile(new_pos.x, new_pos.y)};
+      auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
       if (tl && !tl->get_npc() && tl->get_ground() != hash("GroundWater")) {
         auto old_pos{pos};
         npc->set_ticks_last_move(now);
-        auto old_tl{w_area->get_tile(old_pos.x, old_pos.y)};
-        auto new_tl{w_area->get_tile(new_pos.x, new_pos.y)};
+        auto old_tl{w_area->get_tl(old_pos.x, old_pos.y)};
+        auto new_tl{w_area->get_tl(new_pos.x, new_pos.y)};
         old_tl->set_npc(nullptr);
         new_tl->set_npc(npc);
         npcs.erase(npc);
         npcs.insert({npc, {new_pos.x, new_pos.y}});
       } else {
-        npc->set_destination({-1, -1});
+        npc->set_dest({-1, -1});
       }
       ++it;
     }

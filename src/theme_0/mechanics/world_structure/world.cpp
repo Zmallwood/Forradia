@@ -6,7 +6,7 @@
 #include "world_area.hpp"
 
 namespace forr {
-  void world::initialize() {
+  void world::init() {
     m_curr_w_area = std::make_shared<world_area>();
   }
 }

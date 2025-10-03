@@ -5,7 +5,7 @@
 #include "player_body.hpp"
 
 namespace forr {
-  void player_body::initialize() {
+  void player_body::init() {
     m_parts.insert({body_part_types::overall_body, body_part()});
     m_parts.insert({body_part_types::right_arm, body_part()});
     m_parts.insert({body_part_types::left_arm, body_part()});

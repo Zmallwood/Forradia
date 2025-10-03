@@ -5,7 +5,7 @@
 #include "creature.hpp"
 
 namespace forr {
-  void creature::initialize() {
+  void creature::init() {
     m_movem_spd *= (rand_int(3) + 1) / 2.0f;
   }
 }

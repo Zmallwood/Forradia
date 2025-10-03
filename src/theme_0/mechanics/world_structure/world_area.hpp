@@ -11,22 +11,22 @@ namespace forr {
 
   class world_area {
    public:
-    world_area() { initialize(); }
+    world_area() { init(); }
 
-    size get_size() const;
+    size get_sz() const;
 
-    bool is_valid_coordinate(int x, int y) const;
+    bool is_valid_coord(int x, int y) const;
 
-    s_ptr<tile> get_tile(int x, int y) const;
+    s_ptr<tile> get_tl(int x, int y) const;
 
-    s_ptr<tile> get_tile(point coord) const;
+    s_ptr<tile> get_tl(point coord) const;
 
     auto &get_creatures_mirror_ref() { return m_creatures_mirror; }
 
     auto &get_npcs_mirror_ref() { return m_npcs_mirror; }
 
    private:
-    void initialize();
+    void init();
 
     vec<vec<s_ptr<tile>>> m_tiles;
     std::map<s_ptr<creature>, point> m_creatures_mirror;

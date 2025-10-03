@@ -19,10 +19,10 @@ namespace forr {
       get_ston<mouse_input>().reset();
       get_ston<cursor>().reset_style_to_default();
       poll_events();
-      get_ston<scene_manager>().update_current_scene();
+      get_ston<scene_manager>().update_curr_scene();
       get_ston<fps_counter>().update();
       get_ston<sdl_device>().clear_canv();
-      get_ston<scene_manager>().render_current_scene();
+      get_ston<scene_manager>().render_curr_scene();
       get_ston<cursor>().render();
       get_ston<sdl_device>().present_canv();
     }

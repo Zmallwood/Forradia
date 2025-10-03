@@ -5,7 +5,7 @@
 #pragma once
 
 namespace forr {
-  size_f calculate_tile_size();
+  size_f calc_tl_sz();
 
-  size calculate_grid_size();
+  size calc_grid_sz();
 }

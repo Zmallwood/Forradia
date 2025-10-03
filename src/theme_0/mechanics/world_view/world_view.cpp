@@ -19,21 +19,21 @@
 
 namespace forr {
   void world_view::render() const {
-    auto grid_sz{calculate_grid_size()};
-    auto tl_sz{calculate_tile_size()};
-    auto player_pos{get_ston<player>().get_position()};
-    auto w_area{get_ston<world>().get_current_world_area()};
-    auto player_elev{w_area->get_tile(player_pos)->get_elevation()};
+    auto grid_sz{calc_grid_sz()};
+    auto tl_sz{calc_tl_sz()};
+    auto player_pos{get_ston<player>().get_pos()};
+    auto w_area{get_ston<world>().get_curr_w_area()};
+    auto player_elev{w_area->get_tl(player_pos)->get_elev()};
     auto extra_rows{8};
     for (auto i = 0; i < 3; i++) {
       for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
         for (auto x = 0; x < grid_sz.w; x++) {
           auto x_coord{player_pos.x - (grid_sz.w - 1) / 2 + x};
           auto y_coord{player_pos.y - (grid_sz.h - 1) / 2 + y};
-          if (!w_area->is_valid_coordinate(x_coord, y_coord)) {
+          if (!w_area->is_valid_coord(x_coord, y_coord)) {
             continue;
           }
-          auto tl{w_area->get_tile(x_coord, y_coord)};
+          auto tl{w_area->get_tl(x_coord, y_coord)};
           float x_canv;
           float y_canv;
           float w_canv;
@@ -42,20 +42,20 @@ namespace forr {
           auto coord_ne{point{x_coord + 1, y_coord}};
           auto coord_sw{point{x_coord, y_coord + 1}};
           auto coord_se{point{x_coord + 1, y_coord + 1}};
-          if (!w_area->is_valid_coordinate(coord_nw.x, coord_nw.y) ||
-              !w_area->is_valid_coordinate(coord_ne.x, coord_ne.y) ||
-              !w_area->is_valid_coordinate(coord_sw.x, coord_sw.y) ||
-              !w_area->is_valid_coordinate(coord_se.x, coord_se.y)) {
+          if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
+              !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
+              !w_area->is_valid_coord(coord_sw.x, coord_sw.y) ||
+              !w_area->is_valid_coord(coord_se.x, coord_se.y)) {
             continue;
           }
-          auto tl_nw{w_area->get_tile(coord_nw)};
-          auto tl_ne{w_area->get_tile(coord_ne)};
-          auto tl_sw{w_area->get_tile(coord_sw)};
-          auto tl_se{w_area->get_tile(coord_se)};
+          auto tl_nw{w_area->get_tl(coord_nw)};
+          auto tl_ne{w_area->get_tl(coord_ne)};
+          auto tl_sw{w_area->get_tl(coord_sw)};
+          auto tl_se{w_area->get_tl(coord_se)};
           auto ground{tl ? tl->get_ground() : 0};
           auto ground_type_rend{ground};
           x_canv = x * tl_sz.w;
-          y_canv = y * tl_sz.h - tl_nw->get_elevation() * tl_sz.h / 2;
+          y_canv = y * tl_sz.h - tl_nw->get_elev() * tl_sz.h / 2;
           y_canv += player_elev * tl_sz.h / 2;
           w_canv = tl_sz.w;
           h_canv = ceil(tl_sz.h, 2.5f);
@@ -72,71 +72,71 @@ namespace forr {
               ground_name = "GroundRock";
             }
             str full_ground_name{ground_name};
-            if (tl_nw->get_elevation() > tl_sw->get_elevation() &&
-                tl_ne->get_elevation() > tl_se->get_elevation()) {
+            if (tl_nw->get_elev() > tl_sw->get_elev() &&
+                tl_ne->get_elev() > tl_se->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouth";
-            } else if (tl_nw->get_elevation() < tl_sw->get_elevation() &&
-                       tl_ne->get_elevation() < tl_se->get_elevation()) {
+            } else if (tl_nw->get_elev() < tl_sw->get_elev() &&
+                       tl_ne->get_elev() < tl_se->get_elev()) {
               h_canv -= tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeNorth";
-            } else if (tl_ne->get_elevation() > tl_nw->get_elevation() &&
-                       tl_se->get_elevation() > tl_sw->get_elevation()) {
+            } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
+                       tl_se->get_elev() > tl_sw->get_elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeWest";
-            } else if (tl_nw->get_elevation() > tl_ne->get_elevation() &&
-                       tl_sw->get_elevation() > tl_se->get_elevation()) {
+            } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
+                       tl_sw->get_elev() > tl_se->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeEast";
-            } else if (tl_nw->get_elevation() > tl_ne->get_elevation() &&
-                       tl_nw->get_elevation() > tl_se->get_elevation() &&
-                       tl_nw->get_elevation() > tl_sw->get_elevation()) {
+            } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
+                       tl_nw->get_elev() > tl_se->get_elev() &&
+                       tl_nw->get_elev() > tl_sw->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthEast";
-            } else if (tl_ne->get_elevation() > tl_nw->get_elevation() &&
-                       tl_ne->get_elevation() > tl_se->get_elevation() &&
-                       tl_ne->get_elevation() > tl_sw->get_elevation()) {
+            } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
+                       tl_ne->get_elev() > tl_se->get_elev() &&
+                       tl_ne->get_elev() > tl_sw->get_elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthWest";
-            } else if (tl_sw->get_elevation() > tl_nw->get_elevation() &&
-                       tl_sw->get_elevation() > tl_se->get_elevation() &&
-                       tl_sw->get_elevation() > tl_ne->get_elevation()) {
+            } else if (tl_sw->get_elev() > tl_nw->get_elev() &&
+                       tl_sw->get_elev() > tl_se->get_elev() &&
+                       tl_sw->get_elev() > tl_ne->get_elev()) {
               full_ground_name = ground_name + "SlopeNorthEast";
-            } else if (tl_se->get_elevation() > tl_nw->get_elevation() &&
-                       tl_se->get_elevation() > tl_ne->get_elevation() &&
-                       tl_se->get_elevation() > tl_sw->get_elevation()) {
+            } else if (tl_se->get_elev() > tl_nw->get_elev() &&
+                       tl_se->get_elev() > tl_ne->get_elev() &&
+                       tl_se->get_elev() > tl_sw->get_elev()) {
               full_ground_name = ground_name + "SlopeNorthWest";
-            } else if (tl_sw->get_elevation() < tl_nw->get_elevation() &&
-                       tl_sw->get_elevation() < tl_ne->get_elevation() &&
-                       tl_sw->get_elevation() < tl_se->get_elevation()) {
+            } else if (tl_sw->get_elev() < tl_nw->get_elev() &&
+                       tl_sw->get_elev() < tl_ne->get_elev() &&
+                       tl_sw->get_elev() < tl_se->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthWestInverted";
-            } else if (tl_se->get_elevation() < tl_nw->get_elevation() &&
-                       tl_se->get_elevation() < tl_ne->get_elevation() &&
-                       tl_se->get_elevation() < tl_sw->get_elevation()) {
+            } else if (tl_se->get_elev() < tl_nw->get_elev() &&
+                       tl_se->get_elev() < tl_ne->get_elev() &&
+                       tl_se->get_elev() < tl_sw->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthEastInverted";
-            } else if (tl_nw->get_elevation() < tl_ne->get_elevation() &&
-                       tl_nw->get_elevation() < tl_sw->get_elevation() &&
-                       tl_nw->get_elevation() < tl_se->get_elevation()) {
+            } else if (tl_nw->get_elev() < tl_ne->get_elev() &&
+                       tl_nw->get_elev() < tl_sw->get_elev() &&
+                       tl_nw->get_elev() < tl_se->get_elev()) {
               y_canv -= tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeNorthWestInverted";
-            } else if (tl_ne->get_elevation() < tl_nw->get_elevation() &&
-                       tl_ne->get_elevation() < tl_sw->get_elevation() &&
-                       tl_ne->get_elevation() < tl_se->get_elevation()) {
+            } else if (tl_ne->get_elev() < tl_nw->get_elev() &&
+                       tl_ne->get_elev() < tl_sw->get_elev() &&
+                       tl_ne->get_elev() < tl_se->get_elev()) {
               full_ground_name = ground_name + "SlopeNorthEastInverted";
-            } else if (tl_sw->get_elevation() == tl_ne->get_elevation() &&
-                       tl_nw->get_elevation() < tl_sw->get_elevation() &&
-                       tl_se->get_elevation() < tl_sw->get_elevation()) {
+            } else if (tl_sw->get_elev() == tl_ne->get_elev() &&
+                       tl_nw->get_elev() < tl_sw->get_elev() &&
+                       tl_se->get_elev() < tl_sw->get_elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name =
                   ground_name + "SlopeDiagonalSouthWestToNorthEast";
-            } else if (tl_nw->get_elevation() == tl_se->get_elevation() &&
-                       tl_ne->get_elevation() < tl_nw->get_elevation() &&
-                       tl_sw->get_elevation() < tl_nw->get_elevation()) {
+            } else if (tl_nw->get_elev() == tl_se->get_elev() &&
+                       tl_ne->get_elev() < tl_nw->get_elev() &&
+                       tl_sw->get_elev() < tl_nw->get_elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name =
                   ground_name + "SlopeDiagonalNorthWestToSouthEast";
@@ -161,8 +161,8 @@ namespace forr {
             get_ston<image_renderer>().draw_img(ground_type_rend, x_canv,
                                                   y_canv, w_canv, h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
-            vec<directions> river_dirs{tl->get_river_direction_1(),
-                                       tl->get_river_direction_2()};
+            vec<directions> river_dirs{tl->get_river_dir_1(),
+                                       tl->get_river_dir_2()};
             auto river_part_w{0.4f * w_canv};
             auto river_part_h{0.4f * h_canv};
             auto part_len{2.5f};
@@ -274,7 +274,7 @@ namespace forr {
                 "GroundWater_" + std::to_string(anim_idx), x_canv, y_canv,
                 w_canv, h_canv);
 
-            for (auto i = 0; i < tl->get_elevation(); i++) {
+            for (auto i = 0; i < tl->get_elev(); i++) {
               get_ston<image_renderer>().draw_img("GroundWaterHeight", x_canv,
                                                     y_canv, w_canv, h_canv);
             }
@@ -340,12 +340,12 @@ namespace forr {
           //     }
           // }
           auto hovered_coord{
-              get_ston<tile_hovering>().get_hovered_coordinate()};
+              get_ston<tile_hovering>().get_hovered_coord()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
             get_ston<image_renderer>().draw_img("HoveredTile", x_canv, y_canv,
                                                   w_canv, h_canv);
           }
-          auto player_dest{get_ston<player>().get_destination()};
+          auto player_dest{get_ston<player>().get_dest()};
           if (x_coord == player_dest.x && y_coord == player_dest.y) {
             get_ston<image_renderer>().draw_img("DestinationTile", x_canv,
                                                   y_canv, w_canv, h_canv);
@@ -358,7 +358,7 @@ namespace forr {
           }
           auto objs_stack{tl ? tl->get_objects_stack() : nullptr};
           if (objs_stack) {
-            for (const auto &obj : objs_stack->get_objects()) {
+            for (const auto &obj : objs_stack->get_objs()) {
               if (obj->get_type() != hash("ObjectPinkFlower")) {
                 get_ston<image_renderer>().draw_img("Shadow", x_canv, y_canv,
                                                       tl_sz.w, tl_sz.h);
@@ -369,7 +369,7 @@ namespace forr {
                 auto tree_obj{std::static_pointer_cast<forr::tree_object>(obj)};
                 auto trunk_parts{tree_obj->get_trunk_parts()};
                 auto needleTypes{tree_obj->get_needle_types()};
-                auto w_factor{tree_obj->get_width_factor()};
+                auto w_factor{tree_obj->get_w_factor()};
                 for (auto i = 0; i < trunk_parts.size(); i++) {
                   auto trunk_part{trunk_parts.at(i)};
                   auto needle_type{needleTypes.at(i)};

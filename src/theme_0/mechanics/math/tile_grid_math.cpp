@@ -6,7 +6,7 @@
 #include "theme_0/mechanics/configuration/game_properties.hpp"
 
 namespace forr {
-  size_f calculate_tile_size() {
+  size_f calc_tl_sz() {
     auto num_grid_rows{get_ston<game_properties>().k_num_grid_rows};
     auto tl_h{1.0f / num_grid_rows};
     auto asp_rat{calc_aspect_ratio()};
@@ -14,8 +14,8 @@ namespace forr {
     return {tl_w, tl_h};
   }
 
-  size calculate_grid_size() {
-    auto tl_sz{calculate_tile_size()};
+  size calc_grid_sz() {
+    auto tl_sz{calc_tl_sz()};
     auto num_grid_cols{c_int(1.0f / tl_sz.w) + 1};
     auto num_grid_rows{get_ston<game_properties>().k_num_grid_rows};
     return {num_grid_cols, num_grid_rows};

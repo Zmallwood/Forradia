@@ -9,12 +9,12 @@ namespace forr {
 
   class world {
    public:
-    world() { initialize(); }
+    world() { init(); }
 
-    auto get_current_world_area() const { return m_curr_w_area; }
+    auto get_curr_w_area() const { return m_curr_w_area; }
 
    private:
-    void initialize();
+    void init();
 
     s_ptr<world_area> m_curr_w_area;
   };

@@ -9,12 +9,12 @@
 namespace forr {
   class player_body {
    public:
-    player_body() { initialize(); }
+    player_body() { init(); }
 
     body_part *get_body_part_ptr(body_part_types type);
 
    private:
-    void initialize();
+    void init();
 
     std::map<body_part_types, body_part> m_parts;
   };

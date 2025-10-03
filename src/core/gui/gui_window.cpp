@@ -13,7 +13,7 @@ namespace forr {
     get_ston<image_renderer>().draw_img("GUIWindowTitleBarBackground",
                                           parent_win_b.x, parent_win_b.y,
                                           parent_win_b.w, k_h);
-    get_ston<text_renderer>().draw_string(
+    get_ston<text_renderer>().draw_str(
         k_win_title, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
         font_sizes::_20, false, colors::yellow);
   }

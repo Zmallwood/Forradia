@@ -13,16 +13,16 @@ namespace forr {
    public:
     gui_player_body_window()
         : gui_window(0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
-      initialize();
+      init();
     }
 
    protected:
-    void initialize();
+    void init();
 
    private:
-    void select_body_part(body_part_types type);
+    void sel_body_part(body_part_types type);
 
-    void update_body_part_information_labels();
+    void update_body_part_info_lbls();
 
     body_part_types m_sel_body_part{body_part_types::none};
     s_ptr<gui_label> m_lbl_body_part_name;

@@ -8,10 +8,10 @@
 namespace forr {
   class gui_system_menu : public gui_component {
    public:
-    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { initialize(); }
+    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
 
    protected:
-    void initialize();
+    void init();
 
     virtual void update_derived() override;
 

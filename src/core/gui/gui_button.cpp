@@ -29,7 +29,7 @@ namespace forr {
   void gui_button::render_derived() const {
     gui_panel::render_derived();
     auto b{get_bounds()};
-    get_ston<text_renderer>().draw_string(m_text, b.x + b.w / 2, b.y + b.h / 2,
+    get_ston<text_renderer>().draw_str(m_text, b.x + b.w / 2, b.y + b.h / 2,
                                           font_sizes::_20, true);
   }
 }

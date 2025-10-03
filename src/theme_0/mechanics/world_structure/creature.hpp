@@ -7,7 +7,7 @@
 namespace forr {
   class creature {
    public:
-    creature(str_view type_name) : m_type{hash(type_name)} { initialize(); }
+    creature(str_view type_name) : m_type{hash(type_name)} { init(); }
 
     auto get_type() const { return m_type; }
 
@@ -15,14 +15,14 @@ namespace forr {
 
     void set_ticks_last_move(int value) { m_ticks_last_move = value; }
 
-    auto get_movement_speed() const { return m_movem_spd; }
+    auto get_movem_spd() const { return m_movem_spd; }
 
-    auto get_destination() const { return m_dest; }
+    auto get_dest() const { return m_dest; }
 
-    void set_destination(point val) { m_dest = val; }
+    void set_dest(point val) { m_dest = val; }
 
    private:
-    void initialize();
+    void init();
 
     int m_type{0};
     int m_ticks_last_move{0};

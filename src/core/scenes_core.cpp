@@ -6,9 +6,9 @@
 #include "gui/gui.hpp"
 
 namespace forr {
-  void i_scene::initialize() {
+  void i_scene::init() {
     m_gui = std::make_shared<gui>();
-    initialize_derived();
+    init_derived();
   }
 
   void i_scene::on_enter() { on_enter_derived(); }
@@ -24,7 +24,7 @@ namespace forr {
   }
 
   void scene_manager::add_scene(str_view scene_name, i_scene &scene) {
-    scene.initialize();
+    scene.init();
     m_scenes.insert({hash(scene_name), scene});
   }
 
@@ -35,13 +35,13 @@ namespace forr {
     }
   }
 
-  void scene_manager::update_current_scene() {
+  void scene_manager::update_curr_scene() {
     if (m_scenes.contains(m_curr_scene)) {
       m_scenes.at(m_curr_scene).update();
     }
   }
 
-  void scene_manager::render_current_scene() const {
+  void scene_manager::render_curr_scene() const {
     if (m_scenes.contains(m_curr_scene)) {
       m_scenes.at(m_curr_scene).render();
     }

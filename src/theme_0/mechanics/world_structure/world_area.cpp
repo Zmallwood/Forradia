@@ -7,7 +7,7 @@
 #include "tile.hpp"
 
 namespace forr {
-  void world_area::initialize() {
+  void world_area::init() {
     auto sz{game_properties::k_w_area_sz};
     sz.w *= get_ston<game_properties>().k_world_scaling;
     sz.h *= get_ston<game_properties>().k_world_scaling;
@@ -19,7 +19,7 @@ namespace forr {
     }
   }
 
-  size world_area::get_size() const {
+  size world_area::get_sz() const {
     auto w{c_int(m_tiles.size())};
     auto h{0};
     if (w) {
@@ -28,19 +28,19 @@ namespace forr {
     return {w, h};
   }
 
-  bool world_area::is_valid_coordinate(int x, int y) const {
-    auto sz{get_size()};
+  bool world_area::is_valid_coord(int x, int y) const {
+    auto sz{get_sz()};
     return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
   }
 
-  s_ptr<tile> world_area::get_tile(int x, int y) const {
-    if (is_valid_coordinate(x, y)) {
+  s_ptr<tile> world_area::get_tl(int x, int y) const {
+    if (is_valid_coord(x, y)) {
       return m_tiles.at(x).at(y);
     }
     return nullptr;
   }
 
-  s_ptr<tile> world_area::get_tile(point coord) const {
-    return get_tile(coord.x, coord.y);
+  s_ptr<tile> world_area::get_tl(point coord) const {
+    return get_tl(coord.x, coord.y);
   }
 }
