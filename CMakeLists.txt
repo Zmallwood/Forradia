@@ -38,12 +38,12 @@ target_link_libraries(ForradiaTheme0WorldStruct ForradiaComm)
 
 
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES "src_theme_0/*.cpp")
 
 add_executable(Forradia ${SOURCES})
 
 target_include_directories(Forradia PRIVATE
-    "src"
+    "src_theme_0"
     "src_comm"
     "src_engine"
     "src_theme_0_world_struct"
@@ -54,11 +54,5 @@ target_link_libraries(Forradia PRIVATE
     ForradiaEngine
     ForradiaTheme0WorldStruct
 )
-
-#add_definitions(-include std_afx.hpp)
-#add_definitions(-include ../src_comm/comm.hpp)
-#add_definitions(-include ../src_world_struct/world_struct.hpp)
-
-#target_precompile_headers(Forradia PRIVATE src/std_afx.hpp)
 
 install(TARGETS Forradia RUNTIME DESTINATION bin)
