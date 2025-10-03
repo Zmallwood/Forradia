@@ -14,9 +14,9 @@ namespace forr {
   void world_view::render() const {
     auto grid_sz{calc_grid_sz()};
     auto tl_sz{calc_tl_sz()};
-    auto player_pos{_<player>().get_pos()};
-    auto w_area{_<world>().get_curr_w_area()};
-    auto player_elev{w_area->get_tl(player_pos)->get_elev()};
+    auto player_pos{_<player>().pos()};
+    auto w_area{_<world>().curr_w_area()};
+    auto player_elev{w_area->get_tl(player_pos)->elev()};
     auto extra_rows{8};
     for (auto i = 0; i < 3; i++) {
       for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
@@ -45,10 +45,10 @@ namespace forr {
           auto tl_ne{w_area->get_tl(coord_ne)};
           auto tl_sw{w_area->get_tl(coord_sw)};
           auto tl_se{w_area->get_tl(coord_se)};
-          auto ground{tl ? tl->get_ground() : 0};
+          auto ground{tl ? tl->ground() : 0};
           auto ground_type_rend{ground};
           x_canv = x * tl_sz.w;
-          y_canv = y * tl_sz.h - tl_nw->get_elev() * tl_sz.h / 2;
+          y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
           y_canv += player_elev * tl_sz.h / 2;
           w_canv = tl_sz.w;
           h_canv = ceil(tl_sz.h, 2.5f);
@@ -65,71 +65,71 @@ namespace forr {
               ground_name = "GroundRock";
             }
             str full_ground_name{ground_name};
-            if (tl_nw->get_elev() > tl_sw->get_elev() &&
-                tl_ne->get_elev() > tl_se->get_elev()) {
+            if (tl_nw->elev() > tl_sw->elev() &&
+                tl_ne->elev() > tl_se->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouth";
-            } else if (tl_nw->get_elev() < tl_sw->get_elev() &&
-                       tl_ne->get_elev() < tl_se->get_elev()) {
+            } else if (tl_nw->elev() < tl_sw->elev() &&
+                       tl_ne->elev() < tl_se->elev()) {
               h_canv -= tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeNorth";
-            } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
-                       tl_se->get_elev() > tl_sw->get_elev()) {
+            } else if (tl_ne->elev() > tl_nw->elev() &&
+                       tl_se->elev() > tl_sw->elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeWest";
-            } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
-                       tl_sw->get_elev() > tl_se->get_elev()) {
+            } else if (tl_nw->elev() > tl_ne->elev() &&
+                       tl_sw->elev() > tl_se->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeEast";
-            } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
-                       tl_nw->get_elev() > tl_se->get_elev() &&
-                       tl_nw->get_elev() > tl_sw->get_elev()) {
+            } else if (tl_nw->elev() > tl_ne->elev() &&
+                       tl_nw->elev() > tl_se->elev() &&
+                       tl_nw->elev() > tl_sw->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthEast";
-            } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
-                       tl_ne->get_elev() > tl_se->get_elev() &&
-                       tl_ne->get_elev() > tl_sw->get_elev()) {
+            } else if (tl_ne->elev() > tl_nw->elev() &&
+                       tl_ne->elev() > tl_se->elev() &&
+                       tl_ne->elev() > tl_sw->elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthWest";
-            } else if (tl_sw->get_elev() > tl_nw->get_elev() &&
-                       tl_sw->get_elev() > tl_se->get_elev() &&
-                       tl_sw->get_elev() > tl_ne->get_elev()) {
+            } else if (tl_sw->elev() > tl_nw->elev() &&
+                       tl_sw->elev() > tl_se->elev() &&
+                       tl_sw->elev() > tl_ne->elev()) {
               full_ground_name = ground_name + "SlopeNorthEast";
-            } else if (tl_se->get_elev() > tl_nw->get_elev() &&
-                       tl_se->get_elev() > tl_ne->get_elev() &&
-                       tl_se->get_elev() > tl_sw->get_elev()) {
+            } else if (tl_se->elev() > tl_nw->elev() &&
+                       tl_se->elev() > tl_ne->elev() &&
+                       tl_se->elev() > tl_sw->elev()) {
               full_ground_name = ground_name + "SlopeNorthWest";
-            } else if (tl_sw->get_elev() < tl_nw->get_elev() &&
-                       tl_sw->get_elev() < tl_ne->get_elev() &&
-                       tl_sw->get_elev() < tl_se->get_elev()) {
+            } else if (tl_sw->elev() < tl_nw->elev() &&
+                       tl_sw->elev() < tl_ne->elev() &&
+                       tl_sw->elev() < tl_se->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthWestInverted";
-            } else if (tl_se->get_elev() < tl_nw->get_elev() &&
-                       tl_se->get_elev() < tl_ne->get_elev() &&
-                       tl_se->get_elev() < tl_sw->get_elev()) {
+            } else if (tl_se->elev() < tl_nw->elev() &&
+                       tl_se->elev() < tl_ne->elev() &&
+                       tl_se->elev() < tl_sw->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeSouthEastInverted";
-            } else if (tl_nw->get_elev() < tl_ne->get_elev() &&
-                       tl_nw->get_elev() < tl_sw->get_elev() &&
-                       tl_nw->get_elev() < tl_se->get_elev()) {
+            } else if (tl_nw->elev() < tl_ne->elev() &&
+                       tl_nw->elev() < tl_sw->elev() &&
+                       tl_nw->elev() < tl_se->elev()) {
               y_canv -= tl_sz.h / 2;
               full_ground_name = ground_name + "SlopeNorthWestInverted";
-            } else if (tl_ne->get_elev() < tl_nw->get_elev() &&
-                       tl_ne->get_elev() < tl_sw->get_elev() &&
-                       tl_ne->get_elev() < tl_se->get_elev()) {
+            } else if (tl_ne->elev() < tl_nw->elev() &&
+                       tl_ne->elev() < tl_sw->elev() &&
+                       tl_ne->elev() < tl_se->elev()) {
               full_ground_name = ground_name + "SlopeNorthEastInverted";
-            } else if (tl_sw->get_elev() == tl_ne->get_elev() &&
-                       tl_nw->get_elev() < tl_sw->get_elev() &&
-                       tl_se->get_elev() < tl_sw->get_elev()) {
+            } else if (tl_sw->elev() == tl_ne->elev() &&
+                       tl_nw->elev() < tl_sw->elev() &&
+                       tl_se->elev() < tl_sw->elev()) {
               y_canv -= tl_sz.h / 2;
               h_canv += tl_sz.h / 2;
               full_ground_name =
                   ground_name + "SlopeDiagonalSouthWestToNorthEast";
-            } else if (tl_nw->get_elev() == tl_se->get_elev() &&
-                       tl_ne->get_elev() < tl_nw->get_elev() &&
-                       tl_sw->get_elev() < tl_nw->get_elev()) {
+            } else if (tl_nw->elev() == tl_se->elev() &&
+                       tl_ne->elev() < tl_nw->elev() &&
+                       tl_sw->elev() < tl_nw->elev()) {
               h_canv += tl_sz.h / 2;
               full_ground_name =
                   ground_name + "SlopeDiagonalNorthWestToSouthEast";
@@ -154,8 +154,8 @@ namespace forr {
             _<image_renderer>().draw_img(ground_type_rend, x_canv, y_canv,
                                          w_canv, h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
-            vec<dirs> river_dirs{tl->get_river_dir_1(),
-                                       tl->get_river_dir_2()};
+            vec<dirs> river_dirs{tl->river_dir_1(),
+                                       tl->river_dir_2()};
             auto river_part_w{0.4f * w_canv};
             auto river_part_h{0.4f * h_canv};
             auto part_len{2.5f};
@@ -163,7 +163,7 @@ namespace forr {
                           3};
             for (auto j = 0; j < 2; j++) {
               switch (river_dirs.at(j)) {
-              case dirs::north: {
+              case dirs::n: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 - river_part_h / 2 -
@@ -174,7 +174,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::east: {
+              case dirs::e: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 +
                                k * river_part_w,
@@ -185,7 +185,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::south: {
+              case dirs::s: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 + river_part_h / 2 +
@@ -196,7 +196,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::west: {
+              case dirs::w: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 -
                                k * river_part_w,
@@ -207,7 +207,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::north_east: {
+              case dirs::ne: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -218,7 +218,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::south_east: {
+              case dirs::se: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -229,7 +229,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::south_west: {
+              case dirs::sw: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
@@ -240,7 +240,7 @@ namespace forr {
                                                b.x, b.y, b.w, b.h);
                 }
               } break;
-              case dirs::north_west: {
+              case dirs::nw: {
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
@@ -267,7 +267,7 @@ namespace forr {
                                              std::to_string(anim_idx),
                                          x_canv, y_canv, w_canv, h_canv);
 
-            for (auto i = 0; i < tl->get_elev(); i++) {
+            for (auto i = 0; i < tl->elev(); i++) {
               _<image_renderer>().draw_img("GroundWaterHeight", x_canv, y_canv,
                                            w_canv, h_canv);
             }
@@ -278,7 +278,7 @@ namespace forr {
             // tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2,
             // tileSize.width * 4, tileSize.height * 4);
             if (ground == hash("GroundWater")) {
-              for (auto i = 0; i < tl->get_water_depth(); i++) {
+              for (auto i = 0; i < tl->water_depth(); i++) {
                 _<image_renderer>().draw_img("GroundWaterDepth", x_canv, y_canv,
                                              w_canv, h_canv);
               }
@@ -332,12 +332,12 @@ namespace forr {
           //         widthCanvas, heightCanvas);
           //     }
           // }
-          auto hovered_coord{_<tile_hovering>().get_hovered_coord()};
+          auto hovered_coord{_<tile_hovering>().hovered_coord()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
             _<image_renderer>().draw_img("HoveredTile", x_canv, y_canv, w_canv,
                                          h_canv);
           }
-          auto player_dest{_<player>().get_dest()};
+          auto player_dest{_<player>().dest()};
           if (x_coord == player_dest.x && y_coord == player_dest.y) {
             _<image_renderer>().draw_img("DestinationTile", x_canv, y_canv,
                                          w_canv, h_canv);
@@ -348,20 +348,20 @@ namespace forr {
             _<image_renderer>().draw_img("Player", x_canv, y_canv, tl_sz.w,
                                          tl_sz.h);
           }
-          auto objs_stack{tl ? tl->get_objects_stack() : nullptr};
+          auto objs_stack{tl ? tl->objects_stack() : nullptr};
           if (objs_stack) {
-            for (const auto &obj : objs_stack->get_objs()) {
-              if (obj->get_type() != hash("ObjectPinkFlower")) {
+            for (const auto &obj : objs_stack->objects()) {
+              if (obj->type() != hash("ObjectPinkFlower")) {
                 _<image_renderer>().draw_img("Shadow", x_canv, y_canv, tl_sz.w,
                                              tl_sz.h);
               }
-              auto obj_type{obj->get_type()};
+              auto obj_type{obj->type()};
               if (obj_type == hash("ObjectFirTree") ||
                   obj_type == hash("ObjectBirchTree")) {
                 auto tree_obj{std::static_pointer_cast<forr::tree_object>(obj)};
-                auto trunk_parts{tree_obj->get_trunk_parts()};
-                auto needleTypes{tree_obj->get_needle_types()};
-                auto w_factor{tree_obj->get_w_factor()};
+                auto trunk_parts{tree_obj->trunk_parts()};
+                auto needleTypes{tree_obj->needle_types()};
+                auto w_factor{tree_obj->w_factor()};
                 for (auto i = 0; i < trunk_parts.size(); i++) {
                   auto trunk_part{trunk_parts.at(i)};
                   auto needle_type{needleTypes.at(i)};
@@ -408,9 +408,9 @@ namespace forr {
                   y_canv + tl_sz.h - obj_h, obj_w, obj_h);
             }
           }
-          auto crea{tl ? tl->get_creature() : nullptr};
+          auto crea{tl ? tl->creature() : nullptr};
           if (crea) {
-            auto crea_type{crea->get_type()};
+            auto crea_type{crea->type()};
             auto crea_img_sz{_<image_bank>().get_img_sz(crea_type)};
             auto crea_w{crea_img_sz.w / 60.0f * tl_sz.w};
             auto crea_h{crea_img_sz.h / 60.0f * tl_sz.h};
@@ -418,9 +418,9 @@ namespace forr {
                 crea_type, x_canv + tl_sz.w / 2 - crea_w / 2,
                 y_canv + tl_sz.h - crea_h, crea_w, crea_h);
           }
-          auto npc{tl ? tl->get_npc() : nullptr};
+          auto npc{tl ? tl->npc() : nullptr};
           if (npc) {
-            auto npc_type{npc->get_type()};
+            auto npc_type{npc->type()};
             auto npc_img_sz{_<image_bank>().get_img_sz(npc_type)};
             auto npc_w{npc_img_sz.w / 60.0f * tl_sz.w};
             auto npc_h{npc_img_sz.h / 60.0f * tl_sz.h};

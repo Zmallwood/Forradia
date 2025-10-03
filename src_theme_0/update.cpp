@@ -30,8 +30,8 @@ namespace forr {
       _<player>().set_dest({-1, -1});
     }
     auto now{ticks()};
-    if (now >= _<player>().get_ticks_last_move() +
-                   inv_movem_spd(_<player>().get_movem_spd()) &&
+    if (now >= _<player>().ticks_last_move() +
+                   inv_movem_spd(_<player>().movem_spd()) &&
         (up_press || right_press || down_press || left_press)) {
       if (up_press) {
         _<player>().move_n();
@@ -50,18 +50,18 @@ namespace forr {
   }
 
   void update_mouse_movem() {
-    if (_<mouse_input>().get_left_btn_ref().get_been_fired_pick_result()) {
-      auto new_dest{_<tile_hovering>().get_hovered_coord()};
+    if (_<mouse_input>().left_btn_ref().been_fired_pick_result()) {
+      auto new_dest{_<tile_hovering>().hovered_coord()};
       _<player>().set_dest(new_dest);
     }
-    auto player_pos{_<player>().get_pos()};
-    auto dest{_<player>().get_dest()};
+    auto player_pos{_<player>().pos()};
+    auto dest{_<player>().dest()};
     if (dest == pt{-1, -1}) {
       return;
     }
     auto now{ticks()};
-    if (now >= _<player>().get_ticks_last_move() +
-                   inv_movem_spd(_<player>().get_movem_spd())) {
+    if (now >= _<player>().ticks_last_move() +
+                   inv_movem_spd(_<player>().movem_spd())) {
       auto dx{dest.x - player_pos.x};
       auto dy{dest.y - player_pos.y};
       if (dx < 0) {
@@ -84,38 +84,38 @@ namespace forr {
   }
 
   void update_crea_movem() {
-    auto w_area{_<world>().get_curr_w_area()};
-    auto &creas{w_area->get_creatures_mirror_ref()};
+    auto w_area{_<world>().curr_w_area()};
+    auto &creas{w_area->creatures_mirror_ref()};
     auto now{ticks()};
     for (auto it = creas.begin(); it != creas.end();) {
       auto crea{it->first};
       auto pos{it->second};
       if (now <
-          crea->get_ticks_last_move() + inv_movem_spd(crea->get_movem_spd())) {
+          crea->ticks_last_move() + inv_movem_spd(crea->movem_spd())) {
         ++it;
         continue;
       }
-      auto dest{crea->get_dest()};
+      auto dest{crea->dest()};
       if (dest.x == -1 && dest.y == -1) {
         auto new_dest{pos.x + rand_int(11) - 5};
         auto new_destination_y{pos.y + rand_int(11) - 5};
         crea->set_dest({new_dest, new_destination_y});
       }
-      auto w_area{_<world>().get_curr_w_area()};
-      auto &creas{w_area->get_creatures_mirror_ref()};
-      auto dx{crea->get_dest().x - pos.x};
-      auto dy{crea->get_dest().y - pos.y};
+      auto w_area{_<world>().curr_w_area()};
+      auto &creas{w_area->creatures_mirror_ref()};
+      auto dx{crea->dest().x - pos.x};
+      auto dy{crea->dest().y - pos.y};
       auto norm_dx{normalize(dx)};
       auto norm_dy{normalize(dy)};
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
       pt new_pos{new_x, new_y};
-      if (new_pos == crea->get_dest()) {
+      if (new_pos == crea->dest()) {
         crea->set_dest({-1, -1});
       }
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
-      if (tl && !tl->get_creature() &&
-          tl->get_ground() != hash("GroundWater")) {
+      if (tl && !tl->creature() &&
+          tl->ground() != hash("GroundWater")) {
         auto old_pos{creas.at(crea)};
         crea->set_ticks_last_move(now);
         auto old_tile{w_area->get_tl(old_pos.x, old_pos.y)};
@@ -132,15 +132,15 @@ namespace forr {
   }
 
   void update_npcs() {
-    auto w_area{_<world>().get_curr_w_area()};
-    auto &npcs{w_area->get_npcs_mirror_ref()};
+    auto w_area{_<world>().curr_w_area()};
+    auto &npcs{w_area->npcs_mirror_ref()};
     auto now{ticks()};
     for (auto it = npcs.begin(); it != npcs.end();) {
       auto npc{it->first};
       auto pos{it->second};
 
-      if (now > npc->get_ticks_next_spontaneous_speech()) {
-        auto name{npc->get_name()};
+      if (now > npc->ticks_next_spontaneous_speech()) {
+        auto name{npc->name()};
         if (rand_int(20) == 0) {
           _<gui_text_console>().print(name +
                                       ": Buying blueberries, one gold each.");
@@ -152,28 +152,28 @@ namespace forr {
       }
 
       if (now <
-          npc->get_ticks_last_move() + inv_movem_spd(npc->get_movem_spd())) {
+          npc->ticks_last_move() + inv_movem_spd(npc->movem_spd())) {
         ++it;
         continue;
       }
-      auto dest{npc->get_dest()};
+      auto dest{npc->dest()};
       if (dest.x == -1 && dest.y == -1) {
         auto new_dest_x{pos.x + rand_int(11) - 5};
         auto new_dest_y{pos.y + rand_int(11) - 5};
         npc->set_dest({new_dest_x, new_dest_y});
       }
-      auto dx{npc->get_dest().x - pos.x};
-      auto dy{npc->get_dest().y - pos.y};
+      auto dx{npc->dest().x - pos.x};
+      auto dy{npc->dest().y - pos.y};
       auto norm_dx{normalize(dx)};
       auto norm_dy{normalize(dy)};
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
       auto new_pos{pt{new_x, new_y}};
-      if (new_pos == npc->get_dest()) {
+      if (new_pos == npc->dest()) {
         npc->set_dest({-1, -1});
       }
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
-      if (tl && !tl->get_npc() && tl->get_ground() != hash("GroundWater")) {
+      if (tl && !tl->npc() && tl->ground() != hash("GroundWater")) {
         auto old_pos{pos};
         npc->set_ticks_last_move(now);
         auto old_tl{w_area->get_tl(old_pos.x, old_pos.y)};
@@ -190,7 +190,7 @@ namespace forr {
   }
 
   void tile_hovering::update() {
-    auto player_pos{_<player>().get_pos()};
+    auto player_pos{_<player>().pos()};
     auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
     auto tl_sz{calc_tl_sz()};
     auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
@@ -198,11 +198,11 @@ namespace forr {
     auto hovered_x_coord{player_pos.x - (grid_sz.w - 1) / 2 + screen_rel_x};
     auto screen_rel_x_px{
         (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) * tl_sz.w};
-    auto w_area{_<world>().get_curr_w_area()};
+    auto w_area{_<world>().curr_w_area()};
     auto extra_rows{8};
     auto top_y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2) - extra_rows};
     auto player_tl{w_area->get_tl(player_pos)};
-    auto player_elev{player_tl ? w_area->get_tl(player_pos)->get_elev() : 0};
+    auto player_elev{player_tl ? w_area->get_tl(player_pos)->elev() : 0};
     auto screen_rel_y_px{-extra_rows * tl_sz.h};
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       auto y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2 + y)};
@@ -213,7 +213,7 @@ namespace forr {
                           player_elev * tl_sz.h / 2;
         continue;
       }
-      auto elev{tl->get_elev()};
+      auto elev{tl->elev()};
       screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
                         (player_elev - elev) * tl_sz.h / 2;
       auto coord_nw{pt{coord.x, coord.y}};
@@ -234,57 +234,57 @@ namespace forr {
         continue;
       }
       float local_tl_h;
-      if (tl_nw->get_elev() > tl_sw->get_elev() &&
-          tl_ne->get_elev() > tl_se->get_elev()) {
+      if (tl_nw->elev() > tl_sw->elev() &&
+          tl_ne->elev() > tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->get_elev() < tl_sw->get_elev() &&
-                 tl_ne->get_elev() < tl_se->get_elev()) {
+      } else if (tl_nw->elev() < tl_sw->elev() &&
+                 tl_ne->elev() < tl_se->elev()) {
         local_tl_h = tl_sz.h * 0.5f;
-      } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
-                 tl_se->get_elev() > tl_sw->get_elev()) {
+      } else if (tl_ne->elev() > tl_nw->elev() &&
+                 tl_se->elev() > tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
-                 tl_sw->get_elev() > tl_se->get_elev()) {
+      } else if (tl_nw->elev() > tl_ne->elev() &&
+                 tl_sw->elev() > tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->get_elev() > tl_ne->get_elev() &&
-                 tl_nw->get_elev() > tl_se->get_elev() &&
-                 tl_nw->get_elev() > tl_sw->get_elev()) {
+      } else if (tl_nw->elev() > tl_ne->elev() &&
+                 tl_nw->elev() > tl_se->elev() &&
+                 tl_nw->elev() > tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_ne->get_elev() > tl_nw->get_elev() &&
-                 tl_ne->get_elev() > tl_se->get_elev() &&
-                 tl_ne->get_elev() > tl_sw->get_elev()) {
+      } else if (tl_ne->elev() > tl_nw->elev() &&
+                 tl_ne->elev() > tl_se->elev() &&
+                 tl_ne->elev() > tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_sw->get_elev() > tl_nw->get_elev() &&
-                 tl_sw->get_elev() > tl_se->get_elev() &&
-                 tl_sw->get_elev() > tl_ne->get_elev()) {
+      } else if (tl_sw->elev() > tl_nw->elev() &&
+                 tl_sw->elev() > tl_se->elev() &&
+                 tl_sw->elev() > tl_ne->elev()) {
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_se->get_elev() > tl_nw->get_elev() &&
-                 tl_se->get_elev() > tl_ne->get_elev() &&
-                 tl_se->get_elev() > tl_sw->get_elev()) {
+      } else if (tl_se->elev() > tl_nw->elev() &&
+                 tl_se->elev() > tl_ne->elev() &&
+                 tl_se->elev() > tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_sw->get_elev() < tl_nw->get_elev() &&
-                 tl_sw->get_elev() < tl_ne->get_elev() &&
-                 tl_sw->get_elev() < tl_se->get_elev()) {
+      } else if (tl_sw->elev() < tl_nw->elev() &&
+                 tl_sw->elev() < tl_ne->elev() &&
+                 tl_sw->elev() < tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_se->get_elev() < tl_nw->get_elev() &&
-                 tl_se->get_elev() < tl_ne->get_elev() &&
-                 tl_se->get_elev() < tl_sw->get_elev()) {
+      } else if (tl_se->elev() < tl_nw->elev() &&
+                 tl_se->elev() < tl_ne->elev() &&
+                 tl_se->elev() < tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->get_elev() < tl_ne->get_elev() &&
-                 tl_nw->get_elev() < tl_sw->get_elev() &&
-                 tl_nw->get_elev() < tl_se->get_elev()) {
+      } else if (tl_nw->elev() < tl_ne->elev() &&
+                 tl_nw->elev() < tl_sw->elev() &&
+                 tl_nw->elev() < tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_ne->get_elev() < tl_nw->get_elev() &&
-                 tl_ne->get_elev() < tl_sw->get_elev() &&
-                 tl_ne->get_elev() < tl_se->get_elev()) {
+      } else if (tl_ne->elev() < tl_nw->elev() &&
+                 tl_ne->elev() < tl_sw->elev() &&
+                 tl_ne->elev() < tl_se->elev()) {
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_sw->get_elev() == tl_ne->get_elev() &&
-                 tl_nw->get_elev() < tl_sw->get_elev() &&
-                 tl_se->get_elev() < tl_sw->get_elev()) {
+      } else if (tl_sw->elev() == tl_ne->elev() &&
+                 tl_nw->elev() < tl_sw->elev() &&
+                 tl_se->elev() < tl_sw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->get_elev() == tl_se->get_elev() &&
-                 tl_ne->get_elev() < tl_nw->get_elev() &&
-                 tl_sw->get_elev() < tl_nw->get_elev()) {
+      } else if (tl_nw->elev() == tl_se->elev() &&
+                 tl_ne->elev() < tl_nw->elev() &&
+                 tl_sw->elev() < tl_nw->elev()) {
         local_tl_h = tl_sz.h * 1.5f;
       } else {
         local_tl_h = tl_sz.h;

@@ -75,7 +75,7 @@ namespace forr {
     if (hovered) {
       set_bg_img(hovered_bg_img_);
       _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
-      if (_<mouse_input>().get_left_btn_ref().get_been_fired_pick_result()) {
+      if (_<mouse_input>().left_btn_ref().been_fired_pick_result()) {
         action_();
       }
     } else {
@@ -95,21 +95,21 @@ namespace forr {
     auto drag_area{get_drag_area()};
     if (drag_area.contains(mouse_pos)) {
       _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
-      if (_<mouse_input>().get_left_btn_ref().get_been_fired_pick_result()) {
+      if (_<mouse_input>().left_btn_ref().been_fired_pick_result()) {
         start_move();
       }
     }
     if (_<mouse_input>()
-            .get_left_btn_ref()
-            .get_been_released_dont_pick_result()) {
+            .left_btn_ref()
+            .been_released_dont_pick_result()) {
       stop_move();
     }
     auto b{bounds()};
     if (b.contains(mouse_pos)) {
       if (_<mouse_input>()
-              .get_left_btn_ref()
-              .get_been_fired_dont_pick_result()) {
-        _<mouse_input>().get_left_btn_ref().reset();
+              .left_btn_ref()
+              .been_fired_dont_pick_result()) {
+        _<mouse_input>().left_btn_ref().reset();
       }
     }
     if (being_moved()) {
@@ -138,7 +138,7 @@ namespace forr {
                                 colors::yellow);
   }
 
-  rect_f gui_window::gui_window_title_bar::get_bounds() const {
+  rect_f gui_window::gui_window_title_bar::bounds() const {
     rect_f b_res;
     auto parent_win_b{parent_win_.bounds()};
     b_res.x = parent_win_b.x;
@@ -154,7 +154,7 @@ namespace forr {
     gui_win_title_bar_.render();
   }
 
-  rect_f gui_window::get_drag_area() { return gui_win_title_bar_.get_bounds(); }
+  rect_f gui_window::get_drag_area() { return gui_win_title_bar_.bounds(); }
 
   void gui_fps_panel::init() {
     fps_text_pnl_ = std::make_shared<gui_label>(0.01f, 0.01f, 0.1f, 0.05f);

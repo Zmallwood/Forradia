@@ -150,7 +150,7 @@ namespace forr {
 
       void render() const;
 
-      rect_f get_bounds() const;
+      rect_f bounds() const;
 
      private:
       inline static const float k_h{0.04f};

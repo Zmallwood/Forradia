@@ -10,10 +10,10 @@ namespace forr {
 
   class body_part {
    public:
-    auto get_str() const { return str_; }
-    auto get_curr_energy() const { return curr_energy_; }
-    auto get_max_energy() const { return max_energy_; }
-    auto get_temp() const { return temp_; }
+    auto str() const { return str_; }
+    auto curr_energy() const { return curr_energy_; }
+    auto max_energy() const { return max_energy_; }
+    auto temp() const { return temp_; }
 
    private:
     float str_{0.1f};
@@ -26,7 +26,7 @@ namespace forr {
    public:
     player_body() { init(); }
 
-    body_part *get_body_part_ptr(body_part_types type);
+    body_part *body_part_ptr(body_part_types type);
 
    private:
     void init();
@@ -46,23 +46,23 @@ namespace forr {
 
     void move_w();
 
-    auto get_name() const { return name_; }
+    auto name() const { return name_; }
 
-    auto get_pos() const { return pos_; }
+    auto pos() const { return pos_; }
 
-    auto get_movem_spd() const { return movem_spd_; }
+    auto movem_spd() const { return movem_spd_; }
 
-    auto get_ticks_last_move() const { return ticks_last_move_; }
+    auto ticks_last_move() const { return ticks_last_move_; }
 
     void set_ticks_last_move(int val) { ticks_last_move_ = val; }
 
-    auto get_dest() const { return dest_; }
+    auto dest() const { return dest_; }
 
     void set_dest(pt val) { dest_ = val; }
 
-    auto &get_body_ref() { return body_; }
+    auto &body_ref() { return body_; }
 
-    auto get_money() const { return money_; }
+    auto money() const { return money_; }
 
    private:
     void init();

@@ -11,7 +11,7 @@ namespace forr {
   void gui_player_status_panel::render_derived() const {
     gui_panel::render_derived();
     auto b{bounds()};
-    _<text_renderer>().draw_str(_<player>().get_name(), b.x + 0.01f,
+    _<text_renderer>().draw_str(_<player>().name(), b.x + 0.01f,
                                 b.y + 0.01f, font_sizes::_26);
   }
 
@@ -19,7 +19,7 @@ namespace forr {
 
   void gui_system_menu::update_derived() {
     gui_component::update_derived();
-    _<mouse_input>().get_left_btn_ref().reset();
+    _<mouse_input>().left_btn_ref().reset();
   }
 
   void gui_system_menu::render_derived() const {
@@ -90,62 +90,62 @@ namespace forr {
   }
 
   void gui_player_body_window::update_body_part_info_lbls() {
-    auto &p_body{_<player>().get_body_ref()};
+    auto &p_body{_<player>().body_ref()};
     switch (sel_body_part_) {
     case body_part_types::overall_body: {
       lbl_body_part_name_->set_text("Body part: Overall body");
       auto str{
-          p_body.get_body_part_ptr(body_part_types::overall_body)->get_str()};
+          p_body.body_part_ptr(body_part_types::overall_body)->str()};
       lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
-      auto max_energy{p_body.get_body_part_ptr(body_part_types::overall_body)
-                          ->get_max_energy()};
-      auto curr_energy{p_body.get_body_part_ptr(body_part_types::overall_body)
-                           ->get_curr_energy()};
+      auto max_energy{p_body.body_part_ptr(body_part_types::overall_body)
+                          ->max_energy()};
+      auto curr_energy{p_body.body_part_ptr(body_part_types::overall_body)
+                           ->curr_energy()};
       lbl_body_part_energy_->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
       auto temp{
-          p_body.get_body_part_ptr(body_part_types::overall_body)->get_temp()};
+          p_body.body_part_ptr(body_part_types::overall_body)->temp()};
       lbl_body_part_temp_->set_text(fmt::format("Temperature: {:.2f} C", temp));
     } break;
     case body_part_types::right_arm: {
       lbl_body_part_name_->set_text("Body part: Right arm");
-      auto str{p_body.get_body_part_ptr(body_part_types::right_arm)->get_str()};
+      auto str{p_body.body_part_ptr(body_part_types::right_arm)->str()};
       lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
-      auto max_energy{p_body.get_body_part_ptr(body_part_types::right_arm)
-                          ->get_max_energy()};
-      auto curr_energy{p_body.get_body_part_ptr(body_part_types::right_arm)
-                           ->get_curr_energy()};
+      auto max_energy{p_body.body_part_ptr(body_part_types::right_arm)
+                          ->max_energy()};
+      auto curr_energy{p_body.body_part_ptr(body_part_types::right_arm)
+                           ->curr_energy()};
       lbl_body_part_energy_->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
       auto temp{
-          p_body.get_body_part_ptr(body_part_types::right_arm)->get_temp()};
+          p_body.body_part_ptr(body_part_types::right_arm)->temp()};
       lbl_body_part_temp_->set_text(fmt::format("Temperature: {:.2f} C", temp));
     } break;
     case body_part_types::left_arm: {
       lbl_body_part_name_->set_text("Body part: Left arm");
-      auto str{p_body.get_body_part_ptr(body_part_types::left_arm)->get_str()};
+      auto str{p_body.body_part_ptr(body_part_types::left_arm)->str()};
       lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
-      auto max_energy{p_body.get_body_part_ptr(body_part_types::left_arm)
-                          ->get_max_energy()};
-      auto curr_energy{p_body.get_body_part_ptr(body_part_types::left_arm)
-                           ->get_curr_energy()};
+      auto max_energy{p_body.body_part_ptr(body_part_types::left_arm)
+                          ->max_energy()};
+      auto curr_energy{p_body.body_part_ptr(body_part_types::left_arm)
+                           ->curr_energy()};
       lbl_body_part_energy_->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
       auto temp{
-          p_body.get_body_part_ptr(body_part_types::left_arm)->get_temp()};
+          p_body.body_part_ptr(body_part_types::left_arm)->temp()};
       lbl_body_part_temp_->set_text(fmt::format("Temperature: {:.2f} C", temp));
     } break;
     case body_part_types::legs: {
       lbl_body_part_name_->set_text("Body part: Legs");
-      auto str{p_body.get_body_part_ptr(body_part_types::legs)->get_str()};
+      auto str{p_body.body_part_ptr(body_part_types::legs)->str()};
       lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
       auto max_energy{
-          p_body.get_body_part_ptr(body_part_types::legs)->get_max_energy()};
+          p_body.body_part_ptr(body_part_types::legs)->max_energy()};
       auto curr_energy{
-          p_body.get_body_part_ptr(body_part_types::legs)->get_curr_energy()};
+          p_body.body_part_ptr(body_part_types::legs)->curr_energy()};
       lbl_body_part_energy_->set_text(
           fmt::format("Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-      auto temp{p_body.get_body_part_ptr(body_part_types::legs)->get_temp()};
+      auto temp{p_body.body_part_ptr(body_part_types::legs)->temp()};
       lbl_body_part_temp_->set_text(fmt::format("Temperature: {:.2f} C", temp));
     } break;
     }

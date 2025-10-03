@@ -6,67 +6,57 @@
 #include "comm.hpp"
 
 namespace forr {
-  enum class dirs {
-    none,
-    north,
-    east,
-    south,
-    west,
-    north_east,
-    south_east,
-    south_west,
-    north_west
-  };
+  enum class dirs { none, n, e, s, w, ne, se, sw, nw };
 
   class creature {
    public:
-    creature(str_view type_name) : m_type{hash(type_name)} { init(); }
+    creature(str_view type_name) : type_{hash(type_name)} { init(); }
 
-    auto get_type() const { return m_type; }
+    auto type() const { return type_; }
 
-    auto get_ticks_last_move() const { return m_ticks_last_move; }
+    auto ticks_last_move() const { return ticks_last_move_; }
 
-    void set_ticks_last_move(int value) { m_ticks_last_move = value; }
+    void set_ticks_last_move(int value) { ticks_last_move_ = value; }
 
-    auto get_movem_spd() const { return m_movem_spd; }
+    auto movem_spd() const { return movem_spd_; }
 
-    auto get_dest() const { return m_dest; }
+    auto dest() const { return dest_; }
 
-    void set_dest(pt val) { m_dest = val; }
+    void set_dest(pt val) { dest_ = val; }
 
    private:
     void init();
 
-    int m_type{0};
-    int m_ticks_last_move{0};
-    float m_movem_spd{2.0f};
-    pt m_dest{-1, -1};
+    int type_{0};
+    int ticks_last_move_{0};
+    float movem_spd_{2.0f};
+    pt dest_{-1, -1};
   };
 
   class npc {
    public:
-    npc(str_view type_name) : m_type{hash(type_name)} { init(); }
+    npc(str_view type_name) : type_{hash(type_name)} { init(); }
 
-    auto get_type() const { return m_type; }
+    auto type() const { return type_; }
 
-    auto get_name() const { return m_name; }
+    auto name() const { return name_; }
 
-    auto get_ticks_last_move() const { return m_ticks_last_move; }
+    auto ticks_last_move() const { return ticks_last_move_; }
 
-    void set_ticks_last_move(int value) { m_ticks_last_move = value; }
+    void set_ticks_last_move(int value) { ticks_last_move_ = value; }
 
-    auto get_movem_spd() const { return m_movem_spd; }
+    auto movem_spd() const { return movem_spd_; }
 
-    auto get_dest() const { return m_dest; }
+    auto dest() const { return dest_; }
 
-    void set_dest(pt val) { m_dest = val; }
+    void set_dest(pt val) { dest_ = val; }
 
-    auto get_ticks_next_spontaneous_speech() const {
-      return m_ticks_next_spontaneous_speech;
+    auto ticks_next_spontaneous_speech() const {
+      return ticks_next_spontaneous_speech_;
     }
 
     void set_ticks_next_spontaneous_speech(int value) {
-      m_ticks_next_spontaneous_speech = value;
+      ticks_next_spontaneous_speech_ = value;
     }
 
    private:
@@ -74,22 +64,22 @@ namespace forr {
 
     void gen_name();
 
-    int m_type{0};
-    str m_name;
-    int m_ticks_last_move{0};
-    float m_movem_spd{2.0f};
-    pt m_dest{-1, -1};
-    int m_ticks_next_spontaneous_speech{0};
+    int type_{0};
+    str name_;
+    int ticks_last_move_{0};
+    float movem_spd_{2.0f};
+    pt dest_{-1, -1};
+    int ticks_next_spontaneous_speech_{0};
   };
 
   class object {
    public:
-    object(str_view object_type_name) : m_type(hash(object_type_name)) {}
+    object(str_view object_type_name) : type_(hash(object_type_name)) {}
 
-    auto get_type() const { return m_type; }
+    auto type() const { return type_; }
 
    private:
-    int m_type{0};
+    int type_{0};
   };
 
   class tree_object : public object {
@@ -98,18 +88,18 @@ namespace forr {
       init(obj_type_name);
     }
 
-    auto get_trunk_parts() const { return m_trunk_parts; }
+    auto trunk_parts() const { return trunk_parts_; }
 
-    auto get_needle_types() const { return m_needle_types; }
+    auto needle_types() const { return needle_types_; }
 
-    auto get_w_factor() const { return m_w_factor; }
+    auto w_factor() const { return w_factor_; }
 
    private:
     void init(str_view obj_type_name);
 
-    vec<pt_f> m_trunk_parts;
-    vec<int> m_needle_types;
-    float m_w_factor{1.0f};
+    vec<pt_f> trunk_parts_;
+    vec<int> needle_types_;
+    float w_factor_{1.0f};
   };
 
   class objects_stack {
@@ -122,57 +112,57 @@ namespace forr {
 
     int get_sz() const;
 
-    auto get_objs() const { return m_objects; }
+    auto objects() const { return objects_; }
 
    private:
-    vec<s_ptr<object>> m_objects;
+    vec<s_ptr<object>> objects_;
   };
 
   class tile {
    public:
     tile() { init(); }
 
+    auto ground() const { return ground_; }
+
     void set_ground(str_view ground_name);
 
-    auto get_ground() const { return m_ground; }
+    auto objects_stack() const { return objects_stack_; }
 
-    auto get_objects_stack() const { return m_objects_stack; }
+    auto creature() const { return creature_; }
 
-    auto get_creature() const { return m_creature; }
+    void set_creature(s_ptr<forr::creature> val) { creature_ = val; }
 
-    void set_creature(s_ptr<creature> val) { m_creature = val; }
+    auto npc() const { return npc_; }
 
-    auto get_npc() const { return m_npc; }
+    void set_npc(s_ptr<forr::npc> val) { npc_ = val; }
 
-    void set_npc(s_ptr<npc> val) { m_npc = val; }
+    auto elev() const { return elev_; }
 
-    auto get_elev() const { return m_elev; }
+    void set_elev(int val) { elev_ = val; }
 
-    void set_elev(int val) { m_elev = val; }
+    auto water_depth() const { return water_depth_; }
 
-    auto get_water_depth() const { return m_water_depth; }
+    void set_water_depth(int val) { water_depth_ = val; }
 
-    void set_water_depth(int val) { m_water_depth = val; }
+    auto river_dir_1() const { return river_dir_1_; }
 
-    auto get_river_dir_1() const { return m_river_dir_1; }
+    void set_river_dir_1(dirs val) { river_dir_1_ = val; }
 
-    void set_river_dir_1(dirs val) { m_river_dir_1 = val; }
+    auto river_dir_2() const { return river_dir_2_; }
 
-    auto get_river_dir_2() const { return m_river_dir_2; }
-
-    void set_river_dir_2(dirs val) { m_river_dir_2 = val; }
+    void set_river_dir_2(dirs val) { river_dir_2_ = val; }
 
    private:
     void init();
 
-    int m_ground{0};
-    s_ptr<objects_stack> m_objects_stack;
-    s_ptr<creature> m_creature;
-    s_ptr<npc> m_npc;
-    int m_elev{0};
-    int m_water_depth{0};
-    dirs m_river_dir_1{dirs::none};
-    dirs m_river_dir_2{dirs::none};
+    int ground_{0};
+    s_ptr<forr::objects_stack> objects_stack_;
+    s_ptr<forr::creature> creature_;
+    s_ptr<forr::npc> npc_;
+    int elev_{0};
+    int water_depth_{0};
+    dirs river_dir_1_{dirs::none};
+    dirs river_dir_2_{dirs::none};
   };
 
   class world_area {
@@ -189,25 +179,25 @@ namespace forr {
 
     s_ptr<tile> get_tl(pt coord) const;
 
-    auto &get_creatures_mirror_ref() { return m_creatures_mirror; }
+    auto &creatures_mirror_ref() { return creatures_mirror_; }
 
-    auto &get_npcs_mirror_ref() { return m_npcs_mirror; }
+    auto &npcs_mirror_ref() { return npcs_mirror_; }
 
    private:
     void init(sz w_area_sz, float world_scaling);
 
-    vec<vec<s_ptr<tile>>> m_tiles;
-    std::map<s_ptr<creature>, pt> m_creatures_mirror;
-    std::map<s_ptr<npc>, pt> m_npcs_mirror;
+    vec<vec<s_ptr<tile>>> tiles_;
+    std::map<s_ptr<creature>, pt> creatures_mirror_;
+    std::map<s_ptr<npc>, pt> npcs_mirror_;
   };
 
   class world {
    public:
     void init(sz w_area_sz, float world_scaling);
 
-    auto get_curr_w_area() const { return m_curr_w_area; }
+    auto curr_w_area() const { return curr_w_area_; }
 
    private:
-    s_ptr<world_area> m_curr_w_area;
+    s_ptr<world_area> curr_w_area_;
   };
 }

@@ -40,13 +40,13 @@ namespace forr {
 
     bool pressed_pick_result();
 
-    bool get_been_fired_pick_result();
+    bool been_fired_pick_result();
 
-    bool get_been_fired_dont_pick_result();
+    bool been_fired_dont_pick_result();
 
-    bool get_been_released_pick_result();
+    bool been_released_pick_result();
 
-    bool get_been_released_dont_pick_result();
+    bool been_released_dont_pick_result();
 
    private:
     bool pressed_{false};
@@ -64,9 +64,9 @@ namespace forr {
 
     bool any_mouse_button_pressed_pick_result();
 
-    auto &get_left_btn_ref() { return left_btn_; }
+    auto &left_btn_ref() { return left_btn_; }
 
-    auto &get_right_btn_ref() { return right_btn_; }
+    auto &right_btn_ref() { return right_btn_; }
 
    private:
     mouse_button left_btn_;

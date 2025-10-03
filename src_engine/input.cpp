@@ -55,21 +55,21 @@ namespace forr {
     return res;
   }
 
-  bool mouse_button::get_been_fired_pick_result() {
+  bool mouse_button::been_fired_pick_result() {
     auto res{been_fired_};
     been_fired_ = false;
     return res;
   }
 
-  bool mouse_button::get_been_fired_dont_pick_result() { return been_fired_; }
+  bool mouse_button::been_fired_dont_pick_result() { return been_fired_; }
 
-  bool mouse_button::get_been_released_pick_result() {
+  bool mouse_button::been_released_pick_result() {
     auto res{been_released_};
     been_released_ = false;
     return res;
   }
 
-  bool mouse_button::get_been_released_dont_pick_result() {
+  bool mouse_button::been_released_dont_pick_result() {
     return been_released_;
   }
 

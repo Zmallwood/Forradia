@@ -85,10 +85,6 @@ namespace forr {
   void main_scene::init_derived() {
     gui()->add_child_component(std::make_shared<gui_player_status_panel>());
     gui()->add_child_component(__<gui_text_console>());
-    //gui()->add_child_component(std::make_shared<gui_button>(
-//        0.78f, 0.9f, 0.05f, conv_w_to_h(.05f, _<sdl_device>().win()), "hej", [] {},
-//        "GUIButtonPlayerBodyBackground",
-//        "GUIButtonPlayerBodyHoveredBackground"));
     gui()->add_child_component(std::make_shared<gui_button>(
         0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
         [] {

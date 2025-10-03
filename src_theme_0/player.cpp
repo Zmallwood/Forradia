@@ -14,7 +14,7 @@ namespace forr {
     parts_.insert({body_part_types::legs, body_part()});
   }
 
-  body_part *player_body::get_body_part_ptr(body_part_types type) {
+  body_part *player_body::body_part_ptr(body_part_types type) {
     if (parts_.contains(type)) {
       return &parts_.at(type);
     }
@@ -24,10 +24,10 @@ namespace forr {
   void player::init() { move_to_suitable_pos(); }
 
   void player::move_to_suitable_pos() {
-    auto w_area{_<world>().get_curr_w_area()};
+    auto w_area{_<world>().curr_w_area()};
     auto sz{w_area->get_sz()};
     pos_ = {sz.w / 2, sz.h / 2};
-    while (w_area->get_tl(pos_)->get_ground() == hash("GroundWater")) {
+    while (w_area->get_tl(pos_)->ground() == hash("GroundWater")) {
       pos_ = {rand_int(sz.w), rand_int(sz.h)};
     }
   }
