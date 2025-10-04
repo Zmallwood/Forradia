@@ -7,7 +7,8 @@
 #include "world_struct.hpp"
 
 namespace forr {
-  void world_grator::gen_new_world() const {
+  void world_grator::gen_new_world() {
+    prep();
     clear_with_dirt();
     gen_grass();
     gen_lakes();
@@ -19,14 +20,16 @@ namespace forr {
     gen_npcs();
   }
 
+  void world_grator::prep() {
+    w_area_ = _<world>().curr_w_area();
+    scale_ = _<game_props>().k_world_scaling;
+    sz_ = w_area_->get_sz();
+  }
+
   void world_grator::clear_with_dirt() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    sz.w *= _<game_props>().k_world_scaling;
-    sz.h *= _<game_props>().k_world_scaling;
-    for (auto y = 0; y < sz.h; y++) {
-      for (auto x = 0; x < sz.w; x++) {
-        auto tl{w_area->get_tl(x, y)};
+    for (auto y = 0; y < sz_.h; y++) {
+      for (auto x = 0; x < sz_.w; x++) {
+        auto tl{w_area_->get_tl(x, y)};
         if (tl) {
           tl->set_ground("GroundDirt");
         }
@@ -35,23 +38,20 @@ namespace forr {
   }
 
   void world_grator::gen_grass() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
     auto num_grass_areas{50 + rand_int(20)};
     for (auto i = 0; i < num_grass_areas; i++) {
-      auto x_cent{rand_int(sz.w)};
-      auto y_cent{rand_int(sz.h)};
-      auto r{3 * scale + rand_int(10 * scale)};
+      auto x_cent{rand_int(sz_.w)};
+      auto y_cent{rand_int(sz_.h)};
+      auto r{3 * scale_ + rand_int(10 * scale_)};
       for (auto y = y_cent - r; y <= y_cent + r; y++) {
         for (auto x = x_cent - r; x <= x_cent + r; x++) {
-          if (!w_area->is_valid_coord(x, y)) {
+          if (!w_area_->is_valid_coord(x, y)) {
             continue;
           }
           auto dx{x - x_cent};
           auto dy{y - y_cent};
           if (dx * dx + dy * dy <= r * r) {
-            auto tl{w_area->get_tl(x, y)};
+            auto tl{w_area_->get_tl(x, y)};
             tl->set_ground("GroundGrass");
           }
         }
@@ -64,18 +64,16 @@ namespace forr {
     if (recurs == 0) {
       return;
     }
-    auto w_area{_<world>().curr_w_area()};
-    auto scale{_<game_props>().k_world_scaling};
     auto x_cent{min_x + rand_int(max_x - min_x)};
     auto y_cent{min_y + rand_int(max_y - min_y)};
-    auto max_r{c_int(3 * scale + rand_int(5 * scale))};
+    auto max_r{c_int(3 * scale_ + rand_int(5 * scale_))};
     for (auto r = max_r; r >= 0; r--) {
       for (auto y = y_cent - r; y <= y_cent + r; y++) {
         for (auto x = x_cent - r; x <= x_cent + r; x++) {
           auto dx{x - x_cent};
           auto dy{y - y_cent};
           if (dx * dx + dy * dy <= r * r) {
-            auto tl{w_area->get_tl(x, y)};
+            auto tl{w_area_->get_tl(x, y)};
             if (tl) {
               pt n{x, y - 1};
               pt e{x + 1, y};
@@ -93,22 +91,22 @@ namespace forr {
               pt nene{x + 2, y - 2};
               pt sese{x + 2, y + 2};
               pt swsw{x - 2, y + 2};
-              auto tl_n{w_area->get_tl(n)};
-              auto tl_e{w_area->get_tl(e)};
-              auto tl_s{w_area->get_tl(s)};
-              auto tl_w{w_area->get_tl(w)};
-              auto tl_nw{w_area->get_tl(nw)};
-              auto tl_ne{w_area->get_tl(ne)};
-              auto tl_se{w_area->get_tl(se)};
-              auto tl_sw{w_area->get_tl(sw)};
-              auto tl_nn{w_area->get_tl(nn)};
-              auto tl_ww{w_area->get_tl(ww)};
-              auto tl_ee{w_area->get_tl(ee)};
-              auto tl_ss{w_area->get_tl(ss)};
-              auto tl_nwnw{w_area->get_tl(nwnw)};
-              auto tl_nene{w_area->get_tl(nene)};
-              auto tl_sese{w_area->get_tl(sese)};
-              auto tl_swsw{w_area->get_tl(swsw)};
+              auto tl_n{w_area_->get_tl(n)};
+              auto tl_e{w_area_->get_tl(e)};
+              auto tl_s{w_area_->get_tl(s)};
+              auto tl_w{w_area_->get_tl(w)};
+              auto tl_nw{w_area_->get_tl(nw)};
+              auto tl_ne{w_area_->get_tl(ne)};
+              auto tl_se{w_area_->get_tl(se)};
+              auto tl_sw{w_area_->get_tl(sw)};
+              auto tl_nn{w_area_->get_tl(nn)};
+              auto tl_ww{w_area_->get_tl(ww)};
+              auto tl_ee{w_area_->get_tl(ee)};
+              auto tl_ss{w_area_->get_tl(ss)};
+              auto tl_nwnw{w_area_->get_tl(nwnw)};
+              auto tl_nene{w_area_->get_tl(nene)};
+              auto tl_sese{w_area_->get_tl(sese)};
+              auto tl_swsw{w_area_->get_tl(swsw)};
               auto elev_n{tl_n ? tl_n->elev() : 0};
               auto elev_e{tl_e ? tl_e->elev() : 0};
               auto elev_s{tl_s ? tl_s->elev() : 0};
@@ -143,42 +141,37 @@ namespace forr {
   }
 
   void world_grator::gen_lakes() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
     auto num_lakes{20 + rand_int(5)};
     for (auto i = 0; i < num_lakes; i++) {
-      gen_single_lake(0, 0, sz.w, sz.h, 2 + rand_int(5));
+      gen_single_lake(0, 0, sz_.w, sz_.h, 2 + rand_int(5));
     }
   }
 
   void world_grator::gen_elev() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
     auto num_hills{140 + rand_int(30)};
     for (auto i = 0; i < num_hills; i++) {
-      auto x_cent{rand_int(sz.w)};
-      auto y_cent{rand_int(sz.h)};
-      auto max_r{5 * scale + rand_int(5 * scale)};
+      auto x_cent{rand_int(sz_.w)};
+      auto y_cent{rand_int(sz_.h)};
+      auto max_r{5 * scale_ + rand_int(5 * scale_)};
       for (auto r = max_r; r >= 0; r--) {
         for (auto y = y_cent - r; y <= y_cent + r; y++) {
           for (auto x = x_cent - r; x <= x_cent + r; x++) {
-            if (!w_area->is_valid_coord(x, y)) {
+            if (!w_area_->is_valid_coord(x, y)) {
               continue;
             }
             auto dx{x - x_cent};
             auto dy{y - y_cent};
             if (dx * dx + dy * dy <= r * r) {
-              auto tl{w_area->get_tl(x, y)};
+              auto tl{w_area_->get_tl(x, y)};
               if (tl && tl->ground() != hash("GroundWater")) {
-                auto tl_n{w_area->get_tl(x, y - 1)};
-                auto tl_s{w_area->get_tl(x, y + 1)};
-                auto tl_w{w_area->get_tl(x - 1, y)};
-                auto tl_e{w_area->get_tl(x + 1, y)};
-                auto tl_nw{w_area->get_tl(x - 1, y - 1)};
-                auto tl_ne{w_area->get_tl(x + 1, y - 1)};
-                auto tl_sw{w_area->get_tl(x - 1, y + 1)};
-                auto tl_se{w_area->get_tl(x + 1, y + 1)};
+                auto tl_n{w_area_->get_tl(x, y - 1)};
+                auto tl_s{w_area_->get_tl(x, y + 1)};
+                auto tl_w{w_area_->get_tl(x - 1, y)};
+                auto tl_e{w_area_->get_tl(x + 1, y)};
+                auto tl_nw{w_area_->get_tl(x - 1, y - 1)};
+                auto tl_ne{w_area_->get_tl(x + 1, y - 1)};
+                auto tl_sw{w_area_->get_tl(x - 1, y + 1)};
+                auto tl_se{w_area_->get_tl(x + 1, y + 1)};
                 if ((tl_n && tl_n->ground() == hash("GroundWater")) ||
                     (tl_s && tl_s->ground() == hash("GroundWater")) ||
                     (tl_w && tl_w->ground() == hash("GroundWater")) ||
@@ -223,23 +216,20 @@ namespace forr {
   }
 
   void world_grator::gen_rock() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
     auto num_rock_areas{30 + rand_int(10)};
     for (auto i = 0; i < num_rock_areas; i++) {
-      auto x_center{rand_int(sz.w)};
-      auto y_center{rand_int(sz.h)};
-      auto r{3 * scale + rand_int(10 * scale)};
+      auto x_center{rand_int(sz_.w)};
+      auto y_center{rand_int(sz_.h)};
+      auto r{3 * scale_ + rand_int(10 * scale_)};
       for (auto y = y_center - r; y <= y_center + r; y++) {
         for (auto x = x_center - r; x <= x_center + r; x++) {
-          if (!w_area->is_valid_coord(x, y)) {
+          if (!w_area_->is_valid_coord(x, y)) {
             continue;
           }
           auto dx{x - x_center};
           auto dy{y - y_center};
           if (dx * dx + dy * dy <= r * r) {
-            auto tl{w_area->get_tl(x, y)};
+            auto tl{w_area_->get_tl(x, y)};
             if (tl->elev() > 0) {
               tl->set_ground("GroundRock");
             }
@@ -250,13 +240,10 @@ namespace forr {
   }
 
   void world_grator::gen_rivers() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
-    auto num_rivers{20 * scale + rand_int(5 * scale)};
+    auto num_rivers{20 * scale_ + rand_int(5 * scale_)};
     for (auto i = 0; i < num_rivers; i++) {
-      auto x{c_float(rand_int(sz.w))};
-      auto y{c_float(rand_int(sz.h))};
+      auto x{c_float(rand_int(sz_.w))};
+      auto y{c_float(rand_int(sz_.h))};
       auto start_angle{rand_int(360)};
       auto len{45 + rand_int(20)};
       auto prev_x_coord{-1};
@@ -266,10 +253,10 @@ namespace forr {
         auto angle{start_angle + std::sin(j * M_PI / 10.0f) * 45};
         auto x_coord{c_int(x)};
         auto y_coord{c_int(y)};
-        if (!w_area->is_valid_coord(x_coord, y_coord)) {
+        if (!w_area_->is_valid_coord(x_coord, y_coord)) {
           continue;
         }
-        auto tl = w_area->get_tl(x_coord, y_coord);
+        auto tl = w_area_->get_tl(x_coord, y_coord);
         if (tl && prev_tl) {
           // tile->SetGround("GroundWater");
           if (x_coord == prev_x_coord && y_coord > prev_y_coord) {
@@ -310,80 +297,77 @@ namespace forr {
   }
 
   void world_grator::gen_objs() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
-    auto num_fir_trees{1000 * scale + rand_int(50)};
+    auto num_fir_trees{1000 * scale_ + rand_int(50)};
     for (auto i = 0; i < num_fir_trees; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_tree_obj("ObjectFirTree");
       }
     }
-    auto num_birch_trees{1000 * scale + rand_int(50)};
+    auto num_birch_trees{1000 * scale_ + rand_int(50)};
     for (auto i = 0; i < num_birch_trees; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_tree_obj("ObjectBirchTree");
       }
     }
-    auto num_bush_1s{400 * scale + rand_int(100)};
+    auto num_bush_1s{400 * scale_ + rand_int(100)};
     for (auto i = 0; i < num_bush_1s; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_obj("ObjectBush1");
       }
     }
-    auto num_bush_2s{400 * scale + rand_int(100)};
+    auto num_bush_2s{400 * scale_ + rand_int(100)};
     for (auto i = 0; i < num_bush_2s; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_obj("ObjectBush2");
       }
     }
-    auto num_pink_flowers{400 * scale + rand_int(100)};
+    auto num_pink_flowers{400 * scale_ + rand_int(100)};
     for (auto i = 0; i < num_pink_flowers; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_obj("ObjectPinkFlower");
       }
     }
-    auto num_tall_grasses{400 * scale + rand_int(100)};
+    auto num_tall_grasses{400 * scale_ + rand_int(100)};
     for (auto i = 0; i < num_tall_grasses; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->ground() != hash("GroundWater") &&
           tl->ground() != hash("GroundRock")) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_obj("ObjectTallGrass");
       }
     }
-    auto num_stone_boulders{200 * scale + rand_int(100)};
+    auto num_stone_boulders{200 * scale_ + rand_int(100)};
     for (auto i = 0; i < num_stone_boulders; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->water_depth() < 4) {
         tl->objects_stack()->clear_objs();
         tl->objects_stack()->add_obj("ObjectStoneBoulder");
@@ -392,46 +376,40 @@ namespace forr {
   }
 
   void world_grator::gen_creas() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
-    auto num_rats{200 * scale + rand_int(15 * scale)};
+    auto num_rats{200 * scale_ + rand_int(15 * scale_)};
     for (auto i = 0; i < num_rats; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto new_crea = std::make_shared<creature>("CreatureRat");
         tl->set_creature(new_crea);
-        w_area->creatures_mirror_ref().insert({tl->creature(), {x, y}});
+        w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
       }
     }
-    auto num_butterflies{200 * scale + rand_int(15 * scale)};
+    auto num_butterflies{200 * scale_ + rand_int(15 * scale_)};
     for (auto i = 0; i < num_butterflies; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto new_crea = std::make_shared<creature>("CreatureButterfly");
         tl->set_creature(new_crea);
-        w_area->creatures_mirror_ref().insert({tl->creature(), {x, y}});
+        w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
       }
     }
   }
 
   void world_grator::gen_npcs() const {
-    auto w_area{_<world>().curr_w_area()};
-    auto sz{w_area->get_sz()};
-    auto scale{_<game_props>().k_world_scaling};
-    auto num_npc_0s{200 * scale + rand_int(15 * scale)};
+    auto num_npc_0s{200 * scale_ + rand_int(15 * scale_)};
     for (auto i = 0; i < num_npc_0s; i++) {
-      auto x{rand_int(sz.w)};
-      auto y{rand_int(sz.h)};
-      auto tl{w_area->get_tl(x, y)};
+      auto x{rand_int(sz_.w)};
+      auto y{rand_int(sz_.h)};
+      auto tl{w_area_->get_tl(x, y)};
       if (tl && !tl->npc() && tl->ground() != hash("GroundWater")) {
         auto new_npc = std::make_shared<npc>("NPC0");
         tl->set_npc(new_npc);
-        w_area->npcs_mirror_ref().insert({tl->npc(), {x, y}});
+        w_area_->npcs_mirror_ref().insert({tl->npc(), {x, y}});
       }
     }
   }
