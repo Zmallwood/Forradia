@@ -175,6 +175,8 @@ namespace forr {
 
     bool is_valid_coord(int x, int y) const;
 
+    bool is_valid_coord(pt coord) const;
+
     s_ptr<tile> get_tl(int x, int y) const;
 
     s_ptr<tile> get_tl(pt coord) const;

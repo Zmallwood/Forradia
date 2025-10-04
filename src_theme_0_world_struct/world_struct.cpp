@@ -106,6 +106,10 @@ namespace forr {
     return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
   }
 
+  bool world_area::is_valid_coord(pt coord) const {
+    return is_valid_coord(coord.x, coord.y);
+  }
+
   s_ptr<tile> world_area::get_tl(int x, int y) const {
     if (is_valid_coord(x, y)) {
       return tiles_.at(x).at(y);
