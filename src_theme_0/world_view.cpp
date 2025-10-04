@@ -230,44 +230,7 @@ namespace forr {
         _<image_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w, tl_sz.h);
       }
     }};
-    {
-      x_coord = player_pos.x - (grid_sz.w - 1) / 2 + x;
-      y_coord = player_pos.y - (grid_sz.h - 1) / 2 + y;
-      if (!w_area->is_valid_coord(x_coord, y_coord))
-        goto next_iter;
-      tl = w_area->get_tl(x_coord, y_coord);
-      auto coord_nw{pt{x_coord, y_coord}};
-      auto coord_ne{pt{x_coord + 1, y_coord}};
-      auto coord_sw{pt{x_coord, y_coord + 1}};
-      auto coord_se{pt{x_coord + 1, y_coord + 1}};
-      if (!w_area->is_valid_coord(coord_nw) ||
-          !w_area->is_valid_coord(coord_ne) ||
-          !w_area->is_valid_coord(coord_sw) ||
-          !w_area->is_valid_coord(coord_se))
-        goto next_iter;
-      tl_nw = w_area->get_tl(coord_nw);
-      tl_ne = w_area->get_tl(coord_ne);
-      tl_sw = w_area->get_tl(coord_sw);
-      tl_se = w_area->get_tl(coord_se);
-      ground = tl ? tl->ground() : 0;
-      x_canv = x * tl_sz.w;
-      y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
-      y_canv += player_elev * tl_sz.h / 2;
-      w_canv = tl_sz.w;
-      h_canv = ceil(tl_sz.h, 2.5f);
-      if (i == 0 && !fn_draw_regular_ground())
-        goto next_iter;
-      else if (ground != hash("GroundWater") && i == 1)
-        fn_draw_rivers();
-      else if (ground == hash("GroundWater") && i == 1)
-        fn_draw_water_edges();
-      else if (ground == hash("GroundWater") && i == 2)
-        fn_draw_water();
-      fn_draw_layers();
-      if (i < 2)
-        goto next_iter;
-      fn_draw_tile_symbols();
-      fn_draw_player();
+    static func<void()> fn_draw_objects{[&] {
       auto objs_stack{tl ? tl->objects_stack() : nullptr};
       if (objs_stack) {
         for (const auto &obj : objs_stack->objects()) {
@@ -321,6 +284,8 @@ namespace forr {
                                    y_canv + tl_sz.h - obj_h, obj_w, obj_h);
         }
       }
+    }};
+    static func<void()> fn_draw_creature{[&] {
       auto crea{tl ? tl->creature() : nullptr};
       if (crea) {
         auto crea_type{crea->type()};
@@ -330,6 +295,8 @@ namespace forr {
         _<image_rend>().draw_img(crea_type, x_canv + tl_sz.w / 2 - crea_w / 2,
                                  y_canv + tl_sz.h - crea_h, crea_w, crea_h);
       }
+    }};
+    static func<void()> fn_draw_npc{[&] {
       auto npc{tl ? tl->npc() : nullptr};
       if (npc) {
         auto npc_type{npc->type()};
@@ -339,6 +306,48 @@ namespace forr {
         _<image_rend>().draw_img(npc_type, x_canv + tl_sz.w / 2 - npc_w / 2,
                                  y_canv + tl_sz.h - npc_h, npc_w, npc_h);
       }
+    }};
+    {
+      x_coord = player_pos.x - (grid_sz.w - 1) / 2 + x;
+      y_coord = player_pos.y - (grid_sz.h - 1) / 2 + y;
+      if (!w_area->is_valid_coord(x_coord, y_coord))
+        goto next_iter;
+      tl = w_area->get_tl(x_coord, y_coord);
+      auto coord_nw{pt{x_coord, y_coord}};
+      auto coord_ne{pt{x_coord + 1, y_coord}};
+      auto coord_sw{pt{x_coord, y_coord + 1}};
+      auto coord_se{pt{x_coord + 1, y_coord + 1}};
+      if (!w_area->is_valid_coord(coord_nw) ||
+          !w_area->is_valid_coord(coord_ne) ||
+          !w_area->is_valid_coord(coord_sw) ||
+          !w_area->is_valid_coord(coord_se))
+        goto next_iter;
+      tl_nw = w_area->get_tl(coord_nw);
+      tl_ne = w_area->get_tl(coord_ne);
+      tl_sw = w_area->get_tl(coord_sw);
+      tl_se = w_area->get_tl(coord_se);
+      ground = tl ? tl->ground() : 0;
+      x_canv = x * tl_sz.w;
+      y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
+      y_canv += player_elev * tl_sz.h / 2;
+      w_canv = tl_sz.w;
+      h_canv = ceil(tl_sz.h, 2.5f);
+      if (i == 0 && !fn_draw_regular_ground())
+        goto next_iter;
+      else if (ground != hash("GroundWater") && i == 1)
+        fn_draw_rivers();
+      else if (ground == hash("GroundWater") && i == 1)
+        fn_draw_water_edges();
+      else if (ground == hash("GroundWater") && i == 2)
+        fn_draw_water();
+      fn_draw_layers();
+      if (i < 2)
+        goto next_iter;
+      fn_draw_tile_symbols();
+      fn_draw_player();
+      fn_draw_objects();
+      fn_draw_creature();
+      fn_draw_npc();
     }
   next_iter:
     ++x;
@@ -357,9 +366,6 @@ namespace forr {
 
   void world_view::render() const {
     auto extra_rows{8};
-    auto i{0};
-    auto y{-extra_rows};
-    auto x{0};
-    draw_tile_recurs(i, x, y);
+    draw_tile_recurs(0, 0, -extra_rows);
   }
 }
