@@ -21,12 +21,13 @@ namespace forr {
 
   void update_mouse_actions() {
     if (_<mouse_inp>().right_btn_ref().been_fired_pick_res()) {
+      _<gui_interact_menu>().build_menu();
       _<gui_interact_menu>().set_visible(true);
       _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
     }
-    if (_<gui_interact_menu>().visible() &&
-        _<mouse_inp>().left_btn_ref().been_fired_pick_res())
-      _<gui_interact_menu>().set_visible(false);
+//    if (_<gui_interact_menu>().visible() &&
+//        _<mouse_inp>().left_btn_ref().been_fired_pick_res())
+//      _<gui_interact_menu>().set_visible(false);
   }
 
   void update_kb_movem() {

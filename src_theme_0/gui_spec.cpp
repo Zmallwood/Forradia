@@ -7,6 +7,8 @@
 #include "engine.hpp"
 #include "input.hpp"
 #include "rend.hpp"
+#include "update.hpp"
+#include "world_struct.hpp"
 
 namespace forr {
   void gui_player_status_box::render_derived() const {
@@ -150,9 +152,48 @@ namespace forr {
 
   void gui_interact_menu::init() { set_visible(false); }
 
-  void gui_interact_menu::update_derived() { gui_panel::update_derived(); }
+  void gui_interact_menu::build_menu() {
+    entries_.clear();
+    auto hov_tl{_<tl_hovering>().hovered_coord()};
+    auto w_area{_<world>().curr_w_area()};
+    auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
+    if (tl && tl->ground() == hash("GroundGrass")) {
+      entries_.push_back(
+          {"Forage", [=]() { _<gui_chat_box>().print("Grass foraged."); }});
+    }
+  }
+
+  void gui_interact_menu::update_derived() {
+    gui_panel::update_derived();
+    auto b{bounds()};
+    auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+    auto i{0};
+    for (auto &entry : entries_) {
+      auto menu_entry_rect{rect_f{b.x + 0.01f + k_indent_w,
+                                  b.y + 0.01f + k_line_h * (i + 1), b.w,
+                                  k_line_h}};
+      if (_<mouse_inp>().left_btn_ref().been_fired_no_pick_res()) {
+        if (menu_entry_rect.contains(mouse_pos)) {
+          entry.action()();
+        }
+        set_visible(false);
+      }
+      ++i;
+    }
+    if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
+      set_visible(false);
+  }
 
   void gui_interact_menu::render_derived() const {
     gui_panel::render_derived();
+    auto b{bounds()};
+    _<text_rend>().draw_str("Actions", b.x + 0.01f, b.y + 0.01f, font_szs::_20,
+                            false, colors::yellow_transp);
+    auto i{0};
+    for (auto &entry : entries_) {
+      _<text_rend>().draw_str(entry.label(), b.x + 0.01f + k_indent_w,
+                              b.y + 0.01f + (i + 1) * k_line_h, font_szs::_20);
+      ++i;
+    }
   }
 }

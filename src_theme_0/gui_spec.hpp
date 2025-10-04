@@ -59,6 +59,8 @@ namespace forr {
    public:
     gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
 
+    void build_menu();
+
    protected:
     void init();
 
@@ -67,5 +69,23 @@ namespace forr {
     virtual void render_derived() const override;
 
    private:
+    static constexpr float k_indent_w{0.01f};
+    static constexpr float k_line_h{0.025f};
+
+    class gui_interact_menu_entry {
+     public:
+      gui_interact_menu_entry(str_view label, func<void()> action)
+          : label_(label), action_(action) {}
+
+      auto label() const { return label_; }
+
+      auto action() const { return action_; }
+
+     private:
+      str label_;
+      func<void()> action_;
+    };
+
+    vec<gui_interact_menu_entry> entries_;
   };
 }
