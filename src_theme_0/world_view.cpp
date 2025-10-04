@@ -337,13 +337,14 @@ namespace forr {
             h_canv = ceil(tl_sz.h, 2.5f);
             if (i == 0 && !fn_draw_regular_ground())
               continue;
-            else if (ground != hash("GroundWater") && i == 1)
+            else if (i == 1 && ground != hash("GroundWater") && i == 1)
               fn_draw_rivers();
-            else if (ground == hash("GroundWater") && i == 1)
+            else if (i == 1 && ground == hash("GroundWater") && i == 1)
               fn_draw_water_edges();
-            else if (ground == hash("GroundWater") && i == 2)
+            else if (i == 1 && ground == hash("GroundWater") && i == 2)
               fn_draw_water();
-            fn_draw_layers();
+            if (i == 1)
+              fn_draw_layers();
             if (i < 2)
               continue;
             fn_draw_tile_symbols();
