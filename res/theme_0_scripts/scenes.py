@@ -2,5 +2,7 @@
 
 
 def test_fn():
-    asd()
+    #asd()
     print("TJosan frAn Python!! :))")
+    ccccc = CppClass()
+    ccccc.print()
