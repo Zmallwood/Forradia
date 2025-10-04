@@ -97,7 +97,7 @@ namespace forr {
 
     s_ptr<SDL_Texture> load_single_img(str_view path);
 
-    inline static const str k_rel_imgs_path{"./Resources/Images/"};
+    inline static const str k_rel_imgs_path{"./res/images/"};
 
     std::map<int, s_ptr<SDL_Texture>> images_;
   };

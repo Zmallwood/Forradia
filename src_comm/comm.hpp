@@ -35,8 +35,8 @@ namespace forr {
 
   // Singleton functions
   /**
-   * \brief Returns a singleton of an object of type T, in the
-   *        form of a SharedPtr.
+   * Returns a singleton of an object of type T, in the
+   * form of a SharedPtr.
    *
    * \tparam T Type to get singleton for.
    * \return The singleton object as a SharedPtr.
@@ -48,8 +48,8 @@ namespace forr {
   }
 
   /**
-   * \brief Returns a singleton of an object of type T, in the
-   *        form of a reference.
+   * Returns a singleton of an object of type T, in the
+   * form of a reference.
    *
    * \tparam T Type to get singleton for.
    * \return The singleton object as a reference.
@@ -62,41 +62,41 @@ namespace forr {
 
   // Convenience classes
   /**
-   * \brief Class used for SharedPtrs of SDL objects,
-   *        which handles automaticallyfreeing up resources at object deletion.
+   * Class used for SharedPtrs of SDL objects,
+   * which handles automaticallyfreeing up resources at object deletion.
    */
   class sdl_del {
    public:
     /**
-     * \brief Operator overloading for SDL_Window objects.
+     * Operator overloading for SDL_Window objects.
      *
      * \param win SDL window pointer to free resources for.
      */
     void operator()(SDL_Window *win) const;
 
     /**
-     * \brief Operator overloading for SDL_Renderer objects.
+     * Operator overloading for SDL_Renderer objects.
      *
      * \param rend SDL renderer pointer to free resources for.
      */
     void operator()(SDL_Renderer *rend) const;
 
     /**
-     * \brief Operator overloading for SDL_Surface objects.
+     * Operator overloading for SDL_Surface objects.
      *
      * \param surf SDL surface pointer to free resources for.
      */
     void operator()(SDL_Surface *surf) const;
 
     /**
-     * \brief Operator overloading for SDL_Texture objects.
+     * Operator overloading for SDL_Texture objects.
      *
      * \param tex SDL texture pointer to free resources for.
      */
     void operator()(SDL_Texture *tex) const;
 
     /**
-     * \brief Operator overloading for TTF_Font objects.
+     * Operator overloading for TTF_Font objects.
      *
      * \param font SDL font pointer to free resources for.
      */
@@ -107,12 +107,12 @@ namespace forr {
   // Matter
   ////////////////////
   /**
-   * \brief Point in 2D space, using dimensions of int type.
+   * Point in 2D space, using dimensions of int type.
    */
   class pt {
    public:
     /**
-     * \brief Equality operator between two Points.
+     * Equality operator between two Points.
      *
      * \param p Other Point to check equality against.
      * \return True if the two points are equal, otherwise false.
@@ -124,12 +124,12 @@ namespace forr {
   };
 
   /**
-   * \brief Point in 2D space using dimensions of float type.
+   * Point in 2D space using dimensions of float type.
    */
   class pt_f {
    public:
     /**
-     * \brief Summing operator for the two points.
+     * Summing operator for the two points.
      *
      * \param p The other PointF to add to this point.
      * \return The resulting PointF with the dimensions added separately.
@@ -137,7 +137,7 @@ namespace forr {
     pt_f operator+(const pt_f &p) const;
 
     /**
-     * \brief Subtraction operator for the two points.
+     * Subtraction operator for the two points.
      *
      * \param p The other PointF to subtract from this point.
      * \return The resulting PointF with the dimensions subtracted separetely.
@@ -149,7 +149,7 @@ namespace forr {
   };
 
   /**
-   * \brief Size in 2D space, with the dimensions as int values.
+   * Size in 2D space, with the dimensions as int values.
    */
   class sz {
    public:
@@ -158,7 +158,7 @@ namespace forr {
   };
 
   /**
-   * \brief Size in 2D space with dimensions of float values.
+   * Size in 2D space with dimensions of float values.
    */
   class sz_f {
    public:
@@ -167,12 +167,12 @@ namespace forr {
   };
 
   /**
-   * \brief A rectangle in 2D space using dimensions of float type.
+   * A rectangle in 2D space using dimensions of float type.
    */
   class rect_f {
    public:
     /**
-     * \brief Check if this rectangle contains a certian point.
+     * Check if this rectangle contains a certian point.
      *
      * \param p Point to check if it is contained in this rectangle.
      * \return True if the Point is within this rectangle, otherwise false.
@@ -180,14 +180,14 @@ namespace forr {
     bool contains(pt_f p);
 
     /**
-     * \brief Returns only the position of this rectangle.
+     * Returns only the position of this rectangle.
      *
      * \return The position.
      */
     pt_f pos() const;
 
     /**
-     * \brief Adds an offset to this rectangle, with the dimensions altered
+     * Adds an offset to this rectangle, with the dimensions altered
      * separately.
      *
      * \param offs The offset to add.
@@ -201,12 +201,12 @@ namespace forr {
   };
 
   /**
-   * \brief A RGBA color with components defined with float values.
+   * A RGBA color with components defined with float values.
    */
   class color {
    public:
     /**
-     * \brief Convert this color to a corresponding SDL_Color object.
+     * Convert this color to a corresponding SDL_Color object.
      *
      * \return Corresponding SDL_Color object.
      */
@@ -219,7 +219,7 @@ namespace forr {
   };
 
   /**
-   * \brief Contains a palette of colors.
+   * Contains a palette of colors.
    */
   namespace colors {
     constexpr color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
@@ -275,8 +275,8 @@ namespace forr {
 
   // Hash util functions
   /**
-   * \brief Compute hash code from a given input text, which
-   *        gets computed the same every game start.
+   * Compute hash code from a given input text, which
+   * gets computed the same every game start.
    *
    * \param text Text to compute hash code for.
    * \return Computed hash code.
@@ -285,14 +285,14 @@ namespace forr {
 
   // Print util functions
   /**
-   * \brief Print out a string of text, without a following line break.
+   * Print out a string of text, without a following line break.
    *
    * \param text Text to print.
    */
   void print(str_view text);
 
   /**
-   * \brief Print out a string of text, with an added line break at the end.
+   * Print out a string of text, with an added line break at the end.
    *
    * \param text Text to print.
    */

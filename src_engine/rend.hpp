@@ -30,7 +30,7 @@ namespace forr {
 
     void add_fonts();
 
-    const str k_default_font_path{"./Resources/Fonts/PixeloidSans.ttf"};
+    const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 
     std::map<font_szs, s_ptr<TTF_Font>> fonts_;
   };
