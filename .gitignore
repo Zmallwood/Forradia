@@ -22,3 +22,4 @@ CMakeUserPresets.json
 build/*
 !build/Resources
 bin
+__pycache__
