@@ -46,7 +46,7 @@ namespace forr {
           sel_body_part(c_int(body_part_types::overall_body));
           update_body_part_info_lbls();
         },
-        "GUIImageOverallBody", "GUIImageOverallBodyHovered")};
+        "gui_image_overall_body", "gui_image_overall_body_hovered")};
     add_child_comp(overall_body_img_btn);
     auto right_arm_body_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
@@ -54,7 +54,7 @@ namespace forr {
           sel_body_part(c_int(body_part_types::right_arm));
           update_body_part_info_lbls();
         },
-        "GUIImageRightArm", "GUIImageRightArmHovered")};
+        "gui_image_right_arm", "gui_image_right_arm_hovered")};
     add_child_comp(right_arm_body_img_btn);
     auto left_arm_body_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
@@ -62,7 +62,7 @@ namespace forr {
           sel_body_part(c_int(body_part_types::left_arm));
           update_body_part_info_lbls();
         },
-        "GUIImageLeftArm", "GUIImageLeftArmHovered")};
+        "gui_image_left_arm", "gui_image_left_arm_hovered")};
     add_child_comp(left_arm_body_img_btn);
     auto legs_img_btn{std::make_shared<gui_button>(
         0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
@@ -70,7 +70,7 @@ namespace forr {
           sel_body_part(c_int(body_part_types::legs));
           update_body_part_info_lbls();
         },
-        "GUIImageLegs", "GUIImageLegsHovered")};
+        "gui_image_legs", "gui_image_legs_hovered")};
     add_child_comp(legs_img_btn);
     lbl_body_part_name_ = std::make_shared<gui_label>(
         0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false, colors::yellow_transp);
@@ -157,7 +157,7 @@ namespace forr {
     auto hov_tl{_<tl_hovering>().hovered_coord()};
     auto w_area{_<world>().curr_w_area()};
     auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
-    if (tl && tl->ground() == hash("GroundGrass")) {
+    if (tl && tl->ground() == hash("ground_grass")) {
       entries_.push_back(
           {"Forage", [=]() { _<gui_chat_box>().print("Grass foraged."); }});
     }

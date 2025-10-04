@@ -42,7 +42,7 @@ namespace forr {
     auto w_area{_<world>().curr_w_area()};
     auto sz{w_area->get_sz()};
     pos_ = {sz.w / 2, sz.h / 2};
-    while (w_area->get_tl(pos_)->ground() == hash("GroundWater"))
+    while (w_area->get_tl(pos_)->ground() == hash("ground_water"))
       pos_ = {rand_int(sz.w), rand_int(sz.h)};
   }
 

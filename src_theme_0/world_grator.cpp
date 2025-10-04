@@ -31,7 +31,7 @@ namespace forr {
       for (auto x = 0; x < sz_.w; x++) {
         auto tl{w_area_->get_tl(x, y)};
         if (tl) {
-          tl->set_ground("GroundDirt");
+          tl->set_ground("ground_dirt");
         }
       }
     }
@@ -52,7 +52,7 @@ namespace forr {
           auto dy{y - y_cent};
           if (dx * dx + dy * dy <= r * r) {
             auto tl{w_area_->get_tl(x, y)};
-            tl->set_ground("GroundGrass");
+            tl->set_ground("ground_grass");
           }
         }
       }
@@ -128,7 +128,7 @@ namespace forr {
                   elev_sw == 0 && elev_nn == 0 && elev_ww == 0 &&
                   elev_ee == 0 && elev_ss == 0 && elev_nwnw == 0 &&
                   elev_nene == 0 && elev_sese == 0 && elev_swsw == 0) {
-                tl->set_ground("GroundWater");
+                tl->set_ground("ground_water");
               }
               tl->set_water_depth(tl->water_depth() + 1);
             }
@@ -163,7 +163,7 @@ namespace forr {
             auto dy{y - y_cent};
             if (dx * dx + dy * dy <= r * r) {
               auto tl{w_area_->get_tl(x, y)};
-              if (tl && tl->ground() != hash("GroundWater")) {
+              if (tl && tl->ground() != hash("ground_water")) {
                 auto tl_n{w_area_->get_tl(x, y - 1)};
                 auto tl_s{w_area_->get_tl(x, y + 1)};
                 auto tl_w{w_area_->get_tl(x - 1, y)};
@@ -172,14 +172,14 @@ namespace forr {
                 auto tl_ne{w_area_->get_tl(x + 1, y - 1)};
                 auto tl_sw{w_area_->get_tl(x - 1, y + 1)};
                 auto tl_se{w_area_->get_tl(x + 1, y + 1)};
-                if ((tl_n && tl_n->ground() == hash("GroundWater")) ||
-                    (tl_s && tl_s->ground() == hash("GroundWater")) ||
-                    (tl_w && tl_w->ground() == hash("GroundWater")) ||
-                    (tl_e && tl_e->ground() == hash("GroundWater")) ||
-                    (tl_nw && tl_nw->ground() == hash("GroundWater")) ||
-                    (tl_ne && tl_ne->ground() == hash("GroundWater")) ||
-                    (tl_sw && tl_sw->ground() == hash("GroundWater")) ||
-                    (tl_se && tl_se->ground() == hash("GroundWater"))) {
+                if ((tl_n && tl_n->ground() == hash("ground_water")) ||
+                    (tl_s && tl_s->ground() == hash("ground_water")) ||
+                    (tl_w && tl_w->ground() == hash("ground_water")) ||
+                    (tl_e && tl_e->ground() == hash("ground_water")) ||
+                    (tl_nw && tl_nw->ground() == hash("ground_water")) ||
+                    (tl_ne && tl_ne->ground() == hash("ground_water")) ||
+                    (tl_sw && tl_sw->ground() == hash("ground_water")) ||
+                    (tl_se && tl_se->ground() == hash("ground_water"))) {
                   continue;
                 }
                 if (tl_n && tl_n->elev() < tl->elev()) {
@@ -231,7 +231,7 @@ namespace forr {
           if (dx * dx + dy * dy <= r * r) {
             auto tl{w_area_->get_tl(x, y)};
             if (tl->elev() > 0) {
-              tl->set_ground("GroundRock");
+              tl->set_ground("ground_rock");
             }
           }
         }
@@ -302,10 +302,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_tree_obj("ObjectFirTree");
+        tl->objects_stack()->add_tree_obj("object_fir_tree");
       }
     }
     auto num_birch_trees{1000 * scale_ + rand_int(50)};
@@ -313,10 +313,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_tree_obj("ObjectBirchTree");
+        tl->objects_stack()->add_tree_obj("object_birch_tree");
       }
     }
     auto num_bush_1s{400 * scale_ + rand_int(100)};
@@ -324,10 +324,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_obj("ObjectBush1");
+        tl->objects_stack()->add_obj("object_bush1");
       }
     }
     auto num_bush_2s{400 * scale_ + rand_int(100)};
@@ -335,10 +335,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_obj("ObjectBush2");
+        tl->objects_stack()->add_obj("object_bush2");
       }
     }
     auto num_pink_flowers{400 * scale_ + rand_int(100)};
@@ -346,10 +346,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_obj("ObjectPinkFlower");
+        tl->objects_stack()->add_obj("object_pink_flower");
       }
     }
     auto num_tall_grasses{400 * scale_ + rand_int(100)};
@@ -357,10 +357,10 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && tl->ground() != hash("GroundWater") &&
-          tl->ground() != hash("GroundRock")) {
+      if (tl && tl->ground() != hash("ground_water") &&
+          tl->ground() != hash("ground_rock")) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_obj("ObjectTallGrass");
+        tl->objects_stack()->add_obj("object_tall_grass");
       }
     }
     auto num_stone_boulders{200 * scale_ + rand_int(100)};
@@ -370,7 +370,7 @@ namespace forr {
       auto tl{w_area_->get_tl(x, y)};
       if (tl && tl->water_depth() < 4) {
         tl->objects_stack()->clear_objs();
-        tl->objects_stack()->add_obj("ObjectStoneBoulder");
+        tl->objects_stack()->add_obj("object_stone_boulder");
       }
     }
   }
@@ -381,8 +381,8 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
-        auto new_crea = std::make_shared<creature>("CreatureRat");
+      if (tl && !tl->creature() && tl->ground() != hash("ground_water")) {
+        auto new_crea = std::make_shared<creature>("creature_rat");
         tl->set_creature(new_crea);
         w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
       }
@@ -392,8 +392,8 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
-        auto new_crea = std::make_shared<creature>("CreatureButterfly");
+      if (tl && !tl->creature() && tl->ground() != hash("ground_water")) {
+        auto new_crea = std::make_shared<creature>("creature_butterfly");
         tl->set_creature(new_crea);
         w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
       }
@@ -406,8 +406,8 @@ namespace forr {
       auto x{rand_int(sz_.w)};
       auto y{rand_int(sz_.h)};
       auto tl{w_area_->get_tl(x, y)};
-      if (tl && !tl->npc() && tl->ground() != hash("GroundWater")) {
-        auto new_npc = std::make_shared<npc>("NPC0");
+      if (tl && !tl->npc() && tl->ground() != hash("ground_water")) {
+        auto new_npc = std::make_shared<npc>("npc0");
         tl->set_npc(new_npc);
         w_area_->npcs_mirror_ref().insert({tl->npc(), {x, y}});
       }

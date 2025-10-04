@@ -35,8 +35,8 @@ namespace forr {
   }
 
   void intro_scene::render_derived() const {
-    _<img_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-    _<img_rend>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
+    _<img_rend>().draw_img("default_scene_bg", 0.0f, 0.0f, 1.0f, 1.0f);
+    _<img_rend>().draw_img_auto_h("forradia_logo", 0.25f, 0.2f, 0.5f);
   }
 
   void main_menu_scene::init_derived() {
@@ -54,8 +54,8 @@ namespace forr {
   void main_menu_scene::update_derived() {}
 
   void main_menu_scene::render_derived() const {
-    _<img_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-    _<img_rend>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
+    _<img_rend>().draw_img("default_scene_bg", 0.0f, 0.0f, 1.0f, 1.0f);
+    _<img_rend>().draw_img_auto_h("forradia_logo", 0.35f, 0.1f, 0.3f);
   }
 
   void world_gen_scene::on_enter_derived() {
@@ -71,18 +71,17 @@ namespace forr {
     gui()->add_child_comp(std::make_shared<gui_button>(
         0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
         [] { _<gui_player_body_win>().toggle_visible(); },
-        "GUIButtonPlayerBodyBackground",
-        "GUIButtonPlayerBodyHoveredBackground"));
+        "gui_button_player_body_bg", "gui_button_player_body_hovered_bg"));
 
     gui()->add_child_comp(std::make_shared<gui_button>(
         0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
         [] { _<gui_inventory_win>().toggle_visible(); },
-        "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
+        "gui_button_inventory_bg", "gui_button_inventory_hovered_bg"));
 
     gui()->add_child_comp(std::make_shared<gui_button>(
         0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] { _<gui_sys_menu>().toggle_visible(); }, "GUIButtonSystemBackground",
-        "GUIButtonSystemHoveredBackground"));
+        [] { _<gui_sys_menu>().toggle_visible(); }, "gui_button_system_menu_bg",
+        "gui_button_system_menu_hovered_bg"));
     gui()->add_child_comp(__<gui_sys_menu>());
     gui()->add_child_comp(__<gui_inventory_win>());
     gui()->add_child_comp(__<gui_player_body_win>());

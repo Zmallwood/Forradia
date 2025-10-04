@@ -110,7 +110,7 @@ namespace forr {
       if (new_pos == crea->dest())
         crea->set_dest({-1, -1});
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
-      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
+      if (tl && !tl->creature() && tl->ground() != hash("ground_water")) {
         auto old_pos{creas.at(crea)};
         crea->set_ticks_last_move(now);
         auto old_tile{w_area->get_tl(old_pos.x, old_pos.y)};
@@ -165,7 +165,7 @@ namespace forr {
       if (new_pos == npc->dest())
         npc->set_dest({-1, -1});
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
-      if (tl && !tl->npc() && tl->ground() != hash("GroundWater")) {
+      if (tl && !tl->npc() && tl->ground() != hash("ground_water")) {
         auto old_pos{pos};
         npc->set_ticks_last_move(now);
         auto old_tl{w_area->get_tl(old_pos.x, old_pos.y)};

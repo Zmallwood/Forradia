@@ -76,7 +76,7 @@ namespace forr {
     void set_bg_img(str_view val) { bg_img_ = val; }
 
    private:
-    inline static const str k_default_bg_img{"GUIPanelBackground"};
+    inline static const str k_default_bg_img{"gui_panel_bg"};
 
     str bg_img_;
   };
@@ -95,8 +95,8 @@ namespace forr {
     virtual void render_derived() const override;
 
    private:
-    inline static const str k_bg_img{"GUIButtonBackground"};
-    inline static const str k_hovered_bg_img{"GUIButtonHoveredBackground"};
+    inline static const str k_bg_img{"gui_button_bg"};
+    inline static const str k_hovered_bg_img{"gui_button_hovered_bg"};
 
     str text_;
     func<void()> action_;
@@ -149,7 +149,7 @@ namespace forr {
      public:
       gui_win_title_bar(gui_win &parent_win, str_view win_title)
           : parent_win_(parent_win), k_win_title(win_title),
-            gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
+            gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg") {
         init();
       }
 
@@ -192,8 +192,7 @@ namespace forr {
     void print(str_view text);
 
    private:
-    constexpr static str_view k_default_bg_img_derived{
-        "GUITextConsoleBackground"};
+    constexpr static str_view k_default_bg_img_derived{"gui_chat_box_bg"};
     inline static const float k_line_h{0.025f};
     inline static const float k_sep_h{0.003f};
     inline static const float k_marg{0.008f};

@@ -118,10 +118,10 @@ namespace forr {
     str curs_img;
     switch (curs_style_) {
     case curs_styles::normal:
-      curs_img = "CursorDefault";
+      curs_img = "curs_normal";
       break;
     case curs_styles::hovering_clickable_gui:
-      curs_img = "CursorHoveringClickableGUI";
+      curs_img = "curs_hovering_clickable_gui";
       break;
     }
     _<img_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,

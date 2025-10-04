@@ -29,14 +29,14 @@ namespace forr {
   }
 
   void tree_object::init(str_view obj_type_name) {
-    if (obj_type_name != "ObjectFirTree" &&
-        obj_type_name != "ObjectBirchTree") {
+    if (obj_type_name != "object_fir_tree" &&
+        obj_type_name != "object_birch_tree") {
       return;
     }
     int num_trunk_parts;
-    if (obj_type_name == "ObjectFirTree") {
+    if (obj_type_name == "object_fir_tree") {
       num_trunk_parts = 55 + rand_int(44);
-    } else if (obj_type_name == "ObjectBirchTree") {
+    } else if (obj_type_name == "object_birch_tree") {
       num_trunk_parts = 25 + rand_int(14);
     }
     w_factor_ *= (rand_int(5) + 1) / 2.0f + 1.0f;
@@ -48,14 +48,14 @@ namespace forr {
       auto needles_type{rand_int(5)};
       trunk_parts_.push_back(pos);
       str needles_name;
-      if (obj_type_name == "ObjectFirTree") {
-        needles_name = "ObjectFirTreeNeedles";
-      } else if (obj_type_name == "ObjectBirchTree") {
+      if (obj_type_name == "object_fir_tree") {
+        needles_name = "object_fir_tree_needles_";
+      } else if (obj_type_name == "object_birch_tree") {
         if (i % 4 != 0) {
           needle_types_.push_back(0);
           continue;
         }
-        needles_name = "ObjectBirchTreeBranch";
+        needles_name = "object_birch_tree_branch_";
       }
       needle_types_.push_back(
           needles_type ? hash(needles_name + std::to_string(needles_type)) : 0);

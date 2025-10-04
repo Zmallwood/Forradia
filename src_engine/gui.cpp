@@ -177,7 +177,7 @@ namespace forr {
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    _<img_rend>().draw_img("Black", sep_rect.x, sep_rect.y, sep_rect.w,
+    _<img_rend>().draw_img("black", sep_rect.x, sep_rect.y, sep_rect.w,
                            sep_rect.h);
   }
 

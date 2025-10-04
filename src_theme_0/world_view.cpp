@@ -24,80 +24,82 @@ namespace forr {
     static func<bool()> fn_draw_regular_ground{[&] {
       str ground_name;
       auto ground_type_rend{ground};
-      if (ground == hash("GroundGrass"))
-        ground_name = "GroundGrass";
-      else if (ground == hash("GroundWater"))
-        ground_name = "GroundDirt";
-      else if (ground == hash("GroundDirt"))
-        ground_name = "GroundDirt";
-      else if (ground == hash("GroundRock"))
-        ground_name = "GroundRock";
+      if (ground == hash("ground_grass"))
+        ground_name = "ground_grass";
+      else if (ground == hash("ground_water"))
+        ground_name = "ground_dirt";
+      else if (ground == hash("ground_dirt"))
+        ground_name = "ground_dirt";
+      else if (ground == hash("ground_rock"))
+        ground_name = "ground_rock";
       str full_ground_name{ground_name};
       if (tl_nw->elev() > tl_sw->elev() && tl_ne->elev() > tl_se->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeSouth";
+        full_ground_name = ground_name + "_slope_south";
       } else if (tl_nw->elev() < tl_sw->elev() &&
                  tl_ne->elev() < tl_se->elev()) {
         h_canv -= tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeNorth";
+        full_ground_name = ground_name + "_slope_north";
       } else if (tl_ne->elev() > tl_nw->elev() &&
                  tl_se->elev() > tl_sw->elev()) {
         y_canv -= tl_sz.h / 2;
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeWest";
+        full_ground_name = ground_name + "_slope_west";
       } else if (tl_nw->elev() > tl_ne->elev() &&
                  tl_sw->elev() > tl_se->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeEast";
+        full_ground_name = ground_name + "_slope_east";
       } else if (tl_nw->elev() > tl_ne->elev() &&
                  tl_nw->elev() > tl_se->elev() &&
                  tl_nw->elev() > tl_sw->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeSouthEast";
+        full_ground_name = ground_name + "_slope_south_east";
       } else if (tl_ne->elev() > tl_nw->elev() &&
                  tl_ne->elev() > tl_se->elev() &&
                  tl_ne->elev() > tl_sw->elev()) {
         y_canv -= tl_sz.h / 2;
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeSouthWest";
+        full_ground_name = ground_name + "_slope_south_west";
       } else if (tl_sw->elev() > tl_nw->elev() &&
                  tl_sw->elev() > tl_se->elev() &&
                  tl_sw->elev() > tl_ne->elev()) {
-        full_ground_name = ground_name + "SlopeNorthEast";
+        full_ground_name = ground_name + "_slope_north_east";
       } else if (tl_se->elev() > tl_nw->elev() &&
                  tl_se->elev() > tl_ne->elev() &&
                  tl_se->elev() > tl_sw->elev()) {
-        full_ground_name = ground_name + "SlopeNorthWest";
+        full_ground_name = ground_name + "_slope_north_west";
       } else if (tl_sw->elev() < tl_nw->elev() &&
                  tl_sw->elev() < tl_ne->elev() &&
                  tl_sw->elev() < tl_se->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeSouthWestInverted";
+        full_ground_name = ground_name + "_slope_south_west_inverted";
       } else if (tl_se->elev() < tl_nw->elev() &&
                  tl_se->elev() < tl_ne->elev() &&
                  tl_se->elev() < tl_sw->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeSouthEastInverted";
+        full_ground_name = ground_name + "_slope_south_east_inverted";
       } else if (tl_nw->elev() < tl_ne->elev() &&
                  tl_nw->elev() < tl_sw->elev() &&
                  tl_nw->elev() < tl_se->elev()) {
         y_canv -= tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeNorthWestInverted";
+        full_ground_name = ground_name + "_slope_north_west_inverted";
       } else if (tl_ne->elev() < tl_nw->elev() &&
                  tl_ne->elev() < tl_sw->elev() &&
                  tl_ne->elev() < tl_se->elev()) {
-        full_ground_name = ground_name + "SlopeNorthEastInverted";
+        full_ground_name = ground_name + "_slope_north_east_inverted";
       } else if (tl_sw->elev() == tl_ne->elev() &&
                  tl_nw->elev() < tl_sw->elev() &&
                  tl_se->elev() < tl_sw->elev()) {
         y_canv -= tl_sz.h / 2;
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeDiagonalSouthWestToNorthEast";
+        full_ground_name =
+            ground_name + "_slope_diagonal_south_west_to_north_east";
       } else if (tl_nw->elev() == tl_se->elev() &&
                  tl_ne->elev() < tl_nw->elev() &&
                  tl_sw->elev() < tl_nw->elev()) {
         h_canv += tl_sz.h / 2;
-        full_ground_name = ground_name + "SlopeDiagonalNorthWestToSouthEast";
+        full_ground_name =
+            ground_name + "_slope_diagonal_north_west_to_south_east";
       }
       ground_type_rend = hash(full_ground_name);
       _<img_rend>().draw_img(ground_type_rend, x_canv, y_canv, w_canv, h_canv);
@@ -116,7 +118,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                      y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -125,7 +127,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                      river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -134,7 +136,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                      y_canv + h_canv / 2 + river_part_h / 2 + k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -143,7 +145,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                      river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -152,7 +154,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -161,7 +163,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -170,7 +172,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -179,7 +181,7 @@ namespace forr {
             rect_f b{x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                      y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                      river_part_w, river_part_h};
-            _<img_rend>().draw_img("RiverPart_" + std::to_string(anim_idx), b.x,
+            _<img_rend>().draw_img("river_part_" + std::to_string(anim_idx), b.x,
                                    b.y, b.w, b.h);
           }
           break;
@@ -187,57 +189,57 @@ namespace forr {
       }
     }};
     static func<void()> fn_draw_water_edges{[] {
-      _<img_rend>().draw_img("GroundWaterEdge", x_canv - w_canv * 0.2f,
+      _<img_rend>().draw_img("ground_water_edge", x_canv - w_canv * 0.2f,
                              y_canv - h_canv * 0.2f, w_canv * 1.4f,
                              h_canv * 1.4f);
     }};
     static func<void()> fn_draw_water{[] {
       auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
-      _<img_rend>().draw_img("GroundWater_" + std::to_string(anim_idx), x_canv,
+      _<img_rend>().draw_img("ground_water_" + std::to_string(anim_idx), x_canv,
                              y_canv, w_canv, h_canv);
 
       for (auto i = 0; i < tl->elev(); i++)
-        _<img_rend>().draw_img("GroundWaterHeight", x_canv, y_canv, w_canv,
+        _<img_rend>().draw_img("ground_water_height", x_canv, y_canv, w_canv,
                                h_canv);
       for (auto i = 0; i < tl->water_depth(); i++)
-        _<img_rend>().draw_img("GroundWaterDepth", x_canv, y_canv, w_canv,
+        _<img_rend>().draw_img("ground_water_depth", x_canv, y_canv, w_canv,
                                h_canv);
     }};
     static func<void()> fn_draw_layers{[] {
-      if (ground == hash("GroundGrass"))
-        _<img_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
+      if (ground == hash("ground_grass"))
+        _<img_rend>().draw_img("ground_grass_layer", x_canv, y_canv, w_canv,
                                h_canv);
-      else if (ground == hash("GroundDirt"))
-        _<img_rend>().draw_img("GroundDirtLayer", x_canv, y_canv, w_canv,
+      else if (ground == hash("ground_dirt"))
+        _<img_rend>().draw_img("ground_dirt_layer", x_canv, y_canv, w_canv,
                                h_canv);
-      else if (ground == hash("GroundRock"))
-        _<img_rend>().draw_img("GroundRockLayer", x_canv, y_canv, w_canv,
+      else if (ground == hash("ground_rock"))
+        _<img_rend>().draw_img("ground_rock_layer", x_canv, y_canv, w_canv,
                                h_canv);
     }};
     static func<void()> fn_draw_tile_symbols{[] {
       auto hovered_coord{_<tl_hovering>().hovered_coord()};
       if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
-        _<img_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv, h_canv);
+        _<img_rend>().draw_img("hovered_tile", x_canv, y_canv, w_canv, h_canv);
       auto player_dest{_<player>().dest()};
       if (x_coord == player_dest.x && y_coord == player_dest.y)
-        _<img_rend>().draw_img("DestinationTile", x_canv, y_canv, w_canv,
+        _<img_rend>().draw_img("dest_tile", x_canv, y_canv, w_canv,
                                h_canv);
     }};
     static func<void()> fn_draw_player{[&] {
       if (x_coord == player_pos.x && y_coord == player_pos.y) {
-        _<img_rend>().draw_img("Shadow", x_canv, y_canv, w_canv, h_canv);
-        _<img_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w, tl_sz.h);
+        _<img_rend>().draw_img("shadow", x_canv, y_canv, w_canv, h_canv);
+        _<img_rend>().draw_img("player", x_canv, y_canv, tl_sz.w, tl_sz.h);
       }
     }};
     static func<void()> fn_draw_objects{[&] {
       auto objs_stack{tl ? tl->objects_stack() : nullptr};
       if (objs_stack) {
         for (const auto &obj : objs_stack->objects()) {
-          if (obj->type() != hash("ObjectPinkFlower"))
-            _<img_rend>().draw_img("Shadow", x_canv, y_canv, tl_sz.w, tl_sz.h);
+          if (obj->type() != hash("object_pink_flower"))
+            _<img_rend>().draw_img("shadow", x_canv, y_canv, tl_sz.w, tl_sz.h);
           auto obj_type{obj->type()};
-          if (obj_type == hash("ObjectFirTree") ||
-              obj_type == hash("ObjectBirchTree")) {
+          if (obj_type == hash("object_fir_tree") ||
+              obj_type == hash("object_birch_tree")) {
             auto tree_obj{std::static_pointer_cast<forr::tree_object>(obj)};
             auto trunk_parts{tree_obj->trunk_parts()};
             auto needleTypes{tree_obj->needle_types()};
@@ -258,10 +260,10 @@ namespace forr {
               auto trunk_part_width{tl_sz.w * 0.2f * w_decr_factor};
               auto trunk_part_height{tl_sz.h * 0.2f};
               str trunk_part_name;
-              if (obj_type == hash("ObjectFirTree"))
-                trunk_part_name = "ObjectFirTreeTrunkPart";
-              else if (obj_type == hash("ObjectBirchTree"))
-                trunk_part_name = "ObjectBirchTreeTrunkPart";
+              if (obj_type == hash("object_fir_tree"))
+                trunk_part_name = "object_fir_tree_trunk_part";
+              else if (obj_type == hash("object_birch_tree"))
+                trunk_part_name = "object_birch_tree_trunk_part";
               _<img_rend>().draw_img(
                   trunk_part_name, trunk_part_x_center - trunk_part_width / 2,
                   trunk_part_y_center - trunk_part_height / 2, trunk_part_width,
@@ -334,11 +336,11 @@ namespace forr {
           h_canv = ceil(tl_sz.h, 2.5f);
           if (i == 0 && !fn_draw_regular_ground())
             continue;
-          else if (i == 1 && ground != hash("GroundWater"))
+          else if (i == 1 && ground != hash("ground_water"))
             fn_draw_rivers();
-          else if (i == 1 && ground == hash("GroundWater"))
+          else if (i == 1 && ground == hash("ground_water"))
             fn_draw_water_edges();
-          else if (i == 2 && ground == hash("GroundWater"))
+          else if (i == 2 && ground == hash("ground_water"))
             fn_draw_water();
           if (i == 1)
             fn_draw_layers();
