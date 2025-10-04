@@ -31,7 +31,7 @@ namespace forr {
 
     if (_<kb_inp>().any_key_pressed_pick_res() ||
         _<mouse_inp>().any_mouse_btn_pressed_pick_res())
-      _<scene_mngr>().go_to_scene("MainMenuScene");
+      _<scene_mngr>().go_to_scene("main_menu_scene");
   }
 
   void intro_scene::render_derived() const {
@@ -43,7 +43,7 @@ namespace forr {
     gui()->add_child_comp(std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
     gui()->add_child_comp(
         std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
-          _<scene_mngr>().go_to_scene("WorldGenScene");
+          _<scene_mngr>().go_to_scene("world_gen_scene");
         }));
 
     gui()->add_child_comp(std::make_shared<gui_button>(
@@ -62,7 +62,7 @@ namespace forr {
     _<gui_chat_box>().print("Generating new world...");
     _<world_grator>().gen_new_world();
     _<gui_chat_box>().print("World generation completed.");
-    _<scene_mngr>().go_to_scene("MainScene");
+    _<scene_mngr>().go_to_scene("main_scene");
   }
 
   void main_scene::init_derived() {
