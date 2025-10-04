@@ -6,11 +6,11 @@
 #include "comm.hpp"
 
 namespace forr {
-  class gui_component {
+  class gui_comp {
    public:
-    gui_component(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
+    gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
 
-    s_ptr<gui_component> add_child_component(s_ptr<gui_component> comp);
+    s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
 
     void update();
 
@@ -20,13 +20,13 @@ namespace forr {
 
     void set_pos(pt_f new_pos);
 
-    void toggle_visibility();
+    void toggle_visible();
 
     auto visible() const { return visible_; }
 
     void set_visible(bool val) { visible_ = val; }
 
-    void set_parent_comp(gui_component *value) { parent_comp_ = value; }
+    void set_parent_comp(gui_comp *value) { parent_comp_ = value; }
 
    protected:
     virtual void update_derived() {}
@@ -35,22 +35,22 @@ namespace forr {
 
    private:
     rect_f bounds_;
-    vec<s_ptr<gui_component>> children_;
+    vec<s_ptr<gui_comp>> children_;
     bool visible_{true};
     bool enabled_{true};
-    gui_component *parent_comp_{nullptr};
+    gui_comp *parent_comp_{nullptr};
   };
 
-  class gui : public gui_component {
+  class gui : public gui_comp {
    public:
-    gui() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) {}
+    gui() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
   };
 
-  class gui_label : public gui_component {
+  class gui_label : public gui_comp {
    public:
     gui_label(float x, float y, float w, float h, str_view text = "",
               bool cent_align = false, color color = colors::wheat_transp)
-        : gui_component(x, y, w, h), text_(text), cent_align_(cent_align),
+        : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
           color_(color) {}
 
     void set_text(str_view val) { text_ = val; }
@@ -64,11 +64,11 @@ namespace forr {
     color color_;
   };
 
-  class gui_panel : public gui_component {
+  class gui_panel : public gui_comp {
    public:
     gui_panel(float x, float y, float w, float h,
               str_view bg_img = k_default_bg_img)
-        : gui_component(x, y, w, h), bg_img_(bg_img) {}
+        : gui_comp(x, y, w, h), bg_img_(bg_img) {}
 
    protected:
     virtual void render_derived() const override;
@@ -130,9 +130,9 @@ namespace forr {
     pt_f move_start_mouse_pos_{-1, -1};
   };
 
-  class gui_window : public gui_movable_panel {
+  class gui_win : public gui_movable_panel {
    public:
-    gui_window(float x, float y, float w, float h, str_view win_title)
+    gui_win(float x, float y, float w, float h, str_view win_title)
         : gui_movable_panel(x, y, w, h), gui_win_title_bar_(*this, win_title) {
       init();
     }
@@ -147,7 +147,7 @@ namespace forr {
 
     class gui_window_title_bar {
      public:
-      gui_window_title_bar(gui_window &parent_win, str_view win_title)
+      gui_window_title_bar(gui_win &parent_win, str_view win_title)
           : parent_win_(parent_win), k_win_title(win_title) {}
 
       void render() const;
@@ -158,7 +158,7 @@ namespace forr {
       inline static const float k_h{0.04f};
       const str k_win_title;
 
-      gui_window &parent_win_;
+      gui_win &parent_win_;
     };
 
     gui_window_title_bar gui_win_title_bar_;
@@ -177,9 +177,9 @@ namespace forr {
     s_ptr<gui_label> fps_text_pnl_;
   };
 
-  class gui_text_console : public gui_panel {
+  class gui_chat_box : public gui_panel {
    public:
-    gui_text_console()
+    gui_chat_box()
         : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived) {}
 
     void render_derived() const override;

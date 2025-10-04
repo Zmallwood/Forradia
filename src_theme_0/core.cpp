@@ -5,121 +5,54 @@
 #include "core.hpp"
 #include "engine.hpp"
 #include "game_props.hpp"
-#include "gui.hpp"
-#include "gui_spec.hpp"
-#include "input.hpp"
-#include "rend.hpp"
-#include "update.hpp"
-#include "world_grator.hpp"
 #include "world_struct.hpp"
-#include "world_view.hpp"
 
 namespace forr {
-  void run_new_theme_0() {
-    _<engine>().init(_<game_props>().k_game_win_title,
-                     _<game_props>().k_clear_color);
-    _<scene_mngr>().add_scene("IntroScene", _<intro_scene>());
-    _<scene_mngr>().add_scene("MainMenuScene", _<main_menu_scene>());
-    _<scene_mngr>().add_scene("WorldGenScene", _<world_gen_scene>());
-    _<scene_mngr>().add_scene("MainScene", _<main_scene>());
-    _<scene_mngr>().go_to_scene("IntroScene");
-    _<world>().init(_<game_props>().k_w_area_sz,
-                    _<game_props>().k_world_scaling);
-    _<engine>().run();
+  sz_f calc_tl_sz() {
+    auto num_grid_rows{_<game_props>().k_num_grid_rows};
+    auto tl_h{1.0f / num_grid_rows};
+    auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+    auto tl_w{tl_h / asp_rat};
+    return {tl_w, tl_h};
   }
 
-  void intro_scene::init_derived() {
-    start_text_ = gui()->add_child_component(std::make_shared<gui_label>(
-        0.45f, 0.5f, 0.1f, 0.04f, "Press to start", true));
+  sz calc_grid_sz() {
+    auto tl_sz{calc_tl_sz()};
+    auto num_grid_cols{c_int(1.0f / tl_sz.w) + 1};
+    auto num_grid_rows{_<game_props>().k_num_grid_rows};
+    return {num_grid_cols, num_grid_rows};
   }
 
-  void intro_scene::on_enter_derived() {
-    _<gui_text_console>().print("Game started.");
+  void player_body::init() {
+    parts_.insert({body_part_types::overall_body, body_part()});
+    parts_.insert({body_part_types::right_arm, body_part()});
+    parts_.insert({body_part_types::left_arm, body_part()});
+    parts_.insert({body_part_types::legs, body_part()});
   }
 
-  void intro_scene::update_derived() {
-    start_text_->set_visible((ticks() % 800) < 400);
+  body_part *player_body::body_part_ptr(body_part_types type) {
+    if (parts_.contains(type)) {
+      return &parts_.at(type);
+    }
+    return nullptr;
+  }
 
-    _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
+  void player::init() { move_to_suitable_pos(); }
 
-    if (_<kb_input>().any_key_pressed_pick_result() ||
-        _<mouse_input>().any_mouse_btn_pressed_pick_result()) {
-      _<scene_mngr>().go_to_scene("MainMenuScene");
+  void player::move_to_suitable_pos() {
+    auto w_area{_<world>().curr_w_area()};
+    auto sz{w_area->get_sz()};
+    pos_ = {sz.w / 2, sz.h / 2};
+    while (w_area->get_tl(pos_)->ground() == hash("GroundWater")) {
+      pos_ = {rand_int(sz.w), rand_int(sz.h)};
     }
   }
 
-  void intro_scene::render_derived() const {
-    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
-                                 1.0f);
-    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
-  }
+  void player::move_n() { pos_.y -= 1; }
 
-  void main_menu_scene::init_derived() {
-    gui()->add_child_component(
-        std::make_shared<gui_panel>(0.4f, 0.32f, 0.2f, 0.2f));
-    gui()->add_child_component(
-        std::make_shared<gui_button>(0.45f, 0.36f, 0.1f, 0.04f, "New game", [] {
-          _<scene_mngr>().go_to_scene("WorldGenScene");
-        }));
+  void player::move_e() { pos_.x += 1; }
 
-    gui()->add_child_component(std::make_shared<gui_button>(
-        0.45f, 0.44f, 0.1f, 0.04f, "Quit", [] { _<engine>().stop(); }));
-    gui()->add_child_component(__<gui_text_console>());
-  }
+  void player::move_s() { pos_.y += 1; }
 
-  void main_menu_scene::update_derived() {}
-
-  void main_menu_scene::render_derived() const {
-    _<image_renderer>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
-                                 1.0f);
-    _<image_renderer>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
-  }
-
-  void world_gen_scene::on_enter_derived() {
-    _<gui_text_console>().print("Generating new world...");
-    _<world_grator>().gen_new_world();
-    _<gui_text_console>().print("World generation completed.");
-    _<scene_mngr>().go_to_scene("MainScene");
-  }
-
-  void main_scene::init_derived() {
-    gui()->add_child_component(std::make_shared<gui_player_status_panel>());
-    gui()->add_child_component(__<gui_text_console>());
-    gui()->add_child_component(std::make_shared<gui_button>(
-        0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] { _<gui_player_body_window>().toggle_visibility(); },
-        "GUIButtonPlayerBodyBackground",
-        "GUIButtonPlayerBodyHoveredBackground"));
-
-    gui()->add_child_component(std::make_shared<gui_button>(
-        0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] { _<gui_inventory_window>().toggle_visibility(); },
-        "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
-
-    gui()->add_child_component(std::make_shared<gui_button>(
-        0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] { _<gui_system_menu>().toggle_visibility(); },
-        "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
-    gui()->add_child_component(__<gui_system_menu>());
-    gui()->add_child_component(__<gui_inventory_window>());
-    gui()->add_child_component(__<gui_player_body_window>());
-    gui()->add_child_component(std::make_shared<gui_fps_panel>());
-    gui()->add_child_component(__<gui_interact_menu>());
-  }
-
-  void main_scene::on_enter_derived() {
-    _<gui_text_console>().print("You have entered the world.");
-  }
-
-  void main_scene::update_derived() {
-    update_kb_actions();
-    update_mouse_actions();
-    update_npcs();
-    update_crea_movem();
-    update_mouse_movem();
-    update_kb_movem();
-    _<tile_hovering>().update();
-  }
-
-  void main_scene::render_derived() const { _<world_view>().render(); }
+  void player::move_w() { pos_.x -= 1; }
 }

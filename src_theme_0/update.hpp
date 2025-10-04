@@ -18,7 +18,7 @@ namespace forr {
 
   void update_npcs();
 
-  class tile_hovering {
+  class tl_hovering {
    public:
     void update();
 

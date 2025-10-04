@@ -3,10 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "world_view.hpp"
+#include "core.hpp"
 #include "engine.hpp"
-#include "player.hpp"
 #include "rend.hpp"
-#include "tile_grid_math.hpp"
 #include "update.hpp"
 #include "world_struct.hpp"
 
@@ -151,8 +150,8 @@ namespace forr {
           //     std::to_string(animIndex) + "_New");
           // }
           if (i == 0) {
-            _<image_renderer>().draw_img(ground_type_rend, x_canv, y_canv,
-                                         w_canv, h_canv);
+            _<image_rend>().draw_img(ground_type_rend, x_canv, y_canv, w_canv,
+                                     h_canv);
           } else if (ground != hash("GroundWater") && i == 1) {
             vec<dirs> river_dirs{tl->river_dir_1(), tl->river_dir_2()};
             auto river_part_w{0.4f * w_canv};
@@ -167,9 +166,9 @@ namespace forr {
                            y_canv + h_canv / 2 - river_part_h / 2 -
                                k * river_part_h,
                            river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::e: {
@@ -178,9 +177,9 @@ namespace forr {
                                k * river_part_w,
                            y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                            river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::s: {
@@ -189,9 +188,9 @@ namespace forr {
                            y_canv + h_canv / 2 + river_part_h / 2 +
                                k * river_part_h,
                            river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::w: {
@@ -200,9 +199,9 @@ namespace forr {
                                k * river_part_w,
                            y_canv + h_canv / 2 - river_part_h / 2, river_part_w,
                            river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::ne: {
@@ -211,9 +210,9 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                       river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::se: {
@@ -222,9 +221,9 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                       river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::sw: {
@@ -233,9 +232,9 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 + k * river_part_h,
                       river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               case dirs::nw: {
@@ -244,28 +243,27 @@ namespace forr {
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
                       y_canv + h_canv / 2 - river_part_h / 2 - k * river_part_h,
                       river_part_w, river_part_h};
-                  _<image_renderer>().draw_img("RiverPart_" +
-                                                   std::to_string(anim_idx),
-                                               b.x, b.y, b.w, b.h);
+                  _<image_rend>().draw_img("RiverPart_" +
+                                               std::to_string(anim_idx),
+                                           b.x, b.y, b.w, b.h);
                 }
               } break;
               }
             }
           } else if (ground == hash("GroundWater") && i == 1) {
             auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
-            _<image_renderer>().draw_img(
-                "GroundWaterEdge", x_canv - w_canv * 0.2f,
-                y_canv - h_canv * 0.2f, w_canv * 1.4f, h_canv * 1.4f);
+            _<image_rend>().draw_img("GroundWaterEdge", x_canv - w_canv * 0.2f,
+                                     y_canv - h_canv * 0.2f, w_canv * 1.4f,
+                                     h_canv * 1.4f);
           } else if (ground == hash("GroundWater") && i == 2) {
 
             auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
-            _<image_renderer>().draw_img("GroundWater_" +
-                                             std::to_string(anim_idx),
-                                         x_canv, y_canv, w_canv, h_canv);
+            _<image_rend>().draw_img("GroundWater_" + std::to_string(anim_idx),
+                                     x_canv, y_canv, w_canv, h_canv);
 
             for (auto i = 0; i < tl->elev(); i++) {
-              _<image_renderer>().draw_img("GroundWaterHeight", x_canv, y_canv,
-                                           w_canv, h_canv);
+              _<image_rend>().draw_img("GroundWaterHeight", x_canv, y_canv,
+                                       w_canv, h_canv);
             }
 
             // groundTypeRendered = Hash("GroundWater_" +
@@ -275,20 +273,20 @@ namespace forr {
             // tileSize.width * 4, tileSize.height * 4);
             if (ground == hash("GroundWater")) {
               for (auto i = 0; i < tl->water_depth(); i++) {
-                _<image_renderer>().draw_img("GroundWaterDepth", x_canv, y_canv,
-                                             w_canv, h_canv);
+                _<image_rend>().draw_img("GroundWaterDepth", x_canv, y_canv,
+                                         w_canv, h_canv);
               }
             }
           }
           if (ground == hash("GroundGrass")) {
-            _<image_renderer>().draw_img("GroundGrassLayer", x_canv, y_canv,
-                                         w_canv, h_canv);
+            _<image_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
+                                     h_canv);
           } else if (ground == hash("GroundDirt")) {
-            _<image_renderer>().draw_img("GroundDirtLayer", x_canv, y_canv,
-                                         w_canv, h_canv);
+            _<image_rend>().draw_img("GroundDirtLayer", x_canv, y_canv, w_canv,
+                                     h_canv);
           } else if (ground == hash("GroundRock")) {
-            _<image_renderer>().draw_img("GroundRockLayer", x_canv, y_canv,
-                                         w_canv, h_canv);
+            _<image_rend>().draw_img("GroundRockLayer", x_canv, y_canv, w_canv,
+                                     h_canv);
           }
           if (i < 2) {
             continue;
@@ -328,28 +326,27 @@ namespace forr {
           //         widthCanvas, heightCanvas);
           //     }
           // }
-          auto hovered_coord{_<tile_hovering>().hovered_coord()};
+          auto hovered_coord{_<tl_hovering>().hovered_coord()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
-            _<image_renderer>().draw_img("HoveredTile", x_canv, y_canv, w_canv,
-                                         h_canv);
+            _<image_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv,
+                                     h_canv);
           }
           auto player_dest{_<player>().dest()};
           if (x_coord == player_dest.x && y_coord == player_dest.y) {
-            _<image_renderer>().draw_img("DestinationTile", x_canv, y_canv,
-                                         w_canv, h_canv);
+            _<image_rend>().draw_img("DestinationTile", x_canv, y_canv, w_canv,
+                                     h_canv);
           }
           if (x_coord == player_pos.x && y_coord == player_pos.y) {
-            _<image_renderer>().draw_img("Shadow", x_canv, y_canv, w_canv,
-                                         h_canv);
-            _<image_renderer>().draw_img("Player", x_canv, y_canv, tl_sz.w,
-                                         tl_sz.h);
+            _<image_rend>().draw_img("Shadow", x_canv, y_canv, w_canv, h_canv);
+            _<image_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w,
+                                     tl_sz.h);
           }
           auto objs_stack{tl ? tl->objects_stack() : nullptr};
           if (objs_stack) {
             for (const auto &obj : objs_stack->objects()) {
               if (obj->type() != hash("ObjectPinkFlower")) {
-                _<image_renderer>().draw_img("Shadow", x_canv, y_canv, tl_sz.w,
-                                             tl_sz.h);
+                _<image_rend>().draw_img("Shadow", x_canv, y_canv, tl_sz.w,
+                                         tl_sz.h);
               }
               auto obj_type{obj->type()};
               if (obj_type == hash("ObjectFirTree") ||
@@ -381,7 +378,7 @@ namespace forr {
                   } else if (obj_type == hash("ObjectBirchTree")) {
                     trunk_part_name = "ObjectBirchTreeTrunkPart";
                   }
-                  _<image_renderer>().draw_img(
+                  _<image_rend>().draw_img(
                       trunk_part_name,
                       trunk_part_x_center - trunk_part_width / 2,
                       trunk_part_y_center - trunk_part_height / 2,
@@ -389,7 +386,7 @@ namespace forr {
                   auto needle_w{tree_w};
                   auto needle_h{tl_sz.h};
                   if (needle_type) {
-                    _<image_renderer>().draw_img(
+                    _<image_rend>().draw_img(
                         needle_type, trunk_part_x_center - needle_w / 2,
                         trunk_part_y_center - needle_h / 2, needle_w, needle_h);
                   }
@@ -399,9 +396,9 @@ namespace forr {
               auto obj_img_sz{_<image_bank>().get_img_sz(obj_type)};
               auto obj_w{obj_img_sz.w / 60.0f * tl_sz.w};
               auto obj_h{obj_img_sz.h / 60.0f * tl_sz.h};
-              _<image_renderer>().draw_img(
-                  obj_type, x_canv + tl_sz.w / 2 - obj_w / 2,
-                  y_canv + tl_sz.h - obj_h, obj_w, obj_h);
+              _<image_rend>().draw_img(obj_type,
+                                       x_canv + tl_sz.w / 2 - obj_w / 2,
+                                       y_canv + tl_sz.h - obj_h, obj_w, obj_h);
             }
           }
           auto crea{tl ? tl->creature() : nullptr};
@@ -410,9 +407,9 @@ namespace forr {
             auto crea_img_sz{_<image_bank>().get_img_sz(crea_type)};
             auto crea_w{crea_img_sz.w / 60.0f * tl_sz.w};
             auto crea_h{crea_img_sz.h / 60.0f * tl_sz.h};
-            _<image_renderer>().draw_img(
-                crea_type, x_canv + tl_sz.w / 2 - crea_w / 2,
-                y_canv + tl_sz.h - crea_h, crea_w, crea_h);
+            _<image_rend>().draw_img(crea_type,
+                                     x_canv + tl_sz.w / 2 - crea_w / 2,
+                                     y_canv + tl_sz.h - crea_h, crea_w, crea_h);
           }
           auto npc{tl ? tl->npc() : nullptr};
           if (npc) {
@@ -420,9 +417,8 @@ namespace forr {
             auto npc_img_sz{_<image_bank>().get_img_sz(npc_type)};
             auto npc_w{npc_img_sz.w / 60.0f * tl_sz.w};
             auto npc_h{npc_img_sz.h / 60.0f * tl_sz.h};
-            _<image_renderer>().draw_img(
-                npc_type, x_canv + tl_sz.w / 2 - npc_w / 2,
-                y_canv + tl_sz.h - npc_h, npc_w, npc_h);
+            _<image_rend>().draw_img(npc_type, x_canv + tl_sz.w / 2 - npc_w / 2,
+                                     y_canv + tl_sz.h - npc_h, npc_w, npc_h);
           }
         }
       }

@@ -3,40 +3,39 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update.hpp"
+#include "core.hpp"
 #include "engine.hpp"
 #include "gui_spec.hpp"
 #include "input.hpp"
-#include "player.hpp"
-#include "tile_grid_math.hpp"
 #include "world_struct.hpp"
 
 namespace forr {
   void update_kb_actions() {
-    if (_<kb_input>().key_pressed_pick_result(SDLK_ESCAPE)) {
-      _<gui_system_menu>().toggle_visibility();
-    } else if (_<kb_input>().key_pressed_pick_result(SDLK_c)) {
-      _<gui_player_body_window>().toggle_visibility();
-    } else if (_<kb_input>().key_pressed_pick_result(SDLK_b)) {
-      _<gui_inventory_window>().toggle_visibility();
+    if (_<kb_inp>().key_pressed_pick_res(SDLK_ESCAPE)) {
+      _<gui_sys_menu>().toggle_visible();
+    } else if (_<kb_inp>().key_pressed_pick_res(SDLK_c)) {
+      _<gui_player_body_win>().toggle_visible();
+    } else if (_<kb_inp>().key_pressed_pick_res(SDLK_b)) {
+      _<gui_inventory_win>().toggle_visible();
     }
   }
 
   void update_mouse_actions() {
-    if (_<mouse_input>().right_btn_ref().been_fired_pick_result()) {
+    if (_<mouse_inp>().right_btn_ref().been_fired_pick_res()) {
       _<gui_interact_menu>().set_visible(true);
       _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
     }
     if (_<gui_interact_menu>().visible() &&
-        _<mouse_input>().left_btn_ref().been_fired_pick_result()) {
+        _<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
       _<gui_interact_menu>().set_visible(false);
     }
   }
 
   void update_kb_movem() {
-    auto up_press{_<kb_input>().key_pressed(SDLK_UP)};
-    auto right_press{_<kb_input>().key_pressed(SDLK_RIGHT)};
-    auto down_press{_<kb_input>().key_pressed(SDLK_DOWN)};
-    auto left_press{_<kb_input>().key_pressed(SDLK_LEFT)};
+    auto up_press{_<kb_inp>().key_pressed(SDLK_UP)};
+    auto right_press{_<kb_inp>().key_pressed(SDLK_RIGHT)};
+    auto down_press{_<kb_inp>().key_pressed(SDLK_DOWN)};
+    auto left_press{_<kb_inp>().key_pressed(SDLK_LEFT)};
     if (up_press || right_press || down_press || left_press) {
       _<player>().set_dest({-1, -1});
     }
@@ -61,8 +60,8 @@ namespace forr {
   }
 
   void update_mouse_movem() {
-    if (_<mouse_input>().left_btn_ref().been_fired_pick_result()) {
-      auto new_dest{_<tile_hovering>().hovered_coord()};
+    if (_<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
+      auto new_dest{_<tl_hovering>().hovered_coord()};
       _<player>().set_dest(new_dest);
     }
     auto player_pos{_<player>().pos()};
@@ -151,10 +150,10 @@ namespace forr {
       if (now > npc->ticks_next_spontaneous_speech()) {
         auto name{npc->name()};
         if (rand_int(20) == 0) {
-          _<gui_text_console>().print(name +
-                                      ": Buying blueberries, one gold each.");
+          _<gui_chat_box>().print(name +
+                                  ": Buying blueberries, one gold each.");
         } else {
-          _<gui_text_console>().print(name + ": Hello all!");
+          _<gui_chat_box>().print(name + ": Hello all!");
         }
         npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_sec_millis +
                                                (6000 * k_one_sec_millis));
@@ -197,7 +196,7 @@ namespace forr {
     }
   }
 
-  void tile_hovering::update() {
+  void tl_hovering::update() {
     auto player_pos{_<player>().pos()};
     auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
     auto tl_sz{calc_tl_sz()};

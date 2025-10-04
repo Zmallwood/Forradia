@@ -3,49 +3,82 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "engine.hpp"
+#include "comm.hpp"
 
 namespace forr {
-  void run_new_theme_0();
+  sz_f calc_tl_sz();
 
-  class gui_component;
+  sz calc_grid_sz();
 
-  class intro_scene : public i_scene {
-   protected:
-    void init_derived() override;
+  enum class body_part_types { none, overall_body, right_arm, left_arm, legs };
 
-    void on_enter_derived() override;
-
-    void update_derived() override;
-
-    void render_derived() const override;
+  class body_part {
+   public:
+    auto str() const { return str_; }
+    auto curr_energy() const { return curr_energy_; }
+    auto max_energy() const { return max_energy_; }
+    auto temp() const { return temp_; }
 
    private:
-    s_ptr<gui_component> start_text_;
+    float str_{0.1f};
+    float curr_energy_{1.0f};
+    float max_energy_{1.0f};
+    float temp_{37.0f};
   };
 
-  class main_menu_scene : public i_scene {
-   protected:
-    void init_derived() override;
+  class player_body {
+   public:
+    player_body() { init(); }
 
-    void update_derived() override;
+    body_part *body_part_ptr(body_part_types type);
 
-    void render_derived() const override;
+   private:
+    void init();
+
+    std::map<body_part_types, body_part> parts_;
   };
 
-  class world_gen_scene : public i_scene {
-   protected:
-    void on_enter_derived() override;
-  };
+  class player {
+   public:
+    player() { init(); }
 
-  class main_scene : public i_scene {
-   protected:
-    void init_derived() override;
+    void move_n();
 
-    void on_enter_derived() override;
+    void move_e();
 
-    void update_derived() override;
+    void move_s();
 
-    void render_derived() const override;
+    void move_w();
+
+    auto name() const { return name_; }
+
+    auto pos() const { return pos_; }
+
+    auto movem_spd() const { return movem_spd_; }
+
+    auto ticks_last_move() const { return ticks_last_move_; }
+
+    void set_ticks_last_move(int val) { ticks_last_move_ = val; }
+
+    auto dest() const { return dest_; }
+
+    void set_dest(pt val) { dest_ = val; }
+
+    auto &body_ref() { return body_; }
+
+    auto money() const { return money_; }
+
+   private:
+    void init();
+
+    void move_to_suitable_pos();
+
+    str name_{"Unnamed Player"};
+    pt pos_{60, 50};
+    float movem_spd_{5.0f};
+    int ticks_last_move_{0};
+    pt dest_{-1, -1};
+    player_body body_;
+    int money_{0};
   };
 }

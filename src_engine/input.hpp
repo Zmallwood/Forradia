@@ -9,7 +9,7 @@ namespace forr {
   ////////////////////
   // Keyboard
   ////////////////////
-  class kb_input {
+  class kb_inp {
    public:
     void reset();
 
@@ -19,9 +19,9 @@ namespace forr {
 
     bool key_pressed(SDL_Keycode key) const;
 
-    bool key_pressed_pick_result(SDL_Keycode key);
+    bool key_pressed_pick_res(SDL_Keycode key);
 
-    bool any_key_pressed_pick_result();
+    bool any_key_pressed_pick_res();
 
    private:
     std::set<SDL_Keycode> pressed_;
@@ -30,7 +30,7 @@ namespace forr {
   ////////////////////
   // Mouse
   ////////////////////
-  class mouse_button {
+  class mouse_btn {
    public:
     void reset();
 
@@ -38,15 +38,15 @@ namespace forr {
 
     void reg_release();
 
-    bool pressed_pick_result();
+    bool pressed_pick_res();
 
-    bool been_fired_pick_result();
+    bool been_fired_pick_res();
 
-    bool been_fired_dont_pick_result();
+    bool been_fired_no_pick_res();
 
-    bool been_released_pick_result();
+    bool been_released_pick_res();
 
-    bool been_released_dont_pick_result();
+    bool been_released_no_pick_res();
 
    private:
     bool pressed_{false};
@@ -54,7 +54,7 @@ namespace forr {
     bool been_released_{false};
   };
 
-  class mouse_input {
+  class mouse_inp {
    public:
     void reset();
 
@@ -62,14 +62,14 @@ namespace forr {
 
     void reg_mouse_btn_up(Uint8 btn);
 
-    bool any_mouse_btn_pressed_pick_result();
+    bool any_mouse_btn_pressed_pick_res();
 
     auto &left_btn_ref() { return left_btn_; }
 
     auto &right_btn_ref() { return right_btn_; }
 
    private:
-    mouse_button left_btn_;
-    mouse_button right_btn_;
+    mouse_btn left_btn_;
+    mouse_btn right_btn_;
   };
 }

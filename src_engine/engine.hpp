@@ -56,7 +56,7 @@ namespace forr {
     const pt_f k_position{0.93f, 0.02f};
   };
 
-  enum class cursor_styles {
+  enum class curs_styles {
     normal,
     hovering_clickable_gui,
     hovering_creature
@@ -70,7 +70,7 @@ namespace forr {
 
     void render();
 
-    auto set_curs_style(cursor_styles val) { curs_style_ = val; }
+    auto set_curs_style(curs_styles val) { curs_style_ = val; }
 
    private:
     void init();
@@ -79,7 +79,7 @@ namespace forr {
 
     constexpr static float k_curs_sz{0.05f};
 
-    cursor_styles curs_style_{cursor_styles::normal};
+    curs_styles curs_style_{curs_styles::normal};
   };
 
   class image_bank {

@@ -6,7 +6,7 @@
 #include "comm.hpp"
 
 namespace forr {
-  class image_renderer {
+  class image_rend {
    public:
     void draw_img(str_view img_name, float x, float y, float w, float h) const;
 
@@ -15,14 +15,14 @@ namespace forr {
     void draw_img_auto_h(str_view img_name, float x, float y, float w) const;
   };
 
-  enum struct font_sizes { _20 = 20, _26 = 26 };
+  enum struct font_szs { _20 = 20, _26 = 26 };
 
-  class text_renderer {
+  class text_rend {
    public:
-    text_renderer() { init(); }
+    text_rend() { init(); }
 
     void draw_str(str_view text, float x, float y,
-                  font_sizes font_sz = font_sizes::_20, bool cent_align = false,
+                  font_szs font_sz = font_szs::_20, bool cent_align = false,
                   color text_color = colors::wheat_transp) const;
 
    private:
@@ -32,6 +32,6 @@ namespace forr {
 
     const str k_default_font_path{"./Resources/Fonts/PixeloidSans.ttf"};
 
-    std::map<font_sizes, s_ptr<TTF_Font>> fonts_;
+    std::map<font_szs, s_ptr<TTF_Font>> fonts_;
   };
 }

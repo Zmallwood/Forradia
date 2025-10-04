@@ -299,7 +299,7 @@ namespace forr {
   void print_ln(str_view text);
 
   // Cast util functions
-  int c_int(auto val) { return static_cast<int>(val); }
+  constexpr int c_int(auto val) { return static_cast<int>(val); }
 
   float c_float(auto val) { return static_cast<float>(val); }
 

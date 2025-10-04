@@ -4,20 +4,19 @@
  */
 #pragma once
 #include "gui.hpp"
-#include "player.hpp"
 
 namespace forr {
-  class gui_player_status_panel : public gui_panel {
+  class gui_player_status_box : public gui_panel {
    public:
-    gui_player_status_panel() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
+    gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
    protected:
     virtual void render_derived() const override;
   };
 
-  class gui_system_menu : public gui_component {
+  class gui_sys_menu : public gui_comp {
    public:
-    gui_system_menu() : gui_component(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+    gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
 
    protected:
     void init();
@@ -27,18 +26,17 @@ namespace forr {
     virtual void render_derived() const override;
   };
 
-  class gui_inventory_window : public gui_window {
+  class gui_inventory_win : public gui_win {
    public:
-    gui_inventory_window() : gui_window(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+    gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
 
    protected:
     void render_derived() const override;
   };
 
-  class gui_player_body_window : public gui_window {
+  class gui_player_body_win : public gui_win {
    public:
-    gui_player_body_window()
-        : gui_window(0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
+    gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
       init();
     }
 
@@ -46,11 +44,11 @@ namespace forr {
     void init();
 
    private:
-    void sel_body_part(body_part_types type);
+    void sel_body_part(int type);
 
     void update_body_part_info_lbls();
 
-    body_part_types sel_body_part_{body_part_types::none};
+    int sel_body_part_{0};
     s_ptr<gui_label> lbl_body_part_name_;
     s_ptr<gui_label> lbl_body_part_str_;
     s_ptr<gui_label> lbl_body_part_energy_;

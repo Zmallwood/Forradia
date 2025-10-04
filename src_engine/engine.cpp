@@ -15,8 +15,8 @@ namespace forr {
 
   void engine::run() {
     while (running_) {
-      _<kb_input>().reset();
-      _<mouse_input>().reset();
+      _<kb_inp>().reset();
+      _<mouse_inp>().reset();
       _<cursor>().reset_style_to_normal();
       poll_events();
       _<scene_mngr>().update_curr_scene();
@@ -38,16 +38,16 @@ namespace forr {
         running_ = false;
         break;
       case SDL_KEYDOWN:
-        _<kb_input>().reg_key_press(ev.key.keysym.sym);
+        _<kb_inp>().reg_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        _<kb_input>().reg_key_release(ev.key.keysym.sym);
+        _<kb_inp>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        _<mouse_input>().reg_mouse_btn_down(ev.button.button);
+        _<mouse_inp>().reg_mouse_btn_down(ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        _<mouse_input>().reg_mouse_btn_up(ev.button.button);
+        _<mouse_inp>().reg_mouse_btn_up(ev.button.button);
         break;
       }
     }
@@ -111,7 +111,7 @@ namespace forr {
 
   void cursor::disable_sys_curs() { SDL_ShowCursor(SDL_DISABLE); }
 
-  void cursor::reset_style_to_normal() { curs_style_ = cursor_styles::normal; }
+  void cursor::reset_style_to_normal() { curs_style_ = curs_styles::normal; }
 
   void cursor::render() {
     auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
@@ -119,14 +119,14 @@ namespace forr {
     auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().win())};
     str curs_img;
     switch (curs_style_) {
-    case cursor_styles::normal:
+    case curs_styles::normal:
       curs_img = "CursorDefault";
       break;
-    case cursor_styles::hovering_clickable_gui:
+    case curs_styles::hovering_clickable_gui:
       curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    _<image_renderer>().draw_img(curs_img, mouse_pos.x - w / 2,
+    _<image_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
                                  mouse_pos.y - h / 2, w, h);
   }
 
