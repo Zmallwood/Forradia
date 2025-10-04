@@ -117,6 +117,14 @@ namespace forr {
 
   rect_f gui_movable_panel::get_drag_area() { return bounds(); }
 
+  void gui_win::gui_win_title_bar::init() {
+    auto parent_win_b{parent_win_.bounds()};
+    add_child_comp(std::make_shared<gui_button>(
+        parent_win_b.w - conv_w_to_h(0.015f, _<sdl_device>().win()), 0.01f,
+        0.015f, conv_w_to_h(0.015f, _<sdl_device>().win()), "X",
+        [this] { parent_win_.toggle_visible(); }));
+  }
+
   void gui_win::gui_win_title_bar::render_derived() const {
     gui_panel::render_derived();
     auto parent_win_b{parent_win_.bounds()};

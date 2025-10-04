@@ -149,13 +149,17 @@ namespace forr {
      public:
       gui_win_title_bar(gui_win &parent_win, str_view win_title)
           : parent_win_(parent_win), k_win_title(win_title),
-            gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {}
+            gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
+        init();
+      }
 
       void render_derived() const override;
 
       rect_f bounds() const override;
 
      private:
+      void init();
+
       inline static const float k_h{0.04f};
       const str k_win_title;
 
