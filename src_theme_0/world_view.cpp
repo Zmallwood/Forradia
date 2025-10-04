@@ -49,103 +49,85 @@ namespace forr {
           y_canv += player_elev * tl_sz.h / 2;
           w_canv = tl_sz.w;
           h_canv = ceil(tl_sz.h, 2.5f);
-          // if (ground != Hash("GroundWater"))
-          if (true) {
-            str ground_name;
-            if (ground == hash("GroundGrass"))
-              ground_name = "GroundGrass";
-            else if (ground == hash("GroundWater"))
-              ground_name = "GroundDirt";
-            else if (ground == hash("GroundDirt"))
-              ground_name = "GroundDirt";
-            else if (ground == hash("GroundRock"))
-              ground_name = "GroundRock";
-            str full_ground_name{ground_name};
-            if (tl_nw->elev() > tl_sw->elev() &&
-                tl_ne->elev() > tl_se->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeSouth";
-            } else if (tl_nw->elev() < tl_sw->elev() &&
-                       tl_ne->elev() < tl_se->elev()) {
-              h_canv -= tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeNorth";
-            } else if (tl_ne->elev() > tl_nw->elev() &&
-                       tl_se->elev() > tl_sw->elev()) {
-              y_canv -= tl_sz.h / 2;
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeWest";
-            } else if (tl_nw->elev() > tl_ne->elev() &&
-                       tl_sw->elev() > tl_se->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeEast";
-            } else if (tl_nw->elev() > tl_ne->elev() &&
-                       tl_nw->elev() > tl_se->elev() &&
-                       tl_nw->elev() > tl_sw->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeSouthEast";
-            } else if (tl_ne->elev() > tl_nw->elev() &&
-                       tl_ne->elev() > tl_se->elev() &&
-                       tl_ne->elev() > tl_sw->elev()) {
-              y_canv -= tl_sz.h / 2;
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeSouthWest";
-            } else if (tl_sw->elev() > tl_nw->elev() &&
-                       tl_sw->elev() > tl_se->elev() &&
-                       tl_sw->elev() > tl_ne->elev()) {
-              full_ground_name = ground_name + "SlopeNorthEast";
-            } else if (tl_se->elev() > tl_nw->elev() &&
-                       tl_se->elev() > tl_ne->elev() &&
-                       tl_se->elev() > tl_sw->elev()) {
-              full_ground_name = ground_name + "SlopeNorthWest";
-            } else if (tl_sw->elev() < tl_nw->elev() &&
-                       tl_sw->elev() < tl_ne->elev() &&
-                       tl_sw->elev() < tl_se->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeSouthWestInverted";
-            } else if (tl_se->elev() < tl_nw->elev() &&
-                       tl_se->elev() < tl_ne->elev() &&
-                       tl_se->elev() < tl_sw->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeSouthEastInverted";
-            } else if (tl_nw->elev() < tl_ne->elev() &&
-                       tl_nw->elev() < tl_sw->elev() &&
-                       tl_nw->elev() < tl_se->elev()) {
-              y_canv -= tl_sz.h / 2;
-              full_ground_name = ground_name + "SlopeNorthWestInverted";
-            } else if (tl_ne->elev() < tl_nw->elev() &&
-                       tl_ne->elev() < tl_sw->elev() &&
-                       tl_ne->elev() < tl_se->elev()) {
-              full_ground_name = ground_name + "SlopeNorthEastInverted";
-            } else if (tl_sw->elev() == tl_ne->elev() &&
-                       tl_nw->elev() < tl_sw->elev() &&
-                       tl_se->elev() < tl_sw->elev()) {
-              y_canv -= tl_sz.h / 2;
-              h_canv += tl_sz.h / 2;
-              full_ground_name =
-                  ground_name + "SlopeDiagonalSouthWestToNorthEast";
-            } else if (tl_nw->elev() == tl_se->elev() &&
-                       tl_ne->elev() < tl_nw->elev() &&
-                       tl_sw->elev() < tl_nw->elev()) {
-              h_canv += tl_sz.h / 2;
-              full_ground_name =
-                  ground_name + "SlopeDiagonalNorthWestToSouthEast";
-            }
-            // if (ground == Hash("GroundWater"))
-            // {
-            //     auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) *
-            //     100)) / 500 % 3};
-            //     fullGroundName = fullGroundName + "_" +
-            //     std::to_string(animIndex);
-            // }
-            ground_type_rend = hash(full_ground_name);
+          str ground_name;
+          if (ground == hash("GroundGrass"))
+            ground_name = "GroundGrass";
+          else if (ground == hash("GroundWater"))
+            ground_name = "GroundDirt";
+          else if (ground == hash("GroundDirt"))
+            ground_name = "GroundDirt";
+          else if (ground == hash("GroundRock"))
+            ground_name = "GroundRock";
+          str full_ground_name{ground_name};
+          if (tl_nw->elev() > tl_sw->elev() && tl_ne->elev() > tl_se->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeSouth";
+          } else if (tl_nw->elev() < tl_sw->elev() &&
+                     tl_ne->elev() < tl_se->elev()) {
+            h_canv -= tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeNorth";
+          } else if (tl_ne->elev() > tl_nw->elev() &&
+                     tl_se->elev() > tl_sw->elev()) {
+            y_canv -= tl_sz.h / 2;
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeWest";
+          } else if (tl_nw->elev() > tl_ne->elev() &&
+                     tl_sw->elev() > tl_se->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeEast";
+          } else if (tl_nw->elev() > tl_ne->elev() &&
+                     tl_nw->elev() > tl_se->elev() &&
+                     tl_nw->elev() > tl_sw->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeSouthEast";
+          } else if (tl_ne->elev() > tl_nw->elev() &&
+                     tl_ne->elev() > tl_se->elev() &&
+                     tl_ne->elev() > tl_sw->elev()) {
+            y_canv -= tl_sz.h / 2;
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeSouthWest";
+          } else if (tl_sw->elev() > tl_nw->elev() &&
+                     tl_sw->elev() > tl_se->elev() &&
+                     tl_sw->elev() > tl_ne->elev()) {
+            full_ground_name = ground_name + "SlopeNorthEast";
+          } else if (tl_se->elev() > tl_nw->elev() &&
+                     tl_se->elev() > tl_ne->elev() &&
+                     tl_se->elev() > tl_sw->elev()) {
+            full_ground_name = ground_name + "SlopeNorthWest";
+          } else if (tl_sw->elev() < tl_nw->elev() &&
+                     tl_sw->elev() < tl_ne->elev() &&
+                     tl_sw->elev() < tl_se->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeSouthWestInverted";
+          } else if (tl_se->elev() < tl_nw->elev() &&
+                     tl_se->elev() < tl_ne->elev() &&
+                     tl_se->elev() < tl_sw->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeSouthEastInverted";
+          } else if (tl_nw->elev() < tl_ne->elev() &&
+                     tl_nw->elev() < tl_sw->elev() &&
+                     tl_nw->elev() < tl_se->elev()) {
+            y_canv -= tl_sz.h / 2;
+            full_ground_name = ground_name + "SlopeNorthWestInverted";
+          } else if (tl_ne->elev() < tl_nw->elev() &&
+                     tl_ne->elev() < tl_sw->elev() &&
+                     tl_ne->elev() < tl_se->elev()) {
+            full_ground_name = ground_name + "SlopeNorthEastInverted";
+          } else if (tl_sw->elev() == tl_ne->elev() &&
+                     tl_nw->elev() < tl_sw->elev() &&
+                     tl_se->elev() < tl_sw->elev()) {
+            y_canv -= tl_sz.h / 2;
+            h_canv += tl_sz.h / 2;
+            full_ground_name =
+                ground_name + "SlopeDiagonalSouthWestToNorthEast";
+          } else if (tl_nw->elev() == tl_se->elev() &&
+                     tl_ne->elev() < tl_nw->elev() &&
+                     tl_sw->elev() < tl_nw->elev()) {
+            h_canv += tl_sz.h / 2;
+            full_ground_name =
+                ground_name + "SlopeDiagonalNorthWestToSouthEast";
           }
-          // else if (ground == Hash("GroundWater"))
-          // {
-          //     auto animIndex{(GetTicks() + ((xCoordinate + yCoordinate) *
-          //     100)) / 500 % 3};
-          //     groundTypeRendered = Hash("GroundWater_" +
-          //     std::to_string(animIndex) + "_New");
-          // }
+          ground_type_rend = hash(full_ground_name);
           if (i == 0) {
             _<image_rend>().draw_img(ground_type_rend, x_canv, y_canv, w_canv,
                                      h_canv);
@@ -248,12 +230,10 @@ namespace forr {
               }
             }
           } else if (ground == hash("GroundWater") && i == 1) {
-            auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
             _<image_rend>().draw_img("GroundWaterEdge", x_canv - w_canv * 0.2f,
                                      y_canv - h_canv * 0.2f, w_canv * 1.4f,
                                      h_canv * 1.4f);
           } else if (ground == hash("GroundWater") && i == 2) {
-
             auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
             _<image_rend>().draw_img("GroundWater_" + std::to_string(anim_idx),
                                      x_canv, y_canv, w_canv, h_canv);
@@ -261,16 +241,9 @@ namespace forr {
             for (auto i = 0; i < tl->elev(); i++)
               _<image_rend>().draw_img("GroundWaterHeight", x_canv, y_canv,
                                        w_canv, h_canv);
-            // groundTypeRendered = Hash("GroundWater_" +
-            // std::to_string(animIndex) + "_New");
-            // _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas -
-            // tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2,
-            // tileSize.width * 4, tileSize.height * 4);
-            if (ground == hash("GroundWater")) {
-              for (auto i = 0; i < tl->water_depth(); i++)
-                _<image_rend>().draw_img("GroundWaterDepth", x_canv, y_canv,
-                                         w_canv, h_canv);
-            }
+            for (auto i = 0; i < tl->water_depth(); i++)
+              _<image_rend>().draw_img("GroundWaterDepth", x_canv, y_canv,
+                                       w_canv, h_canv);
           }
           if (ground == hash("GroundGrass"))
             _<image_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
@@ -283,41 +256,6 @@ namespace forr {
                                      h_canv);
           if (i < 2)
             continue;
-          // if (ground == Hash("GroundWater"))
-          // {
-          //     point N{xCoordinate, yCoordinate - 1};
-          //     point S{xCoordinate, yCoordinate + 1};
-          //     point W{xCoordinate - 1, yCoordinate};
-          //     point E{xCoordinate + 1, yCoordinate};
-          //     auto tileN{worldArea->IsValidCoordinate(N.x, N.y) ?
-          //     worldArea->GetTile(N) : nullptr}; auto
-          //     tileS{worldArea->IsValidCoordinate(S.x, S.y) ?
-          //     worldArea->GetTile(S) : nullptr}; auto
-          //     tileW{worldArea->IsValidCoordinate(W.x, W.y) ?
-          //     worldArea->GetTile(W) : nullptr}; auto
-          //     tileE{worldArea->IsValidCoordinate(E.x, E.y) ?
-          //     worldArea->GetTile(E) : nullptr};
-          //     if (tileN && tileN->GetGround() != Hash("GroundWater"))
-          //     {
-          //         _<ImageRenderer>().DrawImage("EdgeNorth", xCanvas, yCanvas,
-          //         widthCanvas, heightCanvas);
-          //     }
-          //     if (tileE && tileE->GetGround() != Hash("GroundWater"))
-          //     {
-          //         _<ImageRenderer>().DrawImage("EdgeEast", xCanvas, yCanvas,
-          //         widthCanvas, heightCanvas);
-          //     }
-          //     if (tileS && tileS->GetGround() != Hash("GroundWater"))
-          //     {
-          //         _<ImageRenderer>().DrawImage("EdgeSouth", xCanvas, yCanvas,
-          //         widthCanvas, heightCanvas);
-          //     }
-          //     if (tileW && tileW->GetGround() != Hash("GroundWater"))
-          //     {
-          //         _<ImageRenderer>().DrawImage("EdgeWest", xCanvas, yCanvas,
-          //         widthCanvas, heightCanvas);
-          //     }
-          // }
           auto hovered_coord{_<tl_hovering>().hovered_coord()};
           if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
             _<image_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv,
