@@ -4,6 +4,7 @@
  */
 #include "engine.hpp"
 #include "game_props.hpp"
+#include "pybind11/pybind11.h"
 #include "scenes.hpp"
 #include "world_struct.hpp"
 
