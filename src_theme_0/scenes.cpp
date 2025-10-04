@@ -35,8 +35,8 @@ namespace forr {
   }
 
   void intro_scene::render_derived() const {
-    _<image_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-    _<image_rend>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
+    _<img_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+    _<img_rend>().draw_img_auto_h("ForradiaLogo", 0.25f, 0.2f, 0.5f);
   }
 
   void main_menu_scene::init_derived() {
@@ -54,8 +54,8 @@ namespace forr {
   void main_menu_scene::update_derived() {}
 
   void main_menu_scene::render_derived() const {
-    _<image_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-    _<image_rend>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
+    _<img_rend>().draw_img("DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+    _<img_rend>().draw_img_auto_h("ForradiaLogo", 0.35f, 0.1f, 0.3f);
   }
 
   void world_gen_scene::on_enter_derived() {

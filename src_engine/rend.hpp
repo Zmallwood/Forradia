@@ -6,7 +6,7 @@
 #include "comm.hpp"
 
 namespace forr {
-  class image_rend {
+  class img_rend {
    public:
     void draw_img(str_view img_name, float x, float y, float w, float h) const;
 

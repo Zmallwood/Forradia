@@ -124,7 +124,7 @@ namespace forr {
       curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    _<image_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
+    _<img_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
                              w, h);
   }
 

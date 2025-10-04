@@ -6,12 +6,12 @@
 #include "engine.hpp"
 
 namespace forr {
-  void image_rend::draw_img(str_view img_name, float x, float y, float w,
+  void img_rend::draw_img(str_view img_name, float x, float y, float w,
                             float h) const {
     draw_img(hash(img_name), x, y, w, h);
   }
 
-  void image_rend::draw_img(int img_name_hash, float x, float y, float w,
+  void img_rend::draw_img(int img_name_hash, float x, float y, float w,
                             float h) const {
     auto img{_<image_bank>().get_img(img_name_hash)};
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
@@ -23,7 +23,7 @@ namespace forr {
     SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr, &rect);
   }
 
-  void image_rend::draw_img_auto_h(str_view img_name, float x, float y,
+  void img_rend::draw_img_auto_h(str_view img_name, float x, float y,
                                    float w) const {
     auto hash{forr::hash(img_name)};
     auto img_sz{_<image_bank>().get_img_sz(hash)};

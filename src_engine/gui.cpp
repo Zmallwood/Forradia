@@ -60,7 +60,7 @@ namespace forr {
 
   void gui_panel::render_derived() const {
     auto b{bounds()};
-    _<image_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
+    _<img_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
   }
 
   void gui_button::update_derived() {
@@ -119,7 +119,7 @@ namespace forr {
 
   void gui_win::gui_window_title_bar::render() const {
     auto parent_win_b{parent_win_.bounds()};
-    _<image_rend>().draw_img("GUIWindowTitleBarBackground", parent_win_b.x,
+    _<img_rend>().draw_img("GUIWindowTitleBarBackground", parent_win_b.x,
                              parent_win_b.y, parent_win_b.w, k_h);
     _<text_rend>().draw_str(k_win_title, parent_win_b.x + 0.01f,
                             parent_win_b.y + 0.01f, font_szs::_20, false,
@@ -169,7 +169,7 @@ namespace forr {
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    _<image_rend>().draw_img("Black", sep_rect.x, sep_rect.y, sep_rect.w,
+    _<img_rend>().draw_img("Black", sep_rect.x, sep_rect.y, sep_rect.w,
                              sep_rect.h);
   }
 
