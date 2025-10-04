@@ -204,6 +204,32 @@ namespace forr {
         _<image_rend>().draw_img("GroundWaterDepth", x_canv, y_canv, w_canv,
                                  h_canv);
     }};
+    static func<void()> fn_draw_layers{[] {
+      if (ground == hash("GroundGrass"))
+        _<image_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
+                                 h_canv);
+      else if (ground == hash("GroundDirt"))
+        _<image_rend>().draw_img("GroundDirtLayer", x_canv, y_canv, w_canv,
+                                 h_canv);
+      else if (ground == hash("GroundRock"))
+        _<image_rend>().draw_img("GroundRockLayer", x_canv, y_canv, w_canv,
+                                 h_canv);
+    }};
+    static func<void()> fn_draw_tile_symbols{[] {
+      auto hovered_coord{_<tl_hovering>().hovered_coord()};
+      if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
+        _<image_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv, h_canv);
+      auto player_dest{_<player>().dest()};
+      if (x_coord == player_dest.x && y_coord == player_dest.y)
+        _<image_rend>().draw_img("DestinationTile", x_canv, y_canv, w_canv,
+                                 h_canv);
+    }};
+    static func<void()> fn_draw_player{[&] {
+      if (x_coord == player_pos.x && y_coord == player_pos.y) {
+        _<image_rend>().draw_img("Shadow", x_canv, y_canv, w_canv, h_canv);
+        _<image_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w, tl_sz.h);
+      }
+    }};
     {
       x_coord = player_pos.x - (grid_sz.w - 1) / 2 + x;
       y_coord = player_pos.y - (grid_sz.h - 1) / 2 + y;
@@ -229,38 +255,19 @@ namespace forr {
       y_canv += player_elev * tl_sz.h / 2;
       w_canv = tl_sz.w;
       h_canv = ceil(tl_sz.h, 2.5f);
-      if (i == 0) {
-        if (!fn_draw_regular_ground())
-          goto next_iter;
-      } else if (ground != hash("GroundWater") && i == 1) {
+      if (i == 0 && !fn_draw_regular_ground())
+        goto next_iter;
+      else if (ground != hash("GroundWater") && i == 1)
         fn_draw_rivers();
-      } else if (ground == hash("GroundWater") && i == 1) {
+      else if (ground == hash("GroundWater") && i == 1)
         fn_draw_water_edges();
-      } else if (ground == hash("GroundWater") && i == 2) {
+      else if (ground == hash("GroundWater") && i == 2)
         fn_draw_water();
-      }
-      if (ground == hash("GroundGrass"))
-        _<image_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
-                                 h_canv);
-      else if (ground == hash("GroundDirt"))
-        _<image_rend>().draw_img("GroundDirtLayer", x_canv, y_canv, w_canv,
-                                 h_canv);
-      else if (ground == hash("GroundRock"))
-        _<image_rend>().draw_img("GroundRockLayer", x_canv, y_canv, w_canv,
-                                 h_canv);
+      fn_draw_layers();
       if (i < 2)
         goto next_iter;
-      auto hovered_coord{_<tl_hovering>().hovered_coord()};
-      if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
-        _<image_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv, h_canv);
-      auto player_dest{_<player>().dest()};
-      if (x_coord == player_dest.x && y_coord == player_dest.y)
-        _<image_rend>().draw_img("DestinationTile", x_canv, y_canv, w_canv,
-                                 h_canv);
-      if (x_coord == player_pos.x && y_coord == player_pos.y) {
-        _<image_rend>().draw_img("Shadow", x_canv, y_canv, w_canv, h_canv);
-        _<image_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w, tl_sz.h);
-      }
+      fn_draw_tile_symbols();
+      fn_draw_player();
       auto objs_stack{tl ? tl->objects_stack() : nullptr};
       if (objs_stack) {
         for (const auto &obj : objs_stack->objects()) {
@@ -349,11 +356,6 @@ namespace forr {
   }
 
   void world_view::render() const {
-    auto grid_sz{calc_grid_sz()};
-    auto tl_sz{calc_tl_sz()};
-    auto player_pos{_<player>().pos()};
-    auto w_area{_<world>().curr_w_area()};
-    auto player_elev{w_area->get_tl(player_pos)->elev()};
     auto extra_rows{8};
     auto i{0};
     auto y{-extra_rows};
