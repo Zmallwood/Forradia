@@ -16,7 +16,7 @@ namespace forr {
 
     void render() const;
 
-    rect_f bounds() const;
+    virtual rect_f bounds() const;
 
     void set_pos(pt_f new_pos);
 
@@ -153,7 +153,7 @@ namespace forr {
 
       void render_derived() const override;
 
-      rect_f bounds() const;
+      rect_f bounds() const override;
 
      private:
       inline static const float k_h{0.04f};

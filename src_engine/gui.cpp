@@ -118,9 +118,8 @@ namespace forr {
   rect_f gui_movable_panel::get_drag_area() { return bounds(); }
 
   void gui_win::gui_win_title_bar::render_derived() const {
+    gui_panel::render_derived();
     auto parent_win_b{parent_win_.bounds()};
-    _<img_rend>().draw_img("GUIWindowTitleBarBackground", parent_win_b.x,
-                           parent_win_b.y, parent_win_b.w, k_h);
     _<text_rend>().draw_str(k_win_title, parent_win_b.x + 0.01f,
                             parent_win_b.y + 0.01f, font_szs::_20, false,
                             colors::yellow);
