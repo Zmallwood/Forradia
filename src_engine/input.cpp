@@ -69,16 +69,14 @@ namespace forr {
     return res;
   }
 
-  bool mouse_button::been_released_dont_pick_result() {
-    return been_released_;
-  }
+  bool mouse_button::been_released_dont_pick_result() { return been_released_; }
 
   void mouse_input::reset() {
     left_btn_.reset();
     right_btn_.reset();
   }
 
-  void mouse_input::reg_mouse_button_down(Uint8 btn) {
+  void mouse_input::reg_mouse_btn_down(Uint8 btn) {
     switch (btn) {
     case SDL_BUTTON_LEFT:
       left_btn_.reg_press();
@@ -89,7 +87,7 @@ namespace forr {
     }
   }
 
-  void mouse_input::reg_mouse_button_up(Uint8 btn) {
+  void mouse_input::reg_mouse_btn_up(Uint8 btn) {
     switch (btn) {
     case SDL_BUTTON_LEFT:
       left_btn_.reg_release();
@@ -100,7 +98,7 @@ namespace forr {
     }
   }
 
-  bool mouse_input::any_mouse_button_pressed_pick_result() {
+  bool mouse_input::any_mouse_btn_pressed_pick_result() {
     auto res{left_btn_.pressed_pick_result()};
     res |= right_btn_.pressed_pick_result();
     return res;

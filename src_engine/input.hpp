@@ -58,11 +58,11 @@ namespace forr {
    public:
     void reset();
 
-    void reg_mouse_button_down(Uint8 btn);
+    void reg_mouse_btn_down(Uint8 btn);
 
-    void reg_mouse_button_up(Uint8 btn);
+    void reg_mouse_btn_up(Uint8 btn);
 
-    bool any_mouse_button_pressed_pick_result();
+    bool any_mouse_btn_pressed_pick_result();
 
     auto &left_btn_ref() { return left_btn_; }
 

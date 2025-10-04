@@ -17,7 +17,7 @@ namespace forr {
     while (running_) {
       _<kb_input>().reset();
       _<mouse_input>().reset();
-      _<cursor>().reset_style_to_default();
+      _<cursor>().reset_style_to_normal();
       poll_events();
       _<scene_mngr>().update_curr_scene();
       _<fps_counter>().update();
@@ -44,10 +44,10 @@ namespace forr {
         _<kb_input>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        _<mouse_input>().reg_mouse_button_down(ev.button.button);
+        _<mouse_input>().reg_mouse_btn_down(ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        _<mouse_input>().reg_mouse_button_up(ev.button.button);
+        _<mouse_input>().reg_mouse_btn_up(ev.button.button);
         break;
       }
     }
@@ -111,7 +111,7 @@ namespace forr {
 
   void cursor::disable_sys_curs() { SDL_ShowCursor(SDL_DISABLE); }
 
-  void cursor::reset_style_to_default() { curs_style_ = cursor_styles::normal; }
+  void cursor::reset_style_to_normal() { curs_style_ = cursor_styles::normal; }
 
   void cursor::render() {
     auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};

@@ -239,7 +239,7 @@ namespace forr {
   // Utils
   ////////////////////
   // Canvas util functions
-  sz canv_sz(s_ptr<SDL_Window> win);
+  sz get_canv_sz(s_ptr<SDL_Window> win);
 
   float calc_aspect_ratio(s_ptr<SDL_Window> win);
 

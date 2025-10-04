@@ -14,14 +14,13 @@ namespace forr {
   void image_renderer::draw_img(int img_name_hash, float x, float y, float w,
                                 float h) const {
     auto img{_<image_bank>().get_img(img_name_hash)};
-    auto c_sz{canv_sz(_<sdl_device>().win())};
+    auto c_sz{get_canv_sz(_<sdl_device>().win())};
     auto x_px{c_int(x * c_sz.w)};
     auto y_px{c_int(y * c_sz.h)};
     auto w_px{c_int(w * c_sz.w)};
     auto h_px{c_int(h * c_sz.h)};
     SDL_Rect sdl_rect{x_px, y_px, w_px, h_px};
-    SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr,
-                   &sdl_rect);
+    SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr, &sdl_rect);
   }
 
   void image_renderer::draw_img_auto_h(str_view img_name, float x, float y,
@@ -63,7 +62,7 @@ namespace forr {
     sz text_dim;
     TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
     SDL_Rect dest_rect;
-    auto c_sz{canv_sz(_<sdl_device>().win())};
+    auto c_sz{get_canv_sz(_<sdl_device>().win())};
     dest_rect.x = c_int(x * c_sz.w);
     dest_rect.y = c_int(y * c_sz.h);
     dest_rect.w = text_dim.w;

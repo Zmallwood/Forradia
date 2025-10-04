@@ -400,8 +400,7 @@ namespace forr {
       auto x{rand_int(sz.w)};
       auto y{rand_int(sz.h)};
       auto tl{w_area->get_tl(x, y)};
-      if (tl && !tl->creature() &&
-          tl->ground() != hash("GroundWater")) {
+      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto new_crea = std::make_shared<creature>("CreatureRat");
         tl->set_creature(new_crea);
         w_area->creatures_mirror_ref().insert({tl->creature(), {x, y}});
@@ -412,8 +411,7 @@ namespace forr {
       auto x{rand_int(sz.w)};
       auto y{rand_int(sz.h)};
       auto tl{w_area->get_tl(x, y)};
-      if (tl && !tl->creature() &&
-          tl->ground() != hash("GroundWater")) {
+      if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto new_crea = std::make_shared<creature>("CreatureButterfly");
         tl->set_creature(new_crea);
         w_area->creatures_mirror_ref().insert({tl->creature(), {x, y}});

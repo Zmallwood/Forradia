@@ -43,7 +43,7 @@ namespace forr {
     _<cursor>().set_curs_style(cursor_styles::hovering_clickable_gui);
 
     if (_<kb_input>().any_key_pressed_pick_result() ||
-        _<mouse_input>().any_mouse_button_pressed_pick_result()) {
+        _<mouse_input>().any_mouse_btn_pressed_pick_result()) {
       _<scene_mngr>().go_to_scene("MainMenuScene");
     }
   }

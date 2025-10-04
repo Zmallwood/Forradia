@@ -66,7 +66,7 @@ namespace forr {
    public:
     cursor() { init(); }
 
-    void reset_style_to_default();
+    void reset_style_to_normal();
 
     void render();
 

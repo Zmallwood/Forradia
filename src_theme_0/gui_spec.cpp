@@ -24,7 +24,7 @@ namespace forr {
 
   void gui_system_menu::render_derived() const {
     gui_component::render_derived();
-    auto c_sz{canv_sz(_<sdl_device>().win())};
+    auto c_sz{get_canv_sz(_<sdl_device>().win())};
     auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
     SDL_SetRenderDrawBlendMode(_<sdl_device>().rend().get(),
                                SDL_BLENDMODE_BLEND);
@@ -149,9 +149,7 @@ namespace forr {
 
   void gui_interact_menu::init() { set_visible(false); }
 
-  void gui_interact_menu::update_derived() { 
-    gui_panel::update_derived(); 
-  }
+  void gui_interact_menu::update_derived() { gui_panel::update_derived(); }
 
   void gui_interact_menu::render_derived() const {
     gui_panel::render_derived();
