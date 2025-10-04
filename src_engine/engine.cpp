@@ -58,9 +58,8 @@ namespace forr {
     clear_color_ = clear_color;
     SDL_Init(SDL_INIT_EVERYTHING);
     win_ = create_win();
-    if (win_) {
+    if (win_)
       rend_ = create_rend();
-    }
   }
 
   void sdl_device::clear_canv() const {
@@ -79,10 +78,9 @@ namespace forr {
         SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
                          SDL_WINDOWPOS_CENTERED, 660, 660, flags),
         sdl_del())};
-    if (!win_res) {
+    if (!win_res)
       print_ln("Window could not be created. SDL Error: " +
                str(SDL_GetError()));
-    }
     return win_res;
   }
 
@@ -126,8 +124,8 @@ namespace forr {
       curs_img = "CursorHoveringClickableGUI";
       break;
     }
-    _<image_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
-                                 mouse_pos.y - h / 2, w, h);
+    _<image_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
+                             w, h);
   }
 
   void image_bank::init() { load_imgs(); }
@@ -135,9 +133,8 @@ namespace forr {
   void image_bank::load_imgs() {
     auto base_path{str(SDL_GetBasePath())};
     auto imgs_path{base_path + k_rel_imgs_path.data()};
-    if (!std::filesystem::exists(imgs_path)) {
+    if (!std::filesystem::exists(imgs_path))
       return;
-    }
     std::filesystem::recursive_directory_iterator rdi{imgs_path};
     for (auto it : rdi) {
       auto file_path{repl(it.path().string(), '\\', '/')};
@@ -151,9 +148,8 @@ namespace forr {
   }
 
   s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
-    if (images_.contains(img_name_hash)) {
+    if (images_.contains(img_name_hash))
       return images_.at(img_name_hash);
-    }
     return nullptr;
   }
 
@@ -161,9 +157,8 @@ namespace forr {
     if (images_.contains(img_name_hash)) {
       auto tex{images_.at(img_name_hash)};
       sz size;
-      if (tex) {
+      if (tex)
         SDL_QueryTexture(tex.get(), nullptr, nullptr, &size.w, &size.h);
-      }
       return size;
     }
     return {0, 0};
@@ -204,20 +199,17 @@ namespace forr {
 
   void scene_mngr::go_to_scene(str_view scene_name) {
     curr_scene_ = hash(scene_name);
-    if (scenes_.contains(curr_scene_)) {
+    if (scenes_.contains(curr_scene_))
       scenes_.at(curr_scene_).on_enter();
-    }
   }
 
   void scene_mngr::update_curr_scene() {
-    if (scenes_.contains(curr_scene_)) {
+    if (scenes_.contains(curr_scene_))
       scenes_.at(curr_scene_).update();
-    }
   }
 
   void scene_mngr::render_curr_scene() const {
-    if (scenes_.contains(curr_scene_)) {
+    if (scenes_.contains(curr_scene_))
       scenes_.at(curr_scene_).render();
-    }
   }
 }

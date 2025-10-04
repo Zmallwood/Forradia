@@ -11,13 +11,12 @@
 
 namespace forr {
   void update_kb_actions() {
-    if (_<kb_inp>().key_pressed_pick_res(SDLK_ESCAPE)) {
+    if (_<kb_inp>().key_pressed_pick_res(SDLK_ESCAPE))
       _<gui_sys_menu>().toggle_visible();
-    } else if (_<kb_inp>().key_pressed_pick_res(SDLK_c)) {
+    else if (_<kb_inp>().key_pressed_pick_res(SDLK_c))
       _<gui_player_body_win>().toggle_visible();
-    } else if (_<kb_inp>().key_pressed_pick_res(SDLK_b)) {
+    else if (_<kb_inp>().key_pressed_pick_res(SDLK_b))
       _<gui_inventory_win>().toggle_visible();
-    }
   }
 
   void update_mouse_actions() {
@@ -26,9 +25,8 @@ namespace forr {
       _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
     }
     if (_<gui_interact_menu>().visible() &&
-        _<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
+        _<mouse_inp>().left_btn_ref().been_fired_pick_res())
       _<gui_interact_menu>().set_visible(false);
-    }
   }
 
   void update_kb_movem() {
@@ -36,25 +34,20 @@ namespace forr {
     auto right_press{_<kb_inp>().key_pressed(SDLK_RIGHT)};
     auto down_press{_<kb_inp>().key_pressed(SDLK_DOWN)};
     auto left_press{_<kb_inp>().key_pressed(SDLK_LEFT)};
-    if (up_press || right_press || down_press || left_press) {
+    if (up_press || right_press || down_press || left_press)
       _<player>().set_dest({-1, -1});
-    }
     auto now{ticks()};
     if (now >= _<player>().ticks_last_move() +
                    inv_movem_spd(_<player>().movem_spd()) &&
         (up_press || right_press || down_press || left_press)) {
-      if (up_press) {
+      if (up_press)
         _<player>().move_n();
-      }
-      if (right_press) {
+      if (right_press)
         _<player>().move_e();
-      }
-      if (down_press) {
+      if (down_press)
         _<player>().move_s();
-      }
-      if (left_press) {
+      if (left_press)
         _<player>().move_w();
-      }
       _<player>().set_ticks_last_move(now);
     }
   }
@@ -66,29 +59,23 @@ namespace forr {
     }
     auto player_pos{_<player>().pos()};
     auto dest{_<player>().dest()};
-    if (dest == pt{-1, -1}) {
+    if (dest == pt{-1, -1})
       return;
-    }
     auto now{ticks()};
     if (now >= _<player>().ticks_last_move() +
                    inv_movem_spd(_<player>().movem_spd())) {
       auto dx{dest.x - player_pos.x};
       auto dy{dest.y - player_pos.y};
-      if (dx < 0) {
+      if (dx < 0)
         _<player>().move_w();
-      }
-      if (dy < 0) {
+      if (dy < 0)
         _<player>().move_n();
-      }
-      if (dx > 0) {
+      if (dx > 0)
         _<player>().move_e();
-      }
-      if (dy > 0) {
+      if (dy > 0)
         _<player>().move_s();
-      }
-      if (dest == player_pos) {
+      if (dest == player_pos)
         _<player>().set_dest({-1, -1});
-      }
       _<player>().set_ticks_last_move(now);
     }
   }
@@ -119,9 +106,8 @@ namespace forr {
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
       pt new_pos{new_x, new_y};
-      if (new_pos == crea->dest()) {
+      if (new_pos == crea->dest())
         crea->set_dest({-1, -1});
-      }
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
       if (tl && !tl->creature() && tl->ground() != hash("GroundWater")) {
         auto old_pos{creas.at(crea)};
@@ -149,12 +135,11 @@ namespace forr {
 
       if (now > npc->ticks_next_spontaneous_speech()) {
         auto name{npc->name()};
-        if (rand_int(20) == 0) {
+        if (rand_int(20) == 0)
           _<gui_chat_box>().print(name +
                                   ": Buying blueberries, one gold each.");
-        } else {
+        else
           _<gui_chat_box>().print(name + ": Hello all!");
-        }
         npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_sec_millis +
                                                (6000 * k_one_sec_millis));
       }
@@ -176,9 +161,8 @@ namespace forr {
       auto new_x{pos.x + norm_dx};
       auto new_y{pos.y + norm_dy};
       auto new_pos{pt{new_x, new_y}};
-      if (new_pos == npc->dest()) {
+      if (new_pos == npc->dest())
         npc->set_dest({-1, -1});
-      }
       auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
       if (tl && !tl->npc() && tl->ground() != hash("GroundWater")) {
         auto old_pos{pos};
@@ -237,64 +221,49 @@ namespace forr {
       auto tl_ne{w_area->get_tl(coord_ne)};
       auto tl_sw{w_area->get_tl(coord_sw)};
       auto tl_se{w_area->get_tl(coord_se)};
-      if (!tl_nw || !tl_ne || !tl_se || !tl_sw) {
+      if (!tl_nw || !tl_ne || !tl_se || !tl_sw)
         continue;
-      }
       float local_tl_h;
-      if (tl_nw->elev() > tl_sw->elev() && tl_ne->elev() > tl_se->elev()) {
+      if (tl_nw->elev() > tl_sw->elev() && tl_ne->elev() > tl_se->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->elev() < tl_sw->elev() &&
-                 tl_ne->elev() < tl_se->elev()) {
+      else if (tl_nw->elev() < tl_sw->elev() && tl_ne->elev() < tl_se->elev())
         local_tl_h = tl_sz.h * 0.5f;
-      } else if (tl_ne->elev() > tl_nw->elev() &&
-                 tl_se->elev() > tl_sw->elev()) {
+      else if (tl_ne->elev() > tl_nw->elev() && tl_se->elev() > tl_sw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->elev() > tl_ne->elev() &&
-                 tl_sw->elev() > tl_se->elev()) {
+      else if (tl_nw->elev() > tl_ne->elev() && tl_sw->elev() > tl_se->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->elev() > tl_ne->elev() &&
-                 tl_nw->elev() > tl_se->elev() &&
-                 tl_nw->elev() > tl_sw->elev()) {
+      else if (tl_nw->elev() > tl_ne->elev() && tl_nw->elev() > tl_se->elev() &&
+               tl_nw->elev() > tl_sw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_ne->elev() > tl_nw->elev() &&
-                 tl_ne->elev() > tl_se->elev() &&
-                 tl_ne->elev() > tl_sw->elev()) {
+      else if (tl_ne->elev() > tl_nw->elev() && tl_ne->elev() > tl_se->elev() &&
+               tl_ne->elev() > tl_sw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_sw->elev() > tl_nw->elev() &&
-                 tl_sw->elev() > tl_se->elev() &&
-                 tl_sw->elev() > tl_ne->elev()) {
+      else if (tl_sw->elev() > tl_nw->elev() && tl_sw->elev() > tl_se->elev() &&
+               tl_sw->elev() > tl_ne->elev())
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_se->elev() > tl_nw->elev() &&
-                 tl_se->elev() > tl_ne->elev() &&
-                 tl_se->elev() > tl_sw->elev()) {
+      else if (tl_se->elev() > tl_nw->elev() && tl_se->elev() > tl_ne->elev() &&
+               tl_se->elev() > tl_sw->elev())
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_sw->elev() < tl_nw->elev() &&
-                 tl_sw->elev() < tl_ne->elev() &&
-                 tl_sw->elev() < tl_se->elev()) {
+      else if (tl_sw->elev() < tl_nw->elev() && tl_sw->elev() < tl_ne->elev() &&
+               tl_sw->elev() < tl_se->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_se->elev() < tl_nw->elev() &&
-                 tl_se->elev() < tl_ne->elev() &&
-                 tl_se->elev() < tl_sw->elev()) {
+      else if (tl_se->elev() < tl_nw->elev() && tl_se->elev() < tl_ne->elev() &&
+               tl_se->elev() < tl_sw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->elev() < tl_ne->elev() &&
-                 tl_nw->elev() < tl_sw->elev() &&
-                 tl_nw->elev() < tl_se->elev()) {
+      else if (tl_nw->elev() < tl_ne->elev() && tl_nw->elev() < tl_sw->elev() &&
+               tl_nw->elev() < tl_se->elev())
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_ne->elev() < tl_nw->elev() &&
-                 tl_ne->elev() < tl_sw->elev() &&
-                 tl_ne->elev() < tl_se->elev()) {
+      else if (tl_ne->elev() < tl_nw->elev() && tl_ne->elev() < tl_sw->elev() &&
+               tl_ne->elev() < tl_se->elev())
         local_tl_h = tl_sz.h * 1.0f;
-      } else if (tl_sw->elev() == tl_ne->elev() &&
-                 tl_nw->elev() < tl_sw->elev() &&
-                 tl_se->elev() < tl_sw->elev()) {
+      else if (tl_sw->elev() == tl_ne->elev() &&
+               tl_nw->elev() < tl_sw->elev() && tl_se->elev() < tl_sw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else if (tl_nw->elev() == tl_se->elev() &&
-                 tl_ne->elev() < tl_nw->elev() &&
-                 tl_sw->elev() < tl_nw->elev()) {
+      else if (tl_nw->elev() == tl_se->elev() &&
+               tl_ne->elev() < tl_nw->elev() && tl_sw->elev() < tl_nw->elev())
         local_tl_h = tl_sz.h * 1.5f;
-      } else {
+      else
         local_tl_h = tl_sz.h;
-      }
       auto rect{rect_f{screen_rel_x_px, screen_rel_y_px - local_tl_h / 2,
                        tl_sz.w, local_tl_h}};
       if (rect.contains(mouse_pos)) {

@@ -22,8 +22,8 @@ namespace forr {
 
   void world_grator::prep() {
     w_area_ = _<world>().curr_w_area();
-    scale_ = _<game_props>().k_world_scaling;
     sz_ = w_area_->get_sz();
+    scale_ = _<game_props>().k_world_scaling;
   }
 
   void world_grator::clear_with_dirt() const {

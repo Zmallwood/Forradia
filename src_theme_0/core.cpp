@@ -31,9 +31,8 @@ namespace forr {
   }
 
   body_part *player_body::body_part_ptr(body_part_types type) {
-    if (parts_.contains(type)) {
+    if (parts_.contains(type))
       return &parts_.at(type);
-    }
     return nullptr;
   }
 
@@ -43,9 +42,8 @@ namespace forr {
     auto w_area{_<world>().curr_w_area()};
     auto sz{w_area->get_sz()};
     pos_ = {sz.w / 2, sz.h / 2};
-    while (w_area->get_tl(pos_)->ground() == hash("GroundWater")) {
+    while (w_area->get_tl(pos_)->ground() == hash("GroundWater"))
       pos_ = {rand_int(sz.w), rand_int(sz.h)};
-    }
   }
 
   void player::move_n() { pos_.y -= 1; }

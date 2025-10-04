@@ -15,23 +15,19 @@ namespace forr {
   }
 
   void gui_comp::update() {
-    if (!visible_ || !enabled_) {
+    if (!visible_ || !enabled_)
       return;
-    }
-    for (auto comp : std::views::reverse(children_)) {
+    for (auto comp : std::views::reverse(children_))
       comp->update();
-    }
     update_derived();
   }
 
   void gui_comp::render() const {
-    if (!visible_) {
+    if (!visible_)
       return;
-    }
     render_derived();
-    for (auto comp : children_) {
+    for (auto comp : children_)
       comp->render();
-    }
   }
 
   rect_f gui_comp::bounds() const {
@@ -74,9 +70,8 @@ namespace forr {
     if (hovered) {
       set_bg_img(hovered_bg_img_);
       _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
-      if (_<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
+      if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
         action_();
-      }
     } else {
       set_bg_img(bg_img_);
     }
@@ -85,8 +80,8 @@ namespace forr {
   void gui_button::render_derived() const {
     gui_panel::render_derived();
     auto b{bounds()};
-    _<text_rend>().draw_str(text_, b.x + b.w / 2, b.y + b.h / 2,
-                            font_szs::_20, true);
+    _<text_rend>().draw_str(text_, b.x + b.w / 2, b.y + b.h / 2, font_szs::_20,
+                            true);
   }
 
   void gui_movable_panel::update_derived() {
@@ -94,18 +89,16 @@ namespace forr {
     auto drag_area{get_drag_area()};
     if (drag_area.contains(mouse_pos)) {
       _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
-      if (_<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
+      if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
         start_move();
-      }
     }
     if (_<mouse_inp>().left_btn_ref().been_released_no_pick_res()) {
       stop_move();
     }
     auto b{bounds()};
     if (b.contains(mouse_pos)) {
-      if (_<mouse_inp>().left_btn_ref().been_fired_no_pick_res()) {
+      if (_<mouse_inp>().left_btn_ref().been_fired_no_pick_res())
         _<mouse_inp>().left_btn_ref().reset();
-      }
     }
     if (being_moved()) {
       auto curr_mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
@@ -169,9 +162,8 @@ namespace forr {
     auto y{b.y + k_marg};
     for (auto i = 0; i < max_num_lines; i++) {
       auto idx{lines_.size() - max_num_lines + i};
-      if (idx < 0 || idx >= lines_.size()) {
+      if (idx < 0 || idx >= lines_.size())
         continue;
-      }
       auto text_line = lines_.at(idx);
       _<text_rend>().draw_str(text_line, b.x + k_marg, y);
       y += k_line_h;

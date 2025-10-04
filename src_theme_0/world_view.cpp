@@ -22,9 +22,8 @@ namespace forr {
         for (auto x = 0; x < grid_sz.w; x++) {
           auto x_coord{player_pos.x - (grid_sz.w - 1) / 2 + x};
           auto y_coord{player_pos.y - (grid_sz.h - 1) / 2 + y};
-          if (!w_area->is_valid_coord(x_coord, y_coord)) {
+          if (!w_area->is_valid_coord(x_coord, y_coord))
             continue;
-          }
           auto tl{w_area->get_tl(x_coord, y_coord)};
           float x_canv;
           float y_canv;
@@ -37,9 +36,8 @@ namespace forr {
           if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
               !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
               !w_area->is_valid_coord(coord_sw.x, coord_sw.y) ||
-              !w_area->is_valid_coord(coord_se.x, coord_se.y)) {
+              !w_area->is_valid_coord(coord_se.x, coord_se.y))
             continue;
-          }
           auto tl_nw{w_area->get_tl(coord_nw)};
           auto tl_ne{w_area->get_tl(coord_ne)};
           auto tl_sw{w_area->get_tl(coord_sw)};
@@ -54,15 +52,14 @@ namespace forr {
           // if (ground != Hash("GroundWater"))
           if (true) {
             str ground_name;
-            if (ground == hash("GroundGrass")) {
+            if (ground == hash("GroundGrass"))
               ground_name = "GroundGrass";
-            } else if (ground == hash("GroundWater")) {
+            else if (ground == hash("GroundWater"))
               ground_name = "GroundDirt";
-            } else if (ground == hash("GroundDirt")) {
+            else if (ground == hash("GroundDirt"))
               ground_name = "GroundDirt";
-            } else if (ground == hash("GroundRock")) {
+            else if (ground == hash("GroundRock"))
               ground_name = "GroundRock";
-            }
             str full_ground_name{ground_name};
             if (tl_nw->elev() > tl_sw->elev() &&
                 tl_ne->elev() > tl_se->elev()) {
@@ -160,7 +157,7 @@ namespace forr {
             auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
             for (auto j = 0; j < 2; j++) {
               switch (river_dirs.at(j)) {
-              case dirs::n: {
+              case dirs::n:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 - river_part_h / 2 -
@@ -170,8 +167,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::e: {
+                break;
+              case dirs::e:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 +
                                k * river_part_w,
@@ -181,8 +178,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::s: {
+                break;
+              case dirs::s:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2,
                            y_canv + h_canv / 2 + river_part_h / 2 +
@@ -192,8 +189,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::w: {
+                break;
+              case dirs::w:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{x_canv + w_canv / 2 - river_part_w / 2 -
                                k * river_part_w,
@@ -203,8 +200,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::ne: {
+                break;
+              case dirs::ne:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -214,8 +211,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::se: {
+                break;
+              case dirs::se:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 + k * river_part_w,
@@ -225,8 +222,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::sw: {
+                break;
+              case dirs::sw:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
@@ -236,8 +233,8 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
-              case dirs::nw: {
+                break;
+              case dirs::nw:
                 for (auto k = 0.0f; k < part_len; k += 0.5f) {
                   rect_f b{
                       x_canv + w_canv / 2 - river_part_w / 2 - k * river_part_w,
@@ -247,7 +244,7 @@ namespace forr {
                                                std::to_string(anim_idx),
                                            b.x, b.y, b.w, b.h);
                 }
-              } break;
+                break;
               }
             }
           } else if (ground == hash("GroundWater") && i == 1) {
@@ -261,36 +258,31 @@ namespace forr {
             _<image_rend>().draw_img("GroundWater_" + std::to_string(anim_idx),
                                      x_canv, y_canv, w_canv, h_canv);
 
-            for (auto i = 0; i < tl->elev(); i++) {
+            for (auto i = 0; i < tl->elev(); i++)
               _<image_rend>().draw_img("GroundWaterHeight", x_canv, y_canv,
                                        w_canv, h_canv);
-            }
-
             // groundTypeRendered = Hash("GroundWater_" +
             // std::to_string(animIndex) + "_New");
             // _<ImageRenderer>().DrawImage(groundTypeRendered, xCanvas -
             // tileSize.width * 3 / 2, yCanvas - tileSize.height * 3 / 2,
             // tileSize.width * 4, tileSize.height * 4);
             if (ground == hash("GroundWater")) {
-              for (auto i = 0; i < tl->water_depth(); i++) {
+              for (auto i = 0; i < tl->water_depth(); i++)
                 _<image_rend>().draw_img("GroundWaterDepth", x_canv, y_canv,
                                          w_canv, h_canv);
-              }
             }
           }
-          if (ground == hash("GroundGrass")) {
+          if (ground == hash("GroundGrass"))
             _<image_rend>().draw_img("GroundGrassLayer", x_canv, y_canv, w_canv,
                                      h_canv);
-          } else if (ground == hash("GroundDirt")) {
+          else if (ground == hash("GroundDirt"))
             _<image_rend>().draw_img("GroundDirtLayer", x_canv, y_canv, w_canv,
                                      h_canv);
-          } else if (ground == hash("GroundRock")) {
+          else if (ground == hash("GroundRock"))
             _<image_rend>().draw_img("GroundRockLayer", x_canv, y_canv, w_canv,
                                      h_canv);
-          }
-          if (i < 2) {
+          if (i < 2)
             continue;
-          }
           // if (ground == Hash("GroundWater"))
           // {
           //     point N{xCoordinate, yCoordinate - 1};
@@ -327,15 +319,13 @@ namespace forr {
           //     }
           // }
           auto hovered_coord{_<tl_hovering>().hovered_coord()};
-          if (x_coord == hovered_coord.x && y_coord == hovered_coord.y) {
+          if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
             _<image_rend>().draw_img("HoveredTile", x_canv, y_canv, w_canv,
                                      h_canv);
-          }
           auto player_dest{_<player>().dest()};
-          if (x_coord == player_dest.x && y_coord == player_dest.y) {
+          if (x_coord == player_dest.x && y_coord == player_dest.y)
             _<image_rend>().draw_img("DestinationTile", x_canv, y_canv, w_canv,
                                      h_canv);
-          }
           if (x_coord == player_pos.x && y_coord == player_pos.y) {
             _<image_rend>().draw_img("Shadow", x_canv, y_canv, w_canv, h_canv);
             _<image_rend>().draw_img("Player", x_canv, y_canv, tl_sz.w,
@@ -344,10 +334,9 @@ namespace forr {
           auto objs_stack{tl ? tl->objects_stack() : nullptr};
           if (objs_stack) {
             for (const auto &obj : objs_stack->objects()) {
-              if (obj->type() != hash("ObjectPinkFlower")) {
+              if (obj->type() != hash("ObjectPinkFlower"))
                 _<image_rend>().draw_img("Shadow", x_canv, y_canv, tl_sz.w,
                                          tl_sz.h);
-              }
               auto obj_type{obj->type()};
               if (obj_type == hash("ObjectFirTree") ||
                   obj_type == hash("ObjectBirchTree")) {
@@ -373,11 +362,10 @@ namespace forr {
                   auto trunk_part_width{tl_sz.w * 0.2f * w_decr_factor};
                   auto trunk_part_height{tl_sz.h * 0.2f};
                   str trunk_part_name;
-                  if (obj_type == hash("ObjectFirTree")) {
+                  if (obj_type == hash("ObjectFirTree"))
                     trunk_part_name = "ObjectFirTreeTrunkPart";
-                  } else if (obj_type == hash("ObjectBirchTree")) {
+                  else if (obj_type == hash("ObjectBirchTree"))
                     trunk_part_name = "ObjectBirchTreeTrunkPart";
-                  }
                   _<image_rend>().draw_img(
                       trunk_part_name,
                       trunk_part_x_center - trunk_part_width / 2,
@@ -385,11 +373,10 @@ namespace forr {
                       trunk_part_width, trunk_part_height);
                   auto needle_w{tree_w};
                   auto needle_h{tl_sz.h};
-                  if (needle_type) {
+                  if (needle_type)
                     _<image_rend>().draw_img(
                         needle_type, trunk_part_x_center - needle_w / 2,
                         trunk_part_y_center - needle_h / 2, needle_w, needle_h);
-                  }
                 }
                 continue;
               }

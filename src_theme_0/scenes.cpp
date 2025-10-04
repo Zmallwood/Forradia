@@ -30,9 +30,8 @@ namespace forr {
     _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
 
     if (_<kb_inp>().any_key_pressed_pick_res() ||
-        _<mouse_inp>().any_mouse_btn_pressed_pick_res()) {
+        _<mouse_inp>().any_mouse_btn_pressed_pick_res())
       _<scene_mngr>().go_to_scene("MainMenuScene");
-    }
   }
 
   void intro_scene::render_derived() const {
@@ -82,8 +81,8 @@ namespace forr {
 
     gui()->add_child_comp(std::make_shared<gui_button>(
         0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
-        [] { _<gui_sys_menu>().toggle_visible(); },
-        "GUIButtonSystemBackground", "GUIButtonSystemHoveredBackground"));
+        [] { _<gui_sys_menu>().toggle_visible(); }, "GUIButtonSystemBackground",
+        "GUIButtonSystemHoveredBackground"));
     gui()->add_child_comp(__<gui_sys_menu>());
     gui()->add_child_comp(__<gui_inventory_win>());
     gui()->add_child_comp(__<gui_player_body_win>());

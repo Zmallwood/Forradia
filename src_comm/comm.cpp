@@ -121,19 +121,17 @@ namespace forr {
   }
 
   float inv_movem_spd(float num) {
-    if (num) {
+    if (num)
       return k_one_sec_millis / num;
-    } else {
+    else
       return 0.0f;
-    }
   }
 
   int normalize(int val) {
     auto abs_val{std::abs(val)};
     auto norm{0};
-    if (val) {
+    if (val)
       norm = val / abs_val;
-    }
     return norm;
   }
 
@@ -158,9 +156,8 @@ namespace forr {
   int hash(str_view text) {
     // Use algorithm from forgotten source.
     unsigned long hash{5381};
-    for (size_t i = 0; i < text.size(); ++i) {
+    for (size_t i = 0; i < text.size(); ++i)
       hash = 33 * hash + (unsigned char)text[i];
-    }
     return c_int(hash);
   }
 
