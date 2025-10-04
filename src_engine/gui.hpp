@@ -133,8 +133,8 @@ namespace forr {
   class gui_win : public gui_movable_panel {
    public:
     gui_win(float x, float y, float w, float h, str_view win_title)
-        : gui_movable_panel(x, y, w, h), gui_win_title_bar_(*this, win_title) {
-      init();
+        : gui_movable_panel(x, y, w, h) {
+      init(win_title);
     }
 
    protected:
@@ -143,14 +143,15 @@ namespace forr {
     rect_f get_drag_area() override;
 
    private:
-    void init();
+    void init(str_view win_title);
 
-    class gui_window_title_bar {
+    class gui_win_title_bar : public gui_panel {
      public:
-      gui_window_title_bar(gui_win &parent_win, str_view win_title)
-          : parent_win_(parent_win), k_win_title(win_title) {}
+      gui_win_title_bar(gui_win &parent_win, str_view win_title)
+          : parent_win_(parent_win), k_win_title(win_title),
+            gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {}
 
-      void render() const;
+      void render_derived() const override;
 
       rect_f bounds() const;
 
@@ -161,7 +162,7 @@ namespace forr {
       gui_win &parent_win_;
     };
 
-    gui_window_title_bar gui_win_title_bar_;
+    s_ptr<gui_win_title_bar> gui_win_title_bar_;
   };
 
   class gui_fps_panel : public gui_movable_panel {

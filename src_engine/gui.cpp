@@ -117,16 +117,16 @@ namespace forr {
 
   rect_f gui_movable_panel::get_drag_area() { return bounds(); }
 
-  void gui_win::gui_window_title_bar::render() const {
+  void gui_win::gui_win_title_bar::render_derived() const {
     auto parent_win_b{parent_win_.bounds()};
     _<img_rend>().draw_img("GUIWindowTitleBarBackground", parent_win_b.x,
-                             parent_win_b.y, parent_win_b.w, k_h);
+                           parent_win_b.y, parent_win_b.w, k_h);
     _<text_rend>().draw_str(k_win_title, parent_win_b.x + 0.01f,
                             parent_win_b.y + 0.01f, font_szs::_20, false,
                             colors::yellow);
   }
 
-  rect_f gui_win::gui_window_title_bar::bounds() const {
+  rect_f gui_win::gui_win_title_bar::bounds() const {
     rect_f b_res;
     auto parent_win_b{parent_win_.bounds()};
     b_res.x = parent_win_b.x;
@@ -135,14 +135,15 @@ namespace forr {
     b_res.h = k_h;
     return b_res;
   }
-  void gui_win::init() { set_visible(false); }
-
-  void gui_win::render_derived() const {
-    gui_movable_panel::render_derived();
-    gui_win_title_bar_.render();
+  void gui_win::init(str_view win_title) {
+    set_visible(false);
+    gui_win_title_bar_ = std::make_shared<gui_win_title_bar>(*this, win_title);
+    add_child_comp(gui_win_title_bar_);
   }
 
-  rect_f gui_win::get_drag_area() { return gui_win_title_bar_.bounds(); }
+  void gui_win::render_derived() const { gui_movable_panel::render_derived(); }
+
+  rect_f gui_win::get_drag_area() { return gui_win_title_bar_->bounds(); }
 
   void gui_fps_panel::init() {
     fps_text_pnl_ = std::make_shared<gui_label>(0.01f, 0.01f, 0.1f, 0.05f);
@@ -170,7 +171,7 @@ namespace forr {
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
     _<img_rend>().draw_img("Black", sep_rect.x, sep_rect.y, sep_rect.w,
-                             sep_rect.h);
+                           sep_rect.h);
   }
 
   void gui_chat_box::print(str_view text) { lines_.push_back(text.data()); }
