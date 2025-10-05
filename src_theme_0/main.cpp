@@ -5,11 +5,12 @@
 #include "engine.hpp"
 #include "game_props.hpp"
 #include "gui.hpp"
+#include "gui_spec.hpp"
 #include "input.hpp"
 #include "rend.hpp"
 #include "scenes.hpp"
-#include "world_struct.hpp"
 #include "world_grator.hpp"
+#include "world_struct.hpp"
 
 using namespace forr;
 namespace py = pybind11;
@@ -46,6 +47,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   m.def("ticks", [] { return ticks(); });
 
+  m.def("conv_w_to_h",
+        [](float w) { return conv_w_to_h(w, _<sdl_device>().win()); });
+
   m.def("make_shared_gui_label",
         [](float x, float y, float w, float h, str_view text, bool cent_align) {
           return std::make_shared<gui_label>(x, y, w, h, text, cent_align,
@@ -60,6 +64,13 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
                                      str_view text, py::function action) {
     return std::make_shared<gui_button>(x, y, w, h, text, action);
   });
+
+  m.def("make_shared_gui_button",
+        [](float x, float y, float w, float h, str_view text,
+           py::function action, str_view bg_img, str_view hovered_bg_img) {
+          return std::make_shared<gui_button>(x, y, w, h, text, action, bg_img,
+                                              hovered_bg_img);
+        });
 
   py::class_<i_scene>(m, "i_scene")
       .def(py::init<>())
@@ -119,6 +130,33 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
               float h) { self.draw_img(image_name_hash, x, y, w, h); })
       .def("draw_img_auto_h", &img_rend::draw_img_auto_h);
 
+  py::class_<gui_player_status_box, s_ptr<gui_player_status_box>, gui_comp>(
+      m, "gui_player_status_box");
+
+  py::class_<gui_player_body_win, s_ptr<gui_player_body_win>, gui_comp>(
+      m, "gui_player_body_win")
+      .def("toggle_visible", &gui_player_body_win::toggle_visible);
+
+  py::class_<gui_inventory_win, s_ptr<gui_inventory_win>, gui_comp>(
+      m, "gui_inventory_win")
+      .def("toggle_visible", &gui_inventory_win::toggle_visible);
+
+  py::class_<gui_sys_menu, s_ptr<gui_sys_menu>, gui_comp>(m, "gui_sys_menu")
+      .def("toggle_visible", &gui_sys_menu::toggle_visible);
+
+  m.def("get_gui_player_body_win_ptr", []() -> s_ptr<gui_player_body_win> {
+    return __<gui_player_body_win>();
+  });
+
+  m.def("get_gui_inventory_win_ptr",
+        []() -> s_ptr<gui_inventory_win> { return __<gui_inventory_win>(); });
+
+  m.def("get_gui_sys_menu_ptr",
+        []() -> s_ptr<gui_sys_menu> { return __<gui_sys_menu>(); });
+
+  m.def("make_shared_gui_player_status_box",
+        []() { return std::make_shared<gui_player_status_box>(); });
+
   m.def(
       "get_engine", []() -> engine & { return _<engine>(); },
       py::return_value_policy::reference);
@@ -150,9 +188,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       "get_mouse_inp", []() -> mouse_inp & { return _<mouse_inp>(); },
       py::return_value_policy::reference);
 
-  m.def("get_world_grator",
-        []() -> world_grator & { return _<world_grator>(); },
-        py::return_value_policy::reference);
+  m.def(
+      "get_world_grator", []() -> world_grator & { return _<world_grator>(); },
+      py::return_value_policy::reference);
 
   m.def("my_function",
         []() { std::cout << "Executing my_function" << std::endl; });

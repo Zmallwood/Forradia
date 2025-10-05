@@ -15,7 +15,12 @@ from embedded import (
     curs_styles,
     get_kb_inp,
     get_mouse_inp,
-    get_world_grator
+    get_world_grator,
+    make_shared_gui_player_status_box,
+    get_gui_player_body_win_ptr,
+    get_gui_inventory_win_ptr,
+    get_gui_sys_menu_ptr,
+    conv_w_to_h
 )
 
 
@@ -105,7 +110,63 @@ class WorldGenScene(i_scene):
         self.set_on_enter_derived(on_enter_derived)
 
 class MainScene(i_scene):
-    pass
+    def __init__(self):
+        i_scene.__init__(self)
+
+        def init_derived():
+            g = self.gui()
+            g.add_child_comp(make_shared_gui_player_status_box())
+
+            gui_chat_box_ptr = get_gui_chat_box_ptr()
+            g.add_child_comp(gui_chat_box_ptr)
+
+            btn_gui_player_body_win = make_shared_gui_button(0.78, 0.9, 0.05, conv_w_to_h(0.05), "",
+                lambda: get_gui_player_body_win_ptr().toggle_visible(),
+                "gui_button_player_body_bg", "gui_button_player_body_hovered_bg")
+
+            g.add_child_comp(btn_gui_player_body_win)
+
+            btn_gui_inventory_win = make_shared_gui_button(0.85, 0.9, 0.05, conv_w_to_h(0.05), "",
+                lambda: get_gui_inventory_win_ptr().toggle_visible(),
+                "gui_button_inventory_bg", "gui_button_inventory_hovered_bg")
+
+            g.add_child_comp(btn_gui_inventory_win)
+
+
+            btn_gui_sys_menu = make_shared_gui_button(0.92, 0.9, 0.05, conv_w_to_h(0.05), "",
+                lambda: get_gui_sys_menu_ptr().toggle_visible(),
+                "gui_button_system_menu_bg", "gui_button_system_menu_hovered_bg")
+
+            g.add_child_comp(btn_gui_sys_menu)
+
+#      gui()->add_child_comp(std::make_shared<gui_button>(
+#          0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+#          [] { _<gui_player_body_win>().toggle_visible(); },
+#          "gui_button_player_body_bg", "gui_button_player_body_hovered_bg"));
+#
+#      gui()->add_child_comp(std::make_shared<gui_button>(
+#          0.85f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+#          [] { _<gui_inventory_win>().toggle_visible(); },
+#          "gui_button_inventory_bg", "gui_button_inventory_hovered_bg"));
+#
+#      gui()->add_child_comp(std::make_shared<gui_button>(
+#          0.92f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
+#          [] { _<gui_sys_menu>().toggle_visible(); },
+#          "gui_button_system_menu_bg", "gui_button_system_menu_hovered_bg"));
+
+        def on_enter_derived():
+            pass
+
+        def update_derived():
+            pass
+
+        def render_derived():
+            pass
+
+        self.set_init_derived(init_derived)
+        self.set_on_enter_derived(on_enter_derived)
+        self.set_update_derived(update_derived)
+        self.set_render_derived(render_derived)
 
 
 intro_scene = IntroScene()
