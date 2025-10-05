@@ -1,11 +1,13 @@
 from embedded import (
     i_scene,
+    get_engine,
     get_scene_mngr,
     get_img_rend,
     gui,
     gui_label,
     make_shared_gui_label,
     make_shared_gui_panel,
+    make_shared_gui_button,
     get_gui_chat_box,
     ticks,
     get_cursor,
@@ -63,6 +65,14 @@ class MainMenuScene(i_scene):
             pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.2)
             g.add_child_comp(pnl)
 
+            def test():
+                pass
+
+            btn_new_game = make_shared_gui_button(0.45, 0.36, 0.1, 0.04, "New game", lambda: get_scene_mngr().go_to_scene("world_gen_scene"))
+            g.add_child_comp(btn_new_game)
+
+            btn_quit = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Quit", lambda: get_engine().stop())
+            g.add_child_comp(btn_quit)
 
         def render_derived():
             img_rend = get_img_rend()

@@ -22,6 +22,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   py::class_<color>(m, "color").def(py::init<float, float, float, float>());
 
+  py::class_<engine>(m, "engine")
+  .def("stop", &engine::stop);
+
   py::class_<gui_comp, s_ptr<gui_comp>>(m, "gui_comp");
 
   py::class_<gui, s_ptr<gui>>(m, "gui").def(
@@ -36,8 +39,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
            py::arg("color") = colors::wheat_transp)
       .def("set_text", &gui_label::set_text)
       .def("set_visible", &gui_comp::set_visible);
-  
+
   py::class_<gui_panel, s_ptr<gui_panel>, gui_comp>(m, "gui_panel");
+
+  py::class_<gui_button, s_ptr<gui_button>, gui_comp>(m, "gui_button");
 
   m.def("ticks", [] { return ticks(); });
 
@@ -49,6 +54,11 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   m.def("make_shared_gui_panel", [](float x, float y, float w, float h) {
     return std::make_shared<gui_panel>(x, y, w, h);
+  });
+
+  m.def("make_shared_gui_button", [](float x, float y, float w, float h,
+                                     str_view text, py::function action) {
+    return std::make_shared<gui_button>(x, y, w, h, text, action);
   });
 
   py::class_<i_scene>(m, "i_scene")
@@ -104,6 +114,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
            [](img_rend &self, int image_name_hash, float x, float y, float w,
               float h) { self.draw_img(image_name_hash, x, y, w, h); })
       .def("draw_img_auto_h", &img_rend::draw_img_auto_h);
+
+  m.def("get_engine", []() -> engine & { return _<engine>(); },
+        py::return_value_policy::reference);
 
   m.def(
       "get_scene_mngr", []() -> scene_mngr & { return _<scene_mngr>(); },
