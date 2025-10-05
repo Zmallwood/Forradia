@@ -5,6 +5,7 @@ from embedded import (
     gui,
     gui_label,
     make_shared_gui_label,
+    make_shared_gui_panel,
     get_gui_chat_box,
     ticks,
     get_cursor,
@@ -41,8 +42,6 @@ class IntroScene(i_scene):
 
             if kb_inp.any_key_pressed_pick_res() or mouse_inp.any_mouse_btn_pressed_pick_res():
                 scene_mngr.go_to_scene("main_menu_scene")
-            #if self.start_text_comp:
-            #    self.start_text_comp.set_visible(False)
 
         def render_derived():
             img_rend = get_img_rend()
@@ -59,12 +58,18 @@ class MainMenuScene(i_scene):
     def __init__(self):
         i_scene.__init__(self)
 
+        def init_derived():
+            g = self.gui()
+            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.2)
+            g.add_child_comp(pnl)
+
 
         def render_derived():
             img_rend = get_img_rend()
             img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
             img_rend.draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
 
+        self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
     
 

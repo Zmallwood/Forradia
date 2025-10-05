@@ -36,6 +36,8 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
            py::arg("color") = colors::wheat_transp)
       .def("set_text", &gui_label::set_text)
       .def("set_visible", &gui_comp::set_visible);
+  
+  py::class_<gui_panel, s_ptr<gui_panel>, gui_comp>(m, "gui_panel");
 
   m.def("ticks", [] { return ticks(); });
 
@@ -44,6 +46,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
           return std::make_shared<gui_label>(x, y, w, h, text, cent_align,
                                              colors::wheat_transp);
         });
+
+  m.def("make_shared_gui_panel", [](float x, float y, float w, float h) {
+    return std::make_shared<gui_panel>(x, y, w, h);
+  });
 
   py::class_<i_scene>(m, "i_scene")
       .def(py::init<>())
