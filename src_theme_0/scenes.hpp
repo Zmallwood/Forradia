@@ -9,41 +9,36 @@ namespace forr {
   class gui_comp;
 
   class intro_scene : public i_scene {
-   protected:
-    void init_derived() override;
-
-    void on_enter_derived() override;
-
-    void update_derived() override;
-
-    void render_derived() const override;
+   public:
+    intro_scene() { setup_funcs(); }
 
    private:
+    void setup_funcs();
+
     s_ptr<gui_comp> start_text_comp_;
   };
 
   class main_menu_scene : public i_scene {
-   protected:
-    void init_derived() override;
+   public:
+    main_menu_scene() { setup_funcs(); }
 
-    void update_derived() override;
-
-    void render_derived() const override;
+   private:
+    void setup_funcs();
   };
 
   class world_gen_scene : public i_scene {
-   protected:
-    void on_enter_derived() override;
+   public:
+    world_gen_scene() { setup_funcs(); }
+
+   private:
+    void setup_funcs();
   };
 
   class main_scene : public i_scene {
-   protected:
-    void init_derived() override;
+   public:
+    main_scene() { setup_funcs(); }
 
-    void on_enter_derived() override;
-
-    void update_derived() override;
-
-    void render_derived() const override;
+   private:
+    void setup_funcs();
   };
 }

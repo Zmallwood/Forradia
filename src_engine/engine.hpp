@@ -102,9 +102,9 @@ namespace forr {
 
   class i_scene {
    public:
-    func<void()> action_{[] {std::cout << "base\n";}};
+    func<void()> action_{[] { std::cout << "base\n"; }};
 
-    void set_action(func<void()> action) { action_ = action; } 
+    void set_action(func<void()> action) { action_ = action; }
 
     void init();
 
@@ -114,19 +114,23 @@ namespace forr {
 
     void on_enter();
 
+    void set_init_derived(func<void()> value) { init_derived_ = value; }
+
+    void set_on_enter_derived(func<void()> value) { on_enter_derived_ = value; }
+
+    void set_update_derived(func<void()> value) { update_derived_ = value; }
+
+    void set_render_derived(func<void()> value) { render_derived_ = value; }
+
    protected:
-    virtual void init_derived() {}
-
-    virtual void on_enter_derived() {}
-
-    virtual void update_derived() {}
-
-    virtual void render_derived() const {}
-
     auto gui() const { return gui_; }
 
    private:
     s_ptr<forr::gui> gui_;
+    func<void()> init_derived_{[] {}};
+    func<void()> on_enter_derived_{[] {}};
+    func<void()> update_derived_{[] {}};
+    func<void()> render_derived_{[] {}};
   };
 
   class scene_mngr {

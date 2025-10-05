@@ -178,18 +178,18 @@ namespace forr {
   void i_scene::init() {
     action_();
     gui_ = std::make_shared<forr::gui>();
-    init_derived();
+    init_derived_();
   }
 
-  void i_scene::on_enter() { on_enter_derived(); }
+  void i_scene::on_enter() { on_enter_derived_(); }
 
   void i_scene::update() {
     gui_->update();
-    update_derived();
+    update_derived_();
   }
 
   void i_scene::render() const {
-    render_derived();
+    render_derived_();
     gui_->render();
   }
 

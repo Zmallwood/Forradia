@@ -1,15 +1,25 @@
 from embedded import (
-    py_i_scene,
+    i_scene,
     get_scene_mngr,
-    scene_mngr
+    get_img_rend
 )
-from typing import cast
 
 
-class IntroSceneTEST(py_i_scene):
+class IntroScene(i_scene):
     def __init__(self):
-        py_i_scene.__init__(self)
+        i_scene.__init__(self)
         self.set_action2(lambda: print("DERIVED"))
+
+        def update_derived():
+            print("UPDATE")
+
+        def render_derived():
+            img_rend = get_img_rend()
+            img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+            print("RENDER")
+
+        self.set_update_derived(update_derived)
+        self.set_render_derived(render_derived)
         print("Initializing intro scene")
 
     def init(self):
@@ -29,26 +39,16 @@ class IntroSceneTEST(py_i_scene):
 
 
 
-intro_scene_TEST0 = IntroSceneTEST()
-def get_scenes():
-    global intro_scene_TEST0
-    #intro_scene_TEST = IntroSceneTEST()
-    return [intro_scene_TEST0]
-
+intro_scene= IntroScene()
 
 
 def setup_scenes():
     print("Setting up scenes")
+    global intro_scene
     scene_mngr = get_scene_mngr()
-    scene_mngr.add_scene("intro_scene_TEST", intro_scene_TEST0)
-    #scene_mngr.update_curr_scene()
-    #scene_mngr.add_scene("intro_scene_TEST", intro_scene_TEST)
-    #intro_scene_TEST.update()
-    #scene_mngr.go_to_scene("main_menu_scene")
-    #scene_mngr.go_to_scene("intro_scene_TEST")
+    scene_mngr.add_scene("intro_scene_TEST", intro_scene)
+    scene_mngr.go_to_scene("intro_scene_TEST")
 
 def test_fn():
     #asd()
     print("TJosan frAn Python!! :))")
-    ccccc = CppClass()
-    ccccc.print()
