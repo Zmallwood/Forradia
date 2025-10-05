@@ -35,7 +35,25 @@ namespace forr {
     SDL_RenderFillRect(_<sdl_device>().rend().get(), &rect);
   }
 
-  void gui_inventory_win::render_derived() const { gui_win::render_derived(); }
+  void gui_inventory_win::render_derived() const {
+    gui_win::render_derived();
+    auto b{bounds()};
+    auto margin_x{k_margin};
+    auto margin_y{conv_w_to_h(k_margin, _<sdl_device>().win())};
+    auto x_start{b.x + margin_x};
+    auto y_start{b.y + margin_y + get_win_title_bar()->bounds().h};
+    auto slot_w{k_slot_size};
+    auto slot_h{conv_w_to_h(k_slot_size, _<sdl_device>().win())};
+    auto num_cols{c_int((b.w - 2 * margin_x) / slot_w)};
+    auto num_rows{c_int((b.h - 2 * margin_y - (y_start - b.y)) / slot_h)};
+    for (auto y = 0; y < num_rows; y++) {
+      for (auto x = 0; x < num_cols; x++) {
+        _<img_rend>().draw_img(
+            k_slot_img_name, x_start + x * (slot_w + margin_x),
+            y_start + y * (slot_h + margin_y), slot_w, slot_h);
+      }
+    }
+  }
 
   void gui_player_body_win::init() {
     auto img_w{0.07f};

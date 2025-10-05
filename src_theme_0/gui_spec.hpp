@@ -32,6 +32,11 @@ namespace forr {
 
    protected:
     void render_derived() const override;
+
+   private:
+    static constexpr float k_margin{0.005f};
+    static constexpr float k_slot_size{0.04f};
+    inline static const str k_slot_img_name {"gui_inventory_win_slot_bg"};
   };
 
   class gui_player_body_win : public gui_win {

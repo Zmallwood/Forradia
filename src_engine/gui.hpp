@@ -142,6 +142,8 @@ namespace forr {
 
     rect_f get_drag_area() override;
 
+    auto get_win_title_bar() const { return gui_win_title_bar_; }
+
    private:
     void init(str_view win_title);
 
