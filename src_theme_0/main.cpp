@@ -9,8 +9,10 @@
 #include "input.hpp"
 #include "rend.hpp"
 #include "scenes.hpp"
+#include "update.hpp"
 #include "world_grator.hpp"
 #include "world_struct.hpp"
+#include "world_view.hpp"
 
 using namespace forr;
 namespace py = pybind11;
@@ -152,6 +154,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   py::class_<gui_interact_menu, s_ptr<gui_interact_menu>, gui_comp>(
       m, "gui_interact_menu");
 
+  py::class_<tl_hovering>(m, "tl_hovering").def("update", &tl_hovering::update);
+
+  py::class_<world_view>(m, "world_view").def("render", &world_view::render);
+
   m.def("get_gui_interact_menu_ptr",
         []() -> s_ptr<gui_interact_menu> { return __<gui_interact_menu>(); });
 
@@ -202,6 +208,21 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def(
       "get_world_grator", []() -> world_grator & { return _<world_grator>(); },
       py::return_value_policy::reference);
+
+  m.def(
+      "get_tl_hovering", []() -> tl_hovering & { return _<tl_hovering>(); },
+      py::return_value_policy::reference);
+
+  m.def(
+      "get_world_view", []() -> world_view & { return _<world_view>(); },
+      py::return_value_policy::reference);
+
+  m.def("update_kb_actions", &update_kb_actions);
+  m.def("update_mouse_actions", &update_mouse_actions);
+  m.def("update_npcs", &update_npcs);
+  m.def("update_crea_movem", &update_crea_movem);
+  m.def("update_mouse_movem", &update_mouse_movem);
+  m.def("update_kb_movem", &update_kb_movem);
 
   m.def("my_function",
         []() { std::cout << "Executing my_function" << std::endl; });

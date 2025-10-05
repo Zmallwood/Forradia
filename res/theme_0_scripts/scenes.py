@@ -22,7 +22,15 @@ from embedded import (
     get_gui_sys_menu_ptr,
     conv_w_to_h,
     make_shared_fps_panel,
-    get_gui_interact_menu_ptr
+    get_gui_interact_menu_ptr,
+    update_kb_actions,
+    update_mouse_actions,
+    update_npcs,
+    update_crea_movem,
+    update_mouse_movem,
+    update_kb_movem,
+    get_tl_hovering,
+    get_world_view
 )
 
 
@@ -168,10 +176,16 @@ class MainScene(i_scene):
             chat_box.print("You have entered the world.")
 
         def update_derived():
-            pass
+            update_kb_actions()
+            update_mouse_actions()
+            update_npcs()
+            update_crea_movem()
+            update_mouse_movem()
+            update_kb_movem()
+            get_tl_hovering().update()
 
         def render_derived():
-            pass
+            get_world_view().render()
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)
