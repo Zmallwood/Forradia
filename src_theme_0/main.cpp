@@ -71,6 +71,15 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def("add_scene", &scene_mngr::add_scene)
       .def("go_to_scene", &scene_mngr::go_to_scene);
 
+  py::class_<cursor>(m, "cursor")
+      .def(py::init<>())
+      .def("set_curs_style", &cursor::set_curs_style);
+
+  py::enum_<curs_styles>(m, "curs_styles")
+      .value("normal", curs_styles::normal)
+      .value("hovering_clickable_gui", curs_styles::hovering_clickable_gui)
+      .value("hovering_creature", curs_styles::hovering_creature);
+
   py::class_<gui_chat_box>(m, "gui_chat_box")
       .def(py::init<>())
       .def("print", &gui_chat_box::print);
@@ -95,6 +104,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def(
       "get_gui_chat_box", []() -> gui_chat_box & { return _<gui_chat_box>(); },
       py::return_value_policy::reference);
+
+  m.def("get_cursor", []() -> cursor & { return _<cursor>(); },
+        py::return_value_policy::reference);
 
   m.def("my_function",
         []() { std::cout << "Executing my_function" << std::endl; });

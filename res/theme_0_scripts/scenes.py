@@ -6,7 +6,9 @@ from embedded import (
     gui_label,
     make_shared_gui_label,
     get_gui_chat_box,
-    ticks
+    ticks,
+    get_cursor,
+    curs_styles
 )
 
 
@@ -27,21 +29,21 @@ class IntroScene(i_scene):
 
         def update_derived():
             self.start_text_comp.set_visible(ticks() % 800 < 400)
+
+            curs = get_cursor()
+            curs.set_curs_style(curs_styles.hovering_clickable_gui)
             #if self.start_text_comp:
             #    self.start_text_comp.set_visible(False)
-            print("UPDATE")
 
         def render_derived():
             img_rend = get_img_rend()
             img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
             img_rend.draw_img_auto_h("forradia_logo", 0.25, 0.2, 0.5)
-            print("RENDER")
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)
         self.set_update_derived(update_derived)
         self.set_render_derived(render_derived)
-        print("Initializing intro scene")
 
 
 
@@ -49,7 +51,6 @@ intro_scene= IntroScene()
 
 
 def setup_scenes():
-    print("Setting up scenes")
     global intro_scene
     scene_mngr = get_scene_mngr()
     scene_mngr.add_scene("intro_scene_TEST", intro_scene)
