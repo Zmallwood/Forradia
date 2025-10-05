@@ -102,10 +102,6 @@ namespace forr {
 
   class i_scene {
    public:
-    func<void()> action_{[] { std::cout << "base\n"; }};
-
-    void set_action(func<void()> action) { action_ = action; }
-
     void init();
 
     void update();

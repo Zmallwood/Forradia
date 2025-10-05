@@ -4,6 +4,7 @@
  */
 #include "engine.hpp"
 #include "game_props.hpp"
+#include "gui.hpp"
 #include "rend.hpp"
 #include "scenes.hpp"
 #include "world_struct.hpp"
@@ -13,12 +14,38 @@ namespace py = pybind11;
 
 void asd() { std::cout << "asd\n"; }
 
+class i_scene_publ : public i_scene {
+ public:
+  using i_scene::gui;
+};
+
 PYBIND11_EMBEDDED_MODULE(embedded, m) {
+
+  py::class_<color>(m, "color");
+
+  py::class_<gui_comp, s_ptr<gui_comp>>(m, "gui_comp");
+
+  py::class_<gui, s_ptr<gui>>(m, "gui").def(
+      "add_child_comp", [](gui &self, s_ptr<gui_comp> comp) -> s_ptr<gui_comp> {
+        return self.add_child_comp(comp);
+      });
+
+  py::class_<gui_label, s_ptr<gui_label>, gui_comp>(m, "gui_label")
+      .def(py::init<float, float, float, float, str_view, bool, color>(),
+           py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
+           py::arg("text") = "", py::arg("cent_align") = false,
+           py::arg("color") = colors::wheat_transp)
+      .def("set_text", &gui_label::set_text);
+
+  m.def("make_shared_gui_label",
+        [](float x, float y, float w, float h, str_view text, bool cent_align) {
+          return std::make_shared<gui_label>(x, y, w, h, text, cent_align);
+        });
 
   py::class_<i_scene>(m, "i_scene")
       .def(py::init<>())
       .def("init", &i_scene::init)
-      .def("set_action", &i_scene::set_action)
+      .def("gui", &i_scene_publ::gui)
       .def("set_init_derived",
            [](i_scene &self, py::function f) {
              self.set_init_derived([=] { f(); });
@@ -31,26 +58,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
            [](i_scene &self, py::function f) {
              self.set_update_derived([=] { f(); });
            })
-      .def("set_render_derived",
-           [](i_scene &self, py::function f) {
-             self.set_render_derived([=] { f(); });
-           })
-      .def("set_action2", [](i_scene &self, py::function f) {
-        self.set_action([=] { f(); });
+      .def("set_render_derived", [](i_scene &self, py::function f) {
+        self.set_render_derived([=] { f(); });
       });
-  //.def("set_action", &py_i_scene::set_action)
-  //.def("update", &py_i_scene::update)
-  //.def("render", &py_i_scene::render)
-  //.def("on_enter", &py_i_scene::on_enter)
-  //.def("init_derived", &py_i_scene::init_derived);
-  //      .def("on_enter_derived", &py_i_scene::on_enter_derived)
-  //      .def("update_derived", &py_i_scene::update_derived)
-  //      .def("render_derived", &py_i_scene::render_derived);
-  //.def("gui", &i_scene_publicist::gui);
-  //      .def("update", &i_scene::update)
-  //      .def("render", &i_scene::render)
-  //      .def("update_derived", &i_scene_publicist::update_derived)
-  //      .def("render_derived", &i_scene_publicist::render_derived);
 
   py::class_<scene_mngr>(m, "scene_mngr")
       .def(py::init<>())
@@ -89,11 +99,6 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
     )");
   });
 
-  m.def("test_fn", [] {
-    py::eval_file("res/theme_0_scripts/scenes.py");
-    py::eval("test_fn()");
-  });
-
   m.def("setup_scenes", [] {
     py::eval_file("res/theme_0_scripts/scenes.py");
     py::eval("setup_scenes()");
@@ -107,7 +112,6 @@ int main(int argc, char **argv) {
   embedded.attr("my_function")();
   embedded.attr("func2")();
   embedded.attr("func3")();
-  embedded.attr("test_fn")();
 
   _<engine>().init(_<game_props>().k_game_win_title,
                    _<game_props>().k_clear_color);
@@ -117,12 +121,8 @@ int main(int argc, char **argv) {
   //_<scene_mngr>().add_scene("main_scene", _<main_scene>());
   //_<scene_mngr>().go_to_scene("intro_scene");
   embedded.attr("setup_scenes")();
-  // return 0;
 
   _<world>().init(_<game_props>().k_w_area_sz, _<game_props>().k_world_scaling);
   _<engine>().run();
   return 0;
 }
-
-// auto scenes = embedded.attr("get_scenes")().cast<vec<i_scene>>();
-//_<scene_mngr>().add_scene("intro_scene_TEST", scenes.at(0));

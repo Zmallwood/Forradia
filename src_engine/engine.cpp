@@ -176,7 +176,6 @@ namespace forr {
   }
 
   void i_scene::init() {
-    action_();
     gui_ = std::make_shared<forr::gui>();
     init_derived_();
   }
