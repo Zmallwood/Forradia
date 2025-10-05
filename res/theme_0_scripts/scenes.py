@@ -14,7 +14,8 @@ from embedded import (
     get_cursor,
     curs_styles,
     get_kb_inp,
-    get_mouse_inp
+    get_mouse_inp,
+    get_world_grator
 )
 
 
@@ -89,7 +90,19 @@ class MainMenuScene(i_scene):
     
 
 class WorldGenScene(i_scene):
-    pass
+    def __init__(self):
+        i_scene.__init__(self)
+
+        def on_enter_derived():
+            chat_box = get_gui_chat_box()
+            chat_box.print("Generating world...")
+            world_grator = get_world_grator()
+            world_grator.gen_new_world()
+            chat_box.print("World generation completed.")
+            scene_mngr = get_scene_mngr()
+            scene_mngr.go_to_scene("main_scene")
+
+        self.set_on_enter_derived(on_enter_derived)
 
 class MainScene(i_scene):
     pass

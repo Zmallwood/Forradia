@@ -9,6 +9,7 @@
 #include "rend.hpp"
 #include "scenes.hpp"
 #include "world_struct.hpp"
+#include "world_grator.hpp"
 
 using namespace forr;
 namespace py = pybind11;
@@ -98,6 +99,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def(py::init<>())
       .def("print", &gui_chat_box::print);
 
+  py::class_<world_grator>(m, "world_grator")
+      .def(py::init<>())
+      .def("gen_new_world", &world_grator::gen_new_world);
+
   py::class_<kb_inp>(m, "kb_inp")
       .def("any_key_pressed_pick_res", &kb_inp::any_key_pressed_pick_res);
 
@@ -144,6 +149,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def(
       "get_mouse_inp", []() -> mouse_inp & { return _<mouse_inp>(); },
       py::return_value_policy::reference);
+
+  m.def("get_world_grator",
+        []() -> world_grator & { return _<world_grator>(); },
+        py::return_value_policy::reference);
 
   m.def("my_function",
         []() { std::cout << "Executing my_function" << std::endl; });
