@@ -176,8 +176,21 @@ namespace forr {
     auto w_area{_<world>().curr_w_area()};
     auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
     if (tl && tl->ground() == hash("ground_grass")) {
-      entries_.push_back(
-          {"Forage", [=]() { _<gui_chat_box>().print("Grass foraged."); }});
+      entries_.push_back({"Forage", [=]() {
+                            _<gui_chat_box>().print(
+                                "Grass foraged. You found blue berries.");
+                          }});
+    }
+    auto objects{tl->objects_stack()->objects()};
+    for (auto &obj : objects) {
+      auto type{obj->type()};
+      if (type == hash("object_fir_tree") ||
+          type == hash("object_birch_tree")) {
+        entries_.push_back({"Cut down tree", [=]() {
+                              _<gui_chat_box>().print(
+                                  "Tree cut down. You found some wood.");
+                            }});
+      }
     }
   }
 
