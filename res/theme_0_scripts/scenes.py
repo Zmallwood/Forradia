@@ -46,15 +46,30 @@ class IntroScene(i_scene):
         self.set_render_derived(render_derived)
 
 
+class MainMenuScene(i_scene):
+    pass
 
-intro_scene= IntroScene()
+class WorldGenScene(i_scene):
+    pass
+
+class MainScene(i_scene):
+    pass
+
+
+intro_scene = IntroScene()
+main_menu_scene = MainMenuScene()
+world_gen_scene = WorldGenScene()
+main_scene = MainScene()
 
 
 def setup_scenes():
     global intro_scene
+    global main_menu_scene
+    global world_gen_scene
+    global main_scene
     scene_mngr = get_scene_mngr()
-    scene_mngr.add_scene("intro_scene_TEST", intro_scene)
-    scene_mngr.go_to_scene("intro_scene_TEST")
+    scene_mngr.add_scene("intro_scene", intro_scene)
+    scene_mngr.go_to_scene("intro_scene")
 
 def test_fn():
     #asd()
