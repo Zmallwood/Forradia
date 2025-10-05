@@ -56,11 +56,7 @@ namespace forr {
     const pt_f k_position{0.93f, 0.02f};
   };
 
-  enum class curs_styles {
-    normal,
-    hovering_clickable_gui,
-    hovering_creature
-  };
+  enum class curs_styles { normal, hovering_clickable_gui, hovering_creature };
 
   class cursor {
    public:
@@ -106,6 +102,10 @@ namespace forr {
 
   class i_scene {
    public:
+    func<void()> action_{[] {std::cout << "base\n";}};
+
+    void set_action(func<void()> action) { action_ = action; } 
+
     void init();
 
     void update();

@@ -10,6 +10,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(ForradiaComm src_comm/comm.cpp)
 
+find_package(PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
+target_link_libraries(ForradiaComm PRIVATE ${PYTHON_LIBRARIES})
+
 target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt)
 
 
@@ -42,9 +46,6 @@ file(GLOB_RECURSE SOURCES "src_theme_0/*.cpp")
 add_executable(Forradia ${SOURCES})
 
 
-find_package(PythonLibs REQUIRED)
-include_directories(${PYTHON_INCLUDE_DIRS})
-target_link_libraries(Forradia PRIVATE ${PYTHON_LIBRARIES})
 
 
 target_include_directories(Forradia PRIVATE

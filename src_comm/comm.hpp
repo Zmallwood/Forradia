@@ -13,6 +13,9 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <pybind11/embed.h> // python interpreter
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h> // type conversion
 #include <ranges>
 #include <set>
 #include <string>
