@@ -21,7 +21,7 @@ class i_scene_publ : public i_scene {
 
 PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
-  py::class_<color>(m, "color");
+  py::class_<color>(m, "color").def(py::init<float, float, float, float>());
 
   py::class_<gui_comp, s_ptr<gui_comp>>(m, "gui_comp");
 
@@ -35,11 +35,15 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
            py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
            py::arg("text") = "", py::arg("cent_align") = false,
            py::arg("color") = colors::wheat_transp)
-      .def("set_text", &gui_label::set_text);
+      .def("set_text", &gui_label::set_text)
+      .def("set_visible", &gui_comp::set_visible);
+
+  m.def("ticks", [] {return ticks();});
 
   m.def("make_shared_gui_label",
         [](float x, float y, float w, float h, str_view text, bool cent_align) {
-          return std::make_shared<gui_label>(x, y, w, h, text, cent_align);
+          return std::make_shared<gui_label>(x, y, w, h, text, cent_align,
+                                             colors::wheat_transp);
         });
 
   py::class_<i_scene>(m, "i_scene")
@@ -67,6 +71,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def("add_scene", &scene_mngr::add_scene)
       .def("go_to_scene", &scene_mngr::go_to_scene);
 
+  py::class_<gui_chat_box>(m, "gui_chat_box")
+      .def(py::init<>())
+      .def("print", &gui_chat_box::print);
+
   py::class_<img_rend>(m, "img_rend")
       .def("draw_img",
            [](img_rend &self, str_view image_name, float x, float y, float w,
@@ -82,6 +90,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   m.def(
       "get_img_rend", []() -> img_rend & { return _<img_rend>(); },
+      py::return_value_policy::reference);
+
+  m.def(
+      "get_gui_chat_box", []() -> gui_chat_box & { return _<gui_chat_box>(); },
       py::return_value_policy::reference);
 
   m.def("my_function",

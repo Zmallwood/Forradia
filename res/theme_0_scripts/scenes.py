@@ -4,7 +4,9 @@ from embedded import (
     get_img_rend,
     gui,
     gui_label,
-    make_shared_gui_label
+    make_shared_gui_label,
+    get_gui_chat_box,
+    ticks
 )
 
 
@@ -17,9 +19,16 @@ class IntroScene(i_scene):
         def init_derived():
             g = self.gui()
             lbl = make_shared_gui_label(0.45, 0.5, 0.1, 0.04, "Press to start", True)
-            start_text_comp_ = g.add_child_comp(lbl)
+            self.start_text_comp = g.add_child_comp(lbl)
+
+        def on_enter_derived():
+            chat_box = get_gui_chat_box()
+            chat_box.print("Game started.")
 
         def update_derived():
+            self.start_text_comp.set_visible(ticks() % 800 < 400)
+            #if self.start_text_comp:
+            #    self.start_text_comp.set_visible(False)
             print("UPDATE")
 
         def render_derived():
