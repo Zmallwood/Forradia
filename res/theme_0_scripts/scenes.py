@@ -20,7 +20,9 @@ from embedded import (
     get_gui_player_body_win_ptr,
     get_gui_inventory_win_ptr,
     get_gui_sys_menu_ptr,
-    conv_w_to_h
+    conv_w_to_h,
+    make_shared_fps_panel,
+    get_gui_interact_menu_ptr
 )
 
 
@@ -139,6 +141,13 @@ class MainScene(i_scene):
 
             g.add_child_comp(btn_gui_sys_menu)
 
+
+            g.add_child_comp(get_gui_player_body_win_ptr())
+            g.add_child_comp(get_gui_inventory_win_ptr())
+            g.add_child_comp(get_gui_sys_menu_ptr())
+            g.add_child_comp(make_shared_fps_panel())
+            g.add_child_comp(get_gui_interact_menu_ptr())
+
 #      gui()->add_child_comp(std::make_shared<gui_button>(
 #          0.78f, 0.9f, 0.05f, conv_w_to_h(0.05f, _<sdl_device>().win()), "",
 #          [] { _<gui_player_body_win>().toggle_visible(); },
@@ -155,7 +164,8 @@ class MainScene(i_scene):
 #          "gui_button_system_menu_bg", "gui_button_system_menu_hovered_bg"));
 
         def on_enter_derived():
-            pass
+            chat_box = get_gui_chat_box()
+            chat_box.print("You have entered the world.")
 
         def update_derived():
             pass

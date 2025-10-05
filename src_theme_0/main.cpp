@@ -45,10 +45,15 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   py::class_<gui_button, s_ptr<gui_button>, gui_comp>(m, "gui_button");
 
+  py::class_<gui_fps_panel, s_ptr<gui_fps_panel>, gui_comp>(m, "gui_fps_panel");
+
   m.def("ticks", [] { return ticks(); });
 
   m.def("conv_w_to_h",
         [](float w) { return conv_w_to_h(w, _<sdl_device>().win()); });
+
+  m.def("make_shared_fps_panel",
+        [] { return std::make_shared<gui_fps_panel>(); });
 
   m.def("make_shared_gui_label",
         [](float x, float y, float w, float h, str_view text, bool cent_align) {
@@ -135,14 +140,20 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   py::class_<gui_player_body_win, s_ptr<gui_player_body_win>, gui_comp>(
       m, "gui_player_body_win")
-      .def("toggle_visible", &gui_player_body_win::toggle_visible);
+      .def("toggle_visible", &gui_comp::toggle_visible);
 
   py::class_<gui_inventory_win, s_ptr<gui_inventory_win>, gui_comp>(
       m, "gui_inventory_win")
-      .def("toggle_visible", &gui_inventory_win::toggle_visible);
+      .def("toggle_visible", &gui_comp::toggle_visible);
 
   py::class_<gui_sys_menu, s_ptr<gui_sys_menu>, gui_comp>(m, "gui_sys_menu")
-      .def("toggle_visible", &gui_sys_menu::toggle_visible);
+      .def("toggle_visible", &gui_comp::toggle_visible);
+
+  py::class_<gui_interact_menu, s_ptr<gui_interact_menu>, gui_comp>(
+      m, "gui_interact_menu");
+
+  m.def("get_gui_interact_menu_ptr",
+        []() -> s_ptr<gui_interact_menu> { return __<gui_interact_menu>(); });
 
   m.def("get_gui_player_body_win_ptr", []() -> s_ptr<gui_player_body_win> {
     return __<gui_player_body_win>();
