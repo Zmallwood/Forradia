@@ -118,7 +118,7 @@ namespace forr {
 
     /* Find out pixel format type */
     // glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    if (!tex_already_exists) {
+    //if (!tex_already_exists) {
       auto intermediary = SDL_CreateRGBSurface(
           0, new_w, new_h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
@@ -129,7 +129,7 @@ namespace forr {
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
       SDL_FreeSurface(intermediary);
-    }
+    //}
     glBindTexture(GL_TEXTURE_2D, tex);
     glBegin(GL_TRIANGLE_FAN);
 
