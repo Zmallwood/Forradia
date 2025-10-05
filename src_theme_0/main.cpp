@@ -5,14 +5,13 @@
 #include "engine.hpp"
 #include "game_props.hpp"
 #include "gui.hpp"
+#include "input.hpp"
 #include "rend.hpp"
 #include "scenes.hpp"
 #include "world_struct.hpp"
 
 using namespace forr;
 namespace py = pybind11;
-
-void asd() { std::cout << "asd\n"; }
 
 class i_scene_publ : public i_scene {
  public:
@@ -38,7 +37,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def("set_text", &gui_label::set_text)
       .def("set_visible", &gui_comp::set_visible);
 
-  m.def("ticks", [] {return ticks();});
+  m.def("ticks", [] { return ticks(); });
 
   m.def("make_shared_gui_label",
         [](float x, float y, float w, float h, str_view text, bool cent_align) {
@@ -84,6 +83,13 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def(py::init<>())
       .def("print", &gui_chat_box::print);
 
+  py::class_<kb_inp>(m, "kb_inp")
+      .def("any_key_pressed_pick_res", &kb_inp::any_key_pressed_pick_res);
+
+  py::class_<mouse_inp>(m, "mouse_inp")
+      .def("any_mouse_btn_pressed_pick_res",
+           &mouse_inp::any_mouse_btn_pressed_pick_res);
+
   py::class_<img_rend>(m, "img_rend")
       .def("draw_img",
            [](img_rend &self, str_view image_name, float x, float y, float w,
@@ -105,13 +111,20 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       "get_gui_chat_box", []() -> gui_chat_box & { return _<gui_chat_box>(); },
       py::return_value_policy::reference);
 
-  m.def("get_cursor", []() -> cursor & { return _<cursor>(); },
-        py::return_value_policy::reference);
+  m.def(
+      "get_cursor", []() -> cursor & { return _<cursor>(); },
+      py::return_value_policy::reference);
+
+  m.def(
+      "get_kb_inp", []() -> kb_inp & { return _<kb_inp>(); },
+      py::return_value_policy::reference);
+
+  m.def(
+      "get_mouse_inp", []() -> mouse_inp & { return _<mouse_inp>(); },
+      py::return_value_policy::reference);
 
   m.def("my_function",
         []() { std::cout << "Executing my_function" << std::endl; });
-
-  m.def("func2", &asd);
 
   m.def("func3", [] {
     py::exec(R"(
@@ -134,7 +147,6 @@ int main(int argc, char **argv) {
 
   auto embedded = py::module::import("embedded");
   embedded.attr("my_function")();
-  embedded.attr("func2")();
   embedded.attr("func3")();
 
   _<engine>().init(_<game_props>().k_game_win_title,

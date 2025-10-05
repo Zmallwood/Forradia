@@ -8,7 +8,9 @@ from embedded import (
     get_gui_chat_box,
     ticks,
     get_cursor,
-    curs_styles
+    curs_styles,
+    get_kb_inp,
+    get_mouse_inp
 )
 
 
@@ -32,6 +34,13 @@ class IntroScene(i_scene):
 
             curs = get_cursor()
             curs.set_curs_style(curs_styles.hovering_clickable_gui)
+
+            kb_inp = get_kb_inp()
+            mouse_inp = get_mouse_inp()
+            scene_mngr = get_scene_mngr()
+
+            if kb_inp.any_key_pressed_pick_res() or mouse_inp.any_mouse_btn_pressed_pick_res():
+                scene_mngr.go_to_scene("main_menu_scene")
             #if self.start_text_comp:
             #    self.start_text_comp.set_visible(False)
 
@@ -47,7 +56,17 @@ class IntroScene(i_scene):
 
 
 class MainMenuScene(i_scene):
-    pass
+    def __init__(self):
+        i_scene.__init__(self)
+
+
+        def render_derived():
+            img_rend = get_img_rend()
+            img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+            img_rend.draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
+
+        self.set_render_derived(render_derived)
+    
 
 class WorldGenScene(i_scene):
     pass
@@ -69,6 +88,9 @@ def setup_scenes():
     global main_scene
     scene_mngr = get_scene_mngr()
     scene_mngr.add_scene("intro_scene", intro_scene)
+    scene_mngr.add_scene("main_menu_scene", main_menu_scene)
+    scene_mngr.add_scene("world_gen_scene", world_gen_scene)
+    scene_mngr.add_scene("main_scene", main_scene)
     scene_mngr.go_to_scene("intro_scene")
 
 def test_fn():
