@@ -34,9 +34,11 @@ class IntroScene(i_scene):
         def render_derived():
             img_rend = get_img_rend()
             img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+            img_rend.draw_img_auto_h("forradia_logo", 0.25, 0.2, 0.5)
             print("RENDER")
 
         self.set_init_derived(init_derived)
+        self.set_on_enter_derived(on_enter_derived)
         self.set_update_derived(update_derived)
         self.set_render_derived(render_derived)
         print("Initializing intro scene")
