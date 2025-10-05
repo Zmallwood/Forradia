@@ -9,6 +9,7 @@ from embedded import (
     make_shared_gui_panel,
     make_shared_gui_button,
     get_gui_chat_box,
+    get_gui_chat_box_ptr,
     ticks,
     get_cursor,
     curs_styles,
@@ -73,6 +74,10 @@ class MainMenuScene(i_scene):
 
             btn_quit = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Quit", lambda: get_engine().stop())
             g.add_child_comp(btn_quit)
+
+
+            gui_chat_box_ptr = get_gui_chat_box_ptr()
+            g.add_child_comp(gui_chat_box_ptr)
 
         def render_derived():
             img_rend = get_img_rend()

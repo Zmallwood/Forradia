@@ -22,8 +22,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   py::class_<color>(m, "color").def(py::init<float, float, float, float>());
 
-  py::class_<engine>(m, "engine")
-  .def("stop", &engine::stop);
+  py::class_<engine>(m, "engine").def("stop", &engine::stop);
 
   py::class_<gui_comp, s_ptr<gui_comp>>(m, "gui_comp");
 
@@ -95,7 +94,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .value("hovering_clickable_gui", curs_styles::hovering_clickable_gui)
       .value("hovering_creature", curs_styles::hovering_creature);
 
-  py::class_<gui_chat_box>(m, "gui_chat_box")
+  py::class_<gui_chat_box, s_ptr<gui_chat_box>, gui_comp>(m, "gui_chat_box")
       .def(py::init<>())
       .def("print", &gui_chat_box::print);
 
@@ -115,8 +114,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
               float h) { self.draw_img(image_name_hash, x, y, w, h); })
       .def("draw_img_auto_h", &img_rend::draw_img_auto_h);
 
-  m.def("get_engine", []() -> engine & { return _<engine>(); },
-        py::return_value_policy::reference);
+  m.def(
+      "get_engine", []() -> engine & { return _<engine>(); },
+      py::return_value_policy::reference);
 
   m.def(
       "get_scene_mngr", []() -> scene_mngr & { return _<scene_mngr>(); },
@@ -129,6 +129,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def(
       "get_gui_chat_box", []() -> gui_chat_box & { return _<gui_chat_box>(); },
       py::return_value_policy::reference);
+
+  m.def("get_gui_chat_box_ptr",
+        []() -> s_ptr<gui_chat_box> { return __<gui_chat_box>(); });
 
   m.def(
       "get_cursor", []() -> cursor & { return _<cursor>(); },
