@@ -482,7 +482,7 @@ namespace forr {
     if (tex_already_exists) {
     } else {
       auto sdl_color{text_color.to_sdl_color()};
-      auto surf{TTF_RenderText_Blended(font_raw, text.data(), sdl_color)};
+      auto surf{TTF_RenderText_Solid(font_raw, text.data(), sdl_color)};
 
       // auto new_w{pow(2, std::ceil(log(surf->w) / log(2)))};
       // auto new_h{pow(2, std::ceil(log(surf->h) / log(2)))};
@@ -490,7 +490,9 @@ namespace forr {
       auto new_w{surf->w};
       auto new_h{surf->h};
       auto intermediary = SDL_CreateRGBSurface(
-          0, new_w, new_h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+          0, new_w, new_h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+      //auto intermediary = SDL_CreateRGBSurface(
+      //    0, new_w, new_h, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
 
       SDL_BlitSurface(surf, 0, intermediary, 0);
 
