@@ -25,7 +25,7 @@ namespace forr {
 
     void draw_img(int img_name_hash, float x, float y, float w, float h);
 
-    void draw_img(GLuint tex_id, float x, float y, float w, float h);
+    void draw_tex(GLuint tex_id, float x, float y, float w, float h);
 
     void draw_img_auto_h(str_view img_name, float x, float y, float w);
 

@@ -215,10 +215,10 @@ namespace forr {
                              float h) {
     auto tex_id{_<image_bank>().get_tex(img_name_hash)};
 
-    img_2d_rend::draw_img(tex_id, x, y, w, h);
+    img_2d_rend::draw_tex(tex_id, x, y, w, h);
   }
 
-  void img_2d_rend::draw_img(GLuint tex_id, float x, float y, float w, float h) {
+  void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h) {
 
     // float vertices[] = {
     //// positions          // colors           // texture coords
@@ -262,19 +262,26 @@ namespace forr {
       obj_ibo = entry.ibo;
       obj_vbo = entry.vbo;
     } else {
-
+      glGenVertexArrays(1, &obj_vao);
+      glBindVertexArray(obj_vao);
       glGenBuffers(1, &obj_vbo);
       glGenBuffers(1, &obj_ibo);
-    }
+
+    Entry entry;
+    entry.vao = obj_vao;
+    entry.ibo = obj_ibo;
+    entry.vbo = obj_vbo;
+    imgs_[x][y][w][h] = entry;
+
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
                  indices, GL_STATIC_DRAW);
 
-    // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
                  vertices, GL_STATIC_DRAW);
-    // glEnableClientState(GL_VERTEX_ARRAY);
+
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8, 0);
     // glColor3f(1.0f, 0.0f, 1.0f);
     glEnableVertexAttribArray(0);
@@ -286,6 +293,10 @@ namespace forr {
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                           (void *)(sizeof(vertices[0]) * 6));
     glEnableVertexAttribArray(2);
+    }
+
+    // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+    // glEnableClientState(GL_VERTEX_ARRAY);
 
     //      glGenVertexArrays(1, &obj_vao);
     //      glBindVertexArray(obj_vao);
@@ -321,14 +332,11 @@ namespace forr {
     //      glBindBuffer(GL_ARRAY_BUFFER, 0);
     //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     //
-    Entry entry;
-    entry.vao = obj_vao;
-    entry.ibo = obj_ibo;
-    entry.vbo = obj_vbo;
-    imgs_[x][y][w][h] = entry;
 
     //auto tex_id{_<image_bank>().get_tex(img_name_hash)};
     // glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(obj_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
     glBindTexture(GL_TEXTURE_2D, tex_id);
     glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);
@@ -372,33 +380,6 @@ namespace forr {
 
     return;
 
-    glViewport(0, 0, 660, 660);
-    glBindVertexArray(obj_vao);
-    // glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glEnable(GL_TEXTURE_2D);
-    glActiveTexture(GL_TEXTURE0);
-    // glBindTexture(GL_TEXTURE_2D, tex_id);
-    //  std::cout << obj_vao << " " << obj_vbo << " " << obj_ibo << std::endl;
-    //  glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-
-    // glBegin(GL_TRIANGLE_FAN);
-
-    // glTexCoord2f(0.0f, 0.0f);
-    // glVertex3f(0.0f, 0.0f, 0.5f);
-
-    // glTexCoord2f(1.0f, 0.0f);
-    // glVertex3f(0.5f, 0.0f, 0.5f);
-
-    // glTexCoord2f(1.0f, 1.0f);
-    // glVertex3f(1.0f, 1.0f, 0.5f);
-
-    // glTexCoord2f(0.0f, 1.0f);
-    // glVertex3f(0.0f, 1.0f, 0.5f);
-
-    // glEnd();
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -508,7 +489,7 @@ namespace forr {
     auto yf{c_float(dest.y) / canv_sz.h};
     auto wf{c_float(dest.w) / canv_sz.w};
     auto hf{c_float(dest.h) / canv_sz.h};
-    _<img_2d_rend>().draw_img(tex, xf, yf, wf, hf);
+    _<img_2d_rend>().draw_tex(tex, xf, yf, wf, hf);
     return;
     //glBindTexture(GL_TEXTURE_2D, tex);
     //glBegin(GL_TRIANGLE_FAN);
