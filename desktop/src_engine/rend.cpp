@@ -82,14 +82,6 @@ namespace forr {
     if (text.empty())
       return;
     auto font_raw{fonts_.at(font_sz).get()};
-    auto sdl_color{text_color.to_sdl_color()};
-    auto surf{TTF_RenderText_Blended(font_raw, text.data(), sdl_color)};
-
-    // auto new_w{pow(2, std::ceil(log(surf->w) / log(2)))};
-    // auto new_h{pow(2, std::ceil(log(surf->h) / log(2)))};
-
-    auto new_w{surf->w};
-    auto new_h{surf->h};
 
     sz text_dim;
     TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
@@ -104,8 +96,12 @@ namespace forr {
       dest.y -= dest.h / 2;
     }
 
-    auto tex_already_exists{_<image_bank>().text_tex_exists(x, y)};
-    auto tex{_<image_bank>().obtain_text_tex(x, y)};
+    auto text_hash {hash(text)};
+    auto xx {c_float(c_int(x*1000))};
+    auto yy {c_float(c_int(y*1000))};
+
+    auto tex_already_exists{_<image_bank>().text_tex_exists(xx, yy, text_hash)};
+    auto tex{_<image_bank>().obtain_text_tex(xx, yy, text_hash)};
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glEnable(GL_TEXTURE_2D);
 
@@ -118,7 +114,17 @@ namespace forr {
 
     /* Find out pixel format type */
     // glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    //if (!tex_already_exists) {
+    // if (!tex_already_exists) {
+    if (tex_already_exists) {
+    } else {
+      auto sdl_color{text_color.to_sdl_color()};
+      auto surf{TTF_RenderText_Blended(font_raw, text.data(), sdl_color)};
+
+      // auto new_w{pow(2, std::ceil(log(surf->w) / log(2)))};
+      // auto new_h{pow(2, std::ceil(log(surf->h) / log(2)))};
+
+      auto new_w{surf->w};
+      auto new_h{surf->h};
       auto intermediary = SDL_CreateRGBSurface(
           0, new_w, new_h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
@@ -129,6 +135,8 @@ namespace forr {
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
       SDL_FreeSurface(intermediary);
+      SDL_FreeSurface(surf);
+    }
     //}
     glBindTexture(GL_TEXTURE_2D, tex);
     glBegin(GL_TRIANGLE_FAN);
@@ -158,6 +166,5 @@ namespace forr {
     // SDL_RenderCopy(rend, tex, nullptr, &dest);
     // SDL_DestroyTexture(tex);
     // SDL_FreeSurface(intermediary);
-    SDL_FreeSurface(surf);
   }
 }

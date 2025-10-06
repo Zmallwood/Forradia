@@ -22,7 +22,7 @@ namespace forr {
 
   class sdl_device {
    public:
-    ~sdl_device(); 
+    ~sdl_device();
 
     void init(str_view game_win_title, color clear_color);
 
@@ -86,7 +86,7 @@ namespace forr {
    public:
     image_bank() { init(); }
 
-    ~image_bank() {cleanup();}
+    ~image_bank() { cleanup(); }
 
     s_ptr<SDL_Texture> get_img(int img_name_hash) const;
 
@@ -94,9 +94,9 @@ namespace forr {
 
     sz get_img_sz(int img_name_hash) const;
 
-    bool text_tex_exists(float x, float y) const;
+    bool text_tex_exists(float x, float y, int unique_id) const;
 
-    GLuint obtain_text_tex(float x, float y);
+    GLuint obtain_text_tex(float x, float y, int text_hash);
 
    private:
     void init();
@@ -114,7 +114,7 @@ namespace forr {
     std::map<int, s_ptr<SDL_Texture>> images_;
     std::map<int, GLuint> textures_;
     std::map<int, sz> tex_sizes_;
-    std::map<float, std::map<float, GLuint>> text_texes_;
+    std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
   };
 
   class gui;

@@ -173,9 +173,11 @@ namespace forr {
     for (auto entry : textures_) {
       glDeleteTextures(1, &entry.second);
     }
-    for (auto entry : text_texes_) {
-      for (auto tex : entry.second) {
-        glDeleteTextures(1, &tex.second);
+    for (auto entry1 : text_texes_) {
+      for (auto entry2 : entry1.second) {
+        for (auto tex : entry2.second) {
+          glDeleteTextures(1, &tex.second);
+        }
       }
     }
   }
@@ -216,11 +218,8 @@ namespace forr {
       return images_.at(img_name_hash);
     return nullptr;
   }
-
   GLuint image_bank::get_tex(int img_name_hash) const {
-    if (textures_.contains(img_name_hash))
-      return textures_.at(img_name_hash);
-    return 0;
+    return textures_.at(img_name_hash);
   }
 
   sz image_bank::get_img_sz(int img_name_hash) const {
@@ -254,17 +253,18 @@ namespace forr {
     return tex;
   }
 
-  bool image_bank::text_tex_exists(float x, float y) const {
-    return text_texes_.contains(x) && text_texes_.at(x).contains(y);
+  bool image_bank::text_tex_exists(float x, float y, int text_hash) const {
+    return text_texes_.contains(x) && text_texes_.at(x).contains(y) &&
+           text_texes_.at(x).at(y).contains(text_hash);
   }
 
-  GLuint image_bank::obtain_text_tex(float x, float y) {
-    if (text_tex_exists(x, y)) {
-      return text_texes_.at(x).at(y);
+  GLuint image_bank::obtain_text_tex(float x, float y, int text_hash) {
+    if (text_tex_exists(x, y, text_hash)) {
+      return text_texes_.at(x).at(y).at(text_hash);
     }
     GLuint tex;
     glGenTextures(1, &tex);
-    text_texes_[x][y] = tex;
+    text_texes_[x][y][text_hash] = tex;
     return tex;
   }
 
