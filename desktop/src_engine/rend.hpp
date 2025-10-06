@@ -21,6 +21,8 @@ namespace forr {
 
     ~img_2d_rend() { cleanup(); }
 
+    void reset_counter();
+
     void draw_img(str_view img_name, float x, float y, float w, float h);
 
     void draw_img(int img_name_hash, float x, float y, float w, float h);
@@ -39,11 +41,17 @@ namespace forr {
       GLuint vao;
       GLuint ibo;
       GLuint vbo;
+      float x;
+      float y;
+      float w;
+      float h;
     };
 
     GLuint program_;
-    std::map<float, std::map<float, std::map<float, std::map<float, Entry>>>>
-        imgs_;
+    std::map<int, std::map<int, Entry>> imgs_;
+    int counter_{0};
+    //std::map<float, std::map<float, std::map<float, std::map<float, Entry>>>>
+    //    imgs_;
   };
 
   enum struct font_szs { _20 = 20, _26 = 26 };

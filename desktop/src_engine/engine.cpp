@@ -18,6 +18,7 @@ namespace forr {
       _<kb_inp>().reset();
       _<mouse_inp>().reset();
       _<cursor>().reset_style_to_normal();
+      _<img_2d_rend>().reset_counter();
       poll_events();
       _<scene_mngr>().update_curr_scene();
       _<fps_counter>().update();

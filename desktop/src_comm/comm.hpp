@@ -25,6 +25,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <source_location>
 
 namespace forr {
   ////////////////////

@@ -195,21 +195,31 @@ namespace forr {
 
   void img_2d_rend::cleanup() {
 
-    for (auto &entry1 : imgs_) {
-      for (auto &entry2 : entry1.second) {
-        for (auto &entry3 : entry2.second) {
-          for (auto &entry4 : entry3.second) {
-            glDeleteVertexArrays(1, &entry4.second.vao);
-            glDeleteBuffers(1, &entry4.second.ibo);
-            glDeleteBuffers(1, &entry4.second.vbo);
-          }
-        }
+    for (auto &entry : imgs_) {
+      for (auto &entry2 : entry.second) {
+        glDeleteVertexArrays(1, &entry2.second.vao);
+        glDeleteBuffers(1, &entry2.second.ibo);
+        glDeleteBuffers(1, &entry2.second.vbo);
       }
     }
+
+    // for (auto &entry1 : imgs_) {
+    //   for (auto &entry2 : entry1.second) {
+    //     for (auto &entry3 : entry2.second) {
+    //       for (auto &entry4 : entry3.second) {
+    //         glDeleteVertexArrays(1, &entry4.second.vao);
+    //         glDeleteBuffers(1, &entry4.second.ibo);
+    //         glDeleteBuffers(1, &entry4.second.vbo);
+    //       }
+    //     }
+    //   }
+    // }
 
     glUseProgram(0);
     glDeleteProgram(program_);
   }
+
+  void img_2d_rend::reset_counter() { counter_ = 0; }
 
   void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
                              float h) {
@@ -218,7 +228,8 @@ namespace forr {
     img_2d_rend::draw_tex(tex_id, x, y, w, h);
   }
 
-  void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h) {
+  void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w,
+                             float h) {
 
     // float vertices[] = {
     //// positions          // colors           // texture coords
@@ -232,6 +243,7 @@ namespace forr {
     //                          -1.0f, 1.0f,  0.0f,  -1.0f, -1.0f, -1.0f, 0.0f,
     //                          0.0f,  -1.0f, 1.0f,  -1.0f, 0.0f,  1.0f};
 
+    // auto hash_file{hash(loc.file_name())};
     glUseProgram(program_);
     glEnable(GL_BLEND);                                // Enable blending
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending
@@ -255,44 +267,93 @@ namespace forr {
     GLuint obj_ibo;
     GLuint obj_vbo;
 
-    if (imgs_.contains(x) && imgs_.at(x).contains(y) &&
-        imgs_.at(x).at(y).contains(w) && imgs_.at(x).at(y).at(w).contains(h)) {
-      auto &entry = imgs_.at(x).at(y).at(w).at(h);
+    auto need_create_buffers{false};
+
+    // if (imgs_.contains(x) && imgs_.at(x).contains(y) &&
+    //     imgs_.at(x).at(y).contains(w) && imgs_.at(x).at(y).at(w).contains(h))
+    //     {
+    if (imgs_.contains(counter_) && imgs_.at(counter_).contains(tex_id)) {
+
+      // auto &entry = imgs_.at(x).at(y).at(w).at(h);
+      need_create_buffers = false;
+    } else {
+      need_create_buffers = true;
+      glGenVertexArrays(1, &obj_vao);
+      glGenBuffers(1, &obj_vbo);
+      glGenBuffers(1, &obj_ibo);
+    }
+
+    auto need_fill_buffers{false};
+
+
+
+
+    if (!need_create_buffers) {
+
+      auto &entry = imgs_.at(counter_).at(tex_id);
       obj_vao = entry.vao;
       obj_ibo = entry.ibo;
       obj_vbo = entry.vbo;
-    } else {
-      glGenVertexArrays(1, &obj_vao);
+
       glBindVertexArray(obj_vao);
-      glGenBuffers(1, &obj_vbo);
-      glGenBuffers(1, &obj_ibo);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+if (x != entry.x || y != entry.y || w != entry.w || h != entry.h) {
 
-    Entry entry;
-    entry.vao = obj_vao;
-    entry.ibo = obj_ibo;
-    entry.vbo = obj_vbo;
-    imgs_[x][y][w][h] = entry;
+        need_fill_buffers = true;
 
+        entry.x = x;
+        entry.y = y;
+        entry.w = w;
+        entry.h = h;
+      }
+    } else {
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
-                 indices, GL_STATIC_DRAW);
+      glBindVertexArray(obj_vao);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
-                 vertices, GL_STATIC_DRAW);
+      Entry entry;
+      entry.vao = obj_vao;
+      entry.ibo = obj_ibo;
+      entry.vbo = obj_vbo;
+      entry.x = x;
+      entry.y = y;
+      entry.w = w;
+      entry.h = h;
+      imgs_[counter_][tex_id] = entry;
+      // imgs_[x][y][w][h] = entry;
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8, 0);
-    // glColor3f(1.0f, 0.0f, 1.0f);
-    glEnableVertexAttribArray(0);
+      // std::cout << hash_file << ":" << loc.line()<< "\n";
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
-                          (void *)(sizeof(vertices[0]) * 3));
-    glEnableVertexAttribArray(1);
+      // std::cout << loc.file_name() << ":" << loc.line() << "\n";
 
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
-                          (void *)(sizeof(vertices[0]) * 6));
-    glEnableVertexAttribArray(2);
+      need_fill_buffers = true;
+    }
+
+    if (need_fill_buffers) {
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                     sizeof(indices[0]) * indices_count, indices,
+                     GL_STATIC_DRAW);
+
+        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
+                     vertices, GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                              0);
+        // glColor3f(1.0f, 0.0f, 1.0f);
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                              (void *)(sizeof(vertices[0]) * 3));
+        glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                              (void *)(sizeof(vertices[0]) * 6));
+        glEnableVertexAttribArray(2);
     }
 
     // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
@@ -333,8 +394,8 @@ namespace forr {
     //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     //
 
-    //auto tex_id{_<image_bank>().get_tex(img_name_hash)};
-    // glDrawArrays(GL_TRIANGLES, 0, 3);
+    // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+    //  glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
@@ -377,7 +438,7 @@ namespace forr {
     //{
     // std::cout << "ERROR\n";
     //}
-
+    ++counter_;
     return;
 
     glBindVertexArray(0);
@@ -472,8 +533,9 @@ namespace forr {
       auto new_h{surf->h};
       auto intermediary = SDL_CreateRGBSurface(
           0, new_w, new_h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-      //auto intermediary = SDL_CreateRGBSurface(
-      //    0, new_w, new_h, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
+      // auto intermediary = SDL_CreateRGBSurface(
+      //     0, new_w, new_h, 32, 0xff000000, 0x00ff0000, 0x0000ff00,
+      //     0x000000ff);
 
       SDL_BlitSurface(surf, 0, intermediary, 0);
 
@@ -491,28 +553,28 @@ namespace forr {
     auto hf{c_float(dest.h) / canv_sz.h};
     _<img_2d_rend>().draw_tex(tex, xf, yf, wf, hf);
     return;
-    //glBindTexture(GL_TEXTURE_2D, tex);
-    //glBegin(GL_TRIANGLE_FAN);
+    // glBindTexture(GL_TEXTURE_2D, tex);
+    // glBegin(GL_TRIANGLE_FAN);
 
-    //auto xf{c_float(dest.x) / canv_sz.w};
-    //auto yf{c_float(dest.y) / canv_sz.h};
-    //auto wf{c_float(dest.w) / canv_sz.w};
-    //auto hf{c_float(dest.h) / canv_sz.h};
+    // auto xf{c_float(dest.x) / canv_sz.w};
+    // auto yf{c_float(dest.y) / canv_sz.h};
+    // auto wf{c_float(dest.w) / canv_sz.w};
+    // auto hf{c_float(dest.h) / canv_sz.h};
 
-    //glTexCoord2f(0.0f, 0.0f);
-    //glVertex3f(xf, yf, 0.5f);
+    // glTexCoord2f(0.0f, 0.0f);
+    // glVertex3f(xf, yf, 0.5f);
 
-    //glTexCoord2f(1.0f, 0.0f);
-    //glVertex3f(xf + wf, yf, 0.5f);
+    // glTexCoord2f(1.0f, 0.0f);
+    // glVertex3f(xf + wf, yf, 0.5f);
 
-    //glTexCoord2f(1.0f, 1.0f);
-    //glVertex3f(xf + wf, yf + hf, 0.5f);
+    // glTexCoord2f(1.0f, 1.0f);
+    // glVertex3f(xf + wf, yf + hf, 0.5f);
 
-    //glTexCoord2f(0.0f, 1.0f);
-    //glVertex3f(xf, yf + hf, 0.5f);
+    // glTexCoord2f(0.0f, 1.0f);
+    // glVertex3f(xf, yf + hf, 0.5f);
 
-    //glEnd();
-    //glFlush();
+    // glEnd();
+    // glFlush();
 
     // auto rend{_<sdl_device>().rend().get()};
     // auto tex{SDL_CreateTextureFromSurface(rend, surf)};
