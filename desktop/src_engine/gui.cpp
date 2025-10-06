@@ -60,7 +60,7 @@ namespace forr {
 
   void gui_panel::render_derived() const {
     auto b{bounds()};
-    _<img_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
+    _<img_2d_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
   }
 
   void gui_button::update_derived() {
@@ -177,7 +177,7 @@ namespace forr {
       y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    _<img_rend>().draw_img("black", sep_rect.x, sep_rect.y, sep_rect.w,
+    _<img_2d_rend>().draw_img("black", sep_rect.x, sep_rect.y, sep_rect.w,
                            sep_rect.h);
   }
 

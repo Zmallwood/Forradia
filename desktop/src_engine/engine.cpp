@@ -74,7 +74,7 @@ namespace forr {
     glEnable(GL_BLEND); // Enable blending
     // glDepthFunc(GL_NEVER);
     // glDisable(GL_DEPTH_TEST);
-    //glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
+    glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
 
     // auto base_path{str(SDL_GetBasePath())};
     // auto img_path{base_path + "res/images/ground/grass/ground_grass.png"};

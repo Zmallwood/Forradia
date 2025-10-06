@@ -213,6 +213,13 @@ namespace forr {
 
   void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
                              float h) {
+    auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+
+    img_2d_rend::draw_img(tex_id, x, y, w, h);
+  }
+
+  void img_2d_rend::draw_img(GLuint tex_id, float x, float y, float w, float h) {
+
     // float vertices[] = {
     //// positions          // colors           // texture coords
     // 0.6f,  0.5f,  -0.9f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
@@ -320,7 +327,7 @@ namespace forr {
     entry.vbo = obj_vbo;
     imgs_[x][y][w][h] = entry;
 
-    auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+    //auto tex_id{_<image_bank>().get_tex(img_name_hash)};
     // glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
     glBindTexture(GL_TEXTURE_2D, tex_id);
@@ -397,7 +404,6 @@ namespace forr {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   }
 
-
   void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y,
                                     float w) {
     auto hash{forr::hash(img_name)};
@@ -437,7 +443,6 @@ namespace forr {
 
   void text_rend::draw_str(str_view text, float x, float y, font_szs font_sz,
                            bool cent_align, color text_color) const {
-    return;
     if (text.empty())
       return;
     auto font_raw{fonts_.at(font_sz).get()};
@@ -497,28 +502,34 @@ namespace forr {
       SDL_FreeSurface(surf);
     }
     //}
-    glBindTexture(GL_TEXTURE_2D, tex);
-    glBegin(GL_TRIANGLE_FAN);
-
     auto xf{c_float(dest.x) / canv_sz.w};
     auto yf{c_float(dest.y) / canv_sz.h};
     auto wf{c_float(dest.w) / canv_sz.w};
     auto hf{c_float(dest.h) / canv_sz.h};
+    _<img_2d_rend>().draw_img(tex, xf, yf, wf, hf);
+    return;
+    //glBindTexture(GL_TEXTURE_2D, tex);
+    //glBegin(GL_TRIANGLE_FAN);
 
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(xf, yf, 0.5f);
+    //auto xf{c_float(dest.x) / canv_sz.w};
+    //auto yf{c_float(dest.y) / canv_sz.h};
+    //auto wf{c_float(dest.w) / canv_sz.w};
+    //auto hf{c_float(dest.h) / canv_sz.h};
 
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(xf + wf, yf, 0.5f);
+    //glTexCoord2f(0.0f, 0.0f);
+    //glVertex3f(xf, yf, 0.5f);
 
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(xf + wf, yf + hf, 0.5f);
+    //glTexCoord2f(1.0f, 0.0f);
+    //glVertex3f(xf + wf, yf, 0.5f);
 
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(xf, yf + hf, 0.5f);
+    //glTexCoord2f(1.0f, 1.0f);
+    //glVertex3f(xf + wf, yf + hf, 0.5f);
 
-    glEnd();
-    glFlush();
+    //glTexCoord2f(0.0f, 1.0f);
+    //glVertex3f(xf, yf + hf, 0.5f);
+
+    //glEnd();
+    //glFlush();
 
     // auto rend{_<sdl_device>().rend().get()};
     // auto tex{SDL_CreateTextureFromSurface(rend, surf)};
