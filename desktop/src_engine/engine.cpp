@@ -23,6 +23,7 @@ namespace forr {
       _<fps_counter>().update();
       _<sdl_device>().clear_canv();
       _<scene_mngr>().render_curr_scene();
+      //_<img_2d_rend>().draw_img("default_scene_bg", 0.0f, 0.0f, 0.5f, 0.5f);
       _<cursor>().render();
       _<sdl_device>().present_canv();
     }
@@ -73,7 +74,7 @@ namespace forr {
     glEnable(GL_BLEND); // Enable blending
     // glDepthFunc(GL_NEVER);
     // glDisable(GL_DEPTH_TEST);
-    glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
+    //glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
 
     // auto base_path{str(SDL_GetBasePath())};
     // auto img_path{base_path + "res/images/ground/grass/ground_grass.png"};
@@ -163,7 +164,7 @@ namespace forr {
       curs_img = "curs_hovering_clickable_gui";
       break;
     }
-    _<img_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
+    _<img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
                            w, h);
   }
 

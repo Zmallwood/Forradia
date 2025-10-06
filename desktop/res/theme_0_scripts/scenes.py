@@ -30,7 +30,8 @@ from embedded import (
     update_mouse_movem,
     update_kb_movem,
     get_tl_hovering,
-    get_world_view
+    get_world_view,
+    get_img_2d_rend
 )
 
 
@@ -66,6 +67,9 @@ class IntroScene(i_scene):
             img_rend = get_img_rend()
             img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
             img_rend.draw_img_auto_h("forradia_logo", 0.25, 0.2, 0.5)
+            img_2d_rend = get_img_2d_rend()
+            img_2d_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+            img_2d_rend.draw_img_auto_h("forradia_logo", 0.25, 0.2, 0.5)
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)
@@ -97,8 +101,9 @@ class MainMenuScene(i_scene):
 
         def render_derived():
             img_rend = get_img_rend()
-            img_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
-            img_rend.draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
+            img_2d_rend = get_img_2d_rend()
+            img_2d_rend.draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+            img_2d_rend.draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
 
         self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
