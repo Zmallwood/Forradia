@@ -369,7 +369,7 @@ namespace forr {
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
-    static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se;
+    static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see, tl_sese, tl_ses, tl_ss;
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       for (auto x = 0; x < grid_sz.w; x++) {
         x_coord = (wa_sz.w - player_pos.x) - (grid_sz.w - 1) / 2 + x;
@@ -381,6 +381,11 @@ namespace forr {
         auto coord_ne{pt{x_coord + 1, y_coord}};
         auto coord_sw{pt{x_coord, y_coord + 1}};
         auto coord_se{pt{x_coord + 1, y_coord + 1}};
+        auto coord_nee{pt{x_coord + 2, y_coord}};
+        auto coord_see{pt{x_coord + 2, y_coord + 1}};
+        auto coord_sese{pt{x_coord + 2, y_coord + 2}};
+        auto coord_ses{pt{x_coord + 1, y_coord + 2}};
+        auto coord_ss{pt{x_coord, y_coord + 2}};
         if (!w_area->is_valid_coord(coord_nw) ||
             !w_area->is_valid_coord(coord_ne) ||
             !w_area->is_valid_coord(coord_sw) ||
@@ -390,6 +395,11 @@ namespace forr {
         tl_ne = w_area->get_tl(coord_ne);
         tl_sw = w_area->get_tl(coord_sw);
         tl_se = w_area->get_tl(coord_se);
+        tl_nee = w_area->get_tl(coord_nee);
+        tl_see = w_area->get_tl(coord_see);
+        tl_sese = w_area->get_tl(coord_sese);
+        tl_ses = w_area->get_tl(coord_ses);
+        tl_ss = w_area->get_tl(coord_ss);
         ground = tl ? tl->ground() : 0;
         x_canv = x * tl_sz.w;
         y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
@@ -407,11 +417,21 @@ namespace forr {
         auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
         auto elev_se{tl_se ? tl_se->elev() : 0.0f};
         auto elev_sw{tl_sw ? tl_sw->elev() : 0.0f};
+        auto elev_nee{tl_nee ? tl_nee->elev() : 0.0f};
+        auto elev_see{tl_see ? tl_see->elev() : 0.0f};
+        auto elev_sese{tl_sese ? tl_sese->elev() : 0.0f};
+        auto elev_ses{tl_ses ? tl_ses->elev() : 0.0f};
+        auto elev_ss{tl_ss ? tl_ss->elev() : 0.0f};
 
         elevs.push_back(elev_nw);
         elevs.push_back(elev_ne);
-        elevs.push_back(elev_se);
+        elevs.push_back(elev_nee);
         elevs.push_back(elev_sw);
+        elevs.push_back(elev_se);
+        elevs.push_back(elev_see);
+        elevs.push_back(elev_ss);
+        elevs.push_back(elev_ses);
+        elevs.push_back(elev_sese);
 
         auto ground{tl->ground()};
 

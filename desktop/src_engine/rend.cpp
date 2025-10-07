@@ -388,11 +388,78 @@ namespace forr {
 
     auto elev_h{0.1f};
 
-    vec<float> verts{
-        {x,     y,     -elevs.at(0) * elev_h, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
-         x + w, y,     -elevs.at(1) * elev_h, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-         x + w, y + h, -elevs.at(2) * elev_h, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
-         x,     y + h, -elevs.at(3) * elev_h, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
+    vec<float> verts{{x,
+                      y,
+                      -elevs.at(0) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      0.0,
+                      0.0,
+                      x + w,
+                      y,
+                      -elevs.at(1) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      0.0,
+                      x + w + w,
+                      y,
+                      -elevs.at(2) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0,
+                      x,
+                      y + h,
+                      -elevs.at(3) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      0.0,
+                      1.0,
+                      x + w,
+                      y + h,
+                      -elevs.at(4) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0,
+                      x + w + w,
+                      y + h,
+                      -elevs.at(5) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0,
+                      x,
+                      y + h + h,
+                      -elevs.at(6) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0,
+                      x + w,
+                      y + h + h,
+                      -elevs.at(7) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0,
+                      x + w + w,
+                      y + h + h,
+                      -elevs.at(8) * elev_h,
+                      1.0f,
+                      1.0f,
+                      1.0f,
+                      1.0,
+                      1.0}};
     ground_rend::draw_tex(tex_id, verts, camera_pos);
   }
 
@@ -425,26 +492,48 @@ namespace forr {
     auto vertices_count{4};
     auto indices_count{4};
 
-    auto Ax{vertices_no_normals[0 + 0]};
-    auto Ay{vertices_no_normals[0 + 1]};
-    auto Az{vertices_no_normals[0 + 2]};
-    auto Bx{vertices_no_normals[8 + 0]};
-    auto By{vertices_no_normals[8 + 1]};
-    auto Bz{vertices_no_normals[8 + 2]};
-    auto Cx{vertices_no_normals[16 + 0]};
-    auto Cy{vertices_no_normals[16 + 1]};
-    auto Cz{vertices_no_normals[16 + 2]};
-    auto Dx{vertices_no_normals[24 + 0]};
-    auto Dy{vertices_no_normals[24 + 1]};
-    auto Dz{vertices_no_normals[24 + 2]};
-    glm::vec3 A = {Ax, Ay, Az};
-    glm::vec3 B = {Bx, By, Bz};
-    glm::vec3 C = {Cx, Cy, Cz};
-    glm::vec3 D = {Dx, Dy, Dz};
-    glm::vec3 normal00 = compute_normal(B, A, D);
-    glm::vec3 normal10 = compute_normal(C, B, A);
-    glm::vec3 normal11 = compute_normal(D, C, B);
-    glm::vec3 normal01 = compute_normal(A, D, C);
+    auto _00x{vertices_no_normals[0*8 + 0]};
+    auto _00y{vertices_no_normals[0*8 + 1]};
+    auto _00z{vertices_no_normals[0*8 + 2]};
+    auto _10x{vertices_no_normals[1*8 + 0]};
+    auto _10y{vertices_no_normals[1*8 + 1]};
+    auto _10z{vertices_no_normals[1*8 + 2]};
+    auto _20x{vertices_no_normals[2*8 + 0]};
+    auto _20y{vertices_no_normals[2*8 + 1]};
+    auto _20z{vertices_no_normals[2*8 + 2]};
+    auto _01x{vertices_no_normals[3*8 + 0]};
+    auto _01y{vertices_no_normals[3*8 + 1]};
+    auto _01z{vertices_no_normals[3*8 + 2]};
+    auto _11x{vertices_no_normals[4*8 + 0]};
+    auto _11y{vertices_no_normals[4*8 + 1]};
+    auto _11z{vertices_no_normals[4*8 + 2]};
+    auto _21x{vertices_no_normals[5*8 + 0]};
+    auto _21y{vertices_no_normals[5*8 + 1]};
+    auto _21z{vertices_no_normals[5*8 + 2]};
+    auto _02x{vertices_no_normals[6*8 + 0]};
+    auto _02y{vertices_no_normals[6*8 + 1]};
+    auto _02z{vertices_no_normals[6*8 + 2]};
+    auto _12x{vertices_no_normals[7*8 + 0]};
+    auto _12y{vertices_no_normals[7*8 + 1]};
+    auto _12z{vertices_no_normals[7*8 + 2]};
+    auto _22x{vertices_no_normals[8*8 + 0]};
+    auto _22y{vertices_no_normals[8*8 + 1]};
+    auto _22z{vertices_no_normals[8*8 + 2]};
+
+    glm::vec3 v00 = {_00x, _00y, _00z};
+    glm::vec3 v10 = {_10x, _10y, _10z};
+    glm::vec3 v20 = {_20x, _20y, _20z};
+    glm::vec3 v01 = {_01x, _01y, _01z};
+    glm::vec3 v11 = {_11x, _11y, _11z};
+    glm::vec3 v21 = {_21x, _21y, _21z};
+    glm::vec3 v02 = {_02x, _02y, _02z};
+    glm::vec3 v12 = {_12x, _12y, _12z};
+    glm::vec3 v22 = {_22x, _22y, _22z};
+
+    glm::vec3 normal00 = compute_normal(v10, v00, v01);
+    glm::vec3 normal10 = compute_normal(v20, v10, v11);
+    glm::vec3 normal11 = compute_normal(v21, v11, v12);
+    glm::vec3 normal01 = compute_normal(v11, v01, v02);
     normal00.z *= -1.0f;
     normal10.z *= -1.0f;
     normal11.z *= -1.0f;
@@ -458,7 +547,7 @@ namespace forr {
     //   normals.push_back(normal);
     // }
     vec<float> vertices_vec;
-    for (auto i = 0; i < 4; i++) {
+    auto fn{[&](int i, int j) {
       vertices_vec.push_back(vertices_no_normals[i * 8 + 0]);
       vertices_vec.push_back(vertices_no_normals[i * 8 + 1]);
       vertices_vec.push_back(vertices_no_normals[i * 8 + 2]);
@@ -467,13 +556,19 @@ namespace forr {
       vertices_vec.push_back(vertices_no_normals[i * 8 + 5]);
       vertices_vec.push_back(vertices_no_normals[i * 8 + 6]);
       vertices_vec.push_back(vertices_no_normals[i * 8 + 7]);
-      vertices_vec.push_back(normals.at(i).x);
-      vertices_vec.push_back(normals.at(i).y);
-      vertices_vec.push_back(normals.at(i).z);
+      vertices_vec.push_back(normals.at(j).x);
+      vertices_vec.push_back(normals.at(j).y);
+      vertices_vec.push_back(normals.at(j).z);
       // vertices_vec.push_back(1.0f);
       // vertices_vec.push_back(1.0f);
       // vertices_vec.push_back(1.0f);
-    }
+    }};
+
+
+    fn(0, 0);
+    fn(1, 1);
+    fn(4, 2);
+    fn(3, 3);
 
     auto vertices{vertices_vec.data()};
     GLuint obj_vao;
