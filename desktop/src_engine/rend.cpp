@@ -138,7 +138,6 @@ namespace forr {
   }
 
   void img_2d_rend::cleanup() {
-
     for (auto &entry : imgs_) {
       for (auto &entry2 : entry.second) {
         glDeleteVertexArrays(1, &entry2.second.vao);
@@ -146,19 +145,6 @@ namespace forr {
         glDeleteBuffers(1, &entry2.second.vbo);
       }
     }
-
-    // for (auto &entry1 : imgs_) {
-    //   for (auto &entry2 : entry1.second) {
-    //     for (auto &entry3 : entry2.second) {
-    //       for (auto &entry4 : entry3.second) {
-    //         glDeleteVertexArrays(1, &entry4.second.vao);
-    //         glDeleteBuffers(1, &entry4.second.ibo);
-    //         glDeleteBuffers(1, &entry4.second.vbo);
-    //       }
-    //     }
-    //   }
-    // }
-
     glUseProgram(0);
     glDeleteProgram(program_);
   }
@@ -174,51 +160,25 @@ namespace forr {
 
   void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w,
                              float h) {
-
-    // float vertices[] = {
-    //// positions          // colors           // texture coords
-    // 0.6f,  0.5f,  -0.9f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-    // 0.5f,  -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
-    //-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
-    //-0.5f, 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f  // top left
-    //};
-
-    //    GLfloat vertices[] = {1.0f,  1.0f,  -1.0f, 1.0f,  1.0f,  1.0f,  -1.0f,
-    //                          -1.0f, 1.0f,  0.0f,  -1.0f, -1.0f, -1.0f, 0.0f,
-    //                          0.0f,  -1.0f, 1.0f,  -1.0f, 0.0f,  1.0f};
-
-    // auto hash_file{hash(loc.file_name())};
     glUseProgram(program_);
-    glEnable(GL_BLEND);                                // Enable blending
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     float vertices[] = {
-        x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0, // top right
+        x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
         x + w, y,     0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-        x + w, y + h, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0, // bottom right
-        x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0  // bottom left
+        x + w, y + h, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+        x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0
     };
     unsigned int indices[] = {
-        // note that we start from 0!
-        0, 1, 2, 3 // first triangle
+        0, 1, 2, 3
     };
     auto count_vertices{4};
-
-    // unsigned int indices[]{0, 1, 2, 0, 2, 3};
-
     auto indices_count{4};
-
     GLuint obj_vao;
     GLuint obj_ibo;
     GLuint obj_vbo;
-
     auto need_create_buffers{false};
-
-    // if (imgs_.contains(x) && imgs_.at(x).contains(y) &&
-    //     imgs_.at(x).at(y).contains(w) && imgs_.at(x).at(y).at(w).contains(h))
-    //     {
     if (imgs_.contains(counter_) && imgs_.at(counter_).contains(tex_id)) {
-
-      // auto &entry = imgs_.at(x).at(y).at(w).at(h);
       need_create_buffers = false;
     } else {
       need_create_buffers = true;
@@ -226,34 +186,26 @@ namespace forr {
       glGenBuffers(1, &obj_vbo);
       glGenBuffers(1, &obj_ibo);
     }
-
     auto need_fill_buffers{false};
-
     if (!need_create_buffers) {
-
       auto &entry = imgs_.at(counter_).at(tex_id);
       obj_vao = entry.vao;
       obj_ibo = entry.ibo;
       obj_vbo = entry.vbo;
-
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
       if (x != entry.x || y != entry.y || w != entry.w || h != entry.h) {
-
         need_fill_buffers = true;
-
         entry.x = x;
         entry.y = y;
         entry.w = w;
         entry.h = h;
       }
     } else {
-
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-
       Entry entry;
       entry.vao = obj_vao;
       entry.ibo = obj_ibo;
@@ -263,127 +215,35 @@ namespace forr {
       entry.w = w;
       entry.h = h;
       imgs_[counter_][tex_id] = entry;
-      // imgs_[x][y][w][h] = entry;
-
-      // std::cout << hash_file << ":" << loc.line()<< "\n";
-
-      // std::cout << loc.file_name() << ":" << loc.line() << "\n";
-
       need_fill_buffers = true;
     }
 
     if (need_fill_buffers) {
-
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
                    indices, GL_DYNAMIC_DRAW);
-
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
                    vertices, GL_DYNAMIC_DRAW);
-
       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             0);
-      // glColor3f(1.0f, 0.0f, 1.0f);
       glEnableVertexAttribArray(0);
-
       glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             (void *)(sizeof(vertices[0]) * 3));
       glEnableVertexAttribArray(1);
-
       glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             (void *)(sizeof(vertices[0]) * 6));
       glEnableVertexAttribArray(2);
     }
-
-    // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
-    // glEnableClientState(GL_VERTEX_ARRAY);
-
-    //      glGenVertexArrays(1, &obj_vao);
-    //      glBindVertexArray(obj_vao);
-    //
-    //      glGenBuffers(1, &obj_ibo);
-    //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    //      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) *
-    //      indices_count,
-    //                   indices, GL_STATIC_DRAW);
-    //
-    //      glGenBuffers(1, &obj_vbo);
-    //      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-    //      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) *
-    //      count_vertices,
-    //                   vertices, GL_STATIC_DRAW);
-    //
-    //      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-    //      sizeof(vertices[0]) * 8,
-    //                            0);
-    //      glEnableVertexAttribArray(0);
-    //
-    //      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
-    //      sizeof(vertices[0]) * 8,
-    //                            (void *)(sizeof(vertices[0]) * 3));
-    //      glEnableVertexAttribArray(1);
-    //
-    //      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-    //      sizeof(vertices[0]) * 8,
-    //                            (void *)(sizeof(vertices[0]) * 5));
-    //      glEnableVertexAttribArray(2);
-    //
-    //      glBindVertexArray(0);
-    //      glBindBuffer(GL_ARRAY_BUFFER, 0);
-    //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    //
-
-    // auto tex_id{_<image_bank>().get_tex(img_name_hash)};
-    //  glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
     glBindTexture(GL_TEXTURE_2D, tex_id);
     glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);
-    //    glFlush();
-
-    //    ushort pindices[3];
-    //    pindices[0] = 0;
-    //    pindices[1] = 1;
-    //    pindices[2] = 2;
-    //
-    //    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    //    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ushort) * 3, pindices,
-    //                 GL_STATIC_DRAW);
-    //
-    //    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-    //    glEnableClientState(GL_VERTEX_ARRAY);
-    //    glVertexPointer(3, GL_FLOAT, sizeof(vertices[0]),
-    // 0); // The starting point of the VBO, for the vertices
-    //    glEnableClientState(GL_NORMAL_ARRAY);
-    //    glNormalPointer(
-    //        GL_FLOAT, sizeof(vertices[0]),
-    //        (void *)(sizeof(vertices[0]) *
-    //                 3)); // The starting point of normals, 12 bytes away
-    //    glClientActiveTexture(GL_TEXTURE0);
-    //    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    //    glTexCoordPointer(
-    //        2, GL_FLOAT, sizeof(vertices[0]),
-    //        (void *)(sizeof(vertices[0]) *
-    //                 5)); // The starting point of texcoords, 24 bytes away
-    //
-    //    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    // To render, we can either use glDrawElements or glDrawRangeElements
-    // The is the number of indices. 3 indices needed to make a single triangle
-    //   glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, (void*)0);
-
-    //    GLenum err;
-    // while((err = glGetError()) != GL_NO_ERROR)
-    //{
-    // std::cout << "ERROR\n";
-    //}
-    ++counter_;
-    return;
-
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    ++counter_;
   }
 
   void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y,
