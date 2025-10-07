@@ -144,9 +144,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def("draw_img",
            [](img_2d_rend &self, int image_name_hash, float x, float y, float w,
               float h) { self.draw_img(image_name_hash, x, y, w, h); })
-      .def("draw_img_auto_h", [](img_2d_rend &self, str_view img_name, float x, float y, float w) {
-        self.draw_img_auto_h(img_name, x, y, w);
-      });
+      .def("draw_img_auto_h",
+           [](img_2d_rend &self, str_view img_name, float x, float y, float w) {
+             self.draw_img_auto_h(img_name, x, y, w);
+           });
 
   py::class_<gui_player_status_box, s_ptr<gui_player_status_box>, gui_comp>(
       m, "gui_player_status_box");
@@ -167,7 +168,9 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
 
   py::class_<tl_hovering>(m, "tl_hovering").def("update", &tl_hovering::update);
 
-  py::class_<world_view>(m, "world_view").def("render", &world_view::render);
+  py::class_<world_view>(m, "world_view")
+      .def("render", &world_view::render)
+      .def("render_new", &world_view::render_new);
 
   m.def("get_gui_interact_menu_ptr",
         []() -> s_ptr<gui_interact_menu> { return __<gui_interact_menu>(); });
@@ -238,8 +241,6 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def("update_crea_movem", &update_crea_movem);
   m.def("update_mouse_movem", &update_mouse_movem);
   m.def("update_kb_movem", &update_kb_movem);
-
-
 
   m.def("setup_scenes", [] {
     py::eval_file("res/theme_0_scripts/scenes.py");

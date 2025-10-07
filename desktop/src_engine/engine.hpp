@@ -37,6 +37,8 @@ namespace forr {
    private:
     s_ptr<SDL_Window> create_win();
 
+    sz get_screen_sz() const;
+
     s_ptr<SDL_Window> win_;
     s_ptr<SDL_GLContext> context_;
     s_ptr<SDL_Renderer> rend_;

@@ -50,8 +50,37 @@ namespace forr {
     GLuint program_;
     std::map<int, std::map<int, Entry>> imgs_;
     int counter_{0};
-    //std::map<float, std::map<float, std::map<float, std::map<float, Entry>>>>
-    //    imgs_;
+  };
+
+  class ground_rend {
+   public:
+    ground_rend() { init(); };
+
+    ~ground_rend() { cleanup(); }
+
+    void reset_counter();
+
+    void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz, pt_f camera_pos, vec<float>& elevs);
+
+    void draw_tex(GLuint tex_id, vec<float>& verts, pt_f camera_pos);
+
+   private:
+    void init();
+
+    void cleanup();
+
+    class Entry {
+     public:
+      GLuint vao;
+      GLuint ibo;
+      GLuint vbo;
+      float x;
+      float y;
+    };
+
+    GLuint program_;
+    std::map<float, std::map<float, Entry>> imgs_;
+    int counter_{0};
   };
 
   enum struct font_szs { _20 = 20, _26 = 26 };

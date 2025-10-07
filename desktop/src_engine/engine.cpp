@@ -19,6 +19,7 @@ namespace forr {
       _<mouse_inp>().reset();
       _<cursor>().reset_style_to_normal();
       _<img_2d_rend>().reset_counter();
+      _<ground_rend>().reset_counter();
       poll_events();
       _<scene_mngr>().update_curr_scene();
       _<fps_counter>().update();
@@ -54,9 +55,7 @@ namespace forr {
     }
   }
 
-  sdl_device::~sdl_device() {
-    SDL_GL_DeleteContext(*context_);
-  }
+  sdl_device::~sdl_device() { SDL_GL_DeleteContext(*context_); }
 
   void sdl_device::init(str_view game_win_title, color clear_color) {
     game_win_title_ = game_win_title;
@@ -69,9 +68,12 @@ namespace forr {
     GLenum status = glewInit();
     if (GLEW_OK != status)
       printf("GLEW Error: ", glewGetErrorString(status));
+    SDL_GL_SetSwapInterval(0);
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
-    glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
+    auto screen_sz{get_screen_sz()};
+    //glViewport(0, 0, screen_sz.h, screen_sz.h);
+    // glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
   }
 
   void sdl_device::clear_canv() const {
@@ -80,21 +82,29 @@ namespace forr {
     glClear(GL_COLOR_BUFFER_BIT);
   }
 
-  void sdl_device::present_canv() const {
-    SDL_GL_SwapWindow(win_.get());
-  }
+  void sdl_device::present_canv() const { SDL_GL_SwapWindow(win_.get()); }
 
   s_ptr<SDL_Window> sdl_device::create_win() {
     auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
                SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_OPENGL};
+    auto screen_sz{get_screen_sz()};
     auto win_res{s_ptr<SDL_Window>(
         SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
-                         SDL_WINDOWPOS_CENTERED, 660, 660, flags),
+                         SDL_WINDOWPOS_CENTERED, screen_sz.w, screen_sz.h, flags),
         sdl_del())};
     if (!win_res)
       print_ln("Window could not be created. SDL Error: " +
                str(SDL_GetError()));
     return win_res;
+  }
+
+  sz sdl_device::get_screen_sz() const {
+    SDL_DisplayMode dm;
+    SDL_GetCurrentDisplayMode(0, &dm);
+    auto w = dm.w;
+    auto h = dm.h;
+
+    return {w, h};
   }
 
   void fps_counter::update() {
@@ -126,8 +136,8 @@ namespace forr {
       curs_img = "curs_hovering_clickable_gui";
       break;
     }
-    _<img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2, mouse_pos.y - h / 2,
-                           w, h);
+    _<img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
+                              mouse_pos.y - h / 2, w, h);
   }
 
   void image_bank::init() { load_imgs(); }
@@ -155,8 +165,8 @@ namespace forr {
         auto surf{s_ptr<SDL_Surface>(IMG_Load(file_path.data()), sdl_del())};
         auto img_sz{sz{surf->w, surf->h}};
         tex_sizes_.insert({hash, img_sz});
-        //auto img{load_single_img(surf)};
-        //images_.insert({hash, img});
+        // auto img{load_single_img(surf)};
+        // images_.insert({hash, img});
         auto tex{load_single_tex(surf)};
         textures_.insert({hash, tex});
       }

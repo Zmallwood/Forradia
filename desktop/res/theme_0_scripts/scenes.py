@@ -136,7 +136,7 @@ class MainScene(i_scene):
             get_tl_hovering().update()
 
         def render_derived():
-            get_world_view().render()
+            get_world_view().render_new()
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)

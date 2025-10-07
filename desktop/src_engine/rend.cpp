@@ -4,6 +4,7 @@
  */
 #include "rend.hpp"
 #include "engine.hpp"
+#include <glm/gtx/transform.hpp>
 
 namespace forr {
   void img_rend::draw_img(str_view img_name, float x, float y, float w,
@@ -101,7 +102,7 @@ namespace forr {
       glDeleteShader(vertex_shader);
       return;
     }
-    GLuint fragment_shader{ glCreateShader(GL_FRAGMENT_SHADER)};
+    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
     source = (const GLchar *)fragment_shader_src.c_str();
     glShaderSource(fragment_shader, 1, &source, 0);
     glCompileShader(fragment_shader);
@@ -160,18 +161,16 @@ namespace forr {
 
   void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w,
                              float h) {
+    auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+    glViewport(0, 0, canv_sz.w, canv_sz.h);
     glUseProgram(program_);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    float vertices[] = {
-        x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
-        x + w, y,     0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-        x + w, y + h, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
-        x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0
-    };
-    unsigned int indices[] = {
-        0, 1, 2, 3
-    };
+    float vertices[] = {x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+                        x + w, y,     0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+                        x + w, y + h, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+                        x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0};
+    unsigned int indices[] = {0, 1, 2, 3};
     auto vertices_count{4};
     auto indices_count{4};
     GLuint obj_vao;
@@ -261,6 +260,238 @@ namespace forr {
   void img_2d_rend::draw_img(str_view img_name, float x, float y, float w,
                              float h) {
     draw_img(hash(img_name), x, y, w, h);
+  }
+
+  void ground_rend::init() {
+    std::string vertex_shader_src{R"(
+      #version 330 core
+      layout (location = 0) in vec3 aPos;
+      layout (location = 1) in vec3 aColor;
+      layout (location = 2) in vec2 aTexCoord;
+
+      uniform mat4 MVP;
+
+      out vec3 ourColor;
+      out vec2 TexCoord;
+
+      void main()
+      {
+          vec4 v = vec4(aPos, 1.0);
+          gl_Position = MVP * v;
+          gl_Position.x = gl_Position.x * 2.0 - 1.0;
+          gl_Position.y = gl_Position.y * -2.0 + 1.0;
+          ourColor = aColor;
+          TexCoord = aTexCoord;
+      }
+    )"};
+    std::string fragment_shader_src{R"(
+      #version 330 core
+      out vec4 FragColor;
+        
+      in vec3 ourColor;
+      in vec2 TexCoord;
+
+      uniform sampler2D ourTexture;
+
+      void main()
+      {
+          FragColor = texture(ourTexture, TexCoord);
+      }
+    )"};
+    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
+    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
+    glShaderSource(vertex_shader, 1, &source, 0);
+    glCompileShader(vertex_shader);
+    GLint is_compiled{0};
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(vertex_shader);
+      return;
+    }
+    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
+    source = (const GLchar *)fragment_shader_src.c_str();
+    glShaderSource(fragment_shader, 1, &source, 0);
+    glCompileShader(fragment_shader);
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(fragment_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(fragment_shader);
+      glDeleteShader(vertex_shader);
+      return;
+    }
+    program_ = glCreateProgram();
+    glAttachShader(program_, vertex_shader);
+    glAttachShader(program_, fragment_shader);
+    glLinkProgram(program_);
+    GLint isLinked{0};
+    glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
+    if (isLinked == GL_FALSE) {
+      GLint max_length{0};
+      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
+      glDeleteProgram(program_);
+      glDeleteShader(vertex_shader);
+      glDeleteShader(fragment_shader);
+      return;
+    }
+    glDetachShader(program_, vertex_shader);
+    glDetachShader(program_, fragment_shader);
+    glDeleteShader(vertex_shader);
+    glDeleteShader(fragment_shader);
+  }
+
+  void ground_rend::cleanup() {
+    for (auto &entry : imgs_) {
+      for (auto &entry2 : entry.second) {
+        glDeleteVertexArrays(1, &entry2.second.vao);
+        glDeleteBuffers(1, &entry2.second.ibo);
+        glDeleteBuffers(1, &entry2.second.vbo);
+      }
+    }
+    glUseProgram(0);
+    glDeleteProgram(program_);
+  }
+
+  void ground_rend::reset_counter() { counter_ = 0; }
+
+  void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
+                              float tl_sz, pt_f camera_pos, vec<float>& elevs) {
+    auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+
+    auto x{tl_sz * x_coord};
+    auto y{tl_sz * y_coord};
+    auto w{tl_sz};
+    auto h{tl_sz};
+
+    vec<float> verts{{x,     y,     -elevs.at(0)*tl_sz, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+                      x + w, y,     -elevs.at(1)*tl_sz, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+                      x + w, y + h, -elevs.at(2)*tl_sz, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+                      x,     y + h, -elevs.at(3)*tl_sz, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
+    ground_rend::draw_tex(tex_id, verts, camera_pos);
+  }
+
+  void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt_f camera_pos) {
+    auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+    glViewport(0, 0, canv_sz.h, canv_sz.h);
+    // glMatrixMode(GL_MODELVIEW);
+    // glTranslatef(-300.0f, -300.0f, 0.0f);
+    glUseProgram(program_);
+
+    //    auto aspect {calc_aspect_ratio(_<sdl_device>().win())};
+    //
+    //    double size = 200.0f;
+    // glOrtho(-aspect*size/2.0, aspect*size/2.0, -size/2.0, size/2.0,
+    // -1.0, 1.0); glViewport(0, 0, canv_sz.w, canv_sz.h); glLoadIdentity();
+    // glOrtho(0, canv_sz.w, canv_sz.h, 0, -1.0, 1.0);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    auto vertices = verts.data();
+    // float vertices[] = {
+    //     x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+    //     x + w, y,     0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+    //     x + w, y + h, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+    //     x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0
+    // };
+    unsigned int indices[] = {0, 1, 2, 3};
+    auto vertices_count{4};
+    auto indices_count{4};
+    GLuint obj_vao;
+    GLuint obj_ibo;
+    GLuint obj_vbo;
+    auto need_create_buffers{false};
+    if (imgs_.contains(verts.at(0)) && imgs_.at(verts.at(0)).contains(verts.at(1))) {
+      need_create_buffers = false;
+    } else {
+      need_create_buffers = true;
+      glGenVertexArrays(1, &obj_vao);
+      glGenBuffers(1, &obj_vbo);
+      glGenBuffers(1, &obj_ibo);
+    }
+    auto need_fill_buffers{false};
+    if (!need_create_buffers) {
+      auto &entry = imgs_.at(verts.at(0)).at(verts.at(1));
+      obj_vao = entry.vao;
+      obj_ibo = entry.ibo;
+      obj_vbo = entry.vbo;
+      glBindVertexArray(obj_vao);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      if (verts.at(0) != entry.x || verts.at(1) != entry.y) {
+        need_fill_buffers = true;
+        entry.x = verts.at(0);
+        entry.y = verts.at(1);
+      }
+    } else {
+      glBindVertexArray(obj_vao);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      Entry entry;
+      entry.vao = obj_vao;
+      entry.ibo = obj_ibo;
+      entry.vbo = obj_vbo;
+      entry.x = verts.at(0);
+      entry.y = verts.at(1);
+      imgs_[verts.at(0)][verts.at(1)] = entry;
+      need_fill_buffers = true;
+    }
+
+    if (need_fill_buffers) {
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
+                   indices, GL_DYNAMIC_DRAW);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
+                   vertices, GL_DYNAMIC_DRAW);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            0);
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            (void *)(sizeof(vertices[0]) * 3));
+      glEnableVertexAttribArray(1);
+      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            (void *)(sizeof(vertices[0]) * 6));
+      glEnableVertexAttribArray(2);
+    }
+
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+
+    glm::mat4 cameraMatrix =
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f), /*Camera position*/
+                    glm::vec3(camera_pos.x, camera_pos.y, 0.0f), /*Camera target*/
+                    glm::vec3(0.0f, -1.0f, 0.0f)  /*Up vector*/
+        );
+
+    glm::mat4 projectionMatrix =
+        glm::perspective(90.0f,       /*FOV in degrees*/
+                         4.0f / 3.0f, /*Aspect ratio*/
+                         0.1f,        /*Near clipping distance*/
+                         100.0f       /*Far clipping distance*/
+        );
+
+    glm::mat4 finalMatrix = projectionMatrix * cameraMatrix * modelMatrix;
+
+    GLuint matrixID = glGetUniformLocation(program_, "MVP");
+    glUniformMatrix4fv(matrixID, 1, GL_FALSE, &finalMatrix[0][0]);
+
+    glBindVertexArray(obj_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+    glBindTexture(GL_TEXTURE_2D, tex_id);
+    glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    ++counter_;
   }
 
   void text_rend::init() {

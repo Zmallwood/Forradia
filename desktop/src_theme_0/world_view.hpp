@@ -8,5 +8,7 @@ namespace forr {
   class world_view {
    public:
     void render() const;
+
+    void render_new() const;
   };
 }

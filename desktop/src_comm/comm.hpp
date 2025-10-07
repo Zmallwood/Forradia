@@ -6,6 +6,7 @@
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
+#include <glm/glm.hpp>
 // clang-format on
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
