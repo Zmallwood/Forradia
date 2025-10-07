@@ -365,14 +365,15 @@ namespace forr {
     auto w_area{_<world>().curr_w_area()};
     auto player_elev{w_area->get_tl(player_pos)->elev()};
     auto extra_rows{8};
+    auto wa_sz{w_area->get_sz()};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
     static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se;
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       for (auto x = 0; x < grid_sz.w; x++) {
-        x_coord = player_pos.x - (grid_sz.w - 1) / 2 + x;
-        y_coord = player_pos.y - (grid_sz.h - 1) / 2 + y;
+        x_coord = (wa_sz.w - player_pos.x) - (grid_sz.w - 1) / 2 + x;
+        y_coord = (wa_sz.h - player_pos.y) - (grid_sz.h - 1) / 2 + y;
         if (!w_area->is_valid_coord(x_coord, y_coord))
           continue;
         tl = w_area->get_tl(x_coord, y_coord);
@@ -396,23 +397,23 @@ namespace forr {
         w_canv = tl_sz.w;
         h_canv = ceil(tl_sz.h, 2.5f);
 
-        auto rend_tl_sz {0.5f};
-        pt_f camera_pos {player_pos.x*rend_tl_sz, player_pos.y*rend_tl_sz};
-
+        auto rend_tl_sz{0.5f};
+        pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz, (wa_sz.h - player_pos.y) * rend_tl_sz};
 
         vec<float> elevs;
 
-        auto elev_nw {tl_nw ? tl_nw->elev() : 0.0f};
-        auto elev_ne {tl_ne ? tl_ne->elev() : 0.0f};
-        auto elev_se {tl_se ? tl_se->elev() : 0.0f};
-        auto elev_sw {tl_sw ? tl_sw->elev() : 0.0f};
+        auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
+        auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
+        auto elev_se{tl_se ? tl_se->elev() : 0.0f};
+        auto elev_sw{tl_sw ? tl_sw->elev() : 0.0f};
 
         elevs.push_back(elev_nw);
         elevs.push_back(elev_ne);
         elevs.push_back(elev_se);
         elevs.push_back(elev_sw);
 
-        _<ground_rend>().draw_tile(tl->ground(), x_coord,y_coord, rend_tl_sz, camera_pos, elevs);
+        _<ground_rend>().draw_tile(tl->ground(), x_coord, y_coord, rend_tl_sz,
+                                   camera_pos, elevs);
       }
     }
   }

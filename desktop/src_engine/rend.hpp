@@ -60,14 +60,17 @@ namespace forr {
 
     void reset_counter();
 
-    void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz, pt_f camera_pos, vec<float>& elevs);
+    void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
+                   pt_f camera_pos, vec<float> &elevs);
 
-    void draw_tex(GLuint tex_id, vec<float>& verts, pt_f camera_pos);
+    void draw_tex(GLuint tex_id, vec<float> &verts, pt_f camera_pos);
 
    private:
     void init();
 
     void cleanup();
+
+    glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
     class Entry {
      public:

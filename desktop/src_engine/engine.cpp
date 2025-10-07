@@ -15,7 +15,6 @@ namespace forr {
 
   void engine::run() {
     while (running_) {
-      _<kb_inp>().reset();
       _<mouse_inp>().reset();
       _<cursor>().reset_style_to_normal();
       _<img_2d_rend>().reset_counter();

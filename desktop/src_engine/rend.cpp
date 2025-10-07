@@ -268,11 +268,13 @@ namespace forr {
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
       layout (location = 2) in vec2 aTexCoord;
+      layout (location = 3) in vec3 aNormal;
 
       uniform mat4 MVP;
 
       out vec3 ourColor;
       out vec2 TexCoord;
+      out vec3 Normal;
 
       void main()
       {
@@ -282,6 +284,7 @@ namespace forr {
           gl_Position.y = gl_Position.y * -2.0 + 1.0;
           ourColor = aColor;
           TexCoord = aTexCoord;
+          Normal = aNormal;
       }
     )"};
     std::string fragment_shader_src{R"(
@@ -290,12 +293,24 @@ namespace forr {
         
       in vec3 ourColor;
       in vec2 TexCoord;
+      in vec3 Normal;
 
       uniform sampler2D ourTexture;
 
+
       void main()
       {
-          FragColor = texture(ourTexture, TexCoord);
+          vec3 lightColor = vec3(1.0, 1.0, 0.8);
+          vec3 norm = normalize(Normal);
+          vec3 lightDir = vec3(10.0, 10.0, 20.0);
+          float diff = max(dot(norm, lightDir), 0.0);
+          vec3 diffuse = diff * lightColor*0.05;
+          vec4 objectColor = texture(ourTexture, TexCoord);
+          vec3 result = diffuse* objectColor.rgb;
+          FragColor = vec4(result, objectColor.a);
+          //FragColor = objectColor;
+
+          //FragColor = texture(ourTexture, TexCoord);
       }
     )"};
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
@@ -363,7 +378,7 @@ namespace forr {
   void ground_rend::reset_counter() { counter_ = 0; }
 
   void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
-                              float tl_sz, pt_f camera_pos, vec<float>& elevs) {
+                              float tl_sz, pt_f camera_pos, vec<float> &elevs) {
     auto tex_id{_<image_bank>().get_tex(img_name_hash)};
 
     auto x{tl_sz * x_coord};
@@ -371,16 +386,18 @@ namespace forr {
     auto w{tl_sz};
     auto h{tl_sz};
 
-    auto elev_h {0.1f};
+    auto elev_h{0.1f};
 
-    vec<float> verts{{x,     y,     -elevs.at(0)*elev_h, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
-                      x + w, y,     -elevs.at(1)*elev_h, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-                      x + w, y + h, -elevs.at(2)*elev_h, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
-                      x,     y + h, -elevs.at(3)*elev_h, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
+    vec<float> verts{
+        {x,     y,     -elevs.at(0) * elev_h, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+         x + w, y,     -elevs.at(1) * elev_h, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+         x + w, y + h, -elevs.at(2) * elev_h, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+         x,     y + h, -elevs.at(3) * elev_h, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
     ground_rend::draw_tex(tex_id, verts, camera_pos);
   }
 
-  void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt_f camera_pos) {
+  void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts,
+                             pt_f camera_pos) {
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
     glViewport(0, 0, canv_sz.h, canv_sz.h);
     // glMatrixMode(GL_MODELVIEW);
@@ -396,7 +413,7 @@ namespace forr {
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    auto vertices = verts.data();
+    auto vertices_no_normals = verts.data();
     // float vertices[] = {
     //     x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
     //     x + w, y,     0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
@@ -404,13 +421,67 @@ namespace forr {
     //     x,     y + h, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0
     // };
     unsigned int indices[] = {0, 1, 2, 3};
+    vec<glm::vec3> normals;
     auto vertices_count{4};
     auto indices_count{4};
+
+    auto Ax{vertices_no_normals[0 + 0]};
+    auto Ay{vertices_no_normals[0 + 1]};
+    auto Az{vertices_no_normals[0 + 2]};
+    auto Bx{vertices_no_normals[8 + 0]};
+    auto By{vertices_no_normals[8 + 1]};
+    auto Bz{vertices_no_normals[8 + 2]};
+    auto Cx{vertices_no_normals[16 + 0]};
+    auto Cy{vertices_no_normals[16 + 1]};
+    auto Cz{vertices_no_normals[16 + 2]};
+    auto Dx{vertices_no_normals[24 + 0]};
+    auto Dy{vertices_no_normals[24 + 1]};
+    auto Dz{vertices_no_normals[24 + 2]};
+    glm::vec3 A = {Ax, Ay, Az};
+    glm::vec3 B = {Bx, By, Bz};
+    glm::vec3 C = {Cx, Cy, Cz};
+    glm::vec3 D = {Dx, Dy, Dz};
+    glm::vec3 normal00 = compute_normal(B, A, D);
+    glm::vec3 normal10 = compute_normal(C, B, A);
+    glm::vec3 normal11 = compute_normal(D, C, B);
+    glm::vec3 normal01 = compute_normal(A, D, C);
+    normal00.z *= -1.0f;
+    normal10.z *= -1.0f;
+    normal11.z *= -1.0f;
+    normal01.z *= -1.0f;
+    normals.push_back(normal00);
+    normals.push_back(normal10);
+    normals.push_back(normal11);
+    normals.push_back(normal01);
+    // for (auto i = 0; i < indices_count; i++) {
+    //   // normal = {1.0f, 1.0f, 1.0f};
+    //   normals.push_back(normal);
+    // }
+    vec<float> vertices_vec;
+    for (auto i = 0; i < 4; i++) {
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 0]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 1]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 2]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 3]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 4]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 5]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 6]);
+      vertices_vec.push_back(vertices_no_normals[i * 8 + 7]);
+      vertices_vec.push_back(normals.at(i).x);
+      vertices_vec.push_back(normals.at(i).y);
+      vertices_vec.push_back(normals.at(i).z);
+      // vertices_vec.push_back(1.0f);
+      // vertices_vec.push_back(1.0f);
+      // vertices_vec.push_back(1.0f);
+    }
+
+    auto vertices{vertices_vec.data()};
     GLuint obj_vao;
     GLuint obj_ibo;
     GLuint obj_vbo;
     auto need_create_buffers{false};
-    if (imgs_.contains(verts.at(0)) && imgs_.at(verts.at(0)).contains(verts.at(1))) {
+    if (imgs_.contains(verts.at(0)) &&
+        imgs_.at(verts.at(0)).contains(verts.at(1))) {
       need_create_buffers = false;
     } else {
       need_create_buffers = true;
@@ -451,27 +522,29 @@ namespace forr {
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
                    indices, GL_DYNAMIC_DRAW);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * vertices_count,
                    vertices, GL_DYNAMIC_DRAW);
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 11,
                             0);
       glEnableVertexAttribArray(0);
-      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 11,
                             (void *)(sizeof(vertices[0]) * 3));
       glEnableVertexAttribArray(1);
-      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 11,
                             (void *)(sizeof(vertices[0]) * 6));
       glEnableVertexAttribArray(2);
+      glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 11,
+                            (void *)(sizeof(vertices[0]) * 8));
+      glEnableVertexAttribArray(3);
     }
 
     glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-
-    glm::mat4 cameraMatrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f), /*Camera position*/
-                    glm::vec3(camera_pos.x, camera_pos.y, 0.0f), /*Camera target*/
-                    glm::vec3(0.0f, -1.0f, 0.0f)  /*Up vector*/
-        );
+    glm::mat4 cameraMatrix = glm::lookAt(
+        glm::vec3(camera_pos.x, camera_pos.y, 3.0f), /*Camera position*/
+        glm::vec3(camera_pos.x, camera_pos.y, 0.0f), /*Camera target*/
+        glm::vec3(0.0f, -1.0f, 0.0f)                 /*Up vector*/
+    );
 
     glm::mat4 projectionMatrix =
         glm::perspective(90.0f,       /*FOV in degrees*/
@@ -494,6 +567,15 @@ namespace forr {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     ++counter_;
+  }
+
+  glm::vec3 ground_rend::compute_normal(glm::vec3 p1, glm::vec3 p2,
+                                        glm::vec3 p3) {
+    // Uses p2 as a new origin for p1,p3
+    auto a = p3 - p2;
+    auto b = p1 - p2;
+    // Compute the cross product a X b to get the face normal
+    return glm::normalize(glm::cross(a, b));
   }
 
   void text_rend::init() {
