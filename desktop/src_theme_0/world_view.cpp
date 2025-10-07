@@ -398,7 +398,8 @@ namespace forr {
         h_canv = ceil(tl_sz.h, 2.5f);
 
         auto rend_tl_sz{0.5f};
-        pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz, (wa_sz.h - player_pos.y) * rend_tl_sz};
+        pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
+                        (wa_sz.h - player_pos.y) * rend_tl_sz};
 
         vec<float> elevs;
 
@@ -412,7 +413,13 @@ namespace forr {
         elevs.push_back(elev_se);
         elevs.push_back(elev_sw);
 
-        _<ground_rend>().draw_tile(tl->ground(), x_coord, y_coord, rend_tl_sz,
+        auto ground{tl->ground()};
+
+        if (ground == hash("ground_water")) {
+          auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
+          ground = hash("ground_water_" + std::to_string(anim_idx));
+        }
+        _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
                                    camera_pos, elevs);
       }
     }

@@ -399,7 +399,7 @@ namespace forr {
   void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts,
                              pt_f camera_pos) {
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
-    glViewport(0, 0, canv_sz.h, canv_sz.h);
+    glViewport(0, 0, canv_sz.w, canv_sz.h);
     // glMatrixMode(GL_MODELVIEW);
     // glTranslatef(-300.0f, -300.0f, 0.0f);
     glUseProgram(program_);
