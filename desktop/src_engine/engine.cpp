@@ -14,18 +14,23 @@ namespace forr {
   }
 
   void engine::run() {
-    while (running_) {
-      _<mouse_inp>().reset();
-      _<cursor>().reset_style_to_normal();
-      _<img_2d_rend>().reset_counter();
-      _<ground_rend>().reset_counter();
-      poll_events();
-      _<scene_mngr>().update_curr_scene();
-      _<fps_counter>().update();
-      _<sdl_device>().clear_canv();
-      _<scene_mngr>().render_curr_scene();
-      _<cursor>().render();
-      _<sdl_device>().present_canv();
+    try {
+      while (running_) {
+        _<mouse_inp>().reset();
+        _<cursor>().reset_style_to_normal();
+        _<img_2d_rend>().reset_counter();
+        _<ground_rend>().reset_counter();
+        poll_events();
+        _<scene_mngr>().update_curr_scene();
+        _<fps_counter>().update();
+        _<sdl_device>().clear_canv();
+        _<scene_mngr>().render_curr_scene();
+        _<cursor>().render();
+        _<sdl_device>().present_canv();
+      }
+    } catch (std::exception &e) {
+      SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", e.what(),
+                               nullptr);
     }
   }
 
@@ -71,8 +76,8 @@ namespace forr {
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
     auto screen_sz{get_screen_sz()};
-    //glViewport(0, 0, screen_sz.h, screen_sz.h);
-    // glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
+    // glViewport(0, 0, screen_sz.h, screen_sz.h);
+    //  glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
   }
 
   void sdl_device::clear_canv() const {
@@ -89,7 +94,8 @@ namespace forr {
     auto screen_sz{get_screen_sz()};
     auto win_res{s_ptr<SDL_Window>(
         SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
-                         SDL_WINDOWPOS_CENTERED, screen_sz.w, screen_sz.h, flags),
+                         SDL_WINDOWPOS_CENTERED, screen_sz.w, screen_sz.h,
+                         flags),
         sdl_del())};
     if (!win_res)
       print_ln("Window could not be created. SDL Error: " +
