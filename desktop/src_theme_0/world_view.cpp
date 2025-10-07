@@ -396,7 +396,7 @@ namespace forr {
         w_canv = tl_sz.w;
         h_canv = ceil(tl_sz.h, 2.5f);
 
-        auto rend_tl_sz {0.1f};
+        auto rend_tl_sz {0.5f};
         pt_f camera_pos {player_pos.x*rend_tl_sz, player_pos.y*rend_tl_sz};
 
 
