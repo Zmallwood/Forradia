@@ -24,7 +24,6 @@ namespace forr {
       _<fps_counter>().update();
       _<sdl_device>().clear_canv();
       _<scene_mngr>().render_curr_scene();
-      //_<img_2d_rend>().draw_img("default_scene_bg", 0.0f, 0.0f, 0.5f, 0.5f);
       _<cursor>().render();
       _<sdl_device>().present_canv();
     }
@@ -57,7 +56,6 @@ namespace forr {
 
   sdl_device::~sdl_device() {
     SDL_GL_DeleteContext(*context_);
-    glDeleteTextures(1, &surf_tex_);
   }
 
   void sdl_device::init(str_view game_win_title, color clear_color) {
@@ -72,44 +70,18 @@ namespace forr {
     if (GLEW_OK != status)
       printf("GLEW Error: ", glewGetErrorString(status));
     glEnable(GL_TEXTURE_2D);
-    glEnable(GL_BLEND); // Enable blending
-    // glDepthFunc(GL_NEVER);
-    // glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
     glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
-
-    // auto base_path{str(SDL_GetBasePath())};
-    // auto img_path{base_path + "res/images/ground/grass/ground_grass.png"};
-    // auto surf{
-    //     s_ptr<SDL_Surface>(IMG_Load(img_path.data()),
-    //                        sdl_del())}; // Round up to the nearest power of
-    //                        two
-
-    // glGenTextures(1, &surf_tex_);
-    // glBindTexture(GL_TEXTURE_2D, surf_tex_);
-    // glTexImage2D(GL_TEXTURE_2D, 0, 3, surf->w, surf->h, 0, GL_RGBA,
-    //              GL_UNSIGNED_BYTE, surf->pixels);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    // if (win_)
-    //   rend_ = create_rend();
   }
 
   void sdl_device::clear_canv() const {
     SDL_Color clear_color{clear_color_.to_sdl_color()};
-    SDL_SetRenderDrawColor(rend_.get(), clear_color.r, clear_color.g,
-                           clear_color.b, 255);
-    SDL_RenderClear(rend_.get());
-
-    // glViewport(330, 330, 660, 660);
     glClearColor(1.f, 0.f, 1.f, 0.f);
     glClear(GL_COLOR_BUFFER_BIT);
   }
 
   void sdl_device::present_canv() const {
-
     SDL_GL_SwapWindow(win_.get());
-    // SDL_RenderPresent(rend_.get());
   }
 
   s_ptr<SDL_Window> sdl_device::create_win() {
@@ -123,17 +95,6 @@ namespace forr {
       print_ln("Window could not be created. SDL Error: " +
                str(SDL_GetError()));
     return win_res;
-  }
-
-  s_ptr<SDL_Renderer> sdl_device::create_rend() {
-    auto rend_res{s_ptr<SDL_Renderer>(
-        SDL_CreateRenderer(win_.get(), -1, SDL_RENDERER_ACCELERATED),
-        sdl_del())};
-    if (!rend_res) {
-      print_ln("Renderer could not be created. SDL Error: " +
-               std::string(SDL_GetError()));
-    }
-    return rend_res;
   }
 
   void fps_counter::update() {
@@ -172,16 +133,12 @@ namespace forr {
   void image_bank::init() { load_imgs(); }
 
   void image_bank::cleanup() {
-    for (auto entry : textures_) {
+    for (auto entry : textures_)
       glDeleteTextures(1, &entry.second);
-    }
-    for (auto entry1 : text_texes_) {
-      for (auto entry2 : entry1.second) {
-        for (auto tex : entry2.second) {
+    for (auto entry1 : text_texes_)
+      for (auto entry2 : entry1.second)
+        for (auto tex : entry2.second)
           glDeleteTextures(1, &tex.second);
-        }
-      }
-    }
   }
 
   void image_bank::load_imgs() {
@@ -198,19 +155,10 @@ namespace forr {
         auto surf{s_ptr<SDL_Surface>(IMG_Load(file_path.data()), sdl_del())};
         auto img_sz{sz{surf->w, surf->h}};
         tex_sizes_.insert({hash, img_sz});
-        auto img{load_single_img(surf)};
-        if (hash == forr::hash("forradia_logo")) {
-          std::cout << "loading img forradia_logo\n";
-        }
-        images_.insert({hash, img});
-        if (hash == forr::hash("forradia_logo")) {
-          std::cout << "loading tex forradia_logo\n";
-        }
+        //auto img{load_single_img(surf)};
+        //images_.insert({hash, img});
         auto tex{load_single_tex(surf)};
         textures_.insert({hash, tex});
-        if (hash == forr::hash("forradia_logo")) {
-          std::cout << "finished\n";
-        }
       }
     }
   }
@@ -225,9 +173,8 @@ namespace forr {
   }
 
   sz image_bank::get_img_sz(int img_name_hash) const {
-    if (tex_sizes_.contains(img_name_hash)) {
+    if (tex_sizes_.contains(img_name_hash))
       return tex_sizes_.at(img_name_hash);
-    }
     return {-1, -1};
   }
 
@@ -242,9 +189,6 @@ namespace forr {
   }
 
   GLuint image_bank::load_single_tex(s_ptr<SDL_Surface> surf) {
-    // glEnable(GL_BLEND);                                // Enable blending
-    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending
-    // function
     GLuint tex;
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
@@ -261,9 +205,8 @@ namespace forr {
   }
 
   GLuint image_bank::obtain_text_tex(float x, float y, int text_hash) {
-    if (text_tex_exists(x, y, text_hash)) {
+    if (text_tex_exists(x, y, text_hash))
       return text_texes_.at(x).at(y).at(text_hash);
-    }
     GLuint tex;
     glGenTextures(1, &tex);
     text_texes_[x][y][text_hash] = tex;

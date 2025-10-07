@@ -92,9 +92,8 @@ namespace forr {
       if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
         start_move();
     }
-    if (_<mouse_inp>().left_btn_ref().been_released_no_pick_res()) {
+    if (_<mouse_inp>().left_btn_ref().been_released_no_pick_res())
       stop_move();
-    }
     auto b{bounds()};
     if (b.contains(mouse_pos)) {
       if (_<mouse_inp>().left_btn_ref().been_fired_no_pick_res())

@@ -8,57 +8,54 @@
 namespace forr {
   void img_rend::draw_img(str_view img_name, float x, float y, float w,
                           float h) const {
-    draw_img(hash(img_name), x, y, w, h);
+    // draw_img(hash(img_name), x, y, w, h);
   }
 
   void img_rend::draw_img(int img_name_hash, float x, float y, float w,
                           float h) const {
-    return;
-    // glEnable(GL_TEXTURE_2D);
-    // glEnable(GL_BLEND);                                // Enable blending
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending function
-    glBindTexture(GL_TEXTURE_2D, _<image_bank>().get_tex(img_name_hash));
-    glBegin(GL_TRIANGLE_FAN);
+    // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending
+    // function glBindTexture(GL_TEXTURE_2D,
+    // _<image_bank>().get_tex(img_name_hash)); glBegin(GL_TRIANGLE_FAN);
 
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(x, y, 0.5f);
+    // glTexCoord2f(0.0f, 0.0f);
+    // glVertex3f(x, y, 0.5f);
 
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(x + w, y, 0.5f);
+    // glTexCoord2f(1.0f, 0.0f);
+    // glVertex3f(x + w, y, 0.5f);
 
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(x + w, y + h, 0.5f);
+    // glTexCoord2f(1.0f, 1.0f);
+    // glVertex3f(x + w, y + h, 0.5f);
 
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(x, y + h, 0.5f);
+    // glTexCoord2f(0.0f, 1.0f);
+    // glVertex3f(x, y + h, 0.5f);
 
-    glEnd();
-    glFlush();
-    return;
-    auto img{_<image_bank>().get_img(img_name_hash)};
-    auto canv_sz{get_canv_sz(_<sdl_device>().win())};
-    auto x_px{c_int(x * canv_sz.w)};
-    auto y_px{c_int(y * canv_sz.h)};
-    auto w_px{c_int(w * canv_sz.w)};
-    auto h_px{c_int(h * canv_sz.h)};
-    SDL_Rect rect{x_px, y_px, w_px, h_px};
-    SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr, &rect);
+    // glEnd();
+    // glFlush();
+    // return;
+    // auto img{_<image_bank>().get_img(img_name_hash)};
+    // auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+    // auto x_px{c_int(x * canv_sz.w)};
+    // auto y_px{c_int(y * canv_sz.h)};
+    // auto w_px{c_int(w * canv_sz.w)};
+    // auto h_px{c_int(h * canv_sz.h)};
+    // SDL_Rect rect{x_px, y_px, w_px, h_px};
+    // SDL_RenderCopy(_<sdl_device>().rend().get(), img.get(), nullptr, &rect);
   }
 
   void img_rend::draw_img_auto_h(str_view img_name, float x, float y,
                                  float w) const {
-    auto hash{forr::hash(img_name)};
-    auto img_sz{_<image_bank>().get_img_sz(hash)};
-    if (img_sz.w <= 0 || img_sz.h <= 0)
-      return;
-    auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
-    auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
-    auto h{w / img_asp_rat * canv_asp_rat};
-    draw_img(hash, x, y, w, h);
+    // auto hash{forr::hash(img_name)};
+    // auto img_sz{_<image_bank>().get_img_sz(hash)};
+    // if (img_sz.w <= 0 || img_sz.h <= 0)
+    //   return;
+    // auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+    // auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
+    // auto h{w / img_asp_rat * canv_asp_rat};
+    // draw_img(hash, x, y, w, h);
   }
 
   void img_2d_rend::init() {
-    std::string vertex_shader_src = R"(
+    std::string vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -75,9 +72,8 @@ namespace forr {
           ourColor = aColor;
           TexCoord = aTexCoord;
       }
-    )";
-
-    std::string fragment_shader_src = R"(
+    )"};
+    std::string fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -90,107 +86,55 @@ namespace forr {
       {
           FragColor = texture(ourTexture, TexCoord);
       }
-    )";
-
-    // Create an empty vertex shader handle
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-    // Send the vertex shader source code to GL
-    // Note that std::string's .c_str is NULL character terminated.
-    const GLchar *source = (const GLchar *)vertex_shader_src.c_str();
-    glShaderSource(vertexShader, 1, &source, 0);
-
-    // Compile the vertex shader
-    glCompileShader(vertexShader);
-
-    GLint isCompiled = 0;
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &isCompiled);
-    if (isCompiled == GL_FALSE) {
-      GLint maxLength = 0;
-      glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-      // The maxLength includes the NULL character
-      std::vector<GLchar> infoLog(maxLength);
-      glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
-
-      // We don't need the shader anymore.
-      glDeleteShader(vertexShader);
-
-      // Use the infoLog as you see fit.
-
-      // In this simple program, we'll just leave
+    )"};
+    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
+    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
+    glShaderSource(vertex_shader, 1, &source, 0);
+    glCompileShader(vertex_shader);
+    GLint is_compiled{0};
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(vertex_shader);
       return;
     }
-
-    // Create an empty fragment shader handle
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-    // Send the fragment shader source code to GL
-    // Note that std::string's .c_str is NULL character terminated.
+    GLuint fragment_shader{ glCreateShader(GL_FRAGMENT_SHADER)};
     source = (const GLchar *)fragment_shader_src.c_str();
-    glShaderSource(fragmentShader, 1, &source, 0);
-
-    // Compile the fragment shader
-    glCompileShader(fragmentShader);
-
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &isCompiled);
-    if (isCompiled == GL_FALSE) {
-      GLint maxLength = 0;
-      glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
-
-      // The maxLength includes the NULL character
-      std::vector<GLchar> infoLog(maxLength);
-      glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
-
-      // We don't need the shader anymore.
-      glDeleteShader(fragmentShader);
-      // Either of them. Don't leak shaders.
-      glDeleteShader(vertexShader);
-
-      // Use the infoLog as you see fit.
-
-      // In this simple program, we'll just leave
+    glShaderSource(fragment_shader, 1, &source, 0);
+    glCompileShader(fragment_shader);
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(fragment_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(fragment_shader);
+      glDeleteShader(vertex_shader);
       return;
     }
-
-    // Vertex and fragment shaders are successfully compiled.
-    // Now time to link them together into a program.
-    // Get a program object.
     program_ = glCreateProgram();
-
-    // Attach our shaders to our program
-    glAttachShader(program_, vertexShader);
-    glAttachShader(program_, fragmentShader);
-
-    // Link our program
+    glAttachShader(program_, vertex_shader);
+    glAttachShader(program_, fragment_shader);
     glLinkProgram(program_);
-
-    // Note the different functions here: glGetProgram* instead of glGetShader*.
-    GLint isLinked = 0;
+    GLint isLinked{0};
     glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
     if (isLinked == GL_FALSE) {
-      GLint maxLength = 0;
-      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &maxLength);
-
-      // The maxLength includes the NULL character
-      std::vector<GLchar> infoLog(maxLength);
-      glGetProgramInfoLog(program_, maxLength, &maxLength, &infoLog[0]);
-
-      // We don't need the program anymore.
+      GLint max_length{0};
+      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
       glDeleteProgram(program_);
-      // Don't leak shaders either.
-      glDeleteShader(vertexShader);
-      glDeleteShader(fragmentShader);
-
-      // Use the infoLog as you see fit.
-
-      // In this simple program, we'll just leave
+      glDeleteShader(vertex_shader);
+      glDeleteShader(fragment_shader);
       return;
     }
-
-    // Always detach shaders after a successful link.
-    glDetachShader(program_, vertexShader);
-    glDetachShader(program_, fragmentShader);
+    glDetachShader(program_, vertex_shader);
+    glDetachShader(program_, fragment_shader);
+    glDeleteShader(vertex_shader);
+    glDeleteShader(fragment_shader);
   }
 
   void img_2d_rend::cleanup() {
@@ -285,9 +229,6 @@ namespace forr {
 
     auto need_fill_buffers{false};
 
-
-
-
     if (!need_create_buffers) {
 
       auto &entry = imgs_.at(counter_).at(tex_id);
@@ -298,7 +239,7 @@ namespace forr {
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-if (x != entry.x || y != entry.y || w != entry.w || h != entry.h) {
+      if (x != entry.x || y != entry.y || w != entry.w || h != entry.h) {
 
         need_fill_buffers = true;
 
@@ -333,27 +274,26 @@ if (x != entry.x || y != entry.y || w != entry.w || h != entry.h) {
 
     if (need_fill_buffers) {
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                     sizeof(indices[0]) * indices_count, indices,
-                     GL_STATIC_DRAW);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
+                   indices, GL_DYNAMIC_DRAW);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
-                     vertices, GL_STATIC_DRAW);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
+                   vertices, GL_DYNAMIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
-                              0);
-        // glColor3f(1.0f, 0.0f, 1.0f);
-        glEnableVertexAttribArray(0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            0);
+      // glColor3f(1.0f, 0.0f, 1.0f);
+      glEnableVertexAttribArray(0);
 
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
-                              (void *)(sizeof(vertices[0]) * 3));
-        glEnableVertexAttribArray(1);
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            (void *)(sizeof(vertices[0]) * 3));
+      glEnableVertexAttribArray(1);
 
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
-                              (void *)(sizeof(vertices[0]) * 6));
-        glEnableVertexAttribArray(2);
+      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            (void *)(sizeof(vertices[0]) * 6));
+      glEnableVertexAttribArray(2);
     }
 
     // auto tex_id{_<image_bank>().get_tex(img_name_hash)};

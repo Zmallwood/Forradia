@@ -37,11 +37,8 @@ namespace forr {
    private:
     s_ptr<SDL_Window> create_win();
 
-    s_ptr<SDL_Renderer> create_rend();
-
     s_ptr<SDL_Window> win_;
     s_ptr<SDL_GLContext> context_;
-    GLuint surf_tex_;
     s_ptr<SDL_Renderer> rend_;
     str game_win_title_;
     color clear_color_;
