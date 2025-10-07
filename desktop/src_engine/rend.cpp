@@ -172,7 +172,7 @@ namespace forr {
     unsigned int indices[] = {
         0, 1, 2, 3
     };
-    auto count_vertices{4};
+    auto vertices_count{4};
     auto indices_count{4};
     GLuint obj_vao;
     GLuint obj_ibo;
@@ -223,7 +223,7 @@ namespace forr {
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
                    indices, GL_DYNAMIC_DRAW);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * count_vertices,
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
                    vertices, GL_DYNAMIC_DRAW);
       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             0);
@@ -301,44 +301,25 @@ namespace forr {
       dest.x -= dest.w / 2;
       dest.y -= dest.h / 2;
     }
-
     auto text_hash{hash(text)};
     auto xx{c_float(c_int(x * 1000))};
     auto yy{c_float(c_int(y * 1000))};
-
     auto tex_already_exists{_<image_bank>().text_tex_exists(xx, yy, text_hash)};
     auto tex{_<image_bank>().obtain_text_tex(xx, yy, text_hash)};
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glEnable(GL_TEXTURE_2D);
-
-    glEnable(GL_BLEND);                                // Enable blending
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Set blending function
-    // if (!tex_already_exists) {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBindTexture(GL_TEXTURE_2D, tex);
-
-    /* Load image file */
-
-    /* Find out pixel format type */
-    // glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-    // if (!tex_already_exists) {
     if (tex_already_exists) {
     } else {
       auto sdl_color{text_color.to_sdl_color()};
       auto surf{TTF_RenderText_Solid(font_raw, text.data(), sdl_color)};
-
-      // auto new_w{pow(2, std::ceil(log(surf->w) / log(2)))};
-      // auto new_h{pow(2, std::ceil(log(surf->h) / log(2)))};
-
       auto new_w{surf->w};
       auto new_h{surf->h};
       auto intermediary = SDL_CreateRGBSurface(
           0, new_w, new_h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-      // auto intermediary = SDL_CreateRGBSurface(
-      //     0, new_w, new_h, 32, 0xff000000, 0x00ff0000, 0x0000ff00,
-      //     0x000000ff);
-
       SDL_BlitSurface(surf, 0, intermediary, 0);
-
       glTexImage2D(GL_TEXTURE_2D, 0, 4, intermediary->w, intermediary->h, 0,
                    GL_RGBA, GL_UNSIGNED_BYTE, intermediary->pixels);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -346,40 +327,10 @@ namespace forr {
       SDL_FreeSurface(intermediary);
       SDL_FreeSurface(surf);
     }
-    //}
     auto xf{c_float(dest.x) / canv_sz.w};
     auto yf{c_float(dest.y) / canv_sz.h};
     auto wf{c_float(dest.w) / canv_sz.w};
     auto hf{c_float(dest.h) / canv_sz.h};
     _<img_2d_rend>().draw_tex(tex, xf, yf, wf, hf);
-    return;
-    // glBindTexture(GL_TEXTURE_2D, tex);
-    // glBegin(GL_TRIANGLE_FAN);
-
-    // auto xf{c_float(dest.x) / canv_sz.w};
-    // auto yf{c_float(dest.y) / canv_sz.h};
-    // auto wf{c_float(dest.w) / canv_sz.w};
-    // auto hf{c_float(dest.h) / canv_sz.h};
-
-    // glTexCoord2f(0.0f, 0.0f);
-    // glVertex3f(xf, yf, 0.5f);
-
-    // glTexCoord2f(1.0f, 0.0f);
-    // glVertex3f(xf + wf, yf, 0.5f);
-
-    // glTexCoord2f(1.0f, 1.0f);
-    // glVertex3f(xf + wf, yf + hf, 0.5f);
-
-    // glTexCoord2f(0.0f, 1.0f);
-    // glVertex3f(xf, yf + hf, 0.5f);
-
-    // glEnd();
-    // glFlush();
-
-    // auto rend{_<sdl_device>().rend().get()};
-    // auto tex{SDL_CreateTextureFromSurface(rend, surf)};
-    // SDL_RenderCopy(rend, tex, nullptr, &dest);
-    // SDL_DestroyTexture(tex);
-    // SDL_FreeSurface(intermediary);
   }
 }

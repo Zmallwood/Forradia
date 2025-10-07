@@ -25,9 +25,6 @@ namespace forr {
       _<gui_interact_menu>().set_visible(true);
       _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
     }
-//    if (_<gui_interact_menu>().visible() &&
-//        _<mouse_inp>().left_btn_ref().been_fired_pick_res())
-//      _<gui_interact_menu>().set_visible(false);
   }
 
   void update_kb_movem() {
@@ -133,7 +130,6 @@ namespace forr {
     for (auto it = npcs.begin(); it != npcs.end();) {
       auto npc{it->first};
       auto pos{it->second};
-
       if (now > npc->ticks_next_spontaneous_speech()) {
         auto name{npc->name()};
         if (rand_int(20) == 0)
@@ -144,7 +140,6 @@ namespace forr {
         npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_sec_millis +
                                                (6000 * k_one_sec_millis));
       }
-
       if (now < npc->ticks_last_move() + inv_movem_spd(npc->movem_spd())) {
         ++it;
         continue;

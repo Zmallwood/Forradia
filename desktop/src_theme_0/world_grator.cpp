@@ -30,9 +30,8 @@ namespace forr {
     for (auto y = 0; y < sz_.h; y++) {
       for (auto x = 0; x < sz_.w; x++) {
         auto tl{w_area_->get_tl(x, y)};
-        if (tl) {
+        if (tl)
           tl->set_ground("ground_dirt");
-        }
       }
     }
   }
@@ -45,9 +44,8 @@ namespace forr {
       auto r{3 * scale_ + rand_int(10 * scale_)};
       for (auto y = y_cent - r; y <= y_cent + r; y++) {
         for (auto x = x_cent - r; x <= x_cent + r; x++) {
-          if (!w_area_->is_valid_coord(x, y)) {
+          if (!w_area_->is_valid_coord(x, y))
             continue;
-          }
           auto dx{x - x_cent};
           auto dy{y - y_cent};
           if (dx * dx + dy * dy <= r * r) {
@@ -61,9 +59,8 @@ namespace forr {
 
   void world_grator::gen_single_lake(int min_x, int min_y, int max_x, int max_y,
                                      int recurs) const {
-    if (recurs == 0) {
+    if (recurs == 0)
       return;
-    }
     auto x_cent{min_x + rand_int(max_x - min_x)};
     auto y_cent{min_y + rand_int(max_y - min_y)};
     auto max_r{c_int(3 * scale_ + rand_int(5 * scale_))};
@@ -142,9 +139,8 @@ namespace forr {
 
   void world_grator::gen_lakes() const {
     auto num_lakes{20 + rand_int(5)};
-    for (auto i = 0; i < num_lakes; i++) {
+    for (auto i = 0; i < num_lakes; i++)
       gen_single_lake(0, 0, sz_.w, sz_.h, 2 + rand_int(5));
-    }
   }
 
   void world_grator::gen_elev() const {
@@ -156,9 +152,8 @@ namespace forr {
       for (auto r = max_r; r >= 0; r--) {
         for (auto y = y_cent - r; y <= y_cent + r; y++) {
           for (auto x = x_cent - r; x <= x_cent + r; x++) {
-            if (!w_area_->is_valid_coord(x, y)) {
+            if (!w_area_->is_valid_coord(x, y))
               continue;
-            }
             auto dx{x - x_cent};
             auto dy{y - y_cent};
             if (dx * dx + dy * dy <= r * r) {
@@ -182,30 +177,22 @@ namespace forr {
                     (tl_se && tl_se->ground() == hash("ground_water"))) {
                   continue;
                 }
-                if (tl_n && tl_n->elev() < tl->elev()) {
+                if (tl_n && tl_n->elev() < tl->elev())
                   continue;
-                }
-                if (tl_s && tl_s->elev() < tl->elev()) {
+                if (tl_s && tl_s->elev() < tl->elev())
                   continue;
-                }
-                if (tl_w && tl_w->elev() < tl->elev()) {
+                if (tl_w && tl_w->elev() < tl->elev())
                   continue;
-                }
-                if (tl_e && tl_e->elev() < tl->elev()) {
+                if (tl_e && tl_e->elev() < tl->elev())
                   continue;
-                }
-                if (tl_nw && tl_nw->elev() < tl->elev()) {
+                if (tl_nw && tl_nw->elev() < tl->elev())
                   continue;
-                }
-                if (tl_ne && tl_ne->elev() < tl->elev()) {
+                if (tl_ne && tl_ne->elev() < tl->elev())
                   continue;
-                }
-                if (tl_sw && tl_sw->elev() < tl->elev()) {
+                if (tl_sw && tl_sw->elev() < tl->elev())
                   continue;
-                }
-                if (tl_se && tl_se->elev() < tl->elev()) {
+                if (tl_se && tl_se->elev() < tl->elev())
                   continue;
-                }
                 tl->set_elev(tl->elev() + 1);
               }
             }
@@ -223,16 +210,14 @@ namespace forr {
       auto r{3 * scale_ + rand_int(10 * scale_)};
       for (auto y = y_center - r; y <= y_center + r; y++) {
         for (auto x = x_center - r; x <= x_center + r; x++) {
-          if (!w_area_->is_valid_coord(x, y)) {
+          if (!w_area_->is_valid_coord(x, y))
             continue;
-          }
           auto dx{x - x_center};
           auto dy{y - y_center};
           if (dx * dx + dy * dy <= r * r) {
             auto tl{w_area_->get_tl(x, y)};
-            if (tl->elev() > 0) {
+            if (tl->elev() > 0)
               tl->set_ground("ground_rock");
-            }
           }
         }
       }
@@ -253,9 +238,8 @@ namespace forr {
         auto angle{start_angle + std::sin(j * M_PI / 10.0f) * 45};
         auto x_coord{c_int(x)};
         auto y_coord{c_int(y)};
-        if (!w_area_->is_valid_coord(x_coord, y_coord)) {
+        if (!w_area_->is_valid_coord(x_coord, y_coord))
           continue;
-        }
         auto tl = w_area_->get_tl(x_coord, y_coord);
         if (tl && prev_tl) {
           // tile->SetGround("GroundWater");
