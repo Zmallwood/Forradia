@@ -371,10 +371,12 @@ namespace forr {
     auto w{tl_sz};
     auto h{tl_sz};
 
-    vec<float> verts{{x,     y,     -elevs.at(0)*tl_sz, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
-                      x + w, y,     -elevs.at(1)*tl_sz, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-                      x + w, y + h, -elevs.at(2)*tl_sz, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
-                      x,     y + h, -elevs.at(3)*tl_sz, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
+    auto elev_h {0.1f};
+
+    vec<float> verts{{x,     y,     -elevs.at(0)*elev_h, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+                      x + w, y,     -elevs.at(1)*elev_h, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+                      x + w, y + h, -elevs.at(2)*elev_h, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+                      x,     y + h, -elevs.at(3)*elev_h, 1.0f, 1.0f, 1.0f, 0.0, 1.0}};
     ground_rend::draw_tex(tex_id, verts, camera_pos);
   }
 
