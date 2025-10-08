@@ -3,7 +3,6 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "comm.hpp"
 
 namespace forr {
   class gui_comp {
