@@ -152,6 +152,9 @@ namespace forr {
     return res;
   }
 
+  // Time util functions
+  int ticks() { return SDL_GetTicks(); }
+
   // Hash util functions
   int hash(str_view text) {
     // Use algorithm from forgotten source.

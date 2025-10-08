@@ -3,28 +3,18 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
-#include <glm/glm.hpp>
-// clang-format on
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_opengl.h>
-#include <SDL2/SDL_ttf.h>
-#include <algorithm>
-#include <filesystem>
-#include <fmt/core.h>
 #include <functional>
-#include <iostream>
-#include <map>
 #include <memory>
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
-#include <ranges>
-#include <set>
 #include <string>
 #include <vector>
+
+struct SDL_Window;
+struct SDL_Renderer;
+struct SDL_Texture;
+struct SDL_Surface;
+typedef struct _TTF_Font TTF_Font;
+struct SDL_Color;
+typedef uint8_t Uint8;
 
 namespace forr {
   ////////////////////
@@ -246,6 +236,7 @@ namespace forr {
   ////////////////////
   // Utils
   ////////////////////
+  typedef struct SDL_Window SDL_Window;
   // Canvas util functions
   sz get_canv_sz(s_ptr<SDL_Window> win);
 
@@ -279,7 +270,7 @@ namespace forr {
   str repl(str_view text, char repl, char repl_with);
 
   // Time util functions
-  const auto ticks{SDL_GetTicks};
+  int ticks();
 
   // Hash util functions
   /**

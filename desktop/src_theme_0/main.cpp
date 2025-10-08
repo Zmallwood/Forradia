@@ -8,7 +8,6 @@
 #include "gui_spec.hpp"
 #include "input.hpp"
 #include "rend.hpp"
-// #include "scenes.hpp"
 #include "update.hpp"
 #include "world_grator.hpp"
 #include "world_struct.hpp"

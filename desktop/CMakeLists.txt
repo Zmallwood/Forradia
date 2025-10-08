@@ -16,6 +16,7 @@ target_link_libraries(ForradiaComm PRIVATE ${PYTHON_LIBRARIES})
 
 target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
 
+target_precompile_headers(ForradiaComm PUBLIC src_comm/std_afx.hpp)
 
 
 
@@ -27,6 +28,7 @@ target_include_directories(ForradiaEngine PRIVATE "src_comm")
 
 target_link_libraries(ForradiaEngine ForradiaComm)
 
+target_precompile_headers(ForradiaEngine PUBLIC src_engine/std_afx.hpp)
 
 
 
