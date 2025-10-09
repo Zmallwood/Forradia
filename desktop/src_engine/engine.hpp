@@ -126,6 +126,8 @@ namespace forr {
    private:
     void init();
 
+    s_ptr<model> load_single_model(str_view file_path);
+
     inline static const str k_rel_models_path{"./res/models/"};
 
     std::map<int, s_ptr<model>> models_;

@@ -190,6 +190,8 @@ namespace forr {
       if (file_ext(file_path) == "dae") {
         auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
+        auto model {load_single_model(file_path)};
+        models_.insert({hash, model});
       }
     }
   }
@@ -198,6 +200,11 @@ namespace forr {
     if (models_.contains(model_name_hash))
       return models_.at(model_name_hash);
     return nullptr;
+  }
+
+  s_ptr<model> model_bank::load_single_model(str_view file_path) {
+    auto model_res{std::make_shared<model>(file_path)};
+    return model_res;
   }
 
   s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
