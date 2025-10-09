@@ -51,13 +51,21 @@ namespace forr {
     int counter_{0};
   };
 
+  class Entry {
+   public:
+    GLuint vao;
+    GLuint ibo;
+    GLuint vbo;
+    float x;
+    float y;
+    float z;
+  };
+
   class ground_rend {
    public:
     ground_rend() { init(); };
 
     ~ground_rend() { cleanup(); }
-
-    void reset_counter();
 
     void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
                    pt_f camera_pos, vec<float> &elevs);
@@ -71,18 +79,23 @@ namespace forr {
 
     glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-    class Entry {
-     public:
-      GLuint vao;
-      GLuint ibo;
-      GLuint vbo;
-      float x;
-      float y;
-    };
-
     GLuint program_;
     std::map<float, std::map<float, Entry>> imgs_;
-    int counter_{0};
+  };
+
+  class model_rend {
+   public:
+    model_rend() { init(); }
+
+    void draw_model(int model_name_hash, float x, float y, float z,
+                    pt_f camera_pos);
+
+   private:
+    void init();
+
+    GLuint program_;
+    std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
+        models_;
   };
 
   enum struct font_szs { _20 = 20, _26 = 26 };

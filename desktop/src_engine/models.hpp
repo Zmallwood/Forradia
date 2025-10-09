@@ -16,7 +16,7 @@ namespace forr {
 
   class texture {
    public:
-   str path_;
+    str path_;
   };
 
   class mesh {
@@ -32,6 +32,8 @@ namespace forr {
   class model {
    public:
     model(str_view file_path) { init(file_path); };
+
+    auto &meshes_ref() const { return meshes_; }
 
    private:
     void init(str_view file_path);

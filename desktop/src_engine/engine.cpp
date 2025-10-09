@@ -20,7 +20,6 @@ namespace forr {
         _<mouse_inp>().reset();
         _<cursor>().reset_style_to_normal();
         _<img_2d_rend>().reset_counter();
-        _<ground_rend>().reset_counter();
         poll_events();
         _<scene_mngr>().update_curr_scene();
         _<fps_counter>().update();
@@ -180,6 +179,7 @@ namespace forr {
   }
 
   void model_bank::init() {
+    std::cout << "Loading models" << std::endl;
     auto base_path{str(SDL_GetBasePath())};
     auto imgs_path{base_path + k_rel_models_path.data()};
     if (!std::filesystem::exists(imgs_path))
@@ -187,9 +187,11 @@ namespace forr {
     std::filesystem::recursive_directory_iterator rdi{imgs_path};
     for (auto it : rdi) {
       auto file_path{repl(it.path().string(), '\\', '/')};
+      std::cout << file_path << std::endl;
       if (file_ext(file_path) == "dae") {
         auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
+        std::cout << "loaded: " << file_name << " hash: " << hash << std::endl;
         auto model {load_single_model(file_path)};
         models_.insert({hash, model});
       }

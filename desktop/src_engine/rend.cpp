@@ -4,6 +4,7 @@
  */
 #include "rend.hpp"
 #include "engine.hpp"
+#include "models.hpp"
 #include <glm/gtx/transform.hpp>
 
 namespace forr {
@@ -375,8 +376,6 @@ namespace forr {
     glDeleteProgram(program_);
   }
 
-  void ground_rend::reset_counter() { counter_ = 0; }
-
   void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
                               float tl_sz, pt_f camera_pos, vec<float> &elevs) {
     auto tex_id{_<image_bank>().get_tex(img_name_hash)};
@@ -492,33 +491,33 @@ namespace forr {
     auto vertices_count{4};
     auto indices_count{4};
 
-    auto _00x{vertices_no_normals[0*8 + 0]};
-    auto _00y{vertices_no_normals[0*8 + 1]};
-    auto _00z{vertices_no_normals[0*8 + 2]};
-    auto _10x{vertices_no_normals[1*8 + 0]};
-    auto _10y{vertices_no_normals[1*8 + 1]};
-    auto _10z{vertices_no_normals[1*8 + 2]};
-    auto _20x{vertices_no_normals[2*8 + 0]};
-    auto _20y{vertices_no_normals[2*8 + 1]};
-    auto _20z{vertices_no_normals[2*8 + 2]};
-    auto _01x{vertices_no_normals[3*8 + 0]};
-    auto _01y{vertices_no_normals[3*8 + 1]};
-    auto _01z{vertices_no_normals[3*8 + 2]};
-    auto _11x{vertices_no_normals[4*8 + 0]};
-    auto _11y{vertices_no_normals[4*8 + 1]};
-    auto _11z{vertices_no_normals[4*8 + 2]};
-    auto _21x{vertices_no_normals[5*8 + 0]};
-    auto _21y{vertices_no_normals[5*8 + 1]};
-    auto _21z{vertices_no_normals[5*8 + 2]};
-    auto _02x{vertices_no_normals[6*8 + 0]};
-    auto _02y{vertices_no_normals[6*8 + 1]};
-    auto _02z{vertices_no_normals[6*8 + 2]};
-    auto _12x{vertices_no_normals[7*8 + 0]};
-    auto _12y{vertices_no_normals[7*8 + 1]};
-    auto _12z{vertices_no_normals[7*8 + 2]};
-    auto _22x{vertices_no_normals[8*8 + 0]};
-    auto _22y{vertices_no_normals[8*8 + 1]};
-    auto _22z{vertices_no_normals[8*8 + 2]};
+    auto _00x{vertices_no_normals[0 * 8 + 0]};
+    auto _00y{vertices_no_normals[0 * 8 + 1]};
+    auto _00z{vertices_no_normals[0 * 8 + 2]};
+    auto _10x{vertices_no_normals[1 * 8 + 0]};
+    auto _10y{vertices_no_normals[1 * 8 + 1]};
+    auto _10z{vertices_no_normals[1 * 8 + 2]};
+    auto _20x{vertices_no_normals[2 * 8 + 0]};
+    auto _20y{vertices_no_normals[2 * 8 + 1]};
+    auto _20z{vertices_no_normals[2 * 8 + 2]};
+    auto _01x{vertices_no_normals[3 * 8 + 0]};
+    auto _01y{vertices_no_normals[3 * 8 + 1]};
+    auto _01z{vertices_no_normals[3 * 8 + 2]};
+    auto _11x{vertices_no_normals[4 * 8 + 0]};
+    auto _11y{vertices_no_normals[4 * 8 + 1]};
+    auto _11z{vertices_no_normals[4 * 8 + 2]};
+    auto _21x{vertices_no_normals[5 * 8 + 0]};
+    auto _21y{vertices_no_normals[5 * 8 + 1]};
+    auto _21z{vertices_no_normals[5 * 8 + 2]};
+    auto _02x{vertices_no_normals[6 * 8 + 0]};
+    auto _02y{vertices_no_normals[6 * 8 + 1]};
+    auto _02z{vertices_no_normals[6 * 8 + 2]};
+    auto _12x{vertices_no_normals[7 * 8 + 0]};
+    auto _12y{vertices_no_normals[7 * 8 + 1]};
+    auto _12z{vertices_no_normals[7 * 8 + 2]};
+    auto _22x{vertices_no_normals[8 * 8 + 0]};
+    auto _22y{vertices_no_normals[8 * 8 + 1]};
+    auto _22z{vertices_no_normals[8 * 8 + 2]};
 
     glm::vec3 v00 = {_00x, _00y, _00z};
     glm::vec3 v10 = {_10x, _10y, _10z};
@@ -563,7 +562,6 @@ namespace forr {
       // vertices_vec.push_back(1.0f);
       // vertices_vec.push_back(1.0f);
     }};
-
 
     fn(0, 0);
     fn(1, 1);
@@ -661,7 +659,6 @@ namespace forr {
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    ++counter_;
   }
 
   glm::vec3 ground_rend::compute_normal(glm::vec3 p1, glm::vec3 p2,
@@ -671,6 +668,250 @@ namespace forr {
     auto b = p1 - p2;
     // Compute the cross product a X b to get the face normal
     return glm::normalize(glm::cross(a, b));
+  }
+
+  void model_rend::init() {
+    std::string vertex_shader_src{R"(
+      #version 330 core
+      layout (location = 0) in vec3 aPos;
+      layout (location = 1) in vec3 aNormal;
+
+      out vec3 FragPos;
+      out vec3 Normal;
+
+      uniform mat4 projection; 
+      uniform mat4 view; 
+      uniform mat4 model;
+
+      uniform float scale;
+
+      void main()
+      {
+          FragPos = vec3(model * vec4(aPos, 1.0));
+          Normal = vec3(model * vec4(aNormal, 0.0));
+          gl_Position = projection * view * vec4(FragPos, 1.0);
+      }
+    )"};
+    std::string fragment_shader_src{R"(
+      #version 330 core
+      out vec4 FragColor;
+
+      in vec3 Normal;  
+      in vec3 FragPos;
+
+      uniform vec3 lightPos;
+      uniform vec3 viewPos;
+
+      vec3 lightColor = vec3(1,1,1);
+      vec3 objectColor = vec3(0.6, 0.6, 0.6);
+      uniform float shininess = 32.0f;
+      uniform vec3 material_specular = vec3(0.1f, 0.1f, 0.1f);
+      uniform vec3 light_specular = vec3(0.5f, 0.5f, 0.5f);
+
+      void main()
+      {
+          // ambient
+          float ambientStrength = 0.2;
+          vec3 ambient = ambientStrength * lightColor;
+
+          // diffuse 
+          vec3 norm = normalize(Normal);
+          vec3 lightDir = normalize(lightPos - FragPos);
+          float diff = max(dot(norm, lightDir), 0.0);
+          vec3 diffuse = diff * lightColor;
+
+          // specular
+          vec3 viewDir = normalize(viewPos - FragPos);
+          vec3 reflectDir = reflect(-lightDir, norm);  
+          float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
+          vec3 specular = light_specular * (spec * material_specular);  
+
+          vec3 result = (ambient + diffuse + specular) * objectColor;
+          FragColor = vec4(result, 1.0);
+      }
+    )"};
+    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
+    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
+    glShaderSource(vertex_shader, 1, &source, 0);
+    glCompileShader(vertex_shader);
+    GLint is_compiled{0};
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(vertex_shader);
+      return;
+    }
+    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
+    source = (const GLchar *)fragment_shader_src.c_str();
+    glShaderSource(fragment_shader, 1, &source, 0);
+    glCompileShader(fragment_shader);
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
+    if (is_compiled == GL_FALSE) {
+      GLint max_length{0};
+      glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetShaderInfoLog(fragment_shader, max_length, &max_length, &infoLog[0]);
+      glDeleteShader(fragment_shader);
+      glDeleteShader(vertex_shader);
+      return;
+    }
+    program_ = glCreateProgram();
+    glAttachShader(program_, vertex_shader);
+    glAttachShader(program_, fragment_shader);
+    glLinkProgram(program_);
+    GLint isLinked{0};
+    glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
+    if (isLinked == GL_FALSE) {
+      GLint max_length{0};
+      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
+      std::vector<GLchar> infoLog(max_length);
+      glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
+      glDeleteProgram(program_);
+      glDeleteShader(vertex_shader);
+      glDeleteShader(fragment_shader);
+      return;
+    }
+    glDetachShader(program_, vertex_shader);
+    glDetachShader(program_, fragment_shader);
+    glDeleteShader(vertex_shader);
+    glDeleteShader(fragment_shader);
+  }
+
+  void model_rend::draw_model(int model_name_hash, float x, float y, float z,
+                              pt_f camera_pos) {
+    auto model{_<model_bank>().get_model(model_name_hash)};
+    if (!model) {
+      std::cout << "Model not found" << std::endl;
+      return;
+    }
+    auto &meshes{model->meshes_ref()};
+
+    auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+    glViewport(0, 0, canv_sz.w, canv_sz.h);
+
+    glUseProgram(program_);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    vec<unsigned int> indices_vec;
+    vec<glm::vec3> normals;
+
+    vec<float> vertices_vec;
+
+    for (auto &mesh : meshes) {
+      for (auto &vertex : mesh.vertices) {
+        vertices_vec.push_back(x + vertex.position.x);
+        vertices_vec.push_back(y + vertex.position.y);
+        vertices_vec.push_back(z + vertex.position.z);
+        vertices_vec.push_back(vertex.normal.x);
+        vertices_vec.push_back(vertex.normal.y);
+        vertices_vec.push_back(vertex.normal.z);
+      }
+      for (auto &index : mesh.indices) {
+        indices_vec.push_back(index);
+      }
+    }
+
+    auto vertices_count{vertices_vec.size() / 6};
+    auto indices_count{indices_vec.size()};
+
+    auto vertices{vertices_vec.data()};
+    auto indices{indices_vec.data()};
+    GLuint obj_vao;
+    GLuint obj_ibo;
+    GLuint obj_vbo;
+    auto need_create_buffers{false};
+    if (models_.contains(x) && models_.at(x).contains(y) &&
+        models_.at(x).at(y).contains(z) &&
+        models_.at(x).at(y).at(z).contains(model_name_hash)) {
+      need_create_buffers = false;
+    } else {
+      need_create_buffers = true;
+      glGenVertexArrays(1, &obj_vao);
+      glGenBuffers(1, &obj_vbo);
+      glGenBuffers(1, &obj_ibo);
+    }
+    auto need_fill_buffers{false};
+    if (!need_create_buffers) {
+      auto &entry = models_.at(x).at(y).at(z).at(model_name_hash);
+      obj_vao = entry.vao;
+      obj_ibo = entry.ibo;
+      obj_vbo = entry.vbo;
+      glBindVertexArray(obj_vao);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      if (x != entry.x || y != entry.y || z != entry.z) {
+        need_fill_buffers = true;
+        entry.x = x;
+        entry.y = y;
+        entry.z = z;
+      }
+    } else {
+      glBindVertexArray(obj_vao);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      Entry entry;
+      entry.vao = obj_vao;
+      entry.ibo = obj_ibo;
+      entry.vbo = obj_vbo;
+      entry.x = x;
+      entry.y = y;
+      entry.z = z;
+      models_[x][y][z][model_name_hash] = entry;
+      need_fill_buffers = true;
+    }
+
+    if (need_fill_buffers) {
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
+                   indices, GL_DYNAMIC_DRAW);
+      glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 6 * vertices_count,
+                   vertices, GL_DYNAMIC_DRAW);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 6,
+                            0);
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 6,
+                            (void *)(sizeof(vertices[0]) * 3));
+      glEnableVertexAttribArray(1);
+    }
+
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+    glm::mat4 cameraMatrix = glm::lookAt(
+        glm::vec3(camera_pos.x, camera_pos.y, 3.0f), /*Camera position*/
+        glm::vec3(camera_pos.x, camera_pos.y, 0.0f), /*Camera target*/
+        glm::vec3(0.0f, -1.0f, 0.0f)                 /*Up vector*/
+    );
+
+    glm::mat4 projectionMatrix =
+        glm::perspective(90.0f,       /*FOV in degrees*/
+                         4.0f / 3.0f, /*Aspect ratio*/
+                         0.1f,        /*Near clipping distance*/
+                         100.0f       /*Far clipping distance*/
+        );
+
+    GLuint matrix_projection = glGetUniformLocation(program_, "projection");
+    glUniformMatrix4fv(matrix_projection, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+    GLuint matrix_model = glGetUniformLocation(program_, "model");
+    glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &modelMatrix[0][0]);
+
+    GLuint matrix_view = glGetUniformLocation(program_, "view");
+    glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &cameraMatrix[0][0]);
+
+    glBindVertexArray(obj_vao);
+    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+    // glBindTexture(GL_TEXTURE_2D, tex_id);
+    glDrawElements(GL_TRIANGLE_FAN, vertices_count, GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   }
 
   void text_rend::init() {
