@@ -378,6 +378,8 @@ namespace forr {
         if (!w_area->is_valid_coord(x_coord, y_coord))
           continue;
         tl = w_area->get_tl(x_coord, y_coord);
+        auto objs_stack{tl->objects_stack()};
+        auto objects {objs_stack->objects()};
         auto coord_nw{pt{x_coord, y_coord}};
         auto coord_ne{pt{x_coord + 1, y_coord}};
         auto coord_sw{pt{x_coord, y_coord + 1}};
@@ -442,7 +444,11 @@ namespace forr {
         }
         _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
                                    camera_pos, elevs);
-        auto objs_stack{tl ? tl->objects_stack() : nullptr};
+
+        for (auto obj : objects) {
+          auto obj_type {obj->type()};
+          auto model {_<model_bank>().get_model(obj_type)};
+        }
       }
     }
   }

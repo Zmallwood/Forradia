@@ -240,10 +240,30 @@ namespace forr {
   // Canvas util functions
   sz get_canv_sz(s_ptr<SDL_Window> win);
 
+  /**
+   * Calculate the aspect ratio of a given window.
+   *
+   * \param win Window to calculate the aspect ratio for.
+   * \return The calculated aspect ratio.
+   */
   float calc_aspect_ratio(s_ptr<SDL_Window> win);
 
+  /**
+   * Convert a width to a height based on the width and the aspect ratio.
+   *
+   * \param w Width to convert.
+   * \param win Window to calculate the aspect ratio for.
+   * \return The resulting height.
+   */
   float conv_w_to_h(float w, s_ptr<SDL_Window> win);
 
+  /**
+   * Convert a height to a width base on the height and the aspect ratio.
+   * 
+   * \param h Height to convert.
+   * \param win Window to calculate the aspect ratio for.
+   * \return The resulting width.
+   */
   float conv_h_to_w(float h, s_ptr<SDL_Window> win);
 
   // File path util functions
