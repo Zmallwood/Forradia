@@ -298,9 +298,27 @@ namespace forr {
   void print_ln(str_view text);
 
   // Cast util functions
+  /**
+   * Cast a value to int.
+   *
+   * \param val Value to cast.
+   * \return Casted value.
+   */
   constexpr int c_int(auto val) { return static_cast<int>(val); }
 
+  /**
+   * Cast a value to float.
+   *
+   * \param val Value to cast.
+   * \return Casted value.
+   */
   float c_float(auto val) { return static_cast<float>(val); }
 
+  /**
+   * Cast a value to Uint8.
+   *
+   * \param val Value to cast.
+   * \return Casted value.
+   */
   Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
 }

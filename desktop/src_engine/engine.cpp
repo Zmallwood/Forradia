@@ -5,6 +5,7 @@
 #include "engine.hpp"
 #include "gui.hpp"
 #include "input.hpp"
+#include "models.hpp"
 #include "rend.hpp"
 
 namespace forr {
@@ -176,6 +177,27 @@ namespace forr {
         textures_.insert({hash, tex});
       }
     }
+  }
+
+  void model_bank::init() {
+    auto base_path{str(SDL_GetBasePath())};
+    auto imgs_path{base_path + k_rel_models_path.data()};
+    if (!std::filesystem::exists(imgs_path))
+      return;
+    std::filesystem::recursive_directory_iterator rdi{imgs_path};
+    for (auto it : rdi) {
+      auto file_path{repl(it.path().string(), '\\', '/')};
+      if (file_ext(file_path) == "dae") {
+        auto file_name{file_name_no_ext(file_path)};
+        auto hash{forr::hash(file_name)};
+      }
+    }
+  }
+
+  s_ptr<model> model_bank::get_model(int model_name_hash) const {
+    if (models_.contains(model_name_hash))
+      return models_.at(model_name_hash);
+    return nullptr;
   }
 
   s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {

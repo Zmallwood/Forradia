@@ -115,6 +115,22 @@ namespace forr {
     std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
   };
 
+  class model;
+
+  class model_bank {
+   public:
+    model_bank() { init(); }
+
+    s_ptr<model> get_model(int model_name_hash) const;
+
+   private:
+    void init();
+
+    inline static const str k_rel_models_path{"./res/models/"};
+
+    std::map<int, s_ptr<model>> models_;
+  };
+
   class gui;
 
   class i_scene {

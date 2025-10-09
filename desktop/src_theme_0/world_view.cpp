@@ -369,7 +369,8 @@ namespace forr {
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
-    static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see, tl_sese, tl_ses, tl_ss;
+    static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see, tl_sese,
+        tl_ses, tl_ss;
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       for (auto x = 0; x < grid_sz.w; x++) {
         x_coord = (wa_sz.w - player_pos.x) - (grid_sz.w - 1) / 2 + x;
@@ -441,6 +442,7 @@ namespace forr {
         }
         _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
                                    camera_pos, elevs);
+        auto objs_stack{tl ? tl->objects_stack() : nullptr};
       }
     }
   }
