@@ -14,7 +14,7 @@ find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(ForradiaComm PRIVATE ${PYTHON_LIBRARIES})
 
-target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
+target_link_libraries(ForradiaComm PRIVATE SDL2 SDL2_image SDL2_ttf fmt GL GLEW assimp)
 
 target_precompile_headers(ForradiaComm PUBLIC src_comm/std_afx.hpp)
 
