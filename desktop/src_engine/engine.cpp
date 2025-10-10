@@ -183,7 +183,7 @@ namespace forr {
     for (auto it : rdi) {
       auto file_path{repl(it.path().string(), '\\', '/')};
       std::cout << file_path << std::endl;
-      if (file_ext(file_path) == "dae") {
+      if (file_ext(file_path) == "obj") {
         auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
         auto model{load_single_model(file_path)};

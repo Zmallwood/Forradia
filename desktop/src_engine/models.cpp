@@ -8,17 +8,17 @@ namespace forr {
   void model::init(str_view file_path) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(
-        file_path.data(), aiProcess_Triangulate | aiProcess_FlipUVs |
-                              aiProcess_CalcTangentSpace |
-                              aiProcess_GenBoundingBoxes);
+        file_path.data(),
+        aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
+            aiProcess_GenBoundingBoxes);
     if (!scene || !scene->mRootNode) {
       std::cout << "ERROR::ASSIMP Could not load model: "
                 << importer.GetErrorString() << std::endl;
     } else {
-      std::cout << "Init model: " << file_path << std::endl;
-      //      this->directory = filename.substr(0, filename.find_last_of('/'));
       process_node(scene->mRootNode, scene, aiMatrix4x4());
     }
+    // std::cout << "TEXXXX: "<< scene->mTextures[0]->mFilename.C_Str() <<
+    // std::endl;
   }
 
   void model::process_node(aiNode *node, const aiScene *scene,
@@ -111,12 +111,28 @@ namespace forr {
 
   vec<texture> model::get_textures(aiMesh *mesh, const aiScene *scene) {
     vec<texture> textures;
-    for (unsigned int i = 0; i < scene->mNumTextures; i++) {
-      aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
-      aiString path;
-      material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
-      textures.push_back(texture(path.C_Str()));
-    }
+
+    //std::cout << " NUM MATERIALS: " << scene->mNumMaterials << std::endl;
+    aiString s;
+    scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &s);
+    textures.push_back(texture(file_name_no_ext(s.C_Str())));
+//    for (unsigned int i = 0; i < scene->mNumTextures; i++) {
+//      aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
+//      aiString path;
+//      material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+//      // material->Get(AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), path);
+//      std::cout << "NUM TEXES: " << scene->mNumTextures << std::endl;
+//      if ('*' == path.data[0]) {
+//        // embedded texture, get index from string and access scene->mTextures
+//        std::cout << "embedded texture" << std::endl;
+//        auto mat{scene->mMaterials[atoi(&path.data[1])]};
+//        mat->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+//      }
+//      textures.push_back(texture(path.C_Str()));
+//      std::cout << "TEX: " << path.C_Str() << std::endl;
+//      scene->mMaterials[0]->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+//      std::cout << path.C_Str() << std::endl;
+//    }
     return textures;
   }
 }

@@ -558,7 +558,7 @@ namespace forr {
     glm::mat4 model_matrix = glm::mat4(1.0f);
     // lookAt function takes in camera position, target, and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, 3.0f),
                     glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
                     glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes in field of view, aspect ratio,
@@ -593,9 +593,11 @@ namespace forr {
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aNormal;
+      layout (location = 2) in vec2 aTexCoord;
 
       out vec3 FragPos;
       out vec3 Normal;
+      out vec2 TexCoord;
 
       uniform mat4 projection; 
       uniform mat4 view; 
@@ -610,6 +612,7 @@ namespace forr {
           gl_Position = projection * view * vec4(FragPos, 1.0);
           gl_Position.x = gl_Position.x * 2.0 - 1.0;
           gl_Position.y = gl_Position.y * -2.0 + 1.0;
+          TexCoord = aTexCoord;
       }
     )"};
     str fragment_shader_src{R"(
@@ -618,12 +621,14 @@ namespace forr {
 
       in vec3 Normal;  
       in vec3 FragPos;
+      in vec2 TexCoord;
 
       uniform vec3 lightPos;
       uniform vec3 viewPos;
+      uniform sampler2D ourTexture;
 
       vec3 lightColor = vec3(1,1,1);
-      vec3 objectColor = vec3(0.6, 0.6, 0.6);
+      //vec3 objectColor = vec3(0.6, 0.6, 0.6);
       uniform float shininess = 32.0f;
       uniform vec3 material_specular = vec3(0.1f, 0.1f, 0.1f);
       uniform vec3 light_specular = vec3(0.5f, 0.5f, 0.5f);
@@ -645,6 +650,8 @@ namespace forr {
           vec3 reflectDir = reflect(-lightDir, norm);  
           float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
           vec3 specular = light_specular * (spec * material_specular);  
+
+          vec3 objectColor = texture(ourTexture, TexCoord).rgb;
 
           vec3 result = (ambient + diffuse + specular) * objectColor;
           FragColor = vec4(result, 1.0);
@@ -680,12 +687,14 @@ namespace forr {
         vertices_vec.push_back(vertex.normal.x);
         vertices_vec.push_back(vertex.normal.y);
         vertices_vec.push_back(vertex.normal.z);
+        vertices_vec.push_back(vertex.tex_coord.x);
+        vertices_vec.push_back(vertex.tex_coord.y);
       }
       for (auto &index : mesh.indices)
         indices_vec.push_back(i + mesh.indices[index]);
       i += mesh.vertices.size();
     }
-    auto vertices_count{vertices_vec.size() / 6};
+    auto vertices_count{vertices_vec.size() / 8};
     auto indices_count{indices_vec.size()};
     auto vertices{vertices_vec.data()};
     auto indices{indices_vec.data()};
@@ -737,19 +746,22 @@ namespace forr {
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
                    indices, GL_STATIC_DRAW);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 6 * vertices_count,
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
                    vertices, GL_STATIC_DRAW);
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 6,
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             0);
       glEnableVertexAttribArray(0);
-      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 6,
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
                             (void *)(sizeof(vertices[0]) * 3));
       glEnableVertexAttribArray(1);
+      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+                            (void *)(sizeof(vertices[0]) * 6));
+      glEnableVertexAttribArray(2);
     }
     glm::mat4 model_matrix = glm::mat4(1.0f);
     // lookAt function takes camera position, camera target and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, 3.0f),
                     glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
                     glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes field of view, aspect ratio, near clipping
@@ -766,7 +778,12 @@ namespace forr {
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    // glBindTexture(GL_TEXTURE_2D, tex_id);
+    //std::cout << meshes.at(0).textures.size() << std::endl;
+    auto tex_name {meshes.at(0).textures.at(0).path_};
+    //std::cout << tex_name << std::endl;
+    auto tex_name_hash {hash(tex_name)};
+    auto tex_id {_<image_bank>().get_tex(tex_name_hash)};
+    glBindTexture(GL_TEXTURE_2D, tex_id);
     glDrawElements(GL_TRIANGLE_FAN, vertices_count, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
