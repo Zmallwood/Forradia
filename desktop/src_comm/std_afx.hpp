@@ -26,5 +26,3 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_ttf.h>
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>

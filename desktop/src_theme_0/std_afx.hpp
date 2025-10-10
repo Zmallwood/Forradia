@@ -4,8 +4,5 @@
  */
 #pragma once
 
-#include "comm.hpp"
-
-#include "assimp/Importer.hpp"
-#include "assimp/postprocess.h"
-#include "assimp/scene.h"
+#include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
