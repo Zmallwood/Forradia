@@ -20,6 +20,7 @@ target_precompile_headers(ForradiaEngine PUBLIC src_engine/std_afx.hpp)
 add_library(ForradiaTheme0WorldStruct src_theme_0_world_struct/world_struct.cpp)
 target_include_directories(ForradiaTheme0WorldStruct PRIVATE "src_comm")
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaComm)
+target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC src_theme_0_world_struct/std_afx.hpp)
 # ForradiaTheme0
 file(GLOB_RECURSE SOURCES "src_theme_0/*.cpp")
 add_executable(Forradia ${SOURCES})
