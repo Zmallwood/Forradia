@@ -438,19 +438,21 @@ namespace forr {
 
         auto ground{tl->ground()};
 
+        auto elev_h {0.1f};
+
         if (ground == hash("ground_water")) {
           auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
           ground = hash("ground_water_" + std::to_string(anim_idx));
         }
         _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
-                                   camera_pos, elevs);
+                                   camera_pos, elevs, elev_h);
 
         for (auto obj : objects) {
           auto obj_type{obj->type()};
           obj_type = hash("object_bush1");
           _<model_rend>().draw_model(obj_type, x_coord * rend_tl_sz,
                                      y_coord * rend_tl_sz, elevs.at(0),
-                                     camera_pos);
+                                     camera_pos, elev_h);
         }
       }
     }

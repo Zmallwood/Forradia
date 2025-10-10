@@ -68,7 +68,7 @@ namespace forr {
     ~ground_rend() { cleanup(); }
 
     void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                   pt_f camera_pos, vec<float> &elevs);
+                   pt_f camera_pos, vec<float> &elevs, float elev_h);
 
     void draw_tex(GLuint tex_id, vec<float> &verts, pt_f camera_pos);
 
@@ -87,8 +87,8 @@ namespace forr {
    public:
     model_rend() { init(); }
 
-    void draw_model(int model_name_hash, float x, float y, float z,
-                    pt_f camera_pos);
+    void draw_model(int model_name_hash, float x, float y, float elev,
+                    pt_f camera_pos, float elev_h);
 
    private:
     void init();

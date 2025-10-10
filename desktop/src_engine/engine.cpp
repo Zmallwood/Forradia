@@ -83,7 +83,7 @@ namespace forr {
   void sdl_device::clear_canv() const {
     SDL_Color clear_color{clear_color_.to_sdl_color()};
     glClearColor(1.f, 0.f, 1.f, 0.f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   }
 
   void sdl_device::present_canv() const { SDL_GL_SwapWindow(win_.get()); }
@@ -192,7 +192,7 @@ namespace forr {
         auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
         std::cout << "loaded: " << file_name << " hash: " << hash << std::endl;
-        auto model {load_single_model(file_path)};
+        auto model{load_single_model(file_path)};
         models_.insert({hash, model});
       }
     }
