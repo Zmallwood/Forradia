@@ -75,14 +75,11 @@ namespace forr {
     SDL_GL_SetSwapInterval(0);
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
-    auto screen_sz{get_screen_sz()};
-    // glViewport(0, 0, screen_sz.h, screen_sz.h);
-    //  glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
   }
 
   void sdl_device::clear_canv() const {
     SDL_Color clear_color{clear_color_.to_sdl_color()};
-    glClearColor(1.f, 0.f, 1.f, 0.f);
+    glClearColor(clear_color.r, clear_color.g, clear_color.b, clear_color.a);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   }
 
@@ -108,7 +105,6 @@ namespace forr {
     SDL_GetCurrentDisplayMode(0, &dm);
     auto w = dm.w;
     auto h = dm.h;
-
     return {w, h};
   }
 
@@ -179,7 +175,6 @@ namespace forr {
   }
 
   void model_bank::init() {
-    std::cout << "Loading models" << std::endl;
     auto base_path{str(SDL_GetBasePath())};
     auto imgs_path{base_path + k_rel_models_path.data()};
     if (!std::filesystem::exists(imgs_path))
@@ -191,7 +186,6 @@ namespace forr {
       if (file_ext(file_path) == "dae") {
         auto file_name{file_name_no_ext(file_path)};
         auto hash{forr::hash(file_name)};
-        std::cout << "loaded: " << file_name << " hash: " << hash << std::endl;
         auto model{load_single_model(file_path)};
         models_.insert({hash, model});
       }
@@ -225,12 +219,12 @@ namespace forr {
   }
 
   s_ptr<SDL_Texture> image_bank::load_single_img(s_ptr<SDL_Surface> surf) {
-    if (surf) {
-      auto rend{_<sdl_device>().rend().get()};
-      auto tex{s_ptr<SDL_Texture>(
-          SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
-      return tex;
-    }
+    //if (surf) {
+      //auto rend{_<sdl_device>().rend().get()};
+      //auto tex{s_ptr<SDL_Texture>(
+          //SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
+      //return tex;
+    //}
     return nullptr;
   }
 

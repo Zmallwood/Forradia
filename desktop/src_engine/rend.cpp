@@ -56,41 +56,9 @@ namespace forr {
     // draw_img(hash, x, y, w, h);
   }
 
-  void img_2d_rend::init() {
-    std::string vertex_shader_src{R"(
-      #version 330 core
-      layout (location = 0) in vec3 aPos;
-      layout (location = 1) in vec3 aColor;
-      layout (location = 2) in vec2 aTexCoord;
-
-      out vec3 ourColor;
-      out vec2 TexCoord;
-
-      void main()
-      {
-          gl_Position = vec4(aPos, 1.0);
-          gl_Position.x = gl_Position.x * 2.0 - 1.0;
-          gl_Position.y = gl_Position.y * -2.0 + 1.0;
-          ourColor = aColor;
-          TexCoord = aTexCoord;
-      }
-    )"};
-    std::string fragment_shader_src{R"(
-      #version 330 core
-      out vec4 FragColor;
-        
-      in vec3 ourColor;
-      in vec2 TexCoord;
-
-      uniform sampler2D ourTexture;
-
-      void main()
-      {
-          FragColor = texture(ourTexture, TexCoord);
-      }
-    )"};
+  void shader_program::init(str_view vert_src, str_view frag_src) {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
-    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
+    const GLchar *source{(const GLchar *)vert_src.data()};
     glShaderSource(vertex_shader, 1, &source, 0);
     glCompileShader(vertex_shader);
     GLint is_compiled{0};
@@ -104,7 +72,7 @@ namespace forr {
       return;
     }
     GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
-    source = (const GLchar *)fragment_shader_src.c_str();
+    source = (const GLchar *)frag_src.data();
     glShaderSource(fragment_shader, 1, &source, 0);
     glCompileShader(fragment_shader);
     glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
@@ -139,6 +107,45 @@ namespace forr {
     glDeleteShader(fragment_shader);
   }
 
+  void shader_program::cleanup() { glDeleteProgram(program_); }
+
+  void img_2d_rend::init() {
+    str vertex_shader_src{R"(
+      #version 330 core
+      layout (location = 0) in vec3 aPos;
+      layout (location = 1) in vec3 aColor;
+      layout (location = 2) in vec2 aTexCoord;
+
+      out vec3 ourColor;
+      out vec2 TexCoord;
+
+      void main()
+      {
+          gl_Position = vec4(aPos, 1.0);
+          gl_Position.x = gl_Position.x * 2.0 - 1.0;
+          gl_Position.y = gl_Position.y * -2.0 + 1.0;
+          ourColor = aColor;
+          TexCoord = aTexCoord;
+      }
+    )"};
+    str fragment_shader_src{R"(
+      #version 330 core
+      out vec4 FragColor;
+        
+      in vec3 ourColor;
+      in vec2 TexCoord;
+
+      uniform sampler2D ourTexture;
+
+      void main()
+      {
+          FragColor = texture(ourTexture, TexCoord);
+      }
+    )"};
+    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+                                                       fragment_shader_src);
+  }
+
   void img_2d_rend::cleanup() {
     for (auto &entry : imgs_) {
       for (auto &entry2 : entry.second) {
@@ -148,7 +155,6 @@ namespace forr {
       }
     }
     glUseProgram(0);
-    glDeleteProgram(program_);
   }
 
   void img_2d_rend::reset_counter() { counter_ = 0; }
@@ -164,7 +170,7 @@ namespace forr {
                              float h) {
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
     glViewport(0, 0, canv_sz.w, canv_sz.h);
-    glUseProgram(program_);
+    glUseProgram(shader_program_->program());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     float vertices[] = {x,     y,     0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
@@ -264,7 +270,7 @@ namespace forr {
   }
 
   void ground_rend::init() {
-    std::string vertex_shader_src{R"(
+    str vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -288,7 +294,7 @@ namespace forr {
           Normal = aNormal;
       }
     )"};
-    std::string fragment_shader_src{R"(
+    str fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -311,54 +317,8 @@ namespace forr {
           FragColor = vec4(result, objectColor.a);
       }
     )"};
-    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
-    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
-    glShaderSource(vertex_shader, 1, &source, 0);
-    glCompileShader(vertex_shader);
-    GLint is_compiled{0};
-    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
-    if (is_compiled == GL_FALSE) {
-      GLint max_length{0};
-      glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
-      glDeleteShader(vertex_shader);
-      return;
-    }
-    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
-    source = (const GLchar *)fragment_shader_src.c_str();
-    glShaderSource(fragment_shader, 1, &source, 0);
-    glCompileShader(fragment_shader);
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
-    if (is_compiled == GL_FALSE) {
-      GLint max_length{0};
-      glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetShaderInfoLog(fragment_shader, max_length, &max_length, &infoLog[0]);
-      glDeleteShader(fragment_shader);
-      glDeleteShader(vertex_shader);
-      return;
-    }
-    program_ = glCreateProgram();
-    glAttachShader(program_, vertex_shader);
-    glAttachShader(program_, fragment_shader);
-    glLinkProgram(program_);
-    GLint isLinked{0};
-    glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
-    if (isLinked == GL_FALSE) {
-      GLint max_length{0};
-      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
-      glDeleteProgram(program_);
-      glDeleteShader(vertex_shader);
-      glDeleteShader(fragment_shader);
-      return;
-    }
-    glDetachShader(program_, vertex_shader);
-    glDetachShader(program_, fragment_shader);
-    glDeleteShader(vertex_shader);
-    glDeleteShader(fragment_shader);
+    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+                                                       fragment_shader_src);
   }
 
   void ground_rend::cleanup() {
@@ -370,7 +330,6 @@ namespace forr {
       }
     }
     glUseProgram(0);
-    glDeleteProgram(program_);
   }
 
   void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
@@ -461,7 +420,7 @@ namespace forr {
     glEnable(GL_DEPTH_TEST);
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
     glViewport(0, 0, canv_sz.w, canv_sz.h);
-    glUseProgram(program_);
+    glUseProgram(shader_program_->program());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     auto vertices_no_normals = verts.data();
@@ -607,7 +566,7 @@ namespace forr {
     glm::mat4 projection_matrix{
         glm::perspective(90.0f, 4.0f / 3.0f, 0.1f, 100.0f)};
     glm::mat4 final_matrix{projection_matrix * camera_matrix * model_matrix};
-    GLuint matrix_id = glGetUniformLocation(program_, "MVP");
+    GLuint matrix_id = glGetUniformLocation(shader_program_->program(), "MVP");
     glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
@@ -630,7 +589,7 @@ namespace forr {
   }
 
   void model_rend::init() {
-    std::string vertex_shader_src{R"(
+    str vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aNormal;
@@ -653,7 +612,7 @@ namespace forr {
           gl_Position.y = gl_Position.y * -2.0 + 1.0;
       }
     )"};
-    std::string fragment_shader_src{R"(
+    str fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
 
@@ -691,54 +650,8 @@ namespace forr {
           FragColor = vec4(result, 1.0);
       }
     )"};
-    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
-    const GLchar *source{(const GLchar *)vertex_shader_src.c_str()};
-    glShaderSource(vertex_shader, 1, &source, 0);
-    glCompileShader(vertex_shader);
-    GLint is_compiled{0};
-    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
-    if (is_compiled == GL_FALSE) {
-      GLint max_length{0};
-      glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
-      glDeleteShader(vertex_shader);
-      return;
-    }
-    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
-    source = (const GLchar *)fragment_shader_src.c_str();
-    glShaderSource(fragment_shader, 1, &source, 0);
-    glCompileShader(fragment_shader);
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
-    if (is_compiled == GL_FALSE) {
-      GLint max_length{0};
-      glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetShaderInfoLog(fragment_shader, max_length, &max_length, &infoLog[0]);
-      glDeleteShader(fragment_shader);
-      glDeleteShader(vertex_shader);
-      return;
-    }
-    program_ = glCreateProgram();
-    glAttachShader(program_, vertex_shader);
-    glAttachShader(program_, fragment_shader);
-    glLinkProgram(program_);
-    GLint isLinked{0};
-    glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
-    if (isLinked == GL_FALSE) {
-      GLint max_length{0};
-      glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
-      std::vector<GLchar> infoLog(max_length);
-      glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
-      glDeleteProgram(program_);
-      glDeleteShader(vertex_shader);
-      glDeleteShader(fragment_shader);
-      return;
-    }
-    glDetachShader(program_, vertex_shader);
-    glDetachShader(program_, fragment_shader);
-    glDeleteShader(vertex_shader);
-    glDeleteShader(fragment_shader);
+    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+                                                       fragment_shader_src);
   }
 
   void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
@@ -752,7 +665,7 @@ namespace forr {
     auto &meshes{model->meshes_ref()};
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
     glViewport(0, 0, canv_sz.w, canv_sz.h);
-    glUseProgram(program_);
+    glUseProgram(shader_program_->program());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     vec<unsigned int> indices_vec;
@@ -843,12 +756,12 @@ namespace forr {
     // distance and far clipping distance.
     glm::mat4 projection_matrix =
         glm::perspective(90.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-    GLuint matrix_projection = glGetUniformLocation(program_, "projection");
+    GLuint matrix_projection = glGetUniformLocation(shader_program_->program(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
                        &projection_matrix[0][0]);
-    GLuint matrix_model = glGetUniformLocation(program_, "model");
+    GLuint matrix_model = glGetUniformLocation(shader_program_->program(), "model");
     glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
-    GLuint matrix_view = glGetUniformLocation(program_, "view");
+    GLuint matrix_view = glGetUniformLocation(shader_program_->program(), "view");
     glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);

@@ -14,6 +14,24 @@ namespace forr {
     void draw_img_auto_h(str_view img_name, float x, float y, float w) const;
   };
 
+  class shader_program {
+   public:
+    shader_program(str_view vert_src, str_view frag_src) {
+      init(vert_src, frag_src);
+    }
+
+    ~shader_program() { cleanup(); }
+
+    auto program() const { return program_; }
+
+   private:
+    void init(str_view vert_src, str_view frag_src);
+
+    void cleanup();
+
+    GLuint program_;
+  };
+
   class img_2d_rend {
    public:
     img_2d_rend() { init(); };
@@ -46,7 +64,7 @@ namespace forr {
       float h;
     };
 
-    GLuint program_;
+    s_ptr<shader_program> shader_program_;
     std::map<int, std::map<int, entry>> imgs_;
     int counter_{0};
   };
@@ -79,7 +97,7 @@ namespace forr {
 
     glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-    GLuint program_;
+    s_ptr<shader_program> shader_program_;
     std::map<float, std::map<float, entry>> imgs_;
   };
 
@@ -93,7 +111,7 @@ namespace forr {
    private:
     void init();
 
-    GLuint program_;
+    s_ptr<shader_program> shader_program_;
     std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
         models_;
     static constexpr float k_mdl_scale{0.08f};

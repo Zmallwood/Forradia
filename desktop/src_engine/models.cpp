@@ -38,10 +38,9 @@ namespace forr {
                            aiMatrix4x4 transformation) {
     glm::vec3 extents;
     glm::vec3 origin;
-    std::vector<vertex> vertices =
-        get_vertices(mesh, extents, origin, transformation);
-    std::vector<unsigned int> indices = get_indices(mesh);
-    std::vector<texture> textures = get_textures(mesh, scene);
+    vec<vertex> vertices = get_vertices(mesh, extents, origin, transformation);
+    vec<unsigned int> indices = get_indices(mesh);
+    vec<texture> textures = get_textures(mesh, scene);
     return forr::mesh(vertices, indices, textures, extents, origin,
                       mesh->mName);
   }
@@ -49,7 +48,7 @@ namespace forr {
   vec<vertex> model::get_vertices(aiMesh *mesh, glm::vec3 &extents,
                                   glm::vec3 &origin,
                                   aiMatrix4x4 transformation) {
-    std::vector<vertex> vertices;
+    vec<vertex> vertices;
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
       forr::vertex vertex;
       glm::vec3 vector3;
@@ -101,7 +100,7 @@ namespace forr {
   }
 
   vec<unsigned int> model::get_indices(aiMesh *mesh) {
-    std::vector<unsigned int> indices;
+    vec<unsigned int> indices;
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
       aiFace face = mesh->mFaces[i];
       for (unsigned int j = 0; j < face.mNumIndices; j++)
@@ -111,7 +110,7 @@ namespace forr {
   }
 
   vec<texture> model::get_textures(aiMesh *mesh, const aiScene *scene) {
-    std::vector<texture> textures;
+    vec<texture> textures;
     for (unsigned int i = 0; i < scene->mNumTextures; i++) {
       aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
       aiString path;
