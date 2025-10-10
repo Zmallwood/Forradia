@@ -758,17 +758,27 @@ namespace forr {
     vec<unsigned int> indices_vec;
     vec<glm::vec3> normals;
     vec<float> vertices_vec;
+    auto i{0};
     for (auto &mesh : meshes) {
+      // print_ln("num mesh vertices: " + std::to_string(mesh.vertices.size()));
+      //      if (i == meshes.size() - 1) {
+      //        std::cout << "i == " << i << "\n";
+      //        i++;
+      //      } else {
+      //        i++;
+      //        continue;
+      //      }
       for (auto &vertex : mesh.vertices) {
-        vertices_vec.push_back(x + vertex.position.x);
-        vertices_vec.push_back(y + vertex.position.y);
-        vertices_vec.push_back(elev * elev_h - vertex.position.z);
+        vertices_vec.push_back(x + vertex.position.x * k_mdl_scale);
+        vertices_vec.push_back(y + vertex.position.y * k_mdl_scale);
+        vertices_vec.push_back(elev * elev_h + vertex.position.z * k_mdl_scale);
         vertices_vec.push_back(vertex.normal.x);
         vertices_vec.push_back(vertex.normal.y);
         vertices_vec.push_back(vertex.normal.z);
       }
       for (auto &index : mesh.indices)
-        indices_vec.push_back(index);
+        indices_vec.push_back(i + mesh.indices[index]);
+      i += mesh.vertices.size();
     }
     auto vertices_count{vertices_vec.size() / 6};
     auto indices_count{indices_vec.size()};
@@ -820,10 +830,10 @@ namespace forr {
     if (need_fill_buffers) {
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
       glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indices_count,
-                   indices, GL_DYNAMIC_DRAW);
+                   indices, GL_STATIC_DRAW);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 6 * vertices_count,
-                   vertices, GL_DYNAMIC_DRAW);
+                   vertices, GL_STATIC_DRAW);
       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 6,
                             0);
       glEnableVertexAttribArray(0);

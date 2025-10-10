@@ -96,6 +96,7 @@ namespace forr {
     GLuint program_;
     std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
         models_;
+    static constexpr float k_mdl_scale{0.05f};
   };
 
   enum struct font_szs { _20 = 20, _26 = 26 };
