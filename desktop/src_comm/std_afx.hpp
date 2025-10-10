@@ -28,7 +28,3 @@
 #include <SDL2/SDL_ttf.h>
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
-
-#include "assimp/Importer.hpp"
-#include "assimp/scene.h"
-#include "assimp/postprocess.h"
