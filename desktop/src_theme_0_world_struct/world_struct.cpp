@@ -9,7 +9,6 @@ namespace forr {
 
   void npc::init() {
     gen_name();
-
     ticks_next_spontaneous_speech_ = ticks() + rand_int(300 * k_one_sec_millis);
   }
 
@@ -24,21 +23,18 @@ namespace forr {
     char c4{consonants.at(rand_int(consonants.size()))};
     char c5{consonants.at(rand_int(consonants.size()))};
     char c6{vowels.at(rand_int(vowels.size()))};
-
     name_ = str() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
   }
 
   void tree_object::init(str_view obj_type_name) {
     if (obj_type_name != "object_fir_tree" &&
-        obj_type_name != "object_birch_tree") {
+        obj_type_name != "object_birch_tree")
       return;
-    }
     int num_trunk_parts;
-    if (obj_type_name == "object_fir_tree") {
+    if (obj_type_name == "object_fir_tree")
       num_trunk_parts = 55 + rand_int(44);
-    } else if (obj_type_name == "object_birch_tree") {
+    else if (obj_type_name == "object_birch_tree")
       num_trunk_parts = 25 + rand_int(14);
-    }
     w_factor_ *= (rand_int(5) + 1) / 2.0f + 1.0f;
     auto offs_x{0.0f};
     for (auto i = 0; i < num_trunk_parts; i++) {
@@ -86,18 +82,16 @@ namespace forr {
     sz.h *= world_scaling;
     for (auto x = 0; x < sz.w; x++) {
       tiles_.push_back(vec<std::shared_ptr<tile>>());
-      for (auto y = 0; y < sz.h; y++) {
+      for (auto y = 0; y < sz.h; y++)
         tiles_[x].push_back(std::make_shared<tile>());
-      }
     }
   }
 
   sz world_area::get_sz() const {
     auto w{c_int(tiles_.size())};
     auto h{0};
-    if (w) {
+    if (w)
       h = tiles_.at(0).size();
-    }
     return {w, h};
   }
 
@@ -111,9 +105,8 @@ namespace forr {
   }
 
   s_ptr<tile> world_area::get_tl(int x, int y) const {
-    if (is_valid_coord(x, y)) {
+    if (is_valid_coord(x, y))
       return tiles_.at(x).at(y);
-    }
     return nullptr;
   }
 
