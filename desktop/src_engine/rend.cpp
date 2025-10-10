@@ -206,7 +206,7 @@ namespace forr {
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-      Entry entry;
+      img_2d_rend::entry entry;
       entry.vao = obj_vao;
       entry.ibo = obj_ibo;
       entry.vbo = obj_vbo;
@@ -567,7 +567,7 @@ namespace forr {
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-      Entry entry;
+      forr::entry entry;
       entry.vao = obj_vao;
       entry.ibo = obj_ibo;
       entry.vbo = obj_vbo;
@@ -601,7 +601,7 @@ namespace forr {
     glm::mat4 camera_matrix =
         glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f),
                     glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
-                    glm::vec3(0.0f, -1.0f, 0.0f));
+                    glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes in field of view, aspect ratio,
     // near clipping distance and far clipping distance.
     glm::mat4 projection_matrix{
@@ -760,14 +760,6 @@ namespace forr {
     vec<float> vertices_vec;
     auto i{0};
     for (auto &mesh : meshes) {
-      // print_ln("num mesh vertices: " + std::to_string(mesh.vertices.size()));
-      //      if (i == meshes.size() - 1) {
-      //        std::cout << "i == " << i << "\n";
-      //        i++;
-      //      } else {
-      //        i++;
-      //        continue;
-      //      }
       for (auto &vertex : mesh.vertices) {
         vertices_vec.push_back(x + vertex.position.x * k_mdl_scale);
         vertices_vec.push_back(y + vertex.position.y * k_mdl_scale);
@@ -817,7 +809,7 @@ namespace forr {
       glBindVertexArray(obj_vao);
       glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
       glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-      Entry entry;
+      forr::entry entry;
       entry.vao = obj_vao;
       entry.ibo = obj_ibo;
       entry.vbo = obj_vbo;
@@ -846,7 +838,7 @@ namespace forr {
     glm::mat4 camera_matrix =
         glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y, 3.0f),
                     glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
-                    glm::vec3(0.0f, -1.0f, 0.0f));
+                    glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
     glm::mat4 projection_matrix =

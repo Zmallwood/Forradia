@@ -35,7 +35,7 @@ namespace forr {
 
     void cleanup();
 
-    class Entry {
+    class entry {
      public:
       GLuint vao;
       GLuint ibo;
@@ -47,11 +47,11 @@ namespace forr {
     };
 
     GLuint program_;
-    std::map<int, std::map<int, Entry>> imgs_;
+    std::map<int, std::map<int, entry>> imgs_;
     int counter_{0};
   };
 
-  class Entry {
+  class entry {
    public:
     GLuint vao;
     GLuint ibo;
@@ -80,7 +80,7 @@ namespace forr {
     glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
     GLuint program_;
-    std::map<float, std::map<float, Entry>> imgs_;
+    std::map<float, std::map<float, entry>> imgs_;
   };
 
   class model_rend {
@@ -94,9 +94,9 @@ namespace forr {
     void init();
 
     GLuint program_;
-    std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
+    std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
         models_;
-    static constexpr float k_mdl_scale{0.05f};
+    static constexpr float k_mdl_scale{0.08f};
   };
 
   enum struct font_szs { _20 = 20, _26 = 26 };
