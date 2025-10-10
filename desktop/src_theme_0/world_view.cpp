@@ -413,9 +413,7 @@ namespace forr {
         auto rend_tl_sz{0.5f};
         pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
                         (wa_sz.h - player_pos.y) * rend_tl_sz};
-
         vec<float> elevs;
-
         auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
         auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
         auto elev_se{tl_se ? tl_se->elev() : 0.0f};
@@ -425,7 +423,6 @@ namespace forr {
         auto elev_sese{tl_sese ? tl_sese->elev() : 0.0f};
         auto elev_ses{tl_ses ? tl_ses->elev() : 0.0f};
         auto elev_ss{tl_ss ? tl_ss->elev() : 0.0f};
-
         elevs.push_back(elev_nw);
         elevs.push_back(elev_ne);
         elevs.push_back(elev_nee);
@@ -435,18 +432,14 @@ namespace forr {
         elevs.push_back(elev_ss);
         elevs.push_back(elev_ses);
         elevs.push_back(elev_sese);
-
         auto ground{tl->ground()};
-
         auto elev_h {0.1f};
-
         if (ground == hash("ground_water")) {
           auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
           ground = hash("ground_water_" + std::to_string(anim_idx));
         }
         _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
                                    camera_pos, elevs, elev_h);
-
         for (auto obj : objects) {
           auto obj_type{obj->type()};
           obj_type = hash("object_bush1");
