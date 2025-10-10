@@ -204,9 +204,8 @@ namespace forr {
                                   b.y + 0.01f + k_line_h * (i + 1), b.w,
                                   k_line_h}};
       if (_<mouse_inp>().left_btn_ref().been_fired_no_pick_res()) {
-        if (menu_entry_rect.contains(mouse_pos)) {
+        if (menu_entry_rect.contains(mouse_pos))
           entry.action()();
-        }
         set_visible(false);
       }
       ++i;
