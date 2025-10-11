@@ -768,21 +768,24 @@ namespace forr {
     // distance and far clipping distance.
     glm::mat4 projection_matrix =
         glm::perspective(90.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-    GLuint matrix_projection = glGetUniformLocation(shader_program_->program(), "projection");
+    GLuint matrix_projection =
+        glGetUniformLocation(shader_program_->program(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
                        &projection_matrix[0][0]);
-    GLuint matrix_model = glGetUniformLocation(shader_program_->program(), "model");
+    GLuint matrix_model =
+        glGetUniformLocation(shader_program_->program(), "model");
     glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
-    GLuint matrix_view = glGetUniformLocation(shader_program_->program(), "view");
+    GLuint matrix_view =
+        glGetUniformLocation(shader_program_->program(), "view");
     glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
     glBindVertexArray(obj_vao);
     glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-    //std::cout << meshes.at(0).textures.size() << std::endl;
-    auto tex_name {meshes.at(0).textures.at(0).path_};
-    //std::cout << tex_name << std::endl;
-    auto tex_name_hash {hash(tex_name)};
-    auto tex_id {_<image_bank>().get_tex(tex_name_hash)};
+    // std::cout << meshes.at(0).textures.size() << std::endl;
+    auto tex_name{meshes.at(0).textures.at(0).path_};
+    // std::cout << tex_name << std::endl;
+    auto tex_name_hash{hash(tex_name)};
+    auto tex_id{_<image_bank>().get_tex(tex_name_hash)};
     glBindTexture(GL_TEXTURE_2D, tex_id);
     glDrawElements(GL_TRIANGLE_FAN, vertices_count, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);

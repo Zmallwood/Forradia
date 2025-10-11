@@ -366,6 +366,10 @@ namespace forr {
     auto player_elev{w_area->get_tl(player_pos)->elev()};
     auto extra_rows{8};
     auto wa_sz{w_area->get_sz()};
+    auto elev_h{0.1f};
+    auto rend_tl_sz{0.5f};
+    pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
+                    (wa_sz.h - player_pos.y) * rend_tl_sz};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
@@ -409,10 +413,6 @@ namespace forr {
         y_canv += player_elev * tl_sz.h / 2;
         w_canv = tl_sz.w;
         h_canv = ceil(tl_sz.h, 2.5f);
-
-        auto rend_tl_sz{0.5f};
-        pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
-                        (wa_sz.h - player_pos.y) * rend_tl_sz};
         vec<float> elevs;
         auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
         auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
@@ -433,7 +433,6 @@ namespace forr {
         elevs.push_back(elev_ses);
         elevs.push_back(elev_sese);
         auto ground{tl->ground()};
-        auto elev_h {0.1f};
         if (ground == hash("ground_water")) {
           auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
           ground = hash("ground_water_" + std::to_string(anim_idx));
@@ -442,12 +441,14 @@ namespace forr {
                                    camera_pos, elevs, elev_h);
         for (auto obj : objects) {
           auto obj_type{obj->type()};
-          obj_type = hash("object_bush1");
-          _<model_rend>().draw_model(obj_type, x_coord * rend_tl_sz,
-                                     y_coord * rend_tl_sz, elevs.at(0),
-                                     camera_pos, elev_h);
+          if (obj_type == hash("object_bush1"))
+            _<model_rend>().draw_model(obj_type, x_coord * rend_tl_sz,
+                                       y_coord * rend_tl_sz, elevs.at(0),
+                                       camera_pos, elev_h);
         }
       }
     }
+    _<model_rend>().draw_model(hash("player"), camera_pos.x, camera_pos.y,
+                               player_elev, camera_pos, elev_h);
   }
 }
