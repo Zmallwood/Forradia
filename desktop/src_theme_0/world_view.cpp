@@ -436,6 +436,7 @@ namespace forr {
         elevs.push_back(elev_ss);
         elevs.push_back(elev_ses);
         elevs.push_back(elev_sese);
+        auto elev_avg{(elev_nw + elev_ne + elev_sw + elev_se) / 4};
         auto ground{tl->ground()};
         if (ground == hash("ground_water")) {
           auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
@@ -446,13 +447,19 @@ namespace forr {
         for (auto obj : objects) {
           auto obj_type{obj->type()};
           if (obj_type == hash("object_bush1"))
-            _<model_rend>().draw_model(obj_type, x_coord * rend_tl_sz,
-                                       y_coord * rend_tl_sz, elevs.at(0),
-                                       camera_pos, elev_h);
+            _<model_rend>().draw_model(obj_type,
+                                       x_coord * rend_tl_sz + rend_tl_sz / 2,
+                                       y_coord * rend_tl_sz + rend_tl_sz / 2,
+                                       elev_avg, camera_pos, elev_h);
         }
+        if (x_coord == wa_sz.w - player_pos.x &&
+            y_coord == wa_sz.h - player_pos.y)
+          _<model_rend>().draw_model(
+              hash("player"),
+              (wa_sz.w - player_pos.x) * rend_tl_sz + rend_tl_sz / 2,
+              (wa_sz.h - player_pos.y) * rend_tl_sz + rend_tl_sz / 2,
+              player_elev, camera_pos, elev_h);
       }
     }
-    _<model_rend>().draw_model(hash("player"), camera_pos.x, camera_pos.y,
-                               player_elev, camera_pos, elev_h);
   }
 }
