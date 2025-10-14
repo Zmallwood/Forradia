@@ -40,29 +40,6 @@ namespace forr {
     py::class_<gui_button, s_ptr<gui_button>, gui_comp>(m, "gui_button");
     py::class_<gui_fps_panel, s_ptr<gui_fps_panel>, gui_comp>(m,
                                                               "gui_fps_panel");
-    m.def("ticks", [] { return ticks(); });
-    m.def("conv_w_to_h",
-          [](float w) { return conv_w_to_h(w, _<sdl_device>().win()); });
-    m.def("make_shared_fps_panel",
-          [] { return std::make_shared<gui_fps_panel>(); });
-    m.def("make_shared_gui_label", [](float x, float y, float w, float h,
-                                      str_view text, bool cent_align) {
-      return std::make_shared<gui_label>(x, y, w, h, text, cent_align,
-                                         colors::wheat_transp);
-    });
-    m.def("make_shared_gui_panel", [](float x, float y, float w, float h) {
-      return std::make_shared<gui_panel>(x, y, w, h);
-    });
-    m.def("make_shared_gui_button", [](float x, float y, float w, float h,
-                                       str_view text, py::function action) {
-      return std::make_shared<gui_button>(x, y, w, h, text, action);
-    });
-    m.def("make_shared_gui_button",
-          [](float x, float y, float w, float h, str_view text,
-             py::function action, str_view bg_img, str_view hovered_bg_img) {
-            return std::make_shared<gui_button>(x, y, w, h, text, action,
-                                                bg_img, hovered_bg_img);
-          });
     py::class_<i_scene>(m, "i_scene")
         .def(py::init<>())
         .def("init", &i_scene::init)
@@ -140,6 +117,29 @@ namespace forr {
     py::class_<world_view>(m, "world_view")
         .def("render", &world_view::render)
         .def("render_new", &world_view::render_new);
+    m.def("ticks", [] { return ticks(); });
+    m.def("conv_w_to_h",
+          [](float w) { return conv_w_to_h(w, _<sdl_device>().win()); });
+    m.def("make_shared_fps_panel",
+          [] { return std::make_shared<gui_fps_panel>(); });
+    m.def("make_shared_gui_label", [](float x, float y, float w, float h,
+                                      str_view text, bool cent_align) {
+      return std::make_shared<gui_label>(x, y, w, h, text, cent_align,
+                                         colors::wheat_transp);
+    });
+    m.def("make_shared_gui_panel", [](float x, float y, float w, float h) {
+      return std::make_shared<gui_panel>(x, y, w, h);
+    });
+    m.def("make_shared_gui_button", [](float x, float y, float w, float h,
+                                       str_view text, py::function action) {
+      return std::make_shared<gui_button>(x, y, w, h, text, action);
+    });
+    m.def("make_shared_gui_button",
+          [](float x, float y, float w, float h, str_view text,
+             py::function action, str_view bg_img, str_view hovered_bg_img) {
+            return std::make_shared<gui_button>(x, y, w, h, text, action,
+                                                bg_img, hovered_bg_img);
+          });
     m.def("get_gui_interact_menu_ptr",
           []() -> s_ptr<gui_interact_menu> { return __<gui_interact_menu>(); });
     m.def("get_gui_player_body_win_ptr", []() -> s_ptr<gui_player_body_win> {

@@ -32,19 +32,24 @@ namespace forr {
     auto right_press{_<kb_inp>().key_pressed(SDLK_RIGHT)};
     auto down_press{_<kb_inp>().key_pressed(SDLK_DOWN)};
     auto left_press{_<kb_inp>().key_pressed(SDLK_LEFT)};
+    auto w_press{_<kb_inp>().key_pressed(SDLK_w)};
+    auto a_press{_<kb_inp>().key_pressed(SDLK_a)};
+    auto s_press{_<kb_inp>().key_pressed(SDLK_s)};
+    auto d_press{_<kb_inp>().key_pressed(SDLK_d)};
     if (up_press || right_press || down_press || left_press)
       _<player>().set_dest({-1, -1});
     auto now{ticks()};
     if (now >= _<player>().ticks_last_move() +
                    inv_movem_spd(_<player>().movem_spd()) &&
-        (up_press || right_press || down_press || left_press)) {
-      if (up_press)
+        (up_press || right_press || down_press || left_press || w_press ||
+         a_press || s_press || d_press)) {
+      if (up_press || w_press)
         _<player>().move_n();
-      if (right_press)
+      if (right_press || d_press)
         _<player>().move_e();
-      if (down_press)
+      if (down_press || s_press)
         _<player>().move_s();
-      if (left_press)
+      if (left_press || a_press)
         _<player>().move_w();
       _<player>().set_ticks_last_move(now);
     }
