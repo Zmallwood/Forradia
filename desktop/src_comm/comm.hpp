@@ -147,6 +147,16 @@ namespace forr {
   };
 
   /**
+   * Point in 3D space using dimensions of float type.
+   */
+  class pt3_f {
+    public:
+      float x{0.0f}; ///< The x dimension.
+      float y{0.0f}; ///< The y dimension.
+      float z{0.0f}; ///< The z dimension.
+  };
+
+  /**
    * Size in 2D space, with the dimensions as int values.
    */
   class sz {

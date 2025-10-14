@@ -365,12 +365,13 @@ namespace forr {
     auto w_area{_<world>().curr_w_area()};
     auto extra_rows{8};
     auto wa_sz{w_area->get_sz()};
+    auto elev_h{0.1f};
     auto player_elev{
         w_area->get_tl(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)->elev()};
-    auto elev_h{0.1f};
     auto rend_tl_sz{0.5f};
-    pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
-                    (wa_sz.h - player_pos.y) * rend_tl_sz};
+    pt3_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
+                    (wa_sz.h - player_pos.y) * rend_tl_sz,
+                  player_elev*elev_h};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};

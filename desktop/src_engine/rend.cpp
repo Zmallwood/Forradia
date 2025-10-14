@@ -333,7 +333,7 @@ namespace forr {
   }
 
   void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
-                              float tl_sz, pt_f camera_pos, vec<float> &elevs,
+                              float tl_sz, pt3_f camera_pos, vec<float> &elevs,
                               float elev_h) {
     auto tex_id{_<image_bank>().get_tex(img_name_hash)};
     auto x{tl_sz * x_coord};
@@ -416,7 +416,7 @@ namespace forr {
   }
 
   void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts,
-                             pt_f camera_pos) {
+                             pt3_f camera_pos) {
     glEnable(GL_DEPTH_TEST);
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
     glViewport(0, 0, canv_sz.w, canv_sz.h);
@@ -558,8 +558,8 @@ namespace forr {
     glm::mat4 model_matrix = glm::mat4(1.0f);
     // lookAt function takes in camera position, target, and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, 3.0f),
-                    glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 3.0f),
+                    glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
                     glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes in field of view, aspect ratio,
     // near clipping distance and far clipping distance.
@@ -662,7 +662,7 @@ namespace forr {
   }
 
   void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
-                              pt_f camera_pos, float elev_h) {
+                              pt3_f camera_pos, float elev_h) {
     glEnable(GL_DEPTH_TEST);
     auto model{_<model_bank>().get_model(model_name_hash)};
     if (!model) {
@@ -761,8 +761,8 @@ namespace forr {
     glm::mat4 model_matrix = glm::mat4(1.0f);
     // lookAt function takes camera position, camera target and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, 3.0f),
-                    glm::vec3(camera_pos.x, camera_pos.y, 0.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 3.0f),
+                    glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
                     glm::vec3(0.0f, -2.0f, 0.0f));
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
