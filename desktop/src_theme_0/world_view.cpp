@@ -456,9 +456,9 @@ namespace forr {
             y_coord == wa_sz.h - player_pos.y)
           _<model_rend>().draw_model(
               hash("player"),
-              (wa_sz.w - player_pos.x) * rend_tl_sz + rend_tl_sz / 2,
-              (wa_sz.h - player_pos.y) * rend_tl_sz + rend_tl_sz / 2,
-              player_elev, camera_pos, elev_h);
+              x_coord * rend_tl_sz + rend_tl_sz / 2,
+              y_coord * rend_tl_sz + rend_tl_sz / 2,
+              elev_avg, camera_pos, elev_h);
       }
     }
   }
