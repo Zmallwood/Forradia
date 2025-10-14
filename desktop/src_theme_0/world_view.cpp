@@ -363,13 +363,14 @@ namespace forr {
     auto tl_sz{calc_tl_sz()};
     auto player_pos{_<player>().pos()};
     auto w_area{_<world>().curr_w_area()};
-    auto player_elev{w_area->get_tl(player_pos)->elev()};
     auto extra_rows{8};
     auto wa_sz{w_area->get_sz()};
+    auto player_elev{
+        w_area->get_tl(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)->elev()};
     auto elev_h{0.1f};
     auto rend_tl_sz{0.5f};
-    pt_f camera_pos{player_pos.x * rend_tl_sz,
-                    player_pos.y * rend_tl_sz};
+    pt_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
+                    (wa_sz.h - player_pos.y) * rend_tl_sz};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
@@ -377,8 +378,8 @@ namespace forr {
         tl_ses, tl_ss;
     for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++) {
       for (auto x = 0; x < grid_sz.w; x++) {
-        x_coord = player_pos.x - (grid_sz.w - 1) / 2 + x;
-        y_coord = player_pos.y - (grid_sz.h - 1) / 2 + y;
+        x_coord = (wa_sz.w - player_pos.x) - (grid_sz.w - 1) / 2 + x;
+        y_coord = (wa_sz.h - player_pos.y) - (grid_sz.h - 1) / 2 + y;
         if (!w_area->is_valid_coord(x_coord, y_coord))
           continue;
         tl = w_area->get_tl(x_coord, y_coord);
@@ -409,11 +410,11 @@ namespace forr {
         tl_ss = w_area->get_tl(coord_ss);
         ground = tl ? tl->ground() : 0;
         x_canv = x * tl_sz.w;
-        //y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
-        //y_canv += player_elev * tl_sz.h / 2;
+        // y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
+        // y_canv += player_elev * tl_sz.h / 2;
         y_canv = y * tl_sz.h;
-        //w_canv = -tl_sz.w;
-        //h_canv = -ceil(tl_sz.h, 2.5f);
+        // w_canv = -tl_sz.w;
+        // h_canv = -ceil(tl_sz.h, 2.5f);
         w_canv = tl_sz.w;
         h_canv = ceil(tl_sz.h, 2.5f);
         vec<float> elevs;
