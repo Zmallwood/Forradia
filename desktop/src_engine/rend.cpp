@@ -683,7 +683,7 @@ namespace forr {
       for (auto &vertex : mesh.vertices) {
         vertices_vec.push_back(x + vertex.position.x * k_mdl_scale);
         vertices_vec.push_back(y + vertex.position.y * k_mdl_scale);
-        vertices_vec.push_back(elev * elev_h + vertex.position.z * k_mdl_scale);
+        vertices_vec.push_back(-elev * elev_h + vertex.position.z * k_mdl_scale);
         vertices_vec.push_back(vertex.normal.x);
         vertices_vec.push_back(vertex.normal.y);
         vertices_vec.push_back(vertex.normal.z);
