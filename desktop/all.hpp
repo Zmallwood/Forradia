@@ -1,9 +1,12 @@
+
+// virtualInclude 'src_comm/comm.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #define _NS_START_ namespace forr {
-#define _NS_END_ }
+#define _NS_END_}
 
 #pragma once
 #include <functional>
@@ -355,3 +358,8 @@ _NS_START_
    */
   Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
 _NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+// virtualInclude 'src_engine/engine.hpp'
+

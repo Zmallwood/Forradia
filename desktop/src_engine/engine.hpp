@@ -4,7 +4,7 @@
  */
 #pragma once
 
-namespace forr {
+_NS_START_
   class engine {
    public:
     void init(str_view game_win_title, color clear_color) const;
@@ -178,4 +178,4 @@ namespace forr {
     std::map<int, i_scene &> scenes_;
     int curr_scene_{0};
   };
-}
+_NS_END_
