@@ -419,7 +419,7 @@ namespace forr {
                              pt3_f camera_pos) {
     glEnable(GL_DEPTH_TEST);
     auto canv_sz{get_canv_sz(_<sdl_device>().win())};
-    glViewport(0, 0, canv_sz.w, canv_sz.h);
+    glViewport(0, 0, canv_sz.w*1, canv_sz.h);
     glUseProgram(shader_program_->program());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -556,16 +556,20 @@ namespace forr {
       glEnableVertexAttribArray(3);
     }
     glm::mat4 model_matrix = glm::mat4(1.0f);
+    model_matrix = glm::translate(model_matrix, glm::vec3(-0.5f, -0.5f, 0.0f));
+    //auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
     // lookAt function takes in camera position, target, and up vector.
+    // lookAt function takes camera position, camera target and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 3.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 2.5f),
                     glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
-                    glm::vec3(0.0f, -2.0f, 0.0f));
-    // perspective function takes in field of view, aspect ratio,
-    // near clipping distance and far clipping distance.
-    glm::mat4 projection_matrix{
-        glm::perspective(90.0f, 4.0f / 3.0f, 0.1f, 100.0f)};
-    glm::mat4 final_matrix{projection_matrix * camera_matrix * model_matrix};
+                    glm::vec3(0.0f, 0.0f, -1.0f));
+    // perspective function takes field of view, aspect ratio, near clipping
+    // distance and far clipping distance.
+    auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+    glm::mat4 projection_matrix =
+        glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
+    glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
     GLuint matrix_id = glGetUniformLocation(shader_program_->program(), "MVP");
     glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
     glBindVertexArray(obj_vao);
@@ -761,13 +765,14 @@ namespace forr {
     glm::mat4 model_matrix = glm::mat4(1.0f);
     // lookAt function takes camera position, camera target and up vector.
     glm::mat4 camera_matrix =
-        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 3.0f),
+        glm::lookAt(glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 2.5f),
                     glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
-                    glm::vec3(0.0f, -2.0f, 0.0f));
+                    glm::vec3(0.0f, 0.0f, -1.0f));
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
+    auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
     glm::mat4 projection_matrix =
-        glm::perspective(90.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+        glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
     GLuint matrix_projection =
         glGetUniformLocation(shader_program_->program(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,

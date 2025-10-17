@@ -8,6 +8,8 @@
 namespace forr {
   sz_f calc_tl_sz();
 
+  float calc_tl_sz_new();
+
   sz calc_grid_sz();
 
   enum class body_part_types { none, overall_body, right_arm, left_arm, legs };

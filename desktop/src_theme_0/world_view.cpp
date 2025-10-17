@@ -370,8 +370,8 @@ namespace forr {
         w_area->get_tl(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)->elev()};
     auto rend_tl_sz{0.5f};
     pt3_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
-                    (wa_sz.h - player_pos.y) * rend_tl_sz,
-                  player_elev*elev_h};
+                     (wa_sz.h - player_pos.y) * rend_tl_sz,
+                     player_elev * elev_h};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
     static int ground{0};
@@ -443,8 +443,7 @@ namespace forr {
           auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
           ground = hash("ground_water_" + std::to_string(anim_idx));
         }
-        _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
-                                   camera_pos, elevs, elev_h);
+
         for (auto obj : objects) {
           auto obj_type{obj->type()};
           if (obj_type == hash("object_bush1"))
@@ -454,12 +453,17 @@ namespace forr {
                                        elev_avg, camera_pos, elev_h);
         }
         if (x_coord == wa_sz.w - player_pos.x &&
-            y_coord == wa_sz.h - player_pos.y)
-          _<model_rend>().draw_model(
-              hash("player"),
-              x_coord * rend_tl_sz + rend_tl_sz / 2,
-              y_coord * rend_tl_sz + rend_tl_sz / 2,
-              elev_avg, camera_pos, elev_h);
+            y_coord == wa_sz.h - player_pos.y) {
+          _<model_rend>().draw_model(hash("box_test"),
+                                     x_coord * rend_tl_sz + rend_tl_sz / 2,
+                                     y_coord * rend_tl_sz + rend_tl_sz / 2,
+                                     elev_avg, camera_pos, elev_h);
+          _<ground_rend>().draw_tile(hash("ground_dirt"), x_coord, y_coord,
+                                     rend_tl_sz, camera_pos, elevs, elev_h);
+        } else {
+          _<ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
+                                     camera_pos, elevs, elev_h);
+        }
       }
     }
   }

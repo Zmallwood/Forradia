@@ -10,7 +10,7 @@ namespace forr {
     const aiScene *scene = importer.ReadFile(
         file_path.data(),
         aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
-            aiProcess_GenBoundingBoxes);
+            aiProcess_GenBoundingBoxes | aiProcess_FixInfacingNormals);
     if (!scene || !scene->mRootNode) {
       std::cout << "ERROR::ASSIMP Could not load model: "
                 << importer.GetErrorString() << std::endl;
