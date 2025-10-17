@@ -4,70 +4,54 @@
  */
 #pragma once
 
-namespace forr {
-  class img_rend {
-   public:
-    void draw_img(str_view img_name, float x, float y, float w, float h) const;
+_NS_START_
+class img_rend {
+ public:
+  void draw_img(str_view img_name, float x, float y, float w, float h) const;
 
-    void draw_img(int img_name_hash, float x, float y, float w, float h) const;
+  void draw_img(int img_name_hash, float x, float y, float w, float h) const;
 
-    void draw_img_auto_h(str_view img_name, float x, float y, float w) const;
-  };
+  void draw_img_auto_h(str_view img_name, float x, float y, float w) const;
+};
 
-  class shader_program {
-   public:
-    shader_program(str_view vert_src, str_view frag_src) {
-      init(vert_src, frag_src);
-    }
+class shader_program {
+ public:
+  shader_program(str_view vert_src, str_view frag_src) {
+    init(vert_src, frag_src);
+  }
 
-    ~shader_program() { cleanup(); }
+  ~shader_program() { cleanup(); }
 
-    auto program() const { return program_; }
+  auto program() const { return program_; }
 
-   private:
-    void init(str_view vert_src, str_view frag_src);
+ private:
+  void init(str_view vert_src, str_view frag_src);
 
-    void cleanup();
+  void cleanup();
 
-    GLuint program_;
-  };
+  GLuint program_;
+};
 
-  class img_2d_rend {
-   public:
-    img_2d_rend() { init(); };
+class img_2d_rend {
+ public:
+  img_2d_rend() { init(); };
 
-    ~img_2d_rend() { cleanup(); }
+  ~img_2d_rend() { cleanup(); }
 
-    void reset_counter();
+  void reset_counter();
 
-    void draw_img(str_view img_name, float x, float y, float w, float h);
+  void draw_img(str_view img_name, float x, float y, float w, float h);
 
-    void draw_img(int img_name_hash, float x, float y, float w, float h);
+  void draw_img(int img_name_hash, float x, float y, float w, float h);
 
-    void draw_tex(GLuint tex_id, float x, float y, float w, float h);
+  void draw_tex(GLuint tex_id, float x, float y, float w, float h);
 
-    void draw_img_auto_h(str_view img_name, float x, float y, float w);
+  void draw_img_auto_h(str_view img_name, float x, float y, float w);
 
-   private:
-    void init();
+ private:
+  void init();
 
-    void cleanup();
-
-    class entry {
-     public:
-      GLuint vao;
-      GLuint ibo;
-      GLuint vbo;
-      float x;
-      float y;
-      float w;
-      float h;
-    };
-
-    s_ptr<shader_program> shader_program_;
-    std::map<int, std::map<int, entry>> imgs_;
-    int counter_{0};
-  };
+  void cleanup();
 
   class entry {
    public:
@@ -76,64 +60,80 @@ namespace forr {
     GLuint vbo;
     float x;
     float y;
-    float z;
+    float w;
+    float h;
   };
 
-  class ground_rend {
-   public:
-    ground_rend() { init(); };
+  s_ptr<shader_program> shader_program_;
+  std::map<int, std::map<int, entry>> imgs_;
+  int counter_{0};
+};
 
-    ~ground_rend() { cleanup(); }
+class entry {
+ public:
+  GLuint vao;
+  GLuint ibo;
+  GLuint vbo;
+  float x;
+  float y;
+  float z;
+};
 
-    void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                   pt3_f camera_pos, vec<float> &elevs, float elev_h);
+class ground_rend {
+ public:
+  ground_rend() { init(); };
 
-    void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
+  ~ground_rend() { cleanup(); }
 
-   private:
-    void init();
+  void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
+                 pt3_f camera_pos, vec<float> &elevs, float elev_h);
 
-    void cleanup();
+  void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
 
-    glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
+ private:
+  void init();
 
-    s_ptr<shader_program> shader_program_;
-    std::map<float, std::map<float, entry>> imgs_;
-  };
+  void cleanup();
 
-  class model_rend {
-   public:
-    model_rend() { init(); }
+  glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-    void draw_model(int model_name_hash, float x, float y, float elev,
-                    pt3_f camera_pos, float elev_h);
+  s_ptr<shader_program> shader_program_;
+  std::map<float, std::map<float, entry>> imgs_;
+};
 
-   private:
-    void init();
+class model_rend {
+ public:
+  model_rend() { init(); }
 
-    s_ptr<shader_program> shader_program_;
-    std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
-        models_;
-    static constexpr float k_mdl_scale{0.08f};
-  };
+  void draw_model(int model_name_hash, float x, float y, float elev,
+                  pt3_f camera_pos, float elev_h);
 
-  enum struct font_szs { _20 = 20, _26 = 26 };
+ private:
+  void init();
 
-  class text_rend {
-   public:
-    text_rend() { init(); }
+  s_ptr<shader_program> shader_program_;
+  std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
+      models_;
+  static constexpr float k_mdl_scale{0.08f};
+};
 
-    void draw_str(str_view text, float x, float y,
-                  font_szs font_sz = font_szs::_20, bool cent_align = false,
-                  color text_color = colors::wheat_transp) const;
+enum struct font_szs { _20 = 20, _26 = 26 };
 
-   private:
-    void init();
+class text_rend {
+ public:
+  text_rend() { init(); }
 
-    void add_fonts();
+  void draw_str(str_view text, float x, float y,
+                font_szs font_sz = font_szs::_20, bool cent_align = false,
+                color text_color = colors::wheat_transp) const;
 
-    const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+ private:
+  void init();
 
-    std::map<font_szs, s_ptr<TTF_Font>> fonts_;
-  };
-}
+  void add_fonts();
+
+  const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+
+  std::map<font_szs, s_ptr<TTF_Font>> fonts_;
+};
+_NS_END_

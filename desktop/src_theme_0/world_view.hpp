@@ -4,11 +4,11 @@
  */
 #pragma once
 
-namespace forr {
-  class world_view {
-   public:
-    void render() const;
+_NS_START_
+class world_view {
+ public:
+  void render() const;
 
-    void render_new() const;
-  };
-}
+  void render_new() const;
+};
+_NS_END_

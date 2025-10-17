@@ -4,11 +4,11 @@
  */
 #pragma once
 
-namespace forr {
-  class script_engine {
-   public:
-    void init();
+_NS_START_
+class script_engine {
+ public:
+  void init();
 
-    void load_scripts();
-  };
-}
+  void load_scripts();
+};
+_NS_END_

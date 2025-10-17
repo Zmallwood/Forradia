@@ -5,26 +5,26 @@
 #pragma once
 #include "comm.hpp"
 
-namespace forr {
-  void update_kb_actions();
+_NS_START_
+void update_kb_actions();
 
-  void update_mouse_actions();
+void update_mouse_actions();
 
-  void update_kb_movem();
+void update_kb_movem();
 
-  void update_mouse_movem();
+void update_mouse_movem();
 
-  void update_crea_movem();
+void update_crea_movem();
 
-  void update_npcs();
+void update_npcs();
 
-  class tl_hovering {
-   public:
-    void update();
+class tl_hovering {
+ public:
+  void update();
 
-    auto hovered_coord() const { return hovered_coord_; }
+  auto hovered_coord() const { return hovered_coord_; }
 
-   private:
-    pt hovered_coord_{-1, -1};
-  };
-}
+ private:
+  pt hovered_coord_{-1, -1};
+};
+_NS_END_
