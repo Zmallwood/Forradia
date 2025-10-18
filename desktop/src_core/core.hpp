@@ -6,7 +6,10 @@
 
 _NS_START_
 
-#define _HIDE_FROM_OUTLINER_ namespace GUICore { class gui; }
+#define _HIDE_FROM_OUTLINER_                                                   \
+  namespace GUICore {                                                          \
+    class gui;                                                                 \
+  }
 _HIDE_FROM_OUTLINER_
 
 class model;
@@ -77,6 +80,10 @@ namespace Core {
       constexpr static float k_curs_sz{0.05f};
 
       curs_styles curs_style_{curs_styles::normal};
+    };
+
+    class input {
+     public:
     };
 
     void init(str_view game_win_title, color clear_color) const;

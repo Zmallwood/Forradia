@@ -20,7 +20,7 @@ void update_kb_actions() {
 }
 
 void update_mouse_actions() {
-  if (_<mouse_inp>().right_btn_ref().been_fired_pick_res()) {
+  if (_<mouse_inp::right_mouse_btn>().been_fired_pick_res()) {
     _<gui_interact_menu>().build_menu();
     _<gui_interact_menu>().set_visible(true);
     _<gui_interact_menu>().set_pos(norm_mouse_pos(_<engine::sdl_device>().win()));
@@ -56,7 +56,7 @@ void update_kb_movem() {
 }
 
 void update_mouse_movem() {
-  if (_<mouse_inp>().left_btn_ref().been_fired_pick_res()) {
+  if (_<mouse_inp::left_mouse_btn>().been_fired_pick_res()) {
     auto new_dest{_<tl_hovering>().hovered_coord()};
     _<player>().set_dest(new_dest);
   }

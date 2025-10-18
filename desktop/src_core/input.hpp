@@ -29,32 +29,70 @@ class kb_inp {
 ////////////////////
 // Mouse
 ////////////////////
-class mouse_btn {
- public:
-  void reset();
-
-  void reg_press();
-
-  void reg_release();
-
-  bool pressed_pick_res();
-
-  bool been_fired_pick_res();
-
-  bool been_fired_no_pick_res();
-
-  bool been_released_pick_res();
-
-  bool been_released_no_pick_res();
-
- private:
-  bool pressed_{false};
-  bool been_fired_{false};
-  bool been_released_{false};
-};
-
 class mouse_inp {
  public:
+  class mouse_btn {
+   public:
+    void reset();
+
+    void reg_press();
+
+    void reg_release();
+
+    bool pressed_pick_res();
+
+    bool been_fired_pick_res();
+
+    bool been_fired_no_pick_res();
+
+    bool been_released_pick_res();
+
+    bool been_released_no_pick_res();
+
+   private:
+    bool pressed_{false};
+    bool been_fired_{false};
+    bool been_released_{false};
+  };
+
+  class left_mouse_btn :public mouse_btn {
+   public:
+    using mouse_btn::reset;
+
+    using mouse_btn::reg_press;
+
+    using mouse_btn::reg_release;
+
+    using mouse_btn::pressed_pick_res;
+
+    using mouse_btn::been_fired_pick_res;
+
+    using mouse_btn::been_fired_no_pick_res;
+
+    using mouse_btn::been_released_pick_res;
+
+    using mouse_btn::been_released_no_pick_res;
+  };
+
+  class right_mouse_btn :public mouse_btn {
+   public:
+    using mouse_btn::reset;
+
+    using mouse_btn::reg_press;
+
+    using mouse_btn::reg_release;
+
+    using mouse_btn::pressed_pick_res;
+
+    using mouse_btn::been_fired_pick_res;
+
+    using mouse_btn::been_fired_no_pick_res;
+
+    using mouse_btn::been_released_pick_res;
+
+    using mouse_btn::been_released_no_pick_res;
+  };
+
   void reset();
 
   void reg_mouse_btn_down(Uint8 btn);
@@ -62,13 +100,5 @@ class mouse_inp {
   void reg_mouse_btn_up(Uint8 btn);
 
   bool any_mouse_btn_pressed_pick_res();
-
-  auto &left_btn_ref() { return left_btn_; }
-
-  auto &right_btn_ref() { return right_btn_; }
-
- private:
-  mouse_btn left_btn_;
-  mouse_btn right_btn_;
 };
 _NS_END_
