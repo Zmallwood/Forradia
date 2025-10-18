@@ -554,6 +554,54 @@ namespace Core {
         };
       };
     };
+    class ScenesCore {
+     public:
+      class i_scene {
+       public:
+        void init();
+
+        void update();
+
+        void render() const;
+
+        void on_enter();
+
+        void set_init_derived(func<void()> value) { init_derived_ = value; }
+
+        void set_on_enter_derived(func<void()> value) {
+          on_enter_derived_ = value;
+        }
+
+        void set_update_derived(func<void()> value) { update_derived_ = value; }
+
+        void set_render_derived(func<void()> value) { render_derived_ = value; }
+
+       protected:
+        auto gui() const { return gui_; }
+
+       private:
+        s_ptr<forr::GUICore::gui> gui_;
+        func<void()> init_derived_{[] {}};
+        func<void()> on_enter_derived_{[] {}};
+        func<void()> update_derived_{[] {}};
+        func<void()> render_derived_{[] {}};
+      };
+
+      class scene_mngr {
+       public:
+        void add_scene(str_view scene_name, i_scene &scene);
+
+        void go_to_scene(str_view scene_name);
+
+        void update_curr_scene();
+
+        void render_curr_scene() const;
+
+       private:
+        std::map<int, i_scene &> scenes_;
+        int curr_scene_{0};
+      };
+    };
 
     void init(str_view game_win_title, color clear_color) const;
 
@@ -566,54 +614,6 @@ namespace Core {
 
     bool running_{true};
   };
-  namespace ScenesCore {
-    class i_scene {
-     public:
-      void init();
-
-      void update();
-
-      void render() const;
-
-      void on_enter();
-
-      void set_init_derived(func<void()> value) { init_derived_ = value; }
-
-      void set_on_enter_derived(func<void()> value) {
-        on_enter_derived_ = value;
-      }
-
-      void set_update_derived(func<void()> value) { update_derived_ = value; }
-
-      void set_render_derived(func<void()> value) { render_derived_ = value; }
-
-     protected:
-      auto gui() const { return gui_; }
-
-     private:
-      s_ptr<forr::GUICore::gui> gui_;
-      func<void()> init_derived_{[] {}};
-      func<void()> on_enter_derived_{[] {}};
-      func<void()> update_derived_{[] {}};
-      func<void()> render_derived_{[] {}};
-    };
-
-    class scene_mngr {
-     public:
-      void add_scene(str_view scene_name, i_scene &scene);
-
-      void go_to_scene(str_view scene_name);
-
-      void update_curr_scene();
-
-      void render_curr_scene() const;
-
-     private:
-      std::map<int, i_scene &> scenes_;
-      int curr_scene_{0};
-    };
-  }
-  using namespace ScenesCore;
 }
 using namespace Core;
 _NS_END_
