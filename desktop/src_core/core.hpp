@@ -89,56 +89,61 @@ namespace Core {
     bool running_{true};
   };
   namespace Assets {
-    class image_bank {
-     public:
-      image_bank() { init(); }
+    namespace Images {
+      class image_bank {
+       public:
+        image_bank() { init(); }
 
-      ~image_bank() { cleanup(); }
+        ~image_bank() { cleanup(); }
 
-      s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+        s_ptr<SDL_Texture> get_img(int img_name_hash) const;
 
-      GLuint get_tex(int img_name_hash) const;
+        GLuint get_tex(int img_name_hash) const;
 
-      sz get_img_sz(int img_name_hash) const;
+        sz get_img_sz(int img_name_hash) const;
 
-      bool text_tex_exists(float x, float y, int unique_id) const;
+        bool text_tex_exists(float x, float y, int unique_id) const;
 
-      GLuint obtain_text_tex(float x, float y, int text_hash);
+        GLuint obtain_text_tex(float x, float y, int text_hash);
 
-     private:
-      void init();
+       private:
+        void init();
 
-      void cleanup();
+        void cleanup();
 
-      void load_imgs();
+        void load_imgs();
 
-      s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
+        s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
 
-      GLuint load_single_tex(s_ptr<SDL_Surface> surf);
+        GLuint load_single_tex(s_ptr<SDL_Surface> surf);
 
-      inline static const str k_rel_imgs_path{"./res/images/"};
+        inline static const str k_rel_imgs_path{"./res/images/"};
 
-      std::map<int, s_ptr<SDL_Texture>> images_;
-      std::map<int, GLuint> textures_;
-      std::map<int, sz> tex_sizes_;
-      std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
-    };
+        std::map<int, s_ptr<SDL_Texture>> images_;
+        std::map<int, GLuint> textures_;
+        std::map<int, sz> tex_sizes_;
+        std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
+      };
+    }
+    using namespace Images;
+    namespace Models {
+      class model_bank {
+       public:
+        model_bank() { init(); }
 
-    class model_bank {
-     public:
-      model_bank() { init(); }
+        s_ptr<model> get_model(int model_name_hash) const;
 
-      s_ptr<model> get_model(int model_name_hash) const;
+       private:
+        void init();
 
-     private:
-      void init();
+        s_ptr<model> load_single_model(str_view file_path);
 
-      s_ptr<model> load_single_model(str_view file_path);
+        inline static const str k_rel_models_path{"./res/models/"};
 
-      inline static const str k_rel_models_path{"./res/models/"};
-
-      std::map<int, s_ptr<model>> models_;
-    };
+        std::map<int, s_ptr<model>> models_;
+      };
+    }
+    using namespace Models;
   }
   using namespace Assets;
   class i_scene {

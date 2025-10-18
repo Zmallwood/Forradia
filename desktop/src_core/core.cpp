@@ -147,102 +147,107 @@ namespace Core {
   }
 
   namespace Assets {
-    void image_bank::init() { load_imgs(); }
+    namespace Images {
+      void image_bank::init() { load_imgs(); }
 
-    void image_bank::cleanup() {
-      for (auto entry : textures_)
-        glDeleteTextures(1, &entry.second);
-      for (auto entry1 : text_texes_)
-        for (auto entry2 : entry1.second)
-          for (auto tex : entry2.second)
-            glDeleteTextures(1, &tex.second);
-    }
+      void image_bank::cleanup() {
+        for (auto entry : textures_)
+          glDeleteTextures(1, &entry.second);
+        for (auto entry1 : text_texes_)
+          for (auto entry2 : entry1.second)
+            for (auto tex : entry2.second)
+              glDeleteTextures(1, &tex.second);
+      }
 
-    void image_bank::load_imgs() {
-      auto base_path{str(SDL_GetBasePath())};
-      auto imgs_path{base_path + k_rel_imgs_path.data()};
-      if (!std::filesystem::exists(imgs_path))
-        return;
-      std::filesystem::recursive_directory_iterator rdi{imgs_path};
-      for (auto it : rdi) {
-        auto file_path{repl(it.path().string(), '\\', '/')};
-        if (file_ext(file_path) == "png") {
-          auto file_name{file_name_no_ext(file_path)};
-          auto hash{forr::hash(file_name)};
-          auto surf{s_ptr<SDL_Surface>(IMG_Load(file_path.data()), sdl_del())};
-          auto img_sz{sz{surf->w, surf->h}};
-          tex_sizes_.insert({hash, img_sz});
-          // auto img{load_single_img(surf)};
-          // images_.insert({hash, img});
-          auto tex{load_single_tex(surf)};
-          textures_.insert({hash, tex});
+      void image_bank::load_imgs() {
+        auto base_path{str(SDL_GetBasePath())};
+        auto imgs_path{base_path + k_rel_imgs_path.data()};
+        if (!std::filesystem::exists(imgs_path))
+          return;
+        std::filesystem::recursive_directory_iterator rdi{imgs_path};
+        for (auto it : rdi) {
+          auto file_path{repl(it.path().string(), '\\', '/')};
+          if (file_ext(file_path) == "png") {
+            auto file_name{file_name_no_ext(file_path)};
+            auto hash{forr::hash(file_name)};
+            auto surf{
+                s_ptr<SDL_Surface>(IMG_Load(file_path.data()), sdl_del())};
+            auto img_sz{sz{surf->w, surf->h}};
+            tex_sizes_.insert({hash, img_sz});
+            // auto img{load_single_img(surf)};
+            // images_.insert({hash, img});
+            auto tex{load_single_tex(surf)};
+            textures_.insert({hash, tex});
+          }
         }
       }
-    }
 
-    s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
-      if (images_.contains(img_name_hash))
-        return images_.at(img_name_hash);
-      return nullptr;
-    }
-    GLuint image_bank::get_tex(int img_name_hash) const {
-      return textures_.at(img_name_hash);
-    }
+      s_ptr<SDL_Texture> image_bank::get_img(int img_name_hash) const {
+        if (images_.contains(img_name_hash))
+          return images_.at(img_name_hash);
+        return nullptr;
+      }
+      GLuint image_bank::get_tex(int img_name_hash) const {
+        return textures_.at(img_name_hash);
+      }
 
-    sz image_bank::get_img_sz(int img_name_hash) const {
-      if (tex_sizes_.contains(img_name_hash))
-        return tex_sizes_.at(img_name_hash);
-      return {-1, -1};
-    }
+      sz image_bank::get_img_sz(int img_name_hash) const {
+        if (tex_sizes_.contains(img_name_hash))
+          return tex_sizes_.at(img_name_hash);
+        return {-1, -1};
+      }
 
-    s_ptr<SDL_Texture> image_bank::load_single_img(s_ptr<SDL_Surface> surf) {
-      // if (surf) {
-      // auto rend{_<sdl_device>().rend().get()};
-      // auto tex{s_ptr<SDL_Texture>(
-      // SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
-      // return tex;
-      //}
-      return nullptr;
-    }
+      s_ptr<SDL_Texture> image_bank::load_single_img(s_ptr<SDL_Surface> surf) {
+        // if (surf) {
+        // auto rend{_<sdl_device>().rend().get()};
+        // auto tex{s_ptr<SDL_Texture>(
+        // SDL_CreateTextureFromSurface(rend, surf.get()), sdl_del())};
+        // return tex;
+        //}
+        return nullptr;
+      }
 
-    GLuint image_bank::load_single_tex(s_ptr<SDL_Surface> surf) {
-      GLuint tex;
-      glGenTextures(1, &tex);
-      glBindTexture(GL_TEXTURE_2D, tex);
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0, GL_RGBA,
-                   GL_UNSIGNED_BYTE, surf->pixels);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      return tex;
-    }
+      GLuint image_bank::load_single_tex(s_ptr<SDL_Surface> surf) {
+        GLuint tex;
+        glGenTextures(1, &tex);
+        glBindTexture(GL_TEXTURE_2D, tex);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0, GL_RGBA,
+                     GL_UNSIGNED_BYTE, surf->pixels);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        return tex;
+      }
 
-    bool image_bank::text_tex_exists(float x, float y, int text_hash) const {
-      return text_texes_.contains(x) && text_texes_.at(x).contains(y) &&
-             text_texes_.at(x).at(y).contains(text_hash);
-    }
+      bool image_bank::text_tex_exists(float x, float y, int text_hash) const {
+        return text_texes_.contains(x) && text_texes_.at(x).contains(y) &&
+               text_texes_.at(x).at(y).contains(text_hash);
+      }
 
-    GLuint image_bank::obtain_text_tex(float x, float y, int text_hash) {
-      if (text_tex_exists(x, y, text_hash))
-        return text_texes_.at(x).at(y).at(text_hash);
-      GLuint tex;
-      glGenTextures(1, &tex);
-      text_texes_[x][y][text_hash] = tex;
-      return tex;
+      GLuint image_bank::obtain_text_tex(float x, float y, int text_hash) {
+        if (text_tex_exists(x, y, text_hash))
+          return text_texes_.at(x).at(y).at(text_hash);
+        GLuint tex;
+        glGenTextures(1, &tex);
+        text_texes_[x][y][text_hash] = tex;
+        return tex;
+      }
     }
-    void model_bank::init() {
-      auto base_path{str(SDL_GetBasePath())};
-      auto imgs_path{base_path + k_rel_models_path.data()};
-      if (!std::filesystem::exists(imgs_path))
-        return;
-      std::filesystem::recursive_directory_iterator rdi{imgs_path};
-      for (auto it : rdi) {
-        auto file_path{repl(it.path().string(), '\\', '/')};
-        std::cout << file_path << std::endl;
-        if (file_ext(file_path) == "obj") {
-          auto file_name{file_name_no_ext(file_path)};
-          auto hash{forr::hash(file_name)};
-          auto model{load_single_model(file_path)};
-          models_.insert({hash, model});
+    namespace Models {
+      void model_bank::init() {
+        auto base_path{str(SDL_GetBasePath())};
+        auto imgs_path{base_path + k_rel_models_path.data()};
+        if (!std::filesystem::exists(imgs_path))
+          return;
+        std::filesystem::recursive_directory_iterator rdi{imgs_path};
+        for (auto it : rdi) {
+          auto file_path{repl(it.path().string(), '\\', '/')};
+          std::cout << file_path << std::endl;
+          if (file_ext(file_path) == "obj") {
+            auto file_name{file_name_no_ext(file_path)};
+            auto hash{forr::hash(file_name)};
+            auto model{load_single_model(file_path)};
+            models_.insert({hash, model});
+          }
         }
       }
     }
