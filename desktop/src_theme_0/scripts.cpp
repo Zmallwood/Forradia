@@ -6,7 +6,6 @@
 #include "core.hpp"
 #include "gui.hpp"
 #include "gui_spec.hpp"
-#include "input.hpp"
 #include "rend.hpp"
 #include "update.hpp"
 #include "world_grator.hpp"
@@ -77,11 +76,12 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   py::class_<world_grator>(m, "world_grator")
       .def(py::init<>())
       .def("gen_new_world", &world_grator::gen_new_world);
-  py::class_<kb_inp>(m, "kb_inp")
-      .def("any_key_pressed_pick_res", &kb_inp::any_key_pressed_pick_res);
-  py::class_<mouse_inp>(m, "mouse_inp")
+  py::class_<Core::engine::Input::kb_inp>(m, "kb_inp")
+      .def("any_key_pressed_pick_res",
+           &Core::engine::Input::kb_inp::any_key_pressed_pick_res);
+  py::class_<Core::engine::Input::mouse_inp>(m, "mouse_inp")
       .def("any_mouse_btn_pressed_pick_res",
-           &mouse_inp::any_mouse_btn_pressed_pick_res);
+           &Core::engine::Input::mouse_inp::any_mouse_btn_pressed_pick_res);
   py::class_<img_rend>(m, "img_rend")
       .def("draw_img",
            [](img_rend &self, str_view image_name, float x, float y, float w,
@@ -175,10 +175,16 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       "get_cursor", []() -> engine::cursor & { return _<engine::cursor>(); },
       py::return_value_policy::reference);
   m.def(
-      "get_kb_inp", []() -> kb_inp & { return _<kb_inp>(); },
+      "get_kb_inp",
+      []() -> Core::engine::Input::kb_inp & {
+        return _<Core::engine::Input::kb_inp>();
+      },
       py::return_value_policy::reference);
   m.def(
-      "get_mouse_inp", []() -> mouse_inp & { return _<mouse_inp>(); },
+      "get_mouse_inp",
+      []() -> Core::engine::Input::mouse_inp & {
+        return _<Core::engine::Input::mouse_inp>();
+      },
       py::return_value_policy::reference);
   m.def(
       "get_world_grator", []() -> world_grator & { return _<world_grator>(); },

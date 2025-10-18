@@ -4,7 +4,6 @@
  */
 #include "gui.hpp"
 #include "core.hpp"
-#include "input.hpp"
 #include "rend.hpp"
 
 _NS_START_
@@ -72,7 +71,7 @@ namespace GUICore {
       set_bg_img(hovered_bg_img_);
       _<engine::cursor>().set_curs_style(
           engine::cursor::curs_styles::hovering_clickable_gui);
-      if (_<mouse_inp::left_mouse_btn>().been_fired_pick_res())
+      if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_pick_res())
         action_();
     } else {
       set_bg_img(bg_img_);
@@ -92,15 +91,15 @@ namespace GUICore {
     if (drag_area.contains(mouse_pos)) {
       _<engine::cursor>().set_curs_style(
           engine::cursor::curs_styles::hovering_clickable_gui);
-      if (_<mouse_inp::left_mouse_btn>().been_fired_pick_res())
+      if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_pick_res())
         start_move();
     }
-    if (_<mouse_inp::left_mouse_btn>().been_released_no_pick_res())
+    if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_released_no_pick_res())
       stop_move();
     auto b{bounds()};
     if (b.contains(mouse_pos)) {
-      if (_<mouse_inp::left_mouse_btn>().been_fired_no_pick_res())
-        _<mouse_inp::left_mouse_btn>().reset();
+      if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_no_pick_res())
+        _<Core::engine::Input::mouse_inp::left_mouse_btn>().reset();
     }
     if (being_moved()) {
       auto curr_mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};

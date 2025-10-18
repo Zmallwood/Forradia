@@ -4,7 +4,6 @@
  */
 #include "core.hpp"
 #include "gui.hpp"
-#include "input.hpp"
 #include "models.hpp"
 #include "rend.hpp"
 
@@ -18,7 +17,7 @@ namespace Core {
   void engine::run() {
     try {
       while (running_) {
-        _<mouse_inp>().reset();
+        _<Input::mouse_inp>().reset();
         _<cursor>().reset_style_to_normal();
         _<img_2d_rend>().reset_counter();
         poll_events();
@@ -45,16 +44,16 @@ namespace Core {
         running_ = false;
         break;
       case SDL_KEYDOWN:
-        _<kb_inp>().reg_key_press(ev.key.keysym.sym);
+        _<Input::kb_inp>().reg_key_press(ev.key.keysym.sym);
         break;
       case SDL_KEYUP:
-        _<kb_inp>().reg_key_release(ev.key.keysym.sym);
+        _<Input::kb_inp>().reg_key_release(ev.key.keysym.sym);
         break;
       case SDL_MOUSEBUTTONDOWN:
-        _<mouse_inp>().reg_mouse_btn_down(ev.button.button);
+        _<Input::mouse_inp>().reg_mouse_btn_down(ev.button.button);
         break;
       case SDL_MOUSEBUTTONUP:
-        _<mouse_inp>().reg_mouse_btn_up(ev.button.button);
+        _<Input::mouse_inp>().reg_mouse_btn_up(ev.button.button);
         break;
       }
     }
@@ -301,6 +300,112 @@ namespace Core {
   void engine::ScenesCore::scene_mngr::render_curr_scene() const {
     if (scenes_.contains(curr_scene_))
       scenes_.at(curr_scene_).render();
+  }
+  ////////////////////
+  // Keyboard
+  ////////////////////
+  void engine::Input::kb_inp::reset() { pressed_.clear(); }
+
+  void engine::Input::kb_inp::reg_key_press(SDL_Keycode key) {
+    pressed_.insert(key);
+  }
+
+  void engine::Input::kb_inp::reg_key_release(SDL_Keycode key) {
+    pressed_.erase(key);
+  }
+
+  bool engine::Input::kb_inp::key_pressed(SDL_Keycode key) const {
+    return pressed_.contains(key);
+  }
+
+  bool engine::Input::kb_inp::key_pressed_pick_res(SDL_Keycode key) {
+    auto res{pressed_.contains(key)};
+    pressed_.erase(key);
+    return res;
+  }
+
+  bool engine::Input::kb_inp::any_key_pressed_pick_res() {
+    auto res{pressed_.size() > 0};
+    pressed_.clear();
+    return res;
+  }
+
+  ////////////////////
+  // Mouse
+  ////////////////////
+  void engine::Input::mouse_inp::mouse_btn::reset() {
+    pressed_ = false;
+    been_fired_ = false;
+    been_released_ = false;
+  }
+
+  void engine::Input::mouse_inp::mouse_btn::reg_press() {
+    pressed_ = true;
+    been_fired_ = true;
+  }
+
+  void engine::Input::mouse_inp::mouse_btn::reg_release() {
+    pressed_ = false;
+    been_released_ = true;
+  }
+
+  bool engine::Input::mouse_inp::mouse_btn::pressed_pick_res() {
+    auto res{pressed_};
+    pressed_ = false;
+    return res;
+  }
+
+  bool engine::Input::mouse_inp::mouse_btn::been_fired_pick_res() {
+    auto res{been_fired_};
+    been_fired_ = false;
+    return res;
+  }
+
+  bool engine::Input::mouse_inp::mouse_btn::been_fired_no_pick_res() {
+    return been_fired_;
+  }
+
+  bool engine::Input::mouse_inp::mouse_btn::been_released_pick_res() {
+    auto res{been_released_};
+    been_released_ = false;
+    return res;
+  }
+
+  bool engine::Input::mouse_inp::mouse_btn::been_released_no_pick_res() {
+    return been_released_;
+  }
+
+  void engine::Input::mouse_inp::reset() {
+    _<left_mouse_btn>().reset();
+    _<right_mouse_btn>().reset();
+  }
+
+  void engine::Input::mouse_inp::reg_mouse_btn_down(Uint8 btn) {
+    switch (btn) {
+    case SDL_BUTTON_LEFT:
+      _<left_mouse_btn>().reg_press();
+      break;
+    case SDL_BUTTON_RIGHT:
+      _<right_mouse_btn>().reg_press();
+      break;
+    }
+  }
+
+  void engine::Input::mouse_inp::reg_mouse_btn_up(Uint8 btn) {
+    switch (btn) {
+    case SDL_BUTTON_LEFT:
+      _<left_mouse_btn>().reg_release();
+      break;
+    case SDL_BUTTON_RIGHT:
+      _<right_mouse_btn>().reg_release();
+      break;
+    }
+  }
+
+  bool engine::Input::mouse_inp::any_mouse_btn_pressed_pick_res() {
+    auto res{_<left_mouse_btn>().pressed_pick_res()};
+    res |= _<right_mouse_btn>().pressed_pick_res();
+    return res;
   }
 }
 _NS_END_

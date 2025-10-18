@@ -3,39 +3,39 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update.hpp"
-#include "theme_0_core.hpp"
 #include "core.hpp"
 #include "gui_spec.hpp"
-#include "input.hpp"
+#include "theme_0_core.hpp"
 #include "world_struct.hpp"
 
 _NS_START_
 void update_kb_actions() {
-  if (_<kb_inp>().key_pressed_pick_res(SDLK_ESCAPE))
+  if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(SDLK_ESCAPE))
     _<gui_sys_menu>().toggle_visible();
-  else if (_<kb_inp>().key_pressed_pick_res(SDLK_c))
+  else if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(SDLK_c))
     _<gui_player_body_win>().toggle_visible();
-  else if (_<kb_inp>().key_pressed_pick_res(SDLK_b))
+  else if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(SDLK_b))
     _<gui_inventory_win>().toggle_visible();
 }
 
 void update_mouse_actions() {
-  if (_<mouse_inp::right_mouse_btn>().been_fired_pick_res()) {
+  if (_<Core::engine::Input::mouse_inp::right_mouse_btn>().been_fired_pick_res()) {
     _<gui_interact_menu>().build_menu();
     _<gui_interact_menu>().set_visible(true);
-    _<gui_interact_menu>().set_pos(norm_mouse_pos(_<engine::sdl_device>().win()));
+    _<gui_interact_menu>().set_pos(
+        norm_mouse_pos(_<engine::sdl_device>().win()));
   }
 }
 
 void update_kb_movem() {
-  auto up_press{_<kb_inp>().key_pressed(SDLK_UP)};
-  auto right_press{_<kb_inp>().key_pressed(SDLK_RIGHT)};
-  auto down_press{_<kb_inp>().key_pressed(SDLK_DOWN)};
-  auto left_press{_<kb_inp>().key_pressed(SDLK_LEFT)};
-  auto w_press{_<kb_inp>().key_pressed(SDLK_w)};
-  auto a_press{_<kb_inp>().key_pressed(SDLK_a)};
-  auto s_press{_<kb_inp>().key_pressed(SDLK_s)};
-  auto d_press{_<kb_inp>().key_pressed(SDLK_d)};
+  auto up_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_UP)};
+  auto right_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_RIGHT)};
+  auto down_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_DOWN)};
+  auto left_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_LEFT)};
+  auto w_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_w)};
+  auto a_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_a)};
+  auto s_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_s)};
+  auto d_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_d)};
   if (up_press || right_press || down_press || left_press)
     _<player>().set_dest({-1, -1});
   auto now{ticks()};
@@ -56,7 +56,7 @@ void update_kb_movem() {
 }
 
 void update_mouse_movem() {
-  if (_<mouse_inp::left_mouse_btn>().been_fired_pick_res()) {
+  if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_pick_res()) {
     auto new_dest{_<tl_hovering>().hovered_coord()};
     _<player>().set_dest(new_dest);
   }

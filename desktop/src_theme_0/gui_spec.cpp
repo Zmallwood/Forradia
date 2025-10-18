@@ -5,7 +5,6 @@
 #include "gui_spec.hpp"
 #include "theme_0_core.hpp"
 #include "core.hpp"
-#include "input.hpp"
 #include "rend.hpp"
 #include "update.hpp"
 #include "world_struct.hpp"
@@ -22,7 +21,7 @@ void gui_sys_menu::init() { set_visible(false); }
 
 void gui_sys_menu::update_derived() {
   gui_comp::update_derived();
-  _<mouse_inp::left_mouse_btn>().reset();
+  _<Core::engine::Input::mouse_inp::left_mouse_btn>().reset();
 }
 
 void gui_sys_menu::render_derived() const {
@@ -199,14 +198,14 @@ void gui_interact_menu::update_derived() {
     auto menu_entry_rect{rect_f{b.x + 0.01f + k_indent_w,
                                 b.y + 0.01f + k_line_h * (i + 1), b.w,
                                 k_line_h}};
-    if (_<mouse_inp::left_mouse_btn>().been_fired_no_pick_res()) {
+    if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_no_pick_res()) {
       if (menu_entry_rect.contains(mouse_pos))
         entry.action()();
       set_visible(false);
     }
     ++i;
   }
-  if (_<mouse_inp::left_mouse_btn>().been_fired_pick_res())
+  if (_<Core::engine::Input::mouse_inp::left_mouse_btn>().been_fired_pick_res())
     set_visible(false);
 }
 
