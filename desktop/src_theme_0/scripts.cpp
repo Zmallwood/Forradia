@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "scripts.hpp"
-#include "engine.hpp"
+#include "core.hpp"
 #include "gui.hpp"
 #include "gui_spec.hpp"
 #include "input.hpp"
@@ -116,7 +116,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def("render_new", &world_view::render_new);
   m.def("ticks", [] { return ticks(); });
   m.def("conv_w_to_h",
-        [](float w) { return conv_w_to_h(w, _<sdl_device>().win()); });
+        [](float w) { return conv_w_to_h(w, _<engine::sdl_device>().win()); });
   m.def("make_shared_fps_panel",
         [] { return std::make_shared<gui_fps_panel>(); });
   m.def("make_shared_gui_label",

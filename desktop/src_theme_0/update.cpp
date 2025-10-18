@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "update.hpp"
+#include "theme_0_core.hpp"
 #include "core.hpp"
-#include "engine.hpp"
 #include "gui_spec.hpp"
 #include "input.hpp"
 #include "world_struct.hpp"
@@ -23,7 +23,7 @@ void update_mouse_actions() {
   if (_<mouse_inp>().right_btn_ref().been_fired_pick_res()) {
     _<gui_interact_menu>().build_menu();
     _<gui_interact_menu>().set_visible(true);
-    _<gui_interact_menu>().set_pos(norm_mouse_pos(_<sdl_device>().win()));
+    _<gui_interact_menu>().set_pos(norm_mouse_pos(_<engine::sdl_device>().win()));
   }
 }
 
@@ -182,7 +182,7 @@ void update_npcs() {
 
 void tl_hovering::update() {
   auto player_pos{_<player>().pos()};
-  auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+  auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto tl_sz{calc_tl_sz()};
   auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
   auto grid_sz{calc_grid_sz()};

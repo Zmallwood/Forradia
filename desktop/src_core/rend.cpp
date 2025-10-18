@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "rend.hpp"
-#include "engine.hpp"
+#include "core.hpp"
 #include "models.hpp"
 #include <glm/gtx/transform.hpp>
 
@@ -167,7 +167,7 @@ void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
 }
 
 void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h) {
-  auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+  auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
   glViewport(0, 0, canv_sz.w, canv_sz.h);
   glUseProgram(shader_program_->program());
   glEnable(GL_BLEND);
@@ -256,7 +256,7 @@ void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y,
   auto img_sz{_<image_bank>().get_img_sz(hash)};
   if (img_sz.w <= 0 || img_sz.h <= 0)
     return;
-  auto canv_asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+  auto canv_asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
   auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
   auto h{w / img_asp_rat * canv_asp_rat};
   draw_img(hash, x, y, w, h);
@@ -415,7 +415,7 @@ void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
 
 void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos) {
   glEnable(GL_DEPTH_TEST);
-  auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+  auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
   glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
   glUseProgram(shader_program_->program());
   glEnable(GL_BLEND);
@@ -563,7 +563,7 @@ void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos) {
       glm::vec3(0.0f, 0.0f, -1.0f));
   // perspective function takes field of view, aspect ratio, near clipping
   // distance and far clipping distance.
-  auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+  auto asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
   glm::mat4 projection_matrix = glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
   glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
   GLuint matrix_id = glGetUniformLocation(shader_program_->program(), "MVP");
@@ -670,7 +670,7 @@ void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
     return;
   }
   auto &meshes{model->meshes_ref()};
-  auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+  auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
   glViewport(0, 0, canv_sz.w, canv_sz.h);
   glUseProgram(shader_program_->program());
   glEnable(GL_BLEND);
@@ -765,7 +765,7 @@ void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
       glm::vec3(0.0f, 0.0f, -1.0f));
   // perspective function takes field of view, aspect ratio, near clipping
   // distance and far clipping distance.
-  auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+  auto asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
   glm::mat4 projection_matrix = glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
   GLuint matrix_projection =
       glGetUniformLocation(shader_program_->program(), "projection");
@@ -819,7 +819,7 @@ void text_rend::draw_str(str_view text, float x, float y, font_szs font_sz,
   sz text_dim;
   TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
   SDL_Rect dest;
-  auto canv_sz{get_canv_sz(_<sdl_device>().win())};
+  auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
   dest.x = c_int(x * canv_sz.w);
   dest.y = c_int(y * canv_sz.h);
   dest.w = text_dim.w;

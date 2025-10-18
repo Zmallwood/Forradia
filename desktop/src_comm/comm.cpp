@@ -68,14 +68,15 @@ namespace Common {
       x += offs.x;
       y += offs.y;
     }
-
-    SDL_Color color::to_sdl_color() const {
-      // Calculate individual color components.
-      auto r_n{c_uint8(r * 255)};
-      auto g_n{c_uint8(g * 255)};
-      auto b_n{c_uint8(b * 255)};
-      auto a_n{c_uint8(a * 255)};
-      return {r_n, g_n, b_n, a_n};
+    namespace Coloring {
+      SDL_Color color::to_sdl_color() const {
+        // Calculate individual color components.
+        auto r_n{c_uint8(r * 255)};
+        auto g_n{c_uint8(g * 255)};
+        auto b_n{c_uint8(b * 255)};
+        auto a_n{c_uint8(a * 255)};
+        return {r_n, g_n, b_n, a_n};
+      }
     }
   }
   namespace Utilities {
@@ -134,77 +135,83 @@ namespace Common {
         return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
       }
     }
+    namespace NumbersUtilities {
+      // Numbers util functions
+      float inv_movem_spd(float num) {
+        // Calculate the inverse of the movement speed.
+        if (num)
+          // If the movement speed is not zero, invert it and return.
+          return k_one_sec_millis / num;
+        else
+          // If the movement speed is zero, avoid division by zero
+          // and return zero directly instead.
+          return 0.0f;
+      }
 
-    // Numbers util functions
-    float inv_movem_spd(float num) {
-      // Calculate the inverse of the movement speed.
-      if (num)
-        // If the movement speed is not zero, invert it and return.
-        return k_one_sec_millis / num;
-      else
-        // If the movement speed is zero, avoid division by zero
-        // and return zero directly instead.
-        return 0.0f;
+      int normalize(int val) {
+        auto abs_val{std::abs(val)};
+        auto norm{0};
+        // Calculate the normalized value.
+        if (val)
+          norm = val / abs_val;
+        return norm;
+      }
+
+      float ceil(float num, float k) {
+        // Calculate the ceiled value with k decimal places.
+        auto p{std::pow(10.0, k)};
+        return std::ceil(num * p) / p;
+      }
     }
+    namespace RandomizationUtilities {
+      // Randomization util functions
+      void randomize() {
+        // Randomize the seed.
+        srand(time(nullptr));
+      }
 
-    int normalize(int val) {
-      auto abs_val{std::abs(val)};
-      auto norm{0};
-      // Calculate the normalized value.
-      if (val)
-        norm = val / abs_val;
-      return norm;
+      int rand_int(int upper_lim) {
+        // Generate a random integer.
+        return rand() % upper_lim;
+      }
     }
-
-    float ceil(float num, float k) {
-      // Calculate the ceiled value with k decimal places.
-      auto p{std::pow(10.0, k)};
-      return std::ceil(num * p) / p;
+    namespace StringUtilities {
+      // String util functions
+      str repl(str_view text, char repl, char repl_with) {
+        str res{text.data()};
+        // Replace all instances of repl with repl_with.
+        std::replace(res.begin(), res.end(), repl, repl_with);
+        return res;
+      }
     }
-
-    // Randomization util functions
-    void randomize() {
-      // Randomize the seed.
-      srand(time(nullptr));
+    namespace TimeUtilities {
+      // Time util functions
+      int ticks() {
+        // Get the number of ticks.
+        return SDL_GetTicks();
+      }
     }
-
-    int rand_int(int upper_lim) {
-      // Generate a random integer.
-      return rand() % upper_lim;
+    namespace HashUtilities {
+      // Hash util functions
+      int hash(str_view text) {
+        // Use algorithm from source which is forgotten what it was.
+        unsigned long hash{5381};
+        for (size_t i = 0; i < text.size(); ++i)
+          hash = 33 * hash + (unsigned char)text[i];
+        return c_int(hash);
+      }
     }
+    namespace PrintUtilities {
+      // Print util functions
+      void print(str_view text) {
+        // Print out text without a following line break.
+        std::cout << text;
+      }
 
-    // String util functions
-    str repl(str_view text, char repl, char repl_with) {
-      str res{text.data()};
-      // Replace all instances of repl with repl_with.
-      std::replace(res.begin(), res.end(), repl, repl_with);
-      return res;
-    }
-
-    // Time util functions
-    int ticks() {
-      // Get the number of ticks.
-      return SDL_GetTicks();
-    }
-
-    // Hash util functions
-    int hash(str_view text) {
-      // Use algorithm from source which is forgotten what it was.
-      unsigned long hash{5381};
-      for (size_t i = 0; i < text.size(); ++i)
-        hash = 33 * hash + (unsigned char)text[i];
-      return c_int(hash);
-    }
-
-    // Print util functions
-    void print(str_view text) {
-      // Print out text without a following line break.
-      std::cout << text;
-    }
-
-    void print_ln(str_view text) {
-      // Print out text with a following line break.
-      std::cout << text << std::endl;
+      void print_ln(str_view text) {
+        // Print out text with a following line break.
+        std::cout << text << std::endl;
+      }
     }
   }
 }

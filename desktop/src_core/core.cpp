@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "engine.hpp"
+#include "core.hpp"
 #include "gui.hpp"
 #include "input.hpp"
 #include "models.hpp"
@@ -58,9 +58,9 @@ void engine::poll_events() {
   }
 }
 
-sdl_device::~sdl_device() { SDL_GL_DeleteContext(*context_); }
+engine::sdl_device::~sdl_device() { SDL_GL_DeleteContext(*context_); }
 
-void sdl_device::init(str_view game_win_title, color clear_color) {
+void engine::sdl_device::init(str_view game_win_title, color clear_color) {
   game_win_title_ = game_win_title;
   clear_color_ = clear_color;
   SDL_Init(SDL_INIT_EVERYTHING);
@@ -75,15 +75,15 @@ void sdl_device::init(str_view game_win_title, color clear_color) {
   glEnable(GL_BLEND);
 }
 
-void sdl_device::clear_canv() const {
+void engine::sdl_device::clear_canv() const {
   SDL_Color clear_color{clear_color_.to_sdl_color()};
   glClearColor(clear_color.r, clear_color.g, clear_color.b, clear_color.a);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void sdl_device::present_canv() const { SDL_GL_SwapWindow(win_.get()); }
+void engine::sdl_device::present_canv() const { SDL_GL_SwapWindow(win_.get()); }
 
-s_ptr<SDL_Window> sdl_device::create_win() {
+s_ptr<SDL_Window> engine::sdl_device::create_win() {
   auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
              SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_OPENGL};
   auto screen_sz{get_screen_sz()};
@@ -96,7 +96,7 @@ s_ptr<SDL_Window> sdl_device::create_win() {
   return win_res;
 }
 
-sz sdl_device::get_screen_sz() const {
+sz engine::sdl_device::get_screen_sz() const {
   SDL_DisplayMode dm;
   SDL_GetCurrentDisplayMode(0, &dm);
   auto w = dm.w;
@@ -121,9 +121,9 @@ void cursor::disable_sys_curs() { SDL_ShowCursor(SDL_DISABLE); }
 void cursor::reset_style_to_normal() { curs_style_ = curs_styles::normal; }
 
 void cursor::render() {
-  auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+  auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto w{k_curs_sz};
-  auto h{conv_w_to_h(k_curs_sz, _<sdl_device>().win())};
+  auto h{conv_w_to_h(k_curs_sz, _<engine::sdl_device>().win())};
   str curs_img;
   switch (curs_style_) {
   case curs_styles::normal:

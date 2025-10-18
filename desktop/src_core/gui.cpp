@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui.hpp"
-#include "engine.hpp"
+#include "core.hpp"
 #include "input.hpp"
 #include "rend.hpp"
 
@@ -64,7 +64,7 @@ void gui_panel::render_derived() const {
 
 void gui_button::update_derived() {
   gui_panel::update_derived();
-  auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+  auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto hovered{bounds().contains(mouse_pos)};
   if (hovered) {
     set_bg_img(hovered_bg_img_);
@@ -84,7 +84,7 @@ void gui_button::render_derived() const {
 }
 
 void gui_movable_panel::update_derived() {
-  auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+  auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto drag_area{get_drag_area()};
   if (drag_area.contains(mouse_pos)) {
     _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
@@ -99,7 +99,7 @@ void gui_movable_panel::update_derived() {
       _<mouse_inp>().left_btn_ref().reset();
   }
   if (being_moved()) {
-    auto curr_mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+    auto curr_mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
     auto new_pos{move_start_pos() + curr_mouse_pos - move_start_mouse_pos()};
     set_pos(new_pos);
   }
@@ -108,7 +108,7 @@ void gui_movable_panel::update_derived() {
 void gui_movable_panel::start_move() {
   being_moved_ = true;
   move_start_pos_ = bounds().pos();
-  move_start_mouse_pos_ = norm_mouse_pos(_<sdl_device>().win());
+  move_start_mouse_pos_ = norm_mouse_pos(_<engine::sdl_device>().win());
 }
 
 void gui_movable_panel::stop_move() { being_moved_ = false; }
@@ -118,8 +118,8 @@ rect_f gui_movable_panel::get_drag_area() { return bounds(); }
 void gui_win::gui_win_title_bar::init() {
   auto parent_win_b{parent_win_.bounds()};
   add_child_comp(std::make_shared<gui_button>(
-      parent_win_b.w - conv_w_to_h(0.015f, _<sdl_device>().win()), 0.01f,
-      0.015f, conv_w_to_h(0.015f, _<sdl_device>().win()), "X",
+      parent_win_b.w - conv_w_to_h(0.015f, _<engine::sdl_device>().win()), 0.01f,
+      0.015f, conv_w_to_h(0.015f, _<engine::sdl_device>().win()), "X",
       [this] { parent_win_.toggle_visible(); }));
 }
 

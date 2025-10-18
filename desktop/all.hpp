@@ -321,74 +321,88 @@ namespace Common {
       pt_f norm_mouse_pos(s_ptr<SDL_Window> win);
     }
     using namespace MouseUtilities;
+    namespace NumbersUtilities {
+      // Numbers util functions
+      float inv_movem_spd(float num);
 
-    // Numbers util functions
-    float inv_movem_spd(float num);
+      int normalize(int val);
 
-    int normalize(int val);
+      float ceil(float num, float k);
+    }
+    using namespace NumbersUtilities;
+    namespace RandomizationUtilities {
+      // Randomization util functions
+      void randomize();
 
-    float ceil(float num, float k);
+      int rand_int(int upper_lim);
+    }
+    using namespace RandomizationUtilities;
+    namespace StringUtilities {
+      // String util functions
+      str repl(str_view text, char repl, char repl_with);
+    }
+    using namespace StringUtilities;
+    namespace TimeUtilities {
+      // Time util functions
+      int ticks();
+    }
+    using namespace TimeUtilities;
+    namespace HashUtilities {
+      // Hash util functions
+      /**
+       * Compute hash code from a given input text, which
+       * gets computed the same every game start.
+       *
+       * \param text Text to compute hash code for.
+       * \return Computed hash code.
+       */
+      int hash(str_view text);
+    }
+    using namespace HashUtilities;
+    namespace PrintUtilities {
+      // Print util functions
+      /**
+       * Print out a string of text, without a following line break.
+       *
+       * \param text Text to print.
+       */
+      void print(str_view text);
 
-    // Randomization util functions
-    void randomize();
+      /**
+       * Print out a string of text, with an added line break at the end.
+       *
+       * \param text Text to print.
+       */
+      void print_ln(str_view text);
+    }
+    using namespace PrintUtilities;
+    namespace CastUtilities {
+      // Cast util functions
+      /**
+       * Cast a value to int.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      constexpr int c_int(auto val) { return static_cast<int>(val); }
 
-    int rand_int(int upper_lim);
+      /**
+       * Cast a value to float.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      float c_float(auto val) { return static_cast<float>(val); }
 
-    // String util functions
-    str repl(str_view text, char repl, char repl_with);
-
-    // Time util functions
-    int ticks();
-
-    // Hash util functions
-    /**
-     * Compute hash code from a given input text, which
-     * gets computed the same every game start.
-     *
-     * \param text Text to compute hash code for.
-     * \return Computed hash code.
-     */
-    int hash(str_view text);
-
-    // Print util functions
-    /**
-     * Print out a string of text, without a following line break.
-     *
-     * \param text Text to print.
-     */
-    void print(str_view text);
-
-    /**
-     * Print out a string of text, with an added line break at the end.
-     *
-     * \param text Text to print.
-     */
-    void print_ln(str_view text);
-
-    // Cast util functions
-    /**
-     * Cast a value to int.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    constexpr int c_int(auto val) { return static_cast<int>(val); }
-
-    /**
-     * Cast a value to float.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    float c_float(auto val) { return static_cast<float>(val); }
-
-    /**
-     * Cast a value to Uint8.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+      /**
+       * Cast a value to Uint8.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+    }
+    using namespace CastUtilities;
   }
   using namespace Utilities;
 }
@@ -397,7 +411,7 @@ _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
-// virtualInclude 'src_engine/engine.hpp'
+// virtualInclude 'src_core/core.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -406,184 +420,187 @@ _NS_END_
 #pragma once
 
 _NS_START_
-class engine {
- public:
-  void init(str_view game_win_title, color clear_color) const;
-
-  void run();
-
-  void stop();
-
- private:
-  void poll_events();
-
-  bool running_{true};
-};
-
-class sdl_device {
- public:
-  ~sdl_device();
-
-  void init(str_view game_win_title, color clear_color);
-
-  void clear_canv() const;
-
-  void present_canv() const;
-
-  auto win() const { return win_; }
-
-  auto rend() const { return rend_; }
-
- private:
-  s_ptr<SDL_Window> create_win();
-
-  sz get_screen_sz() const;
-
-  s_ptr<SDL_Window> win_;
-  s_ptr<SDL_GLContext> context_;
-  s_ptr<SDL_Renderer> rend_;
-  str game_win_title_;
-  color clear_color_;
-};
-
-class fps_counter {
- public:
-  void update();
-
-  auto fps() const { return fps_; }
-
- private:
-  int fps_{0};
-  int frames_count_{0};
-  int ticks_last_update_{0};
-  const pt_f k_position{0.93f, 0.02f};
-};
-
-enum class curs_styles { normal, hovering_clickable_gui, hovering_creature };
-
-class cursor {
- public:
-  cursor() { init(); }
-
-  void reset_style_to_normal();
-
-  void render();
-
-  auto set_curs_style(curs_styles val) { curs_style_ = val; }
-
- private:
-  void init();
-
-  void disable_sys_curs();
-
-  constexpr static float k_curs_sz{0.05f};
-
-  curs_styles curs_style_{curs_styles::normal};
-};
-
-class image_bank {
- public:
-  image_bank() { init(); }
-
-  ~image_bank() { cleanup(); }
-
-  s_ptr<SDL_Texture> get_img(int img_name_hash) const;
-
-  GLuint get_tex(int img_name_hash) const;
-
-  sz get_img_sz(int img_name_hash) const;
-
-  bool text_tex_exists(float x, float y, int unique_id) const;
-
-  GLuint obtain_text_tex(float x, float y, int text_hash);
-
- private:
-  void init();
-
-  void cleanup();
-
-  void load_imgs();
-
-  s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
-
-  GLuint load_single_tex(s_ptr<SDL_Surface> surf);
-
-  inline static const str k_rel_imgs_path{"./res/images/"};
-
-  std::map<int, s_ptr<SDL_Texture>> images_;
-  std::map<int, GLuint> textures_;
-  std::map<int, sz> tex_sizes_;
-  std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
-};
-
-class model;
-
-class model_bank {
- public:
-  model_bank() { init(); }
-
-  s_ptr<model> get_model(int model_name_hash) const;
-
- private:
-  void init();
-
-  s_ptr<model> load_single_model(str_view file_path);
-
-  inline static const str k_rel_models_path{"./res/models/"};
-
-  std::map<int, s_ptr<model>> models_;
-};
 
 class gui;
+class model;
 
-class i_scene {
- public:
-  void init();
+namespace Core {
+  class engine {
+   public:
+    void init(str_view game_win_title, color clear_color) const;
 
-  void update();
+    void run();
 
-  void render() const;
+    void stop();
 
-  void on_enter();
+    class sdl_device {
+     public:
+      ~sdl_device();
 
-  void set_init_derived(func<void()> value) { init_derived_ = value; }
+      void init(str_view game_win_title, color clear_color);
 
-  void set_on_enter_derived(func<void()> value) { on_enter_derived_ = value; }
+      void clear_canv() const;
 
-  void set_update_derived(func<void()> value) { update_derived_ = value; }
+      void present_canv() const;
 
-  void set_render_derived(func<void()> value) { render_derived_ = value; }
+      auto win() const { return win_; }
 
- protected:
-  auto gui() const { return gui_; }
+      auto rend() const { return rend_; }
 
- private:
-  s_ptr<forr::gui> gui_;
-  func<void()> init_derived_{[] {}};
-  func<void()> on_enter_derived_{[] {}};
-  func<void()> update_derived_{[] {}};
-  func<void()> render_derived_{[] {}};
-};
+     private:
+      s_ptr<SDL_Window> create_win();
 
-class scene_mngr {
- public:
-  void add_scene(str_view scene_name, i_scene &scene);
+      sz get_screen_sz() const;
 
-  void go_to_scene(str_view scene_name);
+      s_ptr<SDL_Window> win_;
+      s_ptr<SDL_GLContext> context_;
+      s_ptr<SDL_Renderer> rend_;
+      str game_win_title_;
+      color clear_color_;
+    };
 
-  void update_curr_scene();
+   private:
+    void poll_events();
 
-  void render_curr_scene() const;
+    bool running_{true};
+  };
 
- private:
-  std::map<int, i_scene &> scenes_;
-  int curr_scene_{0};
-};
+  class fps_counter {
+   public:
+    void update();
+
+    auto fps() const { return fps_; }
+
+   private:
+    int fps_{0};
+    int frames_count_{0};
+    int ticks_last_update_{0};
+    const pt_f k_position{0.93f, 0.02f};
+  };
+
+  enum class curs_styles { normal, hovering_clickable_gui, hovering_creature };
+
+  class cursor {
+   public:
+    cursor() { init(); }
+
+    void reset_style_to_normal();
+
+    void render();
+
+    auto set_curs_style(curs_styles val) { curs_style_ = val; }
+
+   private:
+    void init();
+
+    void disable_sys_curs();
+
+    constexpr static float k_curs_sz{0.05f};
+
+    curs_styles curs_style_{curs_styles::normal};
+  };
+
+  class image_bank {
+   public:
+    image_bank() { init(); }
+
+    ~image_bank() { cleanup(); }
+
+    s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+
+    GLuint get_tex(int img_name_hash) const;
+
+    sz get_img_sz(int img_name_hash) const;
+
+    bool text_tex_exists(float x, float y, int unique_id) const;
+
+    GLuint obtain_text_tex(float x, float y, int text_hash);
+
+   private:
+    void init();
+
+    void cleanup();
+
+    void load_imgs();
+
+    s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
+
+    GLuint load_single_tex(s_ptr<SDL_Surface> surf);
+
+    inline static const str k_rel_imgs_path{"./res/images/"};
+
+    std::map<int, s_ptr<SDL_Texture>> images_;
+    std::map<int, GLuint> textures_;
+    std::map<int, sz> tex_sizes_;
+    std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
+  };
+
+  class model_bank {
+   public:
+    model_bank() { init(); }
+
+    s_ptr<model> get_model(int model_name_hash) const;
+
+   private:
+    void init();
+
+    s_ptr<model> load_single_model(str_view file_path);
+
+    inline static const str k_rel_models_path{"./res/models/"};
+
+    std::map<int, s_ptr<model>> models_;
+  };
+
+  class i_scene {
+   public:
+    void init();
+
+    void update();
+
+    void render() const;
+
+    void on_enter();
+
+    void set_init_derived(func<void()> value) { init_derived_ = value; }
+
+    void set_on_enter_derived(func<void()> value) { on_enter_derived_ = value; }
+
+    void set_update_derived(func<void()> value) { update_derived_ = value; }
+
+    void set_render_derived(func<void()> value) { render_derived_ = value; }
+
+   protected:
+    auto gui() const { return gui_; }
+
+   private:
+    s_ptr<forr::gui> gui_;
+    func<void()> init_derived_{[] {}};
+    func<void()> on_enter_derived_{[] {}};
+    func<void()> update_derived_{[] {}};
+    func<void()> render_derived_{[] {}};
+  };
+
+  class scene_mngr {
+   public:
+    void add_scene(str_view scene_name, i_scene &scene);
+
+    void go_to_scene(str_view scene_name);
+
+    void update_curr_scene();
+
+    void render_curr_scene() const;
+
+   private:
+    std::map<int, i_scene &> scenes_;
+    int curr_scene_{0};
+  };
+}
+using namespace Core;
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
-// virtualInclude 'src_engine/gui.hpp'
+// virtualInclude 'src_core/gui.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -793,7 +810,7 @@ _NS_END_
 
 
 
-// virtualInclude 'src_engine/input.hpp'
+// virtualInclude 'src_core/input.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -874,7 +891,7 @@ _NS_END_
 
 
 
-// virtualInclude 'src_engine/models.hpp'
+// virtualInclude 'src_core/models.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -935,7 +952,7 @@ _NS_END_
 
 
 
-// virtualInclude 'src_engine/rend.hpp'
+// virtualInclude 'src_core/rend.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1079,7 +1096,7 @@ _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
-// virtualInclude 'src_theme_0/core.hpp'
+// virtualInclude 'src_theme_0/theme_0_core.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg

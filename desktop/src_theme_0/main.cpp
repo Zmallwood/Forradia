@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "engine.hpp"
+#include "core.hpp"
 #include "game_props.hpp"
 #include "scripts.hpp"
 #include "world_struct.hpp"

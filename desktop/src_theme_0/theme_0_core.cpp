@@ -2,8 +2,8 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+#include "theme_0_core.hpp"
 #include "core.hpp"
-#include "engine.hpp"
 #include "game_props.hpp"
 #include "world_struct.hpp"
 
@@ -11,7 +11,7 @@ _NS_START_
 sz_f calc_tl_sz() {
   auto num_grid_rows{_<game_props>().k_num_grid_rows};
   auto tl_h{1.0f / num_grid_rows};
-  auto asp_rat{calc_aspect_ratio(_<sdl_device>().win())};
+  auto asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
   auto tl_w{tl_h / asp_rat};
   return {tl_w, tl_h};
 }

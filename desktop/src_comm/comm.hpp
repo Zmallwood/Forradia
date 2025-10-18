@@ -308,74 +308,88 @@ namespace Common {
       pt_f norm_mouse_pos(s_ptr<SDL_Window> win);
     }
     using namespace MouseUtilities;
+    namespace NumbersUtilities {
+      // Numbers util functions
+      float inv_movem_spd(float num);
 
-    // Numbers util functions
-    float inv_movem_spd(float num);
+      int normalize(int val);
 
-    int normalize(int val);
+      float ceil(float num, float k);
+    }
+    using namespace NumbersUtilities;
+    namespace RandomizationUtilities {
+      // Randomization util functions
+      void randomize();
 
-    float ceil(float num, float k);
+      int rand_int(int upper_lim);
+    }
+    using namespace RandomizationUtilities;
+    namespace StringUtilities {
+      // String util functions
+      str repl(str_view text, char repl, char repl_with);
+    }
+    using namespace StringUtilities;
+    namespace TimeUtilities {
+      // Time util functions
+      int ticks();
+    }
+    using namespace TimeUtilities;
+    namespace HashUtilities {
+      // Hash util functions
+      /**
+       * Compute hash code from a given input text, which
+       * gets computed the same every game start.
+       *
+       * \param text Text to compute hash code for.
+       * \return Computed hash code.
+       */
+      int hash(str_view text);
+    }
+    using namespace HashUtilities;
+    namespace PrintUtilities {
+      // Print util functions
+      /**
+       * Print out a string of text, without a following line break.
+       *
+       * \param text Text to print.
+       */
+      void print(str_view text);
 
-    // Randomization util functions
-    void randomize();
+      /**
+       * Print out a string of text, with an added line break at the end.
+       *
+       * \param text Text to print.
+       */
+      void print_ln(str_view text);
+    }
+    using namespace PrintUtilities;
+    namespace CastUtilities {
+      // Cast util functions
+      /**
+       * Cast a value to int.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      constexpr int c_int(auto val) { return static_cast<int>(val); }
 
-    int rand_int(int upper_lim);
+      /**
+       * Cast a value to float.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      float c_float(auto val) { return static_cast<float>(val); }
 
-    // String util functions
-    str repl(str_view text, char repl, char repl_with);
-
-    // Time util functions
-    int ticks();
-
-    // Hash util functions
-    /**
-     * Compute hash code from a given input text, which
-     * gets computed the same every game start.
-     *
-     * \param text Text to compute hash code for.
-     * \return Computed hash code.
-     */
-    int hash(str_view text);
-
-    // Print util functions
-    /**
-     * Print out a string of text, without a following line break.
-     *
-     * \param text Text to print.
-     */
-    void print(str_view text);
-
-    /**
-     * Print out a string of text, with an added line break at the end.
-     *
-     * \param text Text to print.
-     */
-    void print_ln(str_view text);
-
-    // Cast util functions
-    /**
-     * Cast a value to int.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    constexpr int c_int(auto val) { return static_cast<int>(val); }
-
-    /**
-     * Cast a value to float.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    float c_float(auto val) { return static_cast<float>(val); }
-
-    /**
-     * Cast a value to Uint8.
-     *
-     * \param val Value to cast.
-     * \return Casted value.
-     */
-    Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+      /**
+       * Cast a value to Uint8.
+       *
+       * \param val Value to cast.
+       * \return Casted value.
+       */
+      Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+    }
+    using namespace CastUtilities;
   }
   using namespace Utilities;
 }

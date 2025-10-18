@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "gui_spec.hpp"
+#include "theme_0_core.hpp"
 #include "core.hpp"
-#include "engine.hpp"
 #include "input.hpp"
 #include "rend.hpp"
 #include "update.hpp"
@@ -27,22 +27,22 @@ void gui_sys_menu::update_derived() {
 
 void gui_sys_menu::render_derived() const {
   gui_comp::render_derived();
-  auto c_sz{get_canv_sz(_<sdl_device>().win())};
+  auto c_sz{get_canv_sz(_<engine::sdl_device>().win())};
   auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
-  SDL_SetRenderDrawBlendMode(_<sdl_device>().rend().get(), SDL_BLENDMODE_BLEND);
-  SDL_SetRenderDrawColor(_<sdl_device>().rend().get(), 200, 0, 255, 50);
-  SDL_RenderFillRect(_<sdl_device>().rend().get(), &rect);
+  SDL_SetRenderDrawBlendMode(_<engine::sdl_device>().rend().get(), SDL_BLENDMODE_BLEND);
+  SDL_SetRenderDrawColor(_<engine::sdl_device>().rend().get(), 200, 0, 255, 50);
+  SDL_RenderFillRect(_<engine::sdl_device>().rend().get(), &rect);
 }
 
 void gui_inventory_win::render_derived() const {
   gui_win::render_derived();
   auto b{bounds()};
   auto margin_x{k_margin};
-  auto margin_y{conv_w_to_h(k_margin, _<sdl_device>().win())};
+  auto margin_y{conv_w_to_h(k_margin, _<engine::sdl_device>().win())};
   auto x_start{b.x + margin_x};
   auto y_start{b.y + margin_y + get_win_title_bar()->bounds().h};
   auto slot_w{k_slot_size};
-  auto slot_h{conv_w_to_h(k_slot_size, _<sdl_device>().win())};
+  auto slot_h{conv_w_to_h(k_slot_size, _<engine::sdl_device>().win())};
   auto num_cols{c_int((b.w - 2 * margin_x) / slot_w)};
   auto num_rows{c_int((b.h - 2 * margin_y - (y_start - b.y)) / slot_h)};
   for (auto y = 0; y < num_rows; y++) {
@@ -55,7 +55,7 @@ void gui_inventory_win::render_derived() const {
 
 void gui_player_body_win::init() {
   auto img_w{0.07f};
-  auto img_h{conv_w_to_h(img_w, _<sdl_device>().win())};
+  auto img_h{conv_w_to_h(img_w, _<engine::sdl_device>().win())};
   auto overall_body_img_btn{std::make_shared<gui_button>(
       0.1f - img_w / 2, 0.04f, img_w, img_h, "",
       [this] {
@@ -193,7 +193,7 @@ void gui_interact_menu::build_menu() {
 void gui_interact_menu::update_derived() {
   gui_panel::update_derived();
   auto b{bounds()};
-  auto mouse_pos{norm_mouse_pos(_<sdl_device>().win())};
+  auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto i{0};
   for (auto &entry : entries_) {
     auto menu_entry_rect{rect_f{b.x + 0.01f + k_indent_w,
