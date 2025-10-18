@@ -61,13 +61,15 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       .def(py::init<>())
       .def("add_scene", &scene_mngr::add_scene)
       .def("go_to_scene", &scene_mngr::go_to_scene);
-  py::class_<cursor>(m, "cursor")
+  py::class_<engine::cursor>(m, "cursor")
       .def(py::init<>())
-      .def("set_curs_style", &cursor::set_curs_style);
-  py::enum_<curs_styles>(m, "curs_styles")
-      .value("normal", curs_styles::normal)
-      .value("hovering_clickable_gui", curs_styles::hovering_clickable_gui)
-      .value("hovering_creature", curs_styles::hovering_creature);
+      .def("set_curs_style", &engine::cursor::set_curs_style);
+  py::enum_<engine::cursor::curs_styles>(m, "curs_styles")
+      .value("normal", engine::cursor::curs_styles::normal)
+      .value("hovering_clickable_gui",
+             engine::cursor::curs_styles::hovering_clickable_gui)
+      .value("hovering_creature",
+             engine::cursor::curs_styles::hovering_creature);
   py::class_<gui_chat_box, s_ptr<gui_chat_box>, gui_comp>(m, "gui_chat_box")
       .def(py::init<>())
       .def("print", &gui_chat_box::print);
@@ -166,7 +168,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   m.def("get_gui_chat_box_ptr",
         []() -> s_ptr<gui_chat_box> { return __<gui_chat_box>(); });
   m.def(
-      "get_cursor", []() -> cursor & { return _<cursor>(); },
+      "get_cursor", []() -> engine::cursor & { return _<engine::cursor>(); },
       py::return_value_policy::reference);
   m.def(
       "get_kb_inp", []() -> kb_inp & { return _<kb_inp>(); },

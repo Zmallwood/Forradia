@@ -68,7 +68,7 @@ void gui_button::update_derived() {
   auto hovered{bounds().contains(mouse_pos)};
   if (hovered) {
     set_bg_img(hovered_bg_img_);
-    _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
+    _<engine::cursor>().set_curs_style(engine::cursor::curs_styles::hovering_clickable_gui);
     if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
       action_();
   } else {
@@ -87,7 +87,7 @@ void gui_movable_panel::update_derived() {
   auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
   auto drag_area{get_drag_area()};
   if (drag_area.contains(mouse_pos)) {
-    _<cursor>().set_curs_style(curs_styles::hovering_clickable_gui);
+    _<engine::cursor>().set_curs_style(engine::cursor::curs_styles::hovering_clickable_gui);
     if (_<mouse_inp>().left_btn_ref().been_fired_pick_res())
       start_move();
   }
@@ -157,7 +157,7 @@ void gui_fps_panel::init() {
 
 void gui_fps_panel::update_derived() {
   gui_movable_panel::update_derived();
-  auto fps{_<fps_counter>().fps()};
+  auto fps{_<engine::fps_counter>().fps()};
   fps_text_pnl_->set_text(fmt::format("FPS: {}", fps));
 }
 

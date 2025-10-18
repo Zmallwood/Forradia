@@ -12,12 +12,6 @@ class model;
 namespace Core {
   class engine {
    public:
-    void init(str_view game_win_title, color clear_color) const;
-
-    void run();
-
-    void stop();
-
     class sdl_device {
      public:
       ~sdl_device();
@@ -44,98 +38,109 @@ namespace Core {
       color clear_color_;
     };
 
+    class fps_counter {
+     public:
+      void update();
+
+      auto fps() const { return fps_; }
+
+     private:
+      int fps_{0};
+      int frames_count_{0};
+      int ticks_last_update_{0};
+      const pt_f k_position{0.93f, 0.02f};
+    };
+
+    class cursor {
+     public:
+      enum class curs_styles {
+        normal,
+        hovering_clickable_gui,
+        hovering_creature
+      };
+
+      cursor() { init(); }
+
+      void reset_style_to_normal();
+
+      void render();
+
+      auto set_curs_style(curs_styles val) { curs_style_ = val; }
+
+     private:
+      void init();
+
+      void disable_sys_curs();
+
+      constexpr static float k_curs_sz{0.05f};
+
+      curs_styles curs_style_{curs_styles::normal};
+    };
+
+    void init(str_view game_win_title, color clear_color) const;
+
+    void run();
+
+    void stop();
+
    private:
     void poll_events();
 
     bool running_{true};
   };
+  namespace Assets {
+    class image_bank {
+     public:
+      image_bank() { init(); }
 
-  class fps_counter {
-   public:
-    void update();
+      ~image_bank() { cleanup(); }
 
-    auto fps() const { return fps_; }
+      s_ptr<SDL_Texture> get_img(int img_name_hash) const;
 
-   private:
-    int fps_{0};
-    int frames_count_{0};
-    int ticks_last_update_{0};
-    const pt_f k_position{0.93f, 0.02f};
-  };
+      GLuint get_tex(int img_name_hash) const;
 
-  enum class curs_styles { normal, hovering_clickable_gui, hovering_creature };
+      sz get_img_sz(int img_name_hash) const;
 
-  class cursor {
-   public:
-    cursor() { init(); }
+      bool text_tex_exists(float x, float y, int unique_id) const;
 
-    void reset_style_to_normal();
+      GLuint obtain_text_tex(float x, float y, int text_hash);
 
-    void render();
+     private:
+      void init();
 
-    auto set_curs_style(curs_styles val) { curs_style_ = val; }
+      void cleanup();
 
-   private:
-    void init();
+      void load_imgs();
 
-    void disable_sys_curs();
+      s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
 
-    constexpr static float k_curs_sz{0.05f};
+      GLuint load_single_tex(s_ptr<SDL_Surface> surf);
 
-    curs_styles curs_style_{curs_styles::normal};
-  };
+      inline static const str k_rel_imgs_path{"./res/images/"};
 
-  class image_bank {
-   public:
-    image_bank() { init(); }
+      std::map<int, s_ptr<SDL_Texture>> images_;
+      std::map<int, GLuint> textures_;
+      std::map<int, sz> tex_sizes_;
+      std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
+    };
 
-    ~image_bank() { cleanup(); }
+    class model_bank {
+     public:
+      model_bank() { init(); }
 
-    s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+      s_ptr<model> get_model(int model_name_hash) const;
 
-    GLuint get_tex(int img_name_hash) const;
+     private:
+      void init();
 
-    sz get_img_sz(int img_name_hash) const;
+      s_ptr<model> load_single_model(str_view file_path);
 
-    bool text_tex_exists(float x, float y, int unique_id) const;
+      inline static const str k_rel_models_path{"./res/models/"};
 
-    GLuint obtain_text_tex(float x, float y, int text_hash);
-
-   private:
-    void init();
-
-    void cleanup();
-
-    void load_imgs();
-
-    s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
-
-    GLuint load_single_tex(s_ptr<SDL_Surface> surf);
-
-    inline static const str k_rel_imgs_path{"./res/images/"};
-
-    std::map<int, s_ptr<SDL_Texture>> images_;
-    std::map<int, GLuint> textures_;
-    std::map<int, sz> tex_sizes_;
-    std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
-  };
-
-  class model_bank {
-   public:
-    model_bank() { init(); }
-
-    s_ptr<model> get_model(int model_name_hash) const;
-
-   private:
-    void init();
-
-    s_ptr<model> load_single_model(str_view file_path);
-
-    inline static const str k_rel_models_path{"./res/models/"};
-
-    std::map<int, s_ptr<model>> models_;
-  };
-
+      std::map<int, s_ptr<model>> models_;
+    };
+  }
+  using namespace Assets;
   class i_scene {
    public:
     void init();
