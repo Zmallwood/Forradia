@@ -82,8 +82,63 @@ namespace Core {
       curs_styles curs_style_{curs_styles::normal};
     };
 
-    class input {
+    class Assets {
      public:
+      class Images {
+       public:
+        class image_bank {
+         public:
+          image_bank() { init(); }
+
+          ~image_bank() { cleanup(); }
+
+          s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+
+          GLuint get_tex(int img_name_hash) const;
+
+          sz get_img_sz(int img_name_hash) const;
+
+          bool text_tex_exists(float x, float y, int unique_id) const;
+
+          GLuint obtain_text_tex(float x, float y, int text_hash);
+
+         private:
+          void init();
+
+          void cleanup();
+
+          void load_imgs();
+
+          s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
+
+          GLuint load_single_tex(s_ptr<SDL_Surface> surf);
+
+          inline static const str k_rel_imgs_path{"./res/images/"};
+
+          std::map<int, s_ptr<SDL_Texture>> images_;
+          std::map<int, GLuint> textures_;
+          std::map<int, sz> tex_sizes_;
+          std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
+        };
+      };
+      class Models {
+       public:
+        class model_bank {
+         public:
+          model_bank() { init(); }
+
+          s_ptr<model> get_model(int model_name_hash) const;
+
+         private:
+          void init();
+
+          s_ptr<model> load_single_model(str_view file_path);
+
+          inline static const str k_rel_models_path{"./res/models/"};
+
+          std::map<int, s_ptr<model>> models_;
+        };
+      };
     };
 
     void init(str_view game_win_title, color clear_color) const;
@@ -97,65 +152,8 @@ namespace Core {
 
     bool running_{true};
   };
-  namespace Assets {
-    namespace Images {
-      class image_bank {
-       public:
-        image_bank() { init(); }
-
-        ~image_bank() { cleanup(); }
-
-        s_ptr<SDL_Texture> get_img(int img_name_hash) const;
-
-        GLuint get_tex(int img_name_hash) const;
-
-        sz get_img_sz(int img_name_hash) const;
-
-        bool text_tex_exists(float x, float y, int unique_id) const;
-
-        GLuint obtain_text_tex(float x, float y, int text_hash);
-
-       private:
-        void init();
-
-        void cleanup();
-
-        void load_imgs();
-
-        s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
-
-        GLuint load_single_tex(s_ptr<SDL_Surface> surf);
-
-        inline static const str k_rel_imgs_path{"./res/images/"};
-
-        std::map<int, s_ptr<SDL_Texture>> images_;
-        std::map<int, GLuint> textures_;
-        std::map<int, sz> tex_sizes_;
-        std::map<float, std::map<float, std::map<int, GLuint>>> text_texes_;
-      };
-    }
-    using namespace Images;
-    namespace Models {
-      class model_bank {
-       public:
-        model_bank() { init(); }
-
-        s_ptr<model> get_model(int model_name_hash) const;
-
-       private:
-        void init();
-
-        s_ptr<model> load_single_model(str_view file_path);
-
-        inline static const str k_rel_models_path{"./res/models/"};
-
-        std::map<int, s_ptr<model>> models_;
-      };
-    }
-    using namespace Models;
-  }
-  using namespace Assets;
-  namespace ScenesCore {
+  class ScenesCore {
+   public:
     class i_scene {
      public:
       void init();
@@ -201,8 +199,7 @@ namespace Core {
       std::map<int, i_scene &> scenes_;
       int curr_scene_{0};
     };
-  }
-  using namespace ScenesCore;
+  };
 }
 using namespace Core;
 _NS_END_

@@ -13,7 +13,7 @@
 #include "world_view.hpp"
 
 _NS_START_
-class i_scene_publ : public i_scene {
+class i_scene_publ : public Core::ScenesCore::i_scene {
  public:
   using i_scene::gui;
 };
@@ -38,29 +38,30 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
   py::class_<gui_panel, s_ptr<gui_panel>, gui_comp>(m, "gui_panel");
   py::class_<gui_button, s_ptr<gui_button>, gui_comp>(m, "gui_button");
   py::class_<gui_fps_panel, s_ptr<gui_fps_panel>, gui_comp>(m, "gui_fps_panel");
-  py::class_<i_scene>(m, "i_scene")
+  py::class_<Core::ScenesCore::i_scene>(m, "i_scene")
       .def(py::init<>())
-      .def("init", &i_scene::init)
+      .def("init", &Core::ScenesCore::i_scene::init)
       .def("gui", &i_scene_publ::gui)
       .def("set_init_derived",
-           [](i_scene &self, py::function f) {
+           [](Core::ScenesCore::i_scene &self, py::function f) {
              self.set_init_derived([=] { f(); });
            })
       .def("set_on_enter_derived",
-           [](i_scene &self, py::function f) {
+           [](Core::ScenesCore::i_scene &self, py::function f) {
              self.set_on_enter_derived([=] { f(); });
            })
       .def("set_update_derived",
-           [](i_scene &self, py::function f) {
+           [](Core::ScenesCore::i_scene &self, py::function f) {
              self.set_update_derived([=] { f(); });
            })
-      .def("set_render_derived", [](i_scene &self, py::function f) {
-        self.set_render_derived([=] { f(); });
-      });
-  py::class_<scene_mngr>(m, "scene_mngr")
+      .def("set_render_derived",
+           [](Core::ScenesCore::i_scene &self, py::function f) {
+             self.set_render_derived([=] { f(); });
+           });
+  py::class_<Core::ScenesCore::scene_mngr>(m, "scene_mngr")
       .def(py::init<>())
-      .def("add_scene", &scene_mngr::add_scene)
-      .def("go_to_scene", &scene_mngr::go_to_scene);
+      .def("add_scene", &Core::ScenesCore::scene_mngr::add_scene)
+      .def("go_to_scene", &Core::ScenesCore::scene_mngr::go_to_scene);
   py::class_<engine::cursor>(m, "cursor")
       .def(py::init<>())
       .def("set_curs_style", &engine::cursor::set_curs_style);
@@ -154,7 +155,10 @@ PYBIND11_EMBEDDED_MODULE(embedded, m) {
       "get_engine", []() -> engine & { return _<engine>(); },
       py::return_value_policy::reference);
   m.def(
-      "get_scene_mngr", []() -> scene_mngr & { return _<scene_mngr>(); },
+      "get_scene_mngr",
+      []() -> Core::ScenesCore::scene_mngr & {
+        return _<Core::ScenesCore::scene_mngr>();
+      },
       py::return_value_policy::reference);
   m.def(
       "get_img_rend", []() -> img_rend & { return _<img_rend>(); },

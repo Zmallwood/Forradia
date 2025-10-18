@@ -262,7 +262,7 @@ void world_view::render() const {
           }
           continue;
         }
-        auto obj_img_sz{_<image_bank>().get_img_sz(obj_type)};
+        auto obj_img_sz{_<Core::engine::Assets::Images::image_bank>().get_img_sz(obj_type)};
         auto obj_w{obj_img_sz.w / 60.0f * tl_sz.w};
         auto obj_h{obj_img_sz.h / 60.0f * tl_sz.h};
         _<img_2d_rend>().draw_img(obj_type, x_canv + tl_sz.w / 2 - obj_w / 2,
@@ -274,7 +274,7 @@ void world_view::render() const {
     auto crea{tl ? tl->creature() : nullptr};
     if (crea) {
       auto crea_type{crea->type()};
-      auto crea_img_sz{_<image_bank>().get_img_sz(crea_type)};
+      auto crea_img_sz{_<Core::engine::Assets::Images::image_bank>().get_img_sz(crea_type)};
       auto crea_w{crea_img_sz.w / 60.0f * tl_sz.w};
       auto crea_h{crea_img_sz.h / 60.0f * tl_sz.h};
       _<img_2d_rend>().draw_img(crea_type, x_canv + tl_sz.w / 2 - crea_w / 2,
@@ -285,7 +285,7 @@ void world_view::render() const {
     auto npc{tl ? tl->npc() : nullptr};
     if (npc) {
       auto npc_type{npc->type()};
-      auto npc_img_sz{_<image_bank>().get_img_sz(npc_type)};
+      auto npc_img_sz{_<Core::engine::Assets::Images::image_bank>().get_img_sz(npc_type)};
       auto npc_w{npc_img_sz.w / 60.0f * tl_sz.w};
       auto npc_h{npc_img_sz.h / 60.0f * tl_sz.h};
       _<img_2d_rend>().draw_img(npc_type, x_canv + tl_sz.w / 2 - npc_w / 2,

@@ -161,7 +161,7 @@ void img_2d_rend::reset_counter() { counter_ = 0; }
 
 void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
                            float h) {
-  auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+  auto tex_id{_<Core::engine::Assets::Images::image_bank>().get_tex(img_name_hash)};
 
   img_2d_rend::draw_tex(tex_id, x, y, w, h);
 }
@@ -253,7 +253,7 @@ void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h) {
 void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y,
                                   float w) {
   auto hash{forr::hash(img_name)};
-  auto img_sz{_<image_bank>().get_img_sz(hash)};
+  auto img_sz{_<Core::engine::Assets::Images::image_bank>().get_img_sz(hash)};
   if (img_sz.w <= 0 || img_sz.h <= 0)
     return;
   auto canv_asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
@@ -333,7 +333,7 @@ void ground_rend::cleanup() {
 void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
                             float tl_sz, pt3_f camera_pos, vec<float> &elevs,
                             float elev_h) {
-  auto tex_id{_<image_bank>().get_tex(img_name_hash)};
+  auto tex_id{_<Core::engine::Assets::Images::image_bank>().get_tex(img_name_hash)};
   auto x{tl_sz * x_coord};
   auto y{tl_sz * y_coord};
   auto w{tl_sz};
@@ -664,7 +664,7 @@ void model_rend::init() {
 void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
                             pt3_f camera_pos, float elev_h) {
   glEnable(GL_DEPTH_TEST);
-  auto model{_<model_bank>().get_model(model_name_hash)};
+  auto model{_<Core::engine::Assets::Models::model_bank>().get_model(model_name_hash)};
   if (!model) {
     std::cout << "Model not found" << std::endl;
     return;
@@ -782,7 +782,7 @@ void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
   auto tex_name{meshes.at(0).textures.at(0).path_};
   // std::cout << tex_name << std::endl;
   auto tex_name_hash{hash(tex_name)};
-  auto tex_id{_<image_bank>().get_tex(tex_name_hash)};
+  auto tex_id{_<Core::engine::Assets::Images::image_bank>().get_tex(tex_name_hash)};
   glBindTexture(GL_TEXTURE_2D, tex_id);
   glDrawElements(GL_TRIANGLE_FAN, vertices_count, GL_UNSIGNED_INT, nullptr);
   glBindVertexArray(0);
@@ -831,8 +831,8 @@ void text_rend::draw_str(str_view text, float x, float y, font_szs font_sz,
   auto text_hash{hash(text)};
   auto xx{c_float(c_int(x * 1000))};
   auto yy{c_float(c_int(y * 1000))};
-  auto tex_already_exists{_<image_bank>().text_tex_exists(xx, yy, text_hash)};
-  auto tex{_<image_bank>().obtain_text_tex(xx, yy, text_hash)};
+  auto tex_already_exists{_<Core::engine::Assets::Images::image_bank>().text_tex_exists(xx, yy, text_hash)};
+  auto tex{_<Core::engine::Assets::Images::image_bank>().obtain_text_tex(xx, yy, text_hash)};
   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
   glEnable(GL_TEXTURE_2D);
   glEnable(GL_BLEND);
