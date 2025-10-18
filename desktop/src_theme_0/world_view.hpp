@@ -5,10 +5,11 @@
 #pragma once
 
 _NS_START_
-class world_view {
- public:
-  void render() const;
+class world_view
+{
+  public:
+    void render() const;
 
-  void render_new() const;
+    void render_new() const;
 };
 _NS_END_

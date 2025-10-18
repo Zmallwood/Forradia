@@ -5,10 +5,11 @@
 #pragma once
 
 _NS_START_
-class script_engine {
- public:
-  void init();
+class script_engine
+{
+  public:
+    void init();
 
-  void load_scripts();
+    void load_scripts();
 };
 _NS_END_

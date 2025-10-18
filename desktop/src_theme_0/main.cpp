@@ -7,13 +7,15 @@
 #include "scripts.hpp"
 #include "world_struct.hpp"
 
-int main(int argc, char **argv) {
-  using namespace forr;
-  _<engine>().init(_<game_props>().k_game_win_title,
-                   _<game_props>().k_clear_color);
-  _<script_engine>().init();
-  _<script_engine>().load_scripts();
-  _<world>().init(_<game_props>().k_w_area_sz, _<game_props>().k_world_scaling);
-  _<engine>().run();
-  return 0;
+int main(int argc, char **argv)
+{
+    using namespace Forradia;
+    _<engine>().init(_<game_props>().k_game_win_title,
+                     _<game_props>().k_clear_color);
+    _<script_engine>().init();
+    _<script_engine>().load_scripts();
+    _<world>().init(_<game_props>().k_w_area_sz,
+                    _<game_props>().k_world_scaling);
+    _<engine>().run();
+    return 0;
 }

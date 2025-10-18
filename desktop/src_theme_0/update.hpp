@@ -18,13 +18,14 @@ void update_crea_movem();
 
 void update_npcs();
 
-class tl_hovering {
- public:
-  void update();
+class tl_hovering
+{
+  public:
+    void update();
 
-  auto hovered_coord() const { return hovered_coord_; }
+    auto hovered_coord() const { return hovered_coord_; }
 
- private:
-  pt hovered_coord_{-1, -1};
+  private:
+    pt hovered_coord_{-1, -1};
 };
 _NS_END_

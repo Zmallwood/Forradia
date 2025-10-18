@@ -7,7 +7,6 @@ from embedded import (
     i_scene,
     get_engine,
     get_scene_mngr,
-    get_img_rend,
     make_shared_gui_label,
     make_shared_gui_panel,
     make_shared_gui_button,
