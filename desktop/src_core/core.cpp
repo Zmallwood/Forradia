@@ -263,42 +263,44 @@ namespace Core {
       return model_res;
     }
   }
-  void i_scene::init() {
-    gui_ = std::make_shared<forr::gui>();
-    init_derived_();
-  }
+  namespace ScenesCore {
+    void i_scene::init() {
+      gui_ = std::make_shared<forr::gui>();
+      init_derived_();
+    }
 
-  void i_scene::on_enter() { on_enter_derived_(); }
+    void i_scene::on_enter() { on_enter_derived_(); }
 
-  void i_scene::update() {
-    gui_->update();
-    update_derived_();
-  }
+    void i_scene::update() {
+      gui_->update();
+      update_derived_();
+    }
 
-  void i_scene::render() const {
-    render_derived_();
-    gui_->render();
-  }
+    void i_scene::render() const {
+      render_derived_();
+      gui_->render();
+    }
 
-  void scene_mngr::add_scene(str_view scene_name, i_scene &scene) {
-    scene.init();
-    scenes_.insert({hash(scene_name), scene});
-  }
+    void scene_mngr::add_scene(str_view scene_name, i_scene &scene) {
+      scene.init();
+      scenes_.insert({hash(scene_name), scene});
+    }
 
-  void scene_mngr::go_to_scene(str_view scene_name) {
-    curr_scene_ = hash(scene_name);
-    if (scenes_.contains(curr_scene_))
-      scenes_.at(curr_scene_).on_enter();
-  }
+    void scene_mngr::go_to_scene(str_view scene_name) {
+      curr_scene_ = hash(scene_name);
+      if (scenes_.contains(curr_scene_))
+        scenes_.at(curr_scene_).on_enter();
+    }
 
-  void scene_mngr::update_curr_scene() {
-    if (scenes_.contains(curr_scene_))
-      scenes_.at(curr_scene_).update();
-  }
+    void scene_mngr::update_curr_scene() {
+      if (scenes_.contains(curr_scene_))
+        scenes_.at(curr_scene_).update();
+    }
 
-  void scene_mngr::render_curr_scene() const {
-    if (scenes_.contains(curr_scene_))
-      scenes_.at(curr_scene_).render();
+    void scene_mngr::render_curr_scene() const {
+      if (scenes_.contains(curr_scene_))
+        scenes_.at(curr_scene_).render();
+    }
   }
 }
 _NS_END_

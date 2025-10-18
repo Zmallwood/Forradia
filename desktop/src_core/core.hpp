@@ -6,7 +6,9 @@
 
 _NS_START_
 
-class gui;
+#define _HIDE_FROM_OUTLINER_ namespace GUICore { class gui; }
+_HIDE_FROM_OUTLINER_
+
 class model;
 
 namespace Core {
@@ -146,49 +148,54 @@ namespace Core {
     using namespace Models;
   }
   using namespace Assets;
-  class i_scene {
-   public:
-    void init();
+  namespace ScenesCore {
+    class i_scene {
+     public:
+      void init();
 
-    void update();
+      void update();
 
-    void render() const;
+      void render() const;
 
-    void on_enter();
+      void on_enter();
 
-    void set_init_derived(func<void()> value) { init_derived_ = value; }
+      void set_init_derived(func<void()> value) { init_derived_ = value; }
 
-    void set_on_enter_derived(func<void()> value) { on_enter_derived_ = value; }
+      void set_on_enter_derived(func<void()> value) {
+        on_enter_derived_ = value;
+      }
 
-    void set_update_derived(func<void()> value) { update_derived_ = value; }
+      void set_update_derived(func<void()> value) { update_derived_ = value; }
 
-    void set_render_derived(func<void()> value) { render_derived_ = value; }
+      void set_render_derived(func<void()> value) { render_derived_ = value; }
 
-   protected:
-    auto gui() const { return gui_; }
+     protected:
+      auto gui() const { return gui_; }
 
-   private:
-    s_ptr<forr::gui> gui_;
-    func<void()> init_derived_{[] {}};
-    func<void()> on_enter_derived_{[] {}};
-    func<void()> update_derived_{[] {}};
-    func<void()> render_derived_{[] {}};
-  };
+     private:
+      s_ptr<forr::GUICore::gui> gui_;
+      func<void()> init_derived_{[] {}};
+      func<void()> on_enter_derived_{[] {}};
+      func<void()> update_derived_{[] {}};
+      func<void()> render_derived_{[] {}};
+    };
 
-  class scene_mngr {
-   public:
-    void add_scene(str_view scene_name, i_scene &scene);
+    class scene_mngr {
+     public:
+      void add_scene(str_view scene_name, i_scene &scene);
 
-    void go_to_scene(str_view scene_name);
+      void go_to_scene(str_view scene_name);
 
-    void update_curr_scene();
+      void update_curr_scene();
 
-    void render_curr_scene() const;
+      void render_curr_scene() const;
 
-   private:
-    std::map<int, i_scene &> scenes_;
-    int curr_scene_{0};
-  };
+     private:
+      std::map<int, i_scene &> scenes_;
+      int curr_scene_{0};
+    };
+  }
+  using namespace ScenesCore;
 }
 using namespace Core;
 _NS_END_
