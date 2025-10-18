@@ -4,7 +4,6 @@
  */
 #include "rend.hpp"
 #include "core.hpp"
-#include "models.hpp"
 #include <glm/gtx/transform.hpp>
 
 _NS_START_

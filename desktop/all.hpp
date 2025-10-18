@@ -426,8 +426,6 @@ _NS_START_
   }
 _HIDE_FROM_OUTLINER_
 
-class model;
-
 namespace Core {
   class engine {
    public:
@@ -539,6 +537,56 @@ namespace Core {
        public:
         class model_bank {
          public:
+          class vertex {
+           public:
+            glm::vec3 position;
+            glm::vec3 normal;
+            glm::vec2 tex_coord;
+            glm::vec3 tangent;
+            glm::vec3 bitangent;
+          };
+
+          class texture {
+           public:
+            str path_;
+          };
+
+          class mesh {
+           public:
+            vec<vertex> vertices;
+            vec<unsigned int> indices;
+            vec<texture> textures;
+            glm::vec3 extents;
+            glm::vec3 origin;
+            aiString name;
+          };
+
+          class model {
+           public:
+            model(str_view file_path) { init(file_path); };
+
+            auto &meshes_ref() const { return meshes_; }
+
+           private:
+            void init(str_view file_path);
+
+            void process_node(aiNode *node, const aiScene *scene,
+                              aiMatrix4x4 transform);
+
+            mesh process_mesh(aiMesh *mesh, const aiScene *scene,
+                              aiMatrix4x4 transformation);
+
+            vec<vertex> get_vertices(aiMesh *mesh, glm::vec3 &extents,
+                                     glm::vec3 &origin,
+                                     aiMatrix4x4 transformation);
+
+            vec<unsigned int> get_indices(aiMesh *mesh);
+
+            vec<texture> get_textures(aiMesh *mesh, const aiScene *scene);
+
+            vec<mesh> meshes_;
+          };
+         public:
           model_bank() { init(); }
 
           s_ptr<model> get_model(int model_name_hash) const;
@@ -600,6 +648,105 @@ namespace Core {
        private:
         std::map<int, i_scene &> scenes_;
         int curr_scene_{0};
+      };
+    };
+    class Input {
+     public:
+      ////////////////////
+      // Keyboard
+      ////////////////////
+      class kb_inp {
+       public:
+        void reset();
+
+        void reg_key_press(SDL_Keycode key);
+
+        void reg_key_release(SDL_Keycode key);
+
+        bool key_pressed(SDL_Keycode key) const;
+
+        bool key_pressed_pick_res(SDL_Keycode key);
+
+        bool any_key_pressed_pick_res();
+
+       private:
+        std::set<SDL_Keycode> pressed_;
+      };
+
+      ////////////////////
+      // Mouse
+      ////////////////////
+      class mouse_inp {
+       public:
+        class mouse_btn {
+         public:
+          void reset();
+
+          void reg_press();
+
+          void reg_release();
+
+          bool pressed_pick_res();
+
+          bool been_fired_pick_res();
+
+          bool been_fired_no_pick_res();
+
+          bool been_released_pick_res();
+
+          bool been_released_no_pick_res();
+
+         private:
+          bool pressed_{false};
+          bool been_fired_{false};
+          bool been_released_{false};
+        };
+
+        class left_mouse_btn : public mouse_btn {
+         public:
+          using mouse_btn::reset;
+
+          using mouse_btn::reg_press;
+
+          using mouse_btn::reg_release;
+
+          using mouse_btn::pressed_pick_res;
+
+          using mouse_btn::been_fired_pick_res;
+
+          using mouse_btn::been_fired_no_pick_res;
+
+          using mouse_btn::been_released_pick_res;
+
+          using mouse_btn::been_released_no_pick_res;
+        };
+
+        class right_mouse_btn : public mouse_btn {
+         public:
+          using mouse_btn::reset;
+
+          using mouse_btn::reg_press;
+
+          using mouse_btn::reg_release;
+
+          using mouse_btn::pressed_pick_res;
+
+          using mouse_btn::been_fired_pick_res;
+
+          using mouse_btn::been_fired_no_pick_res;
+
+          using mouse_btn::been_released_pick_res;
+
+          using mouse_btn::been_released_no_pick_res;
+        };
+
+        void reset();
+
+        void reg_mouse_btn_down(Uint8 btn);
+
+        void reg_mouse_btn_up(Uint8 btn);
+
+        bool any_mouse_btn_pressed_pick_res();
       };
     };
 
