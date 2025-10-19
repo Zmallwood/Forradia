@@ -110,5 +110,6 @@ namespace SpecializedGUI
     };
 }
 using namespace SpecializedGUI;
-}
+#define _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
 _NS_END_

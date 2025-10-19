@@ -6,13 +6,15 @@
 #include "comm.hpp"
 
 _NS_START_
-namespace Theme0
-{
-    namespace WorldStructure
-    {
-        class world_area;
+#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
+    namespace Theme0                                                           \
+    {                                                                          \
+        namespace WorldStructure                                               \
+        {                                                                      \
+            class world_area;                                                  \
+        }                                                                      \
     }
-}
+_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
 
 class world_grator
 {
