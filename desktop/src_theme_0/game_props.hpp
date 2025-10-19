@@ -6,6 +6,10 @@
 #include "comm.hpp"
 
 _NS_START_
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_                                    \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
 class game_props
 {
   public:
@@ -15,4 +19,5 @@ class game_props
     static constexpr sz k_w_area_sz{120, 100};
     static constexpr float k_world_scaling{5.0f};
 };
+}
 _NS_END_

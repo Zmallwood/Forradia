@@ -95,6 +95,7 @@ namespace Theme0
         player_body body_;
         int money_{0};
     };
-}
-using namespace Theme0;
-_NS_END_
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_ }
+    _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_
+    using namespace Theme0;
+    _NS_END_

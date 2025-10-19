@@ -25,7 +25,7 @@ void world_grator::prep()
 {
     w_area_ = _<world>().curr_w_area();
     sz_ = w_area_->get_sz();
-    scale_ = _<game_props>().k_world_scaling;
+    scale_ = _<Theme0::game_props>().k_world_scaling;
 }
 
 void world_grator::clear_with_dirt() const
