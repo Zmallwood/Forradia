@@ -158,10 +158,10 @@ void update_npcs()
         {
             auto name{npc->name()};
             if (rand_int(20) == 0)
-                _<gui_chat_box>().print(name +
+                _<GUICoreBase::gui_chat_box>().print(name +
                                         ": Buying blueberries, one gold each.");
             else
-                _<gui_chat_box>().print(name + ": Hello all!");
+                _<GUICoreBase::gui_chat_box>().print(name + ": Hello all!");
             npc->set_ticks_next_spontaneous_speech(now + 5 * k_one_sec_millis +
                                                    (6000 * k_one_sec_millis));
         }

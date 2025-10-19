@@ -65,7 +65,7 @@ void gui_player_body_win::init()
 {
     auto img_w{0.07f};
     auto img_h{conv_w_to_h(img_w, _<engine::sdl_device>().win())};
-    auto overall_body_img_btn{std::make_shared<gui_button>(
+    auto overall_body_img_btn{std::make_shared<GUICoreBase::gui_button>(
         0.1f - img_w / 2, 0.04f, img_w, img_h, "",
         [this]
         {
@@ -74,7 +74,7 @@ void gui_player_body_win::init()
         },
         "gui_image_overall_body", "gui_image_overall_body_hovered")};
     add_child_comp(overall_body_img_btn);
-    auto right_arm_body_img_btn{std::make_shared<gui_button>(
+    auto right_arm_body_img_btn{std::make_shared<GUICoreBase::gui_button>(
         0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
         [this]
         {
@@ -83,7 +83,7 @@ void gui_player_body_win::init()
         },
         "gui_image_right_arm", "gui_image_right_arm_hovered")};
     add_child_comp(right_arm_body_img_btn);
-    auto left_arm_body_img_btn{std::make_shared<gui_button>(
+    auto left_arm_body_img_btn{std::make_shared<GUICoreBase::gui_button>(
         0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
         [this]
         {
@@ -92,7 +92,7 @@ void gui_player_body_win::init()
         },
         "gui_image_left_arm", "gui_image_left_arm_hovered")};
     add_child_comp(left_arm_body_img_btn);
-    auto legs_img_btn{std::make_shared<gui_button>(
+    auto legs_img_btn{std::make_shared<GUICoreBase::gui_button>(
         0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
         [this]
         {
@@ -101,13 +101,13 @@ void gui_player_body_win::init()
         },
         "gui_image_legs", "gui_image_legs_hovered")};
     add_child_comp(legs_img_btn);
-    lbl_body_part_name_ = std::make_shared<gui_label>(
+    lbl_body_part_name_ = std::make_shared<GUICoreBase::gui_label>(
         0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false, colors::yellow_transp);
-    lbl_body_part_str_ = std::make_shared<gui_label>(
+    lbl_body_part_str_ = std::make_shared<GUICoreBase::gui_label>(
         0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
-    lbl_body_part_energy_ = std::make_shared<gui_label>(
+    lbl_body_part_energy_ = std::make_shared<GUICoreBase::gui_label>(
         0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
-    lbl_body_part_temp_ = std::make_shared<gui_label>(
+    lbl_body_part_temp_ = std::make_shared<GUICoreBase::gui_label>(
         0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
     add_child_comp(lbl_body_part_name_);
     add_child_comp(lbl_body_part_str_);
@@ -205,7 +205,7 @@ void gui_interact_menu::build_menu()
     {
         entries_.push_back({"Forage", [=]()
                             {
-                                _<gui_chat_box>().print(
+                                _<GUICoreBase::gui_chat_box>().print(
                                     "Grass foraged. You found blue berries.");
                             }});
     }
@@ -218,7 +218,7 @@ void gui_interact_menu::build_menu()
         {
             entries_.push_back({"Cut down tree", [=]()
                                 {
-                                    _<gui_chat_box>().print(
+                                    _<GUICoreBase::gui_chat_box>().print(
                                         "Tree cut down. You found some wood.");
                                 }});
         }

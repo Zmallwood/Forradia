@@ -5,8 +5,9 @@
 #pragma once
 
 _NS_START_
-namespace GUICore
+class GUICoreBase
 {
+  public:
     class gui_comp
     {
       public:
@@ -227,6 +228,5 @@ namespace GUICore
 
         vec<str> lines_;
     };
-}
-using namespace GUICore;
+};
 _NS_END_

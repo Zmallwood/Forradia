@@ -457,14 +457,16 @@ _NS_END_
  */
 #pragma once
 
+#include "gui.hpp"
+
 _NS_START_
 
-#define _HIDE_FROM_OUTLINER_                                                   \
-    namespace GUICore                                                          \
-    {                                                                          \
-        class gui;                                                             \
-    }
-_HIDE_FROM_OUTLINER_
+// #define _HIDE_FROM_OUTLINER_ \
+//     namespace GUICore \
+//     { \
+//         class gui; \
+//     }
+// _HIDE_FROM_OUTLINER_
 
 namespace Core
 {
@@ -661,6 +663,16 @@ namespace Core
                 };
             };
         };
+        class GUICore : public GUICoreBase
+        {
+          public:
+            class gui : public GUICoreBase::gui
+            {
+              public:
+                using GUICoreBase::gui::render;
+                using GUICoreBase::gui::update;
+            };
+        };
         class ScenesCore
         {
           public:
@@ -699,7 +711,7 @@ namespace Core
                 auto gui() const { return gui_; }
 
               private:
-                s_ptr<Forradia::GUICore::gui> gui_;
+                s_ptr<GUICoreBase::gui> gui_;
                 func<void()> init_derived_{[] {}};
                 func<void()> on_enter_derived_{[] {}};
                 func<void()> update_derived_{[] {}};
@@ -853,8 +865,9 @@ _NS_END_
 #pragma once
 
 _NS_START_
-namespace GUICore
+class GUICoreBase
 {
+  public:
     class gui_comp
     {
       public:
@@ -1075,8 +1088,7 @@ namespace GUICore
 
         vec<str> lines_;
     };
-}
-using namespace GUICore;
+};
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1365,7 +1377,7 @@ _NS_END_
 #include "gui.hpp"
 
 _NS_START_
-class gui_player_status_box : public gui_panel
+class gui_player_status_box : public GUICoreBase::gui_panel
 {
   public:
     gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
@@ -1374,7 +1386,7 @@ class gui_player_status_box : public gui_panel
     virtual void render_derived() const override;
 };
 
-class gui_sys_menu : public gui_comp
+class gui_sys_menu : public GUICoreBase::gui_comp
 {
   public:
     gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
@@ -1387,7 +1399,7 @@ class gui_sys_menu : public gui_comp
     virtual void render_derived() const override;
 };
 
-class gui_inventory_win : public gui_win
+class gui_inventory_win : public GUICoreBase::gui_win
 {
   public:
     gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
@@ -1401,7 +1413,7 @@ class gui_inventory_win : public gui_win
     inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
 };
 
-class gui_player_body_win : public gui_win
+class gui_player_body_win : public GUICoreBase::gui_win
 {
   public:
     gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
@@ -1418,13 +1430,13 @@ class gui_player_body_win : public gui_win
     void update_body_part_info_lbls();
 
     int sel_body_part_{0};
-    s_ptr<gui_label> lbl_body_part_name_;
-    s_ptr<gui_label> lbl_body_part_str_;
-    s_ptr<gui_label> lbl_body_part_energy_;
-    s_ptr<gui_label> lbl_body_part_temp_;
+    s_ptr<GUICoreBase::gui_label> lbl_body_part_name_;
+    s_ptr<GUICoreBase::gui_label> lbl_body_part_str_;
+    s_ptr<GUICoreBase::gui_label> lbl_body_part_energy_;
+    s_ptr<GUICoreBase::gui_label> lbl_body_part_temp_;
 };
 
-class gui_interact_menu : public gui_panel
+class gui_interact_menu : public GUICoreBase::gui_panel
 {
   public:
     gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
@@ -1805,3 +1817,5 @@ class world
 };
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+

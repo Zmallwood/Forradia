@@ -3,7 +3,6 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #include "core.hpp"
-#include "gui.hpp"
 #include "rend.hpp"
 
 _NS_START_
@@ -461,7 +460,7 @@ namespace Core
     }
     void engine::ScenesCore::i_scene::init()
     {
-        gui_ = std::make_shared<Forradia::gui>();
+        gui_ = std::make_shared<engine::GUICore::gui>();
         init_derived_();
     }
 

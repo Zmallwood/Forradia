@@ -4,14 +4,16 @@
  */
 #pragma once
 
+#include "gui.hpp"
+
 _NS_START_
 
-#define _HIDE_FROM_OUTLINER_                                                   \
-    namespace GUICore                                                          \
-    {                                                                          \
-        class gui;                                                             \
-    }
-_HIDE_FROM_OUTLINER_
+// #define _HIDE_FROM_OUTLINER_ \
+//     namespace GUICore \
+//     { \
+//         class gui; \
+//     }
+// _HIDE_FROM_OUTLINER_
 
 namespace Core
 {
@@ -208,6 +210,16 @@ namespace Core
                 };
             };
         };
+        class GUICore : public GUICoreBase
+        {
+          public:
+            class gui : public GUICoreBase::gui
+            {
+              public:
+                using GUICoreBase::gui::render;
+                using GUICoreBase::gui::update;
+            };
+        };
         class ScenesCore
         {
           public:
@@ -246,7 +258,7 @@ namespace Core
                 auto gui() const { return gui_; }
 
               private:
-                s_ptr<Forradia::GUICore::gui> gui_;
+                s_ptr<GUICoreBase::gui> gui_;
                 func<void()> init_derived_{[] {}};
                 func<void()> on_enter_derived_{[] {}};
                 func<void()> update_derived_{[] {}};
