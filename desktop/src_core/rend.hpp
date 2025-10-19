@@ -11,7 +11,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_TOP_
 class RenderersCollection
 {
-  public:
+  protected:
     class shader_program
     {
       public:

@@ -95,15 +95,15 @@ PYBIND11_EMBEDDED_MODULE(embedded, m)
     py::class_<Core::engine::Input::mouse_inp>(m, "mouse_inp")
         .def("any_mouse_btn_pressed_pick_res",
              &Core::engine::Input::mouse_inp::any_mouse_btn_pressed_pick_res);
-    py::class_<RenderersCollection::img_2d_rend>(m, "img_2d_rend")
+    py::class_<engine::Renderers::img_2d_rend>(m, "img_2d_rend")
         .def("draw_img",
-             [](RenderersCollection::img_2d_rend &self, str_view image_name, float x, float y,
+             [](engine::Renderers::img_2d_rend &self, str_view image_name, float x, float y,
                 float w, float h) { self.draw_img(image_name, x, y, w, h); })
-        .def("draw_img", [](RenderersCollection::img_2d_rend &self, int image_name_hash, float x,
+        .def("draw_img", [](engine::Renderers::img_2d_rend &self, int image_name_hash, float x,
                             float y, float w, float h)
              { self.draw_img(image_name_hash, x, y, w, h); })
         .def("draw_img_auto_h",
-             [](RenderersCollection::img_2d_rend &self, str_view img_name, float x, float y, float w)
+             [](engine::Renderers::img_2d_rend &self, str_view img_name, float x, float y, float w)
              { self.draw_img_auto_h(img_name, x, y, w); });
     py::class_<gui_player_status_box, s_ptr<gui_player_status_box>,
                GUIComponentsLibrary::gui_comp>(m, "gui_player_status_box");
@@ -172,7 +172,7 @@ PYBIND11_EMBEDDED_MODULE(embedded, m)
         { return _<Core::engine::ScenesCore::scene_mngr>(); },
         py::return_value_policy::reference);
     m.def(
-        "get_img_2d_rend", []() -> RenderersCollection::img_2d_rend & { return _<RenderersCollection::img_2d_rend>(); },
+        "get_img_2d_rend", []() -> engine::Renderers::img_2d_rend & { return _<engine::Renderers::img_2d_rend>(); },
         py::return_value_policy::reference);
     m.def(
         "get_gui_chat_box", []() -> GUIComponentsLibrary::gui_chat_box &

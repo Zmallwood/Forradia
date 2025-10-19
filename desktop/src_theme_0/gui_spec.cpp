@@ -14,8 +14,8 @@ void gui_player_status_box::render_derived() const
 {
     gui_panel::render_derived();
     auto b{bounds()};
-    _<RenderersCollection::text_rend>().draw_str(_<player>().name(), b.x + 0.01f, b.y + 0.01f,
-                            RenderersCollection::font_szs::_26);
+    _<engine::Renderers::text_rend>().draw_str(_<player>().name(), b.x + 0.01f, b.y + 0.01f,
+                            engine::Renderers::font_szs::_26);
 }
 
 void gui_sys_menu::init() { set_visible(false); }
@@ -54,7 +54,7 @@ void gui_inventory_win::render_derived() const
     {
         for (auto x = 0; x < num_cols; x++)
         {
-            _<RenderersCollection::img_2d_rend>().draw_img(
+            _<engine::Renderers::img_2d_rend>().draw_img(
                 k_slot_img_name, x_start + x * (slot_w + margin_x),
                 y_start + y * (slot_h + margin_y), slot_w, slot_h);
         }
@@ -258,14 +258,14 @@ void gui_interact_menu::render_derived() const
 {
     gui_panel::render_derived();
     auto b{bounds()};
-    _<RenderersCollection::text_rend>().draw_str("Actions", b.x + 0.01f, b.y + 0.01f, RenderersCollection::font_szs::_20,
+    _<engine::Renderers::text_rend>().draw_str("Actions", b.x + 0.01f, b.y + 0.01f, engine::Renderers::font_szs::_20,
                             false, colors::yellow_transp);
     auto i{0};
     for (auto &entry : entries_)
     {
-        _<RenderersCollection::text_rend>().draw_str(entry.label(), b.x + 0.01f + k_indent_w,
+        _<engine::Renderers::text_rend>().draw_str(entry.label(), b.x + 0.01f + k_indent_w,
                                 b.y + 0.01f + (i + 1) * k_line_h,
-                                RenderersCollection::font_szs::_20);
+                                engine::Renderers::font_szs::_20);
         ++i;
     }
 }

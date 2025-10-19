@@ -21,7 +21,7 @@ namespace Core
             {
                 _<Input::mouse_inp>().reset();
                 _<cursor>().reset_style_to_normal();
-                _<RenderersCollection::img_2d_rend>().reset_counter();
+                _<Renderers::img_2d_rend>().reset_counter();
                 poll_events();
                 _<ScenesCore::scene_mngr>().update_curr_scene();
                 _<fps_counter>().update();
@@ -160,7 +160,7 @@ namespace Core
             curs_img = "curs_hovering_clickable_gui";
             break;
         }
-        _<RenderersCollection::img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
+        _<Renderers::img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
                                   mouse_pos.y - h / 2, w, h);
     }
 
