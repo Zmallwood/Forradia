@@ -10,23 +10,29 @@
 _NS_START_
 namespace Theme0
 {
-    sz_f calc_tl_sz()
+    namespace TileGridMath
     {
-        auto num_grid_rows{_<game_props>().k_num_grid_rows};
-        auto tl_h{1.0f / num_grid_rows};
-        auto asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
-        auto tl_w{tl_h / asp_rat};
-        return {tl_w, tl_h};
-    }
+        sz_f calc_tl_sz()
+        {
+            auto num_grid_rows{_<game_props>().k_num_grid_rows};
+            auto tl_h{1.0f / num_grid_rows};
+            auto asp_rat{calc_aspect_ratio(_<engine::sdl_device>().win())};
+            auto tl_w{tl_h / asp_rat};
+            return {tl_w, tl_h};
+        }
 
-    float calc_tl_sz_new() { return 1.0f / _<game_props>().k_num_grid_rows; }
+        float calc_tl_sz_new()
+        {
+            return 1.0f / _<game_props>().k_num_grid_rows;
+        }
 
-    sz calc_grid_sz()
-    {
-        auto tl_sz{calc_tl_sz_new()};
-        auto num_grid_cols{c_int(1.0f / tl_sz) + 1};
-        auto num_grid_rows{_<game_props>().k_num_grid_rows};
-        return {num_grid_cols, num_grid_rows};
+        sz calc_grid_sz()
+        {
+            auto tl_sz{calc_tl_sz_new()};
+            auto num_grid_cols{c_int(1.0f / tl_sz) + 1};
+            auto num_grid_rows{_<game_props>().k_num_grid_rows};
+            return {num_grid_cols, num_grid_rows};
+        }
     }
 
     void player_body::init()

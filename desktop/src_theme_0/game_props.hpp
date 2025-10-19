@@ -10,14 +10,18 @@ _NS_START_
     namespace Theme0                                                           \
     {
 _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
-class game_props
+namespace Configuration
 {
-  public:
-    static constexpr str k_game_win_title{"Forradia"};
-    static constexpr color k_clear_color{colors::black};
-    static constexpr int k_num_grid_rows{15};
-    static constexpr sz k_w_area_sz{120, 100};
-    static constexpr float k_world_scaling{5.0f};
-};
+    class game_props
+    {
+      public:
+        static constexpr str k_game_win_title{"Forradia"};
+        static constexpr color k_clear_color{colors::black};
+        static constexpr int k_num_grid_rows{15};
+        static constexpr sz k_w_area_sz{120, 100};
+        static constexpr float k_world_scaling{5.0f};
+    };
+}
+using namespace Configuration;
 }
 _NS_END_
