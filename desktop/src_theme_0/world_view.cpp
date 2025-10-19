@@ -568,11 +568,10 @@ void world_view::render_new() const
             for (auto obj : objects)
             {
                 auto obj_type{obj->type()};
-                if (obj_type == hash("object_bush1"))
-                    _<engine::Renderers::model_rend>().draw_model(
-                        obj_type, (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
-                        (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2, elev_avg,
-                        camera_pos, elev_h);
+                _<engine::Renderers::model_rend>().draw_model(
+                    obj_type, (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
+                    (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2, elev_avg,
+                    camera_pos, elev_h);
             }
             if (x_coord == wa_sz.w - player_pos.x &&
                 y_coord == wa_sz.h - player_pos.y)
