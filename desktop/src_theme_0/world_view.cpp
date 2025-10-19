@@ -564,16 +564,16 @@ void world_view::render_new() const
                 auto obj_type{obj->type()};
                 if (obj_type == hash("object_bush1"))
                     _<engine::Renderers::model_rend>().draw_model(
-                        obj_type, x_coord * rend_tl_sz + rend_tl_sz / 2,
-                        y_coord * rend_tl_sz + rend_tl_sz / 2, elev_avg,
+                        obj_type, x_coord * rend_tl_sz - rend_tl_sz / 2,
+                        y_coord * rend_tl_sz - rend_tl_sz / 2, elev_avg,
                         camera_pos, elev_h);
             }
             if (x_coord == wa_sz.w - player_pos.x &&
                 y_coord == wa_sz.h - player_pos.y)
             {
                 _<engine::Renderers::model_rend>().draw_model(
-                    hash("box_test"), x_coord * rend_tl_sz + rend_tl_sz / 2,
-                    y_coord * rend_tl_sz + rend_tl_sz / 2, elev_avg, camera_pos,
+                    hash("player"), x_coord * rend_tl_sz - rend_tl_sz / 2,
+                    y_coord * rend_tl_sz - rend_tl_sz / 2, elev_avg, camera_pos,
                     elev_h);
                 _<engine::Renderers::ground_rend>().draw_tile(hash("ground_dirt"), x_coord,
                                            y_coord, rend_tl_sz, camera_pos,
