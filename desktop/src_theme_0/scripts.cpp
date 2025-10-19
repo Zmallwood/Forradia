@@ -96,27 +96,29 @@ PYBIND11_EMBEDDED_MODULE(embedded, m)
         .def("any_mouse_btn_pressed_pick_res",
              &Core::engine::Input::mouse_inp::any_mouse_btn_pressed_pick_res);
     py::class_<engine::Renderers::img_2d_rend>(m, "img_2d_rend")
+        .def("draw_img", [](engine::Renderers::img_2d_rend &self,
+                            str_view image_name, float x, float y, float w,
+                            float h) { self.draw_img(image_name, x, y, w, h); })
         .def("draw_img",
-             [](engine::Renderers::img_2d_rend &self, str_view image_name, float x, float y,
-                float w, float h) { self.draw_img(image_name, x, y, w, h); })
-        .def("draw_img", [](engine::Renderers::img_2d_rend &self, int image_name_hash, float x,
-                            float y, float w, float h)
+             [](engine::Renderers::img_2d_rend &self, int image_name_hash,
+                float x, float y, float w, float h)
              { self.draw_img(image_name_hash, x, y, w, h); })
-        .def("draw_img_auto_h",
-             [](engine::Renderers::img_2d_rend &self, str_view img_name, float x, float y, float w)
+        .def("draw_img_auto_h", [](engine::Renderers::img_2d_rend &self,
+                                   str_view img_name, float x, float y, float w)
              { self.draw_img_auto_h(img_name, x, y, w); });
-    py::class_<gui_player_status_box, s_ptr<gui_player_status_box>,
+    py::class_<Theme0::gui_player_status_box,
+               s_ptr<Theme0::gui_player_status_box>,
                GUIComponentsLibrary::gui_comp>(m, "gui_player_status_box");
-    py::class_<gui_player_body_win, s_ptr<gui_player_body_win>,
+    py::class_<Theme0::gui_player_body_win, s_ptr<Theme0::gui_player_body_win>,
                GUIComponentsLibrary::gui_comp>(m, "gui_player_body_win")
         .def("toggle_visible", &GUIComponentsLibrary::gui_comp::toggle_visible);
-    py::class_<gui_inventory_win, s_ptr<gui_inventory_win>,
+    py::class_<Theme0::gui_inventory_win, s_ptr<Theme0::gui_inventory_win>,
                GUIComponentsLibrary::gui_comp>(m, "gui_inventory_win")
         .def("toggle_visible", &GUIComponentsLibrary::gui_comp::toggle_visible);
-    py::class_<gui_sys_menu, s_ptr<gui_sys_menu>,
+    py::class_<Theme0::gui_sys_menu, s_ptr<Theme0::gui_sys_menu>,
                GUIComponentsLibrary::gui_comp>(m, "gui_sys_menu")
         .def("toggle_visible", &GUIComponentsLibrary::gui_comp::toggle_visible);
-    py::class_<gui_interact_menu, s_ptr<gui_interact_menu>,
+    py::class_<Theme0::gui_interact_menu, s_ptr<Theme0::gui_interact_menu>,
                GUIComponentsLibrary::gui_comp>(m, "gui_interact_menu");
     py::class_<tl_hovering>(m, "tl_hovering")
         .def("update", &tl_hovering::update);
@@ -154,16 +156,17 @@ PYBIND11_EMBEDDED_MODULE(embedded, m)
               return std::make_shared<GUIComponentsLibrary::gui_button>(
                   x, y, w, h, text, action, bg_img, hovered_bg_img);
           });
-    m.def("get_gui_interact_menu_ptr",
-          []() -> s_ptr<gui_interact_menu> { return __<gui_interact_menu>(); });
-    m.def("get_gui_player_body_win_ptr", []() -> s_ptr<gui_player_body_win>
-          { return __<gui_player_body_win>(); });
-    m.def("get_gui_inventory_win_ptr",
-          []() -> s_ptr<gui_inventory_win> { return __<gui_inventory_win>(); });
-    m.def("get_gui_sys_menu_ptr",
-          []() -> s_ptr<gui_sys_menu> { return __<gui_sys_menu>(); });
+    m.def("get_gui_interact_menu_ptr", []() -> s_ptr<Theme0::gui_interact_menu>
+          { return __<Theme0::gui_interact_menu>(); });
+    m.def("get_gui_player_body_win_ptr",
+          []() -> s_ptr<Theme0::gui_player_body_win>
+          { return __<Theme0::gui_player_body_win>(); });
+    m.def("get_gui_inventory_win_ptr", []() -> s_ptr<Theme0::gui_inventory_win>
+          { return __<Theme0::gui_inventory_win>(); });
+    m.def("get_gui_sys_menu_ptr", []() -> s_ptr<Theme0::gui_sys_menu>
+          { return __<Theme0::gui_sys_menu>(); });
     m.def("make_shared_gui_player_status_box",
-          []() { return std::make_shared<gui_player_status_box>(); });
+          []() { return std::make_shared<Theme0::gui_player_status_box>(); });
     m.def(
         "get_engine", []() -> engine & { return _<engine>(); },
         py::return_value_policy::reference);
@@ -172,7 +175,8 @@ PYBIND11_EMBEDDED_MODULE(embedded, m)
         { return _<Core::engine::ScenesCore::scene_mngr>(); },
         py::return_value_policy::reference);
     m.def(
-        "get_img_2d_rend", []() -> engine::Renderers::img_2d_rend & { return _<engine::Renderers::img_2d_rend>(); },
+        "get_img_2d_rend", []() -> engine::Renderers::img_2d_rend &
+        { return _<engine::Renderers::img_2d_rend>(); },
         py::return_value_policy::reference);
     m.def(
         "get_gui_chat_box", []() -> GUIComponentsLibrary::gui_chat_box &

@@ -23,5 +23,6 @@ namespace Configuration
     };
 }
 using namespace Configuration;
-}
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_
 _NS_END_
