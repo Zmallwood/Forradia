@@ -5,10 +5,10 @@
 #pragma once
 
 _NS_START_
-#define _HIDE_FROM_OUTLINER_                                                   \
+#define _HIDE_FROM_OUTLINER_GUI_TOP_                                           \
     namespace Core                                                             \
     {
-_HIDE_FROM_OUTLINER_
+_HIDE_FROM_OUTLINER_GUI_TOP_
 namespace GUIComponentsLibrary
 {
     class gui_comp
