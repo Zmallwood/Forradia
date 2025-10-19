@@ -6,7 +6,13 @@
 #include "comm.hpp"
 
 _NS_START_
-class world_area;
+namespace Theme0
+{
+    namespace WorldStructure
+    {
+        class world_area;
+    }
+}
 
 class world_grator
 {
@@ -27,7 +33,7 @@ class world_grator
     void gen_creas() const;
     void gen_npcs() const;
 
-    s_ptr<world_area> w_area_;
+    s_ptr<Theme0::WorldStructure::world_area> w_area_;
     float scale_;
     sz sz_;
 };

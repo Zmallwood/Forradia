@@ -14,7 +14,7 @@ int main(int argc, char **argv)
                      _<Theme0::game_props>().k_clear_color);
     _<script_engine>().init();
     _<script_engine>().load_scripts();
-    _<world>().init(_<Theme0::game_props>().k_w_area_sz,
+    _<Theme0::WorldStructure::world>().init(_<Theme0::game_props>().k_w_area_sz,
                     _<Theme0::game_props>().k_world_scaling);
     _<engine>().run();
     return 0;

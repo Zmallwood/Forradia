@@ -23,7 +23,7 @@ void world_grator::gen_new_world()
 
 void world_grator::prep()
 {
-    w_area_ = _<world>().curr_w_area();
+    w_area_ = _<Theme0::WorldStructure::world>().curr_w_area();
     sz_ = w_area_->get_sz();
     scale_ = _<Theme0::game_props>().k_world_scaling;
 }
@@ -275,7 +275,7 @@ void world_grator::gen_rivers() const
         auto len{45 + rand_int(20)};
         auto prev_x_coord{-1};
         auto prev_y_coord{-1};
-        s_ptr<tile> prev_tl;
+        s_ptr<Theme0::WorldStructure::tile> prev_tl;
         for (auto j = 0; j < len; j++)
         {
             auto angle{start_angle + std::sin(j * M_PI / 10.0f) * 45};
@@ -289,43 +289,43 @@ void world_grator::gen_rivers() const
                 // tile->SetGround("GroundWater");
                 if (x_coord == prev_x_coord && y_coord > prev_y_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::s);
-                    tl->set_river_dir_2(dirs::n);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::s);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::n);
                 }
                 else if (x_coord == prev_x_coord && y_coord < prev_y_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::n);
-                    tl->set_river_dir_2(dirs::s);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::n);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::s);
                 }
                 else if (y_coord == prev_y_coord && x_coord > prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::e);
-                    tl->set_river_dir_2(dirs::w);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::e);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::w);
                 }
                 else if (y_coord == prev_y_coord && x_coord < prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::w);
-                    tl->set_river_dir_2(dirs::e);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::w);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::e);
                 }
                 else if (y_coord < prev_y_coord && x_coord > prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::ne);
-                    tl->set_river_dir_2(dirs::sw);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::ne);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::sw);
                 }
                 else if (y_coord > prev_y_coord && x_coord > prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::se);
-                    tl->set_river_dir_2(dirs::nw);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::se);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::nw);
                 }
                 else if (y_coord < prev_y_coord && x_coord < prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::nw);
-                    tl->set_river_dir_2(dirs::se);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::nw);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::se);
                 }
                 else if (y_coord > prev_y_coord && x_coord < prev_x_coord)
                 {
-                    prev_tl->set_river_dir_1(dirs::sw);
-                    tl->set_river_dir_2(dirs::ne);
+                    prev_tl->set_river_dir_1(Theme0::WorldStructure::dirs::sw);
+                    tl->set_river_dir_2(Theme0::WorldStructure::dirs::ne);
                 }
             }
             auto dx = std::cos(angle * M_PI / 180.0f);
@@ -443,7 +443,7 @@ void world_grator::gen_creas() const
         auto tl{w_area_->get_tl(x, y)};
         if (tl && !tl->creature() && tl->ground() != hash("ground_water"))
         {
-            auto new_crea = std::make_shared<creature>("creature_rat");
+            auto new_crea = std::make_shared<Theme0::WorldStructure::creature>("creature_rat");
             tl->set_creature(new_crea);
             w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
         }
@@ -456,7 +456,7 @@ void world_grator::gen_creas() const
         auto tl{w_area_->get_tl(x, y)};
         if (tl && !tl->creature() && tl->ground() != hash("ground_water"))
         {
-            auto new_crea = std::make_shared<creature>("creature_butterfly");
+            auto new_crea = std::make_shared<Theme0::WorldStructure::creature>("creature_butterfly");
             tl->set_creature(new_crea);
             w_area_->creatures_mirror_ref().insert({tl->creature(), {x, y}});
         }
@@ -473,7 +473,7 @@ void world_grator::gen_npcs() const
         auto tl{w_area_->get_tl(x, y)};
         if (tl && !tl->npc() && tl->ground() != hash("ground_water"))
         {
-            auto new_npc = std::make_shared<npc>("npc0");
+            auto new_npc = std::make_shared<Theme0::WorldStructure::npc>("npc0");
             tl->set_npc(new_npc);
             w_area_->npcs_mirror_ref().insert({tl->npc(), {x, y}});
         }
