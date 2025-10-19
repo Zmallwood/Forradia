@@ -7,15 +7,16 @@
 #include "rend.hpp"
 
 _NS_START_
-s_ptr<GUICoreBase::gui_comp>
-GUICoreBase::gui_comp::add_child_comp(s_ptr<GUICoreBase::gui_comp> comp)
+s_ptr<GUIComponentsLibrary::gui_comp>
+GUIComponentsLibrary::gui_comp::add_child_comp(
+    s_ptr<GUIComponentsLibrary::gui_comp> comp)
 {
     comp->set_parent_comp(this);
     children_.push_back(comp);
     return comp;
 }
 
-void GUICoreBase::gui_comp::update()
+void GUIComponentsLibrary::gui_comp::update()
 {
     if (!visible_ || !enabled_)
         return;
@@ -24,7 +25,7 @@ void GUICoreBase::gui_comp::update()
     update_derived();
 }
 
-void GUICoreBase::gui_comp::render() const
+void GUIComponentsLibrary::gui_comp::render() const
 {
     if (!visible_)
         return;
@@ -33,7 +34,7 @@ void GUICoreBase::gui_comp::render() const
         comp->render();
 }
 
-rect_f GUICoreBase::gui_comp::bounds() const
+rect_f GUIComponentsLibrary::gui_comp::bounds() const
 {
     auto b_res{bounds_};
     if (parent_comp_)
@@ -44,15 +45,15 @@ rect_f GUICoreBase::gui_comp::bounds() const
     return b_res;
 }
 
-void GUICoreBase::gui_comp::toggle_visible() { visible_ = !visible_; }
+void GUIComponentsLibrary::gui_comp::toggle_visible() { visible_ = !visible_; }
 
-void GUICoreBase::gui_comp::set_pos(pt_f new_pos)
+void GUIComponentsLibrary::gui_comp::set_pos(pt_f new_pos)
 {
     bounds_.x = new_pos.x;
     bounds_.y = new_pos.y;
 }
 
-void GUICoreBase::gui_label::render_derived() const
+void GUIComponentsLibrary::gui_label::render_derived() const
 {
     auto b{bounds()};
     auto x{b.x};
@@ -66,15 +67,15 @@ void GUICoreBase::gui_label::render_derived() const
                             color_);
 }
 
-void GUICoreBase::gui_panel::render_derived() const
+void GUIComponentsLibrary::gui_panel::render_derived() const
 {
     auto b{bounds()};
     _<img_2d_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
 }
 
-void GUICoreBase::gui_button::update_derived()
+void GUIComponentsLibrary::gui_button::update_derived()
 {
-    GUICoreBase::gui_panel::update_derived();
+    GUIComponentsLibrary::gui_panel::update_derived();
     auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
     auto hovered{bounds().contains(mouse_pos)};
     if (hovered)
@@ -92,7 +93,7 @@ void GUICoreBase::gui_button::update_derived()
     }
 }
 
-void GUICoreBase::gui_button::render_derived() const
+void GUIComponentsLibrary::gui_button::render_derived() const
 {
     gui_panel::render_derived();
     auto b{bounds()};
@@ -100,7 +101,7 @@ void GUICoreBase::gui_button::render_derived() const
                             true);
 }
 
-void GUICoreBase::gui_movable_panel::update_derived()
+void GUIComponentsLibrary::gui_movable_panel::update_derived()
 {
     auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
     auto drag_area{get_drag_area()};
@@ -131,18 +132,24 @@ void GUICoreBase::gui_movable_panel::update_derived()
     }
 }
 
-void GUICoreBase::gui_movable_panel::start_move()
+void GUIComponentsLibrary::gui_movable_panel::start_move()
 {
     being_moved_ = true;
     move_start_pos_ = bounds().pos();
     move_start_mouse_pos_ = norm_mouse_pos(_<engine::sdl_device>().win());
 }
 
-void GUICoreBase::gui_movable_panel::stop_move() { being_moved_ = false; }
+void GUIComponentsLibrary::gui_movable_panel::stop_move()
+{
+    being_moved_ = false;
+}
 
-rect_f GUICoreBase::gui_movable_panel::get_drag_area() { return bounds(); }
+rect_f GUIComponentsLibrary::gui_movable_panel::get_drag_area()
+{
+    return bounds();
+}
 
-void GUICoreBase::gui_win::gui_win_title_bar::init()
+void GUIComponentsLibrary::gui_win::gui_win_title_bar::init()
 {
     auto parent_win_b{parent_win_.bounds()};
     add_child_comp(std::make_shared<gui_button>(
@@ -151,7 +158,7 @@ void GUICoreBase::gui_win::gui_win_title_bar::init()
         [this] { parent_win_.toggle_visible(); }));
 }
 
-void GUICoreBase::gui_win::gui_win_title_bar::render_derived() const
+void GUIComponentsLibrary::gui_win::gui_win_title_bar::render_derived() const
 {
     gui_panel::render_derived();
     auto parent_win_b{parent_win_.bounds()};
@@ -160,7 +167,7 @@ void GUICoreBase::gui_win::gui_win_title_bar::render_derived() const
                             colors::yellow);
 }
 
-rect_f GUICoreBase::gui_win::gui_win_title_bar::bounds() const
+rect_f GUIComponentsLibrary::gui_win::gui_win_title_bar::bounds() const
 {
     rect_f b_res;
     auto parent_win_b{parent_win_.bounds()};
@@ -170,37 +177,37 @@ rect_f GUICoreBase::gui_win::gui_win_title_bar::bounds() const
     b_res.h = k_h;
     return b_res;
 }
-void GUICoreBase::gui_win::init(str_view win_title)
+void GUIComponentsLibrary::gui_win::init(str_view win_title)
 {
     set_visible(false);
     gui_win_title_bar_ = std::make_shared<gui_win_title_bar>(*this, win_title);
     add_child_comp(gui_win_title_bar_);
 }
 
-void GUICoreBase::gui_win::render_derived() const
+void GUIComponentsLibrary::gui_win::render_derived() const
 {
     gui_movable_panel::render_derived();
 }
 
-rect_f GUICoreBase::gui_win::get_drag_area()
+rect_f GUIComponentsLibrary::gui_win::get_drag_area()
 {
     return gui_win_title_bar_->bounds();
 }
 
-void GUICoreBase::gui_fps_panel::init()
+void GUIComponentsLibrary::gui_fps_panel::init()
 {
     fps_text_pnl_ = std::make_shared<gui_label>(0.01f, 0.01f, 0.1f, 0.05f);
     add_child_comp(fps_text_pnl_);
 }
 
-void GUICoreBase::gui_fps_panel::update_derived()
+void GUIComponentsLibrary::gui_fps_panel::update_derived()
 {
     gui_movable_panel::update_derived();
     auto fps{_<engine::fps_counter>().fps()};
     fps_text_pnl_->set_text(fmt::format("FPS: {}", fps));
 }
 
-void GUICoreBase::gui_chat_box::render_derived() const
+void GUIComponentsLibrary::gui_chat_box::render_derived() const
 {
     gui_panel::render_derived();
     auto b{bounds()};
@@ -220,7 +227,7 @@ void GUICoreBase::gui_chat_box::render_derived() const
                               sep_rect.h);
 }
 
-void GUICoreBase::gui_chat_box::print(str_view text)
+void GUIComponentsLibrary::gui_chat_box::print(str_view text)
 {
     lines_.push_back(text.data());
 }

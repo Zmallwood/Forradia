@@ -9,6 +9,11 @@
 #pragma diag_suppress 18
 #pragma diag_suppress 28
 
+namespace Forradia
+{
+#define _HIDE_FROM_OUTLINER_ }
+    _HIDE_FROM_OUTLINER_
+
 // virtualInclude 'src_comm/comm.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
@@ -663,22 +668,22 @@ namespace Core
                 };
             };
         };
-        class GUICore : public GUICoreBase
-        {
-          public:
-            class gui : public GUICoreBase::gui
-            {
-              public:
-                using GUICoreBase::gui::render;
-                using GUICoreBase::gui::update;
-            };
-        };
         class ScenesCore
         {
           public:
             class i_scene
             {
               public:
+                class ScenesGUI
+                {
+                  public:
+                    class gui_root : public GUIComponentsLibrary::gui_comp
+                    {
+                      public:
+                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
+                    };
+                };
+
                 void init();
 
                 void update();
@@ -711,7 +716,7 @@ namespace Core
                 auto gui() const { return gui_; }
 
               private:
-                s_ptr<GUICoreBase::gui> gui_;
+                s_ptr<ScenesGUI::gui_root> gui_;
                 func<void()> init_derived_{[] {}};
                 func<void()> on_enter_derived_{[] {}};
                 func<void()> update_derived_{[] {}};
@@ -865,235 +870,232 @@ _NS_END_
 #pragma once
 
 _NS_START_
-class GUICoreBase
+namespace Core
 {
-  public:
-    class gui_comp
+    namespace GUIComponentsLibrary
     {
-      public:
-        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
-
-        s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
-
-        void update();
-
-        void render() const;
-
-        virtual rect_f bounds() const;
-
-        void set_pos(pt_f new_pos);
-
-        void toggle_visible();
-
-        auto visible() const { return visible_; }
-
-        void set_visible(bool val) { visible_ = val; }
-
-        void set_parent_comp(gui_comp *value) { parent_comp_ = value; }
-
-      protected:
-        virtual void update_derived() {}
-
-        virtual void render_derived() const {}
-
-      private:
-        rect_f bounds_;
-        vec<s_ptr<gui_comp>> children_;
-        bool visible_{true};
-        bool enabled_{true};
-        gui_comp *parent_comp_{nullptr};
-    };
-
-    class gui : public gui_comp
-    {
-      public:
-        gui() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
-    };
-
-    class gui_label : public gui_comp
-    {
-      public:
-        gui_label(float x, float y, float w, float h, str_view text = "",
-                  bool cent_align = false, color color = colors::wheat_transp)
-            : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
-              color_(color)
-        {
-        }
-
-        void set_text(str_view val) { text_ = val; }
-
-      protected:
-        virtual void render_derived() const override;
-
-      private:
-        str text_;
-        bool cent_align_{false};
-        color color_;
-    };
-
-    class gui_panel : public gui_comp
-    {
-      public:
-        gui_panel(float x, float y, float w, float h,
-                  str_view bg_img = k_default_bg_img)
-            : gui_comp(x, y, w, h), bg_img_(bg_img)
-        {
-        }
-
-      protected:
-        virtual void render_derived() const override;
-
-        void set_bg_img(str_view val) { bg_img_ = val; }
-
-      private:
-        inline static const str k_default_bg_img{"gui_panel_bg"};
-
-        str bg_img_;
-    };
-
-    class gui_button : public gui_panel
-    {
-      public:
-        gui_button(float x, float y, float w, float h, str_view text,
-                   func<void()> action, str_view bg_img = k_bg_img,
-                   str_view hovered_bg_img = k_hovered_bg_img)
-            : gui_panel(x, y, w, h), text_(text), action_(action),
-              bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
-        {
-        }
-
-      protected:
-        virtual void update_derived() override;
-
-        virtual void render_derived() const override;
-
-      private:
-        inline static const str k_bg_img{"gui_button_bg"};
-        inline static const str k_hovered_bg_img{"gui_button_hovered_bg"};
-
-        str text_;
-        func<void()> action_;
-        str bg_img_;
-        str hovered_bg_img_;
-    };
-
-    class gui_movable_panel : public gui_panel
-    {
-      public:
-        gui_movable_panel(float x, float y, float w, float h)
-            : gui_panel(x, y, w, h)
-        {
-        }
-
-      protected:
-        void update_derived() override;
-
-        void start_move();
-
-        void stop_move();
-
-        virtual rect_f get_drag_area();
-
-        auto being_moved() const { return being_moved_; }
-
-        auto move_start_pos() const { return move_start_pos_; }
-
-        auto move_start_mouse_pos() const { return move_start_mouse_pos_; }
-
-      private:
-        bool being_moved_{false};
-        pt_f move_start_pos_{-1, -1};
-        pt_f move_start_mouse_pos_{-1, -1};
-    };
-
-    class gui_win : public gui_movable_panel
-    {
-      public:
-        gui_win(float x, float y, float w, float h, str_view win_title)
-            : gui_movable_panel(x, y, w, h)
-        {
-            init(win_title);
-        }
-
-      protected:
-        void render_derived() const override;
-
-        rect_f get_drag_area() override;
-
-        auto get_win_title_bar() const { return gui_win_title_bar_; }
-
-      private:
-        void init(str_view win_title);
-
-        class gui_win_title_bar : public gui_panel
+        class gui_comp
         {
           public:
-            gui_win_title_bar(gui_win &parent_win, str_view win_title)
-                : parent_win_(parent_win), k_win_title(win_title),
-                  gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
+            gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h})
+            {
+            }
+
+            s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
+
+            void update();
+
+            void render() const;
+
+            virtual rect_f bounds() const;
+
+            void set_pos(pt_f new_pos);
+
+            void toggle_visible();
+
+            auto visible() const { return visible_; }
+
+            void set_visible(bool val) { visible_ = val; }
+
+            void set_parent_comp(gui_comp *value) { parent_comp_ = value; }
+
+          protected:
+            virtual void update_derived() {}
+
+            virtual void render_derived() const {}
+
+          private:
+            rect_f bounds_;
+            vec<s_ptr<gui_comp>> children_;
+            bool visible_{true};
+            bool enabled_{true};
+            gui_comp *parent_comp_{nullptr};
+        };
+
+        class gui_label : public gui_comp
+        {
+          public:
+            gui_label(float x, float y, float w, float h, str_view text = "",
+                      bool cent_align = false,
+                      color color = colors::wheat_transp)
+                : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
+                  color_(color)
+            {
+            }
+
+            void set_text(str_view val) { text_ = val; }
+
+          protected:
+            virtual void render_derived() const override;
+
+          private:
+            str text_;
+            bool cent_align_{false};
+            color color_;
+        };
+
+        class gui_panel : public gui_comp
+        {
+          public:
+            gui_panel(float x, float y, float w, float h,
+                      str_view bg_img = k_default_bg_img)
+                : gui_comp(x, y, w, h), bg_img_(bg_img)
+            {
+            }
+
+          protected:
+            virtual void render_derived() const override;
+
+            void set_bg_img(str_view val) { bg_img_ = val; }
+
+          private:
+            inline static const str k_default_bg_img{"gui_panel_bg"};
+
+            str bg_img_;
+        };
+
+        class gui_button : public gui_panel
+        {
+          public:
+            gui_button(float x, float y, float w, float h, str_view text,
+                       func<void()> action, str_view bg_img = k_bg_img,
+                       str_view hovered_bg_img = k_hovered_bg_img)
+                : gui_panel(x, y, w, h), text_(text), action_(action),
+                  bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
+            {
+            }
+
+          protected:
+            virtual void update_derived() override;
+
+            virtual void render_derived() const override;
+
+          private:
+            inline static const str k_bg_img{"gui_button_bg"};
+            inline static const str k_hovered_bg_img{"gui_button_hovered_bg"};
+
+            str text_;
+            func<void()> action_;
+            str bg_img_;
+            str hovered_bg_img_;
+        };
+
+        class gui_movable_panel : public gui_panel
+        {
+          public:
+            gui_movable_panel(float x, float y, float w, float h)
+                : gui_panel(x, y, w, h)
+            {
+            }
+
+          protected:
+            void update_derived() override;
+
+            void start_move();
+
+            void stop_move();
+
+            virtual rect_f get_drag_area();
+
+            auto being_moved() const { return being_moved_; }
+
+            auto move_start_pos() const { return move_start_pos_; }
+
+            auto move_start_mouse_pos() const { return move_start_mouse_pos_; }
+
+          private:
+            bool being_moved_{false};
+            pt_f move_start_pos_{-1, -1};
+            pt_f move_start_mouse_pos_{-1, -1};
+        };
+
+        class gui_win : public gui_movable_panel
+        {
+          public:
+            gui_win(float x, float y, float w, float h, str_view win_title)
+                : gui_movable_panel(x, y, w, h)
+            {
+                init(win_title);
+            }
+
+          protected:
+            void render_derived() const override;
+
+            rect_f get_drag_area() override;
+
+            auto get_win_title_bar() const { return gui_win_title_bar_; }
+
+          private:
+            void init(str_view win_title);
+
+            class gui_win_title_bar : public gui_panel
+            {
+              public:
+                gui_win_title_bar(gui_win &parent_win, str_view win_title)
+                    : parent_win_(parent_win), k_win_title(win_title),
+                      gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
+                {
+                    init();
+                }
+
+                void render_derived() const override;
+
+                rect_f bounds() const override;
+
+              private:
+                void init();
+
+                inline static const float k_h{0.04f};
+                const str k_win_title;
+
+                gui_win &parent_win_;
+            };
+
+            s_ptr<gui_win_title_bar> gui_win_title_bar_;
+        };
+
+        class gui_fps_panel : public gui_movable_panel
+        {
+          public:
+            gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f)
             {
                 init();
             }
 
-            void render_derived() const override;
-
-            rect_f bounds() const override;
+          protected:
+            void update_derived() override;
 
           private:
             void init();
 
-            inline static const float k_h{0.04f};
-            const str k_win_title;
-
-            gui_win &parent_win_;
+            s_ptr<gui_label> fps_text_pnl_;
         };
 
-        s_ptr<gui_win_title_bar> gui_win_title_bar_;
-    };
-
-    class gui_fps_panel : public gui_movable_panel
-    {
-      public:
-        gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f)
+        class gui_chat_box : public gui_panel
         {
-            init();
-        }
+          public:
+            gui_chat_box()
+                : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived)
+            {
+            }
 
-      protected:
-        void update_derived() override;
+            void render_derived() const override;
 
-      private:
-        void init();
+            void print(str_view text);
 
-        s_ptr<gui_label> fps_text_pnl_;
-    };
+          private:
+            constexpr static str_view k_default_bg_img_derived{
+                "gui_chat_box_bg"};
+            inline static const float k_line_h{0.025f};
+            inline static const float k_sep_h{0.003f};
+            inline static const float k_marg{0.008f};
 
-    class gui_chat_box : public gui_panel
-    {
-      public:
-        gui_chat_box()
-            : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived)
-        {
-        }
-
-        void render_derived() const override;
-
-        void print(str_view text);
-
-      private:
-        constexpr static str_view k_default_bg_img_derived{"gui_chat_box_bg"};
-        inline static const float k_line_h{0.025f};
-        inline static const float k_sep_h{0.003f};
-        inline static const float k_marg{0.008f};
-
-        vec<str> lines_;
-    };
-};
+            vec<str> lines_;
+        };
+    }
+}
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-
-
 
 // virtualInclude 'src_core/rend.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
@@ -1377,7 +1379,7 @@ _NS_END_
 #include "gui.hpp"
 
 _NS_START_
-class gui_player_status_box : public GUICoreBase::gui_panel
+class gui_player_status_box : public GUIComponentsLibrary::gui_panel
 {
   public:
     gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
@@ -1386,7 +1388,7 @@ class gui_player_status_box : public GUICoreBase::gui_panel
     virtual void render_derived() const override;
 };
 
-class gui_sys_menu : public GUICoreBase::gui_comp
+class gui_sys_menu : public GUIComponentsLibrary::gui_comp
 {
   public:
     gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
@@ -1399,7 +1401,7 @@ class gui_sys_menu : public GUICoreBase::gui_comp
     virtual void render_derived() const override;
 };
 
-class gui_inventory_win : public GUICoreBase::gui_win
+class gui_inventory_win : public GUIComponentsLibrary::gui_win
 {
   public:
     gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
@@ -1413,7 +1415,7 @@ class gui_inventory_win : public GUICoreBase::gui_win
     inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
 };
 
-class gui_player_body_win : public GUICoreBase::gui_win
+class gui_player_body_win : public GUIComponentsLibrary::gui_win
 {
   public:
     gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
@@ -1430,13 +1432,13 @@ class gui_player_body_win : public GUICoreBase::gui_win
     void update_body_part_info_lbls();
 
     int sel_body_part_{0};
-    s_ptr<GUICoreBase::gui_label> lbl_body_part_name_;
-    s_ptr<GUICoreBase::gui_label> lbl_body_part_str_;
-    s_ptr<GUICoreBase::gui_label> lbl_body_part_energy_;
-    s_ptr<GUICoreBase::gui_label> lbl_body_part_temp_;
+    s_ptr<GUIComponentsLibrary::gui_label> lbl_body_part_name_;
+    s_ptr<GUIComponentsLibrary::gui_label> lbl_body_part_str_;
+    s_ptr<GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
+    s_ptr<GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
 };
 
-class gui_interact_menu : public GUICoreBase::gui_panel
+class gui_interact_menu : public GUIComponentsLibrary::gui_panel
 {
   public:
     gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
@@ -1819,3 +1821,6 @@ _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
+#define _HIDE_FROM_OUTLINER_ namespace Forradia {
+_HIDE_FROM_OUTLINER_
+}

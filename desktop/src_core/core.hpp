@@ -210,22 +210,22 @@ namespace Core
                 };
             };
         };
-        class GUICore : public GUICoreBase
-        {
-          public:
-            class gui : public GUICoreBase::gui
-            {
-              public:
-                using GUICoreBase::gui::render;
-                using GUICoreBase::gui::update;
-            };
-        };
         class ScenesCore
         {
           public:
             class i_scene
             {
               public:
+                class ScenesGUI
+                {
+                  public:
+                    class gui_root : public GUIComponentsLibrary::gui_comp
+                    {
+                      public:
+                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
+                    };
+                };
+
                 void init();
 
                 void update();
@@ -258,7 +258,7 @@ namespace Core
                 auto gui() const { return gui_; }
 
               private:
-                s_ptr<GUICoreBase::gui> gui_;
+                s_ptr<ScenesGUI::gui_root> gui_;
                 func<void()> init_derived_{[] {}};
                 func<void()> on_enter_derived_{[] {}};
                 func<void()> update_derived_{[] {}};

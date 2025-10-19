@@ -460,7 +460,7 @@ namespace Core
     }
     void engine::ScenesCore::i_scene::init()
     {
-        gui_ = std::make_shared<engine::GUICore::gui>();
+        gui_ = std::make_shared<engine::ScenesCore::i_scene::ScenesGUI::gui_root>();
         init_derived_();
     }
 
