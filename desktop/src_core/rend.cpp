@@ -800,7 +800,7 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x, f
     auto tex_id{
         _<Core::engine::Assets::Images::image_bank>().get_tex(tex_name_hash)};
     glBindTexture(GL_TEXTURE_2D, tex_id);
-    glDrawElements(GL_TRIANGLE_FAN, vertices_count, GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, vertices_count, GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
