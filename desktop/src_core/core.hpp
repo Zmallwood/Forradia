@@ -5,6 +5,7 @@
 #pragma once
 
 #include "gui.hpp"
+#include "rend.hpp"
 
 _NS_START_
 
@@ -386,6 +387,13 @@ namespace Core
                 bool any_mouse_btn_pressed_pick_res();
             };
         };
+        class Renderers : public RenderersCollection
+        {
+          public:
+            using RenderersCollection::img_2d_rend;
+            using RenderersCollection::ground_rend;
+            using RenderersCollection::model_rend;
+        };
 
         void init(str_view game_win_title, color clear_color) const;
 
@@ -399,6 +407,6 @@ namespace Core
         bool running_{true};
     };
 #define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
-_HIDE_FROM_OUTLINER_CORE_BOTTOM_
-using namespace Core;
-_NS_END_
+    _HIDE_FROM_OUTLINER_CORE_BOTTOM_
+    using namespace Core;
+    _NS_END_

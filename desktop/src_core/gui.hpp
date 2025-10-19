@@ -226,5 +226,6 @@ namespace GUIComponentsLibrary
         vec<str> lines_;
     };
 }
-}
+#define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
+_HIDE_FROM_OUTLINER_CORE_BOTTOM_
 _NS_END_

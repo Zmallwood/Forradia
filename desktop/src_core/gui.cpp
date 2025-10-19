@@ -63,14 +63,14 @@ void GUIComponentsLibrary::gui_label::render_derived() const
         b.x += b.w / 2;
         b.y += b.h / 2;
     }
-    _<text_rend>().draw_str(text_, b.x, b.y, font_szs::_20, cent_align_,
+    _<RenderersCollection::text_rend>().draw_str(text_, b.x, b.y, RenderersCollection::font_szs::_20, cent_align_,
                             color_);
 }
 
 void GUIComponentsLibrary::gui_panel::render_derived() const
 {
     auto b{bounds()};
-    _<img_2d_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
+    _<RenderersCollection::img_2d_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
 }
 
 void GUIComponentsLibrary::gui_button::update_derived()
@@ -97,7 +97,7 @@ void GUIComponentsLibrary::gui_button::render_derived() const
 {
     gui_panel::render_derived();
     auto b{bounds()};
-    _<text_rend>().draw_str(text_, b.x + b.w / 2, b.y + b.h / 2, font_szs::_20,
+    _<RenderersCollection::text_rend>().draw_str(text_, b.x + b.w / 2, b.y + b.h / 2, RenderersCollection::font_szs::_20,
                             true);
 }
 
@@ -162,8 +162,8 @@ void GUIComponentsLibrary::gui_win::gui_win_title_bar::render_derived() const
 {
     gui_panel::render_derived();
     auto parent_win_b{parent_win_.bounds()};
-    _<text_rend>().draw_str(k_win_title, parent_win_b.x + 0.01f,
-                            parent_win_b.y + 0.01f, font_szs::_20, false,
+    _<RenderersCollection::text_rend>().draw_str(k_win_title, parent_win_b.x + 0.01f,
+                            parent_win_b.y + 0.01f, RenderersCollection::font_szs::_20, false,
                             colors::yellow);
 }
 
@@ -219,11 +219,11 @@ void GUIComponentsLibrary::gui_chat_box::render_derived() const
         if (idx < 0 || idx >= lines_.size())
             continue;
         auto text_line = lines_.at(idx);
-        _<text_rend>().draw_str(text_line, b.x + k_marg, y);
+        _<RenderersCollection::text_rend>().draw_str(text_line, b.x + k_marg, y);
         y += k_line_h;
     }
     auto sep_rect{rect_f{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
-    _<img_2d_rend>().draw_img("black", sep_rect.x, sep_rect.y, sep_rect.w,
+    _<RenderersCollection::img_2d_rend>().draw_img("black", sep_rect.x, sep_rect.y, sep_rect.w,
                               sep_rect.h);
 }
 

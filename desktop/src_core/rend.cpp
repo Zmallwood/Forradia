@@ -7,7 +7,7 @@
 #include <glm/gtx/transform.hpp>
 
 _NS_START_
-void shader_program::init(str_view vert_src, str_view frag_src)
+void RenderersCollection::shader_program::init(str_view vert_src, str_view frag_src)
 {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
     const GLchar *source{(const GLchar *)vert_src.data()};
@@ -63,9 +63,9 @@ void shader_program::init(str_view vert_src, str_view frag_src)
     glDeleteShader(fragment_shader);
 }
 
-void shader_program::cleanup() { glDeleteProgram(program_); }
+void RenderersCollection::shader_program::cleanup() { glDeleteProgram(program_); }
 
-void img_2d_rend::init()
+void RenderersCollection::img_2d_rend::init()
 {
     str vertex_shader_src{R"(
       #version 330 core
@@ -103,7 +103,7 @@ void img_2d_rend::init()
                                                        fragment_shader_src);
 }
 
-void img_2d_rend::cleanup()
+void RenderersCollection::img_2d_rend::cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -117,9 +117,9 @@ void img_2d_rend::cleanup()
     glUseProgram(0);
 }
 
-void img_2d_rend::reset_counter() { counter_ = 0; }
+void RenderersCollection::img_2d_rend::reset_counter() { counter_ = 0; }
 
-void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
+void RenderersCollection::img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
                            float h)
 {
     auto tex_id{
@@ -128,7 +128,7 @@ void img_2d_rend::draw_img(int img_name_hash, float x, float y, float w,
     img_2d_rend::draw_tex(tex_id, x, y, w, h);
 }
 
-void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h)
+void RenderersCollection::img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h)
 {
     auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
     glViewport(0, 0, canv_sz.w, canv_sz.h);
@@ -223,7 +223,7 @@ void img_2d_rend::draw_tex(GLuint tex_id, float x, float y, float w, float h)
     ++counter_;
 }
 
-void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y, float w)
+void RenderersCollection::img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y, float w)
 {
     auto hash{Forradia::hash(img_name)};
     auto img_sz{_<Core::engine::Assets::Images::image_bank>().get_img_sz(hash)};
@@ -235,13 +235,13 @@ void img_2d_rend::draw_img_auto_h(str_view img_name, float x, float y, float w)
     draw_img(hash, x, y, w, h);
 }
 
-void img_2d_rend::draw_img(str_view img_name, float x, float y, float w,
+void RenderersCollection::img_2d_rend::draw_img(str_view img_name, float x, float y, float w,
                            float h)
 {
     draw_img(hash(img_name), x, y, w, h);
 }
 
-void ground_rend::init()
+void RenderersCollection::ground_rend::init()
 {
     str vertex_shader_src{R"(
       #version 330 core
@@ -294,7 +294,7 @@ void ground_rend::init()
                                                        fragment_shader_src);
 }
 
-void ground_rend::cleanup()
+void RenderersCollection::ground_rend::cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -308,7 +308,7 @@ void ground_rend::cleanup()
     glUseProgram(0);
 }
 
-void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
+void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
                             float tl_sz, pt3_f camera_pos, vec<float> &elevs,
                             float elev_h)
 {
@@ -393,7 +393,7 @@ void ground_rend::draw_tile(int img_name_hash, int x_coord, int y_coord,
     ground_rend::draw_tex(tex_id, verts, camera_pos);
 }
 
-void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos)
+void RenderersCollection::ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos)
 {
     glEnable(GL_DEPTH_TEST);
     auto canv_sz{get_canv_sz(_<engine::sdl_device>().win())};
@@ -512,7 +512,7 @@ void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos)
         glBindVertexArray(obj_vao);
         glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-        Forradia::entry entry;
+        Forradia::RenderersCollection::entry entry;
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
         entry.vbo = obj_vbo;
@@ -574,7 +574,7 @@ void ground_rend::draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos)
     glDisable(GL_DEPTH_TEST);
 }
 
-glm::vec3 ground_rend::compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
+glm::vec3 RenderersCollection::ground_rend::compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
 {
     // Uses p2 as a new origin for p1, p3.
     auto a = p3 - p2;
@@ -583,7 +583,7 @@ glm::vec3 ground_rend::compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
     return glm::normalize(glm::cross(a, b));
 }
 
-void model_rend::init()
+void RenderersCollection::model_rend::init()
 {
     str vertex_shader_src{R"(
       #version 330 core
@@ -657,7 +657,7 @@ void model_rend::init()
                                                        fragment_shader_src);
 }
 
-void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
+void RenderersCollection::model_rend::draw_model(int model_name_hash, float x, float y, float elev,
                             pt3_f camera_pos, float elev_h)
 {
     glEnable(GL_DEPTH_TEST);
@@ -740,7 +740,7 @@ void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
         glBindVertexArray(obj_vao);
         glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
-        Forradia::entry entry;
+        Forradia::RenderersCollection::entry entry;
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
         entry.vbo = obj_vbo;
@@ -807,13 +807,13 @@ void model_rend::draw_model(int model_name_hash, float x, float y, float elev,
     glDisable(GL_DEPTH_TEST);
 }
 
-void text_rend::init()
+void RenderersCollection::text_rend::init()
 {
     TTF_Init();
     add_fonts();
 }
 
-void text_rend::add_fonts()
+void RenderersCollection::text_rend::add_fonts()
 {
     auto abs_font_path{str(SDL_GetBasePath()) + k_default_font_path.data()};
     for (auto font_sz : {font_szs::_20, font_szs::_26})
@@ -831,7 +831,7 @@ void text_rend::add_fonts()
     }
 }
 
-void text_rend::draw_str(str_view text, float x, float y, font_szs font_sz,
+void RenderersCollection::text_rend::draw_str(str_view text, float x, float y, font_szs font_sz,
                          bool cent_align, color text_color) const
 {
     if (text.empty())
