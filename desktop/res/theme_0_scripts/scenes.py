@@ -58,7 +58,7 @@ class IntroScene(i_scene):
 
         def render_derived():
             get_img_2d_rend().draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
-            get_img_2d_rend().draw_img_auto_h("nurradia_logo", 0.25, 0.2, 0.5)
+            get_img_2d_rend().draw_img_auto_h("forradia_logo", 0.25, 0.2, 0.5)
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)
@@ -80,7 +80,7 @@ class MainMenuScene(i_scene):
 
         def render_derived():
             get_img_2d_rend().draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
-            get_img_2d_rend().draw_img_auto_h("nurradia_logo", 0.35, 0.1, 0.3)
+            get_img_2d_rend().draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
 
         self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
