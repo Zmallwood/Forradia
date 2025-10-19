@@ -132,8 +132,8 @@ void world_view::render() const
                     ground_name + "_slope_diagonal_north_west_to_south_east";
             }
             ground_type_rend = hash(full_ground_name);
-            _<engine::Renderers::img_2d_rend>().draw_img(ground_type_rend, x_canv, y_canv, w_canv,
-                                      h_canv);
+            _<engine::Renderers::img_2d_rend>().draw_img(
+                ground_type_rend, x_canv, y_canv, w_canv, h_canv);
             return true;
         }};
     static func<void()> fn_draw_rivers{
@@ -155,9 +155,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 - river_part_h / 2 -
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::e:
@@ -167,9 +167,9 @@ void world_view::render() const
                                      k * river_part_w,
                                  y_canv + h_canv / 2 - river_part_h / 2,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::s:
@@ -179,9 +179,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 + river_part_h / 2 +
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::w:
@@ -191,9 +191,9 @@ void world_view::render() const
                                      k * river_part_w,
                                  y_canv + h_canv / 2 - river_part_h / 2,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::ne:
@@ -204,9 +204,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 - river_part_h / 2 -
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::se:
@@ -217,9 +217,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 - river_part_h / 2 +
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::sw:
@@ -230,9 +230,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 - river_part_h / 2 +
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 case dirs::nw:
@@ -243,9 +243,9 @@ void world_view::render() const
                                  y_canv + h_canv / 2 - river_part_h / 2 -
                                      k * river_part_h,
                                  river_part_w, river_part_h};
-                        _<engine::Renderers::img_2d_rend>().draw_img("river_part_" +
-                                                      std::to_string(anim_idx),
-                                                  b.x, b.y, b.w, b.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "river_part_" + std::to_string(anim_idx), b.x, b.y,
+                            b.w, b.h);
                     }
                     break;
                 }
@@ -262,51 +262,51 @@ void world_view::render() const
         []
         {
             auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) / 500 % 3};
-            _<engine::Renderers::img_2d_rend>().draw_img("ground_water_" +
-                                          std::to_string(anim_idx),
-                                      x_canv, y_canv, w_canv, h_canv);
+            _<engine::Renderers::img_2d_rend>().draw_img(
+                "ground_water_" + std::to_string(anim_idx), x_canv, y_canv,
+                w_canv, h_canv);
 
             for (auto i = 0; i < tl->elev(); i++)
-                _<engine::Renderers::img_2d_rend>().draw_img("ground_water_height", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "ground_water_height", x_canv, y_canv, w_canv, h_canv);
             for (auto i = 0; i < tl->water_depth(); i++)
-                _<engine::Renderers::img_2d_rend>().draw_img("ground_water_depth", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "ground_water_depth", x_canv, y_canv, w_canv, h_canv);
         }};
     static func<void()> fn_draw_layers{
         []
         {
             if (ground == hash("ground_grass"))
-                _<engine::Renderers::img_2d_rend>().draw_img("ground_grass_layer", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "ground_grass_layer", x_canv, y_canv, w_canv, h_canv);
             else if (ground == hash("ground_dirt"))
-                _<engine::Renderers::img_2d_rend>().draw_img("ground_dirt_layer", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "ground_dirt_layer", x_canv, y_canv, w_canv, h_canv);
             else if (ground == hash("ground_rock"))
-                _<engine::Renderers::img_2d_rend>().draw_img("ground_rock_layer", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "ground_rock_layer", x_canv, y_canv, w_canv, h_canv);
         }};
     static func<void()> fn_draw_tile_symbols{
         []
         {
             auto hovered_coord{_<tl_hovering>().hovered_coord()};
             if (x_coord == hovered_coord.x && y_coord == hovered_coord.y)
-                _<engine::Renderers::img_2d_rend>().draw_img("hovered_tile", x_canv, y_canv,
-                                          w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "hovered_tile", x_canv, y_canv, w_canv, h_canv);
             auto player_dest{_<player>().dest()};
             if (x_coord == player_dest.x && y_coord == player_dest.y)
-                _<engine::Renderers::img_2d_rend>().draw_img("dest_tile", x_canv, y_canv, w_canv,
-                                          h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "dest_tile", x_canv, y_canv, w_canv, h_canv);
         }};
     static func<void()> fn_draw_player{
         [&]
         {
             if (x_coord == player_pos.x && y_coord == player_pos.y)
             {
-                _<engine::Renderers::img_2d_rend>().draw_img("shadow", x_canv, y_canv, w_canv,
-                                          h_canv);
-                _<engine::Renderers::img_2d_rend>().draw_img("player", x_canv, y_canv, tl_sz.w,
-                                          tl_sz.h);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "shadow", x_canv, y_canv, w_canv, h_canv);
+                _<engine::Renderers::img_2d_rend>().draw_img(
+                    "player", x_canv, y_canv, tl_sz.w, tl_sz.h);
             }
         }};
     static func<void()> fn_draw_objects{
@@ -318,8 +318,8 @@ void world_view::render() const
                 for (const auto &obj : objs_stack->objects())
                 {
                     if (obj->type() != hash("object_pink_flower"))
-                        _<engine::Renderers::img_2d_rend>().draw_img("shadow", x_canv, y_canv,
-                                                  tl_sz.w, tl_sz.h);
+                        _<engine::Renderers::img_2d_rend>().draw_img(
+                            "shadow", x_canv, y_canv, tl_sz.w, tl_sz.h);
                     auto obj_type{obj->type()};
                     if (obj_type == hash("object_fir_tree") ||
                         obj_type == hash("object_birch_tree"))
@@ -471,7 +471,7 @@ void world_view::render() const
 void world_view::render_new() const
 {
     auto grid_sz{calc_grid_sz()};
-    auto tl_sz{calc_tl_sz()};
+    // auto tl_sz{calc_tl_sz()};
     auto player_pos{_<player>().pos()};
     auto w_area{_<world>().curr_w_area()};
     auto extra_rows{8};
@@ -480,8 +480,8 @@ void world_view::render_new() const
     auto player_elev{
         w_area->get_tl(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)->elev()};
     auto rend_tl_sz{0.5f};
-    pt3_f camera_pos{(wa_sz.w - player_pos.x) * rend_tl_sz,
-                     (wa_sz.h - player_pos.y) * rend_tl_sz,
+    pt3_f camera_pos{(wa_sz.w - player_pos.x + 0.5f) * rend_tl_sz,
+                     (wa_sz.h - player_pos.y + 0.5f) * rend_tl_sz,
                      player_elev * elev_h};
     static float x_canv, y_canv, w_canv, h_canv;
     static int x_coord, y_coord;
@@ -523,14 +523,20 @@ void world_view::render_new() const
             tl_ses = w_area->get_tl(coord_ses);
             tl_ss = w_area->get_tl(coord_ss);
             ground = tl ? tl->ground() : 0;
-            x_canv = x * tl_sz.w;
+
+            // x_canv = x * tl_sz.w;
+
             // y_canv = y * tl_sz.h - tl_nw->elev() * tl_sz.h / 2;
             // y_canv += player_elev * tl_sz.h / 2;
-            y_canv = y * tl_sz.h;
+
+            // y_canv = y * tl_sz.h;
+
             // w_canv = -tl_sz.w;
             // h_canv = -ceil(tl_sz.h, 2.5f);
-            w_canv = tl_sz.w;
-            h_canv = ceil(tl_sz.h, 2.5f);
+
+            // w_canv = tl_sz.w;
+            // h_canv = ceil(tl_sz.h, 2.5f);
+
             vec<float> elevs;
             auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
             auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
@@ -564,26 +570,21 @@ void world_view::render_new() const
                 auto obj_type{obj->type()};
                 if (obj_type == hash("object_bush1"))
                     _<engine::Renderers::model_rend>().draw_model(
-                        obj_type, x_coord * rend_tl_sz - rend_tl_sz / 2,
-                        y_coord * rend_tl_sz - rend_tl_sz / 2, elev_avg,
+                        obj_type, (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
+                        (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2, elev_avg,
                         camera_pos, elev_h);
             }
             if (x_coord == wa_sz.w - player_pos.x &&
                 y_coord == wa_sz.h - player_pos.y)
             {
                 _<engine::Renderers::model_rend>().draw_model(
-                    hash("player"), x_coord * rend_tl_sz - rend_tl_sz / 2,
-                    y_coord * rend_tl_sz - rend_tl_sz / 2, elev_avg, camera_pos,
-                    elev_h);
-                _<engine::Renderers::ground_rend>().draw_tile(hash("ground_dirt"), x_coord,
-                                           y_coord, rend_tl_sz, camera_pos,
-                                           elevs, elev_h);
+                    hash("player"), (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
+                    (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2, elev_avg,
+                    camera_pos, elev_h);
             }
-            else
-            {
-                _<engine::Renderers::ground_rend>().draw_tile(ground, x_coord, y_coord, rend_tl_sz,
-                                           camera_pos, elevs, elev_h);
-            }
+            _<engine::Renderers::ground_rend>().draw_tile(
+                ground, x_coord - 1, y_coord - 1, rend_tl_sz, camera_pos, elevs,
+                elev_h);
         }
     }
 }

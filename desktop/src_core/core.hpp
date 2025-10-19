@@ -390,11 +390,11 @@ namespace Core
         class Renderers : public RenderersCollection
         {
           public:
-            using RenderersCollection::img_2d_rend;
+            using RenderersCollection::font_szs;
             using RenderersCollection::ground_rend;
+            using RenderersCollection::img_2d_rend;
             using RenderersCollection::model_rend;
             using RenderersCollection::text_rend;
-            using RenderersCollection::font_szs;
         };
 
         void init(str_view game_win_title, color clear_color) const;
