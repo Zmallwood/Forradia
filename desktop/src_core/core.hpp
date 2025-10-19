@@ -398,6 +398,7 @@ namespace Core
 
         bool running_{true};
     };
-}
+#define _HIDE_FROM_OUTLINER_ }
+_HIDE_FROM_OUTLINER_
 using namespace Core;
 _NS_END_

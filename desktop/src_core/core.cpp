@@ -4,6 +4,7 @@
  */
 #include "core.hpp"
 #include "rend.hpp"
+#include "gui.hpp"
 
 _NS_START_
 namespace Core
@@ -458,6 +459,7 @@ namespace Core
         auto model_res{std::make_shared<model>(file_path)};
         return model_res;
     }
+    
     void engine::ScenesCore::i_scene::init()
     {
         gui_ = std::make_shared<engine::ScenesCore::i_scene::ScenesGUI::gui_root>();
