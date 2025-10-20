@@ -21,8 +21,8 @@ namespace SpecializedGUI
         gui_panel::render_derived();
         auto b{bounds()};
         _<engine::Renderers::text_rend>().draw_str(
-            _<player>().name(), b.x + 0.01f, b.y + 0.01f,
-            engine::Renderers::font_szs::_26);
+            _<Theme0::GameplayCore::Player::player>().name(), b.x + 0.01f,
+            b.y + 0.01f, engine::Renderers::font_szs::_26);
     }
 
     void gui_sys_menu::init() { set_visible(false); }
@@ -77,36 +77,40 @@ namespace SpecializedGUI
                 0.1f - img_w / 2, 0.04f, img_w, img_h, "",
                 [this]
                 {
-                    sel_body_part(c_int(body_part_types::overall_body));
+                    sel_body_part(c_int(Theme0::GameplayCore::Player::
+                                            body_part_types::overall_body));
                     update_body_part_info_lbls();
                 },
                 "gui_image_overall_body", "gui_image_overall_body_hovered")};
         add_child_comp(overall_body_img_btn);
-        auto right_arm_body_img_btn{
-            std::make_shared<GUIComponentsLibrary::gui_button>(
-                0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
-                [this]
-                {
-                    sel_body_part(c_int(body_part_types::right_arm));
-                    update_body_part_info_lbls();
-                },
-                "gui_image_right_arm", "gui_image_right_arm_hovered")};
+        auto right_arm_body_img_btn{std::make_shared<
+            GUIComponentsLibrary::gui_button>(
+            0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
+            [this]
+            {
+                sel_body_part(c_int(
+                    Theme0::GameplayCore::Player::body_part_types::right_arm));
+                update_body_part_info_lbls();
+            },
+            "gui_image_right_arm", "gui_image_right_arm_hovered")};
         add_child_comp(right_arm_body_img_btn);
-        auto left_arm_body_img_btn{
-            std::make_shared<GUIComponentsLibrary::gui_button>(
-                0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
-                [this]
-                {
-                    sel_body_part(c_int(body_part_types::left_arm));
-                    update_body_part_info_lbls();
-                },
-                "gui_image_left_arm", "gui_image_left_arm_hovered")};
+        auto left_arm_body_img_btn{std::make_shared<
+            GUIComponentsLibrary::gui_button>(
+            0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
+            [this]
+            {
+                sel_body_part(c_int(
+                    Theme0::GameplayCore::Player::body_part_types::left_arm));
+                update_body_part_info_lbls();
+            },
+            "gui_image_left_arm", "gui_image_left_arm_hovered")};
         add_child_comp(left_arm_body_img_btn);
         auto legs_img_btn{std::make_shared<GUIComponentsLibrary::gui_button>(
             0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
             [this]
             {
-                sel_body_part(c_int(body_part_types::legs));
+                sel_body_part(
+                    c_int(Theme0::GameplayCore::Player::body_part_types::legs));
                 update_body_part_info_lbls();
             },
             "gui_image_legs", "gui_image_legs_hovered")};
@@ -131,28 +135,41 @@ namespace SpecializedGUI
 
     void gui_player_body_win::update_body_part_info_lbls()
     {
-        auto &p_body{_<player>().body_ref()};
-        constexpr auto overall_body{c_int(body_part_types::overall_body)};
-        constexpr auto right_arm{c_int(body_part_types::right_arm)};
-        constexpr auto left_arm{c_int(body_part_types::left_arm)};
-        constexpr auto legs{c_int(body_part_types::legs)};
+        auto &p_body{_<Theme0::GameplayCore::Player::player>().body_ref()};
+        constexpr auto overall_body{
+            c_int(Theme0::GameplayCore::Player::body_part_types::overall_body)};
+        constexpr auto right_arm{
+            c_int(Theme0::GameplayCore::Player::body_part_types::right_arm)};
+        constexpr auto left_arm{
+            c_int(Theme0::GameplayCore::Player::body_part_types::left_arm)};
+        constexpr auto legs{
+            c_int(Theme0::GameplayCore::Player::body_part_types::legs)};
         switch (sel_body_part_)
         {
         case overall_body:
         {
             lbl_body_part_name_->set_text("Body part: Overall body");
-            auto str{
-                p_body.body_part_ptr(body_part_types::overall_body)->str()};
+            auto str{p_body
+                         .body_part_ptr(Theme0::GameplayCore::Player::
+                                            body_part_types::overall_body)
+                         ->str()};
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
-            auto max_energy{p_body.body_part_ptr(body_part_types::overall_body)
-                                ->max_energy()};
+            auto max_energy{
+                p_body
+                    .body_part_ptr(Theme0::GameplayCore::Player::
+                                       body_part_types::overall_body)
+                    ->max_energy()};
             auto curr_energy{
-                p_body.body_part_ptr(body_part_types::overall_body)
+                p_body
+                    .body_part_ptr(Theme0::GameplayCore::Player::
+                                       body_part_types::overall_body)
                     ->curr_energy()};
             lbl_body_part_energy_->set_text(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-            auto temp{
-                p_body.body_part_ptr(body_part_types::overall_body)->temp()};
+            auto temp{p_body
+                          .body_part_ptr(Theme0::GameplayCore::Player::
+                                             body_part_types::overall_body)
+                          ->temp()};
             lbl_body_part_temp_->set_text(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
@@ -160,15 +177,25 @@ namespace SpecializedGUI
         case right_arm:
         {
             lbl_body_part_name_->set_text("Body part: Right arm");
-            auto str{p_body.body_part_ptr(body_part_types::right_arm)->str()};
+            auto str{p_body
+                         .body_part_ptr(Theme0::GameplayCore::Player::
+                                            body_part_types::right_arm)
+                         ->str()};
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
-            auto max_energy{
-                p_body.body_part_ptr(body_part_types::right_arm)->max_energy()};
-            auto curr_energy{p_body.body_part_ptr(body_part_types::right_arm)
+            auto max_energy{p_body
+                                .body_part_ptr(Theme0::GameplayCore::Player::
+                                                   body_part_types::right_arm)
+                                ->max_energy()};
+            auto curr_energy{p_body
+                                 .body_part_ptr(Theme0::GameplayCore::Player::
+                                                    body_part_types::right_arm)
                                  ->curr_energy()};
             lbl_body_part_energy_->set_text(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-            auto temp{p_body.body_part_ptr(body_part_types::right_arm)->temp()};
+            auto temp{p_body
+                          .body_part_ptr(Theme0::GameplayCore::Player::
+                                             body_part_types::right_arm)
+                          ->temp()};
             lbl_body_part_temp_->set_text(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
@@ -176,15 +203,29 @@ namespace SpecializedGUI
         case left_arm:
         {
             lbl_body_part_name_->set_text("Body part: Left arm");
-            auto str{p_body.body_part_ptr(body_part_types::left_arm)->str()};
+            auto str{
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                    ->str()};
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
             auto max_energy{
-                p_body.body_part_ptr(body_part_types::left_arm)->max_energy()};
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                    ->max_energy()};
             auto curr_energy{
-                p_body.body_part_ptr(body_part_types::left_arm)->curr_energy()};
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                    ->curr_energy()};
             lbl_body_part_energy_->set_text(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-            auto temp{p_body.body_part_ptr(body_part_types::left_arm)->temp()};
+            auto temp{
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                    ->temp()};
             lbl_body_part_temp_->set_text(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
@@ -192,15 +233,29 @@ namespace SpecializedGUI
         case legs:
         {
             lbl_body_part_name_->set_text("Body part: Legs");
-            auto str{p_body.body_part_ptr(body_part_types::legs)->str()};
+            auto str{
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::legs)
+                    ->str()};
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
             auto max_energy{
-                p_body.body_part_ptr(body_part_types::legs)->max_energy()};
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::legs)
+                    ->max_energy()};
             auto curr_energy{
-                p_body.body_part_ptr(body_part_types::legs)->curr_energy()};
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::legs)
+                    ->curr_energy()};
             lbl_body_part_energy_->set_text(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
-            auto temp{p_body.body_part_ptr(body_part_types::legs)->temp()};
+            auto temp{
+                p_body
+                    .body_part_ptr(
+                        Theme0::GameplayCore::Player::body_part_types::legs)
+                    ->temp()};
             lbl_body_part_temp_->set_text(
                 fmt::format("Temperature: {:.2f} C", temp));
         }

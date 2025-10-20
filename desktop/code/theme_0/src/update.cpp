@@ -42,22 +42,22 @@ void update_kb_movem()
     auto s_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_s)};
     auto d_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_d)};
     if (up_press || right_press || down_press || left_press)
-        _<player>().set_dest({-1, -1});
+        _<Theme0::GameplayCore::Player::player>().set_dest({-1, -1});
     auto now{ticks()};
-    if (now >= _<player>().ticks_last_move() +
-                   inv_movem_spd(_<player>().movem_spd()) &&
+    if (now >= _<Theme0::GameplayCore::Player::player>().ticks_last_move() +
+                   inv_movem_spd(_<Theme0::GameplayCore::Player::player>().movem_spd()) &&
         (up_press || right_press || down_press || left_press || w_press ||
          a_press || s_press || d_press))
     {
         if (up_press || w_press)
-            _<player>().move_n();
+            _<Theme0::GameplayCore::Player::player>().move_n();
         if (right_press || d_press)
-            _<player>().move_e();
+            _<Theme0::GameplayCore::Player::player>().move_e();
         if (down_press || s_press)
-            _<player>().move_s();
+            _<Theme0::GameplayCore::Player::player>().move_s();
         if (left_press || a_press)
-            _<player>().move_w();
-        _<player>().set_ticks_last_move(now);
+            _<Theme0::GameplayCore::Player::player>().move_w();
+        _<Theme0::GameplayCore::Player::player>().set_ticks_last_move(now);
     }
 }
 
@@ -67,7 +67,7 @@ void update_mouse_movem()
             .been_fired_pick_res())
     {
         auto new_dest{_<tl_hovering>().hovered_coord()};
-        _<player>().set_dest(new_dest);
+        _<Theme0::GameplayCore::Player::player>().set_dest(new_dest);
     }
     auto player_pos{_<player>().pos()};
     auto dest{_<player>().dest()};

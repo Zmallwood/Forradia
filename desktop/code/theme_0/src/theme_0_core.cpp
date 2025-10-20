@@ -35,41 +35,44 @@ namespace Theme0
         }
     }
 
-    namespace Player
+    namespace GameplayCore
     {
-        void player_body::init()
+        namespace Player
         {
-            parts_.insert({body_part_types::overall_body, body_part()});
-            parts_.insert({body_part_types::right_arm, body_part()});
-            parts_.insert({body_part_types::left_arm, body_part()});
-            parts_.insert({body_part_types::legs, body_part()});
+            void player_body::init()
+            {
+                parts_.insert({body_part_types::overall_body, body_part()});
+                parts_.insert({body_part_types::right_arm, body_part()});
+                parts_.insert({body_part_types::left_arm, body_part()});
+                parts_.insert({body_part_types::legs, body_part()});
+            }
+
+            body_part *player_body::body_part_ptr(body_part_types type)
+            {
+                if (parts_.contains(type))
+                    return &parts_.at(type);
+                return nullptr;
+            }
+
+            void player::init() { move_to_suitable_pos(); }
+
+            void player::move_to_suitable_pos()
+            {
+                auto w_area{_<world>().curr_w_area()};
+                auto sz{w_area->get_sz()};
+                pos_ = {sz.w / 2, sz.h / 2};
+                while (w_area->get_tl(pos_)->ground() == hash("ground_water"))
+                    pos_ = {rand_int(sz.w), rand_int(sz.h)};
+            }
+
+            void player::move_n() { pos_.y -= 1; }
+
+            void player::move_e() { pos_.x += 1; }
+
+            void player::move_s() { pos_.y += 1; }
+
+            void player::move_w() { pos_.x -= 1; }
         }
-
-        body_part *player_body::body_part_ptr(body_part_types type)
-        {
-            if (parts_.contains(type))
-                return &parts_.at(type);
-            return nullptr;
-        }
-
-        void player::init() { move_to_suitable_pos(); }
-
-        void player::move_to_suitable_pos()
-        {
-            auto w_area{_<world>().curr_w_area()};
-            auto sz{w_area->get_sz()};
-            pos_ = {sz.w / 2, sz.h / 2};
-            while (w_area->get_tl(pos_)->ground() == hash("ground_water"))
-                pos_ = {rand_int(sz.w), rand_int(sz.h)};
-        }
-
-        void player::move_n() { pos_.y -= 1; }
-
-        void player::move_e() { pos_.x += 1; }
-
-        void player::move_s() { pos_.y += 1; }
-
-        void player::move_w() { pos_.x -= 1; }
     }
 }
 _NS_END_

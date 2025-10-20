@@ -144,9 +144,10 @@ namespace Theme0
                        GUIComponentsLibrary::gui_comp>(m, "gui_interact_menu");
             py::class_<tl_hovering>(m, "tl_hovering")
                 .def("update", &tl_hovering::update);
-            py::class_<world_view>(m, "world_view")
-                .def("render", &world_view::render)
-                .def("render_new", &world_view::render_new);
+            py::class_<Theme0::GameplayCore::world_view>(m, "world_view")
+                .def("render", &Theme0::GameplayCore::world_view::render)
+                .def("render_new",
+                     &Theme0::GameplayCore::world_view::render_new);
             m.def("ticks", [] { return ticks(); });
             m.def("conv_w_to_h", [](float w)
                   { return conv_w_to_h(w, _<engine::sdl_device>().win()); });
@@ -238,8 +239,8 @@ namespace Theme0
                 []() -> tl_hovering & { return _<tl_hovering>(); },
                 py::return_value_policy::reference);
             m.def(
-                "get_world_view",
-                []() -> world_view & { return _<world_view>(); },
+                "get_world_view", []() -> Theme0::GameplayCore::world_view &
+                { return _<Theme0::GameplayCore::world_view>(); },
                 py::return_value_policy::reference);
             m.def("update_kb_actions", &update_kb_actions);
             m.def("update_mouse_actions", &update_mouse_actions);
