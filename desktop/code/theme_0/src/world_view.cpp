@@ -610,11 +610,84 @@ namespace Theme0
                     for (auto obj : objects)
                     {
                         auto obj_type{obj->type()};
-                        _<engine::Renderers::model_rend>().draw_model(
-                            obj_type,
-                            (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
-                            (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
-                            elev_avg, camera_pos, elev_h);
+                        if (obj_type == hash("object_fir_tree") ||
+                            obj_type == hash("object_birch_tree"))
+                        {
+                            auto tree_obj{
+                                std::static_pointer_cast<Forradia::tree_object>(
+                                    obj)};
+                            auto trunk_parts{tree_obj->trunk_parts()};
+                            auto needleTypes{tree_obj->needle_types()};
+                            auto w_factor{tree_obj->w_factor()};
+                            for (auto i = 0; i < trunk_parts.size(); i++)
+                            {
+                                auto trunk_part{trunk_parts.at(i)};
+                                auto needle_type{needleTypes.at(i)};
+                                auto w_decr_factor{
+                                    0.5f + (trunk_parts.size() - i) /
+                                               c_float(trunk_parts.size()) / 2};
+                                auto tree_w{rend_tl_sz * w_factor *
+                                            w_decr_factor};
+                                auto trunk_part_x{trunk_part.x};
+                                auto trunk_part_y{trunk_part.x};
+                                trunk_part_x *= c_float(i) /
+                                                trunk_parts.size() *
+                                                std::sin(ticks() / 700.0f +
+                                                         x_coord * y_coord);
+                                trunk_part_y *= c_float(i) /
+                                                trunk_parts.size() *
+                                                std::sin(ticks() / 700.0f +
+                                                         x_coord * y_coord);
+                                auto trunk_part_x_center{
+                                    (x_coord - 1) * rend_tl_sz -
+                                    rend_tl_sz / 2 - trunk_part_x * tree_w};
+                                auto trunk_part_y_center{
+                                    (y_coord - 1) * rend_tl_sz -
+                                    rend_tl_sz / 2 - trunk_part_y * tree_w};
+                                auto trunk_part_z{trunk_part.y * rend_tl_sz};
+                                auto trunk_part_width{rend_tl_sz * 0.2f *
+                                                      w_decr_factor};
+                                auto trunk_part_height{rend_tl_sz * 0.2f};
+
+                                str trunk_part_name;
+
+                                if (obj_type == hash("object_fir_tree"))
+                                    trunk_part_name =
+                                        "object_fir_tree_trunk_part";
+                                else if (obj_type == hash("object_birch_tree"))
+                                    trunk_part_name =
+                                        "object_birch_tree_trunk_part";
+
+                                _<engine::Renderers::model_rend>().draw_model(
+                                    hash(trunk_part_name),
+                                    trunk_part_x_center - trunk_part_width / 2,
+                                    trunk_part_y_center - trunk_part_width / 2,
+                                    elev_avg - trunk_part_z, camera_pos,
+                                    elev_h);
+
+                                auto needle_w{tree_w};
+                                auto needle_h{rend_tl_sz};
+                                if (needle_type)
+                                {
+                                    _<engine::Renderers::model_rend>()
+                                        .draw_model(
+                                            needle_type,
+                                            trunk_part_x_center,
+                                            trunk_part_y_center,
+                                            elev_avg - trunk_part_z -
+                                                needle_h / 2,
+                                            camera_pos, elev_h);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            _<engine::Renderers::model_rend>().draw_model(
+                                obj_type,
+                                (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
+                                (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
+                                elev_avg, camera_pos, elev_h);
+                        }
                     }
                     if (x_coord == wa_sz.w - player_pos.x &&
                         y_coord == wa_sz.h - player_pos.y)

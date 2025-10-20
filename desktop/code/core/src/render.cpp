@@ -647,9 +647,9 @@ void RenderersCollection::model_rend::init()
           float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
           vec3 specular = light_specular * (spec * material_specular);  
 
-          vec3 objectColor = texture(ourTexture, TexCoord).rgb;
+          vec4 objectColor = texture(ourTexture, TexCoord);
 
-          vec3 result = (ambient + diffuse + specular) * objectColor;
+          vec3 result = (ambient + diffuse + specular) * objectColor.rgb;
           FragColor = vec4(result, 1.0);
       }
     )"};
@@ -674,6 +674,8 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x, f
     glUseProgram(shader_program_->program());
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA,
+                    GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     vec<unsigned int> indices_vec;
     vec<glm::vec3> normals;
     vec<float> vertices_vec;
