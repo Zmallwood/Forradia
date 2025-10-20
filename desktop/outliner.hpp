@@ -1372,12 +1372,12 @@ namespace Theme0
             };
         }
         using namespace Player;
-    }
-    using namespace GameplayCore;
-#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_ }
-    _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_
-    using namespace Theme0;
-    _NS_END_
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_ } using namespace GameplayCore;
+        _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_ }
+        _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_
+        using namespace Theme0;
+        _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
@@ -1391,19 +1391,24 @@ namespace Theme0
 #pragma once
 
 _NS_START_
-namespace Theme0
-{
-    namespace GameplayCore
+#define _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_1_                                  \
+    namespace Theme0                                                           \
     {
-        class world_view
-        {
-          public:
-            void render() const;
+_HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_1_
+#define _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_2_                                  \
+    namespace GameplayCore                                                     \
+    {
+_HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_2_
+class world_view
+{
+  public:
+    void render() const;
 
-            void render_new() const;
-        };
-    }
+    void render_new() const;
+};
 }
+#define _HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1559,6 +1564,64 @@ _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
+
+
+// virtualInclude 'code/theme_0/src/world_grator.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+#include "common.hpp"
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
+    namespace Theme0                                                           \
+    {                                                                          \
+        namespace WorldStructure                                               \
+        {                                                                      \
+            class world_area;                                                  \
+        }                                                                      \
+    }
+_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_                                  \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
+namespace WorldGeneration
+{
+    class world_grator
+    {
+      public:
+        void gen_new_world();
+
+      private:
+        void prep();
+        void clear_with_dirt() const;
+        void gen_grass() const;
+        void gen_lakes() const;
+        void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
+                             int recurs) const;
+        void gen_elev() const;
+        void gen_rock() const;
+        void gen_rivers() const;
+        void gen_objs() const;
+        void gen_creas() const;
+        void gen_npcs() const;
+
+        s_ptr<Theme0::WorldStructure::world_area> w_area_;
+        float scale_;
+        sz sz_;
+    };
+}
+using namespace WorldGeneration;
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
 // virtualInclude 'code/theme_0/src/scripts.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
@@ -1622,60 +1685,8 @@ class tl_hovering
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'code/theme_0/src/world_grator.hpp'
-// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
-/*
- * Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details)
- */
-#pragma once
-#include "common.hpp"
 
-_NS_START_
-#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
-    namespace Theme0                                                           \
-    {                                                                          \
-        namespace WorldStructure                                               \
-        {                                                                      \
-            class world_area;                                                  \
-        }                                                                      \
-    }
-_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
-#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_                                  \
-    namespace Theme0                                                           \
-    {
-_HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
-namespace WorldGeneration
-{
-    class world_grator
-    {
-      public:
-        void gen_new_world();
 
-      private:
-        void prep();
-        void clear_with_dirt() const;
-        void gen_grass() const;
-        void gen_lakes() const;
-        void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
-                             int recurs) const;
-        void gen_elev() const;
-        void gen_rock() const;
-        void gen_rivers() const;
-        void gen_objs() const;
-        void gen_creas() const;
-        void gen_npcs() const;
-
-        s_ptr<Theme0::WorldStructure::world_area> w_area_;
-        float scale_;
-        sz sz_;
-    };
-}
-using namespace WorldGeneration;
-#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_ }
-_HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
-_NS_END_
-// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 
 
