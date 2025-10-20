@@ -14,7 +14,7 @@ namespace Forradia
 #define _HIDE_FROM_OUTLINER_ }
     _HIDE_FROM_OUTLINER_
 
-// virtualInclude 'src_common/common.hpp'
+// virtualInclude 'code/common/src/common.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -454,7 +454,7 @@ using namespace Common;
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_core/core.hpp'
+// virtualInclude 'code/core/src/core.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -872,7 +872,7 @@ namespace Core
     _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_core/gui.hpp'
+// virtualInclude 'code/core/src/gui.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1107,7 +1107,7 @@ _HIDE_FROM_OUTLINER_CORE_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_core/render.hpp'
+// virtualInclude 'code/core/src/render.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1262,7 +1262,7 @@ class RenderersCollection
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/theme_0_core.hpp'
+// virtualInclude 'code/theme_0/src/theme_0_core.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1375,7 +1375,7 @@ namespace Theme0
     _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/game_props.hpp'
+// virtualInclude 'code/theme_0/src/game_props.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1407,7 +1407,7 @@ _HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/gui_spec.hpp'
+// virtualInclude 'code/theme_0/src/gui_spec.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1526,7 +1526,7 @@ _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/scripts.hpp'
+// virtualInclude 'code/theme_0/src/scripts.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1549,7 +1549,7 @@ using namespace Scripting;
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/update.hpp'
+// virtualInclude 'code/theme_0/src/update.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1584,7 +1584,7 @@ class tl_hovering
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/world_grator.hpp'
+// virtualInclude 'code/theme_0/src/world_grator.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1639,7 +1639,7 @@ _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0/world_view.hpp'
+// virtualInclude 'code/theme_0/src/world_view.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -1658,7 +1658,7 @@ class world_view
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_theme_0_world_struct/world_struct.hpp'
+// virtualInclude 'code/theme_0_world_struct/src/world_struct.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg

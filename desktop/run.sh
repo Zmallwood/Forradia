@@ -7,6 +7,6 @@ fi
 rm -rf ./bin/res
 cp ./build/Forradia ./bin/
 cp -r ./res ./bin/
-cp -r ./src_theme_0_scripts_py/ ./bin/res/theme_0_scripts
+cp -r ./code/theme_0_scripts/src/ ./bin/res/theme_0_scripts
 cd ./bin
 ./Forradia
