@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "rend.hpp"
+#include "render.hpp"
 #include "core.hpp"
 #include <glm/gtx/transform.hpp>
 

@@ -4,7 +4,7 @@
  */
 #include "gui.hpp"
 #include "core.hpp"
-#include "rend.hpp"
+#include "render.hpp"
 
 _NS_START_
 s_ptr<GUIComponentsLibrary::gui_comp>

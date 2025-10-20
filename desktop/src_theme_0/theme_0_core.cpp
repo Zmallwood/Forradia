@@ -35,6 +35,8 @@ namespace Theme0
         }
     }
 
+    namespace CoreGameObjects
+    {}
     void player_body::init()
     {
         parts_.insert({body_part_types::overall_body, body_part()});

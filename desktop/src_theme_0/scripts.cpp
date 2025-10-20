@@ -6,7 +6,7 @@
 #include "core.hpp"
 #include "gui.hpp"
 #include "gui_spec.hpp"
-#include "rend.hpp"
+#include "render.hpp"
 #include "update.hpp"
 #include "world_grator.hpp"
 #include "world_view.hpp"

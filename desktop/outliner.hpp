@@ -463,7 +463,7 @@ _NS_END_
 #pragma once
 
 #include "gui.hpp"
-#include "rend.hpp"
+#include "render.hpp"
 
 _NS_START_
 
@@ -1107,7 +1107,7 @@ _HIDE_FROM_OUTLINER_CORE_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
-// virtualInclude 'src_core/rend.hpp'
+// virtualInclude 'src_core/render.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
