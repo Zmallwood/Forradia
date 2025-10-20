@@ -29,7 +29,8 @@ namespace Theme0
         sz calc_grid_sz()
         {
             auto tl_sz{calc_tl_sz_new()};
-            auto num_grid_cols{c_int(1.0f / tl_sz) + 1};
+            auto asp_rat {calc_aspect_ratio(_<engine::sdl_device>().win())};
+            auto num_grid_cols{c_int(asp_rat / tl_sz) + 1};
             auto num_grid_rows{_<game_props>().k_num_grid_rows};
             return {num_grid_cols, num_grid_rows};
         }
