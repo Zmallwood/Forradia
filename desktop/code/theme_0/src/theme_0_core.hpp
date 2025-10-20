@@ -18,7 +18,7 @@ namespace Theme0
     }
     using namespace TileGridMath;
 
-    namespace CoreGameObjects
+    namespace Player
     {
         enum class body_part_types
         {
@@ -102,7 +102,7 @@ namespace Theme0
             int money_{0};
         };
     }
-    using namespace CoreGameObjects;
+    using namespace Player;
 #define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_ }
     _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_
     using namespace Theme0;
