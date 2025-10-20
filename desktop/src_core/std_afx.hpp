@@ -4,7 +4,7 @@
  */
 #pragma once
 
-#include "comm.hpp"
+#include "common.hpp"
 
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"

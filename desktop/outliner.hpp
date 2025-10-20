@@ -14,7 +14,7 @@ namespace Forradia
 #define _HIDE_FROM_OUTLINER_ }
     _HIDE_FROM_OUTLINER_
 
-// virtualInclude 'src_comm/comm.hpp'
+// virtualInclude 'src_common/common.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -463,6 +463,7 @@ _NS_END_
 #pragma once
 
 #include "gui.hpp"
+#include "rend.hpp"
 
 _NS_START_
 
@@ -844,6 +845,15 @@ namespace Core
                 bool any_mouse_btn_pressed_pick_res();
             };
         };
+        class Renderers : public RenderersCollection
+        {
+          public:
+            using RenderersCollection::font_szs;
+            using RenderersCollection::ground_rend;
+            using RenderersCollection::img_2d_rend;
+            using RenderersCollection::model_rend;
+            using RenderersCollection::text_rend;
+        };
 
         void init(str_view game_win_title, color clear_color) const;
 
@@ -856,10 +866,10 @@ namespace Core
 
         bool running_{true};
     };
-#define _HIDE_FROM_OUTLINER_ }
-_HIDE_FROM_OUTLINER_
-using namespace Core;
-_NS_END_
+#define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
+    _HIDE_FROM_OUTLINER_CORE_BOTTOM_
+    using namespace Core;
+    _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 // virtualInclude 'src_core/gui.hpp'
@@ -871,10 +881,10 @@ _NS_END_
 #pragma once
 
 _NS_START_
-#define _HIDE_FROM_OUTLINER_                                                   \
+#define _HIDE_FROM_OUTLINER_GUI_TOP_                                           \
     namespace Core                                                             \
     {
-_HIDE_FROM_OUTLINER_
+_HIDE_FROM_OUTLINER_GUI_TOP_
 namespace GUIComponentsLibrary
 {
     class gui_comp
@@ -1092,7 +1102,8 @@ namespace GUIComponentsLibrary
         vec<str> lines_;
     };
 }
-}
+#define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
+_HIDE_FROM_OUTLINER_CORE_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1105,47 +1116,71 @@ _NS_END_
 #pragma once
 
 _NS_START_
-class shader_program
-{
-  public:
-    shader_program(str_view vert_src, str_view frag_src)
+#define _HIDE_FROM_OUTLINER_GUI_TOP_                                           \
+    namespace Core                                                             \
     {
-        init(vert_src, frag_src);
-    }
-
-    ~shader_program() { cleanup(); }
-
-    auto program() const { return program_; }
-
-  private:
-    void init(str_view vert_src, str_view frag_src);
-
-    void cleanup();
-
-    GLuint program_;
-};
-
-class img_2d_rend
+_HIDE_FROM_OUTLINER_GUI_TOP_
+class RenderersCollection
 {
-  public:
-    img_2d_rend() { init(); };
+  protected:
+    class shader_program
+    {
+      public:
+        shader_program(str_view vert_src, str_view frag_src)
+        {
+            init(vert_src, frag_src);
+        }
 
-    ~img_2d_rend() { cleanup(); }
+        ~shader_program() { cleanup(); }
 
-    void reset_counter();
+        auto program() const { return program_; }
 
-    void draw_img(str_view img_name, float x, float y, float w, float h);
+      private:
+        void init(str_view vert_src, str_view frag_src);
 
-    void draw_img(int img_name_hash, float x, float y, float w, float h);
+        void cleanup();
 
-    void draw_tex(GLuint tex_id, float x, float y, float w, float h);
+        GLuint program_;
+    };
 
-    void draw_img_auto_h(str_view img_name, float x, float y, float w);
+    class img_2d_rend
+    {
+      public:
+        img_2d_rend() { init(); };
 
-  private:
-    void init();
+        ~img_2d_rend() { cleanup(); }
 
-    void cleanup();
+        void reset_counter();
+
+        void draw_img(str_view img_name, float x, float y, float w, float h);
+
+        void draw_img(int img_name_hash, float x, float y, float w, float h);
+
+        void draw_tex(GLuint tex_id, float x, float y, float w, float h);
+
+        void draw_img_auto_h(str_view img_name, float x, float y, float w);
+
+      private:
+        void init();
+
+        void cleanup();
+
+        class entry
+        {
+          public:
+            GLuint vao;
+            GLuint ibo;
+            GLuint vbo;
+            float x;
+            float y;
+            float w;
+            float h;
+        };
+
+        s_ptr<shader_program> shader_program_;
+        std::map<int, std::map<int, entry>> imgs_;
+        int counter_{0};
+    };
 
     class entry
     {
@@ -1155,90 +1190,75 @@ class img_2d_rend
         GLuint vbo;
         float x;
         float y;
-        float w;
-        float h;
+        float z;
     };
 
-    s_ptr<shader_program> shader_program_;
-    std::map<int, std::map<int, entry>> imgs_;
-    int counter_{0};
+    class ground_rend
+    {
+      public:
+        ground_rend() { init(); };
+
+        ~ground_rend() { cleanup(); }
+
+        void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
+                       pt3_f camera_pos, vec<float> &elevs, float elev_h);
+
+        void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
+
+      private:
+        void init();
+
+        void cleanup();
+
+        glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
+
+        s_ptr<shader_program> shader_program_;
+        std::map<float, std::map<float, entry>> imgs_;
+    };
+
+    class model_rend
+    {
+      public:
+        model_rend() { init(); }
+
+        void draw_model(int model_name_hash, float x, float y, float elev,
+                        pt3_f camera_pos, float elev_h);
+
+      private:
+        void init();
+
+        s_ptr<shader_program> shader_program_;
+        std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
+            models_;
+        static constexpr float k_mdl_scale{0.08f};
+    };
+
+    enum struct font_szs
+    {
+        _20 = 20,
+        _26 = 26
+    };
+
+    class text_rend
+    {
+      public:
+        text_rend() { init(); }
+
+        void draw_str(str_view text, float x, float y,
+                      font_szs font_sz = font_szs::_20, bool cent_align = false,
+                      color text_color = colors::wheat_transp) const;
+
+      private:
+        void init();
+
+        void add_fonts();
+
+        const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+
+        std::map<font_szs, s_ptr<TTF_Font>> fonts_;
+    };
 };
-
-class entry
-{
-  public:
-    GLuint vao;
-    GLuint ibo;
-    GLuint vbo;
-    float x;
-    float y;
-    float z;
-};
-
-class ground_rend
-{
-  public:
-    ground_rend() { init(); };
-
-    ~ground_rend() { cleanup(); }
-
-    void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                   pt3_f camera_pos, vec<float> &elevs, float elev_h);
-
-    void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
-
-  private:
-    void init();
-
-    void cleanup();
-
-    glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
-
-    s_ptr<shader_program> shader_program_;
-    std::map<float, std::map<float, entry>> imgs_;
-};
-
-class model_rend
-{
-  public:
-    model_rend() { init(); }
-
-    void draw_model(int model_name_hash, float x, float y, float elev,
-                    pt3_f camera_pos, float elev_h);
-
-  private:
-    void init();
-
-    s_ptr<shader_program> shader_program_;
-    std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
-        models_;
-    static constexpr float k_mdl_scale{0.08f};
-};
-
-enum struct font_szs
-{
-    _20 = 20,
-    _26 = 26
-};
-
-class text_rend
-{
-  public:
-    text_rend() { init(); }
-
-    void draw_str(str_view text, float x, float y,
-                  font_szs font_sz = font_szs::_20, bool cent_align = false,
-                  color text_color = colors::wheat_transp) const;
-
-  private:
-    void init();
-
-    void add_fonts();
-
-    const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
-
-    std::map<font_szs, s_ptr<TTF_Font>> fonts_;
-};
+}
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1249,101 +1269,110 @@ _NS_END_
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "comm.hpp"
+#include "common.hpp"
 
 _NS_START_
 namespace Theme0
 {
-    sz_f calc_tl_sz();
-
-    float calc_tl_sz_new();
-
-    sz calc_grid_sz();
-
-    enum class body_part_types
+    namespace TileGridMath
     {
-        none,
-        overall_body,
-        right_arm,
-        left_arm,
-        legs
-    };
+        sz_f calc_tl_sz();
 
-    class body_part
+        float calc_tl_sz_new();
+
+        sz calc_grid_sz();
+    }
+    using namespace TileGridMath;
+
+    namespace CoreGameObjects
     {
-      public:
-        auto str() const { return str_; }
-        auto curr_energy() const { return curr_energy_; }
-        auto max_energy() const { return max_energy_; }
-        auto temp() const { return temp_; }
+        enum class body_part_types
+        {
+            none,
+            overall_body,
+            right_arm,
+            left_arm,
+            legs
+        };
 
-      private:
-        float str_{0.1f};
-        float curr_energy_{1.0f};
-        float max_energy_{1.0f};
-        float temp_{37.0f};
-    };
+        class body_part
+        {
+          public:
+            auto str() const { return str_; }
+            auto curr_energy() const { return curr_energy_; }
+            auto max_energy() const { return max_energy_; }
+            auto temp() const { return temp_; }
 
-    class player_body
-    {
-      public:
-        player_body() { init(); }
+          private:
+            float str_{0.1f};
+            float curr_energy_{1.0f};
+            float max_energy_{1.0f};
+            float temp_{37.0f};
+        };
 
-        body_part *body_part_ptr(body_part_types type);
+        class player_body
+        {
+          public:
+            player_body() { init(); }
 
-      private:
-        void init();
+            body_part *body_part_ptr(body_part_types type);
 
-        std::map<body_part_types, body_part> parts_;
-    };
+          private:
+            void init();
 
-    class player
-    {
-      public:
-        player() { init(); }
+            std::map<body_part_types, body_part> parts_;
+        };
 
-        void move_n();
+        class player
+        {
+          public:
+            player() { init(); }
 
-        void move_e();
+            void move_n();
 
-        void move_s();
+            void move_e();
 
-        void move_w();
+            void move_s();
 
-        auto name() const { return name_; }
+            void move_w();
 
-        auto pos() const { return pos_; }
+            auto name() const { return name_; }
 
-        auto movem_spd() const { return movem_spd_; }
+            auto pos() const { return pos_; }
 
-        auto ticks_last_move() const { return ticks_last_move_; }
+            auto movem_spd() const { return movem_spd_; }
 
-        void set_ticks_last_move(int val) { ticks_last_move_ = val; }
+            auto ticks_last_move() const { return ticks_last_move_; }
 
-        auto dest() const { return dest_; }
+            void set_ticks_last_move(int val) { ticks_last_move_ = val; }
 
-        void set_dest(pt val) { dest_ = val; }
+            auto dest() const { return dest_; }
 
-        auto &body_ref() { return body_; }
+            void set_dest(pt val) { dest_ = val; }
 
-        auto money() const { return money_; }
+            auto &body_ref() { return body_; }
 
-      private:
-        void init();
+            auto money() const { return money_; }
 
-        void move_to_suitable_pos();
+          private:
+            void init();
 
-        str name_{"Unnamed Player"};
-        pt pos_{60, 50};
-        float movem_spd_{5.0f};
-        int ticks_last_move_{0};
-        pt dest_{-1, -1};
-        player_body body_;
-        int money_{0};
-    };
-}
-using namespace Theme0;
-_NS_END_
+            void move_to_suitable_pos();
+
+            str name_{"Unnamed Player"};
+            pt pos_{60, 50};
+            float movem_spd_{5.0f};
+            int ticks_last_move_{0};
+            pt dest_{-1, -1};
+            player_body body_;
+            int money_{0};
+        };
+    }
+    using namespace CoreGameObjects;
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_ }
+    _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_
+    using namespace Theme0;
+    _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
 // virtualInclude 'src_theme_0/game_props.hpp'
@@ -1353,18 +1382,28 @@ _NS_END_
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "comm.hpp"
+#include "common.hpp"
 
 _NS_START_
-class game_props
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_                                    \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
+namespace Configuration
 {
-  public:
-    static constexpr str k_game_win_title{"Forradia"};
-    static constexpr color k_clear_color{colors::black};
-    static constexpr int k_num_grid_rows{15};
-    static constexpr sz k_w_area_sz{120, 100};
-    static constexpr float k_world_scaling{5.0f};
-};
+    class game_props
+    {
+      public:
+        static constexpr str k_game_win_title{"Forradia"};
+        static constexpr color k_clear_color{colors::black};
+        static constexpr int k_num_grid_rows{15};
+        static constexpr sz k_w_area_sz{120, 100};
+        static constexpr float k_world_scaling{5.0f};
+    };
+}
+using namespace Configuration;
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1378,102 +1417,112 @@ _NS_END_
 #include "gui.hpp"
 
 _NS_START_
-class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
-{
-  public:
-    gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
-
-  protected:
-    virtual void render_derived() const override;
-};
-
-class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
-{
-  public:
-    gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
-
-  protected:
-    void init();
-
-    virtual void update_derived() override;
-
-    virtual void render_derived() const override;
-};
-
-class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
-{
-  public:
-    gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
-
-  protected:
-    void render_derived() const override;
-
-  private:
-    static constexpr float k_margin{0.005f};
-    static constexpr float k_slot_size{0.04f};
-    inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
-};
-
-class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
-{
-  public:
-    gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+#define _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_                                      \
+    namespace Theme0                                                           \
     {
-        init();
-    }
-
-  protected:
-    void init();
-
-  private:
-    void sel_body_part(int type);
-
-    void update_body_part_info_lbls();
-
-    int sel_body_part_{0};
-    s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
-    s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
-    s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
-    s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
-};
-
-class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
+_HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
+namespace SpecializedGUI
 {
-  public:
-    gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
-
-    void build_menu();
-
-  protected:
-    void init();
-
-    virtual void update_derived() override;
-
-    virtual void render_derived() const override;
-
-  private:
-    static constexpr float k_indent_w{0.01f};
-    static constexpr float k_line_h{0.025f};
-
-    class gui_interact_menu_entry
+    class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
     {
       public:
-        gui_interact_menu_entry(str_view label, func<void()> action)
-            : label_(label), action_(action)
-        {
-        }
+        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
 
-        auto label() const { return label_; }
-
-        auto action() const { return action_; }
-
-      private:
-        str label_;
-        func<void()> action_;
+      protected:
+        virtual void render_derived() const override;
     };
 
-    vec<gui_interact_menu_entry> entries_;
-};
+    class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
+    {
+      public:
+        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+
+      protected:
+        void init();
+
+        virtual void update_derived() override;
+
+        virtual void render_derived() const override;
+    };
+
+    class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
+    {
+      public:
+        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+
+      protected:
+        void render_derived() const override;
+
+      private:
+        static constexpr float k_margin{0.005f};
+        static constexpr float k_slot_size{0.04f};
+        inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
+    };
+
+    class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
+    {
+      public:
+        gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+        {
+            init();
+        }
+
+      protected:
+        void init();
+
+      private:
+        void sel_body_part(int type);
+
+        void update_body_part_info_lbls();
+
+        int sel_body_part_{0};
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
+    };
+
+    class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
+    {
+      public:
+        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
+
+        void build_menu();
+
+      protected:
+        void init();
+
+        virtual void update_derived() override;
+
+        virtual void render_derived() const override;
+
+      private:
+        static constexpr float k_indent_w{0.01f};
+        static constexpr float k_line_h{0.025f};
+
+        class gui_interact_menu_entry
+        {
+          public:
+            gui_interact_menu_entry(str_view label, func<void()> action)
+                : label_(label), action_(action)
+            {
+            }
+
+            auto label() const { return label_; }
+
+            auto action() const { return action_; }
+
+          private:
+            str label_;
+            func<void()> action_;
+        };
+
+        vec<gui_interact_menu_entry> entries_;
+    };
+}
+using namespace SpecializedGUI;
+#define _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1486,13 +1535,17 @@ _NS_END_
 #pragma once
 
 _NS_START_
-class script_engine
+namespace Scripting
 {
-  public:
-    void init();
+    class script_engine
+    {
+      public:
+        void init();
 
-    void load_scripts();
-};
+        void load_scripts();
+    };
+}
+using namespace Scripting;
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1503,7 +1556,7 @@ _NS_END_
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "comm.hpp"
+#include "common.hpp"
 
 _NS_START_
 void update_kb_actions();
@@ -1538,34 +1591,51 @@ _NS_END_
  * This code is licensed under MIT license (see LICENSE for details)
  */
 #pragma once
-#include "comm.hpp"
+#include "common.hpp"
 
 _NS_START_
-class world_area;
-
-class world_grator
+#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
+    namespace Theme0                                                           \
+    {                                                                          \
+        namespace WorldStructure                                               \
+        {                                                                      \
+            class world_area;                                                  \
+        }                                                                      \
+    }
+_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_                                  \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
+namespace WorldGeneration
 {
-  public:
-    void gen_new_world();
+    class world_grator
+    {
+      public:
+        void gen_new_world();
 
-  private:
-    void prep();
-    void clear_with_dirt() const;
-    void gen_grass() const;
-    void gen_lakes() const;
-    void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
-                         int recurs) const;
-    void gen_elev() const;
-    void gen_rock() const;
-    void gen_rivers() const;
-    void gen_objs() const;
-    void gen_creas() const;
-    void gen_npcs() const;
+      private:
+        void prep();
+        void clear_with_dirt() const;
+        void gen_grass() const;
+        void gen_lakes() const;
+        void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
+                             int recurs) const;
+        void gen_elev() const;
+        void gen_rock() const;
+        void gen_rivers() const;
+        void gen_objs() const;
+        void gen_creas() const;
+        void gen_npcs() const;
 
-    s_ptr<world_area> w_area_;
-    float scale_;
-    sz sz_;
-};
+        s_ptr<Theme0::WorldStructure::world_area> w_area_;
+        float scale_;
+        sz sz_;
+    };
+}
+using namespace WorldGeneration;
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1597,225 +1667,240 @@ _NS_END_
 #pragma once
 
 _NS_START_
-enum class dirs
-{
-    none,
-    n,
-    e,
-    s,
-    w,
-    ne,
-    se,
-    sw,
-    nw
-};
-
-class creature
-{
-  public:
-    creature(str_view type_name) : type_{hash(type_name)} { init(); }
-
-    auto type() const { return type_; }
-
-    auto ticks_last_move() const { return ticks_last_move_; }
-
-    void set_ticks_last_move(int value) { ticks_last_move_ = value; }
-
-    auto movem_spd() const { return movem_spd_; }
-
-    auto dest() const { return dest_; }
-
-    void set_dest(pt val) { dest_ = val; }
-
-  private:
-    void init();
-
-    int type_{0};
-    int ticks_last_move_{0};
-    float movem_spd_{2.0f};
-    pt dest_{-1, -1};
-};
-
-class npc
-{
-  public:
-    npc(str_view type_name) : type_{hash(type_name)} { init(); }
-
-    auto type() const { return type_; }
-
-    auto name() const { return name_; }
-
-    auto ticks_last_move() const { return ticks_last_move_; }
-
-    void set_ticks_last_move(int value) { ticks_last_move_ = value; }
-
-    auto movem_spd() const { return movem_spd_; }
-
-    auto dest() const { return dest_; }
-
-    void set_dest(pt val) { dest_ = val; }
-
-    auto ticks_next_spontaneous_speech() const
+#define _HIDE_FROM_OUTLINER_WORLD_STRUCT_TOP_                                  \
+    namespace Theme0                                                           \
     {
-        return ticks_next_spontaneous_speech_;
-    }
-
-    void set_ticks_next_spontaneous_speech(int value)
+_HIDE_FROM_OUTLINER_WORLD_STRUCT_TOP_
+namespace WorldStructure
+{
+    enum class dirs
     {
-        ticks_next_spontaneous_speech_ = value;
-    }
+        none,
+        n,
+        e,
+        s,
+        w,
+        ne,
+        se,
+        sw,
+        nw
+    };
 
-  private:
-    void init();
-
-    void gen_name();
-
-    int type_{0};
-    str name_;
-    int ticks_last_move_{0};
-    float movem_spd_{2.0f};
-    pt dest_{-1, -1};
-    int ticks_next_spontaneous_speech_{0};
-};
-
-class object
-{
-  public:
-    object(str_view object_type_name) : type_(hash(object_type_name)) {}
-
-    auto type() const { return type_; }
-
-  private:
-    int type_{0};
-};
-
-class tree_object : public object
-{
-  public:
-    tree_object(str_view obj_type_name) : object(obj_type_name)
+    class creature
     {
-        init(obj_type_name);
-    }
+      public:
+        creature(str_view type_name) : type_{hash(type_name)} { init(); }
 
-    auto trunk_parts() const { return trunk_parts_; }
+        auto type() const { return type_; }
 
-    auto needle_types() const { return needle_types_; }
+        auto ticks_last_move() const { return ticks_last_move_; }
 
-    auto w_factor() const { return w_factor_; }
+        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
 
-  private:
-    void init(str_view obj_type_name);
+        auto movem_spd() const { return movem_spd_; }
 
-    vec<pt_f> trunk_parts_;
-    vec<int> needle_types_;
-    float w_factor_{1.0f};
-};
+        auto dest() const { return dest_; }
 
-class objects_stack
-{
-  public:
-    void clear_objs();
+        void set_dest(pt val) { dest_ = val; }
 
-    void add_obj(str_view obj_type_name);
+      private:
+        void init();
 
-    void add_tree_obj(str_view obj_type_name);
+        int type_{0};
+        int ticks_last_move_{0};
+        float movem_spd_{2.0f};
+        pt dest_{-1, -1};
+    };
 
-    int get_sz() const;
-
-    auto objects() const { return objects_; }
-
-  private:
-    vec<s_ptr<object>> objects_;
-};
-
-class tile
-{
-  public:
-    tile() { init(); }
-
-    auto ground() const { return ground_; }
-
-    void set_ground(str_view ground_name);
-
-    auto objects_stack() const { return objects_stack_; }
-
-    auto creature() const { return creature_; }
-
-    void set_creature(s_ptr<Forradia::creature> val) { creature_ = val; }
-
-    auto npc() const { return npc_; }
-
-    void set_npc(s_ptr<Forradia::npc> val) { npc_ = val; }
-
-    auto elev() const { return elev_; }
-
-    void set_elev(int val) { elev_ = val; }
-
-    auto water_depth() const { return water_depth_; }
-
-    void set_water_depth(int val) { water_depth_ = val; }
-
-    auto river_dir_1() const { return river_dir_1_; }
-
-    void set_river_dir_1(dirs val) { river_dir_1_ = val; }
-
-    auto river_dir_2() const { return river_dir_2_; }
-
-    void set_river_dir_2(dirs val) { river_dir_2_ = val; }
-
-  private:
-    void init();
-
-    int ground_{0};
-    s_ptr<Forradia::objects_stack> objects_stack_;
-    s_ptr<Forradia::creature> creature_;
-    s_ptr<Forradia::npc> npc_;
-    int elev_{0};
-    int water_depth_{0};
-    dirs river_dir_1_{dirs::none};
-    dirs river_dir_2_{dirs::none};
-};
-
-class world_area
-{
-  public:
-    world_area(sz w_area_sz, float world_scaling)
+    class npc
     {
-        init(w_area_sz, world_scaling);
-    }
+      public:
+        npc(str_view type_name) : type_{hash(type_name)} { init(); }
 
-    sz get_sz() const;
+        auto type() const { return type_; }
 
-    bool is_valid_coord(int x, int y) const;
+        auto name() const { return name_; }
 
-    bool is_valid_coord(pt coord) const;
+        auto ticks_last_move() const { return ticks_last_move_; }
 
-    s_ptr<tile> get_tl(int x, int y) const;
+        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
 
-    s_ptr<tile> get_tl(pt coord) const;
+        auto movem_spd() const { return movem_spd_; }
 
-    auto &creatures_mirror_ref() { return creatures_mirror_; }
+        auto dest() const { return dest_; }
 
-    auto &npcs_mirror_ref() { return npcs_mirror_; }
+        void set_dest(pt val) { dest_ = val; }
 
-  private:
-    void init(sz w_area_sz, float world_scaling);
+        auto ticks_next_spontaneous_speech() const
+        {
+            return ticks_next_spontaneous_speech_;
+        }
 
-    vec<vec<s_ptr<tile>>> tiles_;
-    std::map<s_ptr<creature>, pt> creatures_mirror_;
-    std::map<s_ptr<npc>, pt> npcs_mirror_;
-};
+        void set_ticks_next_spontaneous_speech(int value)
+        {
+            ticks_next_spontaneous_speech_ = value;
+        }
 
-class world
-{
-  public:
-    void init(sz w_area_sz, float world_scaling);
+      private:
+        void init();
 
-    auto curr_w_area() const { return curr_w_area_; }
+        void gen_name();
 
-  private:
-    s_ptr<world_area> curr_w_area_;
-};
+        int type_{0};
+        str name_;
+        int ticks_last_move_{0};
+        float movem_spd_{2.0f};
+        pt dest_{-1, -1};
+        int ticks_next_spontaneous_speech_{0};
+    };
+
+    class object
+    {
+      public:
+        object(str_view object_type_name) : type_(hash(object_type_name)) {}
+
+        auto type() const { return type_; }
+
+      private:
+        int type_{0};
+    };
+
+    class tree_object : public object
+    {
+      public:
+        tree_object(str_view obj_type_name) : object(obj_type_name)
+        {
+            init(obj_type_name);
+        }
+
+        auto trunk_parts() const { return trunk_parts_; }
+
+        auto needle_types() const { return needle_types_; }
+
+        auto w_factor() const { return w_factor_; }
+
+      private:
+        void init(str_view obj_type_name);
+
+        vec<pt_f> trunk_parts_;
+        vec<int> needle_types_;
+        float w_factor_{1.0f};
+    };
+
+    class objects_stack
+    {
+      public:
+        void clear_objs();
+
+        void add_obj(str_view obj_type_name);
+
+        void add_tree_obj(str_view obj_type_name);
+
+        int get_sz() const;
+
+        auto objects() const { return objects_; }
+
+      private:
+        vec<s_ptr<object>> objects_;
+    };
+
+    class tile
+    {
+      public:
+        tile() { init(); }
+
+        auto ground() const { return ground_; }
+
+        void set_ground(str_view ground_name);
+
+        auto objects_stack() const { return objects_stack_; }
+
+        auto creature() const { return creature_; }
+
+        void set_creature(s_ptr<Forradia::Theme0::WorldStructure::creature> val)
+        {
+            creature_ = val;
+        }
+
+        auto npc() const { return npc_; }
+
+        void set_npc(s_ptr<Forradia::Theme0::WorldStructure::npc> val)
+        {
+            npc_ = val;
+        }
+
+        auto elev() const { return elev_; }
+
+        void set_elev(int val) { elev_ = val; }
+
+        auto water_depth() const { return water_depth_; }
+
+        void set_water_depth(int val) { water_depth_ = val; }
+
+        auto river_dir_1() const { return river_dir_1_; }
+
+        void set_river_dir_1(dirs val) { river_dir_1_ = val; }
+
+        auto river_dir_2() const { return river_dir_2_; }
+
+        void set_river_dir_2(dirs val) { river_dir_2_ = val; }
+
+      private:
+        void init();
+
+        int ground_{0};
+        s_ptr<Forradia::Theme0::WorldStructure::objects_stack> objects_stack_;
+        s_ptr<Forradia::Theme0::WorldStructure::creature> creature_;
+        s_ptr<Forradia::Theme0::WorldStructure::npc> npc_;
+        int elev_{0};
+        int water_depth_{0};
+        dirs river_dir_1_{dirs::none};
+        dirs river_dir_2_{dirs::none};
+    };
+
+    class world_area
+    {
+      public:
+        world_area(sz w_area_sz, float world_scaling)
+        {
+            init(w_area_sz, world_scaling);
+        }
+
+        sz get_sz() const;
+
+        bool is_valid_coord(int x, int y) const;
+
+        bool is_valid_coord(pt coord) const;
+
+        s_ptr<tile> get_tl(int x, int y) const;
+
+        s_ptr<tile> get_tl(pt coord) const;
+
+        auto &creatures_mirror_ref() { return creatures_mirror_; }
+
+        auto &npcs_mirror_ref() { return npcs_mirror_; }
+
+      private:
+        void init(sz w_area_sz, float world_scaling);
+
+        vec<vec<s_ptr<tile>>> tiles_;
+        std::map<s_ptr<creature>, pt> creatures_mirror_;
+        std::map<s_ptr<npc>, pt> npcs_mirror_;
+    };
+
+    class world
+    {
+      public:
+        void init(sz w_area_sz, float world_scaling);
+
+        auto curr_w_area() const { return curr_w_area_; }
+
+      private:
+        s_ptr<world_area> curr_w_area_;
+    };
+}
+using namespace WorldStructure;
+}
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
