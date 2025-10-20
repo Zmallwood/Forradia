@@ -5,11 +5,15 @@
 #pragma once
 
 _NS_START_
-class script_engine
+namespace Scripting
 {
-  public:
-    void init();
+    class script_engine
+    {
+      public:
+        void init();
 
-    void load_scripts();
-};
+        void load_scripts();
+    };
+}
+using namespace Scripting;
 _NS_END_
