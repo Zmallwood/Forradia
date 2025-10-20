@@ -142,8 +142,8 @@ namespace Theme0
             py::class_<Theme0::gui_interact_menu,
                        s_ptr<Theme0::gui_interact_menu>,
                        GUIComponentsLibrary::gui_comp>(m, "gui_interact_menu");
-            py::class_<tl_hovering>(m, "tl_hovering")
-                .def("update", &tl_hovering::update);
+            py::class_<Theme0::GameplayCore::tl_hovering>(m, "tl_hovering")
+                .def("update", &Theme0::GameplayCore::tl_hovering::update);
             py::class_<Theme0::GameplayCore::world_view>(m, "world_view")
                 .def("render", &Theme0::GameplayCore::world_view::render)
                 .def("render_new",
@@ -235,19 +235,23 @@ namespace Theme0
                 { return _<Theme0::WorldGeneration::world_grator>(); },
                 py::return_value_policy::reference);
             m.def(
-                "get_tl_hovering",
-                []() -> tl_hovering & { return _<tl_hovering>(); },
+                "get_tl_hovering", []() -> Theme0::GameplayCore::tl_hovering &
+                { return _<Theme0::GameplayCore::tl_hovering>(); },
                 py::return_value_policy::reference);
             m.def(
                 "get_world_view", []() -> Theme0::GameplayCore::world_view &
                 { return _<Theme0::GameplayCore::world_view>(); },
                 py::return_value_policy::reference);
-            m.def("update_kb_actions", &update_kb_actions);
-            m.def("update_mouse_actions", &update_mouse_actions);
-            m.def("update_npcs", &update_npcs);
-            m.def("update_crea_movem", &update_crea_movem);
-            m.def("update_mouse_movem", &update_mouse_movem);
-            m.def("update_kb_movem", &update_kb_movem);
+            m.def("update_kb_actions",
+                  &Theme0::GameplayCore::update_kb_actions);
+            m.def("update_mouse_actions",
+                  &Theme0::GameplayCore::update_mouse_actions);
+            m.def("update_npcs", &Theme0::GameplayCore::update_npcs);
+            m.def("update_crea_movem",
+                  &Theme0::GameplayCore::update_crea_movem);
+            m.def("update_mouse_movem",
+                  &Theme0::GameplayCore::update_mouse_movem);
+            m.def("update_kb_movem", &Theme0::GameplayCore::update_kb_movem);
             m.def("setup_scenes",
                   []
                   {
