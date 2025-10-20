@@ -1382,6 +1382,58 @@ namespace Theme0
 
 
 
+
+// virtualInclude 'code/theme_0/src/update.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+#include "common.hpp"
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_UPDATE_TOP_1_                                      \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_UPDATE_TOP_1_
+#define _HIDE_FROM_OUTLINER_UPDATE_TOP_2_                                      \
+    namespace GameplayCore                                                     \
+    {
+_HIDE_FROM_OUTLINER_UPDATE_TOP_2_
+void update_kb_actions();
+
+void update_mouse_actions();
+
+void update_kb_movem();
+
+void update_mouse_movem();
+
+void update_crea_movem();
+
+void update_npcs();
+
+class tl_hovering
+{
+  public:
+    void update();
+
+    auto hovered_coord() const { return hovered_coord_; }
+
+  private:
+    pt hovered_coord_{-1, -1};
+};
+#define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
+_HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_
+#define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_2_ }
+_HIDE_FROM_OUTLINER_UPDATE_BOTTOM_2_
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+
+
+
 // virtualInclude 'code/theme_0/src/world_view.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
@@ -1411,248 +1463,6 @@ class world_view
 _HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-
-// virtualInclude 'code/theme_0/src/game_props.hpp'
-// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
-/*
- * Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details)
- */
-#pragma once
-#include "common.hpp"
-
-_NS_START_
-#define _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_                                    \
-    namespace Theme0                                                           \
-    {
-_HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
-namespace Configuration
-{
-    class game_props
-    {
-      public:
-        static constexpr str k_game_win_title{"Forradia"};
-        static constexpr color k_clear_color{colors::black};
-        static constexpr int k_num_grid_rows{15};
-        static constexpr sz k_w_area_sz{120, 100};
-        static constexpr float k_world_scaling{5.0f};
-    };
-}
-using namespace Configuration;
-#define _HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_ }
-_HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_
-_NS_END_
-// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-// virtualInclude 'code/theme_0/src/gui_spec.hpp'
-// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
-/*
- * Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details)
- */
-#pragma once
-#include "gui.hpp"
-
-_NS_START_
-#define _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_                                      \
-    namespace Theme0                                                           \
-    {
-_HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
-namespace SpecializedGUI
-{
-    class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
-    {
-      public:
-        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
-
-      protected:
-        virtual void render_derived() const override;
-    };
-
-    class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
-    {
-      public:
-        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
-
-      protected:
-        void init();
-
-        virtual void update_derived() override;
-
-        virtual void render_derived() const override;
-    };
-
-    class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
-    {
-      public:
-        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
-
-      protected:
-        void render_derived() const override;
-
-      private:
-        static constexpr float k_margin{0.005f};
-        static constexpr float k_slot_size{0.04f};
-        inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
-    };
-
-    class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
-    {
-      public:
-        gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
-        {
-            init();
-        }
-
-      protected:
-        void init();
-
-      private:
-        void sel_body_part(int type);
-
-        void update_body_part_info_lbls();
-
-        int sel_body_part_{0};
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
-    };
-
-    class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
-    {
-      public:
-        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
-
-        void build_menu();
-
-      protected:
-        void init();
-
-        virtual void update_derived() override;
-
-        virtual void render_derived() const override;
-
-      private:
-        static constexpr float k_indent_w{0.01f};
-        static constexpr float k_line_h{0.025f};
-
-        class gui_interact_menu_entry
-        {
-          public:
-            gui_interact_menu_entry(str_view label, func<void()> action)
-                : label_(label), action_(action)
-            {
-            }
-
-            auto label() const { return label_; }
-
-            auto action() const { return action_; }
-
-          private:
-            str label_;
-            func<void()> action_;
-        };
-
-        vec<gui_interact_menu_entry> entries_;
-    };
-}
-using namespace SpecializedGUI;
-#define _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_ }
-_HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
-_NS_END_
-// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-
-
-// virtualInclude 'code/theme_0/src/world_grator.hpp'
-// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
-/*
- * Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details)
- */
-#pragma once
-#include "common.hpp"
-
-_NS_START_
-#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
-    namespace Theme0                                                           \
-    {                                                                          \
-        namespace WorldStructure                                               \
-        {                                                                      \
-            class world_area;                                                  \
-        }                                                                      \
-    }
-_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
-#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_                                  \
-    namespace Theme0                                                           \
-    {
-_HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
-namespace WorldGeneration
-{
-    class world_grator
-    {
-      public:
-        void gen_new_world();
-
-      private:
-        void prep();
-        void clear_with_dirt() const;
-        void gen_grass() const;
-        void gen_lakes() const;
-        void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
-                             int recurs) const;
-        void gen_elev() const;
-        void gen_rock() const;
-        void gen_rivers() const;
-        void gen_objs() const;
-        void gen_creas() const;
-        void gen_npcs() const;
-
-        s_ptr<Theme0::WorldStructure::world_area> w_area_;
-        float scale_;
-        sz sz_;
-    };
-}
-using namespace WorldGeneration;
-#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_ }
-_HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
-_NS_END_
-// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-
-// virtualInclude 'code/theme_0/src/scripts.hpp'
-// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
-/*
- * Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details)
- */
-#pragma once
-
-_NS_START_
-#define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
-    namespace Theme0                                                           \
-    {
-_HIDE_FROM_OUTLINER_SCRIPTS_TOP_
-namespace Scripting
-{
-    class script_engine
-    {
-      public:
-        void init();
-
-        void load_scripts();
-    };
-}
-using namespace Scripting;
-}
-_NS_END_
-// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
-
-
-
-
 
 
 
@@ -1903,6 +1713,251 @@ using namespace WorldStructure;
 _HIDE_FROM_OUTLINER_WORLD_STRUCT_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+// virtualInclude 'code/theme_0/src/game_props.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+#include "common.hpp"
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_                                    \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
+namespace Configuration
+{
+    class game_props
+    {
+      public:
+        static constexpr str k_game_win_title{"Forradia"};
+        static constexpr color k_clear_color{colors::black};
+        static constexpr int k_num_grid_rows{15};
+        static constexpr sz k_w_area_sz{120, 100};
+        static constexpr float k_world_scaling{5.0f};
+    };
+}
+using namespace Configuration;
+#define _HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GAME_PROPS_BOTTOM_
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+// virtualInclude 'code/theme_0/src/gui_spec.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+#include "gui.hpp"
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_                                      \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
+namespace SpecializedGUI
+{
+    class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
+    {
+      public:
+        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
+
+      protected:
+        virtual void render_derived() const override;
+    };
+
+    class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
+    {
+      public:
+        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+
+      protected:
+        void init();
+
+        virtual void update_derived() override;
+
+        virtual void render_derived() const override;
+    };
+
+    class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
+    {
+      public:
+        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+
+      protected:
+        void render_derived() const override;
+
+      private:
+        static constexpr float k_margin{0.005f};
+        static constexpr float k_slot_size{0.04f};
+        inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
+    };
+
+    class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
+    {
+      public:
+        gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+        {
+            init();
+        }
+
+      protected:
+        void init();
+
+      private:
+        void sel_body_part(int type);
+
+        void update_body_part_info_lbls();
+
+        int sel_body_part_{0};
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
+        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
+    };
+
+    class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
+    {
+      public:
+        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
+
+        void build_menu();
+
+      protected:
+        void init();
+
+        virtual void update_derived() override;
+
+        virtual void render_derived() const override;
+
+      private:
+        static constexpr float k_indent_w{0.01f};
+        static constexpr float k_line_h{0.025f};
+
+        class gui_interact_menu_entry
+        {
+          public:
+            gui_interact_menu_entry(str_view label, func<void()> action)
+                : label_(label), action_(action)
+            {
+            }
+
+            auto label() const { return label_; }
+
+            auto action() const { return action_; }
+
+          private:
+            str label_;
+            func<void()> action_;
+        };
+
+        vec<gui_interact_menu_entry> entries_;
+    };
+}
+using namespace SpecializedGUI;
+#define _HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_ }
+_HIDE_FROM_OUTLINER_GUI_SPEC_BOTTOM_
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+
+// virtualInclude 'code/theme_0/src/world_grator.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+#include "common.hpp"
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_                     \
+    namespace Theme0                                                           \
+    {                                                                          \
+        namespace WorldStructure                                               \
+        {                                                                      \
+            class world_area;                                                  \
+        }                                                                      \
+    }
+_HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_                                  \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
+namespace WorldGeneration
+{
+    class world_grator
+    {
+      public:
+        void gen_new_world();
+
+      private:
+        void prep();
+        void clear_with_dirt() const;
+        void gen_grass() const;
+        void gen_lakes() const;
+        void gen_single_lake(int min_x, int min_y, int max_x, int max_y,
+                             int recurs) const;
+        void gen_elev() const;
+        void gen_rock() const;
+        void gen_rivers() const;
+        void gen_objs() const;
+        void gen_creas() const;
+        void gen_npcs() const;
+
+        s_ptr<Theme0::WorldStructure::world_area> w_area_;
+        float scale_;
+        sz sz_;
+    };
+}
+using namespace WorldGeneration;
+#define _HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_GRATOR_BOTTOM_
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+// virtualInclude 'code/theme_0/src/scripts.hpp'
+// virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
+/*
+ * Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details)
+ */
+#pragma once
+
+_NS_START_
+#define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_SCRIPTS_TOP_
+namespace Scripting
+{
+    class script_engine
+    {
+      public:
+        void init();
+
+        void load_scripts();
+    };
+}
+using namespace Scripting;
+}
+_NS_END_
+// virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
+
+
+
+
+
+
+
 
 
 #define _HIDE_FROM_OUTLINER_ namespace Forradia {
