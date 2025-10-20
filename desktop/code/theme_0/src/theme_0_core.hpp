@@ -34,10 +34,22 @@ namespace Theme0
             class body_part
             {
               public:
-                auto str() const { return str_; }
-                auto curr_energy() const { return curr_energy_; }
-                auto max_energy() const { return max_energy_; }
-                auto temp() const { return temp_; }
+                auto str() const
+                {
+                    return str_;
+                }
+                auto curr_energy() const
+                {
+                    return curr_energy_;
+                }
+                auto max_energy() const
+                {
+                    return max_energy_;
+                }
+                auto temp() const
+                {
+                    return temp_;
+                }
 
               private:
                 float str_{0.1f};
@@ -49,7 +61,10 @@ namespace Theme0
             class player_body
             {
               public:
-                player_body() { init(); }
+                player_body()
+                {
+                    init();
+                }
 
                 body_part *body_part_ptr(body_part_types type);
 
@@ -62,7 +77,10 @@ namespace Theme0
             class player
             {
               public:
-                player() { init(); }
+                player()
+                {
+                    init();
+                }
 
                 void move_n();
 
@@ -72,23 +90,50 @@ namespace Theme0
 
                 void move_w();
 
-                auto name() const { return name_; }
+                auto name() const
+                {
+                    return name_;
+                }
 
-                auto pos() const { return pos_; }
+                auto pos() const
+                {
+                    return pos_;
+                }
 
-                auto movem_spd() const { return movem_spd_; }
+                auto movem_spd() const
+                {
+                    return movem_spd_;
+                }
 
-                auto ticks_last_move() const { return ticks_last_move_; }
+                auto ticks_last_move() const
+                {
+                    return ticks_last_move_;
+                }
 
-                void set_ticks_last_move(int val) { ticks_last_move_ = val; }
+                void set_ticks_last_move(int val)
+                {
+                    ticks_last_move_ = val;
+                }
 
-                auto dest() const { return dest_; }
+                auto dest() const
+                {
+                    return dest_;
+                }
 
-                void set_dest(pt val) { dest_ = val; }
+                void set_dest(pt val)
+                {
+                    dest_ = val;
+                }
 
-                auto &body_ref() { return body_; }
+                auto &body_ref()
+                {
+                    return body_;
+                }
 
-                auto money() const { return money_; }
+                auto money() const
+                {
+                    return money_;
+                }
 
               private:
                 void init();
@@ -105,7 +150,9 @@ namespace Theme0
             };
         }
         using namespace Player;
-#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_ } using namespace GameplayCore;
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_                             \
+    }                                                                          \
+    using namespace GameplayCore;
         _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_
 #define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_ }
         _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_

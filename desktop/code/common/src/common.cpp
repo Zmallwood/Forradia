@@ -91,6 +91,7 @@ namespace Common
                 auto g_n{c_uint8(g * 255)};
                 auto b_n{c_uint8(b * 255)};
                 auto a_n{c_uint8(a * 255)};
+
                 return {r_n, g_n, b_n, a_n};
             }
         }
@@ -108,6 +109,7 @@ namespace Common
                 sz canv_sz;
                 // Get the size of the window.
                 SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
+
                 return canv_sz;
             }
 
@@ -116,6 +118,7 @@ namespace Common
                 auto canv_sz{get_canv_sz(win)};
                 // Calculate the aspect ratio.
                 auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
+
                 return asp_rat;
             }
 
@@ -138,6 +141,7 @@ namespace Common
             {
                 // Get the file extension.
                 str ext{path.substr(path.find_last_of('.') + 1).data()};
+
                 return ext;
             }
 
@@ -146,6 +150,7 @@ namespace Common
                 // Get the file name without the extension.
                 auto name_with_ext{
                     str(path.substr(path.find_last_of('/') + 1))};
+
                 return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
             }
         }
@@ -160,6 +165,7 @@ namespace Common
                 SDL_GetMouseState(&x_px, &y_px);
                 auto canv_sz{get_canv_sz(win)};
                 // Calculate the normalized mouse position.
+
                 return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
             }
         }
@@ -170,21 +176,29 @@ namespace Common
             {
                 // Calculate the inverse of the movement speed.
                 if (num)
+                {
                     // If the movement speed is not zero, invert it and return.
                     return k_one_sec_millis / num;
+                }
                 else
+                {
                     // If the movement speed is zero, avoid division by zero
                     // and return zero directly instead.
                     return 0.0f;
+                }
             }
 
             int normalize(int val)
             {
                 auto abs_val{std::abs(val)};
                 auto norm{0};
+
                 // Calculate the normalized value.
                 if (val)
+                {
                     norm = val / abs_val;
+                }
+
                 return norm;
             }
 
@@ -192,6 +206,7 @@ namespace Common
             {
                 // Calculate the ceiled value with k decimal places.
                 auto p{std::pow(10.0, k)};
+
                 return std::ceil(num * p) / p;
             }
         }
@@ -218,6 +233,7 @@ namespace Common
                 str res{text.data()};
                 // Replace all instances of repl with repl_with.
                 std::replace(res.begin(), res.end(), repl, repl_with);
+
                 return res;
             }
         }
@@ -237,8 +253,12 @@ namespace Common
             {
                 // Use algorithm from source which is forgotten what it was.
                 unsigned long hash{5381};
+
                 for (size_t i = 0; i < text.size(); ++i)
+                {
                     hash = 33 * hash + (unsigned char)text[i];
+                }
+
                 return c_int(hash);
             }
         }

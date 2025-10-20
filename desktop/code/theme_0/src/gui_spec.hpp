@@ -15,7 +15,9 @@ namespace SpecializedGUI
     class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
     {
       public:
-        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
+        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        {
+        }
 
       protected:
         virtual void render_derived() const override;
@@ -24,7 +26,10 @@ namespace SpecializedGUI
     class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
     {
       public:
-        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+        {
+            init();
+        }
 
       protected:
         void init();
@@ -37,7 +42,9 @@ namespace SpecializedGUI
     class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
     {
       public:
-        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+        {
+        }
 
       protected:
         void render_derived() const override;
@@ -74,7 +81,10 @@ namespace SpecializedGUI
     class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
     {
       public:
-        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
+        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        {
+            init();
+        }
 
         void build_menu();
 
@@ -97,9 +107,15 @@ namespace SpecializedGUI
             {
             }
 
-            auto label() const { return label_; }
+            auto label() const
+            {
+                return label_;
+            }
 
-            auto action() const { return action_; }
+            auto action() const
+            {
+                return action_;
+            }
 
           private:
             str label_;

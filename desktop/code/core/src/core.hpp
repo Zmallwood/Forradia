@@ -9,13 +9,6 @@
 
 _NS_START_
 
-// #define _HIDE_FROM_OUTLINER_ \
-//     namespace GUICore \
-//     { \
-//         class gui; \
-//     }
-// _HIDE_FROM_OUTLINER_
-
 namespace Core
 {
     class engine
@@ -32,9 +25,15 @@ namespace Core
 
             void present_canv() const;
 
-            auto win() const { return win_; }
+            auto win() const
+            {
+                return win_;
+            }
 
-            auto rend() const { return rend_; }
+            auto rend() const
+            {
+                return rend_;
+            }
 
           private:
             s_ptr<SDL_Window> create_win();
@@ -53,7 +52,10 @@ namespace Core
           public:
             void update();
 
-            auto fps() const { return fps_; }
+            auto fps() const
+            {
+                return fps_;
+            }
 
           private:
             int fps_{0};
@@ -72,13 +74,19 @@ namespace Core
                 hovering_creature
             };
 
-            cursor() { init(); }
+            cursor()
+            {
+                init();
+            }
 
             void reset_style_to_normal();
 
             void render();
 
-            auto set_curs_style(curs_styles val) { curs_style_ = val; }
+            auto set_curs_style(curs_styles val)
+            {
+                curs_style_ = val;
+            }
 
           private:
             void init();
@@ -99,11 +107,15 @@ namespace Core
                 class image_bank
                 {
                   public:
-                    image_bank() { init(); }
+                    image_bank()
+                    {
+                        init();
+                    }
 
-                    ~image_bank() { cleanup(); }
-
-                    s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+                    ~image_bank()
+                    {
+                        cleanup();
+                    }
 
                     GLuint get_tex(int img_name_hash) const;
 
@@ -120,13 +132,10 @@ namespace Core
 
                     void load_imgs();
 
-                    s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
-
                     GLuint load_single_tex(s_ptr<SDL_Surface> surf);
 
                     inline static const str k_rel_imgs_path{"./res/images/"};
 
-                    std::map<int, s_ptr<SDL_Texture>> images_;
                     std::map<int, GLuint> textures_;
                     std::map<int, sz> tex_sizes_;
                     std::map<float, std::map<float, std::map<int, GLuint>>>
@@ -169,9 +178,15 @@ namespace Core
                     class model
                     {
                       public:
-                        model(str_view file_path) { init(file_path); };
+                        model(str_view file_path)
+                        {
+                            init(file_path);
+                        };
 
-                        auto &meshes_ref() const { return meshes_; }
+                        auto &meshes_ref() const
+                        {
+                            return meshes_;
+                        }
 
                       private:
                         void init(str_view file_path);
@@ -196,7 +211,10 @@ namespace Core
                     };
 
                   public:
-                    model_bank() { init(); }
+                    model_bank()
+                    {
+                        init();
+                    }
 
                     s_ptr<model> get_model(int model_name_hash) const;
 
@@ -223,7 +241,9 @@ namespace Core
                     class gui_root : public GUIComponentsLibrary::gui_comp
                     {
                       public:
-                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
+                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+                        {
+                        }
                     };
                 };
 
@@ -256,7 +276,10 @@ namespace Core
                 }
 
               protected:
-                auto gui() const { return gui_; }
+                auto gui() const
+                {
+                    return gui_;
+                }
 
               private:
                 s_ptr<ScenesGUI::gui_root> gui_;

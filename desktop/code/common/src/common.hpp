@@ -4,10 +4,7 @@
  */
 #define _NS_START_                                                             \
     namespace Forradia                                                         \
-    {                                                                          \
-        namespace gui_test                                                     \
-        {                                                                      \
-        }
+    {
 #define _NS_END_ }
 
 #pragma once
@@ -410,7 +407,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            constexpr int c_int(auto val) { return static_cast<int>(val); }
+            constexpr int c_int(auto val)
+            {
+                return static_cast<int>(val);
+            }
 
             /**
              * Cast a value to float.
@@ -418,7 +418,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            float c_float(auto val) { return static_cast<float>(val); }
+            float c_float(auto val)
+            {
+                return static_cast<float>(val);
+            }
 
             /**
              * Cast a value to Uint8.
@@ -426,7 +429,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+            Uint8 c_uint8(auto val)
+            {
+                return static_cast<Uint8>(val);
+            }
         }
         using namespace CastUtilities;
     }

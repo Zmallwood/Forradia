@@ -22,10 +22,7 @@ namespace Forradia
  */
 #define _NS_START_                                                             \
     namespace Forradia                                                         \
-    {                                                                          \
-        namespace gui_test                                                     \
-        {                                                                      \
-        }
+    {
 #define _NS_END_ }
 
 #pragma once

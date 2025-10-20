@@ -20,9 +20,15 @@ class RenderersCollection
             init(vert_src, frag_src);
         }
 
-        ~shader_program() { cleanup(); }
+        ~shader_program()
+        {
+            cleanup();
+        }
 
-        auto program() const { return program_; }
+        auto program() const
+        {
+            return program_;
+        }
 
       private:
         void init(str_view vert_src, str_view frag_src);
@@ -35,9 +41,15 @@ class RenderersCollection
     class img_2d_rend
     {
       public:
-        img_2d_rend() { init(); };
+        img_2d_rend()
+        {
+            init();
+        };
 
-        ~img_2d_rend() { cleanup(); }
+        ~img_2d_rend()
+        {
+            cleanup();
+        }
 
         void reset_counter();
 
@@ -85,9 +97,15 @@ class RenderersCollection
     class ground_rend
     {
       public:
-        ground_rend() { init(); };
+        ground_rend()
+        {
+            init();
+        };
 
-        ~ground_rend() { cleanup(); }
+        ~ground_rend()
+        {
+            cleanup();
+        }
 
         void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
                        pt3_f camera_pos, vec<float> &elevs, float elev_h);
@@ -108,7 +126,10 @@ class RenderersCollection
     class model_rend
     {
       public:
-        model_rend() { init(); }
+        model_rend()
+        {
+            init();
+        }
 
         void draw_model(int model_name_hash, float x, float y, float elev,
                         pt3_f camera_pos, float elev_h);
@@ -131,7 +152,10 @@ class RenderersCollection
     class text_rend
     {
       public:
-        text_rend() { init(); }
+        text_rend()
+        {
+            init();
+        }
 
         void draw_str(str_view text, float x, float y,
                       font_szs font_sz = font_szs::_20, bool cent_align = false,

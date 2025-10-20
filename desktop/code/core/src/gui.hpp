@@ -14,7 +14,9 @@ namespace GUIComponentsLibrary
     class gui_comp
     {
       public:
-        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
+        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h})
+        {
+        }
 
         s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
 
@@ -28,16 +30,29 @@ namespace GUIComponentsLibrary
 
         void toggle_visible();
 
-        auto visible() const { return visible_; }
+        auto visible() const
+        {
+            return visible_;
+        }
 
-        void set_visible(bool val) { visible_ = val; }
+        void set_visible(bool val)
+        {
+            visible_ = val;
+        }
 
-        void set_parent_comp(gui_comp *value) { parent_comp_ = value; }
+        void set_parent_comp(gui_comp *value)
+        {
+            parent_comp_ = value;
+        }
 
       protected:
-        virtual void update_derived() {}
+        virtual void update_derived()
+        {
+        }
 
-        virtual void render_derived() const {}
+        virtual void render_derived() const
+        {
+        }
 
       private:
         rect_f bounds_;
@@ -57,7 +72,10 @@ namespace GUIComponentsLibrary
         {
         }
 
-        void set_text(str_view val) { text_ = val; }
+        void set_text(str_view val)
+        {
+            text_ = val;
+        }
 
       protected:
         virtual void render_derived() const override;
@@ -80,7 +98,10 @@ namespace GUIComponentsLibrary
       protected:
         virtual void render_derived() const override;
 
-        void set_bg_img(str_view val) { bg_img_ = val; }
+        void set_bg_img(str_view val)
+        {
+            bg_img_ = val;
+        }
 
       private:
         inline static const str k_default_bg_img{"gui_panel_bg"};
@@ -131,11 +152,20 @@ namespace GUIComponentsLibrary
 
         virtual rect_f get_drag_area();
 
-        auto being_moved() const { return being_moved_; }
+        auto being_moved() const
+        {
+            return being_moved_;
+        }
 
-        auto move_start_pos() const { return move_start_pos_; }
+        auto move_start_pos() const
+        {
+            return move_start_pos_;
+        }
 
-        auto move_start_mouse_pos() const { return move_start_mouse_pos_; }
+        auto move_start_mouse_pos() const
+        {
+            return move_start_mouse_pos_;
+        }
 
       private:
         bool being_moved_{false};
@@ -157,7 +187,10 @@ namespace GUIComponentsLibrary
 
         rect_f get_drag_area() override;
 
-        auto get_win_title_bar() const { return gui_win_title_bar_; }
+        auto get_win_title_bar() const
+        {
+            return gui_win_title_bar_;
+        }
 
       private:
         void init(str_view win_title);

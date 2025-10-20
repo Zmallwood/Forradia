@@ -31,7 +31,10 @@ class tl_hovering
   public:
     void update();
 
-    auto hovered_coord() const { return hovered_coord_; }
+    auto hovered_coord() const
+    {
+        return hovered_coord_;
+    }
 
   private:
     pt hovered_coord_{-1, -1};

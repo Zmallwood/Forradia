@@ -27,19 +27,40 @@ namespace WorldStructure
     class creature
     {
       public:
-        creature(str_view type_name) : type_{hash(type_name)} { init(); }
+        creature(str_view type_name) : type_{hash(type_name)}
+        {
+            init();
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
-        auto ticks_last_move() const { return ticks_last_move_; }
+        auto ticks_last_move() const
+        {
+            return ticks_last_move_;
+        }
 
-        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
+        void set_ticks_last_move(int value)
+        {
+            ticks_last_move_ = value;
+        }
 
-        auto movem_spd() const { return movem_spd_; }
+        auto movem_spd() const
+        {
+            return movem_spd_;
+        }
 
-        auto dest() const { return dest_; }
+        auto dest() const
+        {
+            return dest_;
+        }
 
-        void set_dest(pt val) { dest_ = val; }
+        void set_dest(pt val)
+        {
+            dest_ = val;
+        }
 
       private:
         void init();
@@ -53,21 +74,45 @@ namespace WorldStructure
     class npc
     {
       public:
-        npc(str_view type_name) : type_{hash(type_name)} { init(); }
+        npc(str_view type_name) : type_{hash(type_name)}
+        {
+            init();
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
-        auto name() const { return name_; }
+        auto name() const
+        {
+            return name_;
+        }
 
-        auto ticks_last_move() const { return ticks_last_move_; }
+        auto ticks_last_move() const
+        {
+            return ticks_last_move_;
+        }
 
-        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
+        void set_ticks_last_move(int value)
+        {
+            ticks_last_move_ = value;
+        }
 
-        auto movem_spd() const { return movem_spd_; }
+        auto movem_spd() const
+        {
+            return movem_spd_;
+        }
 
-        auto dest() const { return dest_; }
+        auto dest() const
+        {
+            return dest_;
+        }
 
-        void set_dest(pt val) { dest_ = val; }
+        void set_dest(pt val)
+        {
+            dest_ = val;
+        }
 
         auto ticks_next_spontaneous_speech() const
         {
@@ -95,9 +140,14 @@ namespace WorldStructure
     class object
     {
       public:
-        object(str_view object_type_name) : type_(hash(object_type_name)) {}
+        object(str_view object_type_name) : type_(hash(object_type_name))
+        {
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
       private:
         int type_{0};
@@ -111,11 +161,20 @@ namespace WorldStructure
             init(obj_type_name);
         }
 
-        auto trunk_parts() const { return trunk_parts_; }
+        auto trunk_parts() const
+        {
+            return trunk_parts_;
+        }
 
-        auto needle_types() const { return needle_types_; }
+        auto needle_types() const
+        {
+            return needle_types_;
+        }
 
-        auto w_factor() const { return w_factor_; }
+        auto w_factor() const
+        {
+            return w_factor_;
+        }
 
       private:
         void init(str_view obj_type_name);
@@ -136,7 +195,10 @@ namespace WorldStructure
 
         int get_sz() const;
 
-        auto objects() const { return objects_; }
+        auto objects() const
+        {
+            return objects_;
+        }
 
       private:
         vec<s_ptr<object>> objects_;
@@ -145,43 +207,82 @@ namespace WorldStructure
     class tile
     {
       public:
-        tile() { init(); }
+        tile()
+        {
+            init();
+        }
 
-        auto ground() const { return ground_; }
+        auto ground() const
+        {
+            return ground_;
+        }
 
         void set_ground(str_view ground_name);
 
-        auto objects_stack() const { return objects_stack_; }
+        auto objects_stack() const
+        {
+            return objects_stack_;
+        }
 
-        auto creature() const { return creature_; }
+        auto creature() const
+        {
+            return creature_;
+        }
 
         void set_creature(s_ptr<Forradia::Theme0::WorldStructure::creature> val)
         {
             creature_ = val;
         }
 
-        auto npc() const { return npc_; }
+        auto npc() const
+        {
+            return npc_;
+        }
 
         void set_npc(s_ptr<Forradia::Theme0::WorldStructure::npc> val)
         {
             npc_ = val;
         }
 
-        auto elev() const { return elev_; }
+        auto elev() const
+        {
+            return elev_;
+        }
 
-        void set_elev(int val) { elev_ = val; }
+        void set_elev(int val)
+        {
+            elev_ = val;
+        }
 
-        auto water_depth() const { return water_depth_; }
+        auto water_depth() const
+        {
+            return water_depth_;
+        }
 
-        void set_water_depth(int val) { water_depth_ = val; }
+        void set_water_depth(int val)
+        {
+            water_depth_ = val;
+        }
 
-        auto river_dir_1() const { return river_dir_1_; }
+        auto river_dir_1() const
+        {
+            return river_dir_1_;
+        }
 
-        void set_river_dir_1(dirs val) { river_dir_1_ = val; }
+        void set_river_dir_1(dirs val)
+        {
+            river_dir_1_ = val;
+        }
 
-        auto river_dir_2() const { return river_dir_2_; }
+        auto river_dir_2() const
+        {
+            return river_dir_2_;
+        }
 
-        void set_river_dir_2(dirs val) { river_dir_2_ = val; }
+        void set_river_dir_2(dirs val)
+        {
+            river_dir_2_ = val;
+        }
 
       private:
         void init();
@@ -214,9 +315,15 @@ namespace WorldStructure
 
         s_ptr<tile> get_tl(pt coord) const;
 
-        auto &creatures_mirror_ref() { return creatures_mirror_; }
+        auto &creatures_mirror_ref()
+        {
+            return creatures_mirror_;
+        }
 
-        auto &npcs_mirror_ref() { return npcs_mirror_; }
+        auto &npcs_mirror_ref()
+        {
+            return npcs_mirror_;
+        }
 
       private:
         void init(sz w_area_sz, float world_scaling);
@@ -231,7 +338,10 @@ namespace WorldStructure
       public:
         void init(sz w_area_sz, float world_scaling);
 
-        auto curr_w_area() const { return curr_w_area_; }
+        auto curr_w_area() const
+        {
+            return curr_w_area_;
+        }
 
       private:
         s_ptr<world_area> curr_w_area_;

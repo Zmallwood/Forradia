@@ -17,8 +17,6 @@ class world_view
 {
   public:
     void render() const;
-
-    void render_new() const;
 };
 }
 #define _HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_ }
