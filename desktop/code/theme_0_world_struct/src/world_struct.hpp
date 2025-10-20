@@ -238,5 +238,6 @@ namespace WorldStructure
     };
 }
 using namespace WorldStructure;
-}
+#define _HIDE_FROM_OUTLINER_WORLD_STRUCT_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_STRUCT_BOTTOM_
 _NS_END_

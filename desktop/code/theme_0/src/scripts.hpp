@@ -5,6 +5,10 @@
 #pragma once
 
 _NS_START_
+#define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_SCRIPTS_TOP_
 namespace Scripting
 {
     class script_engine
@@ -16,4 +20,5 @@ namespace Scripting
     };
 }
 using namespace Scripting;
+}
 _NS_END_

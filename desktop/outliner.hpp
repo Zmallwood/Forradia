@@ -1535,6 +1535,10 @@ _NS_END_
 #pragma once
 
 _NS_START_
+#define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
+    namespace Theme0                                                           \
+    {
+_HIDE_FROM_OUTLINER_SCRIPTS_TOP_
 namespace Scripting
 {
     class script_engine
@@ -1546,6 +1550,7 @@ namespace Scripting
     };
 }
 using namespace Scripting;
+}
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
@@ -1900,7 +1905,8 @@ namespace WorldStructure
     };
 }
 using namespace WorldStructure;
-}
+#define _HIDE_FROM_OUTLINER_WORLD_STRUCT_BOTTOM_ }
+_HIDE_FROM_OUTLINER_WORLD_STRUCT_BOTTOM_
 _NS_END_
 // virtualIncludeEnd - DO NOT EDIT CONTENT ABOVE 
 
