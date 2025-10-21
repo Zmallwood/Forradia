@@ -14,7 +14,8 @@ namespace GUIComponentsLibrary
     class GUIComponent
     {
       public:
-        GUIComponent(float x, float y, float w, float h) : bounds_({x, y, w, h})
+        GUIComponent(float x, float y, float w, float h)
+            : m_bounds({x, y, w, h})
         {
         }
 
@@ -32,17 +33,17 @@ namespace GUIComponentsLibrary
 
         auto GetVisible() const
         {
-            return visible_;
+            return m_visible;
         }
 
         void SetVisible(bool value)
         {
-            visible_ = value;
+            m_visible = value;
         }
 
         void SetParentComponent(GUIComponent *value)
         {
-            parent_component_ = value;
+            m_parentComponent = value;
         }
 
       protected:
@@ -55,43 +56,43 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        RectF bounds_;
-        Vector<SharedPtr<GUIComponent>> children_;
-        bool visible_{true};
-        bool enabled_{true};
-        GUIComponent *parent_component_{nullptr};
+        RectF m_bounds;
+        Vector<SharedPtr<GUIComponent>> m_childComponents;
+        bool m_visible{true};
+        bool m_enabled{true};
+        GUIComponent *m_parentComponent{nullptr};
     };
 
     class GUILabel : public GUIComponent
     {
       public:
         GUILabel(float x, float y, float w, float h, StringView text = "",
-                  bool cent_align = false, Color color = Colors::wheat_transp)
-            : GUIComponent(x, y, w, h), text_(text), cent_align_(cent_align),
-              color_(color)
+                 bool cent_align = false, Color color = Colors::wheat_transp)
+            : GUIComponent(x, y, w, h), m_text(text), m_centerAlign(cent_align),
+              m_color(color)
         {
         }
 
         void SetText(StringView value)
         {
-            text_ = value;
+            m_text = value;
         }
 
       protected:
         virtual void RenderDerived() const override;
 
       private:
-        String text_;
-        bool cent_align_{false};
-        Color color_;
+        String m_text;
+        bool m_centerAlign{false};
+        Color m_color;
     };
 
     class GUIPanel : public GUIComponent
     {
       public:
         GUIPanel(float x, float y, float w, float h,
-                  StringView bg_img = k_default_bg_img)
-            : GUIComponent(x, y, w, h), background_image_(bg_img)
+                 StringView bg_img = k_defaultBackgroundImage)
+            : GUIComponent(x, y, w, h), m_backgroundImage(bg_img)
         {
         }
 
@@ -100,23 +101,23 @@ namespace GUIComponentsLibrary
 
         void SetBackgroundImage(StringView value)
         {
-            background_image_ = value;
+            m_backgroundImage = value;
         }
 
       private:
-        inline static const String k_default_bg_img{"gui_panel_bg"};
+        inline static const String k_defaultBackgroundImage{"gui_panel_bg"};
 
-        String background_image_;
+        String m_backgroundImage;
     };
 
     class GUIButton : public GUIPanel
     {
       public:
         GUIButton(float x, float y, float w, float h, StringView text,
-                   Function<void()> action, StringView bg_img = k_bg_img,
-                   StringView hovered_bg_img = k_hovered_bg_img)
-            : GUIPanel(x, y, w, h), text_(text), action_(action),
-              bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
+                  Function<void()> action, StringView bg_img = k_backgroundImage,
+                  StringView hovered_bg_img = k_hoveredBackgroundImage)
+            : GUIPanel(x, y, w, h), m_text(text), m_action(action),
+              m_backgroundImage(bg_img), m_hoveredBackgroundImage(hovered_bg_img)
         {
         }
 
@@ -126,13 +127,13 @@ namespace GUIComponentsLibrary
         virtual void RenderDerived() const override;
 
       private:
-        inline static const String k_bg_img{"gui_button_bg"};
-        inline static const String k_hovered_bg_img{"gui_button_hovered_bg"};
+        inline static const String k_backgroundImage{"gui_button_bg"};
+        inline static const String k_hoveredBackgroundImage{"gui_button_hovered_bg"};
 
-        String text_;
-        Function<void()> action_;
-        String bg_img_;
-        String hovered_bg_img_;
+        String m_text;
+        Function<void()> m_action;
+        String m_backgroundImage;
+        String m_hoveredBackgroundImage;
     };
 
     class GUIMovablePanel : public GUIPanel
@@ -154,23 +155,23 @@ namespace GUIComponentsLibrary
 
         auto GetIsBeingMoved() const
         {
-            return is_being_moved_;
+            return m_isBeingMoved;
         }
 
         auto GetMoveStartingPosition() const
         {
-            return move_starting_position_;
+            return m_moveStartingPosition;
         }
 
         auto GetMoveStartingMousePosition() const
         {
-            return move_starting_mouse_position_;
+            return m_moveStartingMousePosition;
         }
 
       private:
-        bool is_being_moved_{false};
-        PointF move_starting_position_{-1, -1};
-        PointF move_starting_mouse_position_{-1, -1};
+        bool m_isBeingMoved{false};
+        PointF m_moveStartingPosition{-1, -1};
+        PointF m_moveStartingMousePosition{-1, -1};
     };
 
     class GUIWindow : public GUIMovablePanel
@@ -189,7 +190,7 @@ namespace GUIComponentsLibrary
 
         auto GetGUIWindowTitleBar() const
         {
-            return gui_window_title_bar_;
+            return m_guiWindowTitleBar;
         }
 
       private:
@@ -199,7 +200,7 @@ namespace GUIComponentsLibrary
         {
           public:
             GUIWindowTitleBar(GUIWindow &parent_win, StringView win_title)
-                : parent_win_(parent_win), k_win_title(win_title),
+                : m_parentWindow(parent_win), k_windowTitle(win_title),
                   GUIPanel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
                 Initialize();
@@ -213,12 +214,12 @@ namespace GUIComponentsLibrary
             void Initialize();
 
             inline static const float k_h{0.04f};
-            const String k_win_title;
+            const String k_windowTitle;
 
-            GUIWindow &parent_win_;
+            GUIWindow &m_parentWindow;
         };
 
-        SharedPtr<GUIWindowTitleBar> gui_window_title_bar_;
+        SharedPtr<GUIWindowTitleBar> m_guiWindowTitleBar;
     };
 
     class GUIFPSPanel : public GUIMovablePanel
@@ -235,14 +236,14 @@ namespace GUIComponentsLibrary
       private:
         void Initialize();
 
-        SharedPtr<GUILabel> fps_text_pnl_;
+        SharedPtr<GUILabel> m_fpsTextPanel;
     };
 
     class GUIChatBox : public GUIPanel
     {
       public:
         GUIChatBox()
-            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived)
+            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived)
         {
         }
 
@@ -251,12 +252,12 @@ namespace GUIComponentsLibrary
         void Print(StringView text);
 
       private:
-        constexpr static StringView k_default_bg_img_derived{"gui_chat_box_bg"};
-        inline static const float k_line_h{0.025f};
-        inline static const float k_sep_h{0.003f};
-        inline static const float k_marg{0.008f};
+        constexpr static StringView k_defaultBackgroundImageDerived{"gui_chat_box_bg"};
+        inline static const float k_lineHeight{0.025f};
+        inline static const float k_separatorHeight{0.003f};
+        inline static const float k_margin{0.008f};
 
-        Vector<String> lines_;
+        Vector<String> m_lines;
     };
 }
 #define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }

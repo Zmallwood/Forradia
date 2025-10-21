@@ -1034,7 +1034,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-    auto tex_name{meshes.at(0).textures.at(0).path_};
+    auto tex_name{meshes.at(0).textures.at(0).path};
 
     auto tex_name_hash{Hash(tex_name)};
 

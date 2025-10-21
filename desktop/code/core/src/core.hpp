@@ -27,7 +27,7 @@ namespace Core
 
             auto GetWindow() const
             {
-                return window_;
+                return m_window;
             }
 
           private:
@@ -35,10 +35,10 @@ namespace Core
 
             Size GetScreenSize() const;
 
-            SharedPtr<SDL_Window> window_;
-            SharedPtr<SDL_GLContext> context_;
-            String game_win_title_;
-            Color clear_color_;
+            SharedPtr<SDL_Window> m_window;
+            SharedPtr<SDL_GLContext> m_context;
+            String m_gameWindowTitle;
+            Color m_clearColor;
         };
 
         class FPSCounter
@@ -48,15 +48,15 @@ namespace Core
 
             auto GetFPS() const
             {
-                return fps_;
+                return m_fps;
             }
 
           private:
             const PointF k_position{0.93f, 0.02f};
 
-            int fps_{0};
-            int frames_count_{0};
-            int ticks_last_update_{0};
+            int m_fps{0};
+            int m_framesCount{0};
+            int m_ticksLastUpdate{0};
         };
 
         class Cursor
@@ -80,7 +80,7 @@ namespace Core
 
             auto SetCursorStyle(CursorStyles value)
             {
-                cursor_style_ = value;
+                m_cursorStyle = value;
             }
 
           private:
@@ -88,9 +88,9 @@ namespace Core
 
             void DisableSystemCursor();
 
-            constexpr static float k_curs_sz{0.05f};
+            constexpr static float k_cursorSize{0.05f};
 
-            CursorStyles cursor_style_{CursorStyles::normal};
+            CursorStyles m_cursorStyle{CursorStyles::normal};
         };
 
         class Assets
@@ -116,7 +116,8 @@ namespace Core
 
                     Size GetImageSize(int img_name_hash) const;
 
-                    bool TextTextureExists(float x, float y, int unique_id) const;
+                    bool TextTextureExists(float x, float y,
+                                           int unique_id) const;
 
                     GLuint ObtainTextTexture(float x, float y, int text_hash);
 
@@ -129,12 +130,13 @@ namespace Core
 
                     GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surf);
 
-                    inline static const String k_rel_imgs_path{"./res/images/"};
+                    inline static const String k_relativeImagesPath{
+                        "./res/images/"};
 
-                    std::map<int, GLuint> textures_;
-                    std::map<int, Size> tex_sizes_;
+                    std::map<int, GLuint> m_textures;
+                    std::map<int, Size> m_textureSizes;
                     std::map<float, std::map<float, std::map<int, GLuint>>>
-                        text_texes_;
+                        m_textTextures;
                 };
             };
             class Models
@@ -156,7 +158,7 @@ namespace Core
                     class Texture
                     {
                       public:
-                        String path_;
+                        String path;
                     };
 
                     class Mesh
@@ -180,29 +182,29 @@ namespace Core
 
                         auto &GetMeshesRef() const
                         {
-                            return meshes_;
+                            return m_meshes;
                         }
 
                       private:
                         void Initialize(StringView file_path);
 
                         void ProcessNode(aiNode *node, const aiScene *scene,
-                                          aiMatrix4x4 transform);
+                                         aiMatrix4x4 transform);
 
                         Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
-                                          aiMatrix4x4 transformation);
+                                         aiMatrix4x4 transformation);
 
                         Vector<Vertex> GetVertices(aiMesh *mesh,
-                                                 glm::vec3 &extents,
-                                                 glm::vec3 &origin,
-                                                 aiMatrix4x4 transformation);
+                                                   glm::vec3 &extents,
+                                                   glm::vec3 &origin,
+                                                   aiMatrix4x4 transformation);
 
                         Vector<unsigned int> GetIndices(aiMesh *mesh);
 
                         Vector<Texture> GetTextures(aiMesh *mesh,
-                                                  const aiScene *scene);
+                                                    const aiScene *scene);
 
-                        Vector<Mesh> meshes_;
+                        Vector<Mesh> m_meshes;
                     };
 
                   public:
@@ -218,9 +220,10 @@ namespace Core
 
                     SharedPtr<Model> LoadSingleModel(StringView file_path);
 
-                    inline static const String k_rel_models_path{"./res/models/"};
+                    inline static const String k_relativeModelsPath{
+                        "./res/models/"};
 
-                    std::map<int, SharedPtr<Model>> models_;
+                    std::map<int, SharedPtr<Model>> m_models;
                 };
             };
         };
@@ -252,36 +255,36 @@ namespace Core
 
                 void SetInitializeDerived(Function<void()> value)
                 {
-                    initialize_derived_ = value;
+                    m_initializeDerived = value;
                 }
 
                 void SetOnEnterDerived(Function<void()> value)
                 {
-                    on_enter_derived_ = value;
+                    m_onEnterDerived = value;
                 }
 
                 void SetUpdateDerived(Function<void()> value)
                 {
-                    update_derived_ = value;
+                    m_updateDerived = value;
                 }
 
                 void SetRenderDerived(Function<void()> value)
                 {
-                    render_derived_ = value;
+                    m_renderDerived = value;
                 }
 
               protected:
                 auto GetGUI() const
                 {
-                    return gui_;
+                    return m_gui;
                 }
 
               private:
-                SharedPtr<ScenesGUI::GUIRoot> gui_;
-                Function<void()> initialize_derived_{[] {}};
-                Function<void()> on_enter_derived_{[] {}};
-                Function<void()> update_derived_{[] {}};
-                Function<void()> render_derived_{[] {}};
+                SharedPtr<ScenesGUI::GUIRoot> m_gui;
+                Function<void()> m_initializeDerived{[] {}};
+                Function<void()> m_onEnterDerived{[] {}};
+                Function<void()> m_updateDerived{[] {}};
+                Function<void()> m_renderDerived{[] {}};
             };
 
             class SceneManager
@@ -296,8 +299,8 @@ namespace Core
                 void RenderCurrentScene() const;
 
               private:
-                std::map<int, IScene &> scenes_;
-                int curr_scene_{0};
+                std::map<int, IScene &> m_scenes;
+                int m_currentScene{0};
             };
         };
         class Input
@@ -319,7 +322,7 @@ namespace Core
                 bool AnyKeyIsPressedPickResult();
 
               private:
-                std::set<SDL_Keycode> pressed_;
+                std::set<SDL_Keycode> m_pressed;
             };
 
             class MouseInput
@@ -345,9 +348,9 @@ namespace Core
                     bool HasBeenReleased();
 
                   private:
-                    bool pressed_{false};
-                    bool been_fired_{false};
-                    bool been_released_{false};
+                    bool m_pressed{false};
+                    bool m_hasBeenFired{false};
+                    bool m_hasBeenReleased{false};
                 };
 
                 class LeftMouseButton : public MouseButton
@@ -418,7 +421,7 @@ namespace Core
       private:
         void PollEvents();
 
-        bool running_{true};
+        bool m_running{true};
     };
 #define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
     _HIDE_FROM_OUTLINER_CORE_BOTTOM_
