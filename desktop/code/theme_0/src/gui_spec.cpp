@@ -36,7 +36,7 @@ namespace SpecializedGUI
     {
         gui_comp::update_derived();
 
-        _<Core::Engine::Input::mouse_inp::left_mouse_btn>().reset();
+        _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
     }
 
     void gui_sys_menu::render_derived() const
@@ -400,7 +400,7 @@ namespace SpecializedGUI
                                         b.y + 0.01f + k_line_h * (i + 1), b.w,
                                         k_line_h}};
 
-            if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+            if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .been_fired_no_pick_res())
             {
                 if (menu_entry_rect.contains(mouse_pos))
@@ -413,7 +413,7 @@ namespace SpecializedGUI
 
             ++i;
         }
-        if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+        if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .been_fired_pick_res())
         {
             set_visible(false);

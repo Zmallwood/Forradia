@@ -20,17 +20,17 @@ namespace Core
         {
             while (running_)
             {
-                _<Input::mouse_inp>().reset();
+                _<Input::MouseInput>().reset();
                 _<Cursor>().reset_style_to_normal();
                 _<Renderers::img_2d_rend>().reset_counter();
 
                 poll_events();
 
-                _<ScenesCore::scene_mngr>().update_curr_scene();
+                _<ScenesCore::SceneManager>().update_curr_scene();
                 _<FPSCounter>().update();
 
                 _<SDLDevice>().clear_canv();
-                _<ScenesCore::scene_mngr>().render_curr_scene();
+                _<ScenesCore::SceneManager>().render_curr_scene();
                 _<Cursor>().render();
                 _<SDLDevice>().present_canv();
             }
@@ -63,25 +63,25 @@ namespace Core
 
             case SDL_KEYDOWN:
 
-                _<Input::kb_inp>().reg_key_press(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().reg_key_press(ev.key.keysym.sym);
 
                 break;
 
             case SDL_KEYUP:
 
-                _<Input::kb_inp>().reg_key_release(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().reg_key_release(ev.key.keysym.sym);
 
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
 
-                _<Input::mouse_inp>().reg_mouse_btn_down(ev.button.button);
+                _<Input::MouseInput>().reg_mouse_btn_down(ev.button.button);
 
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
-                _<Input::mouse_inp>().reg_mouse_btn_up(ev.button.button);
+                _<Input::MouseInput>().reg_mouse_btn_up(ev.button.button);
 
                 break;
             }
@@ -345,7 +345,7 @@ namespace Core
         return tex;
     }
 
-    void Engine::Assets::Models::ModelBank::model::init(StringView file_path)
+    void Engine::Assets::Models::ModelBank::Model::init(StringView file_path)
     {
         Assimp::Importer importer;
 
@@ -366,7 +366,7 @@ namespace Core
         }
     }
 
-    void Engine::Assets::Models::ModelBank::model::process_node(
+    void Engine::Assets::Models::ModelBank::Model::process_node(
         aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -387,7 +387,7 @@ namespace Core
     }
 
     Engine::Assets::Models::ModelBank::Mesh
-    Engine::Assets::Models::ModelBank::model::process_mesh(
+    Engine::Assets::Models::ModelBank::Model::process_mesh(
         aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
     {
         glm::vec3 extents;
@@ -405,7 +405,7 @@ namespace Core
     }
 
     Vector<Engine::Assets::Models::ModelBank::Vertex>
-    Engine::Assets::Models::ModelBank::model::get_vertices(
+    Engine::Assets::Models::ModelBank::Model::get_vertices(
         aiMesh *mesh, glm::vec3 &extents, glm::vec3 &origin,
         aiMatrix4x4 transformation)
     {
@@ -485,7 +485,7 @@ namespace Core
     }
 
     Vector<unsigned int>
-    Engine::Assets::Models::ModelBank::model::get_indices(aiMesh *mesh)
+    Engine::Assets::Models::ModelBank::Model::get_indices(aiMesh *mesh)
     {
         Vector<unsigned int> indices;
 
@@ -503,7 +503,7 @@ namespace Core
     }
 
     Vector<Engine::Assets::Models::ModelBank::Texture>
-    Engine::Assets::Models::ModelBank::model::get_textures(
+    Engine::Assets::Models::ModelBank::Model::get_textures(
         aiMesh *mesh, const aiScene *scene)
     {
         Vector<Texture> textures;
@@ -547,7 +547,7 @@ namespace Core
         }
     }
 
-    SharedPtr<Engine::Assets::Models::ModelBank::model>
+    SharedPtr<Engine::Assets::Models::ModelBank::Model>
     Engine::Assets::Models::ModelBank::get_model(int model_name_hash) const
     {
         if (models_.contains(model_name_hash))
@@ -558,50 +558,50 @@ namespace Core
         return nullptr;
     }
 
-    SharedPtr<Engine::Assets::Models::ModelBank::model>
+    SharedPtr<Engine::Assets::Models::ModelBank::Model>
     Engine::Assets::Models::ModelBank::load_single_model(StringView file_path)
     {
-        auto model_res{std::make_shared<model>(file_path)};
+        auto model_res{std::make_shared<Model>(file_path)};
 
         return model_res;
     }
 
-    void Engine::ScenesCore::i_scene::init()
+    void Engine::ScenesCore::IScene::init()
     {
         gui_ = std::make_shared<
-            Engine::ScenesCore::i_scene::ScenesGUI::gui_root>();
+            Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>();
 
         init_derived_();
     }
 
-    void Engine::ScenesCore::i_scene::on_enter()
+    void Engine::ScenesCore::IScene::on_enter()
     {
         on_enter_derived_();
     }
 
-    void Engine::ScenesCore::i_scene::update()
+    void Engine::ScenesCore::IScene::update()
     {
         gui_->update();
 
         update_derived_();
     }
 
-    void Engine::ScenesCore::i_scene::render() const
+    void Engine::ScenesCore::IScene::render() const
     {
         render_derived_();
 
         gui_->render();
     }
 
-    void Engine::ScenesCore::scene_mngr::add_scene(StringView scene_name,
-                                                   i_scene &scene)
+    void Engine::ScenesCore::SceneManager::add_scene(StringView scene_name,
+                                                   IScene &scene)
     {
         scene.init();
 
         scenes_.insert({hash(scene_name), scene});
     }
 
-    void Engine::ScenesCore::scene_mngr::go_to_scene(StringView scene_name)
+    void Engine::ScenesCore::SceneManager::go_to_scene(StringView scene_name)
     {
         curr_scene_ = hash(scene_name);
 
@@ -611,7 +611,7 @@ namespace Core
         }
     }
 
-    void Engine::ScenesCore::scene_mngr::update_curr_scene()
+    void Engine::ScenesCore::SceneManager::update_curr_scene()
     {
         if (scenes_.contains(curr_scene_))
         {
@@ -619,7 +619,7 @@ namespace Core
         }
     }
 
-    void Engine::ScenesCore::scene_mngr::render_curr_scene() const
+    void Engine::ScenesCore::SceneManager::render_curr_scene() const
     {
         if (scenes_.contains(curr_scene_))
         {
@@ -629,27 +629,27 @@ namespace Core
     ////////////////////
     // Keyboard
     ////////////////////
-    void Engine::Input::kb_inp::reset()
+    void Engine::Input::KeyboardInput::reset()
     {
         pressed_.clear();
     }
 
-    void Engine::Input::kb_inp::reg_key_press(SDL_Keycode key)
+    void Engine::Input::KeyboardInput::reg_key_press(SDL_Keycode key)
     {
         pressed_.insert(key);
     }
 
-    void Engine::Input::kb_inp::reg_key_release(SDL_Keycode key)
+    void Engine::Input::KeyboardInput::reg_key_release(SDL_Keycode key)
     {
         pressed_.erase(key);
     }
 
-    bool Engine::Input::kb_inp::key_pressed(SDL_Keycode key) const
+    bool Engine::Input::KeyboardInput::key_pressed(SDL_Keycode key) const
     {
         return pressed_.contains(key);
     }
 
-    bool Engine::Input::kb_inp::key_pressed_pick_res(SDL_Keycode key)
+    bool Engine::Input::KeyboardInput::key_pressed_pick_res(SDL_Keycode key)
     {
         auto res{pressed_.contains(key)};
 
@@ -658,7 +658,7 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::kb_inp::any_key_pressed_pick_res()
+    bool Engine::Input::KeyboardInput::any_key_pressed_pick_res()
     {
         auto res{pressed_.size() > 0};
 
@@ -670,26 +670,26 @@ namespace Core
     ////////////////////
     // Mouse
     ////////////////////
-    void Engine::Input::mouse_inp::mouse_btn::reset()
+    void Engine::Input::MouseInput::MouseButton::reset()
     {
         pressed_ = false;
         been_fired_ = false;
         been_released_ = false;
     }
 
-    void Engine::Input::mouse_inp::mouse_btn::reg_press()
+    void Engine::Input::MouseInput::MouseButton::reg_press()
     {
         pressed_ = true;
         been_fired_ = true;
     }
 
-    void Engine::Input::mouse_inp::mouse_btn::reg_release()
+    void Engine::Input::MouseInput::MouseButton::reg_release()
     {
         pressed_ = false;
         been_released_ = true;
     }
 
-    bool Engine::Input::mouse_inp::mouse_btn::pressed_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::pressed_pick_res()
     {
         auto res{pressed_};
 
@@ -698,7 +698,7 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::mouse_inp::mouse_btn::been_fired_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::been_fired_pick_res()
     {
         auto res{been_fired_};
 
@@ -707,12 +707,12 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::mouse_inp::mouse_btn::been_fired_no_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::been_fired_no_pick_res()
     {
         return been_fired_;
     }
 
-    bool Engine::Input::mouse_inp::mouse_btn::been_released_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::been_released_pick_res()
     {
         auto res{been_released_};
 
@@ -721,58 +721,58 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::mouse_inp::mouse_btn::been_released_no_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::been_released_no_pick_res()
     {
         return been_released_;
     }
 
-    void Engine::Input::mouse_inp::reset()
+    void Engine::Input::MouseInput::reset()
     {
-        _<left_mouse_btn>().reset();
-        _<right_mouse_btn>().reset();
+        _<LeftMouseButton>().reset();
+        _<RightMouseButton>().reset();
     }
 
-    void Engine::Input::mouse_inp::reg_mouse_btn_down(Uint8 btn)
+    void Engine::Input::MouseInput::reg_mouse_btn_down(Uint8 btn)
     {
         switch (btn)
         {
         case SDL_BUTTON_LEFT:
 
-            _<left_mouse_btn>().reg_press();
+            _<LeftMouseButton>().reg_press();
 
             break;
 
         case SDL_BUTTON_RIGHT:
 
-            _<right_mouse_btn>().reg_press();
+            _<RightMouseButton>().reg_press();
 
             break;
         }
     }
 
-    void Engine::Input::mouse_inp::reg_mouse_btn_up(Uint8 btn)
+    void Engine::Input::MouseInput::reg_mouse_btn_up(Uint8 btn)
     {
         switch (btn)
         {
         case SDL_BUTTON_LEFT:
 
-            _<left_mouse_btn>().reg_release();
+            _<LeftMouseButton>().reg_release();
 
             break;
 
         case SDL_BUTTON_RIGHT:
 
-            _<right_mouse_btn>().reg_release();
+            _<RightMouseButton>().reg_release();
 
             break;
         }
     }
 
-    bool Engine::Input::mouse_inp::any_mouse_btn_pressed_pick_res()
+    bool Engine::Input::MouseInput::any_mouse_btn_pressed_pick_res()
     {
-        auto res{_<left_mouse_btn>().pressed_pick_res()};
+        auto res{_<LeftMouseButton>().pressed_pick_res()};
 
-        res |= _<right_mouse_btn>().pressed_pick_res();
+        res |= _<RightMouseButton>().pressed_pick_res();
 
         return res;
     }

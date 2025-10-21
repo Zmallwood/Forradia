@@ -15,17 +15,17 @@ namespace Theme0
     {
         void update_kb_actions()
         {
-            if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
+            if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                     SDLK_ESCAPE))
             {
                 _<gui_sys_menu>().toggle_visible();
             }
-            else if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
+            else if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                          SDLK_c))
             {
                 _<gui_player_body_win>().toggle_visible();
             }
-            else if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
+            else if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                          SDLK_b))
             {
                 _<gui_inventory_win>().toggle_visible();
@@ -34,7 +34,7 @@ namespace Theme0
 
         void update_mouse_actions()
         {
-            if (_<Core::Engine::Input::mouse_inp::right_mouse_btn>()
+            if (_<Core::Engine::Input::MouseInput::RightMouseButton>()
                     .been_fired_pick_res())
             {
                 _<gui_interact_menu>().build_menu();
@@ -49,21 +49,21 @@ namespace Theme0
         void update_kb_movem()
         {
             auto up_press{
-                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_UP)};
+                _<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_UP)};
 
             auto right_press{
-                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_RIGHT)};
+                _<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_RIGHT)};
 
             auto down_press{
-                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_DOWN)};
+                _<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_DOWN)};
 
             auto left_press{
-                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_LEFT)};
+                _<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_LEFT)};
 
-            auto w_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_w)};
-            auto a_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_a)};
-            auto s_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_s)};
-            auto d_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_d)};
+            auto w_press{_<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_w)};
+            auto a_press{_<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_a)};
+            auto s_press{_<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_s)};
+            auto d_press{_<Core::Engine::Input::KeyboardInput>().key_pressed(SDLK_d)};
 
             if (up_press || right_press || down_press || left_press)
             {
@@ -107,7 +107,7 @@ namespace Theme0
 
         void update_mouse_movem()
         {
-            if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+            if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .been_fired_pick_res())
             {
                 auto new_dest{_<tl_hovering>().hovered_coord()};

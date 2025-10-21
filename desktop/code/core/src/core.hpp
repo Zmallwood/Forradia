@@ -175,10 +175,10 @@ namespace Core
                         aiString name;
                     };
 
-                    class model
+                    class Model
                     {
                       public:
-                        model(StringView file_path)
+                        Model(StringView file_path)
                         {
                             init(file_path);
                         };
@@ -216,32 +216,32 @@ namespace Core
                         init();
                     }
 
-                    SharedPtr<model> get_model(int model_name_hash) const;
+                    SharedPtr<Model> get_model(int model_name_hash) const;
 
                   private:
                     void init();
 
-                    SharedPtr<model> load_single_model(StringView file_path);
+                    SharedPtr<Model> load_single_model(StringView file_path);
 
                     inline static const String k_rel_models_path{"./res/models/"};
 
-                    std::map<int, SharedPtr<model>> models_;
+                    std::map<int, SharedPtr<Model>> models_;
                 };
             };
         };
         class ScenesCore
         {
           public:
-            class i_scene
+            class IScene
             {
               public:
                 class ScenesGUI
                 {
                   public:
-                    class gui_root : public GUIComponentsLibrary::gui_comp
+                    class GUIRoot : public GUIComponentsLibrary::gui_comp
                     {
                       public:
-                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+                        GUIRoot() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
                         {
                         }
                     };
@@ -282,17 +282,17 @@ namespace Core
                 }
 
               private:
-                SharedPtr<ScenesGUI::gui_root> gui_;
+                SharedPtr<ScenesGUI::GUIRoot> gui_;
                 Function<void()> init_derived_{[] {}};
                 Function<void()> on_enter_derived_{[] {}};
                 Function<void()> update_derived_{[] {}};
                 Function<void()> render_derived_{[] {}};
             };
 
-            class scene_mngr
+            class SceneManager
             {
               public:
-                void add_scene(StringView scene_name, i_scene &scene);
+                void add_scene(StringView scene_name, IScene &scene);
 
                 void go_to_scene(StringView scene_name);
 
@@ -301,7 +301,7 @@ namespace Core
                 void render_curr_scene() const;
 
               private:
-                std::map<int, i_scene &> scenes_;
+                std::map<int, IScene &> scenes_;
                 int curr_scene_{0};
             };
         };
@@ -311,7 +311,7 @@ namespace Core
             ////////////////////
             // Keyboard
             ////////////////////
-            class kb_inp
+            class KeyboardInput
             {
               public:
                 void reset();
@@ -333,10 +333,10 @@ namespace Core
             ////////////////////
             // Mouse
             ////////////////////
-            class mouse_inp
+            class MouseInput
             {
               public:
-                class mouse_btn
+                class MouseButton
                 {
                   public:
                     void reset();
@@ -361,44 +361,44 @@ namespace Core
                     bool been_released_{false};
                 };
 
-                class left_mouse_btn : public mouse_btn
+                class LeftMouseButton : public MouseButton
                 {
                   public:
-                    using mouse_btn::reset;
+                    using MouseButton::reset;
 
-                    using mouse_btn::reg_press;
+                    using MouseButton::reg_press;
 
-                    using mouse_btn::reg_release;
+                    using MouseButton::reg_release;
 
-                    using mouse_btn::pressed_pick_res;
+                    using MouseButton::pressed_pick_res;
 
-                    using mouse_btn::been_fired_pick_res;
+                    using MouseButton::been_fired_pick_res;
 
-                    using mouse_btn::been_fired_no_pick_res;
+                    using MouseButton::been_fired_no_pick_res;
 
-                    using mouse_btn::been_released_pick_res;
+                    using MouseButton::been_released_pick_res;
 
-                    using mouse_btn::been_released_no_pick_res;
+                    using MouseButton::been_released_no_pick_res;
                 };
 
-                class right_mouse_btn : public mouse_btn
+                class RightMouseButton : public MouseButton
                 {
                   public:
-                    using mouse_btn::reset;
+                    using MouseButton::reset;
 
-                    using mouse_btn::reg_press;
+                    using MouseButton::reg_press;
 
-                    using mouse_btn::reg_release;
+                    using MouseButton::reg_release;
 
-                    using mouse_btn::pressed_pick_res;
+                    using MouseButton::pressed_pick_res;
 
-                    using mouse_btn::been_fired_pick_res;
+                    using MouseButton::been_fired_pick_res;
 
-                    using mouse_btn::been_fired_no_pick_res;
+                    using MouseButton::been_fired_no_pick_res;
 
-                    using mouse_btn::been_released_pick_res;
+                    using MouseButton::been_released_pick_res;
 
-                    using mouse_btn::been_released_no_pick_res;
+                    using MouseButton::been_released_no_pick_res;
                 };
 
                 void reset();

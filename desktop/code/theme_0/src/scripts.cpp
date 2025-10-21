@@ -16,10 +16,10 @@ namespace Theme0
 {
     namespace Scripting
     {
-        class i_scene_publ : public Core::Engine::ScenesCore::i_scene
+        class i_scene_publ : public Core::Engine::ScenesCore::IScene
         {
           public:
-            using i_scene::gui;
+            using IScene::gui;
         };
 
         namespace py = pybind11;
@@ -35,11 +35,11 @@ namespace Theme0
                        SharedPtr<GUIComponentsLibrary::gui_comp>>(m, "gui_comp");
 
             py::class_<
-                Core::Engine::ScenesCore::i_scene::ScenesGUI::gui_root,
-                SharedPtr<Core::Engine::ScenesCore::i_scene::ScenesGUI::gui_root>>(
+                Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot,
+                SharedPtr<Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>>(
                 m, "gui")
                 .def("add_child_comp",
-                     [](Core::Engine::ScenesCore::i_scene::ScenesGUI::gui_root
+                     [](Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot
                             &self,
                         SharedPtr<GUIComponentsLibrary::gui_comp> comp)
                          -> SharedPtr<GUIComponentsLibrary::gui_comp>
@@ -69,29 +69,29 @@ namespace Theme0
                        SharedPtr<GUIComponentsLibrary::gui_fps_panel>,
                        GUIComponentsLibrary::gui_comp>(m, "gui_fps_panel");
 
-            py::class_<Core::Engine::ScenesCore::i_scene>(m, "i_scene")
+            py::class_<Core::Engine::ScenesCore::IScene>(m, "i_scene")
                 .def(py::init<>())
-                .def("init", &Core::Engine::ScenesCore::i_scene::init)
+                .def("init", &Core::Engine::ScenesCore::IScene::init)
                 .def("gui", &i_scene_publ::gui)
                 .def("set_init_derived",
-                     [](Core::Engine::ScenesCore::i_scene &self, py::function f)
+                     [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_init_derived([=] { f(); }); })
                 .def("set_on_enter_derived",
-                     [](Core::Engine::ScenesCore::i_scene &self, py::function f)
+                     [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_on_enter_derived([=] { f(); }); })
                 .def("set_update_derived",
-                     [](Core::Engine::ScenesCore::i_scene &self, py::function f)
+                     [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_update_derived([=] { f(); }); })
                 .def("set_render_derived",
-                     [](Core::Engine::ScenesCore::i_scene &self, py::function f)
+                     [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_render_derived([=] { f(); }); });
 
-            py::class_<Core::Engine::ScenesCore::scene_mngr>(m, "scene_mngr")
+            py::class_<Core::Engine::ScenesCore::SceneManager>(m, "scene_mngr")
                 .def(py::init<>())
                 .def("add_scene",
-                     &Core::Engine::ScenesCore::scene_mngr::add_scene)
+                     &Core::Engine::ScenesCore::SceneManager::add_scene)
                 .def("go_to_scene",
-                     &Core::Engine::ScenesCore::scene_mngr::go_to_scene);
+                     &Core::Engine::ScenesCore::SceneManager::go_to_scene);
 
             py::class_<Engine::Cursor>(m, "cursor")
                 .def(py::init<>())
@@ -115,13 +115,13 @@ namespace Theme0
                 .def("gen_new_world",
                      &Theme0::WorldGeneration::world_grator::gen_new_world);
 
-            py::class_<Core::Engine::Input::kb_inp>(m, "kb_inp")
+            py::class_<Core::Engine::Input::KeyboardInput>(m, "kb_inp")
                 .def("any_key_pressed_pick_res",
-                     &Core::Engine::Input::kb_inp::any_key_pressed_pick_res);
+                     &Core::Engine::Input::KeyboardInput::any_key_pressed_pick_res);
 
-            py::class_<Core::Engine::Input::mouse_inp>(m, "mouse_inp")
+            py::class_<Core::Engine::Input::MouseInput>(m, "mouse_inp")
                 .def("any_mouse_btn_pressed_pick_res",
-                     &Core::Engine::Input::mouse_inp::
+                     &Core::Engine::Input::MouseInput::
                          any_mouse_btn_pressed_pick_res);
 
             py::class_<Engine::Renderers::img_2d_rend>(m, "img_2d_rend")
@@ -239,8 +239,8 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def(
-                "get_scene_mngr", []() -> Core::Engine::ScenesCore::scene_mngr &
-                { return _<Core::Engine::ScenesCore::scene_mngr>(); },
+                "get_scene_mngr", []() -> Core::Engine::ScenesCore::SceneManager &
+                { return _<Core::Engine::ScenesCore::SceneManager>(); },
                 py::return_value_policy::reference);
 
             m.def(
@@ -263,13 +263,13 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def(
-                "get_kb_inp", []() -> Core::Engine::Input::kb_inp &
-                { return _<Core::Engine::Input::kb_inp>(); },
+                "get_kb_inp", []() -> Core::Engine::Input::KeyboardInput &
+                { return _<Core::Engine::Input::KeyboardInput>(); },
                 py::return_value_policy::reference);
 
             m.def(
-                "get_mouse_inp", []() -> Core::Engine::Input::mouse_inp &
-                { return _<Core::Engine::Input::mouse_inp>(); },
+                "get_mouse_inp", []() -> Core::Engine::Input::MouseInput &
+                { return _<Core::Engine::Input::MouseInput>(); },
                 py::return_value_policy::reference);
 
             m.def(

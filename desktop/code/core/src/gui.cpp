@@ -112,7 +112,7 @@ void GUIComponentsLibrary::gui_button::update_derived()
         _<Engine::Cursor>().set_curs_style(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
 
-        if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+        if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .been_fired_pick_res())
         {
             action_();
@@ -146,14 +146,14 @@ void GUIComponentsLibrary::gui_movable_panel::update_derived()
         _<Engine::Cursor>().set_curs_style(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
 
-        if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+        if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .been_fired_pick_res())
         {
             start_move();
         }
     }
 
-    if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+    if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
             .been_released_no_pick_res())
     {
         stop_move();
@@ -163,10 +163,10 @@ void GUIComponentsLibrary::gui_movable_panel::update_derived()
 
     if (b.contains(mouse_pos))
     {
-        if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
+        if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .been_fired_no_pick_res())
         {
-            _<Core::Engine::Input::mouse_inp::left_mouse_btn>().reset();
+            _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
         }
     }
     if (being_moved())

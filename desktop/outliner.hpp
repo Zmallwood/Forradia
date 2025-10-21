@@ -263,7 +263,7 @@ namespace Common
             /**
              * A RGBA color with components defined with float values.
              */
-            class color
+            class Color
             {
               public:
                 /**
@@ -284,18 +284,18 @@ namespace Common
              */
             namespace colors
             {
-                constexpr color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
+                constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 
-                constexpr color wheat{1.0f, 1.0f, 0.65f,
+                constexpr Color wheat{1.0f, 1.0f, 0.65f,
                                       1.0f}; ///< Wheat color.
 
-                constexpr color wheat_transp{
+                constexpr Color wheat_transp{
                     1.0f, 1.0f, 0.65f, 0.7f}; ///< Transparent wheat color.
 
-                constexpr color yellow{1.0f, 1.0f, 0.0f,
+                constexpr Color yellow{1.0f, 1.0f, 0.0f,
                                        1.0f}; ///< Yellow color.
 
-                constexpr color yellow_transp{
+                constexpr Color yellow_transp{
                     1.0f, 1.0f, 0.0f, 0.7f}; ///< Transparent yellow color.
             }
         }
@@ -475,15 +475,15 @@ _NS_START_
 
 namespace Core
 {
-    class engine
+    class Engine
     {
       public:
-        class sdl_device
+        class SDLDevice
         {
           public:
-            ~sdl_device();
+            ~SDLDevice();
 
-            void init(StringView game_win_title, color clear_color);
+            void init(StringView game_win_title, Color clear_color);
 
             void clear_canv() const;
 
@@ -508,10 +508,10 @@ namespace Core
             SharedPtr<SDL_GLContext> context_;
             SharedPtr<SDL_Renderer> rend_;
             String game_win_title_;
-            color clear_color_;
+            Color clear_color_;
         };
 
-        class fps_counter
+        class FPSCounter
         {
           public:
             void update();
@@ -528,17 +528,17 @@ namespace Core
             const PointF k_position{0.93f, 0.02f};
         };
 
-        class cursor
+        class Cursor
         {
           public:
-            enum class curs_styles
+            enum class CursorStyles
             {
                 normal,
                 hovering_clickable_gui,
                 hovering_creature
             };
 
-            cursor()
+            Cursor()
             {
                 init();
             }
@@ -547,7 +547,7 @@ namespace Core
 
             void render();
 
-            auto set_curs_style(curs_styles val)
+            auto set_curs_style(CursorStyles val)
             {
                 curs_style_ = val;
             }
@@ -559,7 +559,7 @@ namespace Core
 
             constexpr static float k_curs_sz{0.05f};
 
-            curs_styles curs_style_{curs_styles::normal};
+            CursorStyles curs_style_{CursorStyles::normal};
         };
 
         class Assets
@@ -568,15 +568,15 @@ namespace Core
             class Images
             {
               public:
-                class image_bank
+                class ImageBank
                 {
                   public:
-                    image_bank()
+                    ImageBank()
                     {
                         init();
                     }
 
-                    ~image_bank()
+                    ~ImageBank()
                     {
                         cleanup();
                     }
@@ -609,10 +609,10 @@ namespace Core
             class Models
             {
               public:
-                class model_bank
+                class ModelBank
                 {
                   public:
-                    class vertex
+                    class Vertex
                     {
                       public:
                         glm::vec3 position;
@@ -622,27 +622,27 @@ namespace Core
                         glm::vec3 bitangent;
                     };
 
-                    class texture
+                    class Texture
                     {
                       public:
                         String path_;
                     };
 
-                    class mesh
+                    class Mesh
                     {
                       public:
-                        Vector<vertex> vertices;
+                        Vector<Vertex> vertices;
                         Vector<unsigned int> indices;
-                        Vector<texture> textures;
+                        Vector<Texture> textures;
                         glm::vec3 extents;
                         glm::vec3 origin;
                         aiString name;
                     };
 
-                    class model
+                    class Model
                     {
                       public:
-                        model(StringView file_path)
+                        Model(StringView file_path)
                         {
                             init(file_path);
                         };
@@ -658,54 +658,54 @@ namespace Core
                         void process_node(aiNode *node, const aiScene *scene,
                                           aiMatrix4x4 transform);
 
-                        mesh process_mesh(aiMesh *mesh, const aiScene *scene,
+                        Mesh process_mesh(aiMesh *mesh, const aiScene *scene,
                                           aiMatrix4x4 transformation);
 
-                        Vector<vertex> get_vertices(aiMesh *mesh,
+                        Vector<Vertex> get_vertices(aiMesh *mesh,
                                                  glm::vec3 &extents,
                                                  glm::vec3 &origin,
                                                  aiMatrix4x4 transformation);
 
                         Vector<unsigned int> get_indices(aiMesh *mesh);
 
-                        Vector<texture> get_textures(aiMesh *mesh,
+                        Vector<Texture> get_textures(aiMesh *mesh,
                                                   const aiScene *scene);
 
-                        Vector<mesh> meshes_;
+                        Vector<Mesh> meshes_;
                     };
 
                   public:
-                    model_bank()
+                    ModelBank()
                     {
                         init();
                     }
 
-                    SharedPtr<model> get_model(int model_name_hash) const;
+                    SharedPtr<Model> get_model(int model_name_hash) const;
 
                   private:
                     void init();
 
-                    SharedPtr<model> load_single_model(StringView file_path);
+                    SharedPtr<Model> load_single_model(StringView file_path);
 
                     inline static const String k_rel_models_path{"./res/models/"};
 
-                    std::map<int, SharedPtr<model>> models_;
+                    std::map<int, SharedPtr<Model>> models_;
                 };
             };
         };
         class ScenesCore
         {
           public:
-            class i_scene
+            class IScene
             {
               public:
                 class ScenesGUI
                 {
                   public:
-                    class gui_root : public GUIComponentsLibrary::gui_comp
+                    class GUIRoot : public GUIComponentsLibrary::gui_comp
                     {
                       public:
-                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+                        GUIRoot() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
                         {
                         }
                     };
@@ -746,17 +746,17 @@ namespace Core
                 }
 
               private:
-                SharedPtr<ScenesGUI::gui_root> gui_;
+                SharedPtr<ScenesGUI::GUIRoot> gui_;
                 Function<void()> init_derived_{[] {}};
                 Function<void()> on_enter_derived_{[] {}};
                 Function<void()> update_derived_{[] {}};
                 Function<void()> render_derived_{[] {}};
             };
 
-            class scene_mngr
+            class SceneManager
             {
               public:
-                void add_scene(StringView scene_name, i_scene &scene);
+                void add_scene(StringView scene_name, IScene &scene);
 
                 void go_to_scene(StringView scene_name);
 
@@ -765,7 +765,7 @@ namespace Core
                 void render_curr_scene() const;
 
               private:
-                std::map<int, i_scene &> scenes_;
+                std::map<int, IScene &> scenes_;
                 int curr_scene_{0};
             };
         };
@@ -775,7 +775,7 @@ namespace Core
             ////////////////////
             // Keyboard
             ////////////////////
-            class kb_inp
+            class KeyboardInput
             {
               public:
                 void reset();
@@ -797,10 +797,10 @@ namespace Core
             ////////////////////
             // Mouse
             ////////////////////
-            class mouse_inp
+            class MouseInput
             {
               public:
-                class mouse_btn
+                class MouseButton
                 {
                   public:
                     void reset();
@@ -825,44 +825,44 @@ namespace Core
                     bool been_released_{false};
                 };
 
-                class left_mouse_btn : public mouse_btn
+                class LeftMouseButton : public MouseButton
                 {
                   public:
-                    using mouse_btn::reset;
+                    using MouseButton::reset;
 
-                    using mouse_btn::reg_press;
+                    using MouseButton::reg_press;
 
-                    using mouse_btn::reg_release;
+                    using MouseButton::reg_release;
 
-                    using mouse_btn::pressed_pick_res;
+                    using MouseButton::pressed_pick_res;
 
-                    using mouse_btn::been_fired_pick_res;
+                    using MouseButton::been_fired_pick_res;
 
-                    using mouse_btn::been_fired_no_pick_res;
+                    using MouseButton::been_fired_no_pick_res;
 
-                    using mouse_btn::been_released_pick_res;
+                    using MouseButton::been_released_pick_res;
 
-                    using mouse_btn::been_released_no_pick_res;
+                    using MouseButton::been_released_no_pick_res;
                 };
 
-                class right_mouse_btn : public mouse_btn
+                class RightMouseButton : public MouseButton
                 {
                   public:
-                    using mouse_btn::reset;
+                    using MouseButton::reset;
 
-                    using mouse_btn::reg_press;
+                    using MouseButton::reg_press;
 
-                    using mouse_btn::reg_release;
+                    using MouseButton::reg_release;
 
-                    using mouse_btn::pressed_pick_res;
+                    using MouseButton::pressed_pick_res;
 
-                    using mouse_btn::been_fired_pick_res;
+                    using MouseButton::been_fired_pick_res;
 
-                    using mouse_btn::been_fired_no_pick_res;
+                    using MouseButton::been_fired_no_pick_res;
 
-                    using mouse_btn::been_released_pick_res;
+                    using MouseButton::been_released_pick_res;
 
-                    using mouse_btn::been_released_no_pick_res;
+                    using MouseButton::been_released_no_pick_res;
                 };
 
                 void reset();
@@ -884,7 +884,7 @@ namespace Core
             using RenderersCollection::text_rend;
         };
 
-        void init(StringView game_win_title, color clear_color) const;
+        void init(StringView game_win_title, Color clear_color) const;
 
         void run();
 
@@ -971,7 +971,7 @@ namespace GUIComponentsLibrary
     {
       public:
         gui_label(float x, float y, float w, float h, StringView text = "",
-                  bool cent_align = false, color color = colors::wheat_transp)
+                  bool cent_align = false, Color color = colors::wheat_transp)
             : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
@@ -988,7 +988,7 @@ namespace GUIComponentsLibrary
       private:
         String text_;
         bool cent_align_{false};
-        color color_;
+        Color color_;
     };
 
     class gui_panel : public gui_comp
@@ -1332,7 +1332,7 @@ class RenderersCollection
 
         void draw_str(StringView text, float x, float y,
                       font_szs font_sz = font_szs::_20, bool cent_align = false,
-                      color text_color = colors::wheat_transp) const;
+                      Color text_color = colors::wheat_transp) const;
 
       private:
         void init();
@@ -1979,7 +1979,7 @@ namespace Configuration
     {
       public:
         static constexpr String k_game_win_title{"Forradia"};
-        static constexpr color k_clear_color{colors::black};
+        static constexpr Color k_clear_color{colors::black};
         static constexpr int k_num_grid_rows{15};
         static constexpr Size k_w_area_sz{120, 100};
         static constexpr float k_world_scaling{5.0f};
