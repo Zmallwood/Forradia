@@ -11,15 +11,15 @@ _NS_START_
 
 namespace Core
 {
-    class engine
+    class Engine
     {
       public:
-        class sdl_device
+        class SDLDevice
         {
           public:
-            ~sdl_device();
+            ~SDLDevice();
 
-            void init(StringView game_win_title, color clear_color);
+            void init(StringView game_win_title, Color clear_color);
 
             void clear_canv() const;
 
@@ -38,16 +38,16 @@ namespace Core
           private:
             SharedPtr<SDL_Window> create_win();
 
-            sz get_screen_sz() const;
+            Size get_screen_sz() const;
 
             SharedPtr<SDL_Window> win_;
             SharedPtr<SDL_GLContext> context_;
             SharedPtr<SDL_Renderer> rend_;
             String game_win_title_;
-            color clear_color_;
+            Color clear_color_;
         };
 
-        class fps_counter
+        class FPSCounter
         {
           public:
             void update();
@@ -61,20 +61,20 @@ namespace Core
             int fps_{0};
             int frames_count_{0};
             int ticks_last_update_{0};
-            const pt_f k_position{0.93f, 0.02f};
+            const PointF k_position{0.93f, 0.02f};
         };
 
-        class cursor
+        class Cursor
         {
           public:
-            enum class curs_styles
+            enum class CursorStyles
             {
                 normal,
                 hovering_clickable_gui,
                 hovering_creature
             };
 
-            cursor()
+            Cursor()
             {
                 init();
             }
@@ -83,7 +83,7 @@ namespace Core
 
             void render();
 
-            auto set_curs_style(curs_styles val)
+            auto set_curs_style(CursorStyles val)
             {
                 curs_style_ = val;
             }
@@ -95,7 +95,7 @@ namespace Core
 
             constexpr static float k_curs_sz{0.05f};
 
-            curs_styles curs_style_{curs_styles::normal};
+            CursorStyles curs_style_{CursorStyles::normal};
         };
 
         class Assets
@@ -104,22 +104,22 @@ namespace Core
             class Images
             {
               public:
-                class image_bank
+                class ImageBank
                 {
                   public:
-                    image_bank()
+                    ImageBank()
                     {
                         init();
                     }
 
-                    ~image_bank()
+                    ~ImageBank()
                     {
                         cleanup();
                     }
 
                     GLuint get_tex(int img_name_hash) const;
 
-                    sz get_img_sz(int img_name_hash) const;
+                    Size get_img_sz(int img_name_hash) const;
 
                     bool text_tex_exists(float x, float y, int unique_id) const;
 
@@ -137,7 +137,7 @@ namespace Core
                     inline static const String k_rel_imgs_path{"./res/images/"};
 
                     std::map<int, GLuint> textures_;
-                    std::map<int, sz> tex_sizes_;
+                    std::map<int, Size> tex_sizes_;
                     std::map<float, std::map<float, std::map<int, GLuint>>>
                         text_texes_;
                 };
@@ -420,7 +420,7 @@ namespace Core
             using RenderersCollection::text_rend;
         };
 
-        void init(StringView game_win_title, color clear_color) const;
+        void init(StringView game_win_title, Color clear_color) const;
 
         void run();
 

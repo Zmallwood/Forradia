@@ -131,7 +131,7 @@ namespace Common
         /**
          * Point in 2D space, using dimensions of int type.
          */
-        class pt
+        class Point
         {
           public:
             /**
@@ -140,7 +140,7 @@ namespace Common
              * \param p Other Point to check equality against.
              * \return True if the two points are equal, otherwise false.
              */
-            bool operator==(const pt &p) const;
+            bool operator==(const Point &p) const;
 
             int x{0};
             int y{0};
@@ -149,7 +149,7 @@ namespace Common
         /**
          * Point in 2D space using dimensions of float type.
          */
-        class pt_f
+        class PointF
         {
           public:
             /**
@@ -159,7 +159,7 @@ namespace Common
              * \return The resulting PointF with the dimensions added
              * separately.
              */
-            pt_f operator+(const pt_f &p) const;
+            PointF operator+(const PointF &p) const;
 
             /**
              * Subtraction operator for the two points.
@@ -168,7 +168,7 @@ namespace Common
              * \return The resulting PointF with the dimensions subtracted
              * separetely.
              */
-            pt_f operator-(const pt_f &p) const;
+            PointF operator-(const PointF &p) const;
 
             float x{0.0f}; ///< The x dimension.
             float y{0.0f}; ///< The y dimension.
@@ -177,7 +177,7 @@ namespace Common
         /**
          * Point in 3D space using dimensions of float type.
          */
-        class pt3_f
+        class Point3F
         {
           public:
             float x{0.0f}; ///< The x dimension.
@@ -188,7 +188,7 @@ namespace Common
         /**
          * Size in 2D space, with the dimensions as int values.
          */
-        class sz
+        class Size
         {
           public:
             int w{0}; ///< Width.
@@ -198,7 +198,7 @@ namespace Common
         /**
          * Size in 2D space with dimensions of float values.
          */
-        class sz_f
+        class SizeF
         {
           public:
             float w{0.0f}; ///< Width.
@@ -208,7 +208,7 @@ namespace Common
         /**
          * A rectangle in 2D space using dimensions of float type.
          */
-        class rect_f
+        class RectF
         {
           public:
             /**
@@ -218,14 +218,14 @@ namespace Common
              * \return True if the Point is within this rectangle, otherwise
              * false.
              */
-            bool contains(pt_f p);
+            bool contains(PointF p);
 
             /**
              * Returns only the position of this rectangle.
              *
              * \return The position.
              */
-            pt_f pos() const;
+            PointF pos() const;
 
             /**
              * Adds an offset to this rectangle, with the dimensions altered
@@ -233,7 +233,7 @@ namespace Common
              *
              * \param offs The offset to add.
              */
-            void offs(pt_f offs);
+            void offs(PointF offs);
 
             float x{0.0f}; ///< The x coordinate.
             float y{0.0f}; ///< The y coordinate.
@@ -245,7 +245,7 @@ namespace Common
             /**
              * A RGBA color with components defined with float values.
              */
-            class color
+            class Color
             {
               public:
                 /**
@@ -266,18 +266,18 @@ namespace Common
              */
             namespace colors
             {
-                constexpr color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
+                constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 
-                constexpr color wheat{1.0f, 1.0f, 0.65f,
+                constexpr Color wheat{1.0f, 1.0f, 0.65f,
                                       1.0f}; ///< Wheat color.
 
-                constexpr color wheat_transp{
+                constexpr Color wheat_transp{
                     1.0f, 1.0f, 0.65f, 0.7f}; ///< Transparent wheat color.
 
-                constexpr color yellow{1.0f, 1.0f, 0.0f,
+                constexpr Color yellow{1.0f, 1.0f, 0.0f,
                                        1.0f}; ///< Yellow color.
 
-                constexpr color yellow_transp{
+                constexpr Color yellow_transp{
                     1.0f, 1.0f, 0.0f, 0.7f}; ///< Transparent yellow color.
             }
         }
@@ -292,7 +292,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(SharedPtr<SDL_Window> win);
+            Size get_canv_sz(SharedPtr<SDL_Window> win);
 
             /**
              * Calculate the aspect ratio of a given window.
@@ -334,7 +334,7 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win);
+            PointF norm_mouse_pos(SharedPtr<SDL_Window> win);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities

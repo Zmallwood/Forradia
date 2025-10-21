@@ -121,22 +121,22 @@ namespace Theme0
 
                             if (tl)
                             {
-                                pt n{x, y - 1};
-                                pt e{x + 1, y};
-                                pt s{x, y + 1};
-                                pt w{x - 1, y};
-                                pt nw{x - 1, y - 1};
-                                pt ne{x + 1, y - 1};
-                                pt se{x + 1, y + 1};
-                                pt sw{x - 1, y + 1};
-                                pt nn{x, y - 2};
-                                pt ww{x - 2, y};
-                                pt ee{x + 2, y};
-                                pt ss{x, y + 2};
-                                pt nwnw{x - 2, y - 2};
-                                pt nene{x + 2, y - 2};
-                                pt sese{x + 2, y + 2};
-                                pt swsw{x - 2, y + 2};
+                                Point n{x, y - 1};
+                                Point e{x + 1, y};
+                                Point s{x, y + 1};
+                                Point w{x - 1, y};
+                                Point nw{x - 1, y - 1};
+                                Point ne{x + 1, y - 1};
+                                Point se{x + 1, y + 1};
+                                Point sw{x - 1, y + 1};
+                                Point nn{x, y - 2};
+                                Point ww{x - 2, y};
+                                Point ee{x + 2, y};
+                                Point ss{x, y + 2};
+                                Point nwnw{x - 2, y - 2};
+                                Point nene{x + 2, y - 2};
+                                Point sese{x + 2, y + 2};
+                                Point swsw{x - 2, y + 2};
 
                                 auto tl_n{w_area_->get_tl(n)};
                                 auto tl_e{w_area_->get_tl(e)};

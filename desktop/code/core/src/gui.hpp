@@ -24,9 +24,9 @@ namespace GUIComponentsLibrary
 
         void render() const;
 
-        virtual rect_f bounds() const;
+        virtual RectF bounds() const;
 
-        void set_pos(pt_f new_pos);
+        void set_pos(PointF new_pos);
 
         void toggle_visible();
 
@@ -55,7 +55,7 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        rect_f bounds_;
+        RectF bounds_;
         Vector<SharedPtr<gui_comp>> children_;
         bool visible_{true};
         bool enabled_{true};
@@ -66,7 +66,7 @@ namespace GUIComponentsLibrary
     {
       public:
         gui_label(float x, float y, float w, float h, StringView text = "",
-                  bool cent_align = false, color color = colors::wheat_transp)
+                  bool cent_align = false, Color color = colors::wheat_transp)
             : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
@@ -83,7 +83,7 @@ namespace GUIComponentsLibrary
       private:
         String text_;
         bool cent_align_{false};
-        color color_;
+        Color color_;
     };
 
     class gui_panel : public gui_comp
@@ -150,7 +150,7 @@ namespace GUIComponentsLibrary
 
         void stop_move();
 
-        virtual rect_f get_drag_area();
+        virtual RectF get_drag_area();
 
         auto being_moved() const
         {
@@ -169,8 +169,8 @@ namespace GUIComponentsLibrary
 
       private:
         bool being_moved_{false};
-        pt_f move_start_pos_{-1, -1};
-        pt_f move_start_mouse_pos_{-1, -1};
+        PointF move_start_pos_{-1, -1};
+        PointF move_start_mouse_pos_{-1, -1};
     };
 
     class gui_win : public gui_movable_panel
@@ -185,7 +185,7 @@ namespace GUIComponentsLibrary
       protected:
         void render_derived() const override;
 
-        rect_f get_drag_area() override;
+        RectF get_drag_area() override;
 
         auto get_win_title_bar() const
         {
@@ -207,7 +207,7 @@ namespace GUIComponentsLibrary
 
             void render_derived() const override;
 
-            rect_f bounds() const override;
+            RectF bounds() const override;
 
           private:
             void init();

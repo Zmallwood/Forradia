@@ -15,17 +15,17 @@ namespace Theme0
     {
         void update_kb_actions()
         {
-            if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(
+            if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
                     SDLK_ESCAPE))
             {
                 _<gui_sys_menu>().toggle_visible();
             }
-            else if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(
+            else if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
                          SDLK_c))
             {
                 _<gui_player_body_win>().toggle_visible();
             }
-            else if (_<Core::engine::Input::kb_inp>().key_pressed_pick_res(
+            else if (_<Core::Engine::Input::kb_inp>().key_pressed_pick_res(
                          SDLK_b))
             {
                 _<gui_inventory_win>().toggle_visible();
@@ -34,7 +34,7 @@ namespace Theme0
 
         void update_mouse_actions()
         {
-            if (_<Core::engine::Input::mouse_inp::right_mouse_btn>()
+            if (_<Core::Engine::Input::mouse_inp::right_mouse_btn>()
                     .been_fired_pick_res())
             {
                 _<gui_interact_menu>().build_menu();
@@ -42,28 +42,28 @@ namespace Theme0
                 _<gui_interact_menu>().set_visible(true);
 
                 _<gui_interact_menu>().set_pos(
-                    norm_mouse_pos(_<engine::sdl_device>().win()));
+                    norm_mouse_pos(_<Engine::SDLDevice>().win()));
             }
         }
 
         void update_kb_movem()
         {
             auto up_press{
-                _<Core::engine::Input::kb_inp>().key_pressed(SDLK_UP)};
+                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_UP)};
 
             auto right_press{
-                _<Core::engine::Input::kb_inp>().key_pressed(SDLK_RIGHT)};
+                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_RIGHT)};
 
             auto down_press{
-                _<Core::engine::Input::kb_inp>().key_pressed(SDLK_DOWN)};
+                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_DOWN)};
 
             auto left_press{
-                _<Core::engine::Input::kb_inp>().key_pressed(SDLK_LEFT)};
+                _<Core::Engine::Input::kb_inp>().key_pressed(SDLK_LEFT)};
 
-            auto w_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_w)};
-            auto a_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_a)};
-            auto s_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_s)};
-            auto d_press{_<Core::engine::Input::kb_inp>().key_pressed(SDLK_d)};
+            auto w_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_w)};
+            auto a_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_a)};
+            auto s_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_s)};
+            auto d_press{_<Core::Engine::Input::kb_inp>().key_pressed(SDLK_d)};
 
             if (up_press || right_press || down_press || left_press)
             {
@@ -107,7 +107,7 @@ namespace Theme0
 
         void update_mouse_movem()
         {
-            if (_<Core::engine::Input::mouse_inp::left_mouse_btn>()
+            if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
                     .been_fired_pick_res())
             {
                 auto new_dest{_<tl_hovering>().hovered_coord()};
@@ -119,7 +119,7 @@ namespace Theme0
 
             auto dest{_<player>().dest()};
 
-            if (dest == pt{-1, -1})
+            if (dest == Point{-1, -1})
             {
                 return;
             }
@@ -207,7 +207,7 @@ namespace Theme0
                 auto new_x{pos.x + norm_dx};
                 auto new_y{pos.y + norm_dy};
 
-                pt new_pos{new_x, new_y};
+                Point new_pos{new_x, new_y};
 
                 if (new_pos == crea->dest())
                 {
@@ -303,7 +303,7 @@ namespace Theme0
                 auto new_x{pos.x + norm_dx};
                 auto new_y{pos.y + norm_dy};
 
-                auto new_pos{pt{new_x, new_y}};
+                auto new_pos{Point{new_x, new_y}};
 
                 if (new_pos == npc->dest())
                 {
@@ -343,7 +343,7 @@ namespace Theme0
         {
             auto player_pos{_<player>().pos()};
 
-            auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
+            auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 
             auto tl_sz{calc_tl_sz()};
 
@@ -376,7 +376,7 @@ namespace Theme0
             {
                 auto y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2 + y)};
 
-                auto coord{pt{hovered_x_coord, y_coord}};
+                auto coord{Point{hovered_x_coord, y_coord}};
 
                 auto tl{w_area->get_tl(coord)};
 
@@ -394,13 +394,13 @@ namespace Theme0
                 screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
                                   (player_elev - elev) * tl_sz.h / 2;
 
-                auto coord_nw{pt{coord.x, coord.y}};
+                auto coord_nw{Point{coord.x, coord.y}};
 
-                auto coord_ne{pt{coord.x + 1, coord.y}};
+                auto coord_ne{Point{coord.x + 1, coord.y}};
 
-                auto coord_sw{pt{coord.x, coord.y + 1}};
+                auto coord_sw{Point{coord.x, coord.y + 1}};
 
-                auto coord_se{pt{coord.x + 1, coord.y + 1}};
+                auto coord_se{Point{coord.x + 1, coord.y + 1}};
 
                 if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
                     !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
@@ -507,7 +507,7 @@ namespace Theme0
                     local_tl_h = tl_sz.h;
                 }
 
-                auto rect{rect_f{screen_rel_x_px,
+                auto rect{RectF{screen_rel_x_px,
                                  screen_rel_y_px - local_tl_h / 2, tl_sz.w,
                                  local_tl_h}};
 

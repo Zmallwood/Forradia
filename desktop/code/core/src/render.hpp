@@ -108,9 +108,9 @@ class RenderersCollection
         }
 
         void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                       pt3_f camera_pos, Vector<float> &elevs, float elev_h);
+                       Point3F camera_pos, Vector<float> &elevs, float elev_h);
 
-        void draw_tex(GLuint tex_id, Vector<float> &verts, pt3_f camera_pos);
+        void draw_tex(GLuint tex_id, Vector<float> &verts, Point3F camera_pos);
 
       private:
         void init();
@@ -132,7 +132,7 @@ class RenderersCollection
         }
 
         void draw_model(int model_name_hash, float x, float y, float elev,
-                        pt3_f camera_pos, float elev_h);
+                        Point3F camera_pos, float elev_h);
 
       private:
         void init();
@@ -159,7 +159,7 @@ class RenderersCollection
 
         void draw_str(StringView text, float x, float y,
                       font_szs font_sz = font_szs::_20, bool cent_align = false,
-                      color text_color = colors::wheat_transp) const;
+                      Color text_color = colors::wheat_transp) const;
 
       private:
         void init();

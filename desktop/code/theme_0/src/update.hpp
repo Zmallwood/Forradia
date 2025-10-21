@@ -37,7 +37,7 @@ class tl_hovering
     }
 
   private:
-    pt hovered_coord_{-1, -1};
+    Point hovered_coord_{-1, -1};
 };
 #define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
 _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_

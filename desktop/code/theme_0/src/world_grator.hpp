@@ -42,7 +42,7 @@ namespace WorldGeneration
 
         SharedPtr<Theme0::WorldStructure::world_area> w_area_;
         float scale_;
-        sz sz_;
+        Size sz_;
     };
 }
 using namespace WorldGeneration;

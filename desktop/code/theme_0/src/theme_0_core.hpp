@@ -10,11 +10,11 @@ namespace Theme0
 {
     namespace TileGridMath
     {
-        sz_f calc_tl_sz();
+        SizeF calc_tl_sz();
 
         float calc_tl_sz_new();
 
-        sz calc_grid_sz();
+        Size calc_grid_sz();
     }
     using namespace TileGridMath;
 
@@ -120,7 +120,7 @@ namespace Theme0
                     return dest_;
                 }
 
-                void set_dest(pt val)
+                void set_dest(Point val)
                 {
                     dest_ = val;
                 }
@@ -141,10 +141,10 @@ namespace Theme0
                 void move_to_suitable_pos();
 
                 String name_{"Unnamed Player"};
-                pt pos_{60, 50};
+                Point pos_{60, 50};
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
-                pt dest_{-1, -1};
+                Point dest_{-1, -1};
                 player_body body_;
                 int money_{0};
             };

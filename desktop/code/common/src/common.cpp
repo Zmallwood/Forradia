@@ -45,38 +45,38 @@ namespace Common
     ////////////////////
     namespace Matter
     {
-        bool pt::operator==(const pt &p) const
+        bool Point::operator==(const Point &p) const
         {
             // Compare x and y dimensions.
             return p.x == x && p.y == y;
         }
 
-        pt_f pt_f::operator+(const pt_f &p) const
+        PointF PointF::operator+(const PointF &p) const
         {
             // Sum the dimensions of the two points.
             return {x + p.x, y + p.y};
         }
 
-        pt_f pt_f::operator-(const pt_f &p) const
+        PointF PointF::operator-(const PointF &p) const
         {
             // Subract the dimensions of the other point from this point.
             return {x - p.x, y - p.y};
         }
 
-        bool rect_f::contains(pt_f p)
+        bool RectF::contains(PointF p)
         {
             // Create condition by checking against the boundaries of this
             // rectangle.
             return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
         }
 
-        pt_f rect_f::pos() const
+        PointF RectF::pos() const
         {
             // Return only the coordinates.
             return {x, y};
         }
 
-        void rect_f::offs(pt_f offs)
+        void RectF::offs(PointF offs)
         {
             // Add the offset to the dimensions separately.
             x += offs.x;
@@ -84,7 +84,7 @@ namespace Common
         }
         namespace Coloring
         {
-            SDL_Color color::to_sdl_color() const
+            SDL_Color Color::to_sdl_color() const
             {
                 // Calculate individual color components.
                 auto r_n{c_uint8(r * 255)};
@@ -104,9 +104,9 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(SharedPtr<SDL_Window> win)
+            Size get_canv_sz(SharedPtr<SDL_Window> win)
             {
-                sz canv_sz;
+                Size canv_sz;
                 // Get the size of the window.
                 SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
 
@@ -157,7 +157,7 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win)
+            PointF norm_mouse_pos(SharedPtr<SDL_Window> win)
             {
                 int x_px;
                 int y_px;

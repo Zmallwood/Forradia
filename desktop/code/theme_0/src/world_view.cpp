@@ -34,7 +34,7 @@ namespace Theme0
 
             auto rend_tl_sz{0.5f};
 
-            pt3_f camera_pos{(wa_sz.w - player_pos.x + 0.5f) * rend_tl_sz,
+            Point3F camera_pos{(wa_sz.w - player_pos.x + 0.5f) * rend_tl_sz,
                              (wa_sz.h - player_pos.y + 0.5f) * rend_tl_sz,
                              player_elev * elev_h};
 
@@ -68,15 +68,15 @@ namespace Theme0
 
                     auto objects{objs_stack->objects()};
 
-                    auto coord_nw{pt{x_coord, y_coord}};
-                    auto coord_ne{pt{x_coord + 1, y_coord}};
-                    auto coord_sw{pt{x_coord, y_coord + 1}};
-                    auto coord_se{pt{x_coord + 1, y_coord + 1}};
-                    auto coord_nee{pt{x_coord + 2, y_coord}};
-                    auto coord_see{pt{x_coord + 2, y_coord + 1}};
-                    auto coord_sese{pt{x_coord + 2, y_coord + 2}};
-                    auto coord_ses{pt{x_coord + 1, y_coord + 2}};
-                    auto coord_ss{pt{x_coord, y_coord + 2}};
+                    auto coord_nw{Point{x_coord, y_coord}};
+                    auto coord_ne{Point{x_coord + 1, y_coord}};
+                    auto coord_sw{Point{x_coord, y_coord + 1}};
+                    auto coord_se{Point{x_coord + 1, y_coord + 1}};
+                    auto coord_nee{Point{x_coord + 2, y_coord}};
+                    auto coord_see{Point{x_coord + 2, y_coord + 1}};
+                    auto coord_sese{Point{x_coord + 2, y_coord + 2}};
+                    auto coord_ses{Point{x_coord + 1, y_coord + 2}};
+                    auto coord_ss{Point{x_coord, y_coord + 2}};
 
                     if (!w_area->is_valid_coord(coord_nw) ||
                         !w_area->is_valid_coord(coord_ne) ||
@@ -203,7 +203,7 @@ namespace Theme0
                                         "object_birch_tree_trunk_part";
                                 }
 
-                                _<engine::Renderers::model_rend>().draw_model(
+                                _<Engine::Renderers::model_rend>().draw_model(
                                     hash(trunk_part_name),
                                     trunk_part_x_center - trunk_part_width / 2,
                                     trunk_part_y_center - trunk_part_width / 2,
@@ -216,7 +216,7 @@ namespace Theme0
 
                                 if (needle_type)
                                 {
-                                    _<engine::Renderers::model_rend>()
+                                    _<Engine::Renderers::model_rend>()
                                         .draw_model(needle_type,
                                                     trunk_part_x_center,
                                                     trunk_part_y_center,
@@ -228,7 +228,7 @@ namespace Theme0
                         }
                         else
                         {
-                            _<engine::Renderers::model_rend>().draw_model(
+                            _<Engine::Renderers::model_rend>().draw_model(
                                 obj_type,
                                 (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                                 (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
@@ -239,14 +239,14 @@ namespace Theme0
                     if (x_coord == wa_sz.w - player_pos.x &&
                         y_coord == wa_sz.h - player_pos.y)
                     {
-                        _<engine::Renderers::model_rend>().draw_model(
+                        _<Engine::Renderers::model_rend>().draw_model(
                             hash("player"),
                             (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             elev_avg, camera_pos, elev_h);
                     }
 
-                    _<engine::Renderers::ground_rend>().draw_tile(
+                    _<Engine::Renderers::ground_rend>().draw_tile(
                         ground, x_coord - 1, y_coord - 1, rend_tl_sz,
                         camera_pos, elevs, elev_h);
                 }

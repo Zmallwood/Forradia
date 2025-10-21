@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     using namespace Forradia;
 
-    _<engine>().init(_<Theme0::game_props>().k_game_win_title,
+    _<Engine>().init(_<Theme0::game_props>().k_game_win_title,
                      _<Theme0::game_props>().k_clear_color);
 
     _<Theme0::script_engine>().init();
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         _<Theme0::game_props>().k_w_area_sz,
         _<Theme0::game_props>().k_world_scaling);
 
-    _<engine>().run();
+    _<Engine>().run();
     
     return 0;
 }

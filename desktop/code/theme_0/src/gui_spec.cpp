@@ -22,9 +22,9 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        _<engine::Renderers::text_rend>().draw_str(
+        _<Engine::Renderers::text_rend>().draw_str(
             _<Theme0::GameplayCore::Player::player>().name(), b.x + 0.01f,
-            b.y + 0.01f, engine::Renderers::font_szs::_26);
+            b.y + 0.01f, Engine::Renderers::font_szs::_26);
     }
 
     void gui_sys_menu::init()
@@ -36,24 +36,24 @@ namespace SpecializedGUI
     {
         gui_comp::update_derived();
 
-        _<Core::engine::Input::mouse_inp::left_mouse_btn>().reset();
+        _<Core::Engine::Input::mouse_inp::left_mouse_btn>().reset();
     }
 
     void gui_sys_menu::render_derived() const
     {
         gui_comp::render_derived();
 
-        auto c_sz{get_canv_sz(_<engine::sdl_device>().win())};
+        auto c_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
 
         auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
 
-        SDL_SetRenderDrawBlendMode(_<engine::sdl_device>().rend().get(),
+        SDL_SetRenderDrawBlendMode(_<Engine::SDLDevice>().rend().get(),
                                    SDL_BLENDMODE_BLEND);
 
-        SDL_SetRenderDrawColor(_<engine::sdl_device>().rend().get(), 200, 0,
+        SDL_SetRenderDrawColor(_<Engine::SDLDevice>().rend().get(), 200, 0,
                                255, 50);
 
-        SDL_RenderFillRect(_<engine::sdl_device>().rend().get(), &rect);
+        SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(), &rect);
     }
 
     void gui_inventory_win::render_derived() const
@@ -64,7 +64,7 @@ namespace SpecializedGUI
 
         auto margin_x{k_margin};
 
-        auto margin_y{conv_w_to_h(k_margin, _<engine::sdl_device>().win())};
+        auto margin_y{conv_w_to_h(k_margin, _<Engine::SDLDevice>().win())};
 
         auto x_start{b.x + margin_x};
 
@@ -72,7 +72,7 @@ namespace SpecializedGUI
 
         auto slot_w{k_slot_size};
 
-        auto slot_h{conv_w_to_h(k_slot_size, _<engine::sdl_device>().win())};
+        auto slot_h{conv_w_to_h(k_slot_size, _<Engine::SDLDevice>().win())};
 
         auto num_cols{c_int((b.w - 2 * margin_x) / slot_w)};
 
@@ -82,7 +82,7 @@ namespace SpecializedGUI
         {
             for (auto x = 0; x < num_cols; x++)
             {
-                _<engine::Renderers::img_2d_rend>().draw_img(
+                _<Engine::Renderers::img_2d_rend>().draw_img(
                     k_slot_img_name, x_start + x * (slot_w + margin_x),
                     y_start + y * (slot_h + margin_y), slot_w, slot_h);
             }
@@ -93,7 +93,7 @@ namespace SpecializedGUI
     {
         auto img_w{0.07f};
 
-        auto img_h{conv_w_to_h(img_w, _<engine::sdl_device>().win())};
+        auto img_h{conv_w_to_h(img_w, _<Engine::SDLDevice>().win())};
 
         auto overall_body_img_btn{
             std::make_shared<GUIComponentsLibrary::gui_button>(
@@ -390,17 +390,17 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        auto mouse_pos{norm_mouse_pos(_<engine::sdl_device>().win())};
+        auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 
         auto i{0};
 
         for (auto &entry : entries_)
         {
-            auto menu_entry_rect{rect_f{b.x + 0.01f + k_indent_w,
+            auto menu_entry_rect{RectF{b.x + 0.01f + k_indent_w,
                                         b.y + 0.01f + k_line_h * (i + 1), b.w,
                                         k_line_h}};
 
-            if (_<Core::engine::Input::mouse_inp::left_mouse_btn>()
+            if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
                     .been_fired_no_pick_res())
             {
                 if (menu_entry_rect.contains(mouse_pos))
@@ -413,7 +413,7 @@ namespace SpecializedGUI
 
             ++i;
         }
-        if (_<Core::engine::Input::mouse_inp::left_mouse_btn>()
+        if (_<Core::Engine::Input::mouse_inp::left_mouse_btn>()
                 .been_fired_pick_res())
         {
             set_visible(false);
@@ -426,18 +426,18 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        _<engine::Renderers::text_rend>().draw_str(
+        _<Engine::Renderers::text_rend>().draw_str(
             "Actions", b.x + 0.01f, b.y + 0.01f,
-            engine::Renderers::font_szs::_20, false, colors::yellow_transp);
+            Engine::Renderers::font_szs::_20, false, colors::yellow_transp);
 
         auto i{0};
 
         for (auto &entry : entries_)
         {
-            _<engine::Renderers::text_rend>().draw_str(
+            _<Engine::Renderers::text_rend>().draw_str(
                 entry.label(), b.x + 0.01f + k_indent_w,
                 b.y + 0.01f + (i + 1) * k_line_h,
-                engine::Renderers::font_szs::_20);
+                Engine::Renderers::font_szs::_20);
 
             ++i;
         }

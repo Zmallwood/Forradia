@@ -57,7 +57,7 @@ namespace WorldStructure
             return dest_;
         }
 
-        void set_dest(pt val)
+        void set_dest(Point val)
         {
             dest_ = val;
         }
@@ -68,7 +68,7 @@ namespace WorldStructure
         int type_{0};
         int ticks_last_move_{0};
         float movem_spd_{2.0f};
-        pt dest_{-1, -1};
+        Point dest_{-1, -1};
     };
 
     class npc
@@ -109,7 +109,7 @@ namespace WorldStructure
             return dest_;
         }
 
-        void set_dest(pt val)
+        void set_dest(Point val)
         {
             dest_ = val;
         }
@@ -133,7 +133,7 @@ namespace WorldStructure
         String name_;
         int ticks_last_move_{0};
         float movem_spd_{2.0f};
-        pt dest_{-1, -1};
+        Point dest_{-1, -1};
         int ticks_next_spontaneous_speech_{0};
     };
 
@@ -179,7 +179,7 @@ namespace WorldStructure
       private:
         void init(StringView obj_type_name);
 
-        Vector<pt_f> trunk_parts_;
+        Vector<PointF> trunk_parts_;
         Vector<int> needle_types_;
         float w_factor_{1.0f};
     };
@@ -300,20 +300,20 @@ namespace WorldStructure
     class world_area
     {
       public:
-        world_area(sz w_area_sz, float world_scaling)
+        world_area(Size w_area_sz, float world_scaling)
         {
             init(w_area_sz, world_scaling);
         }
 
-        sz get_sz() const;
+        Size get_sz() const;
 
         bool is_valid_coord(int x, int y) const;
 
-        bool is_valid_coord(pt coord) const;
+        bool is_valid_coord(Point coord) const;
 
         SharedPtr<tile> get_tl(int x, int y) const;
 
-        SharedPtr<tile> get_tl(pt coord) const;
+        SharedPtr<tile> get_tl(Point coord) const;
 
         auto &creatures_mirror_ref()
         {
@@ -326,17 +326,17 @@ namespace WorldStructure
         }
 
       private:
-        void init(sz w_area_sz, float world_scaling);
+        void init(Size w_area_sz, float world_scaling);
 
         Vector<Vector<SharedPtr<tile>>> tiles_;
-        std::map<SharedPtr<creature>, pt> creatures_mirror_;
-        std::map<SharedPtr<npc>, pt> npcs_mirror_;
+        std::map<SharedPtr<creature>, Point> creatures_mirror_;
+        std::map<SharedPtr<npc>, Point> npcs_mirror_;
     };
 
     class world
     {
       public:
-        void init(sz w_area_sz, float world_scaling);
+        void init(Size w_area_sz, float world_scaling);
 
         auto curr_w_area() const
         {

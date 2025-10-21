@@ -75,7 +75,7 @@ namespace Theme0
 
                 auto offset_y{i * 0.1f};
 
-                auto pos{pt_f{offs_x, offset_y}};
+                auto pos{PointF{offs_x, offset_y}};
 
                 auto needles_type{rand_int(5)};
 
@@ -137,7 +137,7 @@ namespace Theme0
             ground_ = hash(ground_name);
         }
 
-        void world_area::init(sz w_area_sz, float world_scaling)
+        void world_area::init(Size w_area_sz, float world_scaling)
         {
             auto sz{w_area_sz};
 
@@ -155,7 +155,7 @@ namespace Theme0
             }
         }
 
-        sz world_area::get_sz() const
+        Size world_area::get_sz() const
         {
             auto w{c_int(tiles_.size())};
 
@@ -176,7 +176,7 @@ namespace Theme0
             return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
         }
 
-        bool world_area::is_valid_coord(pt coord) const
+        bool world_area::is_valid_coord(Point coord) const
         {
             return is_valid_coord(coord.x, coord.y);
         }
@@ -191,12 +191,12 @@ namespace Theme0
             return nullptr;
         }
 
-        SharedPtr<tile> world_area::get_tl(pt coord) const
+        SharedPtr<tile> world_area::get_tl(Point coord) const
         {
             return get_tl(coord.x, coord.y);
         }
 
-        void world::init(sz w_area_sz, float world_scaling)
+        void world::init(Size w_area_sz, float world_scaling)
         {
             curr_w_area_ =
                 std::make_shared<world_area>(w_area_sz, world_scaling);

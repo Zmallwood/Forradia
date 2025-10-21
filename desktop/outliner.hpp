@@ -52,7 +52,7 @@ namespace Common
         using StringView = std::string_view;
         template <class T> using SharedPtr = std::shared_ptr<T>;
         template <class T> using Vector = std::vector<T>;
-        template <class T> using func = std::function<T>;
+        template <class T> using Function = std::function<T>;
     }
     using namespace Aliases;
     namespace Constants
@@ -101,7 +101,7 @@ namespace Common
          * Class used for SharedPtrs of SDL objects,
          * which handles automaticallyfreeing up resources at object deletion.
          */
-        class sdl_del
+        class SDLDeleter
         {
           public:
             /**
@@ -149,7 +149,7 @@ namespace Common
         /**
          * Point in 2D space, using dimensions of int type.
          */
-        class pt
+        class Point
         {
           public:
             /**
@@ -158,7 +158,7 @@ namespace Common
              * \param p Other Point to check equality against.
              * \return True if the two points are equal, otherwise false.
              */
-            bool operator==(const pt &p) const;
+            bool operator==(const Point &p) const;
 
             int x{0};
             int y{0};
@@ -167,7 +167,7 @@ namespace Common
         /**
          * Point in 2D space using dimensions of float type.
          */
-        class pt_f
+        class PointF
         {
           public:
             /**
@@ -177,7 +177,7 @@ namespace Common
              * \return The resulting PointF with the dimensions added
              * separately.
              */
-            pt_f operator+(const pt_f &p) const;
+            PointF operator+(const PointF &p) const;
 
             /**
              * Subtraction operator for the two points.
@@ -186,7 +186,7 @@ namespace Common
              * \return The resulting PointF with the dimensions subtracted
              * separetely.
              */
-            pt_f operator-(const pt_f &p) const;
+            PointF operator-(const PointF &p) const;
 
             float x{0.0f}; ///< The x dimension.
             float y{0.0f}; ///< The y dimension.
@@ -195,7 +195,7 @@ namespace Common
         /**
          * Point in 3D space using dimensions of float type.
          */
-        class pt3_f
+        class Point3F
         {
           public:
             float x{0.0f}; ///< The x dimension.
@@ -206,7 +206,7 @@ namespace Common
         /**
          * Size in 2D space, with the dimensions as int values.
          */
-        class sz
+        class Size
         {
           public:
             int w{0}; ///< Width.
@@ -216,7 +216,7 @@ namespace Common
         /**
          * Size in 2D space with dimensions of float values.
          */
-        class sz_f
+        class SizeF
         {
           public:
             float w{0.0f}; ///< Width.
@@ -226,7 +226,7 @@ namespace Common
         /**
          * A rectangle in 2D space using dimensions of float type.
          */
-        class rect_f
+        class RectF
         {
           public:
             /**
@@ -236,14 +236,14 @@ namespace Common
              * \return True if the Point is within this rectangle, otherwise
              * false.
              */
-            bool contains(pt_f p);
+            bool contains(PointF p);
 
             /**
              * Returns only the position of this rectangle.
              *
              * \return The position.
              */
-            pt_f pos() const;
+            PointF pos() const;
 
             /**
              * Adds an offset to this rectangle, with the dimensions altered
@@ -251,7 +251,7 @@ namespace Common
              *
              * \param offs The offset to add.
              */
-            void offs(pt_f offs);
+            void offs(PointF offs);
 
             float x{0.0f}; ///< The x coordinate.
             float y{0.0f}; ///< The y coordinate.
@@ -310,7 +310,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(SharedPtr<SDL_Window> win);
+            Size get_canv_sz(SharedPtr<SDL_Window> win);
 
             /**
              * Calculate the aspect ratio of a given window.
@@ -352,7 +352,7 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win);
+            PointF norm_mouse_pos(SharedPtr<SDL_Window> win);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities
@@ -502,7 +502,7 @@ namespace Core
           private:
             SharedPtr<SDL_Window> create_win();
 
-            sz get_screen_sz() const;
+            Size get_screen_sz() const;
 
             SharedPtr<SDL_Window> win_;
             SharedPtr<SDL_GLContext> context_;
@@ -525,7 +525,7 @@ namespace Core
             int fps_{0};
             int frames_count_{0};
             int ticks_last_update_{0};
-            const pt_f k_position{0.93f, 0.02f};
+            const PointF k_position{0.93f, 0.02f};
         };
 
         class cursor
@@ -583,7 +583,7 @@ namespace Core
 
                     GLuint get_tex(int img_name_hash) const;
 
-                    sz get_img_sz(int img_name_hash) const;
+                    Size get_img_sz(int img_name_hash) const;
 
                     bool text_tex_exists(float x, float y, int unique_id) const;
 
@@ -601,7 +601,7 @@ namespace Core
                     inline static const String k_rel_imgs_path{"./res/images/"};
 
                     std::map<int, GLuint> textures_;
-                    std::map<int, sz> tex_sizes_;
+                    std::map<int, Size> tex_sizes_;
                     std::map<float, std::map<float, std::map<int, GLuint>>>
                         text_texes_;
                 };
@@ -719,22 +719,22 @@ namespace Core
 
                 void on_enter();
 
-                void set_init_derived(func<void()> value)
+                void set_init_derived(Function<void()> value)
                 {
                     init_derived_ = value;
                 }
 
-                void set_on_enter_derived(func<void()> value)
+                void set_on_enter_derived(Function<void()> value)
                 {
                     on_enter_derived_ = value;
                 }
 
-                void set_update_derived(func<void()> value)
+                void set_update_derived(Function<void()> value)
                 {
                     update_derived_ = value;
                 }
 
-                void set_render_derived(func<void()> value)
+                void set_render_derived(Function<void()> value)
                 {
                     render_derived_ = value;
                 }
@@ -747,10 +747,10 @@ namespace Core
 
               private:
                 SharedPtr<ScenesGUI::gui_root> gui_;
-                func<void()> init_derived_{[] {}};
-                func<void()> on_enter_derived_{[] {}};
-                func<void()> update_derived_{[] {}};
-                func<void()> render_derived_{[] {}};
+                Function<void()> init_derived_{[] {}};
+                Function<void()> on_enter_derived_{[] {}};
+                Function<void()> update_derived_{[] {}};
+                Function<void()> render_derived_{[] {}};
             };
 
             class scene_mngr
@@ -929,9 +929,9 @@ namespace GUIComponentsLibrary
 
         void render() const;
 
-        virtual rect_f bounds() const;
+        virtual RectF bounds() const;
 
-        void set_pos(pt_f new_pos);
+        void set_pos(PointF new_pos);
 
         void toggle_visible();
 
@@ -960,7 +960,7 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        rect_f bounds_;
+        RectF bounds_;
         Vector<SharedPtr<gui_comp>> children_;
         bool visible_{true};
         bool enabled_{true};
@@ -1018,7 +1018,7 @@ namespace GUIComponentsLibrary
     {
       public:
         gui_button(float x, float y, float w, float h, StringView text,
-                   func<void()> action, StringView bg_img = k_bg_img,
+                   Function<void()> action, StringView bg_img = k_bg_img,
                    StringView hovered_bg_img = k_hovered_bg_img)
             : gui_panel(x, y, w, h), text_(text), action_(action),
               bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
@@ -1035,7 +1035,7 @@ namespace GUIComponentsLibrary
         inline static const String k_hovered_bg_img{"gui_button_hovered_bg"};
 
         String text_;
-        func<void()> action_;
+        Function<void()> action_;
         String bg_img_;
         String hovered_bg_img_;
     };
@@ -1055,7 +1055,7 @@ namespace GUIComponentsLibrary
 
         void stop_move();
 
-        virtual rect_f get_drag_area();
+        virtual RectF get_drag_area();
 
         auto being_moved() const
         {
@@ -1074,8 +1074,8 @@ namespace GUIComponentsLibrary
 
       private:
         bool being_moved_{false};
-        pt_f move_start_pos_{-1, -1};
-        pt_f move_start_mouse_pos_{-1, -1};
+        PointF move_start_pos_{-1, -1};
+        PointF move_start_mouse_pos_{-1, -1};
     };
 
     class gui_win : public gui_movable_panel
@@ -1090,7 +1090,7 @@ namespace GUIComponentsLibrary
       protected:
         void render_derived() const override;
 
-        rect_f get_drag_area() override;
+        RectF get_drag_area() override;
 
         auto get_win_title_bar() const
         {
@@ -1112,7 +1112,7 @@ namespace GUIComponentsLibrary
 
             void render_derived() const override;
 
-            rect_f bounds() const override;
+            RectF bounds() const override;
 
           private:
             void init();
@@ -1281,9 +1281,9 @@ class RenderersCollection
         }
 
         void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                       pt3_f camera_pos, Vector<float> &elevs, float elev_h);
+                       Point3F camera_pos, Vector<float> &elevs, float elev_h);
 
-        void draw_tex(GLuint tex_id, Vector<float> &verts, pt3_f camera_pos);
+        void draw_tex(GLuint tex_id, Vector<float> &verts, Point3F camera_pos);
 
       private:
         void init();
@@ -1305,7 +1305,7 @@ class RenderersCollection
         }
 
         void draw_model(int model_name_hash, float x, float y, float elev,
-                        pt3_f camera_pos, float elev_h);
+                        Point3F camera_pos, float elev_h);
 
       private:
         void init();
@@ -1363,11 +1363,11 @@ namespace Theme0
 {
     namespace TileGridMath
     {
-        sz_f calc_tl_sz();
+        SizeF calc_tl_sz();
 
         float calc_tl_sz_new();
 
-        sz calc_grid_sz();
+        Size calc_grid_sz();
     }
     using namespace TileGridMath;
 
@@ -1473,7 +1473,7 @@ namespace Theme0
                     return dest_;
                 }
 
-                void set_dest(pt val)
+                void set_dest(Point val)
                 {
                     dest_ = val;
                 }
@@ -1494,10 +1494,10 @@ namespace Theme0
                 void move_to_suitable_pos();
 
                 String name_{"Unnamed Player"};
-                pt pos_{60, 50};
+                Point pos_{60, 50};
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
-                pt dest_{-1, -1};
+                Point dest_{-1, -1};
                 player_body body_;
                 int money_{0};
             };
@@ -1557,7 +1557,7 @@ class tl_hovering
     }
 
   private:
-    pt hovered_coord_{-1, -1};
+    Point hovered_coord_{-1, -1};
 };
 #define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
 _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_
@@ -1662,7 +1662,7 @@ namespace WorldStructure
             return dest_;
         }
 
-        void set_dest(pt val)
+        void set_dest(Point val)
         {
             dest_ = val;
         }
@@ -1673,7 +1673,7 @@ namespace WorldStructure
         int type_{0};
         int ticks_last_move_{0};
         float movem_spd_{2.0f};
-        pt dest_{-1, -1};
+        Point dest_{-1, -1};
     };
 
     class npc
@@ -1714,7 +1714,7 @@ namespace WorldStructure
             return dest_;
         }
 
-        void set_dest(pt val)
+        void set_dest(Point val)
         {
             dest_ = val;
         }
@@ -1738,7 +1738,7 @@ namespace WorldStructure
         String name_;
         int ticks_last_move_{0};
         float movem_spd_{2.0f};
-        pt dest_{-1, -1};
+        Point dest_{-1, -1};
         int ticks_next_spontaneous_speech_{0};
     };
 
@@ -1784,7 +1784,7 @@ namespace WorldStructure
       private:
         void init(StringView obj_type_name);
 
-        Vector<pt_f> trunk_parts_;
+        Vector<PointF> trunk_parts_;
         Vector<int> needle_types_;
         float w_factor_{1.0f};
     };
@@ -1905,20 +1905,20 @@ namespace WorldStructure
     class world_area
     {
       public:
-        world_area(sz w_area_sz, float world_scaling)
+        world_area(Size w_area_sz, float world_scaling)
         {
             init(w_area_sz, world_scaling);
         }
 
-        sz get_sz() const;
+        Size get_sz() const;
 
         bool is_valid_coord(int x, int y) const;
 
-        bool is_valid_coord(pt coord) const;
+        bool is_valid_coord(Point coord) const;
 
         SharedPtr<tile> get_tl(int x, int y) const;
 
-        SharedPtr<tile> get_tl(pt coord) const;
+        SharedPtr<tile> get_tl(Point coord) const;
 
         auto &creatures_mirror_ref()
         {
@@ -1931,17 +1931,17 @@ namespace WorldStructure
         }
 
       private:
-        void init(sz w_area_sz, float world_scaling);
+        void init(Size w_area_sz, float world_scaling);
 
         Vector<Vector<SharedPtr<tile>>> tiles_;
-        std::map<SharedPtr<creature>, pt> creatures_mirror_;
-        std::map<SharedPtr<npc>, pt> npcs_mirror_;
+        std::map<SharedPtr<creature>, Point> creatures_mirror_;
+        std::map<SharedPtr<npc>, Point> npcs_mirror_;
     };
 
     class world
     {
       public:
-        void init(sz w_area_sz, float world_scaling);
+        void init(Size w_area_sz, float world_scaling);
 
         auto curr_w_area() const
         {
@@ -1981,7 +1981,7 @@ namespace Configuration
         static constexpr String k_game_win_title{"Forradia"};
         static constexpr color k_clear_color{colors::black};
         static constexpr int k_num_grid_rows{15};
-        static constexpr sz k_w_area_sz{120, 100};
+        static constexpr Size k_w_area_sz{120, 100};
         static constexpr float k_world_scaling{5.0f};
     };
 }
@@ -2097,7 +2097,7 @@ namespace SpecializedGUI
         class gui_interact_menu_entry
         {
           public:
-            gui_interact_menu_entry(StringView label, func<void()> action)
+            gui_interact_menu_entry(StringView label, Function<void()> action)
                 : label_(label), action_(action)
             {
             }
@@ -2114,7 +2114,7 @@ namespace SpecializedGUI
 
           private:
             String label_;
-            func<void()> action_;
+            Function<void()> action_;
         };
 
         Vector<gui_interact_menu_entry> entries_;
@@ -2174,7 +2174,7 @@ namespace WorldGeneration
 
         SharedPtr<Theme0::WorldStructure::world_area> w_area_;
         float scale_;
-        sz sz_;
+        Size sz_;
     };
 }
 using namespace WorldGeneration;
