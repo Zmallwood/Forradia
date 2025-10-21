@@ -7,7 +7,7 @@
 #include <glm/gtx/transform.hpp>
 
 _NS_START_
-void RenderersCollection::ShaderProgram::init(StringView vert_src,
+void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
                                                StringView frag_src)
 {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
@@ -100,12 +100,12 @@ void RenderersCollection::ShaderProgram::init(StringView vert_src,
     glDeleteShader(fragment_shader);
 }
 
-void RenderersCollection::ShaderProgram::cleanup()
+void RenderersCollection::ShaderProgram::Cleanup()
 {
     glDeleteProgram(program_);
 }
 
-void RenderersCollection::Image2DRenderer::init()
+void RenderersCollection::Image2DRenderer::Initialize()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -145,7 +145,7 @@ void RenderersCollection::Image2DRenderer::init()
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::Image2DRenderer::cleanup()
+void RenderersCollection::Image2DRenderer::Cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -161,28 +161,28 @@ void RenderersCollection::Image2DRenderer::cleanup()
     glUseProgram(0);
 }
 
-void RenderersCollection::Image2DRenderer::reset_counter()
+void RenderersCollection::Image2DRenderer::ResetCounter()
 {
     counter_ = 0;
 }
 
-void RenderersCollection::Image2DRenderer::draw_img(int img_name_hash, float x,
+void RenderersCollection::Image2DRenderer::DrawImage(int img_name_hash, float x,
                                                 float y, float w, float h)
 {
     auto tex_id{
         _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
-    Image2DRenderer::draw_tex(tex_id, x, y, w, h);
+    Image2DRenderer::DrawTexture(tex_id, x, y, w, h);
 }
 
-void RenderersCollection::Image2DRenderer::draw_tex(GLuint tex_id, float x, float y,
+void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, float y,
                                                 float w, float h)
 {
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
-    glUseProgram(shader_program_->program());
+    glUseProgram(shader_program_->GetProgram());
 
     glEnable(GL_BLEND);
 
@@ -315,7 +315,7 @@ void RenderersCollection::Image2DRenderer::draw_tex(GLuint tex_id, float x, floa
     ++counter_;
 }
 
-void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
+void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(StringView img_name,
                                                        float x, float y,
                                                        float w)
 {
@@ -334,16 +334,16 @@ void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
 
     auto h{w / img_asp_rat * canv_asp_rat};
 
-    draw_img(hash, x, y, w, h);
+    DrawImage(hash, x, y, w, h);
 }
 
-void RenderersCollection::Image2DRenderer::draw_img(StringView img_name, float x,
+void RenderersCollection::Image2DRenderer::DrawImage(StringView img_name, float x,
                                                 float y, float w, float h)
 {
-    draw_img(Hash(img_name), x, y, w, h);
+    DrawImage(Hash(img_name), x, y, w, h);
 }
 
-void RenderersCollection::GroundRenderer::init()
+void RenderersCollection::GroundRenderer::Initialize()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -398,7 +398,7 @@ void RenderersCollection::GroundRenderer::init()
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::GroundRenderer::cleanup()
+void RenderersCollection::GroundRenderer::Cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -414,7 +414,7 @@ void RenderersCollection::GroundRenderer::cleanup()
     glUseProgram(0);
 }
 
-void RenderersCollection::GroundRenderer::draw_tile(int img_name_hash, int x_coord,
+void RenderersCollection::GroundRenderer::DrawTile(int img_name_hash, int x_coord,
                                                  int y_coord, float tl_sz,
                                                  Point3F camera_pos,
                                                  Vector<float> &elevs,
@@ -501,10 +501,10 @@ void RenderersCollection::GroundRenderer::draw_tile(int img_name_hash, int x_coo
                       1.0,
                       1.0}};
 
-    GroundRenderer::draw_tex(tex_id, verts, camera_pos);
+    GroundRenderer::DrawTexture(tex_id, verts, camera_pos);
 }
 
-void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
+void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
                                                 Vector<float> &verts,
                                                 Point3F camera_pos)
 {
@@ -514,7 +514,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
 
     glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
 
-    glUseProgram(shader_program_->program());
+    glUseProgram(shader_program_->GetProgram());
 
     glEnable(GL_BLEND);
 
@@ -567,10 +567,10 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
     glm::vec3 v12 = {_12x, _12y, _12z};
     glm::vec3 v22 = {_22x, _22y, _22z};
 
-    glm::vec3 normal00 = compute_normal(v10, v00, v01);
-    glm::vec3 normal10 = compute_normal(v20, v10, v11);
-    glm::vec3 normal11 = compute_normal(v21, v11, v12);
-    glm::vec3 normal01 = compute_normal(v11, v01, v02);
+    glm::vec3 normal00 = ComputeNormal(v10, v00, v01);
+    glm::vec3 normal10 = ComputeNormal(v20, v10, v11);
+    glm::vec3 normal11 = ComputeNormal(v21, v11, v12);
+    glm::vec3 normal01 = ComputeNormal(v11, v01, v02);
 
     normal00.z *= -1.0f;
     normal10.z *= -1.0f;
@@ -726,7 +726,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
 
     glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
 
-    GLuint matrix_id = glGetUniformLocation(shader_program_->program(), "MVP");
+    GLuint matrix_id = glGetUniformLocation(shader_program_->GetProgram(), "MVP");
 
     glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
 
@@ -749,7 +749,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
     glDisable(GL_DEPTH_TEST);
 }
 
-glm::vec3 RenderersCollection::GroundRenderer::compute_normal(glm::vec3 p1,
+glm::vec3 RenderersCollection::GroundRenderer::ComputeNormal(glm::vec3 p1,
                                                            glm::vec3 p2,
                                                            glm::vec3 p3)
 {
@@ -761,7 +761,7 @@ glm::vec3 RenderersCollection::GroundRenderer::compute_normal(glm::vec3 p1,
     return glm::normalize(glm::cross(a, b));
 }
 
-void RenderersCollection::ModelRenderer::init()
+void RenderersCollection::ModelRenderer::Initialize()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -837,7 +837,7 @@ void RenderersCollection::ModelRenderer::init()
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x,
+void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
                                                  float y, float elev,
                                                  Point3F camera_pos, float elev_h)
 {
@@ -859,7 +859,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
-    glUseProgram(shader_program_->program());
+    glUseProgram(shader_program_->GetProgram());
 
     glEnable(GL_BLEND);
 
@@ -1015,16 +1015,16 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
         glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
 
     GLuint matrix_projection =
-        glGetUniformLocation(shader_program_->program(), "projection");
+        glGetUniformLocation(shader_program_->GetProgram(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
                        &projection_matrix[0][0]);
 
     GLuint matrix_model =
-        glGetUniformLocation(shader_program_->program(), "model");
+        glGetUniformLocation(shader_program_->GetProgram(), "model");
     glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
 
     GLuint matrix_view =
-        glGetUniformLocation(shader_program_->program(), "view");
+        glGetUniformLocation(shader_program_->GetProgram(), "view");
 
     glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
 
@@ -1054,14 +1054,14 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
     glDisable(GL_DEPTH_TEST);
 }
 
-void RenderersCollection::TextRenderer::init()
+void RenderersCollection::TextRenderer::Initialize()
 {
     TTF_Init();
 
-    add_fonts();
+    AddFonts();
 }
 
-void RenderersCollection::TextRenderer::add_fonts()
+void RenderersCollection::TextRenderer::AddFonts()
 {
     auto abs_font_path{String(SDL_GetBasePath()) + k_default_font_path.data()};
 
@@ -1085,7 +1085,7 @@ void RenderersCollection::TextRenderer::add_fonts()
     }
 }
 
-void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float y,
+void RenderersCollection::TextRenderer::DrawString(StringView text, float x, float y,
                                               FontSizes font_sz, bool cent_align,
                                               Color text_color) const
 {
@@ -1167,6 +1167,6 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
     auto wf{CFloat(dest.w) / canv_sz.w};
     auto hf{CFloat(dest.h) / canv_sz.h};
     
-    _<Image2DRenderer>().draw_tex(tex, xf, yf, wf, hf);
+    _<Image2DRenderer>().DrawTexture(tex, xf, yf, wf, hf);
 }
 _NS_END_

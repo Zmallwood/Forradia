@@ -86,7 +86,7 @@ void GUIComponentsLibrary::GUILabel::RenderDerived() const
         b.y += b.h / 2;
     }
 
-    _<Engine::Renderers::TextRenderer>().draw_str(
+    _<Engine::Renderers::TextRenderer>().DrawString(
         text_, b.x, b.y, Engine::Renderers::FontSizes::_20, cent_align_, color_);
 }
 
@@ -94,7 +94,7 @@ void GUIComponentsLibrary::GUIPanel::RenderDerived() const
 {
     auto b{GetBounds()};
 
-    _<Engine::Renderers::Image2DRenderer>().draw_img(background_image_, b.x, b.y, b.w, b.h);
+    _<Engine::Renderers::Image2DRenderer>().DrawImage(background_image_, b.x, b.y, b.w, b.h);
 }
 
 void GUIComponentsLibrary::GUIButton::UpdateDerived()
@@ -130,7 +130,7 @@ void GUIComponentsLibrary::GUIButton::RenderDerived() const
 
     auto b{GetBounds()};
 
-    _<Engine::Renderers::TextRenderer>().draw_str(
+    _<Engine::Renderers::TextRenderer>().DrawString(
         text_, b.x + b.w / 2, b.y + b.h / 2, Engine::Renderers::FontSizes::_20,
         true);
 }
@@ -215,7 +215,7 @@ void GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::RenderDerived() const
 
     auto parent_win_b{parent_win_.GetBounds()};
 
-    _<Engine::Renderers::TextRenderer>().draw_str(
+    _<Engine::Renderers::TextRenderer>().DrawString(
         k_win_title, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
         Engine::Renderers::FontSizes::_20, false, Colors::yellow);
 }
@@ -289,14 +289,14 @@ void GUIComponentsLibrary::GUIChatBox::RenderDerived() const
 
         auto text_line = lines_.at(idx);
 
-        _<Engine::Renderers::TextRenderer>().draw_str(text_line, b.x + k_marg, y);
+        _<Engine::Renderers::TextRenderer>().DrawString(text_line, b.x + k_marg, y);
 
         y += k_line_h;
     }
 
     auto sep_rect{RectF{b.x, b.y + b.h - k_line_h, b.w, k_sep_h}};
 
-    _<Engine::Renderers::Image2DRenderer>().draw_img(
+    _<Engine::Renderers::Image2DRenderer>().DrawImage(
         "black", sep_rect.x, sep_rect.y, sep_rect.w, sep_rect.h);
 }
 

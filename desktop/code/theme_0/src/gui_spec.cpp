@@ -22,12 +22,12 @@ namespace SpecializedGUI
 
         auto b{GetBounds()};
 
-        _<Engine::Renderers::TextRenderer>().draw_str(
+        _<Engine::Renderers::TextRenderer>().DrawString(
             _<Theme0::GameplayCore::Player::PlayerCharacter>().name(), b.x + 0.01f,
             b.y + 0.01f, Engine::Renderers::FontSizes::_26);
     }
 
-    void GUISystemMenu::init()
+    void GUISystemMenu::Initialize()
     {
         SetVisible(false);
     }
@@ -82,14 +82,14 @@ namespace SpecializedGUI
         {
             for (auto x = 0; x < num_cols; x++)
             {
-                _<Engine::Renderers::Image2DRenderer>().draw_img(
+                _<Engine::Renderers::Image2DRenderer>().DrawImage(
                     k_slot_img_name, x_start + x * (slot_w + margin_x),
                     y_start + y * (slot_h + margin_y), slot_w, slot_h);
             }
         }
     }
 
-    void GUIPlayerBodyWindow::init()
+    void GUIPlayerBodyWindow::Initialize()
     {
         auto img_w{0.07f};
 
@@ -100,9 +100,9 @@ namespace SpecializedGUI
                 0.1f - img_w / 2, 0.04f, img_w, img_h, "",
                 [this]
                 {
-                    sel_body_part(CInt(Theme0::GameplayCore::Player::
+                    SelectBodyPart(CInt(Theme0::GameplayCore::Player::
                                             BodyPartTypes::overall_body));
-                    update_body_part_info_lbls();
+                    UpdateBodyPartInfoLabels();
                 },
                 "gui_image_overall_body", "gui_image_overall_body_hovered")};
 
@@ -113,9 +113,9 @@ namespace SpecializedGUI
             0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
             [this]
             {
-                sel_body_part(CInt(
+                SelectBodyPart(CInt(
                     Theme0::GameplayCore::Player::BodyPartTypes::right_arm));
-                update_body_part_info_lbls();
+                UpdateBodyPartInfoLabels();
             },
             "gui_image_right_arm", "gui_image_right_arm_hovered")};
 
@@ -126,9 +126,9 @@ namespace SpecializedGUI
             0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
             [this]
             {
-                sel_body_part(CInt(
+                SelectBodyPart(CInt(
                     Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
-                update_body_part_info_lbls();
+                UpdateBodyPartInfoLabels();
             },
             "gui_image_left_arm", "gui_image_left_arm_hovered")};
 
@@ -138,9 +138,9 @@ namespace SpecializedGUI
             0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
             [this]
             {
-                sel_body_part(
+                SelectBodyPart(
                     CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs));
-                update_body_part_info_lbls();
+                UpdateBodyPartInfoLabels();
             },
             "gui_image_legs", "gui_image_legs_hovered")};
 
@@ -166,12 +166,12 @@ namespace SpecializedGUI
         AddChildComponent(lbl_body_part_temp_);
     }
 
-    void GUIPlayerBodyWindow::sel_body_part(int type)
+    void GUIPlayerBodyWindow::SelectBodyPart(int type)
     {
         sel_body_part_ = type;
     }
 
-    void GUIPlayerBodyWindow::update_body_part_info_lbls()
+    void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
     {
         auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().body_ref()};
 
@@ -340,12 +340,12 @@ namespace SpecializedGUI
         }
     }
 
-    void GUIInteractionMenu::init()
+    void GUIInteractionMenu::Initialize()
     {
         SetVisible(false);
     }
 
-    void GUIInteractionMenu::build_menu()
+    void GUIInteractionMenu::BuildMenu()
     {
         entries_.clear();
 
@@ -405,7 +405,7 @@ namespace SpecializedGUI
             {
                 if (menu_entry_rect.Contains(mouse_pos))
                 {
-                    entry.action()();
+                    entry.GetAction()();
                 }
 
                 SetVisible(false);
@@ -426,7 +426,7 @@ namespace SpecializedGUI
 
         auto b{GetBounds()};
 
-        _<Engine::Renderers::TextRenderer>().draw_str(
+        _<Engine::Renderers::TextRenderer>().DrawString(
             "Actions", b.x + 0.01f, b.y + 0.01f,
             Engine::Renderers::FontSizes::_20, false, Colors::yellow_transp);
 
@@ -434,8 +434,8 @@ namespace SpecializedGUI
 
         for (auto &entry : entries_)
         {
-            _<Engine::Renderers::TextRenderer>().draw_str(
-                entry.label(), b.x + 0.01f + k_indent_w,
+            _<Engine::Renderers::TextRenderer>().DrawString(
+                entry.GetLabel(), b.x + 0.01f + k_indent_w,
                 b.y + 0.01f + (i + 1) * k_line_h,
                 Engine::Renderers::FontSizes::_20);
 

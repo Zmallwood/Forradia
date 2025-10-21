@@ -28,11 +28,11 @@ namespace SpecializedGUI
       public:
         GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
-            init();
+            Initialize();
         }
 
       protected:
-        void init();
+        void Initialize();
 
         virtual void UpdateDerived() override;
 
@@ -60,16 +60,16 @@ namespace SpecializedGUI
       public:
         GUIPlayerBodyWindow() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
-            init();
+            Initialize();
         }
 
       protected:
-        void init();
+        void Initialize();
 
       private:
-        void sel_body_part(int type);
+        void SelectBodyPart(int type);
 
-        void update_body_part_info_lbls();
+        void UpdateBodyPartInfoLabels();
 
         int sel_body_part_{0};
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_name_;
@@ -83,13 +83,13 @@ namespace SpecializedGUI
       public:
         GUIInteractionMenu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
-            init();
+            Initialize();
         }
 
-        void build_menu();
+        void BuildMenu();
 
       protected:
-        void init();
+        void Initialize();
 
         virtual void UpdateDerived() override;
 
@@ -107,12 +107,12 @@ namespace SpecializedGUI
             {
             }
 
-            auto label() const
+            auto GetLabel() const
             {
                 return label_;
             }
 
-            auto action() const
+            auto GetAction() const
             {
                 return action_;
             }

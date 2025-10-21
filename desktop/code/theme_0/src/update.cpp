@@ -37,7 +37,7 @@ namespace Theme0
             if (_<Core::Engine::Input::MouseInput::RightMouseButton>()
                     .HasBeenFiredPickResult())
             {
-                _<GUIInteractionMenu>().build_menu();
+                _<GUIInteractionMenu>().BuildMenu();
 
                 _<GUIInteractionMenu>().SetVisible(true);
 

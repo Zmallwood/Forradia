@@ -22,7 +22,7 @@ namespace Core
             {
                 _<Input::MouseInput>().Reset();
                 _<Cursor>().ResetStyleToNormal();
-                _<Renderers::Image2DRenderer>().reset_counter();
+                _<Renderers::Image2DRenderer>().ResetCounter();
 
                 PollEvents();
 
@@ -223,7 +223,7 @@ namespace Core
             break;
         }
 
-        _<Renderers::Image2DRenderer>().draw_img(curs_img, mouse_pos.x - w / 2,
+        _<Renderers::Image2DRenderer>().DrawImage(curs_img, mouse_pos.x - w / 2,
                                              mouse_pos.y - h / 2, w, h);
     }
 

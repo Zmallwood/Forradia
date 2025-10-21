@@ -17,23 +17,23 @@ class RenderersCollection
       public:
         ShaderProgram(StringView vert_src, StringView frag_src)
         {
-            init(vert_src, frag_src);
+            Initialize(vert_src, frag_src);
         }
 
         ~ShaderProgram()
         {
-            cleanup();
+            Cleanup();
         }
 
-        auto program() const
+        auto GetProgram() const
         {
             return program_;
         }
 
       private:
-        void init(StringView vert_src, StringView frag_src);
+        void Initialize(StringView vert_src, StringView frag_src);
 
-        void cleanup();
+        void Cleanup();
 
         GLuint program_;
     };
@@ -43,28 +43,28 @@ class RenderersCollection
       public:
         Image2DRenderer()
         {
-            init();
+            Initialize();
         };
 
         ~Image2DRenderer()
         {
-            cleanup();
+            Cleanup();
         }
 
-        void reset_counter();
+        void ResetCounter();
 
-        void draw_img(StringView img_name, float x, float y, float w, float h);
+        void DrawImage(StringView img_name, float x, float y, float w, float h);
 
-        void draw_img(int img_name_hash, float x, float y, float w, float h);
+        void DrawImage(int img_name_hash, float x, float y, float w, float h);
 
-        void draw_tex(GLuint tex_id, float x, float y, float w, float h);
+        void DrawTexture(GLuint tex_id, float x, float y, float w, float h);
 
-        void draw_img_auto_h(StringView img_name, float x, float y, float w);
+        void DrawImageAutoHeight(StringView img_name, float x, float y, float w);
 
       private:
-        void init();
+        void Initialize();
 
-        void cleanup();
+        void Cleanup();
 
         class Entry
         {
@@ -99,25 +99,25 @@ class RenderersCollection
       public:
         GroundRenderer()
         {
-            init();
+            Initialize();
         };
 
         ~GroundRenderer()
         {
-            cleanup();
+            Cleanup();
         }
 
-        void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
+        void DrawTile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
                        Point3F camera_pos, Vector<float> &elevs, float elev_h);
 
-        void draw_tex(GLuint tex_id, Vector<float> &verts, Point3F camera_pos);
+        void DrawTexture(GLuint tex_id, Vector<float> &verts, Point3F camera_pos);
 
       private:
-        void init();
+        void Initialize();
 
-        void cleanup();
+        void Cleanup();
 
-        glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
+        glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
         SharedPtr<ShaderProgram> shader_program_;
         std::map<float, std::map<float, Entry>> imgs_;
@@ -128,14 +128,14 @@ class RenderersCollection
       public:
         ModelRenderer()
         {
-            init();
+            Initialize();
         }
 
-        void draw_model(int model_name_hash, float x, float y, float elev,
+        void DrawModel(int model_name_hash, float x, float y, float elev,
                         Point3F camera_pos, float elev_h);
 
       private:
-        void init();
+        void Initialize();
 
         SharedPtr<ShaderProgram> shader_program_;
         std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
@@ -154,17 +154,17 @@ class RenderersCollection
       public:
         TextRenderer()
         {
-            init();
+            Initialize();
         }
 
-        void draw_str(StringView text, float x, float y,
+        void DrawString(StringView text, float x, float y,
                       FontSizes font_sz = FontSizes::_20, bool cent_align = false,
                       Color text_color = Colors::wheat_transp) const;
 
       private:
-        void init();
+        void Initialize();
 
-        void add_fonts();
+        void AddFonts();
 
         const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 

@@ -128,15 +128,15 @@ namespace Theme0
                 .def("draw_img",
                      [](Engine::Renderers::Image2DRenderer &self,
                         StringView image_name, float x, float y, float w, float h)
-                     { self.draw_img(image_name, x, y, w, h); })
+                     { self.DrawImage(image_name, x, y, w, h); })
                 .def("draw_img",
                      [](Engine::Renderers::Image2DRenderer &self,
                         int image_name_hash, float x, float y, float w, float h)
-                     { self.draw_img(image_name_hash, x, y, w, h); })
+                     { self.DrawImage(image_name_hash, x, y, w, h); })
                 .def("draw_img_auto_h",
                      [](Engine::Renderers::Image2DRenderer &self, StringView img_name,
                         float x, float y, float w)
-                     { self.draw_img_auto_h(img_name, x, y, w); });
+                     { self.DrawImageAutoHeight(img_name, x, y, w); });
 
             py::class_<Theme0::GUIPlayerStatusBox,
                        SharedPtr<Theme0::GUIPlayerStatusBox>,
