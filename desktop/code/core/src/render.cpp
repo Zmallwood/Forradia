@@ -170,7 +170,7 @@ void RenderersCollection::Image2DRenderer::draw_img(int img_name_hash, float x,
                                                 float y, float w, float h)
 {
     auto tex_id{
-        _<Core::Engine::Assets::Images::ImageBank>().get_tex(img_name_hash)};
+        _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
     Image2DRenderer::draw_tex(tex_id, x, y, w, h);
 }
@@ -178,7 +178,7 @@ void RenderersCollection::Image2DRenderer::draw_img(int img_name_hash, float x,
 void RenderersCollection::Image2DRenderer::draw_tex(GLuint tex_id, float x, float y,
                                                 float w, float h)
 {
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
@@ -321,14 +321,14 @@ void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
 {
     auto hash{Forradia::Hash(img_name)};
 
-    auto img_sz{_<Core::Engine::Assets::Images::ImageBank>().get_img_sz(hash)};
+    auto img_sz{_<Core::Engine::Assets::Images::ImageBank>().GetImageSize(hash)};
 
     if (img_sz.w <= 0 || img_sz.h <= 0)
     {
         return;
     }
 
-    auto canv_asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
+    auto canv_asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
     auto img_asp_rat{CFloat(img_sz.w) / img_sz.h};
 
@@ -421,7 +421,7 @@ void RenderersCollection::GroundRenderer::draw_tile(int img_name_hash, int x_coo
                                                  float elev_h)
 {
     auto tex_id{
-        _<Core::Engine::Assets::Images::ImageBank>().get_tex(img_name_hash)};
+        _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
     auto x{tl_sz * x_coord};
     auto y{tl_sz * y_coord};
@@ -510,7 +510,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
 {
     glEnable(GL_DEPTH_TEST);
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
     glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
 
@@ -717,7 +717,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
+    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
@@ -843,7 +843,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
 {
     glEnable(GL_DEPTH_TEST);
 
-    auto model{_<Core::Engine::Assets::Models::ModelBank>().get_model(
+    auto model{_<Core::Engine::Assets::Models::ModelBank>().GetModel(
         model_name_hash)};
 
     if (!model)
@@ -853,9 +853,9 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
         return;
     }
 
-    auto &meshes{model->meshes_ref()};
+    auto &meshes{model->GetMeshesRef()};
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
@@ -1008,7 +1008,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
+    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
     glm::mat4 projection_matrix =
@@ -1039,7 +1039,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
     auto tex_name_hash{Hash(tex_name)};
 
     auto tex_id{
-        _<Core::Engine::Assets::Images::ImageBank>().get_tex(tex_name_hash)};
+        _<Core::Engine::Assets::Images::ImageBank>().GetTexture(tex_name_hash)};
 
     glBindTexture(GL_TEXTURE_2D, tex_id);
 
@@ -1102,7 +1102,7 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
 
     SDL_Rect dest;
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
     dest.x = CInt(x * canv_sz.w);
     dest.y = CInt(y * canv_sz.h);
@@ -1121,10 +1121,10 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
     auto yy{CFloat(CInt(y * 1000))};
 
     auto tex_already_exists{
-        _<Core::Engine::Assets::Images::ImageBank>().text_tex_exists(
+        _<Core::Engine::Assets::Images::ImageBank>().TextTextureExists(
             xx, yy, text_hash)};
 
-    auto tex{_<Core::Engine::Assets::Images::ImageBank>().obtain_text_tex(
+    auto tex{_<Core::Engine::Assets::Images::ImageBank>().ObtainTextTexture(
         xx, yy, text_hash)};
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

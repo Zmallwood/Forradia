@@ -475,30 +475,24 @@ namespace Core
           public:
             ~SDLDevice();
 
-            void init(StringView game_win_title, Color clear_color);
+            void Initialize(StringView game_win_title, Color clear_color);
 
-            void clear_canv() const;
+            void ClearCanvas() const;
 
-            void present_canv() const;
+            void PresentCanvas() const;
 
-            auto win() const
+            auto GetWindow() const
             {
-                return win_;
-            }
-
-            auto rend() const
-            {
-                return rend_;
+                return window_;
             }
 
           private:
-            SharedPtr<SDL_Window> create_win();
+            SharedPtr<SDL_Window> CreateWindow();
 
-            Size get_screen_sz() const;
+            Size GetScreenSize() const;
 
-            SharedPtr<SDL_Window> win_;
+            SharedPtr<SDL_Window> window_;
             SharedPtr<SDL_GLContext> context_;
-            SharedPtr<SDL_Renderer> rend_;
             String game_win_title_;
             Color clear_color_;
         };
@@ -506,18 +500,19 @@ namespace Core
         class FPSCounter
         {
           public:
-            void update();
+            void Update();
 
-            auto fps() const
+            auto GetFPS() const
             {
                 return fps_;
             }
 
           private:
+            const PointF k_position{0.93f, 0.02f};
+
             int fps_{0};
             int frames_count_{0};
             int ticks_last_update_{0};
-            const PointF k_position{0.93f, 0.02f};
         };
 
         class Cursor
@@ -532,26 +527,26 @@ namespace Core
 
             Cursor()
             {
-                init();
+                Initialize();
             }
 
-            void reset_style_to_normal();
+            void ResetStyleToNormal();
 
-            void render();
+            void Render();
 
-            auto set_curs_style(CursorStyles val)
+            auto SetCursorStyle(CursorStyles value)
             {
-                curs_style_ = val;
+                cursor_style_ = value;
             }
 
           private:
-            void init();
+            void Initialize();
 
-            void disable_sys_curs();
+            void DisableSystemCursor();
 
             constexpr static float k_curs_sz{0.05f};
 
-            CursorStyles curs_style_{CursorStyles::normal};
+            CursorStyles cursor_style_{CursorStyles::normal};
         };
 
         class Assets
@@ -565,30 +560,30 @@ namespace Core
                   public:
                     ImageBank()
                     {
-                        init();
+                        Initialize();
                     }
 
                     ~ImageBank()
                     {
-                        cleanup();
+                        Cleanup();
                     }
 
-                    GLuint get_tex(int img_name_hash) const;
+                    GLuint GetTexture(int img_name_hash) const;
 
-                    Size get_img_sz(int img_name_hash) const;
+                    Size GetImageSize(int img_name_hash) const;
 
-                    bool text_tex_exists(float x, float y, int unique_id) const;
+                    bool TextTextureExists(float x, float y, int unique_id) const;
 
-                    GLuint obtain_text_tex(float x, float y, int text_hash);
+                    GLuint ObtainTextTexture(float x, float y, int text_hash);
 
                   private:
-                    void init();
+                    void Initialize();
 
-                    void cleanup();
+                    void Cleanup();
 
-                    void load_imgs();
+                    void LoadImages();
 
-                    GLuint load_single_tex(SharedPtr<SDL_Surface> surf);
+                    GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surf);
 
                     inline static const String k_rel_imgs_path{"./res/images/"};
 
@@ -636,31 +631,31 @@ namespace Core
                       public:
                         Model(StringView file_path)
                         {
-                            init(file_path);
+                            Initialize(file_path);
                         };
 
-                        auto &meshes_ref() const
+                        auto &GetMeshesRef() const
                         {
                             return meshes_;
                         }
 
                       private:
-                        void init(StringView file_path);
+                        void Initialize(StringView file_path);
 
-                        void process_node(aiNode *node, const aiScene *scene,
+                        void ProcessNode(aiNode *node, const aiScene *scene,
                                           aiMatrix4x4 transform);
 
-                        Mesh process_mesh(aiMesh *mesh, const aiScene *scene,
+                        Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
                                           aiMatrix4x4 transformation);
 
-                        Vector<Vertex> get_vertices(aiMesh *mesh,
+                        Vector<Vertex> GetVertices(aiMesh *mesh,
                                                  glm::vec3 &extents,
                                                  glm::vec3 &origin,
                                                  aiMatrix4x4 transformation);
 
-                        Vector<unsigned int> get_indices(aiMesh *mesh);
+                        Vector<unsigned int> GetIndices(aiMesh *mesh);
 
-                        Vector<Texture> get_textures(aiMesh *mesh,
+                        Vector<Texture> GetTextures(aiMesh *mesh,
                                                   const aiScene *scene);
 
                         Vector<Mesh> meshes_;
@@ -669,15 +664,15 @@ namespace Core
                   public:
                     ModelBank()
                     {
-                        init();
+                        Initialize();
                     }
 
-                    SharedPtr<Model> get_model(int model_name_hash) const;
+                    SharedPtr<Model> GetModel(int model_name_hash) const;
 
                   private:
-                    void init();
+                    void Initialize();
 
-                    SharedPtr<Model> load_single_model(StringView file_path);
+                    SharedPtr<Model> LoadSingleModel(StringView file_path);
 
                     inline static const String k_rel_models_path{"./res/models/"};
 
@@ -703,43 +698,43 @@ namespace Core
                     };
                 };
 
-                void init();
+                void Initialize();
 
-                void update();
+                void Update();
 
-                void render() const;
+                void Render() const;
 
-                void on_enter();
+                void OnEnter();
 
-                void set_init_derived(Function<void()> value)
+                void SetInitializeDerived(Function<void()> value)
                 {
-                    init_derived_ = value;
+                    initialize_derived_ = value;
                 }
 
-                void set_on_enter_derived(Function<void()> value)
+                void SetOnEnterDerived(Function<void()> value)
                 {
                     on_enter_derived_ = value;
                 }
 
-                void set_update_derived(Function<void()> value)
+                void SetUpdateDerived(Function<void()> value)
                 {
                     update_derived_ = value;
                 }
 
-                void set_render_derived(Function<void()> value)
+                void SetRenderDerived(Function<void()> value)
                 {
                     render_derived_ = value;
                 }
 
               protected:
-                auto gui() const
+                auto GetGUI() const
                 {
                     return gui_;
                 }
 
               private:
                 SharedPtr<ScenesGUI::GUIRoot> gui_;
-                Function<void()> init_derived_{[] {}};
+                Function<void()> initialize_derived_{[] {}};
                 Function<void()> on_enter_derived_{[] {}};
                 Function<void()> update_derived_{[] {}};
                 Function<void()> render_derived_{[] {}};
@@ -748,13 +743,13 @@ namespace Core
             class SceneManager
             {
               public:
-                void add_scene(StringView scene_name, IScene &scene);
+                void AddScene(StringView scene_name, IScene &scene);
 
-                void go_to_scene(StringView scene_name);
+                void GoToScene(StringView scene_name);
 
-                void update_curr_scene();
+                void UpdateCurrentScene();
 
-                void render_curr_scene() const;
+                void RenderCurrentScene() const;
 
               private:
                 std::map<int, IScene &> scenes_;
@@ -767,17 +762,17 @@ namespace Core
             class KeyboardInput
             {
               public:
-                void reset();
+                void Reset();
 
-                void reg_key_press(SDL_Keycode key);
+                void RegisterKeyPress(SDL_Keycode key);
 
-                void reg_key_release(SDL_Keycode key);
+                void RegisterKeyRelease(SDL_Keycode key);
 
-                bool key_pressed(SDL_Keycode key) const;
+                bool KeyIsPressed(SDL_Keycode key) const;
 
-                bool key_pressed_pick_res(SDL_Keycode key);
+                bool KeyIsPressedPickResult(SDL_Keycode key);
 
-                bool any_key_pressed_pick_res();
+                bool AnyKeyIsPressedPickResult();
 
               private:
                 std::set<SDL_Keycode> pressed_;
@@ -789,21 +784,21 @@ namespace Core
                 class MouseButton
                 {
                   public:
-                    void reset();
+                    void Reset();
 
-                    void reg_press();
+                    void RegisterPress();
 
-                    void reg_release();
+                    void RegisterRelease();
 
-                    bool pressed_pick_res();
+                    bool IsPressedPickResult();
 
-                    bool been_fired_pick_res();
+                    bool HasBeenFiredPickResult();
 
-                    bool been_fired_no_pick_res();
+                    bool HasBeenFired();
 
-                    bool been_released_pick_res();
+                    bool HasBeenReleasedPickResult();
 
-                    bool been_released_no_pick_res();
+                    bool HasBeenReleased();
 
                   private:
                     bool pressed_{false};
@@ -814,50 +809,50 @@ namespace Core
                 class LeftMouseButton : public MouseButton
                 {
                   public:
-                    using MouseButton::reset;
+                    using MouseButton::Reset;
 
-                    using MouseButton::reg_press;
+                    using MouseButton::RegisterPress;
 
-                    using MouseButton::reg_release;
+                    using MouseButton::RegisterRelease;
 
-                    using MouseButton::pressed_pick_res;
+                    using MouseButton::IsPressedPickResult;
 
-                    using MouseButton::been_fired_pick_res;
+                    using MouseButton::HasBeenFiredPickResult;
 
-                    using MouseButton::been_fired_no_pick_res;
+                    using MouseButton::HasBeenFired;
 
-                    using MouseButton::been_released_pick_res;
+                    using MouseButton::HasBeenReleasedPickResult;
 
-                    using MouseButton::been_released_no_pick_res;
+                    using MouseButton::HasBeenReleased;
                 };
 
                 class RightMouseButton : public MouseButton
                 {
                   public:
-                    using MouseButton::reset;
+                    using MouseButton::Reset;
 
-                    using MouseButton::reg_press;
+                    using MouseButton::RegisterPress;
 
-                    using MouseButton::reg_release;
+                    using MouseButton::RegisterRelease;
 
-                    using MouseButton::pressed_pick_res;
+                    using MouseButton::IsPressedPickResult;
 
-                    using MouseButton::been_fired_pick_res;
+                    using MouseButton::HasBeenFiredPickResult;
 
-                    using MouseButton::been_fired_no_pick_res;
+                    using MouseButton::HasBeenFired;
 
-                    using MouseButton::been_released_pick_res;
+                    using MouseButton::HasBeenReleasedPickResult;
 
-                    using MouseButton::been_released_no_pick_res;
+                    using MouseButton::HasBeenReleased;
                 };
 
-                void reset();
+                void Reset();
 
-                void reg_mouse_btn_down(Uint8 btn);
+                void RegisterMouseButtonDown(Uint8 btn);
 
-                void reg_mouse_btn_up(Uint8 btn);
+                void RegisterMouseButtonUp(Uint8 btn);
 
-                bool any_mouse_btn_pressed_pick_res();
+                bool AnyMouseButtonIsPressedPickResult();
             };
         };
         class Renderers : public RenderersCollection
@@ -870,14 +865,14 @@ namespace Core
             using RenderersCollection::TextRenderer;
         };
 
-        void init(StringView game_win_title, Color clear_color) const;
+        void Initialize(StringView game_win_title, Color clear_color) const;
 
-        void run();
+        void Run();
 
-        void stop();
+        void Stop();
 
       private:
-        void poll_events();
+        void PollEvents();
 
         bool running_{true};
     };

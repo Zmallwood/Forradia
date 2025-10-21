@@ -7,32 +7,32 @@
 _NS_START_
 namespace Core
 {
-    void Engine::init(StringView game_win_title, Color clear_color) const
+    void Engine::Initialize(StringView game_win_title, Color clear_color) const
     {
         Randomize();
 
-        _<SDLDevice>().init(game_win_title, clear_color);
+        _<SDLDevice>().Initialize(game_win_title, clear_color);
     }
 
-    void Engine::run()
+    void Engine::Run()
     {
         try
         {
             while (running_)
             {
-                _<Input::MouseInput>().reset();
-                _<Cursor>().reset_style_to_normal();
+                _<Input::MouseInput>().Reset();
+                _<Cursor>().ResetStyleToNormal();
                 _<Renderers::Image2DRenderer>().reset_counter();
 
-                poll_events();
+                PollEvents();
 
-                _<ScenesCore::SceneManager>().update_curr_scene();
-                _<FPSCounter>().update();
+                _<ScenesCore::SceneManager>().UpdateCurrentScene();
+                _<FPSCounter>().Update();
 
-                _<SDLDevice>().clear_canv();
-                _<ScenesCore::SceneManager>().render_curr_scene();
-                _<Cursor>().render();
-                _<SDLDevice>().present_canv();
+                _<SDLDevice>().ClearCanvas();
+                _<ScenesCore::SceneManager>().RenderCurrentScene();
+                _<Cursor>().Render();
+                _<SDLDevice>().PresentCanvas();
             }
         }
         catch (std::exception &e)
@@ -42,12 +42,12 @@ namespace Core
         }
     }
 
-    void Engine::stop()
+    void Engine::Stop()
     {
         running_ = false;
     }
 
-    void Engine::poll_events()
+    void Engine::PollEvents()
     {
         SDL_Event ev;
 
@@ -63,25 +63,25 @@ namespace Core
 
             case SDL_KEYDOWN:
 
-                _<Input::KeyboardInput>().reg_key_press(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().RegisterKeyPress(ev.key.keysym.sym);
 
                 break;
 
             case SDL_KEYUP:
 
-                _<Input::KeyboardInput>().reg_key_release(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().RegisterKeyRelease(ev.key.keysym.sym);
 
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
 
-                _<Input::MouseInput>().reg_mouse_btn_down(ev.button.button);
+                _<Input::MouseInput>().RegisterMouseButtonDown(ev.button.button);
 
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
-                _<Input::MouseInput>().reg_mouse_btn_up(ev.button.button);
+                _<Input::MouseInput>().RegisterMouseButtonUp(ev.button.button);
 
                 break;
             }
@@ -93,19 +93,19 @@ namespace Core
         SDL_GL_DeleteContext(*context_);
     }
 
-    void Engine::SDLDevice::init(StringView game_win_title, Color clear_color)
+    void Engine::SDLDevice::Initialize(StringView game_win_title, Color clear_color)
     {
         game_win_title_ = game_win_title;
         clear_color_ = clear_color;
 
         SDL_Init(SDL_INIT_EVERYTHING);
 
-        win_ = create_win();
+        window_ = CreateWindow();
 
         context_ =
-            std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(win_.get()));
+            std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window_.get()));
 
-        SDL_GL_MakeCurrent(win_.get(), *context_);
+        SDL_GL_MakeCurrent(window_.get(), *context_);
 
         GLenum status = glewInit();
 
@@ -120,7 +120,7 @@ namespace Core
         glEnable(GL_BLEND);
     }
 
-    void Engine::SDLDevice::clear_canv() const
+    void Engine::SDLDevice::ClearCanvas() const
     {
         auto clear_color{clear_color_.ToSDLColor()};
 
@@ -130,18 +130,18 @@ namespace Core
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    void Engine::SDLDevice::present_canv() const
+    void Engine::SDLDevice::PresentCanvas() const
     {
-        SDL_GL_SwapWindow(win_.get());
+        SDL_GL_SwapWindow(window_.get());
     }
 
-    SharedPtr<SDL_Window> Engine::SDLDevice::create_win()
+    SharedPtr<SDL_Window> Engine::SDLDevice::CreateWindow()
     {
         auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                    SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |
                    SDL_WINDOW_OPENGL};
 
-        auto screen_sz{get_screen_sz()};
+        auto screen_sz{GetScreenSize()};
 
         auto win_res{SharedPtr<SDL_Window>(
             SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
@@ -158,7 +158,7 @@ namespace Core
         return win_res;
     }
 
-    Size Engine::SDLDevice::get_screen_sz() const
+    Size Engine::SDLDevice::GetScreenSize() const
     {
         SDL_DisplayMode dm;
 
@@ -170,7 +170,7 @@ namespace Core
         return {w, h};
     }
 
-    void Engine::FPSCounter::update()
+    void Engine::FPSCounter::Update()
     {
         auto now{GetTicks()};
 
@@ -184,31 +184,31 @@ namespace Core
         ++frames_count_;
     }
 
-    void Engine::Cursor::init()
+    void Engine::Cursor::Initialize()
     {
-        disable_sys_curs();
+        DisableSystemCursor();
     }
 
-    void Engine::Cursor::disable_sys_curs()
+    void Engine::Cursor::DisableSystemCursor()
     {
         SDL_ShowCursor(SDL_DISABLE);
     }
 
-    void Engine::Cursor::reset_style_to_normal()
+    void Engine::Cursor::ResetStyleToNormal()
     {
-        curs_style_ = CursorStyles::normal;
+        cursor_style_ = CursorStyles::normal;
     }
 
-    void Engine::Cursor::render()
+    void Engine::Cursor::Render()
     {
-        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
+        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
         auto w{k_curs_sz};
-        auto h{ConvertWidthToHeight(k_curs_sz, _<Engine::SDLDevice>().win())};
+        auto h{ConvertWidthToHeight(k_curs_sz, _<Engine::SDLDevice>().GetWindow())};
 
         String curs_img;
 
-        switch (curs_style_)
+        switch (cursor_style_)
         {
         case CursorStyles::normal:
 
@@ -227,12 +227,12 @@ namespace Core
                                              mouse_pos.y - h / 2, w, h);
     }
 
-    void Engine::Assets::Images::ImageBank::init()
+    void Engine::Assets::Images::ImageBank::Initialize()
     {
-        load_imgs();
+        LoadImages();
     }
 
-    void Engine::Assets::Images::ImageBank::cleanup()
+    void Engine::Assets::Images::ImageBank::Cleanup()
     {
         for (auto entry : textures_)
         {
@@ -251,7 +251,7 @@ namespace Core
         }
     }
 
-    void Engine::Assets::Images::ImageBank::load_imgs()
+    void Engine::Assets::Images::ImageBank::LoadImages()
     {
         auto base_path{String(SDL_GetBasePath())};
         auto imgs_path{base_path + k_rel_imgs_path.data()};
@@ -280,19 +280,19 @@ namespace Core
 
                 tex_sizes_.insert({hash, img_sz});
 
-                auto tex{load_single_tex(surf)};
+                auto tex{LoadSingleTexture(surf)};
 
                 textures_.insert({hash, tex});
             }
         }
     }
 
-    GLuint Engine::Assets::Images::ImageBank::get_tex(int img_name_hash) const
+    GLuint Engine::Assets::Images::ImageBank::GetTexture(int img_name_hash) const
     {
         return textures_.at(img_name_hash);
     }
 
-    Size Engine::Assets::Images::ImageBank::get_img_sz(int img_name_hash) const
+    Size Engine::Assets::Images::ImageBank::GetImageSize(int img_name_hash) const
     {
         if (tex_sizes_.contains(img_name_hash))
         {
@@ -303,7 +303,7 @@ namespace Core
     }
 
     GLuint
-    Engine::Assets::Images::ImageBank::load_single_tex(SharedPtr<SDL_Surface> surf)
+    Engine::Assets::Images::ImageBank::LoadSingleTexture(SharedPtr<SDL_Surface> surf)
     {
         GLuint tex;
 
@@ -321,17 +321,17 @@ namespace Core
     }
 
     bool
-    Engine::Assets::Images::ImageBank::text_tex_exists(float x, float y,
+    Engine::Assets::Images::ImageBank::TextTextureExists(float x, float y,
                                                         int text_hash) const
     {
         return text_texes_.contains(x) && text_texes_.at(x).contains(y) &&
                text_texes_.at(x).at(y).contains(text_hash);
     }
 
-    GLuint Engine::Assets::Images::ImageBank::obtain_text_tex(float x, float y,
+    GLuint Engine::Assets::Images::ImageBank::ObtainTextTexture(float x, float y,
                                                                int text_hash)
     {
-        if (text_tex_exists(x, y, text_hash))
+        if (TextTextureExists(x, y, text_hash))
         {
             return text_texes_.at(x).at(y).at(text_hash);
         }
@@ -345,7 +345,7 @@ namespace Core
         return tex;
     }
 
-    void Engine::Assets::Models::ModelBank::Model::init(StringView file_path)
+    void Engine::Assets::Models::ModelBank::Model::Initialize(StringView file_path)
     {
         Assimp::Importer importer;
 
@@ -362,11 +362,11 @@ namespace Core
         }
         else
         {
-            process_node(scene->mRootNode, scene, aiMatrix4x4());
+            ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
         }
     }
 
-    void Engine::Assets::Models::ModelBank::Model::process_node(
+    void Engine::Assets::Models::ModelBank::Model::ProcessNode(
         aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -377,35 +377,35 @@ namespace Core
             // or camera.
             transformation *= node->mTransformation;
 
-            meshes_.push_back(process_mesh(mesh, scene, transformation));
+            meshes_.push_back(ProcessMesh(mesh, scene, transformation));
         }
 
         for (unsigned int i = 0; i < node->mNumChildren; i++)
         {
-            process_node(node->mChildren[i], scene, transformation);
+            ProcessNode(node->mChildren[i], scene, transformation);
         }
     }
 
     Engine::Assets::Models::ModelBank::Mesh
-    Engine::Assets::Models::ModelBank::Model::process_mesh(
+    Engine::Assets::Models::ModelBank::Model::ProcessMesh(
         aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
     {
         glm::vec3 extents;
         glm::vec3 origin;
 
         Vector<Vertex> vertices =
-            get_vertices(mesh, extents, origin, transformation);
+            GetVertices(mesh, extents, origin, transformation);
 
-        Vector<unsigned int> indices = get_indices(mesh);
+        Vector<unsigned int> indices = GetIndices(mesh);
 
-        Vector<Texture> textures = get_textures(mesh, scene);
+        Vector<Texture> textures = GetTextures(mesh, scene);
 
         return Engine::Assets::Models::ModelBank::Mesh(
             vertices, indices, textures, extents, origin, mesh->mName);
     }
 
     Vector<Engine::Assets::Models::ModelBank::Vertex>
-    Engine::Assets::Models::ModelBank::Model::get_vertices(
+    Engine::Assets::Models::ModelBank::Model::GetVertices(
         aiMesh *mesh, glm::vec3 &extents, glm::vec3 &origin,
         aiMatrix4x4 transformation)
     {
@@ -485,7 +485,7 @@ namespace Core
     }
 
     Vector<unsigned int>
-    Engine::Assets::Models::ModelBank::Model::get_indices(aiMesh *mesh)
+    Engine::Assets::Models::ModelBank::Model::GetIndices(aiMesh *mesh)
     {
         Vector<unsigned int> indices;
 
@@ -503,7 +503,7 @@ namespace Core
     }
 
     Vector<Engine::Assets::Models::ModelBank::Texture>
-    Engine::Assets::Models::ModelBank::Model::get_textures(
+    Engine::Assets::Models::ModelBank::Model::GetTextures(
         aiMesh *mesh, const aiScene *scene)
     {
         Vector<Texture> textures;
@@ -518,7 +518,7 @@ namespace Core
         return textures;
     }
 
-    void Engine::Assets::Models::ModelBank::init()
+    void Engine::Assets::Models::ModelBank::Initialize()
     {
         auto base_path{String(SDL_GetBasePath())};
         auto imgs_path{base_path + k_rel_models_path.data()};
@@ -540,7 +540,7 @@ namespace Core
 
                 auto hash{Forradia::Hash(file_name)};
 
-                auto model{load_single_model(file_path)};
+                auto model{LoadSingleModel(file_path)};
 
                 models_.insert({hash, model});
             }
@@ -548,7 +548,7 @@ namespace Core
     }
 
     SharedPtr<Engine::Assets::Models::ModelBank::Model>
-    Engine::Assets::Models::ModelBank::get_model(int model_name_hash) const
+    Engine::Assets::Models::ModelBank::GetModel(int model_name_hash) const
     {
         if (models_.contains(model_name_hash))
         {
@@ -559,95 +559,95 @@ namespace Core
     }
 
     SharedPtr<Engine::Assets::Models::ModelBank::Model>
-    Engine::Assets::Models::ModelBank::load_single_model(StringView file_path)
+    Engine::Assets::Models::ModelBank::LoadSingleModel(StringView file_path)
     {
         auto model_res{std::make_shared<Model>(file_path)};
 
         return model_res;
     }
 
-    void Engine::ScenesCore::IScene::init()
+    void Engine::ScenesCore::IScene::Initialize()
     {
         gui_ = std::make_shared<
             Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>();
 
-        init_derived_();
+        initialize_derived_();
     }
 
-    void Engine::ScenesCore::IScene::on_enter()
+    void Engine::ScenesCore::IScene::OnEnter()
     {
         on_enter_derived_();
     }
 
-    void Engine::ScenesCore::IScene::update()
+    void Engine::ScenesCore::IScene::Update()
     {
         gui_->update();
 
         update_derived_();
     }
 
-    void Engine::ScenesCore::IScene::render() const
+    void Engine::ScenesCore::IScene::Render() const
     {
         render_derived_();
 
         gui_->render();
     }
 
-    void Engine::ScenesCore::SceneManager::add_scene(StringView scene_name,
+    void Engine::ScenesCore::SceneManager::AddScene(StringView scene_name,
                                                    IScene &scene)
     {
-        scene.init();
+        scene.Initialize();
 
         scenes_.insert({Hash(scene_name), scene});
     }
 
-    void Engine::ScenesCore::SceneManager::go_to_scene(StringView scene_name)
+    void Engine::ScenesCore::SceneManager::GoToScene(StringView scene_name)
     {
         curr_scene_ = Hash(scene_name);
 
         if (scenes_.contains(curr_scene_))
         {
-            scenes_.at(curr_scene_).on_enter();
+            scenes_.at(curr_scene_).OnEnter();
         }
     }
 
-    void Engine::ScenesCore::SceneManager::update_curr_scene()
+    void Engine::ScenesCore::SceneManager::UpdateCurrentScene()
     {
         if (scenes_.contains(curr_scene_))
         {
-            scenes_.at(curr_scene_).update();
+            scenes_.at(curr_scene_).Update();
         }
     }
 
-    void Engine::ScenesCore::SceneManager::render_curr_scene() const
+    void Engine::ScenesCore::SceneManager::RenderCurrentScene() const
     {
         if (scenes_.contains(curr_scene_))
         {
-            scenes_.at(curr_scene_).render();
+            scenes_.at(curr_scene_).Render();
         }
     }
     
-    void Engine::Input::KeyboardInput::reset()
+    void Engine::Input::KeyboardInput::Reset()
     {
         pressed_.clear();
     }
 
-    void Engine::Input::KeyboardInput::reg_key_press(SDL_Keycode key)
+    void Engine::Input::KeyboardInput::RegisterKeyPress(SDL_Keycode key)
     {
         pressed_.insert(key);
     }
 
-    void Engine::Input::KeyboardInput::reg_key_release(SDL_Keycode key)
+    void Engine::Input::KeyboardInput::RegisterKeyRelease(SDL_Keycode key)
     {
         pressed_.erase(key);
     }
 
-    bool Engine::Input::KeyboardInput::key_pressed(SDL_Keycode key) const
+    bool Engine::Input::KeyboardInput::KeyIsPressed(SDL_Keycode key) const
     {
         return pressed_.contains(key);
     }
 
-    bool Engine::Input::KeyboardInput::key_pressed_pick_res(SDL_Keycode key)
+    bool Engine::Input::KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
     {
         auto res{pressed_.contains(key)};
 
@@ -656,7 +656,7 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::KeyboardInput::any_key_pressed_pick_res()
+    bool Engine::Input::KeyboardInput::AnyKeyIsPressedPickResult()
     {
         auto res{pressed_.size() > 0};
 
@@ -665,26 +665,26 @@ namespace Core
         return res;
     }
 
-    void Engine::Input::MouseInput::MouseButton::reset()
+    void Engine::Input::MouseInput::MouseButton::Reset()
     {
         pressed_ = false;
         been_fired_ = false;
         been_released_ = false;
     }
 
-    void Engine::Input::MouseInput::MouseButton::reg_press()
+    void Engine::Input::MouseInput::MouseButton::RegisterPress()
     {
         pressed_ = true;
         been_fired_ = true;
     }
 
-    void Engine::Input::MouseInput::MouseButton::reg_release()
+    void Engine::Input::MouseInput::MouseButton::RegisterRelease()
     {
         pressed_ = false;
         been_released_ = true;
     }
 
-    bool Engine::Input::MouseInput::MouseButton::pressed_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::IsPressedPickResult()
     {
         auto res{pressed_};
 
@@ -693,7 +693,7 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::MouseInput::MouseButton::been_fired_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::HasBeenFiredPickResult()
     {
         auto res{been_fired_};
 
@@ -702,12 +702,12 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::MouseInput::MouseButton::been_fired_no_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::HasBeenFired()
     {
         return been_fired_;
     }
 
-    bool Engine::Input::MouseInput::MouseButton::been_released_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::HasBeenReleasedPickResult()
     {
         auto res{been_released_};
 
@@ -716,58 +716,58 @@ namespace Core
         return res;
     }
 
-    bool Engine::Input::MouseInput::MouseButton::been_released_no_pick_res()
+    bool Engine::Input::MouseInput::MouseButton::HasBeenReleased()
     {
         return been_released_;
     }
 
-    void Engine::Input::MouseInput::reset()
+    void Engine::Input::MouseInput::Reset()
     {
-        _<LeftMouseButton>().reset();
-        _<RightMouseButton>().reset();
+        _<LeftMouseButton>().Reset();
+        _<RightMouseButton>().Reset();
     }
 
-    void Engine::Input::MouseInput::reg_mouse_btn_down(Uint8 btn)
+    void Engine::Input::MouseInput::RegisterMouseButtonDown(Uint8 btn)
     {
         switch (btn)
         {
         case SDL_BUTTON_LEFT:
 
-            _<LeftMouseButton>().reg_press();
+            _<LeftMouseButton>().RegisterPress();
 
             break;
 
         case SDL_BUTTON_RIGHT:
 
-            _<RightMouseButton>().reg_press();
+            _<RightMouseButton>().RegisterPress();
 
             break;
         }
     }
 
-    void Engine::Input::MouseInput::reg_mouse_btn_up(Uint8 btn)
+    void Engine::Input::MouseInput::RegisterMouseButtonUp(Uint8 btn)
     {
         switch (btn)
         {
         case SDL_BUTTON_LEFT:
 
-            _<LeftMouseButton>().reg_release();
+            _<LeftMouseButton>().RegisterRelease();
 
             break;
 
         case SDL_BUTTON_RIGHT:
 
-            _<RightMouseButton>().reg_release();
+            _<RightMouseButton>().RegisterRelease();
 
             break;
         }
     }
 
-    bool Engine::Input::MouseInput::any_mouse_btn_pressed_pick_res()
+    bool Engine::Input::MouseInput::AnyMouseButtonIsPressedPickResult()
     {
-        auto res{_<LeftMouseButton>().pressed_pick_res()};
+        auto res{_<LeftMouseButton>().IsPressedPickResult()};
 
-        res |= _<RightMouseButton>().pressed_pick_res();
+        res |= _<RightMouseButton>().IsPressedPickResult();
 
         return res;
     }

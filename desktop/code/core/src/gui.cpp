@@ -101,7 +101,7 @@ void GUIComponentsLibrary::GUIButton::update_derived()
 {
     GUIComponentsLibrary::GUIPanel::update_derived();
 
-    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
+    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
     auto hovered{bounds().Contains(mouse_pos)};
 
@@ -109,11 +109,11 @@ void GUIComponentsLibrary::GUIButton::update_derived()
     {
         set_bg_img(hovered_bg_img_);
 
-        _<Engine::Cursor>().set_curs_style(
+        _<Engine::Cursor>().SetCursorStyle(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
 
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-                .been_fired_pick_res())
+                .HasBeenFiredPickResult())
         {
             action_();
         }
@@ -137,24 +137,24 @@ void GUIComponentsLibrary::GUIButton::render_derived() const
 
 void GUIComponentsLibrary::GUIMovablePanel::update_derived()
 {
-    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
+    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
     auto drag_area{get_drag_area()};
 
     if (drag_area.Contains(mouse_pos))
     {
-        _<Engine::Cursor>().set_curs_style(
+        _<Engine::Cursor>().SetCursorStyle(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
 
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-                .been_fired_pick_res())
+                .HasBeenFiredPickResult())
         {
             start_move();
         }
     }
 
     if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-            .been_released_no_pick_res())
+            .HasBeenReleased())
     {
         stop_move();
     }
@@ -164,14 +164,14 @@ void GUIComponentsLibrary::GUIMovablePanel::update_derived()
     if (b.Contains(mouse_pos))
     {
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-                .been_fired_no_pick_res())
+                .HasBeenFired())
         {
-            _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
+            _<Core::Engine::Input::MouseInput::LeftMouseButton>().Reset();
         }
     }
     if (being_moved())
     {
-        auto curr_mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
+        auto curr_mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
         auto new_pos{move_start_pos() + curr_mouse_pos -
                      move_start_mouse_pos()};
@@ -186,7 +186,7 @@ void GUIComponentsLibrary::GUIMovablePanel::start_move()
 
     move_start_pos_ = bounds().GetPosition();
 
-    move_start_mouse_pos_ = GetNormallizedMousePosition(_<Engine::SDLDevice>().win());
+    move_start_mouse_pos_ = GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow());
 }
 
 void GUIComponentsLibrary::GUIMovablePanel::stop_move()
@@ -204,8 +204,8 @@ void GUIComponentsLibrary::GUIWindow::gui_win_title_bar::init()
     auto parent_win_b{parent_win_.bounds()};
 
     add_child_comp(std::make_shared<GUIButton>(
-        parent_win_b.w - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().win()),
-        0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().win()), "X",
+        parent_win_b.w - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()),
+        0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()), "X",
         [this] { parent_win_.toggle_visible(); }));
 }
 
@@ -263,7 +263,7 @@ void GUIComponentsLibrary::GUIFPSPanel::update_derived()
 {
     GUIMovablePanel::update_derived();
 
-    auto fps{_<Engine::FPSCounter>().fps()};
+    auto fps{_<Engine::FPSCounter>().GetFPS()};
 
     fps_text_pnl_->set_text(fmt::format("FPS: {}", fps));
 }

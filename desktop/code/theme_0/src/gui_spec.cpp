@@ -36,24 +36,24 @@ namespace SpecializedGUI
     {
         GUIComponent::update_derived();
 
-        _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
+        _<Core::Engine::Input::MouseInput::LeftMouseButton>().Reset();
     }
 
     void GUISystemMenu::render_derived() const
     {
         GUIComponent::render_derived();
 
-        auto c_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
+        // auto c_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-        auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
+        // auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
 
-        SDL_SetRenderDrawBlendMode(_<Engine::SDLDevice>().rend().get(),
-                                   SDL_BLENDMODE_BLEND);
+        // SDL_SetRenderDrawBlendMode(_<Engine::SDLDevice>().rend().get(),
+        //                            SDL_BLENDMODE_BLEND);
 
-        SDL_SetRenderDrawColor(_<Engine::SDLDevice>().rend().get(), 200, 0,
-                               255, 50);
+        // SDL_SetRenderDrawColor(_<Engine::SDLDevice>().rend().get(), 200, 0,
+        //                        255, 50);
 
-        SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(), &rect);
+        // SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(), &rect);
     }
 
     void GUIInventoryWindow::render_derived() const
@@ -64,7 +64,7 @@ namespace SpecializedGUI
 
         auto margin_x{k_margin};
 
-        auto margin_y{ConvertWidthToHeight(k_margin, _<Engine::SDLDevice>().win())};
+        auto margin_y{ConvertWidthToHeight(k_margin, _<Engine::SDLDevice>().GetWindow())};
 
         auto x_start{b.x + margin_x};
 
@@ -72,7 +72,7 @@ namespace SpecializedGUI
 
         auto slot_w{k_slot_size};
 
-        auto slot_h{ConvertWidthToHeight(k_slot_size, _<Engine::SDLDevice>().win())};
+        auto slot_h{ConvertWidthToHeight(k_slot_size, _<Engine::SDLDevice>().GetWindow())};
 
         auto num_cols{CInt((b.w - 2 * margin_x) / slot_w)};
 
@@ -93,7 +93,7 @@ namespace SpecializedGUI
     {
         auto img_w{0.07f};
 
-        auto img_h{ConvertWidthToHeight(img_w, _<Engine::SDLDevice>().win())};
+        auto img_h{ConvertWidthToHeight(img_w, _<Engine::SDLDevice>().GetWindow())};
 
         auto overall_body_img_btn{
             std::make_shared<GUIComponentsLibrary::GUIButton>(
@@ -390,7 +390,7 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
+        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
         auto i{0};
 
@@ -401,7 +401,7 @@ namespace SpecializedGUI
                                         k_line_h}};
 
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-                    .been_fired_no_pick_res())
+                    .HasBeenFired())
             {
                 if (menu_entry_rect.Contains(mouse_pos))
                 {
@@ -414,7 +414,7 @@ namespace SpecializedGUI
             ++i;
         }
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-                .been_fired_pick_res())
+                .HasBeenFiredPickResult())
         {
             set_visible(false);
         }

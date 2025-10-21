@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     using namespace Forradia;
 
-    _<Engine>().init(_<Theme0::GameProperties>().k_game_win_title,
+    _<Engine>().Initialize(_<Theme0::GameProperties>().k_game_win_title,
                      _<Theme0::GameProperties>().k_clear_color);
 
     _<Theme0::ScriptEngine>().init();
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         _<Theme0::GameProperties>().k_w_area_sz,
         _<Theme0::GameProperties>().k_world_scaling);
 
-    _<Engine>().run();
+    _<Engine>().Run();
     
     return 0;
 }

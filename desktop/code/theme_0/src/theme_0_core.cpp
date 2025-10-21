@@ -18,7 +18,7 @@ namespace Theme0
 
             auto tl_h{1.0f / num_grid_rows};
 
-            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
+            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
             auto tl_w{tl_h / asp_rat};
 
@@ -34,7 +34,7 @@ namespace Theme0
         {
             auto tl_sz{calc_tl_sz_new()};
 
-            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
+            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
             auto num_grid_cols{CInt(asp_rat / tl_sz) + 1};
 

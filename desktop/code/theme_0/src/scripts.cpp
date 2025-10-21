@@ -19,7 +19,7 @@ namespace Theme0
         class IScenePublic : public Core::Engine::ScenesCore::IScene
         {
           public:
-            using IScene::gui;
+            using IScene::GetGUI;
         };
 
         namespace py = pybind11;
@@ -29,7 +29,7 @@ namespace Theme0
             py::class_<Color>(m, "Color")
                 .def(py::init<float, float, float, float>());
 
-            py::class_<Engine>(m, "Engine").def("stop", &Engine::stop);
+            py::class_<Engine>(m, "Engine").def("stop", &Engine::Stop);
 
             py::class_<GUIComponentsLibrary::GUIComponent,
                        SharedPtr<GUIComponentsLibrary::GUIComponent>>(m, "GUIComponent");
@@ -71,31 +71,31 @@ namespace Theme0
 
             py::class_<Core::Engine::ScenesCore::IScene>(m, "IScene")
                 .def(py::init<>())
-                .def("init", &Core::Engine::ScenesCore::IScene::init)
-                .def("gui", &IScenePublic::gui)
+                .def("init", &Core::Engine::ScenesCore::IScene::Initialize)
+                .def("gui", &IScenePublic::GetGUI)
                 .def("set_init_derived",
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
-                     { self.set_init_derived([=] { f(); }); })
+                     { self.SetInitializeDerived([=] { f(); }); })
                 .def("set_on_enter_derived",
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
-                     { self.set_on_enter_derived([=] { f(); }); })
+                     { self.SetOnEnterDerived([=] { f(); }); })
                 .def("set_update_derived",
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
-                     { self.set_update_derived([=] { f(); }); })
+                     { self.SetUpdateDerived([=] { f(); }); })
                 .def("set_render_derived",
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
-                     { self.set_render_derived([=] { f(); }); });
+                     { self.SetRenderDerived([=] { f(); }); });
 
             py::class_<Core::Engine::ScenesCore::SceneManager>(m, "SceneManager")
                 .def(py::init<>())
                 .def("add_scene",
-                     &Core::Engine::ScenesCore::SceneManager::add_scene)
+                     &Core::Engine::ScenesCore::SceneManager::AddScene)
                 .def("go_to_scene",
-                     &Core::Engine::ScenesCore::SceneManager::go_to_scene);
+                     &Core::Engine::ScenesCore::SceneManager::GoToScene);
 
             py::class_<Engine::Cursor>(m, "Cursor")
                 .def(py::init<>())
-                .def("set_curs_style", &Engine::Cursor::set_curs_style);
+                .def("set_curs_style", &Engine::Cursor::SetCursorStyle);
 
             py::enum_<Engine::Cursor::CursorStyles>(m, "CursorStyles")
                 .value("normal", Engine::Cursor::CursorStyles::normal)
@@ -117,12 +117,12 @@ namespace Theme0
 
             py::class_<Core::Engine::Input::KeyboardInput>(m, "KeyboardInput")
                 .def("any_key_pressed_pick_res",
-                     &Core::Engine::Input::KeyboardInput::any_key_pressed_pick_res);
+                     &Core::Engine::Input::KeyboardInput::AnyKeyIsPressedPickResult);
 
             py::class_<Core::Engine::Input::MouseInput>(m, "MouseInput")
                 .def("any_mouse_btn_pressed_pick_res",
                      &Core::Engine::Input::MouseInput::
-                         any_mouse_btn_pressed_pick_res);
+                         AnyMouseButtonIsPressedPickResult);
 
             py::class_<Engine::Renderers::Image2DRenderer>(m, "Image2DRenderer")
                 .def("draw_img",
@@ -174,7 +174,7 @@ namespace Theme0
             m.def("ticks", [] { return GetTicks(); });
 
             m.def("conv_w_to_h", [](float w)
-                  { return ConvertWidthToHeight(w, _<Engine::SDLDevice>().win()); });
+                  { return ConvertWidthToHeight(w, _<Engine::SDLDevice>().GetWindow()); });
 
             m.def("make_shared_fps_panel",
                   []
