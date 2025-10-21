@@ -11,7 +11,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_SCRIPTS_TOP_
 namespace Scripting
 {
-    class script_engine
+    class ScriptEngine
     {
       public:
         void init();

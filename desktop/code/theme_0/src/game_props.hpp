@@ -12,7 +12,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
 namespace Configuration
 {
-    class game_props
+    class GameProperties
     {
       public:
         static constexpr String k_game_win_title{"Forradia"};

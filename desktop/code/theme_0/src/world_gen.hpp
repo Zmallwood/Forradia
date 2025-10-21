@@ -21,7 +21,7 @@ _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
 _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
 namespace WorldGeneration
 {
-    class world_grator
+    class WorldGenerator
     {
       public:
         void gen_new_world();

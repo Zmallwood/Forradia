@@ -18,17 +18,17 @@ namespace Theme0
             if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                     SDLK_ESCAPE))
             {
-                _<gui_sys_menu>().toggle_visible();
+                _<GUISystemMenu>().toggle_visible();
             }
             else if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                          SDLK_c))
             {
-                _<gui_player_body_win>().toggle_visible();
+                _<GUIPlayerBodyWindow>().toggle_visible();
             }
             else if (_<Core::Engine::Input::KeyboardInput>().key_pressed_pick_res(
                          SDLK_b))
             {
-                _<gui_inventory_win>().toggle_visible();
+                _<GUIInventoryWindow>().toggle_visible();
             }
         }
 
@@ -37,11 +37,11 @@ namespace Theme0
             if (_<Core::Engine::Input::MouseInput::RightMouseButton>()
                     .been_fired_pick_res())
             {
-                _<gui_interact_menu>().build_menu();
+                _<GUIInteractionMenu>().build_menu();
 
-                _<gui_interact_menu>().set_visible(true);
+                _<GUIInteractionMenu>().set_visible(true);
 
-                _<gui_interact_menu>().set_pos(
+                _<GUIInteractionMenu>().set_pos(
                     norm_mouse_pos(_<Engine::SDLDevice>().win()));
             }
         }
@@ -67,40 +67,40 @@ namespace Theme0
 
             if (up_press || right_press || down_press || left_press)
             {
-                _<Theme0::GameplayCore::Player::player>().set_dest({-1, -1});
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_dest({-1, -1});
             }
 
             auto now{ticks()};
 
             if (now >=
-                    _<Theme0::GameplayCore::Player::player>()
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>()
                             .ticks_last_move() +
-                        inv_movem_spd(_<Theme0::GameplayCore::Player::player>()
+                        inv_movem_spd(_<Theme0::GameplayCore::Player::PlayerCharacter>()
                                           .movem_spd()) &&
                 (up_press || right_press || down_press || left_press ||
                  w_press || a_press || s_press || d_press))
             {
                 if (up_press || w_press)
                 {
-                    _<Theme0::GameplayCore::Player::player>().move_n();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_n();
                 }
 
                 if (right_press || d_press)
                 {
-                    _<Theme0::GameplayCore::Player::player>().move_e();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_e();
                 }
 
                 if (down_press || s_press)
                 {
-                    _<Theme0::GameplayCore::Player::player>().move_s();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_s();
                 }
 
                 if (left_press || a_press)
                 {
-                    _<Theme0::GameplayCore::Player::player>().move_w();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_w();
                 }
 
-                _<Theme0::GameplayCore::Player::player>().set_ticks_last_move(
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_ticks_last_move(
                     now);
             }
         }
@@ -110,14 +110,14 @@ namespace Theme0
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .been_fired_pick_res())
             {
-                auto new_dest{_<tl_hovering>().hovered_coord()};
+                auto new_dest{_<TileHovering>().hovered_coord()};
 
-                _<Theme0::GameplayCore::Player::player>().set_dest(new_dest);
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_dest(new_dest);
             }
 
-            auto player_pos{_<player>().pos()};
+            auto player_pos{_<PlayerCharacter>().pos()};
 
-            auto dest{_<player>().dest()};
+            auto dest{_<PlayerCharacter>().dest()};
 
             if (dest == Point{-1, -1})
             {
@@ -126,38 +126,38 @@ namespace Theme0
 
             auto now{ticks()};
 
-            if (now >= _<player>().ticks_last_move() +
-                           inv_movem_spd(_<player>().movem_spd()))
+            if (now >= _<PlayerCharacter>().ticks_last_move() +
+                           inv_movem_spd(_<PlayerCharacter>().movem_spd()))
             {
                 auto dx{dest.x - player_pos.x};
                 auto dy{dest.y - player_pos.y};
 
                 if (dx < 0)
                 {
-                    _<player>().move_w();
+                    _<PlayerCharacter>().move_w();
                 }
 
                 if (dy < 0)
                 {
-                    _<player>().move_n();
+                    _<PlayerCharacter>().move_n();
                 }
 
                 if (dx > 0)
                 {
-                    _<player>().move_e();
+                    _<PlayerCharacter>().move_e();
                 }
 
                 if (dy > 0)
                 {
-                    _<player>().move_s();
+                    _<PlayerCharacter>().move_s();
                 }
 
                 if (dest == player_pos)
                 {
-                    _<player>().set_dest({-1, -1});
+                    _<PlayerCharacter>().set_dest({-1, -1});
                 }
 
-                _<player>().set_ticks_last_move(now);
+                _<PlayerCharacter>().set_ticks_last_move(now);
             }
         }
 
@@ -339,9 +339,9 @@ namespace Theme0
             }
         }
 
-        void tl_hovering::update()
+        void TileHovering::update()
         {
-            auto player_pos{_<player>().pos()};
+            auto player_pos{_<PlayerCharacter>().pos()};
 
             auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 

@@ -22,7 +22,7 @@ namespace Theme0
     {
         namespace Player
         {
-            enum class body_part_types
+            enum class BodyPartTypes
             {
                 none,
                 overall_body,
@@ -31,7 +31,7 @@ namespace Theme0
                 legs
             };
 
-            class body_part
+            class BodyPart
             {
               public:
                 auto str() const
@@ -58,26 +58,26 @@ namespace Theme0
                 float temp_{37.0f};
             };
 
-            class player_body
+            class PlayerBody
             {
               public:
-                player_body()
+                PlayerBody()
                 {
                     init();
                 }
 
-                body_part *body_part_ptr(body_part_types type);
+                BodyPart *body_part_ptr(BodyPartTypes type);
 
               private:
                 void init();
 
-                std::map<body_part_types, body_part> parts_;
+                std::map<BodyPartTypes, BodyPart> parts_;
             };
 
-            class player
+            class PlayerCharacter
             {
               public:
-                player()
+                PlayerCharacter()
                 {
                     init();
                 }
@@ -145,7 +145,7 @@ namespace Theme0
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
                 Point dest_{-1, -1};
-                player_body body_;
+                PlayerBody body_;
                 int money_{0};
             };
         }

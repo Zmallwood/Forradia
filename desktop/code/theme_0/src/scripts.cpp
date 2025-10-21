@@ -8,7 +8,7 @@
 #include "gui_spec.hpp"
 #include "render.hpp"
 #include "update.hpp"
-#include "world_grator.hpp"
+#include "world_gen.hpp"
 #include "world_view.hpp"
 
 _NS_START_
@@ -110,10 +110,10 @@ namespace Theme0
                 .def(py::init<>())
                 .def("print", &GUIComponentsLibrary::GUIChatBox::print);
 
-            py::class_<Theme0::WorldGeneration::world_grator>(m, "world_grator")
+            py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "world_grator")
                 .def(py::init<>())
                 .def("gen_new_world",
-                     &Theme0::WorldGeneration::world_grator::gen_new_world);
+                     &Theme0::WorldGeneration::WorldGenerator::gen_new_world);
 
             py::class_<Core::Engine::Input::KeyboardInput>(m, "kb_inp")
                 .def("any_key_pressed_pick_res",
@@ -138,34 +138,34 @@ namespace Theme0
                         float x, float y, float w)
                      { self.draw_img_auto_h(img_name, x, y, w); });
 
-            py::class_<Theme0::gui_player_status_box,
-                       SharedPtr<Theme0::gui_player_status_box>,
+            py::class_<Theme0::GUIPlayerStatusBox,
+                       SharedPtr<Theme0::GUIPlayerStatusBox>,
                        GUIComponentsLibrary::GUIComponent>(m,
                                                        "gui_player_status_box");
 
-            py::class_<Theme0::gui_player_body_win,
-                       SharedPtr<Theme0::gui_player_body_win>,
+            py::class_<Theme0::GUIPlayerBodyWindow,
+                       SharedPtr<Theme0::GUIPlayerBodyWindow>,
                        GUIComponentsLibrary::GUIComponent>(m, "gui_player_body_win")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
-            py::class_<Theme0::gui_inventory_win,
-                       SharedPtr<Theme0::gui_inventory_win>,
+            py::class_<Theme0::GUIInventoryWindow,
+                       SharedPtr<Theme0::GUIInventoryWindow>,
                        GUIComponentsLibrary::GUIComponent>(m, "gui_inventory_win")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
-            py::class_<Theme0::gui_sys_menu, SharedPtr<Theme0::gui_sys_menu>,
+            py::class_<Theme0::GUISystemMenu, SharedPtr<Theme0::GUISystemMenu>,
                        GUIComponentsLibrary::GUIComponent>(m, "gui_sys_menu")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
-            py::class_<Theme0::gui_interact_menu,
-                       SharedPtr<Theme0::gui_interact_menu>,
+            py::class_<Theme0::GUIInteractionMenu,
+                       SharedPtr<Theme0::GUIInteractionMenu>,
                        GUIComponentsLibrary::GUIComponent>(m, "gui_interact_menu");
 
-            py::class_<Theme0::GameplayCore::tl_hovering>(m, "tl_hovering")
-                .def("update", &Theme0::GameplayCore::tl_hovering::update);
+            py::class_<Theme0::GameplayCore::TileHovering>(m, "tl_hovering")
+                .def("update", &Theme0::GameplayCore::TileHovering::update);
 
             py::class_<Theme0::GameplayCore::world_view>(m, "world_view")
                 .def("render",
@@ -216,23 +216,23 @@ namespace Theme0
                   });
 
             m.def("get_gui_interact_menu_ptr",
-                  []() -> SharedPtr<Theme0::gui_interact_menu>
-                  { return __<Theme0::gui_interact_menu>(); });
+                  []() -> SharedPtr<Theme0::GUIInteractionMenu>
+                  { return __<Theme0::GUIInteractionMenu>(); });
 
             m.def("get_gui_player_body_win_ptr",
-                  []() -> SharedPtr<Theme0::gui_player_body_win>
-                  { return __<Theme0::gui_player_body_win>(); });
+                  []() -> SharedPtr<Theme0::GUIPlayerBodyWindow>
+                  { return __<Theme0::GUIPlayerBodyWindow>(); });
 
             m.def("get_gui_inventory_win_ptr",
-                  []() -> SharedPtr<Theme0::gui_inventory_win>
-                  { return __<Theme0::gui_inventory_win>(); });
+                  []() -> SharedPtr<Theme0::GUIInventoryWindow>
+                  { return __<Theme0::GUIInventoryWindow>(); });
 
-            m.def("get_gui_sys_menu_ptr", []() -> SharedPtr<Theme0::gui_sys_menu>
-                  { return __<Theme0::gui_sys_menu>(); });
+            m.def("get_gui_sys_menu_ptr", []() -> SharedPtr<Theme0::GUISystemMenu>
+                  { return __<Theme0::GUISystemMenu>(); });
 
             m.def(
                 "make_shared_gui_player_status_box", []()
-                { return std::make_shared<Theme0::gui_player_status_box>(); });
+                { return std::make_shared<Theme0::GUIPlayerStatusBox>(); });
 
             m.def(
                 "get_engine", []() -> Engine & { return _<Engine>(); },
@@ -274,13 +274,13 @@ namespace Theme0
 
             m.def(
                 "get_world_grator",
-                []() -> Theme0::WorldGeneration::world_grator &
-                { return _<Theme0::WorldGeneration::world_grator>(); },
+                []() -> Theme0::WorldGeneration::WorldGenerator &
+                { return _<Theme0::WorldGeneration::WorldGenerator>(); },
                 py::return_value_policy::reference);
 
             m.def(
-                "get_tl_hovering", []() -> Theme0::GameplayCore::tl_hovering &
-                { return _<Theme0::GameplayCore::tl_hovering>(); },
+                "get_tl_hovering", []() -> Theme0::GameplayCore::TileHovering &
+                { return _<Theme0::GameplayCore::TileHovering>(); },
                 py::return_value_policy::reference);
 
             m.def(
@@ -312,12 +312,12 @@ namespace Theme0
                   });
         }
 
-        void script_engine::init()
+        void ScriptEngine::init()
         {
             static pybind11::scoped_interpreter guard{};
         }
 
-        void script_engine::load_scripts()
+        void ScriptEngine::load_scripts()
         {
             auto embedded = py::module::import("embedded");
 

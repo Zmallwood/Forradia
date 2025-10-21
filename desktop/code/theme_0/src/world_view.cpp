@@ -18,7 +18,7 @@ namespace Theme0
         {
             auto grid_sz{calc_grid_sz()};
 
-            auto player_pos{_<player>().pos()};
+            auto player_pos{_<PlayerCharacter>().pos()};
 
             auto w_area{_<world>().curr_w_area()};
 

@@ -26,7 +26,7 @@ void update_crea_movem();
 
 void update_npcs();
 
-class tl_hovering
+class TileHovering
 {
   public:
     void update();

@@ -14,7 +14,7 @@ namespace Theme0
     {
         SizeF calc_tl_sz()
         {
-            auto num_grid_rows{_<game_props>().k_num_grid_rows};
+            auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
 
             auto tl_h{1.0f / num_grid_rows};
 
@@ -27,7 +27,7 @@ namespace Theme0
 
         float calc_tl_sz_new()
         {
-            return 1.0f / _<game_props>().k_num_grid_rows;
+            return 1.0f / _<GameProperties>().k_num_grid_rows;
         }
 
         Size calc_grid_sz()
@@ -38,7 +38,7 @@ namespace Theme0
 
             auto num_grid_cols{c_int(asp_rat / tl_sz) + 1};
 
-            auto num_grid_rows{_<game_props>().k_num_grid_rows};
+            auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
 
             return {num_grid_cols, num_grid_rows};
         }
@@ -48,15 +48,15 @@ namespace Theme0
     {
         namespace Player
         {
-            void player_body::init()
+            void PlayerBody::init()
             {
-                parts_.insert({body_part_types::overall_body, body_part()});
-                parts_.insert({body_part_types::right_arm, body_part()});
-                parts_.insert({body_part_types::left_arm, body_part()});
-                parts_.insert({body_part_types::legs, body_part()});
+                parts_.insert({BodyPartTypes::overall_body, BodyPart()});
+                parts_.insert({BodyPartTypes::right_arm, BodyPart()});
+                parts_.insert({BodyPartTypes::left_arm, BodyPart()});
+                parts_.insert({BodyPartTypes::legs, BodyPart()});
             }
 
-            body_part *player_body::body_part_ptr(body_part_types type)
+            BodyPart *PlayerBody::body_part_ptr(BodyPartTypes type)
             {
                 if (parts_.contains(type))
                 {
@@ -66,12 +66,12 @@ namespace Theme0
                 return nullptr;
             }
 
-            void player::init()
+            void PlayerCharacter::init()
             {
                 move_to_suitable_pos();
             }
 
-            void player::move_to_suitable_pos()
+            void PlayerCharacter::move_to_suitable_pos()
             {
                 auto w_area{_<world>().curr_w_area()};
 
@@ -85,22 +85,22 @@ namespace Theme0
                 }
             }
 
-            void player::move_n()
+            void PlayerCharacter::move_n()
             {
                 pos_.y -= 1;
             }
 
-            void player::move_e()
+            void PlayerCharacter::move_e()
             {
                 pos_.x += 1;
             }
 
-            void player::move_s()
+            void PlayerCharacter::move_s()
             {
                 pos_.y += 1;
             }
 
-            void player::move_w()
+            void PlayerCharacter::move_w()
             {
                 pos_.x -= 1;
             }

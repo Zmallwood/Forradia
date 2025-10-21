@@ -1293,7 +1293,7 @@ class RenderersCollection
         glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
         SharedPtr<ShaderProgram> shader_program_;
-        std::map<float, std::map<float, entry>> imgs_;
+        std::map<float, std::map<float, Entry>> imgs_;
     };
 
     class ModelRenderer
@@ -1311,7 +1311,7 @@ class RenderersCollection
         void init();
 
         SharedPtr<ShaderProgram> shader_program_;
-        std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
+        std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
             models_;
         static constexpr float k_mdl_scale{0.08f};
     };
@@ -1341,7 +1341,7 @@ class RenderersCollection
 
         const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 
-        std::map<font_szs, SharedPtr<TTF_Font>> fonts_;
+        std::map<FontSizes, SharedPtr<TTF_Font>> fonts_;
     };
 };
 }
@@ -1375,7 +1375,7 @@ namespace Theme0
     {
         namespace Player
         {
-            enum class body_part_types
+            enum class BodyPartTypes
             {
                 none,
                 overall_body,
@@ -1384,7 +1384,7 @@ namespace Theme0
                 legs
             };
 
-            class body_part
+            class BodyPart
             {
               public:
                 auto str() const
@@ -1411,26 +1411,26 @@ namespace Theme0
                 float temp_{37.0f};
             };
 
-            class player_body
+            class PlayerBody
             {
               public:
-                player_body()
+                PlayerBody()
                 {
                     init();
                 }
 
-                body_part *body_part_ptr(body_part_types type);
+                BodyPart *body_part_ptr(BodyPartTypes type);
 
               private:
                 void init();
 
-                std::map<body_part_types, body_part> parts_;
+                std::map<BodyPartTypes, BodyPart> parts_;
             };
 
-            class player
+            class PlayerCharacter
             {
               public:
-                player()
+                PlayerCharacter()
                 {
                     init();
                 }
@@ -1498,7 +1498,7 @@ namespace Theme0
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
                 Point dest_{-1, -1};
-                player_body body_;
+                PlayerBody body_;
                 int money_{0};
             };
         }
@@ -1546,7 +1546,7 @@ void update_crea_movem();
 
 void update_npcs();
 
-class tl_hovering
+class TileHovering
 {
   public:
     void update();
@@ -1975,7 +1975,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GAME_PROPS_TOP_
 namespace Configuration
 {
-    class game_props
+    class GameProperties
     {
       public:
         static constexpr String k_game_win_title{"Forradia"};
@@ -2007,10 +2007,10 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
 namespace SpecializedGUI
 {
-    class gui_player_status_box : public Core::GUIComponentsLibrary::GUIPanel
+    class GUIPlayerStatusBox : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_player_status_box() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+        GUIPlayerStatusBox() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
         }
 
@@ -2018,10 +2018,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_sys_menu : public Core::GUIComponentsLibrary::GUIComponent
+    class GUISystemMenu : public Core::GUIComponentsLibrary::GUIComponent
     {
       public:
-        gui_sys_menu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
             init();
         }
@@ -2034,10 +2034,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_inventory_win : public Core::GUIComponentsLibrary::GUIWindow
+    class GUIInventoryWindow : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_inventory_win() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+        GUIInventoryWindow() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
         {
         }
 
@@ -2050,10 +2050,10 @@ namespace SpecializedGUI
         inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
     };
 
-    class gui_player_body_win : public Core::GUIComponentsLibrary::GUIWindow
+    class GUIPlayerBodyWindow : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_player_body_win() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+        GUIPlayerBodyWindow() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
             init();
         }
@@ -2073,10 +2073,10 @@ namespace SpecializedGUI
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_temp_;
     };
 
-    class gui_interact_menu : public Core::GUIComponentsLibrary::GUIPanel
+    class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_interact_menu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+        GUIInteractionMenu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
             init();
         }
@@ -2094,10 +2094,10 @@ namespace SpecializedGUI
         static constexpr float k_indent_w{0.01f};
         static constexpr float k_line_h{0.025f};
 
-        class gui_interact_menu_entry
+        class GUIInteractionMenuEntry
         {
           public:
-            gui_interact_menu_entry(StringView label, Function<void()> action)
+            GUIInteractionMenuEntry(StringView label, Function<void()> action)
                 : label_(label), action_(action)
             {
             }
@@ -2117,7 +2117,7 @@ namespace SpecializedGUI
             Function<void()> action_;
         };
 
-        Vector<gui_interact_menu_entry> entries_;
+        Vector<GUIInteractionMenuEntry> entries_;
     };
 }
 using namespace SpecializedGUI;
@@ -2128,7 +2128,7 @@ _NS_END_
 
 
 
-// virtualInclude 'code/theme_0/src/world_grator.hpp'
+// virtualInclude 'code/theme_0/src/world_gen.hpp'
 // virtualIncludeStart - DO NOT EDIT CONTENT BELOW 
 /*
  * Copyright 2025 Andreas Åkerberg
@@ -2153,7 +2153,7 @@ _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
 _HIDE_FROM_OUTLINER_WORLD_GRATOR_TOP_
 namespace WorldGeneration
 {
-    class world_grator
+    class WorldGenerator
     {
       public:
         void gen_new_world();
@@ -2199,7 +2199,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_SCRIPTS_TOP_
 namespace Scripting
 {
-    class script_engine
+    class ScriptEngine
     {
       public:
         void init();

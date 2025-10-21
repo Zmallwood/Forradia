@@ -16,30 +16,30 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
 namespace SpecializedGUI
 {
-    void gui_player_status_box::render_derived() const
+    void GUIPlayerStatusBox::render_derived() const
     {
         GUIPanel::render_derived();
 
         auto b{bounds()};
 
         _<Engine::Renderers::TextRenderer>().draw_str(
-            _<Theme0::GameplayCore::Player::player>().name(), b.x + 0.01f,
+            _<Theme0::GameplayCore::Player::PlayerCharacter>().name(), b.x + 0.01f,
             b.y + 0.01f, Engine::Renderers::FontSizes::_26);
     }
 
-    void gui_sys_menu::init()
+    void GUISystemMenu::init()
     {
         set_visible(false);
     }
 
-    void gui_sys_menu::update_derived()
+    void GUISystemMenu::update_derived()
     {
         GUIComponent::update_derived();
 
         _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
     }
 
-    void gui_sys_menu::render_derived() const
+    void GUISystemMenu::render_derived() const
     {
         GUIComponent::render_derived();
 
@@ -56,7 +56,7 @@ namespace SpecializedGUI
         SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(), &rect);
     }
 
-    void gui_inventory_win::render_derived() const
+    void GUIInventoryWindow::render_derived() const
     {
         GUIWindow::render_derived();
 
@@ -89,7 +89,7 @@ namespace SpecializedGUI
         }
     }
 
-    void gui_player_body_win::init()
+    void GUIPlayerBodyWindow::init()
     {
         auto img_w{0.07f};
 
@@ -101,7 +101,7 @@ namespace SpecializedGUI
                 [this]
                 {
                     sel_body_part(c_int(Theme0::GameplayCore::Player::
-                                            body_part_types::overall_body));
+                                            BodyPartTypes::overall_body));
                     update_body_part_info_lbls();
                 },
                 "gui_image_overall_body", "gui_image_overall_body_hovered")};
@@ -114,7 +114,7 @@ namespace SpecializedGUI
             [this]
             {
                 sel_body_part(c_int(
-                    Theme0::GameplayCore::Player::body_part_types::right_arm));
+                    Theme0::GameplayCore::Player::BodyPartTypes::right_arm));
                 update_body_part_info_lbls();
             },
             "gui_image_right_arm", "gui_image_right_arm_hovered")};
@@ -127,7 +127,7 @@ namespace SpecializedGUI
             [this]
             {
                 sel_body_part(c_int(
-                    Theme0::GameplayCore::Player::body_part_types::left_arm));
+                    Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
                 update_body_part_info_lbls();
             },
             "gui_image_left_arm", "gui_image_left_arm_hovered")};
@@ -139,7 +139,7 @@ namespace SpecializedGUI
             [this]
             {
                 sel_body_part(
-                    c_int(Theme0::GameplayCore::Player::body_part_types::legs));
+                    c_int(Theme0::GameplayCore::Player::BodyPartTypes::legs));
                 update_body_part_info_lbls();
             },
             "gui_image_legs", "gui_image_legs_hovered")};
@@ -166,26 +166,26 @@ namespace SpecializedGUI
         add_child_comp(lbl_body_part_temp_);
     }
 
-    void gui_player_body_win::sel_body_part(int type)
+    void GUIPlayerBodyWindow::sel_body_part(int type)
     {
         sel_body_part_ = type;
     }
 
-    void gui_player_body_win::update_body_part_info_lbls()
+    void GUIPlayerBodyWindow::update_body_part_info_lbls()
     {
-        auto &p_body{_<Theme0::GameplayCore::Player::player>().body_ref()};
+        auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().body_ref()};
 
         constexpr auto overall_body{
-            c_int(Theme0::GameplayCore::Player::body_part_types::overall_body)};
+            c_int(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
 
         constexpr auto right_arm{
-            c_int(Theme0::GameplayCore::Player::body_part_types::right_arm)};
+            c_int(Theme0::GameplayCore::Player::BodyPartTypes::right_arm)};
 
         constexpr auto left_arm{
-            c_int(Theme0::GameplayCore::Player::body_part_types::left_arm)};
+            c_int(Theme0::GameplayCore::Player::BodyPartTypes::left_arm)};
 
         constexpr auto legs{
-            c_int(Theme0::GameplayCore::Player::body_part_types::legs)};
+            c_int(Theme0::GameplayCore::Player::BodyPartTypes::legs)};
 
         switch (sel_body_part_)
         {
@@ -195,20 +195,20 @@ namespace SpecializedGUI
 
             auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
-                                            body_part_types::overall_body)
+                                            BodyPartTypes::overall_body)
                          ->str()};
 
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
             auto max_energy{
                 p_body
                     .body_part_ptr(Theme0::GameplayCore::Player::
-                                       body_part_types::overall_body)
+                                       BodyPartTypes::overall_body)
                     ->max_energy()};
 
             auto curr_energy{
                 p_body
                     .body_part_ptr(Theme0::GameplayCore::Player::
-                                       body_part_types::overall_body)
+                                       BodyPartTypes::overall_body)
                     ->curr_energy()};
 
             lbl_body_part_energy_->set_text(fmt::format(
@@ -216,7 +216,7 @@ namespace SpecializedGUI
 
             auto temp{p_body
                           .body_part_ptr(Theme0::GameplayCore::Player::
-                                             body_part_types::overall_body)
+                                             BodyPartTypes::overall_body)
                           ->temp()};
 
             lbl_body_part_temp_->set_text(
@@ -231,19 +231,19 @@ namespace SpecializedGUI
 
             auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
-                                            body_part_types::right_arm)
+                                            BodyPartTypes::right_arm)
                          ->str()};
 
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{p_body
                                 .body_part_ptr(Theme0::GameplayCore::Player::
-                                                   body_part_types::right_arm)
+                                                   BodyPartTypes::right_arm)
                                 ->max_energy()};
 
             auto curr_energy{p_body
                                  .body_part_ptr(Theme0::GameplayCore::Player::
-                                                    body_part_types::right_arm)
+                                                    BodyPartTypes::right_arm)
                                  ->curr_energy()};
 
             lbl_body_part_energy_->set_text(fmt::format(
@@ -251,7 +251,7 @@ namespace SpecializedGUI
 
             auto temp{p_body
                           .body_part_ptr(Theme0::GameplayCore::Player::
-                                             body_part_types::right_arm)
+                                             BodyPartTypes::right_arm)
                           ->temp()};
 
             lbl_body_part_temp_->set_text(
@@ -267,7 +267,7 @@ namespace SpecializedGUI
             auto String{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->str()};
 
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
@@ -275,13 +275,13 @@ namespace SpecializedGUI
             auto max_energy{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->max_energy()};
 
             auto curr_energy{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->curr_energy()};
 
             lbl_body_part_energy_->set_text(fmt::format(
@@ -290,7 +290,7 @@ namespace SpecializedGUI
             auto temp{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->temp()};
 
             lbl_body_part_temp_->set_text(
@@ -306,7 +306,7 @@ namespace SpecializedGUI
             auto String{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->str()};
 
             lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
@@ -314,13 +314,13 @@ namespace SpecializedGUI
             auto max_energy{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->max_energy()};
 
             auto curr_energy{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->curr_energy()};
 
             lbl_body_part_energy_->set_text(fmt::format(
@@ -329,7 +329,7 @@ namespace SpecializedGUI
             auto temp{
                 p_body
                     .body_part_ptr(
-                        Theme0::GameplayCore::Player::body_part_types::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->temp()};
 
             lbl_body_part_temp_->set_text(
@@ -340,16 +340,16 @@ namespace SpecializedGUI
         }
     }
 
-    void gui_interact_menu::init()
+    void GUIInteractionMenu::init()
     {
         set_visible(false);
     }
 
-    void gui_interact_menu::build_menu()
+    void GUIInteractionMenu::build_menu()
     {
         entries_.clear();
 
-        auto hov_tl{_<tl_hovering>().hovered_coord()};
+        auto hov_tl{_<TileHovering>().hovered_coord()};
 
         auto w_area{_<world>().curr_w_area()};
 
@@ -384,7 +384,7 @@ namespace SpecializedGUI
         }
     }
 
-    void gui_interact_menu::update_derived()
+    void GUIInteractionMenu::update_derived()
     {
         GUIPanel::update_derived();
 
@@ -420,7 +420,7 @@ namespace SpecializedGUI
         }
     }
 
-    void gui_interact_menu::render_derived() const
+    void GUIInteractionMenu::render_derived() const
     {
         GUIPanel::render_derived();
 

@@ -2,7 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
-#include "world_grator.hpp"
+#include "world_gen.hpp"
 #include "game_props.hpp"
 #include "world_struct.hpp"
 
@@ -11,7 +11,7 @@ namespace Theme0
 {
     namespace WorldGeneration
     {
-        void world_grator::gen_new_world()
+        void WorldGenerator::gen_new_world()
         {
             prep();
 
@@ -34,16 +34,16 @@ namespace Theme0
             gen_npcs();
         }
 
-        void world_grator::prep()
+        void WorldGenerator::prep()
         {
             w_area_ = _<Theme0::WorldStructure::world>().curr_w_area();
 
             sz_ = w_area_->get_sz();
 
-            scale_ = _<Theme0::game_props>().k_world_scaling;
+            scale_ = _<Theme0::GameProperties>().k_world_scaling;
         }
 
-        void world_grator::clear_with_dirt() const
+        void WorldGenerator::clear_with_dirt() const
         {
             for (auto y = 0; y < sz_.h; y++)
             {
@@ -59,7 +59,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_grass() const
+        void WorldGenerator::gen_grass() const
         {
             auto num_grass_areas{50 + rand_int(20)};
 
@@ -93,7 +93,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_single_lake(int min_x, int min_y, int max_x,
+        void WorldGenerator::gen_single_lake(int min_x, int min_y, int max_x,
                                            int max_y, int recurs) const
         {
             if (recurs == 0)
@@ -195,7 +195,7 @@ namespace Theme0
                             y_cent + max_r, recurs - 1);
         }
 
-        void world_grator::gen_lakes() const
+        void WorldGenerator::gen_lakes() const
         {
             auto num_lakes{20 + rand_int(5)};
 
@@ -205,7 +205,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_elev() const
+        void WorldGenerator::gen_elev() const
         {
             auto num_hills{140 + rand_int(30)};
 
@@ -314,7 +314,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_rock() const
+        void WorldGenerator::gen_rock() const
         {
             auto num_rock_areas{30 + rand_int(10)};
 
@@ -351,7 +351,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_rivers() const
+        void WorldGenerator::gen_rivers() const
         {
             auto num_rivers{20 * scale_ + rand_int(5 * scale_)};
 
@@ -472,7 +472,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_objs() const
+        void WorldGenerator::gen_objs() const
         {
             auto num_fir_trees{1000 * scale_ + rand_int(50)};
 
@@ -593,7 +593,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_creas() const
+        void WorldGenerator::gen_creas() const
         {
             auto num_rats{200 * scale_ + rand_int(15 * scale_)};
 
@@ -642,7 +642,7 @@ namespace Theme0
             }
         }
 
-        void world_grator::gen_npcs() const
+        void WorldGenerator::gen_npcs() const
         {
             auto num_npc_0s{200 * scale_ + rand_int(15 * scale_)};
 

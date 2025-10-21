@@ -11,16 +11,16 @@ int main(int argc, char **argv)
 {
     using namespace Forradia;
 
-    _<Engine>().init(_<Theme0::game_props>().k_game_win_title,
-                     _<Theme0::game_props>().k_clear_color);
+    _<Engine>().init(_<Theme0::GameProperties>().k_game_win_title,
+                     _<Theme0::GameProperties>().k_clear_color);
 
-    _<Theme0::script_engine>().init();
+    _<Theme0::ScriptEngine>().init();
 
-    _<Theme0::script_engine>().load_scripts();
+    _<Theme0::ScriptEngine>().load_scripts();
 
     _<Theme0::WorldStructure::world>().init(
-        _<Theme0::game_props>().k_w_area_sz,
-        _<Theme0::game_props>().k_world_scaling);
+        _<Theme0::GameProperties>().k_w_area_sz,
+        _<Theme0::GameProperties>().k_world_scaling);
 
     _<Engine>().run();
     

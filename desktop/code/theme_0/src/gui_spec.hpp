@@ -12,10 +12,10 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
 namespace SpecializedGUI
 {
-    class gui_player_status_box : public Core::GUIComponentsLibrary::GUIPanel
+    class GUIPlayerStatusBox : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_player_status_box() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+        GUIPlayerStatusBox() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
         }
 
@@ -23,10 +23,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_sys_menu : public Core::GUIComponentsLibrary::GUIComponent
+    class GUISystemMenu : public Core::GUIComponentsLibrary::GUIComponent
     {
       public:
-        gui_sys_menu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
             init();
         }
@@ -39,10 +39,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_inventory_win : public Core::GUIComponentsLibrary::GUIWindow
+    class GUIInventoryWindow : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_inventory_win() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+        GUIInventoryWindow() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
         {
         }
 
@@ -55,10 +55,10 @@ namespace SpecializedGUI
         inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
     };
 
-    class gui_player_body_win : public Core::GUIComponentsLibrary::GUIWindow
+    class GUIPlayerBodyWindow : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_player_body_win() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+        GUIPlayerBodyWindow() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
             init();
         }
@@ -78,10 +78,10 @@ namespace SpecializedGUI
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_temp_;
     };
 
-    class gui_interact_menu : public Core::GUIComponentsLibrary::GUIPanel
+    class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_interact_menu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+        GUIInteractionMenu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
             init();
         }
@@ -99,10 +99,10 @@ namespace SpecializedGUI
         static constexpr float k_indent_w{0.01f};
         static constexpr float k_line_h{0.025f};
 
-        class gui_interact_menu_entry
+        class GUIInteractionMenuEntry
         {
           public:
-            gui_interact_menu_entry(StringView label, Function<void()> action)
+            GUIInteractionMenuEntry(StringView label, Function<void()> action)
                 : label_(label), action_(action)
             {
             }
@@ -122,7 +122,7 @@ namespace SpecializedGUI
             Function<void()> action_;
         };
 
-        Vector<gui_interact_menu_entry> entries_;
+        Vector<GUIInteractionMenuEntry> entries_;
     };
 }
 using namespace SpecializedGUI;
