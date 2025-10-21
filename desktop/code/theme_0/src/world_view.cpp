@@ -14,7 +14,7 @@ namespace Theme0
 {
     namespace GameplayCore
     {
-        void world_view::render() const
+        void WorldView::render() const
         {
             auto grid_sz{calc_grid_sz()};
 

@@ -167,9 +167,9 @@ namespace Theme0
             py::class_<Theme0::GameplayCore::TileHovering>(m, "tl_hovering")
                 .def("update", &Theme0::GameplayCore::TileHovering::update);
 
-            py::class_<Theme0::GameplayCore::world_view>(m, "world_view")
+            py::class_<Theme0::GameplayCore::WorldView>(m, "world_view")
                 .def("render",
-                     &Theme0::GameplayCore::world_view::render);
+                     &Theme0::GameplayCore::WorldView::render);
 
             m.def("ticks", [] { return ticks(); });
 
@@ -284,8 +284,8 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def(
-                "get_world_view", []() -> Theme0::GameplayCore::world_view &
-                { return _<Theme0::GameplayCore::world_view>(); },
+                "get_world_view", []() -> Theme0::GameplayCore::WorldView &
+                { return _<Theme0::GameplayCore::WorldView>(); },
                 py::return_value_policy::reference);
 
             m.def("update_kb_actions",

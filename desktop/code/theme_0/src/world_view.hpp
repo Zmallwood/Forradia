@@ -13,7 +13,7 @@ _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_1_
     namespace GameplayCore                                                     \
     {
 _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_2_
-class world_view
+class WorldView
 {
   public:
     void render() const;
