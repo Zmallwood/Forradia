@@ -1587,7 +1587,7 @@ _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_1_
     namespace GameplayCore                                                     \
     {
 _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_2_
-class world_view
+class WorldView
 {
   public:
     void render() const;
@@ -1616,7 +1616,7 @@ _NS_START_
 _HIDE_FROM_OUTLINER_WORLD_STRUCT_TOP_
 namespace WorldStructure
 {
-    enum class dirs
+    enum class Directions
     {
         none,
         n,
@@ -1629,10 +1629,10 @@ namespace WorldStructure
         nw
     };
 
-    class creature
+    class Creature
     {
       public:
-        creature(StringView type_name) : type_{hash(type_name)}
+        Creature(StringView type_name) : type_{hash(type_name)}
         {
             init();
         }
@@ -1758,10 +1758,10 @@ namespace WorldStructure
         int type_{0};
     };
 
-    class tree_object : public object
+    class TreeObject : public object
     {
       public:
-        tree_object(StringView obj_type_name) : object(obj_type_name)
+        TreeObject(StringView obj_type_name) : object(obj_type_name)
         {
             init(obj_type_name);
         }
@@ -1809,10 +1809,10 @@ namespace WorldStructure
         Vector<SharedPtr<object>> objects_;
     };
 
-    class tile
+    class Tile
     {
       public:
-        tile()
+        Tile()
         {
             init();
         }
@@ -1834,7 +1834,7 @@ namespace WorldStructure
             return creature_;
         }
 
-        void set_creature(SharedPtr<Forradia::Theme0::WorldStructure::creature> val)
+        void set_creature(SharedPtr<Forradia::Theme0::WorldStructure::Creature> val)
         {
             creature_ = val;
         }
@@ -1874,7 +1874,7 @@ namespace WorldStructure
             return river_dir_1_;
         }
 
-        void set_river_dir_1(dirs val)
+        void set_river_dir_1(Directions val)
         {
             river_dir_1_ = val;
         }
@@ -1884,7 +1884,7 @@ namespace WorldStructure
             return river_dir_2_;
         }
 
-        void set_river_dir_2(dirs val)
+        void set_river_dir_2(Directions val)
         {
             river_dir_2_ = val;
         }
@@ -1894,12 +1894,12 @@ namespace WorldStructure
 
         int ground_{0};
         SharedPtr<Forradia::Theme0::WorldStructure::objects_stack> objects_stack_;
-        SharedPtr<Forradia::Theme0::WorldStructure::creature> creature_;
+        SharedPtr<Forradia::Theme0::WorldStructure::Creature> creature_;
         SharedPtr<Forradia::Theme0::WorldStructure::npc> npc_;
         int elev_{0};
         int water_depth_{0};
-        dirs river_dir_1_{dirs::none};
-        dirs river_dir_2_{dirs::none};
+        Directions river_dir_1_{Directions::none};
+        Directions river_dir_2_{Directions::none};
     };
 
     class world_area
@@ -1916,9 +1916,9 @@ namespace WorldStructure
 
         bool is_valid_coord(Point coord) const;
 
-        SharedPtr<tile> get_tl(int x, int y) const;
+        SharedPtr<Tile> get_tl(int x, int y) const;
 
-        SharedPtr<tile> get_tl(Point coord) const;
+        SharedPtr<Tile> get_tl(Point coord) const;
 
         auto &creatures_mirror_ref()
         {
@@ -1933,7 +1933,7 @@ namespace WorldStructure
       private:
         void init(Size w_area_sz, float world_scaling);
 
-        Vector<Vector<SharedPtr<tile>>> tiles_;
+        Vector<Vector<SharedPtr<Tile>>> tiles_;
         std::map<SharedPtr<creature>, Point> creatures_mirror_;
         std::map<SharedPtr<npc>, Point> npcs_mirror_;
     };

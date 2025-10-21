@@ -11,7 +11,7 @@ _NS_START_
     {                                                                          \
         namespace WorldStructure                                               \
         {                                                                      \
-            class world_area;                                                  \
+            class WorldArea;                                                  \
         }                                                                      \
     }
 _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
@@ -40,7 +40,7 @@ namespace WorldGeneration
         void gen_creas() const;
         void gen_npcs() const;
 
-        SharedPtr<Theme0::WorldStructure::world_area> w_area_;
+        SharedPtr<Theme0::WorldStructure::WorldArea> w_area_;
         float scale_;
         Size sz_;
     };

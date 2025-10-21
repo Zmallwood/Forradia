@@ -367,7 +367,7 @@ namespace Theme0
                 auto prev_x_coord{-1};
                 auto prev_y_coord{-1};
 
-                SharedPtr<Theme0::WorldStructure::tile> prev_tl;
+                SharedPtr<Theme0::WorldStructure::Tile> prev_tl;
 
                 for (auto j = 0; j < len; j++)
                 {
@@ -388,73 +388,73 @@ namespace Theme0
                         if (x_coord == prev_x_coord && y_coord > prev_y_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::s);
+                                Theme0::WorldStructure::Directions::s);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::n);
+                                Theme0::WorldStructure::Directions::n);
                         }
                         else if (x_coord == prev_x_coord &&
                                  y_coord < prev_y_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::n);
+                                Theme0::WorldStructure::Directions::n);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::s);
+                                Theme0::WorldStructure::Directions::s);
                         }
                         else if (y_coord == prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::e);
+                                Theme0::WorldStructure::Directions::e);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::w);
+                                Theme0::WorldStructure::Directions::w);
                         }
                         else if (y_coord == prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::w);
+                                Theme0::WorldStructure::Directions::w);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::e);
+                                Theme0::WorldStructure::Directions::e);
                         }
                         else if (y_coord < prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::ne);
+                                Theme0::WorldStructure::Directions::ne);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::sw);
+                                Theme0::WorldStructure::Directions::sw);
                         }
                         else if (y_coord > prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::se);
+                                Theme0::WorldStructure::Directions::se);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::nw);
+                                Theme0::WorldStructure::Directions::nw);
                         }
                         else if (y_coord < prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::nw);
+                                Theme0::WorldStructure::Directions::nw);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::se);
+                                Theme0::WorldStructure::Directions::se);
                         }
                         else if (y_coord > prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
                             prev_tl->set_river_dir_1(
-                                Theme0::WorldStructure::dirs::sw);
+                                Theme0::WorldStructure::Directions::sw);
 
                             tl->set_river_dir_2(
-                                Theme0::WorldStructure::dirs::ne);
+                                Theme0::WorldStructure::Directions::ne);
                         }
                     }
 
@@ -608,7 +608,7 @@ namespace Theme0
                     tl->ground() != hash("ground_water"))
                 {
                     auto new_crea =
-                        std::make_shared<Theme0::WorldStructure::creature>(
+                        std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_rat");
 
                     tl->set_creature(new_crea);
@@ -631,7 +631,7 @@ namespace Theme0
                     tl->ground() != hash("ground_water"))
                 {
                     auto new_crea =
-                        std::make_shared<Theme0::WorldStructure::creature>(
+                        std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_butterfly");
 
                     tl->set_creature(new_crea);
@@ -656,7 +656,7 @@ namespace Theme0
                 if (tl && !tl->npc() && tl->ground() != hash("ground_water"))
                 {
                     auto new_npc =
-                        std::make_shared<Theme0::WorldStructure::npc>("npc0");
+                        std::make_shared<Theme0::WorldStructure::NPC>("npc0");
 
                     tl->set_npc(new_npc);
 

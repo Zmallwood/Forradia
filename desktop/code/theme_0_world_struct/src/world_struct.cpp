@@ -9,12 +9,12 @@ namespace Theme0
 {
     namespace WorldStructure
     {
-        void creature::init()
+        void Creature::init()
         {
             movem_spd_ *= (rand_int(3) + 1) / 2.0f;
         }
 
-        void npc::init()
+        void NPC::init()
         {
             gen_name();
 
@@ -22,7 +22,7 @@ namespace Theme0
                 ticks() + rand_int(300 * k_one_sec_millis);
         }
 
-        void npc::gen_name()
+        void NPC::gen_name()
         {
             Vector<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
 
@@ -45,7 +45,7 @@ namespace Theme0
             name_ = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
 
-        void tree_object::init(StringView obj_type_name)
+        void TreeObject::init(StringView obj_type_name)
         {
             if (obj_type_name != "object_fir_tree" &&
                 obj_type_name != "object_birch_tree")
@@ -106,38 +106,38 @@ namespace Theme0
             }
         }
 
-        void objects_stack::clear_objs()
+        void ObjectsStack::clear_objs()
         {
             objects_.clear();
         }
 
-        void objects_stack::add_obj(StringView obj_type_name)
+        void ObjectsStack::add_obj(StringView obj_type_name)
         {
-            objects_.push_back(std::make_shared<object>(obj_type_name));
+            objects_.push_back(std::make_shared<Object>(obj_type_name));
         }
 
-        void objects_stack::add_tree_obj(StringView obj_type_name)
+        void ObjectsStack::add_tree_obj(StringView obj_type_name)
         {
-            objects_.push_back(std::make_shared<tree_object>(obj_type_name));
+            objects_.push_back(std::make_shared<TreeObject>(obj_type_name));
         }
 
-        int objects_stack::get_sz() const
+        int ObjectsStack::get_sz() const
         {
             return objects_.size();
         }
 
-        void tile::init()
+        void Tile::init()
         {
             objects_stack_ = std::make_shared<
-                Forradia::Theme0::WorldStructure::objects_stack>();
+                Forradia::Theme0::WorldStructure::ObjectsStack>();
         }
 
-        void tile::set_ground(StringView ground_name)
+        void Tile::set_ground(StringView ground_name)
         {
             ground_ = hash(ground_name);
         }
 
-        void world_area::init(Size w_area_sz, float world_scaling)
+        void WorldArea::init(Size w_area_sz, float world_scaling)
         {
             auto sz{w_area_sz};
 
@@ -146,16 +146,16 @@ namespace Theme0
 
             for (auto x = 0; x < sz.w; x++)
             {
-                tiles_.push_back(Vector<std::shared_ptr<tile>>());
+                tiles_.push_back(Vector<std::shared_ptr<Tile>>());
 
                 for (auto y = 0; y < sz.h; y++)
                 {
-                    tiles_[x].push_back(std::make_shared<tile>());
+                    tiles_[x].push_back(std::make_shared<Tile>());
                 }
             }
         }
 
-        Size world_area::get_sz() const
+        Size WorldArea::get_sz() const
         {
             auto w{c_int(tiles_.size())};
 
@@ -169,19 +169,19 @@ namespace Theme0
             return {w, h};
         }
 
-        bool world_area::is_valid_coord(int x, int y) const
+        bool WorldArea::is_valid_coord(int x, int y) const
         {
             auto sz{get_sz()};
 
             return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
         }
 
-        bool world_area::is_valid_coord(Point coord) const
+        bool WorldArea::is_valid_coord(Point coord) const
         {
             return is_valid_coord(coord.x, coord.y);
         }
 
-        SharedPtr<tile> world_area::get_tl(int x, int y) const
+        SharedPtr<Tile> WorldArea::get_tl(int x, int y) const
         {
             if (is_valid_coord(x, y))
             {
@@ -191,7 +191,7 @@ namespace Theme0
             return nullptr;
         }
 
-        SharedPtr<tile> world_area::get_tl(Point coord) const
+        SharedPtr<Tile> WorldArea::get_tl(Point coord) const
         {
             return get_tl(coord.x, coord.y);
         }
@@ -199,7 +199,7 @@ namespace Theme0
         void world::init(Size w_area_sz, float world_scaling)
         {
             curr_w_area_ =
-                std::make_shared<world_area>(w_area_sz, world_scaling);
+                std::make_shared<WorldArea>(w_area_sz, world_scaling);
         }
     }
 }

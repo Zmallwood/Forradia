@@ -44,7 +44,7 @@ namespace Theme0
 
             static int ground{0};
 
-            static SharedPtr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see,
+            static SharedPtr<Tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see,
                 tl_sese, tl_ses, tl_ss;
 
             for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++)
@@ -140,7 +140,7 @@ namespace Theme0
                             obj_type == hash("object_birch_tree"))
                         {
                             auto tree_obj{
-                                std::static_pointer_cast<Forradia::tree_object>(
+                                std::static_pointer_cast<Forradia::TreeObject>(
                                     obj)};
 
                             auto trunk_parts{tree_obj->trunk_parts()};
