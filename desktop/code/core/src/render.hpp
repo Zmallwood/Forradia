@@ -51,47 +51,37 @@ class RenderersCollection
             Cleanup();
         }
 
-        void ResetCounter();
-
         void DrawImage(StringView img_name, float x, float y, float w, float h);
 
         void DrawImage(int img_name_hash, float x, float y, float w, float h);
 
-        void DrawTexture(GLuint tex_id, float x, float y, float w, float h);
+        void DrawTexture(GLuint tex_id, float x, float y, float w, float h,
+                         bool useOperationsMemory = false);
 
-        void DrawImageAutoHeight(StringView img_name, float x, float y, float w);
+        void DrawImageAutoHeight(StringView img_name, float x, float y,
+                                 float w);
 
       private:
         void Initialize();
 
         void Cleanup();
 
-        class Entry
+        class Image2DRenderingOperation
         {
           public:
-            GLuint vao;
-            GLuint ibo;
-            GLuint vbo;
             float x;
             float y;
             float w;
             float h;
+            GLuint vao;
+            GLuint ibo;
+            GLuint vbo;
         };
 
         SharedPtr<ShaderProgram> m_shaderProgram;
-        std::map<int, std::map<int, Entry>> imgs_;
-        int counter_{0};
-    };
-
-    class Entry
-    {
-      public:
-        GLuint vao;
-        GLuint ibo;
-        GLuint vbo;
-        float x;
-        float y;
-        float z;
+        std::map<float,
+                 std::map<float, std::map<GLuint, Image2DRenderingOperation>>>
+            m_operationsMemory;
     };
 
     class GroundRenderer
@@ -108,19 +98,31 @@ class RenderersCollection
         }
 
         void DrawTile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                       Point3F camera_pos, Vector<float> &elevs, float elev_h);
+                      Point3F camera_pos, Vector<float> &elevs, float elev_h);
 
-        void DrawTexture(GLuint tex_id, Vector<float> &verts, Point3F camera_pos);
+        void DrawTexture(GLuint tex_id, Vector<float> &verts,
+                         Point3F camera_pos);
 
       private:
         void Initialize();
 
         void Cleanup();
 
+        class GroundRenderingOperation
+        {
+          public:
+            float x;
+            float y;
+            GLuint vao;
+            GLuint ibo;
+            GLuint vbo;
+        };
+
         glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-        SharedPtr<ShaderProgram> shader_program_;
-        std::map<float, std::map<float, Entry>> imgs_;
+        SharedPtr<ShaderProgram> m_shaderProgram;
+        std::map<float, std::map<float, GroundRenderingOperation>>
+            m_operationsMemory;
     };
 
     class ModelRenderer
@@ -132,15 +134,29 @@ class RenderersCollection
         }
 
         void DrawModel(int model_name_hash, float x, float y, float elev,
-                        Point3F camera_pos, float elev_h);
+                       Point3F camera_pos, float elev_h);
 
       private:
         void Initialize();
 
-        SharedPtr<ShaderProgram> shader_program_;
-        std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
-            models_;
-        static constexpr float k_mdl_scale{0.08f};
+        class ModelRenderingOperation
+        {
+          public:
+            float x;
+            float y;
+            float z;
+            GLuint vao;
+            GLuint ibo;
+            GLuint vbo;
+        };
+
+        SharedPtr<ShaderProgram> m_shaderProgram;
+        std::map<
+            float,
+            std::map<float,
+                     std::map<float, std::map<int, ModelRenderingOperation>>>>
+            m_operationsMemory;
+        static constexpr float k_modelScale{0.08f};
     };
 
     enum struct FontSizes
@@ -158,17 +174,18 @@ class RenderersCollection
         }
 
         void DrawString(StringView text, float x, float y,
-                      FontSizes font_sz = FontSizes::_20, bool cent_align = false,
-                      Color text_color = Colors::wheat_transp) const;
+                        FontSizes font_sz = FontSizes::_20,
+                        bool cent_align = false,
+                        Color text_color = Colors::wheat_transp) const;
 
       private:
         void Initialize();
 
         void AddFonts();
 
-        const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+        const String k_defaultFontPath{"./res/fonts/PixeloidSans.ttf"};
 
-        std::map<FontSizes, SharedPtr<TTF_Font>> fonts_;
+        std::map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
     };
 };
 }

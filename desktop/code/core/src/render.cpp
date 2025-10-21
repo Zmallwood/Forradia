@@ -8,7 +8,7 @@
 
 _NS_START_
 void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
-                                               StringView frag_src)
+                                                    StringView frag_src)
 {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
 
@@ -141,42 +141,42 @@ void RenderersCollection::Image2DRenderer::Initialize()
       }
     )"};
 
-    m_shaderProgram = std::make_shared<ShaderProgram>(vertex_shader_src,
-                                                       fragment_shader_src);
+    m_shaderProgram =
+        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
 }
 
 void RenderersCollection::Image2DRenderer::Cleanup()
 {
-    for (auto &entry : imgs_)
+    for (auto &entry : m_operationsMemory)
     {
         for (auto &entry2 : entry.second)
         {
-            glDeleteVertexArrays(1, &entry2.second.vao);
+            for (auto &entry3 : entry2.second)
+            {
+                glDeleteVertexArrays(1, &entry3.second.vao);
 
-            glDeleteBuffers(1, &entry2.second.ibo);
-            glDeleteBuffers(1, &entry2.second.vbo);
+                glDeleteBuffers(1, &entry3.second.ibo);
+                glDeleteBuffers(1, &entry3.second.vbo);
+            }
         }
     }
 
     glUseProgram(0);
 }
 
-void RenderersCollection::Image2DRenderer::ResetCounter()
-{
-    counter_ = 0;
-}
-
 void RenderersCollection::Image2DRenderer::DrawImage(int img_name_hash, float x,
-                                                float y, float w, float h)
+                                                     float y, float w, float h)
 {
     auto tex_id{
         _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
-    Image2DRenderer::DrawTexture(tex_id, x, y, w, h);
+    Image2DRenderer::DrawTexture(tex_id, x, y, w, h, true);
 }
 
-void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, float y,
-                                                float w, float h)
+void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
+                                                       float y, float w,
+                                                       float h,
+                                                       bool useOperationsMemory)
 {
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
@@ -204,7 +204,9 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
 
     auto need_create_buffers{false};
 
-    if (imgs_.contains(counter_) && imgs_.at(counter_).contains(tex_id))
+    if (useOperationsMemory && m_operationsMemory.contains(x) &&
+        m_operationsMemory.at(x).contains(y) &&
+        m_operationsMemory.at(x).at(y).contains(tex_id))
     {
         need_create_buffers = false;
     }
@@ -222,7 +224,7 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
 
     if (!need_create_buffers)
     {
-        auto &entry = imgs_.at(counter_).at(tex_id);
+        auto &entry = m_operationsMemory.at(x).at(y).at(tex_id);
 
         obj_vao = entry.vao;
         obj_ibo = entry.ibo;
@@ -252,7 +254,7 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        Image2DRenderer::Entry entry;
+        Image2DRenderer::Image2DRenderingOperation entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -262,7 +264,7 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
         entry.w = w;
         entry.h = h;
 
-        imgs_[counter_][tex_id] = entry;
+        m_operationsMemory[x][y][tex_id] = entry;
 
         need_fill_buffers = true;
     }
@@ -311,17 +313,15 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    ++counter_;
 }
 
-void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(StringView img_name,
-                                                       float x, float y,
-                                                       float w)
+void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(
+    StringView img_name, float x, float y, float w)
 {
     auto hash{Forradia::Hash(img_name)};
 
-    auto img_sz{_<Core::Engine::Assets::Images::ImageBank>().GetImageSize(hash)};
+    auto img_sz{
+        _<Core::Engine::Assets::Images::ImageBank>().GetImageSize(hash)};
 
     if (img_sz.w <= 0 || img_sz.h <= 0)
     {
@@ -337,8 +337,9 @@ void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(StringView img_na
     DrawImage(hash, x, y, w, h);
 }
 
-void RenderersCollection::Image2DRenderer::DrawImage(StringView img_name, float x,
-                                                float y, float w, float h)
+void RenderersCollection::Image2DRenderer::DrawImage(StringView img_name,
+                                                     float x, float y, float w,
+                                                     float h)
 {
     DrawImage(Hash(img_name), x, y, w, h);
 }
@@ -394,13 +395,13 @@ void RenderersCollection::GroundRenderer::Initialize()
       }
     )"};
 
-    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
-                                                       fragment_shader_src);
+    m_shaderProgram =
+        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
 }
 
 void RenderersCollection::GroundRenderer::Cleanup()
 {
-    for (auto &entry : imgs_)
+    for (auto &entry : m_operationsMemory)
     {
         for (auto &entry2 : entry.second)
         {
@@ -414,11 +415,9 @@ void RenderersCollection::GroundRenderer::Cleanup()
     glUseProgram(0);
 }
 
-void RenderersCollection::GroundRenderer::DrawTile(int img_name_hash, int x_coord,
-                                                 int y_coord, float tl_sz,
-                                                 Point3F camera_pos,
-                                                 Vector<float> &elevs,
-                                                 float elev_h)
+void RenderersCollection::GroundRenderer::DrawTile(
+    int img_name_hash, int x_coord, int y_coord, float tl_sz,
+    Point3F camera_pos, Vector<float> &elevs, float elev_h)
 {
     auto tex_id{
         _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
@@ -429,84 +428,84 @@ void RenderersCollection::GroundRenderer::DrawTile(int img_name_hash, int x_coor
     auto h{tl_sz};
 
     Vector<float> verts{{x,
-                      y,
-                      -elevs.at(0) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      0.0,
-                      0.0,
-                      x + w,
-                      y,
-                      -elevs.at(1) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      0.0,
-                      x + w + w,
-                      y,
-                      -elevs.at(2) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0,
-                      x,
-                      y + h,
-                      -elevs.at(3) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      0.0,
-                      1.0,
-                      x + w,
-                      y + h,
-                      -elevs.at(4) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0,
-                      x + w + w,
-                      y + h,
-                      -elevs.at(5) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0,
-                      x,
-                      y + h + h,
-                      -elevs.at(6) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0,
-                      x + w,
-                      y + h + h,
-                      -elevs.at(7) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0,
-                      x + w + w,
-                      y + h + h,
-                      -elevs.at(8) * elev_h,
-                      1.0f,
-                      1.0f,
-                      1.0f,
-                      1.0,
-                      1.0}};
+                         y,
+                         -elevs.at(0) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         0.0,
+                         0.0,
+                         x + w,
+                         y,
+                         -elevs.at(1) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         0.0,
+                         x + w + w,
+                         y,
+                         -elevs.at(2) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0,
+                         x,
+                         y + h,
+                         -elevs.at(3) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         0.0,
+                         1.0,
+                         x + w,
+                         y + h,
+                         -elevs.at(4) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0,
+                         x + w + w,
+                         y + h,
+                         -elevs.at(5) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0,
+                         x,
+                         y + h + h,
+                         -elevs.at(6) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0,
+                         x + w,
+                         y + h + h,
+                         -elevs.at(7) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0,
+                         x + w + w,
+                         y + h + h,
+                         -elevs.at(8) * elev_h,
+                         1.0f,
+                         1.0f,
+                         1.0f,
+                         1.0,
+                         1.0}};
 
     GroundRenderer::DrawTexture(tex_id, verts, camera_pos);
 }
 
 void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
-                                                Vector<float> &verts,
-                                                Point3F camera_pos)
+                                                      Vector<float> &verts,
+                                                      Point3F camera_pos)
 {
     glEnable(GL_DEPTH_TEST);
 
@@ -514,7 +513,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
 
-    glUseProgram(shader_program_->GetProgramID());
+    glUseProgram(m_shaderProgram->GetProgramID());
 
     glEnable(GL_BLEND);
 
@@ -612,8 +611,8 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     auto need_create_buffers{false};
 
-    if (imgs_.contains(verts.at(0)) &&
-        imgs_.at(verts.at(0)).contains(verts.at(1)))
+    if (m_operationsMemory.contains(verts.at(0)) &&
+        m_operationsMemory.at(verts.at(0)).contains(verts.at(1)))
     {
         need_create_buffers = false;
     }
@@ -630,7 +629,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     if (!need_create_buffers)
     {
-        auto &entry = imgs_.at(verts.at(0)).at(verts.at(1));
+        auto &entry = m_operationsMemory.at(verts.at(0)).at(verts.at(1));
 
         obj_vao = entry.vao;
         obj_ibo = entry.ibo;
@@ -658,7 +657,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        Forradia::RenderersCollection::Entry entry;
+        GroundRenderingOperation entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -666,7 +665,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
         entry.x = verts.at(0);
         entry.y = verts.at(1);
 
-        imgs_[verts.at(0)][verts.at(1)] = entry;
+        m_operationsMemory[verts.at(0)][verts.at(1)] = entry;
 
         need_fill_buffers = true;
     }
@@ -726,7 +725,8 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
 
-    GLuint matrix_id = glGetUniformLocation(shader_program_->GetProgramID(), "MVP");
+    GLuint matrix_id =
+        glGetUniformLocation(m_shaderProgram->GetProgramID(), "MVP");
 
     glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
 
@@ -750,8 +750,8 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 }
 
 glm::vec3 RenderersCollection::GroundRenderer::ComputeNormal(glm::vec3 p1,
-                                                           glm::vec3 p2,
-                                                           glm::vec3 p3)
+                                                             glm::vec3 p2,
+                                                             glm::vec3 p3)
 {
     // Uses p2 as a new origin for p1, p3.
     auto a = p3 - p2;
@@ -833,22 +833,23 @@ void RenderersCollection::ModelRenderer::Initialize()
       }
     )"};
 
-    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
-                                                       fragment_shader_src);
+    m_shaderProgram =
+        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
 }
 
 void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
-                                                 float y, float elev,
-                                                 Point3F camera_pos, float elev_h)
+                                                   float y, float elev,
+                                                   Point3F camera_pos,
+                                                   float elev_h)
 {
     glEnable(GL_DEPTH_TEST);
 
-    auto model{_<Core::Engine::Assets::Models::ModelBank>().GetModel(
-        model_name_hash)};
+    auto model{
+        _<Core::Engine::Assets::Models::ModelBank>().GetModel(model_name_hash)};
 
     if (!model)
     {
-        PrintLine("Model not found.");
+        // PrintLine("Model not found.");
 
         return;
     }
@@ -859,7 +860,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
-    glUseProgram(shader_program_->GetProgramID());
+    glUseProgram(m_shaderProgram->GetProgramID());
 
     glEnable(GL_BLEND);
 
@@ -880,10 +881,10 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     {
         for (auto &vertex : mesh.vertices)
         {
-            vertices_vec.push_back(x + vertex.position.x * k_mdl_scale);
-            vertices_vec.push_back(y + vertex.position.y * k_mdl_scale);
+            vertices_vec.push_back(x + vertex.position.x * k_modelScale);
+            vertices_vec.push_back(y + vertex.position.y * k_modelScale);
             vertices_vec.push_back(-elev * elev_h +
-                                   vertex.position.z * k_mdl_scale);
+                                   vertex.position.z * k_modelScale);
             vertices_vec.push_back(vertex.normal.x);
             vertices_vec.push_back(vertex.normal.y);
             vertices_vec.push_back(vertex.normal.z);
@@ -910,9 +911,9 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     auto need_create_buffers{false};
 
-    if (models_.contains(x) && models_.at(x).contains(y) &&
-        models_.at(x).at(y).contains(elev) &&
-        models_.at(x).at(y).at(elev).contains(model_name_hash))
+    if (m_operationsMemory.contains(x) && m_operationsMemory.at(x).contains(y) &&
+        m_operationsMemory.at(x).at(y).contains(elev) &&
+        m_operationsMemory.at(x).at(y).at(elev).contains(model_name_hash))
     {
         need_create_buffers = false;
     }
@@ -929,7 +930,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     if (!need_create_buffers)
     {
-        auto &entry = models_.at(x).at(y).at(elev).at(model_name_hash);
+        auto &entry = m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
         obj_vao = entry.vao;
         obj_ibo = entry.ibo;
@@ -958,7 +959,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        Forradia::RenderersCollection::Entry entry;
+        ModelRenderingOperation entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -967,7 +968,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
         entry.y = y;
         entry.z = elev;
 
-        models_[x][y][elev][model_name_hash] = entry;
+        m_operationsMemory[x][y][elev][model_name_hash] = entry;
 
         need_fill_buffers = true;
     }
@@ -1015,16 +1016,16 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
         glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
 
     GLuint matrix_projection =
-        glGetUniformLocation(shader_program_->GetProgramID(), "projection");
+        glGetUniformLocation(m_shaderProgram->GetProgramID(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
                        &projection_matrix[0][0]);
 
     GLuint matrix_model =
-        glGetUniformLocation(shader_program_->GetProgramID(), "model");
+        glGetUniformLocation(m_shaderProgram->GetProgramID(), "model");
     glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
 
     GLuint matrix_view =
-        glGetUniformLocation(shader_program_->GetProgramID(), "view");
+        glGetUniformLocation(m_shaderProgram->GetProgramID(), "view");
 
     glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
 
@@ -1063,7 +1064,7 @@ void RenderersCollection::TextRenderer::Initialize()
 
 void RenderersCollection::TextRenderer::AddFonts()
 {
-    auto abs_font_path{String(SDL_GetBasePath()) + k_default_font_path.data()};
+    auto abs_font_path{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
 
     for (auto font_sz : {FontSizes::_20, FontSizes::_26})
     {
@@ -1072,7 +1073,8 @@ void RenderersCollection::TextRenderer::AddFonts()
         auto font_sz_n{CInt(font_sz)};
 
         auto new_font{SharedPtr<TTF_Font>(
-            TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), SDLDeleter())};
+            TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n),
+            SDLDeleter())};
 
         if (!new_font)
         {
@@ -1081,20 +1083,21 @@ void RenderersCollection::TextRenderer::AddFonts()
             return;
         }
 
-        fonts_.insert({font_sz, new_font});
+        m_fonts.insert({font_sz, new_font});
     }
 }
 
-void RenderersCollection::TextRenderer::DrawString(StringView text, float x, float y,
-                                              FontSizes font_sz, bool cent_align,
-                                              Color text_color) const
+void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
+                                                   float y, FontSizes font_sz,
+                                                   bool cent_align,
+                                                   Color text_color) const
 {
     if (text.empty())
     {
         return;
     }
 
-    auto font_raw{fonts_.at(font_sz).get()};
+    auto font_raw{m_fonts.at(font_sz).get()};
 
     Size text_dim;
 
@@ -1166,7 +1169,7 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x, flo
     auto yf{CFloat(dest.y) / canv_sz.h};
     auto wf{CFloat(dest.w) / canv_sz.w};
     auto hf{CFloat(dest.h) / canv_sz.h};
-    
+
     _<Image2DRenderer>().DrawTexture(tex, xf, yf, wf, hf);
 }
 _NS_END_

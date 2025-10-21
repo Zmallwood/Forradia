@@ -22,7 +22,6 @@ namespace Core
             {
                 _<Input::MouseInput>().Reset();
                 _<Cursor>().ResetStyleToNormal();
-                _<Renderers::Image2DRenderer>().ResetCounter();
 
                 PollEvents();
 
