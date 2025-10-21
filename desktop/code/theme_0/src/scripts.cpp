@@ -16,7 +16,7 @@ namespace Theme0
 {
     namespace Scripting
     {
-        class i_scene_publ : public Core::Engine::ScenesCore::IScene
+        class IScenePublic : public Core::Engine::ScenesCore::IScene
         {
           public:
             using IScene::gui;
@@ -72,7 +72,7 @@ namespace Theme0
             py::class_<Core::Engine::ScenesCore::IScene>(m, "IScene")
                 .def(py::init<>())
                 .def("init", &Core::Engine::ScenesCore::IScene::init)
-                .def("gui", &i_scene_publ::gui)
+                .def("gui", &IScenePublic::gui)
                 .def("set_init_derived",
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_init_derived([=] { f(); }); })
@@ -171,10 +171,10 @@ namespace Theme0
                 .def("render",
                      &Theme0::GameplayCore::WorldView::render);
 
-            m.def("ticks", [] { return ticks(); });
+            m.def("ticks", [] { return GetTicks(); });
 
             m.def("conv_w_to_h", [](float w)
-                  { return conv_w_to_h(w, _<Engine::SDLDevice>().win()); });
+                  { return ConvertWidthToHeight(w, _<Engine::SDLDevice>().win()); });
 
             m.def("make_shared_fps_panel",
                   []

@@ -9,7 +9,7 @@ namespace Core
 {
     void Engine::init(StringView game_win_title, Color clear_color) const
     {
-        randomize();
+        Randomize();
 
         _<SDLDevice>().init(game_win_title, clear_color);
     }
@@ -151,7 +151,7 @@ namespace Core
 
         if (!win_res)
         {
-            print_ln("Window could not be created. SDL Error: " +
+            PrintLine("Window could not be created. SDL Error: " +
                      String(SDL_GetError()));
         }
 
@@ -172,7 +172,7 @@ namespace Core
 
     void Engine::FPSCounter::update()
     {
-        auto now{ticks()};
+        auto now{GetTicks()};
 
         if (now > ticks_last_update_ + k_one_sec_millis)
         {
@@ -201,10 +201,10 @@ namespace Core
 
     void Engine::Cursor::render()
     {
-        auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
         auto w{k_curs_sz};
-        auto h{conv_w_to_h(k_curs_sz, _<Engine::SDLDevice>().win())};
+        auto h{ConvertWidthToHeight(k_curs_sz, _<Engine::SDLDevice>().win())};
 
         String curs_img;
 
@@ -265,13 +265,13 @@ namespace Core
 
         for (auto it : rdi)
         {
-            auto file_path{repl(it.path().string(), '\\', '/')};
+            auto file_path{Replace(it.path().string(), '\\', '/')};
 
-            if (file_ext(file_path) == "png")
+            if (GetFileExtension(file_path) == "png")
             {
-                auto file_name{file_name_no_ext(file_path)};
+                auto file_name{GetFileNameNoExtension(file_path)};
 
-                auto hash{Forradia::hash(file_name)};
+                auto hash{Forradia::Hash(file_name)};
 
                 auto surf{
                     SharedPtr<SDL_Surface>(IMG_Load(file_path.data()), SDLDeleter())};
@@ -513,7 +513,7 @@ namespace Core
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(
             aiTextureType_DIFFUSE, 0, &s);
 
-        textures.push_back(Texture(file_name_no_ext(s.C_Str())));
+        textures.push_back(Texture(GetFileNameNoExtension(s.C_Str())));
 
         return textures;
     }
@@ -532,13 +532,13 @@ namespace Core
 
         for (auto it : rdi)
         {
-            auto file_path{repl(it.path().string(), '\\', '/')};
+            auto file_path{Replace(it.path().string(), '\\', '/')};
 
-            if (file_ext(file_path) == "obj")
+            if (GetFileExtension(file_path) == "obj")
             {
-                auto file_name{file_name_no_ext(file_path)};
+                auto file_name{GetFileNameNoExtension(file_path)};
 
-                auto hash{Forradia::hash(file_name)};
+                auto hash{Forradia::Hash(file_name)};
 
                 auto model{load_single_model(file_path)};
 
@@ -598,12 +598,12 @@ namespace Core
     {
         scene.init();
 
-        scenes_.insert({hash(scene_name), scene});
+        scenes_.insert({Hash(scene_name), scene});
     }
 
     void Engine::ScenesCore::SceneManager::go_to_scene(StringView scene_name)
     {
-        curr_scene_ = hash(scene_name);
+        curr_scene_ = Hash(scene_name);
 
         if (scenes_.contains(curr_scene_))
         {

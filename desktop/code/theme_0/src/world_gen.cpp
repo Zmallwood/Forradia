@@ -61,14 +61,14 @@ namespace Theme0
 
         void WorldGenerator::gen_grass() const
         {
-            auto num_grass_areas{50 + rand_int(20)};
+            auto num_grass_areas{50 + GetRandomInt(20)};
 
             for (auto i = 0; i < num_grass_areas; i++)
             {
-                auto x_cent{rand_int(sz_.w)};
-                auto y_cent{rand_int(sz_.h)};
+                auto x_cent{GetRandomInt(sz_.w)};
+                auto y_cent{GetRandomInt(sz_.h)};
 
-                auto r{3 * scale_ + rand_int(10 * scale_)};
+                auto r{3 * scale_ + GetRandomInt(10 * scale_)};
 
                 for (auto y = y_cent - r; y <= y_cent + r; y++)
                 {
@@ -101,10 +101,10 @@ namespace Theme0
                 return;
             }
 
-            auto x_cent{min_x + rand_int(max_x - min_x)};
-            auto y_cent{min_y + rand_int(max_y - min_y)};
+            auto x_cent{min_x + GetRandomInt(max_x - min_x)};
+            auto y_cent{min_y + GetRandomInt(max_y - min_y)};
 
-            auto max_r{c_int(3 * scale_ + rand_int(5 * scale_))};
+            auto max_r{CInt(3 * scale_ + GetRandomInt(5 * scale_))};
 
             for (auto r = max_r; r >= 0; r--)
             {
@@ -197,24 +197,24 @@ namespace Theme0
 
         void WorldGenerator::gen_lakes() const
         {
-            auto num_lakes{20 + rand_int(5)};
+            auto num_lakes{20 + GetRandomInt(5)};
 
             for (auto i = 0; i < num_lakes; i++)
             {
-                gen_single_lake(0, 0, sz_.w, sz_.h, 2 + rand_int(5));
+                gen_single_lake(0, 0, sz_.w, sz_.h, 2 + GetRandomInt(5));
             }
         }
 
         void WorldGenerator::gen_elev() const
         {
-            auto num_hills{140 + rand_int(30)};
+            auto num_hills{140 + GetRandomInt(30)};
 
             for (auto i = 0; i < num_hills; i++)
             {
-                auto x_cent{rand_int(sz_.w)};
-                auto y_cent{rand_int(sz_.h)};
+                auto x_cent{GetRandomInt(sz_.w)};
+                auto y_cent{GetRandomInt(sz_.h)};
 
-                auto max_r{5 * scale_ + rand_int(5 * scale_)};
+                auto max_r{5 * scale_ + GetRandomInt(5 * scale_)};
 
                 for (auto r = max_r; r >= 0; r--)
                 {
@@ -234,7 +234,7 @@ namespace Theme0
                             {
                                 auto tl{w_area_->get_tl(x, y)};
 
-                                if (tl && tl->ground() != hash("ground_water"))
+                                if (tl && tl->ground() != Hash("ground_water"))
                                 {
                                     auto tl_n{w_area_->get_tl(x, y - 1)};
                                     auto tl_s{w_area_->get_tl(x, y + 1)};
@@ -246,21 +246,21 @@ namespace Theme0
                                     auto tl_se{w_area_->get_tl(x + 1, y + 1)};
 
                                     if ((tl_n && tl_n->ground() ==
-                                                     hash("ground_water")) ||
+                                                     Hash("ground_water")) ||
                                         (tl_s && tl_s->ground() ==
-                                                     hash("ground_water")) ||
+                                                     Hash("ground_water")) ||
                                         (tl_w && tl_w->ground() ==
-                                                     hash("ground_water")) ||
+                                                     Hash("ground_water")) ||
                                         (tl_e && tl_e->ground() ==
-                                                     hash("ground_water")) ||
+                                                     Hash("ground_water")) ||
                                         (tl_nw && tl_nw->ground() ==
-                                                      hash("ground_water")) ||
+                                                      Hash("ground_water")) ||
                                         (tl_ne && tl_ne->ground() ==
-                                                      hash("ground_water")) ||
+                                                      Hash("ground_water")) ||
                                         (tl_sw && tl_sw->ground() ==
-                                                      hash("ground_water")) ||
+                                                      Hash("ground_water")) ||
                                         (tl_se && tl_se->ground() ==
-                                                      hash("ground_water")))
+                                                      Hash("ground_water")))
                                     {
                                         continue;
                                     }
@@ -316,14 +316,14 @@ namespace Theme0
 
         void WorldGenerator::gen_rock() const
         {
-            auto num_rock_areas{30 + rand_int(10)};
+            auto num_rock_areas{30 + GetRandomInt(10)};
 
             for (auto i = 0; i < num_rock_areas; i++)
             {
-                auto x_center{rand_int(sz_.w)};
-                auto y_center{rand_int(sz_.h)};
+                auto x_center{GetRandomInt(sz_.w)};
+                auto y_center{GetRandomInt(sz_.h)};
 
-                auto r{3 * scale_ + rand_int(10 * scale_)};
+                auto r{3 * scale_ + GetRandomInt(10 * scale_)};
 
                 for (auto y = y_center - r; y <= y_center + r; y++)
                 {
@@ -353,16 +353,16 @@ namespace Theme0
 
         void WorldGenerator::gen_rivers() const
         {
-            auto num_rivers{20 * scale_ + rand_int(5 * scale_)};
+            auto num_rivers{20 * scale_ + GetRandomInt(5 * scale_)};
 
             for (auto i = 0; i < num_rivers; i++)
             {
-                auto x{c_float(rand_int(sz_.w))};
-                auto y{c_float(rand_int(sz_.h))};
+                auto x{CFloat(GetRandomInt(sz_.w))};
+                auto y{CFloat(GetRandomInt(sz_.h))};
 
-                auto start_angle{rand_int(360)};
+                auto start_angle{GetRandomInt(360)};
 
-                auto len{45 + rand_int(20)};
+                auto len{45 + GetRandomInt(20)};
 
                 auto prev_x_coord{-1};
                 auto prev_y_coord{-1};
@@ -373,8 +373,8 @@ namespace Theme0
                 {
                     auto angle{start_angle + std::sin(j * M_PI / 10.0f) * 45};
 
-                    auto x_coord{c_int(x)};
-                    auto y_coord{c_int(y)};
+                    auto x_coord{CInt(x)};
+                    auto y_coord{CInt(y)};
 
                     if (!w_area_->is_valid_coord(x_coord, y_coord))
                     {
@@ -474,114 +474,114 @@ namespace Theme0
 
         void WorldGenerator::gen_objs() const
         {
-            auto num_fir_trees{1000 * scale_ + rand_int(50)};
+            auto num_fir_trees{1000 * scale_ + GetRandomInt(50)};
 
             for (auto i = 0; i < num_fir_trees; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_tree_obj("object_fir_tree");
                 }
             }
 
-            auto num_birch_trees{1000 * scale_ + rand_int(50)};
+            auto num_birch_trees{1000 * scale_ + GetRandomInt(50)};
 
             for (auto i = 0; i < num_birch_trees; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_tree_obj("object_birch_tree");
                 }
             }
 
-            auto num_bush_1s{400 * scale_ + rand_int(100)};
+            auto num_bush_1s{400 * scale_ + GetRandomInt(100)};
 
             for (auto i = 0; i < num_bush_1s; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_obj("object_bush1");
                 }
             }
 
-            auto num_bush_2s{400 * scale_ + rand_int(100)};
+            auto num_bush_2s{400 * scale_ + GetRandomInt(100)};
 
             for (auto i = 0; i < num_bush_2s; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_obj("object_bush2");
                 }
             }
 
-            auto num_pink_flowers{400 * scale_ + rand_int(100)};
+            auto num_pink_flowers{400 * scale_ + GetRandomInt(100)};
 
             for (auto i = 0; i < num_pink_flowers; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_obj("object_pink_flower");
                 }
             }
 
-            auto num_tall_grasses{400 * scale_ + rand_int(100)};
+            auto num_tall_grasses{400 * scale_ + GetRandomInt(100)};
 
             for (auto i = 0; i < num_tall_grasses; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && tl->ground() != hash("ground_water") &&
-                    tl->ground() != hash("ground_rock"))
+                if (tl && tl->ground() != Hash("ground_water") &&
+                    tl->ground() != Hash("ground_rock"))
                 {
                     tl->objects_stack()->clear_objs();
                     tl->objects_stack()->add_obj("object_tall_grass");
                 }
             }
 
-            auto num_stone_boulders{200 * scale_ + rand_int(100)};
+            auto num_stone_boulders{200 * scale_ + GetRandomInt(100)};
 
             for (auto i = 0; i < num_stone_boulders; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
@@ -595,17 +595,17 @@ namespace Theme0
 
         void WorldGenerator::gen_creas() const
         {
-            auto num_rats{200 * scale_ + rand_int(15 * scale_)};
+            auto num_rats{200 * scale_ + GetRandomInt(15 * scale_)};
 
             for (auto i = 0; i < num_rats; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
                 if (tl && !tl->creature() &&
-                    tl->ground() != hash("ground_water"))
+                    tl->ground() != Hash("ground_water"))
                 {
                     auto new_crea =
                         std::make_shared<Theme0::WorldStructure::Creature>(
@@ -618,17 +618,17 @@ namespace Theme0
                 }
             }
 
-            auto num_butterflies{200 * scale_ + rand_int(15 * scale_)};
+            auto num_butterflies{200 * scale_ + GetRandomInt(15 * scale_)};
 
             for (auto i = 0; i < num_butterflies; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
                 if (tl && !tl->creature() &&
-                    tl->ground() != hash("ground_water"))
+                    tl->ground() != Hash("ground_water"))
                 {
                     auto new_crea =
                         std::make_shared<Theme0::WorldStructure::Creature>(
@@ -644,16 +644,16 @@ namespace Theme0
 
         void WorldGenerator::gen_npcs() const
         {
-            auto num_npc_0s{200 * scale_ + rand_int(15 * scale_)};
+            auto num_npc_0s{200 * scale_ + GetRandomInt(15 * scale_)};
 
             for (auto i = 0; i < num_npc_0s; i++)
             {
-                auto x{rand_int(sz_.w)};
-                auto y{rand_int(sz_.h)};
+                auto x{GetRandomInt(sz_.w)};
+                auto y{GetRandomInt(sz_.h)};
 
                 auto tl{w_area_->get_tl(x, y)};
 
-                if (tl && !tl->npc() && tl->ground() != hash("ground_water"))
+                if (tl && !tl->npc() && tl->ground() != Hash("ground_water"))
                 {
                     auto new_npc =
                         std::make_shared<Theme0::WorldStructure::NPC>("npc0");

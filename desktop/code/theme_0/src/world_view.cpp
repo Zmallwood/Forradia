@@ -124,20 +124,20 @@ namespace Theme0
 
                     auto ground{tl->ground()};
 
-                    if (ground == hash("ground_water"))
+                    if (ground == Hash("ground_water"))
                     {
-                        auto anim_idx{(ticks() + ((x_coord + y_coord) * 100)) /
+                        auto anim_idx{(GetTicks() + ((x_coord + y_coord) * 100)) /
                                       500 % 3};
                         ground =
-                            hash("ground_water_" + std::to_string(anim_idx));
+                            Hash("ground_water_" + std::to_string(anim_idx));
                     }
 
                     for (auto obj : objects)
                     {
                         auto obj_type{obj->type()};
 
-                        if (obj_type == hash("object_fir_tree") ||
-                            obj_type == hash("object_birch_tree"))
+                        if (obj_type == Hash("object_fir_tree") ||
+                            obj_type == Hash("object_birch_tree"))
                         {
                             auto tree_obj{
                                 std::static_pointer_cast<Forradia::TreeObject>(
@@ -157,7 +157,7 @@ namespace Theme0
 
                                 auto w_decr_factor{
                                     0.5f + (trunk_parts.size() - i) /
-                                               c_float(trunk_parts.size()) / 2};
+                                               CFloat(trunk_parts.size()) / 2};
 
                                 auto tree_w{rend_tl_sz * w_factor *
                                             w_decr_factor};
@@ -165,14 +165,14 @@ namespace Theme0
                                 auto trunk_part_x{trunk_part.x};
                                 auto trunk_part_y{trunk_part.x};
 
-                                trunk_part_x *= c_float(i) /
+                                trunk_part_x *= CFloat(i) /
                                                 trunk_parts.size() *
-                                                std::sin(ticks() / 700.0f +
+                                                std::sin(GetTicks() / 700.0f +
                                                          x_coord * y_coord);
 
-                                trunk_part_y *= c_float(i) /
+                                trunk_part_y *= CFloat(i) /
                                                 trunk_parts.size() *
-                                                std::sin(ticks() / 700.0f +
+                                                std::sin(GetTicks() / 700.0f +
                                                          x_coord * y_coord);
 
                                 auto trunk_part_x_center{
@@ -192,19 +192,19 @@ namespace Theme0
 
                                 String trunk_part_name;
 
-                                if (obj_type == hash("object_fir_tree"))
+                                if (obj_type == Hash("object_fir_tree"))
                                 {
                                     trunk_part_name =
                                         "object_fir_tree_trunk_part";
                                 }
-                                else if (obj_type == hash("object_birch_tree"))
+                                else if (obj_type == Hash("object_birch_tree"))
                                 {
                                     trunk_part_name =
                                         "object_birch_tree_trunk_part";
                                 }
 
                                 _<Engine::Renderers::ModelRenderer>().draw_model(
-                                    hash(trunk_part_name),
+                                    Hash(trunk_part_name),
                                     trunk_part_x_center - trunk_part_width / 2,
                                     trunk_part_y_center - trunk_part_width / 2,
                                     elev_avg - trunk_part_z, camera_pos,
@@ -240,7 +240,7 @@ namespace Theme0
                         y_coord == wa_sz.h - player_pos.y)
                     {
                         _<Engine::Renderers::ModelRenderer>().draw_model(
-                            hash("player"),
+                            Hash("player"),
                             (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             elev_avg, camera_pos, elev_h);

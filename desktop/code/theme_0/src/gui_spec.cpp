@@ -43,7 +43,7 @@ namespace SpecializedGUI
     {
         GUIComponent::render_derived();
 
-        auto c_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
+        auto c_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
 
         auto rect{SDL_Rect{0, 0, c_sz.w, c_sz.h}};
 
@@ -64,7 +64,7 @@ namespace SpecializedGUI
 
         auto margin_x{k_margin};
 
-        auto margin_y{conv_w_to_h(k_margin, _<Engine::SDLDevice>().win())};
+        auto margin_y{ConvertWidthToHeight(k_margin, _<Engine::SDLDevice>().win())};
 
         auto x_start{b.x + margin_x};
 
@@ -72,11 +72,11 @@ namespace SpecializedGUI
 
         auto slot_w{k_slot_size};
 
-        auto slot_h{conv_w_to_h(k_slot_size, _<Engine::SDLDevice>().win())};
+        auto slot_h{ConvertWidthToHeight(k_slot_size, _<Engine::SDLDevice>().win())};
 
-        auto num_cols{c_int((b.w - 2 * margin_x) / slot_w)};
+        auto num_cols{CInt((b.w - 2 * margin_x) / slot_w)};
 
-        auto num_rows{c_int((b.h - 2 * margin_y - (y_start - b.y)) / slot_h)};
+        auto num_rows{CInt((b.h - 2 * margin_y - (y_start - b.y)) / slot_h)};
 
         for (auto y = 0; y < num_rows; y++)
         {
@@ -93,14 +93,14 @@ namespace SpecializedGUI
     {
         auto img_w{0.07f};
 
-        auto img_h{conv_w_to_h(img_w, _<Engine::SDLDevice>().win())};
+        auto img_h{ConvertWidthToHeight(img_w, _<Engine::SDLDevice>().win())};
 
         auto overall_body_img_btn{
             std::make_shared<GUIComponentsLibrary::GUIButton>(
                 0.1f - img_w / 2, 0.04f, img_w, img_h, "",
                 [this]
                 {
-                    sel_body_part(c_int(Theme0::GameplayCore::Player::
+                    sel_body_part(CInt(Theme0::GameplayCore::Player::
                                             BodyPartTypes::overall_body));
                     update_body_part_info_lbls();
                 },
@@ -113,7 +113,7 @@ namespace SpecializedGUI
             0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
             [this]
             {
-                sel_body_part(c_int(
+                sel_body_part(CInt(
                     Theme0::GameplayCore::Player::BodyPartTypes::right_arm));
                 update_body_part_info_lbls();
             },
@@ -126,7 +126,7 @@ namespace SpecializedGUI
             0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
             [this]
             {
-                sel_body_part(c_int(
+                sel_body_part(CInt(
                     Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
                 update_body_part_info_lbls();
             },
@@ -139,7 +139,7 @@ namespace SpecializedGUI
             [this]
             {
                 sel_body_part(
-                    c_int(Theme0::GameplayCore::Player::BodyPartTypes::legs));
+                    CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs));
                 update_body_part_info_lbls();
             },
             "gui_image_legs", "gui_image_legs_hovered")};
@@ -176,16 +176,16 @@ namespace SpecializedGUI
         auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().body_ref()};
 
         constexpr auto overall_body{
-            c_int(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
 
         constexpr auto right_arm{
-            c_int(Theme0::GameplayCore::Player::BodyPartTypes::right_arm)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::right_arm)};
 
         constexpr auto left_arm{
-            c_int(Theme0::GameplayCore::Player::BodyPartTypes::left_arm)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::left_arm)};
 
         constexpr auto legs{
-            c_int(Theme0::GameplayCore::Player::BodyPartTypes::legs)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs)};
 
         switch (sel_body_part_)
         {
@@ -355,7 +355,7 @@ namespace SpecializedGUI
 
         auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
 
-        if (tl && tl->ground() == hash("ground_grass"))
+        if (tl && tl->ground() == Hash("ground_grass"))
         {
             entries_.push_back(
                 {"Forage", [=]()
@@ -371,8 +371,8 @@ namespace SpecializedGUI
         {
             auto type{obj->type()};
 
-            if (type == hash("object_fir_tree") ||
-                type == hash("object_birch_tree"))
+            if (type == Hash("object_fir_tree") ||
+                type == Hash("object_birch_tree"))
             {
                 entries_.push_back(
                     {"Cut down tree", [=]()
@@ -390,7 +390,7 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
         auto i{0};
 

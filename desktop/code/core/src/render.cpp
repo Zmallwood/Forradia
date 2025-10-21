@@ -178,7 +178,7 @@ void RenderersCollection::Image2DRenderer::draw_img(int img_name_hash, float x,
 void RenderersCollection::Image2DRenderer::draw_tex(GLuint tex_id, float x, float y,
                                                 float w, float h)
 {
-    auto canv_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
@@ -319,7 +319,7 @@ void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
                                                        float x, float y,
                                                        float w)
 {
-    auto hash{Forradia::hash(img_name)};
+    auto hash{Forradia::Hash(img_name)};
 
     auto img_sz{_<Core::Engine::Assets::Images::ImageBank>().get_img_sz(hash)};
 
@@ -328,9 +328,9 @@ void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
         return;
     }
 
-    auto canv_asp_rat{calc_aspect_ratio(_<Engine::SDLDevice>().win())};
+    auto canv_asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
 
-    auto img_asp_rat{c_float(img_sz.w) / img_sz.h};
+    auto img_asp_rat{CFloat(img_sz.w) / img_sz.h};
 
     auto h{w / img_asp_rat * canv_asp_rat};
 
@@ -340,7 +340,7 @@ void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
 void RenderersCollection::Image2DRenderer::draw_img(StringView img_name, float x,
                                                 float y, float w, float h)
 {
-    draw_img(hash(img_name), x, y, w, h);
+    draw_img(Hash(img_name), x, y, w, h);
 }
 
 void RenderersCollection::GroundRenderer::init()
@@ -510,7 +510,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
 {
     glEnable(GL_DEPTH_TEST);
 
-    auto canv_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
 
     glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
 
@@ -717,7 +717,7 @@ void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{calc_aspect_ratio(_<Engine::SDLDevice>().win())};
+    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
 
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
@@ -848,14 +848,14 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
 
     if (!model)
     {
-        print_ln("Model not found.");
+        PrintLine("Model not found.");
 
         return;
     }
 
     auto &meshes{model->meshes_ref()};
 
-    auto canv_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
@@ -1008,7 +1008,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{calc_aspect_ratio(_<Engine::SDLDevice>().win())};
+    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
     glm::mat4 projection_matrix =
@@ -1036,7 +1036,7 @@ void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x
 
     auto tex_name{meshes.at(0).textures.at(0).path_};
 
-    auto tex_name_hash{hash(tex_name)};
+    auto tex_name_hash{Hash(tex_name)};
 
     auto tex_id{
         _<Core::Engine::Assets::Images::ImageBank>().get_tex(tex_name_hash)};
@@ -1067,16 +1067,16 @@ void RenderersCollection::TextRenderer::add_fonts()
 
     for (auto font_sz : {FontSizes::_20, FontSizes::_26})
     {
-        auto font_path_unix_style{repl(abs_font_path, '\\', '/')};
+        auto font_path_unix_style{Replace(abs_font_path, '\\', '/')};
 
-        auto font_sz_n{c_int(font_sz)};
+        auto font_sz_n{CInt(font_sz)};
 
         auto new_font{SharedPtr<TTF_Font>(
             TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), SDLDeleter())};
 
         if (!new_font)
         {
-            print_ln("Error loading font.");
+            PrintLine("Error loading font.");
 
             return;
         }
@@ -1102,10 +1102,10 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
 
     SDL_Rect dest;
 
-    auto canv_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
+    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().win())};
 
-    dest.x = c_int(x * canv_sz.w);
-    dest.y = c_int(y * canv_sz.h);
+    dest.x = CInt(x * canv_sz.w);
+    dest.y = CInt(y * canv_sz.h);
     dest.w = text_dim.w;
     dest.h = text_dim.h;
 
@@ -1115,10 +1115,10 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
         dest.y -= dest.h / 2;
     }
 
-    auto text_hash{hash(text)};
+    auto text_hash{Hash(text)};
 
-    auto xx{c_float(c_int(x * 1000))};
-    auto yy{c_float(c_int(y * 1000))};
+    auto xx{CFloat(CInt(x * 1000))};
+    auto yy{CFloat(CInt(y * 1000))};
 
     auto tex_already_exists{
         _<Core::Engine::Assets::Images::ImageBank>().text_tex_exists(
@@ -1162,10 +1162,10 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
         SDL_FreeSurface(surf);
     }
 
-    auto xf{c_float(dest.x) / canv_sz.w};
-    auto yf{c_float(dest.y) / canv_sz.h};
-    auto wf{c_float(dest.w) / canv_sz.w};
-    auto hf{c_float(dest.h) / canv_sz.h};
+    auto xf{CFloat(dest.x) / canv_sz.w};
+    auto yf{CFloat(dest.y) / canv_sz.h};
+    auto wf{CFloat(dest.w) / canv_sz.w};
+    auto hf{CFloat(dest.h) / canv_sz.h};
     
     _<Image2DRenderer>().draw_tex(tex, xf, yf, wf, hf);
 }

@@ -283,7 +283,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            Size get_canv_sz(SharedPtr<SDL_Window> win);
+            Size GetCanvasSize(SharedPtr<SDL_Window> win);
 
             /**
              * Calculate the aspect ratio of a given window.
@@ -291,7 +291,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The calculated aspect ratio.
              */
-            float calc_aspect_ratio(SharedPtr<SDL_Window> win);
+            float CalcAspectRatio(SharedPtr<SDL_Window> win);
 
             /**
              * Convert a width to a height based on the width and the aspect
@@ -301,7 +301,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting height.
              */
-            float conv_w_to_h(float w, SharedPtr<SDL_Window> win);
+            float ConvertWidthToHeight(float w, SharedPtr<SDL_Window> win);
 
             /**
              * Convert a height to a width base on the height and the aspect
@@ -311,51 +311,51 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting width.
              */
-            float conv_h_to_w(float h, SharedPtr<SDL_Window> win);
+            float ConvertHeightToWidth(float h, SharedPtr<SDL_Window> win);
         }
         using namespace CanvasUtilities;
         namespace FilePathUtilities
         {
             // File path util functions
-            String file_ext(StringView path);
+            String GetFileExtension(StringView path);
 
-            String file_name_no_ext(StringView path);
+            String GetFileNameNoExtension(StringView path);
         }
         using namespace FilePathUtilities;
         namespace MouseUtilities
         {
             // Mouse util functions
-            PointF norm_mouse_pos(SharedPtr<SDL_Window> win);
+            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> win);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities
         {
             // Numbers util functions
-            float inv_movem_spd(float num);
+            float InvertMovementSpeed(float num);
 
-            int normalize(int val);
+            int Normalize(int val);
 
-            float ceil(float num, float k);
+            float Ceil(float num, float k);
         }
         using namespace NumbersUtilities;
         namespace RandomizationUtilities
         {
             // Randomization util functions
-            void randomize();
+            void Randomize();
 
-            int rand_int(int upper_lim);
+            int GetRandomInt(int upper_lim);
         }
         using namespace RandomizationUtilities;
         namespace StringUtilities
         {
             // String util functions
-            String repl(StringView text, char repl, char repl_with);
+            String Replace(StringView text, char repl, char repl_with);
         }
         using namespace StringUtilities;
         namespace TimeUtilities
         {
             // Time util functions
-            int ticks();
+            int GetTicks();
         }
         using namespace TimeUtilities;
         namespace HashUtilities
@@ -368,7 +368,7 @@ namespace Common
              * \param text Text to compute hash code for.
              * \return Computed hash code.
              */
-            int hash(StringView text);
+            int Hash(StringView text);
         }
         using namespace HashUtilities;
         namespace PrintUtilities
@@ -379,14 +379,14 @@ namespace Common
              *
              * \param text Text to print.
              */
-            void print(StringView text);
+            void Print(StringView text);
 
             /**
              * Print out a string of text, with an added line break at the end.
              *
              * \param text Text to print.
              */
-            void print_ln(StringView text);
+            void PrintLine(StringView text);
         }
         using namespace PrintUtilities;
         namespace CastUtilities
@@ -398,7 +398,7 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            constexpr int c_int(auto val)
+            constexpr int CInt(auto val)
             {
                 return static_cast<int>(val);
             }
@@ -409,7 +409,7 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            float c_float(auto val)
+            float CFloat(auto val)
             {
                 return static_cast<float>(val);
             }
@@ -420,7 +420,7 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            Uint8 c_uint8(auto val)
+            Uint8 CUint8(auto val)
             {
                 return static_cast<Uint8>(val);
             }

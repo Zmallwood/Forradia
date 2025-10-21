@@ -81,10 +81,10 @@ namespace Common
             SDL_Color Color::ToSDLColor() const
             {
                 // Calculate individual color components.
-                auto r_n{c_uint8(r * 255)};
-                auto g_n{c_uint8(g * 255)};
-                auto b_n{c_uint8(b * 255)};
-                auto a_n{c_uint8(a * 255)};
+                auto r_n{CUint8(r * 255)};
+                auto g_n{CUint8(g * 255)};
+                auto b_n{CUint8(b * 255)};
+                auto a_n{CUint8(a * 255)};
 
                 return {r_n, g_n, b_n, a_n};
             }
@@ -95,7 +95,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            Size get_canv_sz(SharedPtr<SDL_Window> win)
+            Size GetCanvasSize(SharedPtr<SDL_Window> win)
             {
                 Size canv_sz;
                 // Get the size of the window.
@@ -104,31 +104,31 @@ namespace Common
                 return canv_sz;
             }
 
-            float calc_aspect_ratio(SharedPtr<SDL_Window> win)
+            float CalcAspectRatio(SharedPtr<SDL_Window> win)
             {
-                auto canv_sz{get_canv_sz(win)};
+                auto canv_sz{GetCanvasSize(win)};
                 // Calculate the aspect ratio.
-                auto asp_rat{c_float(canv_sz.w) / canv_sz.h};
+                auto asp_rat{CFloat(canv_sz.w) / canv_sz.h};
 
                 return asp_rat;
             }
 
-            float conv_w_to_h(float w, SharedPtr<SDL_Window> win)
+            float ConvertWidthToHeight(float w, SharedPtr<SDL_Window> win)
             {
                 // Calculate the height based on the width and the aspect ratio.
-                return w * calc_aspect_ratio(win);
+                return w * CalcAspectRatio(win);
             }
 
-            float conv_h_to_w(float h, SharedPtr<SDL_Window> win)
+            float ConvertHeightToWidth(float h, SharedPtr<SDL_Window> win)
             {
                 // Calculate the width based on the height and the aspect ratio.
-                return h / calc_aspect_ratio(win);
+                return h / CalcAspectRatio(win);
             }
         }
         namespace FilePathUtilities
         {
             // File path util functions
-            String file_ext(StringView path)
+            String GetFileExtension(StringView path)
             {
                 // Get the file extension.
                 String ext{path.substr(path.find_last_of('.') + 1).data()};
@@ -136,7 +136,7 @@ namespace Common
                 return ext;
             }
 
-            String file_name_no_ext(StringView path)
+            String GetFileNameNoExtension(StringView path)
             {
                 // Get the file name without the extension.
                 auto name_with_ext{
@@ -148,22 +148,22 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            PointF norm_mouse_pos(SharedPtr<SDL_Window> win)
+            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> win)
             {
                 int x_px;
                 int y_px;
                 // Get the mouse position.
                 SDL_GetMouseState(&x_px, &y_px);
-                auto canv_sz{get_canv_sz(win)};
+                auto canv_sz{GetCanvasSize(win)};
                 // Calculate the normalized mouse position.
 
-                return {c_float(x_px) / canv_sz.w, c_float(y_px) / canv_sz.h};
+                return {CFloat(x_px) / canv_sz.w, CFloat(y_px) / canv_sz.h};
             }
         }
         namespace NumbersUtilities
         {
             // Numbers util functions
-            float inv_movem_spd(float num)
+            float InvertMovementSpeed(float num)
             {
                 // Calculate the inverse of the movement speed.
                 if (num)
@@ -179,7 +179,7 @@ namespace Common
                 }
             }
 
-            int normalize(int val)
+            int Normalize(int val)
             {
                 auto abs_val{std::abs(val)};
                 auto norm{0};
@@ -193,7 +193,7 @@ namespace Common
                 return norm;
             }
 
-            float ceil(float num, float k)
+            float Ceil(float num, float k)
             {
                 // Calculate the ceiled value with k decimal places.
                 auto p{std::pow(10.0, k)};
@@ -204,13 +204,13 @@ namespace Common
         namespace RandomizationUtilities
         {
             // Randomization util functions
-            void randomize()
+            void Randomize()
             {
                 // Randomize the seed.
                 srand(time(nullptr));
             }
 
-            int rand_int(int upper_lim)
+            int GetRandomInt(int upper_lim)
             {
                 // Generate a random integer.
                 return rand() % upper_lim;
@@ -219,7 +219,7 @@ namespace Common
         namespace StringUtilities
         {
             // String util functions
-            String repl(StringView text, char repl, char repl_with)
+            String Replace(StringView text, char repl, char repl_with)
             {
                 String res{text.data()};
                 // Replace all instances of repl with repl_with.
@@ -231,7 +231,7 @@ namespace Common
         namespace TimeUtilities
         {
             // Time util functions
-            int ticks()
+            int GetTicks()
             {
                 // Get the number of ticks.
                 return SDL_GetTicks();
@@ -240,7 +240,7 @@ namespace Common
         namespace HashUtilities
         {
             // Hash util functions
-            int hash(StringView text)
+            int Hash(StringView text)
             {
                 // Use algorithm from source which is forgotten what it was.
                 unsigned long hash{5381};
@@ -250,19 +250,19 @@ namespace Common
                     hash = 33 * hash + (unsigned char)text[i];
                 }
 
-                return c_int(hash);
+                return CInt(hash);
             }
         }
         namespace PrintUtilities
         {
             // Print util functions
-            void print(StringView text)
+            void Print(StringView text)
             {
                 // Print out text without a following line break.
                 std::cout << text;
             }
 
-            void print_ln(StringView text)
+            void PrintLine(StringView text)
             {
                 // Print out text with a following line break.
                 std::cout << text << std::endl;

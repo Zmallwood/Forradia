@@ -42,7 +42,7 @@ namespace Theme0
                 _<GUIInteractionMenu>().set_visible(true);
 
                 _<GUIInteractionMenu>().set_pos(
-                    norm_mouse_pos(_<Engine::SDLDevice>().win()));
+                    GetNormallizedMousePosition(_<Engine::SDLDevice>().win()));
             }
         }
 
@@ -70,12 +70,12 @@ namespace Theme0
                 _<Theme0::GameplayCore::Player::PlayerCharacter>().set_dest({-1, -1});
             }
 
-            auto now{ticks()};
+            auto now{GetTicks()};
 
             if (now >=
                     _<Theme0::GameplayCore::Player::PlayerCharacter>()
                             .ticks_last_move() +
-                        inv_movem_spd(_<Theme0::GameplayCore::Player::PlayerCharacter>()
+                        InvertMovementSpeed(_<Theme0::GameplayCore::Player::PlayerCharacter>()
                                           .movem_spd()) &&
                 (up_press || right_press || down_press || left_press ||
                  w_press || a_press || s_press || d_press))
@@ -124,10 +124,10 @@ namespace Theme0
                 return;
             }
 
-            auto now{ticks()};
+            auto now{GetTicks()};
 
             if (now >= _<PlayerCharacter>().ticks_last_move() +
-                           inv_movem_spd(_<PlayerCharacter>().movem_spd()))
+                           InvertMovementSpeed(_<PlayerCharacter>().movem_spd()))
             {
                 auto dx{dest.x - player_pos.x};
                 auto dy{dest.y - player_pos.y};
@@ -167,7 +167,7 @@ namespace Theme0
 
             auto &creas{w_area->creatures_mirror_ref()};
 
-            auto now{ticks()};
+            auto now{GetTicks()};
 
             for (auto it = creas.begin(); it != creas.end();)
             {
@@ -176,7 +176,7 @@ namespace Theme0
                 auto pos{it->second};
 
                 if (now <
-                    crea->ticks_last_move() + inv_movem_spd(crea->movem_spd()))
+                    crea->ticks_last_move() + InvertMovementSpeed(crea->movem_spd()))
                 {
                     ++it;
 
@@ -187,9 +187,9 @@ namespace Theme0
 
                 if (dest.x == -1 && dest.y == -1)
                 {
-                    auto new_dest{pos.x + rand_int(11) - 5};
+                    auto new_dest{pos.x + GetRandomInt(11) - 5};
 
-                    auto new_destination_y{pos.y + rand_int(11) - 5};
+                    auto new_destination_y{pos.y + GetRandomInt(11) - 5};
 
                     crea->set_dest({new_dest, new_destination_y});
                 }
@@ -201,8 +201,8 @@ namespace Theme0
                 auto dx{crea->dest().x - pos.x};
                 auto dy{crea->dest().y - pos.y};
 
-                auto norm_dx{normalize(dx)};
-                auto norm_dy{normalize(dy)};
+                auto norm_dx{Normalize(dx)};
+                auto norm_dy{Normalize(dy)};
 
                 auto new_x{pos.x + norm_dx};
                 auto new_y{pos.y + norm_dy};
@@ -217,7 +217,7 @@ namespace Theme0
                 auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
 
                 if (tl && !tl->creature() &&
-                    tl->ground() != hash("ground_water"))
+                    tl->ground() != Hash("ground_water"))
                 {
                     auto old_pos{creas.at(crea)};
 
@@ -250,7 +250,7 @@ namespace Theme0
 
             auto &npcs{w_area->npcs_mirror_ref()};
 
-            auto now{ticks()};
+            auto now{GetTicks()};
 
             for (auto it = npcs.begin(); it != npcs.end();)
             {
@@ -262,7 +262,7 @@ namespace Theme0
                 {
                     auto name{npc->name()};
 
-                    if (rand_int(20) == 0)
+                    if (GetRandomInt(20) == 0)
                     {
                         _<GUIComponentsLibrary::GUIChatBox>().print(
                             name + ": Buying blueberries, one gold each.");
@@ -277,7 +277,7 @@ namespace Theme0
                         now + 5 * k_one_sec_millis + (6000 * k_one_sec_millis));
                 }
                 if (now <
-                    npc->ticks_last_move() + inv_movem_spd(npc->movem_spd()))
+                    npc->ticks_last_move() + InvertMovementSpeed(npc->movem_spd()))
                 {
                     ++it;
 
@@ -288,8 +288,8 @@ namespace Theme0
 
                 if (dest.x == -1 && dest.y == -1)
                 {
-                    auto new_dest_x{pos.x + rand_int(11) - 5};
-                    auto new_dest_y{pos.y + rand_int(11) - 5};
+                    auto new_dest_x{pos.x + GetRandomInt(11) - 5};
+                    auto new_dest_y{pos.y + GetRandomInt(11) - 5};
 
                     npc->set_dest({new_dest_x, new_dest_y});
                 }
@@ -297,8 +297,8 @@ namespace Theme0
                 auto dx{npc->dest().x - pos.x};
                 auto dy{npc->dest().y - pos.y};
 
-                auto norm_dx{normalize(dx)};
-                auto norm_dy{normalize(dy)};
+                auto norm_dx{Normalize(dx)};
+                auto norm_dy{Normalize(dy)};
 
                 auto new_x{pos.x + norm_dx};
                 auto new_y{pos.y + norm_dy};
@@ -312,7 +312,7 @@ namespace Theme0
 
                 auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
 
-                if (tl && !tl->npc() && tl->ground() != hash("ground_water"))
+                if (tl && !tl->npc() && tl->ground() != Hash("ground_water"))
                 {
                     auto old_pos{pos};
 
@@ -343,11 +343,11 @@ namespace Theme0
         {
             auto player_pos{_<PlayerCharacter>().pos()};
 
-            auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+            auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
             auto tl_sz{calc_tl_sz()};
 
-            auto screen_rel_x{c_int(mouse_pos.x / tl_sz.w)};
+            auto screen_rel_x{CInt(mouse_pos.x / tl_sz.w)};
 
             auto grid_sz{calc_grid_sz()};
 
@@ -362,7 +362,7 @@ namespace Theme0
 
             auto extra_rows{8};
 
-            auto top_y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2) -
+            auto top_y_coord{CInt(player_pos.y - (grid_sz.h - 1) / 2) -
                              extra_rows};
 
             auto player_tl{w_area->get_tl(player_pos)};
@@ -374,7 +374,7 @@ namespace Theme0
 
             for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++)
             {
-                auto y_coord{c_int(player_pos.y - (grid_sz.h - 1) / 2 + y)};
+                auto y_coord{CInt(player_pos.y - (grid_sz.h - 1) / 2 + y)};
 
                 auto coord{Point{hovered_x_coord, y_coord}};
 

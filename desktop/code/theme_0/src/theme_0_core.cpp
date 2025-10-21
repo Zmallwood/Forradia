@@ -18,7 +18,7 @@ namespace Theme0
 
             auto tl_h{1.0f / num_grid_rows};
 
-            auto asp_rat{calc_aspect_ratio(_<Engine::SDLDevice>().win())};
+            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
 
             auto tl_w{tl_h / asp_rat};
 
@@ -34,9 +34,9 @@ namespace Theme0
         {
             auto tl_sz{calc_tl_sz_new()};
 
-            auto asp_rat{calc_aspect_ratio(_<Engine::SDLDevice>().win())};
+            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().win())};
 
-            auto num_grid_cols{c_int(asp_rat / tl_sz) + 1};
+            auto num_grid_cols{CInt(asp_rat / tl_sz) + 1};
 
             auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
 
@@ -79,9 +79,9 @@ namespace Theme0
 
                 pos_ = {sz.w / 2, sz.h / 2};
 
-                while (w_area->get_tl(pos_)->ground() == hash("ground_water"))
+                while (w_area->get_tl(pos_)->ground() == Hash("ground_water"))
                 {
-                    pos_ = {rand_int(sz.w), rand_int(sz.h)};
+                    pos_ = {GetRandomInt(sz.w), GetRandomInt(sz.h)};
                 }
             }
 

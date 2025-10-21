@@ -11,7 +11,7 @@ namespace Theme0
     {
         void Creature::init()
         {
-            movem_spd_ *= (rand_int(3) + 1) / 2.0f;
+            movem_spd_ *= (GetRandomInt(3) + 1) / 2.0f;
         }
 
         void NPC::init()
@@ -19,7 +19,7 @@ namespace Theme0
             gen_name();
 
             ticks_next_spontaneous_speech_ =
-                ticks() + rand_int(300 * k_one_sec_millis);
+                GetTicks() + GetRandomInt(300 * k_one_sec_millis);
         }
 
         void NPC::gen_name()
@@ -30,17 +30,17 @@ namespace Theme0
                                  'f', 'g', 'h', 'j', 'k', 'l', 'z',
                                  'x', 'c', 'v', 'b', 'n', 'm'};
 
-            char c0{vowels.at(rand_int(vowels.size()))};
+            char c0{vowels.at(GetRandomInt(vowels.size()))};
 
-            char c1{consonants.at(rand_int(consonants.size()))};
-            char c2{consonants.at(rand_int(consonants.size()))};
+            char c1{consonants.at(GetRandomInt(consonants.size()))};
+            char c2{consonants.at(GetRandomInt(consonants.size()))};
 
-            char c3{vowels.at(rand_int(vowels.size()))};
+            char c3{vowels.at(GetRandomInt(vowels.size()))};
 
-            char c4{consonants.at(rand_int(consonants.size()))};
-            char c5{consonants.at(rand_int(consonants.size()))};
+            char c4{consonants.at(GetRandomInt(consonants.size()))};
+            char c5{consonants.at(GetRandomInt(consonants.size()))};
 
-            char c6{vowels.at(rand_int(vowels.size()))};
+            char c6{vowels.at(GetRandomInt(vowels.size()))};
 
             name_ = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
@@ -57,27 +57,27 @@ namespace Theme0
 
             if (obj_type_name == "object_fir_tree")
             {
-                num_trunk_parts = 55 + rand_int(44);
+                num_trunk_parts = 55 + GetRandomInt(44);
             }
 
             else if (obj_type_name == "object_birch_tree")
             {
-                num_trunk_parts = 25 + rand_int(14);
+                num_trunk_parts = 25 + GetRandomInt(14);
             }
 
-            w_factor_ *= (rand_int(5) + 1) / 2.0f + 1.0f;
+            w_factor_ *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
 
             auto offs_x{0.0f};
 
             for (auto i = 0; i < num_trunk_parts; i++)
             {
-                offs_x += (rand_int(20) - 10) / 100.0f;
+                offs_x += (GetRandomInt(20) - 10) / 100.0f;
 
                 auto offset_y{i * 0.1f};
 
                 auto pos{PointF{offs_x, offset_y}};
 
-                auto needles_type{rand_int(5)};
+                auto needles_type{GetRandomInt(5)};
 
                 trunk_parts_.push_back(pos);
 
@@ -101,7 +101,7 @@ namespace Theme0
 
                 needle_types_.push_back(
                     needles_type
-                        ? hash(needles_name + std::to_string(needles_type))
+                        ? Hash(needles_name + std::to_string(needles_type))
                         : 0);
             }
         }
@@ -134,7 +134,7 @@ namespace Theme0
 
         void Tile::set_ground(StringView ground_name)
         {
-            ground_ = hash(ground_name);
+            ground_ = Hash(ground_name);
         }
 
         void WorldArea::init(Size w_area_sz, float world_scaling)
@@ -157,7 +157,7 @@ namespace Theme0
 
         Size WorldArea::get_sz() const
         {
-            auto w{c_int(tiles_.size())};
+            auto w{CInt(tiles_.size())};
 
             auto h{0};
 

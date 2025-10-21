@@ -101,7 +101,7 @@ void GUIComponentsLibrary::GUIButton::update_derived()
 {
     GUIComponentsLibrary::GUIPanel::update_derived();
 
-    auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
     auto hovered{bounds().Contains(mouse_pos)};
 
@@ -137,7 +137,7 @@ void GUIComponentsLibrary::GUIButton::render_derived() const
 
 void GUIComponentsLibrary::GUIMovablePanel::update_derived()
 {
-    auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
     auto drag_area{get_drag_area()};
 
@@ -171,7 +171,7 @@ void GUIComponentsLibrary::GUIMovablePanel::update_derived()
     }
     if (being_moved())
     {
-        auto curr_mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
+        auto curr_mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().win())};
 
         auto new_pos{move_start_pos() + curr_mouse_pos -
                      move_start_mouse_pos()};
@@ -186,7 +186,7 @@ void GUIComponentsLibrary::GUIMovablePanel::start_move()
 
     move_start_pos_ = bounds().GetPosition();
 
-    move_start_mouse_pos_ = norm_mouse_pos(_<Engine::SDLDevice>().win());
+    move_start_mouse_pos_ = GetNormallizedMousePosition(_<Engine::SDLDevice>().win());
 }
 
 void GUIComponentsLibrary::GUIMovablePanel::stop_move()
@@ -204,8 +204,8 @@ void GUIComponentsLibrary::GUIWindow::gui_win_title_bar::init()
     auto parent_win_b{parent_win_.bounds()};
 
     add_child_comp(std::make_shared<GUIButton>(
-        parent_win_b.w - conv_w_to_h(0.015f, _<Engine::SDLDevice>().win()),
-        0.01f, 0.015f, conv_w_to_h(0.015f, _<Engine::SDLDevice>().win()), "X",
+        parent_win_b.w - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().win()),
+        0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().win()), "X",
         [this] { parent_win_.toggle_visible(); }));
 }
 
@@ -274,7 +274,7 @@ void GUIComponentsLibrary::GUIChatBox::render_derived() const
 
     auto b{bounds()};
 
-    auto max_num_lines{c_int(b.h / k_line_h - 1)};
+    auto max_num_lines{CInt(b.h / k_line_h - 1)};
 
     auto y{b.y + k_marg};
 

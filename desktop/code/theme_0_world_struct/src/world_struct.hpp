@@ -27,7 +27,7 @@ namespace WorldStructure
     class Creature
     {
       public:
-        Creature(StringView type_name) : type_{hash(type_name)}
+        Creature(StringView type_name) : type_{Hash(type_name)}
         {
             init();
         }
@@ -74,7 +74,7 @@ namespace WorldStructure
     class NPC
     {
       public:
-        NPC(StringView type_name) : type_{hash(type_name)}
+        NPC(StringView type_name) : type_{Hash(type_name)}
         {
             init();
         }
@@ -140,7 +140,7 @@ namespace WorldStructure
     class Object
     {
       public:
-        Object(StringView object_type_name) : type_(hash(object_type_name))
+        Object(StringView object_type_name) : type_(Hash(object_type_name))
         {
         }
 
