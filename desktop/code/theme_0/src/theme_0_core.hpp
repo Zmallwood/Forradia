@@ -36,26 +36,26 @@ namespace Theme0
               public:
                 auto GetStrength() const
                 {
-                    return strength_;
+                    return m_strength;
                 }
                 auto GetCurrentEnergy() const
                 {
-                    return current_energy_;
+                    return m_currentEnergy;
                 }
                 auto GetMaxEnergy() const
                 {
-                    return max_energy_;
+                    return m_maxEnergy;
                 }
                 auto GetTemperature() const
                 {
-                    return temperature_;
+                    return m_temperature;
                 }
 
               private:
-                float strength_{0.1f};
-                float current_energy_{1.0f};
-                float max_energy_{1.0f};
-                float temperature_{37.0f};
+                float m_strength{0.1f};
+                float m_currentEnergy{1.0f};
+                float m_maxEnergy{1.0f};
+                float m_temperature{37.0f};
             };
 
             class PlayerBody
@@ -71,7 +71,7 @@ namespace Theme0
               private:
                 void Initialize();
 
-                std::map<BodyPartTypes, BodyPart> parts_;
+                std::map<BodyPartTypes, BodyPart> m_bodyParts;
             };
 
             class PlayerCharacter
@@ -92,47 +92,47 @@ namespace Theme0
 
                 auto GetName() const
                 {
-                    return name_;
+                    return m_name;
                 }
 
                 auto GetPosition() const
                 {
-                    return position_;
+                    return m_position;
                 }
 
                 auto GetMovementSpeed() const
                 {
-                    return movement_speed_;
+                    return m_movementSpeed;
                 }
 
                 auto GetTicksLastMovement() const
                 {
-                    return ticks_last_movement_;
+                    return m_ticksLastMovement;
                 }
 
                 void SetTicksLastMovement(int value)
                 {
-                    ticks_last_movement_ = value;
+                    m_ticksLastMovement = value;
                 }
 
                 auto GetDestination() const
                 {
-                    return destination_;
+                    return m_destination;
                 }
 
                 void SetDestination(Point value)
                 {
-                    destination_ = value;
+                    m_destination = value;
                 }
 
                 auto &GetBodyRef()
                 {
-                    return body_;
+                    return m_body;
                 }
 
                 auto GetMoney() const
                 {
-                    return money_;
+                    return m_money;
                 }
 
               private:
@@ -140,13 +140,13 @@ namespace Theme0
 
                 void MoveToSuitablePosition();
 
-                String name_{"Unnamed Player"};
-                Point position_{60, 50};
-                float movement_speed_{5.0f};
-                int ticks_last_movement_{0};
-                Point destination_{-1, -1};
-                PlayerBody body_;
-                int money_{0};
+                String m_name{"Unnamed Player"};
+                Point m_position{60, 50};
+                float m_movementSpeed{5.0f};
+                int m_ticksLastMovement{0};
+                Point m_destination{-1, -1};
+                PlayerBody m_body;
+                int m_money{0};
             };
         }
         using namespace Player;

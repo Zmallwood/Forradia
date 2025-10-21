@@ -36,20 +36,20 @@ namespace Theme0
 
         void WorldGenerator::Prepare()
         {
-            w_area_ = _<Theme0::WorldStructure::World>().GetCurrentWorldArea();
+            m_worldArea = _<Theme0::WorldStructure::World>().GetCurrentWorldArea();
 
-            sz_ = w_area_->GetSize();
+            m_size = m_worldArea->GetSize();
 
-            scale_ = _<Theme0::GameProperties>().k_worldScaling;
+            m_scale = _<Theme0::GameProperties>().k_worldScaling;
         }
 
         void WorldGenerator::ClearWithDirt() const
         {
-            for (auto y = 0; y < sz_.h; y++)
+            for (auto y = 0; y < m_size.height; y++)
             {
-                for (auto x = 0; x < sz_.w; x++)
+                for (auto x = 0; x < m_size.width; x++)
                 {
-                    auto tl{w_area_->GetTile(x, y)};
+                    auto tl{m_worldArea->GetTile(x, y)};
 
                     if (tl)
                     {
@@ -65,16 +65,16 @@ namespace Theme0
 
             for (auto i = 0; i < num_grass_areas; i++)
             {
-                auto x_cent{GetRandomInt(sz_.w)};
-                auto y_cent{GetRandomInt(sz_.h)};
+                auto x_cent{GetRandomInt(m_size.width)};
+                auto y_cent{GetRandomInt(m_size.height)};
 
-                auto r{3 * scale_ + GetRandomInt(10 * scale_)};
+                auto r{3 * m_scale + GetRandomInt(10 * m_scale)};
 
                 for (auto y = y_cent - r; y <= y_cent + r; y++)
                 {
                     for (auto x = x_cent - r; x <= x_cent + r; x++)
                     {
-                        if (!w_area_->IsValidCoordinate(x, y))
+                        if (!m_worldArea->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -84,7 +84,7 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->GetTile(x, y)};
+                            auto tl{m_worldArea->GetTile(x, y)};
 
                             tl->SetGround("ground_grass");
                         }
@@ -104,7 +104,7 @@ namespace Theme0
             auto x_cent{min_x + GetRandomInt(max_x - min_x)};
             auto y_cent{min_y + GetRandomInt(max_y - min_y)};
 
-            auto max_r{CInt(3 * scale_ + GetRandomInt(5 * scale_))};
+            auto max_r{CInt(3 * m_scale + GetRandomInt(5 * m_scale))};
 
             for (auto r = max_r; r >= 0; r--)
             {
@@ -117,7 +117,7 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->GetTile(x, y)};
+                            auto tl{m_worldArea->GetTile(x, y)};
 
                             if (tl)
                             {
@@ -138,22 +138,22 @@ namespace Theme0
                                 Point sese{x + 2, y + 2};
                                 Point swsw{x - 2, y + 2};
 
-                                auto tl_n{w_area_->GetTile(n)};
-                                auto tl_e{w_area_->GetTile(e)};
-                                auto tl_s{w_area_->GetTile(s)};
-                                auto tl_w{w_area_->GetTile(w)};
-                                auto tl_nw{w_area_->GetTile(nw)};
-                                auto tl_ne{w_area_->GetTile(ne)};
-                                auto tl_se{w_area_->GetTile(se)};
-                                auto tl_sw{w_area_->GetTile(sw)};
-                                auto tl_nn{w_area_->GetTile(nn)};
-                                auto tl_ww{w_area_->GetTile(ww)};
-                                auto tl_ee{w_area_->GetTile(ee)};
-                                auto tl_ss{w_area_->GetTile(ss)};
-                                auto tl_nwnw{w_area_->GetTile(nwnw)};
-                                auto tl_nene{w_area_->GetTile(nene)};
-                                auto tl_sese{w_area_->GetTile(sese)};
-                                auto tl_swsw{w_area_->GetTile(swsw)};
+                                auto tl_n{m_worldArea->GetTile(n)};
+                                auto tl_e{m_worldArea->GetTile(e)};
+                                auto tl_s{m_worldArea->GetTile(s)};
+                                auto tl_w{m_worldArea->GetTile(w)};
+                                auto tl_nw{m_worldArea->GetTile(nw)};
+                                auto tl_ne{m_worldArea->GetTile(ne)};
+                                auto tl_se{m_worldArea->GetTile(se)};
+                                auto tl_sw{m_worldArea->GetTile(sw)};
+                                auto tl_nn{m_worldArea->GetTile(nn)};
+                                auto tl_ww{m_worldArea->GetTile(ww)};
+                                auto tl_ee{m_worldArea->GetTile(ee)};
+                                auto tl_ss{m_worldArea->GetTile(ss)};
+                                auto tl_nwnw{m_worldArea->GetTile(nwnw)};
+                                auto tl_nene{m_worldArea->GetTile(nene)};
+                                auto tl_sese{m_worldArea->GetTile(sese)};
+                                auto tl_swsw{m_worldArea->GetTile(swsw)};
 
                                 auto elev_n{tl_n ? tl_n->GetElevation() : 0};
                                 auto elev_e{tl_e ? tl_e->GetElevation() : 0};
@@ -201,7 +201,7 @@ namespace Theme0
 
             for (auto i = 0; i < num_lakes; i++)
             {
-                GenerateSingleLake(0, 0, sz_.w, sz_.h, 2 + GetRandomInt(5));
+                GenerateSingleLake(0, 0, m_size.width, m_size.height, 2 + GetRandomInt(5));
             }
         }
 
@@ -211,10 +211,10 @@ namespace Theme0
 
             for (auto i = 0; i < num_hills; i++)
             {
-                auto x_cent{GetRandomInt(sz_.w)};
-                auto y_cent{GetRandomInt(sz_.h)};
+                auto x_cent{GetRandomInt(m_size.width)};
+                auto y_cent{GetRandomInt(m_size.height)};
 
-                auto max_r{5 * scale_ + GetRandomInt(5 * scale_)};
+                auto max_r{5 * m_scale + GetRandomInt(5 * m_scale)};
 
                 for (auto r = max_r; r >= 0; r--)
                 {
@@ -222,7 +222,7 @@ namespace Theme0
                     {
                         for (auto x = x_cent - r; x <= x_cent + r; x++)
                         {
-                            if (!w_area_->IsValidCoordinate(x, y))
+                            if (!m_worldArea->IsValidCoordinate(x, y))
                             {
                                 continue;
                             }
@@ -232,18 +232,18 @@ namespace Theme0
 
                             if (dx * dx + dy * dy <= r * r)
                             {
-                                auto tl{w_area_->GetTile(x, y)};
+                                auto tl{m_worldArea->GetTile(x, y)};
 
                                 if (tl && tl->GetGround() != Hash("ground_water"))
                                 {
-                                    auto tl_n{w_area_->GetTile(x, y - 1)};
-                                    auto tl_s{w_area_->GetTile(x, y + 1)};
-                                    auto tl_w{w_area_->GetTile(x - 1, y)};
-                                    auto tl_e{w_area_->GetTile(x + 1, y)};
-                                    auto tl_nw{w_area_->GetTile(x - 1, y - 1)};
-                                    auto tl_ne{w_area_->GetTile(x + 1, y - 1)};
-                                    auto tl_sw{w_area_->GetTile(x - 1, y + 1)};
-                                    auto tl_se{w_area_->GetTile(x + 1, y + 1)};
+                                    auto tl_n{m_worldArea->GetTile(x, y - 1)};
+                                    auto tl_s{m_worldArea->GetTile(x, y + 1)};
+                                    auto tl_w{m_worldArea->GetTile(x - 1, y)};
+                                    auto tl_e{m_worldArea->GetTile(x + 1, y)};
+                                    auto tl_nw{m_worldArea->GetTile(x - 1, y - 1)};
+                                    auto tl_ne{m_worldArea->GetTile(x + 1, y - 1)};
+                                    auto tl_sw{m_worldArea->GetTile(x - 1, y + 1)};
+                                    auto tl_se{m_worldArea->GetTile(x + 1, y + 1)};
 
                                     if ((tl_n && tl_n->GetGround() ==
                                                      Hash("ground_water")) ||
@@ -320,16 +320,16 @@ namespace Theme0
 
             for (auto i = 0; i < num_rock_areas; i++)
             {
-                auto x_center{GetRandomInt(sz_.w)};
-                auto y_center{GetRandomInt(sz_.h)};
+                auto x_center{GetRandomInt(m_size.width)};
+                auto y_center{GetRandomInt(m_size.height)};
 
-                auto r{3 * scale_ + GetRandomInt(10 * scale_)};
+                auto r{3 * m_scale + GetRandomInt(10 * m_scale)};
 
                 for (auto y = y_center - r; y <= y_center + r; y++)
                 {
                     for (auto x = x_center - r; x <= x_center + r; x++)
                     {
-                        if (!w_area_->IsValidCoordinate(x, y))
+                        if (!m_worldArea->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -339,7 +339,7 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->GetTile(x, y)};
+                            auto tl{m_worldArea->GetTile(x, y)};
 
                             if (tl->GetElevation() > 0)
                             {
@@ -353,12 +353,12 @@ namespace Theme0
 
         void WorldGenerator::GenerateRivers() const
         {
-            auto num_rivers{20 * scale_ + GetRandomInt(5 * scale_)};
+            auto num_rivers{20 * m_scale + GetRandomInt(5 * m_scale)};
 
             for (auto i = 0; i < num_rivers; i++)
             {
-                auto x{CFloat(GetRandomInt(sz_.w))};
-                auto y{CFloat(GetRandomInt(sz_.h))};
+                auto x{CFloat(GetRandomInt(m_size.width))};
+                auto y{CFloat(GetRandomInt(m_size.height))};
 
                 auto start_angle{GetRandomInt(360)};
 
@@ -376,12 +376,12 @@ namespace Theme0
                     auto x_coord{CInt(x)};
                     auto y_coord{CInt(y)};
 
-                    if (!w_area_->IsValidCoordinate(x_coord, y_coord))
+                    if (!m_worldArea->IsValidCoordinate(x_coord, y_coord))
                     {
                         continue;
                     }
 
-                    auto tl = w_area_->GetTile(x_coord, y_coord);
+                    auto tl = m_worldArea->GetTile(x_coord, y_coord);
 
                     if (tl && prev_tl)
                     {
@@ -474,14 +474,14 @@ namespace Theme0
 
         void WorldGenerator::GenerateObjects() const
         {
-            auto num_fir_trees{1000 * scale_ + GetRandomInt(50)};
+            auto num_fir_trees{1000 * m_scale + GetRandomInt(50)};
 
             for (auto i = 0; i < num_fir_trees; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -491,14 +491,14 @@ namespace Theme0
                 }
             }
 
-            auto num_birch_trees{1000 * scale_ + GetRandomInt(50)};
+            auto num_birch_trees{1000 * m_scale + GetRandomInt(50)};
 
             for (auto i = 0; i < num_birch_trees; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -508,14 +508,14 @@ namespace Theme0
                 }
             }
 
-            auto num_bush_1s{400 * scale_ + GetRandomInt(100)};
+            auto num_bush_1s{400 * m_scale + GetRandomInt(100)};
 
             for (auto i = 0; i < num_bush_1s; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -525,14 +525,14 @@ namespace Theme0
                 }
             }
 
-            auto num_bush_2s{400 * scale_ + GetRandomInt(100)};
+            auto num_bush_2s{400 * m_scale + GetRandomInt(100)};
 
             for (auto i = 0; i < num_bush_2s; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -542,14 +542,14 @@ namespace Theme0
                 }
             }
 
-            auto num_pink_flowers{400 * scale_ + GetRandomInt(100)};
+            auto num_pink_flowers{400 * m_scale + GetRandomInt(100)};
 
             for (auto i = 0; i < num_pink_flowers; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -559,14 +559,14 @@ namespace Theme0
                 }
             }
 
-            auto num_tall_grasses{400 * scale_ + GetRandomInt(100)};
+            auto num_tall_grasses{400 * m_scale + GetRandomInt(100)};
 
             for (auto i = 0; i < num_tall_grasses; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetGround() != Hash("ground_water") &&
                     tl->GetGround() != Hash("ground_rock"))
@@ -576,14 +576,14 @@ namespace Theme0
                 }
             }
 
-            auto num_stone_boulders{200 * scale_ + GetRandomInt(100)};
+            auto num_stone_boulders{200 * m_scale + GetRandomInt(100)};
 
             for (auto i = 0; i < num_stone_boulders; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && tl->GetWaterDepth() < 4)
                 {
@@ -595,14 +595,14 @@ namespace Theme0
 
         void WorldGenerator::GenerateCreatures() const
         {
-            auto num_rats{200 * scale_ + GetRandomInt(15 * scale_)};
+            auto num_rats{200 * m_scale + GetRandomInt(15 * m_scale)};
 
             for (auto i = 0; i < num_rats; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && !tl->GetCreature() &&
                     tl->GetGround() != Hash("ground_water"))
@@ -613,19 +613,19 @@ namespace Theme0
 
                     tl->SetCreature(new_crea);
 
-                    w_area_->GetCreaturesMirrorRef().insert(
+                    m_worldArea->GetCreaturesMirrorRef().insert(
                         {tl->GetCreature(), {x, y}});
                 }
             }
 
-            auto num_butterflies{200 * scale_ + GetRandomInt(15 * scale_)};
+            auto num_butterflies{200 * m_scale + GetRandomInt(15 * m_scale)};
 
             for (auto i = 0; i < num_butterflies; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && !tl->GetCreature() &&
                     tl->GetGround() != Hash("ground_water"))
@@ -636,7 +636,7 @@ namespace Theme0
 
                     tl->SetCreature(new_crea);
 
-                    w_area_->GetCreaturesMirrorRef().insert(
+                    m_worldArea->GetCreaturesMirrorRef().insert(
                         {tl->GetCreature(), {x, y}});
                 }
             }
@@ -644,14 +644,14 @@ namespace Theme0
 
         void WorldGenerator::GenerateNPCs() const
         {
-            auto num_npc_0s{200 * scale_ + GetRandomInt(15 * scale_)};
+            auto num_npc_0s{200 * m_scale + GetRandomInt(15 * m_scale)};
 
             for (auto i = 0; i < num_npc_0s; i++)
             {
-                auto x{GetRandomInt(sz_.w)};
-                auto y{GetRandomInt(sz_.h)};
+                auto x{GetRandomInt(m_size.width)};
+                auto y{GetRandomInt(m_size.height)};
 
-                auto tl{w_area_->GetTile(x, y)};
+                auto tl{m_worldArea->GetTile(x, y)};
 
                 if (tl && !tl->GetNPC() && tl->GetGround() != Hash("ground_water"))
                 {
@@ -660,7 +660,7 @@ namespace Theme0
 
                     tl->SetNPC(new_npc);
 
-                    w_area_->GetNPCsMirrorRef().insert({tl->GetNPC(), {x, y}});
+                    m_worldArea->GetNPCsMirrorRef().insert({tl->GetNPC(), {x, y}});
                 }
             }
         }

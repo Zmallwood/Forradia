@@ -29,13 +29,13 @@ namespace Theme0
             auto elev_h{0.1f};
 
             auto player_elev{
-                w_area->GetTile(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)
+                w_area->GetTile(wa_sz.width - player_pos.x, wa_sz.height - player_pos.y)
                     ->GetElevation()};
 
             auto rend_tl_sz{0.5f};
 
-            Point3F camera_pos{(wa_sz.w - player_pos.x + 0.5f) * rend_tl_sz,
-                             (wa_sz.h - player_pos.y + 0.5f) * rend_tl_sz,
+            Point3F camera_pos{(wa_sz.width - player_pos.x + 0.5f) * rend_tl_sz,
+                             (wa_sz.height - player_pos.y + 0.5f) * rend_tl_sz,
                              player_elev * elev_h};
 
             static float x_canv, y_canv, w_canv, h_canv;
@@ -47,15 +47,15 @@ namespace Theme0
             static SharedPtr<Tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see,
                 tl_sese, tl_ses, tl_ss;
 
-            for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++)
+            for (auto y = -extra_rows; y < grid_sz.height + extra_rows; y++)
             {
-                for (auto x = 0; x < grid_sz.w; x++)
+                for (auto x = 0; x < grid_sz.width; x++)
                 {
                     x_coord =
-                        (wa_sz.w - player_pos.x) - (grid_sz.w - 1) / 2 + x;
+                        (wa_sz.width - player_pos.x) - (grid_sz.width - 1) / 2 + x;
 
                     y_coord =
-                        (wa_sz.h - player_pos.y) - (grid_sz.h - 1) / 2 + y;
+                        (wa_sz.height - player_pos.y) - (grid_sz.height - 1) / 2 + y;
 
                     if (!w_area->IsValidCoordinate(x_coord, y_coord))
                     {
@@ -236,8 +236,8 @@ namespace Theme0
                         }
                     }
 
-                    if (x_coord == wa_sz.w - player_pos.x &&
-                        y_coord == wa_sz.h - player_pos.y)
+                    if (x_coord == wa_sz.width - player_pos.x &&
+                        y_coord == wa_sz.height - player_pos.y)
                     {
                         _<Engine::Renderers::ModelRenderer>().DrawModel(
                             Hash("player"),

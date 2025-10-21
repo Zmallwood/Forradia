@@ -68,15 +68,15 @@ namespace SpecializedGUI
 
         auto x_start{b.x + margin_x};
 
-        auto y_start{b.y + margin_y + GetGUIWindowTitleBar()->GetBounds().h};
+        auto y_start{b.y + margin_y + GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slot_w{k_slotSize};
 
         auto slot_h{ConvertWidthToHeight(k_slotSize, _<Engine::SDLDevice>().GetWindow())};
 
-        auto num_cols{CInt((b.w - 2 * margin_x) / slot_w)};
+        auto num_cols{CInt((b.width - 2 * margin_x) / slot_w)};
 
-        auto num_rows{CInt((b.h - 2 * margin_y - (y_start - b.y)) / slot_h)};
+        auto num_rows{CInt((b.height - 2 * margin_y - (y_start - b.y)) / slot_h)};
 
         for (auto y = 0; y < num_rows; y++)
         {
@@ -347,7 +347,7 @@ namespace SpecializedGUI
 
     void GUIInteractionMenu::BuildMenu()
     {
-        entries_.clear();
+        m_entries.clear();
 
         auto hov_tl{_<TileHovering>().GetHoveredCoordinate()};
 
@@ -357,7 +357,7 @@ namespace SpecializedGUI
 
         if (tl && tl->GetGround() == Hash("ground_grass"))
         {
-            entries_.push_back(
+            m_entries.push_back(
                 {"Forage", [=]()
                  {
                      _<GUIComponentsLibrary::GUIChatBox>().Print(
@@ -374,7 +374,7 @@ namespace SpecializedGUI
             if (type == Hash("object_fir_tree") ||
                 type == Hash("object_birch_tree"))
             {
-                entries_.push_back(
+                m_entries.push_back(
                     {"Cut down tree", [=]()
                      {
                          _<GUIComponentsLibrary::GUIChatBox>().Print(
@@ -394,11 +394,11 @@ namespace SpecializedGUI
 
         auto i{0};
 
-        for (auto &entry : entries_)
+        for (auto &entry : m_entries)
         {
-            auto menu_entry_rect{RectF{b.x + 0.01f + k_indent_w,
-                                        b.y + 0.01f + k_line_h * (i + 1), b.w,
-                                        k_line_h}};
+            auto menu_entry_rect{RectF{b.x + 0.01f + k_indentWidth,
+                                        b.y + 0.01f + k_lineHeight * (i + 1), b.width,
+                                        k_lineHeight}};
 
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .HasBeenFired())
@@ -432,11 +432,11 @@ namespace SpecializedGUI
 
         auto i{0};
 
-        for (auto &entry : entries_)
+        for (auto &entry : m_entries)
         {
             _<Engine::Renderers::TextRenderer>().DrawString(
-                entry.GetLabel(), b.x + 0.01f + k_indent_w,
-                b.y + 0.01f + (i + 1) * k_line_h,
+                entry.GetLabel(), b.x + 0.01f + k_indentWidth,
+                b.y + 0.01f + (i + 1) * k_lineHeight,
                 Engine::Renderers::FontSizes::_20);
 
             ++i;

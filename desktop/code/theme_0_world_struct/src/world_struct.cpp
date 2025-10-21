@@ -141,14 +141,14 @@ namespace Theme0
         {
             auto sz{w_area_sz};
 
-            sz.w *= world_scaling;
-            sz.h *= world_scaling;
+            sz.width *= world_scaling;
+            sz.height *= world_scaling;
 
-            for (auto x = 0; x < sz.w; x++)
+            for (auto x = 0; x < sz.width; x++)
             {
                 tiles_.push_back(Vector<std::shared_ptr<Tile>>());
 
-                for (auto y = 0; y < sz.h; y++)
+                for (auto y = 0; y < sz.height; y++)
                 {
                     tiles_[x].push_back(std::make_shared<Tile>());
                 }
@@ -173,7 +173,7 @@ namespace Theme0
         {
             auto sz{GetSize()};
 
-            return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
+            return x >= 0 && y >= 0 && x < sz.width && y < sz.height;
         }
 
         bool WorldArea::IsValidCoordinate(Point coord) const

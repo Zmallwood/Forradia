@@ -144,7 +144,7 @@ namespace Core
 
         auto win_res{SharedPtr<SDL_Window>(
             SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED,
-                             SDL_WINDOWPOS_CENTERED, screen_sz.w, screen_sz.h,
+                             SDL_WINDOWPOS_CENTERED, screen_sz.width, screen_sz.height,
                              flags),
             SDLDeleter())};
 

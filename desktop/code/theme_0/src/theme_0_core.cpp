@@ -50,17 +50,17 @@ namespace Theme0
         {
             void PlayerBody::Initialize()
             {
-                parts_.insert({BodyPartTypes::overall_body, BodyPart()});
-                parts_.insert({BodyPartTypes::right_arm, BodyPart()});
-                parts_.insert({BodyPartTypes::left_arm, BodyPart()});
-                parts_.insert({BodyPartTypes::legs, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::overall_body, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::right_arm, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::left_arm, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::legs, BodyPart()});
             }
 
             BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes type)
             {
-                if (parts_.contains(type))
+                if (m_bodyParts.contains(type))
                 {
-                    return &parts_.at(type);
+                    return &m_bodyParts.at(type);
                 }
 
                 return nullptr;
@@ -77,32 +77,32 @@ namespace Theme0
 
                 auto sz{w_area->GetSize()};
 
-                position_ = {sz.w / 2, sz.h / 2};
+                m_position = {sz.width / 2, sz.height / 2};
 
-                while (w_area->GetTile(position_)->GetGround() == Hash("ground_water"))
+                while (w_area->GetTile(m_position)->GetGround() == Hash("ground_water"))
                 {
-                    position_ = {GetRandomInt(sz.w), GetRandomInt(sz.h)};
+                    m_position = {GetRandomInt(sz.width), GetRandomInt(sz.height)};
                 }
             }
 
             void PlayerCharacter::MoveNorth()
             {
-                position_.y -= 1;
+                m_position.y -= 1;
             }
 
             void PlayerCharacter::MoveEast()
             {
-                position_.x += 1;
+                m_position.x += 1;
             }
 
             void PlayerCharacter::MoveSouth()
             {
-                position_.y += 1;
+                m_position.y += 1;
             }
 
             void PlayerCharacter::MoveWest()
             {
-                position_.x -= 1;
+                m_position.x -= 1;
             }
         }
     }

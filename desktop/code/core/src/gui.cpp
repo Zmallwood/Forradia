@@ -82,8 +82,8 @@ void GUIComponentsLibrary::GUILabel::RenderDerived() const
 
     if (m_centerAlign)
     {
-        b.x += b.w / 2;
-        b.y += b.h / 2;
+        b.x += b.width / 2;
+        b.y += b.height / 2;
     }
 
     _<Engine::Renderers::TextRenderer>().DrawString(
@@ -94,7 +94,7 @@ void GUIComponentsLibrary::GUIPanel::RenderDerived() const
 {
     auto b{GetBounds()};
 
-    _<Engine::Renderers::Image2DRenderer>().DrawImage(m_backgroundImage, b.x, b.y, b.w, b.h);
+    _<Engine::Renderers::Image2DRenderer>().DrawImage(m_backgroundImage, b.x, b.y, b.width, b.height);
 }
 
 void GUIComponentsLibrary::GUIButton::UpdateDerived()
@@ -131,7 +131,7 @@ void GUIComponentsLibrary::GUIButton::RenderDerived() const
     auto b{GetBounds()};
 
     _<Engine::Renderers::TextRenderer>().DrawString(
-        m_text, b.x + b.w / 2, b.y + b.h / 2, Engine::Renderers::FontSizes::_20,
+        m_text, b.x + b.width / 2, b.y + b.height / 2, Engine::Renderers::FontSizes::_20,
         true);
 }
 
@@ -204,7 +204,7 @@ void GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::Initialize()
     auto parent_win_b{m_parentWindow.GetBounds()};
 
     AddChildComponent(std::make_shared<GUIButton>(
-        parent_win_b.w - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()),
+        parent_win_b.width - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()),
         0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()), "X",
         [this] { m_parentWindow.ToggleVisibility(); }));
 }
@@ -228,8 +228,8 @@ RectF GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::GetBounds() const
 
     b_res.x = parent_win_b.x;
     b_res.y = parent_win_b.y;
-    b_res.w = parent_win_b.w;
-    b_res.h = k_h;
+    b_res.width = parent_win_b.width;
+    b_res.height = k_h;
 
     return b_res;
 }
@@ -274,7 +274,7 @@ void GUIComponentsLibrary::GUIChatBox::RenderDerived() const
 
     auto b{GetBounds()};
 
-    auto max_num_lines{CInt(b.h / k_lineHeight - 1)};
+    auto max_num_lines{CInt(b.height / k_lineHeight - 1)};
 
     auto y{b.y + k_margin};
 
@@ -294,10 +294,10 @@ void GUIComponentsLibrary::GUIChatBox::RenderDerived() const
         y += k_lineHeight;
     }
 
-    auto sep_rect{RectF{b.x, b.y + b.h - k_lineHeight, b.w, k_separatorHeight}};
+    auto sep_rect{RectF{b.x, b.y + b.height - k_lineHeight, b.width, k_separatorHeight}};
 
     _<Engine::Renderers::Image2DRenderer>().DrawImage(
-        "black", sep_rect.x, sep_rect.y, sep_rect.w, sep_rect.h);
+        "black", sep_rect.x, sep_rect.y, sep_rect.width, sep_rect.height);
 }
 
 void GUIComponentsLibrary::GUIChatBox::Print(StringView text)

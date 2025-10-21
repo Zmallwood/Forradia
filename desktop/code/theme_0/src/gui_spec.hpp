@@ -75,7 +75,8 @@ namespace SpecializedGUI
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartName;
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartStrength;
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartEnergy;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartTemperature;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel>
+            m_labelBodyPartTemperature;
     };
 
     class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel
@@ -96,33 +97,33 @@ namespace SpecializedGUI
         virtual void RenderDerived() const override;
 
       private:
-        static constexpr float k_indent_w{0.01f};
-        static constexpr float k_line_h{0.025f};
+        static constexpr float k_indentWidth{0.01f};
+        static constexpr float k_lineHeight{0.025f};
 
         class GUIInteractionMenuEntry
         {
           public:
             GUIInteractionMenuEntry(StringView label, Function<void()> action)
-                : label_(label), action_(action)
+                : m_label(label), m_action(action)
             {
             }
 
             auto GetLabel() const
             {
-                return label_;
+                return m_label;
             }
 
             auto GetAction() const
             {
-                return action_;
+                return m_action;
             }
 
           private:
-            String label_;
-            Function<void()> action_;
+            String m_label;
+            Function<void()> m_action;
         };
 
-        Vector<GUIInteractionMenuEntry> entries_;
+        Vector<GUIInteractionMenuEntry> m_entries;
     };
 }
 using namespace SpecializedGUI;

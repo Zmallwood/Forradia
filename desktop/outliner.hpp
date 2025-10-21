@@ -204,8 +204,8 @@ namespace Common
         class Size
         {
           public:
-            int w{0}; ///< Width.
-            int h{0}; /// Height.
+            int width{0};  ///< Width.
+            int height{0}; /// Height.
         };
 
         /**
@@ -214,8 +214,8 @@ namespace Common
         class SizeF
         {
           public:
-            float w{0.0f}; ///< Width.
-            float h{0.0f}; ///< Height.
+            float width{0.0f};  ///< Width.
+            float height{0.0f}; ///< Height.
         };
 
         /**
@@ -248,10 +248,10 @@ namespace Common
              */
             void Offset(PointF offs);
 
-            float x{0.0f}; ///< The x coordinate.
-            float y{0.0f}; ///< The y coordinate.
-            float w{0.0f}; ///< The width, in the x dimension.
-            float h{0.0f}; ///< The height, in the y dimension.
+            float x{0.0f};      ///< The x coordinate.
+            float y{0.0f};      ///< The y coordinate.
+            float width{0.0f};  ///< The width, in the x dimension.
+            float height{0.0f}; ///< The height, in the y dimension.
         };
         namespace Coloring
         {
@@ -1391,26 +1391,26 @@ namespace Theme0
               public:
                 auto GetStrength() const
                 {
-                    return strength_;
+                    return m_strength;
                 }
                 auto GetCurrentEnergy() const
                 {
-                    return current_energy_;
+                    return m_currentEnergy;
                 }
                 auto GetMaxEnergy() const
                 {
-                    return max_energy_;
+                    return m_maxEnergy;
                 }
                 auto GetTemperature() const
                 {
-                    return temperature_;
+                    return m_temperature;
                 }
 
               private:
-                float strength_{0.1f};
-                float current_energy_{1.0f};
-                float max_energy_{1.0f};
-                float temperature_{37.0f};
+                float m_strength{0.1f};
+                float m_currentEnergy{1.0f};
+                float m_maxEnergy{1.0f};
+                float m_temperature{37.0f};
             };
 
             class PlayerBody
@@ -1426,7 +1426,7 @@ namespace Theme0
               private:
                 void Initialize();
 
-                std::map<BodyPartTypes, BodyPart> parts_;
+                std::map<BodyPartTypes, BodyPart> m_bodyParts;
             };
 
             class PlayerCharacter
@@ -1447,47 +1447,47 @@ namespace Theme0
 
                 auto GetName() const
                 {
-                    return name_;
+                    return m_name;
                 }
 
                 auto GetPosition() const
                 {
-                    return position_;
+                    return m_position;
                 }
 
                 auto GetMovementSpeed() const
                 {
-                    return movement_speed_;
+                    return m_movementSpeed;
                 }
 
                 auto GetTicksLastMovement() const
                 {
-                    return ticks_last_movement_;
+                    return m_ticksLastMovement;
                 }
 
                 void SetTicksLastMovement(int value)
                 {
-                    ticks_last_movement_ = value;
+                    m_ticksLastMovement = value;
                 }
 
                 auto GetDestination() const
                 {
-                    return destination_;
+                    return m_destination;
                 }
 
                 void SetDestination(Point value)
                 {
-                    destination_ = value;
+                    m_destination = value;
                 }
 
                 auto &GetBodyRef()
                 {
-                    return body_;
+                    return m_body;
                 }
 
                 auto GetMoney() const
                 {
-                    return money_;
+                    return m_money;
                 }
 
               private:
@@ -1495,13 +1495,13 @@ namespace Theme0
 
                 void MoveToSuitablePosition();
 
-                String name_{"Unnamed Player"};
-                Point position_{60, 50};
-                float movement_speed_{5.0f};
-                int ticks_last_movement_{0};
-                Point destination_{-1, -1};
-                PlayerBody body_;
-                int money_{0};
+                String m_name{"Unnamed Player"};
+                Point m_position{60, 50};
+                float m_movementSpeed{5.0f};
+                int m_ticksLastMovement{0};
+                Point m_destination{-1, -1};
+                PlayerBody m_body;
+                int m_money{0};
             };
         }
         using namespace Player;
@@ -1555,11 +1555,11 @@ class TileHovering
 
     auto GetHoveredCoordinate() const
     {
-        return hovered_coordinate_;
+        return m_hoveredCoordinate;
     }
 
   private:
-    Point hovered_coordinate_{-1, -1};
+    Point m_hoveredCoordinate{-1, -1};
 };
 #define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
 _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_
@@ -2072,7 +2072,8 @@ namespace SpecializedGUI
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartName;
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartStrength;
         SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartEnergy;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartTemperature;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel>
+            m_labelBodyPartTemperature;
     };
 
     class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel
@@ -2093,33 +2094,33 @@ namespace SpecializedGUI
         virtual void RenderDerived() const override;
 
       private:
-        static constexpr float k_indent_w{0.01f};
-        static constexpr float k_line_h{0.025f};
+        static constexpr float k_indentWidth{0.01f};
+        static constexpr float k_lineHeight{0.025f};
 
         class GUIInteractionMenuEntry
         {
           public:
             GUIInteractionMenuEntry(StringView label, Function<void()> action)
-                : label_(label), action_(action)
+                : m_label(label), m_action(action)
             {
             }
 
             auto GetLabel() const
             {
-                return label_;
+                return m_label;
             }
 
             auto GetAction() const
             {
-                return action_;
+                return m_action;
             }
 
           private:
-            String label_;
-            Function<void()> action_;
+            String m_label;
+            Function<void()> m_action;
         };
 
-        Vector<GUIInteractionMenuEntry> entries_;
+        Vector<GUIInteractionMenuEntry> m_entries;
     };
 }
 using namespace SpecializedGUI;
@@ -2174,9 +2175,9 @@ namespace WorldGeneration
         void GenerateCreatures() const;
         void GenerateNPCs() const;
 
-        SharedPtr<Theme0::WorldStructure::WorldArea> w_area_;
-        float scale_;
-        Size sz_;
+        SharedPtr<Theme0::WorldStructure::WorldArea> m_worldArea;
+        float m_scale;
+        Size m_size;
     };
 }
 using namespace WorldGeneration;

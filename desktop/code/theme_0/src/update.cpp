@@ -347,22 +347,22 @@ namespace Theme0
 
             auto tl_sz{CalcTileSize()};
 
-            auto screen_rel_x{CInt(mouse_pos.x / tl_sz.w)};
+            auto screen_rel_x{CInt(mouse_pos.x / tl_sz.width)};
 
             auto grid_sz{CalcGridSize()};
 
-            auto hovered_x_coord{player_pos.x - (grid_sz.w - 1) / 2 +
+            auto hovered_x_coord{player_pos.x - (grid_sz.width - 1) / 2 +
                                  screen_rel_x};
 
             auto screen_rel_x_px{
-                (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) *
-                tl_sz.w};
+                (hovered_x_coord - (player_pos.x - (grid_sz.width - 1) / 2)) *
+                tl_sz.width};
 
             auto w_area{_<World>().GetCurrentWorldArea()};
 
             auto extra_rows{8};
 
-            auto top_y_coord{CInt(player_pos.y - (grid_sz.h - 1) / 2) -
+            auto top_y_coord{CInt(player_pos.y - (grid_sz.height - 1) / 2) -
                              extra_rows};
 
             auto player_tl{w_area->GetTile(player_pos)};
@@ -370,11 +370,11 @@ namespace Theme0
             auto player_elev{player_tl ? w_area->GetTile(player_pos)->GetElevation()
                                        : 0};
 
-            auto screen_rel_y_px{-extra_rows * tl_sz.h};
+            auto screen_rel_y_px{-extra_rows * tl_sz.height};
 
-            for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++)
+            for (auto y = -extra_rows; y < grid_sz.height + extra_rows; y++)
             {
-                auto y_coord{CInt(player_pos.y - (grid_sz.h - 1) / 2 + y)};
+                auto y_coord{CInt(player_pos.y - (grid_sz.height - 1) / 2 + y)};
 
                 auto coord{Point{hovered_x_coord, y_coord}};
 
@@ -383,16 +383,16 @@ namespace Theme0
                 if (!tl)
                 {
                     screen_rel_y_px = 0.5f +
-                                      (y - (grid_sz.h - 1) / 2) * tl_sz.h +
-                                      player_elev * tl_sz.h / 2;
+                                      (y - (grid_sz.height - 1) / 2) * tl_sz.height +
+                                      player_elev * tl_sz.height / 2;
 
                     continue;
                 }
 
                 auto elev{tl->GetElevation()};
 
-                screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
-                                  (player_elev - elev) * tl_sz.h / 2;
+                screen_rel_y_px = 0.5f + (y - (grid_sz.height - 1) / 2) * tl_sz.height +
+                                  (player_elev - elev) * tl_sz.height / 2;
 
                 auto coord_nw{Point{coord.x, coord.y}};
 
@@ -425,95 +425,95 @@ namespace Theme0
                 if (tl_nw->GetElevation() > tl_sw->GetElevation() &&
                     tl_ne->GetElevation() > tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_nw->GetElevation() < tl_sw->GetElevation() &&
                          tl_ne->GetElevation() < tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 0.5f;
+                    local_tl_h = tl_sz.height * 0.5f;
                 }
                 else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
                          tl_se->GetElevation() > tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
                          tl_sw->GetElevation() > tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
                          tl_nw->GetElevation() > tl_se->GetElevation() &&
                          tl_nw->GetElevation() > tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
                          tl_ne->GetElevation() > tl_se->GetElevation() &&
                          tl_ne->GetElevation() > tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_sw->GetElevation() > tl_nw->GetElevation() &&
                          tl_sw->GetElevation() > tl_se->GetElevation() &&
                          tl_sw->GetElevation() > tl_ne->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.0f;
+                    local_tl_h = tl_sz.height * 1.0f;
                 }
                 else if (tl_se->GetElevation() > tl_nw->GetElevation() &&
                          tl_se->GetElevation() > tl_ne->GetElevation() &&
                          tl_se->GetElevation() > tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.0f;
+                    local_tl_h = tl_sz.height * 1.0f;
                 }
                 else if (tl_sw->GetElevation() < tl_nw->GetElevation() &&
                          tl_sw->GetElevation() < tl_ne->GetElevation() &&
                          tl_sw->GetElevation() < tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_se->GetElevation() < tl_nw->GetElevation() &&
                          tl_se->GetElevation() < tl_ne->GetElevation() &&
                          tl_se->GetElevation() < tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_nw->GetElevation() < tl_ne->GetElevation() &&
                          tl_nw->GetElevation() < tl_sw->GetElevation() &&
                          tl_nw->GetElevation() < tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.0f;
+                    local_tl_h = tl_sz.height * 1.0f;
                 }
                 else if (tl_ne->GetElevation() < tl_nw->GetElevation() &&
                          tl_ne->GetElevation() < tl_sw->GetElevation() &&
                          tl_ne->GetElevation() < tl_se->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.0f;
+                    local_tl_h = tl_sz.height * 1.0f;
                 }
                 else if (tl_sw->GetElevation() == tl_ne->GetElevation() &&
                          tl_nw->GetElevation() < tl_sw->GetElevation() &&
                          tl_se->GetElevation() < tl_sw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else if (tl_nw->GetElevation() == tl_se->GetElevation() &&
                          tl_ne->GetElevation() < tl_nw->GetElevation() &&
                          tl_sw->GetElevation() < tl_nw->GetElevation())
                 {
-                    local_tl_h = tl_sz.h * 1.5f;
+                    local_tl_h = tl_sz.height * 1.5f;
                 }
                 else
                 {
-                    local_tl_h = tl_sz.h;
+                    local_tl_h = tl_sz.height;
                 }
 
                 auto rect{RectF{screen_rel_x_px,
-                                 screen_rel_y_px - local_tl_h / 2, tl_sz.w,
+                                 screen_rel_y_px - local_tl_h / 2, tl_sz.width,
                                  local_tl_h}};
 
                 if (rect.Contains(mouse_pos))
                 {
-                    hovered_coordinate_ = {hovered_x_coord, y_coord};
+                    m_hoveredCoordinate = {hovered_x_coord, y_coord};
                     
                     return;
                 }

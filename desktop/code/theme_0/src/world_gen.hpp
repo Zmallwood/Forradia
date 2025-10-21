@@ -40,9 +40,9 @@ namespace WorldGeneration
         void GenerateCreatures() const;
         void GenerateNPCs() const;
 
-        SharedPtr<Theme0::WorldStructure::WorldArea> w_area_;
-        float scale_;
-        Size sz_;
+        SharedPtr<Theme0::WorldStructure::WorldArea> m_worldArea;
+        float m_scale;
+        Size m_size;
     };
 }
 using namespace WorldGeneration;

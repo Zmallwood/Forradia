@@ -185,8 +185,8 @@ namespace Common
         class Size
         {
           public:
-            int w{0}; ///< Width.
-            int h{0}; /// Height.
+            int width{0};  ///< Width.
+            int height{0}; /// Height.
         };
 
         /**
@@ -195,8 +195,8 @@ namespace Common
         class SizeF
         {
           public:
-            float w{0.0f}; ///< Width.
-            float h{0.0f}; ///< Height.
+            float width{0.0f};  ///< Width.
+            float height{0.0f}; ///< Height.
         };
 
         /**
@@ -229,10 +229,10 @@ namespace Common
              */
             void Offset(PointF offs);
 
-            float x{0.0f}; ///< The x coordinate.
-            float y{0.0f}; ///< The y coordinate.
-            float w{0.0f}; ///< The width, in the x dimension.
-            float h{0.0f}; ///< The height, in the y dimension.
+            float x{0.0f};      ///< The x coordinate.
+            float y{0.0f};      ///< The y coordinate.
+            float width{0.0f};  ///< The width, in the x dimension.
+            float height{0.0f}; ///< The height, in the y dimension.
         };
         namespace Coloring
         {

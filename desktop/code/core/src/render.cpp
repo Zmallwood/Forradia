@@ -180,7 +180,7 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
 {
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.w, canv_sz.h);
+    glViewport(0, 0, canv_sz.width, canv_sz.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -323,14 +323,14 @@ void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(
     auto img_sz{
         _<Core::Engine::Assets::Images::ImageBank>().GetImageSize(hash)};
 
-    if (img_sz.w <= 0 || img_sz.h <= 0)
+    if (img_sz.width <= 0 || img_sz.height <= 0)
     {
         return;
     }
 
     auto canv_asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
-    auto img_asp_rat{CFloat(img_sz.w) / img_sz.h};
+    auto img_asp_rat{CFloat(img_sz.width) / img_sz.height};
 
     auto h{w / img_asp_rat * canv_asp_rat};
 
@@ -511,7 +511,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
+    glViewport(0, 0, canv_sz.width * 1, canv_sz.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -858,7 +858,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.w, canv_sz.h);
+    glViewport(0, 0, canv_sz.width, canv_sz.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -1101,16 +1101,16 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
 
     Size text_dim;
 
-    TTF_SizeText(font_raw, text.data(), &text_dim.w, &text_dim.h);
+    TTF_SizeText(font_raw, text.data(), &text_dim.width, &text_dim.height);
 
     SDL_Rect dest;
 
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    dest.x = CInt(x * canv_sz.w);
-    dest.y = CInt(y * canv_sz.h);
-    dest.w = text_dim.w;
-    dest.h = text_dim.h;
+    dest.x = CInt(x * canv_sz.width);
+    dest.y = CInt(y * canv_sz.height);
+    dest.w = text_dim.width;
+    dest.h = text_dim.height;
 
     if (cent_align)
     {
@@ -1165,10 +1165,10 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
         SDL_FreeSurface(surf);
     }
 
-    auto xf{CFloat(dest.x) / canv_sz.w};
-    auto yf{CFloat(dest.y) / canv_sz.h};
-    auto wf{CFloat(dest.w) / canv_sz.w};
-    auto hf{CFloat(dest.h) / canv_sz.h};
+    auto xf{CFloat(dest.x) / canv_sz.width};
+    auto yf{CFloat(dest.y) / canv_sz.height};
+    auto wf{CFloat(dest.w) / canv_sz.width};
+    auto hf{CFloat(dest.h) / canv_sz.height};
 
     _<Image2DRenderer>().DrawTexture(tex, xf, yf, wf, hf);
 }

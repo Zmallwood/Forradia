@@ -61,7 +61,7 @@ namespace Common
         {
             // Create condition by checking against the boundaries of this
             // rectangle.
-            return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
+            return p.x >= x && p.y >= y && p.x < x + width && p.y < y + height;
         }
 
         PointF RectF::GetPosition() const
@@ -99,7 +99,7 @@ namespace Common
             {
                 Size canv_sz;
                 // Get the size of the window.
-                SDL_GetWindowSize(win.get(), &canv_sz.w, &canv_sz.h);
+                SDL_GetWindowSize(win.get(), &canv_sz.width, &canv_sz.height);
 
                 return canv_sz;
             }
@@ -108,7 +108,7 @@ namespace Common
             {
                 auto canv_sz{GetCanvasSize(win)};
                 // Calculate the aspect ratio.
-                auto asp_rat{CFloat(canv_sz.w) / canv_sz.h};
+                auto asp_rat{CFloat(canv_sz.width) / canv_sz.height};
 
                 return asp_rat;
             }
@@ -157,7 +157,7 @@ namespace Common
                 auto canv_sz{GetCanvasSize(win)};
                 // Calculate the normalized mouse position.
 
-                return {CFloat(x_px) / canv_sz.w, CFloat(y_px) / canv_sz.h};
+                return {CFloat(x_px) / canv_sz.width, CFloat(y_px) / canv_sz.height};
             }
         }
         namespace NumbersUtilities

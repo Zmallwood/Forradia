@@ -33,11 +33,11 @@ class TileHovering
 
     auto GetHoveredCoordinate() const
     {
-        return hovered_coordinate_;
+        return m_hoveredCoordinate;
     }
 
   private:
-    Point hovered_coordinate_{-1, -1};
+    Point m_hoveredCoordinate{-1, -1};
 };
 #define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
 _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_
