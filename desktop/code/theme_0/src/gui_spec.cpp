@@ -349,13 +349,13 @@ namespace SpecializedGUI
     {
         entries_.clear();
 
-        auto hov_tl{_<TileHovering>().hovered_coord()};
+        auto hov_tl{_<TileHovering>().GetHoveredCoordinate()};
 
-        auto w_area{_<World>().curr_w_area()};
+        auto w_area{_<World>().GetCurrentWorldArea()};
 
-        auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
+        auto tl{w_area->GetTile(hov_tl.x, hov_tl.y)};
 
-        if (tl && tl->ground() == Hash("ground_grass"))
+        if (tl && tl->GetGround() == Hash("ground_grass"))
         {
             entries_.push_back(
                 {"Forage", [=]()
@@ -365,11 +365,11 @@ namespace SpecializedGUI
                  }});
         }
 
-        auto objects{tl->objects_stack()->objects()};
+        auto objects{tl->GetObjectsStack()->GetObjects()};
 
         for (auto &obj : objects)
         {
-            auto type{obj->type()};
+            auto type{obj->GetType()};
 
             if (type == Hash("object_fir_tree") ||
                 type == Hash("object_birch_tree"))

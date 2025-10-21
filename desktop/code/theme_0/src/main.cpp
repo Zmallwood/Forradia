@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 
     _<Theme0::ScriptEngine>().LoadScripts();
 
-    _<Theme0::WorldStructure::World>().init(
+    _<Theme0::WorldStructure::World>().Initialize(
         _<Theme0::GameProperties>().k_w_area_sz,
         _<Theme0::GameProperties>().k_world_scaling);
 

@@ -11,55 +11,55 @@ namespace Theme0
 {
     namespace WorldGeneration
     {
-        void WorldGenerator::gen_new_world()
+        void WorldGenerator::GenerateNewWorld()
         {
-            prep();
+            Prepare();
 
-            clear_with_dirt();
+            ClearWithDirt();
 
-            gen_grass();
+            GenerateGrass();
 
-            gen_lakes();
+            GenerateLakes();
 
-            gen_elev();
+            GenerateElevation();
 
-            gen_rock();
+            GenerateRock();
 
-            gen_rivers();
+            GenerateRivers();
 
-            gen_objs();
+            GenerateObjects();
 
-            gen_creas();
+            GenerateCreatures();
 
-            gen_npcs();
+            GenerateNPCs();
         }
 
-        void WorldGenerator::prep()
+        void WorldGenerator::Prepare()
         {
-            w_area_ = _<Theme0::WorldStructure::World>().curr_w_area();
+            w_area_ = _<Theme0::WorldStructure::World>().GetCurrentWorldArea();
 
-            sz_ = w_area_->get_sz();
+            sz_ = w_area_->GetSize();
 
             scale_ = _<Theme0::GameProperties>().k_world_scaling;
         }
 
-        void WorldGenerator::clear_with_dirt() const
+        void WorldGenerator::ClearWithDirt() const
         {
             for (auto y = 0; y < sz_.h; y++)
             {
                 for (auto x = 0; x < sz_.w; x++)
                 {
-                    auto tl{w_area_->get_tl(x, y)};
+                    auto tl{w_area_->GetTile(x, y)};
 
                     if (tl)
                     {
-                        tl->set_ground("ground_dirt");
+                        tl->SetGround("ground_dirt");
                     }
                 }
             }
         }
 
-        void WorldGenerator::gen_grass() const
+        void WorldGenerator::GenerateGrass() const
         {
             auto num_grass_areas{50 + GetRandomInt(20)};
 
@@ -74,7 +74,7 @@ namespace Theme0
                 {
                     for (auto x = x_cent - r; x <= x_cent + r; x++)
                     {
-                        if (!w_area_->is_valid_coord(x, y))
+                        if (!w_area_->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -84,16 +84,16 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->get_tl(x, y)};
+                            auto tl{w_area_->GetTile(x, y)};
 
-                            tl->set_ground("ground_grass");
+                            tl->SetGround("ground_grass");
                         }
                     }
                 }
             }
         }
 
-        void WorldGenerator::gen_single_lake(int min_x, int min_y, int max_x,
+        void WorldGenerator::GenerateSingleLake(int min_x, int min_y, int max_x,
                                            int max_y, int recurs) const
         {
             if (recurs == 0)
@@ -117,7 +117,7 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->get_tl(x, y)};
+                            auto tl{w_area_->GetTile(x, y)};
 
                             if (tl)
                             {
@@ -138,39 +138,39 @@ namespace Theme0
                                 Point sese{x + 2, y + 2};
                                 Point swsw{x - 2, y + 2};
 
-                                auto tl_n{w_area_->get_tl(n)};
-                                auto tl_e{w_area_->get_tl(e)};
-                                auto tl_s{w_area_->get_tl(s)};
-                                auto tl_w{w_area_->get_tl(w)};
-                                auto tl_nw{w_area_->get_tl(nw)};
-                                auto tl_ne{w_area_->get_tl(ne)};
-                                auto tl_se{w_area_->get_tl(se)};
-                                auto tl_sw{w_area_->get_tl(sw)};
-                                auto tl_nn{w_area_->get_tl(nn)};
-                                auto tl_ww{w_area_->get_tl(ww)};
-                                auto tl_ee{w_area_->get_tl(ee)};
-                                auto tl_ss{w_area_->get_tl(ss)};
-                                auto tl_nwnw{w_area_->get_tl(nwnw)};
-                                auto tl_nene{w_area_->get_tl(nene)};
-                                auto tl_sese{w_area_->get_tl(sese)};
-                                auto tl_swsw{w_area_->get_tl(swsw)};
+                                auto tl_n{w_area_->GetTile(n)};
+                                auto tl_e{w_area_->GetTile(e)};
+                                auto tl_s{w_area_->GetTile(s)};
+                                auto tl_w{w_area_->GetTile(w)};
+                                auto tl_nw{w_area_->GetTile(nw)};
+                                auto tl_ne{w_area_->GetTile(ne)};
+                                auto tl_se{w_area_->GetTile(se)};
+                                auto tl_sw{w_area_->GetTile(sw)};
+                                auto tl_nn{w_area_->GetTile(nn)};
+                                auto tl_ww{w_area_->GetTile(ww)};
+                                auto tl_ee{w_area_->GetTile(ee)};
+                                auto tl_ss{w_area_->GetTile(ss)};
+                                auto tl_nwnw{w_area_->GetTile(nwnw)};
+                                auto tl_nene{w_area_->GetTile(nene)};
+                                auto tl_sese{w_area_->GetTile(sese)};
+                                auto tl_swsw{w_area_->GetTile(swsw)};
 
-                                auto elev_n{tl_n ? tl_n->elev() : 0};
-                                auto elev_e{tl_e ? tl_e->elev() : 0};
-                                auto elev_s{tl_s ? tl_s->elev() : 0};
-                                auto elev_w{tl_w ? tl_w->elev() : 0};
-                                auto elev_nw{tl_nw ? tl_nw->elev() : 0};
-                                auto elev_ne{tl_ne ? tl_ne->elev() : 0};
-                                auto elev_se{tl_se ? tl_se->elev() : 0};
-                                auto elev_sw{tl_sw ? tl_sw->elev() : 0};
-                                auto elev_nn{tl_nn ? tl_nn->elev() : 0};
-                                auto elev_ww{tl_ww ? tl_ww->elev() : 0};
-                                auto elev_ee{tl_ee ? tl_ee->elev() : 0};
-                                auto elev_ss{tl_ss ? tl_ss->elev() : 0};
-                                auto elev_nwnw{tl_nwnw ? tl_nwnw->elev() : 0};
-                                auto elev_nene{tl_nene ? tl_nene->elev() : 0};
-                                auto elev_sese{tl_sese ? tl_sese->elev() : 0};
-                                auto elev_swsw{tl_swsw ? tl_swsw->elev() : 0};
+                                auto elev_n{tl_n ? tl_n->GetElevation() : 0};
+                                auto elev_e{tl_e ? tl_e->GetElevation() : 0};
+                                auto elev_s{tl_s ? tl_s->GetElevation() : 0};
+                                auto elev_w{tl_w ? tl_w->GetElevation() : 0};
+                                auto elev_nw{tl_nw ? tl_nw->GetElevation() : 0};
+                                auto elev_ne{tl_ne ? tl_ne->GetElevation() : 0};
+                                auto elev_se{tl_se ? tl_se->GetElevation() : 0};
+                                auto elev_sw{tl_sw ? tl_sw->GetElevation() : 0};
+                                auto elev_nn{tl_nn ? tl_nn->GetElevation() : 0};
+                                auto elev_ww{tl_ww ? tl_ww->GetElevation() : 0};
+                                auto elev_ee{tl_ee ? tl_ee->GetElevation() : 0};
+                                auto elev_ss{tl_ss ? tl_ss->GetElevation() : 0};
+                                auto elev_nwnw{tl_nwnw ? tl_nwnw->GetElevation() : 0};
+                                auto elev_nene{tl_nene ? tl_nene->GetElevation() : 0};
+                                auto elev_sese{tl_sese ? tl_sese->GetElevation() : 0};
+                                auto elev_swsw{tl_swsw ? tl_swsw->GetElevation() : 0};
 
                                 if (elev_n == 0 && elev_e == 0 && elev_s == 0 &&
                                     elev_w == 0 && elev_nw == 0 &&
@@ -181,31 +181,31 @@ namespace Theme0
                                     elev_nene == 0 && elev_sese == 0 &&
                                     elev_swsw == 0)
                                 {
-                                    tl->set_ground("ground_water");
+                                    tl->SetGround("ground_water");
                                 }
 
-                                tl->set_water_depth(tl->water_depth() + 1);
+                                tl->SetWaterDepth(tl->GetWaterDepth() + 1);
                             }
                         }
                     }
                 }
             }
 
-            gen_single_lake(x_cent - max_r, y_cent - max_r, x_cent + max_r,
+            GenerateSingleLake(x_cent - max_r, y_cent - max_r, x_cent + max_r,
                             y_cent + max_r, recurs - 1);
         }
 
-        void WorldGenerator::gen_lakes() const
+        void WorldGenerator::GenerateLakes() const
         {
             auto num_lakes{20 + GetRandomInt(5)};
 
             for (auto i = 0; i < num_lakes; i++)
             {
-                gen_single_lake(0, 0, sz_.w, sz_.h, 2 + GetRandomInt(5));
+                GenerateSingleLake(0, 0, sz_.w, sz_.h, 2 + GetRandomInt(5));
             }
         }
 
-        void WorldGenerator::gen_elev() const
+        void WorldGenerator::GenerateElevation() const
         {
             auto num_hills{140 + GetRandomInt(30)};
 
@@ -222,7 +222,7 @@ namespace Theme0
                     {
                         for (auto x = x_cent - r; x <= x_cent + r; x++)
                         {
-                            if (!w_area_->is_valid_coord(x, y))
+                            if (!w_area_->IsValidCoordinate(x, y))
                             {
                                 continue;
                             }
@@ -232,80 +232,80 @@ namespace Theme0
 
                             if (dx * dx + dy * dy <= r * r)
                             {
-                                auto tl{w_area_->get_tl(x, y)};
+                                auto tl{w_area_->GetTile(x, y)};
 
-                                if (tl && tl->ground() != Hash("ground_water"))
+                                if (tl && tl->GetGround() != Hash("ground_water"))
                                 {
-                                    auto tl_n{w_area_->get_tl(x, y - 1)};
-                                    auto tl_s{w_area_->get_tl(x, y + 1)};
-                                    auto tl_w{w_area_->get_tl(x - 1, y)};
-                                    auto tl_e{w_area_->get_tl(x + 1, y)};
-                                    auto tl_nw{w_area_->get_tl(x - 1, y - 1)};
-                                    auto tl_ne{w_area_->get_tl(x + 1, y - 1)};
-                                    auto tl_sw{w_area_->get_tl(x - 1, y + 1)};
-                                    auto tl_se{w_area_->get_tl(x + 1, y + 1)};
+                                    auto tl_n{w_area_->GetTile(x, y - 1)};
+                                    auto tl_s{w_area_->GetTile(x, y + 1)};
+                                    auto tl_w{w_area_->GetTile(x - 1, y)};
+                                    auto tl_e{w_area_->GetTile(x + 1, y)};
+                                    auto tl_nw{w_area_->GetTile(x - 1, y - 1)};
+                                    auto tl_ne{w_area_->GetTile(x + 1, y - 1)};
+                                    auto tl_sw{w_area_->GetTile(x - 1, y + 1)};
+                                    auto tl_se{w_area_->GetTile(x + 1, y + 1)};
 
-                                    if ((tl_n && tl_n->ground() ==
+                                    if ((tl_n && tl_n->GetGround() ==
                                                      Hash("ground_water")) ||
-                                        (tl_s && tl_s->ground() ==
+                                        (tl_s && tl_s->GetGround() ==
                                                      Hash("ground_water")) ||
-                                        (tl_w && tl_w->ground() ==
+                                        (tl_w && tl_w->GetGround() ==
                                                      Hash("ground_water")) ||
-                                        (tl_e && tl_e->ground() ==
+                                        (tl_e && tl_e->GetGround() ==
                                                      Hash("ground_water")) ||
-                                        (tl_nw && tl_nw->ground() ==
+                                        (tl_nw && tl_nw->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_ne && tl_ne->ground() ==
+                                        (tl_ne && tl_ne->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_sw && tl_sw->ground() ==
+                                        (tl_sw && tl_sw->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_se && tl_se->ground() ==
+                                        (tl_se && tl_se->GetGround() ==
                                                       Hash("ground_water")))
                                     {
                                         continue;
                                     }
 
-                                    if (tl_n && tl_n->elev() < tl->elev())
+                                    if (tl_n && tl_n->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_s && tl_s->elev() < tl->elev())
+                                    if (tl_s && tl_s->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_w && tl_w->elev() < tl->elev())
+                                    if (tl_w && tl_w->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_e && tl_e->elev() < tl->elev())
+                                    if (tl_e && tl_e->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_nw && tl_nw->elev() < tl->elev())
+                                    if (tl_nw && tl_nw->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_ne && tl_ne->elev() < tl->elev())
+                                    if (tl_ne && tl_ne->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_sw && tl_sw->elev() < tl->elev())
+                                    if (tl_sw && tl_sw->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    if (tl_se && tl_se->elev() < tl->elev())
+                                    if (tl_se && tl_se->GetElevation() < tl->GetElevation())
                                     {
                                         continue;
                                     }
 
-                                    tl->set_elev(tl->elev() + 1);
+                                    tl->SetElevation(tl->GetElevation() + 1);
                                 }
                             }
                         }
@@ -314,7 +314,7 @@ namespace Theme0
             }
         }
 
-        void WorldGenerator::gen_rock() const
+        void WorldGenerator::GenerateRock() const
         {
             auto num_rock_areas{30 + GetRandomInt(10)};
 
@@ -329,7 +329,7 @@ namespace Theme0
                 {
                     for (auto x = x_center - r; x <= x_center + r; x++)
                     {
-                        if (!w_area_->is_valid_coord(x, y))
+                        if (!w_area_->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -339,11 +339,11 @@ namespace Theme0
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tl{w_area_->get_tl(x, y)};
+                            auto tl{w_area_->GetTile(x, y)};
 
-                            if (tl->elev() > 0)
+                            if (tl->GetElevation() > 0)
                             {
-                                tl->set_ground("ground_rock");
+                                tl->SetGround("ground_rock");
                             }
                         }
                     }
@@ -351,7 +351,7 @@ namespace Theme0
             }
         }
 
-        void WorldGenerator::gen_rivers() const
+        void WorldGenerator::GenerateRivers() const
         {
             auto num_rivers{20 * scale_ + GetRandomInt(5 * scale_)};
 
@@ -376,84 +376,84 @@ namespace Theme0
                     auto x_coord{CInt(x)};
                     auto y_coord{CInt(y)};
 
-                    if (!w_area_->is_valid_coord(x_coord, y_coord))
+                    if (!w_area_->IsValidCoordinate(x_coord, y_coord))
                     {
                         continue;
                     }
 
-                    auto tl = w_area_->get_tl(x_coord, y_coord);
+                    auto tl = w_area_->GetTile(x_coord, y_coord);
 
                     if (tl && prev_tl)
                     {
                         if (x_coord == prev_x_coord && y_coord > prev_y_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::s);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::n);
                         }
                         else if (x_coord == prev_x_coord &&
                                  y_coord < prev_y_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::n);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::s);
                         }
                         else if (y_coord == prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::e);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::w);
                         }
                         else if (y_coord == prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::w);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::e);
                         }
                         else if (y_coord < prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::ne);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::sw);
                         }
                         else if (y_coord > prev_y_coord &&
                                  x_coord > prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::se);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::nw);
                         }
                         else if (y_coord < prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::nw);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::se);
                         }
                         else if (y_coord > prev_y_coord &&
                                  x_coord < prev_x_coord)
                         {
-                            prev_tl->set_river_dir_1(
+                            prev_tl->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::sw);
 
-                            tl->set_river_dir_2(
+                            tl->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::ne);
                         }
                     }
@@ -472,7 +472,7 @@ namespace Theme0
             }
         }
 
-        void WorldGenerator::gen_objs() const
+        void WorldGenerator::GenerateObjects() const
         {
             auto num_fir_trees{1000 * scale_ + GetRandomInt(50)};
 
@@ -481,13 +481,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_tree_obj("object_fir_tree");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddTreeObject("object_fir_tree");
                 }
             }
 
@@ -498,13 +498,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_tree_obj("object_birch_tree");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddTreeObject("object_birch_tree");
                 }
             }
 
@@ -515,13 +515,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_obj("object_bush1");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddObject("object_bush1");
                 }
             }
 
@@ -532,13 +532,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_obj("object_bush2");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddObject("object_bush2");
                 }
             }
 
@@ -549,13 +549,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_obj("object_pink_flower");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddObject("object_pink_flower");
                 }
             }
 
@@ -566,13 +566,13 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->ground() != Hash("ground_water") &&
-                    tl->ground() != Hash("ground_rock"))
+                if (tl && tl->GetGround() != Hash("ground_water") &&
+                    tl->GetGround() != Hash("ground_rock"))
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_obj("object_tall_grass");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddObject("object_tall_grass");
                 }
             }
 
@@ -583,17 +583,17 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && tl->water_depth() < 4)
+                if (tl && tl->GetWaterDepth() < 4)
                 {
-                    tl->objects_stack()->clear_objs();
-                    tl->objects_stack()->add_obj("object_stone_boulder");
+                    tl->GetObjectsStack()->ClearObjects();
+                    tl->GetObjectsStack()->AddObject("object_stone_boulder");
                 }
             }
         }
 
-        void WorldGenerator::gen_creas() const
+        void WorldGenerator::GenerateCreatures() const
         {
             auto num_rats{200 * scale_ + GetRandomInt(15 * scale_)};
 
@@ -602,19 +602,19 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && !tl->creature() &&
-                    tl->ground() != Hash("ground_water"))
+                if (tl && !tl->GetCreature() &&
+                    tl->GetGround() != Hash("ground_water"))
                 {
                     auto new_crea =
                         std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_rat");
 
-                    tl->set_creature(new_crea);
+                    tl->SetCreature(new_crea);
 
-                    w_area_->creatures_mirror_ref().insert(
-                        {tl->creature(), {x, y}});
+                    w_area_->GetCreaturesMirrorRef().insert(
+                        {tl->GetCreature(), {x, y}});
                 }
             }
 
@@ -625,24 +625,24 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && !tl->creature() &&
-                    tl->ground() != Hash("ground_water"))
+                if (tl && !tl->GetCreature() &&
+                    tl->GetGround() != Hash("ground_water"))
                 {
                     auto new_crea =
                         std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_butterfly");
 
-                    tl->set_creature(new_crea);
+                    tl->SetCreature(new_crea);
 
-                    w_area_->creatures_mirror_ref().insert(
-                        {tl->creature(), {x, y}});
+                    w_area_->GetCreaturesMirrorRef().insert(
+                        {tl->GetCreature(), {x, y}});
                 }
             }
         }
 
-        void WorldGenerator::gen_npcs() const
+        void WorldGenerator::GenerateNPCs() const
         {
             auto num_npc_0s{200 * scale_ + GetRandomInt(15 * scale_)};
 
@@ -651,16 +651,16 @@ namespace Theme0
                 auto x{GetRandomInt(sz_.w)};
                 auto y{GetRandomInt(sz_.h)};
 
-                auto tl{w_area_->get_tl(x, y)};
+                auto tl{w_area_->GetTile(x, y)};
 
-                if (tl && !tl->npc() && tl->ground() != Hash("ground_water"))
+                if (tl && !tl->GetNPC() && tl->GetGround() != Hash("ground_water"))
                 {
                     auto new_npc =
                         std::make_shared<Theme0::WorldStructure::NPC>("npc0");
 
-                    tl->set_npc(new_npc);
+                    tl->SetNPC(new_npc);
 
-                    w_area_->npcs_mirror_ref().insert({tl->npc(), {x, y}});
+                    w_area_->GetNPCsMirrorRef().insert({tl->GetNPC(), {x, y}});
                 }
             }
         }

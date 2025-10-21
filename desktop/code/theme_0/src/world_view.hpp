@@ -16,7 +16,7 @@ _HIDE_FROM_OUTLINER_WORLD_VIEW_TOP_2_
 class WorldView
 {
   public:
-    void render() const;
+    void Render() const;
 };
 }
 #define _HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_ }

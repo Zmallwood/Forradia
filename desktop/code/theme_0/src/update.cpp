@@ -13,7 +13,7 @@ namespace Theme0
 {
     namespace GameplayCore
     {
-        void update_kb_actions()
+        void UpdateKeyboardActions()
         {
             if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
                     SDLK_ESCAPE))
@@ -32,7 +32,7 @@ namespace Theme0
             }
         }
 
-        void update_mouse_actions()
+        void UpdateMouseActions()
         {
             if (_<Core::Engine::Input::MouseInput::RightMouseButton>()
                     .HasBeenFiredPickResult())
@@ -46,7 +46,7 @@ namespace Theme0
             }
         }
 
-        void update_kb_movem()
+        void UpdateKeyboardMovement()
         {
             auto up_press{
                 _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_UP)};
@@ -105,12 +105,12 @@ namespace Theme0
             }
         }
 
-        void update_mouse_movem()
+        void UpdateMouseMovement()
         {
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
-                auto new_dest{_<TileHovering>().hovered_coord()};
+                auto new_dest{_<TileHovering>().GetHoveredCoordinate()};
 
                 _<Theme0::GameplayCore::Player::PlayerCharacter>().SetDestination(new_dest);
             }
@@ -161,11 +161,11 @@ namespace Theme0
             }
         }
 
-        void update_crea_movem()
+        void UpdateCreaturesMovement()
         {
-            auto w_area{_<World>().curr_w_area()};
+            auto w_area{_<World>().GetCurrentWorldArea()};
 
-            auto &creas{w_area->creatures_mirror_ref()};
+            auto &creas{w_area->GetCreaturesMirrorRef()};
 
             auto now{GetTicks()};
 
@@ -176,14 +176,14 @@ namespace Theme0
                 auto pos{it->second};
 
                 if (now <
-                    crea->ticks_last_move() + InvertMovementSpeed(crea->movem_spd()))
+                    crea->GetTicksLastMovement() + InvertMovementSpeed(crea->GetMovementSpeed()))
                 {
                     ++it;
 
                     continue;
                 }
 
-                auto dest{crea->dest()};
+                auto dest{crea->GetDestination()};
 
                 if (dest.x == -1 && dest.y == -1)
                 {
@@ -191,15 +191,15 @@ namespace Theme0
 
                     auto new_destination_y{pos.y + GetRandomInt(11) - 5};
 
-                    crea->set_dest({new_dest, new_destination_y});
+                    crea->SetDestination({new_dest, new_destination_y});
                 }
 
-                auto w_area{_<World>().curr_w_area()};
+                auto w_area{_<World>().GetCurrentWorldArea()};
 
-                auto &creas{w_area->creatures_mirror_ref()};
+                auto &creas{w_area->GetCreaturesMirrorRef()};
 
-                auto dx{crea->dest().x - pos.x};
-                auto dy{crea->dest().y - pos.y};
+                auto dx{crea->GetDestination().x - pos.x};
+                auto dy{crea->GetDestination().y - pos.y};
 
                 auto norm_dx{Normalize(dx)};
                 auto norm_dy{Normalize(dy)};
@@ -209,27 +209,27 @@ namespace Theme0
 
                 Point new_pos{new_x, new_y};
 
-                if (new_pos == crea->dest())
+                if (new_pos == crea->GetDestination())
                 {
-                    crea->set_dest({-1, -1});
+                    crea->SetDestination({-1, -1});
                 }
 
-                auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
+                auto tl{w_area->GetTile(new_pos.x, new_pos.y)};
 
-                if (tl && !tl->creature() &&
-                    tl->ground() != Hash("ground_water"))
+                if (tl && !tl->GetCreature() &&
+                    tl->GetGround() != Hash("ground_water"))
                 {
                     auto old_pos{creas.at(crea)};
 
-                    crea->set_ticks_last_move(now);
+                    crea->SetTicksLastMovement(now);
 
-                    auto old_tile{w_area->get_tl(old_pos.x, old_pos.y)};
+                    auto old_tile{w_area->GetTile(old_pos.x, old_pos.y)};
 
-                    auto new_tile{w_area->get_tl(new_pos.x, new_pos.y)};
+                    auto new_tile{w_area->GetTile(new_pos.x, new_pos.y)};
 
-                    old_tile->set_creature(nullptr);
+                    old_tile->SetCreature(nullptr);
 
-                    new_tile->set_creature(crea);
+                    new_tile->SetCreature(crea);
 
                     creas.erase(crea);
 
@@ -237,18 +237,18 @@ namespace Theme0
                 }
                 else
                 {
-                    crea->set_dest({-1, -1});
+                    crea->SetDestination({-1, -1});
                 }
 
                 ++it;
             }
         }
 
-        void update_npcs()
+        void UpdateNPCs()
         {
-            auto w_area{_<World>().curr_w_area()};
+            auto w_area{_<World>().GetCurrentWorldArea()};
 
-            auto &npcs{w_area->npcs_mirror_ref()};
+            auto &npcs{w_area->GetNPCsMirrorRef()};
 
             auto now{GetTicks()};
 
@@ -258,9 +258,9 @@ namespace Theme0
 
                 auto pos{it->second};
 
-                if (now > npc->ticks_next_spontaneous_speech())
+                if (now > npc->GetTicksNextSpontaneousSpeech())
                 {
-                    auto name{npc->name()};
+                    auto name{npc->GetName()};
 
                     if (GetRandomInt(20) == 0)
                     {
@@ -273,29 +273,29 @@ namespace Theme0
                             name + ": Hello all!");
                     }
 
-                    npc->set_ticks_next_spontaneous_speech(
+                    npc->SetTicksNextSpontaneousSpeech(
                         now + 5 * k_one_sec_millis + (6000 * k_one_sec_millis));
                 }
                 if (now <
-                    npc->ticks_last_move() + InvertMovementSpeed(npc->movem_spd()))
+                    npc->GetTicksLastMovement() + InvertMovementSpeed(npc->GetMovementSpeed()))
                 {
                     ++it;
 
                     continue;
                 }
 
-                auto dest{npc->dest()};
+                auto dest{npc->GetDestination()};
 
                 if (dest.x == -1 && dest.y == -1)
                 {
                     auto new_dest_x{pos.x + GetRandomInt(11) - 5};
                     auto new_dest_y{pos.y + GetRandomInt(11) - 5};
 
-                    npc->set_dest({new_dest_x, new_dest_y});
+                    npc->SetDestination({new_dest_x, new_dest_y});
                 }
 
-                auto dx{npc->dest().x - pos.x};
-                auto dy{npc->dest().y - pos.y};
+                auto dx{npc->GetDestination().x - pos.x};
+                auto dy{npc->GetDestination().y - pos.y};
 
                 auto norm_dx{Normalize(dx)};
                 auto norm_dy{Normalize(dy)};
@@ -305,26 +305,26 @@ namespace Theme0
 
                 auto new_pos{Point{new_x, new_y}};
 
-                if (new_pos == npc->dest())
+                if (new_pos == npc->GetDestination())
                 {
-                    npc->set_dest({-1, -1});
+                    npc->SetDestination({-1, -1});
                 }
 
-                auto tl{w_area->get_tl(new_pos.x, new_pos.y)};
+                auto tl{w_area->GetTile(new_pos.x, new_pos.y)};
 
-                if (tl && !tl->npc() && tl->ground() != Hash("ground_water"))
+                if (tl && !tl->GetNPC() && tl->GetGround() != Hash("ground_water"))
                 {
                     auto old_pos{pos};
 
-                    npc->set_ticks_last_move(now);
+                    npc->SetTicksLastMovement(now);
 
-                    auto old_tl{w_area->get_tl(old_pos.x, old_pos.y)};
+                    auto old_tl{w_area->GetTile(old_pos.x, old_pos.y)};
 
-                    auto new_tl{w_area->get_tl(new_pos.x, new_pos.y)};
+                    auto new_tl{w_area->GetTile(new_pos.x, new_pos.y)};
 
-                    old_tl->set_npc(nullptr);
+                    old_tl->SetNPC(nullptr);
 
-                    new_tl->set_npc(npc);
+                    new_tl->SetNPC(npc);
 
                     npcs.erase(npc);
 
@@ -332,14 +332,14 @@ namespace Theme0
                 }
                 else
                 {
-                    npc->set_dest({-1, -1});
+                    npc->SetDestination({-1, -1});
                 }
 
                 ++it;
             }
         }
 
-        void TileHovering::update()
+        void TileHovering::Update()
         {
             auto player_pos{_<PlayerCharacter>().GetPosition()};
 
@@ -358,16 +358,16 @@ namespace Theme0
                 (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) *
                 tl_sz.w};
 
-            auto w_area{_<World>().curr_w_area()};
+            auto w_area{_<World>().GetCurrentWorldArea()};
 
             auto extra_rows{8};
 
             auto top_y_coord{CInt(player_pos.y - (grid_sz.h - 1) / 2) -
                              extra_rows};
 
-            auto player_tl{w_area->get_tl(player_pos)};
+            auto player_tl{w_area->GetTile(player_pos)};
 
-            auto player_elev{player_tl ? w_area->get_tl(player_pos)->elev()
+            auto player_elev{player_tl ? w_area->GetTile(player_pos)->GetElevation()
                                        : 0};
 
             auto screen_rel_y_px{-extra_rows * tl_sz.h};
@@ -378,7 +378,7 @@ namespace Theme0
 
                 auto coord{Point{hovered_x_coord, y_coord}};
 
-                auto tl{w_area->get_tl(coord)};
+                auto tl{w_area->GetTile(coord)};
 
                 if (!tl)
                 {
@@ -389,7 +389,7 @@ namespace Theme0
                     continue;
                 }
 
-                auto elev{tl->elev()};
+                auto elev{tl->GetElevation()};
 
                 screen_rel_y_px = 0.5f + (y - (grid_sz.h - 1) / 2) * tl_sz.h +
                                   (player_elev - elev) * tl_sz.h / 2;
@@ -402,18 +402,18 @@ namespace Theme0
 
                 auto coord_se{Point{coord.x + 1, coord.y + 1}};
 
-                if (!w_area->is_valid_coord(coord_nw.x, coord_nw.y) ||
-                    !w_area->is_valid_coord(coord_ne.x, coord_ne.y) ||
-                    !w_area->is_valid_coord(coord_sw.x, coord_sw.y) ||
-                    !w_area->is_valid_coord(coord_se.x, coord_se.y))
+                if (!w_area->IsValidCoordinate(coord_nw.x, coord_nw.y) ||
+                    !w_area->IsValidCoordinate(coord_ne.x, coord_ne.y) ||
+                    !w_area->IsValidCoordinate(coord_sw.x, coord_sw.y) ||
+                    !w_area->IsValidCoordinate(coord_se.x, coord_se.y))
                 {
                     continue;
                 }
 
-                auto tl_nw{w_area->get_tl(coord_nw)};
-                auto tl_ne{w_area->get_tl(coord_ne)};
-                auto tl_sw{w_area->get_tl(coord_sw)};
-                auto tl_se{w_area->get_tl(coord_se)};
+                auto tl_nw{w_area->GetTile(coord_nw)};
+                auto tl_ne{w_area->GetTile(coord_ne)};
+                auto tl_sw{w_area->GetTile(coord_sw)};
+                auto tl_se{w_area->GetTile(coord_se)};
 
                 if (!tl_nw || !tl_ne || !tl_se || !tl_sw)
                 {
@@ -422,83 +422,83 @@ namespace Theme0
 
                 float local_tl_h;
 
-                if (tl_nw->elev() > tl_sw->elev() &&
-                    tl_ne->elev() > tl_se->elev())
+                if (tl_nw->GetElevation() > tl_sw->GetElevation() &&
+                    tl_ne->GetElevation() > tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_nw->elev() < tl_sw->elev() &&
-                         tl_ne->elev() < tl_se->elev())
+                else if (tl_nw->GetElevation() < tl_sw->GetElevation() &&
+                         tl_ne->GetElevation() < tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 0.5f;
                 }
-                else if (tl_ne->elev() > tl_nw->elev() &&
-                         tl_se->elev() > tl_sw->elev())
+                else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
+                         tl_se->GetElevation() > tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_nw->elev() > tl_ne->elev() &&
-                         tl_sw->elev() > tl_se->elev())
+                else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
+                         tl_sw->GetElevation() > tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_nw->elev() > tl_ne->elev() &&
-                         tl_nw->elev() > tl_se->elev() &&
-                         tl_nw->elev() > tl_sw->elev())
+                else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
+                         tl_nw->GetElevation() > tl_se->GetElevation() &&
+                         tl_nw->GetElevation() > tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_ne->elev() > tl_nw->elev() &&
-                         tl_ne->elev() > tl_se->elev() &&
-                         tl_ne->elev() > tl_sw->elev())
+                else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
+                         tl_ne->GetElevation() > tl_se->GetElevation() &&
+                         tl_ne->GetElevation() > tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_sw->elev() > tl_nw->elev() &&
-                         tl_sw->elev() > tl_se->elev() &&
-                         tl_sw->elev() > tl_ne->elev())
+                else if (tl_sw->GetElevation() > tl_nw->GetElevation() &&
+                         tl_sw->GetElevation() > tl_se->GetElevation() &&
+                         tl_sw->GetElevation() > tl_ne->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.0f;
                 }
-                else if (tl_se->elev() > tl_nw->elev() &&
-                         tl_se->elev() > tl_ne->elev() &&
-                         tl_se->elev() > tl_sw->elev())
+                else if (tl_se->GetElevation() > tl_nw->GetElevation() &&
+                         tl_se->GetElevation() > tl_ne->GetElevation() &&
+                         tl_se->GetElevation() > tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.0f;
                 }
-                else if (tl_sw->elev() < tl_nw->elev() &&
-                         tl_sw->elev() < tl_ne->elev() &&
-                         tl_sw->elev() < tl_se->elev())
+                else if (tl_sw->GetElevation() < tl_nw->GetElevation() &&
+                         tl_sw->GetElevation() < tl_ne->GetElevation() &&
+                         tl_sw->GetElevation() < tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_se->elev() < tl_nw->elev() &&
-                         tl_se->elev() < tl_ne->elev() &&
-                         tl_se->elev() < tl_sw->elev())
+                else if (tl_se->GetElevation() < tl_nw->GetElevation() &&
+                         tl_se->GetElevation() < tl_ne->GetElevation() &&
+                         tl_se->GetElevation() < tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_nw->elev() < tl_ne->elev() &&
-                         tl_nw->elev() < tl_sw->elev() &&
-                         tl_nw->elev() < tl_se->elev())
+                else if (tl_nw->GetElevation() < tl_ne->GetElevation() &&
+                         tl_nw->GetElevation() < tl_sw->GetElevation() &&
+                         tl_nw->GetElevation() < tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.0f;
                 }
-                else if (tl_ne->elev() < tl_nw->elev() &&
-                         tl_ne->elev() < tl_sw->elev() &&
-                         tl_ne->elev() < tl_se->elev())
+                else if (tl_ne->GetElevation() < tl_nw->GetElevation() &&
+                         tl_ne->GetElevation() < tl_sw->GetElevation() &&
+                         tl_ne->GetElevation() < tl_se->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.0f;
                 }
-                else if (tl_sw->elev() == tl_ne->elev() &&
-                         tl_nw->elev() < tl_sw->elev() &&
-                         tl_se->elev() < tl_sw->elev())
+                else if (tl_sw->GetElevation() == tl_ne->GetElevation() &&
+                         tl_nw->GetElevation() < tl_sw->GetElevation() &&
+                         tl_se->GetElevation() < tl_sw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
-                else if (tl_nw->elev() == tl_se->elev() &&
-                         tl_ne->elev() < tl_nw->elev() &&
-                         tl_sw->elev() < tl_nw->elev())
+                else if (tl_nw->GetElevation() == tl_se->GetElevation() &&
+                         tl_ne->GetElevation() < tl_nw->GetElevation() &&
+                         tl_sw->GetElevation() < tl_nw->GetElevation())
                 {
                     local_tl_h = tl_sz.h * 1.5f;
                 }
@@ -513,7 +513,7 @@ namespace Theme0
 
                 if (rect.Contains(mouse_pos))
                 {
-                    hovered_coord_ = {hovered_x_coord, y_coord};
+                    hovered_coordinate_ = {hovered_x_coord, y_coord};
                     
                     return;
                 }

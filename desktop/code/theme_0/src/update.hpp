@@ -14,30 +14,30 @@ _HIDE_FROM_OUTLINER_UPDATE_TOP_1_
     namespace GameplayCore                                                     \
     {
 _HIDE_FROM_OUTLINER_UPDATE_TOP_2_
-void update_kb_actions();
+void UpdateKeyboardActions();
 
-void update_mouse_actions();
+void UpdateMouseActions();
 
-void update_kb_movem();
+void UpdateKeyboardMovement();
 
-void update_mouse_movem();
+void UpdateMouseMovement();
 
-void update_crea_movem();
+void UpdateCreaturesMovement();
 
-void update_npcs();
+void UpdateNPCs();
 
 class TileHovering
 {
   public:
-    void update();
+    void Update();
 
-    auto hovered_coord() const
+    auto GetHoveredCoordinate() const
     {
-        return hovered_coord_;
+        return hovered_coordinate_;
     }
 
   private:
-    Point hovered_coord_{-1, -1};
+    Point hovered_coordinate_{-1, -1};
 };
 #define _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_ }
 _HIDE_FROM_OUTLINER_UPDATE_BOTTOM_1_

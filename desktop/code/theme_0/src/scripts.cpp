@@ -113,7 +113,7 @@ namespace Theme0
             py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "WorldGenerator")
                 .def(py::init<>())
                 .def("gen_new_world",
-                     &Theme0::WorldGeneration::WorldGenerator::gen_new_world);
+                     &Theme0::WorldGeneration::WorldGenerator::GenerateNewWorld);
 
             py::class_<Core::Engine::Input::KeyboardInput>(m, "KeyboardInput")
                 .def("any_key_pressed_pick_res",
@@ -165,11 +165,11 @@ namespace Theme0
                        GUIComponentsLibrary::GUIComponent>(m, "GUIInteractionMenu");
 
             py::class_<Theme0::GameplayCore::TileHovering>(m, "TileHovering")
-                .def("update", &Theme0::GameplayCore::TileHovering::update);
+                .def("update", &Theme0::GameplayCore::TileHovering::Update);
 
             py::class_<Theme0::GameplayCore::WorldView>(m, "WorldView")
                 .def("render",
-                     &Theme0::GameplayCore::WorldView::render);
+                     &Theme0::GameplayCore::WorldView::Render);
 
             m.def("ticks", [] { return GetTicks(); });
 
@@ -289,20 +289,20 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def("update_kb_actions",
-                  &Theme0::GameplayCore::update_kb_actions);
+                  &Theme0::GameplayCore::UpdateKeyboardActions);
 
             m.def("update_mouse_actions",
-                  &Theme0::GameplayCore::update_mouse_actions);
+                  &Theme0::GameplayCore::UpdateMouseActions);
 
-            m.def("update_npcs", &Theme0::GameplayCore::update_npcs);
+            m.def("update_npcs", &Theme0::GameplayCore::UpdateNPCs);
 
             m.def("update_crea_movem",
-                  &Theme0::GameplayCore::update_crea_movem);
+                  &Theme0::GameplayCore::UpdateCreaturesMovement);
 
             m.def("update_mouse_movem",
-                  &Theme0::GameplayCore::update_mouse_movem);
+                  &Theme0::GameplayCore::UpdateMouseMovement);
 
-            m.def("update_kb_movem", &Theme0::GameplayCore::update_kb_movem);
+            m.def("update_kb_movem", &Theme0::GameplayCore::UpdateKeyboardMovement);
 
             m.def("setup_scenes",
                   []

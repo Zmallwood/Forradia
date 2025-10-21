@@ -29,46 +29,46 @@ namespace WorldStructure
       public:
         Creature(StringView type_name) : type_{Hash(type_name)}
         {
-            init();
+            Initialize();
         }
 
-        auto type() const
+        auto GetType() const
         {
             return type_;
         }
 
-        auto ticks_last_move() const
+        auto GetTicksLastMovement() const
         {
-            return ticks_last_move_;
+            return ticks_last_movement_;
         }
 
-        void set_ticks_last_move(int value)
+        void SetTicksLastMovement(int value)
         {
-            ticks_last_move_ = value;
+            ticks_last_movement_ = value;
         }
 
-        auto movem_spd() const
+        auto GetMovementSpeed() const
         {
-            return movem_spd_;
+            return movement_speed_;
         }
 
-        auto dest() const
+        auto GetDestination() const
         {
-            return dest_;
+            return destination_;
         }
 
-        void set_dest(Point val)
+        void SetDestination(Point value)
         {
-            dest_ = val;
+            destination_ = value;
         }
 
       private:
-        void init();
+        void Initialize();
 
         int type_{0};
-        int ticks_last_move_{0};
-        float movem_spd_{2.0f};
-        Point dest_{-1, -1};
+        int ticks_last_movement_{0};
+        float movement_speed_{2.0f};
+        Point destination_{-1, -1};
     };
 
     class NPC
@@ -76,64 +76,64 @@ namespace WorldStructure
       public:
         NPC(StringView type_name) : type_{Hash(type_name)}
         {
-            init();
+            Initialize();
         }
 
-        auto type() const
+        auto GetType() const
         {
             return type_;
         }
 
-        auto name() const
+        auto GetName() const
         {
             return name_;
         }
 
-        auto ticks_last_move() const
+        auto GetTicksLastMovement() const
         {
-            return ticks_last_move_;
+            return ticks_last_movement_;
         }
 
-        void set_ticks_last_move(int value)
+        void SetTicksLastMovement(int value)
         {
-            ticks_last_move_ = value;
+            ticks_last_movement_ = value;
         }
 
-        auto movem_spd() const
+        auto GetMovementSpeed() const
         {
-            return movem_spd_;
+            return movement_speed_;
         }
 
-        auto dest() const
+        auto GetDestination() const
         {
-            return dest_;
+            return destination_;
         }
 
-        void set_dest(Point val)
+        void SetDestination(Point value)
         {
-            dest_ = val;
+            destination_ = value;
         }
 
-        auto ticks_next_spontaneous_speech() const
+        auto GetTicksNextSpontaneousSpeech() const
         {
             return ticks_next_spontaneous_speech_;
         }
 
-        void set_ticks_next_spontaneous_speech(int value)
+        void SetTicksNextSpontaneousSpeech(int value)
         {
             ticks_next_spontaneous_speech_ = value;
         }
 
       private:
-        void init();
+        void Initialize();
 
-        void gen_name();
+        void GenerateName();
 
         int type_{0};
         String name_;
-        int ticks_last_move_{0};
-        float movem_spd_{2.0f};
-        Point dest_{-1, -1};
+        int ticks_last_movement_{0};
+        float movement_speed_{2.0f};
+        Point destination_{-1, -1};
         int ticks_next_spontaneous_speech_{0};
     };
 
@@ -144,7 +144,7 @@ namespace WorldStructure
         {
         }
 
-        auto type() const
+        auto GetType() const
         {
             return type_;
         }
@@ -158,44 +158,44 @@ namespace WorldStructure
       public:
         TreeObject(StringView obj_type_name) : Object(obj_type_name)
         {
-            init(obj_type_name);
+            Initialize(obj_type_name);
         }
 
-        auto trunk_parts() const
+        auto GetTrunkParts() const
         {
             return trunk_parts_;
         }
 
-        auto needle_types() const
+        auto GetNeedleTypes() const
         {
             return needle_types_;
         }
 
-        auto w_factor() const
+        auto GetWidthFactor() const
         {
-            return w_factor_;
+            return width_factor_;
         }
 
       private:
-        void init(StringView obj_type_name);
+        void Initialize(StringView obj_type_name);
 
         Vector<PointF> trunk_parts_;
         Vector<int> needle_types_;
-        float w_factor_{1.0f};
+        float width_factor_{1.0f};
     };
 
     class ObjectsStack
     {
       public:
-        void clear_objs();
+        void ClearObjects();
 
-        void add_obj(StringView obj_type_name);
+        void AddObject(StringView obj_type_name);
 
-        void add_tree_obj(StringView obj_type_name);
+        void AddTreeObject(StringView obj_type_name);
 
-        int get_sz() const;
+        int GetSize() const;
 
-        auto objects() const
+        auto GetObjects() const
         {
             return objects_;
         }
@@ -209,92 +209,92 @@ namespace WorldStructure
       public:
         Tile()
         {
-            init();
+            Initialize();
         }
 
-        auto ground() const
+        auto GetGround() const
         {
             return ground_;
         }
 
-        void set_ground(StringView ground_name);
+        void SetGround(StringView ground_name);
 
-        auto objects_stack() const
+        auto GetObjectsStack() const
         {
             return objects_stack_;
         }
 
-        auto creature() const
+        auto GetCreature() const
         {
             return creature_;
         }
 
-        void set_creature(SharedPtr<Forradia::Theme0::WorldStructure::Creature> val)
+        void SetCreature(SharedPtr<Forradia::Theme0::WorldStructure::Creature> val)
         {
             creature_ = val;
         }
 
-        auto npc() const
+        auto GetNPC() const
         {
             return npc_;
         }
 
-        void set_npc(SharedPtr<Forradia::Theme0::WorldStructure::NPC> val)
+        void SetNPC(SharedPtr<Forradia::Theme0::WorldStructure::NPC> value)
         {
-            npc_ = val;
+            npc_ = value;
         }
 
-        auto elev() const
+        auto GetElevation() const
         {
-            return elev_;
+            return elevation_;
         }
 
-        void set_elev(int val)
+        void SetElevation(int value)
         {
-            elev_ = val;
+            elevation_ = value;
         }
 
-        auto water_depth() const
+        auto GetWaterDepth() const
         {
             return water_depth_;
         }
 
-        void set_water_depth(int val)
+        void SetWaterDepth(int value)
         {
-            water_depth_ = val;
+            water_depth_ = value;
         }
 
-        auto river_dir_1() const
+        auto GetRiverDirection1() const
         {
-            return river_dir_1_;
+            return river_direction_1_;
         }
 
-        void set_river_dir_1(Directions val)
+        void SetRiverDirection1(Directions value)
         {
-            river_dir_1_ = val;
+            river_direction_1_ = value;
         }
 
-        auto river_dir_2() const
+        auto GetRiverDirection2() const
         {
-            return river_dir_2_;
+            return river_direction_2_;
         }
 
-        void set_river_dir_2(Directions val)
+        void SetRiverDirection2(Directions value)
         {
-            river_dir_2_ = val;
+            river_direction_2_ = value;
         }
 
       private:
-        void init();
+        void Initialize();
 
         int ground_{0};
         SharedPtr<Forradia::Theme0::WorldStructure::ObjectsStack> objects_stack_;
         SharedPtr<Forradia::Theme0::WorldStructure::Creature> creature_;
         SharedPtr<Forradia::Theme0::WorldStructure::NPC> npc_;
-        int elev_{0};
+        int elevation_{0};
         int water_depth_{0};
-        Directions river_dir_1_{Directions::none};
-        Directions river_dir_2_{Directions::none};
+        Directions river_direction_1_{Directions::none};
+        Directions river_direction_2_{Directions::none};
     };
 
     class WorldArea
@@ -302,31 +302,31 @@ namespace WorldStructure
       public:
         WorldArea(Size w_area_sz, float world_scaling)
         {
-            init(w_area_sz, world_scaling);
+            Initialize(w_area_sz, world_scaling);
         }
 
-        Size get_sz() const;
+        Size GetSize() const;
 
-        bool is_valid_coord(int x, int y) const;
+        bool IsValidCoordinate(int x, int y) const;
 
-        bool is_valid_coord(Point coord) const;
+        bool IsValidCoordinate(Point coord) const;
 
-        SharedPtr<Tile> get_tl(int x, int y) const;
+        SharedPtr<Tile> GetTile(int x, int y) const;
 
-        SharedPtr<Tile> get_tl(Point coord) const;
+        SharedPtr<Tile> GetTile(Point coord) const;
 
-        auto &creatures_mirror_ref()
+        auto &GetCreaturesMirrorRef()
         {
             return creatures_mirror_;
         }
 
-        auto &npcs_mirror_ref()
+        auto &GetNPCsMirrorRef()
         {
             return npcs_mirror_;
         }
 
       private:
-        void init(Size w_area_sz, float world_scaling);
+        void Initialize(Size w_area_sz, float world_scaling);
 
         Vector<Vector<SharedPtr<Tile>>> tiles_;
         std::map<SharedPtr<Creature>, Point> creatures_mirror_;
@@ -336,15 +336,15 @@ namespace WorldStructure
     class World
     {
       public:
-        void init(Size w_area_sz, float world_scaling);
+        void Initialize(Size w_area_sz, float world_scaling);
 
-        auto curr_w_area() const
+        auto GetCurrentWorldArea() const
         {
-            return curr_w_area_;
+            return current_world_area_;
         }
 
       private:
-        SharedPtr<WorldArea> curr_w_area_;
+        SharedPtr<WorldArea> current_world_area_;
     };
 }
 using namespace WorldStructure;

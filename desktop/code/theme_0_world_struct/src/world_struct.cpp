@@ -9,20 +9,20 @@ namespace Theme0
 {
     namespace WorldStructure
     {
-        void Creature::init()
+        void Creature::Initialize()
         {
-            movem_spd_ *= (GetRandomInt(3) + 1) / 2.0f;
+            movement_speed_ *= (GetRandomInt(3) + 1) / 2.0f;
         }
 
-        void NPC::init()
+        void NPC::Initialize()
         {
-            gen_name();
+            GenerateName();
 
             ticks_next_spontaneous_speech_ =
                 GetTicks() + GetRandomInt(300 * k_one_sec_millis);
         }
 
-        void NPC::gen_name()
+        void NPC::GenerateName()
         {
             Vector<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
 
@@ -45,7 +45,7 @@ namespace Theme0
             name_ = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
 
-        void TreeObject::init(StringView obj_type_name)
+        void TreeObject::Initialize(StringView obj_type_name)
         {
             if (obj_type_name != "object_fir_tree" &&
                 obj_type_name != "object_birch_tree")
@@ -65,7 +65,7 @@ namespace Theme0
                 num_trunk_parts = 25 + GetRandomInt(14);
             }
 
-            w_factor_ *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
+            width_factor_ *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
 
             auto offs_x{0.0f};
 
@@ -106,38 +106,38 @@ namespace Theme0
             }
         }
 
-        void ObjectsStack::clear_objs()
+        void ObjectsStack::ClearObjects()
         {
             objects_.clear();
         }
 
-        void ObjectsStack::add_obj(StringView obj_type_name)
+        void ObjectsStack::AddObject(StringView obj_type_name)
         {
             objects_.push_back(std::make_shared<Object>(obj_type_name));
         }
 
-        void ObjectsStack::add_tree_obj(StringView obj_type_name)
+        void ObjectsStack::AddTreeObject(StringView obj_type_name)
         {
             objects_.push_back(std::make_shared<TreeObject>(obj_type_name));
         }
 
-        int ObjectsStack::get_sz() const
+        int ObjectsStack::GetSize() const
         {
             return objects_.size();
         }
 
-        void Tile::init()
+        void Tile::Initialize()
         {
             objects_stack_ = std::make_shared<
                 Forradia::Theme0::WorldStructure::ObjectsStack>();
         }
 
-        void Tile::set_ground(StringView ground_name)
+        void Tile::SetGround(StringView ground_name)
         {
             ground_ = Hash(ground_name);
         }
 
-        void WorldArea::init(Size w_area_sz, float world_scaling)
+        void WorldArea::Initialize(Size w_area_sz, float world_scaling)
         {
             auto sz{w_area_sz};
 
@@ -155,7 +155,7 @@ namespace Theme0
             }
         }
 
-        Size WorldArea::get_sz() const
+        Size WorldArea::GetSize() const
         {
             auto w{CInt(tiles_.size())};
 
@@ -169,21 +169,21 @@ namespace Theme0
             return {w, h};
         }
 
-        bool WorldArea::is_valid_coord(int x, int y) const
+        bool WorldArea::IsValidCoordinate(int x, int y) const
         {
-            auto sz{get_sz()};
+            auto sz{GetSize()};
 
             return x >= 0 && y >= 0 && x < sz.w && y < sz.h;
         }
 
-        bool WorldArea::is_valid_coord(Point coord) const
+        bool WorldArea::IsValidCoordinate(Point coord) const
         {
-            return is_valid_coord(coord.x, coord.y);
+            return IsValidCoordinate(coord.x, coord.y);
         }
 
-        SharedPtr<Tile> WorldArea::get_tl(int x, int y) const
+        SharedPtr<Tile> WorldArea::GetTile(int x, int y) const
         {
-            if (is_valid_coord(x, y))
+            if (IsValidCoordinate(x, y))
             {
                 return tiles_.at(x).at(y);
             }
@@ -191,14 +191,14 @@ namespace Theme0
             return nullptr;
         }
 
-        SharedPtr<Tile> WorldArea::get_tl(Point coord) const
+        SharedPtr<Tile> WorldArea::GetTile(Point coord) const
         {
-            return get_tl(coord.x, coord.y);
+            return GetTile(coord.x, coord.y);
         }
 
-        void World::init(Size w_area_sz, float world_scaling)
+        void World::Initialize(Size w_area_sz, float world_scaling)
         {
-            curr_w_area_ =
+            current_world_area_ =
                 std::make_shared<WorldArea>(w_area_sz, world_scaling);
         }
     }

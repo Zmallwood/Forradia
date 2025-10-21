@@ -14,23 +14,23 @@ namespace Theme0
 {
     namespace GameplayCore
     {
-        void WorldView::render() const
+        void WorldView::Render() const
         {
             auto grid_sz{CalcGridSize()};
 
             auto player_pos{_<PlayerCharacter>().GetPosition()};
 
-            auto w_area{_<World>().curr_w_area()};
+            auto w_area{_<World>().GetCurrentWorldArea()};
 
             auto extra_rows{8};
 
-            auto wa_sz{w_area->get_sz()};
+            auto wa_sz{w_area->GetSize()};
 
             auto elev_h{0.1f};
 
             auto player_elev{
-                w_area->get_tl(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)
-                    ->elev()};
+                w_area->GetTile(wa_sz.w - player_pos.x, wa_sz.h - player_pos.y)
+                    ->GetElevation()};
 
             auto rend_tl_sz{0.5f};
 
@@ -57,16 +57,16 @@ namespace Theme0
                     y_coord =
                         (wa_sz.h - player_pos.y) - (grid_sz.h - 1) / 2 + y;
 
-                    if (!w_area->is_valid_coord(x_coord, y_coord))
+                    if (!w_area->IsValidCoordinate(x_coord, y_coord))
                     {
                         continue;
                     }
 
-                    tl = w_area->get_tl(x_coord, y_coord);
+                    tl = w_area->GetTile(x_coord, y_coord);
 
-                    auto objs_stack{tl->objects_stack()};
+                    auto objs_stack{tl->GetObjectsStack()};
 
-                    auto objects{objs_stack->objects()};
+                    auto objects{objs_stack->GetObjects()};
 
                     auto coord_nw{Point{x_coord, y_coord}};
                     auto coord_ne{Point{x_coord + 1, y_coord}};
@@ -78,37 +78,37 @@ namespace Theme0
                     auto coord_ses{Point{x_coord + 1, y_coord + 2}};
                     auto coord_ss{Point{x_coord, y_coord + 2}};
 
-                    if (!w_area->is_valid_coord(coord_nw) ||
-                        !w_area->is_valid_coord(coord_ne) ||
-                        !w_area->is_valid_coord(coord_sw) ||
-                        !w_area->is_valid_coord(coord_se))
+                    if (!w_area->IsValidCoordinate(coord_nw) ||
+                        !w_area->IsValidCoordinate(coord_ne) ||
+                        !w_area->IsValidCoordinate(coord_sw) ||
+                        !w_area->IsValidCoordinate(coord_se))
                     {
                         continue;
                     }
 
-                    tl_nw = w_area->get_tl(coord_nw);
-                    tl_ne = w_area->get_tl(coord_ne);
-                    tl_sw = w_area->get_tl(coord_sw);
-                    tl_se = w_area->get_tl(coord_se);
-                    tl_nee = w_area->get_tl(coord_nee);
-                    tl_see = w_area->get_tl(coord_see);
-                    tl_sese = w_area->get_tl(coord_sese);
-                    tl_ses = w_area->get_tl(coord_ses);
-                    tl_ss = w_area->get_tl(coord_ss);
+                    tl_nw = w_area->GetTile(coord_nw);
+                    tl_ne = w_area->GetTile(coord_ne);
+                    tl_sw = w_area->GetTile(coord_sw);
+                    tl_se = w_area->GetTile(coord_se);
+                    tl_nee = w_area->GetTile(coord_nee);
+                    tl_see = w_area->GetTile(coord_see);
+                    tl_sese = w_area->GetTile(coord_sese);
+                    tl_ses = w_area->GetTile(coord_ses);
+                    tl_ss = w_area->GetTile(coord_ss);
 
-                    ground = tl ? tl->ground() : 0;
+                    ground = tl ? tl->GetGround() : 0;
 
                     Vector<float> elevs;
 
-                    auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
-                    auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
-                    auto elev_se{tl_se ? tl_se->elev() : 0.0f};
-                    auto elev_sw{tl_sw ? tl_sw->elev() : 0.0f};
-                    auto elev_nee{tl_nee ? tl_nee->elev() : 0.0f};
-                    auto elev_see{tl_see ? tl_see->elev() : 0.0f};
-                    auto elev_sese{tl_sese ? tl_sese->elev() : 0.0f};
-                    auto elev_ses{tl_ses ? tl_ses->elev() : 0.0f};
-                    auto elev_ss{tl_ss ? tl_ss->elev() : 0.0f};
+                    auto elev_nw{tl_nw ? tl_nw->GetElevation() : 0.0f};
+                    auto elev_ne{tl_ne ? tl_ne->GetElevation() : 0.0f};
+                    auto elev_se{tl_se ? tl_se->GetElevation() : 0.0f};
+                    auto elev_sw{tl_sw ? tl_sw->GetElevation() : 0.0f};
+                    auto elev_nee{tl_nee ? tl_nee->GetElevation() : 0.0f};
+                    auto elev_see{tl_see ? tl_see->GetElevation() : 0.0f};
+                    auto elev_sese{tl_sese ? tl_sese->GetElevation() : 0.0f};
+                    auto elev_ses{tl_ses ? tl_ses->GetElevation() : 0.0f};
+                    auto elev_ss{tl_ss ? tl_ss->GetElevation() : 0.0f};
 
                     elevs.push_back(elev_nw);
                     elevs.push_back(elev_ne);
@@ -122,7 +122,7 @@ namespace Theme0
 
                     auto elev_avg{(elev_nw + elev_ne + elev_sw + elev_se) / 4};
 
-                    auto ground{tl->ground()};
+                    auto ground{tl->GetGround()};
 
                     if (ground == Hash("ground_water"))
                     {
@@ -134,7 +134,7 @@ namespace Theme0
 
                     for (auto obj : objects)
                     {
-                        auto obj_type{obj->type()};
+                        auto obj_type{obj->GetType()};
 
                         if (obj_type == Hash("object_fir_tree") ||
                             obj_type == Hash("object_birch_tree"))
@@ -143,11 +143,11 @@ namespace Theme0
                                 std::static_pointer_cast<Forradia::TreeObject>(
                                     obj)};
 
-                            auto trunk_parts{tree_obj->trunk_parts()};
+                            auto trunk_parts{tree_obj->GetTrunkParts()};
 
-                            auto needleTypes{tree_obj->needle_types()};
+                            auto needleTypes{tree_obj->GetNeedleTypes()};
 
-                            auto w_factor{tree_obj->w_factor()};
+                            auto w_factor{tree_obj->GetWidthFactor()};
 
                             for (auto i = 0; i < trunk_parts.size(); i++)
                             {

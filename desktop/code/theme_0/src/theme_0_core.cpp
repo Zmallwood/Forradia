@@ -73,13 +73,13 @@ namespace Theme0
 
             void PlayerCharacter::MoveToSuitablePosition()
             {
-                auto w_area{_<World>().curr_w_area()};
+                auto w_area{_<World>().GetCurrentWorldArea()};
 
-                auto sz{w_area->get_sz()};
+                auto sz{w_area->GetSize()};
 
                 position_ = {sz.w / 2, sz.h / 2};
 
-                while (w_area->get_tl(position_)->ground() == Hash("ground_water"))
+                while (w_area->GetTile(position_)->GetGround() == Hash("ground_water"))
                 {
                     position_ = {GetRandomInt(sz.w), GetRandomInt(sz.h)};
                 }
