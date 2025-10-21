@@ -308,9 +308,6 @@ namespace Core
         class Input
         {
           public:
-            ////////////////////
-            // Keyboard
-            ////////////////////
             class KeyboardInput
             {
               public:
@@ -330,9 +327,6 @@ namespace Core
                 std::set<SDL_Keycode> pressed_;
             };
 
-            ////////////////////
-            // Mouse
-            ////////////////////
             class MouseInput
             {
               public:

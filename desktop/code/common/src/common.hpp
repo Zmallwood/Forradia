@@ -24,9 +24,6 @@ typedef uint8_t Uint8;
 _NS_START_
 namespace Common
 {
-    ////////////////////
-    // Convenience
-    ////////////////////
     namespace Aliases
     {
         // A set of aliases for commonly used types.
@@ -123,9 +120,6 @@ namespace Common
         };
     }
     using namespace HelperClasses;
-    ////////////////////
-    // Matter
-    ////////////////////
     namespace Matter
     {
         /**
@@ -286,9 +280,6 @@ namespace Common
     using namespace Matter;
     namespace Utilities
     {
-        ////////////////////
-        // Utils
-        ////////////////////
         namespace CanvasUtilities
         {
             // Canvas util functions

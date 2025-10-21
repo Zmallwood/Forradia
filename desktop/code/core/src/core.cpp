@@ -626,9 +626,7 @@ namespace Core
             scenes_.at(curr_scene_).render();
         }
     }
-    ////////////////////
-    // Keyboard
-    ////////////////////
+    
     void Engine::Input::KeyboardInput::reset()
     {
         pressed_.clear();
@@ -667,9 +665,6 @@ namespace Core
         return res;
     }
 
-    ////////////////////
-    // Mouse
-    ////////////////////
     void Engine::Input::MouseInput::MouseButton::reset()
     {
         pressed_ = false;

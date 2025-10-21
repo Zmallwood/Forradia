@@ -7,9 +7,6 @@
 _NS_START_
 namespace Common
 {
-    ////////////////////
-    // Convenience
-    ////////////////////
     void SDLDeleter::operator()(SDL_Window *win) const
     {
         // Free up resources from a SDL_Window object.
@@ -40,9 +37,6 @@ namespace Common
         TTF_CloseFont(font);
     }
 
-    ////////////////////
-    // Matter
-    ////////////////////
     namespace Matter
     {
         bool Point::operator==(const Point &p) const
@@ -98,9 +92,6 @@ namespace Common
     }
     namespace Utilities
     {
-        ////////////////////
-        // Utils
-        ////////////////////
         namespace CanvasUtilities
         {
             // Canvas util functions
