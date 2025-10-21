@@ -64,28 +64,28 @@ void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
         return;
     }
 
-    program_ = glCreateProgram();
+    m_programID = glCreateProgram();
 
-    glAttachShader(program_, vertex_shader);
-    glAttachShader(program_, fragment_shader);
+    glAttachShader(m_programID, vertex_shader);
+    glAttachShader(m_programID, fragment_shader);
 
-    glLinkProgram(program_);
+    glLinkProgram(m_programID);
 
     GLint isLinked{0};
 
-    glGetProgramiv(program_, GL_LINK_STATUS, (int *)&isLinked);
+    glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
     if (isLinked == GL_FALSE)
     {
         GLint max_length{0};
 
-        glGetProgramiv(program_, GL_INFO_LOG_LENGTH, &max_length);
+        glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &max_length);
 
         std::vector<GLchar> infoLog(max_length);
 
-        glGetProgramInfoLog(program_, max_length, &max_length, &infoLog[0]);
+        glGetProgramInfoLog(m_programID, max_length, &max_length, &infoLog[0]);
 
-        glDeleteProgram(program_);
+        glDeleteProgram(m_programID);
 
         glDeleteShader(vertex_shader);
         glDeleteShader(fragment_shader);
@@ -93,8 +93,8 @@ void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
         return;
     }
 
-    glDetachShader(program_, vertex_shader);
-    glDetachShader(program_, fragment_shader);
+    glDetachShader(m_programID, vertex_shader);
+    glDetachShader(m_programID, fragment_shader);
 
     glDeleteShader(vertex_shader);
     glDeleteShader(fragment_shader);
@@ -102,7 +102,7 @@ void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
 
 void RenderersCollection::ShaderProgram::Cleanup()
 {
-    glDeleteProgram(program_);
+    glDeleteProgram(m_programID);
 }
 
 void RenderersCollection::Image2DRenderer::Initialize()
@@ -141,7 +141,7 @@ void RenderersCollection::Image2DRenderer::Initialize()
       }
     )"};
 
-    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
+    m_shaderProgram = std::make_shared<ShaderProgram>(vertex_shader_src,
                                                        fragment_shader_src);
 }
 
@@ -182,7 +182,7 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x, f
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
-    glUseProgram(shader_program_->GetProgram());
+    glUseProgram(m_shaderProgram->GetProgramID());
 
     glEnable(GL_BLEND);
 
@@ -514,7 +514,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     glViewport(0, 0, canv_sz.w * 1, canv_sz.h);
 
-    glUseProgram(shader_program_->GetProgram());
+    glUseProgram(shader_program_->GetProgramID());
 
     glEnable(GL_BLEND);
 
@@ -726,7 +726,7 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
 
-    GLuint matrix_id = glGetUniformLocation(shader_program_->GetProgram(), "MVP");
+    GLuint matrix_id = glGetUniformLocation(shader_program_->GetProgramID(), "MVP");
 
     glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
 
@@ -859,7 +859,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     glViewport(0, 0, canv_sz.w, canv_sz.h);
 
-    glUseProgram(shader_program_->GetProgram());
+    glUseProgram(shader_program_->GetProgramID());
 
     glEnable(GL_BLEND);
 
@@ -1015,16 +1015,16 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
         glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
 
     GLuint matrix_projection =
-        glGetUniformLocation(shader_program_->GetProgram(), "projection");
+        glGetUniformLocation(shader_program_->GetProgramID(), "projection");
     glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
                        &projection_matrix[0][0]);
 
     GLuint matrix_model =
-        glGetUniformLocation(shader_program_->GetProgram(), "model");
+        glGetUniformLocation(shader_program_->GetProgramID(), "model");
     glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
 
     GLuint matrix_view =
-        glGetUniformLocation(shader_program_->GetProgram(), "view");
+        glGetUniformLocation(shader_program_->GetProgramID(), "view");
 
     glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
 

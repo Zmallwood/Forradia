@@ -1183,9 +1183,9 @@ class RenderersCollection
             Cleanup();
         }
 
-        auto GetProgram() const
+        auto GetProgramID() const
         {
-            return program_;
+            return m_programID;
         }
 
       private:
@@ -1193,7 +1193,7 @@ class RenderersCollection
 
         void Cleanup();
 
-        GLuint program_;
+        GLuint m_programID;
     };
 
     class Image2DRenderer
@@ -1236,7 +1236,7 @@ class RenderersCollection
             float h;
         };
 
-        SharedPtr<ShaderProgram> shader_program_;
+        SharedPtr<ShaderProgram> m_shaderProgram;
         std::map<int, std::map<int, Entry>> imgs_;
         int counter_{0};
     };
