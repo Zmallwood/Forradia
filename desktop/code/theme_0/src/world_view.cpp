@@ -20,7 +20,7 @@ namespace Theme0
 
             auto player_pos{_<PlayerCharacter>().pos()};
 
-            auto w_area{_<world>().curr_w_area()};
+            auto w_area{_<World>().curr_w_area()};
 
             auto extra_rows{8};
 

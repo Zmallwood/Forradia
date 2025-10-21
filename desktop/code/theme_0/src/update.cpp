@@ -163,7 +163,7 @@ namespace Theme0
 
         void update_crea_movem()
         {
-            auto w_area{_<world>().curr_w_area()};
+            auto w_area{_<World>().curr_w_area()};
 
             auto &creas{w_area->creatures_mirror_ref()};
 
@@ -194,7 +194,7 @@ namespace Theme0
                     crea->set_dest({new_dest, new_destination_y});
                 }
 
-                auto w_area{_<world>().curr_w_area()};
+                auto w_area{_<World>().curr_w_area()};
 
                 auto &creas{w_area->creatures_mirror_ref()};
 
@@ -246,7 +246,7 @@ namespace Theme0
 
         void update_npcs()
         {
-            auto w_area{_<world>().curr_w_area()};
+            auto w_area{_<World>().curr_w_area()};
 
             auto &npcs{w_area->npcs_mirror_ref()};
 
@@ -358,7 +358,7 @@ namespace Theme0
                 (hovered_x_coord - (player_pos.x - (grid_sz.w - 1) / 2)) *
                 tl_sz.w};
 
-            auto w_area{_<world>().curr_w_area()};
+            auto w_area{_<World>().curr_w_area()};
 
             auto extra_rows{8};
 

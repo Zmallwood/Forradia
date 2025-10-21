@@ -73,7 +73,7 @@ namespace Theme0
 
             void PlayerCharacter::move_to_suitable_pos()
             {
-                auto w_area{_<world>().curr_w_area()};
+                auto w_area{_<World>().curr_w_area()};
 
                 auto sz{w_area->get_sz()};
 

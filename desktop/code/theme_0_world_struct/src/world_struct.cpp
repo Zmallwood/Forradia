@@ -196,7 +196,7 @@ namespace Theme0
             return get_tl(coord.x, coord.y);
         }
 
-        void world::init(Size w_area_sz, float world_scaling)
+        void World::init(Size w_area_sz, float world_scaling)
         {
             curr_w_area_ =
                 std::make_shared<WorldArea>(w_area_sz, world_scaling);

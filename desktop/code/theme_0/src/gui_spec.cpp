@@ -351,7 +351,7 @@ namespace SpecializedGUI
 
         auto hov_tl{_<TileHovering>().hovered_coord()};
 
-        auto w_area{_<world>().curr_w_area()};
+        auto w_area{_<World>().curr_w_area()};
 
         auto tl{w_area->get_tl(hov_tl.x, hov_tl.y)};
 

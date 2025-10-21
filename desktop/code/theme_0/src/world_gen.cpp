@@ -36,7 +36,7 @@ namespace Theme0
 
         void WorldGenerator::prep()
         {
-            w_area_ = _<Theme0::WorldStructure::world>().curr_w_area();
+            w_area_ = _<Theme0::WorldStructure::World>().curr_w_area();
 
             sz_ = w_area_->get_sz();
 

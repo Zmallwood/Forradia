@@ -333,7 +333,7 @@ namespace WorldStructure
         std::map<SharedPtr<NPC>, Point> npcs_mirror_;
     };
 
-    class world
+    class World
     {
       public:
         void init(Size w_area_sz, float world_scaling);
