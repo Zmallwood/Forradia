@@ -7,9 +7,9 @@
 #include "render.hpp"
 
 _NS_START_
-s_ptr<GUIComponentsLibrary::gui_comp>
+SharedPtr<GUIComponentsLibrary::gui_comp>
 GUIComponentsLibrary::gui_comp::add_child_comp(
-    s_ptr<GUIComponentsLibrary::gui_comp> comp)
+    SharedPtr<GUIComponentsLibrary::gui_comp> comp)
 {
     comp->set_parent_comp(this);
 
@@ -233,7 +233,7 @@ rect_f GUIComponentsLibrary::gui_win::gui_win_title_bar::bounds() const
 
     return b_res;
 }
-void GUIComponentsLibrary::gui_win::init(str_view win_title)
+void GUIComponentsLibrary::gui_win::init(StringView win_title)
 {
     set_visible(false);
 
@@ -300,7 +300,7 @@ void GUIComponentsLibrary::gui_chat_box::render_derived() const
         "black", sep_rect.x, sep_rect.y, sep_rect.w, sep_rect.h);
 }
 
-void GUIComponentsLibrary::gui_chat_box::print(str_view text)
+void GUIComponentsLibrary::gui_chat_box::print(StringView text)
 {
     lines_.push_back(text.data());
 }

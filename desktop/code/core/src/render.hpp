@@ -15,7 +15,7 @@ class RenderersCollection
     class shader_program
     {
       public:
-        shader_program(str_view vert_src, str_view frag_src)
+        shader_program(StringView vert_src, StringView frag_src)
         {
             init(vert_src, frag_src);
         }
@@ -31,7 +31,7 @@ class RenderersCollection
         }
 
       private:
-        void init(str_view vert_src, str_view frag_src);
+        void init(StringView vert_src, StringView frag_src);
 
         void cleanup();
 
@@ -53,13 +53,13 @@ class RenderersCollection
 
         void reset_counter();
 
-        void draw_img(str_view img_name, float x, float y, float w, float h);
+        void draw_img(StringView img_name, float x, float y, float w, float h);
 
         void draw_img(int img_name_hash, float x, float y, float w, float h);
 
         void draw_tex(GLuint tex_id, float x, float y, float w, float h);
 
-        void draw_img_auto_h(str_view img_name, float x, float y, float w);
+        void draw_img_auto_h(StringView img_name, float x, float y, float w);
 
       private:
         void init();
@@ -78,7 +78,7 @@ class RenderersCollection
             float h;
         };
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<int, std::map<int, entry>> imgs_;
         int counter_{0};
     };
@@ -108,9 +108,9 @@ class RenderersCollection
         }
 
         void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                       pt3_f camera_pos, vec<float> &elevs, float elev_h);
+                       pt3_f camera_pos, Vector<float> &elevs, float elev_h);
 
-        void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
+        void draw_tex(GLuint tex_id, Vector<float> &verts, pt3_f camera_pos);
 
       private:
         void init();
@@ -119,7 +119,7 @@ class RenderersCollection
 
         glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<float, std::map<float, entry>> imgs_;
     };
 
@@ -137,7 +137,7 @@ class RenderersCollection
       private:
         void init();
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
             models_;
         static constexpr float k_mdl_scale{0.08f};
@@ -157,7 +157,7 @@ class RenderersCollection
             init();
         }
 
-        void draw_str(str_view text, float x, float y,
+        void draw_str(StringView text, float x, float y,
                       font_szs font_sz = font_szs::_20, bool cent_align = false,
                       color text_color = colors::wheat_transp) const;
 
@@ -166,9 +166,9 @@ class RenderersCollection
 
         void add_fonts();
 
-        const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+        const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 
-        std::map<font_szs, s_ptr<TTF_Font>> fonts_;
+        std::map<font_szs, SharedPtr<TTF_Font>> fonts_;
     };
 };
 }

@@ -48,10 +48,10 @@ namespace Common
     namespace Aliases
     {
         // A set of aliases for commonly used types.
-        using str = std::string;
-        using str_view = std::string_view;
-        template <class T> using s_ptr = std::shared_ptr<T>;
-        template <class T> using vec = std::vector<T>;
+        using String = std::string;
+        using StringView = std::string_view;
+        template <class T> using SharedPtr = std::shared_ptr<T>;
+        template <class T> using Vector = std::vector<T>;
         template <class T> using func = std::function<T>;
     }
     using namespace Aliases;
@@ -72,10 +72,10 @@ namespace Common
          * \tparam T Type to get singleton for.
          * \return The singleton object as a SharedPtr.
          */
-        template <class T> s_ptr<T> __()
+        template <class T> SharedPtr<T> __()
         {
             // Create singleton instance only once.
-            static s_ptr<T> inst = std::make_shared<T>();
+            static SharedPtr<T> inst = std::make_shared<T>();
             return inst;
         }
 
@@ -310,7 +310,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(s_ptr<SDL_Window> win);
+            sz get_canv_sz(SharedPtr<SDL_Window> win);
 
             /**
              * Calculate the aspect ratio of a given window.
@@ -318,7 +318,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The calculated aspect ratio.
              */
-            float calc_aspect_ratio(s_ptr<SDL_Window> win);
+            float calc_aspect_ratio(SharedPtr<SDL_Window> win);
 
             /**
              * Convert a width to a height based on the width and the aspect
@@ -328,7 +328,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting height.
              */
-            float conv_w_to_h(float w, s_ptr<SDL_Window> win);
+            float conv_w_to_h(float w, SharedPtr<SDL_Window> win);
 
             /**
              * Convert a height to a width base on the height and the aspect
@@ -338,21 +338,21 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting width.
              */
-            float conv_h_to_w(float h, s_ptr<SDL_Window> win);
+            float conv_h_to_w(float h, SharedPtr<SDL_Window> win);
         }
         using namespace CanvasUtilities;
         namespace FilePathUtilities
         {
             // File path util functions
-            str file_ext(str_view path);
+            String file_ext(StringView path);
 
-            str file_name_no_ext(str_view path);
+            String file_name_no_ext(StringView path);
         }
         using namespace FilePathUtilities;
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(s_ptr<SDL_Window> win);
+            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities
@@ -376,7 +376,7 @@ namespace Common
         namespace StringUtilities
         {
             // String util functions
-            str repl(str_view text, char repl, char repl_with);
+            String repl(StringView text, char repl, char repl_with);
         }
         using namespace StringUtilities;
         namespace TimeUtilities
@@ -395,7 +395,7 @@ namespace Common
              * \param text Text to compute hash code for.
              * \return Computed hash code.
              */
-            int hash(str_view text);
+            int hash(StringView text);
         }
         using namespace HashUtilities;
         namespace PrintUtilities
@@ -406,14 +406,14 @@ namespace Common
              *
              * \param text Text to print.
              */
-            void print(str_view text);
+            void print(StringView text);
 
             /**
              * Print out a string of text, with an added line break at the end.
              *
              * \param text Text to print.
              */
-            void print_ln(str_view text);
+            void print_ln(StringView text);
         }
         using namespace PrintUtilities;
         namespace CastUtilities
@@ -425,7 +425,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            constexpr int c_int(auto val) { return static_cast<int>(val); }
+            constexpr int c_int(auto val)
+            {
+                return static_cast<int>(val);
+            }
 
             /**
              * Cast a value to float.
@@ -433,7 +436,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            float c_float(auto val) { return static_cast<float>(val); }
+            float c_float(auto val)
+            {
+                return static_cast<float>(val);
+            }
 
             /**
              * Cast a value to Uint8.
@@ -441,7 +447,10 @@ namespace Common
              * \param val Value to cast.
              * \return Casted value.
              */
-            Uint8 c_uint8(auto val) { return static_cast<Uint8>(val); }
+            Uint8 c_uint8(auto val)
+            {
+                return static_cast<Uint8>(val);
+            }
         }
         using namespace CastUtilities;
     }
@@ -464,13 +473,6 @@ _NS_END_
 
 _NS_START_
 
-// #define _HIDE_FROM_OUTLINER_ \
-//     namespace GUICore \
-//     { \
-//         class gui; \
-//     }
-// _HIDE_FROM_OUTLINER_
-
 namespace Core
 {
     class engine
@@ -481,25 +483,31 @@ namespace Core
           public:
             ~sdl_device();
 
-            void init(str_view game_win_title, color clear_color);
+            void init(StringView game_win_title, color clear_color);
 
             void clear_canv() const;
 
             void present_canv() const;
 
-            auto win() const { return win_; }
+            auto win() const
+            {
+                return win_;
+            }
 
-            auto rend() const { return rend_; }
+            auto rend() const
+            {
+                return rend_;
+            }
 
           private:
-            s_ptr<SDL_Window> create_win();
+            SharedPtr<SDL_Window> create_win();
 
             sz get_screen_sz() const;
 
-            s_ptr<SDL_Window> win_;
-            s_ptr<SDL_GLContext> context_;
-            s_ptr<SDL_Renderer> rend_;
-            str game_win_title_;
+            SharedPtr<SDL_Window> win_;
+            SharedPtr<SDL_GLContext> context_;
+            SharedPtr<SDL_Renderer> rend_;
+            String game_win_title_;
             color clear_color_;
         };
 
@@ -508,7 +516,10 @@ namespace Core
           public:
             void update();
 
-            auto fps() const { return fps_; }
+            auto fps() const
+            {
+                return fps_;
+            }
 
           private:
             int fps_{0};
@@ -527,13 +538,19 @@ namespace Core
                 hovering_creature
             };
 
-            cursor() { init(); }
+            cursor()
+            {
+                init();
+            }
 
             void reset_style_to_normal();
 
             void render();
 
-            auto set_curs_style(curs_styles val) { curs_style_ = val; }
+            auto set_curs_style(curs_styles val)
+            {
+                curs_style_ = val;
+            }
 
           private:
             void init();
@@ -554,11 +571,15 @@ namespace Core
                 class image_bank
                 {
                   public:
-                    image_bank() { init(); }
+                    image_bank()
+                    {
+                        init();
+                    }
 
-                    ~image_bank() { cleanup(); }
-
-                    s_ptr<SDL_Texture> get_img(int img_name_hash) const;
+                    ~image_bank()
+                    {
+                        cleanup();
+                    }
 
                     GLuint get_tex(int img_name_hash) const;
 
@@ -575,13 +596,10 @@ namespace Core
 
                     void load_imgs();
 
-                    s_ptr<SDL_Texture> load_single_img(s_ptr<SDL_Surface> surf);
+                    GLuint load_single_tex(SharedPtr<SDL_Surface> surf);
 
-                    GLuint load_single_tex(s_ptr<SDL_Surface> surf);
+                    inline static const String k_rel_imgs_path{"./res/images/"};
 
-                    inline static const str k_rel_imgs_path{"./res/images/"};
-
-                    std::map<int, s_ptr<SDL_Texture>> images_;
                     std::map<int, GLuint> textures_;
                     std::map<int, sz> tex_sizes_;
                     std::map<float, std::map<float, std::map<int, GLuint>>>
@@ -607,15 +625,15 @@ namespace Core
                     class texture
                     {
                       public:
-                        str path_;
+                        String path_;
                     };
 
                     class mesh
                     {
                       public:
-                        vec<vertex> vertices;
-                        vec<unsigned int> indices;
-                        vec<texture> textures;
+                        Vector<vertex> vertices;
+                        Vector<unsigned int> indices;
+                        Vector<texture> textures;
                         glm::vec3 extents;
                         glm::vec3 origin;
                         aiString name;
@@ -624,12 +642,18 @@ namespace Core
                     class model
                     {
                       public:
-                        model(str_view file_path) { init(file_path); };
+                        model(StringView file_path)
+                        {
+                            init(file_path);
+                        };
 
-                        auto &meshes_ref() const { return meshes_; }
+                        auto &meshes_ref() const
+                        {
+                            return meshes_;
+                        }
 
                       private:
-                        void init(str_view file_path);
+                        void init(StringView file_path);
 
                         void process_node(aiNode *node, const aiScene *scene,
                                           aiMatrix4x4 transform);
@@ -637,32 +661,35 @@ namespace Core
                         mesh process_mesh(aiMesh *mesh, const aiScene *scene,
                                           aiMatrix4x4 transformation);
 
-                        vec<vertex> get_vertices(aiMesh *mesh,
+                        Vector<vertex> get_vertices(aiMesh *mesh,
                                                  glm::vec3 &extents,
                                                  glm::vec3 &origin,
                                                  aiMatrix4x4 transformation);
 
-                        vec<unsigned int> get_indices(aiMesh *mesh);
+                        Vector<unsigned int> get_indices(aiMesh *mesh);
 
-                        vec<texture> get_textures(aiMesh *mesh,
+                        Vector<texture> get_textures(aiMesh *mesh,
                                                   const aiScene *scene);
 
-                        vec<mesh> meshes_;
+                        Vector<mesh> meshes_;
                     };
 
                   public:
-                    model_bank() { init(); }
+                    model_bank()
+                    {
+                        init();
+                    }
 
-                    s_ptr<model> get_model(int model_name_hash) const;
+                    SharedPtr<model> get_model(int model_name_hash) const;
 
                   private:
                     void init();
 
-                    s_ptr<model> load_single_model(str_view file_path);
+                    SharedPtr<model> load_single_model(StringView file_path);
 
-                    inline static const str k_rel_models_path{"./res/models/"};
+                    inline static const String k_rel_models_path{"./res/models/"};
 
-                    std::map<int, s_ptr<model>> models_;
+                    std::map<int, SharedPtr<model>> models_;
                 };
             };
         };
@@ -678,7 +705,9 @@ namespace Core
                     class gui_root : public GUIComponentsLibrary::gui_comp
                     {
                       public:
-                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) {}
+                        gui_root() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+                        {
+                        }
                     };
                 };
 
@@ -711,10 +740,13 @@ namespace Core
                 }
 
               protected:
-                auto gui() const { return gui_; }
+                auto gui() const
+                {
+                    return gui_;
+                }
 
               private:
-                s_ptr<ScenesGUI::gui_root> gui_;
+                SharedPtr<ScenesGUI::gui_root> gui_;
                 func<void()> init_derived_{[] {}};
                 func<void()> on_enter_derived_{[] {}};
                 func<void()> update_derived_{[] {}};
@@ -724,9 +756,9 @@ namespace Core
             class scene_mngr
             {
               public:
-                void add_scene(str_view scene_name, i_scene &scene);
+                void add_scene(StringView scene_name, i_scene &scene);
 
-                void go_to_scene(str_view scene_name);
+                void go_to_scene(StringView scene_name);
 
                 void update_curr_scene();
 
@@ -852,7 +884,7 @@ namespace Core
             using RenderersCollection::text_rend;
         };
 
-        void init(str_view game_win_title, color clear_color) const;
+        void init(StringView game_win_title, color clear_color) const;
 
         void run();
 
@@ -887,9 +919,11 @@ namespace GUIComponentsLibrary
     class gui_comp
     {
       public:
-        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h}) {}
+        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h})
+        {
+        }
 
-        s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
+        SharedPtr<gui_comp> add_child_comp(SharedPtr<gui_comp> comp);
 
         void update();
 
@@ -901,20 +935,33 @@ namespace GUIComponentsLibrary
 
         void toggle_visible();
 
-        auto visible() const { return visible_; }
+        auto visible() const
+        {
+            return visible_;
+        }
 
-        void set_visible(bool val) { visible_ = val; }
+        void set_visible(bool val)
+        {
+            visible_ = val;
+        }
 
-        void set_parent_comp(gui_comp *value) { parent_comp_ = value; }
+        void set_parent_comp(gui_comp *value)
+        {
+            parent_comp_ = value;
+        }
 
       protected:
-        virtual void update_derived() {}
+        virtual void update_derived()
+        {
+        }
 
-        virtual void render_derived() const {}
+        virtual void render_derived() const
+        {
+        }
 
       private:
         rect_f bounds_;
-        vec<s_ptr<gui_comp>> children_;
+        Vector<SharedPtr<gui_comp>> children_;
         bool visible_{true};
         bool enabled_{true};
         gui_comp *parent_comp_{nullptr};
@@ -923,20 +970,23 @@ namespace GUIComponentsLibrary
     class gui_label : public gui_comp
     {
       public:
-        gui_label(float x, float y, float w, float h, str_view text = "",
+        gui_label(float x, float y, float w, float h, StringView text = "",
                   bool cent_align = false, color color = colors::wheat_transp)
             : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
         }
 
-        void set_text(str_view val) { text_ = val; }
+        void set_text(StringView val)
+        {
+            text_ = val;
+        }
 
       protected:
         virtual void render_derived() const override;
 
       private:
-        str text_;
+        String text_;
         bool cent_align_{false};
         color color_;
     };
@@ -945,7 +995,7 @@ namespace GUIComponentsLibrary
     {
       public:
         gui_panel(float x, float y, float w, float h,
-                  str_view bg_img = k_default_bg_img)
+                  StringView bg_img = k_default_bg_img)
             : gui_comp(x, y, w, h), bg_img_(bg_img)
         {
         }
@@ -953,20 +1003,23 @@ namespace GUIComponentsLibrary
       protected:
         virtual void render_derived() const override;
 
-        void set_bg_img(str_view val) { bg_img_ = val; }
+        void set_bg_img(StringView val)
+        {
+            bg_img_ = val;
+        }
 
       private:
-        inline static const str k_default_bg_img{"gui_panel_bg"};
+        inline static const String k_default_bg_img{"gui_panel_bg"};
 
-        str bg_img_;
+        String bg_img_;
     };
 
     class gui_button : public gui_panel
     {
       public:
-        gui_button(float x, float y, float w, float h, str_view text,
-                   func<void()> action, str_view bg_img = k_bg_img,
-                   str_view hovered_bg_img = k_hovered_bg_img)
+        gui_button(float x, float y, float w, float h, StringView text,
+                   func<void()> action, StringView bg_img = k_bg_img,
+                   StringView hovered_bg_img = k_hovered_bg_img)
             : gui_panel(x, y, w, h), text_(text), action_(action),
               bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
         {
@@ -978,13 +1031,13 @@ namespace GUIComponentsLibrary
         virtual void render_derived() const override;
 
       private:
-        inline static const str k_bg_img{"gui_button_bg"};
-        inline static const str k_hovered_bg_img{"gui_button_hovered_bg"};
+        inline static const String k_bg_img{"gui_button_bg"};
+        inline static const String k_hovered_bg_img{"gui_button_hovered_bg"};
 
-        str text_;
+        String text_;
         func<void()> action_;
-        str bg_img_;
-        str hovered_bg_img_;
+        String bg_img_;
+        String hovered_bg_img_;
     };
 
     class gui_movable_panel : public gui_panel
@@ -1004,11 +1057,20 @@ namespace GUIComponentsLibrary
 
         virtual rect_f get_drag_area();
 
-        auto being_moved() const { return being_moved_; }
+        auto being_moved() const
+        {
+            return being_moved_;
+        }
 
-        auto move_start_pos() const { return move_start_pos_; }
+        auto move_start_pos() const
+        {
+            return move_start_pos_;
+        }
 
-        auto move_start_mouse_pos() const { return move_start_mouse_pos_; }
+        auto move_start_mouse_pos() const
+        {
+            return move_start_mouse_pos_;
+        }
 
       private:
         bool being_moved_{false};
@@ -1019,7 +1081,7 @@ namespace GUIComponentsLibrary
     class gui_win : public gui_movable_panel
     {
       public:
-        gui_win(float x, float y, float w, float h, str_view win_title)
+        gui_win(float x, float y, float w, float h, StringView win_title)
             : gui_movable_panel(x, y, w, h)
         {
             init(win_title);
@@ -1030,15 +1092,18 @@ namespace GUIComponentsLibrary
 
         rect_f get_drag_area() override;
 
-        auto get_win_title_bar() const { return gui_win_title_bar_; }
+        auto get_win_title_bar() const
+        {
+            return gui_win_title_bar_;
+        }
 
       private:
-        void init(str_view win_title);
+        void init(StringView win_title);
 
         class gui_win_title_bar : public gui_panel
         {
           public:
-            gui_win_title_bar(gui_win &parent_win, str_view win_title)
+            gui_win_title_bar(gui_win &parent_win, StringView win_title)
                 : parent_win_(parent_win), k_win_title(win_title),
                   gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
@@ -1053,12 +1118,12 @@ namespace GUIComponentsLibrary
             void init();
 
             inline static const float k_h{0.04f};
-            const str k_win_title;
+            const String k_win_title;
 
             gui_win &parent_win_;
         };
 
-        s_ptr<gui_win_title_bar> gui_win_title_bar_;
+        SharedPtr<gui_win_title_bar> gui_win_title_bar_;
     };
 
     class gui_fps_panel : public gui_movable_panel
@@ -1075,7 +1140,7 @@ namespace GUIComponentsLibrary
       private:
         void init();
 
-        s_ptr<gui_label> fps_text_pnl_;
+        SharedPtr<gui_label> fps_text_pnl_;
     };
 
     class gui_chat_box : public gui_panel
@@ -1088,15 +1153,15 @@ namespace GUIComponentsLibrary
 
         void render_derived() const override;
 
-        void print(str_view text);
+        void print(StringView text);
 
       private:
-        constexpr static str_view k_default_bg_img_derived{"gui_chat_box_bg"};
+        constexpr static StringView k_default_bg_img_derived{"gui_chat_box_bg"};
         inline static const float k_line_h{0.025f};
         inline static const float k_sep_h{0.003f};
         inline static const float k_marg{0.008f};
 
-        vec<str> lines_;
+        Vector<String> lines_;
     };
 }
 #define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
@@ -1123,17 +1188,23 @@ class RenderersCollection
     class shader_program
     {
       public:
-        shader_program(str_view vert_src, str_view frag_src)
+        shader_program(StringView vert_src, StringView frag_src)
         {
             init(vert_src, frag_src);
         }
 
-        ~shader_program() { cleanup(); }
+        ~shader_program()
+        {
+            cleanup();
+        }
 
-        auto program() const { return program_; }
+        auto program() const
+        {
+            return program_;
+        }
 
       private:
-        void init(str_view vert_src, str_view frag_src);
+        void init(StringView vert_src, StringView frag_src);
 
         void cleanup();
 
@@ -1143,19 +1214,25 @@ class RenderersCollection
     class img_2d_rend
     {
       public:
-        img_2d_rend() { init(); };
+        img_2d_rend()
+        {
+            init();
+        };
 
-        ~img_2d_rend() { cleanup(); }
+        ~img_2d_rend()
+        {
+            cleanup();
+        }
 
         void reset_counter();
 
-        void draw_img(str_view img_name, float x, float y, float w, float h);
+        void draw_img(StringView img_name, float x, float y, float w, float h);
 
         void draw_img(int img_name_hash, float x, float y, float w, float h);
 
         void draw_tex(GLuint tex_id, float x, float y, float w, float h);
 
-        void draw_img_auto_h(str_view img_name, float x, float y, float w);
+        void draw_img_auto_h(StringView img_name, float x, float y, float w);
 
       private:
         void init();
@@ -1174,7 +1251,7 @@ class RenderersCollection
             float h;
         };
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<int, std::map<int, entry>> imgs_;
         int counter_{0};
     };
@@ -1193,14 +1270,20 @@ class RenderersCollection
     class ground_rend
     {
       public:
-        ground_rend() { init(); };
+        ground_rend()
+        {
+            init();
+        };
 
-        ~ground_rend() { cleanup(); }
+        ~ground_rend()
+        {
+            cleanup();
+        }
 
         void draw_tile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                       pt3_f camera_pos, vec<float> &elevs, float elev_h);
+                       pt3_f camera_pos, Vector<float> &elevs, float elev_h);
 
-        void draw_tex(GLuint tex_id, vec<float> &verts, pt3_f camera_pos);
+        void draw_tex(GLuint tex_id, Vector<float> &verts, pt3_f camera_pos);
 
       private:
         void init();
@@ -1209,14 +1292,17 @@ class RenderersCollection
 
         glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<float, std::map<float, entry>> imgs_;
     };
 
     class model_rend
     {
       public:
-        model_rend() { init(); }
+        model_rend()
+        {
+            init();
+        }
 
         void draw_model(int model_name_hash, float x, float y, float elev,
                         pt3_f camera_pos, float elev_h);
@@ -1224,7 +1310,7 @@ class RenderersCollection
       private:
         void init();
 
-        s_ptr<shader_program> shader_program_;
+        SharedPtr<shader_program> shader_program_;
         std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
             models_;
         static constexpr float k_mdl_scale{0.08f};
@@ -1239,9 +1325,12 @@ class RenderersCollection
     class text_rend
     {
       public:
-        text_rend() { init(); }
+        text_rend()
+        {
+            init();
+        }
 
-        void draw_str(str_view text, float x, float y,
+        void draw_str(StringView text, float x, float y,
                       font_szs font_sz = font_szs::_20, bool cent_align = false,
                       color text_color = colors::wheat_transp) const;
 
@@ -1250,9 +1339,9 @@ class RenderersCollection
 
         void add_fonts();
 
-        const str k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
+        const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 
-        std::map<font_szs, s_ptr<TTF_Font>> fonts_;
+        std::map<font_szs, SharedPtr<TTF_Font>> fonts_;
     };
 };
 }
@@ -1298,10 +1387,22 @@ namespace Theme0
             class body_part
             {
               public:
-                auto str() const { return str_; }
-                auto curr_energy() const { return curr_energy_; }
-                auto max_energy() const { return max_energy_; }
-                auto temp() const { return temp_; }
+                auto str() const
+                {
+                    return str_;
+                }
+                auto curr_energy() const
+                {
+                    return curr_energy_;
+                }
+                auto max_energy() const
+                {
+                    return max_energy_;
+                }
+                auto temp() const
+                {
+                    return temp_;
+                }
 
               private:
                 float str_{0.1f};
@@ -1313,7 +1414,10 @@ namespace Theme0
             class player_body
             {
               public:
-                player_body() { init(); }
+                player_body()
+                {
+                    init();
+                }
 
                 body_part *body_part_ptr(body_part_types type);
 
@@ -1326,7 +1430,10 @@ namespace Theme0
             class player
             {
               public:
-                player() { init(); }
+                player()
+                {
+                    init();
+                }
 
                 void move_n();
 
@@ -1336,30 +1443,57 @@ namespace Theme0
 
                 void move_w();
 
-                auto name() const { return name_; }
+                auto name() const
+                {
+                    return name_;
+                }
 
-                auto pos() const { return pos_; }
+                auto pos() const
+                {
+                    return pos_;
+                }
 
-                auto movem_spd() const { return movem_spd_; }
+                auto movem_spd() const
+                {
+                    return movem_spd_;
+                }
 
-                auto ticks_last_move() const { return ticks_last_move_; }
+                auto ticks_last_move() const
+                {
+                    return ticks_last_move_;
+                }
 
-                void set_ticks_last_move(int val) { ticks_last_move_ = val; }
+                void set_ticks_last_move(int val)
+                {
+                    ticks_last_move_ = val;
+                }
 
-                auto dest() const { return dest_; }
+                auto dest() const
+                {
+                    return dest_;
+                }
 
-                void set_dest(pt val) { dest_ = val; }
+                void set_dest(pt val)
+                {
+                    dest_ = val;
+                }
 
-                auto &body_ref() { return body_; }
+                auto &body_ref()
+                {
+                    return body_;
+                }
 
-                auto money() const { return money_; }
+                auto money() const
+                {
+                    return money_;
+                }
 
               private:
                 void init();
 
                 void move_to_suitable_pos();
 
-                str name_{"Unnamed Player"};
+                String name_{"Unnamed Player"};
                 pt pos_{60, 50};
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
@@ -1369,7 +1503,9 @@ namespace Theme0
             };
         }
         using namespace Player;
-#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_ } using namespace GameplayCore;
+#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_                             \
+    }                                                                          \
+    using namespace GameplayCore;
         _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_
 #define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_ }
         _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_
@@ -1415,7 +1551,10 @@ class tl_hovering
   public:
     void update();
 
-    auto hovered_coord() const { return hovered_coord_; }
+    auto hovered_coord() const
+    {
+        return hovered_coord_;
+    }
 
   private:
     pt hovered_coord_{-1, -1};
@@ -1452,8 +1591,6 @@ class world_view
 {
   public:
     void render() const;
-
-    void render_new() const;
 };
 }
 #define _HIDE_FROM_OUTLINER_WORLD_VIEW_BOTTOM_ }
@@ -1495,19 +1632,40 @@ namespace WorldStructure
     class creature
     {
       public:
-        creature(str_view type_name) : type_{hash(type_name)} { init(); }
+        creature(StringView type_name) : type_{hash(type_name)}
+        {
+            init();
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
-        auto ticks_last_move() const { return ticks_last_move_; }
+        auto ticks_last_move() const
+        {
+            return ticks_last_move_;
+        }
 
-        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
+        void set_ticks_last_move(int value)
+        {
+            ticks_last_move_ = value;
+        }
 
-        auto movem_spd() const { return movem_spd_; }
+        auto movem_spd() const
+        {
+            return movem_spd_;
+        }
 
-        auto dest() const { return dest_; }
+        auto dest() const
+        {
+            return dest_;
+        }
 
-        void set_dest(pt val) { dest_ = val; }
+        void set_dest(pt val)
+        {
+            dest_ = val;
+        }
 
       private:
         void init();
@@ -1521,21 +1679,45 @@ namespace WorldStructure
     class npc
     {
       public:
-        npc(str_view type_name) : type_{hash(type_name)} { init(); }
+        npc(StringView type_name) : type_{hash(type_name)}
+        {
+            init();
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
-        auto name() const { return name_; }
+        auto name() const
+        {
+            return name_;
+        }
 
-        auto ticks_last_move() const { return ticks_last_move_; }
+        auto ticks_last_move() const
+        {
+            return ticks_last_move_;
+        }
 
-        void set_ticks_last_move(int value) { ticks_last_move_ = value; }
+        void set_ticks_last_move(int value)
+        {
+            ticks_last_move_ = value;
+        }
 
-        auto movem_spd() const { return movem_spd_; }
+        auto movem_spd() const
+        {
+            return movem_spd_;
+        }
 
-        auto dest() const { return dest_; }
+        auto dest() const
+        {
+            return dest_;
+        }
 
-        void set_dest(pt val) { dest_ = val; }
+        void set_dest(pt val)
+        {
+            dest_ = val;
+        }
 
         auto ticks_next_spontaneous_speech() const
         {
@@ -1553,7 +1735,7 @@ namespace WorldStructure
         void gen_name();
 
         int type_{0};
-        str name_;
+        String name_;
         int ticks_last_move_{0};
         float movem_spd_{2.0f};
         pt dest_{-1, -1};
@@ -1563,9 +1745,14 @@ namespace WorldStructure
     class object
     {
       public:
-        object(str_view object_type_name) : type_(hash(object_type_name)) {}
+        object(StringView object_type_name) : type_(hash(object_type_name))
+        {
+        }
 
-        auto type() const { return type_; }
+        auto type() const
+        {
+            return type_;
+        }
 
       private:
         int type_{0};
@@ -1574,22 +1761,31 @@ namespace WorldStructure
     class tree_object : public object
     {
       public:
-        tree_object(str_view obj_type_name) : object(obj_type_name)
+        tree_object(StringView obj_type_name) : object(obj_type_name)
         {
             init(obj_type_name);
         }
 
-        auto trunk_parts() const { return trunk_parts_; }
+        auto trunk_parts() const
+        {
+            return trunk_parts_;
+        }
 
-        auto needle_types() const { return needle_types_; }
+        auto needle_types() const
+        {
+            return needle_types_;
+        }
 
-        auto w_factor() const { return w_factor_; }
+        auto w_factor() const
+        {
+            return w_factor_;
+        }
 
       private:
-        void init(str_view obj_type_name);
+        void init(StringView obj_type_name);
 
-        vec<pt_f> trunk_parts_;
-        vec<int> needle_types_;
+        Vector<pt_f> trunk_parts_;
+        Vector<int> needle_types_;
         float w_factor_{1.0f};
     };
 
@@ -1598,66 +1794,108 @@ namespace WorldStructure
       public:
         void clear_objs();
 
-        void add_obj(str_view obj_type_name);
+        void add_obj(StringView obj_type_name);
 
-        void add_tree_obj(str_view obj_type_name);
+        void add_tree_obj(StringView obj_type_name);
 
         int get_sz() const;
 
-        auto objects() const { return objects_; }
+        auto objects() const
+        {
+            return objects_;
+        }
 
       private:
-        vec<s_ptr<object>> objects_;
+        Vector<SharedPtr<object>> objects_;
     };
 
     class tile
     {
       public:
-        tile() { init(); }
+        tile()
+        {
+            init();
+        }
 
-        auto ground() const { return ground_; }
+        auto ground() const
+        {
+            return ground_;
+        }
 
-        void set_ground(str_view ground_name);
+        void set_ground(StringView ground_name);
 
-        auto objects_stack() const { return objects_stack_; }
+        auto objects_stack() const
+        {
+            return objects_stack_;
+        }
 
-        auto creature() const { return creature_; }
+        auto creature() const
+        {
+            return creature_;
+        }
 
-        void set_creature(s_ptr<Forradia::Theme0::WorldStructure::creature> val)
+        void set_creature(SharedPtr<Forradia::Theme0::WorldStructure::creature> val)
         {
             creature_ = val;
         }
 
-        auto npc() const { return npc_; }
+        auto npc() const
+        {
+            return npc_;
+        }
 
-        void set_npc(s_ptr<Forradia::Theme0::WorldStructure::npc> val)
+        void set_npc(SharedPtr<Forradia::Theme0::WorldStructure::npc> val)
         {
             npc_ = val;
         }
 
-        auto elev() const { return elev_; }
+        auto elev() const
+        {
+            return elev_;
+        }
 
-        void set_elev(int val) { elev_ = val; }
+        void set_elev(int val)
+        {
+            elev_ = val;
+        }
 
-        auto water_depth() const { return water_depth_; }
+        auto water_depth() const
+        {
+            return water_depth_;
+        }
 
-        void set_water_depth(int val) { water_depth_ = val; }
+        void set_water_depth(int val)
+        {
+            water_depth_ = val;
+        }
 
-        auto river_dir_1() const { return river_dir_1_; }
+        auto river_dir_1() const
+        {
+            return river_dir_1_;
+        }
 
-        void set_river_dir_1(dirs val) { river_dir_1_ = val; }
+        void set_river_dir_1(dirs val)
+        {
+            river_dir_1_ = val;
+        }
 
-        auto river_dir_2() const { return river_dir_2_; }
+        auto river_dir_2() const
+        {
+            return river_dir_2_;
+        }
 
-        void set_river_dir_2(dirs val) { river_dir_2_ = val; }
+        void set_river_dir_2(dirs val)
+        {
+            river_dir_2_ = val;
+        }
 
       private:
         void init();
 
         int ground_{0};
-        s_ptr<Forradia::Theme0::WorldStructure::objects_stack> objects_stack_;
-        s_ptr<Forradia::Theme0::WorldStructure::creature> creature_;
-        s_ptr<Forradia::Theme0::WorldStructure::npc> npc_;
+        SharedPtr<Forradia::Theme0::WorldStructure::objects_stack> objects_stack_;
+        SharedPtr<Forradia::Theme0::WorldStructure::creature> creature_;
+        SharedPtr<Forradia::Theme0::WorldStructure::npc> npc_;
         int elev_{0};
         int water_depth_{0};
         dirs river_dir_1_{dirs::none};
@@ -1678,20 +1916,26 @@ namespace WorldStructure
 
         bool is_valid_coord(pt coord) const;
 
-        s_ptr<tile> get_tl(int x, int y) const;
+        SharedPtr<tile> get_tl(int x, int y) const;
 
-        s_ptr<tile> get_tl(pt coord) const;
+        SharedPtr<tile> get_tl(pt coord) const;
 
-        auto &creatures_mirror_ref() { return creatures_mirror_; }
+        auto &creatures_mirror_ref()
+        {
+            return creatures_mirror_;
+        }
 
-        auto &npcs_mirror_ref() { return npcs_mirror_; }
+        auto &npcs_mirror_ref()
+        {
+            return npcs_mirror_;
+        }
 
       private:
         void init(sz w_area_sz, float world_scaling);
 
-        vec<vec<s_ptr<tile>>> tiles_;
-        std::map<s_ptr<creature>, pt> creatures_mirror_;
-        std::map<s_ptr<npc>, pt> npcs_mirror_;
+        Vector<Vector<SharedPtr<tile>>> tiles_;
+        std::map<SharedPtr<creature>, pt> creatures_mirror_;
+        std::map<SharedPtr<npc>, pt> npcs_mirror_;
     };
 
     class world
@@ -1699,10 +1943,13 @@ namespace WorldStructure
       public:
         void init(sz w_area_sz, float world_scaling);
 
-        auto curr_w_area() const { return curr_w_area_; }
+        auto curr_w_area() const
+        {
+            return curr_w_area_;
+        }
 
       private:
-        s_ptr<world_area> curr_w_area_;
+        SharedPtr<world_area> curr_w_area_;
     };
 }
 using namespace WorldStructure;
@@ -1731,7 +1978,7 @@ namespace Configuration
     class game_props
     {
       public:
-        static constexpr str k_game_win_title{"Forradia"};
+        static constexpr String k_game_win_title{"Forradia"};
         static constexpr color k_clear_color{colors::black};
         static constexpr int k_num_grid_rows{15};
         static constexpr sz k_w_area_sz{120, 100};
@@ -1763,7 +2010,9 @@ namespace SpecializedGUI
     class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
     {
       public:
-        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) {}
+        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        {
+        }
 
       protected:
         virtual void render_derived() const override;
@@ -1772,7 +2021,10 @@ namespace SpecializedGUI
     class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
     {
       public:
-        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f) { init(); }
+        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+        {
+            init();
+        }
 
       protected:
         void init();
@@ -1785,7 +2037,9 @@ namespace SpecializedGUI
     class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
     {
       public:
-        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {}
+        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+        {
+        }
 
       protected:
         void render_derived() const override;
@@ -1793,7 +2047,7 @@ namespace SpecializedGUI
       private:
         static constexpr float k_margin{0.005f};
         static constexpr float k_slot_size{0.04f};
-        inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
+        inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
     };
 
     class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
@@ -1813,16 +2067,19 @@ namespace SpecializedGUI
         void update_body_part_info_lbls();
 
         int sel_body_part_{0};
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
     };
 
     class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
     {
       public:
-        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f) { init(); }
+        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        {
+            init();
+        }
 
         void build_menu();
 
@@ -1840,21 +2097,27 @@ namespace SpecializedGUI
         class gui_interact_menu_entry
         {
           public:
-            gui_interact_menu_entry(str_view label, func<void()> action)
+            gui_interact_menu_entry(StringView label, func<void()> action)
                 : label_(label), action_(action)
             {
             }
 
-            auto label() const { return label_; }
+            auto label() const
+            {
+                return label_;
+            }
 
-            auto action() const { return action_; }
+            auto action() const
+            {
+                return action_;
+            }
 
           private:
-            str label_;
+            String label_;
             func<void()> action_;
         };
 
-        vec<gui_interact_menu_entry> entries_;
+        Vector<gui_interact_menu_entry> entries_;
     };
 }
 using namespace SpecializedGUI;
@@ -1909,7 +2172,7 @@ namespace WorldGeneration
         void gen_creas() const;
         void gen_npcs() const;
 
-        s_ptr<Theme0::WorldStructure::world_area> w_area_;
+        SharedPtr<Theme0::WorldStructure::world_area> w_area_;
         float scale_;
         sz sz_;
     };

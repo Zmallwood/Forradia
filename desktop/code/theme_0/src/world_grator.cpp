@@ -367,7 +367,7 @@ namespace Theme0
                 auto prev_x_coord{-1};
                 auto prev_y_coord{-1};
 
-                s_ptr<Theme0::WorldStructure::tile> prev_tl;
+                SharedPtr<Theme0::WorldStructure::tile> prev_tl;
 
                 for (auto j = 0; j < len; j++)
                 {

@@ -24,9 +24,9 @@ namespace Theme0
 
         void npc::gen_name()
         {
-            vec<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
+            Vector<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
 
-            vec<char> consonants{'q', 'w', 'r', 't', 'p', 's', 'd',
+            Vector<char> consonants{'q', 'w', 'r', 't', 'p', 's', 'd',
                                  'f', 'g', 'h', 'j', 'k', 'l', 'z',
                                  'x', 'c', 'v', 'b', 'n', 'm'};
 
@@ -42,10 +42,10 @@ namespace Theme0
 
             char c6{vowels.at(rand_int(vowels.size()))};
 
-            name_ = str() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
+            name_ = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
 
-        void tree_object::init(str_view obj_type_name)
+        void tree_object::init(StringView obj_type_name)
         {
             if (obj_type_name != "object_fir_tree" &&
                 obj_type_name != "object_birch_tree")
@@ -81,7 +81,7 @@ namespace Theme0
 
                 trunk_parts_.push_back(pos);
 
-                str needles_name;
+                String needles_name;
 
                 if (obj_type_name == "object_fir_tree")
                 {
@@ -111,12 +111,12 @@ namespace Theme0
             objects_.clear();
         }
 
-        void objects_stack::add_obj(str_view obj_type_name)
+        void objects_stack::add_obj(StringView obj_type_name)
         {
             objects_.push_back(std::make_shared<object>(obj_type_name));
         }
 
-        void objects_stack::add_tree_obj(str_view obj_type_name)
+        void objects_stack::add_tree_obj(StringView obj_type_name)
         {
             objects_.push_back(std::make_shared<tree_object>(obj_type_name));
         }
@@ -132,7 +132,7 @@ namespace Theme0
                 Forradia::Theme0::WorldStructure::objects_stack>();
         }
 
-        void tile::set_ground(str_view ground_name)
+        void tile::set_ground(StringView ground_name)
         {
             ground_ = hash(ground_name);
         }
@@ -146,7 +146,7 @@ namespace Theme0
 
             for (auto x = 0; x < sz.w; x++)
             {
-                tiles_.push_back(vec<std::shared_ptr<tile>>());
+                tiles_.push_back(Vector<std::shared_ptr<tile>>());
 
                 for (auto y = 0; y < sz.h; y++)
                 {
@@ -181,7 +181,7 @@ namespace Theme0
             return is_valid_coord(coord.x, coord.y);
         }
 
-        s_ptr<tile> world_area::get_tl(int x, int y) const
+        SharedPtr<tile> world_area::get_tl(int x, int y) const
         {
             if (is_valid_coord(x, y))
             {
@@ -191,7 +191,7 @@ namespace Theme0
             return nullptr;
         }
 
-        s_ptr<tile> world_area::get_tl(pt coord) const
+        SharedPtr<tile> world_area::get_tl(pt coord) const
         {
             return get_tl(coord.x, coord.y);
         }

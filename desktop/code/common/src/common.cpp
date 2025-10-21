@@ -10,31 +10,31 @@ namespace Common
     ////////////////////
     // Convenience
     ////////////////////
-    void sdl_del::operator()(SDL_Window *win) const
+    void SDLDeleter::operator()(SDL_Window *win) const
     {
         // Free up resources from a SDL_Window object.
         SDL_DestroyWindow(win);
     }
 
-    void sdl_del::operator()(SDL_Renderer *rend) const
+    void SDLDeleter::operator()(SDL_Renderer *rend) const
     {
         // Free up resources from a SDL_Renderer object.
         SDL_DestroyRenderer(rend);
     }
 
-    void sdl_del::operator()(SDL_Surface *surf) const
+    void SDLDeleter::operator()(SDL_Surface *surf) const
     {
         // Free up resources from a SDL_Surface object.
         SDL_FreeSurface(surf);
     }
 
-    void sdl_del::operator()(SDL_Texture *tex) const
+    void SDLDeleter::operator()(SDL_Texture *tex) const
     {
         // Free up resources from a SDL_Texture object.
         SDL_DestroyTexture(tex);
     }
 
-    void sdl_del::operator()(TTF_Font *font) const
+    void SDLDeleter::operator()(TTF_Font *font) const
     {
         // Free up resources from a TTF_Font object.
         TTF_CloseFont(font);
@@ -104,7 +104,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(s_ptr<SDL_Window> win)
+            sz get_canv_sz(SharedPtr<SDL_Window> win)
             {
                 sz canv_sz;
                 // Get the size of the window.
@@ -113,7 +113,7 @@ namespace Common
                 return canv_sz;
             }
 
-            float calc_aspect_ratio(s_ptr<SDL_Window> win)
+            float calc_aspect_ratio(SharedPtr<SDL_Window> win)
             {
                 auto canv_sz{get_canv_sz(win)};
                 // Calculate the aspect ratio.
@@ -122,13 +122,13 @@ namespace Common
                 return asp_rat;
             }
 
-            float conv_w_to_h(float w, s_ptr<SDL_Window> win)
+            float conv_w_to_h(float w, SharedPtr<SDL_Window> win)
             {
                 // Calculate the height based on the width and the aspect ratio.
                 return w * calc_aspect_ratio(win);
             }
 
-            float conv_h_to_w(float h, s_ptr<SDL_Window> win)
+            float conv_h_to_w(float h, SharedPtr<SDL_Window> win)
             {
                 // Calculate the width based on the height and the aspect ratio.
                 return h / calc_aspect_ratio(win);
@@ -137,19 +137,19 @@ namespace Common
         namespace FilePathUtilities
         {
             // File path util functions
-            str file_ext(str_view path)
+            String file_ext(StringView path)
             {
                 // Get the file extension.
-                str ext{path.substr(path.find_last_of('.') + 1).data()};
+                String ext{path.substr(path.find_last_of('.') + 1).data()};
 
                 return ext;
             }
 
-            str file_name_no_ext(str_view path)
+            String file_name_no_ext(StringView path)
             {
                 // Get the file name without the extension.
                 auto name_with_ext{
-                    str(path.substr(path.find_last_of('/') + 1))};
+                    String(path.substr(path.find_last_of('/') + 1))};
 
                 return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
             }
@@ -157,7 +157,7 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(s_ptr<SDL_Window> win)
+            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win)
             {
                 int x_px;
                 int y_px;
@@ -228,9 +228,9 @@ namespace Common
         namespace StringUtilities
         {
             // String util functions
-            str repl(str_view text, char repl, char repl_with)
+            String repl(StringView text, char repl, char repl_with)
             {
-                str res{text.data()};
+                String res{text.data()};
                 // Replace all instances of repl with repl_with.
                 std::replace(res.begin(), res.end(), repl, repl_with);
 
@@ -249,7 +249,7 @@ namespace Common
         namespace HashUtilities
         {
             // Hash util functions
-            int hash(str_view text)
+            int hash(StringView text)
             {
                 // Use algorithm from source which is forgotten what it was.
                 unsigned long hash{5381};
@@ -265,13 +265,13 @@ namespace Common
         namespace PrintUtilities
         {
             // Print util functions
-            void print(str_view text)
+            void print(StringView text)
             {
                 // Print out text without a following line break.
                 std::cout << text;
             }
 
-            void print_ln(str_view text)
+            void print_ln(StringView text)
             {
                 // Print out text with a following line break.
                 std::cout << text << std::endl;

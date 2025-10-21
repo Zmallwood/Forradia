@@ -30,11 +30,11 @@ namespace Common
     namespace Aliases
     {
         // A set of aliases for commonly used types.
-        using str = std::string;
-        using str_view = std::string_view;
-        template <class T> using s_ptr = std::shared_ptr<T>;
-        template <class T> using vec = std::vector<T>;
-        template <class T> using func = std::function<T>;
+        using String = std::string;
+        using StringView = std::string_view;
+        template <class T> using SharedPtr = std::shared_ptr<T>;
+        template <class T> using Vector = std::vector<T>;
+        template <class T> using Function = std::function<T>;
     }
     using namespace Aliases;
     namespace Constants
@@ -54,10 +54,10 @@ namespace Common
          * \tparam T Type to get singleton for.
          * \return The singleton object as a SharedPtr.
          */
-        template <class T> s_ptr<T> __()
+        template <class T> SharedPtr<T> __()
         {
             // Create singleton instance only once.
-            static s_ptr<T> inst = std::make_shared<T>();
+            static SharedPtr<T> inst = std::make_shared<T>();
             return inst;
         }
 
@@ -83,7 +83,7 @@ namespace Common
          * Class used for SharedPtrs of SDL objects,
          * which handles automaticallyfreeing up resources at object deletion.
          */
-        class sdl_del
+        class SDLDeleter
         {
           public:
             /**
@@ -292,7 +292,7 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            sz get_canv_sz(s_ptr<SDL_Window> win);
+            sz get_canv_sz(SharedPtr<SDL_Window> win);
 
             /**
              * Calculate the aspect ratio of a given window.
@@ -300,7 +300,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The calculated aspect ratio.
              */
-            float calc_aspect_ratio(s_ptr<SDL_Window> win);
+            float calc_aspect_ratio(SharedPtr<SDL_Window> win);
 
             /**
              * Convert a width to a height based on the width and the aspect
@@ -310,7 +310,7 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting height.
              */
-            float conv_w_to_h(float w, s_ptr<SDL_Window> win);
+            float conv_w_to_h(float w, SharedPtr<SDL_Window> win);
 
             /**
              * Convert a height to a width base on the height and the aspect
@@ -320,21 +320,21 @@ namespace Common
              * \param win Window to calculate the aspect ratio for.
              * \return The resulting width.
              */
-            float conv_h_to_w(float h, s_ptr<SDL_Window> win);
+            float conv_h_to_w(float h, SharedPtr<SDL_Window> win);
         }
         using namespace CanvasUtilities;
         namespace FilePathUtilities
         {
             // File path util functions
-            str file_ext(str_view path);
+            String file_ext(StringView path);
 
-            str file_name_no_ext(str_view path);
+            String file_name_no_ext(StringView path);
         }
         using namespace FilePathUtilities;
         namespace MouseUtilities
         {
             // Mouse util functions
-            pt_f norm_mouse_pos(s_ptr<SDL_Window> win);
+            pt_f norm_mouse_pos(SharedPtr<SDL_Window> win);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities
@@ -358,7 +358,7 @@ namespace Common
         namespace StringUtilities
         {
             // String util functions
-            str repl(str_view text, char repl, char repl_with);
+            String repl(StringView text, char repl, char repl_with);
         }
         using namespace StringUtilities;
         namespace TimeUtilities
@@ -377,7 +377,7 @@ namespace Common
              * \param text Text to compute hash code for.
              * \return Computed hash code.
              */
-            int hash(str_view text);
+            int hash(StringView text);
         }
         using namespace HashUtilities;
         namespace PrintUtilities
@@ -388,14 +388,14 @@ namespace Common
              *
              * \param text Text to print.
              */
-            void print(str_view text);
+            void print(StringView text);
 
             /**
              * Print out a string of text, with an added line break at the end.
              *
              * \param text Text to print.
              */
-            void print_ln(str_view text);
+            void print_ln(StringView text);
         }
         using namespace PrintUtilities;
         namespace CastUtilities

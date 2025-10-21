@@ -7,7 +7,7 @@
 _NS_START_
 namespace Core
 {
-    void engine::init(str_view game_win_title, color clear_color) const
+    void engine::init(StringView game_win_title, color clear_color) const
     {
         randomize();
 
@@ -93,7 +93,7 @@ namespace Core
         SDL_GL_DeleteContext(*context_);
     }
 
-    void engine::sdl_device::init(str_view game_win_title, color clear_color)
+    void engine::sdl_device::init(StringView game_win_title, color clear_color)
     {
         game_win_title_ = game_win_title;
         clear_color_ = clear_color;
@@ -135,7 +135,7 @@ namespace Core
         SDL_GL_SwapWindow(win_.get());
     }
 
-    s_ptr<SDL_Window> engine::sdl_device::create_win()
+    SharedPtr<SDL_Window> engine::sdl_device::create_win()
     {
         auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                    SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |
@@ -143,16 +143,16 @@ namespace Core
 
         auto screen_sz{get_screen_sz()};
 
-        auto win_res{s_ptr<SDL_Window>(
+        auto win_res{SharedPtr<SDL_Window>(
             SDL_CreateWindow(game_win_title_.data(), SDL_WINDOWPOS_CENTERED,
                              SDL_WINDOWPOS_CENTERED, screen_sz.w, screen_sz.h,
                              flags),
-            sdl_del())};
+            SDLDeleter())};
 
         if (!win_res)
         {
             print_ln("Window could not be created. SDL Error: " +
-                     str(SDL_GetError()));
+                     String(SDL_GetError()));
         }
 
         return win_res;
@@ -206,7 +206,7 @@ namespace Core
         auto w{k_curs_sz};
         auto h{conv_w_to_h(k_curs_sz, _<engine::sdl_device>().win())};
 
-        str curs_img;
+        String curs_img;
 
         switch (curs_style_)
         {
@@ -253,7 +253,7 @@ namespace Core
 
     void engine::Assets::Images::image_bank::load_imgs()
     {
-        auto base_path{str(SDL_GetBasePath())};
+        auto base_path{String(SDL_GetBasePath())};
         auto imgs_path{base_path + k_rel_imgs_path.data()};
 
         if (!std::filesystem::exists(imgs_path))
@@ -274,7 +274,7 @@ namespace Core
                 auto hash{Forradia::hash(file_name)};
 
                 auto surf{
-                    s_ptr<SDL_Surface>(IMG_Load(file_path.data()), sdl_del())};
+                    SharedPtr<SDL_Surface>(IMG_Load(file_path.data()), SDLDeleter())};
 
                 auto img_sz{sz{surf->w, surf->h}};
 
@@ -303,7 +303,7 @@ namespace Core
     }
 
     GLuint
-    engine::Assets::Images::image_bank::load_single_tex(s_ptr<SDL_Surface> surf)
+    engine::Assets::Images::image_bank::load_single_tex(SharedPtr<SDL_Surface> surf)
     {
         GLuint tex;
 
@@ -345,7 +345,7 @@ namespace Core
         return tex;
     }
 
-    void engine::Assets::Models::model_bank::model::init(str_view file_path)
+    void engine::Assets::Models::model_bank::model::init(StringView file_path)
     {
         Assimp::Importer importer;
 
@@ -393,23 +393,23 @@ namespace Core
         glm::vec3 extents;
         glm::vec3 origin;
 
-        vec<vertex> vertices =
+        Vector<vertex> vertices =
             get_vertices(mesh, extents, origin, transformation);
 
-        vec<unsigned int> indices = get_indices(mesh);
+        Vector<unsigned int> indices = get_indices(mesh);
 
-        vec<texture> textures = get_textures(mesh, scene);
+        Vector<texture> textures = get_textures(mesh, scene);
 
         return engine::Assets::Models::model_bank::mesh(
             vertices, indices, textures, extents, origin, mesh->mName);
     }
 
-    vec<engine::Assets::Models::model_bank::vertex>
+    Vector<engine::Assets::Models::model_bank::vertex>
     engine::Assets::Models::model_bank::model::get_vertices(
         aiMesh *mesh, glm::vec3 &extents, glm::vec3 &origin,
         aiMatrix4x4 transformation)
     {
-        vec<vertex> vertices;
+        Vector<vertex> vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
@@ -484,10 +484,10 @@ namespace Core
         return vertices;
     }
 
-    vec<unsigned int>
+    Vector<unsigned int>
     engine::Assets::Models::model_bank::model::get_indices(aiMesh *mesh)
     {
-        vec<unsigned int> indices;
+        Vector<unsigned int> indices;
 
         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
@@ -502,11 +502,11 @@ namespace Core
         return indices;
     }
 
-    vec<engine::Assets::Models::model_bank::texture>
+    Vector<engine::Assets::Models::model_bank::texture>
     engine::Assets::Models::model_bank::model::get_textures(
         aiMesh *mesh, const aiScene *scene)
     {
-        vec<texture> textures;
+        Vector<texture> textures;
 
         aiString s;
 
@@ -520,7 +520,7 @@ namespace Core
 
     void engine::Assets::Models::model_bank::init()
     {
-        auto base_path{str(SDL_GetBasePath())};
+        auto base_path{String(SDL_GetBasePath())};
         auto imgs_path{base_path + k_rel_models_path.data()};
 
         if (!std::filesystem::exists(imgs_path))
@@ -547,7 +547,7 @@ namespace Core
         }
     }
 
-    s_ptr<engine::Assets::Models::model_bank::model>
+    SharedPtr<engine::Assets::Models::model_bank::model>
     engine::Assets::Models::model_bank::get_model(int model_name_hash) const
     {
         if (models_.contains(model_name_hash))
@@ -558,8 +558,8 @@ namespace Core
         return nullptr;
     }
 
-    s_ptr<engine::Assets::Models::model_bank::model>
-    engine::Assets::Models::model_bank::load_single_model(str_view file_path)
+    SharedPtr<engine::Assets::Models::model_bank::model>
+    engine::Assets::Models::model_bank::load_single_model(StringView file_path)
     {
         auto model_res{std::make_shared<model>(file_path)};
 
@@ -593,7 +593,7 @@ namespace Core
         gui_->render();
     }
 
-    void engine::ScenesCore::scene_mngr::add_scene(str_view scene_name,
+    void engine::ScenesCore::scene_mngr::add_scene(StringView scene_name,
                                                    i_scene &scene)
     {
         scene.init();
@@ -601,7 +601,7 @@ namespace Core
         scenes_.insert({hash(scene_name), scene});
     }
 
-    void engine::ScenesCore::scene_mngr::go_to_scene(str_view scene_name)
+    void engine::ScenesCore::scene_mngr::go_to_scene(StringView scene_name)
     {
         curr_scene_ = hash(scene_name);
 

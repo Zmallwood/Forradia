@@ -18,7 +18,7 @@ namespace GUIComponentsLibrary
         {
         }
 
-        s_ptr<gui_comp> add_child_comp(s_ptr<gui_comp> comp);
+        SharedPtr<gui_comp> add_child_comp(SharedPtr<gui_comp> comp);
 
         void update();
 
@@ -56,7 +56,7 @@ namespace GUIComponentsLibrary
 
       private:
         rect_f bounds_;
-        vec<s_ptr<gui_comp>> children_;
+        Vector<SharedPtr<gui_comp>> children_;
         bool visible_{true};
         bool enabled_{true};
         gui_comp *parent_comp_{nullptr};
@@ -65,14 +65,14 @@ namespace GUIComponentsLibrary
     class gui_label : public gui_comp
     {
       public:
-        gui_label(float x, float y, float w, float h, str_view text = "",
+        gui_label(float x, float y, float w, float h, StringView text = "",
                   bool cent_align = false, color color = colors::wheat_transp)
             : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
         }
 
-        void set_text(str_view val)
+        void set_text(StringView val)
         {
             text_ = val;
         }
@@ -81,7 +81,7 @@ namespace GUIComponentsLibrary
         virtual void render_derived() const override;
 
       private:
-        str text_;
+        String text_;
         bool cent_align_{false};
         color color_;
     };
@@ -90,7 +90,7 @@ namespace GUIComponentsLibrary
     {
       public:
         gui_panel(float x, float y, float w, float h,
-                  str_view bg_img = k_default_bg_img)
+                  StringView bg_img = k_default_bg_img)
             : gui_comp(x, y, w, h), bg_img_(bg_img)
         {
         }
@@ -98,23 +98,23 @@ namespace GUIComponentsLibrary
       protected:
         virtual void render_derived() const override;
 
-        void set_bg_img(str_view val)
+        void set_bg_img(StringView val)
         {
             bg_img_ = val;
         }
 
       private:
-        inline static const str k_default_bg_img{"gui_panel_bg"};
+        inline static const String k_default_bg_img{"gui_panel_bg"};
 
-        str bg_img_;
+        String bg_img_;
     };
 
     class gui_button : public gui_panel
     {
       public:
-        gui_button(float x, float y, float w, float h, str_view text,
-                   func<void()> action, str_view bg_img = k_bg_img,
-                   str_view hovered_bg_img = k_hovered_bg_img)
+        gui_button(float x, float y, float w, float h, StringView text,
+                   Function<void()> action, StringView bg_img = k_bg_img,
+                   StringView hovered_bg_img = k_hovered_bg_img)
             : gui_panel(x, y, w, h), text_(text), action_(action),
               bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
         {
@@ -126,13 +126,13 @@ namespace GUIComponentsLibrary
         virtual void render_derived() const override;
 
       private:
-        inline static const str k_bg_img{"gui_button_bg"};
-        inline static const str k_hovered_bg_img{"gui_button_hovered_bg"};
+        inline static const String k_bg_img{"gui_button_bg"};
+        inline static const String k_hovered_bg_img{"gui_button_hovered_bg"};
 
-        str text_;
-        func<void()> action_;
-        str bg_img_;
-        str hovered_bg_img_;
+        String text_;
+        Function<void()> action_;
+        String bg_img_;
+        String hovered_bg_img_;
     };
 
     class gui_movable_panel : public gui_panel
@@ -176,7 +176,7 @@ namespace GUIComponentsLibrary
     class gui_win : public gui_movable_panel
     {
       public:
-        gui_win(float x, float y, float w, float h, str_view win_title)
+        gui_win(float x, float y, float w, float h, StringView win_title)
             : gui_movable_panel(x, y, w, h)
         {
             init(win_title);
@@ -193,12 +193,12 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        void init(str_view win_title);
+        void init(StringView win_title);
 
         class gui_win_title_bar : public gui_panel
         {
           public:
-            gui_win_title_bar(gui_win &parent_win, str_view win_title)
+            gui_win_title_bar(gui_win &parent_win, StringView win_title)
                 : parent_win_(parent_win), k_win_title(win_title),
                   gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
@@ -213,12 +213,12 @@ namespace GUIComponentsLibrary
             void init();
 
             inline static const float k_h{0.04f};
-            const str k_win_title;
+            const String k_win_title;
 
             gui_win &parent_win_;
         };
 
-        s_ptr<gui_win_title_bar> gui_win_title_bar_;
+        SharedPtr<gui_win_title_bar> gui_win_title_bar_;
     };
 
     class gui_fps_panel : public gui_movable_panel
@@ -235,7 +235,7 @@ namespace GUIComponentsLibrary
       private:
         void init();
 
-        s_ptr<gui_label> fps_text_pnl_;
+        SharedPtr<gui_label> fps_text_pnl_;
     };
 
     class gui_chat_box : public gui_panel
@@ -248,15 +248,15 @@ namespace GUIComponentsLibrary
 
         void render_derived() const override;
 
-        void print(str_view text);
+        void print(StringView text);
 
       private:
-        constexpr static str_view k_default_bg_img_derived{"gui_chat_box_bg"};
+        constexpr static StringView k_default_bg_img_derived{"gui_chat_box_bg"};
         inline static const float k_line_h{0.025f};
         inline static const float k_sep_h{0.003f};
         inline static const float k_marg{0.008f};
 
-        vec<str> lines_;
+        Vector<String> lines_;
     };
 }
 #define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }

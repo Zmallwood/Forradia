@@ -52,7 +52,7 @@ namespace SpecializedGUI
       private:
         static constexpr float k_margin{0.005f};
         static constexpr float k_slot_size{0.04f};
-        inline static const str k_slot_img_name{"gui_inventory_win_slot_bg"};
+        inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
     };
 
     class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
@@ -72,10 +72,10 @@ namespace SpecializedGUI
         void update_body_part_info_lbls();
 
         int sel_body_part_{0};
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
-        s_ptr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
+        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
     };
 
     class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
@@ -102,7 +102,7 @@ namespace SpecializedGUI
         class gui_interact_menu_entry
         {
           public:
-            gui_interact_menu_entry(str_view label, func<void()> action)
+            gui_interact_menu_entry(StringView label, Function<void()> action)
                 : label_(label), action_(action)
             {
             }
@@ -118,11 +118,11 @@ namespace SpecializedGUI
             }
 
           private:
-            str label_;
-            func<void()> action_;
+            String label_;
+            Function<void()> action_;
         };
 
-        vec<gui_interact_menu_entry> entries_;
+        Vector<gui_interact_menu_entry> entries_;
     };
 }
 using namespace SpecializedGUI;

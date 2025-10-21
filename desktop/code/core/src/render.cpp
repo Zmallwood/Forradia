@@ -7,8 +7,8 @@
 #include <glm/gtx/transform.hpp>
 
 _NS_START_
-void RenderersCollection::shader_program::init(str_view vert_src,
-                                               str_view frag_src)
+void RenderersCollection::shader_program::init(StringView vert_src,
+                                               StringView frag_src)
 {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
 
@@ -107,7 +107,7 @@ void RenderersCollection::shader_program::cleanup()
 
 void RenderersCollection::img_2d_rend::init()
 {
-    str vertex_shader_src{R"(
+    String vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -126,7 +126,7 @@ void RenderersCollection::img_2d_rend::init()
       }
     )"};
 
-    str fragment_shader_src{R"(
+    String fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -315,7 +315,7 @@ void RenderersCollection::img_2d_rend::draw_tex(GLuint tex_id, float x, float y,
     ++counter_;
 }
 
-void RenderersCollection::img_2d_rend::draw_img_auto_h(str_view img_name,
+void RenderersCollection::img_2d_rend::draw_img_auto_h(StringView img_name,
                                                        float x, float y,
                                                        float w)
 {
@@ -337,7 +337,7 @@ void RenderersCollection::img_2d_rend::draw_img_auto_h(str_view img_name,
     draw_img(hash, x, y, w, h);
 }
 
-void RenderersCollection::img_2d_rend::draw_img(str_view img_name, float x,
+void RenderersCollection::img_2d_rend::draw_img(StringView img_name, float x,
                                                 float y, float w, float h)
 {
     draw_img(hash(img_name), x, y, w, h);
@@ -345,7 +345,7 @@ void RenderersCollection::img_2d_rend::draw_img(str_view img_name, float x,
 
 void RenderersCollection::ground_rend::init()
 {
-    str vertex_shader_src{R"(
+    String vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -370,7 +370,7 @@ void RenderersCollection::ground_rend::init()
       }
     )"};
 
-    str fragment_shader_src{R"(
+    String fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -417,7 +417,7 @@ void RenderersCollection::ground_rend::cleanup()
 void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord,
                                                  int y_coord, float tl_sz,
                                                  pt3_f camera_pos,
-                                                 vec<float> &elevs,
+                                                 Vector<float> &elevs,
                                                  float elev_h)
 {
     auto tex_id{
@@ -428,7 +428,7 @@ void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord,
     auto w{tl_sz};
     auto h{tl_sz};
 
-    vec<float> verts{{x,
+    Vector<float> verts{{x,
                       y,
                       -elevs.at(0) * elev_h,
                       1.0f,
@@ -505,7 +505,7 @@ void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord,
 }
 
 void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
-                                                vec<float> &verts,
+                                                Vector<float> &verts,
                                                 pt3_f camera_pos)
 {
     glEnable(GL_DEPTH_TEST);
@@ -524,7 +524,7 @@ void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
 
     unsigned int indices[] = {0, 1, 2, 3};
 
-    vec<glm::vec3> normals;
+    Vector<glm::vec3> normals;
 
     auto vertices_count{4};
     auto indices_count{4};
@@ -582,7 +582,7 @@ void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
     normals.push_back(normal11);
     normals.push_back(normal01);
 
-    vec<float> vertices_vec;
+    Vector<float> vertices_vec;
 
     auto fn{[&](int i, int j)
             {
@@ -763,7 +763,7 @@ glm::vec3 RenderersCollection::ground_rend::compute_normal(glm::vec3 p1,
 
 void RenderersCollection::model_rend::init()
 {
-    str vertex_shader_src{R"(
+    String vertex_shader_src{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aNormal;
@@ -790,7 +790,7 @@ void RenderersCollection::model_rend::init()
       }
     )"};
 
-    str fragment_shader_src{R"(
+    String fragment_shader_src{R"(
       #version 330 core
       out vec4 FragColor;
 
@@ -868,11 +868,11 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x,
     glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA,
                         GL_ONE);
 
-    vec<unsigned int> indices_vec;
+    Vector<unsigned int> indices_vec;
 
-    vec<glm::vec3> normals;
+    Vector<glm::vec3> normals;
 
-    vec<float> vertices_vec;
+    Vector<float> vertices_vec;
 
     auto i{0};
 
@@ -1063,7 +1063,7 @@ void RenderersCollection::text_rend::init()
 
 void RenderersCollection::text_rend::add_fonts()
 {
-    auto abs_font_path{str(SDL_GetBasePath()) + k_default_font_path.data()};
+    auto abs_font_path{String(SDL_GetBasePath()) + k_default_font_path.data()};
 
     for (auto font_sz : {font_szs::_20, font_szs::_26})
     {
@@ -1071,8 +1071,8 @@ void RenderersCollection::text_rend::add_fonts()
 
         auto font_sz_n{c_int(font_sz)};
 
-        auto new_font{s_ptr<TTF_Font>(
-            TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), sdl_del())};
+        auto new_font{SharedPtr<TTF_Font>(
+            TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n), SDLDeleter())};
 
         if (!new_font)
         {
@@ -1085,7 +1085,7 @@ void RenderersCollection::text_rend::add_fonts()
     }
 }
 
-void RenderersCollection::text_rend::draw_str(str_view text, float x, float y,
+void RenderersCollection::text_rend::draw_str(StringView text, float x, float y,
                                               font_szs font_sz, bool cent_align,
                                               color text_color) const
 {

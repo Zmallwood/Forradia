@@ -44,7 +44,7 @@ namespace Theme0
 
             static int ground{0};
 
-            static s_ptr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see,
+            static SharedPtr<tile> tl, tl_nw, tl_sw, tl_ne, tl_se, tl_nee, tl_see,
                 tl_sese, tl_ses, tl_ss;
 
             for (auto y = -extra_rows; y < grid_sz.h + extra_rows; y++)
@@ -98,7 +98,7 @@ namespace Theme0
 
                     ground = tl ? tl->ground() : 0;
 
-                    vec<float> elevs;
+                    Vector<float> elevs;
 
                     auto elev_nw{tl_nw ? tl_nw->elev() : 0.0f};
                     auto elev_ne{tl_ne ? tl_ne->elev() : 0.0f};
@@ -190,7 +190,7 @@ namespace Theme0
 
                                 auto trunk_part_height{rend_tl_sz * 0.2f};
 
-                                str trunk_part_name;
+                                String trunk_part_name;
 
                                 if (obj_type == hash("object_fir_tree"))
                                 {
@@ -235,7 +235,7 @@ namespace Theme0
                                 elev_avg, camera_pos, elev_h);
                         }
                     }
-                    
+
                     if (x_coord == wa_sz.w - player_pos.x &&
                         y_coord == wa_sz.h - player_pos.y)
                     {

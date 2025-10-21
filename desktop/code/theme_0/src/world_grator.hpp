@@ -40,7 +40,7 @@ namespace WorldGeneration
         void gen_creas() const;
         void gen_npcs() const;
 
-        s_ptr<Theme0::WorldStructure::world_area> w_area_;
+        SharedPtr<Theme0::WorldStructure::world_area> w_area_;
         float scale_;
         sz sz_;
     };

@@ -193,12 +193,12 @@ namespace SpecializedGUI
         {
             lbl_body_part_name_->set_text("Body part: Overall body");
 
-            auto str{p_body
+            auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
                                             body_part_types::overall_body)
                          ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
+            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
             auto max_energy{
                 p_body
                     .body_part_ptr(Theme0::GameplayCore::Player::
@@ -229,12 +229,12 @@ namespace SpecializedGUI
         {
             lbl_body_part_name_->set_text("Body part: Right arm");
 
-            auto str{p_body
+            auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
                                             body_part_types::right_arm)
                          ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
+            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{p_body
                                 .body_part_ptr(Theme0::GameplayCore::Player::
@@ -264,13 +264,13 @@ namespace SpecializedGUI
         {
             lbl_body_part_name_->set_text("Body part: Left arm");
 
-            auto str{
+            auto String{
                 p_body
                     .body_part_ptr(
                         Theme0::GameplayCore::Player::body_part_types::left_arm)
                     ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
+            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
@@ -303,13 +303,13 @@ namespace SpecializedGUI
         {
             lbl_body_part_name_->set_text("Body part: Legs");
 
-            auto str{
+            auto String{
                 p_body
                     .body_part_ptr(
                         Theme0::GameplayCore::Player::body_part_types::legs)
                     ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", str));
+            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body

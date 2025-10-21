@@ -140,7 +140,7 @@ namespace Theme0
 
                 void move_to_suitable_pos();
 
-                str name_{"Unnamed Player"};
+                String name_{"Unnamed Player"};
                 pt pos_{60, 50};
                 float movem_spd_{5.0f};
                 int ticks_last_move_{0};
