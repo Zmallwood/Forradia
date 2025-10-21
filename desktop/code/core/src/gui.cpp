@@ -54,9 +54,9 @@ RectF GUIComponentsLibrary::GUIComponent::bounds() const
 
     if (parent_comp_)
     {
-        auto parent_pos{parent_comp_->bounds().pos()};
+        auto parent_pos{parent_comp_->bounds().GetPosition()};
 
-        b_res.offs(parent_pos);
+        b_res.Offset(parent_pos);
     }
 
     return b_res;
@@ -103,7 +103,7 @@ void GUIComponentsLibrary::GUIButton::update_derived()
 
     auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 
-    auto hovered{bounds().contains(mouse_pos)};
+    auto hovered{bounds().Contains(mouse_pos)};
 
     if (hovered)
     {
@@ -141,7 +141,7 @@ void GUIComponentsLibrary::GUIMovablePanel::update_derived()
 
     auto drag_area{get_drag_area()};
 
-    if (drag_area.contains(mouse_pos))
+    if (drag_area.Contains(mouse_pos))
     {
         _<Engine::Cursor>().set_curs_style(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
@@ -161,7 +161,7 @@ void GUIComponentsLibrary::GUIMovablePanel::update_derived()
 
     auto b{bounds()};
 
-    if (b.contains(mouse_pos))
+    if (b.Contains(mouse_pos))
     {
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .been_fired_no_pick_res())
@@ -184,7 +184,7 @@ void GUIComponentsLibrary::GUIMovablePanel::start_move()
 {
     being_moved_ = true;
 
-    move_start_pos_ = bounds().pos();
+    move_start_pos_ = bounds().GetPosition();
 
     move_start_mouse_pos_ = norm_mouse_pos(_<Engine::SDLDevice>().win());
 }
@@ -217,7 +217,7 @@ void GUIComponentsLibrary::GUIWindow::gui_win_title_bar::render_derived() const
 
     _<Engine::Renderers::TextRenderer>().draw_str(
         k_win_title, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
-        Engine::Renderers::FontSizes::_20, false, colors::yellow);
+        Engine::Renderers::FontSizes::_20, false, Colors::yellow);
 }
 
 RectF GUIComponentsLibrary::GUIWindow::gui_win_title_bar::bounds() const

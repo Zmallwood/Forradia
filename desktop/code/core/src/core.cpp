@@ -122,7 +122,7 @@ namespace Core
 
     void Engine::SDLDevice::clear_canv() const
     {
-        auto clear_color{clear_color_.to_sdl_color()};
+        auto clear_color{clear_color_.ToSDLColor()};
 
         glClearColor(clear_color.r, clear_color.g, clear_color.b,
                      clear_color.a);

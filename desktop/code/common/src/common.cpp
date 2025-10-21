@@ -57,20 +57,20 @@ namespace Common
             return {x - p.x, y - p.y};
         }
 
-        bool RectF::contains(PointF p)
+        bool RectF::Contains(PointF p)
         {
             // Create condition by checking against the boundaries of this
             // rectangle.
             return p.x >= x && p.y >= y && p.x < x + w && p.y < y + h;
         }
 
-        PointF RectF::pos() const
+        PointF RectF::GetPosition() const
         {
             // Return only the coordinates.
             return {x, y};
         }
 
-        void RectF::offs(PointF offs)
+        void RectF::Offset(PointF offs)
         {
             // Add the offset to the dimensions separately.
             x += offs.x;
@@ -78,7 +78,7 @@ namespace Common
         }
         namespace Coloring
         {
-            SDL_Color Color::to_sdl_color() const
+            SDL_Color Color::ToSDLColor() const
             {
                 // Calculate individual color components.
                 auto r_n{c_uint8(r * 255)};

@@ -511,7 +511,7 @@ namespace Theme0
                                  screen_rel_y_px - local_tl_h / 2, tl_sz.w,
                                  local_tl_h}};
 
-                if (rect.contains(mouse_pos))
+                if (rect.Contains(mouse_pos))
                 {
                     hovered_coord_ = {hovered_x_coord, y_coord};
                     

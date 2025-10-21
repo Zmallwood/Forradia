@@ -231,14 +231,14 @@ namespace Common
              * \return True if the Point is within this rectangle, otherwise
              * false.
              */
-            bool contains(PointF p);
+            bool Contains(PointF p);
 
             /**
              * Returns only the position of this rectangle.
              *
              * \return The position.
              */
-            PointF pos() const;
+            PointF GetPosition() const;
 
             /**
              * Adds an offset to this rectangle, with the dimensions altered
@@ -246,7 +246,7 @@ namespace Common
              *
              * \param offs The offset to add.
              */
-            void offs(PointF offs);
+            void Offset(PointF offs);
 
             float x{0.0f}; ///< The x coordinate.
             float y{0.0f}; ///< The y coordinate.
@@ -266,7 +266,7 @@ namespace Common
                  *
                  * \return Corresponding SDL_Color object.
                  */
-                SDL_Color to_sdl_color() const;
+                SDL_Color ToSDLColor() const;
 
                 float r{0.0f};
                 float g{0.0f};
@@ -277,7 +277,7 @@ namespace Common
             /**
              * Contains a palette of colors.
              */
-            namespace colors
+            namespace Colors
             {
                 constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 
@@ -957,7 +957,7 @@ namespace GUIComponentsLibrary
     {
       public:
         GUILabel(float x, float y, float w, float h, StringView text = "",
-                  bool cent_align = false, Color color = colors::wheat_transp)
+                  bool cent_align = false, Color color = Colors::wheat_transp)
             : GUIComponent(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
@@ -1318,7 +1318,7 @@ class RenderersCollection
 
         void draw_str(StringView text, float x, float y,
                       FontSizes font_sz = FontSizes::_20, bool cent_align = false,
-                      Color text_color = colors::wheat_transp) const;
+                      Color text_color = Colors::wheat_transp) const;
 
       private:
         void init();
@@ -1965,7 +1965,7 @@ namespace Configuration
     {
       public:
         static constexpr String k_game_win_title{"Forradia"};
-        static constexpr Color k_clear_color{colors::black};
+        static constexpr Color k_clear_color{Colors::black};
         static constexpr int k_num_grid_rows{15};
         static constexpr Size k_w_area_sz{120, 100};
         static constexpr float k_world_scaling{5.0f};

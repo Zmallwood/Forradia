@@ -212,14 +212,14 @@ namespace Common
              * \return True if the Point is within this rectangle, otherwise
              * false.
              */
-            bool contains(PointF p);
+            bool Contains(PointF p);
 
             /**
              * Returns only the position of this rectangle.
              *
              * \return The position.
              */
-            PointF pos() const;
+            PointF GetPosition() const;
 
             /**
              * Adds an offset to this rectangle, with the dimensions altered
@@ -227,7 +227,7 @@ namespace Common
              *
              * \param offs The offset to add.
              */
-            void offs(PointF offs);
+            void Offset(PointF offs);
 
             float x{0.0f}; ///< The x coordinate.
             float y{0.0f}; ///< The y coordinate.
@@ -247,7 +247,7 @@ namespace Common
                  *
                  * \return Corresponding SDL_Color object.
                  */
-                SDL_Color to_sdl_color() const;
+                SDL_Color ToSDLColor() const;
 
                 float r{0.0f};
                 float g{0.0f};
@@ -258,7 +258,7 @@ namespace Common
             /**
              * Contains a palette of colors.
              */
-            namespace colors
+            namespace Colors
             {
                 constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 

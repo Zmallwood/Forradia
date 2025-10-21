@@ -16,7 +16,7 @@ namespace Configuration
     {
       public:
         static constexpr String k_game_win_title{"Forradia"};
-        static constexpr Color k_clear_color{colors::black};
+        static constexpr Color k_clear_color{Colors::black};
         static constexpr int k_num_grid_rows{15};
         static constexpr Size k_w_area_sz{120, 100};
         static constexpr float k_world_scaling{5.0f};

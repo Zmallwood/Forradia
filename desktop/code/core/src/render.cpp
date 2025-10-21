@@ -1139,7 +1139,7 @@ void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float
 
     if (!tex_already_exists)
     {
-        auto sdl_color{text_color.to_sdl_color()};
+        auto sdl_color{text_color.ToSDLColor()};
 
         auto surf{TTF_RenderText_Solid(font_raw, text.data(), sdl_color)};
 

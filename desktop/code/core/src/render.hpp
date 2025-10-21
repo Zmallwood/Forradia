@@ -159,7 +159,7 @@ class RenderersCollection
 
         void draw_str(StringView text, float x, float y,
                       FontSizes font_sz = FontSizes::_20, bool cent_align = false,
-                      Color text_color = colors::wheat_transp) const;
+                      Color text_color = Colors::wheat_transp) const;
 
       private:
         void init();

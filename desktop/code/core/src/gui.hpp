@@ -66,7 +66,7 @@ namespace GUIComponentsLibrary
     {
       public:
         GUILabel(float x, float y, float w, float h, StringView text = "",
-                  bool cent_align = false, Color color = colors::wheat_transp)
+                  bool cent_align = false, Color color = Colors::wheat_transp)
             : GUIComponent(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {

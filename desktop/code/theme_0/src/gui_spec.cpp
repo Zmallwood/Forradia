@@ -148,7 +148,7 @@ namespace SpecializedGUI
 
         lbl_body_part_name_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
-            colors::yellow_transp);
+            Colors::yellow_transp);
 
         lbl_body_part_str_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
@@ -403,7 +403,7 @@ namespace SpecializedGUI
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .been_fired_no_pick_res())
             {
-                if (menu_entry_rect.contains(mouse_pos))
+                if (menu_entry_rect.Contains(mouse_pos))
                 {
                     entry.action()();
                 }
@@ -428,7 +428,7 @@ namespace SpecializedGUI
 
         _<Engine::Renderers::TextRenderer>().draw_str(
             "Actions", b.x + 0.01f, b.y + 0.01f,
-            Engine::Renderers::FontSizes::_20, false, colors::yellow_transp);
+            Engine::Renderers::FontSizes::_20, false, Colors::yellow_transp);
 
         auto i{0};
 
