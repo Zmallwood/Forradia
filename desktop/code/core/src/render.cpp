@@ -843,7 +843,7 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x,
 {
     glEnable(GL_DEPTH_TEST);
 
-    auto model{_<Core::Engine::Assets::Models::model_bank>().get_model(
+    auto model{_<Core::Engine::Assets::Models::ModelBank>().get_model(
         model_name_hash)};
 
     if (!model)

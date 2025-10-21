@@ -345,7 +345,7 @@ namespace Core
         return tex;
     }
 
-    void Engine::Assets::Models::model_bank::model::init(StringView file_path)
+    void Engine::Assets::Models::ModelBank::model::init(StringView file_path)
     {
         Assimp::Importer importer;
 
@@ -366,7 +366,7 @@ namespace Core
         }
     }
 
-    void Engine::Assets::Models::model_bank::model::process_node(
+    void Engine::Assets::Models::ModelBank::model::process_node(
         aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -386,34 +386,34 @@ namespace Core
         }
     }
 
-    Engine::Assets::Models::model_bank::mesh
-    Engine::Assets::Models::model_bank::model::process_mesh(
+    Engine::Assets::Models::ModelBank::Mesh
+    Engine::Assets::Models::ModelBank::model::process_mesh(
         aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
     {
         glm::vec3 extents;
         glm::vec3 origin;
 
-        Vector<vertex> vertices =
+        Vector<Vertex> vertices =
             get_vertices(mesh, extents, origin, transformation);
 
         Vector<unsigned int> indices = get_indices(mesh);
 
-        Vector<texture> textures = get_textures(mesh, scene);
+        Vector<Texture> textures = get_textures(mesh, scene);
 
-        return Engine::Assets::Models::model_bank::mesh(
+        return Engine::Assets::Models::ModelBank::Mesh(
             vertices, indices, textures, extents, origin, mesh->mName);
     }
 
-    Vector<Engine::Assets::Models::model_bank::vertex>
-    Engine::Assets::Models::model_bank::model::get_vertices(
+    Vector<Engine::Assets::Models::ModelBank::Vertex>
+    Engine::Assets::Models::ModelBank::model::get_vertices(
         aiMesh *mesh, glm::vec3 &extents, glm::vec3 &origin,
         aiMatrix4x4 transformation)
     {
-        Vector<vertex> vertices;
+        Vector<Vertex> vertices;
 
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
-            Engine::Assets::Models::model_bank::vertex vertex;
+            Engine::Assets::Models::ModelBank::Vertex vertex;
 
             glm::vec3 vector3;
 
@@ -485,7 +485,7 @@ namespace Core
     }
 
     Vector<unsigned int>
-    Engine::Assets::Models::model_bank::model::get_indices(aiMesh *mesh)
+    Engine::Assets::Models::ModelBank::model::get_indices(aiMesh *mesh)
     {
         Vector<unsigned int> indices;
 
@@ -502,23 +502,23 @@ namespace Core
         return indices;
     }
 
-    Vector<Engine::Assets::Models::model_bank::texture>
-    Engine::Assets::Models::model_bank::model::get_textures(
+    Vector<Engine::Assets::Models::ModelBank::Texture>
+    Engine::Assets::Models::ModelBank::model::get_textures(
         aiMesh *mesh, const aiScene *scene)
     {
-        Vector<texture> textures;
+        Vector<Texture> textures;
 
         aiString s;
 
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(
             aiTextureType_DIFFUSE, 0, &s);
 
-        textures.push_back(texture(file_name_no_ext(s.C_Str())));
+        textures.push_back(Texture(file_name_no_ext(s.C_Str())));
 
         return textures;
     }
 
-    void Engine::Assets::Models::model_bank::init()
+    void Engine::Assets::Models::ModelBank::init()
     {
         auto base_path{String(SDL_GetBasePath())};
         auto imgs_path{base_path + k_rel_models_path.data()};
@@ -547,8 +547,8 @@ namespace Core
         }
     }
 
-    SharedPtr<Engine::Assets::Models::model_bank::model>
-    Engine::Assets::Models::model_bank::get_model(int model_name_hash) const
+    SharedPtr<Engine::Assets::Models::ModelBank::model>
+    Engine::Assets::Models::ModelBank::get_model(int model_name_hash) const
     {
         if (models_.contains(model_name_hash))
         {
@@ -558,8 +558,8 @@ namespace Core
         return nullptr;
     }
 
-    SharedPtr<Engine::Assets::Models::model_bank::model>
-    Engine::Assets::Models::model_bank::load_single_model(StringView file_path)
+    SharedPtr<Engine::Assets::Models::ModelBank::model>
+    Engine::Assets::Models::ModelBank::load_single_model(StringView file_path)
     {
         auto model_res{std::make_shared<model>(file_path)};
 

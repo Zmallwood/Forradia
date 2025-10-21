@@ -145,10 +145,10 @@ namespace Core
             class Models
             {
               public:
-                class model_bank
+                class ModelBank
                 {
                   public:
-                    class vertex
+                    class Vertex
                     {
                       public:
                         glm::vec3 position;
@@ -158,18 +158,18 @@ namespace Core
                         glm::vec3 bitangent;
                     };
 
-                    class texture
+                    class Texture
                     {
                       public:
                         String path_;
                     };
 
-                    class mesh
+                    class Mesh
                     {
                       public:
-                        Vector<vertex> vertices;
+                        Vector<Vertex> vertices;
                         Vector<unsigned int> indices;
-                        Vector<texture> textures;
+                        Vector<Texture> textures;
                         glm::vec3 extents;
                         glm::vec3 origin;
                         aiString name;
@@ -194,24 +194,24 @@ namespace Core
                         void process_node(aiNode *node, const aiScene *scene,
                                           aiMatrix4x4 transform);
 
-                        mesh process_mesh(aiMesh *mesh, const aiScene *scene,
+                        Mesh process_mesh(aiMesh *mesh, const aiScene *scene,
                                           aiMatrix4x4 transformation);
 
-                        Vector<vertex> get_vertices(aiMesh *mesh,
+                        Vector<Vertex> get_vertices(aiMesh *mesh,
                                                  glm::vec3 &extents,
                                                  glm::vec3 &origin,
                                                  aiMatrix4x4 transformation);
 
                         Vector<unsigned int> get_indices(aiMesh *mesh);
 
-                        Vector<texture> get_textures(aiMesh *mesh,
+                        Vector<Texture> get_textures(aiMesh *mesh,
                                                   const aiScene *scene);
 
-                        Vector<mesh> meshes_;
+                        Vector<Mesh> meshes_;
                     };
 
                   public:
-                    model_bank()
+                    ModelBank()
                     {
                         init();
                     }
