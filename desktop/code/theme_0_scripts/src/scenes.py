@@ -4,7 +4,7 @@ This code is licensed under MIT license (see LICENSE for details)
 """
 
 from embedded import (
-    i_scene,
+    IScene,
     get_engine,
     get_scene_mngr,
     make_shared_gui_label,
@@ -14,7 +14,7 @@ from embedded import (
     get_gui_chat_box_ptr,
     ticks,
     get_cursor,
-    curs_styles,
+    CursorStyles,
     get_kb_inp,
     get_mouse_inp,
     get_world_grator,
@@ -37,11 +37,11 @@ from embedded import (
 )
 
 
-class IntroScene(i_scene):
+class IntroScene(IScene):
 
     def __init__(self):
 
-        i_scene.__init__(self)
+        IScene.__init__(self)
 
         self.start_text_comp = None
 
@@ -59,7 +59,7 @@ class IntroScene(i_scene):
 
             self.start_text_comp.set_visible(ticks() % 800 < 400)
 
-            get_cursor().set_curs_style(curs_styles.hovering_clickable_gui)
+            get_cursor().set_curs_style(CursorStyles.hovering_clickable_gui)
 
             if (get_kb_inp().any_key_pressed_pick_res() 
                 or get_mouse_inp().any_mouse_btn_pressed_pick_res()):
@@ -76,11 +76,11 @@ class IntroScene(i_scene):
         self.set_update_derived(update_derived)
         self.set_render_derived(render_derived)
 
-class MainMenuScene(i_scene):
+class MainMenuScene(IScene):
 
     def __init__(self):
 
-        i_scene.__init__(self)
+        IScene.__init__(self)
 
         def init_derived():
 
@@ -107,11 +107,11 @@ class MainMenuScene(i_scene):
         self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
 
-class WorldGenScene(i_scene):
+class WorldGenScene(IScene):
 
     def __init__(self):
 
-        i_scene.__init__(self)
+        IScene.__init__(self)
 
         def on_enter_derived():
 
@@ -125,11 +125,11 @@ class WorldGenScene(i_scene):
 
         self.set_on_enter_derived(on_enter_derived)
 
-class MainScene(i_scene):
+class MainScene(IScene):
 
     def __init__(self):
 
-        i_scene.__init__(self)
+        IScene.__init__(self)
 
         def init_derived():
 

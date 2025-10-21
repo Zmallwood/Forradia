@@ -26,18 +26,18 @@ namespace Theme0
 
         PYBIND11_EMBEDDED_MODULE(embedded, m)
         {
-            py::class_<Color>(m, "color")
+            py::class_<Color>(m, "Color")
                 .def(py::init<float, float, float, float>());
 
-            py::class_<Engine>(m, "engine").def("stop", &Engine::stop);
+            py::class_<Engine>(m, "Engine").def("stop", &Engine::stop);
 
             py::class_<GUIComponentsLibrary::GUIComponent,
-                       SharedPtr<GUIComponentsLibrary::GUIComponent>>(m, "gui_comp");
+                       SharedPtr<GUIComponentsLibrary::GUIComponent>>(m, "GUIComponent");
 
             py::class_<
                 Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot,
                 SharedPtr<Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>>(
-                m, "gui")
+                m, "GUIRoot")
                 .def("add_child_comp",
                      [](Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot
                             &self,
@@ -47,7 +47,7 @@ namespace Theme0
 
             py::class_<GUIComponentsLibrary::GUILabel,
                        SharedPtr<GUIComponentsLibrary::GUILabel>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_label")
+                       GUIComponentsLibrary::GUIComponent>(m, "GUILabel")
                 .def(py::init<float, float, float, float, StringView, bool,
                               Color>(),
                      py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
@@ -59,7 +59,7 @@ namespace Theme0
 
             py::class_<GUIComponentsLibrary::GUIPanel,
                        SharedPtr<GUIComponentsLibrary::GUIPanel>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_panel");
+                       GUIComponentsLibrary::GUIComponent>(m, "GUIPanel");
 
             py::class_<GUIComponentsLibrary::GUIButton,
                        SharedPtr<GUIComponentsLibrary::GUIButton>,
@@ -69,7 +69,7 @@ namespace Theme0
                        SharedPtr<GUIComponentsLibrary::GUIFPSPanel>,
                        GUIComponentsLibrary::GUIComponent>(m, "gui_fps_panel");
 
-            py::class_<Core::Engine::ScenesCore::IScene>(m, "i_scene")
+            py::class_<Core::Engine::ScenesCore::IScene>(m, "IScene")
                 .def(py::init<>())
                 .def("init", &Core::Engine::ScenesCore::IScene::init)
                 .def("gui", &i_scene_publ::gui)
@@ -86,18 +86,18 @@ namespace Theme0
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.set_render_derived([=] { f(); }); });
 
-            py::class_<Core::Engine::ScenesCore::SceneManager>(m, "scene_mngr")
+            py::class_<Core::Engine::ScenesCore::SceneManager>(m, "SceneManager")
                 .def(py::init<>())
                 .def("add_scene",
                      &Core::Engine::ScenesCore::SceneManager::add_scene)
                 .def("go_to_scene",
                      &Core::Engine::ScenesCore::SceneManager::go_to_scene);
 
-            py::class_<Engine::Cursor>(m, "cursor")
+            py::class_<Engine::Cursor>(m, "Cursor")
                 .def(py::init<>())
                 .def("set_curs_style", &Engine::Cursor::set_curs_style);
 
-            py::enum_<Engine::Cursor::CursorStyles>(m, "curs_styles")
+            py::enum_<Engine::Cursor::CursorStyles>(m, "CursorStyles")
                 .value("normal", Engine::Cursor::CursorStyles::normal)
                 .value("hovering_clickable_gui",
                        Engine::Cursor::CursorStyles::hovering_clickable_gui)
@@ -106,25 +106,25 @@ namespace Theme0
 
             py::class_<GUIComponentsLibrary::GUIChatBox,
                        SharedPtr<GUIComponentsLibrary::GUIChatBox>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_chat_box")
+                       GUIComponentsLibrary::GUIComponent>(m, "GUIChatBox")
                 .def(py::init<>())
                 .def("print", &GUIComponentsLibrary::GUIChatBox::print);
 
-            py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "world_grator")
+            py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "WorldGenerator")
                 .def(py::init<>())
                 .def("gen_new_world",
                      &Theme0::WorldGeneration::WorldGenerator::gen_new_world);
 
-            py::class_<Core::Engine::Input::KeyboardInput>(m, "kb_inp")
+            py::class_<Core::Engine::Input::KeyboardInput>(m, "KeyboardInput")
                 .def("any_key_pressed_pick_res",
                      &Core::Engine::Input::KeyboardInput::any_key_pressed_pick_res);
 
-            py::class_<Core::Engine::Input::MouseInput>(m, "mouse_inp")
+            py::class_<Core::Engine::Input::MouseInput>(m, "MouseInput")
                 .def("any_mouse_btn_pressed_pick_res",
                      &Core::Engine::Input::MouseInput::
                          any_mouse_btn_pressed_pick_res);
 
-            py::class_<Engine::Renderers::Image2DRenderer>(m, "img_2d_rend")
+            py::class_<Engine::Renderers::Image2DRenderer>(m, "Image2DRenderer")
                 .def("draw_img",
                      [](Engine::Renderers::Image2DRenderer &self,
                         StringView image_name, float x, float y, float w, float h)
@@ -141,33 +141,33 @@ namespace Theme0
             py::class_<Theme0::GUIPlayerStatusBox,
                        SharedPtr<Theme0::GUIPlayerStatusBox>,
                        GUIComponentsLibrary::GUIComponent>(m,
-                                                       "gui_player_status_box");
+                                                       "GUIPlayerStatusBox");
 
             py::class_<Theme0::GUIPlayerBodyWindow,
                        SharedPtr<Theme0::GUIPlayerBodyWindow>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_player_body_win")
+                       GUIComponentsLibrary::GUIComponent>(m, "GUIPlayerBodyWindow")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::GUIInventoryWindow,
                        SharedPtr<Theme0::GUIInventoryWindow>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_inventory_win")
+                       GUIComponentsLibrary::GUIComponent>(m, "GUIInventoryWindow")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::GUISystemMenu, SharedPtr<Theme0::GUISystemMenu>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_sys_menu")
+                       GUIComponentsLibrary::GUIComponent>(m, "GUISystemMenu")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::GUIInteractionMenu,
                        SharedPtr<Theme0::GUIInteractionMenu>,
-                       GUIComponentsLibrary::GUIComponent>(m, "gui_interact_menu");
+                       GUIComponentsLibrary::GUIComponent>(m, "GUIInteractionMenu");
 
-            py::class_<Theme0::GameplayCore::TileHovering>(m, "tl_hovering")
+            py::class_<Theme0::GameplayCore::TileHovering>(m, "TileHovering")
                 .def("update", &Theme0::GameplayCore::TileHovering::update);
 
-            py::class_<Theme0::GameplayCore::WorldView>(m, "world_view")
+            py::class_<Theme0::GameplayCore::WorldView>(m, "WorldView")
                 .def("render",
                      &Theme0::GameplayCore::WorldView::render);
 
