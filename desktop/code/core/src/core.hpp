@@ -238,10 +238,10 @@ namespace Core
                 class ScenesGUI
                 {
                   public:
-                    class GUIRoot : public GUIComponentsLibrary::gui_comp
+                    class GUIRoot : public GUIComponentsLibrary::GUIComponent
                     {
                       public:
-                        GUIRoot() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+                        GUIRoot() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
                         {
                         }
                     };

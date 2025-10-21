@@ -7,9 +7,9 @@
 #include "render.hpp"
 
 _NS_START_
-SharedPtr<GUIComponentsLibrary::gui_comp>
-GUIComponentsLibrary::gui_comp::add_child_comp(
-    SharedPtr<GUIComponentsLibrary::gui_comp> comp)
+SharedPtr<GUIComponentsLibrary::GUIComponent>
+GUIComponentsLibrary::GUIComponent::add_child_comp(
+    SharedPtr<GUIComponentsLibrary::GUIComponent> comp)
 {
     comp->set_parent_comp(this);
 
@@ -18,7 +18,7 @@ GUIComponentsLibrary::gui_comp::add_child_comp(
     return comp;
 }
 
-void GUIComponentsLibrary::gui_comp::update()
+void GUIComponentsLibrary::GUIComponent::update()
 {
     if (!visible_ || !enabled_)
     {
@@ -33,7 +33,7 @@ void GUIComponentsLibrary::gui_comp::update()
     update_derived();
 }
 
-void GUIComponentsLibrary::gui_comp::render() const
+void GUIComponentsLibrary::GUIComponent::render() const
 {
     if (!visible_)
     {
@@ -48,7 +48,7 @@ void GUIComponentsLibrary::gui_comp::render() const
     }
 }
 
-RectF GUIComponentsLibrary::gui_comp::bounds() const
+RectF GUIComponentsLibrary::GUIComponent::bounds() const
 {
     auto b_res{bounds_};
 
@@ -62,18 +62,18 @@ RectF GUIComponentsLibrary::gui_comp::bounds() const
     return b_res;
 }
 
-void GUIComponentsLibrary::gui_comp::toggle_visible()
+void GUIComponentsLibrary::GUIComponent::toggle_visible()
 {
     visible_ = !visible_;
 }
 
-void GUIComponentsLibrary::gui_comp::set_pos(PointF new_pos)
+void GUIComponentsLibrary::GUIComponent::set_pos(PointF new_pos)
 {
     bounds_.x = new_pos.x;
     bounds_.y = new_pos.y;
 }
 
-void GUIComponentsLibrary::gui_label::render_derived() const
+void GUIComponentsLibrary::GUILabel::render_derived() const
 {
     auto b{bounds()};
 
@@ -90,16 +90,16 @@ void GUIComponentsLibrary::gui_label::render_derived() const
         text_, b.x, b.y, Engine::Renderers::font_szs::_20, cent_align_, color_);
 }
 
-void GUIComponentsLibrary::gui_panel::render_derived() const
+void GUIComponentsLibrary::GUIPanel::render_derived() const
 {
     auto b{bounds()};
 
     _<Engine::Renderers::img_2d_rend>().draw_img(bg_img_, b.x, b.y, b.w, b.h);
 }
 
-void GUIComponentsLibrary::gui_button::update_derived()
+void GUIComponentsLibrary::GUIButton::update_derived()
 {
-    GUIComponentsLibrary::gui_panel::update_derived();
+    GUIComponentsLibrary::GUIPanel::update_derived();
 
     auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 
@@ -124,9 +124,9 @@ void GUIComponentsLibrary::gui_button::update_derived()
     }
 }
 
-void GUIComponentsLibrary::gui_button::render_derived() const
+void GUIComponentsLibrary::GUIButton::render_derived() const
 {
-    gui_panel::render_derived();
+    GUIPanel::render_derived();
 
     auto b{bounds()};
 
@@ -135,7 +135,7 @@ void GUIComponentsLibrary::gui_button::render_derived() const
         true);
 }
 
-void GUIComponentsLibrary::gui_movable_panel::update_derived()
+void GUIComponentsLibrary::GUIMovablePanel::update_derived()
 {
     auto mouse_pos{norm_mouse_pos(_<Engine::SDLDevice>().win())};
 
@@ -180,7 +180,7 @@ void GUIComponentsLibrary::gui_movable_panel::update_derived()
     }
 }
 
-void GUIComponentsLibrary::gui_movable_panel::start_move()
+void GUIComponentsLibrary::GUIMovablePanel::start_move()
 {
     being_moved_ = true;
 
@@ -189,29 +189,29 @@ void GUIComponentsLibrary::gui_movable_panel::start_move()
     move_start_mouse_pos_ = norm_mouse_pos(_<Engine::SDLDevice>().win());
 }
 
-void GUIComponentsLibrary::gui_movable_panel::stop_move()
+void GUIComponentsLibrary::GUIMovablePanel::stop_move()
 {
     being_moved_ = false;
 }
 
-RectF GUIComponentsLibrary::gui_movable_panel::get_drag_area()
+RectF GUIComponentsLibrary::GUIMovablePanel::get_drag_area()
 {
     return bounds();
 }
 
-void GUIComponentsLibrary::gui_win::gui_win_title_bar::init()
+void GUIComponentsLibrary::GUIWindow::gui_win_title_bar::init()
 {
     auto parent_win_b{parent_win_.bounds()};
 
-    add_child_comp(std::make_shared<gui_button>(
+    add_child_comp(std::make_shared<GUIButton>(
         parent_win_b.w - conv_w_to_h(0.015f, _<Engine::SDLDevice>().win()),
         0.01f, 0.015f, conv_w_to_h(0.015f, _<Engine::SDLDevice>().win()), "X",
         [this] { parent_win_.toggle_visible(); }));
 }
 
-void GUIComponentsLibrary::gui_win::gui_win_title_bar::render_derived() const
+void GUIComponentsLibrary::GUIWindow::gui_win_title_bar::render_derived() const
 {
-    gui_panel::render_derived();
+    GUIPanel::render_derived();
 
     auto parent_win_b{parent_win_.bounds()};
 
@@ -220,7 +220,7 @@ void GUIComponentsLibrary::gui_win::gui_win_title_bar::render_derived() const
         Engine::Renderers::font_szs::_20, false, colors::yellow);
 }
 
-RectF GUIComponentsLibrary::gui_win::gui_win_title_bar::bounds() const
+RectF GUIComponentsLibrary::GUIWindow::gui_win_title_bar::bounds() const
 {
     RectF b_res;
 
@@ -233,7 +233,7 @@ RectF GUIComponentsLibrary::gui_win::gui_win_title_bar::bounds() const
 
     return b_res;
 }
-void GUIComponentsLibrary::gui_win::init(StringView win_title)
+void GUIComponentsLibrary::GUIWindow::init(StringView win_title)
 {
     set_visible(false);
 
@@ -242,35 +242,35 @@ void GUIComponentsLibrary::gui_win::init(StringView win_title)
     add_child_comp(gui_win_title_bar_);
 }
 
-void GUIComponentsLibrary::gui_win::render_derived() const
+void GUIComponentsLibrary::GUIWindow::render_derived() const
 {
-    gui_movable_panel::render_derived();
+    GUIMovablePanel::render_derived();
 }
 
-RectF GUIComponentsLibrary::gui_win::get_drag_area()
+RectF GUIComponentsLibrary::GUIWindow::get_drag_area()
 {
     return gui_win_title_bar_->bounds();
 }
 
-void GUIComponentsLibrary::gui_fps_panel::init()
+void GUIComponentsLibrary::GUIFPSPanel::init()
 {
-    fps_text_pnl_ = std::make_shared<gui_label>(0.01f, 0.01f, 0.1f, 0.05f);
+    fps_text_pnl_ = std::make_shared<GUILabel>(0.01f, 0.01f, 0.1f, 0.05f);
 
     add_child_comp(fps_text_pnl_);
 }
 
-void GUIComponentsLibrary::gui_fps_panel::update_derived()
+void GUIComponentsLibrary::GUIFPSPanel::update_derived()
 {
-    gui_movable_panel::update_derived();
+    GUIMovablePanel::update_derived();
 
     auto fps{_<Engine::FPSCounter>().fps()};
 
     fps_text_pnl_->set_text(fmt::format("FPS: {}", fps));
 }
 
-void GUIComponentsLibrary::gui_chat_box::render_derived() const
+void GUIComponentsLibrary::GUIChatBox::render_derived() const
 {
-    gui_panel::render_derived();
+    GUIPanel::render_derived();
 
     auto b{bounds()};
 
@@ -300,7 +300,7 @@ void GUIComponentsLibrary::gui_chat_box::render_derived() const
         "black", sep_rect.x, sep_rect.y, sep_rect.w, sep_rect.h);
 }
 
-void GUIComponentsLibrary::gui_chat_box::print(StringView text)
+void GUIComponentsLibrary::GUIChatBox::print(StringView text)
 {
     lines_.push_back(text.data());
 }

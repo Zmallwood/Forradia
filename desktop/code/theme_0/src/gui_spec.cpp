@@ -18,7 +18,7 @@ namespace SpecializedGUI
 {
     void gui_player_status_box::render_derived() const
     {
-        gui_panel::render_derived();
+        GUIPanel::render_derived();
 
         auto b{bounds()};
 
@@ -34,14 +34,14 @@ namespace SpecializedGUI
 
     void gui_sys_menu::update_derived()
     {
-        gui_comp::update_derived();
+        GUIComponent::update_derived();
 
         _<Core::Engine::Input::MouseInput::LeftMouseButton>().reset();
     }
 
     void gui_sys_menu::render_derived() const
     {
-        gui_comp::render_derived();
+        GUIComponent::render_derived();
 
         auto c_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
 
@@ -58,7 +58,7 @@ namespace SpecializedGUI
 
     void gui_inventory_win::render_derived() const
     {
-        gui_win::render_derived();
+        GUIWindow::render_derived();
 
         auto b{bounds()};
 
@@ -96,7 +96,7 @@ namespace SpecializedGUI
         auto img_h{conv_w_to_h(img_w, _<Engine::SDLDevice>().win())};
 
         auto overall_body_img_btn{
-            std::make_shared<GUIComponentsLibrary::gui_button>(
+            std::make_shared<GUIComponentsLibrary::GUIButton>(
                 0.1f - img_w / 2, 0.04f, img_w, img_h, "",
                 [this]
                 {
@@ -109,7 +109,7 @@ namespace SpecializedGUI
         add_child_comp(overall_body_img_btn);
 
         auto right_arm_body_img_btn{std::make_shared<
-            GUIComponentsLibrary::gui_button>(
+            GUIComponentsLibrary::GUIButton>(
             0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
             [this]
             {
@@ -122,7 +122,7 @@ namespace SpecializedGUI
         add_child_comp(right_arm_body_img_btn);
 
         auto left_arm_body_img_btn{std::make_shared<
-            GUIComponentsLibrary::gui_button>(
+            GUIComponentsLibrary::GUIButton>(
             0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
             [this]
             {
@@ -134,7 +134,7 @@ namespace SpecializedGUI
 
         add_child_comp(left_arm_body_img_btn);
 
-        auto legs_img_btn{std::make_shared<GUIComponentsLibrary::gui_button>(
+        auto legs_img_btn{std::make_shared<GUIComponentsLibrary::GUIButton>(
             0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
             [this]
             {
@@ -146,18 +146,18 @@ namespace SpecializedGUI
 
         add_child_comp(legs_img_btn);
 
-        lbl_body_part_name_ = std::make_shared<GUIComponentsLibrary::gui_label>(
+        lbl_body_part_name_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
             colors::yellow_transp);
 
-        lbl_body_part_str_ = std::make_shared<GUIComponentsLibrary::gui_label>(
+        lbl_body_part_str_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
 
         lbl_body_part_energy_ =
-            std::make_shared<GUIComponentsLibrary::gui_label>(
+            std::make_shared<GUIComponentsLibrary::GUILabel>(
                 0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
 
-        lbl_body_part_temp_ = std::make_shared<GUIComponentsLibrary::gui_label>(
+        lbl_body_part_temp_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
 
         add_child_comp(lbl_body_part_name_);
@@ -360,7 +360,7 @@ namespace SpecializedGUI
             entries_.push_back(
                 {"Forage", [=]()
                  {
-                     _<GUIComponentsLibrary::gui_chat_box>().print(
+                     _<GUIComponentsLibrary::GUIChatBox>().print(
                          "Grass foraged. You found blue berries.");
                  }});
         }
@@ -377,7 +377,7 @@ namespace SpecializedGUI
                 entries_.push_back(
                     {"Cut down tree", [=]()
                      {
-                         _<GUIComponentsLibrary::gui_chat_box>().print(
+                         _<GUIComponentsLibrary::GUIChatBox>().print(
                              "Tree cut down. You found some wood.");
                      }});
             }
@@ -386,7 +386,7 @@ namespace SpecializedGUI
 
     void gui_interact_menu::update_derived()
     {
-        gui_panel::update_derived();
+        GUIPanel::update_derived();
 
         auto b{bounds()};
 
@@ -422,7 +422,7 @@ namespace SpecializedGUI
 
     void gui_interact_menu::render_derived() const
     {
-        gui_panel::render_derived();
+        GUIPanel::render_derived();
 
         auto b{bounds()};
 

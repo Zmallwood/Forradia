@@ -264,12 +264,12 @@ namespace Theme0
 
                     if (rand_int(20) == 0)
                     {
-                        _<GUIComponentsLibrary::gui_chat_box>().print(
+                        _<GUIComponentsLibrary::GUIChatBox>().print(
                             name + ": Buying blueberries, one gold each.");
                     }
                     else
                     {
-                        _<GUIComponentsLibrary::gui_chat_box>().print(
+                        _<GUIComponentsLibrary::GUIChatBox>().print(
                             name + ": Hello all!");
                     }
 

@@ -31,8 +31,8 @@ namespace Theme0
 
             py::class_<Engine>(m, "engine").def("stop", &Engine::stop);
 
-            py::class_<GUIComponentsLibrary::gui_comp,
-                       SharedPtr<GUIComponentsLibrary::gui_comp>>(m, "gui_comp");
+            py::class_<GUIComponentsLibrary::GUIComponent,
+                       SharedPtr<GUIComponentsLibrary::GUIComponent>>(m, "gui_comp");
 
             py::class_<
                 Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot,
@@ -41,33 +41,33 @@ namespace Theme0
                 .def("add_child_comp",
                      [](Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot
                             &self,
-                        SharedPtr<GUIComponentsLibrary::gui_comp> comp)
-                         -> SharedPtr<GUIComponentsLibrary::gui_comp>
+                        SharedPtr<GUIComponentsLibrary::GUIComponent> comp)
+                         -> SharedPtr<GUIComponentsLibrary::GUIComponent>
                      { return self.add_child_comp(comp); });
 
-            py::class_<GUIComponentsLibrary::gui_label,
-                       SharedPtr<GUIComponentsLibrary::gui_label>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_label")
+            py::class_<GUIComponentsLibrary::GUILabel,
+                       SharedPtr<GUIComponentsLibrary::GUILabel>,
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_label")
                 .def(py::init<float, float, float, float, StringView, bool,
                               Color>(),
                      py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
                      py::arg("text") = "", py::arg("cent_align") = false,
                      py::arg("color") = colors::wheat_transp)
-                .def("set_text", &GUIComponentsLibrary::gui_label::set_text)
+                .def("set_text", &GUIComponentsLibrary::GUILabel::set_text)
                 .def("set_visible",
-                     &GUIComponentsLibrary::gui_comp::set_visible);
+                     &GUIComponentsLibrary::GUIComponent::set_visible);
 
-            py::class_<GUIComponentsLibrary::gui_panel,
-                       SharedPtr<GUIComponentsLibrary::gui_panel>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_panel");
+            py::class_<GUIComponentsLibrary::GUIPanel,
+                       SharedPtr<GUIComponentsLibrary::GUIPanel>,
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_panel");
 
-            py::class_<GUIComponentsLibrary::gui_button,
-                       SharedPtr<GUIComponentsLibrary::gui_button>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_button");
+            py::class_<GUIComponentsLibrary::GUIButton,
+                       SharedPtr<GUIComponentsLibrary::GUIButton>,
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_button");
 
-            py::class_<GUIComponentsLibrary::gui_fps_panel,
-                       SharedPtr<GUIComponentsLibrary::gui_fps_panel>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_fps_panel");
+            py::class_<GUIComponentsLibrary::GUIFPSPanel,
+                       SharedPtr<GUIComponentsLibrary::GUIFPSPanel>,
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_fps_panel");
 
             py::class_<Core::Engine::ScenesCore::IScene>(m, "i_scene")
                 .def(py::init<>())
@@ -104,11 +104,11 @@ namespace Theme0
                 .value("hovering_creature",
                        Engine::Cursor::CursorStyles::hovering_creature);
 
-            py::class_<GUIComponentsLibrary::gui_chat_box,
-                       SharedPtr<GUIComponentsLibrary::gui_chat_box>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_chat_box")
+            py::class_<GUIComponentsLibrary::GUIChatBox,
+                       SharedPtr<GUIComponentsLibrary::GUIChatBox>,
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_chat_box")
                 .def(py::init<>())
-                .def("print", &GUIComponentsLibrary::gui_chat_box::print);
+                .def("print", &GUIComponentsLibrary::GUIChatBox::print);
 
             py::class_<Theme0::WorldGeneration::world_grator>(m, "world_grator")
                 .def(py::init<>())
@@ -140,29 +140,29 @@ namespace Theme0
 
             py::class_<Theme0::gui_player_status_box,
                        SharedPtr<Theme0::gui_player_status_box>,
-                       GUIComponentsLibrary::gui_comp>(m,
+                       GUIComponentsLibrary::GUIComponent>(m,
                                                        "gui_player_status_box");
 
             py::class_<Theme0::gui_player_body_win,
                        SharedPtr<Theme0::gui_player_body_win>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_player_body_win")
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_player_body_win")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::gui_comp::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::gui_inventory_win,
                        SharedPtr<Theme0::gui_inventory_win>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_inventory_win")
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_inventory_win")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::gui_comp::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::gui_sys_menu, SharedPtr<Theme0::gui_sys_menu>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_sys_menu")
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_sys_menu")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::gui_comp::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
 
             py::class_<Theme0::gui_interact_menu,
                        SharedPtr<Theme0::gui_interact_menu>,
-                       GUIComponentsLibrary::gui_comp>(m, "gui_interact_menu");
+                       GUIComponentsLibrary::GUIComponent>(m, "gui_interact_menu");
 
             py::class_<Theme0::GameplayCore::tl_hovering>(m, "tl_hovering")
                 .def("update", &Theme0::GameplayCore::tl_hovering::update);
@@ -180,21 +180,21 @@ namespace Theme0
                   []
                   {
                       return std::make_shared<
-                          GUIComponentsLibrary::gui_fps_panel>();
+                          GUIComponentsLibrary::GUIFPSPanel>();
                   });
 
             m.def("make_shared_gui_label",
                   [](float x, float y, float w, float h, StringView text,
                      bool cent_align)
                   {
-                      return std::make_shared<GUIComponentsLibrary::gui_label>(
+                      return std::make_shared<GUIComponentsLibrary::GUILabel>(
                           x, y, w, h, text, cent_align, colors::wheat_transp);
                   });
 
             m.def("make_shared_gui_panel",
                   [](float x, float y, float w, float h)
                   {
-                      return std::make_shared<GUIComponentsLibrary::gui_panel>(
+                      return std::make_shared<GUIComponentsLibrary::GUIPanel>(
                           x, y, w, h);
                   });
 
@@ -202,7 +202,7 @@ namespace Theme0
                   [](float x, float y, float w, float h, StringView text,
                      py::function action)
                   {
-                      return std::make_shared<GUIComponentsLibrary::gui_button>(
+                      return std::make_shared<GUIComponentsLibrary::GUIButton>(
                           x, y, w, h, text, action);
                   });
 
@@ -211,7 +211,7 @@ namespace Theme0
                      py::function action, StringView bg_img,
                      StringView hovered_bg_img)
                   {
-                      return std::make_shared<GUIComponentsLibrary::gui_button>(
+                      return std::make_shared<GUIComponentsLibrary::GUIButton>(
                           x, y, w, h, text, action, bg_img, hovered_bg_img);
                   });
 
@@ -249,13 +249,13 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def(
-                "get_gui_chat_box", []() -> GUIComponentsLibrary::gui_chat_box &
-                { return _<GUIComponentsLibrary::gui_chat_box>(); },
+                "get_gui_chat_box", []() -> GUIComponentsLibrary::GUIChatBox &
+                { return _<GUIComponentsLibrary::GUIChatBox>(); },
                 py::return_value_policy::reference);
 
             m.def("get_gui_chat_box_ptr",
-                  []() -> SharedPtr<GUIComponentsLibrary::gui_chat_box>
-                  { return __<GUIComponentsLibrary::gui_chat_box>(); });
+                  []() -> SharedPtr<GUIComponentsLibrary::GUIChatBox>
+                  { return __<GUIComponentsLibrary::GUIChatBox>(); });
 
             m.def(
                 "get_cursor",

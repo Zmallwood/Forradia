@@ -12,10 +12,10 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
 namespace SpecializedGUI
 {
-    class gui_player_status_box : public Core::GUIComponentsLibrary::gui_panel
+    class gui_player_status_box : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_player_status_box() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        gui_player_status_box() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
         }
 
@@ -23,10 +23,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_sys_menu : public Core::GUIComponentsLibrary::gui_comp
+    class gui_sys_menu : public Core::GUIComponentsLibrary::GUIComponent
     {
       public:
-        gui_sys_menu() : gui_comp(0.0f, 0.0f, 1.0f, 1.0f)
+        gui_sys_menu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
             init();
         }
@@ -39,10 +39,10 @@ namespace SpecializedGUI
         virtual void render_derived() const override;
     };
 
-    class gui_inventory_win : public Core::GUIComponentsLibrary::gui_win
+    class gui_inventory_win : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_inventory_win() : gui_win(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+        gui_inventory_win() : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
         {
         }
 
@@ -55,10 +55,10 @@ namespace SpecializedGUI
         inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
     };
 
-    class gui_player_body_win : public Core::GUIComponentsLibrary::gui_win
+    class gui_player_body_win : public Core::GUIComponentsLibrary::GUIWindow
     {
       public:
-        gui_player_body_win() : gui_win(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
+        gui_player_body_win() : GUIWindow(0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
             init();
         }
@@ -72,16 +72,16 @@ namespace SpecializedGUI
         void update_body_part_info_lbls();
 
         int sel_body_part_{0};
-        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_name_;
-        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_str_;
-        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_energy_;
-        SharedPtr<Core::GUIComponentsLibrary::gui_label> lbl_body_part_temp_;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_name_;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_str_;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_energy_;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_temp_;
     };
 
-    class gui_interact_menu : public Core::GUIComponentsLibrary::gui_panel
+    class gui_interact_menu : public Core::GUIComponentsLibrary::GUIPanel
     {
       public:
-        gui_interact_menu() : gui_panel(0.0f, 0.0f, 0.2f, 0.14f)
+        gui_interact_menu() : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
             init();
         }

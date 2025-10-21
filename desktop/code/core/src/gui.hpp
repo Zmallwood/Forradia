@@ -11,14 +11,14 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_TOP_
 namespace GUIComponentsLibrary
 {
-    class gui_comp
+    class GUIComponent
     {
       public:
-        gui_comp(float x, float y, float w, float h) : bounds_({x, y, w, h})
+        GUIComponent(float x, float y, float w, float h) : bounds_({x, y, w, h})
         {
         }
 
-        SharedPtr<gui_comp> add_child_comp(SharedPtr<gui_comp> comp);
+        SharedPtr<GUIComponent> add_child_comp(SharedPtr<GUIComponent> comp);
 
         void update();
 
@@ -40,7 +40,7 @@ namespace GUIComponentsLibrary
             visible_ = val;
         }
 
-        void set_parent_comp(gui_comp *value)
+        void set_parent_comp(GUIComponent *value)
         {
             parent_comp_ = value;
         }
@@ -56,18 +56,18 @@ namespace GUIComponentsLibrary
 
       private:
         RectF bounds_;
-        Vector<SharedPtr<gui_comp>> children_;
+        Vector<SharedPtr<GUIComponent>> children_;
         bool visible_{true};
         bool enabled_{true};
-        gui_comp *parent_comp_{nullptr};
+        GUIComponent *parent_comp_{nullptr};
     };
 
-    class gui_label : public gui_comp
+    class GUILabel : public GUIComponent
     {
       public:
-        gui_label(float x, float y, float w, float h, StringView text = "",
+        GUILabel(float x, float y, float w, float h, StringView text = "",
                   bool cent_align = false, Color color = colors::wheat_transp)
-            : gui_comp(x, y, w, h), text_(text), cent_align_(cent_align),
+            : GUIComponent(x, y, w, h), text_(text), cent_align_(cent_align),
               color_(color)
         {
         }
@@ -86,12 +86,12 @@ namespace GUIComponentsLibrary
         Color color_;
     };
 
-    class gui_panel : public gui_comp
+    class GUIPanel : public GUIComponent
     {
       public:
-        gui_panel(float x, float y, float w, float h,
+        GUIPanel(float x, float y, float w, float h,
                   StringView bg_img = k_default_bg_img)
-            : gui_comp(x, y, w, h), bg_img_(bg_img)
+            : GUIComponent(x, y, w, h), bg_img_(bg_img)
         {
         }
 
@@ -109,13 +109,13 @@ namespace GUIComponentsLibrary
         String bg_img_;
     };
 
-    class gui_button : public gui_panel
+    class GUIButton : public GUIPanel
     {
       public:
-        gui_button(float x, float y, float w, float h, StringView text,
+        GUIButton(float x, float y, float w, float h, StringView text,
                    Function<void()> action, StringView bg_img = k_bg_img,
                    StringView hovered_bg_img = k_hovered_bg_img)
-            : gui_panel(x, y, w, h), text_(text), action_(action),
+            : GUIPanel(x, y, w, h), text_(text), action_(action),
               bg_img_(bg_img), hovered_bg_img_(hovered_bg_img)
         {
         }
@@ -135,11 +135,11 @@ namespace GUIComponentsLibrary
         String hovered_bg_img_;
     };
 
-    class gui_movable_panel : public gui_panel
+    class GUIMovablePanel : public GUIPanel
     {
       public:
-        gui_movable_panel(float x, float y, float w, float h)
-            : gui_panel(x, y, w, h)
+        GUIMovablePanel(float x, float y, float w, float h)
+            : GUIPanel(x, y, w, h)
         {
         }
 
@@ -173,11 +173,11 @@ namespace GUIComponentsLibrary
         PointF move_start_mouse_pos_{-1, -1};
     };
 
-    class gui_win : public gui_movable_panel
+    class GUIWindow : public GUIMovablePanel
     {
       public:
-        gui_win(float x, float y, float w, float h, StringView win_title)
-            : gui_movable_panel(x, y, w, h)
+        GUIWindow(float x, float y, float w, float h, StringView win_title)
+            : GUIMovablePanel(x, y, w, h)
         {
             init(win_title);
         }
@@ -195,12 +195,12 @@ namespace GUIComponentsLibrary
       private:
         void init(StringView win_title);
 
-        class gui_win_title_bar : public gui_panel
+        class gui_win_title_bar : public GUIPanel
         {
           public:
-            gui_win_title_bar(gui_win &parent_win, StringView win_title)
+            gui_win_title_bar(GUIWindow &parent_win, StringView win_title)
                 : parent_win_(parent_win), k_win_title(win_title),
-                  gui_panel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
+                  GUIPanel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
                 init();
             }
@@ -215,16 +215,16 @@ namespace GUIComponentsLibrary
             inline static const float k_h{0.04f};
             const String k_win_title;
 
-            gui_win &parent_win_;
+            GUIWindow &parent_win_;
         };
 
         SharedPtr<gui_win_title_bar> gui_win_title_bar_;
     };
 
-    class gui_fps_panel : public gui_movable_panel
+    class GUIFPSPanel : public GUIMovablePanel
     {
       public:
-        gui_fps_panel() : gui_movable_panel(0.92f, 0.02f, 0.07f, 0.04f)
+        GUIFPSPanel() : GUIMovablePanel(0.92f, 0.02f, 0.07f, 0.04f)
         {
             init();
         }
@@ -235,14 +235,14 @@ namespace GUIComponentsLibrary
       private:
         void init();
 
-        SharedPtr<gui_label> fps_text_pnl_;
+        SharedPtr<GUILabel> fps_text_pnl_;
     };
 
-    class gui_chat_box : public gui_panel
+    class GUIChatBox : public GUIPanel
     {
       public:
-        gui_chat_box()
-            : gui_panel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived)
+        GUIChatBox()
+            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f, k_default_bg_img_derived)
         {
         }
 
