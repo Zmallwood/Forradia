@@ -67,40 +67,40 @@ namespace Theme0
 
             if (up_press || right_press || down_press || left_press)
             {
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_dest({-1, -1});
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetDestination({-1, -1});
             }
 
             auto now{GetTicks()};
 
             if (now >=
                     _<Theme0::GameplayCore::Player::PlayerCharacter>()
-                            .ticks_last_move() +
+                            .GetTicksLastMovement() +
                         InvertMovementSpeed(_<Theme0::GameplayCore::Player::PlayerCharacter>()
-                                          .movem_spd()) &&
+                                          .GetMovementSpeed()) &&
                 (up_press || right_press || down_press || left_press ||
                  w_press || a_press || s_press || d_press))
             {
                 if (up_press || w_press)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_n();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveNorth();
                 }
 
                 if (right_press || d_press)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_e();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveEast();
                 }
 
                 if (down_press || s_press)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_s();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveSouth();
                 }
 
                 if (left_press || a_press)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().move_w();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveWest();
                 }
 
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_ticks_last_move(
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetTicksLastMovement(
                     now);
             }
         }
@@ -112,12 +112,12 @@ namespace Theme0
             {
                 auto new_dest{_<TileHovering>().hovered_coord()};
 
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().set_dest(new_dest);
+                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetDestination(new_dest);
             }
 
-            auto player_pos{_<PlayerCharacter>().pos()};
+            auto player_pos{_<PlayerCharacter>().GetPosition()};
 
-            auto dest{_<PlayerCharacter>().dest()};
+            auto dest{_<PlayerCharacter>().GetDestination()};
 
             if (dest == Point{-1, -1})
             {
@@ -126,38 +126,38 @@ namespace Theme0
 
             auto now{GetTicks()};
 
-            if (now >= _<PlayerCharacter>().ticks_last_move() +
-                           InvertMovementSpeed(_<PlayerCharacter>().movem_spd()))
+            if (now >= _<PlayerCharacter>().GetTicksLastMovement() +
+                           InvertMovementSpeed(_<PlayerCharacter>().GetMovementSpeed()))
             {
                 auto dx{dest.x - player_pos.x};
                 auto dy{dest.y - player_pos.y};
 
                 if (dx < 0)
                 {
-                    _<PlayerCharacter>().move_w();
+                    _<PlayerCharacter>().MoveWest();
                 }
 
                 if (dy < 0)
                 {
-                    _<PlayerCharacter>().move_n();
+                    _<PlayerCharacter>().MoveNorth();
                 }
 
                 if (dx > 0)
                 {
-                    _<PlayerCharacter>().move_e();
+                    _<PlayerCharacter>().MoveEast();
                 }
 
                 if (dy > 0)
                 {
-                    _<PlayerCharacter>().move_s();
+                    _<PlayerCharacter>().MoveSouth();
                 }
 
                 if (dest == player_pos)
                 {
-                    _<PlayerCharacter>().set_dest({-1, -1});
+                    _<PlayerCharacter>().SetDestination({-1, -1});
                 }
 
-                _<PlayerCharacter>().set_ticks_last_move(now);
+                _<PlayerCharacter>().SetTicksLastMovement(now);
             }
         }
 
@@ -341,15 +341,15 @@ namespace Theme0
 
         void TileHovering::update()
         {
-            auto player_pos{_<PlayerCharacter>().pos()};
+            auto player_pos{_<PlayerCharacter>().GetPosition()};
 
             auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
-            auto tl_sz{calc_tl_sz()};
+            auto tl_sz{CalcTileSize()};
 
             auto screen_rel_x{CInt(mouse_pos.x / tl_sz.w)};
 
-            auto grid_sz{calc_grid_sz()};
+            auto grid_sz{CalcGridSize()};
 
             auto hovered_x_coord{player_pos.x - (grid_sz.w - 1) / 2 +
                                  screen_rel_x};

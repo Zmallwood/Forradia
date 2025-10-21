@@ -312,12 +312,12 @@ namespace Theme0
                   });
         }
 
-        void ScriptEngine::init()
+        void ScriptEngine::Initialize()
         {
             static pybind11::scoped_interpreter guard{};
         }
 
-        void ScriptEngine::load_scripts()
+        void ScriptEngine::LoadScripts()
         {
             auto embedded = py::module::import("embedded");
 

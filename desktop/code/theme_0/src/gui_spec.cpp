@@ -23,7 +23,7 @@ namespace SpecializedGUI
         auto b{GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().DrawString(
-            _<Theme0::GameplayCore::Player::PlayerCharacter>().name(), b.x + 0.01f,
+            _<Theme0::GameplayCore::Player::PlayerCharacter>().GetName(), b.x + 0.01f,
             b.y + 0.01f, Engine::Renderers::FontSizes::_26);
     }
 
@@ -173,7 +173,7 @@ namespace SpecializedGUI
 
     void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
     {
-        auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().body_ref()};
+        auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().GetBodyRef()};
 
         constexpr auto overall_body{
             CInt(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
@@ -194,30 +194,30 @@ namespace SpecializedGUI
             lbl_body_part_name_->SetText("Body part: Overall body");
 
             auto String{p_body
-                         .body_part_ptr(Theme0::GameplayCore::Player::
+                         .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::overall_body)
-                         ->str()};
+                         ->GetStrength()};
 
             lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
             auto max_energy{
                 p_body
-                    .body_part_ptr(Theme0::GameplayCore::Player::
+                    .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                        BodyPartTypes::overall_body)
-                    ->max_energy()};
+                    ->GetMaxEnergy()};
 
             auto curr_energy{
                 p_body
-                    .body_part_ptr(Theme0::GameplayCore::Player::
+                    .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                        BodyPartTypes::overall_body)
-                    ->curr_energy()};
+                    ->GetCurrentEnergy()};
 
             lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
-                          .body_part_ptr(Theme0::GameplayCore::Player::
+                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                              BodyPartTypes::overall_body)
-                          ->temp()};
+                          ->GetTemperature()};
 
             lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
@@ -230,29 +230,29 @@ namespace SpecializedGUI
             lbl_body_part_name_->SetText("Body part: Right arm");
 
             auto String{p_body
-                         .body_part_ptr(Theme0::GameplayCore::Player::
+                         .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::right_arm)
-                         ->str()};
+                         ->GetStrength()};
 
             lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{p_body
-                                .body_part_ptr(Theme0::GameplayCore::Player::
+                                .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                                    BodyPartTypes::right_arm)
-                                ->max_energy()};
+                                ->GetMaxEnergy()};
 
             auto curr_energy{p_body
-                                 .body_part_ptr(Theme0::GameplayCore::Player::
+                                 .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                                     BodyPartTypes::right_arm)
-                                 ->curr_energy()};
+                                 ->GetCurrentEnergy()};
 
             lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
-                          .body_part_ptr(Theme0::GameplayCore::Player::
+                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                              BodyPartTypes::right_arm)
-                          ->temp()};
+                          ->GetTemperature()};
 
             lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
@@ -266,32 +266,32 @@ namespace SpecializedGUI
 
             auto String{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
-                    ->str()};
+                    ->GetStrength()};
 
             lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
-                    ->max_energy()};
+                    ->GetMaxEnergy()};
 
             auto curr_energy{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
-                    ->curr_energy()};
+                    ->GetCurrentEnergy()};
 
             lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
-                    ->temp()};
+                    ->GetTemperature()};
 
             lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
@@ -305,32 +305,32 @@ namespace SpecializedGUI
 
             auto String{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
-                    ->str()};
+                    ->GetStrength()};
 
             lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
-                    ->max_energy()};
+                    ->GetMaxEnergy()};
 
             auto curr_energy{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
-                    ->curr_energy()};
+                    ->GetCurrentEnergy()};
 
             lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
                 p_body
-                    .body_part_ptr(
+                    .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
-                    ->temp()};
+                    ->GetTemperature()};
 
             lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));

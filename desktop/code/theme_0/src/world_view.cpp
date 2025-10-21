@@ -16,9 +16,9 @@ namespace Theme0
     {
         void WorldView::render() const
         {
-            auto grid_sz{calc_grid_sz()};
+            auto grid_sz{CalcGridSize()};
 
-            auto player_pos{_<PlayerCharacter>().pos()};
+            auto player_pos{_<PlayerCharacter>().GetPosition()};
 
             auto w_area{_<World>().curr_w_area()};
 

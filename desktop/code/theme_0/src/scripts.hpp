@@ -14,9 +14,9 @@ namespace Scripting
     class ScriptEngine
     {
       public:
-        void init();
+        void Initialize();
 
-        void load_scripts();
+        void LoadScripts();
     };
 }
 using namespace Scripting;

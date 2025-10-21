@@ -14,9 +14,9 @@ int main(int argc, char **argv)
     _<Engine>().Initialize(_<Theme0::GameProperties>().k_game_win_title,
                      _<Theme0::GameProperties>().k_clear_color);
 
-    _<Theme0::ScriptEngine>().init();
+    _<Theme0::ScriptEngine>().Initialize();
 
-    _<Theme0::ScriptEngine>().load_scripts();
+    _<Theme0::ScriptEngine>().LoadScripts();
 
     _<Theme0::WorldStructure::World>().init(
         _<Theme0::GameProperties>().k_w_area_sz,

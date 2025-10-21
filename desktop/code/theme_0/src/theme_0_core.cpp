@@ -12,7 +12,7 @@ namespace Theme0
 {
     namespace TileGridMath
     {
-        SizeF calc_tl_sz()
+        SizeF CalcTileSize()
         {
             auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
 
@@ -25,14 +25,14 @@ namespace Theme0
             return {tl_w, tl_h};
         }
 
-        float calc_tl_sz_new()
+        float CalcTileSizeNew()
         {
             return 1.0f / _<GameProperties>().k_num_grid_rows;
         }
 
-        Size calc_grid_sz()
+        Size CalcGridSize()
         {
-            auto tl_sz{calc_tl_sz_new()};
+            auto tl_sz{CalcTileSizeNew()};
 
             auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
@@ -48,7 +48,7 @@ namespace Theme0
     {
         namespace Player
         {
-            void PlayerBody::init()
+            void PlayerBody::Initialize()
             {
                 parts_.insert({BodyPartTypes::overall_body, BodyPart()});
                 parts_.insert({BodyPartTypes::right_arm, BodyPart()});
@@ -56,7 +56,7 @@ namespace Theme0
                 parts_.insert({BodyPartTypes::legs, BodyPart()});
             }
 
-            BodyPart *PlayerBody::body_part_ptr(BodyPartTypes type)
+            BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes type)
             {
                 if (parts_.contains(type))
                 {
@@ -66,43 +66,43 @@ namespace Theme0
                 return nullptr;
             }
 
-            void PlayerCharacter::init()
+            void PlayerCharacter::Initialize()
             {
-                move_to_suitable_pos();
+                MoveToSuitablePosition();
             }
 
-            void PlayerCharacter::move_to_suitable_pos()
+            void PlayerCharacter::MoveToSuitablePosition()
             {
                 auto w_area{_<World>().curr_w_area()};
 
                 auto sz{w_area->get_sz()};
 
-                pos_ = {sz.w / 2, sz.h / 2};
+                position_ = {sz.w / 2, sz.h / 2};
 
-                while (w_area->get_tl(pos_)->ground() == Hash("ground_water"))
+                while (w_area->get_tl(position_)->ground() == Hash("ground_water"))
                 {
-                    pos_ = {GetRandomInt(sz.w), GetRandomInt(sz.h)};
+                    position_ = {GetRandomInt(sz.w), GetRandomInt(sz.h)};
                 }
             }
 
-            void PlayerCharacter::move_n()
+            void PlayerCharacter::MoveNorth()
             {
-                pos_.y -= 1;
+                position_.y -= 1;
             }
 
-            void PlayerCharacter::move_e()
+            void PlayerCharacter::MoveEast()
             {
-                pos_.x += 1;
+                position_.x += 1;
             }
 
-            void PlayerCharacter::move_s()
+            void PlayerCharacter::MoveSouth()
             {
-                pos_.y += 1;
+                position_.y += 1;
             }
 
-            void PlayerCharacter::move_w()
+            void PlayerCharacter::MoveWest()
             {
-                pos_.x -= 1;
+                position_.x -= 1;
             }
         }
     }

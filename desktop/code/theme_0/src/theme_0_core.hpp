@@ -10,11 +10,11 @@ namespace Theme0
 {
     namespace TileGridMath
     {
-        SizeF calc_tl_sz();
+        SizeF CalcTileSize();
 
-        float calc_tl_sz_new();
+        float CalcTileSizeNew();
 
-        Size calc_grid_sz();
+        Size CalcGridSize();
     }
     using namespace TileGridMath;
 
@@ -34,28 +34,28 @@ namespace Theme0
             class BodyPart
             {
               public:
-                auto str() const
+                auto GetStrength() const
                 {
-                    return str_;
+                    return strength_;
                 }
-                auto curr_energy() const
+                auto GetCurrentEnergy() const
                 {
-                    return curr_energy_;
+                    return current_energy_;
                 }
-                auto max_energy() const
+                auto GetMaxEnergy() const
                 {
                     return max_energy_;
                 }
-                auto temp() const
+                auto GetTemperature() const
                 {
-                    return temp_;
+                    return temperature_;
                 }
 
               private:
-                float str_{0.1f};
-                float curr_energy_{1.0f};
+                float strength_{0.1f};
+                float current_energy_{1.0f};
                 float max_energy_{1.0f};
-                float temp_{37.0f};
+                float temperature_{37.0f};
             };
 
             class PlayerBody
@@ -63,13 +63,13 @@ namespace Theme0
               public:
                 PlayerBody()
                 {
-                    init();
+                    Initialize();
                 }
 
-                BodyPart *body_part_ptr(BodyPartTypes type);
+                BodyPart *GetBodyPartPtr(BodyPartTypes type);
 
               private:
-                void init();
+                void Initialize();
 
                 std::map<BodyPartTypes, BodyPart> parts_;
             };
@@ -79,72 +79,72 @@ namespace Theme0
               public:
                 PlayerCharacter()
                 {
-                    init();
+                    Initialize();
                 }
 
-                void move_n();
+                void MoveNorth();
 
-                void move_e();
+                void MoveEast();
 
-                void move_s();
+                void MoveSouth();
 
-                void move_w();
+                void MoveWest();
 
-                auto name() const
+                auto GetName() const
                 {
                     return name_;
                 }
 
-                auto pos() const
+                auto GetPosition() const
                 {
-                    return pos_;
+                    return position_;
                 }
 
-                auto movem_spd() const
+                auto GetMovementSpeed() const
                 {
-                    return movem_spd_;
+                    return movement_speed_;
                 }
 
-                auto ticks_last_move() const
+                auto GetTicksLastMovement() const
                 {
-                    return ticks_last_move_;
+                    return ticks_last_movement_;
                 }
 
-                void set_ticks_last_move(int val)
+                void SetTicksLastMovement(int value)
                 {
-                    ticks_last_move_ = val;
+                    ticks_last_movement_ = value;
                 }
 
-                auto dest() const
+                auto GetDestination() const
                 {
-                    return dest_;
+                    return destination_;
                 }
 
-                void set_dest(Point val)
+                void SetDestination(Point value)
                 {
-                    dest_ = val;
+                    destination_ = value;
                 }
 
-                auto &body_ref()
+                auto &GetBodyRef()
                 {
                     return body_;
                 }
 
-                auto money() const
+                auto GetMoney() const
                 {
                     return money_;
                 }
 
               private:
-                void init();
+                void Initialize();
 
-                void move_to_suitable_pos();
+                void MoveToSuitablePosition();
 
                 String name_{"Unnamed Player"};
-                Point pos_{60, 50};
-                float movem_spd_{5.0f};
-                int ticks_last_move_{0};
-                Point dest_{-1, -1};
+                Point position_{60, 50};
+                float movement_speed_{5.0f};
+                int ticks_last_movement_{0};
+                Point destination_{-1, -1};
                 PlayerBody body_;
                 int money_{0};
             };
