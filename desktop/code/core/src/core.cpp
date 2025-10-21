@@ -581,7 +581,7 @@ namespace Core
 
     void Engine::ScenesCore::IScene::Update()
     {
-        gui_->update();
+        gui_->Update();
 
         update_derived_();
     }
@@ -590,7 +590,7 @@ namespace Core
     {
         render_derived_();
 
-        gui_->render();
+        gui_->Render();
     }
 
     void Engine::ScenesCore::SceneManager::AddScene(StringView scene_name,

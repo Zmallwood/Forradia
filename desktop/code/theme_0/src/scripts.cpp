@@ -43,7 +43,7 @@ namespace Theme0
                             &self,
                         SharedPtr<GUIComponentsLibrary::GUIComponent> comp)
                          -> SharedPtr<GUIComponentsLibrary::GUIComponent>
-                     { return self.add_child_comp(comp); });
+                     { return self.AddChildComponent(comp); });
 
             py::class_<GUIComponentsLibrary::GUILabel,
                        SharedPtr<GUIComponentsLibrary::GUILabel>,
@@ -53,9 +53,9 @@ namespace Theme0
                      py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
                      py::arg("text") = "", py::arg("cent_align") = false,
                      py::arg("color") = Colors::wheat_transp)
-                .def("set_text", &GUIComponentsLibrary::GUILabel::set_text)
+                .def("set_text", &GUIComponentsLibrary::GUILabel::SetText)
                 .def("set_visible",
-                     &GUIComponentsLibrary::GUIComponent::set_visible);
+                     &GUIComponentsLibrary::GUIComponent::SetVisible);
 
             py::class_<GUIComponentsLibrary::GUIPanel,
                        SharedPtr<GUIComponentsLibrary::GUIPanel>,
@@ -108,7 +108,7 @@ namespace Theme0
                        SharedPtr<GUIComponentsLibrary::GUIChatBox>,
                        GUIComponentsLibrary::GUIComponent>(m, "GUIChatBox")
                 .def(py::init<>())
-                .def("print", &GUIComponentsLibrary::GUIChatBox::print);
+                .def("print", &GUIComponentsLibrary::GUIChatBox::Print);
 
             py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "WorldGenerator")
                 .def(py::init<>())
@@ -147,18 +147,18 @@ namespace Theme0
                        SharedPtr<Theme0::GUIPlayerBodyWindow>,
                        GUIComponentsLibrary::GUIComponent>(m, "GUIPlayerBodyWindow")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::ToggleVisibility);
 
             py::class_<Theme0::GUIInventoryWindow,
                        SharedPtr<Theme0::GUIInventoryWindow>,
                        GUIComponentsLibrary::GUIComponent>(m, "GUIInventoryWindow")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::ToggleVisibility);
 
             py::class_<Theme0::GUISystemMenu, SharedPtr<Theme0::GUISystemMenu>,
                        GUIComponentsLibrary::GUIComponent>(m, "GUISystemMenu")
                 .def("toggle_visible",
-                     &GUIComponentsLibrary::GUIComponent::toggle_visible);
+                     &GUIComponentsLibrary::GUIComponent::ToggleVisibility);
 
             py::class_<Theme0::GUIInteractionMenu,
                        SharedPtr<Theme0::GUIInteractionMenu>,

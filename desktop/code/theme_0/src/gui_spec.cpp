@@ -16,11 +16,11 @@ _NS_START_
 _HIDE_FROM_OUTLINER_GUI_SPEC_TOP_
 namespace SpecializedGUI
 {
-    void GUIPlayerStatusBox::render_derived() const
+    void GUIPlayerStatusBox::RenderDerived() const
     {
-        GUIPanel::render_derived();
+        GUIPanel::RenderDerived();
 
-        auto b{bounds()};
+        auto b{GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().draw_str(
             _<Theme0::GameplayCore::Player::PlayerCharacter>().name(), b.x + 0.01f,
@@ -29,19 +29,19 @@ namespace SpecializedGUI
 
     void GUISystemMenu::init()
     {
-        set_visible(false);
+        SetVisible(false);
     }
 
-    void GUISystemMenu::update_derived()
+    void GUISystemMenu::UpdateDerived()
     {
-        GUIComponent::update_derived();
+        GUIComponent::UpdateDerived();
 
         _<Core::Engine::Input::MouseInput::LeftMouseButton>().Reset();
     }
 
-    void GUISystemMenu::render_derived() const
+    void GUISystemMenu::RenderDerived() const
     {
-        GUIComponent::render_derived();
+        GUIComponent::RenderDerived();
 
         // auto c_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
@@ -56,11 +56,11 @@ namespace SpecializedGUI
         // SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(), &rect);
     }
 
-    void GUIInventoryWindow::render_derived() const
+    void GUIInventoryWindow::RenderDerived() const
     {
-        GUIWindow::render_derived();
+        GUIWindow::RenderDerived();
 
-        auto b{bounds()};
+        auto b{GetBounds()};
 
         auto margin_x{k_margin};
 
@@ -68,7 +68,7 @@ namespace SpecializedGUI
 
         auto x_start{b.x + margin_x};
 
-        auto y_start{b.y + margin_y + get_win_title_bar()->bounds().h};
+        auto y_start{b.y + margin_y + GetGUIWindowTitleBar()->GetBounds().h};
 
         auto slot_w{k_slot_size};
 
@@ -106,7 +106,7 @@ namespace SpecializedGUI
                 },
                 "gui_image_overall_body", "gui_image_overall_body_hovered")};
 
-        add_child_comp(overall_body_img_btn);
+        AddChildComponent(overall_body_img_btn);
 
         auto right_arm_body_img_btn{std::make_shared<
             GUIComponentsLibrary::GUIButton>(
@@ -119,7 +119,7 @@ namespace SpecializedGUI
             },
             "gui_image_right_arm", "gui_image_right_arm_hovered")};
 
-        add_child_comp(right_arm_body_img_btn);
+        AddChildComponent(right_arm_body_img_btn);
 
         auto left_arm_body_img_btn{std::make_shared<
             GUIComponentsLibrary::GUIButton>(
@@ -132,7 +132,7 @@ namespace SpecializedGUI
             },
             "gui_image_left_arm", "gui_image_left_arm_hovered")};
 
-        add_child_comp(left_arm_body_img_btn);
+        AddChildComponent(left_arm_body_img_btn);
 
         auto legs_img_btn{std::make_shared<GUIComponentsLibrary::GUIButton>(
             0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
@@ -144,7 +144,7 @@ namespace SpecializedGUI
             },
             "gui_image_legs", "gui_image_legs_hovered")};
 
-        add_child_comp(legs_img_btn);
+        AddChildComponent(legs_img_btn);
 
         lbl_body_part_name_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
@@ -160,10 +160,10 @@ namespace SpecializedGUI
         lbl_body_part_temp_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
 
-        add_child_comp(lbl_body_part_name_);
-        add_child_comp(lbl_body_part_str_);
-        add_child_comp(lbl_body_part_energy_);
-        add_child_comp(lbl_body_part_temp_);
+        AddChildComponent(lbl_body_part_name_);
+        AddChildComponent(lbl_body_part_str_);
+        AddChildComponent(lbl_body_part_energy_);
+        AddChildComponent(lbl_body_part_temp_);
     }
 
     void GUIPlayerBodyWindow::sel_body_part(int type)
@@ -191,14 +191,14 @@ namespace SpecializedGUI
         {
         case overall_body:
         {
-            lbl_body_part_name_->set_text("Body part: Overall body");
+            lbl_body_part_name_->SetText("Body part: Overall body");
 
             auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::overall_body)
                          ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
+            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
             auto max_energy{
                 p_body
                     .body_part_ptr(Theme0::GameplayCore::Player::
@@ -211,7 +211,7 @@ namespace SpecializedGUI
                                        BodyPartTypes::overall_body)
                     ->curr_energy()};
 
-            lbl_body_part_energy_->set_text(fmt::format(
+            lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
@@ -219,7 +219,7 @@ namespace SpecializedGUI
                                              BodyPartTypes::overall_body)
                           ->temp()};
 
-            lbl_body_part_temp_->set_text(
+            lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -227,14 +227,14 @@ namespace SpecializedGUI
 
         case right_arm:
         {
-            lbl_body_part_name_->set_text("Body part: Right arm");
+            lbl_body_part_name_->SetText("Body part: Right arm");
 
             auto String{p_body
                          .body_part_ptr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::right_arm)
                          ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
+            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{p_body
                                 .body_part_ptr(Theme0::GameplayCore::Player::
@@ -246,7 +246,7 @@ namespace SpecializedGUI
                                                     BodyPartTypes::right_arm)
                                  ->curr_energy()};
 
-            lbl_body_part_energy_->set_text(fmt::format(
+            lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
@@ -254,7 +254,7 @@ namespace SpecializedGUI
                                              BodyPartTypes::right_arm)
                           ->temp()};
 
-            lbl_body_part_temp_->set_text(
+            lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -262,7 +262,7 @@ namespace SpecializedGUI
 
         case left_arm:
         {
-            lbl_body_part_name_->set_text("Body part: Left arm");
+            lbl_body_part_name_->SetText("Body part: Left arm");
 
             auto String{
                 p_body
@@ -270,7 +270,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
+            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
@@ -284,7 +284,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->curr_energy()};
 
-            lbl_body_part_energy_->set_text(fmt::format(
+            lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
@@ -293,7 +293,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->temp()};
 
-            lbl_body_part_temp_->set_text(
+            lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -301,7 +301,7 @@ namespace SpecializedGUI
 
         case legs:
         {
-            lbl_body_part_name_->set_text("Body part: Legs");
+            lbl_body_part_name_->SetText("Body part: Legs");
 
             auto String{
                 p_body
@@ -309,7 +309,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->str()};
 
-            lbl_body_part_str_->set_text(fmt::format("Strength: {:.2f}", String));
+            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
@@ -323,7 +323,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->curr_energy()};
 
-            lbl_body_part_energy_->set_text(fmt::format(
+            lbl_body_part_energy_->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
@@ -332,7 +332,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->temp()};
 
-            lbl_body_part_temp_->set_text(
+            lbl_body_part_temp_->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -342,7 +342,7 @@ namespace SpecializedGUI
 
     void GUIInteractionMenu::init()
     {
-        set_visible(false);
+        SetVisible(false);
     }
 
     void GUIInteractionMenu::build_menu()
@@ -360,7 +360,7 @@ namespace SpecializedGUI
             entries_.push_back(
                 {"Forage", [=]()
                  {
-                     _<GUIComponentsLibrary::GUIChatBox>().print(
+                     _<GUIComponentsLibrary::GUIChatBox>().Print(
                          "Grass foraged. You found blue berries.");
                  }});
         }
@@ -377,18 +377,18 @@ namespace SpecializedGUI
                 entries_.push_back(
                     {"Cut down tree", [=]()
                      {
-                         _<GUIComponentsLibrary::GUIChatBox>().print(
+                         _<GUIComponentsLibrary::GUIChatBox>().Print(
                              "Tree cut down. You found some wood.");
                      }});
             }
         }
     }
 
-    void GUIInteractionMenu::update_derived()
+    void GUIInteractionMenu::UpdateDerived()
     {
-        GUIPanel::update_derived();
+        GUIPanel::UpdateDerived();
 
-        auto b{bounds()};
+        auto b{GetBounds()};
 
         auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
@@ -408,7 +408,7 @@ namespace SpecializedGUI
                     entry.action()();
                 }
 
-                set_visible(false);
+                SetVisible(false);
             }
 
             ++i;
@@ -416,15 +416,15 @@ namespace SpecializedGUI
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenFiredPickResult())
         {
-            set_visible(false);
+            SetVisible(false);
         }
     }
 
-    void GUIInteractionMenu::render_derived() const
+    void GUIInteractionMenu::RenderDerived() const
     {
-        GUIPanel::render_derived();
+        GUIPanel::RenderDerived();
 
-        auto b{bounds()};
+        auto b{GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().draw_str(
             "Actions", b.x + 0.01f, b.y + 0.01f,

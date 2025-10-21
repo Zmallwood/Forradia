@@ -20,7 +20,7 @@ namespace SpecializedGUI
         }
 
       protected:
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
     };
 
     class GUISystemMenu : public Core::GUIComponentsLibrary::GUIComponent
@@ -34,9 +34,9 @@ namespace SpecializedGUI
       protected:
         void init();
 
-        virtual void update_derived() override;
+        virtual void UpdateDerived() override;
 
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
     };
 
     class GUIInventoryWindow : public Core::GUIComponentsLibrary::GUIWindow
@@ -47,7 +47,7 @@ namespace SpecializedGUI
         }
 
       protected:
-        void render_derived() const override;
+        void RenderDerived() const override;
 
       private:
         static constexpr float k_margin{0.005f};
@@ -91,9 +91,9 @@ namespace SpecializedGUI
       protected:
         void init();
 
-        virtual void update_derived() override;
+        virtual void UpdateDerived() override;
 
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
 
       private:
         static constexpr float k_indent_w{0.01f};

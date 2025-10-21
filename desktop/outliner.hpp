@@ -904,39 +904,39 @@ namespace GUIComponentsLibrary
         {
         }
 
-        SharedPtr<GUIComponent> add_child_comp(SharedPtr<GUIComponent> comp);
+        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> comp);
 
-        void update();
+        void Update();
 
-        void render() const;
+        void Render() const;
 
-        virtual RectF bounds() const;
+        virtual RectF GetBounds() const;
 
-        void set_pos(PointF new_pos);
+        void SetPosition(PointF new_pos);
 
-        void toggle_visible();
+        void ToggleVisibility();
 
-        auto visible() const
+        auto GetVisible() const
         {
             return visible_;
         }
 
-        void set_visible(bool val)
+        void SetVisible(bool value)
         {
-            visible_ = val;
+            visible_ = value;
         }
 
-        void set_parent_comp(GUIComponent *value)
+        void SetParentComponent(GUIComponent *value)
         {
-            parent_comp_ = value;
+            parent_component_ = value;
         }
 
       protected:
-        virtual void update_derived()
+        virtual void UpdateDerived()
         {
         }
 
-        virtual void render_derived() const
+        virtual void RenderDerived() const
         {
         }
 
@@ -945,7 +945,7 @@ namespace GUIComponentsLibrary
         Vector<SharedPtr<GUIComponent>> children_;
         bool visible_{true};
         bool enabled_{true};
-        GUIComponent *parent_comp_{nullptr};
+        GUIComponent *parent_component_{nullptr};
     };
 
     class GUILabel : public GUIComponent
@@ -958,13 +958,13 @@ namespace GUIComponentsLibrary
         {
         }
 
-        void set_text(StringView val)
+        void SetText(StringView value)
         {
-            text_ = val;
+            text_ = value;
         }
 
       protected:
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
 
       private:
         String text_;
@@ -977,22 +977,22 @@ namespace GUIComponentsLibrary
       public:
         GUIPanel(float x, float y, float w, float h,
                   StringView bg_img = k_default_bg_img)
-            : GUIComponent(x, y, w, h), bg_img_(bg_img)
+            : GUIComponent(x, y, w, h), background_image_(bg_img)
         {
         }
 
       protected:
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
 
-        void set_bg_img(StringView val)
+        void SetBackgroundImage(StringView value)
         {
-            bg_img_ = val;
+            background_image_ = value;
         }
 
       private:
         inline static const String k_default_bg_img{"gui_panel_bg"};
 
-        String bg_img_;
+        String background_image_;
     };
 
     class GUIButton : public GUIPanel
@@ -1007,9 +1007,9 @@ namespace GUIComponentsLibrary
         }
 
       protected:
-        virtual void update_derived() override;
+        virtual void UpdateDerived() override;
 
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
 
       private:
         inline static const String k_bg_img{"gui_button_bg"};
@@ -1030,33 +1030,33 @@ namespace GUIComponentsLibrary
         }
 
       protected:
-        void update_derived() override;
+        void UpdateDerived() override;
 
-        void start_move();
+        void StartMove();
 
-        void stop_move();
+        void StopMove();
 
-        virtual RectF get_drag_area();
+        virtual RectF GetDragArea();
 
-        auto being_moved() const
+        auto GetIsBeingMoved() const
         {
-            return being_moved_;
+            return is_being_moved_;
         }
 
-        auto move_start_pos() const
+        auto GetMoveStartingPosition() const
         {
-            return move_start_pos_;
+            return move_starting_position_;
         }
 
-        auto move_start_mouse_pos() const
+        auto GetMoveStartingMousePosition() const
         {
-            return move_start_mouse_pos_;
+            return move_starting_mouse_position_;
         }
 
       private:
-        bool being_moved_{false};
-        PointF move_start_pos_{-1, -1};
-        PointF move_start_mouse_pos_{-1, -1};
+        bool is_being_moved_{false};
+        PointF move_starting_position_{-1, -1};
+        PointF move_starting_mouse_position_{-1, -1};
     };
 
     class GUIWindow : public GUIMovablePanel
@@ -1065,38 +1065,38 @@ namespace GUIComponentsLibrary
         GUIWindow(float x, float y, float w, float h, StringView win_title)
             : GUIMovablePanel(x, y, w, h)
         {
-            init(win_title);
+            Initialize(win_title);
         }
 
       protected:
-        void render_derived() const override;
+        void RenderDerived() const override;
 
-        RectF get_drag_area() override;
+        RectF GetDragArea() override;
 
-        auto get_win_title_bar() const
+        auto GetGUIWindowTitleBar() const
         {
-            return gui_win_title_bar_;
+            return gui_window_title_bar_;
         }
 
       private:
-        void init(StringView win_title);
+        void Initialize(StringView win_title);
 
-        class gui_win_title_bar : public GUIPanel
+        class GUIWindowTitleBar : public GUIPanel
         {
           public:
-            gui_win_title_bar(GUIWindow &parent_win, StringView win_title)
+            GUIWindowTitleBar(GUIWindow &parent_win, StringView win_title)
                 : parent_win_(parent_win), k_win_title(win_title),
                   GUIPanel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
-                init();
+                Initialize();
             }
 
-            void render_derived() const override;
+            void RenderDerived() const override;
 
-            RectF bounds() const override;
+            RectF GetBounds() const override;
 
           private:
-            void init();
+            void Initialize();
 
             inline static const float k_h{0.04f};
             const String k_win_title;
@@ -1104,7 +1104,7 @@ namespace GUIComponentsLibrary
             GUIWindow &parent_win_;
         };
 
-        SharedPtr<gui_win_title_bar> gui_win_title_bar_;
+        SharedPtr<GUIWindowTitleBar> gui_window_title_bar_;
     };
 
     class GUIFPSPanel : public GUIMovablePanel
@@ -1112,14 +1112,14 @@ namespace GUIComponentsLibrary
       public:
         GUIFPSPanel() : GUIMovablePanel(0.92f, 0.02f, 0.07f, 0.04f)
         {
-            init();
+            Initialize();
         }
 
       protected:
-        void update_derived() override;
+        void UpdateDerived() override;
 
       private:
-        void init();
+        void Initialize();
 
         SharedPtr<GUILabel> fps_text_pnl_;
     };
@@ -1132,9 +1132,9 @@ namespace GUIComponentsLibrary
         {
         }
 
-        void render_derived() const override;
+        void RenderDerived() const override;
 
-        void print(StringView text);
+        void Print(StringView text);
 
       private:
         constexpr static StringView k_default_bg_img_derived{"gui_chat_box_bg"};
@@ -1996,7 +1996,7 @@ namespace SpecializedGUI
         }
 
       protected:
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
     };
 
     class GUISystemMenu : public Core::GUIComponentsLibrary::GUIComponent
@@ -2010,9 +2010,9 @@ namespace SpecializedGUI
       protected:
         void init();
 
-        virtual void update_derived() override;
+        virtual void UpdateDerived() override;
 
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
     };
 
     class GUIInventoryWindow : public Core::GUIComponentsLibrary::GUIWindow
@@ -2023,7 +2023,7 @@ namespace SpecializedGUI
         }
 
       protected:
-        void render_derived() const override;
+        void RenderDerived() const override;
 
       private:
         static constexpr float k_margin{0.005f};
@@ -2067,9 +2067,9 @@ namespace SpecializedGUI
       protected:
         void init();
 
-        virtual void update_derived() override;
+        virtual void UpdateDerived() override;
 
-        virtual void render_derived() const override;
+        virtual void RenderDerived() const override;
 
       private:
         static constexpr float k_indent_w{0.01f};

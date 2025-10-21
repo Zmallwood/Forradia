@@ -18,17 +18,17 @@ namespace Theme0
             if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
                     SDLK_ESCAPE))
             {
-                _<GUISystemMenu>().toggle_visible();
+                _<GUISystemMenu>().ToggleVisibility();
             }
             else if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
                          SDLK_c))
             {
-                _<GUIPlayerBodyWindow>().toggle_visible();
+                _<GUIPlayerBodyWindow>().ToggleVisibility();
             }
             else if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
                          SDLK_b))
             {
-                _<GUIInventoryWindow>().toggle_visible();
+                _<GUIInventoryWindow>().ToggleVisibility();
             }
         }
 
@@ -39,9 +39,9 @@ namespace Theme0
             {
                 _<GUIInteractionMenu>().build_menu();
 
-                _<GUIInteractionMenu>().set_visible(true);
+                _<GUIInteractionMenu>().SetVisible(true);
 
-                _<GUIInteractionMenu>().set_pos(
+                _<GUIInteractionMenu>().SetPosition(
                     GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow()));
             }
         }
@@ -264,12 +264,12 @@ namespace Theme0
 
                     if (GetRandomInt(20) == 0)
                     {
-                        _<GUIComponentsLibrary::GUIChatBox>().print(
+                        _<GUIComponentsLibrary::GUIChatBox>().Print(
                             name + ": Buying blueberries, one gold each.");
                     }
                     else
                     {
-                        _<GUIComponentsLibrary::GUIChatBox>().print(
+                        _<GUIComponentsLibrary::GUIChatBox>().Print(
                             name + ": Hello all!");
                     }
 
