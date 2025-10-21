@@ -8,6 +8,7 @@
 #pragma diag_suppress 281
 #pragma diag_suppress 18
 #pragma diag_suppress 28
+#pragma diag_suppress 1696
 
 namespace Forradia
 {
@@ -1676,10 +1677,10 @@ namespace WorldStructure
         Point dest_{-1, -1};
     };
 
-    class npc
+    class NPC
     {
       public:
-        npc(StringView type_name) : type_{hash(type_name)}
+        NPC(StringView type_name) : type_{hash(type_name)}
         {
             init();
         }
@@ -1742,10 +1743,10 @@ namespace WorldStructure
         int ticks_next_spontaneous_speech_{0};
     };
 
-    class object
+    class Object
     {
       public:
-        object(StringView object_type_name) : type_(hash(object_type_name))
+        Object(StringView object_type_name) : type_(hash(object_type_name))
         {
         }
 
@@ -1758,10 +1759,10 @@ namespace WorldStructure
         int type_{0};
     };
 
-    class TreeObject : public object
+    class TreeObject : public Object
     {
       public:
-        TreeObject(StringView obj_type_name) : object(obj_type_name)
+        TreeObject(StringView obj_type_name) : Object(obj_type_name)
         {
             init(obj_type_name);
         }
@@ -1789,7 +1790,7 @@ namespace WorldStructure
         float w_factor_{1.0f};
     };
 
-    class objects_stack
+    class ObjectsStack
     {
       public:
         void clear_objs();
@@ -1806,7 +1807,7 @@ namespace WorldStructure
         }
 
       private:
-        Vector<SharedPtr<object>> objects_;
+        Vector<SharedPtr<Object>> objects_;
     };
 
     class Tile
@@ -1844,7 +1845,7 @@ namespace WorldStructure
             return npc_;
         }
 
-        void set_npc(SharedPtr<Forradia::Theme0::WorldStructure::npc> val)
+        void set_npc(SharedPtr<Forradia::Theme0::WorldStructure::NPC> val)
         {
             npc_ = val;
         }
@@ -1893,19 +1894,19 @@ namespace WorldStructure
         void init();
 
         int ground_{0};
-        SharedPtr<Forradia::Theme0::WorldStructure::objects_stack> objects_stack_;
+        SharedPtr<Forradia::Theme0::WorldStructure::ObjectsStack> objects_stack_;
         SharedPtr<Forradia::Theme0::WorldStructure::Creature> creature_;
-        SharedPtr<Forradia::Theme0::WorldStructure::npc> npc_;
+        SharedPtr<Forradia::Theme0::WorldStructure::NPC> npc_;
         int elev_{0};
         int water_depth_{0};
         Directions river_dir_1_{Directions::none};
         Directions river_dir_2_{Directions::none};
     };
 
-    class world_area
+    class WorldArea
     {
       public:
-        world_area(Size w_area_sz, float world_scaling)
+        WorldArea(Size w_area_sz, float world_scaling)
         {
             init(w_area_sz, world_scaling);
         }
@@ -1934,8 +1935,8 @@ namespace WorldStructure
         void init(Size w_area_sz, float world_scaling);
 
         Vector<Vector<SharedPtr<Tile>>> tiles_;
-        std::map<SharedPtr<creature>, Point> creatures_mirror_;
-        std::map<SharedPtr<npc>, Point> npcs_mirror_;
+        std::map<SharedPtr<Creature>, Point> creatures_mirror_;
+        std::map<SharedPtr<NPC>, Point> npcs_mirror_;
     };
 
     class World
@@ -1949,7 +1950,7 @@ namespace WorldStructure
         }
 
       private:
-        SharedPtr<world_area> curr_w_area_;
+        SharedPtr<WorldArea> curr_w_area_;
     };
 }
 using namespace WorldStructure;
@@ -2143,7 +2144,7 @@ _NS_START_
     {                                                                          \
         namespace WorldStructure                                               \
         {                                                                      \
-            class world_area;                                                  \
+            class WorldArea;                                                  \
         }                                                                      \
     }
 _HIDE_FROM_OUTLINER_FORWARD_DECL_WORLD_GRATOR_TOP_
@@ -2172,7 +2173,7 @@ namespace WorldGeneration
         void gen_creas() const;
         void gen_npcs() const;
 
-        SharedPtr<Theme0::WorldStructure::world_area> w_area_;
+        SharedPtr<Theme0::WorldStructure::WorldArea> w_area_;
         float scale_;
         Size sz_;
     };
