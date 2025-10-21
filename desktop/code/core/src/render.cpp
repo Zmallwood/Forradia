@@ -7,7 +7,7 @@
 #include <glm/gtx/transform.hpp>
 
 _NS_START_
-void RenderersCollection::shader_program::init(StringView vert_src,
+void RenderersCollection::ShaderProgram::init(StringView vert_src,
                                                StringView frag_src)
 {
     GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
@@ -100,12 +100,12 @@ void RenderersCollection::shader_program::init(StringView vert_src,
     glDeleteShader(fragment_shader);
 }
 
-void RenderersCollection::shader_program::cleanup()
+void RenderersCollection::ShaderProgram::cleanup()
 {
     glDeleteProgram(program_);
 }
 
-void RenderersCollection::img_2d_rend::init()
+void RenderersCollection::Image2DRenderer::init()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -141,11 +141,11 @@ void RenderersCollection::img_2d_rend::init()
       }
     )"};
 
-    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::img_2d_rend::cleanup()
+void RenderersCollection::Image2DRenderer::cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -161,21 +161,21 @@ void RenderersCollection::img_2d_rend::cleanup()
     glUseProgram(0);
 }
 
-void RenderersCollection::img_2d_rend::reset_counter()
+void RenderersCollection::Image2DRenderer::reset_counter()
 {
     counter_ = 0;
 }
 
-void RenderersCollection::img_2d_rend::draw_img(int img_name_hash, float x,
+void RenderersCollection::Image2DRenderer::draw_img(int img_name_hash, float x,
                                                 float y, float w, float h)
 {
     auto tex_id{
         _<Core::Engine::Assets::Images::ImageBank>().get_tex(img_name_hash)};
 
-    img_2d_rend::draw_tex(tex_id, x, y, w, h);
+    Image2DRenderer::draw_tex(tex_id, x, y, w, h);
 }
 
-void RenderersCollection::img_2d_rend::draw_tex(GLuint tex_id, float x, float y,
+void RenderersCollection::Image2DRenderer::draw_tex(GLuint tex_id, float x, float y,
                                                 float w, float h)
 {
     auto canv_sz{get_canv_sz(_<Engine::SDLDevice>().win())};
@@ -252,7 +252,7 @@ void RenderersCollection::img_2d_rend::draw_tex(GLuint tex_id, float x, float y,
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        img_2d_rend::entry entry;
+        Image2DRenderer::Entry entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -315,7 +315,7 @@ void RenderersCollection::img_2d_rend::draw_tex(GLuint tex_id, float x, float y,
     ++counter_;
 }
 
-void RenderersCollection::img_2d_rend::draw_img_auto_h(StringView img_name,
+void RenderersCollection::Image2DRenderer::draw_img_auto_h(StringView img_name,
                                                        float x, float y,
                                                        float w)
 {
@@ -337,13 +337,13 @@ void RenderersCollection::img_2d_rend::draw_img_auto_h(StringView img_name,
     draw_img(hash, x, y, w, h);
 }
 
-void RenderersCollection::img_2d_rend::draw_img(StringView img_name, float x,
+void RenderersCollection::Image2DRenderer::draw_img(StringView img_name, float x,
                                                 float y, float w, float h)
 {
     draw_img(hash(img_name), x, y, w, h);
 }
 
-void RenderersCollection::ground_rend::init()
+void RenderersCollection::GroundRenderer::init()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -394,11 +394,11 @@ void RenderersCollection::ground_rend::init()
       }
     )"};
 
-    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::ground_rend::cleanup()
+void RenderersCollection::GroundRenderer::cleanup()
 {
     for (auto &entry : imgs_)
     {
@@ -414,7 +414,7 @@ void RenderersCollection::ground_rend::cleanup()
     glUseProgram(0);
 }
 
-void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord,
+void RenderersCollection::GroundRenderer::draw_tile(int img_name_hash, int x_coord,
                                                  int y_coord, float tl_sz,
                                                  Point3F camera_pos,
                                                  Vector<float> &elevs,
@@ -501,10 +501,10 @@ void RenderersCollection::ground_rend::draw_tile(int img_name_hash, int x_coord,
                       1.0,
                       1.0}};
 
-    ground_rend::draw_tex(tex_id, verts, camera_pos);
+    GroundRenderer::draw_tex(tex_id, verts, camera_pos);
 }
 
-void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
+void RenderersCollection::GroundRenderer::draw_tex(GLuint tex_id,
                                                 Vector<float> &verts,
                                                 Point3F camera_pos)
 {
@@ -658,7 +658,7 @@ void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        Forradia::RenderersCollection::entry entry;
+        Forradia::RenderersCollection::Entry entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -749,7 +749,7 @@ void RenderersCollection::ground_rend::draw_tex(GLuint tex_id,
     glDisable(GL_DEPTH_TEST);
 }
 
-glm::vec3 RenderersCollection::ground_rend::compute_normal(glm::vec3 p1,
+glm::vec3 RenderersCollection::GroundRenderer::compute_normal(glm::vec3 p1,
                                                            glm::vec3 p2,
                                                            glm::vec3 p3)
 {
@@ -761,7 +761,7 @@ glm::vec3 RenderersCollection::ground_rend::compute_normal(glm::vec3 p1,
     return glm::normalize(glm::cross(a, b));
 }
 
-void RenderersCollection::model_rend::init()
+void RenderersCollection::ModelRenderer::init()
 {
     String vertex_shader_src{R"(
       #version 330 core
@@ -833,11 +833,11 @@ void RenderersCollection::model_rend::init()
       }
     )"};
 
-    shader_program_ = std::make_shared<shader_program>(vertex_shader_src,
+    shader_program_ = std::make_shared<ShaderProgram>(vertex_shader_src,
                                                        fragment_shader_src);
 }
 
-void RenderersCollection::model_rend::draw_model(int model_name_hash, float x,
+void RenderersCollection::ModelRenderer::draw_model(int model_name_hash, float x,
                                                  float y, float elev,
                                                  Point3F camera_pos, float elev_h)
 {
@@ -958,7 +958,7 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x,
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
-        Forradia::RenderersCollection::entry entry;
+        Forradia::RenderersCollection::Entry entry;
 
         entry.vao = obj_vao;
         entry.ibo = obj_ibo;
@@ -1054,18 +1054,18 @@ void RenderersCollection::model_rend::draw_model(int model_name_hash, float x,
     glDisable(GL_DEPTH_TEST);
 }
 
-void RenderersCollection::text_rend::init()
+void RenderersCollection::TextRenderer::init()
 {
     TTF_Init();
 
     add_fonts();
 }
 
-void RenderersCollection::text_rend::add_fonts()
+void RenderersCollection::TextRenderer::add_fonts()
 {
     auto abs_font_path{String(SDL_GetBasePath()) + k_default_font_path.data()};
 
-    for (auto font_sz : {font_szs::_20, font_szs::_26})
+    for (auto font_sz : {FontSizes::_20, FontSizes::_26})
     {
         auto font_path_unix_style{repl(abs_font_path, '\\', '/')};
 
@@ -1085,8 +1085,8 @@ void RenderersCollection::text_rend::add_fonts()
     }
 }
 
-void RenderersCollection::text_rend::draw_str(StringView text, float x, float y,
-                                              font_szs font_sz, bool cent_align,
+void RenderersCollection::TextRenderer::draw_str(StringView text, float x, float y,
+                                              FontSizes font_sz, bool cent_align,
                                               Color text_color) const
 {
     if (text.empty())
@@ -1167,6 +1167,6 @@ void RenderersCollection::text_rend::draw_str(StringView text, float x, float y,
     auto wf{c_float(dest.w) / canv_sz.w};
     auto hf{c_float(dest.h) / canv_sz.h};
     
-    _<img_2d_rend>().draw_tex(tex, xf, yf, wf, hf);
+    _<Image2DRenderer>().draw_tex(tex, xf, yf, wf, hf);
 }
 _NS_END_

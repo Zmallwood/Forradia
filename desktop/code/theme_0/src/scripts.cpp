@@ -124,17 +124,17 @@ namespace Theme0
                      &Core::Engine::Input::MouseInput::
                          any_mouse_btn_pressed_pick_res);
 
-            py::class_<Engine::Renderers::img_2d_rend>(m, "img_2d_rend")
+            py::class_<Engine::Renderers::Image2DRenderer>(m, "img_2d_rend")
                 .def("draw_img",
-                     [](Engine::Renderers::img_2d_rend &self,
+                     [](Engine::Renderers::Image2DRenderer &self,
                         StringView image_name, float x, float y, float w, float h)
                      { self.draw_img(image_name, x, y, w, h); })
                 .def("draw_img",
-                     [](Engine::Renderers::img_2d_rend &self,
+                     [](Engine::Renderers::Image2DRenderer &self,
                         int image_name_hash, float x, float y, float w, float h)
                      { self.draw_img(image_name_hash, x, y, w, h); })
                 .def("draw_img_auto_h",
-                     [](Engine::Renderers::img_2d_rend &self, StringView img_name,
+                     [](Engine::Renderers::Image2DRenderer &self, StringView img_name,
                         float x, float y, float w)
                      { self.draw_img_auto_h(img_name, x, y, w); });
 
@@ -244,8 +244,8 @@ namespace Theme0
                 py::return_value_policy::reference);
 
             m.def(
-                "get_img_2d_rend", []() -> Engine::Renderers::img_2d_rend &
-                { return _<Engine::Renderers::img_2d_rend>(); },
+                "get_img_2d_rend", []() -> Engine::Renderers::Image2DRenderer &
+                { return _<Engine::Renderers::Image2DRenderer>(); },
                 py::return_value_policy::reference);
 
             m.def(

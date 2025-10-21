@@ -22,9 +22,9 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        _<Engine::Renderers::text_rend>().draw_str(
+        _<Engine::Renderers::TextRenderer>().draw_str(
             _<Theme0::GameplayCore::Player::player>().name(), b.x + 0.01f,
-            b.y + 0.01f, Engine::Renderers::font_szs::_26);
+            b.y + 0.01f, Engine::Renderers::FontSizes::_26);
     }
 
     void gui_sys_menu::init()
@@ -82,7 +82,7 @@ namespace SpecializedGUI
         {
             for (auto x = 0; x < num_cols; x++)
             {
-                _<Engine::Renderers::img_2d_rend>().draw_img(
+                _<Engine::Renderers::Image2DRenderer>().draw_img(
                     k_slot_img_name, x_start + x * (slot_w + margin_x),
                     y_start + y * (slot_h + margin_y), slot_w, slot_h);
             }
@@ -426,18 +426,18 @@ namespace SpecializedGUI
 
         auto b{bounds()};
 
-        _<Engine::Renderers::text_rend>().draw_str(
+        _<Engine::Renderers::TextRenderer>().draw_str(
             "Actions", b.x + 0.01f, b.y + 0.01f,
-            Engine::Renderers::font_szs::_20, false, colors::yellow_transp);
+            Engine::Renderers::FontSizes::_20, false, colors::yellow_transp);
 
         auto i{0};
 
         for (auto &entry : entries_)
         {
-            _<Engine::Renderers::text_rend>().draw_str(
+            _<Engine::Renderers::TextRenderer>().draw_str(
                 entry.label(), b.x + 0.01f + k_indent_w,
                 b.y + 0.01f + (i + 1) * k_line_h,
-                Engine::Renderers::font_szs::_20);
+                Engine::Renderers::FontSizes::_20);
 
             ++i;
         }

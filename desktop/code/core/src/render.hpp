@@ -12,15 +12,15 @@ _HIDE_FROM_OUTLINER_GUI_TOP_
 class RenderersCollection
 {
   protected:
-    class shader_program
+    class ShaderProgram
     {
       public:
-        shader_program(StringView vert_src, StringView frag_src)
+        ShaderProgram(StringView vert_src, StringView frag_src)
         {
             init(vert_src, frag_src);
         }
 
-        ~shader_program()
+        ~ShaderProgram()
         {
             cleanup();
         }
@@ -38,15 +38,15 @@ class RenderersCollection
         GLuint program_;
     };
 
-    class img_2d_rend
+    class Image2DRenderer
     {
       public:
-        img_2d_rend()
+        Image2DRenderer()
         {
             init();
         };
 
-        ~img_2d_rend()
+        ~Image2DRenderer()
         {
             cleanup();
         }
@@ -66,7 +66,7 @@ class RenderersCollection
 
         void cleanup();
 
-        class entry
+        class Entry
         {
           public:
             GLuint vao;
@@ -78,12 +78,12 @@ class RenderersCollection
             float h;
         };
 
-        SharedPtr<shader_program> shader_program_;
-        std::map<int, std::map<int, entry>> imgs_;
+        SharedPtr<ShaderProgram> shader_program_;
+        std::map<int, std::map<int, Entry>> imgs_;
         int counter_{0};
     };
 
-    class entry
+    class Entry
     {
       public:
         GLuint vao;
@@ -94,15 +94,15 @@ class RenderersCollection
         float z;
     };
 
-    class ground_rend
+    class GroundRenderer
     {
       public:
-        ground_rend()
+        GroundRenderer()
         {
             init();
         };
 
-        ~ground_rend()
+        ~GroundRenderer()
         {
             cleanup();
         }
@@ -119,14 +119,14 @@ class RenderersCollection
 
         glm::vec3 compute_normal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
-        SharedPtr<shader_program> shader_program_;
-        std::map<float, std::map<float, entry>> imgs_;
+        SharedPtr<ShaderProgram> shader_program_;
+        std::map<float, std::map<float, Entry>> imgs_;
     };
 
-    class model_rend
+    class ModelRenderer
     {
       public:
-        model_rend()
+        ModelRenderer()
         {
             init();
         }
@@ -137,28 +137,28 @@ class RenderersCollection
       private:
         void init();
 
-        SharedPtr<shader_program> shader_program_;
-        std::map<float, std::map<float, std::map<float, std::map<int, entry>>>>
+        SharedPtr<ShaderProgram> shader_program_;
+        std::map<float, std::map<float, std::map<float, std::map<int, Entry>>>>
             models_;
         static constexpr float k_mdl_scale{0.08f};
     };
 
-    enum struct font_szs
+    enum struct FontSizes
     {
         _20 = 20,
         _26 = 26
     };
 
-    class text_rend
+    class TextRenderer
     {
       public:
-        text_rend()
+        TextRenderer()
         {
             init();
         }
 
         void draw_str(StringView text, float x, float y,
-                      font_szs font_sz = font_szs::_20, bool cent_align = false,
+                      FontSizes font_sz = FontSizes::_20, bool cent_align = false,
                       Color text_color = colors::wheat_transp) const;
 
       private:
@@ -168,7 +168,7 @@ class RenderersCollection
 
         const String k_default_font_path{"./res/fonts/PixeloidSans.ttf"};
 
-        std::map<font_szs, SharedPtr<TTF_Font>> fonts_;
+        std::map<FontSizes, SharedPtr<TTF_Font>> fonts_;
     };
 };
 }

@@ -22,7 +22,7 @@ namespace Core
             {
                 _<Input::MouseInput>().reset();
                 _<Cursor>().reset_style_to_normal();
-                _<Renderers::img_2d_rend>().reset_counter();
+                _<Renderers::Image2DRenderer>().reset_counter();
 
                 poll_events();
 
@@ -223,7 +223,7 @@ namespace Core
             break;
         }
 
-        _<Renderers::img_2d_rend>().draw_img(curs_img, mouse_pos.x - w / 2,
+        _<Renderers::Image2DRenderer>().draw_img(curs_img, mouse_pos.x - w / 2,
                                              mouse_pos.y - h / 2, w, h);
     }
 

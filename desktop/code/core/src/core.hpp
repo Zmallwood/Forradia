@@ -413,11 +413,11 @@ namespace Core
         class Renderers : public RenderersCollection
         {
           public:
-            using RenderersCollection::font_szs;
-            using RenderersCollection::ground_rend;
-            using RenderersCollection::img_2d_rend;
-            using RenderersCollection::model_rend;
-            using RenderersCollection::text_rend;
+            using RenderersCollection::FontSizes;
+            using RenderersCollection::GroundRenderer;
+            using RenderersCollection::Image2DRenderer;
+            using RenderersCollection::ModelRenderer;
+            using RenderersCollection::TextRenderer;
         };
 
         void init(StringView game_win_title, Color clear_color) const;

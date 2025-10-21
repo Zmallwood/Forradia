@@ -203,7 +203,7 @@ namespace Theme0
                                         "object_birch_tree_trunk_part";
                                 }
 
-                                _<Engine::Renderers::model_rend>().draw_model(
+                                _<Engine::Renderers::ModelRenderer>().draw_model(
                                     hash(trunk_part_name),
                                     trunk_part_x_center - trunk_part_width / 2,
                                     trunk_part_y_center - trunk_part_width / 2,
@@ -216,7 +216,7 @@ namespace Theme0
 
                                 if (needle_type)
                                 {
-                                    _<Engine::Renderers::model_rend>()
+                                    _<Engine::Renderers::ModelRenderer>()
                                         .draw_model(needle_type,
                                                     trunk_part_x_center,
                                                     trunk_part_y_center,
@@ -228,7 +228,7 @@ namespace Theme0
                         }
                         else
                         {
-                            _<Engine::Renderers::model_rend>().draw_model(
+                            _<Engine::Renderers::ModelRenderer>().draw_model(
                                 obj_type,
                                 (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                                 (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
@@ -239,14 +239,14 @@ namespace Theme0
                     if (x_coord == wa_sz.w - player_pos.x &&
                         y_coord == wa_sz.h - player_pos.y)
                     {
-                        _<Engine::Renderers::model_rend>().draw_model(
+                        _<Engine::Renderers::ModelRenderer>().draw_model(
                             hash("player"),
                             (x_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             (y_coord - 1) * rend_tl_sz - rend_tl_sz / 2,
                             elev_avg, camera_pos, elev_h);
                     }
 
-                    _<Engine::Renderers::ground_rend>().draw_tile(
+                    _<Engine::Renderers::GroundRenderer>().draw_tile(
                         ground, x_coord - 1, y_coord - 1, rend_tl_sz,
                         camera_pos, elevs, elev_h);
                 }
