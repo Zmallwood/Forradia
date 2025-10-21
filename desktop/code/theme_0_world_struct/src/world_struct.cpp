@@ -11,14 +11,14 @@ namespace Theme0
     {
         void Creature::Initialize()
         {
-            movement_speed_ *= (GetRandomInt(3) + 1) / 2.0f;
+            m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
         }
 
         void NPC::Initialize()
         {
             GenerateName();
 
-            ticks_next_spontaneous_speech_ =
+            m_ticksNextSpontaneousSpeech =
                 GetTicks() + GetRandomInt(300 * k_one_sec_millis);
         }
 
@@ -42,7 +42,7 @@ namespace Theme0
 
             char c6{vowels.at(GetRandomInt(vowels.size()))};
 
-            name_ = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
+            m_name = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
 
         void TreeObject::Initialize(StringView obj_type_name)
@@ -65,7 +65,7 @@ namespace Theme0
                 num_trunk_parts = 25 + GetRandomInt(14);
             }
 
-            width_factor_ *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
+            m_widthFactor *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
 
             auto offs_x{0.0f};
 
@@ -79,7 +79,7 @@ namespace Theme0
 
                 auto needles_type{GetRandomInt(5)};
 
-                trunk_parts_.push_back(pos);
+                m_trunkParts.push_back(pos);
 
                 String needles_name;
 
@@ -91,7 +91,7 @@ namespace Theme0
                 {
                     if (i % 4 != 0)
                     {
-                        needle_types_.push_back(0);
+                        m_needleTypes.push_back(0);
 
                         continue;
                     }
@@ -99,7 +99,7 @@ namespace Theme0
                     needles_name = "object_birch_tree_branch_";
                 }
 
-                needle_types_.push_back(
+                m_needleTypes.push_back(
                     needles_type
                         ? Hash(needles_name + std::to_string(needles_type))
                         : 0);
@@ -108,33 +108,33 @@ namespace Theme0
 
         void ObjectsStack::ClearObjects()
         {
-            objects_.clear();
+            m_objects.clear();
         }
 
         void ObjectsStack::AddObject(StringView obj_type_name)
         {
-            objects_.push_back(std::make_shared<Object>(obj_type_name));
+            m_objects.push_back(std::make_shared<Object>(obj_type_name));
         }
 
         void ObjectsStack::AddTreeObject(StringView obj_type_name)
         {
-            objects_.push_back(std::make_shared<TreeObject>(obj_type_name));
+            m_objects.push_back(std::make_shared<TreeObject>(obj_type_name));
         }
 
         int ObjectsStack::GetSize() const
         {
-            return objects_.size();
+            return m_objects.size();
         }
 
         void Tile::Initialize()
         {
-            objects_stack_ = std::make_shared<
+            m_objectsStack = std::make_shared<
                 Forradia::Theme0::WorldStructure::ObjectsStack>();
         }
 
         void Tile::SetGround(StringView ground_name)
         {
-            ground_ = Hash(ground_name);
+            m_ground = Hash(ground_name);
         }
 
         void WorldArea::Initialize(Size w_area_sz, float world_scaling)
@@ -146,24 +146,24 @@ namespace Theme0
 
             for (auto x = 0; x < sz.width; x++)
             {
-                tiles_.push_back(Vector<std::shared_ptr<Tile>>());
+                m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
 
                 for (auto y = 0; y < sz.height; y++)
                 {
-                    tiles_[x].push_back(std::make_shared<Tile>());
+                    m_tiles[x].push_back(std::make_shared<Tile>());
                 }
             }
         }
 
         Size WorldArea::GetSize() const
         {
-            auto w{CInt(tiles_.size())};
+            auto w{CInt(m_tiles.size())};
 
             auto h{0};
 
             if (w)
             {
-                h = tiles_.at(0).size();
+                h = m_tiles.at(0).size();
             }
 
             return {w, h};
@@ -185,7 +185,7 @@ namespace Theme0
         {
             if (IsValidCoordinate(x, y))
             {
-                return tiles_.at(x).at(y);
+                return m_tiles.at(x).at(y);
             }
 
             return nullptr;
@@ -198,7 +198,7 @@ namespace Theme0
 
         void World::Initialize(Size w_area_sz, float world_scaling)
         {
-            current_world_area_ =
+            m_currentWorldArea =
                 std::make_shared<WorldArea>(w_area_sz, world_scaling);
         }
     }
