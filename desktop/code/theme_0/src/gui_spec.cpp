@@ -70,9 +70,9 @@ namespace SpecializedGUI
 
         auto y_start{b.y + margin_y + GetGUIWindowTitleBar()->GetBounds().h};
 
-        auto slot_w{k_slot_size};
+        auto slot_w{k_slotSize};
 
-        auto slot_h{ConvertWidthToHeight(k_slot_size, _<Engine::SDLDevice>().GetWindow())};
+        auto slot_h{ConvertWidthToHeight(k_slotSize, _<Engine::SDLDevice>().GetWindow())};
 
         auto num_cols{CInt((b.w - 2 * margin_x) / slot_w)};
 
@@ -83,7 +83,7 @@ namespace SpecializedGUI
             for (auto x = 0; x < num_cols; x++)
             {
                 _<Engine::Renderers::Image2DRenderer>().DrawImage(
-                    k_slot_img_name, x_start + x * (slot_w + margin_x),
+                    k_slotImageName, x_start + x * (slot_w + margin_x),
                     y_start + y * (slot_h + margin_y), slot_w, slot_h);
             }
         }
@@ -146,29 +146,29 @@ namespace SpecializedGUI
 
         AddChildComponent(legs_img_btn);
 
-        lbl_body_part_name_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
+        m_labelBodyPartName = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
             Colors::yellow_transp);
 
-        lbl_body_part_str_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
+        m_labelBodyPartStrength = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
 
-        lbl_body_part_energy_ =
+        m_labelBodyPartEnergy =
             std::make_shared<GUIComponentsLibrary::GUILabel>(
                 0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
 
-        lbl_body_part_temp_ = std::make_shared<GUIComponentsLibrary::GUILabel>(
+        m_labelBodyPartTemperature = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
 
-        AddChildComponent(lbl_body_part_name_);
-        AddChildComponent(lbl_body_part_str_);
-        AddChildComponent(lbl_body_part_energy_);
-        AddChildComponent(lbl_body_part_temp_);
+        AddChildComponent(m_labelBodyPartName);
+        AddChildComponent(m_labelBodyPartStrength);
+        AddChildComponent(m_labelBodyPartEnergy);
+        AddChildComponent(m_labelBodyPartTemperature);
     }
 
     void GUIPlayerBodyWindow::SelectBodyPart(int type)
     {
-        sel_body_part_ = type;
+        m_selectedBodyPart = type;
     }
 
     void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
@@ -187,18 +187,18 @@ namespace SpecializedGUI
         constexpr auto legs{
             CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs)};
 
-        switch (sel_body_part_)
+        switch (m_selectedBodyPart)
         {
         case overall_body:
         {
-            lbl_body_part_name_->SetText("Body part: Overall body");
+            m_labelBodyPartName->SetText("Body part: Overall body");
 
             auto String{p_body
                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::overall_body)
                          ->GetStrength()};
 
-            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
             auto max_energy{
                 p_body
                     .GetBodyPartPtr(Theme0::GameplayCore::Player::
@@ -211,7 +211,7 @@ namespace SpecializedGUI
                                        BodyPartTypes::overall_body)
                     ->GetCurrentEnergy()};
 
-            lbl_body_part_energy_->SetText(fmt::format(
+            m_labelBodyPartEnergy->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
@@ -219,7 +219,7 @@ namespace SpecializedGUI
                                              BodyPartTypes::overall_body)
                           ->GetTemperature()};
 
-            lbl_body_part_temp_->SetText(
+            m_labelBodyPartTemperature->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -227,14 +227,14 @@ namespace SpecializedGUI
 
         case right_arm:
         {
-            lbl_body_part_name_->SetText("Body part: Right arm");
+            m_labelBodyPartName->SetText("Body part: Right arm");
 
             auto String{p_body
                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
                                             BodyPartTypes::right_arm)
                          ->GetStrength()};
 
-            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{p_body
                                 .GetBodyPartPtr(Theme0::GameplayCore::Player::
@@ -246,7 +246,7 @@ namespace SpecializedGUI
                                                     BodyPartTypes::right_arm)
                                  ->GetCurrentEnergy()};
 
-            lbl_body_part_energy_->SetText(fmt::format(
+            m_labelBodyPartEnergy->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{p_body
@@ -254,7 +254,7 @@ namespace SpecializedGUI
                                              BodyPartTypes::right_arm)
                           ->GetTemperature()};
 
-            lbl_body_part_temp_->SetText(
+            m_labelBodyPartTemperature->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -262,7 +262,7 @@ namespace SpecializedGUI
 
         case left_arm:
         {
-            lbl_body_part_name_->SetText("Body part: Left arm");
+            m_labelBodyPartName->SetText("Body part: Left arm");
 
             auto String{
                 p_body
@@ -270,7 +270,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetStrength()};
 
-            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
@@ -284,7 +284,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetCurrentEnergy()};
 
-            lbl_body_part_energy_->SetText(fmt::format(
+            m_labelBodyPartEnergy->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
@@ -293,7 +293,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetTemperature()};
 
-            lbl_body_part_temp_->SetText(
+            m_labelBodyPartTemperature->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 
@@ -301,7 +301,7 @@ namespace SpecializedGUI
 
         case legs:
         {
-            lbl_body_part_name_->SetText("Body part: Legs");
+            m_labelBodyPartName->SetText("Body part: Legs");
 
             auto String{
                 p_body
@@ -309,7 +309,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetStrength()};
 
-            lbl_body_part_str_->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
 
             auto max_energy{
                 p_body
@@ -323,7 +323,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetCurrentEnergy()};
 
-            lbl_body_part_energy_->SetText(fmt::format(
+            m_labelBodyPartEnergy->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
 
             auto temp{
@@ -332,7 +332,7 @@ namespace SpecializedGUI
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetTemperature()};
 
-            lbl_body_part_temp_->SetText(
+            m_labelBodyPartTemperature->SetText(
                 fmt::format("Temperature: {:.2f} C", temp));
         }
 

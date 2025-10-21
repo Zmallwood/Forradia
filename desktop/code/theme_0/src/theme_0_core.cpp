@@ -14,7 +14,7 @@ namespace Theme0
     {
         SizeF CalcTileSize()
         {
-            auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
+            auto num_grid_rows{_<GameProperties>().k_numGridRows};
 
             auto tl_h{1.0f / num_grid_rows};
 
@@ -27,7 +27,7 @@ namespace Theme0
 
         float CalcTileSizeNew()
         {
-            return 1.0f / _<GameProperties>().k_num_grid_rows;
+            return 1.0f / _<GameProperties>().k_numGridRows;
         }
 
         Size CalcGridSize()
@@ -38,7 +38,7 @@ namespace Theme0
 
             auto num_grid_cols{CInt(asp_rat / tl_sz) + 1};
 
-            auto num_grid_rows{_<GameProperties>().k_num_grid_rows};
+            auto num_grid_rows{_<GameProperties>().k_numGridRows};
 
             return {num_grid_cols, num_grid_rows};
         }

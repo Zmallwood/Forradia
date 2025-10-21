@@ -51,8 +51,8 @@ namespace SpecializedGUI
 
       private:
         static constexpr float k_margin{0.005f};
-        static constexpr float k_slot_size{0.04f};
-        inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
+        static constexpr float k_slotSize{0.04f};
+        inline static const String k_slotImageName{"gui_inventory_win_slot_bg"};
     };
 
     class GUIPlayerBodyWindow : public Core::GUIComponentsLibrary::GUIWindow
@@ -71,11 +71,11 @@ namespace SpecializedGUI
 
         void UpdateBodyPartInfoLabels();
 
-        int sel_body_part_{0};
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_name_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_str_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_energy_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_temp_;
+        int m_selectedBodyPart{0};
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartName;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartStrength;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartEnergy;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartTemperature;
     };
 
     class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel

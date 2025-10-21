@@ -1980,11 +1980,11 @@ namespace Configuration
     class GameProperties
     {
       public:
-        static constexpr String k_game_win_title{"Forradia"};
-        static constexpr Color k_clear_color{Colors::black};
-        static constexpr int k_num_grid_rows{15};
-        static constexpr Size k_w_area_sz{120, 100};
-        static constexpr float k_world_scaling{5.0f};
+        static constexpr String k_gameWindowTitle{"Forradia"};
+        static constexpr Color k_clearColor{Colors::black};
+        static constexpr int k_numGridRows{15};
+        static constexpr Size k_worldAreaSize{120, 100};
+        static constexpr float k_worldScaling{5.0f};
     };
 }
 using namespace Configuration;
@@ -2048,8 +2048,8 @@ namespace SpecializedGUI
 
       private:
         static constexpr float k_margin{0.005f};
-        static constexpr float k_slot_size{0.04f};
-        inline static const String k_slot_img_name{"gui_inventory_win_slot_bg"};
+        static constexpr float k_slotSize{0.04f};
+        inline static const String k_slotImageName{"gui_inventory_win_slot_bg"};
     };
 
     class GUIPlayerBodyWindow : public Core::GUIComponentsLibrary::GUIWindow
@@ -2068,11 +2068,11 @@ namespace SpecializedGUI
 
         void UpdateBodyPartInfoLabels();
 
-        int sel_body_part_{0};
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_name_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_str_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_energy_;
-        SharedPtr<Core::GUIComponentsLibrary::GUILabel> lbl_body_part_temp_;
+        int m_selectedBodyPart{0};
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartName;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartStrength;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartEnergy;
+        SharedPtr<Core::GUIComponentsLibrary::GUILabel> m_labelBodyPartTemperature;
     };
 
     class GUIInteractionMenu : public Core::GUIComponentsLibrary::GUIPanel

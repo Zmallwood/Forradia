@@ -40,7 +40,7 @@ namespace Theme0
 
             sz_ = w_area_->GetSize();
 
-            scale_ = _<Theme0::GameProperties>().k_world_scaling;
+            scale_ = _<Theme0::GameProperties>().k_worldScaling;
         }
 
         void WorldGenerator::ClearWithDirt() const
