@@ -57,7 +57,7 @@ namespace Theme0
 
             if (obj_type_name == "object_fir_tree")
             {
-                num_trunk_parts = 55 + GetRandomInt(44);
+                num_trunk_parts = 25 + GetRandomInt(44);
             }
 
             else if (obj_type_name == "object_birch_tree")
@@ -73,13 +73,19 @@ namespace Theme0
             {
                 offs_x += (GetRandomInt(20) - 10) / 100.0f;
 
-                auto offset_y{i * 0.5f};
+                auto offset_y{i * 1.0f};
 
                 auto pos{PointF{offs_x, offset_y}};
 
                 auto needles_type{GetRandomInt(5)};
 
                 m_trunkParts.push_back(pos);
+
+                if (i < 20)
+                {
+                    m_needleTypes.push_back(0);
+                    continue;
+                }
 
                 String needles_name;
 
@@ -89,7 +95,7 @@ namespace Theme0
                 }
                 else if (obj_type_name == "object_birch_tree")
                 {
-                    if (i % 4 != 0)
+                    if (i % 8 != 0)
                     {
                         m_needleTypes.push_back(0);
 
