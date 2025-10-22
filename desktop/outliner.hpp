@@ -1322,7 +1322,7 @@ class RenderersCollection
             std::map<float,
                      std::map<float, std::map<int, ModelRenderingOperation>>>>
             m_operationsMemory;
-        static constexpr float k_modelScale{0.08f};
+        static constexpr float k_modelScale{0.14f};
     };
 
     enum struct FontSizes
