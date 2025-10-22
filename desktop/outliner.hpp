@@ -9,6 +9,13 @@
 #pragma diag_suppress 18
 #pragma diag_suppress 28
 #pragma diag_suppress 1696
+#pragma diag_suppress 262
+#pragma diag_suppress 243
+#pragma diag_suppress 864
+#pragma diag_suppress 169
+#pragma diag_suppress 1670
+#pragma diag_suppress 239
+#pragma diag_suppress 276
 
 namespace Forradia
 {
@@ -1926,20 +1933,20 @@ namespace WorldStructure
 
         auto &GetCreaturesMirrorRef()
         {
-            return creatures_mirror_;
+            return m_creaturesMirror;
         }
 
         auto &GetNPCsMirrorRef()
         {
-            return npcs_mirror_;
+            return m_npcsMirror;
         }
 
       private:
         void Initialize(Size w_area_sz, float world_scaling);
 
         Vector<Vector<SharedPtr<Tile>>> m_tiles;
-        std::map<SharedPtr<Creature>, Point> creatures_mirror_;
-        std::map<SharedPtr<NPC>, Point> npcs_mirror_;
+        std::map<SharedPtr<Creature>, Point> m_creaturesMirror;
+        std::map<SharedPtr<NPC>, Point> m_npcsMirror;
     };
 
     class World
