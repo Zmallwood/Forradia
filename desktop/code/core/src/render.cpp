@@ -429,7 +429,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
 
     Vector<float> verts{{x,
                          y,
-                         -elevs.at(0) * elev_h,
+                         elevs.at(0) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -437,7 +437,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          0.0,
                          x + w,
                          y,
-                         -elevs.at(1) * elev_h,
+                         elevs.at(1) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -445,7 +445,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          0.0,
                          x + w + w,
                          y,
-                         -elevs.at(2) * elev_h,
+                         elevs.at(2) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -453,7 +453,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x,
                          y + h,
-                         -elevs.at(3) * elev_h,
+                         elevs.at(3) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -461,7 +461,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x + w,
                          y + h,
-                         -elevs.at(4) * elev_h,
+                         elevs.at(4) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -469,7 +469,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x + w + w,
                          y + h,
-                         -elevs.at(5) * elev_h,
+                         elevs.at(5) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -477,7 +477,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x,
                          y + h + h,
-                         -elevs.at(6) * elev_h,
+                         elevs.at(6) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -485,7 +485,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x + w,
                          y + h + h,
-                         -elevs.at(7) * elev_h,
+                         elevs.at(7) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -493,7 +493,7 @@ void RenderersCollection::GroundRenderer::DrawTile(
                          1.0,
                          x + w + w,
                          y + h + h,
-                         -elevs.at(8) * elev_h,
+                         elevs.at(8) * elev_h,
                          1.0f,
                          1.0f,
                          1.0f,
@@ -981,7 +981,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
             {
                 vertices_vec.push_back(x + vertex.position.x * k_modelScale);
                 vertices_vec.push_back(y + vertex.position.y * k_modelScale);
-                vertices_vec.push_back(-elev * elev_h +
+                vertices_vec.push_back(elev * elev_h +
                                        vertex.position.z * k_modelScale);
                 vertices_vec.push_back(vertex.normal.x);
                 vertices_vec.push_back(vertex.normal.y);

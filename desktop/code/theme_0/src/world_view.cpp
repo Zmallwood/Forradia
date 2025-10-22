@@ -38,7 +38,7 @@ namespace Theme0
             Point3F cameraPos{
                 (worldAreaSize.width - playerPos.x + 0.5f) * rendTileSize,
                 (worldAreaSize.height - playerPos.y + 0.5f) * rendTileSize,
-                playerElev * elevHeight};
+                -playerElev * elevHeight};
 
             for (auto y = -extraRows; y < gridSize.height + extraRows; y++)
             {
@@ -171,7 +171,7 @@ namespace Theme0
                                     (yCoordinate - 1) * rendTileSize -
                                     rendTileSize / 2 - trunk_part_y * tree_w};
 
-                                auto trunk_part_z{trunk_part.y * rendTileSize};
+                                auto trunk_part_z{-trunk_part.y * rendTileSize};
 
                                 auto trunk_part_width{rendTileSize * 0.2f *
                                                       w_decr_factor};
