@@ -265,45 +265,45 @@ namespace Theme0
                                         continue;
                                     }
 
-                                    if (tl_n && tl_n->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_n && tl_n->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_s && tl_s->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_s && tl_s->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_w && tl_w->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_w && tl_w->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_e && tl_e->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_e && tl_e->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_nw && tl_nw->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_nw && tl_nw->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_ne && tl_ne->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_ne && tl_ne->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_sw && tl_sw->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_sw && tl_sw->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
-                                    if (tl_se && tl_se->GetElevation() < tl->GetElevation())
-                                    {
-                                        continue;
-                                    }
+                                    // if (tl_se && tl_se->GetElevation() < tl->GetElevation())
+                                    // {
+                                    //     continue;
+                                    // }
 
                                     tl->SetElevation(tl->GetElevation() + 1);
                                 }

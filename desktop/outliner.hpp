@@ -1298,11 +1298,18 @@ class RenderersCollection
             Initialize();
         }
 
+        ~ModelRenderer()
+        {
+            Cleanup();
+        }
+
         void DrawModel(int model_name_hash, float x, float y, float elev,
                        Point3F camera_pos, float elev_h);
 
       private:
         void Initialize();
+
+        void Cleanup();
 
         class ModelRenderingOperation
         {

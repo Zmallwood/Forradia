@@ -839,6 +839,28 @@ void RenderersCollection::ModelRenderer::Initialize()
         std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
 }
 
+void RenderersCollection::ModelRenderer::Cleanup()
+{
+    for (auto &entry : m_operationsMemory)
+    {
+        for (auto &entry2 : entry.second)
+        {
+            for (auto &entry3 : entry2.second)
+            {
+                for (auto &entry4 : entry3.second)
+                {
+                    glDeleteVertexArrays(1, &entry4.second.vao);
+
+                    glDeleteBuffers(1, &entry4.second.ibo);
+                    glDeleteBuffers(1, &entry4.second.vbo);
+                }
+            }
+        }
+    }
+
+    glUseProgram(0);
+}
+
 void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
                                                    float y, float elev,
                                                    Point3F camera_pos,
