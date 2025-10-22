@@ -158,14 +158,10 @@ namespace Theme0
                                 auto trunk_part_y{trunk_part.x};
 
                                 trunk_part_x *=
-                                    CFloat(i) / trunk_parts.size() *
-                                    std::sin(GetTicks() / 700.0f +
-                                             xCoordinate * yCoordinate);
+                                    CFloat(i) / trunk_parts.size();
 
                                 trunk_part_y *=
-                                    CFloat(i) / trunk_parts.size() *
-                                    std::sin(GetTicks() / 700.0f +
-                                             xCoordinate * yCoordinate);
+                                    CFloat(i) / trunk_parts.size();
 
                                 auto trunk_part_x_center{
                                     (xCoordinate - 1) * rendTileSize -

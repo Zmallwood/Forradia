@@ -73,7 +73,7 @@ namespace Theme0
             {
                 offs_x += (GetRandomInt(20) - 10) / 100.0f;
 
-                auto offset_y{i * 0.1f};
+                auto offset_y{i * 0.5f};
 
                 auto pos{PointF{offs_x, offset_y}};
 
