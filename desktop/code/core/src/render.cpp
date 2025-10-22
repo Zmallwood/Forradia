@@ -508,6 +508,8 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
                                                       Point3F camera_pos)
 {
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
 
     auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
@@ -843,6 +845,8 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
                                                    float elev_h)
 {
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);
 
     auto model{
         _<Core::Engine::Assets::Models::ModelBank>().GetModel(model_name_hash)};
@@ -869,49 +873,14 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA,
                         GL_ONE);
 
-    Vector<unsigned int> indices_vec;
-
-    Vector<glm::vec3> normals;
-
-    Vector<float> vertices_vec;
-
-    auto i{0};
-
-    for (auto &mesh : meshes)
-    {
-        for (auto &vertex : mesh.vertices)
-        {
-            vertices_vec.push_back(x + vertex.position.x * k_modelScale);
-            vertices_vec.push_back(y + vertex.position.y * k_modelScale);
-            vertices_vec.push_back(-elev * elev_h +
-                                   vertex.position.z * k_modelScale);
-            vertices_vec.push_back(vertex.normal.x);
-            vertices_vec.push_back(vertex.normal.y);
-            vertices_vec.push_back(vertex.normal.z);
-            vertices_vec.push_back(vertex.tex_coord.x);
-            vertices_vec.push_back(vertex.tex_coord.y);
-        }
-
-        for (auto &index : mesh.indices)
-        {
-            indices_vec.push_back(i + mesh.indices[index]);
-        }
-
-        i += mesh.vertices.size();
-    }
-
-    auto vertices_count{vertices_vec.size() / 8};
-    auto indices_count{indices_vec.size()};
-    auto vertices{vertices_vec.data()};
-    auto indices{indices_vec.data()};
-
     GLuint obj_vao;
     GLuint obj_ibo;
     GLuint obj_vbo;
 
     auto need_create_buffers{false};
 
-    if (m_operationsMemory.contains(x) && m_operationsMemory.at(x).contains(y) &&
+    if (m_operationsMemory.contains(x) &&
+        m_operationsMemory.at(x).contains(y) &&
         m_operationsMemory.at(x).at(y).contains(elev) &&
         m_operationsMemory.at(x).at(y).at(elev).contains(model_name_hash))
     {
@@ -930,7 +899,8 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     if (!need_create_buffers)
     {
-        auto &entry = m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
+        auto &entry =
+            m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
         obj_vao = entry.vao;
         obj_ibo = entry.ibo;
@@ -974,6 +944,43 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     }
     if (need_fill_buffers)
     {
+
+        Vector<unsigned int> indices_vec;
+
+        Vector<glm::vec3> normals;
+
+        Vector<float> vertices_vec;
+
+        auto i{0};
+
+        for (auto &mesh : meshes)
+        {
+            for (auto &vertex : mesh.vertices)
+            {
+                vertices_vec.push_back(x + vertex.position.x * k_modelScale);
+                vertices_vec.push_back(y + vertex.position.y * k_modelScale);
+                vertices_vec.push_back(-elev * elev_h +
+                                       vertex.position.z * k_modelScale);
+                vertices_vec.push_back(vertex.normal.x);
+                vertices_vec.push_back(vertex.normal.y);
+                vertices_vec.push_back(vertex.normal.z);
+                vertices_vec.push_back(vertex.tex_coord.x);
+                vertices_vec.push_back(vertex.tex_coord.y);
+            }
+
+            for (auto &index : mesh.indices)
+            {
+                indices_vec.push_back(i + mesh.indices[index]);
+            }
+
+            i += mesh.vertices.size();
+        }
+
+        auto vertices_count{vertices_vec.size() / 8};
+        auto indices_count{indices_vec.size()};
+        auto vertices{vertices_vec.data()};
+        auto indices{indices_vec.data()};
+
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
 
         glBufferData(GL_ELEMENT_ARRAY_BUFFER,
@@ -999,7 +1006,14 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
                               (void *)(sizeof(vertices[0]) * 6));
 
         glEnableVertexAttribArray(2);
+
+        auto &entry =
+            m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
+
+        entry.verticesCount = vertices_count;
     }
+
+    auto &entry = m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
     glm::mat4 model_matrix = glm::mat4(1.0f);
 
@@ -1044,7 +1058,7 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
 
     glBindTexture(GL_TEXTURE_2D, tex_id);
 
-    glDrawElements(GL_TRIANGLES, vertices_count, GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, entry.verticesCount, GL_UNSIGNED_INT, nullptr);
 
     glBindVertexArray(0);
 

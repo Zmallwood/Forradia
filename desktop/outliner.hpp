@@ -1310,6 +1310,7 @@ class RenderersCollection
             float x;
             float y;
             float z;
+            int verticesCount;
             GLuint vao;
             GLuint ibo;
             GLuint vbo;
