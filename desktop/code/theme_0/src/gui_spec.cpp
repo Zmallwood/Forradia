@@ -107,7 +107,7 @@ namespace SpecializedGUI
             [this]
             {
                 SelectBodyPart(CInt(
-                    Theme0::GameplayCore::Player::BodyPartTypes::overall_body));
+                    Theme0::GameplayCore::Player::BodyPartTypes::OverallBody));
                 UpdateBodyPartInfoLabels();
             },
             "gui_image_overall_body", "gui_image_overall_body_hovered")};
@@ -121,7 +121,7 @@ namespace SpecializedGUI
             [this]
             {
                 SelectBodyPart(CInt(
-                    Theme0::GameplayCore::Player::BodyPartTypes::right_arm));
+                    Theme0::GameplayCore::Player::BodyPartTypes::RightArm));
                 UpdateBodyPartInfoLabels();
             },
             "gui_image_right_arm", "gui_image_right_arm_hovered")};
@@ -135,7 +135,7 @@ namespace SpecializedGUI
                 [this]
                 {
                     SelectBodyPart(CInt(
-                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
+                        Theme0::GameplayCore::Player::BodyPartTypes::LeftArm));
                     UpdateBodyPartInfoLabels();
                 },
                 "gui_image_left_arm", "gui_image_left_arm_hovered")};
@@ -148,7 +148,7 @@ namespace SpecializedGUI
             [this]
             {
                 SelectBodyPart(
-                    CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs));
+                    CInt(Theme0::GameplayCore::Player::BodyPartTypes::Legs));
                 UpdateBodyPartInfoLabels();
             },
             "gui_image_legs", "gui_image_legs_hovered")};
@@ -188,16 +188,16 @@ namespace SpecializedGUI
             _<Theme0::GameplayCore::Player::PlayerCharacter>().GetBodyRef()};
 
         constexpr auto overallBody{
-            CInt(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::OverallBody)};
 
         constexpr auto rightArm{
-            CInt(Theme0::GameplayCore::Player::BodyPartTypes::right_arm)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::RightArm)};
 
         constexpr auto leftArm{
-            CInt(Theme0::GameplayCore::Player::BodyPartTypes::left_arm)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::LeftArm)};
 
         constexpr auto legs{
-            CInt(Theme0::GameplayCore::Player::BodyPartTypes::legs)};
+            CInt(Theme0::GameplayCore::Player::BodyPartTypes::Legs)};
 
         switch (m_selectedBodyPart)
         {
@@ -207,20 +207,20 @@ namespace SpecializedGUI
 
             auto strength{playerBody
                               .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                                  BodyPartTypes::overall_body)
+                                                  BodyPartTypes::OverallBody)
                               ->GetStrength()};
 
             m_labelBodyPartStrength->SetText(
                 fmt::format("Strength: {:.2f}", strength));
             auto maxEnergy{playerBody
                                .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                                   BodyPartTypes::overall_body)
+                                                   BodyPartTypes::OverallBody)
                                ->GetMaxEnergy()};
 
             auto currentEnergy{
                 playerBody
                     .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                        BodyPartTypes::overall_body)
+                                        BodyPartTypes::OverallBody)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
@@ -229,7 +229,7 @@ namespace SpecializedGUI
             auto temperature{
                 playerBody
                     .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                        BodyPartTypes::overall_body)
+                                        BodyPartTypes::OverallBody)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
@@ -245,7 +245,7 @@ namespace SpecializedGUI
             auto strength{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::RightArm)
                     ->GetStrength()};
 
             m_labelBodyPartStrength->SetText(
@@ -254,13 +254,13 @@ namespace SpecializedGUI
             auto maxEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::RightArm)
                     ->GetMaxEnergy()};
 
             auto currentEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::RightArm)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
@@ -269,7 +269,7 @@ namespace SpecializedGUI
             auto temperature{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::RightArm)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
@@ -285,7 +285,7 @@ namespace SpecializedGUI
             auto strength{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::LeftArm)
                     ->GetStrength()};
 
             m_labelBodyPartStrength->SetText(
@@ -294,13 +294,13 @@ namespace SpecializedGUI
             auto maxEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::LeftArm)
                     ->GetMaxEnergy()};
 
             auto currentEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::LeftArm)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
@@ -309,7 +309,7 @@ namespace SpecializedGUI
             auto temperature{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
+                        Theme0::GameplayCore::Player::BodyPartTypes::LeftArm)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
@@ -325,7 +325,7 @@ namespace SpecializedGUI
             auto strength{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::Legs)
                     ->GetStrength()};
 
             m_labelBodyPartStrength->SetText(
@@ -334,13 +334,13 @@ namespace SpecializedGUI
             auto maxEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::Legs)
                     ->GetMaxEnergy()};
 
             auto currentEnergy{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::Legs)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
@@ -349,7 +349,7 @@ namespace SpecializedGUI
             auto temperature{
                 playerBody
                     .GetBodyPartPtr(
-                        Theme0::GameplayCore::Player::BodyPartTypes::legs)
+                        Theme0::GameplayCore::Player::BodyPartTypes::Legs)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(

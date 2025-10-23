@@ -423,73 +423,73 @@ namespace Theme0
                             yCoordinate > prevYCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::s);
+                                Theme0::WorldStructure::Directions::S);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::n);
+                                Theme0::WorldStructure::Directions::N);
                         }
                         else if (xCoordinate == prevXCoordinate &&
                                  yCoordinate < prevYCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::n);
+                                Theme0::WorldStructure::Directions::N);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::s);
+                                Theme0::WorldStructure::Directions::S);
                         }
                         else if (yCoordinate == prevYCoordinate &&
                                  xCoordinate > prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::e);
+                                Theme0::WorldStructure::Directions::E);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::w);
+                                Theme0::WorldStructure::Directions::W);
                         }
                         else if (yCoordinate == prevYCoordinate &&
                                  xCoordinate < prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::w);
+                                Theme0::WorldStructure::Directions::W);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::e);
+                                Theme0::WorldStructure::Directions::E);
                         }
                         else if (yCoordinate < prevYCoordinate &&
                                  xCoordinate > prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::ne);
+                                Theme0::WorldStructure::Directions::NE);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::sw);
+                                Theme0::WorldStructure::Directions::SW);
                         }
                         else if (yCoordinate > prevYCoordinate &&
                                  xCoordinate > prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::se);
+                                Theme0::WorldStructure::Directions::SE);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::nw);
+                                Theme0::WorldStructure::Directions::NW);
                         }
                         else if (yCoordinate < prevYCoordinate &&
                                  xCoordinate < prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::nw);
+                                Theme0::WorldStructure::Directions::NW);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::se);
+                                Theme0::WorldStructure::Directions::SE);
                         }
                         else if (yCoordinate > prevYCoordinate &&
                                  xCoordinate < prevXCoordinate)
                         {
                             prevTile->SetRiverDirection1(
-                                Theme0::WorldStructure::Directions::sw);
+                                Theme0::WorldStructure::Directions::SW);
 
                             tile->SetRiverDirection2(
-                                Theme0::WorldStructure::Directions::ne);
+                                Theme0::WorldStructure::Directions::NE);
                         }
                     }
 

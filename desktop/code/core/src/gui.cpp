@@ -113,7 +113,7 @@ void GUIComponentsLibrary::GUIButton::UpdateDerived()
         SetBackgroundImage(m_hoveredBackgroundImage);
 
         _<Engine::Cursor>().SetCursorStyle(
-            Engine::Cursor::CursorStyles::hovering_clickable_gui);
+            Engine::Cursor::CursorStyles::HoveringClickableGUI);
 
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenFiredPickResult())
@@ -148,7 +148,7 @@ void GUIComponentsLibrary::GUIMovablePanel::UpdateDerived()
     if (dragArea.Contains(mousePosition))
     {
         _<Engine::Cursor>().SetCursorStyle(
-            Engine::Cursor::CursorStyles::hovering_clickable_gui);
+            Engine::Cursor::CursorStyles::HoveringClickableGUI);
 
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenFiredPickResult())

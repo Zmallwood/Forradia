@@ -52,10 +52,10 @@ namespace Theme0
         {
             void PlayerBody::Initialize()
             {
-                m_bodyParts.insert({BodyPartTypes::overall_body, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::right_arm, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::left_arm, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::legs, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::OverallBody, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::RightArm, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::LeftArm, BodyPart()});
+                m_bodyParts.insert({BodyPartTypes::Legs, BodyPart()});
             }
 
             BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes type)

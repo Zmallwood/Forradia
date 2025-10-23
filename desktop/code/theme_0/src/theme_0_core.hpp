@@ -24,11 +24,11 @@ namespace Theme0
         {
             enum class BodyPartTypes
             {
-                none,
-                overall_body,
-                right_arm,
-                left_arm,
-                legs
+                None,
+                OverallBody,
+                RightArm,
+                LeftArm,
+                Legs
             };
 
             class BodyPart

@@ -13,15 +13,15 @@ namespace WorldStructure
 {
     enum class Directions
     {
-        none,
-        n,
-        e,
-        s,
-        w,
-        ne,
-        se,
-        sw,
-        nw
+        None,
+        N,
+        E,
+        S,
+        W,
+        NE,
+        SE,
+        SW,
+        NW
     };
 
     class Creature
@@ -295,8 +295,8 @@ namespace WorldStructure
         SharedPtr<Forradia::Theme0::WorldStructure::NPC> m_npc;
         int m_elevation{0};
         int m_waterDepth{0};
-        Directions m_riverDirection1{Directions::none};
-        Directions m_riverDirection2{Directions::none};
+        Directions m_riverDirection1{Directions::None};
+        Directions m_riverDirection2{Directions::None};
     };
 
     class WorldArea

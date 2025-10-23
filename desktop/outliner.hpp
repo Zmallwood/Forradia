@@ -530,9 +530,9 @@ namespace Core
           public:
             enum class CursorStyles
             {
-                normal,
-                hovering_clickable_gui,
-                hovering_creature
+                Normal,
+                HoveringClickableGUI,
+                HoveringCreature
             };
 
             Cursor()
@@ -556,7 +556,7 @@ namespace Core
 
             constexpr static float k_cursorSize{0.05f};
 
-            CursorStyles m_cursorStyle{CursorStyles::normal};
+            CursorStyles m_cursorStyle{CursorStyles::Normal};
         };
 
         class Assets
@@ -1397,11 +1397,11 @@ namespace Theme0
         {
             enum class BodyPartTypes
             {
-                none,
-                overall_body,
-                right_arm,
-                left_arm,
-                legs
+                None,
+                OverallBody,
+                RightArm,
+                LeftArm,
+                Legs
             };
 
             class BodyPart
@@ -1638,15 +1638,15 @@ namespace WorldStructure
 {
     enum class Directions
     {
-        none,
-        n,
-        e,
-        s,
-        w,
-        ne,
-        se,
-        sw,
-        nw
+        None,
+        N,
+        E,
+        S,
+        W,
+        NE,
+        SE,
+        SW,
+        NW
     };
 
     class Creature
@@ -1920,8 +1920,8 @@ namespace WorldStructure
         SharedPtr<Forradia::Theme0::WorldStructure::NPC> m_npc;
         int m_elevation{0};
         int m_waterDepth{0};
-        Directions m_riverDirection1{Directions::none};
-        Directions m_riverDirection2{Directions::none};
+        Directions m_riverDirection1{Directions::None};
+        Directions m_riverDirection2{Directions::None};
     };
 
     class WorldArea

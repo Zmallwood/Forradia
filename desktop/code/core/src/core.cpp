@@ -199,7 +199,7 @@ namespace Core
 
     void Engine::Cursor::ResetStyleToNormal()
     {
-        m_cursorStyle = CursorStyles::normal;
+        m_cursorStyle = CursorStyles::Normal;
     }
 
     void Engine::Cursor::Render()
@@ -215,13 +215,13 @@ namespace Core
 
         switch (m_cursorStyle)
         {
-        case CursorStyles::normal:
+        case CursorStyles::Normal:
 
             cursorImage = "curs_normal";
 
             break;
 
-        case CursorStyles::hovering_clickable_gui:
+        case CursorStyles::HoveringClickableGUI:
 
             cursorImage = "curs_hovering_clickable_gui";
 

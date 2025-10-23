@@ -98,11 +98,11 @@ namespace Theme0
                 .def("set_curs_style", &Engine::Cursor::SetCursorStyle);
 
             py::enum_<Engine::Cursor::CursorStyles>(m, "CursorStyles")
-                .value("normal", Engine::Cursor::CursorStyles::normal)
+                .value("normal", Engine::Cursor::CursorStyles::Normal)
                 .value("hovering_clickable_gui",
-                       Engine::Cursor::CursorStyles::hovering_clickable_gui)
+                       Engine::Cursor::CursorStyles::HoveringClickableGUI)
                 .value("hovering_creature",
-                       Engine::Cursor::CursorStyles::hovering_creature);
+                       Engine::Cursor::CursorStyles::HoveringCreature);
 
             py::class_<GUIComponentsLibrary::GUIChatBox,
                        SharedPtr<GUIComponentsLibrary::GUIChatBox>,

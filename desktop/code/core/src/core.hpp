@@ -64,9 +64,9 @@ namespace Core
           public:
             enum class CursorStyles
             {
-                normal,
-                hovering_clickable_gui,
-                hovering_creature
+                Normal,
+                HoveringClickableGUI,
+                HoveringCreature
             };
 
             Cursor()
@@ -90,7 +90,7 @@ namespace Core
 
             constexpr static float k_cursorSize{0.05f};
 
-            CursorStyles m_cursorStyle{CursorStyles::normal};
+            CursorStyles m_cursorStyle{CursorStyles::Normal};
         };
 
         class Assets
