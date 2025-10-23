@@ -58,11 +58,11 @@ namespace Theme0
                 m_bodyParts.insert({BodyPartTypes::Legs, BodyPart()});
             }
 
-            BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes type)
+            BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes bodyPartType)
             {
-                if (m_bodyParts.contains(type))
+                if (m_bodyParts.contains(bodyPartType))
                 {
-                    return &m_bodyParts.at(type);
+                    return &m_bodyParts.at(bodyPartType);
                 }
 
                 return nullptr;

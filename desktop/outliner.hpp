@@ -1452,7 +1452,7 @@ namespace Theme0
                     Initialize();
                 }
 
-                BodyPart *GetBodyPartPtr(BodyPartTypes type);
+                BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
 
               private:
                 void Initialize();

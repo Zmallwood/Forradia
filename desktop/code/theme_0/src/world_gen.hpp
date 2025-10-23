@@ -31,8 +31,8 @@ namespace WorldGeneration
         void ClearWithDirt() const;
         void GenerateGrass() const;
         void GenerateLakes() const;
-        void GenerateSingleLake(int min_x, int min_y, int max_x, int max_y,
-                                int recurs) const;
+        void GenerateSingleLake(int minX, int minY, int maxX, int maxY,
+                                int recursion) const;
         void GenerateElevation() const;
         void GenerateRock() const;
         void GenerateRivers() const;

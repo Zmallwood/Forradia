@@ -94,16 +94,16 @@ namespace Theme0
             }
         }
 
-        void WorldGenerator::GenerateSingleLake(int min_x, int min_y, int max_x,
-                                                int max_y, int recurs) const
+        void WorldGenerator::GenerateSingleLake(int minX, int minY, int maxX,
+                                                int maxY, int recursion) const
         {
-            if (recurs == 0)
+            if (recursion == 0)
             {
                 return;
             }
 
-            auto xCenter{min_x + GetRandomInt(max_x - min_x)};
-            auto yCenter{min_y + GetRandomInt(max_y - min_y)};
+            auto xCenter{minX + GetRandomInt(maxX - minX)};
+            auto yCenter{minY + GetRandomInt(maxY - minY)};
 
             auto maxRadius{CInt(3 * m_scale + GetRandomInt(5 * m_scale))};
 
@@ -210,7 +210,7 @@ namespace Theme0
 
             GenerateSingleLake(xCenter - maxRadius, yCenter - maxRadius,
                                xCenter + maxRadius, yCenter + maxRadius,
-                               recurs - 1);
+                               recursion - 1);
         }
 
         void WorldGenerator::GenerateLakes() const
