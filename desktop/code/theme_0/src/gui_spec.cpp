@@ -20,11 +20,12 @@ namespace SpecializedGUI
     {
         GUIPanel::RenderDerived();
 
-        auto b{GetBounds()};
+        auto bounds{GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().DrawString(
-            _<Theme0::GameplayCore::Player::PlayerCharacter>().GetName(), b.x + 0.01f,
-            b.y + 0.01f, Engine::Renderers::FontSizes::_26);
+            _<Theme0::GameplayCore::Player::PlayerCharacter>().GetName(),
+            bounds.x + 0.01f, bounds.y + 0.01f,
+            Engine::Renderers::FontSizes::_26);
     }
 
     void GUISystemMenu::Initialize()
@@ -60,57 +61,63 @@ namespace SpecializedGUI
     {
         GUIWindow::RenderDerived();
 
-        auto b{GetBounds()};
+        auto bounds{GetBounds()};
 
-        auto margin_x{k_margin};
+        auto marginX{k_margin};
 
-        auto margin_y{ConvertWidthToHeight(k_margin, _<Engine::SDLDevice>().GetWindow())};
+        auto marginY{
+            ConvertWidthToHeight(k_margin, _<Engine::SDLDevice>().GetWindow())};
 
-        auto x_start{b.x + margin_x};
+        auto xStart{bounds.x + marginX};
 
-        auto y_start{b.y + margin_y + GetGUIWindowTitleBar()->GetBounds().height};
+        auto yStart{bounds.y + marginY +
+                    GetGUIWindowTitleBar()->GetBounds().height};
 
-        auto slot_w{k_slotSize};
+        auto slotWidth{k_slotSize};
 
-        auto slot_h{ConvertWidthToHeight(k_slotSize, _<Engine::SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(
+            k_slotSize, _<Engine::SDLDevice>().GetWindow())};
 
-        auto num_cols{CInt((b.width - 2 * margin_x) / slot_w)};
+        auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
 
-        auto num_rows{CInt((b.height - 2 * margin_y - (y_start - b.y)) / slot_h)};
+        auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) /
+                          slotHeight)};
 
-        for (auto y = 0; y < num_rows; y++)
+        for (auto y = 0; y < numRows; y++)
         {
-            for (auto x = 0; x < num_cols; x++)
+            for (auto x = 0; x < numColumns; x++)
             {
                 _<Engine::Renderers::Image2DRenderer>().DrawImage(
-                    k_slotImageName, x_start + x * (slot_w + margin_x),
-                    y_start + y * (slot_h + margin_y), slot_w, slot_h);
+                    k_slotImageName, xStart + x * (slotWidth + marginX),
+                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight);
             }
         }
     }
 
     void GUIPlayerBodyWindow::Initialize()
     {
-        auto img_w{0.07f};
+        auto imageWidth{0.07f};
 
-        auto img_h{ConvertWidthToHeight(img_w, _<Engine::SDLDevice>().GetWindow())};
+        auto imageHeight{ConvertWidthToHeight(
+            imageWidth, _<Engine::SDLDevice>().GetWindow())};
 
-        auto overall_body_img_btn{
-            std::make_shared<GUIComponentsLibrary::GUIButton>(
-                0.1f - img_w / 2, 0.04f, img_w, img_h, "",
-                [this]
-                {
-                    SelectBodyPart(CInt(Theme0::GameplayCore::Player::
-                                            BodyPartTypes::overall_body));
-                    UpdateBodyPartInfoLabels();
-                },
-                "gui_image_overall_body", "gui_image_overall_body_hovered")};
-
-        AddChildComponent(overall_body_img_btn);
-
-        auto right_arm_body_img_btn{std::make_shared<
+        auto overallBodyImageButton{std::make_shared<
             GUIComponentsLibrary::GUIButton>(
-            0.1f - img_w / 2 - img_w, 0.04f, img_w, img_h, "",
+            0.1f - imageWidth / 2, 0.04f, imageWidth, imageHeight, "",
+            [this]
+            {
+                SelectBodyPart(CInt(
+                    Theme0::GameplayCore::Player::BodyPartTypes::overall_body));
+                UpdateBodyPartInfoLabels();
+            },
+            "gui_image_overall_body", "gui_image_overall_body_hovered")};
+
+        AddChildComponent(overallBodyImageButton);
+
+        auto rightArmBodyImageButton{std::make_shared<
+            GUIComponentsLibrary::GUIButton>(
+            0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth, imageHeight,
+            "",
             [this]
             {
                 SelectBodyPart(CInt(
@@ -119,23 +126,25 @@ namespace SpecializedGUI
             },
             "gui_image_right_arm", "gui_image_right_arm_hovered")};
 
-        AddChildComponent(right_arm_body_img_btn);
+        AddChildComponent(rightArmBodyImageButton);
 
-        auto left_arm_body_img_btn{std::make_shared<
-            GUIComponentsLibrary::GUIButton>(
-            0.1f - img_w / 2 + img_w, 0.04f, img_w, img_h, "",
-            [this]
-            {
-                SelectBodyPart(CInt(
-                    Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
-                UpdateBodyPartInfoLabels();
-            },
-            "gui_image_left_arm", "gui_image_left_arm_hovered")};
+        auto leftArmBodyImageButton{
+            std::make_shared<GUIComponentsLibrary::GUIButton>(
+                0.1f - imageWidth / 2 + imageWidth, 0.04f, imageWidth,
+                imageHeight, "",
+                [this]
+                {
+                    SelectBodyPart(CInt(
+                        Theme0::GameplayCore::Player::BodyPartTypes::left_arm));
+                    UpdateBodyPartInfoLabels();
+                },
+                "gui_image_left_arm", "gui_image_left_arm_hovered")};
 
-        AddChildComponent(left_arm_body_img_btn);
+        AddChildComponent(leftArmBodyImageButton);
 
-        auto legs_img_btn{std::make_shared<GUIComponentsLibrary::GUIButton>(
-            0.1f - img_w / 2, 0.04f + img_h, img_w, img_h, "",
+        auto legsImageButton{std::make_shared<GUIComponentsLibrary::GUIButton>(
+            0.1f - imageWidth / 2, 0.04f + imageHeight, imageWidth, imageHeight,
+            "",
             [this]
             {
                 SelectBodyPart(
@@ -144,21 +153,23 @@ namespace SpecializedGUI
             },
             "gui_image_legs", "gui_image_legs_hovered")};
 
-        AddChildComponent(legs_img_btn);
+        AddChildComponent(legsImageButton);
 
         m_labelBodyPartName = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
             Colors::yellow_transp);
 
-        m_labelBodyPartStrength = std::make_shared<GUIComponentsLibrary::GUILabel>(
-            0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
+        m_labelBodyPartStrength =
+            std::make_shared<GUIComponentsLibrary::GUILabel>(
+                0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
 
         m_labelBodyPartEnergy =
             std::make_shared<GUIComponentsLibrary::GUILabel>(
                 0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
 
-        m_labelBodyPartTemperature = std::make_shared<GUIComponentsLibrary::GUILabel>(
-            0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
+        m_labelBodyPartTemperature =
+            std::make_shared<GUIComponentsLibrary::GUILabel>(
+                0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
 
         AddChildComponent(m_labelBodyPartName);
         AddChildComponent(m_labelBodyPartStrength);
@@ -173,15 +184,16 @@ namespace SpecializedGUI
 
     void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
     {
-        auto &p_body{_<Theme0::GameplayCore::Player::PlayerCharacter>().GetBodyRef()};
+        auto &playerBody{
+            _<Theme0::GameplayCore::Player::PlayerCharacter>().GetBodyRef()};
 
-        constexpr auto overall_body{
+        constexpr auto overallBody{
             CInt(Theme0::GameplayCore::Player::BodyPartTypes::overall_body)};
 
-        constexpr auto right_arm{
+        constexpr auto rightArm{
             CInt(Theme0::GameplayCore::Player::BodyPartTypes::right_arm)};
 
-        constexpr auto left_arm{
+        constexpr auto leftArm{
             CInt(Theme0::GameplayCore::Player::BodyPartTypes::left_arm)};
 
         constexpr auto legs{
@@ -189,112 +201,119 @@ namespace SpecializedGUI
 
         switch (m_selectedBodyPart)
         {
-        case overall_body:
+        case overallBody:
         {
             m_labelBodyPartName->SetText("Body part: Overall body");
 
-            auto String{p_body
-                         .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                            BodyPartTypes::overall_body)
-                         ->GetStrength()};
+            auto strength{playerBody
+                              .GetBodyPartPtr(Theme0::GameplayCore::Player::
+                                                  BodyPartTypes::overall_body)
+                              ->GetStrength()};
 
-            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
-            auto max_energy{
-                p_body
-                    .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                       BodyPartTypes::overall_body)
-                    ->GetMaxEnergy()};
+            m_labelBodyPartStrength->SetText(
+                fmt::format("Strength: {:.2f}", strength));
+            auto maxEnergy{playerBody
+                               .GetBodyPartPtr(Theme0::GameplayCore::Player::
+                                                   BodyPartTypes::overall_body)
+                               ->GetMaxEnergy()};
 
-            auto curr_energy{
-                p_body
+            auto currentEnergy{
+                playerBody
                     .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                       BodyPartTypes::overall_body)
+                                        BodyPartTypes::overall_body)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
-                "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
+                "Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temp{p_body
-                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                             BodyPartTypes::overall_body)
-                          ->GetTemperature()};
+            auto temperature{
+                playerBody
+                    .GetBodyPartPtr(Theme0::GameplayCore::Player::
+                                        BodyPartTypes::overall_body)
+                    ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
-                fmt::format("Temperature: {:.2f} C", temp));
+                fmt::format("Temperature: {:.2f} C", temperature));
         }
 
         break;
 
-        case right_arm:
+        case rightArm:
         {
             m_labelBodyPartName->SetText("Body part: Right arm");
 
-            auto String{p_body
-                         .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                            BodyPartTypes::right_arm)
-                         ->GetStrength()};
+            auto strength{
+                playerBody
+                    .GetBodyPartPtr(
+                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                    ->GetStrength()};
 
-            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(
+                fmt::format("Strength: {:.2f}", strength));
 
-            auto max_energy{p_body
-                                .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                                   BodyPartTypes::right_arm)
-                                ->GetMaxEnergy()};
+            auto maxEnergy{
+                playerBody
+                    .GetBodyPartPtr(
+                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                    ->GetMaxEnergy()};
 
-            auto curr_energy{p_body
-                                 .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                                    BodyPartTypes::right_arm)
-                                 ->GetCurrentEnergy()};
+            auto currentEnergy{
+                playerBody
+                    .GetBodyPartPtr(
+                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                    ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
-                "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
+                "Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temp{p_body
-                          .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                             BodyPartTypes::right_arm)
-                          ->GetTemperature()};
+            auto temperature{
+                playerBody
+                    .GetBodyPartPtr(
+                        Theme0::GameplayCore::Player::BodyPartTypes::right_arm)
+                    ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
-                fmt::format("Temperature: {:.2f} C", temp));
+                fmt::format("Temperature: {:.2f} C", temperature));
         }
 
         break;
 
-        case left_arm:
+        case leftArm:
         {
             m_labelBodyPartName->SetText("Body part: Left arm");
 
-            auto String{
-                p_body
+            auto strength{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetStrength()};
 
-            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(
+                fmt::format("Strength: {:.2f}", strength));
 
-            auto max_energy{
-                p_body
+            auto maxEnergy{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetMaxEnergy()};
 
-            auto curr_energy{
-                p_body
+            auto currentEnergy{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
-                "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
+                "Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temp{
-                p_body
+            auto temperature{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::left_arm)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
-                fmt::format("Temperature: {:.2f} C", temp));
+                fmt::format("Temperature: {:.2f} C", temperature));
         }
 
         break;
@@ -303,37 +322,38 @@ namespace SpecializedGUI
         {
             m_labelBodyPartName->SetText("Body part: Legs");
 
-            auto String{
-                p_body
+            auto strength{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetStrength()};
 
-            m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", String));
+            m_labelBodyPartStrength->SetText(
+                fmt::format("Strength: {:.2f}", strength));
 
-            auto max_energy{
-                p_body
+            auto maxEnergy{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetMaxEnergy()};
 
-            auto curr_energy{
-                p_body
+            auto currentEnergy{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(fmt::format(
-                "Energy: {:.2f} / {:.2f}", curr_energy, max_energy));
+                "Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temp{
-                p_body
+            auto temperature{
+                playerBody
                     .GetBodyPartPtr(
                         Theme0::GameplayCore::Player::BodyPartTypes::legs)
                     ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
-                fmt::format("Temperature: {:.2f} C", temp));
+                fmt::format("Temperature: {:.2f} C", temperature));
         }
 
         break;
@@ -349,13 +369,13 @@ namespace SpecializedGUI
     {
         m_entries.clear();
 
-        auto hov_tl{_<TileHovering>().GetHoveredCoordinate()};
+        auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
 
-        auto w_area{_<World>().GetCurrentWorldArea()};
+        auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto tl{w_area->GetTile(hov_tl.x, hov_tl.y)};
+        auto tile{worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
-        if (tl && tl->GetGround() == Hash("ground_grass"))
+        if (tile && tile->GetGround() == Hash("ground_grass"))
         {
             m_entries.push_back(
                 {"Forage", [=]()
@@ -365,11 +385,11 @@ namespace SpecializedGUI
                  }});
         }
 
-        auto objects{tl->GetObjectsStack()->GetObjects()};
+        auto objects{tile->GetObjectsStack()->GetObjects()};
 
-        for (auto &obj : objects)
+        for (auto &object : objects)
         {
-            auto type{obj->GetType()};
+            auto type{object->GetType()};
 
             if (type == Hash("object_fir_tree") ||
                 type == Hash("object_birch_tree"))
@@ -388,22 +408,23 @@ namespace SpecializedGUI
     {
         GUIPanel::UpdateDerived();
 
-        auto b{GetBounds()};
+        auto bounds{GetBounds()};
 
-        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+        auto mousePosition{
+            GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
         auto i{0};
 
         for (auto &entry : m_entries)
         {
-            auto menu_entry_rect{RectF{b.x + 0.01f + k_indentWidth,
-                                        b.y + 0.01f + k_lineHeight * (i + 1), b.width,
-                                        k_lineHeight}};
+            auto menuEntryRect{RectF{bounds.x + 0.01f + k_indentWidth,
+                                     bounds.y + 0.01f + k_lineHeight * (i + 1),
+                                     bounds.width, k_lineHeight}};
 
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .HasBeenFired())
             {
-                if (menu_entry_rect.Contains(mouse_pos))
+                if (menuEntryRect.Contains(mousePosition))
                 {
                     entry.GetAction()();
                 }
@@ -424,10 +445,10 @@ namespace SpecializedGUI
     {
         GUIPanel::RenderDerived();
 
-        auto b{GetBounds()};
+        auto bounds{GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().DrawString(
-            "Actions", b.x + 0.01f, b.y + 0.01f,
+            "Actions", bounds.x + 0.01f, bounds.y + 0.01f,
             Engine::Renderers::FontSizes::_20, false, Colors::yellow_transp);
 
         auto i{0};
@@ -435,8 +456,8 @@ namespace SpecializedGUI
         for (auto &entry : m_entries)
         {
             _<Engine::Renderers::TextRenderer>().DrawString(
-                entry.GetLabel(), b.x + 0.01f + k_indentWidth,
-                b.y + 0.01f + (i + 1) * k_lineHeight,
+                entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
+                bounds.y + 0.01f + (i + 1) * k_lineHeight,
                 Engine::Renderers::FontSizes::_20);
 
             ++i;

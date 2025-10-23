@@ -274,7 +274,7 @@ namespace Theme0
                     }
 
                     npc->SetTicksNextSpontaneousSpeech(
-                        now + 5 * k_one_sec_millis + (6000 * k_one_sec_millis));
+                        now + 5 * k_oneSecMillis + (6000 * k_oneSecMillis));
                 }
                 if (now <
                     npc->GetTicksLastMovement() + InvertMovementSpeed(npc->GetMovementSpeed()))

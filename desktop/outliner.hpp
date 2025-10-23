@@ -63,7 +63,7 @@ namespace Common
     namespace Constants
     {
         // Constants that may be used throughout the project.
-        static constexpr int k_one_sec_millis{
+        static constexpr int k_oneSecMillis{
             1000}; ///< Number of milliseconds in one second.
     }
     using namespace Constants;
@@ -80,8 +80,9 @@ namespace Common
         template <class T> SharedPtr<T> __()
         {
             // Create singleton instance only once.
-            static SharedPtr<T> inst = std::make_shared<T>();
-            return inst;
+            static SharedPtr<T> instance{std::make_shared<T>()};
+
+            return instance;
         }
 
         /**
@@ -112,30 +113,30 @@ namespace Common
             /**
              * Operator overloading for SDL_Window objects.
              *
-             * \param win SDL window pointer to free resources for.
+             * \param window SDL window pointer to free resources for.
              */
-            void operator()(SDL_Window *win) const;
+            void operator()(SDL_Window *window) const;
 
             /**
              * Operator overloading for SDL_Renderer objects.
              *
-             * \param rend SDL renderer pointer to free resources for.
+             * \param renderer SDL renderer pointer to free resources for.
              */
-            void operator()(SDL_Renderer *rend) const;
+            void operator()(SDL_Renderer *renderer) const;
 
             /**
              * Operator overloading for SDL_Surface objects.
              *
-             * \param surf SDL surface pointer to free resources for.
+             * \param surface SDL surface pointer to free resources for.
              */
-            void operator()(SDL_Surface *surf) const;
+            void operator()(SDL_Surface *surface) const;
 
             /**
              * Operator overloading for SDL_Texture objects.
              *
-             * \param tex SDL texture pointer to free resources for.
+             * \param texture SDL texture pointer to free resources for.
              */
-            void operator()(SDL_Texture *tex) const;
+            void operator()(SDL_Texture *texture) const;
 
             /**
              * Operator overloading for TTF_Font objects.
@@ -157,10 +158,10 @@ namespace Common
             /**
              * Equality operator between two Points.
              *
-             * \param p Other Point to check equality against.
+             * \param other Other Point to check equality against.
              * \return True if the two points are equal, otherwise false.
              */
-            bool operator==(const Point &p) const;
+            bool operator==(const Point &other) const;
 
             int x{0};
             int y{0};
@@ -175,20 +176,20 @@ namespace Common
             /**
              * Summing operator for the two points.
              *
-             * \param p The other PointF to add to this point.
+             * \param other The other PointF to add to this point.
              * \return The resulting PointF with the dimensions added
              * separately.
              */
-            PointF operator+(const PointF &p) const;
+            PointF operator+(const PointF &other) const;
 
             /**
              * Subtraction operator for the two points.
              *
-             * \param p The other PointF to subtract from this point.
+             * \param other The other PointF to subtract from this point.
              * \return The resulting PointF with the dimensions subtracted
              * separetely.
              */
-            PointF operator-(const PointF &p) const;
+            PointF operator-(const PointF &other) const;
 
             float x{0.0f}; ///< The x dimension.
             float y{0.0f}; ///< The y dimension.
@@ -234,11 +235,11 @@ namespace Common
             /**
              * Check if this rectangle contains a certian point.
              *
-             * \param p Point to check if it is contained in this rectangle.
+             * \param point Point to check if it is contained in this rectangle.
              * \return True if the Point is within this rectangle, otherwise
              * false.
              */
-            bool Contains(PointF p);
+            bool Contains(PointF point);
 
             /**
              * Returns only the position of this rectangle.
@@ -251,9 +252,9 @@ namespace Common
              * Adds an offset to this rectangle, with the dimensions altered
              * separately.
              *
-             * \param offs The offset to add.
+             * \param offset The offset to add.
              */
-            void Offset(PointF offs);
+            void Offset(PointF offset);
 
             float x{0.0f};      ///< The x coordinate.
             float y{0.0f};      ///< The y coordinate.
@@ -309,35 +310,37 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            Size GetCanvasSize(SharedPtr<SDL_Window> win);
+            Size GetCanvasSize(SharedPtr<SDL_Window> window);
 
             /**
              * Calculate the aspect ratio of a given window.
              *
-             * \param win Window to calculate the aspect ratio for.
+             * \param window Window to calculate the aspect ratio for.
              * \return The calculated aspect ratio.
              */
-            float CalcAspectRatio(SharedPtr<SDL_Window> win);
+            float CalcAspectRatio(SharedPtr<SDL_Window> window);
 
             /**
              * Convert a width to a height based on the width and the aspect
              * ratio.
              *
-             * \param w Width to convert.
-             * \param win Window to calculate the aspect ratio for.
+             * \param width Width to convert.
+             * \param window Window to calculate the aspect ratio for.
              * \return The resulting height.
              */
-            float ConvertWidthToHeight(float w, SharedPtr<SDL_Window> win);
+            float ConvertWidthToHeight(float width,
+                                       SharedPtr<SDL_Window> window);
 
             /**
              * Convert a height to a width base on the height and the aspect
              * ratio.
              *
-             * \param h Height to convert.
-             * \param win Window to calculate the aspect ratio for.
+             * \param height Height to convert.
+             * \param window Window to calculate the aspect ratio for.
              * \return The resulting width.
              */
-            float ConvertHeightToWidth(float h, SharedPtr<SDL_Window> win);
+            float ConvertHeightToWidth(float height,
+                                       SharedPtr<SDL_Window> window);
         }
         using namespace CanvasUtilities;
         namespace FilePathUtilities
@@ -351,17 +354,17 @@ namespace Common
         namespace MouseUtilities
         {
             // Mouse util functions
-            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> win);
+            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window);
         }
         using namespace MouseUtilities;
         namespace NumbersUtilities
         {
             // Numbers util functions
-            float InvertMovementSpeed(float num);
+            float InvertMovementSpeed(float movementSpeed);
 
-            int Normalize(int val);
+            int Normalize(int value);
 
-            float Ceil(float num, float k);
+            float Ceil(float number, float k);
         }
         using namespace NumbersUtilities;
         namespace RandomizationUtilities
@@ -369,13 +372,13 @@ namespace Common
             // Randomization util functions
             void Randomize();
 
-            int GetRandomInt(int upper_lim);
+            int GetRandomInt(int upperLimit);
         }
         using namespace RandomizationUtilities;
         namespace StringUtilities
         {
             // String util functions
-            String Replace(StringView text, char repl, char repl_with);
+            String Replace(StringView text, char replace, char replaceWith);
         }
         using namespace StringUtilities;
         namespace TimeUtilities
@@ -421,34 +424,34 @@ namespace Common
             /**
              * Cast a value to int.
              *
-             * \param val Value to cast.
+             * \param value Value to cast.
              * \return Casted value.
              */
-            constexpr int CInt(auto val)
+            constexpr int CInt(auto value)
             {
-                return static_cast<int>(val);
+                return static_cast<int>(value);
             }
 
             /**
              * Cast a value to float.
              *
-             * \param val Value to cast.
+             * \param value Value to cast.
              * \return Casted value.
              */
-            float CFloat(auto val)
+            float CFloat(auto value)
             {
-                return static_cast<float>(val);
+                return static_cast<float>(value);
             }
 
             /**
              * Cast a value to Uint8.
              *
-             * \param val Value to cast.
+             * \param value Value to cast.
              * \return Casted value.
              */
-            Uint8 CUint8(auto val)
+            Uint8 CUint8(auto value)
             {
-                return static_cast<Uint8>(val);
+                return static_cast<Uint8>(value);
             }
         }
         using namespace CastUtilities;

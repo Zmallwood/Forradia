@@ -7,28 +7,28 @@
 _NS_START_
 namespace Common
 {
-    void SDLDeleter::operator()(SDL_Window *win) const
+    void SDLDeleter::operator()(SDL_Window *window) const
     {
         // Free up resources from a SDL_Window object.
-        SDL_DestroyWindow(win);
+        SDL_DestroyWindow(window);
     }
 
-    void SDLDeleter::operator()(SDL_Renderer *rend) const
+    void SDLDeleter::operator()(SDL_Renderer *renderer) const
     {
         // Free up resources from a SDL_Renderer object.
-        SDL_DestroyRenderer(rend);
+        SDL_DestroyRenderer(renderer);
     }
 
-    void SDLDeleter::operator()(SDL_Surface *surf) const
+    void SDLDeleter::operator()(SDL_Surface *surface) const
     {
         // Free up resources from a SDL_Surface object.
-        SDL_FreeSurface(surf);
+        SDL_FreeSurface(surface);
     }
 
-    void SDLDeleter::operator()(SDL_Texture *tex) const
+    void SDLDeleter::operator()(SDL_Texture *texture) const
     {
         // Free up resources from a SDL_Texture object.
-        SDL_DestroyTexture(tex);
+        SDL_DestroyTexture(texture);
     }
 
     void SDLDeleter::operator()(TTF_Font *font) const
@@ -39,29 +39,30 @@ namespace Common
 
     namespace Matter
     {
-        bool Point::operator==(const Point &p) const
+        bool Point::operator==(const Point &other) const
         {
             // Compare x and y dimensions.
-            return p.x == x && p.y == y;
+            return other.x == x && other.y == y;
         }
 
-        PointF PointF::operator+(const PointF &p) const
+        PointF PointF::operator+(const PointF &other) const
         {
             // Sum the dimensions of the two points.
-            return {x + p.x, y + p.y};
+            return {x + other.x, y + other.y};
         }
 
-        PointF PointF::operator-(const PointF &p) const
+        PointF PointF::operator-(const PointF &other) const
         {
             // Subract the dimensions of the other point from this point.
-            return {x - p.x, y - p.y};
+            return {x - other.x, y - other.y};
         }
 
-        bool RectF::Contains(PointF p)
+        bool RectF::Contains(PointF point)
         {
             // Create condition by checking against the boundaries of this
             // rectangle.
-            return p.x >= x && p.y >= y && p.x < x + width && p.y < y + height;
+            return point.x >= x && point.y >= y && point.x < x + width &&
+                   point.y < y + height;
         }
 
         PointF RectF::GetPosition() const
@@ -70,23 +71,23 @@ namespace Common
             return {x, y};
         }
 
-        void RectF::Offset(PointF offs)
+        void RectF::Offset(PointF offset)
         {
             // Add the offset to the dimensions separately.
-            x += offs.x;
-            y += offs.y;
+            x += offset.x;
+            y += offset.y;
         }
         namespace Coloring
         {
             SDL_Color Color::ToSDLColor() const
             {
                 // Calculate individual color components.
-                auto r_n{CUint8(r * 255)};
-                auto g_n{CUint8(g * 255)};
-                auto b_n{CUint8(b * 255)};
-                auto a_n{CUint8(a * 255)};
+                auto rUint{CUint8(r * 255)};
+                auto gUint{CUint8(g * 255)};
+                auto bUint{CUint8(b * 255)};
+                auto aUint{CUint8(a * 255)};
 
-                return {r_n, g_n, b_n, a_n};
+                return {rUint, rUint, bUint, aUint};
             }
         }
     }
@@ -95,34 +96,37 @@ namespace Common
         namespace CanvasUtilities
         {
             // Canvas util functions
-            Size GetCanvasSize(SharedPtr<SDL_Window> win)
+            Size GetCanvasSize(SharedPtr<SDL_Window> window)
             {
-                Size canv_sz;
+                Size canvasSize;
                 // Get the size of the window.
-                SDL_GetWindowSize(win.get(), &canv_sz.width, &canv_sz.height);
+                SDL_GetWindowSize(window.get(), &canvasSize.width,
+                                  &canvasSize.height);
 
-                return canv_sz;
+                return canvasSize;
             }
 
-            float CalcAspectRatio(SharedPtr<SDL_Window> win)
+            float CalcAspectRatio(SharedPtr<SDL_Window> window)
             {
-                auto canv_sz{GetCanvasSize(win)};
+                auto canvasSize{GetCanvasSize(window)};
                 // Calculate the aspect ratio.
-                auto asp_rat{CFloat(canv_sz.width) / canv_sz.height};
+                auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
 
-                return asp_rat;
+                return aspectRatio;
             }
 
-            float ConvertWidthToHeight(float w, SharedPtr<SDL_Window> win)
+            float ConvertWidthToHeight(float width,
+                                       SharedPtr<SDL_Window> window)
             {
                 // Calculate the height based on the width and the aspect ratio.
-                return w * CalcAspectRatio(win);
+                return width * CalcAspectRatio(window);
             }
 
-            float ConvertHeightToWidth(float h, SharedPtr<SDL_Window> win)
+            float ConvertHeightToWidth(float height,
+                                       SharedPtr<SDL_Window> window)
             {
                 // Calculate the width based on the height and the aspect ratio.
-                return h / CalcAspectRatio(win);
+                return height / CalcAspectRatio(window);
             }
         }
         namespace FilePathUtilities
@@ -131,45 +135,48 @@ namespace Common
             String GetFileExtension(StringView path)
             {
                 // Get the file extension.
-                String ext{path.substr(path.find_last_of('.') + 1).data()};
+                String extension{
+                    path.substr(path.find_last_of('.') + 1).data()};
 
-                return ext;
+                return extension;
             }
 
             String GetFileNameNoExtension(StringView path)
             {
                 // Get the file name without the extension.
-                auto name_with_ext{
+                auto nameWithExtension{
                     String(path.substr(path.find_last_of('/') + 1))};
 
-                return name_with_ext.substr(0, name_with_ext.find_last_of('.'));
+                return nameWithExtension.substr(
+                    0, nameWithExtension.find_last_of('.'));
             }
         }
         namespace MouseUtilities
         {
             // Mouse util functions
-            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> win)
+            PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window)
             {
-                int x_px;
-                int y_px;
+                int xPx;
+                int yPx;
                 // Get the mouse position.
-                SDL_GetMouseState(&x_px, &y_px);
-                auto canv_sz{GetCanvasSize(win)};
+                SDL_GetMouseState(&xPx, &yPx);
+                auto canvasSize{GetCanvasSize(window)};
                 // Calculate the normalized mouse position.
 
-                return {CFloat(x_px) / canv_sz.width, CFloat(y_px) / canv_sz.height};
+                return {CFloat(xPx) / canvasSize.width,
+                        CFloat(yPx) / canvasSize.height};
             }
         }
         namespace NumbersUtilities
         {
             // Numbers util functions
-            float InvertMovementSpeed(float num)
+            float InvertMovementSpeed(float movemenSpeed)
             {
                 // Calculate the inverse of the movement speed.
-                if (num)
+                if (movemenSpeed)
                 {
                     // If the movement speed is not zero, invert it and return.
-                    return k_one_sec_millis / num;
+                    return k_oneSecMillis / movemenSpeed;
                 }
                 else
                 {
@@ -179,26 +186,26 @@ namespace Common
                 }
             }
 
-            int Normalize(int val)
+            int Normalize(int value)
             {
-                auto abs_val{std::abs(val)};
-                auto norm{0};
+                auto absValue{std::abs(value)};
+                auto normalized{0};
 
                 // Calculate the normalized value.
-                if (val)
+                if (value)
                 {
-                    norm = val / abs_val;
+                    normalized = value / absValue;
                 }
 
-                return norm;
+                return normalized;
             }
 
-            float Ceil(float num, float k)
+            float Ceil(float number, float k)
             {
                 // Calculate the ceiled value with k decimal places.
                 auto p{std::pow(10.0, k)};
 
-                return std::ceil(num * p) / p;
+                return std::ceil(number * p) / p;
             }
         }
         namespace RandomizationUtilities
@@ -210,22 +217,23 @@ namespace Common
                 srand(time(nullptr));
             }
 
-            int GetRandomInt(int upper_lim)
+            int GetRandomInt(int upperLimit)
             {
                 // Generate a random integer.
-                return rand() % upper_lim;
+                return rand() % upperLimit;
             }
         }
         namespace StringUtilities
         {
             // String util functions
-            String Replace(StringView text, char repl, char repl_with)
+            String Replace(StringView text, char replace, char replaceWith)
             {
-                String res{text.data()};
+                String result{text.data()};
                 // Replace all instances of repl with repl_with.
-                std::replace(res.begin(), res.end(), repl, repl_with);
+                std::replace(result.begin(), result.end(), replace,
+                             replaceWith);
 
-                return res;
+                return result;
             }
         }
         namespace TimeUtilities

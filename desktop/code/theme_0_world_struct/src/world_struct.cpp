@@ -19,7 +19,7 @@ namespace Theme0
             GenerateName();
 
             m_ticksNextSpontaneousSpeech =
-                GetTicks() + GetRandomInt(300 * k_one_sec_millis);
+                GetTicks() + GetRandomInt(300 * k_oneSecMillis);
         }
 
         void NPC::GenerateName()

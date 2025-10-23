@@ -48,11 +48,11 @@ namespace Core
 
     void Engine::PollEvents()
     {
-        SDL_Event ev;
+        SDL_Event event;
 
-        while (SDL_PollEvent(&ev))
+        while (SDL_PollEvent(&event))
         {
-            switch (ev.type)
+            switch (event.type)
             {
             case SDL_QUIT:
 
@@ -62,25 +62,29 @@ namespace Core
 
             case SDL_KEYDOWN:
 
-                _<Input::KeyboardInput>().RegisterKeyPress(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().RegisterKeyPress(
+                    event.key.keysym.sym);
 
                 break;
 
             case SDL_KEYUP:
 
-                _<Input::KeyboardInput>().RegisterKeyRelease(ev.key.keysym.sym);
+                _<Input::KeyboardInput>().RegisterKeyRelease(
+                    event.key.keysym.sym);
 
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
 
-                _<Input::MouseInput>().RegisterMouseButtonDown(ev.button.button);
+                _<Input::MouseInput>().RegisterMouseButtonDown(
+                    event.button.button);
 
                 break;
 
             case SDL_MOUSEBUTTONUP:
 
-                _<Input::MouseInput>().RegisterMouseButtonUp(ev.button.button);
+                _<Input::MouseInput>().RegisterMouseButtonUp(
+                    event.button.button);
 
                 break;
             }
@@ -92,7 +96,8 @@ namespace Core
         SDL_GL_DeleteContext(*m_context);
     }
 
-    void Engine::SDLDevice::Initialize(StringView game_win_title, Color clear_color)
+    void Engine::SDLDevice::Initialize(StringView game_win_title,
+                                       Color clear_color)
     {
         m_gameWindowTitle = game_win_title;
         m_clearColor = clear_color;
@@ -101,8 +106,8 @@ namespace Core
 
         m_window = CreateWindow();
 
-        m_context =
-            std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(m_window.get()));
+        m_context = std::make_shared<SDL_GLContext>(
+            SDL_GL_CreateContext(m_window.get()));
 
         SDL_GL_MakeCurrent(m_window.get(), *m_context);
 
@@ -121,10 +126,9 @@ namespace Core
 
     void Engine::SDLDevice::ClearCanvas() const
     {
-        auto clear_color{m_clearColor.ToSDLColor()};
+        auto clearColor{m_clearColor.ToSDLColor()};
 
-        glClearColor(clear_color.r, clear_color.g, clear_color.b,
-                     clear_color.a);
+        glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
@@ -140,40 +144,40 @@ namespace Core
                    SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |
                    SDL_WINDOW_OPENGL};
 
-        auto screen_sz{GetScreenSize()};
+        auto screenSize{GetScreenSize()};
 
-        auto win_res{SharedPtr<SDL_Window>(
+        auto windowResult{SharedPtr<SDL_Window>(
             SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED,
-                             SDL_WINDOWPOS_CENTERED, screen_sz.width, screen_sz.height,
-                             flags),
+                             SDL_WINDOWPOS_CENTERED, screenSize.width,
+                             screenSize.height, flags),
             SDLDeleter())};
 
-        if (!win_res)
+        if (!windowResult)
         {
             PrintLine("Window could not be created. SDL Error: " +
-                     String(SDL_GetError()));
+                      String(SDL_GetError()));
         }
 
-        return win_res;
+        return windowResult;
     }
 
     Size Engine::SDLDevice::GetScreenSize() const
     {
-        SDL_DisplayMode dm;
+        SDL_DisplayMode displayMode;
 
-        SDL_GetCurrentDisplayMode(0, &dm);
+        SDL_GetCurrentDisplayMode(0, &displayMode);
 
-        auto w = dm.w;
-        auto h = dm.h;
+        auto width{displayMode.w};
+        auto height{displayMode.h};
 
-        return {w, h};
+        return {width, height};
     }
 
     void Engine::FPSCounter::Update()
     {
         auto now{GetTicks()};
 
-        if (now > m_ticksLastUpdate + k_one_sec_millis)
+        if (now > m_ticksLastUpdate + k_oneSecMillis)
         {
             m_fps = m_framesCount;
             m_framesCount = 0;
@@ -200,30 +204,33 @@ namespace Core
 
     void Engine::Cursor::Render()
     {
-        auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+        auto mousePosition{
+            GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
-        auto w{k_cursorSize};
-        auto h{ConvertWidthToHeight(k_cursorSize, _<Engine::SDLDevice>().GetWindow())};
+        auto width{k_cursorSize};
+        auto height{ConvertWidthToHeight(k_cursorSize,
+                                         _<Engine::SDLDevice>().GetWindow())};
 
-        String curs_img;
+        String cursorImage;
 
         switch (m_cursorStyle)
         {
         case CursorStyles::normal:
 
-            curs_img = "curs_normal";
+            cursorImage = "curs_normal";
 
             break;
 
         case CursorStyles::hovering_clickable_gui:
 
-            curs_img = "curs_hovering_clickable_gui";
+            cursorImage = "curs_hovering_clickable_gui";
 
             break;
         }
 
-        _<Renderers::Image2DRenderer>().DrawImage(curs_img, mouse_pos.x - w / 2,
-                                             mouse_pos.y - h / 2, w, h);
+        _<Renderers::Image2DRenderer>().DrawImage(
+            cursorImage, mousePosition.x - width / 2,
+            mousePosition.y - height / 2, width, height);
     }
 
     void Engine::Assets::Images::ImageBank::Initialize()
@@ -242,9 +249,9 @@ namespace Core
         {
             for (auto entry2 : entry1.second)
             {
-                for (auto tex : entry2.second)
+                for (auto texture : entry2.second)
                 {
-                    glDeleteTextures(1, &tex.second);
+                    glDeleteTextures(1, &texture.second);
                 }
             }
         }
@@ -252,46 +259,48 @@ namespace Core
 
     void Engine::Assets::Images::ImageBank::LoadImages()
     {
-        auto base_path{String(SDL_GetBasePath())};
-        auto imgs_path{base_path + k_relativeImagesPath.data()};
+        auto basePath{String(SDL_GetBasePath())};
+        auto imagesPath{basePath + k_relativeImagesPath.data()};
 
-        if (!std::filesystem::exists(imgs_path))
+        if (!std::filesystem::exists(imagesPath))
         {
             return;
         }
 
-        std::filesystem::recursive_directory_iterator rdi{imgs_path};
+        std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         for (auto it : rdi)
         {
-            auto file_path{Replace(it.path().string(), '\\', '/')};
+            auto filePath{Replace(it.path().string(), '\\', '/')};
 
-            if (GetFileExtension(file_path) == "png")
+            if (GetFileExtension(filePath) == "png")
             {
-                auto file_name{GetFileNameNoExtension(file_path)};
+                auto fileName{GetFileNameNoExtension(filePath)};
 
-                auto hash{Forradia::Hash(file_name)};
+                auto hash{Forradia::Hash(fileName)};
 
-                auto surf{
-                    SharedPtr<SDL_Surface>(IMG_Load(file_path.data()), SDLDeleter())};
+                auto surface{SharedPtr<SDL_Surface>(IMG_Load(filePath.data()),
+                                                    SDLDeleter())};
 
-                auto img_sz{Size{surf->w, surf->h}};
+                auto imageSize{Size{surface->w, surface->h}};
 
-                m_textureSizes.insert({hash, img_sz});
+                m_textureSizes.insert({hash, imageSize});
 
-                auto tex{LoadSingleTexture(surf)};
+                auto texture{LoadSingleTexture(surface)};
 
-                m_textures.insert({hash, tex});
+                m_textures.insert({hash, texture});
             }
         }
     }
 
-    GLuint Engine::Assets::Images::ImageBank::GetTexture(int img_name_hash) const
+    GLuint
+    Engine::Assets::Images::ImageBank::GetTexture(int img_name_hash) const
     {
         return m_textures.at(img_name_hash);
     }
 
-    Size Engine::Assets::Images::ImageBank::GetImageSize(int img_name_hash) const
+    Size
+    Engine::Assets::Images::ImageBank::GetImageSize(int img_name_hash) const
     {
         if (m_textureSizes.contains(img_name_hash))
         {
@@ -301,14 +310,14 @@ namespace Core
         return {-1, -1};
     }
 
-    GLuint
-    Engine::Assets::Images::ImageBank::LoadSingleTexture(SharedPtr<SDL_Surface> surf)
+    GLuint Engine::Assets::Images::ImageBank::LoadSingleTexture(
+        SharedPtr<SDL_Surface> surf)
     {
-        GLuint tex;
+        GLuint texture;
 
-        glGenTextures(1, &tex);
+        glGenTextures(1, &texture);
 
-        glBindTexture(GL_TEXTURE_2D, tex);
+        glBindTexture(GL_TEXTURE_2D, texture);
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, surf->pixels);
@@ -316,43 +325,45 @@ namespace Core
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        return tex;
+        return texture;
     }
 
     bool
     Engine::Assets::Images::ImageBank::TextTextureExists(float x, float y,
-                                                        int text_hash) const
+                                                         int text_hash) const
     {
         return m_textTextures.contains(x) && m_textTextures.at(x).contains(y) &&
                m_textTextures.at(x).at(y).contains(text_hash);
     }
 
-    GLuint Engine::Assets::Images::ImageBank::ObtainTextTexture(float x, float y,
-                                                               int text_hash)
+    GLuint Engine::Assets::Images::ImageBank::ObtainTextTexture(float x,
+                                                                float y,
+                                                                int text_hash)
     {
         if (TextTextureExists(x, y, text_hash))
         {
             return m_textTextures.at(x).at(y).at(text_hash);
         }
 
-        GLuint tex;
+        GLuint texture;
 
-        glGenTextures(1, &tex);
+        glGenTextures(1, &texture);
 
-        m_textTextures[x][y][text_hash] = tex;
+        m_textTextures[x][y][text_hash] = texture;
 
-        return tex;
+        return texture;
     }
 
-    void Engine::Assets::Models::ModelBank::Model::Initialize(StringView file_path)
+    void
+    Engine::Assets::Models::ModelBank::Model::Initialize(StringView file_path)
     {
         Assimp::Importer importer;
 
-        const aiScene *scene = importer.ReadFile(
+        const aiScene *scene{importer.ReadFile(
             file_path.data(), aiProcess_Triangulate | aiProcess_FlipUVs |
                                   aiProcess_CalcTangentSpace |
                                   aiProcess_GenBoundingBoxes |
-                                  aiProcess_FixInfacingNormals);
+                                  aiProcess_FixInfacingNormals)};
 
         if (!scene || !scene->mRootNode)
         {
@@ -370,7 +381,7 @@ namespace Core
     {
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
         {
-            aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+            aiMesh *mesh{scene->mMeshes[node->mMeshes[i]]};
 
             // Only apply transformation on meshes not entities such as lights
             // or camera.
@@ -392,12 +403,12 @@ namespace Core
         glm::vec3 extents;
         glm::vec3 origin;
 
-        Vector<Vertex> vertices =
-            GetVertices(mesh, extents, origin, transformation);
+        Vector<Vertex> vertices{
+            GetVertices(mesh, extents, origin, transformation)};
 
-        Vector<unsigned int> indices = GetIndices(mesh);
+        Vector<unsigned int> indices{GetIndices(mesh)};
 
-        Vector<Texture> textures = GetTextures(mesh, scene);
+        Vector<Texture> textures{GetTextures(mesh, scene)};
 
         return Engine::Assets::Models::ModelBank::Mesh(
             vertices, indices, textures, extents, origin, mesh->mName);
@@ -416,7 +427,7 @@ namespace Core
 
             glm::vec3 vector3;
 
-            aiVector3D v = transformation * mesh->mVertices[i];
+            aiVector3D v{transformation * mesh->mVertices[i]};
 
             // Vertices.
             vector3.x = v.x;
@@ -470,11 +481,11 @@ namespace Core
             vertices.push_back(vertex);
         }
 
-        glm::vec3 min = glm::vec3(mesh->mAABB.mMin.x, mesh->mAABB.mMin.y,
-                                  mesh->mAABB.mMin.z);
+        glm::vec3 min{glm::vec3(mesh->mAABB.mMin.x, mesh->mAABB.mMin.y,
+                                mesh->mAABB.mMin.z)};
 
-        glm::vec3 max = glm::vec3(mesh->mAABB.mMax.x, mesh->mAABB.mMax.y,
-                                  mesh->mAABB.mMax.z);
+        glm::vec3 max{glm::vec3(mesh->mAABB.mMax.x, mesh->mAABB.mMax.y,
+                                mesh->mAABB.mMax.z)};
 
         extents = (max - min) * 0.5f;
 
@@ -490,7 +501,7 @@ namespace Core
 
         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
-            aiFace face = mesh->mFaces[i];
+            aiFace face{mesh->mFaces[i]};
 
             for (unsigned int j = 0; j < face.mNumIndices; j++)
             {
@@ -502,8 +513,8 @@ namespace Core
     }
 
     Vector<Engine::Assets::Models::ModelBank::Texture>
-    Engine::Assets::Models::ModelBank::Model::GetTextures(
-        aiMesh *mesh, const aiScene *scene)
+    Engine::Assets::Models::ModelBank::Model::GetTextures(aiMesh *mesh,
+                                                          const aiScene *scene)
     {
         Vector<Texture> textures;
 
@@ -519,27 +530,27 @@ namespace Core
 
     void Engine::Assets::Models::ModelBank::Initialize()
     {
-        auto base_path{String(SDL_GetBasePath())};
-        auto imgs_path{base_path + k_relativeModelsPath.data()};
+        auto basePath{String(SDL_GetBasePath())};
+        auto imagesPath{basePath + k_relativeModelsPath.data()};
 
-        if (!std::filesystem::exists(imgs_path))
+        if (!std::filesystem::exists(imagesPath))
         {
             return;
         }
 
-        std::filesystem::recursive_directory_iterator rdi{imgs_path};
+        std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         for (auto it : rdi)
         {
-            auto file_path{Replace(it.path().string(), '\\', '/')};
+            auto filePath{Replace(it.path().string(), '\\', '/')};
 
-            if (GetFileExtension(file_path) == "obj")
+            if (GetFileExtension(filePath) == "obj")
             {
-                auto file_name{GetFileNameNoExtension(file_path)};
+                auto fileName{GetFileNameNoExtension(filePath)};
 
-                auto hash{Forradia::Hash(file_name)};
+                auto hash{Forradia::Hash(fileName)};
 
-                auto model{LoadSingleModel(file_path)};
+                auto model{LoadSingleModel(filePath)};
 
                 m_models.insert({hash, model});
             }
@@ -560,15 +571,15 @@ namespace Core
     SharedPtr<Engine::Assets::Models::ModelBank::Model>
     Engine::Assets::Models::ModelBank::LoadSingleModel(StringView file_path)
     {
-        auto model_res{std::make_shared<Model>(file_path)};
+        auto modelResult{std::make_shared<Model>(file_path)};
 
-        return model_res;
+        return modelResult;
     }
 
     void Engine::ScenesCore::IScene::Initialize()
     {
-        m_gui = std::make_shared<
-            Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>();
+        m_gui =
+            std::make_shared<Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>();
 
         m_initializeDerived();
     }
@@ -593,7 +604,7 @@ namespace Core
     }
 
     void Engine::ScenesCore::SceneManager::AddScene(StringView scene_name,
-                                                   IScene &scene)
+                                                    IScene &scene)
     {
         scene.Initialize();
 
@@ -625,7 +636,7 @@ namespace Core
             m_scenes.at(m_currentScene).Render();
         }
     }
-    
+
     void Engine::Input::KeyboardInput::Reset()
     {
         m_pressed.clear();
@@ -648,20 +659,20 @@ namespace Core
 
     bool Engine::Input::KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
     {
-        auto res{m_pressed.contains(key)};
+        auto result{m_pressed.contains(key)};
 
         m_pressed.erase(key);
 
-        return res;
+        return result;
     }
 
     bool Engine::Input::KeyboardInput::AnyKeyIsPressedPickResult()
     {
-        auto res{m_pressed.size() > 0};
+        auto result{m_pressed.size() > 0};
 
         m_pressed.clear();
 
-        return res;
+        return result;
     }
 
     void Engine::Input::MouseInput::MouseButton::Reset()
@@ -685,20 +696,20 @@ namespace Core
 
     bool Engine::Input::MouseInput::MouseButton::IsPressedPickResult()
     {
-        auto res{m_pressed};
+        auto result{m_pressed};
 
         m_pressed = false;
 
-        return res;
+        return result;
     }
 
     bool Engine::Input::MouseInput::MouseButton::HasBeenFiredPickResult()
     {
-        auto res{m_hasBeenFired};
+        auto result{m_hasBeenFired};
 
         m_hasBeenFired = false;
 
-        return res;
+        return result;
     }
 
     bool Engine::Input::MouseInput::MouseButton::HasBeenFired()
@@ -708,11 +719,11 @@ namespace Core
 
     bool Engine::Input::MouseInput::MouseButton::HasBeenReleasedPickResult()
     {
-        auto res{m_hasBeenReleased};
+        auto result{m_hasBeenReleased};
 
         m_hasBeenReleased = false;
 
-        return res;
+        return result;
     }
 
     bool Engine::Input::MouseInput::MouseButton::HasBeenReleased()
@@ -764,11 +775,11 @@ namespace Core
 
     bool Engine::Input::MouseInput::AnyMouseButtonIsPressedPickResult()
     {
-        auto res{_<LeftMouseButton>().IsPressedPickResult()};
+        auto result{_<LeftMouseButton>().IsPressedPickResult()};
 
-        res |= _<RightMouseButton>().IsPressedPickResult();
+        result |= _<RightMouseButton>().IsPressedPickResult();
 
-        return res;
+        return result;
     }
 }
 _NS_END_

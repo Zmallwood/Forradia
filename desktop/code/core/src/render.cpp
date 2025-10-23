@@ -10,64 +10,63 @@ _NS_START_
 void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
                                                     StringView frag_src)
 {
-    GLuint vertex_shader{glCreateShader(GL_VERTEX_SHADER)};
+    GLuint vertexShader{glCreateShader(GL_VERTEX_SHADER)};
 
     const GLchar *source{(const GLchar *)vert_src.data()};
 
-    glShaderSource(vertex_shader, 1, &source, 0);
+    glShaderSource(vertexShader, 1, &source, 0);
 
-    glCompileShader(vertex_shader);
+    glCompileShader(vertexShader);
 
-    GLint is_compiled{0};
+    GLint isCompiled{0};
 
-    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &is_compiled);
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &isCompiled);
 
-    if (is_compiled == GL_FALSE)
+    if (isCompiled == GL_FALSE)
     {
-        GLint max_length{0};
+        GLint maxLength{0};
 
-        glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &max_length);
+        glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &maxLength);
 
-        std::vector<GLchar> infoLog(max_length);
+        std::vector<GLchar> infoLog(maxLength);
 
-        glGetShaderInfoLog(vertex_shader, max_length, &max_length, &infoLog[0]);
+        glGetShaderInfoLog(vertexShader, maxLength, &maxLength, &infoLog[0]);
 
-        glDeleteShader(vertex_shader);
+        glDeleteShader(vertexShader);
 
         return;
     }
 
-    GLuint fragment_shader{glCreateShader(GL_FRAGMENT_SHADER)};
+    GLuint fragmentShader{glCreateShader(GL_FRAGMENT_SHADER)};
 
     source = (const GLchar *)frag_src.data();
 
-    glShaderSource(fragment_shader, 1, &source, 0);
+    glShaderSource(fragmentShader, 1, &source, 0);
 
-    glCompileShader(fragment_shader);
+    glCompileShader(fragmentShader);
 
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &is_compiled);
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &isCompiled);
 
-    if (is_compiled == GL_FALSE)
+    if (isCompiled == GL_FALSE)
     {
-        GLint max_length{0};
+        GLint maxLength{0};
 
-        glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &max_length);
+        glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &maxLength);
 
-        std::vector<GLchar> infoLog(max_length);
+        std::vector<GLchar> infoLog(maxLength);
 
-        glGetShaderInfoLog(fragment_shader, max_length, &max_length,
-                           &infoLog[0]);
+        glGetShaderInfoLog(fragmentShader, maxLength, &maxLength, &infoLog[0]);
 
-        glDeleteShader(fragment_shader);
-        glDeleteShader(vertex_shader);
+        glDeleteShader(fragmentShader);
+        glDeleteShader(vertexShader);
 
         return;
     }
 
     m_programID = glCreateProgram();
 
-    glAttachShader(m_programID, vertex_shader);
-    glAttachShader(m_programID, fragment_shader);
+    glAttachShader(m_programID, vertexShader);
+    glAttachShader(m_programID, fragmentShader);
 
     glLinkProgram(m_programID);
 
@@ -77,27 +76,27 @@ void RenderersCollection::ShaderProgram::Initialize(StringView vert_src,
 
     if (isLinked == GL_FALSE)
     {
-        GLint max_length{0};
+        GLint maxLength{0};
 
-        glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &max_length);
+        glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
 
-        std::vector<GLchar> infoLog(max_length);
+        std::vector<GLchar> infoLog(maxLength);
 
-        glGetProgramInfoLog(m_programID, max_length, &max_length, &infoLog[0]);
+        glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
 
         glDeleteProgram(m_programID);
 
-        glDeleteShader(vertex_shader);
-        glDeleteShader(fragment_shader);
+        glDeleteShader(vertexShader);
+        glDeleteShader(fragmentShader);
 
         return;
     }
 
-    glDetachShader(m_programID, vertex_shader);
-    glDetachShader(m_programID, fragment_shader);
+    glDetachShader(m_programID, vertexShader);
+    glDetachShader(m_programID, fragmentShader);
 
-    glDeleteShader(vertex_shader);
-    glDeleteShader(fragment_shader);
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
 }
 
 void RenderersCollection::ShaderProgram::Cleanup()
@@ -107,7 +106,7 @@ void RenderersCollection::ShaderProgram::Cleanup()
 
 void RenderersCollection::Image2DRenderer::Initialize()
 {
-    String vertex_shader_src{R"(
+    String vertexShaderSource{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -126,7 +125,7 @@ void RenderersCollection::Image2DRenderer::Initialize()
       }
     )"};
 
-    String fragment_shader_src{R"(
+    String fragmentShaderSource{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -141,8 +140,8 @@ void RenderersCollection::Image2DRenderer::Initialize()
       }
     )"};
 
-    m_shaderProgram =
-        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
+    m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource,
+                                                      fragmentShaderSource);
 }
 
 void RenderersCollection::Image2DRenderer::Cleanup()
@@ -167,10 +166,10 @@ void RenderersCollection::Image2DRenderer::Cleanup()
 void RenderersCollection::Image2DRenderer::DrawImage(int img_name_hash, float x,
                                                      float y, float w, float h)
 {
-    auto tex_id{
+    auto textureID{
         _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
-    Image2DRenderer::DrawTexture(tex_id, x, y, w, h, true);
+    Image2DRenderer::DrawTexture(textureID, x, y, w, h, true);
 }
 
 void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
@@ -178,9 +177,9 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
                                                        float h,
                                                        bool useOperationsMemory)
 {
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
+    auto canvasSize{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.width, canv_sz.height);
+    glViewport(0, 0, canvasSize.width, canvasSize.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -195,50 +194,50 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
 
     unsigned int indices[] = {0, 1, 2, 3};
 
-    auto vertices_count{4};
-    auto indices_count{4};
+    auto verticesCount{4};
+    auto indicesCount{4};
 
-    GLuint obj_vao;
-    GLuint obj_ibo;
-    GLuint obj_vbo;
+    GLuint vao;
+    GLuint ibo;
+    GLuint vbo;
 
-    auto need_create_buffers{false};
+    auto needCreateBuffers{false};
 
     if (useOperationsMemory && m_operationsMemory.contains(x) &&
         m_operationsMemory.at(x).contains(y) &&
         m_operationsMemory.at(x).at(y).contains(tex_id))
     {
-        need_create_buffers = false;
+        needCreateBuffers = false;
     }
     else
     {
-        need_create_buffers = true;
+        needCreateBuffers = true;
 
-        glGenVertexArrays(1, &obj_vao);
+        glGenVertexArrays(1, &vao);
 
-        glGenBuffers(1, &obj_vbo);
-        glGenBuffers(1, &obj_ibo);
+        glGenBuffers(1, &vbo);
+        glGenBuffers(1, &ibo);
     }
 
-    auto need_fill_buffers{false};
+    auto needFillBuffers{false};
 
-    if (!need_create_buffers)
+    if (!needCreateBuffers)
     {
         auto &entry = m_operationsMemory.at(x).at(y).at(tex_id);
 
-        obj_vao = entry.vao;
-        obj_ibo = entry.ibo;
-        obj_vbo = entry.vbo;
+        vao = entry.vao;
+        ibo = entry.ibo;
+        vbo = entry.vbo;
 
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         if (x != entry.x || y != entry.y || w != entry.w || h != entry.h)
         {
-            need_fill_buffers = true;
+            needFillBuffers = true;
 
             entry.x = x;
             entry.y = y;
@@ -248,17 +247,17 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
     }
     else
     {
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         Image2DRenderer::Image2DRenderingOperation entry;
 
-        entry.vao = obj_vao;
-        entry.ibo = obj_ibo;
-        entry.vbo = obj_vbo;
+        entry.vao = vao;
+        entry.ibo = ibo;
+        entry.vbo = vbo;
         entry.x = x;
         entry.y = y;
         entry.w = w;
@@ -266,20 +265,19 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
 
         m_operationsMemory[x][y][tex_id] = entry;
 
-        need_fill_buffers = true;
+        needFillBuffers = true;
     }
 
-    if (need_fill_buffers)
+    if (needFillBuffers)
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                     sizeof(indices[0]) * indices_count, indices,
-                     GL_DYNAMIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indicesCount,
+                     indices, GL_DYNAMIC_DRAW);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * verticesCount,
                      vertices, GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
@@ -298,11 +296,11 @@ void RenderersCollection::Image2DRenderer::DrawTexture(GLuint tex_id, float x,
         glEnableVertexAttribArray(2);
     }
 
-    glBindVertexArray(obj_vao);
+    glBindVertexArray(vao);
 
-    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
     glBindTexture(GL_TEXTURE_2D, tex_id);
 
@@ -320,21 +318,21 @@ void RenderersCollection::Image2DRenderer::DrawImageAutoHeight(
 {
     auto hash{Forradia::Hash(img_name)};
 
-    auto img_sz{
+    auto imageSize{
         _<Core::Engine::Assets::Images::ImageBank>().GetImageSize(hash)};
 
-    if (img_sz.width <= 0 || img_sz.height <= 0)
+    if (imageSize.width <= 0 || imageSize.height <= 0)
     {
         return;
     }
 
-    auto canv_asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+    auto canvasAspectRatio{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
-    auto img_asp_rat{CFloat(img_sz.width) / img_sz.height};
+    auto imageAspectRatio{CFloat(imageSize.width) / imageSize.height};
 
-    auto h{w / img_asp_rat * canv_asp_rat};
+    auto height{w / imageAspectRatio * canvasAspectRatio};
 
-    DrawImage(hash, x, y, w, h);
+    DrawImage(hash, x, y, w, height);
 }
 
 void RenderersCollection::Image2DRenderer::DrawImage(StringView img_name,
@@ -346,7 +344,7 @@ void RenderersCollection::Image2DRenderer::DrawImage(StringView img_name,
 
 void RenderersCollection::GroundRenderer::Initialize()
 {
-    String vertex_shader_src{R"(
+    String vertexShaderSource{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aColor;
@@ -371,7 +369,7 @@ void RenderersCollection::GroundRenderer::Initialize()
       }
     )"};
 
-    String fragment_shader_src{R"(
+    String fragmentShaderSource{R"(
       #version 330 core
       out vec4 FragColor;
         
@@ -395,8 +393,8 @@ void RenderersCollection::GroundRenderer::Initialize()
       }
     )"};
 
-    m_shaderProgram =
-        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
+    m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource,
+                                                      fragmentShaderSource);
 }
 
 void RenderersCollection::GroundRenderer::Cleanup()
@@ -419,88 +417,88 @@ void RenderersCollection::GroundRenderer::DrawTile(
     int img_name_hash, int x_coord, int y_coord, float tl_sz,
     Point3F camera_pos, Vector<float> &elevs, float elev_h)
 {
-    auto tex_id{
+    auto textureID{
         _<Core::Engine::Assets::Images::ImageBank>().GetTexture(img_name_hash)};
 
     auto x{tl_sz * x_coord};
     auto y{tl_sz * y_coord};
-    auto w{tl_sz};
-    auto h{tl_sz};
+    auto width{tl_sz};
+    auto height{tl_sz};
 
-    Vector<float> verts{{x,
-                         y,
-                         elevs.at(0) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         0.0,
-                         0.0,
-                         x + w,
-                         y,
-                         elevs.at(1) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         0.0,
-                         x + w + w,
-                         y,
-                         elevs.at(2) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0,
-                         x,
-                         y + h,
-                         elevs.at(3) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         0.0,
-                         1.0,
-                         x + w,
-                         y + h,
-                         elevs.at(4) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0,
-                         x + w + w,
-                         y + h,
-                         elevs.at(5) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0,
-                         x,
-                         y + h + h,
-                         elevs.at(6) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0,
-                         x + w,
-                         y + h + h,
-                         elevs.at(7) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0,
-                         x + w + w,
-                         y + h + h,
-                         elevs.at(8) * elev_h,
-                         1.0f,
-                         1.0f,
-                         1.0f,
-                         1.0,
-                         1.0}};
+    Vector<float> vertices{{x,
+                            y,
+                            elevs.at(0) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            0.0,
+                            0.0,
+                            x + width,
+                            y,
+                            elevs.at(1) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            0.0,
+                            x + width + width,
+                            y,
+                            elevs.at(2) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0,
+                            x,
+                            y + height,
+                            elevs.at(3) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            0.0,
+                            1.0,
+                            x + width,
+                            y + height,
+                            elevs.at(4) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0,
+                            x + width + width,
+                            y + height,
+                            elevs.at(5) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0,
+                            x,
+                            y + height + height,
+                            elevs.at(6) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0,
+                            x + width,
+                            y + height + height,
+                            elevs.at(7) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0,
+                            x + width + width,
+                            y + height + height,
+                            elevs.at(8) * elev_h,
+                            1.0f,
+                            1.0f,
+                            1.0f,
+                            1.0,
+                            1.0}};
 
-    GroundRenderer::DrawTexture(tex_id, verts, camera_pos);
+    GroundRenderer::DrawTexture(textureID, vertices, camera_pos);
 }
 
 void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
@@ -511,9 +509,9 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
     glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
+    auto canvasSize{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.width * 1, canv_sz.height);
+    glViewport(0, 0, canvasSize.width * 1, canvasSize.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -521,42 +519,42 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    auto vertices_no_normals = verts.data();
+    auto verticesNoNormals = verts.data();
 
     unsigned int indices[] = {0, 1, 2, 3};
 
     Vector<glm::vec3> normals;
 
-    auto vertices_count{4};
-    auto indices_count{4};
+    auto verticesCount{4};
+    auto indicesCount{4};
 
-    auto _00x{vertices_no_normals[0 * 8 + 0]};
-    auto _00y{vertices_no_normals[0 * 8 + 1]};
-    auto _00z{vertices_no_normals[0 * 8 + 2]};
-    auto _10x{vertices_no_normals[1 * 8 + 0]};
-    auto _10y{vertices_no_normals[1 * 8 + 1]};
-    auto _10z{vertices_no_normals[1 * 8 + 2]};
-    auto _20x{vertices_no_normals[2 * 8 + 0]};
-    auto _20y{vertices_no_normals[2 * 8 + 1]};
-    auto _20z{vertices_no_normals[2 * 8 + 2]};
-    auto _01x{vertices_no_normals[3 * 8 + 0]};
-    auto _01y{vertices_no_normals[3 * 8 + 1]};
-    auto _01z{vertices_no_normals[3 * 8 + 2]};
-    auto _11x{vertices_no_normals[4 * 8 + 0]};
-    auto _11y{vertices_no_normals[4 * 8 + 1]};
-    auto _11z{vertices_no_normals[4 * 8 + 2]};
-    auto _21x{vertices_no_normals[5 * 8 + 0]};
-    auto _21y{vertices_no_normals[5 * 8 + 1]};
-    auto _21z{vertices_no_normals[5 * 8 + 2]};
-    auto _02x{vertices_no_normals[6 * 8 + 0]};
-    auto _02y{vertices_no_normals[6 * 8 + 1]};
-    auto _02z{vertices_no_normals[6 * 8 + 2]};
-    auto _12x{vertices_no_normals[7 * 8 + 0]};
-    auto _12y{vertices_no_normals[7 * 8 + 1]};
-    auto _12z{vertices_no_normals[7 * 8 + 2]};
-    auto _22x{vertices_no_normals[8 * 8 + 0]};
-    auto _22y{vertices_no_normals[8 * 8 + 1]};
-    auto _22z{vertices_no_normals[8 * 8 + 2]};
+    auto _00x{verticesNoNormals[0 * 8 + 0]};
+    auto _00y{verticesNoNormals[0 * 8 + 1]};
+    auto _00z{verticesNoNormals[0 * 8 + 2]};
+    auto _10x{verticesNoNormals[1 * 8 + 0]};
+    auto _10y{verticesNoNormals[1 * 8 + 1]};
+    auto _10z{verticesNoNormals[1 * 8 + 2]};
+    auto _20x{verticesNoNormals[2 * 8 + 0]};
+    auto _20y{verticesNoNormals[2 * 8 + 1]};
+    auto _20z{verticesNoNormals[2 * 8 + 2]};
+    auto _01x{verticesNoNormals[3 * 8 + 0]};
+    auto _01y{verticesNoNormals[3 * 8 + 1]};
+    auto _01z{verticesNoNormals[3 * 8 + 2]};
+    auto _11x{verticesNoNormals[4 * 8 + 0]};
+    auto _11y{verticesNoNormals[4 * 8 + 1]};
+    auto _11z{verticesNoNormals[4 * 8 + 2]};
+    auto _21x{verticesNoNormals[5 * 8 + 0]};
+    auto _21y{verticesNoNormals[5 * 8 + 1]};
+    auto _21z{verticesNoNormals[5 * 8 + 2]};
+    auto _02x{verticesNoNormals[6 * 8 + 0]};
+    auto _02y{verticesNoNormals[6 * 8 + 1]};
+    auto _02z{verticesNoNormals[6 * 8 + 2]};
+    auto _12x{verticesNoNormals[7 * 8 + 0]};
+    auto _12y{verticesNoNormals[7 * 8 + 1]};
+    auto _12z{verticesNoNormals[7 * 8 + 2]};
+    auto _22x{verticesNoNormals[8 * 8 + 0]};
+    auto _22y{verticesNoNormals[8 * 8 + 1]};
+    auto _22z{verticesNoNormals[8 * 8 + 2]};
 
     glm::vec3 v00 = {_00x, _00y, _00z};
     glm::vec3 v10 = {_10x, _10y, _10z};
@@ -583,21 +581,21 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
     normals.push_back(normal11);
     normals.push_back(normal01);
 
-    Vector<float> vertices_vec;
+    Vector<float> verticesVector;
 
     auto fn{[&](int i, int j)
             {
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 0]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 1]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 2]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 3]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 4]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 5]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 6]);
-                vertices_vec.push_back(vertices_no_normals[i * 8 + 7]);
-                vertices_vec.push_back(normals.at(j).x);
-                vertices_vec.push_back(normals.at(j).y);
-                vertices_vec.push_back(normals.at(j).z);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 0]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 1]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 2]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 3]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 4]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 5]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 6]);
+                verticesVector.push_back(verticesNoNormals[i * 8 + 7]);
+                verticesVector.push_back(normals.at(j).x);
+                verticesVector.push_back(normals.at(j).y);
+                verticesVector.push_back(normals.at(j).z);
             }};
 
     fn(0, 0);
@@ -605,47 +603,47 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
     fn(4, 2);
     fn(3, 3);
 
-    auto vertices{vertices_vec.data()};
+    auto vertices{verticesVector.data()};
 
-    GLuint obj_vao;
-    GLuint obj_ibo;
-    GLuint obj_vbo;
+    GLuint vao;
+    GLuint ibo;
+    GLuint vbo;
 
-    auto need_create_buffers{false};
+    auto needCreateBuffers{false};
 
     if (m_operationsMemory.contains(verts.at(0)) &&
         m_operationsMemory.at(verts.at(0)).contains(verts.at(1)))
     {
-        need_create_buffers = false;
+        needCreateBuffers = false;
     }
     else
     {
-        need_create_buffers = true;
+        needCreateBuffers = true;
 
-        glGenVertexArrays(1, &obj_vao);
-        glGenBuffers(1, &obj_vbo);
-        glGenBuffers(1, &obj_ibo);
+        glGenVertexArrays(1, &vao);
+        glGenBuffers(1, &vbo);
+        glGenBuffers(1, &ibo);
     }
 
-    auto need_fill_buffers{false};
+    auto needFillBuffers{false};
 
-    if (!need_create_buffers)
+    if (!needCreateBuffers)
     {
         auto &entry = m_operationsMemory.at(verts.at(0)).at(verts.at(1));
 
-        obj_vao = entry.vao;
-        obj_ibo = entry.ibo;
-        obj_vbo = entry.vbo;
+        vao = entry.vao;
+        ibo = entry.ibo;
+        vbo = entry.vbo;
 
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         if (verts.at(0) != entry.x || verts.at(1) != entry.y)
         {
-            need_fill_buffers = true;
+            needFillBuffers = true;
 
             entry.x = verts.at(0);
             entry.y = verts.at(1);
@@ -653,35 +651,34 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
     }
     else
     {
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         GroundRenderingOperation entry;
 
-        entry.vao = obj_vao;
-        entry.ibo = obj_ibo;
-        entry.vbo = obj_vbo;
+        entry.vao = vao;
+        entry.ibo = ibo;
+        entry.vbo = vbo;
         entry.x = verts.at(0);
         entry.y = verts.at(1);
 
         m_operationsMemory[verts.at(0)][verts.at(1)] = entry;
 
-        need_fill_buffers = true;
+        needFillBuffers = true;
     }
-    if (need_fill_buffers)
+    if (needFillBuffers)
     {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                     sizeof(indices[0]) * indices_count, indices,
-                     GL_DYNAMIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indicesCount,
+                     indices, GL_DYNAMIC_DRAW);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * vertices_count,
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount,
                      vertices, GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
@@ -708,35 +705,35 @@ void RenderersCollection::GroundRenderer::DrawTexture(GLuint tex_id,
         glEnableVertexAttribArray(3);
     }
 
-    glm::mat4 model_matrix = glm::mat4(1.0f);
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-    model_matrix = glm::translate(model_matrix, glm::vec3(-0.5f, -0.5f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f, -0.5f, 0.0f));
 
     //  lookAt function takes camera position, camera target and up vector.
-    glm::mat4 camera_matrix = glm::lookAt(
+    glm::mat4 cameraMatrix = glm::lookAt(
         glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 2.5f),
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+    auto aspectRatio{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
-    glm::mat4 projection_matrix =
-        glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
+    glm::mat4 projectionMatrix =
+        glm::perspective(90.0f, aspectRatio, 0.1f, 100.0f);
 
-    glm::mat4 final_matrix = projection_matrix * camera_matrix * model_matrix;
+    glm::mat4 finalMatrix = projectionMatrix * cameraMatrix * modelMatrix;
 
-    GLuint matrix_id =
+    GLuint mvpMatrixID =
         glGetUniformLocation(m_shaderProgram->GetProgramID(), "MVP");
 
-    glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &final_matrix[0][0]);
+    glUniformMatrix4fv(mvpMatrixID, 1, GL_FALSE, &finalMatrix[0][0]);
 
-    glBindVertexArray(obj_vao);
+    glBindVertexArray(vao);
 
-    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
     glBindTexture(GL_TEXTURE_2D, tex_id);
 
@@ -765,7 +762,7 @@ glm::vec3 RenderersCollection::GroundRenderer::ComputeNormal(glm::vec3 p1,
 
 void RenderersCollection::ModelRenderer::Initialize()
 {
-    String vertex_shader_src{R"(
+    String vertexShaderSource{R"(
       #version 330 core
       layout (location = 0) in vec3 aPos;
       layout (location = 1) in vec3 aNormal;
@@ -792,7 +789,7 @@ void RenderersCollection::ModelRenderer::Initialize()
       }
     )"};
 
-    String fragment_shader_src{R"(
+    String fragmentShaderSource{R"(
       #version 330 core
       out vec4 FragColor;
 
@@ -835,8 +832,8 @@ void RenderersCollection::ModelRenderer::Initialize()
       }
     )"};
 
-    m_shaderProgram =
-        std::make_shared<ShaderProgram>(vertex_shader_src, fragment_shader_src);
+    m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource,
+                                                      fragmentShaderSource);
 }
 
 void RenderersCollection::ModelRenderer::Cleanup()
@@ -873,18 +870,11 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     auto model{
         _<Core::Engine::Assets::Models::ModelBank>().GetModel(model_name_hash)};
 
-    if (!model)
-    {
-        // PrintLine("Model not found.");
-
-        return;
-    }
-
     auto &meshes{model->GetMeshesRef()};
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
+    auto canvasSize{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    glViewport(0, 0, canv_sz.width, canv_sz.height);
+    glViewport(0, 0, canvasSize.width, canvasSize.height);
 
     glUseProgram(m_shaderProgram->GetProgramID());
 
@@ -895,48 +885,48 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA,
                         GL_ONE);
 
-    GLuint obj_vao;
-    GLuint obj_ibo;
-    GLuint obj_vbo;
+    GLuint vao;
+    GLuint ibo;
+    GLuint vbo;
 
-    auto need_create_buffers{false};
+    auto needCreateBuffers{false};
 
     if (m_operationsMemory.contains(x) &&
         m_operationsMemory.at(x).contains(y) &&
         m_operationsMemory.at(x).at(y).contains(elev) &&
         m_operationsMemory.at(x).at(y).at(elev).contains(model_name_hash))
     {
-        need_create_buffers = false;
+        needCreateBuffers = false;
     }
     else
     {
-        need_create_buffers = true;
+        needCreateBuffers = true;
 
-        glGenVertexArrays(1, &obj_vao);
-        glGenBuffers(1, &obj_vbo);
-        glGenBuffers(1, &obj_ibo);
+        glGenVertexArrays(1, &vao);
+        glGenBuffers(1, &vbo);
+        glGenBuffers(1, &ibo);
     }
 
-    auto need_fill_buffers{false};
+    auto needFillBuffers{false};
 
-    if (!need_create_buffers)
+    if (!needCreateBuffers)
     {
         auto &entry =
             m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
-        obj_vao = entry.vao;
-        obj_ibo = entry.ibo;
-        obj_vbo = entry.vbo;
+        vao = entry.vao;
+        ibo = entry.ibo;
+        vbo = entry.vbo;
 
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         if (x != entry.x || y != entry.y || elev != entry.z)
         {
-            need_fill_buffers = true;
+            needFillBuffers = true;
 
             entry.x = x;
             entry.y = y;
@@ -945,33 +935,33 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
     }
     else
     {
-        glBindVertexArray(obj_vao);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
         ModelRenderingOperation entry;
 
-        entry.vao = obj_vao;
-        entry.ibo = obj_ibo;
-        entry.vbo = obj_vbo;
+        entry.vao = vao;
+        entry.ibo = ibo;
+        entry.vbo = vbo;
         entry.x = x;
         entry.y = y;
         entry.z = elev;
 
         m_operationsMemory[x][y][elev][model_name_hash] = entry;
 
-        need_fill_buffers = true;
+        needFillBuffers = true;
     }
-    if (need_fill_buffers)
+    if (needFillBuffers)
     {
 
-        Vector<unsigned int> indices_vec;
+        Vector<unsigned int> indicesVector;
 
         Vector<glm::vec3> normals;
 
-        Vector<float> vertices_vec;
+        Vector<float> verticesVector;
 
         auto i{0};
 
@@ -979,39 +969,38 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
         {
             for (auto &vertex : mesh.vertices)
             {
-                vertices_vec.push_back(x + vertex.position.x * k_modelScale);
-                vertices_vec.push_back(y + vertex.position.y * k_modelScale);
-                vertices_vec.push_back(elev * elev_h +
-                                       vertex.position.z * k_modelScale);
-                vertices_vec.push_back(vertex.normal.x);
-                vertices_vec.push_back(vertex.normal.y);
-                vertices_vec.push_back(vertex.normal.z);
-                vertices_vec.push_back(vertex.tex_coord.x);
-                vertices_vec.push_back(vertex.tex_coord.y);
+                verticesVector.push_back(x + vertex.position.x * k_modelScale);
+                verticesVector.push_back(y + vertex.position.y * k_modelScale);
+                verticesVector.push_back(elev * elev_h +
+                                         vertex.position.z * k_modelScale);
+                verticesVector.push_back(vertex.normal.x);
+                verticesVector.push_back(vertex.normal.y);
+                verticesVector.push_back(vertex.normal.z);
+                verticesVector.push_back(vertex.tex_coord.x);
+                verticesVector.push_back(vertex.tex_coord.y);
             }
 
             for (auto &index : mesh.indices)
             {
-                indices_vec.push_back(i + mesh.indices[index]);
+                indicesVector.push_back(i + mesh.indices[index]);
             }
 
             i += mesh.vertices.size();
         }
 
-        auto vertices_count{vertices_vec.size() / 8};
-        auto indices_count{indices_vec.size()};
-        auto vertices{vertices_vec.data()};
-        auto indices{indices_vec.data()};
+        auto verticesCount{verticesVector.size() / 8};
+        auto indicesCount{indicesVector.size()};
+        auto vertices{verticesVector.data()};
+        auto indices{indicesVector.data()};
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                     sizeof(indices[0]) * indices_count, indices,
-                     GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * indicesCount,
+                     indices, GL_STATIC_DRAW);
 
-        glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * vertices_count,
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * verticesCount,
                      vertices, GL_STATIC_DRAW);
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
@@ -1032,53 +1021,52 @@ void RenderersCollection::ModelRenderer::DrawModel(int model_name_hash, float x,
         auto &entry =
             m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
-        entry.verticesCount = vertices_count;
+        entry.verticesCount = verticesCount;
     }
 
     auto &entry = m_operationsMemory.at(x).at(y).at(elev).at(model_name_hash);
 
-    glm::mat4 model_matrix = glm::mat4(1.0f);
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
 
     // lookAt function takes camera position, camera target and up vector.
-    glm::mat4 camera_matrix = glm::lookAt(
+    glm::mat4 cameraMatrix = glm::lookAt(
         glm::vec3(camera_pos.x, camera_pos.y - 2.0f, -camera_pos.z + 2.5f),
         glm::vec3(camera_pos.x, camera_pos.y, -camera_pos.z),
         glm::vec3(0.0f, 0.0f, -1.0f));
 
-    auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+    auto aspectRatio{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
     // perspective function takes field of view, aspect ratio, near clipping
     // distance and far clipping distance.
-    glm::mat4 projection_matrix =
-        glm::perspective(90.0f, asp_rat, 0.1f, 100.0f);
+    glm::mat4 projectionMatrix =
+        glm::perspective(90.0f, aspectRatio, 0.1f, 100.0f);
 
-    GLuint matrix_projection =
+    GLuint matrixProjection =
         glGetUniformLocation(m_shaderProgram->GetProgramID(), "projection");
-    glUniformMatrix4fv(matrix_projection, 1, GL_FALSE,
-                       &projection_matrix[0][0]);
+    glUniformMatrix4fv(matrixProjection, 1, GL_FALSE, &projectionMatrix[0][0]);
 
-    GLuint matrix_model =
+    GLuint matrixModel =
         glGetUniformLocation(m_shaderProgram->GetProgramID(), "model");
-    glUniformMatrix4fv(matrix_model, 1, GL_FALSE, &model_matrix[0][0]);
+    glUniformMatrix4fv(matrixModel, 1, GL_FALSE, &modelMatrix[0][0]);
 
-    GLuint matrix_view =
+    GLuint matrixView =
         glGetUniformLocation(m_shaderProgram->GetProgramID(), "view");
 
-    glUniformMatrix4fv(matrix_view, 1, GL_FALSE, &camera_matrix[0][0]);
+    glUniformMatrix4fv(matrixView, 1, GL_FALSE, &cameraMatrix[0][0]);
 
-    glBindVertexArray(obj_vao);
+    glBindVertexArray(vao);
 
-    glBindBuffer(GL_ARRAY_BUFFER, obj_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj_ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-    auto tex_name{meshes.at(0).textures.at(0).path};
+    auto textureName{meshes.at(0).textures.at(0).path};
 
-    auto tex_name_hash{Hash(tex_name)};
+    auto textureNameHash{Hash(textureName)};
 
-    auto tex_id{
-        _<Core::Engine::Assets::Images::ImageBank>().GetTexture(tex_name_hash)};
+    auto textureID{_<Core::Engine::Assets::Images::ImageBank>().GetTexture(
+        textureNameHash)};
 
-    glBindTexture(GL_TEXTURE_2D, tex_id);
+    glBindTexture(GL_TEXTURE_2D, textureID);
 
     glDrawElements(GL_TRIANGLES, entry.verticesCount, GL_UNSIGNED_INT, nullptr);
 
@@ -1100,26 +1088,25 @@ void RenderersCollection::TextRenderer::Initialize()
 
 void RenderersCollection::TextRenderer::AddFonts()
 {
-    auto abs_font_path{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
+    auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
 
-    for (auto font_sz : {FontSizes::_20, FontSizes::_26})
+    for (auto fontSize : {FontSizes::_20, FontSizes::_26})
     {
-        auto font_path_unix_style{Replace(abs_font_path, '\\', '/')};
+        auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
-        auto font_sz_n{CInt(font_sz)};
+        auto fontSizeN{CInt(fontSize)};
 
-        auto new_font{SharedPtr<TTF_Font>(
-            TTF_OpenFont(font_path_unix_style.c_str(), font_sz_n),
-            SDLDeleter())};
+        auto newFont{SharedPtr<TTF_Font>(
+            TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN), SDLDeleter())};
 
-        if (!new_font)
+        if (!newFont)
         {
             PrintLine("Error loading font.");
 
             return;
         }
 
-        m_fonts.insert({font_sz, new_font});
+        m_fonts.insert({fontSize, newFont});
     }
 }
 
@@ -1133,38 +1120,39 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
         return;
     }
 
-    auto font_raw{m_fonts.at(font_sz).get()};
+    auto fontRaw{m_fonts.at(font_sz).get()};
 
-    Size text_dim;
+    Size textureDimensions;
 
-    TTF_SizeText(font_raw, text.data(), &text_dim.width, &text_dim.height);
+    TTF_SizeText(fontRaw, text.data(), &textureDimensions.width,
+                 &textureDimensions.height);
 
-    SDL_Rect dest;
+    SDL_Rect destination;
 
-    auto canv_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
+    auto canvasSize{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
 
-    dest.x = CInt(x * canv_sz.width);
-    dest.y = CInt(y * canv_sz.height);
-    dest.w = text_dim.width;
-    dest.h = text_dim.height;
+    destination.x = CInt(x * canvasSize.width);
+    destination.y = CInt(y * canvasSize.height);
+    destination.w = textureDimensions.width;
+    destination.h = textureDimensions.height;
 
     if (cent_align)
     {
-        dest.x -= dest.w / 2;
-        dest.y -= dest.h / 2;
+        destination.x -= destination.w / 2;
+        destination.y -= destination.h / 2;
     }
 
-    auto text_hash{Hash(text)};
+    auto textHash{Hash(text)};
 
     auto xx{CFloat(CInt(x * 1000))};
     auto yy{CFloat(CInt(y * 1000))};
 
-    auto tex_already_exists{
+    auto textureAlreadyExists{
         _<Core::Engine::Assets::Images::ImageBank>().TextTextureExists(
-            xx, yy, text_hash)};
+            xx, yy, textHash)};
 
-    auto tex{_<Core::Engine::Assets::Images::ImageBank>().ObtainTextTexture(
-        xx, yy, text_hash)};
+    auto texture{_<Core::Engine::Assets::Images::ImageBank>().ObtainTextTexture(
+        xx, yy, textHash)};
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -1174,22 +1162,22 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glBindTexture(GL_TEXTURE_2D, tex);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
-    if (!tex_already_exists)
+    if (!textureAlreadyExists)
     {
-        auto sdl_color{text_color.ToSDLColor()};
+        auto sdlColor{text_color.ToSDLColor()};
 
-        auto surf{TTF_RenderText_Solid(font_raw, text.data(), sdl_color)};
+        auto surface{TTF_RenderText_Solid(fontRaw, text.data(), sdlColor)};
 
-        auto new_w{surf->w};
-        auto new_h{surf->h};
+        auto newWidth{surface->w};
+        auto newHeight{surface->h};
 
         auto intermediary =
-            SDL_CreateRGBSurface(0, new_w, new_h, 32, 0x000000ff, 0x0000ff00,
-                                 0x00ff0000, 0xff000000);
+            SDL_CreateRGBSurface(0, newWidth, newHeight, 32, 0x000000ff,
+                                 0x0000ff00, 0x00ff0000, 0xff000000);
 
-        SDL_BlitSurface(surf, 0, intermediary, 0);
+        SDL_BlitSurface(surface, 0, intermediary, 0);
 
         glTexImage2D(GL_TEXTURE_2D, 0, 4, intermediary->w, intermediary->h, 0,
                      GL_RGBA, GL_UNSIGNED_BYTE, intermediary->pixels);
@@ -1198,14 +1186,14 @@ void RenderersCollection::TextRenderer::DrawString(StringView text, float x,
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         SDL_FreeSurface(intermediary);
-        SDL_FreeSurface(surf);
+        SDL_FreeSurface(surface);
     }
 
-    auto xf{CFloat(dest.x) / canv_sz.width};
-    auto yf{CFloat(dest.y) / canv_sz.height};
-    auto wf{CFloat(dest.w) / canv_sz.width};
-    auto hf{CFloat(dest.h) / canv_sz.height};
+    auto xF{CFloat(destination.x) / canvasSize.width};
+    auto yF{CFloat(destination.y) / canvasSize.height};
+    auto widthF{CFloat(destination.w) / canvasSize.width};
+    auto heightF{CFloat(destination.h) / canvasSize.height};
 
-    _<Image2DRenderer>().DrawTexture(tex, xf, yf, wf, hf);
+    _<Image2DRenderer>().DrawTexture(texture, xF, yF, widthF, heightF);
 }
 _NS_END_

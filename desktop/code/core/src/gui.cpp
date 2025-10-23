@@ -25,9 +25,9 @@ void GUIComponentsLibrary::GUIComponent::Update()
         return;
     }
 
-    for (auto comp : std::views::reverse(m_childComponents))
+    for (auto component : std::views::reverse(m_childComponents))
     {
-        comp->Update();
+        component->Update();
     }
 
     UpdateDerived();
@@ -42,24 +42,24 @@ void GUIComponentsLibrary::GUIComponent::Render() const
 
     RenderDerived();
 
-    for (auto comp : m_childComponents)
+    for (auto component : m_childComponents)
     {
-        comp->Render();
+        component->Render();
     }
 }
 
 RectF GUIComponentsLibrary::GUIComponent::GetBounds() const
 {
-    auto b_res{m_bounds};
+    auto boundsResult{m_bounds};
 
     if (m_parentComponent)
     {
-        auto parent_pos{m_parentComponent->GetBounds().GetPosition()};
+        auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
 
-        b_res.Offset(parent_pos);
+        boundsResult.Offset(parentPosition);
     }
 
-    return b_res;
+    return boundsResult;
 }
 
 void GUIComponentsLibrary::GUIComponent::ToggleVisibility()
@@ -75,35 +75,38 @@ void GUIComponentsLibrary::GUIComponent::SetPosition(PointF new_pos)
 
 void GUIComponentsLibrary::GUILabel::RenderDerived() const
 {
-    auto b{GetBounds()};
+    auto bounds{GetBounds()};
 
-    auto x{b.x};
-    auto y{b.y};
+    auto x{bounds.x};
+    auto y{bounds.y};
 
     if (m_centerAlign)
     {
-        b.x += b.width / 2;
-        b.y += b.height / 2;
+        bounds.x += bounds.width / 2;
+        bounds.y += bounds.height / 2;
     }
 
     _<Engine::Renderers::TextRenderer>().DrawString(
-        m_text, b.x, b.y, Engine::Renderers::FontSizes::_20, m_centerAlign, m_color);
+        m_text, bounds.x, bounds.y, Engine::Renderers::FontSizes::_20,
+        m_centerAlign, m_color);
 }
 
 void GUIComponentsLibrary::GUIPanel::RenderDerived() const
 {
-    auto b{GetBounds()};
+    auto bounds{GetBounds()};
 
-    _<Engine::Renderers::Image2DRenderer>().DrawImage(m_backgroundImage, b.x, b.y, b.width, b.height);
+    _<Engine::Renderers::Image2DRenderer>().DrawImage(
+        m_backgroundImage, bounds.x, bounds.y, bounds.width, bounds.height);
 }
 
 void GUIComponentsLibrary::GUIButton::UpdateDerived()
 {
     GUIComponentsLibrary::GUIPanel::UpdateDerived();
 
-    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+    auto mousePosition{
+        GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
-    auto hovered{GetBounds().Contains(mouse_pos)};
+    auto hovered{GetBounds().Contains(mousePosition)};
 
     if (hovered)
     {
@@ -128,20 +131,21 @@ void GUIComponentsLibrary::GUIButton::RenderDerived() const
 {
     GUIPanel::RenderDerived();
 
-    auto b{GetBounds()};
+    auto bounds{GetBounds()};
 
     _<Engine::Renderers::TextRenderer>().DrawString(
-        m_text, b.x + b.width / 2, b.y + b.height / 2, Engine::Renderers::FontSizes::_20,
-        true);
+        m_text, bounds.x + bounds.width / 2, bounds.y + bounds.height / 2,
+        Engine::Renderers::FontSizes::_20, true);
 }
 
 void GUIComponentsLibrary::GUIMovablePanel::UpdateDerived()
 {
-    auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+    auto mousePosition{
+        GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
-    auto drag_area{GetDragArea()};
+    auto dragArea{GetDragArea()};
 
-    if (drag_area.Contains(mouse_pos))
+    if (dragArea.Contains(mousePosition))
     {
         _<Engine::Cursor>().SetCursorStyle(
             Engine::Cursor::CursorStyles::hovering_clickable_gui);
@@ -153,15 +157,14 @@ void GUIComponentsLibrary::GUIMovablePanel::UpdateDerived()
         }
     }
 
-    if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
-            .HasBeenReleased())
+    if (_<Core::Engine::Input::MouseInput::LeftMouseButton>().HasBeenReleased())
     {
         StopMove();
     }
 
-    auto b{GetBounds()};
+    auto bounds{GetBounds()};
 
-    if (b.Contains(mouse_pos))
+    if (bounds.Contains(mousePosition))
     {
         if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenFired())
@@ -171,12 +174,13 @@ void GUIComponentsLibrary::GUIMovablePanel::UpdateDerived()
     }
     if (GetIsBeingMoved())
     {
-        auto curr_mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+        auto currentMousePosition{
+            GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
 
-        auto new_pos{GetMoveStartingPosition() + curr_mouse_pos -
-                     GetMoveStartingMousePosition()};
+        auto newPosition{GetMoveStartingPosition() + currentMousePosition -
+                         GetMoveStartingMousePosition()};
 
-        SetPosition(new_pos);
+        SetPosition(newPosition);
     }
 }
 
@@ -186,7 +190,8 @@ void GUIComponentsLibrary::GUIMovablePanel::StartMove()
 
     m_moveStartingPosition = GetBounds().GetPosition();
 
-    m_moveStartingMousePosition = GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow());
+    m_moveStartingMousePosition =
+        GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow());
 }
 
 void GUIComponentsLibrary::GUIMovablePanel::StopMove()
@@ -201,11 +206,13 @@ RectF GUIComponentsLibrary::GUIMovablePanel::GetDragArea()
 
 void GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::Initialize()
 {
-    auto parent_win_b{m_parentWindow.GetBounds()};
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
 
     AddChildComponent(std::make_shared<GUIButton>(
-        parent_win_b.width - ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()),
-        0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()), "X",
+        parentWindowBounds.width -
+            ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()),
+        0.01f, 0.015f,
+        ConvertWidthToHeight(0.015f, _<Engine::SDLDevice>().GetWindow()), "X",
         [this] { m_parentWindow.ToggleVisibility(); }));
 }
 
@@ -213,25 +220,26 @@ void GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::RenderDerived() const
 {
     GUIPanel::RenderDerived();
 
-    auto parent_win_b{m_parentWindow.GetBounds()};
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
 
     _<Engine::Renderers::TextRenderer>().DrawString(
-        k_windowTitle, parent_win_b.x + 0.01f, parent_win_b.y + 0.01f,
-        Engine::Renderers::FontSizes::_20, false, Colors::yellow);
+        k_windowTitle, parentWindowBounds.x + 0.01f,
+        parentWindowBounds.y + 0.01f, Engine::Renderers::FontSizes::_20, false,
+        Colors::yellow);
 }
 
 RectF GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::GetBounds() const
 {
-    RectF b_res;
+    RectF boundsResult;
 
-    auto parent_win_b{m_parentWindow.GetBounds()};
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-    b_res.x = parent_win_b.x;
-    b_res.y = parent_win_b.y;
-    b_res.width = parent_win_b.width;
-    b_res.height = k_h;
+    boundsResult.x = parentWindowBounds.x;
+    boundsResult.y = parentWindowBounds.y;
+    boundsResult.width = parentWindowBounds.width;
+    boundsResult.height = k_h;
 
-    return b_res;
+    return boundsResult;
 }
 void GUIComponentsLibrary::GUIWindow::Initialize(StringView win_title)
 {
@@ -272,32 +280,35 @@ void GUIComponentsLibrary::GUIChatBox::RenderDerived() const
 {
     GUIPanel::RenderDerived();
 
-    auto b{GetBounds()};
+    auto bounds{GetBounds()};
 
-    auto max_num_lines{CInt(b.height / k_lineHeight - 1)};
+    auto maxNumLines{CInt(bounds.height / k_lineHeight - 1)};
 
-    auto y{b.y + k_margin};
+    auto y{bounds.y + k_margin};
 
-    for (auto i = 0; i < max_num_lines; i++)
+    for (auto i = 0; i < maxNumLines; i++)
     {
-        auto idx{m_lines.size() - max_num_lines + i};
+        auto index{m_lines.size() - maxNumLines + i};
 
-        if (idx < 0 || idx >= m_lines.size())
+        if (index < 0 || index >= m_lines.size())
         {
             continue;
         }
 
-        auto text_line = m_lines.at(idx);
+        auto textLine = m_lines.at(index);
 
-        _<Engine::Renderers::TextRenderer>().DrawString(text_line, b.x + k_margin, y);
+        _<Engine::Renderers::TextRenderer>().DrawString(textLine,
+                                                        bounds.x + k_margin, y);
 
         y += k_lineHeight;
     }
 
-    auto sep_rect{RectF{b.x, b.y + b.height - k_lineHeight, b.width, k_separatorHeight}};
+    auto separatorRect{RectF{bounds.x, bounds.y + bounds.height - k_lineHeight,
+                             bounds.width, k_separatorHeight}};
 
     _<Engine::Renderers::Image2DRenderer>().DrawImage(
-        "black", sep_rect.x, sep_rect.y, sep_rect.width, sep_rect.height);
+        "black", separatorRect.x, separatorRect.y, separatorRect.width,
+        separatorRect.height);
 }
 
 void GUIComponentsLibrary::GUIChatBox::Print(StringView text)
