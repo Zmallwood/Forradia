@@ -403,7 +403,8 @@ namespace SpecializedGUI
                      {
                          tile->GetObjectsStack()->RemoveObjectOfType(
                              "object_fir_tree");
-                         tile->GetObjectsStack()->AddObject("object_felled_tree");
+                         tile->GetObjectsStack()->AddObject(
+                             "object_felled_tree");
                          _<GUIComponentsLibrary::GUIChatBox>().Print(
                              "Tree cut down. You found some wood.");
                      }});
@@ -416,7 +417,8 @@ namespace SpecializedGUI
                      {
                          tile->GetObjectsStack()->RemoveObjectOfType(
                              "object_birch_tree");
-                         tile->GetObjectsStack()->AddObject("object_felled_tree");
+                         tile->GetObjectsStack()->AddObject(
+                             "object_felled_tree");
                          _<GUIComponentsLibrary::GUIChatBox>().Print(
                              "Tree cut down. You found some wood.");
                      }});
