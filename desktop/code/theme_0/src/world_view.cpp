@@ -26,6 +26,8 @@ namespace Theme0
 
             auto worldAreaSize{worldArea->GetSize()};
 
+            auto hoveredCoordinate {_<TileHovering>().GetHoveredCoordinate()};
+
             auto elevHeight{0.1f};
 
             auto playerElev{worldArea
@@ -242,6 +244,19 @@ namespace Theme0
                     _<Engine::Renderers::GroundRenderer>().DrawTile(
                         ground, xCoordinate - 1, yCoordinate - 1, rendTileSize,
                         cameraPos, elevations, elevHeight);
+
+                    if (xCoordinate == worldAreaSize.width - hoveredCoordinate.x
+                    && yCoordinate == worldAreaSize.height - hoveredCoordinate.y)
+                    {
+                        for (auto& elevation : elevations)
+                        {
+                            elevation += 0.01f;
+                        }
+                        _<Engine::Renderers::GroundRenderer>().DrawTile(
+                            Hash("hovered_tile"), xCoordinate - 1,
+                            yCoordinate - 1, rendTileSize, cameraPos,
+                            elevations, elevHeight);
+                    }
                 }
             }
         }

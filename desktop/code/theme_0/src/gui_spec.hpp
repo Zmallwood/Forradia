@@ -124,6 +124,7 @@ namespace SpecializedGUI
         };
 
         Vector<GUIInteractionMenuEntry> m_entries;
+        Point m_clickedCoordinate {-1, -1};
     };
 }
 using namespace SpecializedGUI;

@@ -1302,7 +1302,8 @@ class RenderersCollection
         glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
 
         SharedPtr<ShaderProgram> m_shaderProgram;
-        std::map<float, std::map<float, GroundRenderingOperation>>
+        std::map<float,
+                 std::map<float, std::map<GLuint, GroundRenderingOperation>>>
             m_operationsMemory;
     };
 

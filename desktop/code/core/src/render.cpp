@@ -407,10 +407,13 @@ void RenderersCollection::GroundRenderer::Cleanup()
     {
         for (auto &entry2 : entry.second)
         {
-            glDeleteVertexArrays(1, &entry2.second.vao);
+            for (auto &entry3 : entry2.second)
+            {
+                glDeleteVertexArrays(1, &entry3.second.vao);
 
-            glDeleteBuffers(1, &entry2.second.ibo);
-            glDeleteBuffers(1, &entry2.second.vbo);
+                glDeleteBuffers(1, &entry3.second.ibo);
+                glDeleteBuffers(1, &entry3.second.vbo);
+            }
         }
     }
 
@@ -615,7 +618,10 @@ void RenderersCollection::GroundRenderer::DrawTexture(
     auto needCreateBuffers{false};
 
     if (m_operationsMemory.contains(verticesVec.at(0)) &&
-        m_operationsMemory.at(verticesVec.at(0)).contains(verticesVec.at(1)))
+        m_operationsMemory.at(verticesVec.at(0)).contains(verticesVec.at(1)) &&
+        m_operationsMemory.at(verticesVec.at(0))
+            .at(verticesVec.at(1))
+            .contains(textureID))
     {
         needCreateBuffers = false;
     }
@@ -632,8 +638,9 @@ void RenderersCollection::GroundRenderer::DrawTexture(
 
     if (!needCreateBuffers)
     {
-        auto &entry =
-            m_operationsMemory.at(verticesVec.at(0)).at(verticesVec.at(1));
+        auto &entry = m_operationsMemory.at(verticesVec.at(0))
+                          .at(verticesVec.at(1))
+                          .at(textureID);
 
         vao = entry.vao;
         ibo = entry.ibo;
@@ -669,7 +676,8 @@ void RenderersCollection::GroundRenderer::DrawTexture(
         entry.x = verticesVec.at(0);
         entry.y = verticesVec.at(1);
 
-        m_operationsMemory[verticesVec.at(0)][verticesVec.at(1)] = entry;
+        m_operationsMemory[verticesVec.at(0)][verticesVec.at(1)][textureID] =
+            entry;
 
         needFillBuffers = true;
     }

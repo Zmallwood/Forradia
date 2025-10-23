@@ -114,17 +114,17 @@ namespace SpecializedGUI
 
         AddChildComponent(overallBodyImageButton);
 
-        auto rightArmBodyImageButton{std::make_shared<
-            GUIComponentsLibrary::GUIButton>(
-            0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth, imageHeight,
-            "",
-            [this]
-            {
-                SelectBodyPart(CInt(
-                    Theme0::GameplayCore::Player::BodyPartTypes::RightArm));
-                UpdateBodyPartInfoLabels();
-            },
-            "gui_image_right_arm", "gui_image_right_arm_hovered")};
+        auto rightArmBodyImageButton{
+            std::make_shared<GUIComponentsLibrary::GUIButton>(
+                0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth,
+                imageHeight, "",
+                [this]
+                {
+                    SelectBodyPart(CInt(
+                        Theme0::GameplayCore::Player::BodyPartTypes::RightArm));
+                    UpdateBodyPartInfoLabels();
+                },
+                "gui_image_right_arm", "gui_image_right_arm_hovered")};
 
         AddChildComponent(rightArmBodyImageButton);
 
@@ -226,11 +226,10 @@ namespace SpecializedGUI
             m_labelBodyPartEnergy->SetText(fmt::format(
                 "Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temperature{
-                playerBody
-                    .GetBodyPartPtr(Theme0::GameplayCore::Player::
-                                        BodyPartTypes::OverallBody)
-                    ->GetTemperature()};
+            auto temperature{playerBody
+                                 .GetBodyPartPtr(Theme0::GameplayCore::Player::
+                                                     BodyPartTypes::OverallBody)
+                                 ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(
                 fmt::format("Temperature: {:.2f} C", temperature));
@@ -371,9 +370,14 @@ namespace SpecializedGUI
 
         auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
 
+        m_clickedCoordinate = hoveredCoordinate;
+
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto tile{worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)};
+        auto worldAreaSize{worldArea->GetSize()};
+
+        auto tile{worldArea->GetTile(worldAreaSize.width - hoveredCoordinate.x,
+                                     worldAreaSize.height - hoveredCoordinate.y)};
 
         if (tile && tile->GetGround() == Hash("ground_grass"))
         {
@@ -397,6 +401,7 @@ namespace SpecializedGUI
                 m_entries.push_back(
                     {"Cut down tree", [=]()
                      {
+                         tile->GetObjectsStack()->ClearObjects();
                          _<GUIComponentsLibrary::GUIChatBox>().Print(
                              "Tree cut down. You found some wood.");
                      }});
@@ -449,7 +454,8 @@ namespace SpecializedGUI
 
         _<Engine::Renderers::TextRenderer>().DrawString(
             "Actions", bounds.x + 0.01f, bounds.y + 0.01f,
-            Engine::Renderers::FontSizes::_20, false, Colors::YellowTransparent);
+            Engine::Renderers::FontSizes::_20, false,
+            Colors::YellowTransparent);
 
         auto i{0};
 
