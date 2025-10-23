@@ -45,22 +45,22 @@ namespace Theme0
             m_name = String() + c0 + c1 + c2 + c3 + c4 + c5 + c6;
         }
 
-        void TreeObject::Initialize(StringView obj_type_name)
+        void TreeObject::Initialize(StringView objectTypeName)
         {
-            if (obj_type_name != "object_fir_tree" &&
-                obj_type_name != "object_birch_tree")
+            if (objectTypeName != "object_fir_tree" &&
+                objectTypeName != "object_birch_tree")
             {
                 return;
             }
 
             int numTrunkParts;
 
-            if (obj_type_name == "object_fir_tree")
+            if (objectTypeName == "object_fir_tree")
             {
                 numTrunkParts = 25 + GetRandomInt(44);
             }
 
-            else if (obj_type_name == "object_birch_tree")
+            else if (objectTypeName == "object_birch_tree")
             {
                 numTrunkParts = 25 + GetRandomInt(14);
             }
@@ -89,11 +89,11 @@ namespace Theme0
 
                 String needlesName;
 
-                if (obj_type_name == "object_fir_tree")
+                if (objectTypeName == "object_fir_tree")
                 {
                     needlesName = "object_fir_tree_needles_";
                 }
-                else if (obj_type_name == "object_birch_tree")
+                else if (objectTypeName == "object_birch_tree")
                 {
                     if (i % 8 != 0)
                     {
@@ -117,14 +117,31 @@ namespace Theme0
             m_objects.clear();
         }
 
-        void ObjectsStack::AddObject(StringView obj_type_name)
+        void ObjectsStack::AddObject(StringView objectTypeName)
         {
-            m_objects.push_back(std::make_shared<Object>(obj_type_name));
+            m_objects.push_back(std::make_shared<Object>(objectTypeName));
         }
 
-        void ObjectsStack::AddTreeObject(StringView obj_type_name)
+        void ObjectsStack::AddTreeObject(StringView objectTypeName)
         {
-            m_objects.push_back(std::make_shared<TreeObject>(obj_type_name));
+            m_objects.push_back(std::make_shared<TreeObject>(objectTypeName));
+        }
+
+        void ObjectsStack::RemoveObjectOfType(StringView objectTypeName)
+        {
+            for (auto it = m_objects.begin(); it != m_objects.end();)
+            {
+                if ((*it)->GetType() == Hash(objectTypeName))
+                {
+                    it = m_objects.erase(it);
+
+                    return;
+                }
+                else
+                {
+                    it++;
+                }
+            }
         }
 
         int ObjectsStack::GetSize() const

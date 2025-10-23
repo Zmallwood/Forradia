@@ -376,8 +376,9 @@ namespace SpecializedGUI
 
         auto worldAreaSize{worldArea->GetSize()};
 
-        auto tile{worldArea->GetTile(worldAreaSize.width - hoveredCoordinate.x,
-                                     worldAreaSize.height - hoveredCoordinate.y)};
+        auto tile{
+            worldArea->GetTile(worldAreaSize.width - hoveredCoordinate.x,
+                               worldAreaSize.height - hoveredCoordinate.y)};
 
         if (tile && tile->GetGround() == Hash("ground_grass"))
         {
@@ -395,13 +396,27 @@ namespace SpecializedGUI
         {
             auto type{object->GetType()};
 
-            if (type == Hash("object_fir_tree") ||
-                type == Hash("object_birch_tree"))
+            if (type == Hash("object_fir_tree"))
             {
                 m_entries.push_back(
                     {"Cut down tree", [=]()
                      {
-                         tile->GetObjectsStack()->ClearObjects();
+                         tile->GetObjectsStack()->RemoveObjectOfType(
+                             "object_fir_tree");
+                         tile->GetObjectsStack()->AddObject("object_felled_tree");
+                         _<GUIComponentsLibrary::GUIChatBox>().Print(
+                             "Tree cut down. You found some wood.");
+                     }});
+            }
+
+            if (type == Hash("object_birch_tree"))
+            {
+                m_entries.push_back(
+                    {"Cut down tree", [=]()
+                     {
+                         tile->GetObjectsStack()->RemoveObjectOfType(
+                             "object_birch_tree");
+                         tile->GetObjectsStack()->AddObject("object_felled_tree");
                          _<GUIComponentsLibrary::GUIChatBox>().Print(
                              "Tree cut down. You found some wood.");
                      }});

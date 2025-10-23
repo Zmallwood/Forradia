@@ -189,9 +189,11 @@ namespace WorldStructure
       public:
         void ClearObjects();
 
-        void AddObject(StringView obj_type_name);
+        void AddObject(StringView objectTypeName);
 
-        void AddTreeObject(StringView obj_type_name);
+        void AddTreeObject(StringView objectTypeName);
+
+        void RemoveObjectOfType(StringView objectTypeName);
 
         int GetSize() const;
 
