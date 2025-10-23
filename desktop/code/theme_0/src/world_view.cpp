@@ -55,161 +55,164 @@ namespace Theme0
                         continue;
                     }
 
-                    auto tl{worldArea->GetTile(xCoordinate, yCoordinate)};
+                    auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
 
-                    auto objs_stack{tl->GetObjectsStack()};
+                    auto objectsStack{tile->GetObjectsStack()};
 
-                    auto objects{objs_stack->GetObjects()};
+                    auto objects{objectsStack->GetObjects()};
 
-                    auto coord_nw{Point{xCoordinate, yCoordinate}};
-                    auto coord_ne{Point{xCoordinate + 1, yCoordinate}};
-                    auto coord_sw{Point{xCoordinate, yCoordinate + 1}};
-                    auto coord_se{Point{xCoordinate + 1, yCoordinate + 1}};
-                    auto coord_nee{Point{xCoordinate + 2, yCoordinate}};
-                    auto coord_see{Point{xCoordinate + 2, yCoordinate + 1}};
-                    auto coord_sese{Point{xCoordinate + 2, yCoordinate + 2}};
-                    auto coord_ses{Point{xCoordinate + 1, yCoordinate + 2}};
-                    auto coord_ss{Point{xCoordinate, yCoordinate + 2}};
+                    auto coordinateNW{Point{xCoordinate, yCoordinate}};
+                    auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+                    auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+                    auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+                    auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
+                    auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
+                    auto coordinateSESE{
+                        Point{xCoordinate + 2, yCoordinate + 2}};
+                    auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
+                    auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
-                    if (!worldArea->IsValidCoordinate(coord_nw) ||
-                        !worldArea->IsValidCoordinate(coord_ne) ||
-                        !worldArea->IsValidCoordinate(coord_sw) ||
-                        !worldArea->IsValidCoordinate(coord_se))
+                    if (!worldArea->IsValidCoordinate(coordinateNW) ||
+                        !worldArea->IsValidCoordinate(coordinateNE) ||
+                        !worldArea->IsValidCoordinate(coordinateSW) ||
+                        !worldArea->IsValidCoordinate(coordinateSE))
                     {
                         continue;
                     }
 
-                    auto tl_nw{worldArea->GetTile(coord_nw)};
-                    auto tl_ne{worldArea->GetTile(coord_ne)};
-                    auto tl_sw{worldArea->GetTile(coord_sw)};
-                    auto tl_se{worldArea->GetTile(coord_se)};
-                    auto tl_nee{worldArea->GetTile(coord_nee)};
-                    auto tl_see{worldArea->GetTile(coord_see)};
-                    auto tl_sese{worldArea->GetTile(coord_sese)};
-                    auto tl_ses{worldArea->GetTile(coord_ses)};
-                    auto tl_ss{worldArea->GetTile(coord_ss)};
+                    auto tileNW{worldArea->GetTile(coordinateNW)};
+                    auto tileNE{worldArea->GetTile(coordinateNE)};
+                    auto tileSW{worldArea->GetTile(coordinateSW)};
+                    auto tileSE{worldArea->GetTile(coordinateSE)};
+                    auto tileNEE{worldArea->GetTile(coordinateNEE)};
+                    auto tileSEE{worldArea->GetTile(coordinateSEE)};
+                    auto tileSESE{worldArea->GetTile(coordinateSESE)};
+                    auto tileSES{worldArea->GetTile(coordinateSES)};
+                    auto tileSS{worldArea->GetTile(coordinateSS)};
 
-                    Vector<float> elevs;
+                    Vector<float> elevations;
 
-                    auto elev_nw{tl_nw ? tl_nw->GetElevation() : 0.0f};
-                    auto elev_ne{tl_ne ? tl_ne->GetElevation() : 0.0f};
-                    auto elev_se{tl_se ? tl_se->GetElevation() : 0.0f};
-                    auto elev_sw{tl_sw ? tl_sw->GetElevation() : 0.0f};
-                    auto elev_nee{tl_nee ? tl_nee->GetElevation() : 0.0f};
-                    auto elev_see{tl_see ? tl_see->GetElevation() : 0.0f};
-                    auto elev_sese{tl_sese ? tl_sese->GetElevation() : 0.0f};
-                    auto elev_ses{tl_ses ? tl_ses->GetElevation() : 0.0f};
-                    auto elev_ss{tl_ss ? tl_ss->GetElevation() : 0.0f};
+                    auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
+                    auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
+                    auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
+                    auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
+                    auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
+                    auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
+                    auto elevationSESE{tileSESE ? tileSESE->GetElevation()
+                                                : 0.0f};
+                    auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
+                    auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
 
-                    elevs.push_back(elev_nw);
-                    elevs.push_back(elev_ne);
-                    elevs.push_back(elev_nee);
-                    elevs.push_back(elev_sw);
-                    elevs.push_back(elev_se);
-                    elevs.push_back(elev_see);
-                    elevs.push_back(elev_ss);
-                    elevs.push_back(elev_ses);
-                    elevs.push_back(elev_sese);
+                    elevations.push_back(elevationNW);
+                    elevations.push_back(elevationNE);
+                    elevations.push_back(elevationNEE);
+                    elevations.push_back(elevationSW);
+                    elevations.push_back(elevationSE);
+                    elevations.push_back(elevationSEE);
+                    elevations.push_back(elevationSS);
+                    elevations.push_back(elevationSES);
+                    elevations.push_back(elevationSESE);
 
-                    auto elev_avg{(elev_nw + elev_ne + elev_sw + elev_se) / 4};
+                    auto elevationAverage{(elevationNW + elevationNE +
+                                           elevationSW + elevationSE) /
+                                          4};
 
-                    auto ground{tl->GetGround()};
+                    auto ground{tile->GetGround()};
 
                     if (ground == Hash("ground_water"))
                     {
-                        auto anim_idx{
+                        auto animationIndex{
                             (GetTicks() + ((xCoordinate + yCoordinate) * 100)) /
                             500 % 3};
-                        ground =
-                            Hash("ground_water_" + std::to_string(anim_idx));
+                        ground = Hash("ground_water_" +
+                                      std::to_string(animationIndex));
                     }
 
-                    for (auto obj : objects)
+                    for (auto object : objects)
                     {
-                        auto obj_type{obj->GetType()};
+                        auto objectType{object->GetType()};
 
-                        if (obj_type == Hash("object_fir_tree") ||
-                            obj_type == Hash("object_birch_tree"))
+                        if (objectType == Hash("object_fir_tree") ||
+                            objectType == Hash("object_birch_tree"))
                         {
-                            auto tree_obj{
+                            auto treeObjects{
                                 std::static_pointer_cast<Forradia::TreeObject>(
-                                    obj)};
+                                    object)};
 
-                            auto trunk_parts{tree_obj->GetTrunkParts()};
+                            auto trunkParts{treeObjects->GetTrunkParts()};
 
-                            auto needleTypes{tree_obj->GetNeedleTypes()};
+                            auto needleTypes{treeObjects->GetNeedleTypes()};
 
-                            auto w_factor{tree_obj->GetWidthFactor()};
+                            auto widthFactor{treeObjects->GetWidthFactor()};
 
-                            for (auto i = 0; i < trunk_parts.size(); i++)
+                            for (auto i = 0; i < trunkParts.size(); i++)
                             {
-                                auto trunk_part{trunk_parts.at(i)};
+                                auto trunkPart{trunkParts.at(i)};
 
-                                auto needle_type{needleTypes.at(i)};
+                                auto needleType{needleTypes.at(i)};
 
-                                auto w_decr_factor{
-                                    0.5f + (trunk_parts.size() - i) /
-                                               CFloat(trunk_parts.size()) / 2};
+                                auto widthDecreaseFactor{
+                                    0.5f + (trunkParts.size() - i) /
+                                               CFloat(trunkParts.size()) / 2};
 
-                                auto tree_w{rendTileSize * w_factor *
-                                            w_decr_factor};
+                                auto treeWidth{rendTileSize * widthFactor *
+                                               widthDecreaseFactor};
 
-                                auto trunk_part_x{trunk_part.x};
-                                auto trunk_part_y{trunk_part.x};
+                                auto trunkPartX{trunkPart.x};
+                                auto trunkPartY{trunkPart.x};
 
-                                trunk_part_x *=
-                                    CFloat(i) / trunk_parts.size();
+                                trunkPartX *= CFloat(i) / trunkParts.size();
 
-                                trunk_part_y *=
-                                    CFloat(i) / trunk_parts.size();
+                                trunkPartY *= CFloat(i) / trunkParts.size();
 
-                                auto trunk_part_x_center{
+                                auto trunkPartXCenter{
                                     (xCoordinate - 1) * rendTileSize -
-                                    rendTileSize / 2 - trunk_part_x * tree_w};
+                                    rendTileSize / 2 - trunkPartX * treeWidth};
 
-                                auto trunk_part_y_center{
+                                auto trunkPartYCenter{
                                     (yCoordinate - 1) * rendTileSize -
-                                    rendTileSize / 2 - trunk_part_y * tree_w};
+                                    rendTileSize / 2 - trunkPartY * treeWidth};
 
-                                auto trunk_part_z{-trunk_part.y * rendTileSize};
+                                auto trunkPartZ{-trunkPart.y * rendTileSize};
 
-                                auto trunk_part_width{rendTileSize * 0.2f *
-                                                      w_decr_factor};
+                                auto trunkPartWidth{rendTileSize * 0.2f *
+                                                    widthDecreaseFactor};
 
-                                auto trunk_part_height{rendTileSize * 0.2f};
+                                auto trunkPartHeight{rendTileSize * 0.2f};
 
-                                String trunk_part_name;
+                                String trunkPartName;
 
-                                if (obj_type == Hash("object_fir_tree"))
+                                if (objectType == Hash("object_fir_tree"))
                                 {
-                                    trunk_part_name =
+                                    trunkPartName =
                                         "object_fir_tree_trunk_part";
                                 }
-                                else if (obj_type == Hash("object_birch_tree"))
+                                else if (objectType ==
+                                         Hash("object_birch_tree"))
                                 {
-                                    trunk_part_name =
+                                    trunkPartName =
                                         "object_birch_tree_trunk_part";
                                 }
 
                                 _<Engine::Renderers::ModelRenderer>().DrawModel(
-                                    Hash(trunk_part_name),
-                                    trunk_part_x_center - trunk_part_width / 2,
-                                    trunk_part_y_center - trunk_part_width / 2,
-                                    elev_avg - trunk_part_z, cameraPos,
+                                    Hash(trunkPartName),
+                                    trunkPartXCenter - trunkPartWidth / 2,
+                                    trunkPartYCenter - trunkPartWidth / 2,
+                                    elevationAverage - trunkPartZ, cameraPos,
                                     elevHeight);
 
-                                auto needle_w{tree_w};
+                                auto needleWidth{treeWidth};
 
-                                auto needle_h{rendTileSize};
+                                auto needleHeight{rendTileSize};
 
-                                if (needle_type)
+                                if (needleType)
                                 {
                                     _<Engine::Renderers::ModelRenderer>()
-                                        .DrawModel(needle_type,
-                                                   trunk_part_x_center,
-                                                   trunk_part_y_center,
-                                                   elev_avg - trunk_part_z -
-                                                       needle_h / 2,
+                                        .DrawModel(needleType, trunkPartXCenter,
+                                                   trunkPartYCenter,
+                                                   elevationAverage -
+                                                       trunkPartZ -
+                                                       needleHeight / 2,
                                                    cameraPos, elevHeight);
                                 }
                             }
@@ -217,12 +220,12 @@ namespace Theme0
                         else
                         {
                             _<Engine::Renderers::ModelRenderer>().DrawModel(
-                                obj_type,
+                                objectType,
                                 (xCoordinate - 1) * rendTileSize -
                                     rendTileSize / 2,
                                 (yCoordinate - 1) * rendTileSize -
                                     rendTileSize / 2,
-                                elev_avg, cameraPos, elevHeight);
+                                elevationAverage, cameraPos, elevHeight);
                         }
                     }
 
@@ -233,12 +236,12 @@ namespace Theme0
                             Hash("player"),
                             (xCoordinate - 1) * rendTileSize - rendTileSize / 2,
                             (yCoordinate - 1) * rendTileSize - rendTileSize / 2,
-                            elev_avg, cameraPos, elevHeight);
+                            elevationAverage, cameraPos, elevHeight);
                     }
 
                     _<Engine::Renderers::GroundRenderer>().DrawTile(
                         ground, xCoordinate - 1, yCoordinate - 1, rendTileSize,
-                        cameraPos, elevs, elevHeight);
+                        cameraPos, elevations, elevHeight);
                 }
             }
         }

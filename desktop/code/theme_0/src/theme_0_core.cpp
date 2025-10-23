@@ -14,15 +14,16 @@ namespace Theme0
     {
         SizeF CalcTileSize()
         {
-            auto num_grid_rows{_<GameProperties>().k_numGridRows};
+            auto numGridRows{_<GameProperties>().k_numGridRows};
 
-            auto tl_h{1.0f / num_grid_rows};
+            auto tileHeight{1.0f / numGridRows};
 
-            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+            auto aspectRatio{
+                CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
-            auto tl_w{tl_h / asp_rat};
+            auto tileWidth{tileHeight / aspectRatio};
 
-            return {tl_w, tl_h};
+            return {tileWidth, tileHeight};
         }
 
         float CalcTileSizeNew()
@@ -32,15 +33,16 @@ namespace Theme0
 
         Size CalcGridSize()
         {
-            auto tl_sz{CalcTileSizeNew()};
+            auto tileSize{CalcTileSizeNew()};
 
-            auto asp_rat{CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+            auto aspectRatio{
+                CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
-            auto num_grid_cols{CInt(asp_rat / tl_sz) + 1};
+            auto numGridColumns{CInt(aspectRatio / tileSize) + 1};
 
-            auto num_grid_rows{_<GameProperties>().k_numGridRows};
+            auto numGridRows{_<GameProperties>().k_numGridRows};
 
-            return {num_grid_cols, num_grid_rows};
+            return {numGridColumns, numGridRows};
         }
     }
 
@@ -73,15 +75,17 @@ namespace Theme0
 
             void PlayerCharacter::MoveToSuitablePosition()
             {
-                auto w_area{_<World>().GetCurrentWorldArea()};
+                auto worldArea{_<World>().GetCurrentWorldArea()};
 
-                auto sz{w_area->GetSize()};
+                auto size{worldArea->GetSize()};
 
-                m_position = {sz.width / 2, sz.height / 2};
+                m_position = {size.width / 2, size.height / 2};
 
-                while (w_area->GetTile(m_position)->GetGround() == Hash("ground_water"))
+                while (worldArea->GetTile(m_position)->GetGround() ==
+                       Hash("ground_water"))
                 {
-                    m_position = {GetRandomInt(sz.width), GetRandomInt(sz.height)};
+                    m_position = {GetRandomInt(size.width),
+                                  GetRandomInt(size.height)};
                 }
             }
 

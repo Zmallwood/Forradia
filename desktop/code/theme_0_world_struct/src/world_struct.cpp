@@ -27,8 +27,8 @@ namespace Theme0
             Vector<char> vowels{'a', 'e', 'i', 'o', 'u', 'y'};
 
             Vector<char> consonants{'q', 'w', 'r', 't', 'p', 's', 'd',
-                                 'f', 'g', 'h', 'j', 'k', 'l', 'z',
-                                 'x', 'c', 'v', 'b', 'n', 'm'};
+                                    'f', 'g', 'h', 'j', 'k', 'l', 'z',
+                                    'x', 'c', 'v', 'b', 'n', 'm'};
 
             char c0{vowels.at(GetRandomInt(vowels.size()))};
 
@@ -53,33 +53,33 @@ namespace Theme0
                 return;
             }
 
-            int num_trunk_parts;
+            int numTrunkParts;
 
             if (obj_type_name == "object_fir_tree")
             {
-                num_trunk_parts = 25 + GetRandomInt(44);
+                numTrunkParts = 25 + GetRandomInt(44);
             }
 
             else if (obj_type_name == "object_birch_tree")
             {
-                num_trunk_parts = 25 + GetRandomInt(14);
+                numTrunkParts = 25 + GetRandomInt(14);
             }
 
             m_widthFactor *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
 
-            auto offs_x{0.0f};
+            auto offsetX{0.0f};
 
-            for (auto i = 0; i < num_trunk_parts; i++)
+            for (auto i = 0; i < numTrunkParts; i++)
             {
-                offs_x += (GetRandomInt(20) - 10) / 100.0f;
+                offsetX += (GetRandomInt(20) - 10) / 100.0f;
 
-                auto offset_y{i * 1.0f};
+                auto offsetY{i * 1.0f};
 
-                auto pos{PointF{offs_x, offset_y}};
+                auto position{PointF{offsetX, offsetY}};
 
-                auto needles_type{GetRandomInt(5)};
+                auto needlesType{GetRandomInt(5)};
 
-                m_trunkParts.push_back(pos);
+                m_trunkParts.push_back(position);
 
                 if (i < 20)
                 {
@@ -87,11 +87,11 @@ namespace Theme0
                     continue;
                 }
 
-                String needles_name;
+                String needlesName;
 
                 if (obj_type_name == "object_fir_tree")
                 {
-                    needles_name = "object_fir_tree_needles_";
+                    needlesName = "object_fir_tree_needles_";
                 }
                 else if (obj_type_name == "object_birch_tree")
                 {
@@ -102,12 +102,12 @@ namespace Theme0
                         continue;
                     }
 
-                    needles_name = "object_birch_tree_branch_";
+                    needlesName = "object_birch_tree_branch_";
                 }
 
                 m_needleTypes.push_back(
-                    needles_type
-                        ? Hash(needles_name + std::to_string(needles_type))
+                    needlesType
+                        ? Hash(needlesName + std::to_string(needlesType))
                         : 0);
             }
         }
@@ -145,16 +145,16 @@ namespace Theme0
 
         void WorldArea::Initialize(Size w_area_sz, float world_scaling)
         {
-            auto sz{w_area_sz};
+            auto size{w_area_sz};
 
-            sz.width *= world_scaling;
-            sz.height *= world_scaling;
+            size.width *= world_scaling;
+            size.height *= world_scaling;
 
-            for (auto x = 0; x < sz.width; x++)
+            for (auto x = 0; x < size.width; x++)
             {
                 m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
 
-                for (auto y = 0; y < sz.height; y++)
+                for (auto y = 0; y < size.height; y++)
                 {
                     m_tiles[x].push_back(std::make_shared<Tile>());
                 }
@@ -163,23 +163,23 @@ namespace Theme0
 
         Size WorldArea::GetSize() const
         {
-            auto w{CInt(m_tiles.size())};
+            auto width{CInt(m_tiles.size())};
 
-            auto h{0};
+            auto height{0};
 
-            if (w)
+            if (width)
             {
-                h = m_tiles.at(0).size();
+                height = m_tiles.at(0).size();
             }
 
-            return {w, h};
+            return {width, height};
         }
 
         bool WorldArea::IsValidCoordinate(int x, int y) const
         {
-            auto sz{GetSize()};
+            auto size{GetSize()};
 
-            return x >= 0 && y >= 0 && x < sz.width && y < sz.height;
+            return x >= 0 && y >= 0 && x < size.width && y < size.height;
         }
 
         bool WorldArea::IsValidCoordinate(Point coord) const

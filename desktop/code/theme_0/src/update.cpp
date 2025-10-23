@@ -20,13 +20,13 @@ namespace Theme0
             {
                 _<GUISystemMenu>().ToggleVisibility();
             }
-            else if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
-                         SDLK_c))
+            else if (_<Core::Engine::Input::KeyboardInput>()
+                         .KeyIsPressedPickResult(SDLK_c))
             {
                 _<GUIPlayerBodyWindow>().ToggleVisibility();
             }
-            else if (_<Core::Engine::Input::KeyboardInput>().KeyIsPressedPickResult(
-                         SDLK_b))
+            else if (_<Core::Engine::Input::KeyboardInput>()
+                         .KeyIsPressedPickResult(SDLK_b))
             {
                 _<GUIInventoryWindow>().ToggleVisibility();
             }
@@ -41,33 +41,39 @@ namespace Theme0
 
                 _<GUIInteractionMenu>().SetVisible(true);
 
-                _<GUIInteractionMenu>().SetPosition(
-                    GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow()));
+                _<GUIInteractionMenu>().SetPosition(GetNormallizedMousePosition(
+                    _<Engine::SDLDevice>().GetWindow()));
             }
         }
 
         void UpdateKeyboardMovement()
         {
-            auto up_press{
+            auto upPress{
                 _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_UP)};
 
-            auto right_press{
-                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
+            auto rightPress{
+                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(
+                    SDLK_RIGHT)};
 
-            auto down_press{
-                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
+            auto downPress{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(
+                SDLK_DOWN)};
 
-            auto left_press{
-                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
+            auto leftPress{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(
+                SDLK_LEFT)};
 
-            auto w_press{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_w)};
-            auto a_press{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_a)};
-            auto s_press{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_s)};
-            auto d_press{_<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_d)};
+            auto wPress{
+                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_w)};
+            auto aPress{
+                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_a)};
+            auto sPress{
+                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_s)};
+            auto dPress{
+                _<Core::Engine::Input::KeyboardInput>().KeyIsPressed(SDLK_d)};
 
-            if (up_press || right_press || down_press || left_press)
+            if (upPress || rightPress || downPress || leftPress)
             {
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetDestination({-1, -1});
+                _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                    .SetDestination({-1, -1});
             }
 
             auto now{GetTicks()};
@@ -75,33 +81,38 @@ namespace Theme0
             if (now >=
                     _<Theme0::GameplayCore::Player::PlayerCharacter>()
                             .GetTicksLastMovement() +
-                        InvertMovementSpeed(_<Theme0::GameplayCore::Player::PlayerCharacter>()
-                                          .GetMovementSpeed()) &&
-                (up_press || right_press || down_press || left_press ||
-                 w_press || a_press || s_press || d_press))
+                        InvertMovementSpeed(
+                            _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                                .GetMovementSpeed()) &&
+                (upPress || rightPress || downPress || leftPress || wPress ||
+                 aPress || sPress || dPress))
             {
-                if (up_press || w_press)
+                if (upPress || wPress)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveNorth();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                        .MoveNorth();
                 }
 
-                if (right_press || d_press)
+                if (rightPress || dPress)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveEast();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                        .MoveEast();
                 }
 
-                if (down_press || s_press)
+                if (downPress || sPress)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveSouth();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                        .MoveSouth();
                 }
 
-                if (left_press || a_press)
+                if (leftPress || aPress)
                 {
-                    _<Theme0::GameplayCore::Player::PlayerCharacter>().MoveWest();
+                    _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                        .MoveWest();
                 }
 
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetTicksLastMovement(
-                    now);
+                _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                    .SetTicksLastMovement(now);
             }
         }
 
@@ -110,16 +121,17 @@ namespace Theme0
             if (_<Core::Engine::Input::MouseInput::LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
-                auto new_dest{_<TileHovering>().GetHoveredCoordinate()};
+                auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
-                _<Theme0::GameplayCore::Player::PlayerCharacter>().SetDestination(new_dest);
+                _<Theme0::GameplayCore::Player::PlayerCharacter>()
+                    .SetDestination(newDestination);
             }
 
-            auto player_pos{_<PlayerCharacter>().GetPosition()};
+            auto playerPosition{_<PlayerCharacter>().GetPosition()};
 
-            auto dest{_<PlayerCharacter>().GetDestination()};
+            auto destination{_<PlayerCharacter>().GetDestination()};
 
-            if (dest == Point{-1, -1})
+            if (destination == Point{-1, -1})
             {
                 return;
             }
@@ -127,32 +139,33 @@ namespace Theme0
             auto now{GetTicks()};
 
             if (now >= _<PlayerCharacter>().GetTicksLastMovement() +
-                           InvertMovementSpeed(_<PlayerCharacter>().GetMovementSpeed()))
+                           InvertMovementSpeed(
+                               _<PlayerCharacter>().GetMovementSpeed()))
             {
-                auto dx{dest.x - player_pos.x};
-                auto dy{dest.y - player_pos.y};
+                auto dX{destination.x - playerPosition.x};
+                auto dY{destination.y - playerPosition.y};
 
-                if (dx < 0)
+                if (dX < 0)
                 {
                     _<PlayerCharacter>().MoveWest();
                 }
 
-                if (dy < 0)
+                if (dY < 0)
                 {
                     _<PlayerCharacter>().MoveNorth();
                 }
 
-                if (dx > 0)
+                if (dX > 0)
                 {
                     _<PlayerCharacter>().MoveEast();
                 }
 
-                if (dy > 0)
+                if (dY > 0)
                 {
                     _<PlayerCharacter>().MoveSouth();
                 }
 
-                if (dest == player_pos)
+                if (destination == playerPosition)
                 {
                     _<PlayerCharacter>().SetDestination({-1, -1});
                 }
@@ -163,81 +176,84 @@ namespace Theme0
 
         void UpdateCreaturesMovement()
         {
-            auto w_area{_<World>().GetCurrentWorldArea()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-            auto &creas{w_area->GetCreaturesMirrorRef()};
+            auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
             auto now{GetTicks()};
 
-            for (auto it = creas.begin(); it != creas.end();)
+            for (auto it = creatures.begin(); it != creatures.end();)
             {
-                auto crea{it->first};
+                auto creature{it->first};
 
-                auto pos{it->second};
+                auto position{it->second};
 
-                if (now <
-                    crea->GetTicksLastMovement() + InvertMovementSpeed(crea->GetMovementSpeed()))
+                if (now < creature->GetTicksLastMovement() +
+                              InvertMovementSpeed(creature->GetMovementSpeed()))
                 {
                     ++it;
 
                     continue;
                 }
 
-                auto dest{crea->GetDestination()};
+                auto destination{creature->GetDestination()};
 
-                if (dest.x == -1 && dest.y == -1)
+                if (destination.x == -1 && destination.y == -1)
                 {
-                    auto new_dest{pos.x + GetRandomInt(11) - 5};
+                    auto newDestination{position.x + GetRandomInt(11) - 5};
 
-                    auto new_destination_y{pos.y + GetRandomInt(11) - 5};
+                    auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
-                    crea->SetDestination({new_dest, new_destination_y});
+                    creature->SetDestination({newDestination, newDestinationY});
                 }
 
-                auto w_area{_<World>().GetCurrentWorldArea()};
+                auto worldArea{_<World>().GetCurrentWorldArea()};
 
-                auto &creas{w_area->GetCreaturesMirrorRef()};
+                auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
-                auto dx{crea->GetDestination().x - pos.x};
-                auto dy{crea->GetDestination().y - pos.y};
+                auto dX{creature->GetDestination().x - position.x};
+                auto dY{creature->GetDestination().y - position.y};
 
-                auto norm_dx{Normalize(dx)};
-                auto norm_dy{Normalize(dy)};
+                auto normalizedDX{Normalize(dX)};
+                auto normalizedDY{Normalize(dY)};
 
-                auto new_x{pos.x + norm_dx};
-                auto new_y{pos.y + norm_dy};
+                auto newX{position.x + normalizedDX};
+                auto newY{position.y + normalizedDY};
 
-                Point new_pos{new_x, new_y};
+                Point newPosition{newX, newY};
 
-                if (new_pos == crea->GetDestination())
+                if (newPosition == creature->GetDestination())
                 {
-                    crea->SetDestination({-1, -1});
+                    creature->SetDestination({-1, -1});
                 }
 
-                auto tl{w_area->GetTile(new_pos.x, new_pos.y)};
+                auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-                if (tl && !tl->GetCreature() &&
-                    tl->GetGround() != Hash("ground_water"))
+                if (tile && !tile->GetCreature() &&
+                    tile->GetGround() != Hash("ground_water"))
                 {
-                    auto old_pos{creas.at(crea)};
+                    auto oldPosition{creatures.at(creature)};
 
-                    crea->SetTicksLastMovement(now);
+                    creature->SetTicksLastMovement(now);
 
-                    auto old_tile{w_area->GetTile(old_pos.x, old_pos.y)};
+                    auto oldTile{
+                        worldArea->GetTile(oldPosition.x, oldPosition.y)};
 
-                    auto new_tile{w_area->GetTile(new_pos.x, new_pos.y)};
+                    auto newTile{
+                        worldArea->GetTile(newPosition.x, newPosition.y)};
 
-                    old_tile->SetCreature(nullptr);
+                    oldTile->SetCreature(nullptr);
 
-                    new_tile->SetCreature(crea);
+                    newTile->SetCreature(creature);
 
-                    creas.erase(crea);
+                    creatures.erase(creature);
 
-                    creas.insert({crea, {new_pos.x, new_pos.y}});
+                    creatures.insert(
+                        {creature, {newPosition.x, newPosition.y}});
                 }
                 else
                 {
-                    crea->SetDestination({-1, -1});
+                    creature->SetDestination({-1, -1});
                 }
 
                 ++it;
@@ -246,9 +262,9 @@ namespace Theme0
 
         void UpdateNPCs()
         {
-            auto w_area{_<World>().GetCurrentWorldArea()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-            auto &npcs{w_area->GetNPCsMirrorRef()};
+            auto &npcs{worldArea->GetNPCsMirrorRef()};
 
             auto now{GetTicks()};
 
@@ -256,7 +272,7 @@ namespace Theme0
             {
                 auto npc{it->first};
 
-                auto pos{it->second};
+                auto position{it->second};
 
                 if (now > npc->GetTicksNextSpontaneousSpeech())
                 {
@@ -276,59 +292,62 @@ namespace Theme0
                     npc->SetTicksNextSpontaneousSpeech(
                         now + 5 * k_oneSecMillis + (6000 * k_oneSecMillis));
                 }
-                if (now <
-                    npc->GetTicksLastMovement() + InvertMovementSpeed(npc->GetMovementSpeed()))
+                if (now < npc->GetTicksLastMovement() +
+                              InvertMovementSpeed(npc->GetMovementSpeed()))
                 {
                     ++it;
 
                     continue;
                 }
 
-                auto dest{npc->GetDestination()};
+                auto destination{npc->GetDestination()};
 
-                if (dest.x == -1 && dest.y == -1)
+                if (destination.x == -1 && destination.y == -1)
                 {
-                    auto new_dest_x{pos.x + GetRandomInt(11) - 5};
-                    auto new_dest_y{pos.y + GetRandomInt(11) - 5};
+                    auto newDestinationX{position.x + GetRandomInt(11) - 5};
+                    auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
-                    npc->SetDestination({new_dest_x, new_dest_y});
+                    npc->SetDestination({newDestinationX, newDestinationY});
                 }
 
-                auto dx{npc->GetDestination().x - pos.x};
-                auto dy{npc->GetDestination().y - pos.y};
+                auto dX{npc->GetDestination().x - position.x};
+                auto dY{npc->GetDestination().y - position.y};
 
-                auto norm_dx{Normalize(dx)};
-                auto norm_dy{Normalize(dy)};
+                auto normalizedDX{Normalize(dX)};
+                auto normalizedDY{Normalize(dY)};
 
-                auto new_x{pos.x + norm_dx};
-                auto new_y{pos.y + norm_dy};
+                auto newX{position.x + normalizedDX};
+                auto newY{position.y + normalizedDY};
 
-                auto new_pos{Point{new_x, new_y}};
+                auto newPosition{Point{newX, newY}};
 
-                if (new_pos == npc->GetDestination())
+                if (newPosition == npc->GetDestination())
                 {
                     npc->SetDestination({-1, -1});
                 }
 
-                auto tl{w_area->GetTile(new_pos.x, new_pos.y)};
+                auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-                if (tl && !tl->GetNPC() && tl->GetGround() != Hash("ground_water"))
+                if (tile && !tile->GetNPC() &&
+                    tile->GetGround() != Hash("ground_water"))
                 {
-                    auto old_pos{pos};
+                    auto oldPosition{position};
 
                     npc->SetTicksLastMovement(now);
 
-                    auto old_tl{w_area->GetTile(old_pos.x, old_pos.y)};
+                    auto oldTile{
+                        worldArea->GetTile(oldPosition.x, oldPosition.y)};
 
-                    auto new_tl{w_area->GetTile(new_pos.x, new_pos.y)};
+                    auto newTile{
+                        worldArea->GetTile(newPosition.x, newPosition.y)};
 
-                    old_tl->SetNPC(nullptr);
+                    oldTile->SetNPC(nullptr);
 
-                    new_tl->SetNPC(npc);
+                    newTile->SetNPC(npc);
 
                     npcs.erase(npc);
 
-                    npcs.insert({npc, {new_pos.x, new_pos.y}});
+                    npcs.insert({npc, {newPosition.x, newPosition.y}});
                 }
                 else
                 {
@@ -341,180 +360,190 @@ namespace Theme0
 
         void TileHovering::Update()
         {
-            auto player_pos{_<PlayerCharacter>().GetPosition()};
+            auto playerPosition{_<PlayerCharacter>().GetPosition()};
 
-            auto mouse_pos{GetNormallizedMousePosition(_<Engine::SDLDevice>().GetWindow())};
+            auto mousePosition{GetNormallizedMousePosition(
+                _<Engine::SDLDevice>().GetWindow())};
 
-            auto tl_sz{CalcTileSize()};
+            auto tileSize{CalcTileSize()};
 
-            auto screen_rel_x{CInt(mouse_pos.x / tl_sz.width)};
+            auto screenRelativeX{CInt(mousePosition.x / tileSize.width)};
 
-            auto grid_sz{CalcGridSize()};
+            auto gridSize{CalcGridSize()};
 
-            auto hovered_x_coord{player_pos.x - (grid_sz.width - 1) / 2 +
-                                 screen_rel_x};
+            auto hoveredXCoordinate{playerPosition.x -
+                                    (gridSize.width - 1) / 2 + screenRelativeX};
 
-            auto screen_rel_x_px{
-                (hovered_x_coord - (player_pos.x - (grid_sz.width - 1) / 2)) *
-                tl_sz.width};
+            auto screenRelativeXPx{
+                (hoveredXCoordinate -
+                 (playerPosition.x - (gridSize.width - 1) / 2)) *
+                tileSize.width};
 
-            auto w_area{_<World>().GetCurrentWorldArea()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-            auto extra_rows{8};
+            auto extraRows{8};
 
-            auto top_y_coord{CInt(player_pos.y - (grid_sz.height - 1) / 2) -
-                             extra_rows};
+            auto topYCoordinate{
+                CInt(playerPosition.y - (gridSize.height - 1) / 2) - extraRows};
 
-            auto player_tl{w_area->GetTile(player_pos)};
+            auto playerTile{worldArea->GetTile(playerPosition)};
 
-            auto player_elev{player_tl ? w_area->GetTile(player_pos)->GetElevation()
-                                       : 0};
+            auto playerElevation{
+                playerTile ? worldArea->GetTile(playerPosition)->GetElevation()
+                           : 0};
 
-            auto screen_rel_y_px{-extra_rows * tl_sz.height};
+            auto screenRelativeYPx{-extraRows * tileSize.height};
 
-            for (auto y = -extra_rows; y < grid_sz.height + extra_rows; y++)
+            for (auto y = -extraRows; y < gridSize.height + extraRows; y++)
             {
-                auto y_coord{CInt(player_pos.y - (grid_sz.height - 1) / 2 + y)};
+                auto yCoordinate{
+                    CInt(playerPosition.y - (gridSize.height - 1) / 2 + y)};
 
-                auto coord{Point{hovered_x_coord, y_coord}};
+                auto coordinate{Point{hoveredXCoordinate, yCoordinate}};
 
-                auto tl{w_area->GetTile(coord)};
+                auto tile{worldArea->GetTile(coordinate)};
 
-                if (!tl)
+                if (!tile)
                 {
-                    screen_rel_y_px = 0.5f +
-                                      (y - (grid_sz.height - 1) / 2) * tl_sz.height +
-                                      player_elev * tl_sz.height / 2;
+                    screenRelativeYPx =
+                        0.5f +
+                        (y - (gridSize.height - 1) / 2) * tileSize.height +
+                        playerElevation * tileSize.height / 2;
 
                     continue;
                 }
 
-                auto elev{tl->GetElevation()};
+                auto elevation{tile->GetElevation()};
 
-                screen_rel_y_px = 0.5f + (y - (grid_sz.height - 1) / 2) * tl_sz.height +
-                                  (player_elev - elev) * tl_sz.height / 2;
+                screenRelativeYPx =
+                    0.5f + (y - (gridSize.height - 1) / 2) * tileSize.height +
+                    (playerElevation - elevation) * tileSize.height / 2;
 
-                auto coord_nw{Point{coord.x, coord.y}};
+                auto coordinateNW{Point{coordinate.x, coordinate.y}};
 
-                auto coord_ne{Point{coord.x + 1, coord.y}};
+                auto coordinateNE{Point{coordinate.x + 1, coordinate.y}};
 
-                auto coord_sw{Point{coord.x, coord.y + 1}};
+                auto coordinateSW{Point{coordinate.x, coordinate.y + 1}};
 
-                auto coord_se{Point{coord.x + 1, coord.y + 1}};
+                auto coordinateSE{Point{coordinate.x + 1, coordinate.y + 1}};
 
-                if (!w_area->IsValidCoordinate(coord_nw.x, coord_nw.y) ||
-                    !w_area->IsValidCoordinate(coord_ne.x, coord_ne.y) ||
-                    !w_area->IsValidCoordinate(coord_sw.x, coord_sw.y) ||
-                    !w_area->IsValidCoordinate(coord_se.x, coord_se.y))
+                if (!worldArea->IsValidCoordinate(coordinateNW.x,
+                                                  coordinateNW.y) ||
+                    !worldArea->IsValidCoordinate(coordinateNE.x,
+                                                  coordinateNE.y) ||
+                    !worldArea->IsValidCoordinate(coordinateSW.x,
+                                                  coordinateSW.y) ||
+                    !worldArea->IsValidCoordinate(coordinateSE.x,
+                                                  coordinateSE.y))
                 {
                     continue;
                 }
 
-                auto tl_nw{w_area->GetTile(coord_nw)};
-                auto tl_ne{w_area->GetTile(coord_ne)};
-                auto tl_sw{w_area->GetTile(coord_sw)};
-                auto tl_se{w_area->GetTile(coord_se)};
+                auto tileNW{worldArea->GetTile(coordinateNW)};
+                auto tileNE{worldArea->GetTile(coordinateNE)};
+                auto tileSW{worldArea->GetTile(coordinateSW)};
+                auto tileSE{worldArea->GetTile(coordinateSE)};
 
-                if (!tl_nw || !tl_ne || !tl_se || !tl_sw)
+                if (!tileNW || !tileNE || !tileSE || !tileSW)
                 {
                     continue;
                 }
 
-                float local_tl_h;
+                float localTileHeight;
 
-                if (tl_nw->GetElevation() > tl_sw->GetElevation() &&
-                    tl_ne->GetElevation() > tl_se->GetElevation())
+                if (tileNW->GetElevation() > tileSW->GetElevation() &&
+                    tileNE->GetElevation() > tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_nw->GetElevation() < tl_sw->GetElevation() &&
-                         tl_ne->GetElevation() < tl_se->GetElevation())
+                else if (tileNW->GetElevation() < tileSW->GetElevation() &&
+                         tileNE->GetElevation() < tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 0.5f;
+                    localTileHeight = tileSize.height * 0.5f;
                 }
-                else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
-                         tl_se->GetElevation() > tl_sw->GetElevation())
+                else if (tileNE->GetElevation() > tileNW->GetElevation() &&
+                         tileSE->GetElevation() > tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
-                         tl_sw->GetElevation() > tl_se->GetElevation())
+                else if (tileNW->GetElevation() > tileNE->GetElevation() &&
+                         tileSW->GetElevation() > tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_nw->GetElevation() > tl_ne->GetElevation() &&
-                         tl_nw->GetElevation() > tl_se->GetElevation() &&
-                         tl_nw->GetElevation() > tl_sw->GetElevation())
+                else if (tileNW->GetElevation() > tileNE->GetElevation() &&
+                         tileNW->GetElevation() > tileSE->GetElevation() &&
+                         tileNW->GetElevation() > tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_ne->GetElevation() > tl_nw->GetElevation() &&
-                         tl_ne->GetElevation() > tl_se->GetElevation() &&
-                         tl_ne->GetElevation() > tl_sw->GetElevation())
+                else if (tileNE->GetElevation() > tileNW->GetElevation() &&
+                         tileNE->GetElevation() > tileSE->GetElevation() &&
+                         tileNE->GetElevation() > tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_sw->GetElevation() > tl_nw->GetElevation() &&
-                         tl_sw->GetElevation() > tl_se->GetElevation() &&
-                         tl_sw->GetElevation() > tl_ne->GetElevation())
+                else if (tileSW->GetElevation() > tileNW->GetElevation() &&
+                         tileSW->GetElevation() > tileSE->GetElevation() &&
+                         tileSW->GetElevation() > tileNE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.0f;
+                    localTileHeight = tileSize.height * 1.0f;
                 }
-                else if (tl_se->GetElevation() > tl_nw->GetElevation() &&
-                         tl_se->GetElevation() > tl_ne->GetElevation() &&
-                         tl_se->GetElevation() > tl_sw->GetElevation())
+                else if (tileSE->GetElevation() > tileNW->GetElevation() &&
+                         tileSE->GetElevation() > tileNE->GetElevation() &&
+                         tileSE->GetElevation() > tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.0f;
+                    localTileHeight = tileSize.height * 1.0f;
                 }
-                else if (tl_sw->GetElevation() < tl_nw->GetElevation() &&
-                         tl_sw->GetElevation() < tl_ne->GetElevation() &&
-                         tl_sw->GetElevation() < tl_se->GetElevation())
+                else if (tileSW->GetElevation() < tileNW->GetElevation() &&
+                         tileSW->GetElevation() < tileNE->GetElevation() &&
+                         tileSW->GetElevation() < tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_se->GetElevation() < tl_nw->GetElevation() &&
-                         tl_se->GetElevation() < tl_ne->GetElevation() &&
-                         tl_se->GetElevation() < tl_sw->GetElevation())
+                else if (tileSE->GetElevation() < tileNW->GetElevation() &&
+                         tileSE->GetElevation() < tileNE->GetElevation() &&
+                         tileSE->GetElevation() < tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_nw->GetElevation() < tl_ne->GetElevation() &&
-                         tl_nw->GetElevation() < tl_sw->GetElevation() &&
-                         tl_nw->GetElevation() < tl_se->GetElevation())
+                else if (tileNW->GetElevation() < tileNE->GetElevation() &&
+                         tileNW->GetElevation() < tileSW->GetElevation() &&
+                         tileNW->GetElevation() < tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.0f;
+                    localTileHeight = tileSize.height * 1.0f;
                 }
-                else if (tl_ne->GetElevation() < tl_nw->GetElevation() &&
-                         tl_ne->GetElevation() < tl_sw->GetElevation() &&
-                         tl_ne->GetElevation() < tl_se->GetElevation())
+                else if (tileNE->GetElevation() < tileNW->GetElevation() &&
+                         tileNE->GetElevation() < tileSW->GetElevation() &&
+                         tileNE->GetElevation() < tileSE->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.0f;
+                    localTileHeight = tileSize.height * 1.0f;
                 }
-                else if (tl_sw->GetElevation() == tl_ne->GetElevation() &&
-                         tl_nw->GetElevation() < tl_sw->GetElevation() &&
-                         tl_se->GetElevation() < tl_sw->GetElevation())
+                else if (tileSW->GetElevation() == tileNE->GetElevation() &&
+                         tileNW->GetElevation() < tileSW->GetElevation() &&
+                         tileSE->GetElevation() < tileSW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
-                else if (tl_nw->GetElevation() == tl_se->GetElevation() &&
-                         tl_ne->GetElevation() < tl_nw->GetElevation() &&
-                         tl_sw->GetElevation() < tl_nw->GetElevation())
+                else if (tileNW->GetElevation() == tileSE->GetElevation() &&
+                         tileNE->GetElevation() < tileNW->GetElevation() &&
+                         tileSW->GetElevation() < tileNW->GetElevation())
                 {
-                    local_tl_h = tl_sz.height * 1.5f;
+                    localTileHeight = tileSize.height * 1.5f;
                 }
                 else
                 {
-                    local_tl_h = tl_sz.height;
+                    localTileHeight = tileSize.height;
                 }
 
-                auto rect{RectF{screen_rel_x_px,
-                                 screen_rel_y_px - local_tl_h / 2, tl_sz.width,
-                                 local_tl_h}};
+                auto rectangle{RectF{screenRelativeXPx,
+                                     screenRelativeYPx - localTileHeight / 2,
+                                     tileSize.width, localTileHeight}};
 
-                if (rect.Contains(mouse_pos))
+                if (rectangle.Contains(mousePosition))
                 {
-                    m_hoveredCoordinate = {hovered_x_coord, y_coord};
-                    
+                    m_hoveredCoordinate = {hoveredXCoordinate, yCoordinate};
+
                     return;
                 }
             }

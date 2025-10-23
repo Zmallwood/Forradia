@@ -36,7 +36,8 @@ namespace Theme0
 
         void WorldGenerator::Prepare()
         {
-            m_worldArea = _<Theme0::WorldStructure::World>().GetCurrentWorldArea();
+            m_worldArea =
+                _<Theme0::WorldStructure::World>().GetCurrentWorldArea();
 
             m_size = m_worldArea->GetSize();
 
@@ -49,11 +50,11 @@ namespace Theme0
             {
                 for (auto x = 0; x < m_size.width; x++)
                 {
-                    auto tl{m_worldArea->GetTile(x, y)};
+                    auto tile{m_worldArea->GetTile(x, y)};
 
-                    if (tl)
+                    if (tile)
                     {
-                        tl->SetGround("ground_dirt");
+                        tile->SetGround("ground_dirt");
                     }
                 }
             }
@@ -61,32 +62,32 @@ namespace Theme0
 
         void WorldGenerator::GenerateGrass() const
         {
-            auto num_grass_areas{50 + GetRandomInt(20)};
+            auto numGrassAreas{50 + GetRandomInt(20)};
 
-            for (auto i = 0; i < num_grass_areas; i++)
+            for (auto i = 0; i < numGrassAreas; i++)
             {
-                auto x_cent{GetRandomInt(m_size.width)};
-                auto y_cent{GetRandomInt(m_size.height)};
+                auto xCenter{GetRandomInt(m_size.width)};
+                auto yCenter{GetRandomInt(m_size.height)};
 
-                auto r{3 * m_scale + GetRandomInt(10 * m_scale)};
+                auto radius{3 * m_scale + GetRandomInt(10 * m_scale)};
 
-                for (auto y = y_cent - r; y <= y_cent + r; y++)
+                for (auto y = yCenter - radius; y <= yCenter + radius; y++)
                 {
-                    for (auto x = x_cent - r; x <= x_cent + r; x++)
+                    for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                     {
                         if (!m_worldArea->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
 
-                        auto dx{x - x_cent};
-                        auto dy{y - y_cent};
+                        auto dX{x - xCenter};
+                        auto dY{y - yCenter};
 
-                        if (dx * dx + dy * dy <= r * r)
+                        if (dX * dX + dY * dY <= radius * radius)
                         {
-                            auto tl{m_worldArea->GetTile(x, y)};
+                            auto tile{m_worldArea->GetTile(x, y)};
 
-                            tl->SetGround("ground_grass");
+                            tile->SetGround("ground_grass");
                         }
                     }
                 }
@@ -94,32 +95,32 @@ namespace Theme0
         }
 
         void WorldGenerator::GenerateSingleLake(int min_x, int min_y, int max_x,
-                                           int max_y, int recurs) const
+                                                int max_y, int recurs) const
         {
             if (recurs == 0)
             {
                 return;
             }
 
-            auto x_cent{min_x + GetRandomInt(max_x - min_x)};
-            auto y_cent{min_y + GetRandomInt(max_y - min_y)};
+            auto xCenter{min_x + GetRandomInt(max_x - min_x)};
+            auto yCenter{min_y + GetRandomInt(max_y - min_y)};
 
-            auto max_r{CInt(3 * m_scale + GetRandomInt(5 * m_scale))};
+            auto maxRadius{CInt(3 * m_scale + GetRandomInt(5 * m_scale))};
 
-            for (auto r = max_r; r >= 0; r--)
+            for (auto r = maxRadius; r >= 0; r--)
             {
-                for (auto y = y_cent - r; y <= y_cent + r; y++)
+                for (auto y = yCenter - r; y <= yCenter + r; y++)
                 {
-                    for (auto x = x_cent - r; x <= x_cent + r; x++)
+                    for (auto x = xCenter - r; x <= xCenter + r; x++)
                     {
-                        auto dx{x - x_cent};
-                        auto dy{y - y_cent};
+                        auto dX{x - xCenter};
+                        auto dY{y - yCenter};
 
-                        if (dx * dx + dy * dy <= r * r)
+                        if (dX * dX + dY * dY <= r * r)
                         {
-                            auto tl{m_worldArea->GetTile(x, y)};
+                            auto tile{m_worldArea->GetTile(x, y)};
 
-                            if (tl)
+                            if (tile)
                             {
                                 Point n{x, y - 1};
                                 Point e{x + 1, y};
@@ -138,174 +139,206 @@ namespace Theme0
                                 Point sese{x + 2, y + 2};
                                 Point swsw{x - 2, y + 2};
 
-                                auto tl_n{m_worldArea->GetTile(n)};
-                                auto tl_e{m_worldArea->GetTile(e)};
-                                auto tl_s{m_worldArea->GetTile(s)};
-                                auto tl_w{m_worldArea->GetTile(w)};
-                                auto tl_nw{m_worldArea->GetTile(nw)};
-                                auto tl_ne{m_worldArea->GetTile(ne)};
-                                auto tl_se{m_worldArea->GetTile(se)};
-                                auto tl_sw{m_worldArea->GetTile(sw)};
-                                auto tl_nn{m_worldArea->GetTile(nn)};
-                                auto tl_ww{m_worldArea->GetTile(ww)};
-                                auto tl_ee{m_worldArea->GetTile(ee)};
-                                auto tl_ss{m_worldArea->GetTile(ss)};
-                                auto tl_nwnw{m_worldArea->GetTile(nwnw)};
-                                auto tl_nene{m_worldArea->GetTile(nene)};
-                                auto tl_sese{m_worldArea->GetTile(sese)};
-                                auto tl_swsw{m_worldArea->GetTile(swsw)};
+                                auto tileN{m_worldArea->GetTile(n)};
+                                auto tileE{m_worldArea->GetTile(e)};
+                                auto tileS{m_worldArea->GetTile(s)};
+                                auto tileW{m_worldArea->GetTile(w)};
+                                auto tileNW{m_worldArea->GetTile(nw)};
+                                auto tileNE{m_worldArea->GetTile(ne)};
+                                auto tileSE{m_worldArea->GetTile(se)};
+                                auto tileSW{m_worldArea->GetTile(sw)};
+                                auto tileNN{m_worldArea->GetTile(nn)};
+                                auto tileWW{m_worldArea->GetTile(ww)};
+                                auto tileEE{m_worldArea->GetTile(ee)};
+                                auto tileSS{m_worldArea->GetTile(ss)};
+                                auto tileNWNW{m_worldArea->GetTile(nwnw)};
+                                auto tileNENE{m_worldArea->GetTile(nene)};
+                                auto tileSESE{m_worldArea->GetTile(sese)};
+                                auto tileSWSW{m_worldArea->GetTile(swsw)};
 
-                                auto elev_n{tl_n ? tl_n->GetElevation() : 0};
-                                auto elev_e{tl_e ? tl_e->GetElevation() : 0};
-                                auto elev_s{tl_s ? tl_s->GetElevation() : 0};
-                                auto elev_w{tl_w ? tl_w->GetElevation() : 0};
-                                auto elev_nw{tl_nw ? tl_nw->GetElevation() : 0};
-                                auto elev_ne{tl_ne ? tl_ne->GetElevation() : 0};
-                                auto elev_se{tl_se ? tl_se->GetElevation() : 0};
-                                auto elev_sw{tl_sw ? tl_sw->GetElevation() : 0};
-                                auto elev_nn{tl_nn ? tl_nn->GetElevation() : 0};
-                                auto elev_ww{tl_ww ? tl_ww->GetElevation() : 0};
-                                auto elev_ee{tl_ee ? tl_ee->GetElevation() : 0};
-                                auto elev_ss{tl_ss ? tl_ss->GetElevation() : 0};
-                                auto elev_nwnw{tl_nwnw ? tl_nwnw->GetElevation() : 0};
-                                auto elev_nene{tl_nene ? tl_nene->GetElevation() : 0};
-                                auto elev_sese{tl_sese ? tl_sese->GetElevation() : 0};
-                                auto elev_swsw{tl_swsw ? tl_swsw->GetElevation() : 0};
+                                auto elevationN{tileN ? tileN->GetElevation()
+                                                      : 0};
+                                auto elevationE{tileE ? tileE->GetElevation()
+                                                      : 0};
+                                auto elevationS{tileS ? tileS->GetElevation()
+                                                      : 0};
+                                auto elevationW{tileW ? tileW->GetElevation()
+                                                      : 0};
+                                auto elevationNW{tileNW ? tileNW->GetElevation()
+                                                        : 0};
+                                auto elevationNE{tileNE ? tileNE->GetElevation()
+                                                        : 0};
+                                auto elevationSE{tileSE ? tileSE->GetElevation()
+                                                        : 0};
+                                auto elevationSW{tileSW ? tileSW->GetElevation()
+                                                        : 0};
+                                auto elevationNN{tileNN ? tileNN->GetElevation()
+                                                        : 0};
+                                auto elevationWW{tileWW ? tileWW->GetElevation()
+                                                        : 0};
+                                auto elevationEE{tileEE ? tileEE->GetElevation()
+                                                        : 0};
+                                auto elevationSS{tileSS ? tileSS->GetElevation()
+                                                        : 0};
+                                auto elevationNWNW{
+                                    tileNWNW ? tileNWNW->GetElevation() : 0};
+                                auto elevationNENE{
+                                    tileNENE ? tileNENE->GetElevation() : 0};
+                                auto elevationSESE{
+                                    tileSESE ? tileSESE->GetElevation() : 0};
+                                auto elevationSWSW{
+                                    tileSWSW ? tileSWSW->GetElevation() : 0};
 
-                                if (elev_n == 0 && elev_e == 0 && elev_s == 0 &&
-                                    elev_w == 0 && elev_nw == 0 &&
-                                    elev_ne == 0 && elev_se == 0 &&
-                                    elev_sw == 0 && elev_nn == 0 &&
-                                    elev_ww == 0 && elev_ee == 0 &&
-                                    elev_ss == 0 && elev_nwnw == 0 &&
-                                    elev_nene == 0 && elev_sese == 0 &&
-                                    elev_swsw == 0)
+                                if (elevationN == 0 && elevationE == 0 &&
+                                    elevationS == 0 && elevationW == 0 &&
+                                    elevationNW == 0 && elevationNE == 0 &&
+                                    elevationSE == 0 && elevationSW == 0 &&
+                                    elevationNN == 0 && elevationWW == 0 &&
+                                    elevationEE == 0 && elevationSS == 0 &&
+                                    elevationNWNW == 0 && elevationNENE == 0 &&
+                                    elevationSESE == 0 && elevationSWSW == 0)
                                 {
-                                    tl->SetGround("ground_water");
+                                    tile->SetGround("ground_water");
                                 }
 
-                                tl->SetWaterDepth(tl->GetWaterDepth() + 1);
+                                tile->SetWaterDepth(tile->GetWaterDepth() + 1);
                             }
                         }
                     }
                 }
             }
 
-            GenerateSingleLake(x_cent - max_r, y_cent - max_r, x_cent + max_r,
-                            y_cent + max_r, recurs - 1);
+            GenerateSingleLake(xCenter - maxRadius, yCenter - maxRadius,
+                               xCenter + maxRadius, yCenter + maxRadius,
+                               recurs - 1);
         }
 
         void WorldGenerator::GenerateLakes() const
         {
-            auto num_lakes{20 + GetRandomInt(5)};
+            auto numLakes{20 + GetRandomInt(5)};
 
-            for (auto i = 0; i < num_lakes; i++)
+            for (auto i = 0; i < numLakes; i++)
             {
-                GenerateSingleLake(0, 0, m_size.width, m_size.height, 2 + GetRandomInt(5));
+                GenerateSingleLake(0, 0, m_size.width, m_size.height,
+                                   2 + GetRandomInt(5));
             }
         }
 
         void WorldGenerator::GenerateElevation() const
         {
-            auto num_hills{140 + GetRandomInt(30)};
+            auto numHills{140 + GetRandomInt(30)};
 
-            for (auto i = 0; i < num_hills; i++)
+            for (auto i = 0; i < numHills; i++)
             {
-                auto x_cent{GetRandomInt(m_size.width)};
-                auto y_cent{GetRandomInt(m_size.height)};
+                auto xCenter{GetRandomInt(m_size.width)};
+                auto yCenter{GetRandomInt(m_size.height)};
 
-                auto max_r{5 * m_scale + GetRandomInt(5 * m_scale)};
+                auto maxRadius{5 * m_scale + GetRandomInt(5 * m_scale)};
 
-                for (auto r = max_r; r >= 0; r--)
+                for (auto r = maxRadius; r >= 0; r--)
                 {
-                    for (auto y = y_cent - r; y <= y_cent + r; y++)
+                    for (auto y = yCenter - r; y <= yCenter + r; y++)
                     {
-                        for (auto x = x_cent - r; x <= x_cent + r; x++)
+                        for (auto x = xCenter - r; x <= xCenter + r; x++)
                         {
                             if (!m_worldArea->IsValidCoordinate(x, y))
                             {
                                 continue;
                             }
 
-                            auto dx{x - x_cent};
-                            auto dy{y - y_cent};
+                            auto dX{x - xCenter};
+                            auto dY{y - yCenter};
 
-                            if (dx * dx + dy * dy <= r * r)
+                            if (dX * dX + dY * dY <= r * r)
                             {
-                                auto tl{m_worldArea->GetTile(x, y)};
+                                auto tile{m_worldArea->GetTile(x, y)};
 
-                                if (tl && tl->GetGround() != Hash("ground_water"))
+                                if (tile &&
+                                    tile->GetGround() != Hash("ground_water"))
                                 {
-                                    auto tl_n{m_worldArea->GetTile(x, y - 1)};
-                                    auto tl_s{m_worldArea->GetTile(x, y + 1)};
-                                    auto tl_w{m_worldArea->GetTile(x - 1, y)};
-                                    auto tl_e{m_worldArea->GetTile(x + 1, y)};
-                                    auto tl_nw{m_worldArea->GetTile(x - 1, y - 1)};
-                                    auto tl_ne{m_worldArea->GetTile(x + 1, y - 1)};
-                                    auto tl_sw{m_worldArea->GetTile(x - 1, y + 1)};
-                                    auto tl_se{m_worldArea->GetTile(x + 1, y + 1)};
+                                    auto tileN{m_worldArea->GetTile(x, y - 1)};
+                                    auto tileS{m_worldArea->GetTile(x, y + 1)};
+                                    auto tileW{m_worldArea->GetTile(x - 1, y)};
+                                    auto tileE{m_worldArea->GetTile(x + 1, y)};
+                                    auto tileNW{
+                                        m_worldArea->GetTile(x - 1, y - 1)};
+                                    auto tileNE{
+                                        m_worldArea->GetTile(x + 1, y - 1)};
+                                    auto tileSW{
+                                        m_worldArea->GetTile(x - 1, y + 1)};
+                                    auto tileSE{
+                                        m_worldArea->GetTile(x + 1, y + 1)};
 
-                                    if ((tl_n && tl_n->GetGround() ==
-                                                     Hash("ground_water")) ||
-                                        (tl_s && tl_s->GetGround() ==
-                                                     Hash("ground_water")) ||
-                                        (tl_w && tl_w->GetGround() ==
-                                                     Hash("ground_water")) ||
-                                        (tl_e && tl_e->GetGround() ==
-                                                     Hash("ground_water")) ||
-                                        (tl_nw && tl_nw->GetGround() ==
+                                    if ((tileN && tileN->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_ne && tl_ne->GetGround() ==
+                                        (tileS && tileS->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_sw && tl_sw->GetGround() ==
+                                        (tileW && tileW->GetGround() ==
                                                       Hash("ground_water")) ||
-                                        (tl_se && tl_se->GetGround() ==
-                                                      Hash("ground_water")))
+                                        (tileE && tileE->GetGround() ==
+                                                      Hash("ground_water")) ||
+                                        (tileNW && tileNW->GetGround() ==
+                                                       Hash("ground_water")) ||
+                                        (tileNE && tileNE->GetGround() ==
+                                                       Hash("ground_water")) ||
+                                        (tileSW && tileSW->GetGround() ==
+                                                       Hash("ground_water")) ||
+                                        (tileSE && tileSE->GetGround() ==
+                                                       Hash("ground_water")))
                                     {
                                         continue;
                                     }
 
-                                    // if (tl_n && tl_n->GetElevation() < tl->GetElevation())
+                                    // if (tl_n && tl_n->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_s && tl_s->GetElevation() < tl->GetElevation())
+                                    // if (tl_s && tl_s->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_w && tl_w->GetElevation() < tl->GetElevation())
+                                    // if (tl_w && tl_w->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_e && tl_e->GetElevation() < tl->GetElevation())
+                                    // if (tl_e && tl_e->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_nw && tl_nw->GetElevation() < tl->GetElevation())
+                                    // if (tl_nw && tl_nw->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_ne && tl_ne->GetElevation() < tl->GetElevation())
+                                    // if (tl_ne && tl_ne->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_sw && tl_sw->GetElevation() < tl->GetElevation())
+                                    // if (tl_sw && tl_sw->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    // if (tl_se && tl_se->GetElevation() < tl->GetElevation())
+                                    // if (tl_se && tl_se->GetElevation() <
+                                    // tl->GetElevation())
                                     // {
                                     //     continue;
                                     // }
 
-                                    tl->SetElevation(tl->GetElevation() + 1);
+                                    tile->SetElevation(tile->GetElevation() +
+                                                       1);
                                 }
                             }
                         }
@@ -316,34 +349,34 @@ namespace Theme0
 
         void WorldGenerator::GenerateRock() const
         {
-            auto num_rock_areas{30 + GetRandomInt(10)};
+            auto numRockAreas{30 + GetRandomInt(10)};
 
-            for (auto i = 0; i < num_rock_areas; i++)
+            for (auto i = 0; i < numRockAreas; i++)
             {
-                auto x_center{GetRandomInt(m_size.width)};
-                auto y_center{GetRandomInt(m_size.height)};
+                auto xCenter{GetRandomInt(m_size.width)};
+                auto yCenter{GetRandomInt(m_size.height)};
 
                 auto r{3 * m_scale + GetRandomInt(10 * m_scale)};
 
-                for (auto y = y_center - r; y <= y_center + r; y++)
+                for (auto y = yCenter - r; y <= yCenter + r; y++)
                 {
-                    for (auto x = x_center - r; x <= x_center + r; x++)
+                    for (auto x = xCenter - r; x <= xCenter + r; x++)
                     {
                         if (!m_worldArea->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
 
-                        auto dx{x - x_center};
-                        auto dy{y - y_center};
+                        auto dX{x - xCenter};
+                        auto dY{y - yCenter};
 
-                        if (dx * dx + dy * dy <= r * r)
+                        if (dX * dX + dY * dY <= r * r)
                         {
-                            auto tl{m_worldArea->GetTile(x, y)};
+                            auto tile{m_worldArea->GetTile(x, y)};
 
-                            if (tl->GetElevation() > 0)
+                            if (tile->GetElevation() > 0)
                             {
-                                tl->SetGround("ground_rock");
+                                tile->SetGround("ground_rock");
                             }
                         }
                     }
@@ -353,314 +386,318 @@ namespace Theme0
 
         void WorldGenerator::GenerateRivers() const
         {
-            auto num_rivers{20 * m_scale + GetRandomInt(5 * m_scale)};
+            auto numRivers{20 * m_scale + GetRandomInt(5 * m_scale)};
 
-            for (auto i = 0; i < num_rivers; i++)
+            for (auto i = 0; i < numRivers; i++)
             {
                 auto x{CFloat(GetRandomInt(m_size.width))};
                 auto y{CFloat(GetRandomInt(m_size.height))};
 
-                auto start_angle{GetRandomInt(360)};
+                auto startAngle{GetRandomInt(360)};
 
-                auto len{45 + GetRandomInt(20)};
+                auto length{45 + GetRandomInt(20)};
 
-                auto prev_x_coord{-1};
-                auto prev_y_coord{-1};
+                auto prevXCoordinate{-1};
+                auto prevYCoordinate{-1};
 
-                SharedPtr<Theme0::WorldStructure::Tile> prev_tl;
+                SharedPtr<Theme0::WorldStructure::Tile> prevTile;
 
-                for (auto j = 0; j < len; j++)
+                for (auto j = 0; j < length; j++)
                 {
-                    auto angle{start_angle + std::sin(j * M_PI / 10.0f) * 45};
+                    auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
 
-                    auto x_coord{CInt(x)};
-                    auto y_coord{CInt(y)};
+                    auto xCoordinate{CInt(x)};
+                    auto yCoordinate{CInt(y)};
 
-                    if (!m_worldArea->IsValidCoordinate(x_coord, y_coord))
+                    if (!m_worldArea->IsValidCoordinate(xCoordinate,
+                                                        yCoordinate))
                     {
                         continue;
                     }
 
-                    auto tl = m_worldArea->GetTile(x_coord, y_coord);
+                    auto tile = m_worldArea->GetTile(xCoordinate, yCoordinate);
 
-                    if (tl && prev_tl)
+                    if (tile && prevTile)
                     {
-                        if (x_coord == prev_x_coord && y_coord > prev_y_coord)
+                        if (xCoordinate == prevXCoordinate &&
+                            yCoordinate > prevYCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::s);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::n);
                         }
-                        else if (x_coord == prev_x_coord &&
-                                 y_coord < prev_y_coord)
+                        else if (xCoordinate == prevXCoordinate &&
+                                 yCoordinate < prevYCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::n);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::s);
                         }
-                        else if (y_coord == prev_y_coord &&
-                                 x_coord > prev_x_coord)
+                        else if (yCoordinate == prevYCoordinate &&
+                                 xCoordinate > prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::e);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::w);
                         }
-                        else if (y_coord == prev_y_coord &&
-                                 x_coord < prev_x_coord)
+                        else if (yCoordinate == prevYCoordinate &&
+                                 xCoordinate < prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::w);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::e);
                         }
-                        else if (y_coord < prev_y_coord &&
-                                 x_coord > prev_x_coord)
+                        else if (yCoordinate < prevYCoordinate &&
+                                 xCoordinate > prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::ne);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::sw);
                         }
-                        else if (y_coord > prev_y_coord &&
-                                 x_coord > prev_x_coord)
+                        else if (yCoordinate > prevYCoordinate &&
+                                 xCoordinate > prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::se);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::nw);
                         }
-                        else if (y_coord < prev_y_coord &&
-                                 x_coord < prev_x_coord)
+                        else if (yCoordinate < prevYCoordinate &&
+                                 xCoordinate < prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::nw);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::se);
                         }
-                        else if (y_coord > prev_y_coord &&
-                                 x_coord < prev_x_coord)
+                        else if (yCoordinate > prevYCoordinate &&
+                                 xCoordinate < prevXCoordinate)
                         {
-                            prev_tl->SetRiverDirection1(
+                            prevTile->SetRiverDirection1(
                                 Theme0::WorldStructure::Directions::sw);
 
-                            tl->SetRiverDirection2(
+                            tile->SetRiverDirection2(
                                 Theme0::WorldStructure::Directions::ne);
                         }
                     }
 
-                    auto dx = std::cos(angle * M_PI / 180.0f);
-                    auto dy = std::sin(angle * M_PI / 180.0f);
+                    auto dX = std::cos(angle * M_PI / 180.0f);
+                    auto dY = std::sin(angle * M_PI / 180.0f);
 
-                    x += dx;
-                    y += dy;
+                    x += dX;
+                    y += dY;
 
-                    prev_x_coord = x_coord;
-                    prev_y_coord = y_coord;
+                    prevXCoordinate = xCoordinate;
+                    prevYCoordinate = yCoordinate;
 
-                    prev_tl = tl;
+                    prevTile = tile;
                 }
             }
         }
 
         void WorldGenerator::GenerateObjects() const
         {
-            auto num_fir_trees{1000 * m_scale + GetRandomInt(50)};
+            auto numFirTrees{1000 * m_scale + GetRandomInt(50)};
 
-            for (auto i = 0; i < num_fir_trees; i++)
+            for (auto i = 0; i < numFirTrees; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddTreeObject("object_fir_tree");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddTreeObject("object_fir_tree");
                 }
             }
 
-            auto num_birch_trees{1000 * m_scale + GetRandomInt(50)};
+            auto numBirchTrees{1000 * m_scale + GetRandomInt(50)};
 
-            for (auto i = 0; i < num_birch_trees; i++)
+            for (auto i = 0; i < numBirchTrees; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddTreeObject("object_birch_tree");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddTreeObject("object_birch_tree");
                 }
             }
 
-            auto num_bush_1s{400 * m_scale + GetRandomInt(100)};
+            auto numBush1s{400 * m_scale + GetRandomInt(100)};
 
-            for (auto i = 0; i < num_bush_1s; i++)
+            for (auto i = 0; i < numBush1s; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddObject("object_bush1");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddObject("object_bush1");
                 }
             }
 
-            auto num_bush_2s{400 * m_scale + GetRandomInt(100)};
+            auto numBush2s{400 * m_scale + GetRandomInt(100)};
 
-            for (auto i = 0; i < num_bush_2s; i++)
+            for (auto i = 0; i < numBush2s; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddObject("object_bush2");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddObject("object_bush2");
                 }
             }
 
-            auto num_pink_flowers{400 * m_scale + GetRandomInt(100)};
+            auto numPinkFlowers{400 * m_scale + GetRandomInt(100)};
 
-            for (auto i = 0; i < num_pink_flowers; i++)
+            for (auto i = 0; i < numPinkFlowers; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddObject("object_pink_flower");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddObject("object_pink_flower");
                 }
             }
 
-            auto num_tall_grasses{400 * m_scale + GetRandomInt(100)};
+            auto numTallGrasses{400 * m_scale + GetRandomInt(100)};
 
-            for (auto i = 0; i < num_tall_grasses; i++)
+            for (auto i = 0; i < numTallGrasses; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetGround() != Hash("ground_water") &&
-                    tl->GetGround() != Hash("ground_rock"))
+                if (tile && tile->GetGround() != Hash("ground_water") &&
+                    tile->GetGround() != Hash("ground_rock"))
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddObject("object_tall_grass");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddObject("object_tall_grass");
                 }
             }
 
-            auto num_stone_boulders{200 * m_scale + GetRandomInt(100)};
+            auto numStoneBoulders{200 * m_scale + GetRandomInt(100)};
 
-            for (auto i = 0; i < num_stone_boulders; i++)
+            for (auto i = 0; i < numStoneBoulders; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && tl->GetWaterDepth() < 4)
+                if (tile && tile->GetWaterDepth() < 4)
                 {
-                    tl->GetObjectsStack()->ClearObjects();
-                    tl->GetObjectsStack()->AddObject("object_stone_boulder");
+                    tile->GetObjectsStack()->ClearObjects();
+                    tile->GetObjectsStack()->AddObject("object_stone_boulder");
                 }
             }
         }
 
         void WorldGenerator::GenerateCreatures() const
         {
-            auto num_rats{200 * m_scale + GetRandomInt(15 * m_scale)};
+            auto numRats{200 * m_scale + GetRandomInt(15 * m_scale)};
 
-            for (auto i = 0; i < num_rats; i++)
+            for (auto i = 0; i < numRats; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && !tl->GetCreature() &&
-                    tl->GetGround() != Hash("ground_water"))
+                if (tile && !tile->GetCreature() &&
+                    tile->GetGround() != Hash("ground_water"))
                 {
-                    auto new_crea =
+                    auto newCreature =
                         std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_rat");
 
-                    tl->SetCreature(new_crea);
+                    tile->SetCreature(newCreature);
 
                     m_worldArea->GetCreaturesMirrorRef().insert(
-                        {tl->GetCreature(), {x, y}});
+                        {tile->GetCreature(), {x, y}});
                 }
             }
 
-            auto num_butterflies{200 * m_scale + GetRandomInt(15 * m_scale)};
+            auto numButterflies{200 * m_scale + GetRandomInt(15 * m_scale)};
 
-            for (auto i = 0; i < num_butterflies; i++)
+            for (auto i = 0; i < numButterflies; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && !tl->GetCreature() &&
-                    tl->GetGround() != Hash("ground_water"))
+                if (tile && !tile->GetCreature() &&
+                    tile->GetGround() != Hash("ground_water"))
                 {
-                    auto new_crea =
+                    auto newCreature =
                         std::make_shared<Theme0::WorldStructure::Creature>(
                             "creature_butterfly");
 
-                    tl->SetCreature(new_crea);
+                    tile->SetCreature(newCreature);
 
                     m_worldArea->GetCreaturesMirrorRef().insert(
-                        {tl->GetCreature(), {x, y}});
+                        {tile->GetCreature(), {x, y}});
                 }
             }
         }
 
         void WorldGenerator::GenerateNPCs() const
         {
-            auto num_npc_0s{200 * m_scale + GetRandomInt(15 * m_scale)};
+            auto numNPC0s{200 * m_scale + GetRandomInt(15 * m_scale)};
 
-            for (auto i = 0; i < num_npc_0s; i++)
+            for (auto i = 0; i < numNPC0s; i++)
             {
                 auto x{GetRandomInt(m_size.width)};
                 auto y{GetRandomInt(m_size.height)};
 
-                auto tl{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                if (tl && !tl->GetNPC() && tl->GetGround() != Hash("ground_water"))
+                if (tile && !tile->GetNPC() &&
+                    tile->GetGround() != Hash("ground_water"))
                 {
-                    auto new_npc =
+                    auto newNPC =
                         std::make_shared<Theme0::WorldStructure::NPC>("npc0");
 
-                    tl->SetNPC(new_npc);
+                    tile->SetNPC(newNPC);
 
-                    m_worldArea->GetNPCsMirrorRef().insert({tl->GetNPC(), {x, y}});
+                    m_worldArea->GetNPCsMirrorRef().insert(
+                        {tile->GetNPC(), {x, y}});
                 }
             }
         }
