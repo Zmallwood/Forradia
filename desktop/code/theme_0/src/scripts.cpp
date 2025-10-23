@@ -52,7 +52,7 @@ namespace Theme0
                               Color>(),
                      py::arg("x"), py::arg("y"), py::arg("w"), py::arg("h"),
                      py::arg("text") = "", py::arg("cent_align") = false,
-                     py::arg("color") = Colors::wheat_transp)
+                     py::arg("color") = Colors::WheatTransparent)
                 .def("set_text", &GUIComponentsLibrary::GUILabel::SetText)
                 .def("set_visible",
                      &GUIComponentsLibrary::GUIComponent::SetVisible);
@@ -188,7 +188,7 @@ namespace Theme0
                      bool cent_align)
                   {
                       return std::make_shared<GUIComponentsLibrary::GUILabel>(
-                          x, y, w, h, text, cent_align, Colors::wheat_transp);
+                          x, y, w, h, text, cent_align, Colors::WheatTransparent);
                   });
 
             m.def("make_shared_gui_panel",

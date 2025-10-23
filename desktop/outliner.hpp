@@ -287,18 +287,18 @@ namespace Common
              */
             namespace Colors
             {
-                constexpr Color black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
+                constexpr Color Black{0.0f, 0.0f, 0.0f, 1.0f}; ///< Black color.
 
-                constexpr Color wheat{1.0f, 1.0f, 0.65f,
+                constexpr Color Wheat{1.0f, 1.0f, 0.65f,
                                       1.0f}; ///< Wheat color.
 
-                constexpr Color wheat_transp{
+                constexpr Color WheatTransparent{
                     1.0f, 1.0f, 0.65f, 0.7f}; ///< Transparent wheat color.
 
-                constexpr Color yellow{1.0f, 1.0f, 0.0f,
+                constexpr Color Yellow{1.0f, 1.0f, 0.0f,
                                        1.0f}; ///< Yellow color.
 
-                constexpr Color yellow_transp{
+                constexpr Color YellowTransparent{
                     1.0f, 1.0f, 0.0f, 0.7f}; ///< Transparent yellow color.
             }
         }
@@ -485,7 +485,7 @@ namespace Core
           public:
             ~SDLDevice();
 
-            void Initialize(StringView game_win_title, Color clear_color);
+            void Initialize(StringView gameWindowTitle, Color clearColor);
 
             void ClearCanvas() const;
 
@@ -578,14 +578,14 @@ namespace Core
                         Cleanup();
                     }
 
-                    GLuint GetTexture(int img_name_hash) const;
+                    GLuint GetTexture(int imageNameHash) const;
 
-                    Size GetImageSize(int img_name_hash) const;
+                    Size GetImageSize(int imageNameHash) const;
 
                     bool TextTextureExists(float x, float y,
-                                           int unique_id) const;
+                                           int uniqueID) const;
 
-                    GLuint ObtainTextTexture(float x, float y, int text_hash);
+                    GLuint ObtainTextTexture(float x, float y, int textHash);
 
                   private:
                     void Initialize();
@@ -594,7 +594,7 @@ namespace Core
 
                     void LoadImages();
 
-                    GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surf);
+                    GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface);
 
                     inline static const String k_relativeImagesPath{
                         "./res/images/"};
@@ -616,7 +616,7 @@ namespace Core
                       public:
                         glm::vec3 position;
                         glm::vec3 normal;
-                        glm::vec2 tex_coord;
+                        glm::vec2 uv;
                         glm::vec3 tangent;
                         glm::vec3 bitangent;
                     };
@@ -641,9 +641,9 @@ namespace Core
                     class Model
                     {
                       public:
-                        Model(StringView file_path)
+                        Model(StringView filePath)
                         {
-                            Initialize(file_path);
+                            Initialize(filePath);
                         };
 
                         auto &GetMeshesRef() const
@@ -652,7 +652,7 @@ namespace Core
                         }
 
                       private:
-                        void Initialize(StringView file_path);
+                        void Initialize(StringView filePath);
 
                         void ProcessNode(aiNode *node, const aiScene *scene,
                                          aiMatrix4x4 transform);
@@ -679,12 +679,12 @@ namespace Core
                         Initialize();
                     }
 
-                    SharedPtr<Model> GetModel(int model_name_hash) const;
+                    SharedPtr<Model> GetModel(int modelNameHash) const;
 
                   private:
                     void Initialize();
 
-                    SharedPtr<Model> LoadSingleModel(StringView file_path);
+                    SharedPtr<Model> LoadSingleModel(StringView filePath);
 
                     inline static const String k_relativeModelsPath{
                         "./res/models/"};
@@ -756,9 +756,9 @@ namespace Core
             class SceneManager
             {
               public:
-                void AddScene(StringView scene_name, IScene &scene);
+                void AddScene(StringView sceneName, IScene &scene);
 
-                void GoToScene(StringView scene_name);
+                void GoToScene(StringView sceneName);
 
                 void UpdateCurrentScene();
 
@@ -861,9 +861,9 @@ namespace Core
 
                 void Reset();
 
-                void RegisterMouseButtonDown(Uint8 btn);
+                void RegisterMouseButtonDown(Uint8 button);
 
-                void RegisterMouseButtonUp(Uint8 btn);
+                void RegisterMouseButtonUp(Uint8 button);
 
                 bool AnyMouseButtonIsPressedPickResult();
             };
@@ -878,7 +878,7 @@ namespace Core
             using RenderersCollection::TextRenderer;
         };
 
-        void Initialize(StringView game_win_title, Color clear_color) const;
+        void Initialize(StringView gameWindowTitle, Color clearColor) const;
 
         void Run();
 
@@ -913,12 +913,13 @@ namespace GUIComponentsLibrary
     class GUIComponent
     {
       public:
-        GUIComponent(float x, float y, float w, float h)
-            : m_bounds({x, y, w, h})
+        GUIComponent(float x, float y, float width, float height)
+            : m_bounds({x, y, width, height})
         {
         }
 
-        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> comp);
+        SharedPtr<GUIComponent>
+        AddChildComponent(SharedPtr<GUIComponent> component);
 
         void Update();
 
@@ -926,7 +927,7 @@ namespace GUIComponentsLibrary
 
         virtual RectF GetBounds() const;
 
-        void SetPosition(PointF new_pos);
+        void SetPosition(PointF newPosition);
 
         void ToggleVisibility();
 
@@ -965,10 +966,11 @@ namespace GUIComponentsLibrary
     class GUILabel : public GUIComponent
     {
       public:
-        GUILabel(float x, float y, float w, float h, StringView text = "",
-                 bool cent_align = false, Color color = Colors::wheat_transp)
-            : GUIComponent(x, y, w, h), m_text(text), m_centerAlign(cent_align),
-              m_color(color)
+        GUILabel(float x, float y, float width, float height,
+                 StringView text = "", bool centerAlign = false,
+                 Color color = Colors::WheatTransparent)
+            : GUIComponent(x, y, width, height), m_text(text),
+              m_centerAlign(centerAlign), m_color(color)
         {
         }
 
@@ -989,9 +991,10 @@ namespace GUIComponentsLibrary
     class GUIPanel : public GUIComponent
     {
       public:
-        GUIPanel(float x, float y, float w, float h,
-                 StringView bg_img = k_defaultBackgroundImage)
-            : GUIComponent(x, y, w, h), m_backgroundImage(bg_img)
+        GUIPanel(float x, float y, float width, float height,
+                 StringView backgroundImage = k_defaultBackgroundImage)
+            : GUIComponent(x, y, width, height),
+              m_backgroundImage(backgroundImage)
         {
         }
 
@@ -1012,11 +1015,13 @@ namespace GUIComponentsLibrary
     class GUIButton : public GUIPanel
     {
       public:
-        GUIButton(float x, float y, float w, float h, StringView text,
-                  Function<void()> action, StringView bg_img = k_backgroundImage,
-                  StringView hovered_bg_img = k_hoveredBackgroundImage)
-            : GUIPanel(x, y, w, h), m_text(text), m_action(action),
-              m_backgroundImage(bg_img), m_hoveredBackgroundImage(hovered_bg_img)
+        GUIButton(float x, float y, float width, float height, StringView text,
+                  Function<void()> action,
+                  StringView backgroundImage = k_backgroundImage,
+                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage)
+            : GUIPanel(x, y, width, height), m_text(text), m_action(action),
+              m_backgroundImage(backgroundImage),
+              m_hoveredBackgroundImage(hoveredBackgroundImage)
         {
         }
 
@@ -1027,7 +1032,8 @@ namespace GUIComponentsLibrary
 
       private:
         inline static const String k_backgroundImage{"gui_button_bg"};
-        inline static const String k_hoveredBackgroundImage{"gui_button_hovered_bg"};
+        inline static const String k_hoveredBackgroundImage{
+            "gui_button_hovered_bg"};
 
         String m_text;
         Function<void()> m_action;
@@ -1038,8 +1044,8 @@ namespace GUIComponentsLibrary
     class GUIMovablePanel : public GUIPanel
     {
       public:
-        GUIMovablePanel(float x, float y, float w, float h)
-            : GUIPanel(x, y, w, h)
+        GUIMovablePanel(float x, float y, float width, float height)
+            : GUIPanel(x, y, width, height)
         {
         }
 
@@ -1076,10 +1082,11 @@ namespace GUIComponentsLibrary
     class GUIWindow : public GUIMovablePanel
     {
       public:
-        GUIWindow(float x, float y, float w, float h, StringView win_title)
-            : GUIMovablePanel(x, y, w, h)
+        GUIWindow(float x, float y, float width, float height,
+                  StringView windowTitle)
+            : GUIMovablePanel(x, y, width, height)
         {
-            Initialize(win_title);
+            Initialize(windowTitle);
         }
 
       protected:
@@ -1093,13 +1100,13 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        void Initialize(StringView win_title);
+        void Initialize(StringView windowTitle);
 
         class GUIWindowTitleBar : public GUIPanel
         {
           public:
-            GUIWindowTitleBar(GUIWindow &parent_win, StringView win_title)
-                : m_parentWindow(parent_win), k_windowTitle(win_title),
+            GUIWindowTitleBar(GUIWindow &parentWindow, StringView windowTitle)
+                : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
                   GUIPanel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
                 Initialize();
@@ -1151,7 +1158,8 @@ namespace GUIComponentsLibrary
         void Print(StringView text);
 
       private:
-        constexpr static StringView k_defaultBackgroundImageDerived{"gui_chat_box_bg"};
+        constexpr static StringView k_defaultBackgroundImageDerived{
+            "gui_chat_box_bg"};
         inline static const float k_lineHeight{0.025f};
         inline static const float k_separatorHeight{0.003f};
         inline static const float k_margin{0.008f};
@@ -1183,9 +1191,10 @@ class RenderersCollection
     class ShaderProgram
     {
       public:
-        ShaderProgram(StringView vert_src, StringView frag_src)
+        ShaderProgram(StringView vertexShaderSource,
+                      StringView fragmentShaderSource)
         {
-            Initialize(vert_src, frag_src);
+            Initialize(vertexShaderSource, fragmentShaderSource);
         }
 
         ~ShaderProgram()
@@ -1199,7 +1208,8 @@ class RenderersCollection
         }
 
       private:
-        void Initialize(StringView vert_src, StringView frag_src);
+        void Initialize(StringView vertexShaderSource,
+                        StringView fragmentShaderSource);
 
         void Cleanup();
 
@@ -1219,15 +1229,17 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawImage(StringView img_name, float x, float y, float w, float h);
+        void DrawImage(StringView imageName, float x, float y, float width,
+                       float height);
 
-        void DrawImage(int img_name_hash, float x, float y, float w, float h);
+        void DrawImage(int imageNameHash, float x, float y, float width,
+                       float height);
 
-        void DrawTexture(GLuint tex_id, float x, float y, float w, float h,
-                         bool useOperationsMemory = false);
+        void DrawTexture(GLuint textureID, float x, float y, float width,
+                         float height, bool useOperationsMemory = false);
 
-        void DrawImageAutoHeight(StringView img_name, float x, float y,
-                                 float w);
+        void DrawImageAutoHeight(StringView imageName, float x, float y,
+                                 float width);
 
       private:
         void Initialize();
@@ -1239,8 +1251,8 @@ class RenderersCollection
           public:
             float x;
             float y;
-            float w;
-            float h;
+            float width;
+            float height;
             GLuint vao;
             GLuint ibo;
             GLuint vbo;
@@ -1265,11 +1277,12 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawTile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                      Point3F camera_pos, Vector<float> &elevs, float elev_h);
+        void DrawTile(int imageNameHash, int xCoordinate, int yCoordinate,
+                      float tileSize, Point3F cameraPosition,
+                      Vector<float> &elevations, float elevationHeight);
 
-        void DrawTexture(GLuint tex_id, Vector<float> &verts,
-                         Point3F camera_pos);
+        void DrawTexture(GLuint textureID, Vector<float> &vertices,
+                         Point3F cameraPosition);
 
       private:
         void Initialize();
@@ -1306,8 +1319,8 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawModel(int model_name_hash, float x, float y, float elev,
-                       Point3F camera_pos, float elev_h);
+        void DrawModel(int modelNameHash, float x, float y, float elevations,
+                       Point3F cameraPosition, float elevationHeight);
 
       private:
         void Initialize();
@@ -1350,9 +1363,9 @@ class RenderersCollection
         }
 
         void DrawString(StringView text, float x, float y,
-                        FontSizes font_sz = FontSizes::_20,
-                        bool cent_align = false,
-                        Color text_color = Colors::wheat_transp) const;
+                        FontSizes fontSizes = FontSizes::_20,
+                        bool centerAlign = false,
+                        Color textColor = Colors::WheatTransparent) const;
 
       private:
         void Initialize();

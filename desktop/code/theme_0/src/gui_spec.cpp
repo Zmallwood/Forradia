@@ -157,7 +157,7 @@ namespace SpecializedGUI
 
         m_labelBodyPartName = std::make_shared<GUIComponentsLibrary::GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
-            Colors::yellow_transp);
+            Colors::YellowTransparent);
 
         m_labelBodyPartStrength =
             std::make_shared<GUIComponentsLibrary::GUILabel>(
@@ -449,7 +449,7 @@ namespace SpecializedGUI
 
         _<Engine::Renderers::TextRenderer>().DrawString(
             "Actions", bounds.x + 0.01f, bounds.y + 0.01f,
-            Engine::Renderers::FontSizes::_20, false, Colors::yellow_transp);
+            Engine::Renderers::FontSizes::_20, false, Colors::YellowTransparent);
 
         auto i{0};
 

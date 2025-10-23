@@ -19,7 +19,7 @@ namespace Core
           public:
             ~SDLDevice();
 
-            void Initialize(StringView game_win_title, Color clear_color);
+            void Initialize(StringView gameWindowTitle, Color clearColor);
 
             void ClearCanvas() const;
 
@@ -112,14 +112,14 @@ namespace Core
                         Cleanup();
                     }
 
-                    GLuint GetTexture(int img_name_hash) const;
+                    GLuint GetTexture(int imageNameHash) const;
 
-                    Size GetImageSize(int img_name_hash) const;
+                    Size GetImageSize(int imageNameHash) const;
 
                     bool TextTextureExists(float x, float y,
-                                           int unique_id) const;
+                                           int uniqueID) const;
 
-                    GLuint ObtainTextTexture(float x, float y, int text_hash);
+                    GLuint ObtainTextTexture(float x, float y, int textHash);
 
                   private:
                     void Initialize();
@@ -128,7 +128,7 @@ namespace Core
 
                     void LoadImages();
 
-                    GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surf);
+                    GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface);
 
                     inline static const String k_relativeImagesPath{
                         "./res/images/"};
@@ -150,7 +150,7 @@ namespace Core
                       public:
                         glm::vec3 position;
                         glm::vec3 normal;
-                        glm::vec2 tex_coord;
+                        glm::vec2 uv;
                         glm::vec3 tangent;
                         glm::vec3 bitangent;
                     };
@@ -175,9 +175,9 @@ namespace Core
                     class Model
                     {
                       public:
-                        Model(StringView file_path)
+                        Model(StringView filePath)
                         {
-                            Initialize(file_path);
+                            Initialize(filePath);
                         };
 
                         auto &GetMeshesRef() const
@@ -186,7 +186,7 @@ namespace Core
                         }
 
                       private:
-                        void Initialize(StringView file_path);
+                        void Initialize(StringView filePath);
 
                         void ProcessNode(aiNode *node, const aiScene *scene,
                                          aiMatrix4x4 transform);
@@ -213,12 +213,12 @@ namespace Core
                         Initialize();
                     }
 
-                    SharedPtr<Model> GetModel(int model_name_hash) const;
+                    SharedPtr<Model> GetModel(int modelNameHash) const;
 
                   private:
                     void Initialize();
 
-                    SharedPtr<Model> LoadSingleModel(StringView file_path);
+                    SharedPtr<Model> LoadSingleModel(StringView filePath);
 
                     inline static const String k_relativeModelsPath{
                         "./res/models/"};
@@ -290,9 +290,9 @@ namespace Core
             class SceneManager
             {
               public:
-                void AddScene(StringView scene_name, IScene &scene);
+                void AddScene(StringView sceneName, IScene &scene);
 
-                void GoToScene(StringView scene_name);
+                void GoToScene(StringView sceneName);
 
                 void UpdateCurrentScene();
 
@@ -395,9 +395,9 @@ namespace Core
 
                 void Reset();
 
-                void RegisterMouseButtonDown(Uint8 btn);
+                void RegisterMouseButtonDown(Uint8 button);
 
-                void RegisterMouseButtonUp(Uint8 btn);
+                void RegisterMouseButtonUp(Uint8 button);
 
                 bool AnyMouseButtonIsPressedPickResult();
             };
@@ -412,7 +412,7 @@ namespace Core
             using RenderersCollection::TextRenderer;
         };
 
-        void Initialize(StringView game_win_title, Color clear_color) const;
+        void Initialize(StringView gameWindowTitle, Color clearColor) const;
 
         void Run();
 

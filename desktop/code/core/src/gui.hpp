@@ -14,12 +14,13 @@ namespace GUIComponentsLibrary
     class GUIComponent
     {
       public:
-        GUIComponent(float x, float y, float w, float h)
-            : m_bounds({x, y, w, h})
+        GUIComponent(float x, float y, float width, float height)
+            : m_bounds({x, y, width, height})
         {
         }
 
-        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> comp);
+        SharedPtr<GUIComponent>
+        AddChildComponent(SharedPtr<GUIComponent> component);
 
         void Update();
 
@@ -27,7 +28,7 @@ namespace GUIComponentsLibrary
 
         virtual RectF GetBounds() const;
 
-        void SetPosition(PointF new_pos);
+        void SetPosition(PointF newPosition);
 
         void ToggleVisibility();
 
@@ -66,10 +67,11 @@ namespace GUIComponentsLibrary
     class GUILabel : public GUIComponent
     {
       public:
-        GUILabel(float x, float y, float w, float h, StringView text = "",
-                 bool cent_align = false, Color color = Colors::wheat_transp)
-            : GUIComponent(x, y, w, h), m_text(text), m_centerAlign(cent_align),
-              m_color(color)
+        GUILabel(float x, float y, float width, float height,
+                 StringView text = "", bool centerAlign = false,
+                 Color color = Colors::WheatTransparent)
+            : GUIComponent(x, y, width, height), m_text(text),
+              m_centerAlign(centerAlign), m_color(color)
         {
         }
 
@@ -90,9 +92,10 @@ namespace GUIComponentsLibrary
     class GUIPanel : public GUIComponent
     {
       public:
-        GUIPanel(float x, float y, float w, float h,
-                 StringView bg_img = k_defaultBackgroundImage)
-            : GUIComponent(x, y, w, h), m_backgroundImage(bg_img)
+        GUIPanel(float x, float y, float width, float height,
+                 StringView backgroundImage = k_defaultBackgroundImage)
+            : GUIComponent(x, y, width, height),
+              m_backgroundImage(backgroundImage)
         {
         }
 
@@ -113,11 +116,13 @@ namespace GUIComponentsLibrary
     class GUIButton : public GUIPanel
     {
       public:
-        GUIButton(float x, float y, float w, float h, StringView text,
-                  Function<void()> action, StringView bg_img = k_backgroundImage,
-                  StringView hovered_bg_img = k_hoveredBackgroundImage)
-            : GUIPanel(x, y, w, h), m_text(text), m_action(action),
-              m_backgroundImage(bg_img), m_hoveredBackgroundImage(hovered_bg_img)
+        GUIButton(float x, float y, float width, float height, StringView text,
+                  Function<void()> action,
+                  StringView backgroundImage = k_backgroundImage,
+                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage)
+            : GUIPanel(x, y, width, height), m_text(text), m_action(action),
+              m_backgroundImage(backgroundImage),
+              m_hoveredBackgroundImage(hoveredBackgroundImage)
         {
         }
 
@@ -128,7 +133,8 @@ namespace GUIComponentsLibrary
 
       private:
         inline static const String k_backgroundImage{"gui_button_bg"};
-        inline static const String k_hoveredBackgroundImage{"gui_button_hovered_bg"};
+        inline static const String k_hoveredBackgroundImage{
+            "gui_button_hovered_bg"};
 
         String m_text;
         Function<void()> m_action;
@@ -139,8 +145,8 @@ namespace GUIComponentsLibrary
     class GUIMovablePanel : public GUIPanel
     {
       public:
-        GUIMovablePanel(float x, float y, float w, float h)
-            : GUIPanel(x, y, w, h)
+        GUIMovablePanel(float x, float y, float width, float height)
+            : GUIPanel(x, y, width, height)
         {
         }
 
@@ -177,10 +183,11 @@ namespace GUIComponentsLibrary
     class GUIWindow : public GUIMovablePanel
     {
       public:
-        GUIWindow(float x, float y, float w, float h, StringView win_title)
-            : GUIMovablePanel(x, y, w, h)
+        GUIWindow(float x, float y, float width, float height,
+                  StringView windowTitle)
+            : GUIMovablePanel(x, y, width, height)
         {
-            Initialize(win_title);
+            Initialize(windowTitle);
         }
 
       protected:
@@ -194,13 +201,13 @@ namespace GUIComponentsLibrary
         }
 
       private:
-        void Initialize(StringView win_title);
+        void Initialize(StringView windowTitle);
 
         class GUIWindowTitleBar : public GUIPanel
         {
           public:
-            GUIWindowTitleBar(GUIWindow &parent_win, StringView win_title)
-                : m_parentWindow(parent_win), k_windowTitle(win_title),
+            GUIWindowTitleBar(GUIWindow &parentWindow, StringView windowTitle)
+                : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
                   GUIPanel(0.0f, 0.0f, 0.0f, 0.0f, "gui_win_title_bar_bg")
             {
                 Initialize();
@@ -252,7 +259,8 @@ namespace GUIComponentsLibrary
         void Print(StringView text);
 
       private:
-        constexpr static StringView k_defaultBackgroundImageDerived{"gui_chat_box_bg"};
+        constexpr static StringView k_defaultBackgroundImageDerived{
+            "gui_chat_box_bg"};
         inline static const float k_lineHeight{0.025f};
         inline static const float k_separatorHeight{0.003f};
         inline static const float k_margin{0.008f};

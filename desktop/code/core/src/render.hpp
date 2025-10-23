@@ -15,9 +15,10 @@ class RenderersCollection
     class ShaderProgram
     {
       public:
-        ShaderProgram(StringView vert_src, StringView frag_src)
+        ShaderProgram(StringView vertexShaderSource,
+                      StringView fragmentShaderSource)
         {
-            Initialize(vert_src, frag_src);
+            Initialize(vertexShaderSource, fragmentShaderSource);
         }
 
         ~ShaderProgram()
@@ -31,7 +32,8 @@ class RenderersCollection
         }
 
       private:
-        void Initialize(StringView vert_src, StringView frag_src);
+        void Initialize(StringView vertexShaderSource,
+                        StringView fragmentShaderSource);
 
         void Cleanup();
 
@@ -51,15 +53,17 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawImage(StringView img_name, float x, float y, float w, float h);
+        void DrawImage(StringView imageName, float x, float y, float width,
+                       float height);
 
-        void DrawImage(int img_name_hash, float x, float y, float w, float h);
+        void DrawImage(int imageNameHash, float x, float y, float width,
+                       float height);
 
-        void DrawTexture(GLuint tex_id, float x, float y, float w, float h,
-                         bool useOperationsMemory = false);
+        void DrawTexture(GLuint textureID, float x, float y, float width,
+                         float height, bool useOperationsMemory = false);
 
-        void DrawImageAutoHeight(StringView img_name, float x, float y,
-                                 float w);
+        void DrawImageAutoHeight(StringView imageName, float x, float y,
+                                 float width);
 
       private:
         void Initialize();
@@ -71,8 +75,8 @@ class RenderersCollection
           public:
             float x;
             float y;
-            float w;
-            float h;
+            float width;
+            float height;
             GLuint vao;
             GLuint ibo;
             GLuint vbo;
@@ -97,11 +101,12 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawTile(int img_name_hash, int x_coord, int y_coord, float tl_sz,
-                      Point3F camera_pos, Vector<float> &elevs, float elev_h);
+        void DrawTile(int imageNameHash, int xCoordinate, int yCoordinate,
+                      float tileSize, Point3F cameraPosition,
+                      Vector<float> &elevations, float elevationHeight);
 
-        void DrawTexture(GLuint tex_id, Vector<float> &verts,
-                         Point3F camera_pos);
+        void DrawTexture(GLuint textureID, Vector<float> &vertices,
+                         Point3F cameraPosition);
 
       private:
         void Initialize();
@@ -138,8 +143,8 @@ class RenderersCollection
             Cleanup();
         }
 
-        void DrawModel(int model_name_hash, float x, float y, float elev,
-                       Point3F camera_pos, float elev_h);
+        void DrawModel(int modelNameHash, float x, float y, float elevations,
+                       Point3F cameraPosition, float elevationHeight);
 
       private:
         void Initialize();
@@ -182,9 +187,9 @@ class RenderersCollection
         }
 
         void DrawString(StringView text, float x, float y,
-                        FontSizes font_sz = FontSizes::_20,
-                        bool cent_align = false,
-                        Color text_color = Colors::wheat_transp) const;
+                        FontSizes fontSizes = FontSizes::_20,
+                        bool centerAlign = false,
+                        Color textColor = Colors::WheatTransparent) const;
 
       private:
         void Initialize();

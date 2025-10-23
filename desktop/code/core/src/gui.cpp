@@ -9,13 +9,13 @@
 _NS_START_
 SharedPtr<GUIComponentsLibrary::GUIComponent>
 GUIComponentsLibrary::GUIComponent::AddChildComponent(
-    SharedPtr<GUIComponentsLibrary::GUIComponent> comp)
+    SharedPtr<GUIComponentsLibrary::GUIComponent> component)
 {
-    comp->SetParentComponent(this);
+    component->SetParentComponent(this);
 
-    m_childComponents.push_back(comp);
+    m_childComponents.push_back(component);
 
-    return comp;
+    return component;
 }
 
 void GUIComponentsLibrary::GUIComponent::Update()
@@ -67,10 +67,10 @@ void GUIComponentsLibrary::GUIComponent::ToggleVisibility()
     m_visible = !m_visible;
 }
 
-void GUIComponentsLibrary::GUIComponent::SetPosition(PointF new_pos)
+void GUIComponentsLibrary::GUIComponent::SetPosition(PointF newPosition)
 {
-    m_bounds.x = new_pos.x;
-    m_bounds.y = new_pos.y;
+    m_bounds.x = newPosition.x;
+    m_bounds.y = newPosition.y;
 }
 
 void GUIComponentsLibrary::GUILabel::RenderDerived() const
@@ -225,7 +225,7 @@ void GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::RenderDerived() const
     _<Engine::Renderers::TextRenderer>().DrawString(
         k_windowTitle, parentWindowBounds.x + 0.01f,
         parentWindowBounds.y + 0.01f, Engine::Renderers::FontSizes::_20, false,
-        Colors::yellow);
+        Colors::Yellow);
 }
 
 RectF GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::GetBounds() const
@@ -241,11 +241,12 @@ RectF GUIComponentsLibrary::GUIWindow::GUIWindowTitleBar::GetBounds() const
 
     return boundsResult;
 }
-void GUIComponentsLibrary::GUIWindow::Initialize(StringView win_title)
+void GUIComponentsLibrary::GUIWindow::Initialize(StringView windowTitle)
 {
     SetVisible(false);
 
-    m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(*this, win_title);
+    m_guiWindowTitleBar =
+        std::make_shared<GUIWindowTitleBar>(*this, windowTitle);
 
     AddChildComponent(m_guiWindowTitleBar);
 }

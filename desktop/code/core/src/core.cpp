@@ -7,11 +7,11 @@
 _NS_START_
 namespace Core
 {
-    void Engine::Initialize(StringView game_win_title, Color clear_color) const
+    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
     {
         Randomize();
 
-        _<SDLDevice>().Initialize(game_win_title, clear_color);
+        _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
     }
 
     void Engine::Run()
@@ -96,11 +96,11 @@ namespace Core
         SDL_GL_DeleteContext(*m_context);
     }
 
-    void Engine::SDLDevice::Initialize(StringView game_win_title,
-                                       Color clear_color)
+    void Engine::SDLDevice::Initialize(StringView gameWindowTitle,
+                                       Color clearColor)
     {
-        m_gameWindowTitle = game_win_title;
-        m_clearColor = clear_color;
+        m_gameWindowTitle = gameWindowTitle;
+        m_clearColor = clearColor;
 
         SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -294,24 +294,24 @@ namespace Core
     }
 
     GLuint
-    Engine::Assets::Images::ImageBank::GetTexture(int img_name_hash) const
+    Engine::Assets::Images::ImageBank::GetTexture(int imageNameHash) const
     {
-        return m_textures.at(img_name_hash);
+        return m_textures.at(imageNameHash);
     }
 
     Size
-    Engine::Assets::Images::ImageBank::GetImageSize(int img_name_hash) const
+    Engine::Assets::Images::ImageBank::GetImageSize(int imageNameHash) const
     {
-        if (m_textureSizes.contains(img_name_hash))
+        if (m_textureSizes.contains(imageNameHash))
         {
-            return m_textureSizes.at(img_name_hash);
+            return m_textureSizes.at(imageNameHash);
         }
 
         return {-1, -1};
     }
 
     GLuint Engine::Assets::Images::ImageBank::LoadSingleTexture(
-        SharedPtr<SDL_Surface> surf)
+        SharedPtr<SDL_Surface> surface)
     {
         GLuint texture;
 
@@ -319,8 +319,8 @@ namespace Core
 
         glBindTexture(GL_TEXTURE_2D, texture);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0, GL_RGBA,
-                     GL_UNSIGNED_BYTE, surf->pixels);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0,
+                     GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -330,40 +330,40 @@ namespace Core
 
     bool
     Engine::Assets::Images::ImageBank::TextTextureExists(float x, float y,
-                                                         int text_hash) const
+                                                         int textHash) const
     {
         return m_textTextures.contains(x) && m_textTextures.at(x).contains(y) &&
-               m_textTextures.at(x).at(y).contains(text_hash);
+               m_textTextures.at(x).at(y).contains(textHash);
     }
 
     GLuint Engine::Assets::Images::ImageBank::ObtainTextTexture(float x,
                                                                 float y,
-                                                                int text_hash)
+                                                                int textHash)
     {
-        if (TextTextureExists(x, y, text_hash))
+        if (TextTextureExists(x, y, textHash))
         {
-            return m_textTextures.at(x).at(y).at(text_hash);
+            return m_textTextures.at(x).at(y).at(textHash);
         }
 
         GLuint texture;
 
         glGenTextures(1, &texture);
 
-        m_textTextures[x][y][text_hash] = texture;
+        m_textTextures[x][y][textHash] = texture;
 
         return texture;
     }
 
     void
-    Engine::Assets::Models::ModelBank::Model::Initialize(StringView file_path)
+    Engine::Assets::Models::ModelBank::Model::Initialize(StringView filePath)
     {
         Assimp::Importer importer;
 
         const aiScene *scene{importer.ReadFile(
-            file_path.data(), aiProcess_Triangulate | aiProcess_FlipUVs |
-                                  aiProcess_CalcTangentSpace |
-                                  aiProcess_GenBoundingBoxes |
-                                  aiProcess_FixInfacingNormals)};
+            filePath.data(), aiProcess_Triangulate | aiProcess_FlipUVs |
+                                 aiProcess_CalcTangentSpace |
+                                 aiProcess_GenBoundingBoxes |
+                                 aiProcess_FixInfacingNormals)};
 
         if (!scene || !scene->mRootNode)
         {
@@ -454,11 +454,11 @@ namespace Core
                 vector2.x = mesh->mTextureCoords[0][i].x;
                 vector2.y = mesh->mTextureCoords[0][i].y;
 
-                vertex.tex_coord = vector2;
+                vertex.uv = vector2;
             }
             else
             {
-                vertex.tex_coord = glm::vec2(0, 0);
+                vertex.uv = glm::vec2(0, 0);
             }
             if (mesh->mTangents)
             {
@@ -558,20 +558,20 @@ namespace Core
     }
 
     SharedPtr<Engine::Assets::Models::ModelBank::Model>
-    Engine::Assets::Models::ModelBank::GetModel(int model_name_hash) const
+    Engine::Assets::Models::ModelBank::GetModel(int modelNameHash) const
     {
-        if (m_models.contains(model_name_hash))
+        if (m_models.contains(modelNameHash))
         {
-            return m_models.at(model_name_hash);
+            return m_models.at(modelNameHash);
         }
 
         return nullptr;
     }
 
     SharedPtr<Engine::Assets::Models::ModelBank::Model>
-    Engine::Assets::Models::ModelBank::LoadSingleModel(StringView file_path)
+    Engine::Assets::Models::ModelBank::LoadSingleModel(StringView filePath)
     {
-        auto modelResult{std::make_shared<Model>(file_path)};
+        auto modelResult{std::make_shared<Model>(filePath)};
 
         return modelResult;
     }
@@ -603,17 +603,17 @@ namespace Core
         m_gui->Render();
     }
 
-    void Engine::ScenesCore::SceneManager::AddScene(StringView scene_name,
+    void Engine::ScenesCore::SceneManager::AddScene(StringView sceneName,
                                                     IScene &scene)
     {
         scene.Initialize();
 
-        m_scenes.insert({Hash(scene_name), scene});
+        m_scenes.insert({Hash(sceneName), scene});
     }
 
-    void Engine::ScenesCore::SceneManager::GoToScene(StringView scene_name)
+    void Engine::ScenesCore::SceneManager::GoToScene(StringView sceneName)
     {
-        m_currentScene = Hash(scene_name);
+        m_currentScene = Hash(sceneName);
 
         if (m_scenes.contains(m_currentScene))
         {
@@ -737,9 +737,9 @@ namespace Core
         _<RightMouseButton>().Reset();
     }
 
-    void Engine::Input::MouseInput::RegisterMouseButtonDown(Uint8 btn)
+    void Engine::Input::MouseInput::RegisterMouseButtonDown(Uint8 button)
     {
-        switch (btn)
+        switch (button)
         {
         case SDL_BUTTON_LEFT:
 
@@ -755,9 +755,9 @@ namespace Core
         }
     }
 
-    void Engine::Input::MouseInput::RegisterMouseButtonUp(Uint8 btn)
+    void Engine::Input::MouseInput::RegisterMouseButtonUp(Uint8 button)
     {
-        switch (btn)
+        switch (button)
         {
         case SDL_BUTTON_LEFT:
 
