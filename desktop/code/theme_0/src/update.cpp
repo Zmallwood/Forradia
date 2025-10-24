@@ -395,33 +395,32 @@ namespace Theme0
             auto aspectRatio{
                 CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
 
-            // perspective function takes field of view, aspect ratio, near
-            // clipping distance and far clipping distance.
             glm::mat4 proj = glm::perspective(90.0f, aspectRatio, 0.1f, 100.0f);
 
-            // glm::vec3 unprojectedNear = glm::unProject(
-            //     glm::vec3(mousePosition.x * canvasSize.width,
-            //               mousePosition.y * canvasSize.height, 0.0),
-            //     glm::inverse(proj * view), proj,
-            //     glm::vec4(0, 0, canvasSize.width, canvasSize.height));
+            auto c =
+                glm::vec3(cameraPos.x, cameraPos.y - 2.0f, -cameraPos.z + 2.5f);
 
-            // glm::vec3 unprojectedFar = glm::unProject(
-            //     glm::vec3(mousePosition.x * canvasSize.width,
-            //               mousePosition.y * canvasSize.height, 100.0),
-            //     glm::inverse(proj * view), proj,
-            //     glm::vec4(0, 0, canvasSize.width, canvasSize.height));
+            auto xpos{(1.0f - mousePosition.x) * canvasSize.width};
+            auto ypos{mousePosition.y * canvasSize.height};
 
-            auto c = glm::vec3(cameraPos.x, cameraPos.y, cameraPos.z);
+            float x = ((2.0f * xpos) / canvasSize.width - 1.0f) / 2.0f;
+            float y = 1.0f - (2.0f * ypos) / canvasSize.height;
 
-            glm::mat4 invVP = glm::inverse(proj * view);
+            float z = 1.0f;
+            glm::vec3 ray_nds = glm::vec3(x, y, z);
 
-            glm::vec4 screenPos =
-                glm::vec4(mousePosition.x, mousePosition.y, 1.0f, 1.0f);
-            glm::vec4 worldPos = invVP * screenPos;
+            // Clip space
+            glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, 2.5f, 1.0);
+            // Eye Coordinates
+            glm::vec4 ray_eye = inverse(proj) * ray_clip;
+            ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
 
-            auto dir{glm::vec3(worldPos)};
+            // World Coordinates
+            glm::vec3 ray_wor = (inverse(view) * ray_eye);
 
-            dir *= -1;
+            auto dir{glm::normalize(ray_wor)};
+
+            auto c2{glm::vec3(c.x, c.y, c.z-1.0f)};
 
             glm::vec3 rayStartPositon = c;
 
@@ -449,48 +448,49 @@ namespace Theme0
                         continue;
                     }
 
+                    auto coordinateNW{Point{xCoordinate, yCoordinate}};
+                    auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+                    auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+                    auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+
+                    auto tileNW{worldArea->GetTile(coordinateNW)};
+                    auto tileNE{worldArea->GetTile(coordinateNE)};
+                    auto tileSW{worldArea->GetTile(coordinateSW)};
+                    auto tileSE{worldArea->GetTile(coordinateSE)};
+
+                    auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
+                    auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
+                    auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
+                    auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
+
                     auto v00{glm::vec3{(xCoordinate - 1) * rendTileSize,
-                                       (yCoordinate - 1) * rendTileSize, 0.0f}};
+                                       (yCoordinate - 1) * rendTileSize,
+                                       elevationNW * elevHeight}};
                     auto v10{glm::vec3{(xCoordinate - 1 + 1) * rendTileSize,
-                                       (yCoordinate - 1) * rendTileSize, 0.0f}};
+                                       (yCoordinate - 1) * rendTileSize,
+                                       elevationNE * elevHeight}};
                     auto v11{glm::vec3{(xCoordinate - 1 + 1) * rendTileSize,
                                        (yCoordinate - 1 + 1) * rendTileSize,
-                                       0.0f}};
+                                       elevationSE * elevHeight}};
                     auto v01{glm::vec3{(xCoordinate - 1) * rendTileSize,
                                        (yCoordinate - 1 + 1) * rendTileSize,
-                                       0.0f}};
+                                       elevationSW * elevHeight}};
 
                     glm::vec3 result;
 
-                    std::cout << "playerPos: " << playerPos.x << " "
-                              << playerPos.y << std::endl;
-                    std::cout << "cCoords: " << c.x / rendTileSize << " "
-                              << c.y / rendTileSize << std::endl;
-                    std::cout << "dir: " << dir.x << " " << dir.y << " "
-                              << dir.z << std::endl;
-
-                    auto success{glm::intersectLineTriangle(c, dir, v00, v10,
+                    auto success{glm::intersectLineTriangle(c2, dir, v00, v10,
                                                             v11, result)};
 
                     if (!success)
                     {
-                        success = {glm::intersectLineTriangle(c, dir, v00, v11,
+                        success = {glm::intersectLineTriangle(c2, dir, v00, v11,
                                                               v01, result)};
                     }
 
                     if (success)
                     {
-                        _<GUIComponentsLibrary::GUIChatBox>().Print(
-                            "intersected on " + std::to_string(xCoordinate) +
-                            " " + std::to_string(yCoordinate));
-                        std::cout << "intersected on: " << result.x << " "
-                                  << result.y << " " << result.z << std::endl;
-
                         m_hoveredCoordinate = {rawXCoordinate, rawYCoordinate};
                     }
-
-                    // std::cout << n.x << " " << n.y << " " << n.z <<
-                    // std::endl;
                 }
             }
 
