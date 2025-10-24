@@ -7,5 +7,5 @@
 #pragma once
 
 #include "Singleton.hpp"
-#include "Matter/Coloring/Color.hpp"
-#include "Matter/Coloring/Colors.hpp"
+#include "Coloring/Color.hpp"
+#include "Coloring/Colors.hpp"

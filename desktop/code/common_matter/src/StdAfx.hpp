@@ -6,6 +6,4 @@
 
 #pragma once
 
-#include "Common.hpp"
-#include "Constants.hpp"
-#include "Geometry/Point.hpp"
+#include <SDL2/SDL.h>

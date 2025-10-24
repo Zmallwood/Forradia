@@ -7,8 +7,8 @@
 #pragma once
 
 #include "Lang.hpp"
-#include "Matter/Geometry/PointF.hpp"
-#include "Matter/Geometry/Size.hpp"
+#include "Geometry/PointF.hpp"
+#include "Geometry/Size.hpp"
 
 namespace Forradia
 {

@@ -7,7 +7,7 @@
 #pragma once
 
 #include "Lang.hpp"
-#include "Matter/Geometry/PointF.hpp"
+#include "Geometry/PointF.hpp"
 
 struct SDL_Window;
 
