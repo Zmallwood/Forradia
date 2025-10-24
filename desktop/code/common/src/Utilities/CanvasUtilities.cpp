@@ -5,7 +5,6 @@
 //
 
 #include "CanvasUtilities.hpp"
-#include "CastUtilities.hpp"
 
 namespace Forradia
 {

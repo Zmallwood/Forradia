@@ -6,22 +6,12 @@
 
 #pragma once
 
-#include "Aliases.hpp"
+#include "Lang.hpp"
 #include "Matter/Geometry/PointF.hpp"
 #include "Matter/Geometry/Size.hpp"
 
-struct SDL_Window;
-typedef uint8_t Uint8;
-
 namespace Forradia
 {
-    String GetFileExtension(StringView path);
-
-    String GetFileNameNoExtension(StringView path);
-
-    PointF GetNormallizedMousePosition(
-        SharedPtr<SDL_Window> window);
-
     float InvertMovementSpeed(float movementSpeed);
 
     int Normalize(int value);

@@ -7,44 +7,9 @@
 #include "Common.hpp"
 #include "Constants.hpp"
 #include "Utilities/CanvasUtilities.hpp"
-#include "Utilities/CastUtilities.hpp"
 
 namespace Forradia
 {
-    String GetFileExtension(StringView path)
-    {
-        // Get the file extension.
-        String extension{
-            path.substr(path.find_last_of('.') + 1).data()};
-
-        return extension;
-    }
-
-    String GetFileNameNoExtension(StringView path)
-    {
-        // Get the file name without the extension.
-        auto nameWithExtension{String(
-            path.substr(path.find_last_of('/') + 1))};
-
-        return nameWithExtension.substr(
-            0, nameWithExtension.find_last_of('.'));
-    }
-
-    PointF GetNormallizedMousePosition(
-        SharedPtr<SDL_Window> window)
-    {
-        int xPx;
-        int yPx;
-
-        // Get the mouse position.
-        SDL_GetMouseState(&xPx, &yPx);
-        auto canvasSize{GetCanvasSize(window)};
-
-        // Calculate the normalized mouse position.
-        return {CFloat(xPx) / canvasSize.width,
-                CFloat(yPx) / canvasSize.height};
-    }
-
     float InvertMovementSpeed(float movemenSpeed)
     {
         // Calculate the inverse of the movement speed.

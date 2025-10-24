@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Aliases.hpp"
+#include "Lang.hpp"
 
 namespace Forradia
 {

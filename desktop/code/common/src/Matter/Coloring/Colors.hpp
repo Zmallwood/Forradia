@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "Color.hpp"
+
 namespace Forradia
 {
     ///
