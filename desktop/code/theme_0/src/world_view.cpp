@@ -2,6 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #include "world_view.hpp"
 #include "core.hpp"
 #include "render.hpp"
@@ -26,7 +27,7 @@ namespace Theme0
 
             auto worldAreaSize{worldArea->GetSize()};
 
-            auto hoveredCoordinate {_<TileHovering>().GetHoveredCoordinate()};
+            auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
 
             auto elevHeight{0.1f};
 
@@ -245,10 +246,12 @@ namespace Theme0
                         ground, xCoordinate - 1, yCoordinate - 1, rendTileSize,
                         cameraPos, elevations, elevHeight);
 
-                    if (xCoordinate == worldAreaSize.width - hoveredCoordinate.x
-                    && yCoordinate == worldAreaSize.height - hoveredCoordinate.y)
+                    if (xCoordinate ==
+                            worldAreaSize.width - hoveredCoordinate.x &&
+                        yCoordinate ==
+                            worldAreaSize.height - hoveredCoordinate.y)
                     {
-                        for (auto& elevation : elevations)
+                        for (auto &elevation : elevations)
                         {
                             elevation += 0.01f;
                         }

@@ -28,6 +28,7 @@ namespace Forradia
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #define _NS_START_                                                             \
     namespace Forradia                                                         \
     {
@@ -468,6 +469,7 @@ _NS_END_
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 
 #include "gui.hpp"
@@ -901,6 +903,7 @@ namespace Core
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 
 _NS_START_
@@ -1178,6 +1181,7 @@ _NS_END_
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 
 _NS_START_
@@ -1389,7 +1393,9 @@ _NS_END_
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
+
 #include "common.hpp"
 
 _NS_START_
@@ -1556,6 +1562,7 @@ namespace Theme0
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 #include "common.hpp"
 
@@ -1610,6 +1617,7 @@ _NS_END_
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 
 _NS_START_

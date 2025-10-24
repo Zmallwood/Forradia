@@ -2,6 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #include "core.hpp"
 #include "game_props.hpp"
 #include "scripts.hpp"
@@ -12,7 +13,7 @@ int main(int argc, char **argv)
     using namespace Forradia;
 
     _<Engine>().Initialize(_<Theme0::GameProperties>().k_gameWindowTitle,
-                     _<Theme0::GameProperties>().k_clearColor);
+                           _<Theme0::GameProperties>().k_clearColor);
 
     _<Theme0::ScriptEngine>().Initialize();
 
@@ -23,6 +24,6 @@ int main(int argc, char **argv)
         _<Theme0::GameProperties>().k_worldScaling);
 
     _<Engine>().Run();
-    
+
     return 0;
 }

@@ -2,6 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #include "scripts.hpp"
 #include "core.hpp"
 #include "gui.hpp"
@@ -32,12 +33,12 @@ namespace Theme0
             py::class_<Engine>(m, "Engine").def("stop", &Engine::Stop);
 
             py::class_<GUIComponentsLibrary::GUIComponent,
-                       SharedPtr<GUIComponentsLibrary::GUIComponent>>(m, "GUIComponent");
+                       SharedPtr<GUIComponentsLibrary::GUIComponent>>(
+                m, "GUIComponent");
 
-            py::class_<
-                Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot,
-                SharedPtr<Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot>>(
-                m, "GUIRoot")
+            py::class_<Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot,
+                       SharedPtr<Core::Engine::ScenesCore::IScene::ScenesGUI::
+                                     GUIRoot>>(m, "GUIRoot")
                 .def("add_child_comp",
                      [](Core::Engine::ScenesCore::IScene::ScenesGUI::GUIRoot
                             &self,
@@ -86,7 +87,8 @@ namespace Theme0
                      [](Core::Engine::ScenesCore::IScene &self, py::function f)
                      { self.SetRenderDerived([=] { f(); }); });
 
-            py::class_<Core::Engine::ScenesCore::SceneManager>(m, "SceneManager")
+            py::class_<Core::Engine::ScenesCore::SceneManager>(m,
+                                                               "SceneManager")
                 .def(py::init<>())
                 .def("add_scene",
                      &Core::Engine::ScenesCore::SceneManager::AddScene)
@@ -110,14 +112,17 @@ namespace Theme0
                 .def(py::init<>())
                 .def("print", &GUIComponentsLibrary::GUIChatBox::Print);
 
-            py::class_<Theme0::WorldGeneration::WorldGenerator>(m, "WorldGenerator")
+            py::class_<Theme0::WorldGeneration::WorldGenerator>(
+                m, "WorldGenerator")
                 .def(py::init<>())
-                .def("gen_new_world",
-                     &Theme0::WorldGeneration::WorldGenerator::GenerateNewWorld);
+                .def(
+                    "gen_new_world",
+                    &Theme0::WorldGeneration::WorldGenerator::GenerateNewWorld);
 
             py::class_<Core::Engine::Input::KeyboardInput>(m, "KeyboardInput")
                 .def("any_key_pressed_pick_res",
-                     &Core::Engine::Input::KeyboardInput::AnyKeyIsPressedPickResult);
+                     &Core::Engine::Input::KeyboardInput::
+                         AnyKeyIsPressedPickResult);
 
             py::class_<Core::Engine::Input::MouseInput>(m, "MouseInput")
                 .def("any_mouse_btn_pressed_pick_res",
@@ -127,31 +132,33 @@ namespace Theme0
             py::class_<Engine::Renderers::Image2DRenderer>(m, "Image2DRenderer")
                 .def("draw_img",
                      [](Engine::Renderers::Image2DRenderer &self,
-                        StringView image_name, float x, float y, float w, float h)
-                     { self.DrawImage(image_name, x, y, w, h); })
+                        StringView image_name, float x, float y, float w,
+                        float h) { self.DrawImage(image_name, x, y, w, h); })
                 .def("draw_img",
                      [](Engine::Renderers::Image2DRenderer &self,
                         int image_name_hash, float x, float y, float w, float h)
                      { self.DrawImage(image_name_hash, x, y, w, h); })
                 .def("draw_img_auto_h",
-                     [](Engine::Renderers::Image2DRenderer &self, StringView img_name,
-                        float x, float y, float w)
+                     [](Engine::Renderers::Image2DRenderer &self,
+                        StringView img_name, float x, float y, float w)
                      { self.DrawImageAutoHeight(img_name, x, y, w); });
 
             py::class_<Theme0::GUIPlayerStatusBox,
                        SharedPtr<Theme0::GUIPlayerStatusBox>,
-                       GUIComponentsLibrary::GUIComponent>(m,
-                                                       "GUIPlayerStatusBox");
+                       GUIComponentsLibrary::GUIComponent>(
+                m, "GUIPlayerStatusBox");
 
             py::class_<Theme0::GUIPlayerBodyWindow,
                        SharedPtr<Theme0::GUIPlayerBodyWindow>,
-                       GUIComponentsLibrary::GUIComponent>(m, "GUIPlayerBodyWindow")
+                       GUIComponentsLibrary::GUIComponent>(
+                m, "GUIPlayerBodyWindow")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::ToggleVisibility);
 
             py::class_<Theme0::GUIInventoryWindow,
                        SharedPtr<Theme0::GUIInventoryWindow>,
-                       GUIComponentsLibrary::GUIComponent>(m, "GUIInventoryWindow")
+                       GUIComponentsLibrary::GUIComponent>(m,
+                                                           "GUIInventoryWindow")
                 .def("toggle_visible",
                      &GUIComponentsLibrary::GUIComponent::ToggleVisibility);
 
@@ -162,19 +169,23 @@ namespace Theme0
 
             py::class_<Theme0::GUIInteractionMenu,
                        SharedPtr<Theme0::GUIInteractionMenu>,
-                       GUIComponentsLibrary::GUIComponent>(m, "GUIInteractionMenu");
+                       GUIComponentsLibrary::GUIComponent>(
+                m, "GUIInteractionMenu");
 
             py::class_<Theme0::GameplayCore::TileHovering>(m, "TileHovering")
                 .def("update", &Theme0::GameplayCore::TileHovering::Update);
 
             py::class_<Theme0::GameplayCore::WorldView>(m, "WorldView")
-                .def("render",
-                     &Theme0::GameplayCore::WorldView::Render);
+                .def("render", &Theme0::GameplayCore::WorldView::Render);
 
             m.def("ticks", [] { return GetTicks(); });
 
-            m.def("conv_w_to_h", [](float w)
-                  { return ConvertWidthToHeight(w, _<Engine::SDLDevice>().GetWindow()); });
+            m.def("conv_w_to_h",
+                  [](float w)
+                  {
+                      return ConvertWidthToHeight(
+                          w, _<Engine::SDLDevice>().GetWindow());
+                  });
 
             m.def("make_shared_fps_panel",
                   []
@@ -188,7 +199,8 @@ namespace Theme0
                      bool cent_align)
                   {
                       return std::make_shared<GUIComponentsLibrary::GUILabel>(
-                          x, y, w, h, text, cent_align, Colors::WheatTransparent);
+                          x, y, w, h, text, cent_align,
+                          Colors::WheatTransparent);
                   });
 
             m.def("make_shared_gui_panel",
@@ -227,19 +239,20 @@ namespace Theme0
                   []() -> SharedPtr<Theme0::GUIInventoryWindow>
                   { return __<Theme0::GUIInventoryWindow>(); });
 
-            m.def("get_gui_sys_menu_ptr", []() -> SharedPtr<Theme0::GUISystemMenu>
+            m.def("get_gui_sys_menu_ptr",
+                  []() -> SharedPtr<Theme0::GUISystemMenu>
                   { return __<Theme0::GUISystemMenu>(); });
 
-            m.def(
-                "make_shared_gui_player_status_box", []()
-                { return std::make_shared<Theme0::GUIPlayerStatusBox>(); });
+            m.def("make_shared_gui_player_status_box", []()
+                  { return std::make_shared<Theme0::GUIPlayerStatusBox>(); });
 
             m.def(
                 "get_engine", []() -> Engine & { return _<Engine>(); },
                 py::return_value_policy::reference);
 
             m.def(
-                "get_scene_mngr", []() -> Core::Engine::ScenesCore::SceneManager &
+                "get_scene_mngr",
+                []() -> Core::Engine::ScenesCore::SceneManager &
                 { return _<Core::Engine::ScenesCore::SceneManager>(); },
                 py::return_value_policy::reference);
 
@@ -302,7 +315,8 @@ namespace Theme0
             m.def("update_mouse_movem",
                   &Theme0::GameplayCore::UpdateMouseMovement);
 
-            m.def("update_kb_movem", &Theme0::GameplayCore::UpdateKeyboardMovement);
+            m.def("update_kb_movem",
+                  &Theme0::GameplayCore::UpdateKeyboardMovement);
 
             m.def("setup_scenes",
                   []

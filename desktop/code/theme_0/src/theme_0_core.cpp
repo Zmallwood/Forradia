@@ -2,6 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #include "theme_0_core.hpp"
 #include "core.hpp"
 #include "game_props.hpp"

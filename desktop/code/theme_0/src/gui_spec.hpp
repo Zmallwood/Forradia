@@ -2,6 +2,7 @@
  * Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details)
  */
+
 #pragma once
 #include "gui.hpp"
 
@@ -124,7 +125,7 @@ namespace SpecializedGUI
         };
 
         Vector<GUIInteractionMenuEntry> m_entries;
-        Point m_clickedCoordinate {-1, -1};
+        Point m_clickedCoordinate{-1, -1};
     };
 }
 using namespace SpecializedGUI;

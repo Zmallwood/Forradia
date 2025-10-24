@@ -23,3 +23,4 @@ build/*
 !build/Resources
 bin
 __pycache__
+.vscode
