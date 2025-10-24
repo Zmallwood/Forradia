@@ -73,5 +73,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0WorldStruct
     ForradiaTheme0WorldGen
     ForradiaTheme0Essentials
+    #GLU
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)

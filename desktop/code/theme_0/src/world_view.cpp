@@ -38,10 +38,13 @@ namespace Theme0
 
             auto rendTileSize{0.5f};
 
+
             Point3F cameraPos{
                 (worldAreaSize.width - playerPos.x + 0.5f) * rendTileSize,
                 (worldAreaSize.height - playerPos.y + 0.5f) * rendTileSize,
                 -playerElev * elevHeight};
+
+                
 
             for (auto y = -extraRows; y < gridSize.height + extraRows; y++)
             {
