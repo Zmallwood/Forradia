@@ -7,10 +7,8 @@
 
 namespace Forradia
 {
-#define _HIDE_FROM_OUTLINER_GUI_TOP_                                           \
-    namespace Core                                                             \
-    {
-    _HIDE_FROM_OUTLINER_GUI_TOP_
+namespace Core
+{
     class RenderersCollection
     {
       protected:

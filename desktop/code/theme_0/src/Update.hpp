@@ -9,35 +9,35 @@
 
 namespace Forradia
 {
-    namespace Theme0
+namespace Theme0
+{
+    namespace GameplayCore
     {
-        namespace GameplayCore
+        void UpdateKeyboardActions();
+
+        void UpdateMouseActions();
+
+        void UpdateKeyboardMovement();
+
+        void UpdateMouseMovement();
+
+        void UpdateCreaturesMovement();
+
+        void UpdateNPCs();
+
+        class TileHovering
         {
-            void UpdateKeyboardActions();
+          public:
+            void Update();
 
-            void UpdateMouseActions();
-
-            void UpdateKeyboardMovement();
-
-            void UpdateMouseMovement();
-
-            void UpdateCreaturesMovement();
-
-            void UpdateNPCs();
-
-            class TileHovering
+            auto GetHoveredCoordinate() const
             {
-              public:
-                void Update();
+                return m_hoveredCoordinate;
+            }
 
-                auto GetHoveredCoordinate() const
-                {
-                    return m_hoveredCoordinate;
-                }
-
-              private:
-                Point m_hoveredCoordinate{-1, -1};
-            };
-        }
+          private:
+            Point m_hoveredCoordinate{-1, -1};
+        };
     }
+}
 }

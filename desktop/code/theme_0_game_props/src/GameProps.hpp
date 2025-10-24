@@ -8,20 +8,20 @@
 
 namespace Forradia
 {
-    namespace Theme0
+namespace Theme0
+{
+    namespace Configuration
     {
-        namespace Configuration
+        class GameProperties
         {
-            class GameProperties
-            {
-              public:
-                static constexpr String k_gameWindowTitle{"Forradia"};
-                static constexpr Color k_clearColor{Colors::Black};
-                static constexpr int k_numGridRows{15};
-                static constexpr Size k_worldAreaSize{120, 100};
-                static constexpr float k_worldScaling{5.0f};
-            };
-        }
-        using namespace Configuration;
+          public:
+            static constexpr String k_gameWindowTitle{"Forradia"};
+            static constexpr Color k_clearColor{Colors::Black};
+            static constexpr int k_numGridRows{15};
+            static constexpr Size k_worldAreaSize{120, 100};
+            static constexpr float k_worldScaling{5.0f};
+        };
     }
+    using namespace Configuration;
+}
 }

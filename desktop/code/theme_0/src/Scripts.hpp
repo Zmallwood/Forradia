@@ -7,18 +7,18 @@
 
 namespace Forradia
 {
-    namespace Theme0
+namespace Theme0
+{
+    namespace Scripting
     {
-        namespace Scripting
+        class ScriptEngine
         {
-            class ScriptEngine
-            {
-              public:
-                void Initialize();
+          public:
+            void Initialize();
 
-                void LoadScripts();
-            };
-        }
-        using namespace Scripting;
+            void LoadScripts();
+        };
     }
+    using namespace Scripting;
+}
 }

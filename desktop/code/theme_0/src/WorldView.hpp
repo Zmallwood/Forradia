@@ -7,15 +7,15 @@
 
 namespace Forradia
 {
-    namespace Theme0
+namespace Theme0
+{
+    namespace GameplayCore
     {
-        namespace GameplayCore
+        class WorldView
         {
-            class WorldView
-            {
-              public:
-                void Render() const;
-            };
-        }
+          public:
+            void Render() const;
+        };
     }
+}
 }

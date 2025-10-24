@@ -7,10 +7,8 @@
 
 namespace Forradia
 {
-#define _HIDE_FROM_OUTLINER_GUI_TOP_                                           \
-    namespace Core                                                             \
-    {
-    _HIDE_FROM_OUTLINER_GUI_TOP_
+namespace Core
+{
     namespace GUIComponentsLibrary
     {
         class GUIComponent
@@ -273,6 +271,5 @@ namespace Forradia
             Vector<String> m_lines;
         };
     }
-#define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
-    _HIDE_FROM_OUTLINER_CORE_BOTTOM_
+}
 }
