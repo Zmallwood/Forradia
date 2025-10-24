@@ -6,7 +6,7 @@
 #include "gui_spec.hpp"
 #include "core.hpp"
 #include "render.hpp"
-#include "theme_0_core.hpp"
+#include "theme_0_essentials.hpp"
 #include "update.hpp"
 #include "world_struct.hpp"
 

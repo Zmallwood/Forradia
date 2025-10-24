@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "theme_0_core.hpp"
+#include "theme_0_essentials.hpp"
 #include "core.hpp"
 #include "game_props.hpp"
 #include "world_struct.hpp"

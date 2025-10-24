@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # ForradiaCommon
-add_library(ForradiaCommon code/common/src/common.cpp)
+file(GLOB_RECURSE COMMON_SOURCES "code/common/src/*.cpp")
+add_library(ForradiaCommon ${COMMON_SOURCES})
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(ForradiaCommon PRIVATE ${PYTHON_LIBRARIES})
@@ -21,13 +22,15 @@ target_link_libraries(ForradiaCore ForradiaCommon assimp)
 target_precompile_headers(ForradiaCore PUBLIC code/core/src/std_afx.hpp)
 
 # ForradiaTheme0WorldStruct
-add_library(ForradiaTheme0WorldStruct code/theme_0_world_struct/src/world_struct.cpp)
+file(GLOB_RECURSE WORLD_STRUCT_SOURCES "code/theme_0_world_struct/src/*.cpp")
+add_library(ForradiaTheme0WorldStruct ${WORLD_STRUCT_SOURCES})
 target_include_directories(ForradiaTheme0WorldStruct PRIVATE "code/common/src")
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommon)
 target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/theme_0_world_struct/src/std_afx.hpp)
 
 # ForradiaTheme0WorldGen
-add_library(ForradiaTheme0WorldGen code/theme_0_world_gen/src/world_gen.cpp)
+file(GLOB_RECURSE WORLD_GEN_SOURCES "code/theme_0_world_gen/src/*.cpp")
+add_library(ForradiaTheme0WorldGen ${WORLD_GEN_SOURCES})
 target_include_directories(ForradiaTheme0WorldGen PRIVATE
     "code/common/src"
     "code/theme_0_world_struct/src"
@@ -37,7 +40,8 @@ target_link_libraries(ForradiaTheme0WorldGen ForradiaTheme0WorldStruct)
 target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/theme_0_world_gen/src/std_afx.hpp)
 
 # ForradiaTheme0Essentials
-add_library(ForradiaTheme0Essentials code/theme_0_essentials/src/theme_0_core.cpp)
+file(GLOB_RECURSE THEME_0_ESSENTIALS_SOURCES "code/theme_0_essentials/src/*.cpp")
+add_library(ForradiaTheme0Essentials ${THEME_0_ESSENTIALS_SOURCES})
 target_include_directories(ForradiaTheme0Essentials PRIVATE
     "code/common/src"
     "code/core/src"

@@ -6,7 +6,7 @@
 #include "update.hpp"
 #include "core.hpp"
 #include "gui_spec.hpp"
-#include "theme_0_core.hpp"
+#include "theme_0_essentials.hpp"
 #include "world_struct.hpp"
 
 _NS_START_
