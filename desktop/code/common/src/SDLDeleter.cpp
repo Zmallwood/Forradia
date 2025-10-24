@@ -1,6 +1,7 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #include "SDLDeleter.hpp"
@@ -14,7 +15,8 @@ namespace Forradia
         SDL_DestroyWindow(window);
     }
 
-    void SDLDeleter::operator()(SDL_Renderer *renderer) const
+    void
+    SDLDeleter::operator()(SDL_Renderer *renderer) const
     {
         // Free up resources from a SDL_Renderer object.
 

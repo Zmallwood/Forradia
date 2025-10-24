@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "assimp/Importer.hpp"
-#include "assimp/postprocess.h"
-#include "assimp/scene.h"
-
-#include "Matter/Geometry/SizeF.hpp"
+namespace Forradia
+{
+    static constexpr int k_oneSecMillis{
+        1000}; ///< Number of milliseconds in one second.
+}

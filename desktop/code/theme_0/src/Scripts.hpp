@@ -1,24 +1,25 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #pragma once
 
 namespace Forradia
 {
-namespace Theme0
-{
-    namespace Scripting
+    namespace Theme0
     {
-        class ScriptEngine
+        namespace Scripting
         {
-          public:
-            void Initialize();
+            class ScriptEngine
+            {
+              public:
+                void Initialize();
 
-            void LoadScripts();
-        };
+                void LoadScripts();
+            };
+        }
+        using namespace Scripting;
     }
-    using namespace Scripting;
-}
 }

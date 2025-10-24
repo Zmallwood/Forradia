@@ -1,6 +1,7 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #pragma once
@@ -9,35 +10,35 @@
 
 namespace Forradia
 {
-namespace Theme0
-{
-    namespace GameplayCore
+    namespace Theme0
     {
-        void UpdateKeyboardActions();
-
-        void UpdateMouseActions();
-
-        void UpdateKeyboardMovement();
-
-        void UpdateMouseMovement();
-
-        void UpdateCreaturesMovement();
-
-        void UpdateNPCs();
-
-        class TileHovering
+        namespace GameplayCore
         {
-          public:
-            void Update();
+            void UpdateKeyboardActions();
 
-            auto GetHoveredCoordinate() const
+            void UpdateMouseActions();
+
+            void UpdateKeyboardMovement();
+
+            void UpdateMouseMovement();
+
+            void UpdateCreaturesMovement();
+
+            void UpdateNPCs();
+
+            class TileHovering
             {
-                return m_hoveredCoordinate;
-            }
+              public:
+                void Update();
 
-          private:
-            Point m_hoveredCoordinate{-1, -1};
-        };
+                auto GetHoveredCoordinate() const
+                {
+                    return m_hoveredCoordinate;
+                }
+
+              private:
+                Point m_hoveredCoordinate{-1, -1};
+            };
+        }
     }
-}
 }

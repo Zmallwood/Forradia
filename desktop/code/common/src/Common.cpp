@@ -1,102 +1,21 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #include "Common.hpp"
+#include "Constants.hpp"
+#include "Utilities/CanvasUtilities.hpp"
+#include "Utilities/CastUtilities.hpp"
 
 namespace Forradia
 {
-    bool Point::operator==(const Point &other) const
-    {
-        // Compare x and y dimensions.
-        return other.x == x && other.y == y;
-    }
-
-    PointF PointF::operator+(const PointF &other) const
-    {
-        // Sum the dimensions of the two points.
-        return {x + other.x, y + other.y};
-    }
-
-    PointF PointF::operator-(const PointF &other) const
-    {
-        // Subract the dimensions of the other point from this point.
-        return {x - other.x, y - other.y};
-    }
-
-    bool RectF::Contains(PointF point)
-    {
-        // Create condition by checking against the boundaries of this
-        // rectangle.
-        return point.x >= x && point.y >= y && point.x < x + width &&
-               point.y < y + height;
-    }
-
-    PointF RectF::GetPosition() const
-    {
-        // Return only the coordinates.
-        return {x, y};
-    }
-
-    void RectF::Offset(PointF offset)
-    {
-        // Add the offset to the dimensions separately.
-        x += offset.x;
-        y += offset.y;
-    }
-
-    SDL_Color Color::ToSDLColor() const
-    {
-        // Calculate individual color components.
-        auto rUint{CUint8(r * 255)};
-        auto gUint{CUint8(g * 255)};
-        auto bUint{CUint8(b * 255)};
-        auto aUint{CUint8(a * 255)};
-
-        return {rUint, rUint, bUint, aUint};
-    }
-
-    // Canvas util functions
-    Size GetCanvasSize(SharedPtr<SDL_Window> window)
-    {
-        Size canvasSize;
-
-        // Get the size of the window.
-        SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
-
-        return canvasSize;
-    }
-
-    float CalcAspectRatio(SharedPtr<SDL_Window> window)
-    {
-        auto canvasSize{GetCanvasSize(window)};
-
-        // Calculate the aspect ratio.
-        auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
-
-        return aspectRatio;
-    }
-
-    float ConvertWidthToHeight(float width, SharedPtr<SDL_Window> window)
-    {
-        // Calculate the height based on the width and the aspect
-        // ratio.
-        return width * CalcAspectRatio(window);
-    }
-
-    float ConvertHeightToWidth(float height, SharedPtr<SDL_Window> window)
-    {
-        // Calculate the width based on the height and the aspect
-        // ratio.
-        return height / CalcAspectRatio(window);
-    }
-
-    // File path util functions
     String GetFileExtension(StringView path)
     {
         // Get the file extension.
-        String extension{path.substr(path.find_last_of('.') + 1).data()};
+        String extension{
+            path.substr(path.find_last_of('.') + 1).data()};
 
         return extension;
     }
@@ -104,13 +23,15 @@ namespace Forradia
     String GetFileNameNoExtension(StringView path)
     {
         // Get the file name without the extension.
-        auto nameWithExtension{String(path.substr(path.find_last_of('/') + 1))};
+        auto nameWithExtension{String(
+            path.substr(path.find_last_of('/') + 1))};
 
-        return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
+        return nameWithExtension.substr(
+            0, nameWithExtension.find_last_of('.'));
     }
 
-    // Mouse util functions
-    PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window)
+    PointF GetNormallizedMousePosition(
+        SharedPtr<SDL_Window> window)
     {
         int xPx;
         int yPx;
@@ -124,20 +45,19 @@ namespace Forradia
                 CFloat(yPx) / canvasSize.height};
     }
 
-    // Numbers util functions
     float InvertMovementSpeed(float movemenSpeed)
     {
         // Calculate the inverse of the movement speed.
         if (movemenSpeed)
         {
-            // If the movement speed is not zero, invert it and
-            // return.
+            // If the movement speed is not zero, invert it
+            // and return.
             return k_oneSecMillis / movemenSpeed;
         }
         else
         {
-            // If the movement speed is zero, avoid division by zero
-            // and return zero directly instead.
+            // If the movement speed is zero, avoid division
+            // by zero and return zero directly instead.
             return 0.0f;
         }
     }
@@ -164,7 +84,6 @@ namespace Forradia
         return std::ceil(number * p) / p;
     }
 
-    // Randomization util functions
     void Randomize()
     {
         // Randomize the seed.
@@ -177,28 +96,28 @@ namespace Forradia
         return rand() % upperLimit;
     }
 
-    // String util functions
-    String Replace(StringView text, char replace, char replaceWith)
+    String Replace(StringView text, char replace,
+                   char replaceWith)
     {
         String result{text.data()};
 
         // Replace all instances of repl with repl_with.
-        std::replace(result.begin(), result.end(), replace, replaceWith);
+        std::replace(result.begin(), result.end(), replace,
+                     replaceWith);
 
         return result;
     }
 
-    // Time util functions
     int GetTicks()
     {
         // Get the number of ticks.
         return SDL_GetTicks();
     }
 
-    // Hash util functions
     int Hash(StringView text)
     {
-        // Use algorithm from source which is forgotten what it was.
+        // Use algorithm from source which is forgotten what
+        // it was.
         unsigned long hash{5381};
 
         for (size_t i = 0; i < text.size(); ++i)
@@ -209,7 +128,6 @@ namespace Forradia
         return CInt(hash);
     }
 
-    // Print util functions
     void Print(StringView text)
     {
         // Print out text without a following line break.

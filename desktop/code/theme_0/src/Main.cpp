@@ -1,6 +1,7 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #include "Core.hpp"
@@ -12,8 +13,9 @@ int main(int argc, char **argv)
 {
     using namespace Forradia;
 
-    _<Engine>().Initialize(_<Theme0::GameProperties>().k_gameWindowTitle,
-                           _<Theme0::GameProperties>().k_clearColor);
+    _<Engine>().Initialize(
+        _<Theme0::GameProperties>().k_gameWindowTitle,
+        _<Theme0::GameProperties>().k_clearColor);
 
     _<Theme0::ScriptEngine>().Initialize();
 

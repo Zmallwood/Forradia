@@ -1,21 +1,22 @@
 //
 // Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license (see LICENSE for details)
+// This code is licensed under MIT license
+// (see LICENSE for details)
 //
 
 #pragma once
 
 namespace Forradia
 {
-namespace Theme0
-{
-    namespace GameplayCore
+    namespace Theme0
     {
-        class WorldView
+        namespace GameplayCore
         {
-          public:
-            void Render() const;
-        };
+            class WorldView
+            {
+              public:
+                void Render() const;
+            };
+        }
     }
-}
 }
