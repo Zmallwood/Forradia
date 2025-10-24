@@ -26,6 +26,16 @@ target_include_directories(ForradiaTheme0WorldStruct PRIVATE "code/common/src")
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommon)
 target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/theme_0_world_struct/src/std_afx.hpp)
 
+# ForradiaTheme0WorldGen
+add_library(ForradiaTheme0WorldGen code/theme_0_world_gen/src/world_gen.cpp)
+target_include_directories(ForradiaTheme0WorldGen PRIVATE
+    "code/common/src"
+    "code/theme_0_world_struct/src"
+    "code/theme_0_game_props/src"
+)
+target_link_libraries(ForradiaTheme0WorldGen ForradiaTheme0WorldStruct)
+target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/theme_0_world_gen/src/std_afx.hpp)
+
 # ForradiaTheme0
 file(GLOB_RECURSE SOURCES "code/theme_0/src/*.cpp")
 add_executable(Forradia ${SOURCES})
@@ -35,10 +45,13 @@ target_include_directories(Forradia PRIVATE
     "code/common/src"
     "code/core/src"
     "code/theme_0_world_struct/src"
+    "code/theme_0_game_props/src"
+    "code/theme_0_world_gen/src"
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommon
     ForradiaCore
     ForradiaTheme0WorldStruct
+    ForradiaTheme0WorldGen
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)
