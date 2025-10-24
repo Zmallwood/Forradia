@@ -23,6 +23,7 @@ struct SDL_Color;
 typedef uint8_t Uint8;
 
 _NS_START_
+
 namespace Common
 {
     namespace Aliases
@@ -34,14 +35,18 @@ namespace Common
         template <class T> using Vector = std::vector<T>;
         template <class T> using Function = std::function<T>;
     }
+
     using namespace Aliases;
+
     namespace Constants
     {
         // Constants that may be used throughout the project.
         static constexpr int k_oneSecMillis{
             1000}; ///< Number of milliseconds in one second.
     }
+
     using namespace Constants;
+
     namespace Singletons
     {
         // Singleton functions
@@ -74,7 +79,9 @@ namespace Common
             return *__<T>();
         }
     }
+
     using namespace Singletons;
+
     namespace HelperClasses
     {
         // Convenience classes
@@ -121,7 +128,9 @@ namespace Common
             void operator()(TTF_Font *font) const;
         };
     }
+
     using namespace HelperClasses;
+
     namespace Matter
     {
         /**
@@ -236,6 +245,7 @@ namespace Common
             float width{0.0f};  ///< The width, in the x dimension.
             float height{0.0f}; ///< The height, in the y dimension.
         };
+
         namespace Coloring
         {
             /**
@@ -277,9 +287,13 @@ namespace Common
                     1.0f, 1.0f, 0.0f, 0.7f}; ///< Transparent yellow color.
             }
         }
+
         using namespace Coloring;
+        
     }
+
     using namespace Matter;
+
     namespace Utilities
     {
         namespace CanvasUtilities
@@ -317,7 +331,9 @@ namespace Common
             float ConvertHeightToWidth(float height,
                                        SharedPtr<SDL_Window> window);
         }
+
         using namespace CanvasUtilities;
+
         namespace FilePathUtilities
         {
             // File path util functions
@@ -325,13 +341,17 @@ namespace Common
 
             String GetFileNameNoExtension(StringView path);
         }
+
         using namespace FilePathUtilities;
+        
         namespace MouseUtilities
         {
             // Mouse util functions
             PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window);
         }
+
         using namespace MouseUtilities;
+
         namespace NumbersUtilities
         {
             // Numbers util functions
@@ -341,7 +361,9 @@ namespace Common
 
             float Ceil(float number, float k);
         }
+
         using namespace NumbersUtilities;
+
         namespace RandomizationUtilities
         {
             // Randomization util functions
@@ -349,19 +371,25 @@ namespace Common
 
             int GetRandomInt(int upperLimit);
         }
+
         using namespace RandomizationUtilities;
+
         namespace StringUtilities
         {
             // String util functions
             String Replace(StringView text, char replace, char replaceWith);
         }
+
         using namespace StringUtilities;
+
         namespace TimeUtilities
         {
             // Time util functions
             int GetTicks();
         }
+
         using namespace TimeUtilities;
+
         namespace HashUtilities
         {
             // Hash util functions
@@ -374,7 +402,9 @@ namespace Common
              */
             int Hash(StringView text);
         }
+
         using namespace HashUtilities;
+
         namespace PrintUtilities
         {
             // Print util functions
@@ -392,7 +422,9 @@ namespace Common
              */
             void PrintLine(StringView text);
         }
+
         using namespace PrintUtilities;
+
         namespace CastUtilities
         {
             // Cast util functions
@@ -429,9 +461,13 @@ namespace Common
                 return static_cast<Uint8>(value);
             }
         }
+
         using namespace CastUtilities;
     }
+
     using namespace Utilities;
 }
+
 using namespace Common;
+
 _NS_END_
