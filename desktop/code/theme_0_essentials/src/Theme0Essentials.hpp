@@ -153,11 +153,8 @@ namespace Forradia
                 };
             }
             using namespace Player;
-#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_                             \
-    }                                                                          \
-    using namespace GameplayCore;
-            _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_1_
-#define _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_ }
-            _HIDE_FROM_OUTLINER_THEME_0_CORE_BOTTOM_2_
-            using namespace Theme0;
         }
+        using namespace GameplayCore;
+    }
+    using namespace Theme0;
+}

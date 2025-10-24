@@ -427,7 +427,6 @@ namespace Forradia
 
             bool m_running{true};
         };
-#define _HIDE_FROM_OUTLINER_CORE_BOTTOM_ }
-        _HIDE_FROM_OUTLINER_CORE_BOTTOM_
-        using namespace Core;
     }
+    using namespace Core;
+}

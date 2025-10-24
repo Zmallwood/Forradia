@@ -8,108 +8,110 @@
 #include "GameProps.hpp"
 #include "WorldStruct.hpp"
 
-_NS_START_
-namespace Theme0
+namespace Forradia
 {
-    namespace TileGridMath
+    namespace Theme0
     {
-        SizeF CalcTileSize()
+        namespace TileGridMath
         {
-            auto numGridRows{_<GameProperties>().k_numGridRows};
-
-            auto tileHeight{1.0f / numGridRows};
-
-            auto aspectRatio{
-                CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
-
-            auto tileWidth{tileHeight / aspectRatio};
-
-            return {tileWidth, tileHeight};
-        }
-
-        float CalcTileSizeNew()
-        {
-            return 1.0f / _<GameProperties>().k_numGridRows;
-        }
-
-        Size CalcGridSize()
-        {
-            auto tileSize{CalcTileSizeNew()};
-
-            auto aspectRatio{
-                CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
-
-            auto numGridColumns{CInt(aspectRatio / tileSize) + 1};
-
-            auto numGridRows{_<GameProperties>().k_numGridRows};
-
-            return {numGridColumns, numGridRows};
-        }
-    }
-
-    namespace GameplayCore
-    {
-        namespace Player
-        {
-            void PlayerBody::Initialize()
+            SizeF CalcTileSize()
             {
-                m_bodyParts.insert({BodyPartTypes::OverallBody, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::RightArm, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::LeftArm, BodyPart()});
-                m_bodyParts.insert({BodyPartTypes::Legs, BodyPart()});
+                auto numGridRows{_<GameProperties>().k_numGridRows};
+
+                auto tileHeight{1.0f / numGridRows};
+
+                auto aspectRatio{
+                    CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+
+                auto tileWidth{tileHeight / aspectRatio};
+
+                return {tileWidth, tileHeight};
             }
 
-            BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes bodyPartType)
+            float CalcTileSizeNew()
             {
-                if (m_bodyParts.contains(bodyPartType))
+                return 1.0f / _<GameProperties>().k_numGridRows;
+            }
+
+            Size CalcGridSize()
+            {
+                auto tileSize{CalcTileSizeNew()};
+
+                auto aspectRatio{
+                    CalcAspectRatio(_<Engine::SDLDevice>().GetWindow())};
+
+                auto numGridColumns{CInt(aspectRatio / tileSize) + 1};
+
+                auto numGridRows{_<GameProperties>().k_numGridRows};
+
+                return {numGridColumns, numGridRows};
+            }
+        }
+
+        namespace GameplayCore
+        {
+            namespace Player
+            {
+                void PlayerBody::Initialize()
                 {
-                    return &m_bodyParts.at(bodyPartType);
+                    m_bodyParts.insert(
+                        {BodyPartTypes::OverallBody, BodyPart()});
+                    m_bodyParts.insert({BodyPartTypes::RightArm, BodyPart()});
+                    m_bodyParts.insert({BodyPartTypes::LeftArm, BodyPart()});
+                    m_bodyParts.insert({BodyPartTypes::Legs, BodyPart()});
                 }
 
-                return nullptr;
-            }
-
-            void PlayerCharacter::Initialize()
-            {
-                MoveToSuitablePosition();
-            }
-
-            void PlayerCharacter::MoveToSuitablePosition()
-            {
-                auto worldArea{_<World>().GetCurrentWorldArea()};
-
-                auto size{worldArea->GetSize()};
-
-                m_position = {size.width / 2, size.height / 2};
-
-                while (worldArea->GetTile(m_position)->GetGround() ==
-                       Hash("ground_water"))
+                BodyPart *PlayerBody::GetBodyPartPtr(BodyPartTypes bodyPartType)
                 {
-                    m_position = {GetRandomInt(size.width),
-                                  GetRandomInt(size.height)};
+                    if (m_bodyParts.contains(bodyPartType))
+                    {
+                        return &m_bodyParts.at(bodyPartType);
+                    }
+
+                    return nullptr;
                 }
-            }
 
-            void PlayerCharacter::MoveNorth()
-            {
-                m_position.y -= 1;
-            }
+                void PlayerCharacter::Initialize()
+                {
+                    MoveToSuitablePosition();
+                }
 
-            void PlayerCharacter::MoveEast()
-            {
-                m_position.x += 1;
-            }
+                void PlayerCharacter::MoveToSuitablePosition()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
 
-            void PlayerCharacter::MoveSouth()
-            {
-                m_position.y += 1;
-            }
+                    auto size{worldArea->GetSize()};
 
-            void PlayerCharacter::MoveWest()
-            {
-                m_position.x -= 1;
+                    m_position = {size.width / 2, size.height / 2};
+
+                    while (worldArea->GetTile(m_position)->GetGround() ==
+                           Hash("ground_water"))
+                    {
+                        m_position = {GetRandomInt(size.width),
+                                      GetRandomInt(size.height)};
+                    }
+                }
+
+                void PlayerCharacter::MoveNorth()
+                {
+                    m_position.y -= 1;
+                }
+
+                void PlayerCharacter::MoveEast()
+                {
+                    m_position.x += 1;
+                }
+
+                void PlayerCharacter::MoveSouth()
+                {
+                    m_position.y += 1;
+                }
+
+                void PlayerCharacter::MoveWest()
+                {
+                    m_position.x -= 1;
+                }
             }
         }
     }
 }
-_NS_END_

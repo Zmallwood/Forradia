@@ -3,11 +3,6 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#define _NS_START_                                                             \
-    namespace Forradia                                                         \
-    {
-#define _NS_END_ }
-
 #pragma once
 
 #include <functional>

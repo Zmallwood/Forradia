@@ -7,20 +7,18 @@
 
 namespace Forradia
 {
-#define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
-    namespace Theme0                                                           \
+    namespace Theme0
     {
-    _HIDE_FROM_OUTLINER_SCRIPTS_TOP_
-    namespace Scripting
-    {
-        class ScriptEngine
+        namespace Scripting
         {
-          public:
-            void Initialize();
+            class ScriptEngine
+            {
+              public:
+                void Initialize();
 
-            void LoadScripts();
-        };
+                void LoadScripts();
+            };
+        }
+        using namespace Scripting;
     }
-    using namespace Scripting;
-}
 }
