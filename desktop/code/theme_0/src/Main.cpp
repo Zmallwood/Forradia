@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "core.hpp"
-#include "game_props.hpp"
-#include "scripts.hpp"
-#include "world_struct.hpp"
+#include "Core.hpp"
+#include "GameProps.hpp"
+#include "Scripts.hpp"
+#include "WorldStruct.hpp"
 
 int main(int argc, char **argv)
 {

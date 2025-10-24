@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details)
  */
 
-#include "theme_0_essentials.hpp"
-#include "core.hpp"
-#include "game_props.hpp"
-#include "world_struct.hpp"
+#include "Theme0Essentials.hpp"
+#include "Core.hpp"
+#include "GameProps.hpp"
+#include "WorldStruct.hpp"
 
 _NS_START_
 namespace Theme0

@@ -12,21 +12,21 @@ find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(ForradiaCommon PRIVATE ${PYTHON_LIBRARIES})
 target_link_libraries(ForradiaCommon PRIVATE SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
-target_precompile_headers(ForradiaCommon PUBLIC code/common/src/std_afx.hpp)
+target_precompile_headers(ForradiaCommon PUBLIC code/common/src/StdAfx.hpp)
 
 # ForradiaCore
 file(GLOB_RECURSE CORE_SOURCES "code/core/src/*.cpp")
 add_library(ForradiaCore ${CORE_SOURCES})
 target_include_directories(ForradiaCore PRIVATE "code/common/src")
 target_link_libraries(ForradiaCore ForradiaCommon assimp)
-target_precompile_headers(ForradiaCore PUBLIC code/core/src/std_afx.hpp)
+target_precompile_headers(ForradiaCore PUBLIC code/core/src/StdAfx.hpp)
 
 # ForradiaTheme0WorldStruct
 file(GLOB_RECURSE WORLD_STRUCT_SOURCES "code/theme_0_world_struct/src/*.cpp")
 add_library(ForradiaTheme0WorldStruct ${WORLD_STRUCT_SOURCES})
 target_include_directories(ForradiaTheme0WorldStruct PRIVATE "code/common/src")
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommon)
-target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/theme_0_world_struct/src/std_afx.hpp)
+target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/theme_0_world_struct/src/StdAfx.hpp)
 
 # ForradiaTheme0WorldGen
 file(GLOB_RECURSE WORLD_GEN_SOURCES "code/theme_0_world_gen/src/*.cpp")
@@ -37,7 +37,7 @@ target_include_directories(ForradiaTheme0WorldGen PRIVATE
     "code/theme_0_game_props/src"
 )
 target_link_libraries(ForradiaTheme0WorldGen ForradiaTheme0WorldStruct)
-target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/theme_0_world_gen/src/std_afx.hpp)
+target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/theme_0_world_gen/src/StdAfx.hpp)
 
 # ForradiaTheme0Essentials
 file(GLOB_RECURSE THEME_0_ESSENTIALS_SOURCES "code/theme_0_essentials/src/*.cpp")
@@ -52,12 +52,12 @@ target_link_libraries(ForradiaTheme0Essentials
     ForradiaCore
     ForradiaTheme0WorldStruct
 )
-target_precompile_headers(ForradiaTheme0Essentials PUBLIC code/theme_0_essentials/src/std_afx.hpp)
+target_precompile_headers(ForradiaTheme0Essentials PUBLIC code/theme_0_essentials/src/StdAfx.hpp)
 
 # ForradiaTheme0
 file(GLOB_RECURSE SOURCES "code/theme_0/src/*.cpp")
 add_executable(Forradia ${SOURCES})
-target_precompile_headers(Forradia PUBLIC code/theme_0/src/std_afx.hpp)
+target_precompile_headers(Forradia PUBLIC code/theme_0/src/StdAfx.hpp)
 target_include_directories(Forradia PRIVATE
     "code/theme_0/src"
     "code/common/src"

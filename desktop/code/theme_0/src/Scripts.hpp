@@ -5,21 +5,22 @@
 
 #pragma once
 
-_NS_START_
+namespace Forradia
+{
 #define _HIDE_FROM_OUTLINER_SCRIPTS_TOP_                                       \
     namespace Theme0                                                           \
     {
-_HIDE_FROM_OUTLINER_SCRIPTS_TOP_
-namespace Scripting
-{
-    class ScriptEngine
+    _HIDE_FROM_OUTLINER_SCRIPTS_TOP_
+    namespace Scripting
     {
-      public:
-        void Initialize();
+        class ScriptEngine
+        {
+          public:
+            void Initialize();
 
-        void LoadScripts();
-    };
+            void LoadScripts();
+        };
+    }
+    using namespace Scripting;
 }
-using namespace Scripting;
 }
-_NS_END_
