@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "Lang.hpp"
-
 namespace Forradia
 {
     ///

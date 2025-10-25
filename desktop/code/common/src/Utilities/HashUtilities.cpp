@@ -5,6 +5,7 @@
 //
 
 #include "HashUtilities.hpp"
+#include "Functions.hpp"
 
 namespace Forradia
 {

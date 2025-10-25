@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <SDL2/SDL.h>
+
+#include "Functions.hpp"
 #include "Constants.hpp"
 #include "Geometry/Point.hpp"
 #include "Utilities/RandomizationUtilities.hpp"

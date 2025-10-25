@@ -6,8 +6,17 @@
 
 #pragma once
 
+#include <SDL2/SDL.h>
+
+#include <glm/gtx/transform.hpp>
+
+#include "assimp/Importer.hpp"
+#include "assimp/postprocess.h"
+#include "assimp/scene.h"
+
+#include "Aliases.hpp"
+#include "Functions.hpp"
 #include "SDLDeleter.hpp"
-#include "Lang.hpp"
 #include "Constants.hpp"
 #include "Singleton.hpp"
 #include "Geometry/Point3F.hpp"
@@ -22,9 +31,3 @@
 #include "Utilities/TimeUtilities.hpp"
 #include "Utilities/HashUtilities.hpp"
 #include "Utilities/MessageUtilities.hpp"
-
-#include <glm/gtx/transform.hpp>
-
-#include "assimp/Importer.hpp"
-#include "assimp/postprocess.h"
-#include "assimp/scene.h"

@@ -5,7 +5,7 @@
 //
 
 #include "Color.hpp"
-#include "Lang.hpp"
+#include "Functions.hpp"
 
 namespace Forradia
 {
