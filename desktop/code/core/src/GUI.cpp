@@ -6,10 +6,10 @@
 
 #include "GUI.hpp"
 #include "Core.hpp"
-#include "SDLDevice.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "MinorComponents/FPSCounter.hpp"
 #include "Rendering.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -36,7 +36,7 @@ namespace Forradia
             component->Update();
         }
 
-        UpdateDerived();
+        this->UpdateDerived();
     }
 
     void GUIComponent::Render() const
@@ -46,7 +46,7 @@ namespace Forradia
             return;
         }
 
-        RenderDerived();
+        this->RenderDerived();
 
         for (auto component : m_childComponents)
         {
@@ -105,7 +105,7 @@ namespace Forradia
 
     void GUIPanel::RenderDerived() const
     {
-        auto bounds{GetBounds()};
+        auto bounds{this->GetBounds()};
 
         _<Engine::Renderers::Image2DRenderer>().DrawImage(
             m_backgroundImage, bounds.x, bounds.y,
@@ -123,7 +123,8 @@ namespace Forradia
 
         if (hovered)
         {
-            SetBackgroundImage(m_hoveredBackgroundImage);
+            this->SetBackgroundImage(
+                m_hoveredBackgroundImage);
 
             _<Cursor>().SetCursorStyle(
                 CursorStyles::HoveringClickableGUI);
@@ -145,7 +146,7 @@ namespace Forradia
     {
         GUIPanel::RenderDerived();
 
-        auto bounds{GetBounds()};
+        auto bounds{this->GetBounds()};
 
         _<Engine::Renderers::TextRenderer>().DrawString(
             m_text, bounds.x + bounds.width / 2,
@@ -158,7 +159,7 @@ namespace Forradia
         auto mousePosition{GetNormallizedMousePosition(
             _<SDLDevice>().GetWindow())};
 
-        auto dragArea{GetDragArea()};
+        auto dragArea{this->GetDragArea()};
 
         if (dragArea.Contains(mousePosition))
         {
@@ -169,14 +170,14 @@ namespace Forradia
                       LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
-                StartMove();
+                this->StartMove();
             }
         }
 
         if (_<Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenReleased())
         {
-            StopMove();
+            this->StopMove();
         }
 
         auto bounds{GetBounds()};
@@ -203,7 +204,7 @@ namespace Forradia
                 currentMousePosition -
                 GetMoveStartingMousePosition()};
 
-            SetPosition(newPosition);
+            this->SetPosition(newPosition);
         }
     }
 
@@ -211,7 +212,8 @@ namespace Forradia
     {
         m_isBeingMoved = true;
 
-        m_moveStartingPosition = GetBounds().GetPosition();
+        m_moveStartingPosition =
+            this->GetBounds().GetPosition();
 
         m_moveStartingMousePosition =
             GetNormallizedMousePosition(
@@ -225,7 +227,7 @@ namespace Forradia
 
     RectF GUIMovablePanel::GetDragArea()
     {
-        return GetBounds();
+        return this->GetBounds();
     }
 
     void GUIWindow::GUIWindowTitleBar::Initialize()
@@ -274,13 +276,13 @@ namespace Forradia
     }
     void GUIWindow::Initialize(StringView windowTitle)
     {
-        SetVisible(false);
+        this->SetVisible(false);
 
         m_guiWindowTitleBar =
             std::make_shared<GUIWindowTitleBar>(
                 *this, windowTitle);
 
-        AddChildComponent(m_guiWindowTitleBar);
+        this->AddChildComponent(m_guiWindowTitleBar);
     }
 
     void GUIWindow::RenderDerived() const
@@ -298,7 +300,7 @@ namespace Forradia
         m_fpsTextPanel = std::make_shared<GUILabel>(
             0.01f, 0.01f, 0.1f, 0.05f);
 
-        AddChildComponent(m_fpsTextPanel);
+        this->AddChildComponent(m_fpsTextPanel);
     }
 
     void GUIFPSPanel::UpdateDerived()
@@ -315,7 +317,7 @@ namespace Forradia
     {
         GUIPanel::RenderDerived();
 
-        auto bounds{GetBounds()};
+        auto bounds{this->GetBounds()};
 
         auto maxNumLines{
             CInt(bounds.height / k_lineHeight - 1)};

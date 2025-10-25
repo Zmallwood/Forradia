@@ -14,25 +14,25 @@ namespace Forradia
     {
         void WorldGenerator::GenerateNewWorld()
         {
-            Prepare();
+            this->Prepare();
 
-            ClearWithDirt();
+            this->ClearWithDirt();
 
-            GenerateGrass();
+            this->GenerateGrass();
 
-            GenerateLakes();
+            this->GenerateLakes();
 
-            GenerateElevation();
+            this->GenerateElevation();
 
-            GenerateRock();
+            this->GenerateRock();
 
-            GenerateRivers();
+            this->GenerateRivers();
 
-            GenerateObjects();
+            this->GenerateObjects();
 
-            GenerateCreatures();
+            this->GenerateCreatures();
 
-            GenerateNPCs();
+            this->GenerateNPCs();
         }
 
         void WorldGenerator::Prepare()
@@ -42,8 +42,8 @@ namespace Forradia
 
             m_size = m_worldArea->GetSize();
 
-            m_scale =
-                _<Theme0::Theme0Properties>().k_worldScaling;
+            m_scale = _<Theme0::Theme0Properties>()
+                          .k_worldScaling;
         }
 
         void WorldGenerator::ClearWithDirt() const
@@ -346,7 +346,7 @@ namespace Forradia
                 }
             }
 
-            GenerateSingleLake(
+            this->GenerateSingleLake(
                 xCenter - maxRadius, yCenter - maxRadius,
                 xCenter + maxRadius, yCenter + maxRadius,
                 recursion - 1);
@@ -358,9 +358,9 @@ namespace Forradia
 
             for (auto i = 0; i < numLakes; i++)
             {
-                GenerateSingleLake(0, 0, m_size.width,
-                                   m_size.height,
-                                   2 + GetRandomInt(5));
+                this->GenerateSingleLake(
+                    0, 0, m_size.width, m_size.height,
+                    2 + GetRandomInt(5));
             }
         }
 
@@ -502,70 +502,6 @@ namespace Forradia
                                     {
                                         continue;
                                     }
-
-                                    // if (tl_n &&
-                                    // tl_n->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_s &&
-                                    // tl_s->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_w &&
-                                    // tl_w->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_e &&
-                                    // tl_e->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_nw &&
-                                    // tl_nw->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_ne &&
-                                    // tl_ne->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_sw &&
-                                    // tl_sw->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
-
-                                    // if (tl_se &&
-                                    // tl_se->GetElevation()
-                                    // <
-                                    // tl->GetElevation())
-                                    // {
-                                    //     continue;
-                                    // }
 
                                     tile->SetElevation(
                                         tile->GetElevation() +

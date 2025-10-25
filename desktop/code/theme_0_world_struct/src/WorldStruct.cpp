@@ -17,7 +17,7 @@ namespace Forradia
 
         void NPC::Initialize()
         {
-            GenerateName();
+            this->GenerateName();
 
             m_ticksNextSpontaneousSpeech =
                 GetTicks() +
@@ -233,13 +233,14 @@ namespace Forradia
 
         bool WorldArea::IsValidCoordinate(Point coord) const
         {
-            return IsValidCoordinate(coord.x, coord.y);
+            return this->IsValidCoordinate(coord.x,
+                                           coord.y);
         }
 
         SharedPtr<Tile> WorldArea::GetTile(int x,
                                            int y) const
         {
-            if (IsValidCoordinate(x, y))
+            if (this->IsValidCoordinate(x, y))
             {
                 return m_tiles.at(x).at(y);
             }
@@ -250,7 +251,7 @@ namespace Forradia
         SharedPtr<Tile>
         WorldArea::GetTile(Point coord) const
         {
-            return GetTile(coord.x, coord.y);
+            return this->GetTile(coord.x, coord.y);
         }
 
         void World::Initialize(Size w_area_sz,

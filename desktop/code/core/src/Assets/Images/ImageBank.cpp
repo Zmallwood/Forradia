@@ -10,7 +10,7 @@ namespace Forradia
 {
     void ImageBank::Initialize()
     {
-        LoadImages();
+        this->LoadImages();
     }
 
     void ImageBank::Cleanup()
@@ -68,7 +68,8 @@ namespace Forradia
 
                 m_textureSizes.insert({hash, imageSize});
 
-                auto texture{LoadSingleTexture(surface)};
+                auto texture{
+                    this->LoadSingleTexture(surface)};
 
                 m_textures.insert({hash, texture});
             }

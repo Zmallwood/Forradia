@@ -5,9 +5,9 @@
 //
 
 #include "Rendering.hpp"
+#include "Assets/Images/ImageBank.hpp"
 #include "Core.hpp"
 #include "SDLDevice.hpp"
-#include "Assets/Images/ImageBank.hpp"
 
 namespace Forradia
 {
@@ -37,7 +37,7 @@ namespace Forradia
             glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH,
                           &maxLength);
 
-            std::vector<GLchar> infoLog(maxLength);
+            Vector<GLchar> infoLog(maxLength);
 
             glGetShaderInfoLog(vertexShader, maxLength,
                                &maxLength, &infoLog[0]);
@@ -67,7 +67,7 @@ namespace Forradia
             glGetShaderiv(fragmentShader,
                           GL_INFO_LOG_LENGTH, &maxLength);
 
-            std::vector<GLchar> infoLog(maxLength);
+            Vector<GLchar> infoLog(maxLength);
 
             glGetShaderInfoLog(fragmentShader, maxLength,
                                &maxLength, &infoLog[0]);
@@ -99,7 +99,7 @@ namespace Forradia
             glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH,
                            &maxLength);
 
-            std::vector<GLchar> infoLog(maxLength);
+            Vector<GLchar> infoLog(maxLength);
 
             glGetProgramInfoLog(m_programID, maxLength,
                                 &maxLength, &infoLog[0]);
@@ -403,7 +403,8 @@ namespace Forradia
         StringView imageName, float x, float y, float width,
         float height)
     {
-        DrawImage(Hash(imageName), x, y, width, height);
+        this->DrawImage(Hash(imageName), x, y, width,
+                        height);
     }
 
     void RenderersCollection::GroundRenderer::Initialize()
@@ -645,10 +646,14 @@ namespace Forradia
         glm::vec3 v12 = {_12x, _12y, _12z};
         glm::vec3 v22 = {_22x, _22y, _22z};
 
-        glm::vec3 normal00 = ComputeNormal(v10, v00, v01);
-        glm::vec3 normal10 = ComputeNormal(v20, v10, v11);
-        glm::vec3 normal11 = ComputeNormal(v21, v11, v12);
-        glm::vec3 normal01 = ComputeNormal(v11, v01, v02);
+        glm::vec3 normal00 =
+            this->ComputeNormal(v10, v00, v01);
+        glm::vec3 normal10 =
+            this->ComputeNormal(v20, v10, v11);
+        glm::vec3 normal11 =
+            this->ComputeNormal(v21, v11, v12);
+        glm::vec3 normal01 =
+            this->ComputeNormal(v11, v01, v02);
 
         normal00.z *= -1.0f;
         normal10.z *= -1.0f;
@@ -1302,7 +1307,7 @@ namespace Forradia
     {
         TTF_Init();
 
-        AddFonts();
+        this->AddFonts();
     }
 
     void RenderersCollection::TextRenderer::AddFonts()

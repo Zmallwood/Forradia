@@ -12,7 +12,7 @@ namespace Forradia
 {
     void Cursor::Initialize()
     {
-        DisableSystemCursor();
+        this->DisableSystemCursor();
     }
 
     void Cursor::DisableSystemCursor()

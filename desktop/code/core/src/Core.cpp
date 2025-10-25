@@ -6,9 +6,9 @@
 
 #include "Core.hpp"
 #include "GLDevice.hpp"
-#include "SDLDevice.hpp"
-#include "MinorComponents/FPSCounter.hpp"
 #include "MinorComponents/Cursor.hpp"
+#include "MinorComponents/FPSCounter.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -33,7 +33,7 @@ namespace Forradia
 
                 _<Cursor>().ResetStyleToNormal();
 
-                PollEvents();
+                this->PollEvents();
 
                 _<ScenesCore::SceneManager>()
                     .UpdateCurrentScene();
@@ -73,7 +73,7 @@ namespace Forradia
             {
             case SDL_QUIT:
 
-                m_running = false;
+                this->Stop();
 
                 break;
 
@@ -133,8 +133,8 @@ namespace Forradia
         }
         else
         {
-            ProcessNode(scene->mRootNode, scene,
-                        aiMatrix4x4());
+            this->ProcessNode(scene->mRootNode, scene,
+                              aiMatrix4x4());
         }
     }
 
@@ -158,8 +158,8 @@ namespace Forradia
         for (unsigned int i = 0; i < node->mNumChildren;
              i++)
         {
-            ProcessNode(node->mChildren[i], scene,
-                        transformation);
+            this->ProcessNode(node->mChildren[i], scene,
+                              transformation);
         }
     }
 
@@ -171,12 +171,14 @@ namespace Forradia
         glm::vec3 extents;
         glm::vec3 origin;
 
-        Vector<Vertex> vertices{GetVertices(
+        Vector<Vertex> vertices{this->GetVertices(
             mesh, extents, origin, transformation)};
 
-        Vector<unsigned int> indices{GetIndices(mesh)};
+        Vector<unsigned int> indices{
+            this->GetIndices(mesh)};
 
-        Vector<Texture> textures{GetTextures(mesh, scene)};
+        Vector<Texture> textures{
+            this->GetTextures(mesh, scene)};
 
         return Engine::Assets::Models::ModelBank::Mesh(
             vertices, indices, textures, extents, origin,
@@ -333,7 +335,7 @@ namespace Forradia
 
                 auto hash{Forradia::Hash(fileName)};
 
-                auto model{LoadSingleModel(filePath)};
+                auto model{this->LoadSingleModel(filePath)};
 
                 m_models.insert({hash, model});
             }

@@ -10,9 +10,7 @@ namespace Forradia
 {
     namespace Theme0
     {
-        SizeF CalcTileSize();
-
-        float CalcTileSizeNew();
+        float CalcTileSize();
 
         Size CalcGridSize();
 

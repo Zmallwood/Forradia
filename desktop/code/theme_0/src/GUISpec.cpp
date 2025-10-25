@@ -20,7 +20,7 @@ namespace Forradia
         {
             GUIPanel::RenderDerived();
 
-            auto bounds{GetBounds()};
+            auto bounds{this->GetBounds()};
 
             _<Engine::Renderers::TextRenderer>().DrawString(
                 _<Theme0::GameplayCore::PlayerCharacter>()
@@ -31,7 +31,7 @@ namespace Forradia
 
         void GUISystemMenu::Initialize()
         {
-            SetVisible(false);
+            this->SetVisible(false);
         }
 
         void GUISystemMenu::UpdateDerived()
@@ -67,7 +67,7 @@ namespace Forradia
         {
             GUIWindow::RenderDerived();
 
-            auto bounds{GetBounds()};
+            auto bounds{this->GetBounds()};
 
             auto marginX{k_margin};
 
@@ -76,9 +76,10 @@ namespace Forradia
 
             auto xStart{bounds.x + marginX};
 
-            auto yStart{
-                bounds.y + marginY +
-                GetGUIWindowTitleBar()->GetBounds().height};
+            auto yStart{bounds.y + marginY +
+                        this->GetGUIWindowTitleBar()
+                            ->GetBounds()
+                            .height};
 
             auto slotWidth{k_slotSize};
 
@@ -121,15 +122,15 @@ namespace Forradia
                 imageHeight, "",
                 [this]
                 {
-                    SelectBodyPart(CInt(
+                    this->SelectBodyPart(CInt(
                         Theme0::GameplayCore::
                             BodyPartTypes::OverallBody));
-                    UpdateBodyPartInfoLabels();
+                    this->UpdateBodyPartInfoLabels();
                 },
                 "gui_image_overall_body",
                 "gui_image_overall_body_hovered")};
 
-            AddChildComponent(overallBodyImageButton);
+            this->AddChildComponent(overallBodyImageButton);
 
             auto rightArmBodyImageButton{
                 std::make_shared<GUIButton>(
@@ -137,15 +138,16 @@ namespace Forradia
                     0.04f, imageWidth, imageHeight, "",
                     [this]
                     {
-                        SelectBodyPart(CInt(
+                        this->SelectBodyPart(CInt(
                             Theme0::GameplayCore::
                                 BodyPartTypes::RightArm));
-                        UpdateBodyPartInfoLabels();
+                        this->UpdateBodyPartInfoLabels();
                     },
                     "gui_image_right_arm",
                     "gui_image_right_arm_hovered")};
 
-            AddChildComponent(rightArmBodyImageButton);
+            this->AddChildComponent(
+                rightArmBodyImageButton);
 
             auto leftArmBodyImageButton{
                 std::make_shared<GUIButton>(
@@ -153,15 +155,15 @@ namespace Forradia
                     0.04f, imageWidth, imageHeight, "",
                     [this]
                     {
-                        SelectBodyPart(CInt(
+                        this->SelectBodyPart(CInt(
                             Theme0::GameplayCore::
                                 BodyPartTypes::LeftArm));
-                        UpdateBodyPartInfoLabels();
+                        this->UpdateBodyPartInfoLabels();
                     },
                     "gui_image_left_arm",
                     "gui_image_left_arm_hovered")};
 
-            AddChildComponent(leftArmBodyImageButton);
+            this->AddChildComponent(leftArmBodyImageButton);
 
             auto legsImageButton{
                 std::make_shared<GUIButton>(
@@ -170,15 +172,15 @@ namespace Forradia
                     imageHeight, "",
                     [this]
                     {
-                        SelectBodyPart(
+                        this->SelectBodyPart(
                             CInt(Theme0::GameplayCore::
                                      BodyPartTypes::Legs));
-                        UpdateBodyPartInfoLabels();
+                        this->UpdateBodyPartInfoLabels();
                     },
                     "gui_image_legs",
                     "gui_image_legs_hovered")};
 
-            AddChildComponent(legsImageButton);
+            this->AddChildComponent(legsImageButton);
 
             m_labelBodyPartName =
                 std::make_shared<GUILabel>(
@@ -201,13 +203,15 @@ namespace Forradia
                     0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f,
                     0.05f, "Temperature: ");
 
-            AddChildComponent(m_labelBodyPartName);
+            this->AddChildComponent(m_labelBodyPartName);
 
-            AddChildComponent(m_labelBodyPartStrength);
+            this->AddChildComponent(
+                m_labelBodyPartStrength);
 
-            AddChildComponent(m_labelBodyPartEnergy);
+            this->AddChildComponent(m_labelBodyPartEnergy);
 
-            AddChildComponent(m_labelBodyPartTemperature);
+            this->AddChildComponent(
+                m_labelBodyPartTemperature);
         }
 
         void GUIPlayerBodyWindow::SelectBodyPart(int type)
@@ -433,7 +437,7 @@ namespace Forradia
 
         void GUIInteractionMenu::Initialize()
         {
-            SetVisible(false);
+            this->SetVisible(false);
         }
 
         void GUIInteractionMenu::BuildMenu()
@@ -519,7 +523,7 @@ namespace Forradia
         {
             GUIPanel::UpdateDerived();
 
-            auto bounds{GetBounds()};
+            auto bounds{this->GetBounds()};
 
             auto mousePosition{GetNormallizedMousePosition(
                 _<SDLDevice>().GetWindow())};
@@ -544,7 +548,7 @@ namespace Forradia
                         entry.GetAction()();
                     }
 
-                    SetVisible(false);
+                    this->SetVisible(false);
                 }
 
                 ++i;
@@ -553,7 +557,7 @@ namespace Forradia
                       LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
-                SetVisible(false);
+                this->SetVisible(false);
             }
         }
 
@@ -561,7 +565,7 @@ namespace Forradia
         {
             GUIPanel::RenderDerived();
 
-            auto bounds{GetBounds()};
+            auto bounds{this->GetBounds()};
 
             _<Engine::Renderers::TextRenderer>().DrawString(
                 "Actions", bounds.x + 0.01f,

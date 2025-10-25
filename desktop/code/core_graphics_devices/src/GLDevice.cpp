@@ -20,7 +20,7 @@ namespace Forradia
     {
         // Setup the opengl functionality.
 
-        SetupGL();
+        this->SetupGL();
     }
 
     void GLDevice::SetupGL()

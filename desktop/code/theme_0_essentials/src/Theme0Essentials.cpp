@@ -14,22 +14,7 @@ namespace Forradia
 {
     namespace Theme0
     {
-        SizeF CalcTileSize()
-        {
-            auto numGridRows{
-                _<Theme0Properties>().k_numGridRows};
-
-            auto tileHeight{1.0f / numGridRows};
-
-            auto aspectRatio{CalcAspectRatio(
-                _<SDLDevice>().GetWindow())};
-
-            auto tileWidth{tileHeight / aspectRatio};
-
-            return {tileWidth, tileHeight};
-        }
-
-        float CalcTileSizeNew()
+        float CalcTileSize()
         {
             auto aspectRatio{CalcAspectRatio(
                 _<SDLDevice>().GetWindow())};
@@ -39,7 +24,7 @@ namespace Forradia
 
         Size CalcGridSize()
         {
-            auto tileSize{CalcTileSizeNew()};
+            auto tileSize{CalcTileSize()};
 
             auto aspectRatio{CalcAspectRatio(
                 _<SDLDevice>().GetWindow())};
@@ -84,7 +69,7 @@ namespace Forradia
 
             void PlayerCharacter::Initialize()
             {
-                MoveToSuitablePosition();
+                this->MoveToSuitablePosition();
             }
 
             void PlayerCharacter::MoveToSuitablePosition()
