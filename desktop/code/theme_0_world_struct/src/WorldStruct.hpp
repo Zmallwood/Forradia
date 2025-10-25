@@ -66,8 +66,11 @@ namespace Forradia
             void Initialize();
 
             int m_type{0};
+
             int m_ticksLastMovement{0};
+
             float m_movementSpeed{2.0f};
+
             Point m_destination{-1, -1};
         };
 
@@ -131,10 +134,15 @@ namespace Forradia
             void GenerateName();
 
             int m_type{0};
+
             String m_name;
+
             int m_ticksLastMovement{0};
+
             float m_movementSpeed{2.0f};
+
             Point m_destination{-1, -1};
+
             int m_ticksNextSpontaneousSpeech{0};
         };
 
@@ -183,7 +191,9 @@ namespace Forradia
             void Initialize(StringView obj_type_name);
 
             Vector<PointF> m_trunkParts;
+
             Vector<int> m_needleTypes;
+
             float m_widthFactor{1.0f};
         };
 
@@ -296,14 +306,21 @@ namespace Forradia
             void Initialize();
 
             int m_ground{0};
+
             SharedPtr<Forradia::Theme0::ObjectsStack>
                 m_objectsStack;
+
             SharedPtr<Forradia::Theme0::Creature>
                 m_creature;
+
             SharedPtr<Forradia::Theme0::NPC> m_npc;
+
             int m_elevation{0};
+
             int m_waterDepth{0};
+
             Directions m_riverDirection1{Directions::None};
+
             Directions m_riverDirection2{Directions::None};
         };
 
@@ -340,8 +357,10 @@ namespace Forradia
                             float world_scaling);
 
             Vector<Vector<SharedPtr<Tile>>> m_tiles;
+
             std::map<SharedPtr<Creature>, Point>
                 m_creaturesMirror;
+
             std::map<SharedPtr<NPC>, Point> m_npcsMirror;
         };
 

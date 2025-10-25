@@ -37,8 +37,11 @@ namespace Forradia
             Size GetScreenSize() const;
 
             SharedPtr<SDL_Window> m_window;
+
             SharedPtr<SDL_GLContext> m_context;
+
             String m_gameWindowTitle;
+
             Color m_clearColor;
         };
 
@@ -56,7 +59,9 @@ namespace Forradia
             const PointF k_position{0.93f, 0.02f};
 
             int m_fps{0};
+
             int m_framesCount{0};
+
             int m_ticksLastUpdate{0};
         };
 
@@ -143,7 +148,9 @@ namespace Forradia
                             "./res/images/"};
 
                     std::map<int, GLuint> m_textures;
+
                     std::map<int, Size> m_textureSizes;
+
                     std::map<
                         float,
                         std::map<float,
@@ -161,9 +168,13 @@ namespace Forradia
                     {
                       public:
                         glm::vec3 position;
+
                         glm::vec3 normal;
+
                         glm::vec2 uv;
+
                         glm::vec3 tangent;
+
                         glm::vec3 bitangent;
                     };
 
@@ -177,10 +188,15 @@ namespace Forradia
                     {
                       public:
                         Vector<Vertex> vertices;
+
                         Vector<unsigned int> indices;
+
                         Vector<Texture> textures;
+
                         glm::vec3 extents;
+
                         glm::vec3 origin;
+
                         aiString name;
                     };
 
@@ -311,9 +327,13 @@ namespace Forradia
 
               private:
                 SharedPtr<ScenesGUI::GUIRoot> m_gui;
+
                 Function<void()> m_initializeDerived{[] {}};
+
                 Function<void()> m_onEnterDerived{[] {}};
+
                 Function<void()> m_updateDerived{[] {}};
+
                 Function<void()> m_renderDerived{[] {}};
             };
 
@@ -381,7 +401,9 @@ namespace Forradia
 
                   private:
                     bool m_pressed{false};
+
                     bool m_hasBeenFired{false};
+
                     bool m_hasBeenReleased{false};
                 };
 
@@ -442,9 +464,13 @@ namespace Forradia
         {
           public:
             using RenderersCollection::FontSizes;
+
             using RenderersCollection::GroundRenderer;
+
             using RenderersCollection::Image2DRenderer;
+
             using RenderersCollection::ModelRenderer;
+
             using RenderersCollection::TextRenderer;
         };
 

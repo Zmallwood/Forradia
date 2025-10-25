@@ -80,11 +80,17 @@ namespace Forradia
             {
               public:
                 float x;
+
                 float y;
+
                 float width;
+
                 float height;
+
                 GLuint vao;
+
                 GLuint ibo;
+
                 GLuint vbo;
             };
 
@@ -131,9 +137,13 @@ namespace Forradia
             {
               public:
                 float x;
+
                 float y;
+
                 GLuint vao;
+
                 GLuint ibo;
+
                 GLuint vbo;
             };
 
@@ -142,6 +152,7 @@ namespace Forradia
                                     glm::vec3 p3);
 
             SharedPtr<ShaderProgram> m_shaderProgram;
+
             std::map<
                 float,
                 std::map<
@@ -178,15 +189,22 @@ namespace Forradia
             {
               public:
                 float x;
+
                 float y;
+
                 float z;
+
                 int verticesCount;
+
                 GLuint vao;
+
                 GLuint ibo;
+
                 GLuint vbo;
             };
 
             SharedPtr<ShaderProgram> m_shaderProgram;
+
             std::map<
                 float,
                 std::map<
@@ -196,6 +214,7 @@ namespace Forradia
                         std::map<int,
                                  ModelRenderingOperation>>>>
                 m_operationsMemory;
+
             static constexpr float k_modelScale{0.14f};
         };
 

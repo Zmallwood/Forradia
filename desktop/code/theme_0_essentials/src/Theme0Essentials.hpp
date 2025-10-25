@@ -49,8 +49,11 @@ namespace Forradia
 
               private:
                 float m_strength{0.1f};
+
                 float m_currentEnergy{1.0f};
+
                 float m_maxEnergy{1.0f};
+
                 float m_temperature{37.0f};
             };
 
@@ -139,11 +142,17 @@ namespace Forradia
                 void MoveToSuitablePosition();
 
                 String m_name{"Unnamed Player"};
+
                 Point m_position{60, 50};
+
                 float m_movementSpeed{5.0f};
+
                 int m_ticksLastMovement{0};
+
                 Point m_destination{-1, -1};
+
                 PlayerBody m_body;
+
                 int m_money{0};
             };
         }

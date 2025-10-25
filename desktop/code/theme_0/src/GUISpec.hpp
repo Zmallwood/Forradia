@@ -55,7 +55,9 @@ namespace Forradia
 
           private:
             static constexpr float k_margin{0.005f};
+
             static constexpr float k_slotSize{0.04f};
+
             inline static const String k_slotImageName{
                 "gui_inventory_win_slot_bg"};
         };
@@ -79,9 +81,13 @@ namespace Forradia
             void UpdateBodyPartInfoLabels();
 
             int m_selectedBodyPart{0};
+
             SharedPtr<GUILabel> m_labelBodyPartName;
+
             SharedPtr<GUILabel> m_labelBodyPartStrength;
+
             SharedPtr<GUILabel> m_labelBodyPartEnergy;
+
             SharedPtr<GUILabel> m_labelBodyPartTemperature;
         };
 
@@ -105,6 +111,7 @@ namespace Forradia
 
           private:
             static constexpr float k_indentWidth{0.01f};
+
             static constexpr float k_lineHeight{0.025f};
 
             class GUIInteractionMenuEntry
@@ -129,10 +136,12 @@ namespace Forradia
 
               private:
                 String m_label;
+
                 Function<void()> m_action;
             };
 
             Vector<GUIInteractionMenuEntry> m_entries;
+
             Point m_clickedCoordinate{-1, -1};
         };
     }

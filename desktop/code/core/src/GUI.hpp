@@ -56,9 +56,13 @@ namespace Forradia
 
       private:
         RectF m_bounds;
+
         Vector<SharedPtr<GUIComponent>> m_childComponents;
+
         bool m_visible{true};
+
         bool m_enabled{true};
+
         GUIComponent *m_parentComponent{nullptr};
     };
 
@@ -85,7 +89,9 @@ namespace Forradia
 
       private:
         String m_text;
+
         bool m_centerAlign{false};
+
         Color m_color;
     };
 
@@ -145,8 +151,11 @@ namespace Forradia
             "gui_button_hovered_bg"};
 
         String m_text;
+
         Function<void()> m_action;
+
         String m_backgroundImage;
+
         String m_hoveredBackgroundImage;
     };
 
@@ -185,7 +194,9 @@ namespace Forradia
 
       private:
         bool m_isBeingMoved{false};
+
         PointF m_moveStartingPosition{-1, -1};
+
         PointF m_moveStartingMousePosition{-1, -1};
     };
 
@@ -233,6 +244,7 @@ namespace Forradia
             void Initialize();
 
             inline static const float k_h{0.04f};
+
             const String k_windowTitle;
 
             GUIWindow &m_parentWindow;
@@ -276,8 +288,11 @@ namespace Forradia
         constexpr static StringView
             k_defaultBackgroundImageDerived{
                 "gui_chat_box_bg"};
+
         inline static const float k_lineHeight{0.025f};
+
         inline static const float k_separatorHeight{0.003f};
+
         inline static const float k_margin{0.008f};
 
         Vector<String> m_lines;
