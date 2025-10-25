@@ -5,12 +5,11 @@
 //
 
 #include "Cursor.hpp"
-#include "SDLDevice.hpp"
 #include "Rendering.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
-
     void Cursor::Initialize()
     {
         DisableSystemCursor();
@@ -18,25 +17,37 @@ namespace Forradia
 
     void Cursor::DisableSystemCursor()
     {
+        // Hide the default system cursor.
+
         SDL_ShowCursor(SDL_DISABLE);
     }
 
     void Cursor::ResetStyleToNormal()
     {
+        // Reset the cursor style to normal style.
+
         m_cursorStyle = CursorStyles::Normal;
     }
 
     void Cursor::Render()
     {
+        // Get the mouse position.
+
         auto mousePosition{GetNormallizedMousePosition(
             _<SDLDevice>().GetWindow())};
+
+        // Determine cursor image dimensions.
 
         auto width{k_cursorSize};
 
         auto height{ConvertWidthToHeight(
             k_cursorSize, _<SDLDevice>().GetWindow())};
 
+        // To hold the cursor image name.
+
         String cursorImage;
+
+        // Determine the cursor image name.
 
         switch (m_cursorStyle)
         {
@@ -52,6 +63,8 @@ namespace Forradia
 
             break;
         }
+
+        // Draw the cursor image.
 
         _<RenderersCollection::Image2DRenderer>().DrawImage(
             cursorImage, mousePosition.x - width / 2,

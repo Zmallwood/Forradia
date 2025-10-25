@@ -7,6 +7,7 @@
 #include "Rendering.hpp"
 #include "Core.hpp"
 #include "SDLDevice.hpp"
+#include "Assets/Images/ImageBank.hpp"
 
 namespace Forradia
 {
@@ -192,8 +193,7 @@ namespace Forradia
         float height)
     {
         auto textureID{
-            _<Engine::Assets::Images::ImageBank>()
-                .GetTexture(imageNameHash)};
+            _<ImageBank>().GetTexture(imageNameHash)};
 
         Image2DRenderer::DrawTexture(textureID, x, y, width,
                                      height, true);
@@ -380,9 +380,7 @@ namespace Forradia
     {
         auto hash{Forradia::Hash(imageName)};
 
-        auto imageSize{
-            _<Engine::Assets::Images::ImageBank>()
-                .GetImageSize(hash)};
+        auto imageSize{_<ImageBank>().GetImageSize(hash)};
 
         if (imageSize.width <= 0 || imageSize.height <= 0)
         {
@@ -489,8 +487,7 @@ namespace Forradia
         Vector<float> &elevations, float elevationHeight)
     {
         auto textureID{
-            _<Engine::Assets::Images::ImageBank>()
-                .GetTexture(imageNameHash)};
+            _<ImageBank>().GetTexture(imageNameHash)};
 
         auto x{tileSize * (xCoordinate + 0.5f)};
 
@@ -1285,8 +1282,7 @@ namespace Forradia
         auto textureNameHash{Hash(textureName)};
 
         auto textureID{
-            _<Engine::Assets::Images::ImageBank>()
-                .GetTexture(textureNameHash)};
+            _<ImageBank>().GetTexture(textureNameHash)};
 
         glBindTexture(GL_TEXTURE_2D, textureID);
 
@@ -1383,12 +1379,11 @@ namespace Forradia
         auto yy{CFloat(CInt(y * 1000))};
 
         auto textureAlreadyExists{
-            _<Engine::Assets::Images::ImageBank>()
-                .TextTextureExists(xx, yy, textHash)};
+            _<ImageBank>().TextTextureExists(xx, yy,
+                                             textHash)};
 
-        auto texture{
-            _<Engine::Assets::Images::ImageBank>()
-                .ObtainTextTexture(xx, yy, textHash)};
+        auto texture{_<ImageBank>().ObtainTextTexture(
+            xx, yy, textHash)};
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 

@@ -10,30 +10,55 @@
 
 namespace Forradia
 {
+    ///
+    /// Class for the game cursor, which replaces the
+    /// default system cursor.
+    ///
     class Cursor
     {
       public:
+        ///
+        /// Default constructor
+        ///
         Cursor()
         {
             Initialize();
         }
 
+        ///
+        /// Resets the cursor style to normal.
+        ///
         void ResetStyleToNormal();
 
+        ///
+        /// Renders the cursor.
+        ///
         void Render();
 
-        auto SetCursorStyle(CursorStyles value)
+        ///
+        /// @brief Sets the cursor style.
+        /// @param value New cursor style.
+        ///
+        void SetCursorStyle(CursorStyles value)
         {
             m_cursorStyle = value;
         }
 
       private:
+        ///
+        /// Initializes the cursor.
+        ///
         void Initialize();
 
+        ///
+        /// Hides the default system cursor.
+        ///
         void DisableSystemCursor();
 
-        constexpr static float k_cursorSize{0.05f};
+        constexpr static float k_cursorSize{
+            0.05f}; ///< The size of the cursor.
 
-        CursorStyles m_cursorStyle{CursorStyles::Normal};
+        CursorStyles m_cursorStyle{
+            CursorStyles::Normal}; ///< The cursor style
     };
 }

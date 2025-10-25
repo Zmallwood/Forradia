@@ -8,23 +8,31 @@
 
 namespace Forradia
 {
+    ///
+    ///  Class for the FPS counter.
+    ///
     class FPSCounter
     {
       public:
+        ///
+        /// Updates the FPS counter.
+        ///
         void Update();
 
+        ///
+        /// Gets the current FPS.
+        /// @return The current FPS.
+        ///
         auto GetFPS() const
         {
             return m_fps;
         }
 
       private:
-        const PointF k_position{0.93f, 0.02f};
+        int m_fps{0}; ///< The current FPS.
 
-        int m_fps{0};
+        int m_framesCount{0}; ///< The frame count.
 
-        int m_framesCount{0};
-
-        int m_ticksLastUpdate{0};
+        int m_ticksLastUpdate{0}; ///< The last update time.
     };
 }
