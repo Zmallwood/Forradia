@@ -35,6 +35,7 @@ target_include_directories(ForradiaCore PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
     "code/common/src"
+    "code/core/src"
 )
 target_link_libraries(ForradiaCore ForradiaCommon assimp)
 target_precompile_headers(ForradiaCore PUBLIC code/core/src/StdAfx.hpp)

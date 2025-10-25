@@ -10,6 +10,7 @@
 #include "GUISpec.hpp"
 #include "Rendering.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
+#include "MinorComponents/Cursor.hpp"
 #include "Update.hpp"
 #include "WorldGen.hpp"
 #include "WorldView.hpp"
@@ -127,20 +128,20 @@ namespace Forradia
                      &Engine::ScenesCore::SceneManager::
                          GoToScene);
 
-            py::class_<Engine::Cursor>(m, "Cursor")
+            py::class_<Cursor>(m, "Cursor")
                 .def(py::init<>())
                 .def("set_curs_style",
-                     &Engine::Cursor::SetCursorStyle);
+                     &Cursor::SetCursorStyle);
 
-            py::enum_<Engine::Cursor::CursorStyles>(
+            py::enum_<CursorStyles>(
                 m, "CursorStyles")
                 .value("normal",
-                       Engine::Cursor::CursorStyles::Normal)
+                       CursorStyles::Normal)
                 .value("hovering_clickable_gui",
-                       Engine::Cursor::CursorStyles::
+                       CursorStyles::
                            HoveringClickableGUI)
                 .value("hovering_creature",
-                       Engine::Cursor::CursorStyles::
+                       CursorStyles::
                            HoveringCreature);
 
             py::class_<GUIChatBox, SharedPtr<GUIChatBox>,
@@ -361,8 +362,8 @@ namespace Forradia
                   { return __<GUIChatBox>(); });
 
             m.def(
-                "get_cursor", []() -> Engine::Cursor &
-                { return _<Engine::Cursor>(); },
+                "get_cursor", []() -> Cursor &
+                { return _<Cursor>(); },
                 py::return_value_policy::reference);
 
             m.def(

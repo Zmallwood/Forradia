@@ -7,6 +7,8 @@
 #include "Core.hpp"
 #include "GraphicsDevices/GLDevice.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
+#include "MinorComponents/FPSCounter.hpp"
+#include "MinorComponents/Cursor.hpp"
 
 namespace Forradia
 {
@@ -107,69 +109,6 @@ namespace Forradia
                 break;
             }
         }
-    }
-
-    void Engine::FPSCounter::Update()
-    {
-        auto now{GetTicks()};
-
-        if (now > m_ticksLastUpdate + k_oneSecMillis)
-        {
-            m_fps = m_framesCount;
-
-            m_framesCount = 0;
-
-            m_ticksLastUpdate = now;
-        }
-
-        ++m_framesCount;
-    }
-
-    void Engine::Cursor::Initialize()
-    {
-        DisableSystemCursor();
-    }
-
-    void Engine::Cursor::DisableSystemCursor()
-    {
-        SDL_ShowCursor(SDL_DISABLE);
-    }
-
-    void Engine::Cursor::ResetStyleToNormal()
-    {
-        m_cursorStyle = CursorStyles::Normal;
-    }
-
-    void Engine::Cursor::Render()
-    {
-        auto mousePosition{GetNormallizedMousePosition(
-            _<SDLDevice>().GetWindow())};
-
-        auto width{k_cursorSize};
-
-        auto height{ConvertWidthToHeight(
-            k_cursorSize, _<SDLDevice>().GetWindow())};
-
-        String cursorImage;
-
-        switch (m_cursorStyle)
-        {
-        case CursorStyles::Normal:
-
-            cursorImage = "curs_normal";
-
-            break;
-
-        case CursorStyles::HoveringClickableGUI:
-
-            cursorImage = "curs_hovering_clickable_gui";
-
-            break;
-        }
-
-        _<Renderers::Image2DRenderer>().DrawImage(
-            cursorImage, mousePosition.x - width / 2,
-            mousePosition.y - height / 2, width, height);
     }
 
     void Engine::Assets::Images::ImageBank::Initialize()

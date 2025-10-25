@@ -6,8 +6,10 @@
 
 #include "GUI.hpp"
 #include "Core.hpp"
-#include "Rendering.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
+#include "MinorComponents/Cursor.hpp"
+#include "MinorComponents/FPSCounter.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -123,9 +125,8 @@ namespace Forradia
         {
             SetBackgroundImage(m_hoveredBackgroundImage);
 
-            _<Engine::Cursor>().SetCursorStyle(
-                Engine::Cursor::CursorStyles::
-                    HoveringClickableGUI);
+            _<Cursor>().SetCursorStyle(
+                CursorStyles::HoveringClickableGUI);
 
             if (_<Engine::Input::MouseInput::
                       LeftMouseButton>()
@@ -161,9 +162,8 @@ namespace Forradia
 
         if (dragArea.Contains(mousePosition))
         {
-            _<Engine::Cursor>().SetCursorStyle(
-                Engine::Cursor::CursorStyles::
-                    HoveringClickableGUI);
+            _<Cursor>().SetCursorStyle(
+                CursorStyles::HoveringClickableGUI);
 
             if (_<Engine::Input::MouseInput::
                       LeftMouseButton>()
@@ -305,7 +305,7 @@ namespace Forradia
     {
         GUIMovablePanel::UpdateDerived();
 
-        auto fps{_<Engine::FPSCounter>().GetFPS()};
+        auto fps{_<FPSCounter>().GetFPS()};
 
         m_fpsTextPanel->SetText(
             fmt::format("FPS: {}", fps));

@@ -14,61 +14,6 @@ namespace Forradia
     class Engine
     {
       public:
-        class FPSCounter
-        {
-          public:
-            void Update();
-
-            auto GetFPS() const
-            {
-                return m_fps;
-            }
-
-          private:
-            const PointF k_position{0.93f, 0.02f};
-
-            int m_fps{0};
-
-            int m_framesCount{0};
-
-            int m_ticksLastUpdate{0};
-        };
-
-        class Cursor
-        {
-          public:
-            enum class CursorStyles
-            {
-                Normal,
-                HoveringClickableGUI,
-                HoveringCreature
-            };
-
-            Cursor()
-            {
-                Initialize();
-            }
-
-            void ResetStyleToNormal();
-
-            void Render();
-
-            auto SetCursorStyle(CursorStyles value)
-            {
-                m_cursorStyle = value;
-            }
-
-          private:
-            void Initialize();
-
-            void DisableSystemCursor();
-
-            constexpr static float k_cursorSize{0.05f};
-
-            CursorStyles m_cursorStyle{
-                CursorStyles::Normal};
-        };
-
         class Assets
         {
           public:

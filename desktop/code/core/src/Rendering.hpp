@@ -10,7 +10,7 @@ namespace Forradia
 {
     class RenderersCollection
     {
-      protected:
+      public:
         class ShaderProgram
         {
           public:
