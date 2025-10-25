@@ -12,7 +12,7 @@ namespace Forradia
     {
         // Get the screen size.
 
-        auto screenSize{GetScreenSize()};
+        auto screenSize{this->GetScreenSize()};
 
         // Create the SDL window.
 

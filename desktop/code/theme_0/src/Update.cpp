@@ -80,12 +80,15 @@ namespace Forradia
                 auto wPress{
                     _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_w)};
+
                 auto aPress{
                     _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_a)};
+
                 auto sPress{
                     _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_s)};
+
                 auto dPress{
                     _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_d)};
@@ -183,6 +186,7 @@ namespace Forradia
                 {
                     auto dX{destination.x -
                             playerPosition.x};
+
                     auto dY{destination.y -
                             playerPosition.y};
 
@@ -272,13 +276,16 @@ namespace Forradia
 
                     auto dX{creature->GetDestination().x -
                             position.x};
+
                     auto dY{creature->GetDestination().y -
                             position.y};
 
                     auto normalizedDX{Normalize(dX)};
+
                     auto normalizedDY{Normalize(dY)};
 
                     auto newX{position.x + normalizedDX};
+
                     auto newY{position.y + normalizedDY};
 
                     Point newPosition{newX, newY};
@@ -393,13 +400,16 @@ namespace Forradia
 
                     auto dX{npc->GetDestination().x -
                             position.x};
+
                     auto dY{npc->GetDestination().y -
                             position.y};
 
                     auto normalizedDX{Normalize(dX)};
+
                     auto normalizedDY{Normalize(dY)};
 
                     auto newX{position.x + normalizedDX};
+
                     auto newY{position.y + normalizedDY};
 
                     auto newPosition{Point{newX, newY}};
@@ -476,13 +486,26 @@ namespace Forradia
                                       playerPos.y)
                         ->GetElevation()};
 
-                Point3F cameraPos{(worldAreaSize.width -
-                                   playerPos.x + 0.5f) *
-                                      rendTileSize,
-                                  (worldAreaSize.height -
-                                   playerPos.y + 0.5f) *
-                                      rendTileSize,
-                                  -playerElev * elevHeight};
+                Point3F cameraPos{
+                    (worldAreaSize.width - playerPos.x) *
+                            rendTileSize +
+                        rendTileSize / 2,
+                    (worldAreaSize.height - playerPos.y) *
+                            rendTileSize +
+                        rendTileSize / 2,
+                    -playerElev * elevHeight};
+
+                glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+                modelMatrix = glm::translate(
+                    modelMatrix,
+                    glm::vec3((worldAreaSize.width -
+                               playerPos.x) *
+                                  rendTileSize,
+                              (worldAreaSize.height -
+                               playerPos.y) *
+                                  rendTileSize,
+                              0.0f));
 
                 glm::mat4 view = glm::lookAt(
                     glm::vec3(cameraPos.x,
@@ -502,43 +525,19 @@ namespace Forradia
                                    cameraPos.y - 2.0f,
                                    -cameraPos.z + 2.5f);
 
-                auto xpos{(1.0f - mousePosition.x) *
-                          canvasSize.width};
-                auto ypos{mousePosition.y *
-                          canvasSize.height};
+                auto gridSize{CalcGridSize()};
 
-                float x =
-                    ((2.0f * xpos) / canvasSize.width -
-                     1.0f) /
-                    2.0f;
-                float y = 1.0f -
-                          (2.0f * ypos) / canvasSize.height;
-
-                float z = 1.0f;
-                glm::vec3 ray_nds = glm::vec3(x, y, z);
-
-                // Clip space
-                glm::vec4 ray_clip = glm::vec4(
-                    ray_nds.x, ray_nds.y, 2.5f, 1.0);
-                // Eye Coordinates
-                glm::vec4 ray_eye =
-                    inverse(proj) * ray_clip;
-                ray_eye = glm::vec4(ray_eye.x, ray_eye.y,
-                                    -1.0, 0.0);
-
-                // World Coordinates
-                glm::vec3 ray_wor =
-                    (inverse(view) * ray_eye);
-
-                auto dir{glm::normalize(ray_wor)};
-
-                auto c2{glm::vec3(c.x, c.y, c.z - 1.0f)};
-
-                glm::vec3 rayStartPositon = c;
+                auto dir{glm::normalize(glm::unProject(
+                    glm::vec3((mousePosition.x) *
+                                  canvasSize.width,
+                              (mousePosition.y) *
+                                  canvasSize.height,
+                              1),
+                    view * modelMatrix, proj,
+                    glm::vec4(0.0f, 0.0f, canvasSize.width,
+                              canvasSize.height)))};
 
                 auto extraRows{8};
-
-                auto gridSize{CalcGridSize()};
 
                 for (auto y = -extraRows;
                      y < gridSize.height + extraRows; y++)
@@ -546,13 +545,6 @@ namespace Forradia
                     for (auto x = 0; x < gridSize.width;
                          x++)
                     {
-                        auto rawXCoordinate{
-                            playerPos.x -
-                            (gridSize.width - 1) / 2 + x};
-                        auto rawYCoordinate{
-                            playerPos.y -
-                            (gridSize.height - 1) / 2 + y};
-
                         auto xCoordinate{
                             (worldAreaSize.width -
                              playerPos.x) -
@@ -571,58 +563,70 @@ namespace Forradia
 
                         auto coordinateNW{Point{
                             xCoordinate, yCoordinate}};
+
                         auto coordinateNE{Point{
                             xCoordinate + 1, yCoordinate}};
+
                         auto coordinateSW{Point{
                             xCoordinate, yCoordinate + 1}};
+
                         auto coordinateSE{
                             Point{xCoordinate + 1,
                                   yCoordinate + 1}};
 
                         auto tileNW{worldArea->GetTile(
                             coordinateNW)};
+
                         auto tileNE{worldArea->GetTile(
                             coordinateNE)};
+
                         auto tileSW{worldArea->GetTile(
                             coordinateSW)};
+
                         auto tileSE{worldArea->GetTile(
                             coordinateSE)};
 
                         auto elevationNW{
                             tileNW ? tileNW->GetElevation()
                                    : 0.0f};
+
                         auto elevationNE{
                             tileNE ? tileNE->GetElevation()
                                    : 0.0f};
+
                         auto elevationSE{
                             tileSE ? tileSE->GetElevation()
                                    : 0.0f};
+
                         auto elevationSW{
                             tileSW ? tileSW->GetElevation()
                                    : 0.0f};
 
                         auto v00{glm::vec3{
-                            (xCoordinate - 1) *
+                            (xCoordinate - 1 + 0.5f) *
                                 rendTileSize,
-                            (yCoordinate - 1) *
+                            (yCoordinate - 1 + 0.5f) *
                                 rendTileSize,
                             elevationNW * elevHeight}};
+
                         auto v10{glm::vec3{
-                            (xCoordinate - 1 + 1) *
+                            (xCoordinate - 1 + 0.5f + 1) *
                                 rendTileSize,
-                            (yCoordinate - 1) *
+                            (yCoordinate - 1 + 0.5f) *
                                 rendTileSize,
                             elevationNE * elevHeight}};
+
                         auto v11{glm::vec3{
-                            (xCoordinate - 1 + 1) *
+                            (xCoordinate - 1 + 0.5f + 1) *
                                 rendTileSize,
-                            (yCoordinate - 1 + 1) *
+                            (yCoordinate - 1 + 0.5f + 1) *
                                 rendTileSize,
                             elevationSE * elevHeight}};
+
                         auto v01{glm::vec3{
-                            (xCoordinate - 1) *
+                            (xCoordinate - 1 + 0.5f) *
                                 rendTileSize,
-                            (yCoordinate - 1 + 1) *
+                            (yCoordinate - 1 + 0.5f + 1) *
                                 rendTileSize,
                             elevationSW * elevHeight}};
 
@@ -630,304 +634,27 @@ namespace Forradia
 
                         auto success{
                             glm::intersectLineTriangle(
-                                c2, dir, v00, v10, v11,
+                                c, dir, v00, v10, v11,
                                 result)};
 
                         if (!success)
                         {
                             success = {
                                 glm::intersectLineTriangle(
-                                    c2, dir, v00, v11, v01,
+                                    c, dir, v00, v11, v01,
                                     result)};
                         }
 
                         if (success)
                         {
                             m_hoveredCoordinate = {
-                                rawXCoordinate,
-                                rawYCoordinate};
+                                (worldAreaSize.width -
+                                 xCoordinate),
+                                (worldAreaSize.height -
+                                 yCoordinate)};
                         }
                     }
                 }
-
-                // auto
-                // playerPosition{_<PlayerCharacter>().GetPosition()};
-
-                // auto tileSize{CalcTileSize()};
-
-                // auto screenRelativeX{CInt(mousePosition.x
-                // / tileSize.width)};
-
-                // auto gridSize{CalcGridSize()};
-
-                // auto hoveredXCoordinate{playerPosition.x
-                // -
-                //                         (gridSize.width -
-                //                         1) / 2 +
-                //                         screenRelativeX};
-
-                // auto screenRelativeXPx{
-                //     (hoveredXCoordinate -
-                //      (playerPosition.x - (gridSize.width
-                //      - 1) / 2)) *
-                //     tileSize.width};
-
-                // auto extraRows{8};
-
-                // auto topYCoordinate{
-                //     CInt(playerPosition.y -
-                //     (gridSize.height - 1) / 2) -
-                //     extraRows};
-
-                // auto
-                // playerTile{worldArea->GetTile(playerPosition)};
-
-                // auto playerElevation{
-                //     playerTile ?
-                //     worldArea->GetTile(playerPosition)->GetElevation()
-                //                : 0};
-
-                // auto screenRelativeYPx{-extraRows *
-                // tileSize.height};
-
-                // for (auto y = -extraRows; y <
-                // gridSize.height + extraRows; y++)
-                // {
-                //     auto yCoordinate{
-                //         CInt(playerPosition.y -
-                //         (gridSize.height - 1) / 2
-                //         + y)};
-
-                //     auto
-                //     coordinate{Point{hoveredXCoordinate,
-                //     yCoordinate}};
-
-                //     auto
-                //     tile{worldArea->GetTile(coordinate)};
-
-                //     if (!tile)
-                //     {
-                //         screenRelativeYPx =
-                //             0.5f +
-                //             (y - (gridSize.height - 1) /
-                //             2) * tileSize.height +
-                //             playerElevation *
-                //             tileSize.height / 2;
-
-                //         continue;
-                //     }
-
-                //     auto elevation{tile->GetElevation()};
-
-                //     screenRelativeYPx =
-                //         0.5f + (y - (gridSize.height - 1)
-                //         / 2) * tileSize.height +
-                //         (playerElevation - elevation) *
-                //         tileSize.height / 2;
-
-                //     auto coordinateNW{Point{coordinate.x,
-                //     coordinate.y}};
-
-                //     auto coordinateNE{Point{coordinate.x
-                //     + 1, coordinate.y}};
-
-                //     auto coordinateSW{Point{coordinate.x,
-                //     coordinate.y + 1}};
-
-                //     auto coordinateSE{Point{coordinate.x
-                //     + 1, coordinate.y + 1}};
-
-                //     if
-                //     (!worldArea->IsValidCoordinate(coordinateNW.x,
-                //                                       coordinateNW.y)
-                //                                       ||
-                //         !worldArea->IsValidCoordinate(coordinateNE.x,
-                //                                       coordinateNE.y)
-                //                                       ||
-                //         !worldArea->IsValidCoordinate(coordinateSW.x,
-                //                                       coordinateSW.y)
-                //                                       ||
-                //         !worldArea->IsValidCoordinate(coordinateSE.x,
-                //                                       coordinateSE.y))
-                //     {
-                //         continue;
-                //     }
-
-                //     auto
-                //     tileNW{worldArea->GetTile(coordinateNW)};
-                //     auto
-                //     tileNE{worldArea->GetTile(coordinateNE)};
-                //     auto
-                //     tileSW{worldArea->GetTile(coordinateSW)};
-                //     auto
-                //     tileSE{worldArea->GetTile(coordinateSE)};
-
-                //     if (!tileNW || !tileNE || !tileSE ||
-                //     !tileSW)
-                //     {
-                //         continue;
-                //     }
-
-                //     float localTileHeight;
-
-                //     if (tileNW->GetElevation() >
-                //     tileSW->GetElevation()
-                //     &&
-                //         tileNE->GetElevation() >
-                //         tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNW->GetElevation() <
-                //     tileSW->GetElevation() &&
-                //              tileNE->GetElevation() <
-                //              tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 0.5f;
-                //     }
-                //     else if (tileNE->GetElevation() >
-                //     tileNW->GetElevation() &&
-                //              tileSE->GetElevation() >
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNW->GetElevation() >
-                //     tileNE->GetElevation() &&
-                //              tileSW->GetElevation() >
-                //              tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNW->GetElevation() >
-                //     tileNE->GetElevation() &&
-                //              tileNW->GetElevation() >
-                //              tileSE->GetElevation() &&
-                //              tileNW->GetElevation() >
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNE->GetElevation() >
-                //     tileNW->GetElevation() &&
-                //              tileNE->GetElevation() >
-                //              tileSE->GetElevation() &&
-                //              tileNE->GetElevation() >
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileSW->GetElevation() >
-                //     tileNW->GetElevation() &&
-                //              tileSW->GetElevation() >
-                //              tileSE->GetElevation() &&
-                //              tileSW->GetElevation() >
-                //              tileNE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.0f;
-                //     }
-                //     else if (tileSE->GetElevation() >
-                //     tileNW->GetElevation() &&
-                //              tileSE->GetElevation() >
-                //              tileNE->GetElevation() &&
-                //              tileSE->GetElevation() >
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.0f;
-                //     }
-                //     else if (tileSW->GetElevation() <
-                //     tileNW->GetElevation() &&
-                //              tileSW->GetElevation() <
-                //              tileNE->GetElevation() &&
-                //              tileSW->GetElevation() <
-                //              tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileSE->GetElevation() <
-                //     tileNW->GetElevation() &&
-                //              tileSE->GetElevation() <
-                //              tileNE->GetElevation() &&
-                //              tileSE->GetElevation() <
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNW->GetElevation() <
-                //     tileNE->GetElevation() &&
-                //              tileNW->GetElevation() <
-                //              tileSW->GetElevation() &&
-                //              tileNW->GetElevation() <
-                //              tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.0f;
-                //     }
-                //     else if (tileNE->GetElevation() <
-                //     tileNW->GetElevation() &&
-                //              tileNE->GetElevation() <
-                //              tileSW->GetElevation() &&
-                //              tileNE->GetElevation() <
-                //              tileSE->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.0f;
-                //     }
-                //     else if (tileSW->GetElevation() ==
-                //     tileNE->GetElevation() &&
-                //              tileNW->GetElevation() <
-                //              tileSW->GetElevation() &&
-                //              tileSE->GetElevation() <
-                //              tileSW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else if (tileNW->GetElevation() ==
-                //     tileSE->GetElevation() &&
-                //              tileNE->GetElevation() <
-                //              tileNW->GetElevation() &&
-                //              tileSW->GetElevation() <
-                //              tileNW->GetElevation())
-                //     {
-                //         localTileHeight = tileSize.height
-                //         * 1.5f;
-                //     }
-                //     else
-                //     {
-                //         localTileHeight =
-                //         tileSize.height;
-                //     }
-
-                //     auto
-                //     rectangle{RectF{screenRelativeXPx,
-                //                          screenRelativeYPx
-                //                          -
-                //                          localTileHeight
-                //                          / 2,
-                //                          tileSize.width,
-                //                          localTileHeight}};
-
-                //     if
-                //     (rectangle.Contains(mousePosition))
-                //     {
-                //         m_hoveredCoordinate =
-                //         {hoveredXCoordinate,
-                //         yCoordinate};
-
-                //         return;
-                //     }
-                // }
             }
         }
     }

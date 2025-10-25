@@ -11,10 +11,7 @@ namespace Forradia
     namespace Theme0
     {
         class WorldArea;
-    }
 
-    namespace Theme0
-    {
         class WorldGenerator
         {
           public:

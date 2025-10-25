@@ -7,8 +7,8 @@
 #include "Theme0Essentials.hpp"
 #include "Core.hpp"
 #include "GameProps.hpp"
-#include "WorldStruct.hpp"
 #include "SDLDevice.hpp"
+#include "WorldStruct.hpp"
 
 namespace Forradia
 {
@@ -31,7 +31,9 @@ namespace Forradia
 
         float CalcTileSizeNew()
         {
-            return 1.0f / _<GameProperties>().k_numGridRows;
+            auto aspectRatio{CalcAspectRatio(
+                _<SDLDevice>().GetWindow())};
+            return aspectRatio / _<GameProperties>().k_numGridRows;
         }
 
         Size CalcGridSize()
@@ -57,10 +59,13 @@ namespace Forradia
                 m_bodyParts.insert(
                     {BodyPartTypes::OverallBody,
                      BodyPart()});
+
                 m_bodyParts.insert(
                     {BodyPartTypes::RightArm, BodyPart()});
+
                 m_bodyParts.insert(
                     {BodyPartTypes::LeftArm, BodyPart()});
+
                 m_bodyParts.insert(
                     {BodyPartTypes::Legs, BodyPart()});
             }

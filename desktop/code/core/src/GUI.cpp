@@ -76,6 +76,7 @@ namespace Forradia
     void GUIComponent::SetPosition(PointF newPosition)
     {
         m_bounds.x = newPosition.x;
+
         m_bounds.y = newPosition.y;
     }
 
@@ -84,11 +85,13 @@ namespace Forradia
         auto bounds{GetBounds()};
 
         auto x{bounds.x};
+
         auto y{bounds.y};
 
         if (m_centerAlign)
         {
             bounds.x += bounds.width / 2;
+
             bounds.y += bounds.height / 2;
         }
 
@@ -260,8 +263,11 @@ namespace Forradia
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
         boundsResult.x = parentWindowBounds.x;
+
         boundsResult.y = parentWindowBounds.y;
+
         boundsResult.width = parentWindowBounds.width;
+
         boundsResult.height = k_h;
 
         return boundsResult;

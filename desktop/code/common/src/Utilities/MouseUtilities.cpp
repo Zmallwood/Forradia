@@ -12,16 +12,21 @@ namespace Forradia
     PointF GetNormallizedMousePosition(
         SharedPtr<SDL_Window> window)
     {
+        // To hold the mouse position in pixels.
+
         int xPx;
         int yPx;
 
         // Get the mouse position.
 
         SDL_GetMouseState(&xPx, &yPx);
+
+        // Get the size of the canvas.
+
         auto canvasSize{GetCanvasSize(window)};
 
         // Calculate the normalized mouse position.
-        
+
         return {CFloat(xPx) / canvasSize.width,
                 CFloat(yPx) / canvasSize.height};
     }

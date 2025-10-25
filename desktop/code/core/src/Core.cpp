@@ -28,18 +28,23 @@ namespace Forradia
             while (m_running)
             {
                 _<Input::MouseInput>().Reset();
+
                 _<Cursor>().ResetStyleToNormal();
 
                 PollEvents();
 
                 _<ScenesCore::SceneManager>()
                     .UpdateCurrentScene();
+
                 _<FPSCounter>().Update();
 
                 _<SDLDevice>().ClearCanvas();
+
                 _<ScenesCore::SceneManager>()
                     .RenderCurrentScene();
+
                 _<Cursor>().Render();
+
                 _<SDLDevice>().PresentCanvas();
             }
         }
@@ -111,7 +116,9 @@ namespace Forradia
         if (now > m_ticksLastUpdate + k_oneSecMillis)
         {
             m_fps = m_framesCount;
+
             m_framesCount = 0;
+
             m_ticksLastUpdate = now;
         }
 
@@ -139,6 +146,7 @@ namespace Forradia
             _<SDLDevice>().GetWindow())};
 
         auto width{k_cursorSize};
+
         auto height{ConvertWidthToHeight(
             k_cursorSize, _<SDLDevice>().GetWindow())};
 
@@ -191,6 +199,7 @@ namespace Forradia
     void Engine::Assets::Images::ImageBank::LoadImages()
     {
         auto basePath{String(SDL_GetBasePath())};
+
         auto imagesPath{basePath +
                         k_relativeImagesPath.data()};
 
@@ -495,6 +504,7 @@ namespace Forradia
     void Engine::Assets::Models::ModelBank::Initialize()
     {
         auto basePath{String(SDL_GetBasePath())};
+
         auto imagesPath{basePath +
                         k_relativeModelsPath.data()};
 
@@ -659,7 +669,9 @@ namespace Forradia
     void Engine::Input::MouseInput::MouseButton::Reset()
     {
         m_pressed = false;
+
         m_hasBeenFired = false;
+
         m_hasBeenReleased = false;
     }
 
@@ -667,6 +679,7 @@ namespace Forradia
     Engine::Input::MouseInput::MouseButton::RegisterPress()
     {
         m_pressed = true;
+
         m_hasBeenFired = true;
     }
 
@@ -674,6 +687,7 @@ namespace Forradia
         RegisterRelease()
     {
         m_pressed = false;
+
         m_hasBeenReleased = true;
     }
 
@@ -722,6 +736,7 @@ namespace Forradia
     void Engine::Input::MouseInput::Reset()
     {
         _<LeftMouseButton>().Reset();
+
         _<RightMouseButton>().Reset();
     }
 

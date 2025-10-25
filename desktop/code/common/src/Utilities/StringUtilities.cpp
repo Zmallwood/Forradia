@@ -11,6 +11,8 @@ namespace Forradia
     String Replace(StringView text, char replace,
                    char replaceWith)
     {
+        // Create a copy of the string.
+
         String result{text.data()};
 
         // Replace all instances of repl with repl_with.

@@ -7,10 +7,10 @@
 #include "GUISpec.hpp"
 #include "Core.hpp"
 #include "Render.hpp"
+#include "SDLDevice.hpp"
 #include "Theme0Essentials.hpp"
 #include "Update.hpp"
 #include "WorldStruct.hpp"
-#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -202,8 +202,11 @@ namespace Forradia
                     0.05f, "Temperature: ");
 
             AddChildComponent(m_labelBodyPartName);
+
             AddChildComponent(m_labelBodyPartStrength);
+
             AddChildComponent(m_labelBodyPartEnergy);
+
             AddChildComponent(m_labelBodyPartTemperature);
         }
 

@@ -12,18 +12,19 @@
 int main(int argc, char **argv)
 {
     using namespace Forradia;
+    using namespace Theme0;
 
     _<Engine>().Initialize(
-        _<Theme0::GameProperties>().k_gameWindowTitle,
-        _<Theme0::GameProperties>().k_clearColor);
+        _<GameProperties>().k_gameWindowTitle,
+        _<GameProperties>().k_clearColor);
 
-    _<Theme0::ScriptEngine>().Initialize();
+    _<ScriptEngine>().Initialize();
 
-    _<Theme0::ScriptEngine>().LoadScripts();
+    _<ScriptEngine>().LoadScripts();
 
-    _<Theme0::World>().Initialize(
-        _<Theme0::GameProperties>().k_worldAreaSize,
-        _<Theme0::GameProperties>().k_worldScaling);
+    _<World>().Initialize(
+        _<GameProperties>().k_worldAreaSize,
+        _<GameProperties>().k_worldScaling);
 
     _<Engine>().Run();
 

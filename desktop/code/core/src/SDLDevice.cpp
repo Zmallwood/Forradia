@@ -23,7 +23,7 @@ namespace Forradia
 
         // Setup the SDL window.
 
-        SetupSDLWindow();
+        this->SetupSDLWindow();
     }
 
     void SDLDevice::ClearCanvas() const

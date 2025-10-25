@@ -32,6 +32,7 @@ namespace Forradia
     int Normalize(int value)
     {
         auto absValue{std::abs(value)};
+        
         auto normalized{0};
 
         // Calculate the normalized value.

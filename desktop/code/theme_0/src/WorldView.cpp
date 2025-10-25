@@ -47,13 +47,14 @@ namespace Forradia
 
                 auto rendTileSize{0.5f};
 
-                Point3F cameraPos{(worldAreaSize.width -
-                                   playerPos.x + 0.5f) *
-                                      rendTileSize,
-                                  (worldAreaSize.height -
-                                   playerPos.y + 0.5f) *
-                                      rendTileSize,
-                                  -playerElev * elevHeight};
+                Point3F cameraPos{
+                    (worldAreaSize.width - playerPos.x) *
+                            rendTileSize +
+                        rendTileSize / 2,
+                    (worldAreaSize.height - playerPos.y) *
+                            rendTileSize +
+                        rendTileSize / 2,
+                    -playerElev * elevHeight};
 
                 for (auto y = -extraRows;
                      y < gridSize.height + extraRows; y++)
@@ -88,24 +89,32 @@ namespace Forradia
 
                         auto coordinateNW{Point{
                             xCoordinate, yCoordinate}};
+
                         auto coordinateNE{Point{
                             xCoordinate + 1, yCoordinate}};
+
                         auto coordinateSW{Point{
                             xCoordinate, yCoordinate + 1}};
+
                         auto coordinateSE{
                             Point{xCoordinate + 1,
                                   yCoordinate + 1}};
+
                         auto coordinateNEE{Point{
                             xCoordinate + 2, yCoordinate}};
+
                         auto coordinateSEE{
                             Point{xCoordinate + 2,
                                   yCoordinate + 1}};
+
                         auto coordinateSESE{
                             Point{xCoordinate + 2,
                                   yCoordinate + 2}};
+
                         auto coordinateSES{
                             Point{xCoordinate + 1,
                                   yCoordinate + 2}};
+
                         auto coordinateSS{Point{
                             xCoordinate, yCoordinate + 2}};
 
@@ -123,20 +132,28 @@ namespace Forradia
 
                         auto tileNW{worldArea->GetTile(
                             coordinateNW)};
+
                         auto tileNE{worldArea->GetTile(
                             coordinateNE)};
+
                         auto tileSW{worldArea->GetTile(
                             coordinateSW)};
+
                         auto tileSE{worldArea->GetTile(
                             coordinateSE)};
+
                         auto tileNEE{worldArea->GetTile(
                             coordinateNEE)};
+
                         auto tileSEE{worldArea->GetTile(
                             coordinateSEE)};
+
                         auto tileSESE{worldArea->GetTile(
                             coordinateSESE)};
+
                         auto tileSES{worldArea->GetTile(
                             coordinateSES)};
+
                         auto tileSS{worldArea->GetTile(
                             coordinateSS)};
 
@@ -145,31 +162,39 @@ namespace Forradia
                         auto elevationNW{
                             tileNW ? tileNW->GetElevation()
                                    : 0.0f};
+
                         auto elevationNE{
                             tileNE ? tileNE->GetElevation()
                                    : 0.0f};
+
                         auto elevationSE{
                             tileSE ? tileSE->GetElevation()
                                    : 0.0f};
+
                         auto elevationSW{
                             tileSW ? tileSW->GetElevation()
                                    : 0.0f};
+
                         auto elevationNEE{
                             tileNEE
                                 ? tileNEE->GetElevation()
                                 : 0.0f};
+
                         auto elevationSEE{
                             tileSEE
                                 ? tileSEE->GetElevation()
                                 : 0.0f};
+
                         auto elevationSESE{
                             tileSESE
                                 ? tileSESE->GetElevation()
                                 : 0.0f};
+
                         auto elevationSES{
                             tileSES
                                 ? tileSES->GetElevation()
                                 : 0.0f};
+
                         auto elevationSS{
                             tileSS ? tileSS->GetElevation()
                                    : 0.0f};
@@ -189,6 +214,13 @@ namespace Forradia
                              elevationSW + elevationSE) /
                             4};
 
+                        auto elevationMax{std::max(
+                            elevationNW,
+                            std::max(
+                                elevationNE,
+                                std::max(elevationSE,
+                                         elevationSW)))};
+
                         auto ground{tile->GetGround()};
 
                         if (ground == Hash("ground_water"))
@@ -199,6 +231,7 @@ namespace Forradia
                                    yCoordinate) *
                                   100)) /
                                 500 % 3};
+
                             ground =
                                 Hash("ground_water_" +
                                      std::to_string(
@@ -262,6 +295,7 @@ namespace Forradia
 
                                     auto trunkPartX{
                                         trunkPart.x};
+
                                     auto trunkPartY{
                                         trunkPart.x};
 
@@ -375,7 +409,7 @@ namespace Forradia
                                          1) * rendTileSize -
                                             rendTileSize /
                                                 2,
-                                        elevationAverage,
+                                        elevationMax,
                                         cameraPos,
                                         elevHeight);
                             }
@@ -398,8 +432,8 @@ namespace Forradia
                                     (yCoordinate - 1) *
                                             rendTileSize -
                                         rendTileSize / 2,
-                                    elevationAverage,
-                                    cameraPos, elevHeight);
+                                    elevationMax, cameraPos,
+                                    elevHeight);
                         }
 
                         _<Engine::Renderers::
@@ -422,6 +456,7 @@ namespace Forradia
                             {
                                 elevation += 0.01f;
                             }
+
                             _<Engine::Renderers::
                                   GroundRenderer>()
                                 .DrawTile(

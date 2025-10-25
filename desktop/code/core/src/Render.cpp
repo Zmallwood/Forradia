@@ -72,6 +72,7 @@ namespace Forradia
                                &maxLength, &infoLog[0]);
 
             glDeleteShader(fragmentShader);
+
             glDeleteShader(vertexShader);
 
             return;
@@ -80,6 +81,7 @@ namespace Forradia
         m_programID = glCreateProgram();
 
         glAttachShader(m_programID, vertexShader);
+
         glAttachShader(m_programID, fragmentShader);
 
         glLinkProgram(m_programID);
@@ -104,15 +106,18 @@ namespace Forradia
             glDeleteProgram(m_programID);
 
             glDeleteShader(vertexShader);
+
             glDeleteShader(fragmentShader);
 
             return;
         }
 
         glDetachShader(m_programID, vertexShader);
+
         glDetachShader(m_programID, fragmentShader);
 
         glDeleteShader(vertexShader);
+
         glDeleteShader(fragmentShader);
     }
 
@@ -173,6 +178,7 @@ namespace Forradia
                         1, &entry3.second.vao);
 
                     glDeleteBuffers(1, &entry3.second.ibo);
+
                     glDeleteBuffers(1, &entry3.second.vbo);
                 }
             }
@@ -222,6 +228,7 @@ namespace Forradia
         unsigned int indices[] = {0, 1, 2, 3};
 
         auto verticesCount{4};
+
         auto indicesCount{4};
 
         GLuint vao;
@@ -245,6 +252,7 @@ namespace Forradia
             glGenVertexArrays(1, &vao);
 
             glGenBuffers(1, &vbo);
+
             glGenBuffers(1, &ibo);
         }
 
@@ -256,7 +264,9 @@ namespace Forradia
                 textureID);
 
             vao = entry.vao;
+
             ibo = entry.ibo;
+
             vbo = entry.vbo;
 
             glBindVertexArray(vao);
@@ -272,8 +282,11 @@ namespace Forradia
                 needFillBuffers = true;
 
                 entry.x = x;
+
                 entry.y = y;
+
                 entry.width = width;
+
                 entry.height = height;
             }
         }
@@ -289,11 +302,17 @@ namespace Forradia
                 entry;
 
             entry.vao = vao;
+
             entry.ibo = ibo;
+
             entry.vbo = vbo;
+
             entry.x = x;
+
             entry.y = y;
+
             entry.width = width;
+
             entry.height = height;
 
             m_operationsMemory[x][y][textureID] = entry;
@@ -408,8 +427,7 @@ namespace Forradia
       {
           vec4 v = vec4(aPos, 1.0);
           gl_Position = MVP * v;
-          gl_Position.x = gl_Position.x * 2.0 - 1.0;
-          gl_Position.y = gl_Position.y * -2.0 + 1.0;
+          gl_Position.y = gl_Position.y * -1.0;
           ourColor = aColor;
           TexCoord = aTexCoord;
           Normal = aNormal;
@@ -456,6 +474,7 @@ namespace Forradia
                         1, &entry3.second.vao);
 
                     glDeleteBuffers(1, &entry3.second.ibo);
+
                     glDeleteBuffers(1, &entry3.second.vbo);
                 }
             }
@@ -473,9 +492,12 @@ namespace Forradia
             _<Engine::Assets::Images::ImageBank>()
                 .GetTexture(imageNameHash)};
 
-        auto x{tileSize * xCoordinate};
-        auto y{tileSize * yCoordinate};
+        auto x{tileSize * (xCoordinate + 0.5f)};
+
+        auto y{tileSize * (yCoordinate + 0.5f)};
+
         auto width{tileSize};
+
         auto height{tileSize};
 
         Vector<float> vertices{
@@ -561,13 +583,15 @@ namespace Forradia
         Point3F cameraPosition)
     {
         glEnable(GL_DEPTH_TEST);
+
         glEnable(GL_CULL_FACE);
+
         glCullFace(GL_FRONT);
 
         auto canvasSize{
             GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-        glViewport(0, 0, canvasSize.width * 1,
+        glViewport(0, 0, canvasSize.width,
                    canvasSize.height);
 
         glUseProgram(m_shaderProgram->GetProgramID());
@@ -583,6 +607,7 @@ namespace Forradia
         Vector<glm::vec3> normals;
 
         auto verticesCount{4};
+
         auto indicesCount{4};
 
         auto _00x{verticesNoNormals[0 * 8 + 0]};
@@ -645,28 +670,41 @@ namespace Forradia
             {
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 0]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 1]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 2]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 3]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 4]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 5]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 6]);
+
                 verticesVector.push_back(
                     verticesNoNormals[i * 8 + 7]);
+
                 verticesVector.push_back(normals.at(j).x);
+
                 verticesVector.push_back(normals.at(j).y);
+
                 verticesVector.push_back(normals.at(j).z);
             }};
 
         fn(0, 0);
+
         fn(1, 1);
+
         fn(4, 2);
+
         fn(3, 3);
 
         auto vertices{verticesVector.data()};
@@ -692,7 +730,9 @@ namespace Forradia
             needCreateBuffers = true;
 
             glGenVertexArrays(1, &vao);
+
             glGenBuffers(1, &vbo);
+
             glGenBuffers(1, &ibo);
         }
 
@@ -706,7 +746,9 @@ namespace Forradia
                     .at(textureID);
 
             vao = entry.vao;
+
             ibo = entry.ibo;
+
             vbo = entry.vbo;
 
             glBindVertexArray(vao);
@@ -721,6 +763,7 @@ namespace Forradia
                 needFillBuffers = true;
 
                 entry.x = verticesVec.at(0);
+
                 entry.y = verticesVec.at(1);
             }
         }
@@ -735,9 +778,13 @@ namespace Forradia
             GroundRenderingOperation entry;
 
             entry.vao = vao;
+
             entry.ibo = ibo;
+
             entry.vbo = vbo;
+
             entry.x = verticesVec.at(0);
+
             entry.y = verticesVec.at(1);
 
             m_operationsMemory[verticesVec.at(
@@ -790,8 +837,11 @@ namespace Forradia
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-        modelMatrix = glm::translate(
-            modelMatrix, glm::vec3(-0.5f, -0.5f, 0.0f));
+        // auto tileSize{0.5f};
+
+        // modelMatrix = glm::translate(
+        //     modelMatrix,
+        //     glm::vec3(0.5f/2, 0.5f/2, 0.0f));
 
         //  lookAt function takes camera position, camera
         //  target and up vector.
@@ -846,11 +896,14 @@ namespace Forradia
         glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
     {
         // Uses p2 as a new origin for p1, p3.
+
         auto a = p3 - p2;
+
         auto b = p1 - p2;
 
         // Compute the cross product a X b to get the face
         // normal.
+
         return glm::normalize(glm::cross(a, b));
     }
 
@@ -877,8 +930,7 @@ namespace Forradia
           FragPos = vec3(model * vec4(aPos, 1.0));
           Normal = vec3(model * vec4(aNormal, 0.0));
           gl_Position = projection * view * vec4(FragPos, 1.0);
-          gl_Position.x = gl_Position.x * 2.0 - 1.0;
-          gl_Position.y = gl_Position.y * -2.0 + 1.0;
+          gl_Position.y = gl_Position.y * -1.0;
           TexCoord = aTexCoord;
       }
     )"};
@@ -945,6 +997,7 @@ namespace Forradia
 
                         glDeleteBuffers(1,
                                         &entry4.second.ibo);
+
                         glDeleteBuffers(1,
                                         &entry4.second.vbo);
                     }
@@ -960,8 +1013,14 @@ namespace Forradia
         float elevation, Point3F cameraPosition,
         float elevationHeight)
     {
+        x += 0.5f * 3.0f / 2.0f;
+
+        y += 0.5f * 3.0f / 2.0f;
+
         glEnable(GL_DEPTH_TEST);
+
         glEnable(GL_CULL_FACE);
+
         glCullFace(GL_FRONT);
 
         auto model{
@@ -1007,7 +1066,9 @@ namespace Forradia
             needCreateBuffers = true;
 
             glGenVertexArrays(1, &vao);
+
             glGenBuffers(1, &vbo);
+
             glGenBuffers(1, &ibo);
         }
 
@@ -1021,7 +1082,9 @@ namespace Forradia
                               .at(modelNameHash);
 
             vao = entry.vao;
+
             ibo = entry.ibo;
+
             vbo = entry.vbo;
 
             glBindVertexArray(vao);
@@ -1036,7 +1099,9 @@ namespace Forradia
                 needFillBuffers = true;
 
                 entry.x = x;
+
                 entry.y = y;
+
                 entry.z = elevation;
             }
         }
@@ -1051,10 +1116,15 @@ namespace Forradia
             ModelRenderingOperation entry;
 
             entry.vao = vao;
+
             entry.ibo = ibo;
+
             entry.vbo = vbo;
+
             entry.x = x;
+
             entry.y = y;
+
             entry.z = elevation;
 
             m_operationsMemory[x][y][elevation]
@@ -1080,19 +1150,26 @@ namespace Forradia
                     verticesVector.push_back(
                         x +
                         vertex.position.x * k_modelScale);
+
                     verticesVector.push_back(
                         y +
                         vertex.position.y * k_modelScale);
+
                     verticesVector.push_back(
                         elevation * elevationHeight +
                         vertex.position.z * k_modelScale);
+
                     verticesVector.push_back(
                         vertex.normal.x);
+
                     verticesVector.push_back(
                         vertex.normal.y);
+
                     verticesVector.push_back(
                         vertex.normal.z);
+
                     verticesVector.push_back(vertex.uv.x);
+
                     verticesVector.push_back(vertex.uv.y);
                 }
 
@@ -1106,8 +1183,11 @@ namespace Forradia
             }
 
             auto verticesCount{verticesVector.size() / 8};
+
             auto indicesCount{indicesVector.size()};
+
             auto vertices{verticesVector.data()};
+
             auto indices{indicesVector.data()};
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
@@ -1159,6 +1239,7 @@ namespace Forradia
 
         // lookAt function takes camera position, camera
         // target and up vector.
+
         glm::mat4 cameraMatrix = glm::lookAt(
             glm::vec3(cameraPosition.x,
                       cameraPosition.y - 2.0f,
@@ -1169,9 +1250,11 @@ namespace Forradia
 
         auto aspectRatio{
             CalcAspectRatio(_<SDLDevice>().GetWindow())};
+
         // perspective function takes field of view, aspect
         // ratio, near clipping distance and far clipping
         // distance.
+
         glm::mat4 projectionMatrix = glm::perspective(
             90.0f, aspectRatio, 0.1f, 100.0f);
 
@@ -1279,19 +1362,24 @@ namespace Forradia
             GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         destination.x = CInt(x * canvasSize.width);
+
         destination.y = CInt(y * canvasSize.height);
+
         destination.w = textureDimensions.width;
+
         destination.h = textureDimensions.height;
 
         if (centerAlign)
         {
             destination.x -= destination.w / 2;
+
             destination.y -= destination.h / 2;
         }
 
         auto textHash{Hash(text)};
 
         auto xx{CFloat(CInt(x * 1000))};
+
         auto yy{CFloat(CInt(y * 1000))};
 
         auto textureAlreadyExists{
@@ -1320,6 +1408,7 @@ namespace Forradia
                 fontRaw, text.data(), sdlColor)};
 
             auto newWidth{surface->w};
+
             auto newHeight{surface->h};
 
             auto intermediary = SDL_CreateRGBSurface(
@@ -1341,13 +1430,17 @@ namespace Forradia
                             GL_LINEAR);
 
             SDL_FreeSurface(intermediary);
+
             SDL_FreeSurface(surface);
         }
 
         auto xF{CFloat(destination.x) / canvasSize.width};
+
         auto yF{CFloat(destination.y) / canvasSize.height};
+
         auto widthF{CFloat(destination.w) /
                     canvasSize.width};
+
         auto heightF{CFloat(destination.h) /
                      canvasSize.height};
 

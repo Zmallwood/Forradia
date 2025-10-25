@@ -38,6 +38,7 @@ namespace Forradia
 
             char c1{consonants.at(
                 GetRandomInt(consonants.size()))};
+
             char c2{consonants.at(
                 GetRandomInt(consonants.size()))};
 
@@ -45,6 +46,7 @@ namespace Forradia
 
             char c4{consonants.at(
                 GetRandomInt(consonants.size()))};
+
             char c5{consonants.at(
                 GetRandomInt(consonants.size()))};
 
@@ -95,6 +97,7 @@ namespace Forradia
                 if (i < 20)
                 {
                     m_needleTypes.push_back(0);
+
                     continue;
                 }
 
@@ -189,6 +192,7 @@ namespace Forradia
             auto size{w_area_sz};
 
             size.width *= world_scaling;
+
             size.height *= world_scaling;
 
             for (auto x = 0; x < size.width; x++)
