@@ -7,6 +7,7 @@
 #include "GUI.hpp"
 #include "Core.hpp"
 #include "Render.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -111,7 +112,7 @@ namespace Forradia
         GUIPanel::UpdateDerived();
 
         auto mousePosition{GetNormallizedMousePosition(
-            _<Engine::SDLDevice>().GetWindow())};
+            _<SDLDevice>().GetWindow())};
 
         auto hovered{GetBounds().Contains(mousePosition)};
 
@@ -151,7 +152,7 @@ namespace Forradia
     void GUIMovablePanel::UpdateDerived()
     {
         auto mousePosition{GetNormallizedMousePosition(
-            _<Engine::SDLDevice>().GetWindow())};
+            _<SDLDevice>().GetWindow())};
 
         auto dragArea{GetDragArea()};
 
@@ -192,7 +193,7 @@ namespace Forradia
         {
             auto currentMousePosition{
                 GetNormallizedMousePosition(
-                    _<Engine::SDLDevice>().GetWindow())};
+                    _<SDLDevice>().GetWindow())};
 
             auto newPosition{
                 GetMoveStartingPosition() +
@@ -211,7 +212,7 @@ namespace Forradia
 
         m_moveStartingMousePosition =
             GetNormallizedMousePosition(
-                _<Engine::SDLDevice>().GetWindow());
+                _<SDLDevice>().GetWindow());
     }
 
     void GUIMovablePanel::StopMove()
@@ -231,11 +232,10 @@ namespace Forradia
         AddChildComponent(std::make_shared<GUIButton>(
             parentWindowBounds.width -
                 ConvertWidthToHeight(
-                    0.015f,
-                    _<Engine::SDLDevice>().GetWindow()),
+                    0.015f, _<SDLDevice>().GetWindow()),
             0.01f, 0.015f,
             ConvertWidthToHeight(
-                0.015f, _<Engine::SDLDevice>().GetWindow()),
+                0.015f, _<SDLDevice>().GetWindow()),
             "X",
             [this] { m_parentWindow.ToggleVisibility(); }));
     }

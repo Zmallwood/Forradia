@@ -23,6 +23,8 @@
 #include "Utilities/HashUtilities.hpp"
 #include "Utilities/MessageUtilities.hpp"
 
+#include <glm/gtx/transform.hpp>
+
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"

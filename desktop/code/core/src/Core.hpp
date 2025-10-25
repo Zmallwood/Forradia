@@ -14,37 +14,6 @@ namespace Forradia
     class Engine
     {
       public:
-        class SDLDevice
-        {
-          public:
-            ~SDLDevice();
-
-            void Initialize(StringView gameWindowTitle,
-                            Color clearColor);
-
-            void ClearCanvas() const;
-
-            void PresentCanvas() const;
-
-            auto GetWindow() const
-            {
-                return m_window;
-            }
-
-          private:
-            SharedPtr<SDL_Window> CreateWindow();
-
-            Size GetScreenSize() const;
-
-            SharedPtr<SDL_Window> m_window;
-
-            SharedPtr<SDL_GLContext> m_context;
-
-            String m_gameWindowTitle;
-
-            Color m_clearColor;
-        };
-
         class FPSCounter
         {
           public:

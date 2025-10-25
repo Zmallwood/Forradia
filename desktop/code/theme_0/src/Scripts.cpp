@@ -9,6 +9,7 @@
 #include "GUI.hpp"
 #include "GUISpec.hpp"
 #include "Render.hpp"
+#include "SDLDevice.hpp"
 #include "Update.hpp"
 #include "WorldGen.hpp"
 #include "WorldView.hpp"
@@ -238,14 +239,12 @@ namespace Forradia
 
             m.def("ticks", [] { return GetTicks(); });
 
-            m.def(
-                "conv_w_to_h",
-                [](float w)
-                {
-                    return ConvertWidthToHeight(
-                        w,
-                        _<Engine::SDLDevice>().GetWindow());
-                });
+            m.def("conv_w_to_h",
+                  [](float w)
+                  {
+                      return ConvertWidthToHeight(
+                          w, _<SDLDevice>().GetWindow());
+                  });
 
             m.def("make_shared_fps_panel",
                   []

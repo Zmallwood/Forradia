@@ -5,6 +5,7 @@
 //
 
 #include "Core.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -100,94 +101,6 @@ namespace Forradia
         }
     }
 
-    Engine::SDLDevice::~SDLDevice()
-    {
-        SDL_GL_DeleteContext(*m_context);
-    }
-
-    void Engine::SDLDevice::Initialize(
-        StringView gameWindowTitle, Color clearColor)
-    {
-        m_gameWindowTitle = gameWindowTitle;
-        m_clearColor = clearColor;
-
-        SDL_Init(SDL_INIT_EVERYTHING);
-
-        m_window = CreateWindow();
-
-        m_context = std::make_shared<SDL_GLContext>(
-            SDL_GL_CreateContext(m_window.get()));
-
-        SDL_GL_MakeCurrent(m_window.get(), *m_context);
-
-        GLenum status = glewInit();
-
-        if (GLEW_OK != status)
-        {
-            printf("GLEW Error: ",
-                   glewGetErrorString(status));
-        }
-
-        SDL_GL_SetSwapInterval(0);
-
-        glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-    }
-
-    void Engine::SDLDevice::ClearCanvas() const
-    {
-        auto clearColor{m_clearColor.ToSDLColor()};
-
-        glClearColor(clearColor.r, clearColor.g,
-                     clearColor.b, clearColor.a);
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    }
-
-    void Engine::SDLDevice::PresentCanvas() const
-    {
-        SDL_GL_SwapWindow(m_window.get());
-    }
-
-    SharedPtr<SDL_Window> Engine::SDLDevice::CreateWindow()
-    {
-        auto flags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
-                   SDL_WINDOW_MAXIMIZED |
-                   SDL_WINDOW_FULLSCREEN_DESKTOP |
-                   SDL_WINDOW_OPENGL};
-
-        auto screenSize{GetScreenSize()};
-
-        auto windowResult{SharedPtr<SDL_Window>(
-            SDL_CreateWindow(m_gameWindowTitle.data(),
-                             SDL_WINDOWPOS_CENTERED,
-                             SDL_WINDOWPOS_CENTERED,
-                             screenSize.width,
-                             screenSize.height, flags),
-            SDLDeleter())};
-
-        if (!windowResult)
-        {
-            PrintLine("Window could not be created. "
-                      "SDL Error: " +
-                      String(SDL_GetError()));
-        }
-
-        return windowResult;
-    }
-
-    Size Engine::SDLDevice::GetScreenSize() const
-    {
-        SDL_DisplayMode displayMode;
-
-        SDL_GetCurrentDisplayMode(0, &displayMode);
-
-        auto width{displayMode.w};
-        auto height{displayMode.h};
-
-        return {width, height};
-    }
-
     void Engine::FPSCounter::Update()
     {
         auto now{GetTicks()};
@@ -220,12 +133,11 @@ namespace Forradia
     void Engine::Cursor::Render()
     {
         auto mousePosition{GetNormallizedMousePosition(
-            _<Engine::SDLDevice>().GetWindow())};
+            _<SDLDevice>().GetWindow())};
 
         auto width{k_cursorSize};
         auto height{ConvertWidthToHeight(
-            k_cursorSize,
-            _<Engine::SDLDevice>().GetWindow())};
+            k_cursorSize, _<SDLDevice>().GetWindow())};
 
         String cursorImage;
 

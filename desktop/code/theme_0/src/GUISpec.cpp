@@ -10,6 +10,7 @@
 #include "Theme0Essentials.hpp"
 #include "Update.hpp"
 #include "WorldStruct.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -46,19 +47,19 @@ namespace Forradia
             GUIComponent::RenderDerived();
 
             // auto
-            // c_sz{GetCanvasSize(_<Engine::SDLDevice>().GetWindow())};
+            // c_sz{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
             // auto rect{SDL_Rect{0, 0, c_sz.w,
             // c_sz.h}};
 
-            // SDL_SetRenderDrawBlendMode(_<Engine::SDLDevice>().rend().get(),
+            // SDL_SetRenderDrawBlendMode(_<SDLDevice>().rend().get(),
             //                            SDL_BLENDMODE_BLEND);
 
-            // SDL_SetRenderDrawColor(_<Engine::SDLDevice>().rend().get(),
+            // SDL_SetRenderDrawColor(_<SDLDevice>().rend().get(),
             // 200, 0,
             //                        255, 50);
 
-            // SDL_RenderFillRect(_<Engine::SDLDevice>().rend().get(),
+            // SDL_RenderFillRect(_<SDLDevice>().rend().get(),
             // &rect);
         }
 
@@ -71,8 +72,7 @@ namespace Forradia
             auto marginX{k_margin};
 
             auto marginY{ConvertWidthToHeight(
-                k_margin,
-                _<Engine::SDLDevice>().GetWindow())};
+                k_margin, _<SDLDevice>().GetWindow())};
 
             auto xStart{bounds.x + marginX};
 
@@ -83,8 +83,7 @@ namespace Forradia
             auto slotWidth{k_slotSize};
 
             auto slotHeight{ConvertWidthToHeight(
-                k_slotSize,
-                _<Engine::SDLDevice>().GetWindow())};
+                k_slotSize, _<SDLDevice>().GetWindow())};
 
             auto numColumns{CInt(
                 (bounds.width - 2 * marginX) / slotWidth)};
@@ -114,8 +113,7 @@ namespace Forradia
             auto imageWidth{0.07f};
 
             auto imageHeight{ConvertWidthToHeight(
-                imageWidth,
-                _<Engine::SDLDevice>().GetWindow())};
+                imageWidth, _<SDLDevice>().GetWindow())};
 
             auto overallBodyImageButton{std::make_shared<
                 GUIButton>(
@@ -521,7 +519,7 @@ namespace Forradia
             auto bounds{GetBounds()};
 
             auto mousePosition{GetNormallizedMousePosition(
-                _<Engine::SDLDevice>().GetWindow())};
+                _<SDLDevice>().GetWindow())};
 
             auto i{0};
 

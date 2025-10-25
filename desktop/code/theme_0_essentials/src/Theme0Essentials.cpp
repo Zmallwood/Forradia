@@ -8,6 +8,7 @@
 #include "Core.hpp"
 #include "GameProps.hpp"
 #include "WorldStruct.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -21,7 +22,7 @@ namespace Forradia
             auto tileHeight{1.0f / numGridRows};
 
             auto aspectRatio{CalcAspectRatio(
-                _<Engine::SDLDevice>().GetWindow())};
+                _<SDLDevice>().GetWindow())};
 
             auto tileWidth{tileHeight / aspectRatio};
 
@@ -38,7 +39,7 @@ namespace Forradia
             auto tileSize{CalcTileSizeNew()};
 
             auto aspectRatio{CalcAspectRatio(
-                _<Engine::SDLDevice>().GetWindow())};
+                _<SDLDevice>().GetWindow())};
 
             auto numGridColumns{
                 CInt(aspectRatio / tileSize) + 1};

@@ -7,6 +7,7 @@
 #include "Update.hpp"
 #include "Core.hpp"
 #include "GUISpec.hpp"
+#include "SDLDevice.hpp"
 #include "Theme0Essentials.hpp"
 #include "Utilities/NumbersUtilities.hpp"
 #include "WorldStruct.hpp"
@@ -54,8 +55,7 @@ namespace Forradia
 
                     _<GUIInteractionMenu>().SetPosition(
                         GetNormallizedMousePosition(
-                            _<Engine::SDLDevice>()
-                                .GetWindow()));
+                            _<SDLDevice>().GetWindow()));
                 }
             }
 
@@ -461,11 +461,10 @@ namespace Forradia
 
                 auto mousePosition{
                     GetNormallizedMousePosition(
-                        _<Engine::SDLDevice>()
-                            .GetWindow())};
+                        _<SDLDevice>().GetWindow())};
 
                 auto canvasSize{GetCanvasSize(
-                    _<Engine::SDLDevice>().GetWindow())};
+                    _<SDLDevice>().GetWindow())};
 
                 auto elevHeight{0.1f};
 
@@ -494,7 +493,7 @@ namespace Forradia
                     glm::vec3(0.0f, 0.0f, -1.0f));
 
                 auto aspectRatio{CalcAspectRatio(
-                    _<Engine::SDLDevice>().GetWindow())};
+                    _<SDLDevice>().GetWindow())};
 
                 glm::mat4 proj = glm::perspective(
                     90.0f, aspectRatio, 0.1f, 100.0f);

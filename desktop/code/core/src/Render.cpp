@@ -6,7 +6,7 @@
 
 #include "Render.hpp"
 #include "Core.hpp"
-#include <glm/gtx/transform.hpp>
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {
@@ -197,8 +197,8 @@ namespace Forradia
         GLuint textureID, float x, float y, float width,
         float height, bool useOperationsMemory)
     {
-        auto canvasSize{GetCanvasSize(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto canvasSize{
+            GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         glViewport(0, 0, canvasSize.width,
                    canvasSize.height);
@@ -370,8 +370,8 @@ namespace Forradia
             return;
         }
 
-        auto canvasAspectRatio{CalcAspectRatio(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto canvasAspectRatio{
+            CalcAspectRatio(_<SDLDevice>().GetWindow())};
 
         auto imageAspectRatio{CFloat(imageSize.width) /
                               imageSize.height};
@@ -564,8 +564,8 @@ namespace Forradia
         glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);
 
-        auto canvasSize{GetCanvasSize(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto canvasSize{
+            GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         glViewport(0, 0, canvasSize.width * 1,
                    canvasSize.height);
@@ -803,8 +803,8 @@ namespace Forradia
                       -cameraPosition.z),
             glm::vec3(0.0f, 0.0f, -1.0f));
 
-        auto aspectRatio{CalcAspectRatio(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto aspectRatio{
+            CalcAspectRatio(_<SDLDevice>().GetWindow())};
 
         // perspective function takes field of view, aspect
         // ratio, near clipping distance and far clipping
@@ -965,13 +965,13 @@ namespace Forradia
         glCullFace(GL_FRONT);
 
         auto model{
-            _<Engine::Assets::Models::ModelBank>()
-                .GetModel(modelNameHash)};
+            _<Engine::Assets::Models::ModelBank>().GetModel(
+                modelNameHash)};
 
         auto &meshes{model->GetMeshesRef()};
 
-        auto canvasSize{GetCanvasSize(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto canvasSize{
+            GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         glViewport(0, 0, canvasSize.width,
                    canvasSize.height);
@@ -1167,8 +1167,8 @@ namespace Forradia
                       -cameraPosition.z),
             glm::vec3(0.0f, 0.0f, -1.0f));
 
-        auto aspectRatio{CalcAspectRatio(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto aspectRatio{
+            CalcAspectRatio(_<SDLDevice>().GetWindow())};
         // perspective function takes field of view, aspect
         // ratio, near clipping distance and far clipping
         // distance.
@@ -1275,8 +1275,8 @@ namespace Forradia
 
         SDL_Rect destination;
 
-        auto canvasSize{GetCanvasSize(
-            _<Engine::SDLDevice>().GetWindow())};
+        auto canvasSize{
+            GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         destination.x = CInt(x * canvasSize.width);
         destination.y = CInt(y * canvasSize.height);
