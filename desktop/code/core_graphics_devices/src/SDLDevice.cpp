@@ -30,7 +30,7 @@ namespace Forradia
     {
         // Get converted clear color.
 
-        auto clearColor{m_clearColor.ToSDLColor()};
+        auto clearColor{m_clearColor};
 
         // Set the clear color.
 

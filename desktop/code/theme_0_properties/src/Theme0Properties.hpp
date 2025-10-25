@@ -17,9 +17,9 @@ namespace Forradia
                 "Forradia"};
 
             static constexpr Color k_clearColor{
-                Colors::Black};
+                Colors::MildBlue};
 
-            static constexpr int k_numGridRows{15};
+            static constexpr Size k_gridSize{25, 15};
 
             static constexpr Size k_worldAreaSize{120, 100};
 

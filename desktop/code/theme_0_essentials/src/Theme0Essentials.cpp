@@ -14,31 +14,6 @@ namespace Forradia
 {
     namespace Theme0
     {
-        float CalcTileSize()
-        {
-            auto aspectRatio{CalcAspectRatio(
-                _<SDLDevice>().GetWindow())};
-
-            return aspectRatio /
-                   _<Theme0Properties>().k_numGridRows;
-        }
-
-        Size CalcGridSize()
-        {
-            auto tileSize{CalcTileSize()};
-
-            auto aspectRatio{CalcAspectRatio(
-                _<SDLDevice>().GetWindow())};
-
-            auto numGridColumns{
-                CInt(aspectRatio / tileSize)};
-
-            auto numGridRows{
-                _<Theme0Properties>().k_numGridRows};
-
-            return {numGridColumns, numGridRows};
-        }
-
         namespace GameplayCore
         {
             void PlayerBody::Initialize()

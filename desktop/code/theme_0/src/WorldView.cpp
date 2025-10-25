@@ -20,7 +20,8 @@ namespace Forradia
         {
             void WorldView::Render() const
             {
-                auto gridSize{CalcGridSize()};
+                auto gridSize{
+                    _<Theme0Properties>().k_gridSize};
 
                 auto playerPos{
                     _<PlayerCharacter>().GetPosition()};

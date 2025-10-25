@@ -115,7 +115,7 @@ class PlayScene(IScene):
 
         def init_derived():
 
-            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.2)
+            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.3)
 
             self.gui().add_child_comp(pnl)
 
@@ -123,9 +123,13 @@ class PlayScene(IScene):
 
             self.gui().add_child_comp(btn_new_game)
 
-            btn_load_game = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Load game", lambda: get_engine().stop())
+            btn_load_game = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Load game", lambda: ...)
             
             self.gui().add_child_comp(btn_load_game)
+
+            btn_quit = make_shared_gui_button(0.45, 0.52, 0.1, 0.04, "Quit", lambda: get_engine().stop())
+            
+            self.gui().add_child_comp(btn_quit)
             
             self.gui().add_child_comp(get_gui_chat_box_ptr())
 

@@ -527,7 +527,7 @@ namespace Forradia
                                    cameraPos.y - 2.0f,
                                    -cameraPos.z + 2.5f);
 
-                auto gridSize{CalcGridSize()};
+                auto gridSize{_<Theme0Properties>().k_gridSize};
 
                 auto dir{glm::normalize(glm::unProject(
                     glm::vec3((mousePosition.x) *

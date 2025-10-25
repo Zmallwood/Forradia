@@ -31,5 +31,8 @@ namespace Forradia
         constexpr Color YellowTransparent{
             1.0f, 1.0f, 0.0f,
             0.7f}; ///< Transparent yellow color.
+
+        constexpr Color MildBlue{
+            0.0f, 0.5f, 1.0f, 1.0f}; ///< Mild blue color.
     }
 }

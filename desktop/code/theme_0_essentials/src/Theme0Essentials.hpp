@@ -10,10 +10,6 @@ namespace Forradia
 {
     namespace Theme0
     {
-        float CalcTileSize();
-
-        Size CalcGridSize();
-
         namespace GameplayCore
         {
             enum class BodyPartTypes
