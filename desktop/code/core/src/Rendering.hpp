@@ -215,7 +215,7 @@ namespace Forradia
                                  ModelRenderingOperation>>>>
                 m_operationsMemory;
 
-            static constexpr float k_modelScale{0.14f};
+            static constexpr float k_modelScale{0.25f};
         };
 
         enum struct FontSizes

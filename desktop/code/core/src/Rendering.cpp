@@ -8,6 +8,7 @@
 #include "Assets/Images/ImageBank.hpp"
 #include "Core.hpp"
 #include "SDLDevice.hpp"
+#include "Theme0Properties.hpp"
 
 namespace Forradia
 {
@@ -490,9 +491,9 @@ namespace Forradia
         auto textureID{
             _<ImageBank>().GetTexture(imageNameHash)};
 
-        auto x{tileSize * (xCoordinate + 0.5f)};
+        auto x{tileSize * (xCoordinate)};
 
-        auto y{tileSize * (yCoordinate + 0.5f)};
+        auto y{tileSize * (yCoordinate)};
 
         auto width{tileSize};
 
@@ -1015,9 +1016,9 @@ namespace Forradia
         float elevation, Point3F cameraPosition,
         float elevationHeight)
     {
-        x += 0.5f * 3.0f / 2.0f;
+        x += _<Theme0::Theme0Properties>().k_tileSize * 4.0f / 2.0f;
 
-        y += 0.5f * 3.0f / 2.0f;
+        y += _<Theme0::Theme0Properties>().k_tileSize * 4.0f / 2.0f;
 
         glEnable(GL_DEPTH_TEST);
 

@@ -9,6 +9,7 @@
 #include "GUISpec.hpp"
 #include "SDLDevice.hpp"
 #include "Theme0Essentials.hpp"
+#include "Theme0Properties.hpp"
 #include "Utilities/NumbersUtilities.hpp"
 #include "WorldStruct.hpp"
 
@@ -467,7 +468,8 @@ namespace Forradia
                 auto playerPos{
                     _<PlayerCharacter>().GetPosition()};
 
-                auto rendTileSize{0.5f};
+                auto rendTileSize{
+                    _<Theme0Properties>().k_tileSize};
 
                 auto mousePosition{
                     GetNormallizedMousePosition(
@@ -649,9 +651,9 @@ namespace Forradia
                         {
                             m_hoveredCoordinate = {
                                 (worldAreaSize.width -
-                                 xCoordinate),
+                                 xCoordinate + 1),
                                 (worldAreaSize.height -
-                                 yCoordinate)};
+                                 yCoordinate + 1)};
                         }
                     }
                 }

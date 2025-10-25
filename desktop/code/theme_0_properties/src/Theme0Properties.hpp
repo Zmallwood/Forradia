@@ -24,6 +24,8 @@ namespace Forradia
             static constexpr Size k_worldAreaSize{120, 100};
 
             static constexpr float k_worldScaling{5.0f};
+
+            static constexpr float k_tileSize{0.8f};
         };
     }
 }

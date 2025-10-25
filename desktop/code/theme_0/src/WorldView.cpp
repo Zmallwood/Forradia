@@ -8,6 +8,7 @@
 #include "Core.hpp"
 #include "Rendering.hpp"
 #include "Theme0Essentials.hpp"
+#include "Theme0Properties.hpp"
 #include "Update.hpp"
 #include "WorldStruct.hpp"
 
@@ -45,7 +46,8 @@ namespace Forradia
                                       playerPos.y)
                         ->GetElevation()};
 
-                auto rendTileSize{0.5f};
+                auto rendTileSize{
+                    _<Theme0Properties>().k_tileSize};
 
                 Point3F cameraPos{
                     (worldAreaSize.width - playerPos.x) *
@@ -401,12 +403,10 @@ namespace Forradia
                                       ModelRenderer>()
                                     .DrawModel(
                                         objectType,
-                                        (xCoordinate -
-                                         1) * rendTileSize -
+                                        (xCoordinate)*rendTileSize -
                                             rendTileSize /
                                                 2,
-                                        (yCoordinate -
-                                         1) * rendTileSize -
+                                        (yCoordinate)*rendTileSize -
                                             rendTileSize /
                                                 2,
                                         elevationMax,
@@ -415,10 +415,10 @@ namespace Forradia
                             }
                         }
 
-                        if (xCoordinate ==
+                        if (xCoordinate + 1 ==
                                 worldAreaSize.width -
                                     playerPos.x &&
-                            yCoordinate ==
+                            yCoordinate + 1 ==
                                 worldAreaSize.height -
                                     playerPos.y)
                         {
@@ -426,11 +426,9 @@ namespace Forradia
                                   ModelRenderer>()
                                 .DrawModel(
                                     Hash("player"),
-                                    (xCoordinate - 1) *
-                                            rendTileSize -
+                                    (xCoordinate)*rendTileSize -
                                         rendTileSize / 2,
-                                    (yCoordinate - 1) *
-                                            rendTileSize -
+                                    (yCoordinate)*rendTileSize -
                                         rendTileSize / 2,
                                     elevationMax, cameraPos,
                                     elevHeight);
@@ -438,11 +436,11 @@ namespace Forradia
 
                         _<Engine::Renderers::
                               GroundRenderer>()
-                            .DrawTile(
-                                ground, xCoordinate - 1,
-                                yCoordinate - 1,
-                                rendTileSize, cameraPos,
-                                elevations, elevHeight);
+                            .DrawTile(ground, xCoordinate,
+                                      yCoordinate,
+                                      rendTileSize,
+                                      cameraPos, elevations,
+                                      elevHeight);
 
                         if (xCoordinate ==
                                 worldAreaSize.width -
@@ -461,8 +459,8 @@ namespace Forradia
                                   GroundRenderer>()
                                 .DrawTile(
                                     Hash("hovered_tile"),
-                                    xCoordinate - 1,
-                                    yCoordinate - 1,
+                                    xCoordinate,
+                                    yCoordinate,
                                     rendTileSize, cameraPos,
                                     elevations, elevHeight);
                         }

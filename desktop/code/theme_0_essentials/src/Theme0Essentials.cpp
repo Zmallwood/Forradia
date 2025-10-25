@@ -18,6 +18,7 @@ namespace Forradia
         {
             auto aspectRatio{CalcAspectRatio(
                 _<SDLDevice>().GetWindow())};
+
             return aspectRatio /
                    _<Theme0Properties>().k_numGridRows;
         }
@@ -30,7 +31,7 @@ namespace Forradia
                 _<SDLDevice>().GetWindow())};
 
             auto numGridColumns{
-                CInt(aspectRatio / tileSize) + 1};
+                CInt(aspectRatio / tileSize)};
 
             auto numGridRows{
                 _<Theme0Properties>().k_numGridRows};

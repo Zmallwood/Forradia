@@ -49,6 +49,7 @@ target_include_directories(ForradiaCore PRIVATE
     "code/common/src"
     "code/core/src"
     "code/core_graphics_devices/src"
+    "code/theme_0_properties/src"
 )
 target_link_libraries(ForradiaCore
     ForradiaCommon
@@ -114,6 +115,7 @@ target_include_directories(Forradia PRIVATE
     "code/theme_0_world_gen/src"
     "code/theme_0_essentials/src"
     "code/core_graphics_devices/src"
+    "code/theme_0_properties/src"
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommon
