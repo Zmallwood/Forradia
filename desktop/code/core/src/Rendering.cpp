@@ -6,7 +6,7 @@
 
 #include "Rendering.hpp"
 #include "Core.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia
 {

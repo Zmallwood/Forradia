@@ -9,7 +9,7 @@
 #include "GUI.hpp"
 #include "GUISpec.hpp"
 #include "Rendering.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "SDLDevice.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "Update.hpp"
 #include "WorldGen.hpp"

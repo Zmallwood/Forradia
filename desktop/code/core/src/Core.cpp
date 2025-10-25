@@ -5,8 +5,8 @@
 //
 
 #include "Core.hpp"
-#include "GraphicsDevices/GLDevice.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "GLDevice.hpp"
+#include "SDLDevice.hpp"
 #include "MinorComponents/FPSCounter.hpp"
 #include "MinorComponents/Cursor.hpp"
 

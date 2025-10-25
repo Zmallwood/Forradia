@@ -28,6 +28,18 @@ target_link_libraries(ForradiaCommon PRIVATE ${PYTHON_LIBRARIES})
 target_link_libraries(ForradiaCommon PRIVATE ForradiaCommonMatter SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
 target_precompile_headers(ForradiaCommon PUBLIC code/common/src/StdAfx.hpp)
 
+# ForradiaCoreGraphicsDevices
+file(GLOB_RECURSE CORE_SOURCES "code/core_graphics_devices/src/*.cpp")
+add_library(ForradiaCoreGrahicsDevices ${CORE_SOURCES})
+target_include_directories(ForradiaCoreGrahicsDevices PRIVATE
+    "code/common_lang/src"
+    "code/common_matter/src"
+    "code/common/src"
+    "code/core_graphics_devices/src"
+)
+target_link_libraries(ForradiaCoreGrahicsDevices ForradiaCommon assimp)
+target_precompile_headers(ForradiaCoreGrahicsDevices PUBLIC code/core_graphics_devices/src/StdAfx.hpp)
+
 # ForradiaCore
 file(GLOB_RECURSE CORE_SOURCES "code/core/src/*.cpp")
 add_library(ForradiaCore ${CORE_SOURCES})
@@ -36,8 +48,13 @@ target_include_directories(ForradiaCore PRIVATE
     "code/common_matter/src"
     "code/common/src"
     "code/core/src"
+    "code/core_graphics_devices/src"
 )
-target_link_libraries(ForradiaCore ForradiaCommon assimp)
+target_link_libraries(ForradiaCore
+    ForradiaCommon
+    ForradiaCoreGrahicsDevices
+    assimp
+)
 target_precompile_headers(ForradiaCore PUBLIC code/core/src/StdAfx.hpp)
 
 # ForradiaTheme0WorldStruct
@@ -74,6 +91,7 @@ target_include_directories(ForradiaTheme0Essentials PRIVATE
     "code/core/src"
     "code/theme_0_world_struct/src"
     "code/theme_0_properties/src"
+    "code/core_graphics_devices/src"
 )
 target_link_libraries(ForradiaTheme0Essentials
     ForradiaCore
@@ -95,6 +113,7 @@ target_include_directories(Forradia PRIVATE
     "code/theme_0_properties/src"
     "code/theme_0_world_gen/src"
     "code/theme_0_essentials/src"
+    "code/core_graphics_devices/src"
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommon

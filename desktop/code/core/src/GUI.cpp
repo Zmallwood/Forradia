@@ -6,7 +6,7 @@
 
 #include "GUI.hpp"
 #include "Core.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "SDLDevice.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "MinorComponents/FPSCounter.hpp"
 #include "Rendering.hpp"

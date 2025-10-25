@@ -5,7 +5,7 @@
 //
 
 #include "Cursor.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "SDLDevice.hpp"
 #include "Rendering.hpp"
 
 namespace Forradia
