@@ -5,7 +5,7 @@
 //
 
 #include "WorldGen.hpp"
-#include "GameProps.hpp"
+#include "Theme0Properties.hpp"
 #include "WorldStruct.hpp"
 
 namespace Forradia
@@ -43,7 +43,7 @@ namespace Forradia
             m_size = m_worldArea->GetSize();
 
             m_scale =
-                _<Theme0::GameProperties>().k_worldScaling;
+                _<Theme0::Theme0Properties>().k_worldScaling;
         }
 
         void WorldGenerator::ClearWithDirt() const

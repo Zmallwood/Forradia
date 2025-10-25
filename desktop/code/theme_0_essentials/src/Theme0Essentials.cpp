@@ -6,8 +6,8 @@
 
 #include "Theme0Essentials.hpp"
 #include "Core.hpp"
-#include "GameProps.hpp"
 #include "SDLDevice.hpp"
+#include "Theme0Properties.hpp"
 #include "WorldStruct.hpp"
 
 namespace Forradia
@@ -17,7 +17,7 @@ namespace Forradia
         SizeF CalcTileSize()
         {
             auto numGridRows{
-                _<GameProperties>().k_numGridRows};
+                _<Theme0Properties>().k_numGridRows};
 
             auto tileHeight{1.0f / numGridRows};
 
@@ -33,7 +33,8 @@ namespace Forradia
         {
             auto aspectRatio{CalcAspectRatio(
                 _<SDLDevice>().GetWindow())};
-            return aspectRatio / _<GameProperties>().k_numGridRows;
+            return aspectRatio /
+                   _<Theme0Properties>().k_numGridRows;
         }
 
         Size CalcGridSize()
@@ -47,7 +48,7 @@ namespace Forradia
                 CInt(aspectRatio / tileSize) + 1};
 
             auto numGridRows{
-                _<GameProperties>().k_numGridRows};
+                _<Theme0Properties>().k_numGridRows};
 
             return {numGridColumns, numGridRows};
         }

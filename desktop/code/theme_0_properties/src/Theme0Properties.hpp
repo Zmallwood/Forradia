@@ -10,7 +10,7 @@ namespace Forradia
 {
     namespace Theme0
     {
-        class GameProperties
+        class Theme0Properties
         {
           public:
             static constexpr String k_gameWindowTitle{

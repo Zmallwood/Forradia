@@ -58,7 +58,7 @@ target_include_directories(ForradiaTheme0WorldGen PRIVATE
     "code/common_matter/src"
     "code/common/src"
     "code/theme_0_world_struct/src"
-    "code/theme_0_game_props/src"
+    "code/theme_0_properties/src"
 )
 target_link_libraries(ForradiaTheme0WorldGen ForradiaTheme0WorldStruct)
 target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/theme_0_world_gen/src/StdAfx.hpp)
@@ -72,7 +72,7 @@ target_include_directories(ForradiaTheme0Essentials PRIVATE
     "code/common/src"
     "code/core/src"
     "code/theme_0_world_struct/src"
-    "code/theme_0_game_props/src"
+    "code/theme_0_properties/src"
 )
 target_link_libraries(ForradiaTheme0Essentials
     ForradiaCore
@@ -91,7 +91,7 @@ target_include_directories(Forradia PRIVATE
     "code/common/src"
     "code/core/src"
     "code/theme_0_world_struct/src"
-    "code/theme_0_game_props/src"
+    "code/theme_0_properties/src"
     "code/theme_0_world_gen/src"
     "code/theme_0_essentials/src"
 )

@@ -5,8 +5,8 @@
 //
 
 #include "Core.hpp"
-#include "GameProps.hpp"
 #include "Scripts.hpp"
+#include "Theme0Properties.hpp"
 #include "WorldStruct.hpp"
 
 int main(int argc, char **argv)
@@ -15,16 +15,16 @@ int main(int argc, char **argv)
     using namespace Theme0;
 
     _<Engine>().Initialize(
-        _<GameProperties>().k_gameWindowTitle,
-        _<GameProperties>().k_clearColor);
+        _<Theme0Properties>().k_gameWindowTitle,
+        _<Theme0Properties>().k_clearColor);
 
     _<ScriptEngine>().Initialize();
 
     _<ScriptEngine>().LoadScripts();
 
     _<World>().Initialize(
-        _<GameProperties>().k_worldAreaSize,
-        _<GameProperties>().k_worldScaling);
+        _<Theme0Properties>().k_worldAreaSize,
+        _<Theme0Properties>().k_worldScaling);
 
     _<Engine>().Run();
 
