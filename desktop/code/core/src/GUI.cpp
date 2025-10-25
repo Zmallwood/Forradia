@@ -6,8 +6,8 @@
 
 #include "GUI.hpp"
 #include "Core.hpp"
-#include "Render.hpp"
-#include "SDLDevice.hpp"
+#include "Rendering.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia
 {

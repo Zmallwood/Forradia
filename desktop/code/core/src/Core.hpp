@@ -7,7 +7,7 @@
 #pragma once
 
 #include "GUI.hpp"
-#include "Render.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {

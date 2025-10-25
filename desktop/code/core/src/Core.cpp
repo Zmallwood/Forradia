@@ -5,8 +5,8 @@
 //
 
 #include "Core.hpp"
-#include "GLDevice.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/GLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia
 {

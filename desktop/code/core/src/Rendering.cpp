@@ -4,9 +4,9 @@
 // (see LICENSE for details)
 //
 
-#include "Render.hpp"
+#include "Rendering.hpp"
 #include "Core.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia
 {

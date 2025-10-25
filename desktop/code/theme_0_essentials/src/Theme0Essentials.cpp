@@ -6,7 +6,7 @@
 
 #include "Theme0Essentials.hpp"
 #include "Core.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "Theme0Properties.hpp"
 #include "WorldStruct.hpp"
 
