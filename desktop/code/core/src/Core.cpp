@@ -5,6 +5,7 @@
 //
 
 #include "Core.hpp"
+#include "GLDevice.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia
@@ -16,6 +17,8 @@ namespace Forradia
 
         _<SDLDevice>().Initialize(gameWindowTitle,
                                   clearColor);
+
+        _<GLDevice>().Initialize();
     }
 
     void Engine::Run()
