@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "Common.hpp"
-
 namespace Forradia
 {
     namespace Theme0

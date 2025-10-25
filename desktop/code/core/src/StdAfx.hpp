@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include "Common.hpp"
 #include "SDLDeleter.hpp"
 #include "Lang.hpp"
 #include "Constants.hpp"
@@ -18,6 +17,11 @@
 #include "Utilities/CanvasUtilities.hpp"
 #include "Utilities/FilePathUtilities.hpp"
 #include "Utilities/MouseUtilities.hpp"
+#include "Utilities/RandomizationUtilities.hpp"
+#include "Utilities/StringUtilities.hpp"
+#include "Utilities/TimeUtilities.hpp"
+#include "Utilities/HashUtilities.hpp"
+#include "Utilities/MessageUtilities.hpp"
 
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"

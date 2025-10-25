@@ -21,6 +21,7 @@ namespace Forradia
     SharedPtr<T> __()
     {
         // Create singleton instance only once.
+
         static SharedPtr<T> instance{std::make_shared<T>()};
 
         return instance;
@@ -38,6 +39,7 @@ namespace Forradia
     {
         // Use the SharedPtr singleton function to obtain
         // the singleton, but return a reference to it.
+        
         return *__<T>();
     }
 }

@@ -5,6 +5,7 @@
 //
 
 #include "Update.hpp"
+#include "Utilities/NumbersUtilities.hpp"
 #include "Core.hpp"
 #include "GUISpec.hpp"
 #include "Theme0Essentials.hpp"

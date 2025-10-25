@@ -6,6 +6,10 @@
 
 #pragma once
 
-#include "Common.hpp"
 #include "Constants.hpp"
 #include "Geometry/Point.hpp"
+#include "Utilities/RandomizationUtilities.hpp"
+#include "Utilities/TimeUtilities.hpp"
+#include "Utilities/HashUtilities.hpp"
+#include "Geometry/PointF.hpp"
+#include "Geometry/Size.hpp"
