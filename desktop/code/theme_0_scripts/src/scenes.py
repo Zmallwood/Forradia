@@ -88,13 +88,44 @@ class MainMenuScene(IScene):
 
             self.gui().add_child_comp(pnl)
 
-            btn_new_game = make_shared_gui_button(0.45, 0.36, 0.1, 0.04, "New game", lambda: get_scene_mngr().go_to_scene("world_gen_scene"))
+            btn_play = make_shared_gui_button(0.45, 0.36, 0.1, 0.04, "Play", lambda: get_scene_mngr().go_to_scene("play_scene"))
 
-            self.gui().add_child_comp(btn_new_game)
+            self.gui().add_child_comp(btn_play)
 
             btn_quit = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Quit", lambda: get_engine().stop())
             
             self.gui().add_child_comp(btn_quit)
+            
+            self.gui().add_child_comp(get_gui_chat_box_ptr())
+
+        def render_derived():
+
+            get_img_2d_rend().draw_img("default_scene_bg", 0.0, 0.0, 1.0, 1.0)
+
+            get_img_2d_rend().draw_img_auto_h("forradia_logo", 0.35, 0.1, 0.3)
+
+        self.set_init_derived(init_derived)
+        self.set_render_derived(render_derived)
+
+class PlayScene(IScene):
+
+    def __init__(self):
+
+        IScene.__init__(self)
+
+        def init_derived():
+
+            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.2)
+
+            self.gui().add_child_comp(pnl)
+
+            btn_new_game = make_shared_gui_button(0.45, 0.36, 0.1, 0.04, "New game", lambda: get_scene_mngr().go_to_scene("world_gen_scene"))
+
+            self.gui().add_child_comp(btn_new_game)
+
+            btn_load_game = make_shared_gui_button(0.45, 0.44, 0.1, 0.04, "Load game", lambda: get_engine().stop())
+            
+            self.gui().add_child_comp(btn_load_game)
             
             self.gui().add_child_comp(get_gui_chat_box_ptr())
 
@@ -191,6 +222,7 @@ class MainScene(IScene):
 
 intro_scene = IntroScene()
 main_menu_scene = MainMenuScene()
+play_scene = PlayScene()
 world_gen_scene = WorldGenScene()
 main_scene = MainScene()
 
@@ -198,6 +230,7 @@ def setup_scenes():
 
     global intro_scene
     global main_menu_scene
+    global play_scene
     global world_gen_scene
     global main_scene
 
@@ -205,6 +238,7 @@ def setup_scenes():
 
     scene_mngr.add_scene("intro_scene", intro_scene)
     scene_mngr.add_scene("main_menu_scene", main_menu_scene)
+    scene_mngr.add_scene("play_scene", play_scene)
     scene_mngr.add_scene("world_gen_scene", world_gen_scene)
     scene_mngr.add_scene("main_scene", main_scene)
     
