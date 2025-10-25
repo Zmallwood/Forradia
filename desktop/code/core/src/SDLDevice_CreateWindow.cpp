@@ -10,7 +10,11 @@ namespace Forradia
 {
     void SDLDevice::SetupSDLWindow()
     {
+        // Get the screen size.
+
         auto screenSize{GetScreenSize()};
+
+        // Create the SDL window.
 
         m_window = SharedPtr<SDL_Window>(
             SDL_CreateWindow(
@@ -20,7 +24,9 @@ namespace Forradia
                 screenSize.height, k_windowFlags),
             SDLDeleter());
 
-        if (!m_window)
+        // Check that the window was created successfully.
+
+        if (nullptr == m_window)
         {
             PrintLine("Window could not be created. "
                       "SDL Error: " +
