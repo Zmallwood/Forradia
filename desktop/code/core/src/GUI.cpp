@@ -130,7 +130,7 @@ namespace Forradia
                 Engine::Cursor::CursorStyles::
                     HoveringClickableGUI);
 
-            if (_<Core::Engine::Input::MouseInput::
+            if (_<Engine::Input::MouseInput::
                       LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
@@ -170,7 +170,7 @@ namespace Forradia
                 Engine::Cursor::CursorStyles::
                     HoveringClickableGUI);
 
-            if (_<Core::Engine::Input::MouseInput::
+            if (_<Engine::Input::MouseInput::
                       LeftMouseButton>()
                     .HasBeenFiredPickResult())
             {
@@ -178,7 +178,7 @@ namespace Forradia
             }
         }
 
-        if (_<Core::Engine::Input::MouseInput::
+        if (_<Engine::Input::MouseInput::
                   LeftMouseButton>()
                 .HasBeenReleased())
         {
@@ -189,11 +189,11 @@ namespace Forradia
 
         if (bounds.Contains(mousePosition))
         {
-            if (_<Core::Engine::Input::MouseInput::
+            if (_<Engine::Input::MouseInput::
                       LeftMouseButton>()
                     .HasBeenFired())
             {
-                _<Core::Engine::Input::MouseInput::
+                _<Engine::Input::MouseInput::
                       LeftMouseButton>()
                     .Reset();
             }

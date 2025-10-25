@@ -19,13 +19,13 @@ namespace Forradia
         {
             void UpdateKeyboardActions()
             {
-                if (_<Core::Engine::Input::KeyboardInput>()
+                if (_<Engine::Input::KeyboardInput>()
                         .KeyIsPressedPickResult(
                             SDLK_ESCAPE))
                 {
                     _<GUISystemMenu>().ToggleVisibility();
                 }
-                else if (_<Core::Engine::Input::
+                else if (_<Engine::Input::
                                KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_c))
@@ -33,7 +33,7 @@ namespace Forradia
                     _<GUIPlayerBodyWindow>()
                         .ToggleVisibility();
                 }
-                else if (_<Core::Engine::Input::
+                else if (_<Engine::Input::
                                KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_b))
@@ -45,7 +45,7 @@ namespace Forradia
 
             void UpdateMouseActions()
             {
-                if (_<Core::Engine::Input::MouseInput::
+                if (_<Engine::Input::MouseInput::
                           RightMouseButton>()
                         .HasBeenFiredPickResult())
                 {
@@ -64,32 +64,32 @@ namespace Forradia
             void UpdateKeyboardMovement()
             {
                 auto upPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_UP)};
 
                 auto rightPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_RIGHT)};
 
                 auto downPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_DOWN)};
 
                 auto leftPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_LEFT)};
 
                 auto wPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_w)};
                 auto aPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_a)};
                 auto sPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_s)};
                 auto dPress{
-                    _<Core::Engine::Input::KeyboardInput>()
+                    _<Engine::Input::KeyboardInput>()
                         .KeyIsPressed(SDLK_d)};
 
                 if (upPress || rightPress || downPress ||
@@ -151,7 +151,7 @@ namespace Forradia
 
             void UpdateMouseMovement()
             {
-                if (_<Core::Engine::Input::MouseInput::
+                if (_<Engine::Input::MouseInput::
                           LeftMouseButton>()
                         .HasBeenFiredPickResult())
                 {

@@ -16,10 +16,12 @@ namespace Forradia
         int yPx;
 
         // Get the mouse position.
+
         SDL_GetMouseState(&xPx, &yPx);
         auto canvasSize{GetCanvasSize(window)};
 
         // Calculate the normalized mouse position.
+        
         return {CFloat(xPx) / canvasSize.width,
                 CFloat(yPx) / canvasSize.height};
     }

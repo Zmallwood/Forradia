@@ -41,7 +41,7 @@ namespace Forradia
             {
                 GUIComponent::UpdateDerived();
 
-                _<Core::Engine::Input::MouseInput::
+                _<Engine::Input::MouseInput::
                       LeftMouseButton>()
                     .Reset();
             }
@@ -584,7 +584,7 @@ namespace Forradia
                             k_lineHeight * (i + 1),
                         bounds.width, k_lineHeight}};
 
-                    if (_<Core::Engine::Input::MouseInput::
+                    if (_<Engine::Input::MouseInput::
                               LeftMouseButton>()
                             .HasBeenFired())
                     {
@@ -599,7 +599,7 @@ namespace Forradia
 
                     ++i;
                 }
-                if (_<Core::Engine::Input::MouseInput::
+                if (_<Engine::Input::MouseInput::
                           LeftMouseButton>()
                         .HasBeenFiredPickResult())
                 {

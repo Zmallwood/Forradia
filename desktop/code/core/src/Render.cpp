@@ -186,7 +186,7 @@ namespace Forradia
         float height)
     {
         auto textureID{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .GetTexture(imageNameHash)};
 
         Image2DRenderer::DrawTexture(textureID, x, y, width,
@@ -362,7 +362,7 @@ namespace Forradia
         auto hash{Forradia::Hash(imageName)};
 
         auto imageSize{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .GetImageSize(hash)};
 
         if (imageSize.width <= 0 || imageSize.height <= 0)
@@ -470,7 +470,7 @@ namespace Forradia
         Vector<float> &elevations, float elevationHeight)
     {
         auto textureID{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .GetTexture(imageNameHash)};
 
         auto x{tileSize * xCoordinate};
@@ -965,7 +965,7 @@ namespace Forradia
         glCullFace(GL_FRONT);
 
         auto model{
-            _<Core::Engine::Assets::Models::ModelBank>()
+            _<Engine::Assets::Models::ModelBank>()
                 .GetModel(modelNameHash)};
 
         auto &meshes{model->GetMeshesRef()};
@@ -1202,7 +1202,7 @@ namespace Forradia
         auto textureNameHash{Hash(textureName)};
 
         auto textureID{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .GetTexture(textureNameHash)};
 
         glBindTexture(GL_TEXTURE_2D, textureID);
@@ -1295,11 +1295,11 @@ namespace Forradia
         auto yy{CFloat(CInt(y * 1000))};
 
         auto textureAlreadyExists{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .TextTextureExists(xx, yy, textHash)};
 
         auto texture{
-            _<Core::Engine::Assets::Images::ImageBank>()
+            _<Engine::Assets::Images::ImageBank>()
                 .ObtainTextTexture(xx, yy, textHash)};
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

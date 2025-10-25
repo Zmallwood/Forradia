@@ -20,7 +20,7 @@ namespace Forradia
         namespace Scripting
         {
             class IScenePublic
-                : public Core::Engine::ScenesCore::IScene
+                : public Engine::ScenesCore::IScene
             {
               public:
                 using IScene::GetGUI;
@@ -44,14 +44,14 @@ namespace Forradia
                     m, "GUIComponent");
 
                 py::class_<
-                    Core::Engine::ScenesCore::IScene::
+                    Engine::ScenesCore::IScene::
                         ScenesGUI::GUIRoot,
                     SharedPtr<
-                        Core::Engine::ScenesCore::IScene::
+                        Engine::ScenesCore::IScene::
                             ScenesGUI::GUIRoot>>(m,
                                                  "GUIRoot")
                     .def("add_child_comp",
-                         [](Core::Engine::ScenesCore::
+                         [](Engine::ScenesCore::
                                 IScene::ScenesGUI::GUIRoot
                                     &self,
                             SharedPtr<GUIComponentsLibrary::
@@ -108,14 +108,14 @@ namespace Forradia
                     m, "gui_fps_panel");
 
                 py::class_<
-                    Core::Engine::ScenesCore::IScene>(
+                    Engine::ScenesCore::IScene>(
                     m, "IScene")
                     .def(py::init<>())
-                    .def("init", &Core::Engine::ScenesCore::
+                    .def("init", &Engine::ScenesCore::
                                      IScene::Initialize)
                     .def("gui", &IScenePublic::GetGUI)
                     .def("set_init_derived",
-                         [](Core::Engine::ScenesCore::IScene
+                         [](Engine::ScenesCore::IScene
                                 &self,
                             py::function f)
                          {
@@ -123,7 +123,7 @@ namespace Forradia
                                  [=] { f(); });
                          })
                     .def("set_on_enter_derived",
-                         [](Core::Engine::ScenesCore::IScene
+                         [](Engine::ScenesCore::IScene
                                 &self,
                             py::function f)
                          {
@@ -131,7 +131,7 @@ namespace Forradia
                                  [=] { f(); });
                          })
                     .def("set_update_derived",
-                         [](Core::Engine::ScenesCore::IScene
+                         [](Engine::ScenesCore::IScene
                                 &self,
                             py::function f)
                          {
@@ -139,7 +139,7 @@ namespace Forradia
                                  [=] { f(); });
                          })
                     .def("set_render_derived",
-                         [](Core::Engine::ScenesCore::IScene
+                         [](Engine::ScenesCore::IScene
                                 &self,
                             py::function f)
                          {
@@ -148,14 +148,14 @@ namespace Forradia
                          });
 
                 py::class_<
-                    Core::Engine::ScenesCore::SceneManager>(
+                    Engine::ScenesCore::SceneManager>(
                     m, "SceneManager")
                     .def(py::init<>())
                     .def("add_scene",
-                         &Core::Engine::ScenesCore::
+                         &Engine::ScenesCore::
                              SceneManager::AddScene)
                     .def("go_to_scene",
-                         &Core::Engine::ScenesCore::
+                         &Engine::ScenesCore::
                              SceneManager::GoToScene);
 
                 py::class_<Engine::Cursor>(m, "Cursor")
@@ -195,18 +195,18 @@ namespace Forradia
                                  GenerateNewWorld);
 
                 py::class_<
-                    Core::Engine::Input::KeyboardInput>(
+                    Engine::Input::KeyboardInput>(
                     m, "KeyboardInput")
                     .def("any_key_pressed_pick_res",
-                         &Core::Engine::Input::
+                         &Engine::Input::
                              KeyboardInput::
                                  AnyKeyIsPressedPickResult);
 
-                py::class_<Core::Engine::Input::MouseInput>(
+                py::class_<Engine::Input::MouseInput>(
                     m, "MouseInput")
                     .def(
                         "any_mouse_btn_pressed_pick_res",
-                        &Core::Engine::Input::MouseInput::
+                        &Engine::Input::MouseInput::
                             AnyMouseButtonIsPressedPickResult);
 
                 py::class_<
@@ -403,10 +403,10 @@ namespace Forradia
 
                 m.def(
                     "get_scene_mngr",
-                    []() -> Core::Engine::ScenesCore::
+                    []() -> Engine::ScenesCore::
                              SceneManager &
                     {
-                        return _<Core::Engine::ScenesCore::
+                        return _<Engine::ScenesCore::
                                      SceneManager>();
                     },
                     py::return_value_policy::reference);
@@ -447,10 +447,10 @@ namespace Forradia
 
                 m.def(
                     "get_kb_inp",
-                    []() -> Core::Engine::Input::
+                    []() -> Engine::Input::
                              KeyboardInput &
                     {
-                        return _<Core::Engine::Input::
+                        return _<Engine::Input::
                                      KeyboardInput>();
                     },
                     py::return_value_policy::reference);
@@ -458,9 +458,9 @@ namespace Forradia
                 m.def(
                     "get_mouse_inp",
                     []()
-                        -> Core::Engine::Input::MouseInput &
+                        -> Engine::Input::MouseInput &
                     {
-                        return _<Core::Engine::Input::
+                        return _<Engine::Input::
                                      MouseInput>();
                     },
                     py::return_value_policy::reference);
