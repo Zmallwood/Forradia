@@ -10,10 +10,8 @@
 
 namespace Forradia
 {
-    SharedPtr<GUIComponentsLibrary::GUIComponent>
-    GUIComponentsLibrary::GUIComponent::AddChildComponent(
-        SharedPtr<GUIComponentsLibrary::GUIComponent>
-            component)
+    SharedPtr<GUIComponent> GUIComponent::AddChildComponent(
+        SharedPtr<GUIComponent> component)
     {
         component->SetParentComponent(this);
 
@@ -22,7 +20,7 @@ namespace Forradia
         return component;
     }
 
-    void GUIComponentsLibrary::GUIComponent::Update()
+    void GUIComponent::Update()
     {
         if (!m_visible || !m_enabled)
         {
@@ -38,7 +36,7 @@ namespace Forradia
         UpdateDerived();
     }
 
-    void GUIComponentsLibrary::GUIComponent::Render() const
+    void GUIComponent::Render() const
     {
         if (!m_visible)
         {
@@ -53,8 +51,7 @@ namespace Forradia
         }
     }
 
-    RectF
-    GUIComponentsLibrary::GUIComponent::GetBounds() const
+    RectF GUIComponent::GetBounds() const
     {
         auto boundsResult{m_bounds};
 
@@ -70,21 +67,18 @@ namespace Forradia
         return boundsResult;
     }
 
-    void
-    GUIComponentsLibrary::GUIComponent::ToggleVisibility()
+    void GUIComponent::ToggleVisibility()
     {
         m_visible = !m_visible;
     }
 
-    void GUIComponentsLibrary::GUIComponent::SetPosition(
-        PointF newPosition)
+    void GUIComponent::SetPosition(PointF newPosition)
     {
         m_bounds.x = newPosition.x;
         m_bounds.y = newPosition.y;
     }
 
-    void
-    GUIComponentsLibrary::GUILabel::RenderDerived() const
+    void GUILabel::RenderDerived() const
     {
         auto bounds{GetBounds()};
 
@@ -103,8 +97,7 @@ namespace Forradia
             m_centerAlign, m_color);
     }
 
-    void
-    GUIComponentsLibrary::GUIPanel::RenderDerived() const
+    void GUIPanel::RenderDerived() const
     {
         auto bounds{GetBounds()};
 
@@ -113,9 +106,9 @@ namespace Forradia
             bounds.width, bounds.height);
     }
 
-    void GUIComponentsLibrary::GUIButton::UpdateDerived()
+    void GUIButton::UpdateDerived()
     {
-        GUIComponentsLibrary::GUIPanel::UpdateDerived();
+        GUIPanel::UpdateDerived();
 
         auto mousePosition{GetNormallizedMousePosition(
             _<Engine::SDLDevice>().GetWindow())};
@@ -143,8 +136,7 @@ namespace Forradia
         }
     }
 
-    void
-    GUIComponentsLibrary::GUIButton::RenderDerived() const
+    void GUIButton::RenderDerived() const
     {
         GUIPanel::RenderDerived();
 
@@ -156,8 +148,7 @@ namespace Forradia
             Engine::Renderers::FontSizes::_20, true);
     }
 
-    void
-    GUIComponentsLibrary::GUIMovablePanel::UpdateDerived()
+    void GUIMovablePanel::UpdateDerived()
     {
         auto mousePosition{GetNormallizedMousePosition(
             _<Engine::SDLDevice>().GetWindow())};
@@ -178,8 +169,7 @@ namespace Forradia
             }
         }
 
-        if (_<Engine::Input::MouseInput::
-                  LeftMouseButton>()
+        if (_<Engine::Input::MouseInput::LeftMouseButton>()
                 .HasBeenReleased())
         {
             StopMove();
@@ -213,7 +203,7 @@ namespace Forradia
         }
     }
 
-    void GUIComponentsLibrary::GUIMovablePanel::StartMove()
+    void GUIMovablePanel::StartMove()
     {
         m_isBeingMoved = true;
 
@@ -224,19 +214,17 @@ namespace Forradia
                 _<Engine::SDLDevice>().GetWindow());
     }
 
-    void GUIComponentsLibrary::GUIMovablePanel::StopMove()
+    void GUIMovablePanel::StopMove()
     {
         m_isBeingMoved = false;
     }
 
-    RectF
-    GUIComponentsLibrary::GUIMovablePanel::GetDragArea()
+    RectF GUIMovablePanel::GetDragArea()
     {
         return GetBounds();
     }
 
-    void GUIComponentsLibrary::GUIWindow::
-        GUIWindowTitleBar::Initialize()
+    void GUIWindow::GUIWindowTitleBar::Initialize()
     {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
@@ -252,8 +240,7 @@ namespace Forradia
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
-    void GUIComponentsLibrary::GUIWindow::
-        GUIWindowTitleBar::RenderDerived() const
+    void GUIWindow::GUIWindowTitleBar::RenderDerived() const
     {
         GUIPanel::RenderDerived();
 
@@ -266,8 +253,7 @@ namespace Forradia
             Colors::Yellow);
     }
 
-    RectF GUIComponentsLibrary::GUIWindow::
-        GUIWindowTitleBar::GetBounds() const
+    RectF GUIWindow::GUIWindowTitleBar::GetBounds() const
     {
         RectF boundsResult;
 
@@ -280,8 +266,7 @@ namespace Forradia
 
         return boundsResult;
     }
-    void GUIComponentsLibrary::GUIWindow::Initialize(
-        StringView windowTitle)
+    void GUIWindow::Initialize(StringView windowTitle)
     {
         SetVisible(false);
 
@@ -292,18 +277,17 @@ namespace Forradia
         AddChildComponent(m_guiWindowTitleBar);
     }
 
-    void
-    GUIComponentsLibrary::GUIWindow::RenderDerived() const
+    void GUIWindow::RenderDerived() const
     {
         GUIMovablePanel::RenderDerived();
     }
 
-    RectF GUIComponentsLibrary::GUIWindow::GetDragArea()
+    RectF GUIWindow::GetDragArea()
     {
         return m_guiWindowTitleBar->GetBounds();
     }
 
-    void GUIComponentsLibrary::GUIFPSPanel::Initialize()
+    void GUIFPSPanel::Initialize()
     {
         m_fpsTextPanel = std::make_shared<GUILabel>(
             0.01f, 0.01f, 0.1f, 0.05f);
@@ -311,7 +295,7 @@ namespace Forradia
         AddChildComponent(m_fpsTextPanel);
     }
 
-    void GUIComponentsLibrary::GUIFPSPanel::UpdateDerived()
+    void GUIFPSPanel::UpdateDerived()
     {
         GUIMovablePanel::UpdateDerived();
 
@@ -321,8 +305,7 @@ namespace Forradia
             fmt::format("FPS: {}", fps));
     }
 
-    void
-    GUIComponentsLibrary::GUIChatBox::RenderDerived() const
+    void GUIChatBox::RenderDerived() const
     {
         GUIPanel::RenderDerived();
 
@@ -360,8 +343,7 @@ namespace Forradia
             separatorRect.width, separatorRect.height);
     }
 
-    void
-    GUIComponentsLibrary::GUIChatBox::Print(StringView text)
+    void GUIChatBox::Print(StringView text)
     {
         m_lines.push_back(text.data());
     }

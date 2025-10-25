@@ -14,8 +14,7 @@ namespace Forradia
     {
         namespace SpecializedGUI
         {
-            class GUIPlayerStatusBox
-                : public GUIComponentsLibrary::GUIPanel
+            class GUIPlayerStatusBox : public GUIPanel
             {
               public:
                 GUIPlayerStatusBox()
@@ -27,8 +26,7 @@ namespace Forradia
                 virtual void RenderDerived() const override;
             };
 
-            class GUISystemMenu
-                : public GUIComponentsLibrary::GUIComponent
+            class GUISystemMenu : public GUIComponent
             {
               public:
                 GUISystemMenu()
@@ -45,8 +43,7 @@ namespace Forradia
                 virtual void RenderDerived() const override;
             };
 
-            class GUIInventoryWindow
-                : public GUIComponentsLibrary::GUIWindow
+            class GUIInventoryWindow : public GUIWindow
             {
               public:
                 GUIInventoryWindow()
@@ -65,8 +62,7 @@ namespace Forradia
                     "gui_inventory_win_slot_bg"};
             };
 
-            class GUIPlayerBodyWindow
-                : public GUIComponentsLibrary::GUIWindow
+            class GUIPlayerBodyWindow : public GUIWindow
             {
               public:
                 GUIPlayerBodyWindow()
@@ -85,18 +81,14 @@ namespace Forradia
                 void UpdateBodyPartInfoLabels();
 
                 int m_selectedBodyPart{0};
-                SharedPtr<GUIComponentsLibrary::GUILabel>
-                    m_labelBodyPartName;
-                SharedPtr<GUIComponentsLibrary::GUILabel>
-                    m_labelBodyPartStrength;
-                SharedPtr<GUIComponentsLibrary::GUILabel>
-                    m_labelBodyPartEnergy;
-                SharedPtr<GUIComponentsLibrary::GUILabel>
+                SharedPtr<GUILabel> m_labelBodyPartName;
+                SharedPtr<GUILabel> m_labelBodyPartStrength;
+                SharedPtr<GUILabel> m_labelBodyPartEnergy;
+                SharedPtr<GUILabel>
                     m_labelBodyPartTemperature;
             };
 
-            class GUIInteractionMenu
-                : public GUIComponentsLibrary::GUIPanel
+            class GUIInteractionMenu : public GUIPanel
             {
               public:
                 GUIInteractionMenu()

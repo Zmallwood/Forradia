@@ -37,40 +37,30 @@ namespace Forradia
                 py::class_<Engine>(m, "Engine")
                     .def("stop", &Engine::Stop);
 
-                py::class_<
-                    GUIComponentsLibrary::GUIComponent,
-                    SharedPtr<GUIComponentsLibrary::
-                                  GUIComponent>>(
+                py::class_<GUIComponent,
+                           SharedPtr<GUIComponent>>(
                     m, "GUIComponent");
 
                 py::class_<
-                    Engine::ScenesCore::IScene::
-                        ScenesGUI::GUIRoot,
-                    SharedPtr<
-                        Engine::ScenesCore::IScene::
-                            ScenesGUI::GUIRoot>>(m,
-                                                 "GUIRoot")
+                    Engine::ScenesCore::IScene::ScenesGUI::
+                        GUIRoot,
+                    SharedPtr<Engine::ScenesCore::IScene::
+                                  ScenesGUI::GUIRoot>>(
+                    m, "GUIRoot")
                     .def("add_child_comp",
-                         [](Engine::ScenesCore::
-                                IScene::ScenesGUI::GUIRoot
-                                    &self,
-                            SharedPtr<GUIComponentsLibrary::
-                                          GUIComponent>
-                                comp)
+                         [](Engine::ScenesCore::IScene::
+                                ScenesGUI::GUIRoot &self,
+                            SharedPtr<GUIComponent> comp)
                              -> SharedPtr<
-                                 GUIComponentsLibrary::
-                                     GUIComponent>
+
+                                 GUIComponent>
                          {
                              return self.AddChildComponent(
                                  comp);
                          });
 
-                py::class_<
-                    GUIComponentsLibrary::GUILabel,
-                    SharedPtr<
-                        GUIComponentsLibrary::GUILabel>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUILabel")
+                py::class_<GUILabel, SharedPtr<GUILabel>,
+                           GUIComponent>(m, "GUILabel")
                     .def(
                         py::init<float, float, float, float,
                                  StringView, bool, Color>(),
@@ -80,83 +70,70 @@ namespace Forradia
                         py::arg("cent_align") = false,
                         py::arg("color") =
                             Colors::WheatTransparent)
-                    .def("set_text", &GUIComponentsLibrary::
-                                         GUILabel::SetText)
+                    .def("set_text", &GUILabel::SetText)
                     .def("set_visible",
-                         &GUIComponentsLibrary::
-                             GUIComponent::SetVisible);
+                         &GUIComponent::SetVisible);
 
-                py::class_<
-                    GUIComponentsLibrary::GUIPanel,
-                    SharedPtr<
-                        GUIComponentsLibrary::GUIPanel>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIPanel");
+                py::class_<GUIPanel, SharedPtr<GUIPanel>,
+                           GUIComponent>(m, "GUIPanel");
 
-                py::class_<
-                    GUIComponentsLibrary::GUIButton,
-                    SharedPtr<
-                        GUIComponentsLibrary::GUIButton>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "gui_button");
+                py::class_<GUIButton, SharedPtr<GUIButton>,
+                           GUIComponent>(m, "gui_button");
 
-                py::class_<
-                    GUIComponentsLibrary::GUIFPSPanel,
-                    SharedPtr<
-                        GUIComponentsLibrary::GUIFPSPanel>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "gui_fps_panel");
+                py::class_<GUIFPSPanel,
+                           SharedPtr<GUIFPSPanel>,
+                           GUIComponent>(m,
+                                         "gui_fps_panel");
 
-                py::class_<
-                    Engine::ScenesCore::IScene>(
+                py::class_<Engine::ScenesCore::IScene>(
                     m, "IScene")
                     .def(py::init<>())
                     .def("init", &Engine::ScenesCore::
                                      IScene::Initialize)
                     .def("gui", &IScenePublic::GetGUI)
-                    .def("set_init_derived",
-                         [](Engine::ScenesCore::IScene
-                                &self,
-                            py::function f)
-                         {
-                             self.SetInitializeDerived(
-                                 [=] { f(); });
-                         })
-                    .def("set_on_enter_derived",
-                         [](Engine::ScenesCore::IScene
-                                &self,
-                            py::function f)
-                         {
-                             self.SetOnEnterDerived(
-                                 [=] { f(); });
-                         })
-                    .def("set_update_derived",
-                         [](Engine::ScenesCore::IScene
-                                &self,
-                            py::function f)
-                         {
-                             self.SetUpdateDerived(
-                                 [=] { f(); });
-                         })
-                    .def("set_render_derived",
-                         [](Engine::ScenesCore::IScene
-                                &self,
-                            py::function f)
-                         {
-                             self.SetRenderDerived(
-                                 [=] { f(); });
-                         });
+                    .def(
+                        "set_init_derived",
+                        [](Engine::ScenesCore::IScene &self,
+                           py::function f)
+                        {
+                            self.SetInitializeDerived(
+                                [=] { f(); });
+                        })
+                    .def(
+                        "set_on_enter_derived",
+                        [](Engine::ScenesCore::IScene &self,
+                           py::function f)
+                        {
+                            self.SetOnEnterDerived(
+                                [=] { f(); });
+                        })
+                    .def(
+                        "set_update_derived",
+                        [](Engine::ScenesCore::IScene &self,
+                           py::function f)
+                        {
+                            self.SetUpdateDerived([=]
+                                                  { f(); });
+                        })
+                    .def(
+                        "set_render_derived",
+                        [](Engine::ScenesCore::IScene &self,
+                           py::function f)
+                        {
+                            self.SetRenderDerived([=]
+                                                  { f(); });
+                        });
 
                 py::class_<
                     Engine::ScenesCore::SceneManager>(
                     m, "SceneManager")
                     .def(py::init<>())
                     .def("add_scene",
-                         &Engine::ScenesCore::
-                             SceneManager::AddScene)
+                         &Engine::ScenesCore::SceneManager::
+                             AddScene)
                     .def("go_to_scene",
-                         &Engine::ScenesCore::
-                             SceneManager::GoToScene);
+                         &Engine::ScenesCore::SceneManager::
+                             GoToScene);
 
                 py::class_<Engine::Cursor>(m, "Cursor")
                     .def(py::init<>())
@@ -175,32 +152,24 @@ namespace Forradia
                            Engine::Cursor::CursorStyles::
                                HoveringCreature);
 
-                py::class_<
-                    GUIComponentsLibrary::GUIChatBox,
-                    SharedPtr<
-                        GUIComponentsLibrary::GUIChatBox>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIChatBox")
+                py::class_<GUIChatBox,
+                           SharedPtr<GUIChatBox>,
+                           GUIComponent>(m, "GUIChatBox")
                     .def(py::init<>())
-                    .def("print", &GUIComponentsLibrary::
-                                      GUIChatBox::Print);
+                    .def("print", &GUIChatBox::Print);
 
-                py::class_<Theme0::WorldGeneration::
-                               WorldGenerator>(
+                py::class_<Theme0::WorldGenerator>(
                     m, "WorldGenerator")
                     .def(py::init<>())
                     .def("gen_new_world",
-                         &Theme0::WorldGeneration::
-                             WorldGenerator::
-                                 GenerateNewWorld);
+                         &Theme0::WorldGenerator::
+                             GenerateNewWorld);
 
-                py::class_<
-                    Engine::Input::KeyboardInput>(
+                py::class_<Engine::Input::KeyboardInput>(
                     m, "KeyboardInput")
                     .def("any_key_pressed_pick_res",
-                         &Engine::Input::
-                             KeyboardInput::
-                                 AnyKeyIsPressedPickResult);
+                         &Engine::Input::KeyboardInput::
+                             AnyKeyIsPressedPickResult);
 
                 py::class_<Engine::Input::MouseInput>(
                     m, "MouseInput")
@@ -243,44 +212,32 @@ namespace Forradia
                 py::class_<
                     Theme0::GUIPlayerStatusBox,
                     SharedPtr<Theme0::GUIPlayerStatusBox>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIPlayerStatusBox");
+                    GUIComponent>(m, "GUIPlayerStatusBox");
 
                 py::class_<
                     Theme0::GUIPlayerBodyWindow,
                     SharedPtr<Theme0::GUIPlayerBodyWindow>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIPlayerBodyWindow")
-                    .def(
-                        "toggle_visible",
-                        &GUIComponentsLibrary::
-                            GUIComponent::ToggleVisibility);
+                    GUIComponent>(m, "GUIPlayerBodyWindow")
+                    .def("toggle_visible",
+                         &GUIComponent::ToggleVisibility);
 
                 py::class_<
                     Theme0::GUIInventoryWindow,
                     SharedPtr<Theme0::GUIInventoryWindow>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIInventoryWindow")
-                    .def(
-                        "toggle_visible",
-                        &GUIComponentsLibrary::
-                            GUIComponent::ToggleVisibility);
+                    GUIComponent>(m, "GUIInventoryWindow")
+                    .def("toggle_visible",
+                         &GUIComponent::ToggleVisibility);
 
-                py::class_<
-                    Theme0::GUISystemMenu,
-                    SharedPtr<Theme0::GUISystemMenu>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUISystemMenu")
-                    .def(
-                        "toggle_visible",
-                        &GUIComponentsLibrary::
-                            GUIComponent::ToggleVisibility);
+                py::class_<Theme0::GUISystemMenu,
+                           SharedPtr<Theme0::GUISystemMenu>,
+                           GUIComponent>(m, "GUISystemMenu")
+                    .def("toggle_visible",
+                         &GUIComponent::ToggleVisibility);
 
                 py::class_<
                     Theme0::GUIInteractionMenu,
                     SharedPtr<Theme0::GUIInteractionMenu>,
-                    GUIComponentsLibrary::GUIComponent>(
-                    m, "GUIInteractionMenu");
+                    GUIComponent>(m, "GUIInteractionMenu");
 
                 py::class_<
                     Theme0::GameplayCore::TileHovering>(
@@ -308,29 +265,25 @@ namespace Forradia
                       []
                       {
                           return std::make_shared<
-                              GUIComponentsLibrary::
-                                  GUIFPSPanel>();
+
+                              GUIFPSPanel>();
                       });
 
-                m.def(
-                    "make_shared_gui_label",
-                    [](float x, float y, float w, float h,
-                       StringView text, bool cent_align)
-                    {
-                        return std::make_shared<
-                            GUIComponentsLibrary::GUILabel>(
-                            x, y, w, h, text, cent_align,
-                            Colors::WheatTransparent);
-                    });
+                m.def("make_shared_gui_label",
+                      [](float x, float y, float w, float h,
+                         StringView text, bool cent_align)
+                      {
+                          return std::make_shared<GUILabel>(
+                              x, y, w, h, text, cent_align,
+                              Colors::WheatTransparent);
+                      });
 
-                m.def(
-                    "make_shared_gui_panel",
-                    [](float x, float y, float w, float h)
-                    {
-                        return std::make_shared<
-                            GUIComponentsLibrary::GUIPanel>(
-                            x, y, w, h);
-                    });
+                m.def("make_shared_gui_panel",
+                      [](float x, float y, float w, float h)
+                      {
+                          return std::make_shared<GUIPanel>(
+                              x, y, w, h);
+                      });
 
                 m.def("make_shared_gui_button",
                       [](float x, float y, float w, float h,
@@ -338,24 +291,24 @@ namespace Forradia
                          py::function action)
                       {
                           return std::make_shared<
-                              GUIComponentsLibrary::
-                                  GUIButton>(x, y, w, h,
-                                             text, action);
+
+                              GUIButton>(x, y, w, h, text,
+                                         action);
                       });
 
-                m.def(
-                    "make_shared_gui_button",
-                    [](float x, float y, float w, float h,
-                       StringView text, py::function action,
-                       StringView bg_img,
-                       StringView hovered_bg_img)
-                    {
-                        return std::make_shared<
-                            GUIComponentsLibrary::
-                                GUIButton>(x, y, w, h, text,
-                                           action, bg_img,
-                                           hovered_bg_img);
-                    });
+                m.def("make_shared_gui_button",
+                      [](float x, float y, float w, float h,
+                         StringView text,
+                         py::function action,
+                         StringView bg_img,
+                         StringView hovered_bg_img)
+                      {
+                          return std::make_shared<
+
+                              GUIButton>(x, y, w, h, text,
+                                         action, bg_img,
+                                         hovered_bg_img);
+                      });
 
                 m.def("get_gui_interact_menu_ptr",
                       []() -> SharedPtr<
@@ -403,8 +356,8 @@ namespace Forradia
 
                 m.def(
                     "get_scene_mngr",
-                    []() -> Engine::ScenesCore::
-                             SceneManager &
+                    []() -> Engine::ScenesCore::SceneManager
+                             &
                     {
                         return _<Engine::ScenesCore::
                                      SceneManager>();
@@ -422,23 +375,13 @@ namespace Forradia
                     py::return_value_policy::reference);
 
                 m.def(
-                    "get_gui_chat_box",
-                    []() -> GUIComponentsLibrary::GUIChatBox
-                             &
-                    {
-                        return _<GUIComponentsLibrary::
-                                     GUIChatBox>();
-                    },
+                    "get_gui_chat_box", []() -> GUIChatBox &
+                    { return _<GUIChatBox>(); },
                     py::return_value_policy::reference);
 
-                m.def(
-                    "get_gui_chat_box_ptr",
-                    []() -> SharedPtr<GUIComponentsLibrary::
-                                          GUIChatBox>
-                    {
-                        return __<GUIComponentsLibrary::
-                                      GUIChatBox>();
-                    });
+                m.def("get_gui_chat_box_ptr",
+                      []() -> SharedPtr<GUIChatBox>
+                      { return __<GUIChatBox>(); });
 
                 m.def(
                     "get_cursor", []() -> Engine::Cursor &
@@ -447,32 +390,26 @@ namespace Forradia
 
                 m.def(
                     "get_kb_inp",
-                    []() -> Engine::Input::
-                             KeyboardInput &
+                    []() -> Engine::Input::KeyboardInput &
                     {
-                        return _<Engine::Input::
-                                     KeyboardInput>();
+                        return _<
+                            Engine::Input::KeyboardInput>();
                     },
                     py::return_value_policy::reference);
 
                 m.def(
                     "get_mouse_inp",
-                    []()
-                        -> Engine::Input::MouseInput &
+                    []() -> Engine::Input::MouseInput &
                     {
-                        return _<Engine::Input::
-                                     MouseInput>();
+                        return _<
+                            Engine::Input::MouseInput>();
                     },
                     py::return_value_policy::reference);
 
                 m.def(
                     "get_world_grator",
-                    []() -> Theme0::WorldGeneration::
-                             WorldGenerator &
-                    {
-                        return _<Theme0::WorldGeneration::
-                                     WorldGenerator>();
-                    },
+                    []() -> Theme0::WorldGenerator &
+                    { return _<Theme0::WorldGenerator>(); },
                     py::return_value_policy::reference);
 
                 m.def(

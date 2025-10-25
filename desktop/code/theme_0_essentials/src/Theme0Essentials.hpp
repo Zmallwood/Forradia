@@ -10,150 +10,142 @@ namespace Forradia
 {
     namespace Theme0
     {
-        namespace TileGridMath
-        {
-            SizeF CalcTileSize();
+        SizeF CalcTileSize();
 
-            float CalcTileSizeNew();
+        float CalcTileSizeNew();
 
-            Size CalcGridSize();
-        }
-        using namespace TileGridMath;
+        Size CalcGridSize();
 
         namespace GameplayCore
         {
-            namespace Player
+            enum class BodyPartTypes
             {
-                enum class BodyPartTypes
+                None,
+                OverallBody,
+                RightArm,
+                LeftArm,
+                Legs
+            };
+
+            class BodyPart
+            {
+              public:
+                auto GetStrength() const
                 {
-                    None,
-                    OverallBody,
-                    RightArm,
-                    LeftArm,
-                    Legs
-                };
-
-                class BodyPart
+                    return m_strength;
+                }
+                auto GetCurrentEnergy() const
                 {
-                  public:
-                    auto GetStrength() const
-                    {
-                        return m_strength;
-                    }
-                    auto GetCurrentEnergy() const
-                    {
-                        return m_currentEnergy;
-                    }
-                    auto GetMaxEnergy() const
-                    {
-                        return m_maxEnergy;
-                    }
-                    auto GetTemperature() const
-                    {
-                        return m_temperature;
-                    }
-
-                  private:
-                    float m_strength{0.1f};
-                    float m_currentEnergy{1.0f};
-                    float m_maxEnergy{1.0f};
-                    float m_temperature{37.0f};
-                };
-
-                class PlayerBody
+                    return m_currentEnergy;
+                }
+                auto GetMaxEnergy() const
                 {
-                  public:
-                    PlayerBody()
-                    {
-                        Initialize();
-                    }
-
-                    BodyPart *GetBodyPartPtr(
-                        BodyPartTypes bodyPartType);
-
-                  private:
-                    void Initialize();
-
-                    std::map<BodyPartTypes, BodyPart>
-                        m_bodyParts;
-                };
-
-                class PlayerCharacter
+                    return m_maxEnergy;
+                }
+                auto GetTemperature() const
                 {
-                  public:
-                    PlayerCharacter()
-                    {
-                        Initialize();
-                    }
+                    return m_temperature;
+                }
 
-                    void MoveNorth();
+              private:
+                float m_strength{0.1f};
+                float m_currentEnergy{1.0f};
+                float m_maxEnergy{1.0f};
+                float m_temperature{37.0f};
+            };
 
-                    void MoveEast();
+            class PlayerBody
+            {
+              public:
+                PlayerBody()
+                {
+                    Initialize();
+                }
 
-                    void MoveSouth();
+                BodyPart *
+                GetBodyPartPtr(BodyPartTypes bodyPartType);
 
-                    void MoveWest();
+              private:
+                void Initialize();
 
-                    auto GetName() const
-                    {
-                        return m_name;
-                    }
+                std::map<BodyPartTypes, BodyPart>
+                    m_bodyParts;
+            };
 
-                    auto GetPosition() const
-                    {
-                        return m_position;
-                    }
+            class PlayerCharacter
+            {
+              public:
+                PlayerCharacter()
+                {
+                    Initialize();
+                }
 
-                    auto GetMovementSpeed() const
-                    {
-                        return m_movementSpeed;
-                    }
+                void MoveNorth();
 
-                    auto GetTicksLastMovement() const
-                    {
-                        return m_ticksLastMovement;
-                    }
+                void MoveEast();
 
-                    void SetTicksLastMovement(int value)
-                    {
-                        m_ticksLastMovement = value;
-                    }
+                void MoveSouth();
 
-                    auto GetDestination() const
-                    {
-                        return m_destination;
-                    }
+                void MoveWest();
 
-                    void SetDestination(Point value)
-                    {
-                        m_destination = value;
-                    }
+                auto GetName() const
+                {
+                    return m_name;
+                }
 
-                    auto &GetBodyRef()
-                    {
-                        return m_body;
-                    }
+                auto GetPosition() const
+                {
+                    return m_position;
+                }
 
-                    auto GetMoney() const
-                    {
-                        return m_money;
-                    }
+                auto GetMovementSpeed() const
+                {
+                    return m_movementSpeed;
+                }
 
-                  private:
-                    void Initialize();
+                auto GetTicksLastMovement() const
+                {
+                    return m_ticksLastMovement;
+                }
 
-                    void MoveToSuitablePosition();
+                void SetTicksLastMovement(int value)
+                {
+                    m_ticksLastMovement = value;
+                }
 
-                    String m_name{"Unnamed Player"};
-                    Point m_position{60, 50};
-                    float m_movementSpeed{5.0f};
-                    int m_ticksLastMovement{0};
-                    Point m_destination{-1, -1};
-                    PlayerBody m_body;
-                    int m_money{0};
-                };
-            }
-            using namespace Player;
+                auto GetDestination() const
+                {
+                    return m_destination;
+                }
+
+                void SetDestination(Point value)
+                {
+                    m_destination = value;
+                }
+
+                auto &GetBodyRef()
+                {
+                    return m_body;
+                }
+
+                auto GetMoney() const
+                {
+                    return m_money;
+                }
+
+              private:
+                void Initialize();
+
+                void MoveToSuitablePosition();
+
+                String m_name{"Unnamed Player"};
+                Point m_position{60, 50};
+                float m_movementSpeed{5.0f};
+                int m_ticksLastMovement{0};
+                Point m_destination{-1, -1};
+                PlayerBody m_body;
+                int m_money{0};
+            };
         }
         using namespace GameplayCore;
     }

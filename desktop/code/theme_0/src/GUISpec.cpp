@@ -25,7 +25,7 @@ namespace Forradia
 
                 _<Engine::Renderers::TextRenderer>()
                     .DrawString(
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                               PlayerCharacter>()
                             .GetName(),
                         bounds.x + 0.01f, bounds.y + 0.01f,
@@ -127,16 +127,15 @@ namespace Forradia
                     _<Engine::SDLDevice>().GetWindow())};
 
                 auto overallBodyImageButton{
-                    std::make_shared<
-                        GUIComponentsLibrary::GUIButton>(
+                    std::make_shared<GUIButton>(
                         0.1f - imageWidth / 2, 0.04f,
                         imageWidth, imageHeight, "",
                         [this]
                         {
-                            SelectBodyPart(CInt(
-                                Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        OverallBody));
+                            SelectBodyPart(
+                                CInt(Theme0::GameplayCore::
+                                         BodyPartTypes::
+                                             OverallBody));
                             UpdateBodyPartInfoLabels();
                         },
                         "gui_image_overall_body",
@@ -145,16 +144,15 @@ namespace Forradia
                 AddChildComponent(overallBodyImageButton);
 
                 auto rightArmBodyImageButton{
-                    std::make_shared<
-                        GUIComponentsLibrary::GUIButton>(
+                    std::make_shared<GUIButton>(
                         0.1f - imageWidth / 2 - imageWidth,
                         0.04f, imageWidth, imageHeight, "",
                         [this]
                         {
-                            SelectBodyPart(CInt(
-                                Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        RightArm));
+                            SelectBodyPart(
+                                CInt(Theme0::GameplayCore::
+                                         BodyPartTypes::
+                                             RightArm));
                             UpdateBodyPartInfoLabels();
                         },
                         "gui_image_right_arm",
@@ -163,16 +161,15 @@ namespace Forradia
                 AddChildComponent(rightArmBodyImageButton);
 
                 auto leftArmBodyImageButton{
-                    std::make_shared<
-                        GUIComponentsLibrary::GUIButton>(
+                    std::make_shared<GUIButton>(
                         0.1f - imageWidth / 2 + imageWidth,
                         0.04f, imageWidth, imageHeight, "",
                         [this]
                         {
-                            SelectBodyPart(CInt(
-                                Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        LeftArm));
+                            SelectBodyPart(
+                                CInt(Theme0::GameplayCore::
+                                         BodyPartTypes::
+                                             LeftArm));
                             UpdateBodyPartInfoLabels();
                         },
                         "gui_image_left_arm",
@@ -180,42 +177,41 @@ namespace Forradia
 
                 AddChildComponent(leftArmBodyImageButton);
 
-                auto legsImageButton{std::make_shared<
-                    GUIComponentsLibrary::GUIButton>(
-                    0.1f - imageWidth / 2,
-                    0.04f + imageHeight, imageWidth,
-                    imageHeight, "",
-                    [this]
-                    {
-                        SelectBodyPart(CInt(
-                            Theme0::GameplayCore::Player::
-                                BodyPartTypes::Legs));
-                        UpdateBodyPartInfoLabels();
-                    },
-                    "gui_image_legs",
-                    "gui_image_legs_hovered")};
+                auto legsImageButton{
+                    std::make_shared<GUIButton>(
+                        0.1f - imageWidth / 2,
+                        0.04f + imageHeight, imageWidth,
+                        imageHeight, "",
+                        [this]
+                        {
+                            SelectBodyPart(CInt(
+                                Theme0::GameplayCore::
+                                    BodyPartTypes::Legs));
+                            UpdateBodyPartInfoLabels();
+                        },
+                        "gui_image_legs",
+                        "gui_image_legs_hovered")};
 
                 AddChildComponent(legsImageButton);
 
-                m_labelBodyPartName = std::make_shared<
-                    GUIComponentsLibrary::GUILabel>(
-                    0.01f, 0.3f, 0.2f, 0.05f,
-                    "Body part: ", false,
-                    Colors::YellowTransparent);
+                m_labelBodyPartName =
+                    std::make_shared<GUILabel>(
+                        0.01f, 0.3f, 0.2f, 0.05f,
+                        "Body part: ", false,
+                        Colors::YellowTransparent);
 
-                m_labelBodyPartStrength = std::make_shared<
-                    GUIComponentsLibrary::GUILabel>(
-                    0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f,
-                    0.05f, "Strength: ");
+                m_labelBodyPartStrength =
+                    std::make_shared<GUILabel>(
+                        0.01f + 0.01f, 0.3f + 1 * 0.02f,
+                        0.2f, 0.05f, "Strength: ");
 
-                m_labelBodyPartEnergy = std::make_shared<
-                    GUIComponentsLibrary::GUILabel>(
-                    0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f,
-                    0.05f, "Energy: ");
+                m_labelBodyPartEnergy =
+                    std::make_shared<GUILabel>(
+                        0.01f + 0.01f, 0.3f + 2 * 0.02f,
+                        0.2f, 0.05f, "Energy: ");
 
                 m_labelBodyPartTemperature =
-                    std::make_shared<
-                        GUIComponentsLibrary::GUILabel>(
+                    std::make_shared<GUILabel>(
                         0.01f + 0.01f, 0.3f + 3 * 0.02f,
                         0.2f, 0.05f, "Temperature: ");
 
@@ -235,25 +231,24 @@ namespace Forradia
             void
             GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
             {
-                auto &playerBody{
-                    _<Theme0::GameplayCore::Player::
-                          PlayerCharacter>()
-                        .GetBodyRef()};
+                auto &playerBody{_<Theme0::GameplayCore::
+                                       PlayerCharacter>()
+                                     .GetBodyRef()};
 
                 constexpr auto overallBody{
-                    CInt(Theme0::GameplayCore::Player::
+                    CInt(Theme0::GameplayCore::
                              BodyPartTypes::OverallBody)};
 
                 constexpr auto rightArm{
-                    CInt(Theme0::GameplayCore::Player::
+                    CInt(Theme0::GameplayCore::
                              BodyPartTypes::RightArm)};
 
                 constexpr auto leftArm{
-                    CInt(Theme0::GameplayCore::Player::
+                    CInt(Theme0::GameplayCore::
                              BodyPartTypes::LeftArm)};
 
                 constexpr auto legs{
-                    CInt(Theme0::GameplayCore::Player::
+                    CInt(Theme0::GameplayCore::
                              BodyPartTypes::Legs)};
 
                 switch (m_selectedBodyPart)
@@ -267,7 +262,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
+                                    BodyPartTypes::
                                         OverallBody)
                             ->GetStrength()};
 
@@ -278,7 +273,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
+                                    BodyPartTypes::
                                         OverallBody)
                             ->GetMaxEnergy()};
 
@@ -286,7 +281,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
+                                    BodyPartTypes::
                                         OverallBody)
                             ->GetCurrentEnergy()};
 
@@ -299,7 +294,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
+                                    BodyPartTypes::
                                         OverallBody)
                             ->GetTemperature()};
 
@@ -319,8 +314,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        RightArm)
+                                    BodyPartTypes::RightArm)
                             ->GetStrength()};
 
                     m_labelBodyPartStrength->SetText(
@@ -331,16 +325,14 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        RightArm)
+                                    BodyPartTypes::RightArm)
                             ->GetMaxEnergy()};
 
                     auto currentEnergy{
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        RightArm)
+                                    BodyPartTypes::RightArm)
                             ->GetCurrentEnergy()};
 
                     m_labelBodyPartEnergy->SetText(
@@ -352,8 +344,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        RightArm)
+                                    BodyPartTypes::RightArm)
                             ->GetTemperature()};
 
                     m_labelBodyPartTemperature->SetText(
@@ -372,8 +363,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        LeftArm)
+                                    BodyPartTypes::LeftArm)
                             ->GetStrength()};
 
                     m_labelBodyPartStrength->SetText(
@@ -384,16 +374,14 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        LeftArm)
+                                    BodyPartTypes::LeftArm)
                             ->GetMaxEnergy()};
 
                     auto currentEnergy{
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        LeftArm)
+                                    BodyPartTypes::LeftArm)
                             ->GetCurrentEnergy()};
 
                     m_labelBodyPartEnergy->SetText(
@@ -405,8 +393,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        LeftArm)
+                                    BodyPartTypes::LeftArm)
                             ->GetTemperature()};
 
                     m_labelBodyPartTemperature->SetText(
@@ -425,8 +412,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        Legs)
+                                    BodyPartTypes::Legs)
                             ->GetStrength()};
 
                     m_labelBodyPartStrength->SetText(
@@ -437,16 +423,14 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        Legs)
+                                    BodyPartTypes::Legs)
                             ->GetMaxEnergy()};
 
                     auto currentEnergy{
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        Legs)
+                                    BodyPartTypes::Legs)
                             ->GetCurrentEnergy()};
 
                     m_labelBodyPartEnergy->SetText(
@@ -458,8 +442,7 @@ namespace Forradia
                         playerBody
                             .GetBodyPartPtr(
                                 Theme0::GameplayCore::
-                                    Player::BodyPartTypes::
-                                        Legs)
+                                    BodyPartTypes::Legs)
                             ->GetTemperature()};
 
                     m_labelBodyPartTemperature->SetText(
@@ -503,11 +486,9 @@ namespace Forradia
                     m_entries.push_back(
                         {"Forage", [=]()
                          {
-                             _<GUIComponentsLibrary::
-                                   GUIChatBox>()
-                                 .Print(
-                                     "Grass foraged. You "
-                                     "found blue berries.");
+                             _<GUIChatBox>().Print(
+                                 "Grass foraged. You "
+                                 "found blue berries.");
                          }});
                 }
 
@@ -530,12 +511,10 @@ namespace Forradia
                                      ->AddObject(
                                          "object_felled_"
                                          "tree");
-                                 _<GUIComponentsLibrary::
-                                       GUIChatBox>()
-                                     .Print(
-                                         "Tree cut down. "
-                                         "You found some "
-                                         "wood.");
+                                 _<GUIChatBox>().Print(
+                                     "Tree cut down. "
+                                     "You found some "
+                                     "wood.");
                              }});
                     }
 
@@ -552,12 +531,10 @@ namespace Forradia
                                      ->AddObject(
                                          "object_felled_"
                                          "tree");
-                                 _<GUIComponentsLibrary::
-                                       GUIChatBox>()
-                                     .Print(
-                                         "Tree cut down. "
-                                         "You found some "
-                                         "wood.");
+                                 _<GUIChatBox>().Print(
+                                     "Tree cut down. "
+                                     "You found some "
+                                     "wood.");
                              }});
                     }
                 }

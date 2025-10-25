@@ -5,10 +5,10 @@
 //
 
 #include "Update.hpp"
-#include "Utilities/NumbersUtilities.hpp"
 #include "Core.hpp"
 #include "GUISpec.hpp"
 #include "Theme0Essentials.hpp"
+#include "Utilities/NumbersUtilities.hpp"
 #include "WorldStruct.hpp"
 
 namespace Forradia
@@ -25,16 +25,14 @@ namespace Forradia
                 {
                     _<GUISystemMenu>().ToggleVisibility();
                 }
-                else if (_<Engine::Input::
-                               KeyboardInput>()
+                else if (_<Engine::Input::KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_c))
                 {
                     _<GUIPlayerBodyWindow>()
                         .ToggleVisibility();
                 }
-                else if (_<Engine::Input::
-                               KeyboardInput>()
+                else if (_<Engine::Input::KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_b))
                 {
@@ -95,7 +93,7 @@ namespace Forradia
                 if (upPress || rightPress || downPress ||
                     leftPress)
                 {
-                    _<Theme0::GameplayCore::Player::
+                    _<Theme0::GameplayCore::
                           PlayerCharacter>()
                         .SetDestination({-1, -1});
                 }
@@ -103,13 +101,13 @@ namespace Forradia
                 auto now{GetTicks()};
 
                 if (now >=
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                                 PlayerCharacter>()
                                 .GetTicksLastMovement() +
                             InvertMovementSpeed(
                                 _<Theme0::GameplayCore::
-                                      Player::
-                                          PlayerCharacter>()
+
+                                      PlayerCharacter>()
                                     .GetMovementSpeed()) &&
                     (upPress || rightPress || downPress ||
                      leftPress || wPress || aPress ||
@@ -117,33 +115,33 @@ namespace Forradia
                 {
                     if (upPress || wPress)
                     {
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                               PlayerCharacter>()
                             .MoveNorth();
                     }
 
                     if (rightPress || dPress)
                     {
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                               PlayerCharacter>()
                             .MoveEast();
                     }
 
                     if (downPress || sPress)
                     {
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                               PlayerCharacter>()
                             .MoveSouth();
                     }
 
                     if (leftPress || aPress)
                     {
-                        _<Theme0::GameplayCore::Player::
+                        _<Theme0::GameplayCore::
                               PlayerCharacter>()
                             .MoveWest();
                     }
 
-                    _<Theme0::GameplayCore::Player::
+                    _<Theme0::GameplayCore::
                           PlayerCharacter>()
                         .SetTicksLastMovement(now);
                 }
@@ -159,7 +157,7 @@ namespace Forradia
                         _<TileHovering>()
                             .GetHoveredCoordinate()};
 
-                    _<Theme0::GameplayCore::Player::
+                    _<Theme0::GameplayCore::
                           PlayerCharacter>()
                         .SetDestination(newDestination);
                 }
@@ -351,19 +349,15 @@ namespace Forradia
 
                         if (GetRandomInt(20) == 0)
                         {
-                            _<GUIComponentsLibrary::
-                                  GUIChatBox>()
-                                .Print(
-                                    name +
-                                    ": Buying blueberries, "
-                                    "one gold each.");
+                            _<GUIChatBox>().Print(
+                                name +
+                                ": Buying blueberries, "
+                                "one gold each.");
                         }
                         else
                         {
-                            _<GUIComponentsLibrary::
-                                  GUIChatBox>()
-                                .Print(name +
-                                       ": Hello all!");
+                            _<GUIChatBox>().Print(
+                                name + ": Hello all!");
                         }
 
                         npc->SetTicksNextSpontaneousSpeech(

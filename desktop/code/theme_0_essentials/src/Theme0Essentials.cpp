@@ -13,122 +13,111 @@ namespace Forradia
 {
     namespace Theme0
     {
-        namespace TileGridMath
+        SizeF CalcTileSize()
         {
-            SizeF CalcTileSize()
-            {
-                auto numGridRows{
-                    _<GameProperties>().k_numGridRows};
+            auto numGridRows{
+                _<GameProperties>().k_numGridRows};
 
-                auto tileHeight{1.0f / numGridRows};
+            auto tileHeight{1.0f / numGridRows};
 
-                auto aspectRatio{CalcAspectRatio(
-                    _<Engine::SDLDevice>().GetWindow())};
+            auto aspectRatio{CalcAspectRatio(
+                _<Engine::SDLDevice>().GetWindow())};
 
-                auto tileWidth{tileHeight / aspectRatio};
+            auto tileWidth{tileHeight / aspectRatio};
 
-                return {tileWidth, tileHeight};
-            }
+            return {tileWidth, tileHeight};
+        }
 
-            float CalcTileSizeNew()
-            {
-                return 1.0f /
-                       _<GameProperties>().k_numGridRows;
-            }
+        float CalcTileSizeNew()
+        {
+            return 1.0f / _<GameProperties>().k_numGridRows;
+        }
 
-            Size CalcGridSize()
-            {
-                auto tileSize{CalcTileSizeNew()};
+        Size CalcGridSize()
+        {
+            auto tileSize{CalcTileSizeNew()};
 
-                auto aspectRatio{CalcAspectRatio(
-                    _<Engine::SDLDevice>().GetWindow())};
+            auto aspectRatio{CalcAspectRatio(
+                _<Engine::SDLDevice>().GetWindow())};
 
-                auto numGridColumns{
-                    CInt(aspectRatio / tileSize) + 1};
+            auto numGridColumns{
+                CInt(aspectRatio / tileSize) + 1};
 
-                auto numGridRows{
-                    _<GameProperties>().k_numGridRows};
+            auto numGridRows{
+                _<GameProperties>().k_numGridRows};
 
-                return {numGridColumns, numGridRows};
-            }
+            return {numGridColumns, numGridRows};
         }
 
         namespace GameplayCore
         {
-            namespace Player
+            void PlayerBody::Initialize()
             {
-                void PlayerBody::Initialize()
+                m_bodyParts.insert(
+                    {BodyPartTypes::OverallBody,
+                     BodyPart()});
+                m_bodyParts.insert(
+                    {BodyPartTypes::RightArm, BodyPart()});
+                m_bodyParts.insert(
+                    {BodyPartTypes::LeftArm, BodyPart()});
+                m_bodyParts.insert(
+                    {BodyPartTypes::Legs, BodyPart()});
+            }
+
+            BodyPart *PlayerBody::GetBodyPartPtr(
+                BodyPartTypes bodyPartType)
+            {
+                if (m_bodyParts.contains(bodyPartType))
                 {
-                    m_bodyParts.insert(
-                        {BodyPartTypes::OverallBody,
-                         BodyPart()});
-                    m_bodyParts.insert(
-                        {BodyPartTypes::RightArm,
-                         BodyPart()});
-                    m_bodyParts.insert(
-                        {BodyPartTypes::LeftArm,
-                         BodyPart()});
-                    m_bodyParts.insert(
-                        {BodyPartTypes::Legs, BodyPart()});
+                    return &m_bodyParts.at(bodyPartType);
                 }
 
-                BodyPart *PlayerBody::GetBodyPartPtr(
-                    BodyPartTypes bodyPartType)
+                return nullptr;
+            }
+
+            void PlayerCharacter::Initialize()
+            {
+                MoveToSuitablePosition();
+            }
+
+            void PlayerCharacter::MoveToSuitablePosition()
+            {
+                auto worldArea{
+                    _<World>().GetCurrentWorldArea()};
+
+                auto size{worldArea->GetSize()};
+
+                m_position = {size.width / 2,
+                              size.height / 2};
+
+                while (worldArea->GetTile(m_position)
+                           ->GetGround() ==
+                       Hash("ground_water"))
                 {
-                    if (m_bodyParts.contains(bodyPartType))
-                    {
-                        return &m_bodyParts.at(
-                            bodyPartType);
-                    }
-
-                    return nullptr;
+                    m_position = {
+                        GetRandomInt(size.width),
+                        GetRandomInt(size.height)};
                 }
+            }
 
-                void PlayerCharacter::Initialize()
-                {
-                    MoveToSuitablePosition();
-                }
+            void PlayerCharacter::MoveNorth()
+            {
+                m_position.y -= 1;
+            }
 
-                void
-                PlayerCharacter::MoveToSuitablePosition()
-                {
-                    auto worldArea{
-                        _<World>().GetCurrentWorldArea()};
+            void PlayerCharacter::MoveEast()
+            {
+                m_position.x += 1;
+            }
 
-                    auto size{worldArea->GetSize()};
+            void PlayerCharacter::MoveSouth()
+            {
+                m_position.y += 1;
+            }
 
-                    m_position = {size.width / 2,
-                                  size.height / 2};
-
-                    while (worldArea->GetTile(m_position)
-                               ->GetGround() ==
-                           Hash("ground_water"))
-                    {
-                        m_position = {
-                            GetRandomInt(size.width),
-                            GetRandomInt(size.height)};
-                    }
-                }
-
-                void PlayerCharacter::MoveNorth()
-                {
-                    m_position.y -= 1;
-                }
-
-                void PlayerCharacter::MoveEast()
-                {
-                    m_position.x += 1;
-                }
-
-                void PlayerCharacter::MoveSouth()
-                {
-                    m_position.y += 1;
-                }
-
-                void PlayerCharacter::MoveWest()
-                {
-                    m_position.x -= 1;
-                }
+            void PlayerCharacter::MoveWest()
+            {
+                m_position.x -= 1;
             }
         }
     }

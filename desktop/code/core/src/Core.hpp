@@ -260,9 +260,7 @@ namespace Forradia
                 class ScenesGUI
                 {
                   public:
-                    class GUIRoot
-                        : public GUIComponentsLibrary::
-                              GUIComponent
+                    class GUIRoot : public GUIComponent
                     {
                       public:
                         GUIRoot()

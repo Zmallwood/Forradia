@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 
     _<Theme0::ScriptEngine>().LoadScripts();
 
-    _<Theme0::WorldStructure::World>().Initialize(
+    _<Theme0::World>().Initialize(
         _<Theme0::GameProperties>().k_worldAreaSize,
         _<Theme0::GameProperties>().k_worldScaling);
 
