@@ -24,12 +24,19 @@
 
 #include "WorldView.hpp"
 
+#include "ScenesCore/IScene.hpp"
+
+#include "ScenesCore/SceneManager.hpp"
+
+#include "Input/Keyboard/KeyboardInput.hpp"
+
+#include "Input/Mouse/MouseInput.hpp"
+
 namespace Forradia
 {
     namespace Theme0
     {
-        class IScenePublic
-            : public Engine::ScenesCore::IScene
+        class IScenePublic : public IScene
         {
           public:
             using IScene::GetGUI;
@@ -51,14 +58,11 @@ namespace Forradia
                 m, "GUIComponent");
 
             py::class_<
-                Engine::ScenesCore::IScene::ScenesGUI::
-                    GUIRoot,
-                SharedPtr<Engine::ScenesCore::IScene::
-                              ScenesGUI::GUIRoot>>(
+                IScene::ScenesGUI::GUIRoot,
+                SharedPtr<IScene::ScenesGUI::GUIRoot>>(
                 m, "GUIRoot")
                 .def("add_child_comp",
-                     [](Engine::ScenesCore::IScene::
-                            ScenesGUI::GUIRoot &self,
+                     [](IScene::ScenesGUI::GUIRoot &self,
                         SharedPtr<GUIComponent> comp)
                          -> SharedPtr<
 
@@ -91,67 +95,52 @@ namespace Forradia
             py::class_<GUIFPSPanel, SharedPtr<GUIFPSPanel>,
                        GUIComponent>(m, "gui_fps_panel");
 
-            py::class_<Engine::ScenesCore::IScene>(m,
-                                                   "IScene")
+            py::class_<IScene>(m, "IScene")
                 .def(py::init<>())
-                .def(
-                    "init",
-                    &Engine::ScenesCore::IScene::Initialize)
+                .def("init", &IScene::Initialize)
                 .def("gui", &IScenePublic::GetGUI)
                 .def("set_init_derived",
-                     [](Engine::ScenesCore::IScene &self,
-                        py::function f)
+                     [](IScene &self, py::function f)
                      {
                          self.SetInitializeDerived(
                              [=] { f(); });
                      })
                 .def("set_on_enter_derived",
-                     [](Engine::ScenesCore::IScene &self,
-                        py::function f)
+                     [](IScene &self, py::function f)
                      {
                          self.SetOnEnterDerived([=]
                                                 { f(); });
                      })
                 .def("set_update_derived",
-                     [](Engine::ScenesCore::IScene &self,
-                        py::function f)
+                     [](IScene &self, py::function f)
                      {
                          self.SetUpdateDerived([=]
                                                { f(); });
                      })
                 .def("set_render_derived",
-                     [](Engine::ScenesCore::IScene &self,
-                        py::function f)
+                     [](IScene &self, py::function f)
                      {
                          self.SetRenderDerived([=]
                                                { f(); });
                      });
 
-            py::class_<Engine::ScenesCore::SceneManager>(
-                m, "SceneManager")
+            py::class_<SceneManager>(m, "SceneManager")
                 .def(py::init<>())
-                .def("add_scene",
-                     &Engine::ScenesCore::SceneManager::
-                         AddScene)
+                .def("add_scene", &SceneManager::AddScene)
                 .def("go_to_scene",
-                     &Engine::ScenesCore::SceneManager::
-                         GoToScene);
+                     &SceneManager::GoToScene);
 
             py::class_<Cursor>(m, "Cursor")
                 .def(py::init<>())
                 .def("set_curs_style",
                      &Cursor::SetCursorStyle);
 
-            py::enum_<CursorStyles>(
-                m, "CursorStyles")
-                .value("normal",
-                       CursorStyles::Normal)
+            py::enum_<CursorStyles>(m, "CursorStyles")
+                .value("normal", CursorStyles::Normal)
                 .value("hovering_clickable_gui",
-                       CursorStyles::
-                           HoveringClickableGUI)
+                       CursorStyles::HoveringClickableGUI)
                 .value("hovering_creature",
-                       CursorStyles::
-                           HoveringCreature);
+                       CursorStyles::HoveringCreature);
 
             py::class_<GUIChatBox, SharedPtr<GUIChatBox>,
                        GUIComponent>(m, "GUIChatBox")
@@ -165,16 +154,14 @@ namespace Forradia
                      &Theme0::WorldGenerator::
                          GenerateNewWorld);
 
-            py::class_<Engine::Input::KeyboardInput>(
-                m, "KeyboardInput")
+            py::class_<KeyboardInput>(m, "KeyboardInput")
                 .def("any_key_pressed_pick_res",
-                     &Engine::Input::KeyboardInput::
+                     &KeyboardInput::
                          AnyKeyIsPressedPickResult);
 
-            py::class_<Engine::Input::MouseInput>(
-                m, "MouseInput")
+            py::class_<MouseInput>(m, "MouseInput")
                 .def("any_mouse_btn_pressed_pick_res",
-                     &Engine::Input::MouseInput::
+                     &MouseInput::
                          AnyMouseButtonIsPressedPickResult);
 
             py::class_<Engine::Renderers::Image2DRenderer>(
@@ -344,12 +331,8 @@ namespace Forradia
                 py::return_value_policy::reference);
 
             m.def(
-                "get_scene_mngr",
-                []() -> Engine::ScenesCore::SceneManager &
-                {
-                    return _<
-                        Engine::ScenesCore::SceneManager>();
-                },
+                "get_scene_mngr", []() -> SceneManager &
+                { return _<SceneManager>(); },
                 py::return_value_policy::reference);
 
             m.def(
@@ -371,23 +354,18 @@ namespace Forradia
                   { return __<GUIChatBox>(); });
 
             m.def(
-                "get_cursor", []() -> Cursor &
-                { return _<Cursor>(); },
+                "get_cursor",
+                []() -> Cursor & { return _<Cursor>(); },
                 py::return_value_policy::reference);
 
             m.def(
-                "get_kb_inp",
-                []() -> Engine::Input::KeyboardInput &
-                {
-                    return _<
-                        Engine::Input::KeyboardInput>();
-                },
+                "get_kb_inp", []() -> KeyboardInput &
+                { return _<KeyboardInput>(); },
                 py::return_value_policy::reference);
 
             m.def(
-                "get_mouse_inp",
-                []() -> Engine::Input::MouseInput &
-                { return _<Engine::Input::MouseInput>(); },
+                "get_mouse_inp", []() -> MouseInput &
+                { return _<MouseInput>(); },
                 py::return_value_policy::reference);
 
             m.def(
@@ -440,8 +418,9 @@ namespace Forradia
             m.def("setup_scenes",
                   []
                   {
-                      py::eval_file("Resources/Theme0Scripts/"
-                                    "scenes.py");
+                      py::eval_file(
+                          "Resources/Theme0Scripts/"
+                          "scenes.py");
                       py::eval("setup_scenes()");
                   });
         }

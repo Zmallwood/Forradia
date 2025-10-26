@@ -20,6 +20,10 @@
 
 #include "WorldStruct.hpp"
 
+#include "Input/Keyboard/KeyboardInput.hpp"
+
+#include "Input/Mouse/MouseInput.hpp"
+
 namespace Forradia
 {
     namespace Theme0
@@ -28,20 +32,20 @@ namespace Forradia
         {
             void UpdateKeyboardActions()
             {
-                if (_<Engine::Input::KeyboardInput>()
+                if (_<KeyboardInput>()
                         .KeyIsPressedPickResult(
                             SDLK_ESCAPE))
                 {
                     _<GUISystemMenu>().ToggleVisibility();
                 }
-                else if (_<Engine::Input::KeyboardInput>()
+                else if (_<KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_c))
                 {
                     _<GUIPlayerBodyWindow>()
                         .ToggleVisibility();
                 }
-                else if (_<Engine::Input::KeyboardInput>()
+                else if (_<KeyboardInput>()
                              .KeyIsPressedPickResult(
                                  SDLK_b))
                 {
@@ -52,8 +56,8 @@ namespace Forradia
 
             void UpdateMouseActions()
             {
-                if (_<Engine::Input::MouseInput::
-                          RightMouseButton>()
+                if (_<MouseInput>()
+                        .GetRightMouseButtonRef()
                         .HasBeenFiredPickResult())
                 {
                     _<GUIInteractionMenu>().BuildMenu();
@@ -70,36 +74,32 @@ namespace Forradia
             void UpdateKeyboardMovement()
             {
                 auto upPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_UP)};
+                    _<KeyboardInput>().KeyIsPressed(
+                        SDLK_UP)};
 
                 auto rightPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_RIGHT)};
+                    _<KeyboardInput>().KeyIsPressed(
+                        SDLK_RIGHT)};
 
                 auto downPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_DOWN)};
+                    _<KeyboardInput>().KeyIsPressed(
+                        SDLK_DOWN)};
 
                 auto leftPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_LEFT)};
+                    _<KeyboardInput>().KeyIsPressed(
+                        SDLK_LEFT)};
 
-                auto wPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_w)};
+                auto wPress{_<KeyboardInput>().KeyIsPressed(
+                    SDLK_w)};
 
-                auto aPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_a)};
+                auto aPress{_<KeyboardInput>().KeyIsPressed(
+                    SDLK_a)};
 
-                auto sPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_s)};
+                auto sPress{_<KeyboardInput>().KeyIsPressed(
+                    SDLK_s)};
 
-                auto dPress{
-                    _<Engine::Input::KeyboardInput>()
-                        .KeyIsPressed(SDLK_d)};
+                auto dPress{_<KeyboardInput>().KeyIsPressed(
+                    SDLK_d)};
 
                 if (upPress || rightPress || downPress ||
                     leftPress)
@@ -160,8 +160,8 @@ namespace Forradia
 
             void UpdateMouseMovement()
             {
-                if (_<Engine::Input::MouseInput::
-                          LeftMouseButton>()
+                if (_<MouseInput>()
+                        .GetLeftMouseButtonRef()
                         .HasBeenFiredPickResult())
                 {
                     auto newDestination{
@@ -534,7 +534,8 @@ namespace Forradia
                                    cameraPos.y - 2.0f,
                                    -cameraPos.z + 2.5f);
 
-                auto gridSize{_<Theme0Properties>().k_gridSize};
+                auto gridSize{
+                    _<Theme0Properties>().k_gridSize};
 
                 auto dir{glm::normalize(glm::unProject(
                     glm::vec3((mousePosition.x) *

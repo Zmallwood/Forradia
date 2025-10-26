@@ -16,6 +16,8 @@
 
 #include "SDLDevice.hpp"
 
+#include "Input/Mouse/MouseInput.hpp"
+
 namespace Forradia
 {
     SharedPtr<GUIComponent> GUIComponent::AddChildComponent(
@@ -134,8 +136,8 @@ namespace Forradia
             _<Cursor>().SetCursorStyle(
                 CursorStyles::HoveringClickableGUI);
 
-            if (_<Engine::Input::MouseInput::
-                      LeftMouseButton>()
+            if (_<MouseInput>()
+                    .GetLeftMouseButtonRef()
                     .HasBeenFiredPickResult())
             {
                 m_action();
@@ -171,15 +173,16 @@ namespace Forradia
             _<Cursor>().SetCursorStyle(
                 CursorStyles::HoveringClickableGUI);
 
-            if (_<Engine::Input::MouseInput::
-                      LeftMouseButton>()
+            if (_<MouseInput>()
+                    .GetLeftMouseButtonRef()
                     .HasBeenFiredPickResult())
             {
                 this->StartMove();
             }
         }
 
-        if (_<Engine::Input::MouseInput::LeftMouseButton>()
+        if (_<MouseInput>()
+                .GetLeftMouseButtonRef()
                 .HasBeenReleased())
         {
             this->StopMove();
@@ -189,12 +192,12 @@ namespace Forradia
 
         if (bounds.Contains(mousePosition))
         {
-            if (_<Engine::Input::MouseInput::
-                      LeftMouseButton>()
+            if (_<MouseInput>()
+                    .GetLeftMouseButtonRef()
                     .HasBeenFired())
             {
-                _<Engine::Input::MouseInput::
-                      LeftMouseButton>()
+                _<MouseInput>()
+                    .GetLeftMouseButtonRef()
                     .Reset();
             }
         }

@@ -18,6 +18,8 @@
 
 #include "WorldStruct.hpp"
 
+#include "Input/Mouse/MouseInput.hpp"
+
 namespace Forradia
 {
     namespace Theme0
@@ -44,8 +46,7 @@ namespace Forradia
         {
             GUIComponent::UpdateDerived();
 
-            _<Engine::Input::MouseInput::LeftMouseButton>()
-                .Reset();
+            _<MouseInput>().GetLeftMouseButtonRef().Reset();
         }
 
         void GUISystemMenu::RenderDerived() const
@@ -544,8 +545,8 @@ namespace Forradia
                               k_lineHeight * (i + 1),
                           bounds.width, k_lineHeight}};
 
-                if (_<Engine::Input::MouseInput::
-                          LeftMouseButton>()
+                if (_<MouseInput>()
+                        .GetLeftMouseButtonRef()
                         .HasBeenFired())
                 {
                     if (menuEntryRect.Contains(
@@ -559,8 +560,8 @@ namespace Forradia
 
                 ++i;
             }
-            if (_<Engine::Input::MouseInput::
-                      LeftMouseButton>()
+            if (_<MouseInput>()
+                    .GetLeftMouseButtonRef()
                     .HasBeenFiredPickResult())
             {
                 this->SetVisible(false);
