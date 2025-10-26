@@ -42,7 +42,7 @@ namespace Forradia
         LoadSingleTexture(SharedPtr<SDL_Surface> surface);
 
         inline static const String k_relativeImagesPath{
-            "./Resources/images/"};
+            "./Resources/Images/"};
 
         std::map<int, GLuint> m_textures;
 
