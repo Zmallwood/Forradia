@@ -10,8 +10,6 @@
 
 #include "Assets/Models/ModelBank.hpp"
 
-#include "Core.hpp"
-
 #include "SDLDevice.hpp"
 
 #include "Theme0Properties.hpp"

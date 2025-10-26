@@ -6,7 +6,7 @@
 
 #include "WorldView.hpp"
 
-#include "Core.hpp"
+#include "Engine.hpp"
 
 #include "Rendering.hpp"
 

@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-#include "Core.hpp"
+#include "Engine.hpp"
 
 #include "GLDevice.hpp"
 

@@ -6,7 +6,7 @@
 
 #include "GUI.hpp"
 
-#include "Core.hpp"
+#include "Engine.hpp"
 
 #include "MinorComponents/Cursor.hpp"
 

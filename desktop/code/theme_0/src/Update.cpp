@@ -6,8 +6,6 @@
 
 #include "Update.hpp"
 
-#include "Core.hpp"
-
 #include "GUISpec.hpp"
 
 #include "SDLDevice.hpp"
