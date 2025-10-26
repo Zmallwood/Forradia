@@ -363,21 +363,18 @@ namespace Forradia
                                             "part";
                                     }
 
-                                    _<RenderersCollection::
-                                          ModelRenderer>()
-                                        .DrawModel(
-                                            Hash(
-                                                trunkPartName),
-                                            trunkPartXCenter -
-                                                trunkPartWidth /
-                                                    2,
-                                            trunkPartYCenter -
-                                                trunkPartWidth /
-                                                    2,
-                                            elevationAverage -
-                                                trunkPartZ,
-                                            cameraPos,
-                                            elevHeight);
+                                    _<ModelRenderer>().DrawModel(
+                                        Hash(trunkPartName),
+                                        trunkPartXCenter -
+                                            trunkPartWidth /
+                                                2,
+                                        trunkPartYCenter -
+                                            trunkPartWidth /
+                                                2,
+                                        elevationAverage -
+                                            trunkPartZ,
+                                        cameraPos,
+                                        elevHeight);
 
                                     auto needleWidth{
                                         treeWidth};
@@ -387,36 +384,29 @@ namespace Forradia
 
                                     if (needleType)
                                     {
-                                        _<RenderersCollection::
-                                              ModelRenderer>()
-                                            .DrawModel(
-                                                needleType,
-                                                trunkPartXCenter,
-                                                trunkPartYCenter,
-                                                elevationAverage -
-                                                    trunkPartZ -
-                                                    needleHeight /
-                                                        2,
-                                                cameraPos,
-                                                elevHeight);
+                                        _<ModelRenderer>().DrawModel(
+                                            needleType,
+                                            trunkPartXCenter,
+                                            trunkPartYCenter,
+                                            elevationAverage -
+                                                trunkPartZ -
+                                                needleHeight /
+                                                    2,
+                                            cameraPos,
+                                            elevHeight);
                                     }
                                 }
                             }
                             else
                             {
-                                _<RenderersCollection::
-                                      ModelRenderer>()
-                                    .DrawModel(
-                                        objectType,
-                                        (xCoordinate)*rendTileSize -
-                                            rendTileSize /
-                                                2,
-                                        (yCoordinate)*rendTileSize -
-                                            rendTileSize /
-                                                2,
-                                        elevationMax,
-                                        cameraPos,
-                                        elevHeight);
+                                _<ModelRenderer>().DrawModel(
+                                    objectType,
+                                    (xCoordinate)*rendTileSize -
+                                        rendTileSize / 2,
+                                    (yCoordinate)*rendTileSize -
+                                        rendTileSize / 2,
+                                    elevationMax, cameraPos,
+                                    elevHeight);
                             }
                         }
 
@@ -430,16 +420,14 @@ namespace Forradia
                             creatureType = Hash(
                                 "creature_white_rabbit");
 
-                            _<RenderersCollection::
-                                  ModelRenderer>()
-                                .DrawModel(
-                                    creatureType,
-                                    (xCoordinate)*rendTileSize -
-                                        rendTileSize / 2,
-                                    (yCoordinate)*rendTileSize -
-                                        rendTileSize / 2,
-                                    elevationMax, cameraPos,
-                                    elevHeight);
+                            _<ModelRenderer>().DrawModel(
+                                creatureType,
+                                (xCoordinate)*rendTileSize -
+                                    rendTileSize / 2,
+                                (yCoordinate)*rendTileSize -
+                                    rendTileSize / 2,
+                                elevationMax, cameraPos,
+                                elevHeight);
                         }
 
                         if (xCoordinate + 1 ==
@@ -449,25 +437,21 @@ namespace Forradia
                                 worldAreaSize.height -
                                     playerPos.y)
                         {
-                            _<RenderersCollection::
-                                  ModelRenderer>()
-                                .DrawModel(
-                                    Hash("player"),
-                                    (xCoordinate)*rendTileSize -
-                                        rendTileSize / 2,
-                                    (yCoordinate)*rendTileSize -
-                                        rendTileSize / 2,
-                                    elevationMax, cameraPos,
-                                    elevHeight);
+                            _<ModelRenderer>().DrawModel(
+                                Hash("player"),
+                                (xCoordinate)*rendTileSize -
+                                    rendTileSize / 2,
+                                (yCoordinate)*rendTileSize -
+                                    rendTileSize / 2,
+                                elevationMax, cameraPos,
+                                elevHeight);
                         }
 
-                        _<RenderersCollection::
-                              GroundRenderer>()
-                            .DrawTile(ground, xCoordinate,
-                                      yCoordinate,
-                                      rendTileSize,
-                                      cameraPos, elevations,
-                                      elevHeight);
+                        _<GroundRenderer>().DrawTile(
+                            ground, xCoordinate,
+                            yCoordinate, rendTileSize,
+                            cameraPos, elevations,
+                            elevHeight);
 
                         if (xCoordinate ==
                                 worldAreaSize.width -
@@ -482,14 +466,11 @@ namespace Forradia
                                 elevation += 0.01f;
                             }
 
-                            _<RenderersCollection::
-                                  GroundRenderer>()
-                                .DrawTile(
-                                    Hash("hovered_tile"),
-                                    xCoordinate,
-                                    yCoordinate,
-                                    rendTileSize, cameraPos,
-                                    elevations, elevHeight);
+                            _<GroundRenderer>().DrawTile(
+                                Hash("hovered_tile"),
+                                xCoordinate, yCoordinate,
+                                rendTileSize, cameraPos,
+                                elevations, elevHeight);
                         }
                     }
                 }

@@ -18,7 +18,7 @@
 
 namespace Forradia
 {
-    void RenderersCollection::ShaderProgram::Initialize(
+    void ShaderProgram::Initialize(
         StringView vertexShaderSource,
         StringView fragmentShaderSource)
     {
@@ -129,12 +129,12 @@ namespace Forradia
         glDeleteShader(fragmentShader);
     }
 
-    void RenderersCollection::ShaderProgram::Cleanup()
+    void ShaderProgram::Cleanup()
     {
         glDeleteProgram(m_programID);
     }
 
-    void RenderersCollection::Image2DRenderer::Initialize()
+    void Image2DRenderer::Initialize()
     {
         String vertexShaderSource{R"(
       #version 330 core
@@ -174,7 +174,7 @@ namespace Forradia
             vertexShaderSource, fragmentShaderSource);
     }
 
-    void RenderersCollection::Image2DRenderer::Cleanup()
+    void Image2DRenderer::Cleanup()
     {
         for (auto &entry : m_operationsMemory)
         {
@@ -195,9 +195,10 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void RenderersCollection::Image2DRenderer::DrawImage(
-        int imageNameHash, float x, float y, float width,
-        float height)
+    void Image2DRenderer::DrawImage(int imageNameHash,
+                                    float x, float y,
+                                    float width,
+                                    float height)
     {
         auto textureID{
             _<ImageBank>().GetTexture(imageNameHash)};
@@ -206,7 +207,7 @@ namespace Forradia
                                      height, true);
     }
 
-    void RenderersCollection::Image2DRenderer::DrawTexture(
+    void Image2DRenderer::DrawTexture(
         GLuint textureID, float x, float y, float width,
         float height, bool useOperationsMemory)
     {
@@ -381,9 +382,8 @@ namespace Forradia
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    void RenderersCollection::Image2DRenderer::
-        DrawImageAutoHeight(StringView imageName, float x,
-                            float y, float width)
+    void Image2DRenderer::DrawImageAutoHeight(
+        StringView imageName, float x, float y, float width)
     {
         auto hash{Forradia::Hash(imageName)};
 
@@ -406,15 +406,16 @@ namespace Forradia
         DrawImage(hash, x, y, width, height);
     }
 
-    void RenderersCollection::Image2DRenderer::DrawImage(
-        StringView imageName, float x, float y, float width,
-        float height)
+    void Image2DRenderer::DrawImage(StringView imageName,
+                                    float x, float y,
+                                    float width,
+                                    float height)
     {
         this->DrawImage(Hash(imageName), x, y, width,
                         height);
     }
 
-    void RenderersCollection::GroundRenderer::Initialize()
+    void GroundRenderer::Initialize()
     {
         String vertexShaderSource{R"(
       #version 330 core
@@ -468,7 +469,7 @@ namespace Forradia
             vertexShaderSource, fragmentShaderSource);
     }
 
-    void RenderersCollection::GroundRenderer::Cleanup()
+    void GroundRenderer::Cleanup()
     {
         for (auto &entry : m_operationsMemory)
         {
@@ -489,7 +490,7 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void RenderersCollection::GroundRenderer::DrawTile(
+    void GroundRenderer::DrawTile(
         int imageNameHash, int xCoordinate, int yCoordinate,
         float tileSize, Point3F cameraPosition,
         Vector<float> &elevations, float elevationHeight)
@@ -583,9 +584,10 @@ namespace Forradia
                                     cameraPosition);
     }
 
-    void RenderersCollection::GroundRenderer::DrawTexture(
-        GLuint textureID, Vector<float> &verticesVec,
-        Point3F cameraPosition)
+    void
+    GroundRenderer::DrawTexture(GLuint textureID,
+                                Vector<float> &verticesVec,
+                                Point3F cameraPosition)
     {
         glEnable(GL_DEPTH_TEST);
 
@@ -900,9 +902,9 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    glm::vec3
-    RenderersCollection::GroundRenderer::ComputeNormal(
-        glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
+    glm::vec3 GroundRenderer::ComputeNormal(glm::vec3 p1,
+                                            glm::vec3 p2,
+                                            glm::vec3 p3)
     {
         // Uses p2 as a new origin for p1, p3.
 
@@ -916,7 +918,7 @@ namespace Forradia
         return glm::normalize(glm::cross(a, b));
     }
 
-    void RenderersCollection::ModelRenderer::Initialize()
+    void ModelRenderer::Initialize()
     {
         String vertexShaderSource{R"(
       #version 330 core
@@ -991,7 +993,7 @@ namespace Forradia
             vertexShaderSource, fragmentShaderSource);
     }
 
-    void RenderersCollection::ModelRenderer::Cleanup()
+    void ModelRenderer::Cleanup()
     {
         for (auto &entry : m_operationsMemory)
         {
@@ -1017,10 +1019,11 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void RenderersCollection::ModelRenderer::DrawModel(
-        int modelNameHash, float x, float y,
-        float elevation, Point3F cameraPosition,
-        float elevationHeight)
+    void ModelRenderer::DrawModel(int modelNameHash,
+                                  float x, float y,
+                                  float elevation,
+                                  Point3F cameraPosition,
+                                  float elevationHeight)
     {
         x += _<Theme0::Theme0Properties>().k_tileSize *
              4.0f / 2.0f;
@@ -1310,14 +1313,14 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    void RenderersCollection::TextRenderer::Initialize()
+    void TextRenderer::Initialize()
     {
         TTF_Init();
 
         this->AddFonts();
     }
 
-    void RenderersCollection::TextRenderer::AddFonts()
+    void TextRenderer::AddFonts()
     {
         auto absFontPath{String(SDL_GetBasePath()) +
                          k_defaultFontPath.data()};
@@ -1346,10 +1349,11 @@ namespace Forradia
         }
     }
 
-    void RenderersCollection::TextRenderer::DrawString(
-        StringView text, float x, float y,
-        FontSizes fontSize, bool centerAlign,
-        Color textColor) const
+    void TextRenderer::DrawString(StringView text, float x,
+                                  float y,
+                                  FontSizes fontSize,
+                                  bool centerAlign,
+                                  Color textColor) const
     {
         if (text.empty())
         {

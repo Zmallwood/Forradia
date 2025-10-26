@@ -8,247 +8,234 @@
 
 namespace Forradia
 {
-    class RenderersCollection
+    class ShaderProgram
     {
       public:
-        class ShaderProgram
+        ShaderProgram(StringView vertexShaderSource,
+                      StringView fragmentShaderSource)
         {
-          public:
-            ShaderProgram(StringView vertexShaderSource,
-                          StringView fragmentShaderSource)
-            {
-                Initialize(vertexShaderSource,
-                           fragmentShaderSource);
-            }
+            Initialize(vertexShaderSource,
+                       fragmentShaderSource);
+        }
 
-            ~ShaderProgram()
-            {
-                Cleanup();
-            }
+        ~ShaderProgram()
+        {
+            Cleanup();
+        }
 
-            auto GetProgramID() const
-            {
-                return m_programID;
-            }
+        auto GetProgramID() const
+        {
+            return m_programID;
+        }
 
-          private:
-            void
-            Initialize(StringView vertexShaderSource,
-                       StringView fragmentShaderSource);
+      private:
+        void Initialize(StringView vertexShaderSource,
+                        StringView fragmentShaderSource);
 
-            void Cleanup();
+        void Cleanup();
 
-            GLuint m_programID;
+        GLuint m_programID;
+    };
+
+    class Image2DRenderer
+    {
+      public:
+        Image2DRenderer()
+        {
+            Initialize();
         };
 
-        class Image2DRenderer
+        ~Image2DRenderer()
+        {
+            Cleanup();
+        }
+
+        void DrawImage(StringView imageName, float x,
+                       float y, float width, float height);
+
+        void DrawImage(int imageNameHash, float x, float y,
+                       float width, float height);
+
+        void DrawTexture(GLuint textureID, float x, float y,
+                         float width, float height,
+                         bool useOperationsMemory = false);
+
+        void DrawImageAutoHeight(StringView imageName,
+                                 float x, float y,
+                                 float width);
+
+      private:
+        void Initialize();
+
+        void Cleanup();
+
+        class Image2DRenderingOperation
         {
           public:
-            Image2DRenderer()
-            {
-                Initialize();
-            };
+            float x;
 
-            ~Image2DRenderer()
-            {
-                Cleanup();
-            }
+            float y;
 
-            void DrawImage(StringView imageName, float x,
-                           float y, float width,
-                           float height);
+            float width;
 
-            void DrawImage(int imageNameHash, float x,
-                           float y, float width,
-                           float height);
+            float height;
 
-            void
-            DrawTexture(GLuint textureID, float x, float y,
-                        float width, float height,
-                        bool useOperationsMemory = false);
+            GLuint vao;
 
-            void DrawImageAutoHeight(StringView imageName,
-                                     float x, float y,
-                                     float width);
+            GLuint ibo;
 
-          private:
-            void Initialize();
+            GLuint vbo;
+        };
 
-            void Cleanup();
+        SharedPtr<ShaderProgram> m_shaderProgram;
+        std::map<
+            float,
+            std::map<float,
+                     std::map<GLuint,
+                              Image2DRenderingOperation>>>
+            m_operationsMemory;
+    };
 
-            class Image2DRenderingOperation
-            {
-              public:
-                float x;
+    class GroundRenderer
+    {
+      public:
+        GroundRenderer()
+        {
+            Initialize();
+        };
 
-                float y;
+        ~GroundRenderer()
+        {
+            Cleanup();
+        }
 
-                float width;
+        void DrawTile(int imageNameHash, int xCoordinate,
+                      int yCoordinate, float tileSize,
+                      Point3F cameraPosition,
+                      Vector<float> &elevations,
+                      float elevationHeight);
 
-                float height;
+        void DrawTexture(GLuint textureID,
+                         Vector<float> &vertices,
+                         Point3F cameraPosition);
 
-                GLuint vao;
+      private:
+        void Initialize();
 
-                GLuint ibo;
+        void Cleanup();
 
-                GLuint vbo;
-            };
+        class GroundRenderingOperation
+        {
+          public:
+            float x;
 
-            SharedPtr<ShaderProgram> m_shaderProgram;
+            float y;
+
+            GLuint vao;
+
+            GLuint ibo;
+
+            GLuint vbo;
+        };
+
+        glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2,
+                                glm::vec3 p3);
+
+        SharedPtr<ShaderProgram> m_shaderProgram;
+
+        std::map<
+            float,
+            std::map<
+                float,
+                std::map<GLuint, GroundRenderingOperation>>>
+            m_operationsMemory;
+    };
+
+    class ModelRenderer
+    {
+      public:
+        ModelRenderer()
+        {
+            Initialize();
+        }
+
+        ~ModelRenderer()
+        {
+            Cleanup();
+        }
+
+        void DrawModel(int modelNameHash, float x, float y,
+                       float elevations,
+                       Point3F cameraPosition,
+                       float elevationHeight);
+
+      private:
+        void Initialize();
+
+        void Cleanup();
+
+        class ModelRenderingOperation
+        {
+          public:
+            float x;
+
+            float y;
+
+            float z;
+
+            int verticesCount;
+
+            GLuint vao;
+
+            GLuint ibo;
+
+            GLuint vbo;
+        };
+
+        SharedPtr<ShaderProgram> m_shaderProgram;
+
+        std::map<
+            float,
             std::map<
                 float,
                 std::map<
                     float,
-                    std::map<GLuint,
-                             Image2DRenderingOperation>>>
-                m_operationsMemory;
-        };
+                    std::map<int,
+                             ModelRenderingOperation>>>>
+            m_operationsMemory;
 
-        class GroundRenderer
+        static constexpr float k_modelScale{0.25f};
+    };
+
+    enum struct FontSizes
+    {
+        _20 = 20,
+        _26 = 26
+    };
+
+    class TextRenderer
+    {
+      public:
+        TextRenderer()
         {
-          public:
-            GroundRenderer()
-            {
-                Initialize();
-            };
+            Initialize();
+        }
 
-            ~GroundRenderer()
-            {
-                Cleanup();
-            }
+        void
+        DrawString(StringView text, float x, float y,
+                   FontSizes fontSizes = FontSizes::_20,
+                   bool centerAlign = false,
+                   Color textColor =
+                       Colors::WheatTransparent) const;
 
-            void DrawTile(int imageNameHash,
-                          int xCoordinate, int yCoordinate,
-                          float tileSize,
-                          Point3F cameraPosition,
-                          Vector<float> &elevations,
-                          float elevationHeight);
+      private:
+        void Initialize();
 
-            void DrawTexture(GLuint textureID,
-                             Vector<float> &vertices,
-                             Point3F cameraPosition);
+        void AddFonts();
 
-          private:
-            void Initialize();
+        const String k_defaultFontPath{
+            "./Resources/Fonts/PixeloidSans.ttf"};
 
-            void Cleanup();
-
-            class GroundRenderingOperation
-            {
-              public:
-                float x;
-
-                float y;
-
-                GLuint vao;
-
-                GLuint ibo;
-
-                GLuint vbo;
-            };
-
-            glm::vec3 ComputeNormal(glm::vec3 p1,
-                                    glm::vec3 p2,
-                                    glm::vec3 p3);
-
-            SharedPtr<ShaderProgram> m_shaderProgram;
-
-            std::map<
-                float,
-                std::map<
-                    float,
-                    std::map<GLuint,
-                             GroundRenderingOperation>>>
-                m_operationsMemory;
-        };
-
-        class ModelRenderer
-        {
-          public:
-            ModelRenderer()
-            {
-                Initialize();
-            }
-
-            ~ModelRenderer()
-            {
-                Cleanup();
-            }
-
-            void DrawModel(int modelNameHash, float x,
-                           float y, float elevations,
-                           Point3F cameraPosition,
-                           float elevationHeight);
-
-          private:
-            void Initialize();
-
-            void Cleanup();
-
-            class ModelRenderingOperation
-            {
-              public:
-                float x;
-
-                float y;
-
-                float z;
-
-                int verticesCount;
-
-                GLuint vao;
-
-                GLuint ibo;
-
-                GLuint vbo;
-            };
-
-            SharedPtr<ShaderProgram> m_shaderProgram;
-
-            std::map<
-                float,
-                std::map<
-                    float,
-                    std::map<
-                        float,
-                        std::map<int,
-                                 ModelRenderingOperation>>>>
-                m_operationsMemory;
-
-            static constexpr float k_modelScale{0.25f};
-        };
-
-        enum struct FontSizes
-        {
-            _20 = 20,
-            _26 = 26
-        };
-
-        class TextRenderer
-        {
-          public:
-            TextRenderer()
-            {
-                Initialize();
-            }
-
-            void
-            DrawString(StringView text, float x, float y,
-                       FontSizes fontSizes = FontSizes::_20,
-                       bool centerAlign = false,
-                       Color textColor =
-                           Colors::WheatTransparent) const;
-
-          private:
-            void Initialize();
-
-            void AddFonts();
-
-            const String k_defaultFontPath{
-                "./Resources/Fonts/PixeloidSans.ttf"};
-
-            std::map<FontSizes, SharedPtr<TTF_Font>>
-                m_fonts;
-        };
+        std::map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
     };
 }

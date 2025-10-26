@@ -170,12 +170,10 @@ namespace Forradia
                      &MouseInput::
                          AnyMouseButtonIsPressedPickResult);
 
-            py::class_<
-                RenderersCollection::Image2DRenderer>(
-                m, "Image2DRenderer")
+            py::class_<Image2DRenderer>(m,
+                                        "Image2DRenderer")
                 .def("draw_img",
-                     [](RenderersCollection::Image2DRenderer
-                            &self,
+                     [](Image2DRenderer &self,
                         StringView image_name, float x,
                         float y, float w, float h)
                      {
@@ -183,8 +181,7 @@ namespace Forradia
                                         h);
                      })
                 .def("draw_img",
-                     [](RenderersCollection::Image2DRenderer
-                            &self,
+                     [](Image2DRenderer &self,
                         int image_name_hash, float x,
                         float y, float w, float h)
                      {
@@ -192,8 +189,7 @@ namespace Forradia
                                         y, w, h);
                      })
                 .def("draw_img_auto_h",
-                     [](RenderersCollection::Image2DRenderer
-                            &self,
+                     [](Image2DRenderer &self,
                         StringView img_name, float x,
                         float y, float w)
                      {
@@ -343,13 +339,8 @@ namespace Forradia
                 py::return_value_policy::reference);
 
             m.def(
-                "get_img_2d_rend",
-                []() -> RenderersCollection::Image2DRenderer
-                         &
-                {
-                    return _<RenderersCollection::
-                                 Image2DRenderer>();
-                },
+                "get_img_2d_rend", []() -> Image2DRenderer &
+                { return _<Image2DRenderer>(); },
                 py::return_value_policy::reference);
 
             m.def(

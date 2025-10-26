@@ -52,9 +52,9 @@ namespace Forradia
 
         auto bounds{this->GetBounds()};
 
-        _<RenderersCollection::TextRenderer>().DrawString(
+        _<TextRenderer>().DrawString(
             m_text, bounds.x + bounds.width / 2,
-            bounds.y + bounds.height / 2,
-            RenderersCollection::FontSizes::_20, true);
+            bounds.y + bounds.height / 2, FontSizes::_20,
+            true);
     }
 }

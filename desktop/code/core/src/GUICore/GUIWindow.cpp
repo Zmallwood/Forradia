@@ -35,11 +35,10 @@ namespace Forradia
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-        _<RenderersCollection::TextRenderer>().DrawString(
+        _<TextRenderer>().DrawString(
             k_windowTitle, parentWindowBounds.x + 0.01f,
-            parentWindowBounds.y + 0.01f,
-            RenderersCollection::FontSizes::_20, false,
-            Colors::Yellow);
+            parentWindowBounds.y + 0.01f, FontSizes::_20,
+            false, Colors::Yellow);
     }
 
     RectF GUIWindow::GUIWindowTitleBar::GetBounds() const

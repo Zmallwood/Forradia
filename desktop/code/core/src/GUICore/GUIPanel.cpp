@@ -14,7 +14,7 @@ namespace Forradia
     {
         auto bounds{this->GetBounds()};
 
-        _<RenderersCollection::Image2DRenderer>().DrawImage(
+        _<Image2DRenderer>().DrawImage(
             m_backgroundImage, bounds.x, bounds.y,
             bounds.width, bounds.height);
     }
