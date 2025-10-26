@@ -15,18 +15,18 @@ target_include_directories(ForradiaCommonMatter PRIVATE
 target_precompile_headers(ForradiaCommonMatter PUBLIC code/common_matter/src/StdAfx.hpp)
 
 # ForradiaCommon
-file(GLOB_RECURSE COMMON_SOURCES "code/common/src/*.cpp")
-add_library(ForradiaCommon ${COMMON_SOURCES})
+file(GLOB_RECURSE COMMON_SOURCES "code/common_general/src/*.cpp")
+add_library(ForradiaCommonGeneral ${COMMON_SOURCES})
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
-target_include_directories(ForradiaCommon PRIVATE
+target_include_directories(ForradiaCommonGeneral PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
 )
-target_link_libraries(ForradiaCommon PRIVATE ${PYTHON_LIBRARIES})
-target_link_libraries(ForradiaCommon PRIVATE ForradiaCommonMatter SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
-target_precompile_headers(ForradiaCommon PUBLIC code/common/src/StdAfx.hpp)
+target_link_libraries(ForradiaCommonGeneral PRIVATE ${PYTHON_LIBRARIES})
+target_link_libraries(ForradiaCommonGeneral PRIVATE ForradiaCommonMatter SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
+target_precompile_headers(ForradiaCommonGeneral PUBLIC code/common_general/src/StdAfx.hpp)
 
 # ForradiaCommonUtilities
 file(GLOB_RECURSE COMMON_SOURCES "code/common_utilities/src/*.cpp")
@@ -44,11 +44,11 @@ add_library(ForradiaCoreGrahicsDevices ${CORE_SOURCES})
 target_include_directories(ForradiaCoreGrahicsDevices PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/core_graphics_devices/src"
     "code/common_utilities/src"
 )
-target_link_libraries(ForradiaCoreGrahicsDevices ForradiaCommon assimp)
+target_link_libraries(ForradiaCoreGrahicsDevices ForradiaCommonGeneral assimp)
 target_precompile_headers(ForradiaCoreGrahicsDevices PUBLIC code/core_graphics_devices/src/StdAfx.hpp)
 
 # ForradiaCore
@@ -57,14 +57,14 @@ add_library(ForradiaCore ${CORE_SOURCES})
 target_include_directories(ForradiaCore PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/core/src"
     "code/core_graphics_devices/src"
     "code/theme_0_properties/src"
     "code/common_utilities/src"
 )
 target_link_libraries(ForradiaCore
-    ForradiaCommon
+    ForradiaCommonGeneral
     ForradiaCoreGrahicsDevices
     assimp
 )
@@ -76,10 +76,10 @@ add_library(ForradiaTheme0WorldStruct ${WORLD_STRUCT_SOURCES})
 target_include_directories(ForradiaTheme0WorldStruct PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/common_utilities/src"
 )
-target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommon)
+target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommonGeneral)
 target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/theme_0_world_struct/src/StdAfx.hpp)
 
 # ForradiaTheme0WorldGen
@@ -88,7 +88,7 @@ add_library(ForradiaTheme0WorldGen ${WORLD_GEN_SOURCES})
 target_include_directories(ForradiaTheme0WorldGen PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/theme_0_world_struct/src"
     "code/theme_0_properties/src"
     "code/common_utilities/src"
@@ -102,7 +102,7 @@ add_library(ForradiaTheme0Essentials ${THEME_0_ESSENTIALS_SOURCES})
 target_include_directories(ForradiaTheme0Essentials PRIVATE
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/core/src"
     "code/theme_0_world_struct/src"
     "code/theme_0_properties/src"
@@ -123,7 +123,7 @@ target_include_directories(Forradia PRIVATE
     "code/theme_0/src"
     "code/common_lang/src"
     "code/common_matter/src"
-    "code/common/src"
+    "code/common_general/src"
     "code/core/src"
     "code/theme_0_world_struct/src"
     "code/theme_0_properties/src"
@@ -134,7 +134,7 @@ target_include_directories(Forradia PRIVATE
     "code/common_utilities/src"
 )
 target_link_libraries(Forradia PRIVATE
-    ForradiaCommon
+    ForradiaCommonGeneral
     ForradiaCore
     ForradiaTheme0WorldStruct
     ForradiaTheme0WorldGen
