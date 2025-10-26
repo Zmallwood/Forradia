@@ -10,9 +10,12 @@
 
 namespace Forradia
 {
+    ///
+    /// A texture, primarily used for models.
+    ///
     class Texture
     {
       public:
-        String path;
+        String path; ///< The path to the texture.
     };
 }
