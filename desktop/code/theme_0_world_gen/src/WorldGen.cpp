@@ -733,7 +733,7 @@ namespace Forradia
 
         void WorldGenerator::GenerateObjects() const
         {
-            auto numFirTrees{1000 * m_scale +
+            auto numFirTrees{2000 * m_scale +
                              GetRandomInt(50)};
 
             for (auto i = 0; i < numFirTrees; i++)
@@ -757,7 +757,7 @@ namespace Forradia
                 }
             }
 
-            auto numBirchTrees{1000 * m_scale +
+            auto numBirchTrees{2000 * m_scale +
                                GetRandomInt(50)};
 
             for (auto i = 0; i < numBirchTrees; i++)

@@ -69,12 +69,12 @@ namespace Forradia
 
             if (objectTypeName == "object_fir_tree")
             {
-                numTrunkParts = 25 + GetRandomInt(44);
+                numTrunkParts = 45 + GetRandomInt(44);
             }
 
             else if (objectTypeName == "object_birch_tree")
             {
-                numTrunkParts = 25 + GetRandomInt(14);
+                numTrunkParts = 45 + GetRandomInt(14);
             }
 
             m_widthFactor *=
@@ -84,7 +84,7 @@ namespace Forradia
 
             for (auto i = 0; i < numTrunkParts; i++)
             {
-                offsetX += (GetRandomInt(20) - 10) / 100.0f;
+                offsetX += (GetRandomInt(40) - 20) / 100.0f;
 
                 auto offsetY{i * 1.0f};
 
