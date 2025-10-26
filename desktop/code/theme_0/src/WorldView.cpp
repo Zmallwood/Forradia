@@ -6,8 +6,6 @@
 
 #include "WorldView.hpp"
 
-#include "Engine.hpp"
-
 #include "Rendering.hpp"
 
 #include "Theme0Essentials.hpp"
@@ -365,7 +363,7 @@ namespace Forradia
                                             "part";
                                     }
 
-                                    _<Engine::Renderers::
+                                    _<RenderersCollection::
                                           ModelRenderer>()
                                         .DrawModel(
                                             Hash(
@@ -389,7 +387,7 @@ namespace Forradia
 
                                     if (needleType)
                                     {
-                                        _<Engine::Renderers::
+                                        _<RenderersCollection::
                                               ModelRenderer>()
                                             .DrawModel(
                                                 needleType,
@@ -406,7 +404,7 @@ namespace Forradia
                             }
                             else
                             {
-                                _<Engine::Renderers::
+                                _<RenderersCollection::
                                       ModelRenderer>()
                                     .DrawModel(
                                         objectType,
@@ -432,7 +430,7 @@ namespace Forradia
                             creatureType = Hash(
                                 "creature_white_rabbit");
 
-                            _<Engine::Renderers::
+                            _<RenderersCollection::
                                   ModelRenderer>()
                                 .DrawModel(
                                     creatureType,
@@ -451,7 +449,7 @@ namespace Forradia
                                 worldAreaSize.height -
                                     playerPos.y)
                         {
-                            _<Engine::Renderers::
+                            _<RenderersCollection::
                                   ModelRenderer>()
                                 .DrawModel(
                                     Hash("player"),
@@ -463,7 +461,7 @@ namespace Forradia
                                     elevHeight);
                         }
 
-                        _<Engine::Renderers::
+                        _<RenderersCollection::
                               GroundRenderer>()
                             .DrawTile(ground, xCoordinate,
                                       yCoordinate,
@@ -484,7 +482,7 @@ namespace Forradia
                                 elevation += 0.01f;
                             }
 
-                            _<Engine::Renderers::
+                            _<RenderersCollection::
                                   GroundRenderer>()
                                 .DrawTile(
                                     Hash("hovered_tile"),

@@ -170,10 +170,11 @@ namespace Forradia
                      &MouseInput::
                          AnyMouseButtonIsPressedPickResult);
 
-            py::class_<Engine::Renderers::Image2DRenderer>(
+            py::class_<
+                RenderersCollection::Image2DRenderer>(
                 m, "Image2DRenderer")
                 .def("draw_img",
-                     [](Engine::Renderers::Image2DRenderer
+                     [](RenderersCollection::Image2DRenderer
                             &self,
                         StringView image_name, float x,
                         float y, float w, float h)
@@ -182,7 +183,7 @@ namespace Forradia
                                         h);
                      })
                 .def("draw_img",
-                     [](Engine::Renderers::Image2DRenderer
+                     [](RenderersCollection::Image2DRenderer
                             &self,
                         int image_name_hash, float x,
                         float y, float w, float h)
@@ -191,7 +192,7 @@ namespace Forradia
                                         y, w, h);
                      })
                 .def("draw_img_auto_h",
-                     [](Engine::Renderers::Image2DRenderer
+                     [](RenderersCollection::Image2DRenderer
                             &self,
                         StringView img_name, float x,
                         float y, float w)
@@ -343,9 +344,10 @@ namespace Forradia
 
             m.def(
                 "get_img_2d_rend",
-                []() -> Engine::Renderers::Image2DRenderer &
+                []() -> RenderersCollection::Image2DRenderer
+                         &
                 {
-                    return _<Engine::Renderers::
+                    return _<RenderersCollection::
                                  Image2DRenderer>();
                 },
                 py::return_value_policy::reference);

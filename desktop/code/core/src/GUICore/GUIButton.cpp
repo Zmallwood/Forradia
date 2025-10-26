@@ -12,7 +12,7 @@
 
 #include "Input/Mouse/MouseInput.hpp"
 
-#include "Engine.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -52,9 +52,9 @@ namespace Forradia
 
         auto bounds{this->GetBounds()};
 
-        _<Engine::Renderers::TextRenderer>().DrawString(
+        _<RenderersCollection::TextRenderer>().DrawString(
             m_text, bounds.x + bounds.width / 2,
             bounds.y + bounds.height / 2,
-            Engine::Renderers::FontSizes::_20, true);
+            RenderersCollection::FontSizes::_20, true);
     }
 }

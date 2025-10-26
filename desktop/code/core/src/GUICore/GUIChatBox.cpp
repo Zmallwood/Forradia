@@ -6,7 +6,7 @@
 
 #include "GUIChatBox.hpp"
 
-#include "Engine.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -32,8 +32,9 @@ namespace Forradia
 
             auto textLine = m_lines.at(index);
 
-            _<Engine::Renderers::TextRenderer>().DrawString(
-                textLine, bounds.x + k_margin, y);
+            _<RenderersCollection::TextRenderer>()
+                .DrawString(textLine, bounds.x + k_margin,
+                            y);
 
             y += k_lineHeight;
         }
@@ -43,7 +44,7 @@ namespace Forradia
                   bounds.y + bounds.height - k_lineHeight,
                   bounds.width, k_separatorHeight}};
 
-        _<Engine::Renderers::Image2DRenderer>().DrawImage(
+        _<RenderersCollection::Image2DRenderer>().DrawImage(
             "black", separatorRect.x, separatorRect.y,
             separatorRect.width, separatorRect.height);
     }

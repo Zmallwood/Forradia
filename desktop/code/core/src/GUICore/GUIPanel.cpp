@@ -6,7 +6,7 @@
 
 #include "GUIPanel.hpp"
 
-#include "Engine.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -14,7 +14,7 @@ namespace Forradia
     {
         auto bounds{this->GetBounds()};
 
-        _<Engine::Renderers::Image2DRenderer>().DrawImage(
+        _<RenderersCollection::Image2DRenderer>().DrawImage(
             m_backgroundImage, bounds.x, bounds.y,
             bounds.width, bounds.height);
     }

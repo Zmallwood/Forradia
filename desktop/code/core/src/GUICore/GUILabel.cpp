@@ -6,7 +6,7 @@
 
 #include "GUILabel.hpp"
 
-#include "Engine.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -25,9 +25,9 @@ namespace Forradia
             bounds.y += bounds.height / 2;
         }
 
-        _<Engine::Renderers::TextRenderer>().DrawString(
+        _<RenderersCollection::TextRenderer>().DrawString(
             m_text, bounds.x, bounds.y,
-            Engine::Renderers::FontSizes::_20,
+            RenderersCollection::FontSizes::_20,
             m_centerAlign, m_color);
     }
 }

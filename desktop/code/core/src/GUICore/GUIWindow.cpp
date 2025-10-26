@@ -10,7 +10,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Engine.hpp"
+#include "Rendering.hpp"
 
 namespace Forradia
 {
@@ -35,10 +35,10 @@ namespace Forradia
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-        _<Engine::Renderers::TextRenderer>().DrawString(
+        _<RenderersCollection::TextRenderer>().DrawString(
             k_windowTitle, parentWindowBounds.x + 0.01f,
             parentWindowBounds.y + 0.01f,
-            Engine::Renderers::FontSizes::_20, false,
+            RenderersCollection::FontSizes::_20, false,
             Colors::Yellow);
     }
 

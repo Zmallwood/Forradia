@@ -6,8 +6,6 @@
 
 #include "GUISpec.hpp"
 
-#include "Engine.hpp"
-
 #include "Rendering.hpp"
 
 #include "SDLDevice.hpp"
@@ -36,11 +34,13 @@ namespace Forradia
 
             auto bounds{this->GetBounds()};
 
-            _<Engine::Renderers::TextRenderer>().DrawString(
-                _<Theme0::GameplayCore::PlayerCharacter>()
-                    .GetName(),
-                bounds.x + 0.01f, bounds.y + 0.01f,
-                Engine::Renderers::FontSizes::_26);
+            _<RenderersCollection::TextRenderer>()
+                .DrawString(
+                    _<Theme0::GameplayCore::
+                          PlayerCharacter>()
+                        .GetName(),
+                    bounds.x + 0.01f, bounds.y + 0.01f,
+                    RenderersCollection::FontSizes::_26);
         }
 
         void GUISystemMenu::Initialize()
@@ -110,7 +110,8 @@ namespace Forradia
             {
                 for (auto x = 0; x < numColumns; x++)
                 {
-                    _<Engine::Renderers::Image2DRenderer>()
+                    _<RenderersCollection::
+                          Image2DRenderer>()
                         .DrawImage(
                             k_slotImageName,
                             xStart +
@@ -580,23 +581,25 @@ namespace Forradia
 
             auto bounds{this->GetBounds()};
 
-            _<Engine::Renderers::TextRenderer>().DrawString(
-                "Actions", bounds.x + 0.01f,
-                bounds.y + 0.01f,
-                Engine::Renderers::FontSizes::_20, false,
-                Colors::YellowTransparent);
+            _<RenderersCollection::TextRenderer>()
+                .DrawString(
+                    "Actions", bounds.x + 0.01f,
+                    bounds.y + 0.01f,
+                    RenderersCollection::FontSizes::_20,
+                    false, Colors::YellowTransparent);
 
             auto i{0};
 
             for (auto &entry : m_entries)
             {
-                _<Engine::Renderers::TextRenderer>()
-                    .DrawString(
-                        entry.GetLabel(),
-                        bounds.x + 0.01f + k_indentWidth,
-                        bounds.y + 0.01f +
-                            (i + 1) * k_lineHeight,
-                        Engine::Renderers::FontSizes::_20);
+                _<RenderersCollection::TextRenderer>()
+                    .DrawString(entry.GetLabel(),
+                                bounds.x + 0.01f +
+                                    k_indentWidth,
+                                bounds.y + 0.01f +
+                                    (i + 1) * k_lineHeight,
+                                RenderersCollection::
+                                    FontSizes::_20);
 
                 ++i;
             }
