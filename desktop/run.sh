@@ -6,7 +6,7 @@ if [ ! -d "$directory" ]; then
 fi
 rm -rf ./bin/res
 cp ./build/Forradia ./bin/
-cp -r ./res ./bin/
-cp -r ./code/theme_0_scripts/src/ ./bin/res/theme_0_scripts
+cp -r ./Resources ./bin/
+cp -r ./code/theme_0_scripts/src/ ./bin/Resources/theme_0_scripts
 cd ./bin
 ./Forradia

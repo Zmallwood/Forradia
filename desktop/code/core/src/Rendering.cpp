@@ -8,6 +8,8 @@
 
 #include "Assets/Images/ImageBank.hpp"
 
+#include "Assets/Models/ModelBank.hpp"
+
 #include "Core.hpp"
 
 #include "SDLDevice.hpp"
@@ -1020,9 +1022,11 @@ namespace Forradia
         float elevation, Point3F cameraPosition,
         float elevationHeight)
     {
-        x += _<Theme0::Theme0Properties>().k_tileSize * 4.0f / 2.0f;
+        x += _<Theme0::Theme0Properties>().k_tileSize *
+             4.0f / 2.0f;
 
-        y += _<Theme0::Theme0Properties>().k_tileSize * 4.0f / 2.0f;
+        y += _<Theme0::Theme0Properties>().k_tileSize *
+             4.0f / 2.0f;
 
         glEnable(GL_DEPTH_TEST);
 
@@ -1030,9 +1034,7 @@ namespace Forradia
 
         glCullFace(GL_FRONT);
 
-        auto model{
-            _<Engine::Assets::Models::ModelBank>().GetModel(
-                modelNameHash)};
+        auto model{_<ModelBank>().GetModel(modelNameHash)};
 
         auto &meshes{model->GetMeshesRef()};
 

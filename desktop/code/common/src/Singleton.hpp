@@ -6,7 +6,7 @@
 
 #pragma once
 
-#pragma diag_suppress 864
+#include "Aliases.hpp"
 
 namespace Forradia
 {

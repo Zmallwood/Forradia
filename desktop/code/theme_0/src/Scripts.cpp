@@ -440,7 +440,7 @@ namespace Forradia
             m.def("setup_scenes",
                   []
                   {
-                      py::eval_file("res/theme_0_scripts/"
+                      py::eval_file("Resources/theme_0_scripts/"
                                     "scenes.py");
                       py::eval("setup_scenes()");
                   });

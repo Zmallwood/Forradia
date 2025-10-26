@@ -31,3 +31,4 @@
 #include "Utilities/TimeUtilities.hpp"
 #include "Utilities/HashUtilities.hpp"
 #include "Utilities/MessageUtilities.hpp"
+#include "Geometry/GLMTypes/GLMMesh.hpp"
