@@ -21,10 +21,9 @@ namespace Forradia
 
         if (!scene || !scene->mRootNode)
         {
-            std::cout << "ERROR::ASSIMP Could not load "
-                         "model: "
-                      << importer.GetErrorString()
-                      << std::endl;
+            PrintLine(
+                "ERROR: ASSIMP could not load model: " +
+                String(importer.GetErrorString()));
         }
         else
         {

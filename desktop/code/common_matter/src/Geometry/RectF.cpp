@@ -29,6 +29,7 @@ namespace Forradia
         // Add the offset to the dimensions separately.
 
         x += offset.x;
+        
         y += offset.y;
     }
 }

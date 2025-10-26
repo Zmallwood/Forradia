@@ -40,6 +40,8 @@
 
 #include "HashUtilities.hpp"
 
+#include "MessageUtilities.hpp"
+
 #include "SDLDeleter.hpp"
 
 #include "Geometry/GLMTypes/GLMMesh.hpp"
