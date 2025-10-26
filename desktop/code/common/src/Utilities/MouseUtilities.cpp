@@ -5,7 +5,9 @@
 //
 
 #include "MouseUtilities.hpp"
+
 #include "CanvasUtilities.hpp"
+
 #include "Functions.hpp"
 
 namespace Forradia

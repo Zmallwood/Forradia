@@ -5,10 +5,15 @@
 //
 
 #include "GUI.hpp"
+
 #include "Core.hpp"
+
 #include "MinorComponents/Cursor.hpp"
+
 #include "MinorComponents/FPSCounter.hpp"
+
 #include "Rendering.hpp"
+
 #include "SDLDevice.hpp"
 
 namespace Forradia

@@ -5,8 +5,11 @@
 //
 
 #include "Core.hpp"
+
 #include "Scripts.hpp"
+
 #include "Theme0Properties.hpp"
+
 #include "WorldStruct.hpp"
 
 int main(int argc, char **argv)

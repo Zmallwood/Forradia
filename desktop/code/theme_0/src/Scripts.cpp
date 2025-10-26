@@ -5,14 +5,23 @@
 //
 
 #include "Scripts.hpp"
+
 #include "Core.hpp"
+
 #include "GUI.hpp"
+
 #include "GUISpec.hpp"
+
 #include "Rendering.hpp"
+
 #include "SDLDevice.hpp"
+
 #include "MinorComponents/Cursor.hpp"
+
 #include "Update.hpp"
+
 #include "WorldGen.hpp"
+
 #include "WorldView.hpp"
 
 namespace Forradia

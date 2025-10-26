@@ -13,14 +13,22 @@ namespace Forradia
         enum class Directions
         {
             None,
-            N,
-            E,
-            S,
-            W,
-            NE,
-            SE,
-            SW,
-            NW
+
+            North,
+
+            East,
+
+            South,
+
+            West,
+
+            NorthEast,
+
+            SouthEast,
+
+            SouthWest,
+
+            NorthWest
         };
 
         class Creature

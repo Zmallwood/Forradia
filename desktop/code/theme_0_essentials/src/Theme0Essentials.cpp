@@ -5,9 +5,13 @@
 //
 
 #include "Theme0Essentials.hpp"
+
 #include "Core.hpp"
+
 #include "SDLDevice.hpp"
+
 #include "Theme0Properties.hpp"
+
 #include "WorldStruct.hpp"
 
 namespace Forradia

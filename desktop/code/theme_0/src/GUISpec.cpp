@@ -5,11 +5,17 @@
 //
 
 #include "GUISpec.hpp"
+
 #include "Core.hpp"
+
 #include "Rendering.hpp"
+
 #include "SDLDevice.hpp"
+
 #include "Theme0Essentials.hpp"
+
 #include "Update.hpp"
+
 #include "WorldStruct.hpp"
 
 namespace Forradia

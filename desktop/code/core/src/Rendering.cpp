@@ -5,9 +5,13 @@
 //
 
 #include "Rendering.hpp"
+
 #include "Assets/Images/ImageBank.hpp"
+
 #include "Core.hpp"
+
 #include "SDLDevice.hpp"
+
 #include "Theme0Properties.hpp"
 
 namespace Forradia

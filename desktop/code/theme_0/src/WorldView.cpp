@@ -5,11 +5,17 @@
 //
 
 #include "WorldView.hpp"
+
 #include "Core.hpp"
+
 #include "Rendering.hpp"
+
 #include "Theme0Essentials.hpp"
+
 #include "Theme0Properties.hpp"
+
 #include "Update.hpp"
+
 #include "WorldStruct.hpp"
 
 namespace Forradia

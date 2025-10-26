@@ -5,7 +5,9 @@
 //
 
 #include "WorldGen.hpp"
+
 #include "Theme0Properties.hpp"
+
 #include "WorldStruct.hpp"
 
 namespace Forradia
@@ -608,10 +610,10 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::S);
+                                    Directions::South);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::N);
+                                Theme0::Directions::North);
                         }
                         else if (xCoordinate ==
                                      prevXCoordinate &&
@@ -621,10 +623,10 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::N);
+                                    Directions::North);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::S);
+                                Theme0::Directions::South);
                         }
                         else if (yCoordinate ==
                                      prevYCoordinate &&
@@ -634,10 +636,10 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::E);
+                                    Directions::East);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::W);
+                                Theme0::Directions::West);
                         }
                         else if (yCoordinate ==
                                      prevYCoordinate &&
@@ -647,10 +649,10 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::W);
+                                    Directions::West);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::E);
+                                Theme0::Directions::East);
                         }
                         else if (yCoordinate <
                                      prevYCoordinate &&
@@ -660,10 +662,11 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::NE);
+                                    Directions::NorthEast);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::SW);
+                                Theme0::Directions::
+                                    SouthWest);
                         }
                         else if (yCoordinate >
                                      prevYCoordinate &&
@@ -673,10 +676,11 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::SE);
+                                    Directions::SouthEast);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::NW);
+                                Theme0::Directions::
+                                    NorthWest);
                         }
                         else if (yCoordinate <
                                      prevYCoordinate &&
@@ -686,10 +690,11 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::NW);
+                                    Directions::NorthWest);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::SE);
+                                Theme0::Directions::
+                                    SouthEast);
                         }
                         else if (yCoordinate >
                                      prevYCoordinate &&
@@ -699,10 +704,11 @@ namespace Forradia
                             prevTile->SetRiverDirection1(
                                 Theme0::
 
-                                    Directions::SW);
+                                    Directions::SouthWest);
 
                             tile->SetRiverDirection2(
-                                Theme0::Directions::NE);
+                                Theme0::Directions::
+                                    NorthEast);
                         }
                     }
 
