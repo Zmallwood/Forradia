@@ -422,6 +422,28 @@ namespace Forradia
                             }
                         }
 
+                        auto creature{tile->GetCreature()};
+
+                        if (creature)
+                        {
+                            auto creatureType{
+                                creature->GetType()};
+
+                            creatureType = Hash(
+                                "creature_white_rabbit");
+
+                            _<Engine::Renderers::
+                                  ModelRenderer>()
+                                .DrawModel(
+                                    creatureType,
+                                    (xCoordinate)*rendTileSize -
+                                        rendTileSize / 2,
+                                    (yCoordinate)*rendTileSize -
+                                        rendTileSize / 2,
+                                    elevationMax, cameraPos,
+                                    elevHeight);
+                        }
+
                         if (xCoordinate + 1 ==
                                 worldAreaSize.width -
                                     playerPos.x &&
