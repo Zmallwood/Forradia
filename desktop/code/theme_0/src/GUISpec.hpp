@@ -6,10 +6,12 @@
 
 #pragma once
 
-#include "GUI.hpp"
+#include "GUICore/GUIWindow.hpp"
 
 namespace Forradia
 {
+    class GUILabel;
+
     namespace Theme0
     {
         class GUIPlayerStatusBox : public GUIPanel

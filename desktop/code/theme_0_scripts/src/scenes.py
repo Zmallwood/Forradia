@@ -127,7 +127,7 @@ class PlayScene(IScene):
             
             self.gui().add_child_comp(btn_load_game)
 
-            btn_quit = make_shared_gui_button(0.45, 0.52, 0.1, 0.04, "Quit", lambda: get_engine().stop())
+            btn_quit = make_shared_gui_button(0.45, 0.52, 0.1, 0.04, "Back", lambda: get_scene_mngr().go_to_scene("main_menu_scene"))
             
             self.gui().add_child_comp(btn_quit)
             

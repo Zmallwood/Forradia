@@ -20,6 +20,12 @@
 
 #include "Input/Mouse/MouseInput.hpp"
 
+#include "GUICore/GUILabel.hpp"
+
+#include "GUICore/GUIButton.hpp"
+
+#include "GUICore/GUIChatBox.hpp"
+
 namespace Forradia
 {
     namespace Theme0

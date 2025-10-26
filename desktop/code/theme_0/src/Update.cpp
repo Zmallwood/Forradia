@@ -22,6 +22,8 @@
 
 #include "Input/Mouse/MouseInput.hpp"
 
+#include "GUICore/GUIChatBox.hpp"
+
 namespace Forradia
 {
     namespace Theme0

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "GUI.hpp"
+#include "GUICore/GUIComponent.hpp"
 
 namespace Forradia
 {

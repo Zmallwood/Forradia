@@ -8,8 +8,6 @@
 
 #include "Engine.hpp"
 
-#include "GUI.hpp"
-
 #include "GUISpec.hpp"
 
 #include "Rendering.hpp"
@@ -31,6 +29,14 @@
 #include "Input/Keyboard/KeyboardInput.hpp"
 
 #include "Input/Mouse/MouseInput.hpp"
+
+#include "GUICore/GUILabel.hpp"
+
+#include "GUICore/GUIButton.hpp"
+
+#include "GUICore/GUIFPSPanel.hpp"
+
+#include "GUICore/GUIChatBox.hpp"
 
 namespace Forradia
 {
