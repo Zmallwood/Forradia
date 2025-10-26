@@ -6,6 +6,8 @@
 
 #pragma once
 
+#pragma diag_suppress 864
+
 namespace Forradia
 {
     ///
