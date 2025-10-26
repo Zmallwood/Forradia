@@ -32,50 +32,6 @@ namespace Forradia
         }
     }
 
-    void ImageBank::LoadImages()
-    {
-        auto basePath{String(SDL_GetBasePath())};
-
-        auto imagesPath{basePath +
-                        k_relativeImagesPath.data()};
-
-        if (!std::filesystem::exists(imagesPath))
-        {
-            return;
-        }
-
-        std::filesystem::recursive_directory_iterator rdi{
-            imagesPath};
-
-        for (auto it : rdi)
-        {
-            auto filePath{
-                Replace(it.path().string(), '\\', '/')};
-
-            if (GetFileExtension(filePath) == "png")
-            {
-                auto fileName{
-                    GetFileNameNoExtension(filePath)};
-
-                auto hash{Forradia::Hash(fileName)};
-
-                auto surface{SharedPtr<SDL_Surface>(
-                    IMG_Load(filePath.data()),
-                    SDLDeleter())};
-
-                auto imageSize{
-                    Size{surface->w, surface->h}};
-
-                m_textureSizes.insert({hash, imageSize});
-
-                auto texture{
-                    this->LoadSingleTexture(surface)};
-
-                m_textures.insert({hash, texture});
-            }
-        }
-    }
-
     GLuint ImageBank::GetTexture(int imageNameHash) const
     {
         return m_textures.at(imageNameHash);
@@ -91,27 +47,6 @@ namespace Forradia
         return {-1, -1};
     }
 
-    GLuint ImageBank::LoadSingleTexture(
-        SharedPtr<SDL_Surface> surface)
-    {
-        GLuint texture;
-
-        glGenTextures(1, &texture);
-
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w,
-                     surface->h, 0, GL_RGBA,
-                     GL_UNSIGNED_BYTE, surface->pixels);
-
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        return texture;
-    }
-
     bool ImageBank::TextTextureExists(float x, float y,
                                       int textHash) const
     {
@@ -119,22 +54,5 @@ namespace Forradia
                m_textTextures.at(x).contains(y) &&
                m_textTextures.at(x).at(y).contains(
                    textHash);
-    }
-
-    GLuint ImageBank::ObtainTextTexture(float x, float y,
-                                        int textHash)
-    {
-        if (TextTextureExists(x, y, textHash))
-        {
-            return m_textTextures.at(x).at(y).at(textHash);
-        }
-
-        GLuint texture;
-
-        glGenTextures(1, &texture);
-
-        m_textTextures[x][y][textHash] = texture;
-
-        return texture;
     }
 }
