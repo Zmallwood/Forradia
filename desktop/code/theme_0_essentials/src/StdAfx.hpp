@@ -6,8 +6,14 @@
 
 #pragma once
 
+// External.
+
 #include "assimp/Importer.hpp"
+
 #include "assimp/postprocess.h"
+
 #include "assimp/scene.h"
+
+// Internal.
 
 #include "Geometry/SizeF.hpp"

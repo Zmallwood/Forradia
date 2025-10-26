@@ -6,13 +6,24 @@
 
 #pragma once
 
+// External.
+
 #include <SDL2/SDL.h>
 
+// Internal.
+
 #include "Functions.hpp"
+
 #include "Constants.hpp"
+
 #include "Geometry/Point.hpp"
+
 #include "RandomizationUtilities.hpp"
+
 #include "TimeUtilities.hpp"
+
 #include "HashUtilities.hpp"
+
 #include "Geometry/PointF.hpp"
+
 #include "Geometry/Size.hpp"

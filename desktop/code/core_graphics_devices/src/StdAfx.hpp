@@ -6,9 +6,16 @@
 
 #pragma once
 
+// Internal.
+
 #include "Geometry/Size.hpp"
+
 #include "Coloring/Color.hpp"
+
 #include "Aliases.hpp"
+
 #include "Singleton.hpp"
+
 #include "SDLDeleter.hpp"
+
 #include "MessageUtilities.hpp"
