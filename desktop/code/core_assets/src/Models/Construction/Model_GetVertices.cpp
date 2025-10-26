@@ -25,28 +25,36 @@ namespace Forradia
                          mesh->mVertices[i]};
 
             // Vertices.
+
             vector3.x = v.x;
+
             vector3.y = v.y;
+
             vector3.z = v.z;
 
             vertex.position = vector3;
 
             // Normals.
+
             if (mesh->mNormals)
             {
                 vector3.x = mesh->mNormals[i].x;
+
                 vector3.y = mesh->mNormals[i].y;
+
                 vector3.z = mesh->mNormals[i].z;
 
                 vertex.normal = vector3;
             }
 
             // Texture coordinates.
+
             if (mesh->mTextureCoords[0])
             {
                 glm::vec2 vector2;
 
                 vector2.x = mesh->mTextureCoords[0][i].x;
+
                 vector2.y = mesh->mTextureCoords[0][i].y;
 
                 vertex.uv = vector2;

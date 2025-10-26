@@ -6,7 +6,7 @@
 
 #include "ModelBank.hpp"
 
-#include "Model.hpp"
+#include "Construction/Model.hpp"
 
 namespace Forradia
 {

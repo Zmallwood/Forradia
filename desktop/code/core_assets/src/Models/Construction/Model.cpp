@@ -41,8 +41,6 @@ namespace Forradia
         {
             aiMesh *mesh{scene->mMeshes[node->mMeshes[i]]};
 
-            // Only apply transformation on meshes not
-            // entities such as lights or camera.
             transformation *= node->mTransformation;
 
             m_meshes.push_back(

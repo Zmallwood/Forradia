@@ -6,15 +6,15 @@
 
 #include "Rendering.hpp"
 
-#include "Assets/Images/ImageBank.hpp"
+#include "Images/ImageBank.hpp"
 
-#include "Assets/Models/ModelBank.hpp"
+#include "Models/ModelBank.hpp"
 
 #include "SDLDevice.hpp"
 
 #include "Theme0Properties.hpp"
 
-#include "Assets/Models/Model.hpp"
+#include "Models/Construction/Model.hpp"
 
 namespace Forradia
 {

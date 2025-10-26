@@ -6,6 +6,8 @@
 
 #pragma once
 
+struct SDL_Surface;
+
 namespace Forradia
 {
     class ImageBank

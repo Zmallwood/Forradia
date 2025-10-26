@@ -51,6 +51,21 @@ target_include_directories(ForradiaCoreGrahicsDevices PRIVATE
 target_link_libraries(ForradiaCoreGrahicsDevices ForradiaCommonGeneral assimp)
 target_precompile_headers(ForradiaCoreGrahicsDevices PUBLIC code/core_graphics_devices/src/StdAfx.hpp)
 
+# ForradiaCoreAssets
+file(GLOB_RECURSE CORE_SOURCES "code/core_assets/src/*.cpp")
+add_library(ForradiaCoreAssets ${CORE_SOURCES})
+target_include_directories(ForradiaCoreAssets PRIVATE
+    "code/common_lang/src"
+    "code/core_assets/src"
+    "code/common_matter/src"
+    "code/common_utilities/src"
+    "code/common_general/src"
+)
+target_link_libraries(ForradiaCoreAssets
+    ForradiaCommonUtilities
+)
+target_precompile_headers(ForradiaCoreAssets PUBLIC code/core_assets/src/StdAfx.hpp)
+
 # ForradiaCore
 file(GLOB_RECURSE CORE_SOURCES "code/core/src/*.cpp")
 add_library(ForradiaCore ${CORE_SOURCES})
@@ -62,6 +77,7 @@ target_include_directories(ForradiaCore PRIVATE
     "code/core_graphics_devices/src"
     "code/theme_0_properties/src"
     "code/common_utilities/src"
+    "code/core_assets/src"
 )
 target_link_libraries(ForradiaCore
     ForradiaCommonGeneral
@@ -140,5 +156,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0WorldGen
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
+    ForradiaCoreAssets
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)
