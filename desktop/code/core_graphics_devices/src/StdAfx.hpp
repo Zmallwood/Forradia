@@ -11,4 +11,4 @@
 #include "Aliases.hpp"
 #include "Singleton.hpp"
 #include "SDLDeleter.hpp"
-#include "Utilities/MessageUtilities.hpp"
+#include "MessageUtilities.hpp"

@@ -10,6 +10,8 @@
 
 #include "Geometry/Size.hpp"
 
+struct SDL_Window;
+
 namespace Forradia
 {
     ///
