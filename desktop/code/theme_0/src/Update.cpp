@@ -16,7 +16,15 @@
 
 #include "NumbersUtilities.hpp"
 
-#include "WorldStruct.hpp"
+#include "World.hpp"
+
+#include "WorldArea.hpp"
+
+#include "Tile.hpp"
+
+#include "Creature.hpp"
+
+#include "NPC.hpp"
 
 #include "Input/Keyboard/KeyboardInput.hpp"
 

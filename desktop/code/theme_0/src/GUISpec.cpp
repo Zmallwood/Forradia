@@ -12,7 +12,15 @@
 
 #include "Update.hpp"
 
-#include "WorldStruct.hpp"
+#include "World.hpp"
+
+#include "WorldArea.hpp"
+
+#include "Tile.hpp"
+
+#include "ObjectsStack.hpp"
+
+#include "Object.hpp"
 
 #include "Input/Mouse/MouseInput.hpp"
 

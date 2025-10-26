@@ -10,7 +10,7 @@
 
 #include "Theme0Properties.hpp"
 
-#include "WorldStruct.hpp"
+#include "World.hpp"
 
 int main(int argc, char **argv)
 {

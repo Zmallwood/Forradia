@@ -8,7 +8,17 @@
 
 #include "Theme0Properties.hpp"
 
-#include "WorldStruct.hpp"
+#include "World.hpp"
+
+#include "WorldArea.hpp"
+
+#include "Tile.hpp"
+
+#include "ObjectsStack.hpp"
+
+#include "Creature.hpp"
+
+#include "NPC.hpp"
 
 namespace Forradia
 {
