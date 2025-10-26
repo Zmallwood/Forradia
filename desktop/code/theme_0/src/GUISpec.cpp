@@ -6,8 +6,6 @@
 
 #include "GUISpec.hpp"
 
-#include "Rendering.hpp"
-
 #include "SDLDevice.hpp"
 
 #include "Theme0Essentials.hpp"
@@ -23,6 +21,10 @@
 #include "GUICore/GUIButton.hpp"
 
 #include "GUICore/GUIChatBox.hpp"
+
+#include "Rendering/Text/TextRenderer.hpp"
+
+#include "Rendering/Images2D/Image2DRenderer.hpp"
 
 namespace Forradia
 {

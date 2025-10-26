@@ -10,8 +10,6 @@
 
 #include "GUISpec.hpp"
 
-#include "Rendering.hpp"
-
 #include "SDLDevice.hpp"
 
 #include "MinorComponents/Cursor.hpp"
@@ -37,6 +35,8 @@
 #include "GUICore/GUIFPSPanel.hpp"
 
 #include "GUICore/GUIChatBox.hpp"
+
+#include "Rendering/Images2D/Image2DRenderer.hpp"
 
 namespace Forradia
 {

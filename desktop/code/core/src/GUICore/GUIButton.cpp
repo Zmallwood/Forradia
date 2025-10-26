@@ -12,7 +12,7 @@
 
 #include "Input/Mouse/MouseInput.hpp"
 
-#include "Rendering.hpp"
+#include "Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {

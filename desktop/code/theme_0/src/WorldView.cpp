@@ -6,8 +6,6 @@
 
 #include "WorldView.hpp"
 
-#include "Rendering.hpp"
-
 #include "Theme0Essentials.hpp"
 
 #include "Theme0Properties.hpp"
@@ -15,6 +13,10 @@
 #include "Update.hpp"
 
 #include "WorldStruct.hpp"
+
+#include "Rendering/Ground/GroundRenderer.hpp"
+
+#include "Rendering/Models/ModelRenderer.hpp"
 
 namespace Forradia
 {

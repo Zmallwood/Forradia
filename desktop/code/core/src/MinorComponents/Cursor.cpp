@@ -6,9 +6,9 @@
 
 #include "Cursor.hpp"
 
-#include "Rendering.hpp"
-
 #include "SDLDevice.hpp"
+
+#include "Rendering/Images2D/Image2DRenderer.hpp"
 
 namespace Forradia
 {

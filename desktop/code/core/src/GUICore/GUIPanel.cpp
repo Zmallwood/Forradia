@@ -6,7 +6,7 @@
 
 #include "GUIPanel.hpp"
 
-#include "Rendering.hpp"
+#include "Rendering/Images2D/Image2DRenderer.hpp"
 
 namespace Forradia
 {

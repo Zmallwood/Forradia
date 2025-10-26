@@ -10,7 +10,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Rendering.hpp"
+#include "Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {
