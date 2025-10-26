@@ -16,6 +16,8 @@
 
 #include "Theme0Properties.hpp"
 
+#include "Assets/Models/Model.hpp"
+
 namespace Forradia
 {
     void RenderersCollection::ShaderProgram::Initialize(
