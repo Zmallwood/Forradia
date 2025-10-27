@@ -66,6 +66,14 @@ target_link_libraries(ForradiaCoreAssets
 )
 target_precompile_headers(ForradiaCoreAssets PUBLIC code/client/core_assets/src/StdAfx.hpp)
 
+# ForradiaCoreInput
+file(GLOB_RECURSE CORE_INPUT_SOURCES "code/client/core_input/src/*.cpp")
+add_library(ForradiaCoreInput ${CORE_INPUT_SOURCES})
+target_include_directories(ForradiaCoreInput PRIVATE
+    "code/client/core_input/src"
+)
+target_precompile_headers(ForradiaCoreInput PUBLIC code/client/core_input/src/StdAfx.hpp)
+
 # ForradiaCore
 file(GLOB_RECURSE CORE_SOURCES "code/client/core/src/*.cpp")
 add_library(ForradiaCore ${CORE_SOURCES})
@@ -78,6 +86,7 @@ target_include_directories(ForradiaCore PRIVATE
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
     "code/client/core_assets/src"
+    "code/client/core_input/src"
 )
 target_link_libraries(ForradiaCore
     ForradiaCommonGeneral
@@ -148,6 +157,7 @@ target_include_directories(Forradia PRIVATE
     "code/client/core_graphics_devices/src"
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
+    "code/client/core_input/src"
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommonGeneral
@@ -157,5 +167,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCoreAssets
+    ForradiaCoreInput
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)

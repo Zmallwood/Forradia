@@ -30,9 +30,9 @@
 
 #include "ScenesCore/SceneManager.hpp"
 
-#include "Input/Keyboard/KeyboardInput.hpp"
+#include "Keyboard/KeyboardInput.hpp"
 
-#include "Input/Mouse/MouseInput.hpp"
+#include "Mouse/MouseInput.hpp"
 
 #include "GUICore/GUILabel.hpp"
 

@@ -6,7 +6,7 @@
 
 #include "GUISystemMenu.hpp"
 
-#include "Input/Mouse/MouseInput.hpp"
+#include "Mouse/MouseInput.hpp"
 
 namespace Forradia::Theme0
 {

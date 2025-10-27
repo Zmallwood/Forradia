@@ -10,7 +10,7 @@
 
 #include "MinorComponents/Cursor.hpp"
 
-#include "Input/Mouse/MouseInput.hpp"
+#include "Mouse/MouseInput.hpp"
 
 namespace Forradia
 {

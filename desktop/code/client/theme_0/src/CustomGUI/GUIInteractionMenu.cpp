@@ -20,7 +20,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Input/Mouse/MouseInput.hpp"
+#include "Mouse/MouseInput.hpp"
 
 #include "Rendering/Text/TextRenderer.hpp"
 

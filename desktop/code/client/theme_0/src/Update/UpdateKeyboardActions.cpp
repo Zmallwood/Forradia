@@ -6,7 +6,7 @@
 
 #include "TileHovering.hpp"
 
-#include "Input/Keyboard/KeyboardInput.hpp"
+#include "Keyboard/KeyboardInput.hpp"
 
 #include "CustomGUI/GUISystemMenu.hpp"
 

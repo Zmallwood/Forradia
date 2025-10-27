@@ -6,7 +6,7 @@
 
 #include "TileHovering.hpp"
 
-#include "Input/Mouse/MouseInput.hpp"
+#include "Mouse/MouseInput.hpp"
 
 #include "PlayerCharacter.hpp"
 
