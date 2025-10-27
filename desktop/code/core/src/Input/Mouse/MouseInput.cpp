@@ -10,53 +10,29 @@ namespace Forradia
 {
     void MouseInput::Reset()
     {
+        // Completely reset the state of the two mouse
+        // buttons.
+
         m_leftMouseButton.Reset();
 
         m_rightMouseButton.Reset();
     }
 
-    void MouseInput::RegisterMouseButtonDown(Uint8 button)
-    {
-        switch (button)
-        {
-        case SDL_BUTTON_LEFT:
-
-            m_leftMouseButton.RegisterPress();
-
-            break;
-
-        case SDL_BUTTON_RIGHT:
-
-            m_rightMouseButton.RegisterPress();
-
-            break;
-        }
-    }
-
-    void MouseInput::RegisterMouseButtonUp(Uint8 button)
-    {
-        switch (button)
-        {
-        case SDL_BUTTON_LEFT:
-
-            m_leftMouseButton.RegisterRelease();
-
-            break;
-
-        case SDL_BUTTON_RIGHT:
-
-            m_rightMouseButton.RegisterRelease();
-
-            break;
-        }
-    }
-
     bool MouseInput::AnyMouseButtonIsPressedPickResult()
     {
+        // Check if the left mouse button is currently
+        // pressed and store as result.
+
         auto result{
             m_leftMouseButton.IsPressedPickResult()};
 
+        // Also check if the right mouse button is
+        // currently pressed and add to the result using a
+        // logical OR.
+
         result |= m_rightMouseButton.IsPressedPickResult();
+
+        // Return the result.
 
         return result;
     }
