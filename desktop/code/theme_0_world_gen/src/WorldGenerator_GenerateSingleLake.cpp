@@ -244,7 +244,7 @@ namespace Forradia
                                     elevationSWSW == 0)
                                 {
                                     tile->SetGround(
-                                        "ground_water");
+                                        "GroundWater");
                                 }
 
                                 tile->SetWaterDepth(

@@ -51,7 +51,7 @@ namespace Forradia
                             if (tile->GetElevation() > 0)
                             {
                                 tile->SetGround(
-                                    "ground_rock");
+                                    "GroundRock");
                             }
                         }
                     }

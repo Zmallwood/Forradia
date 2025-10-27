@@ -31,7 +31,7 @@ namespace Forradia
 
                 if (tile && !tile->GetCreature() &&
                     tile->GetGround() !=
-                        Hash("ground_water"))
+                        Hash("GroundWater"))
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(
@@ -58,7 +58,7 @@ namespace Forradia
 
                 if (tile && !tile->GetCreature() &&
                     tile->GetGround() !=
-                        Hash("ground_water"))
+                        Hash("GroundWater"))
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(
@@ -85,7 +85,7 @@ namespace Forradia
 
                 if (tile && !tile->GetCreature() &&
                     tile->GetGround() !=
-                        Hash("ground_water"))
+                        Hash("GroundWater"))
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(

@@ -31,9 +31,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 
@@ -55,9 +54,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 
@@ -79,9 +77,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 
@@ -103,9 +100,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 
@@ -127,9 +123,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 
@@ -151,9 +146,8 @@ namespace Forradia
 
                 if (tile &&
                     tile->GetGround() !=
-                        Hash("ground_water") &&
-                    tile->GetGround() !=
-                        Hash("ground_rock"))
+                        Hash("GroundWater") &&
+                    tile->GetGround() != Hash("GroundRock"))
                 {
                     tile->GetObjectsStack()->ClearObjects();
 

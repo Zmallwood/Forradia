@@ -24,7 +24,7 @@ namespace Forradia
 
                     if (tile)
                     {
-                        tile->SetGround("ground_dirt");
+                        tile->SetGround("GroundDirt");
                     }
                 }
             }

@@ -46,7 +46,7 @@ namespace Forradia
                   bounds.width, k_separatorHeight}};
 
         _<Image2DRenderer>().DrawImage(
-            "black", separatorRect.x, separatorRect.y,
+            "Black", separatorRect.x, separatorRect.y,
             separatorRect.width, separatorRect.height);
     }
 

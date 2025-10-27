@@ -102,7 +102,7 @@ namespace Forradia
 
                     if (tile && !tile->GetCreature() &&
                         tile->GetGround() !=
-                            Hash("ground_water"))
+                            Hash("GroundWater"))
                     {
                         auto oldPosition{
                             creatures.at(creature)};

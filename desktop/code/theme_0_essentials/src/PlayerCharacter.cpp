@@ -35,7 +35,7 @@ namespace Forradia
 
                 while (worldArea->GetTile(m_position)
                            ->GetGround() ==
-                       Hash("ground_water"))
+                       Hash("GroundWater"))
                 {
                     m_position = {
                         GetRandomInt(size.width),

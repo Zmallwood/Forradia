@@ -55,13 +55,13 @@ namespace Forradia
         {
         case CursorStyles::Normal:
 
-            cursorImage = "curs_normal";
+            cursorImage = "CursorNormal";
 
             break;
 
         case CursorStyles::HoveringClickableGUI:
 
-            cursorImage = "curs_hovering_clickable_gui";
+            cursorImage = "CursorHoveringClickableGUI";
 
             break;
         }

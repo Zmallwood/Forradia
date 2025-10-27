@@ -116,7 +116,7 @@ namespace Forradia
 
                     if (tile && !tile->GetNPC() &&
                         tile->GetGround() !=
-                            Hash("ground_water"))
+                            Hash("GroundWater"))
                     {
                         auto oldPosition{position};
 

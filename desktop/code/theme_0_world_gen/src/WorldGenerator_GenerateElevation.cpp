@@ -54,8 +54,7 @@ namespace Forradia
 
                                 if (tile &&
                                     tile->GetGround() !=
-                                        Hash("ground_"
-                                             "water"))
+                                        Hash("GroundWater"))
                                 {
                                     auto tileN{
                                         m_worldArea
@@ -103,52 +102,36 @@ namespace Forradia
 
                                     if ((tileN &&
                                          tileN->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileS &&
                                          tileS->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileW &&
                                          tileW->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileE &&
                                          tileE->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileNW &&
                                          tileNW->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileNE &&
                                          tileNE->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileSW &&
                                          tileSW->GetGround() ==
-                                             Hash("groun"
-                                                  "d_"
-                                                  "wate"
-                                                  "r")) ||
+                                             Hash("GroundWa"
+                                                  "ter")) ||
                                         (tileSE &&
                                          tileSE->GetGround() ==
-                                             Hash("grou"
-                                                  "nd_"
-                                                  "wate"
-                                                  "r")))
+                                             Hash("GroundWa"
+                                                  "ter")))
                                     {
                                         continue;
                                     }

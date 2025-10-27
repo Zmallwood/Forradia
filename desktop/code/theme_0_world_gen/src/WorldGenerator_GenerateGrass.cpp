@@ -49,7 +49,7 @@ namespace Forradia
                             auto tile{
                                 m_worldArea->GetTile(x, y)};
 
-                            tile->SetGround("ground_grass");
+                            tile->SetGround("GroundGrass");
                         }
                     }
                 }

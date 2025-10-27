@@ -215,7 +215,7 @@ namespace Forradia::Theme0::GameplayCore
 
                 auto ground{tile->GetGround()};
 
-                if (ground == Hash("ground_water"))
+                if (ground == Hash("GroundWater"))
                 {
                     auto animationIndex{
                         (GetTicks() +
@@ -224,7 +224,7 @@ namespace Forradia::Theme0::GameplayCore
                         500 % 3};
 
                     ground = Hash(
-                        "ground_water_" +
+                        "GroundWater_" +
                         std::to_string(animationIndex));
                 }
 

@@ -36,8 +36,8 @@ namespace Forradia
                             BodyPartTypes::OverallBody));
                     this->UpdateBodyPartInfoLabels();
                 },
-                "gui_image_overall_body",
-                "gui_image_overall_body_hovered")};
+                "GUIImageOverallBody",
+                "GUIImageOverallBodyHovered")};
 
             this->AddChildComponent(overallBodyImageButton);
 
@@ -52,8 +52,8 @@ namespace Forradia
                                 BodyPartTypes::RightArm));
                         this->UpdateBodyPartInfoLabels();
                     },
-                    "gui_image_right_arm",
-                    "gui_image_right_arm_hovered")};
+                    "GUIImageRightArm",
+                    "GUIImageRightArmHovered")};
 
             this->AddChildComponent(
                 rightArmBodyImageButton);
@@ -69,8 +69,8 @@ namespace Forradia
                                 BodyPartTypes::LeftArm));
                         this->UpdateBodyPartInfoLabels();
                     },
-                    "gui_image_left_arm",
-                    "gui_image_left_arm_hovered")};
+                    "GUIImageLeftArm",
+                    "GUIImageLeftArmHovered")};
 
             this->AddChildComponent(leftArmBodyImageButton);
 
@@ -86,8 +86,7 @@ namespace Forradia
                                      BodyPartTypes::Legs));
                         this->UpdateBodyPartInfoLabels();
                     },
-                    "gui_image_legs",
-                    "gui_image_legs_hovered")};
+                    "GUIImageLegs", "GUIImageLegsHovered")};
 
             this->AddChildComponent(legsImageButton);
 
