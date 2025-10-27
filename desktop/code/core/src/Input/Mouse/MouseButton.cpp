@@ -10,6 +10,8 @@ namespace Forradia
 {
     void MouseButton::Reset()
     {
+        // Completely reset the state of the button.
+
         m_pressed = false;
 
         m_hasBeenFired = false;
@@ -19,6 +21,8 @@ namespace Forradia
 
     void MouseButton::RegisterPress()
     {
+        // Register that the button has been pressed.
+
         m_pressed = true;
 
         m_hasBeenFired = true;
@@ -26,6 +30,8 @@ namespace Forradia
 
     void MouseButton::RegisterRelease()
     {
+        // Register that the button has been released.
+
         m_pressed = false;
 
         m_hasBeenReleased = true;
@@ -33,38 +39,17 @@ namespace Forradia
 
     bool MouseButton::IsPressedPickResult()
     {
+        // Check if the button is currently pressed
+        // and store as result.
+
         auto result{m_pressed};
+
+        // Clear the pressed state of the button.
 
         m_pressed = false;
 
-        return result;
-    }
-
-    bool MouseButton::HasBeenFiredPickResult()
-    {
-        auto result{m_hasBeenFired};
-
-        m_hasBeenFired = false;
+        // Return the result.
 
         return result;
-    }
-
-    bool MouseButton::HasBeenFired()
-    {
-        return m_hasBeenFired;
-    }
-
-    bool MouseButton::HasBeenReleasedPickResult()
-    {
-        auto result{m_hasBeenReleased};
-
-        m_hasBeenReleased = false;
-
-        return result;
-    }
-
-    bool MouseButton::HasBeenReleased()
-    {
-        return m_hasBeenReleased;
     }
 }

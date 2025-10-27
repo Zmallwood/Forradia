@@ -53,6 +53,7 @@ namespace Forradia
 
         ///
         /// Returns the size of the screen.
+        ///
         /// @return The size of the screen.
         ///
         Size GetScreenSize() const;
