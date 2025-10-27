@@ -10,6 +10,12 @@
 
 #include "Rendering/Images2D/Image2DRenderer.hpp"
 
+#include "PlayerCharacter.hpp"
+
+#include "ObjectsInventory.hpp"
+
+#include "Object.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIInventoryWindow::RenderDerived() const
@@ -42,6 +48,10 @@ namespace Forradia::Theme0
                            (yStart - bounds.y)) /
                           slotHeight)};
 
+        auto objectsInventory{
+            _<GameplayCore::PlayerCharacter>()
+                .GetObjectsInventory()};
+
         for (auto y = 0; y < numRows; y++)
         {
             for (auto x = 0; x < numColumns; x++)
@@ -51,6 +61,18 @@ namespace Forradia::Theme0
                     xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY),
                     slotWidth, slotHeight);
+
+                auto inventoryObject{
+                    objectsInventory->GetObject(x, y)};
+
+                if (inventoryObject)
+                {
+                    _<Image2DRenderer>().DrawImage(
+                        inventoryObject->GetType(),
+                        xStart + x * (slotWidth + marginX),
+                        yStart + y * (slotHeight + marginY),
+                        slotWidth, slotHeight);
+                }
             }
         }
     }

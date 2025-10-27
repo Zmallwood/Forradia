@@ -10,6 +10,8 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
+    class ObjectsInventory;
+
     class PlayerCharacter
     {
       public:
@@ -71,6 +73,11 @@ namespace Forradia::Theme0::GameplayCore
             return m_money;
         }
 
+        auto GetObjectsInventory() const
+        {
+            return m_objectsInventory;
+        }
+
       private:
         void Initialize();
 
@@ -89,5 +96,7 @@ namespace Forradia::Theme0::GameplayCore
         PlayerBody m_body;
 
         int m_money{0};
+
+        SharedPtr<ObjectsInventory> m_objectsInventory;
     };
 }

@@ -12,10 +12,15 @@
 
 #include "Tile.hpp"
 
+#include "ObjectsInventory.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void PlayerCharacter::Initialize()
     {
+        m_objectsInventory =
+            std::make_shared<ObjectsInventory>();
+
         this->MoveToSuitablePosition();
     }
 
