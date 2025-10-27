@@ -6,29 +6,26 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    enum class Directions
     {
-        enum class Directions
-        {
-            None,
+        None,
 
-            North,
+        North,
 
-            East,
+        East,
 
-            South,
+        South,
 
-            West,
+        West,
 
-            NorthEast,
+        NorthEast,
 
-            SouthEast,
+        SouthEast,
 
-            SouthWest,
+        SouthWest,
 
-            NorthWest
-        };
-    }
+        NorthWest
+    };
 }

@@ -6,25 +6,22 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class Object
     {
-        class Object
+      public:
+        Object(StringView object_type_name)
+            : m_type(Hash(object_type_name))
         {
-          public:
-            Object(StringView object_type_name)
-                : m_type(Hash(object_type_name))
-            {
-            }
+        }
 
-            auto GetType() const
-            {
-                return m_type;
-            }
+        auto GetType() const
+        {
+            return m_type;
+        }
 
-          private:
-            int m_type{0};
-        };
-    }
+      private:
+        int m_type{0};
+    };
 }

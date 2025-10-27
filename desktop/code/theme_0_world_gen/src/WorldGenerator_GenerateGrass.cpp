@@ -10,47 +10,44 @@
 
 #include "Tile.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void WorldGenerator::GenerateGrass() const
     {
-        void WorldGenerator::GenerateGrass() const
+        auto numGrassAreas{50 + GetRandomInt(20)};
+
+        for (auto i = 0; i < numGrassAreas; i++)
         {
-            auto numGrassAreas{50 + GetRandomInt(20)};
+            auto xCenter{GetRandomInt(m_size.width)};
 
-            for (auto i = 0; i < numGrassAreas; i++)
+            auto yCenter{GetRandomInt(m_size.height)};
+
+            auto radius{3 * m_scale +
+                        GetRandomInt(10 * m_scale)};
+
+            for (auto y = yCenter - radius;
+                 y <= yCenter + radius; y++)
             {
-                auto xCenter{GetRandomInt(m_size.width)};
-
-                auto yCenter{GetRandomInt(m_size.height)};
-
-                auto radius{3 * m_scale +
-                            GetRandomInt(10 * m_scale)};
-
-                for (auto y = yCenter - radius;
-                     y <= yCenter + radius; y++)
+                for (auto x = xCenter - radius;
+                     x <= xCenter + radius; x++)
                 {
-                    for (auto x = xCenter - radius;
-                         x <= xCenter + radius; x++)
+                    if (!m_worldArea->IsValidCoordinate(x,
+                                                        y))
                     {
-                        if (!m_worldArea->IsValidCoordinate(
-                                x, y))
-                        {
-                            continue;
-                        }
+                        continue;
+                    }
 
-                        auto dX{x - xCenter};
+                    auto dX{x - xCenter};
 
-                        auto dY{y - yCenter};
+                    auto dY{y - yCenter};
 
-                        if (dX * dX + dY * dY <=
-                            radius * radius)
-                        {
-                            auto tile{
-                                m_worldArea->GetTile(x, y)};
+                    if (dX * dX + dY * dY <=
+                        radius * radius)
+                    {
+                        auto tile{
+                            m_worldArea->GetTile(x, y)};
 
-                            tile->SetGround("GroundGrass");
-                        }
+                        tile->SetGround("GroundGrass");
                     }
                 }
             }

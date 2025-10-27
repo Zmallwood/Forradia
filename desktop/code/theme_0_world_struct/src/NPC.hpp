@@ -6,80 +6,76 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class NPC
     {
-        class NPC
+      public:
+        NPC(StringView type_name) : m_type{Hash(type_name)}
         {
-          public:
-            NPC(StringView type_name)
-                : m_type{Hash(type_name)}
-            {
-                Initialize();
-            }
+            Initialize();
+        }
 
-            auto GetType() const
-            {
-                return m_type;
-            }
+        auto GetType() const
+        {
+            return m_type;
+        }
 
-            auto GetName() const
-            {
-                return m_name;
-            }
+        auto GetName() const
+        {
+            return m_name;
+        }
 
-            auto GetTicksLastMovement() const
-            {
-                return m_ticksLastMovement;
-            }
+        auto GetTicksLastMovement() const
+        {
+            return m_ticksLastMovement;
+        }
 
-            void SetTicksLastMovement(int value)
-            {
-                m_ticksLastMovement = value;
-            }
+        void SetTicksLastMovement(int value)
+        {
+            m_ticksLastMovement = value;
+        }
 
-            auto GetMovementSpeed() const
-            {
-                return m_movementSpeed;
-            }
+        auto GetMovementSpeed() const
+        {
+            return m_movementSpeed;
+        }
 
-            auto GetDestination() const
-            {
-                return m_destination;
-            }
+        auto GetDestination() const
+        {
+            return m_destination;
+        }
 
-            void SetDestination(Point value)
-            {
-                m_destination = value;
-            }
+        void SetDestination(Point value)
+        {
+            m_destination = value;
+        }
 
-            auto GetTicksNextSpontaneousSpeech() const
-            {
-                return m_ticksNextSpontaneousSpeech;
-            }
+        auto GetTicksNextSpontaneousSpeech() const
+        {
+            return m_ticksNextSpontaneousSpeech;
+        }
 
-            void SetTicksNextSpontaneousSpeech(int value)
-            {
-                m_ticksNextSpontaneousSpeech = value;
-            }
+        void SetTicksNextSpontaneousSpeech(int value)
+        {
+            m_ticksNextSpontaneousSpeech = value;
+        }
 
-          private:
-            void Initialize();
+      private:
+        void Initialize();
 
-            void GenerateName();
+        void GenerateName();
 
-            int m_type{0};
+        int m_type{0};
 
-            String m_name;
+        String m_name;
 
-            int m_ticksLastMovement{0};
+        int m_ticksLastMovement{0};
 
-            float m_movementSpeed{2.0f};
+        float m_movementSpeed{2.0f};
 
-            Point m_destination{-1, -1};
+        Point m_destination{-1, -1};
 
-            int m_ticksNextSpontaneousSpeech{0};
-        };
-    }
+        int m_ticksNextSpontaneousSpeech{0};
+    };
 }

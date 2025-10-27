@@ -6,13 +6,10 @@
 
 #include "Creature.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void Creature::Initialize()
     {
-        void Creature::Initialize()
-        {
-            m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
-        }
+        m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
     }
 }

@@ -8,41 +8,38 @@
 
 #include "Input/Mouse/MouseInput.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void GUISystemMenu::Initialize()
     {
-        void GUISystemMenu::Initialize()
-        {
-            this->SetVisible(false);
-        }
+        this->SetVisible(false);
+    }
 
-        void GUISystemMenu::UpdateDerived()
-        {
-            GUIComponent::UpdateDerived();
+    void GUISystemMenu::UpdateDerived()
+    {
+        GUIComponent::UpdateDerived();
 
-            _<MouseInput>().GetLeftMouseButtonRef().Reset();
-        }
+        _<MouseInput>().GetLeftMouseButtonRef().Reset();
+    }
 
-        void GUISystemMenu::RenderDerived() const
-        {
-            GUIComponent::RenderDerived();
+    void GUISystemMenu::RenderDerived() const
+    {
+        GUIComponent::RenderDerived();
 
-            // auto
-            // c_sz{GetCanvasSize(_<SDLDevice>().GetWindow())};
+        // auto
+        // c_sz{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-            // auto rect{SDL_Rect{0, 0, c_sz.w,
-            // c_sz.h}};
+        // auto rect{SDL_Rect{0, 0, c_sz.w,
+        // c_sz.h}};
 
-            // SDL_SetRenderDrawBlendMode(_<SDLDevice>().rend().get(),
-            //                            SDL_BLENDMODE_BLEND);
+        // SDL_SetRenderDrawBlendMode(_<SDLDevice>().rend().get(),
+        //                            SDL_BLENDMODE_BLEND);
 
-            // SDL_SetRenderDrawColor(_<SDLDevice>().rend().get(),
-            // 200, 0,
-            //                        255, 50);
+        // SDL_SetRenderDrawColor(_<SDLDevice>().rend().get(),
+        // 200, 0,
+        //                        255, 50);
 
-            // SDL_RenderFillRect(_<SDLDevice>().rend().get(),
-            // &rect);
-        }
+        // SDL_RenderFillRect(_<SDLDevice>().rend().get(),
+        // &rect);
     }
 }

@@ -6,47 +6,44 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class WorldArea;
+
+    class WorldGenerator
     {
-        class WorldArea;
+      public:
+        void GenerateNewWorld();
 
-        class WorldGenerator
-        {
-          public:
-            void GenerateNewWorld();
+      private:
+        void Prepare();
 
-          private:
-            void Prepare();
+        void ClearWithDirt() const;
 
-            void ClearWithDirt() const;
+        void GenerateGrass() const;
 
-            void GenerateGrass() const;
+        void GenerateLakes() const;
 
-            void GenerateLakes() const;
+        void GenerateSingleLake(int minX, int minY,
+                                int maxX, int maxY,
+                                int recursion) const;
 
-            void GenerateSingleLake(int minX, int minY,
-                                    int maxX, int maxY,
-                                    int recursion) const;
+        void GenerateElevation() const;
 
-            void GenerateElevation() const;
+        void GenerateRock() const;
 
-            void GenerateRock() const;
+        void GenerateRivers() const;
 
-            void GenerateRivers() const;
+        void GenerateObjects() const;
 
-            void GenerateObjects() const;
+        void GenerateCreatures() const;
 
-            void GenerateCreatures() const;
+        void GenerateNPCs() const;
 
-            void GenerateNPCs() const;
+        SharedPtr<Theme0::WorldArea> m_worldArea;
 
-            SharedPtr<Theme0::WorldArea> m_worldArea;
+        float m_scale;
 
-            float m_scale;
-
-            Size m_size;
-        };
-    }
+        Size m_size;
+    };
 }

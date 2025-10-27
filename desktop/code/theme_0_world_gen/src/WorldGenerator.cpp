@@ -12,42 +12,39 @@
 
 #include "WorldArea.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void WorldGenerator::GenerateNewWorld()
     {
-        void WorldGenerator::GenerateNewWorld()
-        {
-            this->Prepare();
+        this->Prepare();
 
-            this->ClearWithDirt();
+        this->ClearWithDirt();
 
-            this->GenerateGrass();
+        this->GenerateGrass();
 
-            this->GenerateLakes();
+        this->GenerateLakes();
 
-            this->GenerateElevation();
+        this->GenerateElevation();
 
-            this->GenerateRock();
+        this->GenerateRock();
 
-            this->GenerateRivers();
+        this->GenerateRivers();
 
-            this->GenerateObjects();
+        this->GenerateObjects();
 
-            this->GenerateCreatures();
+        this->GenerateCreatures();
 
-            this->GenerateNPCs();
-        }
+        this->GenerateNPCs();
+    }
 
-        void WorldGenerator::Prepare()
-        {
-            m_worldArea =
-                _<Theme0::World>().GetCurrentWorldArea();
+    void WorldGenerator::Prepare()
+    {
+        m_worldArea =
+            _<Theme0::World>().GetCurrentWorldArea();
 
-            m_size = m_worldArea->GetSize();
+        m_size = m_worldArea->GetSize();
 
-            m_scale = _<Theme0::Theme0Properties>()
-                          .k_worldScaling;
-        }
+        m_scale =
+            _<Theme0::Theme0Properties>().k_worldScaling;
     }
 }

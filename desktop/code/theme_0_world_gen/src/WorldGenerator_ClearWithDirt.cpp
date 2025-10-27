@@ -10,22 +10,19 @@
 
 #include "Tile.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void WorldGenerator::ClearWithDirt() const
     {
-        void WorldGenerator::ClearWithDirt() const
+        for (auto y = 0; y < m_size.height; y++)
         {
-            for (auto y = 0; y < m_size.height; y++)
+            for (auto x = 0; x < m_size.width; x++)
             {
-                for (auto x = 0; x < m_size.width; x++)
-                {
-                    auto tile{m_worldArea->GetTile(x, y)};
+                auto tile{m_worldArea->GetTile(x, y)};
 
-                    if (tile)
-                    {
-                        tile->SetGround("GroundDirt");
-                    }
+                if (tile)
+                {
+                    tile->SetGround("GroundDirt");
                 }
             }
         }

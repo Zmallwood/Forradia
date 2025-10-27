@@ -6,44 +6,38 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia ::Theme0::GameplayCore
 {
-    namespace Theme0
+    class BodyPart
     {
-        namespace GameplayCore
+      public:
+        auto GetStrength() const
         {
-            class BodyPart
-            {
-              public:
-                auto GetStrength() const
-                {
-                    return m_strength;
-                }
-
-                auto GetCurrentEnergy() const
-                {
-                    return m_currentEnergy;
-                }
-
-                auto GetMaxEnergy() const
-                {
-                    return m_maxEnergy;
-                }
-
-                auto GetTemperature() const
-                {
-                    return m_temperature;
-                }
-
-              private:
-                float m_strength{0.1f};
-
-                float m_currentEnergy{1.0f};
-
-                float m_maxEnergy{1.0f};
-
-                float m_temperature{37.0f};
-            };
+            return m_strength;
         }
-    }
+
+        auto GetCurrentEnergy() const
+        {
+            return m_currentEnergy;
+        }
+
+        auto GetMaxEnergy() const
+        {
+            return m_maxEnergy;
+        }
+
+        auto GetTemperature() const
+        {
+            return m_temperature;
+        }
+
+      private:
+        float m_strength{0.1f};
+
+        float m_currentEnergy{1.0f};
+
+        float m_maxEnergy{1.0f};
+
+        float m_temperature{37.0f};
+    };
 }

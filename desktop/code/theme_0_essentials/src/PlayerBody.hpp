@@ -10,29 +10,22 @@
 
 #include "BodyPart.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    class PlayerBody
     {
-        namespace GameplayCore
+      public:
+        PlayerBody()
         {
-            class PlayerBody
-            {
-              public:
-                PlayerBody()
-                {
-                    Initialize();
-                }
-
-                BodyPart *
-                GetBodyPartPtr(BodyPartTypes bodyPartType);
-
-              private:
-                void Initialize();
-
-                std::map<BodyPartTypes, BodyPart>
-                    m_bodyParts;
-            };
+            Initialize();
         }
-    }
+
+        BodyPart *
+        GetBodyPartPtr(BodyPartTypes bodyPartType);
+
+      private:
+        void Initialize();
+
+        std::map<BodyPartTypes, BodyPart> m_bodyParts;
+    };
 }

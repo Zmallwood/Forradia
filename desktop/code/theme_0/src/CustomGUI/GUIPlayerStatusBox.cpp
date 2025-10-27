@@ -10,21 +10,18 @@
 
 #include "PlayerCharacter.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void GUIPlayerStatusBox::RenderDerived() const
     {
-        void GUIPlayerStatusBox::RenderDerived() const
-        {
-            GUIPanel::RenderDerived();
+        GUIPanel::RenderDerived();
 
-            auto bounds{this->GetBounds()};
+        auto bounds{this->GetBounds()};
 
-            _<TextRenderer>().DrawString(
-                _<Theme0::GameplayCore::PlayerCharacter>()
-                    .GetName(),
-                bounds.x + 0.01f, bounds.y + 0.01f,
-                FontSizes::_26);
-        }
+        _<TextRenderer>().DrawString(
+            _<Theme0::GameplayCore::PlayerCharacter>()
+                .GetName(),
+            bounds.x + 0.01f, bounds.y + 0.01f,
+            FontSizes::_26);
     }
 }

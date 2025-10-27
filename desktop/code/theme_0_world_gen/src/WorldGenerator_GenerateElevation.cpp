@@ -10,136 +10,119 @@
 
 #include "Tile.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void WorldGenerator::GenerateElevation() const
     {
-        void WorldGenerator::GenerateElevation() const
+        auto numHills{140 + GetRandomInt(30)};
+
+        for (auto i = 0; i < numHills; i++)
         {
-            auto numHills{140 + GetRandomInt(30)};
+            auto xCenter{GetRandomInt(m_size.width)};
 
-            for (auto i = 0; i < numHills; i++)
+            auto yCenter{GetRandomInt(m_size.height)};
+
+            auto maxRadius{5 * m_scale +
+                           GetRandomInt(5 * m_scale)};
+
+            for (auto r = maxRadius; r >= 0; r--)
             {
-                auto xCenter{GetRandomInt(m_size.width)};
-
-                auto yCenter{GetRandomInt(m_size.height)};
-
-                auto maxRadius{5 * m_scale +
-                               GetRandomInt(5 * m_scale)};
-
-                for (auto r = maxRadius; r >= 0; r--)
+                for (auto y = yCenter - r; y <= yCenter + r;
+                     y++)
                 {
-                    for (auto y = yCenter - r;
-                         y <= yCenter + r; y++)
+                    for (auto x = xCenter - r;
+                         x <= xCenter + r; x++)
                     {
-                        for (auto x = xCenter - r;
-                             x <= xCenter + r; x++)
+                        if (!m_worldArea->IsValidCoordinate(
+                                x, y))
                         {
-                            if (!m_worldArea
-                                     ->IsValidCoordinate(x,
-                                                         y))
+                            continue;
+                        }
+
+                        auto dX{x - xCenter};
+
+                        auto dY{y - yCenter};
+
+                        if (dX * dX + dY * dY <= r * r)
+                        {
+                            auto tile{
+                                m_worldArea->GetTile(x, y)};
+
+                            if (tile &&
+                                tile->GetGround() !=
+                                    Hash("GroundWater"))
                             {
-                                continue;
-                            }
-
-                            auto dX{x - xCenter};
-
-                            auto dY{y - yCenter};
-
-                            if (dX * dX + dY * dY <= r * r)
-                            {
-                                auto tile{
+                                auto tileN{
                                     m_worldArea->GetTile(
-                                        x, y)};
+                                        x, y - 1)};
 
-                                if (tile &&
-                                    tile->GetGround() !=
-                                        Hash("GroundWater"))
+                                auto tileS{
+                                    m_worldArea->GetTile(
+                                        x, y + 1)};
+
+                                auto tileW{
+                                    m_worldArea->GetTile(
+                                        x - 1, y)};
+
+                                auto tileE{
+                                    m_worldArea->GetTile(
+                                        x + 1, y)};
+
+                                auto tileNW{
+                                    m_worldArea->GetTile(
+                                        x - 1, y - 1)};
+
+                                auto tileNE{
+                                    m_worldArea->GetTile(
+                                        x + 1, y - 1)};
+
+                                auto tileSW{
+                                    m_worldArea->GetTile(
+                                        x - 1, y + 1)};
+
+                                auto tileSE{
+                                    m_worldArea->GetTile(
+                                        x + 1, y + 1)};
+
+                                if ((tileN &&
+                                     tileN->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileS &&
+                                     tileS->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileW &&
+                                     tileW->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileE &&
+                                     tileE->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileNW &&
+                                     tileNW->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileNE &&
+                                     tileNE->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileSW &&
+                                     tileSW->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")) ||
+                                    (tileSE &&
+                                     tileSE->GetGround() ==
+                                         Hash("GroundWa"
+                                              "ter")))
                                 {
-                                    auto tileN{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x, y - 1)};
-
-                                    auto tileS{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x, y + 1)};
-
-                                    auto tileW{
-                                        m_worldArea
-                                            ->GetTile(x - 1,
-                                                      y)};
-
-                                    auto tileE{
-                                        m_worldArea
-                                            ->GetTile(x + 1,
-                                                      y)};
-
-                                    auto tileNW{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x - 1,
-                                                y - 1)};
-
-                                    auto tileNE{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x + 1,
-                                                y - 1)};
-
-                                    auto tileSW{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x - 1,
-                                                y + 1)};
-
-                                    auto tileSE{
-                                        m_worldArea
-                                            ->GetTile(
-                                                x + 1,
-                                                y + 1)};
-
-                                    if ((tileN &&
-                                         tileN->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileS &&
-                                         tileS->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileW &&
-                                         tileW->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileE &&
-                                         tileE->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileNW &&
-                                         tileNW->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileNE &&
-                                         tileNE->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileSW &&
-                                         tileSW->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")) ||
-                                        (tileSE &&
-                                         tileSE->GetGround() ==
-                                             Hash("GroundWa"
-                                                  "ter")))
-                                    {
-                                        continue;
-                                    }
-
-                                    tile->SetElevation(
-                                        tile->GetElevation() +
-                                        1);
+                                    continue;
                                 }
+
+                                tile->SetElevation(
+                                    tile->GetElevation() +
+                                    1);
                             }
                         }
                     }

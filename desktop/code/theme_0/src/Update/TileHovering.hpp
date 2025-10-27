@@ -6,25 +6,19 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    class TileHovering
     {
-        namespace GameplayCore
+      public:
+        void Update();
+
+        auto GetHoveredCoordinate() const
         {
-            class TileHovering
-            {
-              public:
-                void Update();
-
-                auto GetHoveredCoordinate() const
-                {
-                    return m_hoveredCoordinate;
-                }
-
-              private:
-                Point m_hoveredCoordinate{-1, -1};
-            };
+            return m_hoveredCoordinate;
         }
-    }
+
+      private:
+        Point m_hoveredCoordinate{-1, -1};
+    };
 }

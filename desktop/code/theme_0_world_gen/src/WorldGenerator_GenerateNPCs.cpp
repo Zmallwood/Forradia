@@ -12,36 +12,31 @@
 
 #include "NPC.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void WorldGenerator::GenerateNPCs() const
     {
-        void WorldGenerator::GenerateNPCs() const
+        auto numNPC0s{200 * m_scale +
+                      GetRandomInt(15 * m_scale)};
+
+        for (auto i = 0; i < numNPC0s; i++)
         {
-            auto numNPC0s{200 * m_scale +
-                          GetRandomInt(15 * m_scale)};
+            auto x{GetRandomInt(m_size.width)};
 
-            for (auto i = 0; i < numNPC0s; i++)
+            auto y{GetRandomInt(m_size.height)};
+
+            auto tile{m_worldArea->GetTile(x, y)};
+
+            if (tile && !tile->GetNPC() &&
+                tile->GetGround() != Hash("GroundWater"))
             {
-                auto x{GetRandomInt(m_size.width)};
+                auto newNPC =
+                    std::make_shared<Theme0::NPC>("npc0");
 
-                auto y{GetRandomInt(m_size.height)};
+                tile->SetNPC(newNPC);
 
-                auto tile{m_worldArea->GetTile(x, y)};
-
-                if (tile && !tile->GetNPC() &&
-                    tile->GetGround() !=
-                        Hash("GroundWater"))
-                {
-                    auto newNPC =
-                        std::make_shared<Theme0::NPC>(
-                            "npc0");
-
-                    tile->SetNPC(newNPC);
-
-                    m_worldArea->GetNPCsMirrorRef().insert(
-                        {tile->GetNPC(), {x, y}});
-                }
+                m_worldArea->GetNPCsMirrorRef().insert(
+                    {tile->GetNPC(), {x, y}});
             }
         }
     }

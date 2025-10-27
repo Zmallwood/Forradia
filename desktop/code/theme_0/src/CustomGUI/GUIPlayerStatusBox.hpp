@@ -8,20 +8,17 @@
 
 #include "GUICore/GUIPanel.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class GUIPlayerStatusBox : public GUIPanel
     {
-        class GUIPlayerStatusBox : public GUIPanel
+      public:
+        GUIPlayerStatusBox()
+            : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
         {
-          public:
-            GUIPlayerStatusBox()
-                : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
-            {
-            }
+        }
 
-          protected:
-            virtual void RenderDerived() const override;
-        };
-    }
+      protected:
+        virtual void RenderDerived() const override;
+    };
 }

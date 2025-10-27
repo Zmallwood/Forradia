@@ -10,50 +10,47 @@
 
 #include "Rendering/Images2D/Image2DRenderer.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    void GUIInventoryWindow::RenderDerived() const
     {
-        void GUIInventoryWindow::RenderDerived() const
+        GUIWindow::RenderDerived();
+
+        auto bounds{this->GetBounds()};
+
+        auto marginX{k_margin};
+
+        auto marginY{ConvertWidthToHeight(
+            k_margin, _<SDLDevice>().GetWindow())};
+
+        auto xStart{bounds.x + marginX};
+
+        auto yStart{bounds.y + marginY +
+                    this->GetGUIWindowTitleBar()
+                        ->GetBounds()
+                        .height};
+
+        auto slotWidth{k_slotSize};
+
+        auto slotHeight{ConvertWidthToHeight(
+            k_slotSize, _<SDLDevice>().GetWindow())};
+
+        auto numColumns{
+            CInt((bounds.width - 2 * marginX) / slotWidth)};
+
+        auto numRows{CInt((bounds.height - 2 * marginY -
+                           (yStart - bounds.y)) /
+                          slotHeight)};
+
+        for (auto y = 0; y < numRows; y++)
         {
-            GUIWindow::RenderDerived();
-
-            auto bounds{this->GetBounds()};
-
-            auto marginX{k_margin};
-
-            auto marginY{ConvertWidthToHeight(
-                k_margin, _<SDLDevice>().GetWindow())};
-
-            auto xStart{bounds.x + marginX};
-
-            auto yStart{bounds.y + marginY +
-                        this->GetGUIWindowTitleBar()
-                            ->GetBounds()
-                            .height};
-
-            auto slotWidth{k_slotSize};
-
-            auto slotHeight{ConvertWidthToHeight(
-                k_slotSize, _<SDLDevice>().GetWindow())};
-
-            auto numColumns{CInt(
-                (bounds.width - 2 * marginX) / slotWidth)};
-
-            auto numRows{CInt((bounds.height - 2 * marginY -
-                               (yStart - bounds.y)) /
-                              slotHeight)};
-
-            for (auto y = 0; y < numRows; y++)
+            for (auto x = 0; x < numColumns; x++)
             {
-                for (auto x = 0; x < numColumns; x++)
-                {
-                    _<Image2DRenderer>().DrawImage(
-                        k_slotImageName,
-                        xStart + x * (slotWidth + marginX),
-                        yStart + y * (slotHeight + marginY),
-                        slotWidth, slotHeight);
-                }
+                _<Image2DRenderer>().DrawImage(
+                    k_slotImageName,
+                    xStart + x * (slotWidth + marginX),
+                    yStart + y * (slotHeight + marginY),
+                    slotWidth, slotHeight);
             }
         }
     }

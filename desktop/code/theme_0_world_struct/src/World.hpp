@@ -6,25 +6,22 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class WorldArea;
+
+    class World
     {
-        class WorldArea;
+      public:
+        void Initialize(Size w_area_sz,
+                        float world_scaling);
 
-        class World
+        auto GetCurrentWorldArea() const
         {
-          public:
-            void Initialize(Size w_area_sz,
-                            float world_scaling);
+            return m_currentWorldArea;
+        }
 
-            auto GetCurrentWorldArea() const
-            {
-                return m_currentWorldArea;
-            }
-
-          private:
-            SharedPtr<WorldArea> m_currentWorldArea;
-        };
-    }
+      private:
+        SharedPtr<WorldArea> m_currentWorldArea;
+    };
 }

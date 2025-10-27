@@ -6,20 +6,14 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    enum class BodyPartTypes
     {
-        namespace GameplayCore
-        {
-            enum class BodyPartTypes
-            {
-                None,
-                OverallBody,
-                RightArm,
-                LeftArm,
-                Legs
-            };
-        }
-    }
+        None,
+        OverallBody,
+        RightArm,
+        LeftArm,
+        Legs
+    };
 }

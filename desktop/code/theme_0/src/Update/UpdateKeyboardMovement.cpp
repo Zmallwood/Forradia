@@ -12,98 +12,80 @@
 
 #include "NumbersUtilities.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    void UpdateKeyboardMovement()
     {
-        namespace GameplayCore
+        auto upPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_UP)};
+
+        auto rightPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
+
+        auto downPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
+
+        auto leftPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
+
+        auto wPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_w)};
+
+        auto aPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_a)};
+
+        auto sPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_s)};
+
+        auto dPress{
+            _<KeyboardInput>().KeyIsPressed(SDLK_d)};
+
+        if (upPress || rightPress || downPress || leftPress)
         {
-            void UpdateKeyboardMovement()
+            _<Theme0::GameplayCore::PlayerCharacter>()
+                .SetDestination({-1, -1});
+        }
+
+        auto now{GetTicks()};
+
+        if (now >=
+                _<Theme0::GameplayCore::PlayerCharacter>()
+                        .GetTicksLastMovement() +
+                    InvertMovementSpeed(
+                        _<Theme0::GameplayCore::
+
+                              PlayerCharacter>()
+                            .GetMovementSpeed()) &&
+            (upPress || rightPress || downPress ||
+             leftPress || wPress || aPress || sPress ||
+             dPress))
+        {
+            if (upPress || wPress)
             {
-                auto upPress{
-                    _<KeyboardInput>().KeyIsPressed(
-                        SDLK_UP)};
-
-                auto rightPress{
-                    _<KeyboardInput>().KeyIsPressed(
-                        SDLK_RIGHT)};
-
-                auto downPress{
-                    _<KeyboardInput>().KeyIsPressed(
-                        SDLK_DOWN)};
-
-                auto leftPress{
-                    _<KeyboardInput>().KeyIsPressed(
-                        SDLK_LEFT)};
-
-                auto wPress{_<KeyboardInput>().KeyIsPressed(
-                    SDLK_w)};
-
-                auto aPress{_<KeyboardInput>().KeyIsPressed(
-                    SDLK_a)};
-
-                auto sPress{_<KeyboardInput>().KeyIsPressed(
-                    SDLK_s)};
-
-                auto dPress{_<KeyboardInput>().KeyIsPressed(
-                    SDLK_d)};
-
-                if (upPress || rightPress || downPress ||
-                    leftPress)
-                {
-                    _<Theme0::GameplayCore::
-                          PlayerCharacter>()
-                        .SetDestination({-1, -1});
-                }
-
-                auto now{GetTicks()};
-
-                if (now >=
-                        _<Theme0::GameplayCore::
-                                PlayerCharacter>()
-                                .GetTicksLastMovement() +
-                            InvertMovementSpeed(
-                                _<Theme0::GameplayCore::
-
-                                      PlayerCharacter>()
-                                    .GetMovementSpeed()) &&
-                    (upPress || rightPress || downPress ||
-                     leftPress || wPress || aPress ||
-                     sPress || dPress))
-                {
-                    if (upPress || wPress)
-                    {
-                        _<Theme0::GameplayCore::
-                              PlayerCharacter>()
-                            .MoveNorth();
-                    }
-
-                    if (rightPress || dPress)
-                    {
-                        _<Theme0::GameplayCore::
-                              PlayerCharacter>()
-                            .MoveEast();
-                    }
-
-                    if (downPress || sPress)
-                    {
-                        _<Theme0::GameplayCore::
-                              PlayerCharacter>()
-                            .MoveSouth();
-                    }
-
-                    if (leftPress || aPress)
-                    {
-                        _<Theme0::GameplayCore::
-                              PlayerCharacter>()
-                            .MoveWest();
-                    }
-
-                    _<Theme0::GameplayCore::
-                          PlayerCharacter>()
-                        .SetTicksLastMovement(now);
-                }
+                _<Theme0::GameplayCore::PlayerCharacter>()
+                    .MoveNorth();
             }
+
+            if (rightPress || dPress)
+            {
+                _<Theme0::GameplayCore::PlayerCharacter>()
+                    .MoveEast();
+            }
+
+            if (downPress || sPress)
+            {
+                _<Theme0::GameplayCore::PlayerCharacter>()
+                    .MoveSouth();
+            }
+
+            if (leftPress || aPress)
+            {
+                _<Theme0::GameplayCore::PlayerCharacter>()
+                    .MoveWest();
+            }
+
+            _<Theme0::GameplayCore::PlayerCharacter>()
+                .SetTicksLastMovement(now);
         }
     }
 }

@@ -12,28 +12,21 @@
 
 #include "SDLDevice.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    void UpdateMouseActions()
     {
-        namespace GameplayCore
+        if (_<MouseInput>()
+                .GetRightMouseButtonRef()
+                .HasBeenFiredPickResult())
         {
-            void UpdateMouseActions()
-            {
-                if (_<MouseInput>()
-                        .GetRightMouseButtonRef()
-                        .HasBeenFiredPickResult())
-                {
-                    _<GUIInteractionMenu>().BuildMenu();
+            _<GUIInteractionMenu>().BuildMenu();
 
-                    _<GUIInteractionMenu>().SetVisible(
-                        true);
+            _<GUIInteractionMenu>().SetVisible(true);
 
-                    _<GUIInteractionMenu>().SetPosition(
-                        GetNormallizedMousePosition(
-                            _<SDLDevice>().GetWindow()));
-                }
-            }
+            _<GUIInteractionMenu>().SetPosition(
+                GetNormallizedMousePosition(
+                    _<SDLDevice>().GetWindow()));
         }
     }
 }

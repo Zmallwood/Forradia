@@ -8,118 +8,113 @@
 
 #include "Directions.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class ObjectsStack;
+
+    class Creature;
+
+    class NPC;
+
+    class Tile
     {
-        class ObjectsStack;
-
-        class Creature;
-
-        class NPC;
-
-        class Tile
+      public:
+        Tile()
         {
-          public:
-            Tile()
-            {
-                Initialize();
-            }
+            Initialize();
+        }
 
-            auto GetGround() const
-            {
-                return m_ground;
-            }
+        auto GetGround() const
+        {
+            return m_ground;
+        }
 
-            void SetGround(StringView ground_name);
+        void SetGround(StringView ground_name);
 
-            auto GetObjectsStack() const
-            {
-                return m_objectsStack;
-            }
+        auto GetObjectsStack() const
+        {
+            return m_objectsStack;
+        }
 
-            auto GetCreature() const
-            {
-                return m_creature;
-            }
+        auto GetCreature() const
+        {
+            return m_creature;
+        }
 
-            void SetCreature(
-                SharedPtr<Forradia::Theme0::Creature> val)
-            {
-                m_creature = val;
-            }
+        void SetCreature(
+            SharedPtr<Forradia::Theme0::Creature> val)
+        {
+            m_creature = val;
+        }
 
-            auto GetNPC() const
-            {
-                return m_npc;
-            }
+        auto GetNPC() const
+        {
+            return m_npc;
+        }
 
-            void
-            SetNPC(SharedPtr<Forradia::Theme0::NPC> value)
-            {
-                m_npc = value;
-            }
+        void SetNPC(SharedPtr<Forradia::Theme0::NPC> value)
+        {
+            m_npc = value;
+        }
 
-            auto GetElevation() const
-            {
-                return m_elevation;
-            }
+        auto GetElevation() const
+        {
+            return m_elevation;
+        }
 
-            void SetElevation(int value)
-            {
-                m_elevation = value;
-            }
+        void SetElevation(int value)
+        {
+            m_elevation = value;
+        }
 
-            auto GetWaterDepth() const
-            {
-                return m_waterDepth;
-            }
+        auto GetWaterDepth() const
+        {
+            return m_waterDepth;
+        }
 
-            void SetWaterDepth(int value)
-            {
-                m_waterDepth = value;
-            }
+        void SetWaterDepth(int value)
+        {
+            m_waterDepth = value;
+        }
 
-            auto GetRiverDirection1() const
-            {
-                return m_riverDirection1;
-            }
+        auto GetRiverDirection1() const
+        {
+            return m_riverDirection1;
+        }
 
-            void SetRiverDirection1(Directions value)
-            {
-                m_riverDirection1 = value;
-            }
+        void SetRiverDirection1(Directions value)
+        {
+            m_riverDirection1 = value;
+        }
 
-            auto GetRiverDirection2() const
-            {
-                return m_riverDirection2;
-            }
+        auto GetRiverDirection2() const
+        {
+            return m_riverDirection2;
+        }
 
-            void SetRiverDirection2(Directions value)
-            {
-                m_riverDirection2 = value;
-            }
+        void SetRiverDirection2(Directions value)
+        {
+            m_riverDirection2 = value;
+        }
 
-          private:
-            void Initialize();
+      private:
+        void Initialize();
 
-            int m_ground{0};
+        int m_ground{0};
 
-            SharedPtr<Forradia::Theme0::ObjectsStack>
-                m_objectsStack;
+        SharedPtr<Forradia::Theme0::ObjectsStack>
+            m_objectsStack;
 
-            SharedPtr<Forradia::Theme0::Creature>
-                m_creature;
+        SharedPtr<Forradia::Theme0::Creature> m_creature;
 
-            SharedPtr<Forradia::Theme0::NPC> m_npc;
+        SharedPtr<Forradia::Theme0::NPC> m_npc;
 
-            int m_elevation{0};
+        int m_elevation{0};
 
-            int m_waterDepth{0};
+        int m_waterDepth{0};
 
-            Directions m_riverDirection1{Directions::None};
+        Directions m_riverDirection1{Directions::None};
 
-            Directions m_riverDirection2{Directions::None};
-        };
-    }
+        Directions m_riverDirection2{Directions::None};
+    };
 }

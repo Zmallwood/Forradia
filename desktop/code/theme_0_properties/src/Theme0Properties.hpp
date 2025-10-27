@@ -6,26 +6,23 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class Theme0Properties
     {
-        class Theme0Properties
-        {
-          public:
-            static constexpr String k_gameWindowTitle{
-                "Forradia"};
+      public:
+        static constexpr String k_gameWindowTitle{
+            "Forradia"};
 
-            static constexpr Color k_clearColor{
-                Colors::MildBlue};
+        static constexpr Color k_clearColor{
+            Colors::MildBlue};
 
-            static constexpr Size k_gridSize{30, 35};
+        static constexpr Size k_gridSize{30, 35};
 
-            static constexpr Size k_worldAreaSize{120, 100};
+        static constexpr Size k_worldAreaSize{120, 100};
 
-            static constexpr float k_worldScaling{5.0f};
+        static constexpr float k_worldScaling{5.0f};
 
-            static constexpr float k_tileSize{0.8f};
-        };
-    }
+        static constexpr float k_tileSize{0.8f};
+    };
 }
