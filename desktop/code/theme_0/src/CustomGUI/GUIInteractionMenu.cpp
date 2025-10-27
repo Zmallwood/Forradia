@@ -6,8 +6,6 @@
 
 #include "GUIInteractionMenu.hpp"
 
-#include "Update.hpp"
-
 #include "World.hpp"
 
 #include "WorldArea.hpp"
@@ -25,6 +23,8 @@
 #include "Input/Mouse/MouseInput.hpp"
 
 #include "Rendering/Text/TextRenderer.hpp"
+
+#include "Update/TileHovering.hpp"
 
 namespace Forradia
 {

@@ -22,8 +22,6 @@
 
 #include "MinorComponents/Cursor.hpp"
 
-#include "Update.hpp"
-
 #include "WorldGenerator.hpp"
 
 #include "WorldView.hpp"
@@ -45,6 +43,20 @@
 #include "GUICore/GUIChatBox.hpp"
 
 #include "Rendering/Images2D/Image2DRenderer.hpp"
+
+#include "Update/TileHovering.hpp"
+
+#include "Update/UpdateKeyboardActions.hpp"
+
+#include "Update/UpdateMouseActions.hpp"
+
+#include "Update/UpdateNPCs.hpp"
+
+#include "Update/UpdateCreaturesMovement.hpp"
+
+#include "Update/UpdateMouseMovement.hpp"
+
+#include "Update/UpdateKeyboardMovement.hpp"
 
 namespace Forradia
 {

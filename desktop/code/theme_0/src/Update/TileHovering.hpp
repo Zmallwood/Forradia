@@ -12,18 +12,6 @@ namespace Forradia
     {
         namespace GameplayCore
         {
-            void UpdateKeyboardActions();
-
-            void UpdateMouseActions();
-
-            void UpdateKeyboardMovement();
-
-            void UpdateMouseMovement();
-
-            void UpdateCreaturesMovement();
-
-            void UpdateNPCs();
-
             class TileHovering
             {
               public:
