@@ -6,9 +6,15 @@
 
 #include "Update.hpp"
 
-#include "GUISpec.hpp"
-
 #include "SDLDevice.hpp"
+
+#include "CustomGUI/GUISystemMenu.hpp"
+
+#include "CustomGUI/GUIPlayerBodyWindow.hpp"
+
+#include "CustomGUI/GUIInventoryWindow.hpp"
+
+#include "CustomGUI/GUIInteractionMenu.hpp"
 
 #include "PlayerCharacter.hpp"
 

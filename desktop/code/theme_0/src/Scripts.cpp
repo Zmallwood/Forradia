@@ -8,7 +8,15 @@
 
 #include "Engine.hpp"
 
-#include "GUISpec.hpp"
+#include "CustomGUI/GUIPlayerStatusBox.hpp"
+
+#include "CustomGUI/GUIPlayerBodyWindow.hpp"
+
+#include "CustomGUI/GUIInventoryWindow.hpp"
+
+#include "CustomGUI/GUISystemMenu.hpp"
+
+#include "CustomGUI/GUIInteractionMenu.hpp"
 
 #include "SDLDevice.hpp"
 
