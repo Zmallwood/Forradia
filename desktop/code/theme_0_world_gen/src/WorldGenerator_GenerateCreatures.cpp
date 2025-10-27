@@ -35,7 +35,7 @@ namespace Forradia
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(
-                            "creature_rat");
+                            "CreatureRat");
 
                     tile->SetCreature(newCreature);
 
@@ -62,7 +62,7 @@ namespace Forradia
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(
-                            "creature_white_rabbit");
+                            "CreatureWhiteRabbit");
 
                     tile->SetCreature(newCreature);
 
@@ -89,7 +89,7 @@ namespace Forradia
                 {
                     auto newCreature =
                         std::make_shared<Theme0::Creature>(
-                            "creature_butterfly");
+                            "CreatureButterfly");
 
                     tile->SetCreature(newCreature);
 

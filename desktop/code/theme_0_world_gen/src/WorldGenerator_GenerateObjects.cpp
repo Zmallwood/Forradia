@@ -37,7 +37,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddTreeObject(
-                        "object_fir_tree");
+                        "ObjectFirTree");
                 }
             }
 
@@ -60,7 +60,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddTreeObject(
-                        "object_birch_tree");
+                        "ObjectBirchTree");
                 }
             }
 

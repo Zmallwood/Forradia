@@ -13,20 +13,20 @@ namespace Forradia
         void
         TreeObject::Initialize(StringView objectTypeName)
         {
-            if (objectTypeName != "object_fir_tree" &&
-                objectTypeName != "object_birch_tree")
+            if (objectTypeName != "ObjectFirTree" &&
+                objectTypeName != "ObjectBirchTree")
             {
                 return;
             }
 
             int numTrunkParts;
 
-            if (objectTypeName == "object_fir_tree")
+            if (objectTypeName == "ObjectFirTree")
             {
                 numTrunkParts = 45 + GetRandomInt(44);
             }
 
-            else if (objectTypeName == "object_birch_tree")
+            else if (objectTypeName == "ObjectBirchTree")
             {
                 numTrunkParts = 45 + GetRandomInt(14);
             }
@@ -57,13 +57,13 @@ namespace Forradia
 
                 String needlesName;
 
-                if (objectTypeName == "object_fir_tree")
+                if (objectTypeName == "ObjectFirTree")
                 {
                     needlesName =
-                        "object_fir_tree_needles_";
+                        "ObjectFirTreeNeedles";
                 }
                 else if (objectTypeName ==
-                         "object_birch_tree")
+                         "ObjectBirchTree")
                 {
                     if (i % 8 != 0)
                     {
@@ -73,7 +73,7 @@ namespace Forradia
                     }
 
                     needlesName =
-                        "object_birch_tree_branch_";
+                        "ObjectBirchTreeBranch";
                 }
 
                 m_needleTypes.push_back(

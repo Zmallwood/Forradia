@@ -232,10 +232,10 @@ namespace Forradia::Theme0::GameplayCore
                 {
                     auto objectType{object->GetType()};
 
-                    if (objectType == Hash("object_fir_"
-                                           "tree") ||
-                        objectType == Hash("object_birch_"
-                                           "tree"))
+                    if (objectType ==
+                            Hash("ObjectFirTree") ||
+                        objectType ==
+                            Hash("ObjectBirchTree"))
                     {
                         auto treeObjects{
                             std::static_pointer_cast<
@@ -306,23 +306,19 @@ namespace Forradia::Theme0::GameplayCore
                             String trunkPartName;
 
                             if (objectType ==
-                                Hash("object_fir_"
-                                     "tree"))
+                                Hash("ObjectFirTree"))
                             {
                                 trunkPartName =
-                                    "object_fir_"
-                                    "tree_trunk_"
-                                    "part";
+                                    "ObjectFirTreeTrunkPar"
+                                    "t";
                             }
                             else if (objectType ==
-                                     Hash("object_"
-                                          "birch_"
-                                          "tree"))
+                                     Hash(
+                                         "ObjectBirchTree"))
                             {
                                 trunkPartName =
-                                    "object_birch_"
-                                    "tree_trunk_"
-                                    "part";
+                                    "ObjectBirchTreeTrunkPa"
+                                    "rt";
                             }
 
                             _<ModelRenderer>().DrawModel(
@@ -375,7 +371,7 @@ namespace Forradia::Theme0::GameplayCore
                     auto creatureType{creature->GetType()};
 
                     creatureType =
-                        Hash("creature_white_rabbit");
+                        Hash("CreatureWhiteRabbit");
 
                     _<ModelRenderer>().DrawModel(
                         creatureType,
