@@ -419,7 +419,7 @@ namespace Forradia::Theme0::GameplayCore
                     }
 
                     _<GroundRenderer>().DrawTile(
-                        Hash("hovered_tile"), xCoordinate,
+                        Hash("HoveredTile"), xCoordinate,
                         yCoordinate, rendTileSize,
                         cameraPos, elevations, elevHeight);
                 }
