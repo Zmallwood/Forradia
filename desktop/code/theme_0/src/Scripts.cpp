@@ -16,7 +16,7 @@
 
 #include "Update.hpp"
 
-#include "WorldGen.hpp"
+#include "WorldGenerator.hpp"
 
 #include "WorldView.hpp"
 
