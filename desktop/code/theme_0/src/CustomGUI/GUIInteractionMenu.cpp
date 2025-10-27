@@ -56,7 +56,7 @@ namespace Forradia
                     hoveredCoordinate.y)};
 
             if (tile &&
-                tile->GetGround() == Hash("ground_grass"))
+                tile->GetGround() == Hash("GroundGrass"))
             {
                 m_entries.push_back(
                     {"Forage", [=]()
@@ -74,18 +74,17 @@ namespace Forradia
             {
                 auto type{object->GetType()};
 
-                if (type == Hash("object_fir_tree"))
+                if (type == Hash("ObjectFirTree"))
                 {
                     m_entries.push_back(
                         {"Cut down tree", [=]()
                          {
                              tile->GetObjectsStack()
                                  ->RemoveObjectOfType(
-                                     "object_fir_tree");
+                                     "ObjectFirTree");
                              tile->GetObjectsStack()
                                  ->AddObject(
-                                     "object_felled_"
-                                     "tree");
+                                     "ObjectFelledTree");
                              _<GUIChatBox>().Print(
                                  "Tree cut down. "
                                  "You found some "
@@ -93,19 +92,17 @@ namespace Forradia
                          }});
                 }
 
-                if (type == Hash("object_birch_tree"))
+                if (type == Hash("ObjectBirchTree"))
                 {
                     m_entries.push_back(
                         {"Cut down tree", [=]()
                          {
                              tile->GetObjectsStack()
                                  ->RemoveObjectOfType(
-                                     "object_birch_"
-                                     "tree");
+                                     "ObjectBirchTree");
                              tile->GetObjectsStack()
                                  ->AddObject(
-                                     "object_felled_"
-                                     "tree");
+                                     "ObjectFelledTree");
                              _<GUIChatBox>().Print(
                                  "Tree cut down. "
                                  "You found some "

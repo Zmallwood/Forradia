@@ -1,4 +1,4 @@
-# Blender 3.4.1 MTL File: 'object_bush2.blend'
+# Blender 3.4.1 MTL File: 'ObjectBush2.blend'
 # www.blender.org
 
 newmtl Material.002
@@ -9,4 +9,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd /home/andreas/code/git/Forradia/desktop/raw_models/objects/object_bush2_tex.png
+map_Kd /home/andreas/code/git/Forradia/desktop/RawModels/Objects/ObjectBush2_Texture.png

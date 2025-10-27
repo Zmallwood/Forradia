@@ -1,6 +1,6 @@
 # Blender 3.4.1
 # www.blender.org
-mtllib object_bush2.mtl
+mtllib ObjectBush2.mtl
 o Cube
 v 0.117154 -3.296248 0.021510
 v 0.117154 -3.296248 -0.021510

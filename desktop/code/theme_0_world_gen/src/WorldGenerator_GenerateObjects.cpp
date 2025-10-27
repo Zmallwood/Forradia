@@ -83,7 +83,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddObject(
-                        "object_bush1");
+                        "ObjectBush1");
                 }
             }
 
@@ -106,7 +106,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddObject(
-                        "object_bush2");
+                        "ObjectBush2");
                 }
             }
 
@@ -129,7 +129,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddObject(
-                        "object_pink_flower");
+                        "ObjectPinkFlower");
                 }
             }
 
@@ -152,7 +152,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddObject(
-                        "object_tall_grass");
+                        "ObjectTallGrass");
                 }
             }
 
@@ -172,7 +172,7 @@ namespace Forradia
                     tile->GetObjectsStack()->ClearObjects();
 
                     tile->GetObjectsStack()->AddObject(
-                        "object_stone_boulder");
+                        "ObjectStoneBoulder");
                 }
             }
         }

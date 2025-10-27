@@ -1,6 +1,6 @@
 # Blender 3.4.1
 # www.blender.org
-mtllib object_pink_flower.mtl
+mtllib ObjectPinkFlower.mtl
 o Cube
 v -0.085204 0.124289 1.026996
 v 0.021677 -0.053119 -0.024118

@@ -389,7 +389,7 @@ namespace Forradia::Theme0::GameplayCore
                         worldAreaSize.height - playerPos.y)
                 {
                     _<ModelRenderer>().DrawModel(
-                        Hash("player"),
+                        Hash("Player"),
                         (xCoordinate)*rendTileSize -
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize -
