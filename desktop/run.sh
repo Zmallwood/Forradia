@@ -7,6 +7,6 @@ fi
 rm -rf ./bin/Resources
 cp ./build/Forradia ./bin/
 cp -r ./Resources ./bin/
-cp -r ./code/theme_0_scripts/src/ ./bin/Resources/Theme0Scripts
+cp -r ./code/client/theme_0_scripts/src/ ./bin/Resources/Theme0Scripts
 cd ./bin
 ./Forradia
