@@ -30,7 +30,7 @@ namespace Forradia
             static constexpr float k_slotSize{0.04f};
 
             inline static const String k_slotImageName{
-                "gui_inventory_win_slot_bg"};
+                "GUIInventoryWindowSlotBackground"};
         };
     }
 }

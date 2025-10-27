@@ -41,7 +41,7 @@ namespace Forradia
                 : m_parentWindow(parentWindow),
                   k_windowTitle(windowTitle),
                   GUIPanel(0.0f, 0.0f, 0.0f, 0.0f,
-                           "gui_win_title_bar_bg")
+                           "GUIWindowTitleBarBackground")
             {
                 Initialize();
             }

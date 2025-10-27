@@ -26,7 +26,7 @@ namespace Forradia
       private:
         constexpr static StringView
             k_defaultBackgroundImageDerived{
-                "gui_chat_box_bg"};
+                "GUIChatBoxBackground"};
 
         inline static const float k_lineHeight{0.025f};
 

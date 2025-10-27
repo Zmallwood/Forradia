@@ -34,9 +34,9 @@ namespace Forradia
 
       private:
         inline static const String k_backgroundImage{
-            "gui_button_bg"};
+            "GUIButtonBackground"};
         inline static const String k_hoveredBackgroundImage{
-            "gui_button_hovered_bg"};
+            "GUIButtonHoveredBackground"};
 
         String m_text;
 

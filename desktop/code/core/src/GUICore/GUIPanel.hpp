@@ -32,7 +32,7 @@ namespace Forradia
 
       private:
         inline static const String k_defaultBackgroundImage{
-            "gui_panel_bg"};
+            "GUIPanelBackground"};
 
         String m_backgroundImage;
     };
