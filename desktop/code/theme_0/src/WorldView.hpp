@@ -6,17 +6,11 @@
 
 #pragma once
 
-namespace Forradia
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Theme0
+    class WorldView
     {
-        namespace GameplayCore
-        {
-            class WorldView
-            {
-              public:
-                void Render() const;
-            };
-        }
-    }
+      public:
+        void Render() const;
+    };
 }

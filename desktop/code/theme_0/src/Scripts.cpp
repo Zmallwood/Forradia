@@ -58,402 +58,353 @@
 
 #include "Update/UpdateKeyboardMovement.hpp"
 
-namespace Forradia
+namespace Forradia::Theme0
 {
-    namespace Theme0
+    class IScenePublic : public IScene
     {
-        class IScenePublic : public IScene
-        {
-          public:
-            using IScene::GetGUI;
-        };
+      public:
+        using IScene::GetGUI;
+    };
 
-        namespace py = pybind11;
+    namespace py = pybind11;
 
-        PYBIND11_EMBEDDED_MODULE(embedded, m)
-        {
-            py::class_<Color>(m, "Color")
-                .def(
-                    py::init<float, float, float, float>());
+    PYBIND11_EMBEDDED_MODULE(embedded, m)
+    {
+        py::class_<Color>(m, "Color")
+            .def(py::init<float, float, float, float>());
 
-            py::class_<Engine>(m, "Engine")
-                .def("stop", &Engine::Stop);
+        py::class_<Engine>(m, "Engine")
+            .def("stop", &Engine::Stop);
 
-            py::class_<GUIComponent,
-                       SharedPtr<GUIComponent>>(
-                m, "GUIComponent");
+        py::class_<GUIComponent, SharedPtr<GUIComponent>>(
+            m, "GUIComponent");
 
-            py::class_<
-                IScene::ScenesGUI::GUIRoot,
-                SharedPtr<IScene::ScenesGUI::GUIRoot>>(
-                m, "GUIRoot")
-                .def("add_child_comp",
-                     [](IScene::ScenesGUI::GUIRoot &self,
-                        SharedPtr<GUIComponent> comp)
-                         -> SharedPtr<
+        py::class_<IScene::ScenesGUI::GUIRoot,
+                   SharedPtr<IScene::ScenesGUI::GUIRoot>>(
+            m, "GUIRoot")
+            .def("add_child_comp",
+                 [](IScene::ScenesGUI::GUIRoot &self,
+                    SharedPtr<GUIComponent> comp)
+                     -> SharedPtr<
 
-                             GUIComponent>
-                     {
-                         return self.AddChildComponent(
-                             comp);
-                     });
+                         GUIComponent>
+                 { return self.AddChildComponent(comp); });
 
-            py::class_<GUILabel, SharedPtr<GUILabel>,
-                       GUIComponent>(m, "GUILabel")
-                .def(py::init<float, float, float, float,
-                              StringView, bool, Color>(),
-                     py::arg("x"), py::arg("y"),
-                     py::arg("w"), py::arg("h"),
-                     py::arg("text") = "",
-                     py::arg("cent_align") = false,
-                     py::arg("color") =
-                         Colors::WheatTransparent)
-                .def("set_text", &GUILabel::SetText)
-                .def("set_visible",
-                     &GUIComponent::SetVisible);
+        py::class_<GUILabel, SharedPtr<GUILabel>,
+                   GUIComponent>(m, "GUILabel")
+            .def(py::init<float, float, float, float,
+                          StringView, bool, Color>(),
+                 py::arg("x"), py::arg("y"), py::arg("w"),
+                 py::arg("h"), py::arg("text") = "",
+                 py::arg("cent_align") = false,
+                 py::arg("color") =
+                     Colors::WheatTransparent)
+            .def("set_text", &GUILabel::SetText)
+            .def("set_visible", &GUIComponent::SetVisible);
 
-            py::class_<GUIPanel, SharedPtr<GUIPanel>,
-                       GUIComponent>(m, "GUIPanel");
+        py::class_<GUIPanel, SharedPtr<GUIPanel>,
+                   GUIComponent>(m, "GUIPanel");
 
-            py::class_<GUIButton, SharedPtr<GUIButton>,
-                       GUIComponent>(m, "gui_button");
+        py::class_<GUIButton, SharedPtr<GUIButton>,
+                   GUIComponent>(m, "gui_button");
 
-            py::class_<GUIFPSPanel, SharedPtr<GUIFPSPanel>,
-                       GUIComponent>(m, "gui_fps_panel");
+        py::class_<GUIFPSPanel, SharedPtr<GUIFPSPanel>,
+                   GUIComponent>(m, "gui_fps_panel");
 
-            py::class_<IScene>(m, "IScene")
-                .def(py::init<>())
-                .def("init", &IScene::Initialize)
-                .def("gui", &IScenePublic::GetGUI)
-                .def("set_init_derived",
-                     [](IScene &self, py::function f)
-                     {
-                         self.SetInitializeDerived(
-                             [=] { f(); });
-                     })
-                .def("set_on_enter_derived",
-                     [](IScene &self, py::function f)
-                     {
-                         self.SetOnEnterDerived([=]
-                                                { f(); });
-                     })
-                .def("set_update_derived",
-                     [](IScene &self, py::function f)
-                     {
-                         self.SetUpdateDerived([=]
+        py::class_<IScene>(m, "IScene")
+            .def(py::init<>())
+            .def("init", &IScene::Initialize)
+            .def("gui", &IScenePublic::GetGUI)
+            .def("set_init_derived",
+                 [](IScene &self, py::function f)
+                 {
+                     self.SetInitializeDerived([=]
                                                { f(); });
-                     })
-                .def("set_render_derived",
-                     [](IScene &self, py::function f)
-                     {
-                         self.SetRenderDerived([=]
-                                               { f(); });
-                     });
+                 })
+            .def("set_on_enter_derived",
+                 [](IScene &self, py::function f)
+                 { self.SetOnEnterDerived([=] { f(); }); })
+            .def("set_update_derived",
+                 [](IScene &self, py::function f)
+                 { self.SetUpdateDerived([=] { f(); }); })
+            .def("set_render_derived",
+                 [](IScene &self, py::function f)
+                 { self.SetRenderDerived([=] { f(); }); });
 
-            py::class_<SceneManager>(m, "SceneManager")
-                .def(py::init<>())
-                .def("add_scene", &SceneManager::AddScene)
-                .def("go_to_scene",
-                     &SceneManager::GoToScene);
+        py::class_<SceneManager>(m, "SceneManager")
+            .def(py::init<>())
+            .def("add_scene", &SceneManager::AddScene)
+            .def("go_to_scene", &SceneManager::GoToScene);
 
-            py::class_<Cursor>(m, "Cursor")
-                .def(py::init<>())
-                .def("set_curs_style",
-                     &Cursor::SetCursorStyle);
+        py::class_<Cursor>(m, "Cursor")
+            .def(py::init<>())
+            .def("set_curs_style", &Cursor::SetCursorStyle);
 
-            py::enum_<CursorStyles>(m, "CursorStyles")
-                .value("normal", CursorStyles::Normal)
-                .value("hovering_clickable_gui",
-                       CursorStyles::HoveringClickableGUI)
-                .value("hovering_creature",
-                       CursorStyles::HoveringCreature);
+        py::enum_<CursorStyles>(m, "CursorStyles")
+            .value("normal", CursorStyles::Normal)
+            .value("hovering_clickable_gui",
+                   CursorStyles::HoveringClickableGUI)
+            .value("hovering_creature",
+                   CursorStyles::HoveringCreature);
 
-            py::class_<GUIChatBox, SharedPtr<GUIChatBox>,
-                       GUIComponent>(m, "GUIChatBox")
-                .def(py::init<>())
-                .def("print", &GUIChatBox::Print);
+        py::class_<GUIChatBox, SharedPtr<GUIChatBox>,
+                   GUIComponent>(m, "GUIChatBox")
+            .def(py::init<>())
+            .def("print", &GUIChatBox::Print);
 
-            py::class_<Theme0::WorldGenerator>(
-                m, "WorldGenerator")
-                .def(py::init<>())
-                .def("gen_new_world",
-                     &Theme0::WorldGenerator::
-                         GenerateNewWorld);
+        py::class_<Theme0::WorldGenerator>(m,
+                                           "WorldGenerator")
+            .def(py::init<>())
+            .def("gen_new_world",
+                 &Theme0::WorldGenerator::GenerateNewWorld);
 
-            py::class_<KeyboardInput>(m, "KeyboardInput")
-                .def("any_key_pressed_pick_res",
-                     &KeyboardInput::
-                         AnyKeyIsPressedPickResult);
+        py::class_<KeyboardInput>(m, "KeyboardInput")
+            .def("any_key_pressed_pick_res",
+                 &KeyboardInput::AnyKeyIsPressedPickResult);
 
-            py::class_<MouseInput>(m, "MouseInput")
-                .def("any_mouse_btn_pressed_pick_res",
-                     &MouseInput::
-                         AnyMouseButtonIsPressedPickResult);
+        py::class_<MouseInput>(m, "MouseInput")
+            .def("any_mouse_btn_pressed_pick_res",
+                 &MouseInput::
+                     AnyMouseButtonIsPressedPickResult);
 
-            py::class_<Image2DRenderer>(m,
-                                        "Image2DRenderer")
-                .def("draw_img",
-                     [](Image2DRenderer &self,
-                        StringView image_name, float x,
-                        float y, float w, float h)
-                     {
-                         self.DrawImage(image_name, x, y, w,
-                                        h);
-                     })
-                .def("draw_img",
-                     [](Image2DRenderer &self,
-                        int image_name_hash, float x,
-                        float y, float w, float h)
-                     {
-                         self.DrawImage(image_name_hash, x,
-                                        y, w, h);
-                     })
-                .def("draw_img_auto_h",
-                     [](Image2DRenderer &self,
-                        StringView img_name, float x,
-                        float y, float w)
-                     {
-                         self.DrawImageAutoHeight(img_name,
-                                                  x, y, w);
-                     });
+        py::class_<Image2DRenderer>(m, "Image2DRenderer")
+            .def(
+                "draw_img",
+                [](Image2DRenderer &self,
+                   StringView image_name, float x, float y,
+                   float w, float h)
+                { self.DrawImage(image_name, x, y, w, h); })
+            .def("draw_img",
+                 [](Image2DRenderer &self,
+                    int image_name_hash, float x, float y,
+                    float w, float h)
+                 {
+                     self.DrawImage(image_name_hash, x, y,
+                                    w, h);
+                 })
+            .def("draw_img_auto_h",
+                 [](Image2DRenderer &self,
+                    StringView img_name, float x, float y,
+                    float w)
+                 {
+                     self.DrawImageAutoHeight(img_name, x,
+                                              y, w);
+                 });
 
-            py::class_<
-                Theme0::GUIPlayerStatusBox,
-                SharedPtr<Theme0::GUIPlayerStatusBox>,
-                GUIComponent>(m, "GUIPlayerStatusBox");
+        py::class_<Theme0::GUIPlayerStatusBox,
+                   SharedPtr<Theme0::GUIPlayerStatusBox>,
+                   GUIComponent>(m, "GUIPlayerStatusBox");
 
-            py::class_<
-                Theme0::GUIPlayerBodyWindow,
-                SharedPtr<Theme0::GUIPlayerBodyWindow>,
-                GUIComponent>(m, "GUIPlayerBodyWindow")
-                .def("toggle_visible",
-                     &GUIComponent::ToggleVisibility);
+        py::class_<Theme0::GUIPlayerBodyWindow,
+                   SharedPtr<Theme0::GUIPlayerBodyWindow>,
+                   GUIComponent>(m, "GUIPlayerBodyWindow")
+            .def("toggle_visible",
+                 &GUIComponent::ToggleVisibility);
 
-            py::class_<
-                Theme0::GUIInventoryWindow,
-                SharedPtr<Theme0::GUIInventoryWindow>,
-                GUIComponent>(m, "GUIInventoryWindow")
-                .def("toggle_visible",
-                     &GUIComponent::ToggleVisibility);
+        py::class_<Theme0::GUIInventoryWindow,
+                   SharedPtr<Theme0::GUIInventoryWindow>,
+                   GUIComponent>(m, "GUIInventoryWindow")
+            .def("toggle_visible",
+                 &GUIComponent::ToggleVisibility);
 
-            py::class_<Theme0::GUISystemMenu,
-                       SharedPtr<Theme0::GUISystemMenu>,
-                       GUIComponent>(m, "GUISystemMenu")
-                .def("toggle_visible",
-                     &GUIComponent::ToggleVisibility);
+        py::class_<Theme0::GUISystemMenu,
+                   SharedPtr<Theme0::GUISystemMenu>,
+                   GUIComponent>(m, "GUISystemMenu")
+            .def("toggle_visible",
+                 &GUIComponent::ToggleVisibility);
 
-            py::class_<
-                Theme0::GUIInteractionMenu,
-                SharedPtr<Theme0::GUIInteractionMenu>,
-                GUIComponent>(m, "GUIInteractionMenu");
+        py::class_<Theme0::GUIInteractionMenu,
+                   SharedPtr<Theme0::GUIInteractionMenu>,
+                   GUIComponent>(m, "GUIInteractionMenu");
 
-            py::class_<Theme0::GameplayCore::TileHovering>(
-                m, "TileHovering")
-                .def("update", &Theme0::GameplayCore::
-                                   TileHovering::Update);
+        py::class_<Theme0::GameplayCore::TileHovering>(
+            m, "TileHovering")
+            .def("update", &Theme0::GameplayCore::
+                               TileHovering::Update);
 
-            py::class_<Theme0::GameplayCore::WorldView>(
-                m, "WorldView")
-                .def("render", &Theme0::GameplayCore::
-                                   WorldView::Render);
+        py::class_<Theme0::GameplayCore::WorldView>(
+            m, "WorldView")
+            .def("render",
+                 &Theme0::GameplayCore::WorldView::Render);
 
-            m.def("ticks", [] { return GetTicks(); });
+        m.def("ticks", [] { return GetTicks(); });
 
-            m.def("conv_w_to_h",
-                  [](float w)
-                  {
-                      return ConvertWidthToHeight(
-                          w, _<SDLDevice>().GetWindow());
-                  });
+        m.def("conv_w_to_h",
+              [](float w)
+              {
+                  return ConvertWidthToHeight(
+                      w, _<SDLDevice>().GetWindow());
+              });
 
-            m.def("make_shared_fps_panel",
-                  []
-                  {
-                      return std::make_shared<
+        m.def("make_shared_fps_panel",
+              []
+              {
+                  return std::make_shared<
 
-                          GUIFPSPanel>();
-                  });
+                      GUIFPSPanel>();
+              });
 
-            m.def("make_shared_gui_label",
-                  [](float x, float y, float w, float h,
-                     StringView text, bool cent_align)
-                  {
-                      return std::make_shared<GUILabel>(
-                          x, y, w, h, text, cent_align,
-                          Colors::WheatTransparent);
-                  });
+        m.def("make_shared_gui_label",
+              [](float x, float y, float w, float h,
+                 StringView text, bool cent_align)
+              {
+                  return std::make_shared<GUILabel>(
+                      x, y, w, h, text, cent_align,
+                      Colors::WheatTransparent);
+              });
 
-            m.def("make_shared_gui_panel",
-                  [](float x, float y, float w, float h)
-                  {
-                      return std::make_shared<GUIPanel>(
-                          x, y, w, h);
-                  });
+        m.def("make_shared_gui_panel",
+              [](float x, float y, float w, float h)
+              {
+                  return std::make_shared<GUIPanel>(x, y, w,
+                                                    h);
+              });
 
-            m.def("make_shared_gui_button",
-                  [](float x, float y, float w, float h,
-                     StringView text, py::function action)
-                  {
-                      return std::make_shared<
+        m.def("make_shared_gui_button",
+              [](float x, float y, float w, float h,
+                 StringView text, py::function action)
+              {
+                  return std::make_shared<
 
-                          GUIButton>(x, y, w, h, text,
-                                     action);
-                  });
+                      GUIButton>(x, y, w, h, text, action);
+              });
 
-            m.def("make_shared_gui_button",
-                  [](float x, float y, float w, float h,
-                     StringView text, py::function action,
-                     StringView bg_img,
-                     StringView hovered_bg_img)
-                  {
-                      return std::make_shared<
+        m.def("make_shared_gui_button",
+              [](float x, float y, float w, float h,
+                 StringView text, py::function action,
+                 StringView bg_img,
+                 StringView hovered_bg_img)
+              {
+                  return std::make_shared<
 
-                          GUIButton>(x, y, w, h, text,
-                                     action, bg_img,
-                                     hovered_bg_img);
-                  });
+                      GUIButton>(x, y, w, h, text, action,
+                                 bg_img, hovered_bg_img);
+              });
 
-            m.def(
-                "get_gui_interact_menu_ptr",
-                []()
-                    -> SharedPtr<Theme0::GUIInteractionMenu>
-                {
-                    return __<Theme0::GUIInteractionMenu>();
-                });
+        m.def("get_gui_interact_menu_ptr",
+              []() -> SharedPtr<Theme0::GUIInteractionMenu>
+              { return __<Theme0::GUIInteractionMenu>(); });
 
-            m.def("get_gui_player_body_win_ptr",
-                  []() -> SharedPtr<
-                           Theme0::GUIPlayerBodyWindow>
-                  {
-                      return __<
-                          Theme0::GUIPlayerBodyWindow>();
-                  });
+        m.def(
+            "get_gui_player_body_win_ptr",
+            []() -> SharedPtr<Theme0::GUIPlayerBodyWindow>
+            { return __<Theme0::GUIPlayerBodyWindow>(); });
 
-            m.def(
-                "get_gui_inventory_win_ptr",
-                []()
-                    -> SharedPtr<Theme0::GUIInventoryWindow>
-                {
-                    return __<Theme0::GUIInventoryWindow>();
-                });
+        m.def("get_gui_inventory_win_ptr",
+              []() -> SharedPtr<Theme0::GUIInventoryWindow>
+              { return __<Theme0::GUIInventoryWindow>(); });
 
-            m.def("get_gui_sys_menu_ptr",
-                  []() -> SharedPtr<Theme0::GUISystemMenu>
-                  { return __<Theme0::GUISystemMenu>(); });
+        m.def("get_gui_sys_menu_ptr",
+              []() -> SharedPtr<Theme0::GUISystemMenu>
+              { return __<Theme0::GUISystemMenu>(); });
 
-            m.def("make_shared_gui_player_status_box",
-                  []()
-                  {
-                      return std::make_shared<
-                          Theme0::GUIPlayerStatusBox>();
-                  });
+        m.def("make_shared_gui_player_status_box",
+              []()
+              {
+                  return std::make_shared<
+                      Theme0::GUIPlayerStatusBox>();
+              });
 
-            m.def(
-                "get_engine",
-                []() -> Engine & { return _<Engine>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_engine",
+            []() -> Engine & { return _<Engine>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_scene_mngr", []() -> SceneManager &
-                { return _<SceneManager>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_scene_mngr", []() -> SceneManager &
+            { return _<SceneManager>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_img_2d_rend", []() -> Image2DRenderer &
-                { return _<Image2DRenderer>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_img_2d_rend", []() -> Image2DRenderer &
+            { return _<Image2DRenderer>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_gui_chat_box", []() -> GUIChatBox &
-                { return _<GUIChatBox>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_gui_chat_box", []() -> GUIChatBox &
+            { return _<GUIChatBox>(); },
+            py::return_value_policy::reference);
 
-            m.def("get_gui_chat_box_ptr",
-                  []() -> SharedPtr<GUIChatBox>
-                  { return __<GUIChatBox>(); });
+        m.def("get_gui_chat_box_ptr",
+              []() -> SharedPtr<GUIChatBox>
+              { return __<GUIChatBox>(); });
 
-            m.def(
-                "get_cursor",
-                []() -> Cursor & { return _<Cursor>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_cursor",
+            []() -> Cursor & { return _<Cursor>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_kb_inp", []() -> KeyboardInput &
-                { return _<KeyboardInput>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_kb_inp", []() -> KeyboardInput &
+            { return _<KeyboardInput>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_mouse_inp", []() -> MouseInput &
-                { return _<MouseInput>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_mouse_inp", []() -> MouseInput &
+            { return _<MouseInput>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_world_grator",
-                []() -> Theme0::WorldGenerator &
-                { return _<Theme0::WorldGenerator>(); },
-                py::return_value_policy::reference);
+        m.def(
+            "get_world_grator",
+            []() -> Theme0::WorldGenerator &
+            { return _<Theme0::WorldGenerator>(); },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_tl_hovering",
-                []() -> Theme0::GameplayCore::TileHovering &
-                {
-                    return _<Theme0::GameplayCore::
-                                 TileHovering>();
-                },
-                py::return_value_policy::reference);
+        m.def(
+            "get_tl_hovering",
+            []() -> Theme0::GameplayCore::TileHovering &
+            {
+                return _<
+                    Theme0::GameplayCore::TileHovering>();
+            },
+            py::return_value_policy::reference);
 
-            m.def(
-                "get_world_view",
-                []() -> Theme0::GameplayCore::WorldView &
-                {
-                    return _<
-                        Theme0::GameplayCore::WorldView>();
-                },
-                py::return_value_policy::reference);
+        m.def(
+            "get_world_view",
+            []() -> Theme0::GameplayCore::WorldView &
+            {
+                return _<Theme0::GameplayCore::WorldView>();
+            },
+            py::return_value_policy::reference);
 
-            m.def("update_kb_actions",
-                  &Theme0::GameplayCore::
-                      UpdateKeyboardActions);
+        m.def("update_kb_actions",
+              &Theme0::GameplayCore::UpdateKeyboardActions);
 
-            m.def(
-                "update_mouse_actions",
-                &Theme0::GameplayCore::UpdateMouseActions);
+        m.def("update_mouse_actions",
+              &Theme0::GameplayCore::UpdateMouseActions);
 
-            m.def("update_npcs",
-                  &Theme0::GameplayCore::UpdateNPCs);
+        m.def("update_npcs",
+              &Theme0::GameplayCore::UpdateNPCs);
 
-            m.def("update_crea_movem",
-                  &Theme0::GameplayCore::
-                      UpdateCreaturesMovement);
+        m.def(
+            "update_crea_movem",
+            &Theme0::GameplayCore::UpdateCreaturesMovement);
 
-            m.def(
-                "update_mouse_movem",
-                &Theme0::GameplayCore::UpdateMouseMovement);
+        m.def("update_mouse_movem",
+              &Theme0::GameplayCore::UpdateMouseMovement);
 
-            m.def("update_kb_movem",
-                  &Theme0::GameplayCore::
-                      UpdateKeyboardMovement);
+        m.def(
+            "update_kb_movem",
+            &Theme0::GameplayCore::UpdateKeyboardMovement);
 
-            m.def("setup_scenes",
-                  []
-                  {
-                      py::eval_file(
-                          "Resources/Theme0Scripts/"
-                          "scenes.py");
-                      py::eval("setup_scenes()");
-                  });
-        }
+        m.def("setup_scenes",
+              []
+              {
+                  py::eval_file("Resources/Theme0Scripts/"
+                                "scenes.py");
+                  py::eval("setup_scenes()");
+              });
+    }
 
-        void ScriptEngine::Initialize()
-        {
-            static pybind11::scoped_interpreter guard{};
-        }
+    void ScriptEngine::Initialize()
+    {
+        static pybind11::scoped_interpreter guard{};
+    }
 
-        void ScriptEngine::LoadScripts()
-        {
-            auto embedded = py::module::import("embedded");
+    void ScriptEngine::LoadScripts()
+    {
+        auto embedded = py::module::import("embedded");
 
-            embedded.attr("setup_scenes")();
-        }
+        embedded.attr("setup_scenes")();
     }
 }
