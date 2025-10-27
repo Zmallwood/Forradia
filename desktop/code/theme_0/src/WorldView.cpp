@@ -6,7 +6,7 @@
 
 #include "WorldView.hpp"
 
-#include "Theme0Essentials.hpp"
+#include "PlayerCharacter.hpp"
 
 #include "Theme0Properties.hpp"
 
@@ -275,7 +275,7 @@ namespace Forradia
                                     std::
                                         static_pointer_cast<
                                             Forradia::
-                                                TreeObject>(
+                                                Theme0::TreeObject>(
                                             object)};
 
                                 auto trunkParts{

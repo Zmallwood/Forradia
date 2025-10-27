@@ -10,7 +10,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Theme0Essentials.hpp"
+#include "PlayerCharacter.hpp"
 
 #include "Theme0Properties.hpp"
 

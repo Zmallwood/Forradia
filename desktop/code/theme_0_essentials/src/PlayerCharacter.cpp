@@ -4,11 +4,7 @@
 // (see LICENSE for details)
 //
 
-#include "Theme0Essentials.hpp"
-
-#include "SDLDevice.hpp"
-
-#include "Theme0Properties.hpp"
+#include "PlayerCharacter.hpp"
 
 #include "World.hpp"
 
@@ -22,33 +18,6 @@ namespace Forradia
     {
         namespace GameplayCore
         {
-            void PlayerBody::Initialize()
-            {
-                m_bodyParts.insert(
-                    {BodyPartTypes::OverallBody,
-                     BodyPart()});
-
-                m_bodyParts.insert(
-                    {BodyPartTypes::RightArm, BodyPart()});
-
-                m_bodyParts.insert(
-                    {BodyPartTypes::LeftArm, BodyPart()});
-
-                m_bodyParts.insert(
-                    {BodyPartTypes::Legs, BodyPart()});
-            }
-
-            BodyPart *PlayerBody::GetBodyPartPtr(
-                BodyPartTypes bodyPartType)
-            {
-                if (m_bodyParts.contains(bodyPartType))
-                {
-                    return &m_bodyParts.at(bodyPartType);
-                }
-
-                return nullptr;
-            }
-
             void PlayerCharacter::Initialize()
             {
                 this->MoveToSuitablePosition();

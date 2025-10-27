@@ -6,69 +6,14 @@
 
 #pragma once
 
+#include "PlayerBody.hpp"
+
 namespace Forradia
 {
     namespace Theme0
     {
         namespace GameplayCore
         {
-            enum class BodyPartTypes
-            {
-                None,
-                OverallBody,
-                RightArm,
-                LeftArm,
-                Legs
-            };
-
-            class BodyPart
-            {
-              public:
-                auto GetStrength() const
-                {
-                    return m_strength;
-                }
-                auto GetCurrentEnergy() const
-                {
-                    return m_currentEnergy;
-                }
-                auto GetMaxEnergy() const
-                {
-                    return m_maxEnergy;
-                }
-                auto GetTemperature() const
-                {
-                    return m_temperature;
-                }
-
-              private:
-                float m_strength{0.1f};
-
-                float m_currentEnergy{1.0f};
-
-                float m_maxEnergy{1.0f};
-
-                float m_temperature{37.0f};
-            };
-
-            class PlayerBody
-            {
-              public:
-                PlayerBody()
-                {
-                    Initialize();
-                }
-
-                BodyPart *
-                GetBodyPartPtr(BodyPartTypes bodyPartType);
-
-              private:
-                void Initialize();
-
-                std::map<BodyPartTypes, BodyPart>
-                    m_bodyParts;
-            };
-
             class PlayerCharacter
             {
               public:
@@ -150,7 +95,5 @@ namespace Forradia
                 int m_money{0};
             };
         }
-        using namespace GameplayCore;
     }
-    using namespace Theme0;
 }

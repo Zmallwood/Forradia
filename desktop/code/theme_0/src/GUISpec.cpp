@@ -8,7 +8,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Theme0Essentials.hpp"
+#include "PlayerCharacter.hpp"
 
 #include "Update.hpp"
 
@@ -463,7 +463,7 @@ namespace Forradia
             m_entries.clear();
 
             auto hoveredCoordinate{
-                _<TileHovering>().GetHoveredCoordinate()};
+                _<GameplayCore::TileHovering>().GetHoveredCoordinate()};
 
             m_clickedCoordinate = hoveredCoordinate;
 
