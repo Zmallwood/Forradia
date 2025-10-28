@@ -45,6 +45,6 @@ namespace Forradia::Theme0
         m_size = m_worldArea->GetSize();
 
         m_scale =
-            _<Theme0::Theme0Properties>().k_worldScaling;
+            _<Theme0::Theme0Properties>().GetWorldScaling();
     }
 }

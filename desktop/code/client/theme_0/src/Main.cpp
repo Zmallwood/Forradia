@@ -18,16 +18,16 @@ int main(int argc, char **argv)
     using namespace Theme0;
 
     _<Engine>().Initialize(
-        _<Theme0Properties>().k_gameWindowTitle,
-        _<Theme0Properties>().k_clearColor);
+        _<Theme0Properties>().GetGameWindowTitle(),
+        _<Theme0Properties>().GetClearColor());
 
     _<ScriptEngine>().Initialize();
 
     _<ScriptEngine>().LoadScripts();
 
     _<World>().Initialize(
-        _<Theme0Properties>().k_worldAreaSize,
-        _<Theme0Properties>().k_worldScaling);
+        _<Theme0Properties>().GetWorldAreaSize(),
+        _<Theme0Properties>().GetWorldScaling());
 
     _<Engine>().Run();
 

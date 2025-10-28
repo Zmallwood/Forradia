@@ -153,6 +153,16 @@ target_include_directories(ForradiaTheme0WorldStruct PRIVATE
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommonGeneral)
 target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/client/theme_0_world_struct/src/StdAfx.hpp)
 
+# ForradiaTheme0Properties
+file(GLOB_RECURSE THEME_0_PROPERTIES "code/client/theme_0_properties/src/*.cpp")
+add_library(ForradiaTheme0Properties ${THEME_0_PROPERTIES})
+target_include_directories(ForradiaTheme0Properties PRIVATE
+    "code/client/theme_0_properties/src"
+    "code/client/common_lang/src"
+    "code/client/common_matter/src"
+)
+target_precompile_headers(ForradiaTheme0Properties PUBLIC code/client/theme_0_properties/src/StdAfx.hpp)
+
 # ForradiaTheme0WorldGen
 file(GLOB_RECURSE WORLD_GEN_SOURCES "code/client/theme_0_world_gen/src/*.cpp")
 add_library(ForradiaTheme0WorldGen ${WORLD_GEN_SOURCES})
@@ -219,5 +229,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreGUI
     ForradiaCoreScenes
     ForradiaCoreEngine
+    ForradiaTheme0Properties
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)

@@ -11,18 +11,16 @@ namespace Forradia::Theme0
     class Theme0Properties
     {
       public:
-        static constexpr String k_gameWindowTitle{
-            "Forradia"};
+        String GetGameWindowTitle() const;
 
-        static constexpr Color k_clearColor{
-            Colors::MildBlue};
+        Color GetClearColor() const;
 
-        static constexpr Size k_gridSize{30, 35};
+        Size GetGridSize() const;
 
-        static constexpr Size k_worldAreaSize{120, 100};
+        Size GetWorldAreaSize() const;
 
-        static constexpr float k_worldScaling{5.0f};
+        float GetWorldScaling() const;
 
-        static constexpr float k_tileSize{0.8f};
+        float GetTileSize() const;
     };
 }

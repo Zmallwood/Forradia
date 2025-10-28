@@ -29,7 +29,8 @@ namespace Forradia::Theme0::GameplayCore
 
         auto playerPos{_<PlayerCharacter>().GetPosition()};
 
-        auto rendTileSize{_<Theme0Properties>().k_tileSize};
+        auto rendTileSize{
+            _<Theme0Properties>().GetTileSize()};
 
         auto mousePosition{GetNormallizedMousePosition(
             _<SDLDevice>().GetWindow())};
@@ -81,7 +82,7 @@ namespace Forradia::Theme0::GameplayCore
         auto c = glm::vec3(cameraPos.x, cameraPos.y - 2.0f,
                            -cameraPos.z + 2.5f);
 
-        auto gridSize{_<Theme0Properties>().k_gridSize};
+        auto gridSize{_<Theme0Properties>().GetGridSize()};
 
         auto dir{glm::normalize(glm::unProject(
             glm::vec3((mousePosition.x) * canvasSize.width,

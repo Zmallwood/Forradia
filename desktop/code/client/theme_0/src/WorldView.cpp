@@ -34,7 +34,7 @@ namespace Forradia::Theme0::GameplayCore
 {
     void WorldView::Render() const
     {
-        auto gridSize{_<Theme0Properties>().k_gridSize};
+        auto gridSize{_<Theme0Properties>().GetGridSize()};
 
         auto playerPos{_<PlayerCharacter>().GetPosition()};
 
@@ -56,7 +56,8 @@ namespace Forradia::Theme0::GameplayCore
                               playerPos.y)
                 ->GetElevation()};
 
-        auto rendTileSize{_<Theme0Properties>().k_tileSize};
+        auto rendTileSize{
+            _<Theme0Properties>().GetTileSize()};
 
         Point3F cameraPos{
             (worldAreaSize.width - playerPos.x) *

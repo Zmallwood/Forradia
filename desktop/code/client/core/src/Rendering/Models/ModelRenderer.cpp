@@ -127,10 +127,10 @@ namespace Forradia
                                   Point3F cameraPosition,
                                   float elevationHeight)
     {
-        x += _<Theme0::Theme0Properties>().k_tileSize *
+        x += _<Theme0::Theme0Properties>().GetTileSize() *
              4.0f / 2.0f;
 
-        y += _<Theme0::Theme0Properties>().k_tileSize *
+        y += _<Theme0::Theme0Properties>().GetTileSize() *
              4.0f / 2.0f;
 
         glEnable(GL_DEPTH_TEST);
