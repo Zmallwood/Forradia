@@ -267,9 +267,11 @@ namespace Forradia
     {
         auto hash{Forradia::Hash(imageName)};
 
-        auto imageSize{_<ImageBank>().GetImageSize(hash)};
+        auto imageDimensions{
+            _<ImageBank>().GetTextureDimensions(hash)};
 
-        if (imageSize.width <= 0 || imageSize.height <= 0)
+        if (imageDimensions.width <= 0 ||
+            imageDimensions.height <= 0)
         {
             return;
         }
@@ -277,8 +279,9 @@ namespace Forradia
         auto canvasAspectRatio{
             CalcAspectRatio(_<SDLDevice>().GetWindow())};
 
-        auto imageAspectRatio{CFloat(imageSize.width) /
-                              imageSize.height};
+        auto imageAspectRatio{
+            CFloat(imageDimensions.width) /
+            imageDimensions.height};
 
         auto height{width / imageAspectRatio *
                     canvasAspectRatio};

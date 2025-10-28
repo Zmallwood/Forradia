@@ -11,11 +11,11 @@ namespace Forradia
     GLuint ImageBank::LoadSingleTexture(
         SharedPtr<SDL_Surface> surface)
     {
-        GLuint texture;
+        GLuint textureID;
 
-        glGenTextures(1, &texture);
+        glGenTextures(1, &textureID);
 
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, textureID);
 
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w,
                      surface->h, 0, GL_RGBA,
@@ -23,10 +23,10 @@ namespace Forradia
 
         glTexParameteri(GL_TEXTURE_2D,
                         GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                        
+
         glTexParameteri(GL_TEXTURE_2D,
                         GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        return texture;
+        return textureID;
     }
 }

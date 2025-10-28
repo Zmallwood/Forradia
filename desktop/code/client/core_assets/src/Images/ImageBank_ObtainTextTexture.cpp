@@ -13,15 +13,16 @@ namespace Forradia
     {
         if (this->TextTextureExists(x, y, textHash))
         {
-            return m_textTextures.at(x).at(y).at(textHash);
+            return m_textTextureIDs.at(x).at(y).at(
+                textHash);
         }
 
-        GLuint texture;
+        GLuint textureID;
 
-        glGenTextures(1, &texture);
+        glGenTextures(1, &textureID);
 
-        m_textTextures[x][y][textHash] = texture;
+        m_textTextureIDs[x][y][textHash] = textureID;
 
-        return texture;
+        return textureID;
     }
 }

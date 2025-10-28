@@ -10,17 +10,17 @@ namespace Forradia
 {
     void ImageBank::Initialize()
     {
-        this->LoadImages();
+        this->LoadTextures();
     }
 
     void ImageBank::Cleanup()
     {
-        for (auto entry : m_textures)
+        for (auto entry : m_textureEntries)
         {
-            glDeleteTextures(1, &entry.second);
+            glDeleteTextures(1, &entry.second.textureID);
         }
 
-        for (auto entry1 : m_textTextures)
+        for (auto entry1 : m_textTextureIDs)
         {
             for (auto entry2 : entry1.second)
             {
@@ -34,14 +34,16 @@ namespace Forradia
 
     GLuint ImageBank::GetTexture(int imageNameHash) const
     {
-        return m_textures.at(imageNameHash);
+        return m_textureEntries.at(imageNameHash).textureID;
     }
 
-    Size ImageBank::GetImageSize(int imageNameHash) const
+    Size
+    ImageBank::GetTextureDimensions(int imageNameHash) const
     {
-        if (m_textureSizes.contains(imageNameHash))
+        if (m_textureEntries.contains(imageNameHash))
         {
-            return m_textureSizes.at(imageNameHash);
+            return m_textureEntries.at(imageNameHash)
+                .dimensions;
         }
 
         return {-1, -1};
@@ -50,9 +52,9 @@ namespace Forradia
     bool ImageBank::TextTextureExists(float x, float y,
                                       int textHash) const
     {
-        return m_textTextures.contains(x) &&
-               m_textTextures.at(x).contains(y) &&
-               m_textTextures.at(x).at(y).contains(
+        return m_textTextureIDs.contains(x) &&
+               m_textTextureIDs.at(x).contains(y) &&
+               m_textTextureIDs.at(x).at(y).contains(
                    textHash);
     }
 }

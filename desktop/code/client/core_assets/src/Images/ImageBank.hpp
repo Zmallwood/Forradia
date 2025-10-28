@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "TextureEntry.hpp"
+
 struct SDL_Surface;
 
 namespace Forradia
@@ -25,7 +27,7 @@ namespace Forradia
 
         GLuint GetTexture(int imageNameHash) const;
 
-        Size GetImageSize(int imageNameHash) const;
+        Size GetTextureDimensions(int imageNameHash) const;
 
         bool TextTextureExists(float x, float y,
                                int uniqueID) const;
@@ -38,7 +40,7 @@ namespace Forradia
 
         void Cleanup();
 
-        void LoadImages();
+        void LoadTextures();
 
         GLuint
         LoadSingleTexture(SharedPtr<SDL_Surface> surface);
@@ -46,12 +48,10 @@ namespace Forradia
         inline static const String k_relativeImagesPath{
             "./Resources/Images/"};
 
-        std::map<int, GLuint> m_textures;
-
-        std::map<int, Size> m_textureSizes;
+        std::map<int, TextureEntry> m_textureEntries;
 
         std::map<float,
                  std::map<float, std::map<int, GLuint>>>
-            m_textTextures;
+            m_textTextureIDs;
     };
 }
