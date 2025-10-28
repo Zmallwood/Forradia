@@ -6,7 +6,7 @@
 
 #include "Image2DRenderer.hpp"
 
-#include "ShaderProgram.hpp"
+#include "Base/ShaderProgram.hpp"
 
 #include "Textures/TextureBank.hpp"
 
@@ -16,39 +16,11 @@ namespace Forradia
 {
     void Image2DRenderer::Initialize()
     {
-        String vertexShaderSource{R"(
-      #version 330 core
-      layout (location = 0) in vec3 aPos;
-      layout (location = 1) in vec3 aColor;
-      layout (location = 2) in vec2 aTexCoord;
+        String vertexShaderSource{
+            this->GetVertexShaderSource()};
 
-      out vec3 ourColor;
-      out vec2 TexCoord;
-
-      void main()
-      {
-          gl_Position = vec4(aPos, 1.0);
-          gl_Position.x = gl_Position.x * 2.0 - 1.0;
-          gl_Position.y = gl_Position.y * -2.0 + 1.0;
-          ourColor = aColor;
-          TexCoord = aTexCoord;
-      }
-    )"};
-
-        String fragmentShaderSource{R"(
-      #version 330 core
-      out vec4 FragColor;
-        
-      in vec3 ourColor;
-      in vec2 TexCoord;
-
-      uniform sampler2D ourTexture;
-
-      void main()
-      {
-          FragColor = texture(ourTexture, TexCoord);
-      }
-    )"};
+        String fragmentShaderSource{
+            this->GetFragmentShaderSource()};
 
         m_shaderProgram = std::make_shared<ShaderProgram>(
             vertexShaderSource, fragmentShaderSource);
@@ -186,8 +158,7 @@ namespace Forradia
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-            Image2DRenderer::Image2DRenderingOperation
-                entry;
+            Image2DRenderingOperation entry;
 
             entry.vao = vao;
 

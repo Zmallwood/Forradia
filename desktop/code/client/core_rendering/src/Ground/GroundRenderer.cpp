@@ -6,7 +6,7 @@
 
 #include "GroundRenderer.hpp"
 
-#include "ShaderProgram.hpp"
+#include "Base/ShaderProgram.hpp"
 
 #include "Textures/TextureBank.hpp"
 
@@ -16,53 +16,11 @@ namespace Forradia
 {
     void GroundRenderer::Initialize()
     {
-        String vertexShaderSource{R"(
-      #version 330 core
-      layout (location = 0) in vec3 aPos;
-      layout (location = 1) in vec3 aColor;
-      layout (location = 2) in vec2 aTexCoord;
-      layout (location = 3) in vec3 aNormal;
+        String vertexShaderSource{
+            this->GetVertexShaderSource()};
 
-      uniform mat4 MVP;
-
-      out vec3 ourColor;
-      out vec2 TexCoord;
-      out vec3 Normal;
-
-      void main()
-      {
-          vec4 v = vec4(aPos, 1.0);
-          gl_Position = MVP * v;
-          gl_Position.y = gl_Position.y * -1.0;
-          ourColor = aColor;
-          TexCoord = aTexCoord;
-          Normal = aNormal;
-      }
-    )"};
-
-        String fragmentShaderSource{R"(
-      #version 330 core
-      out vec4 FragColor;
-        
-      in vec3 ourColor;
-      in vec2 TexCoord;
-      in vec3 Normal;
-
-      uniform sampler2D ourTexture;
-
-
-      void main()
-      {
-          vec3 lightColor = vec3(1.0, 1.0, 0.8);
-          vec3 norm = normalize(Normal);
-          vec3 lightDir = vec3(10.0, 10.0, 20.0);
-          float diff = max(dot(norm, lightDir), 0.0);
-          vec3 diffuse = diff * lightColor*0.05;
-          vec4 objectColor = texture(ourTexture, TexCoord);
-          vec3 result = diffuse* objectColor.rgb;
-          FragColor = vec4(result, objectColor.a);
-      }
-    )"};
+        String fragmentShaderSource{
+            this->GetFragmentShaderSource()};
 
         m_shaderProgram = std::make_shared<ShaderProgram>(
             vertexShaderSource, fragmentShaderSource);

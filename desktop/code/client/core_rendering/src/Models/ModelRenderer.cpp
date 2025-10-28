@@ -6,7 +6,7 @@
 
 #include "ModelRenderer.hpp"
 
-#include "ShaderProgram.hpp"
+#include "Base/ShaderProgram.hpp"
 
 #include "Theme0Properties.hpp"
 
@@ -22,74 +22,11 @@ namespace Forradia
 {
     void ModelRenderer::Initialize()
     {
-        String vertexShaderSource{R"(
-      #version 330 core
-      layout (location = 0) in vec3 aPos;
-      layout (location = 1) in vec3 aNormal;
-      layout (location = 2) in vec2 aTexCoord;
+        String vertexShaderSource{
+            this->GetVertexShaderSource()};
 
-      out vec3 FragPos;
-      out vec3 Normal;
-      out vec2 TexCoord;
-
-      uniform mat4 projection; 
-      uniform mat4 view; 
-      uniform mat4 model;
-
-      uniform float scale;
-
-      void main()
-      {
-          FragPos = vec3(model * vec4(aPos, 1.0));
-          Normal = vec3(model * vec4(aNormal, 0.0));
-          gl_Position = projection * view * vec4(FragPos, 1.0);
-          gl_Position.y = gl_Position.y * -1.0;
-          TexCoord = aTexCoord;
-      }
-    )"};
-
-        String fragmentShaderSource{R"(
-      #version 330 core
-      out vec4 FragColor;
-
-      in vec3 Normal;  
-      in vec3 FragPos;
-      in vec2 TexCoord;
-
-      uniform vec3 lightPos;
-      uniform vec3 viewPos;
-      uniform sampler2D ourTexture;
-
-      vec3 lightColor = vec3(1,1,1);
-      //vec3 objectColor = vec3(0.6, 0.6, 0.6);
-      uniform float shininess = 32.0f;
-      uniform vec3 material_specular = vec3(0.1f, 0.1f, 0.1f);
-      uniform vec3 light_specular = vec3(0.5f, 0.5f, 0.5f);
-
-      void main()
-      {
-          // ambient
-          float ambientStrength = 0.2;
-          vec3 ambient = ambientStrength * lightColor;
-
-          // diffuse 
-          vec3 norm = normalize(Normal);
-          vec3 lightDir = normalize(lightPos - FragPos);
-          float diff = max(dot(norm, lightDir), 0.0);
-          vec3 diffuse = diff * lightColor;
-
-          // specular
-          vec3 viewDir = normalize(viewPos - FragPos);
-          vec3 reflectDir = reflect(-lightDir, norm);  
-          float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-          vec3 specular = light_specular * (spec * material_specular);  
-
-          vec4 objectColor = texture(ourTexture, TexCoord);
-
-          vec3 result = (ambient + diffuse + specular) * objectColor.rgb;
-          FragColor = vec4(result, 1.0);
-      }
-    )"};
+        String fragmentShaderSource{
+            this->GetFragmentShaderSource()};
 
         m_shaderProgram = std::make_shared<ShaderProgram>(
             vertexShaderSource, fragmentShaderSource);

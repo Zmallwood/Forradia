@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "ModelRenderingOperation.hpp"
+
 namespace Forradia
 {
     class ShaderProgram;
@@ -33,23 +35,9 @@ namespace Forradia
 
         void Cleanup();
 
-        class ModelRenderingOperation
-        {
-          public:
-            float x;
+        String GetVertexShaderSource() const;
 
-            float y;
-
-            float z;
-
-            int verticesCount;
-
-            GLuint vao;
-
-            GLuint ibo;
-
-            GLuint vbo;
-        };
+        String GetFragmentShaderSource() const;
 
         SharedPtr<ShaderProgram> m_shaderProgram;
 

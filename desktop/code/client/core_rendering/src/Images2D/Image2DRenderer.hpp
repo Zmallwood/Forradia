@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "Image2DRenderingOperation.hpp"
+
 namespace Forradia
 {
     class ShaderProgram;
@@ -42,23 +44,9 @@ namespace Forradia
 
         void Cleanup();
 
-        class Image2DRenderingOperation
-        {
-          public:
-            float x;
+        String GetVertexShaderSource() const;
 
-            float y;
-
-            float width;
-
-            float height;
-
-            GLuint vao;
-
-            GLuint ibo;
-
-            GLuint vbo;
-        };
+        String GetFragmentShaderSource() const;
 
         SharedPtr<ShaderProgram> m_shaderProgram;
         std::map<

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "GroundRenderingOperation.hpp"
+
 namespace Forradia
 {
     class ShaderProgram;
@@ -38,19 +40,9 @@ namespace Forradia
 
         void Cleanup();
 
-        class GroundRenderingOperation
-        {
-          public:
-            float x;
+        String GetVertexShaderSource() const;
 
-            float y;
-
-            GLuint vao;
-
-            GLuint ibo;
-
-            GLuint vbo;
-        };
+        String GetFragmentShaderSource() const;
 
         glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2,
                                 glm::vec3 p3);
