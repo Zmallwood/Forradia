@@ -37,6 +37,9 @@ namespace Forradia
         GLuint GetShader(StringView shaderSource,
                          int shaderType) const;
 
+        GLint CreateProgram(GLuint vertexShader,
+                          GLuint fragmentShader);
+
         GLuint m_programID;
     };
 }
