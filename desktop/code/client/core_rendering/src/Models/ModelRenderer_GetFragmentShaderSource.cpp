@@ -12,6 +12,7 @@ namespace Forradia
     {
         return R"(
             #version 330 core
+
             out vec4 FragColor;
 
             in vec3 Normal;  
@@ -23,7 +24,6 @@ namespace Forradia
             uniform sampler2D ourTexture;
 
             vec3 lightColor = vec3(1,1,1);
-            //vec3 objectColor = vec3(0.6, 0.6, 0.6);
             uniform float shininess = 32.0f;
             uniform vec3 material_specular = vec3(0.1f, 0.1f, 0.1f);
             uniform vec3 light_specular = vec3(0.5f, 0.5f, 0.5f);

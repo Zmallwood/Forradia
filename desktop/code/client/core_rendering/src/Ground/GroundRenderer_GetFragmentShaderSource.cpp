@@ -12,6 +12,7 @@ namespace Forradia
     {
         return R"(
             #version 330 core
+            
             out vec4 FragColor;
                 
             in vec3 ourColor;
@@ -19,7 +20,6 @@ namespace Forradia
             in vec3 Normal;
 
             uniform sampler2D ourTexture;
-
 
             void main()
             {
