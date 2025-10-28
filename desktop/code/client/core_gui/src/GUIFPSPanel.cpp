@@ -8,7 +8,7 @@
 
 #include "GUILabel.hpp"
 
-#include "MinorComponents/FPSCounter.hpp"
+#include "FPSCounter.hpp"
 
 namespace Forradia
 {

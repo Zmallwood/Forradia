@@ -8,9 +8,9 @@
 
 #include "GLDevice.hpp"
 
-#include "MinorComponents/Cursor.hpp"
+#include "Cursor.hpp"
 
-#include "MinorComponents/FPSCounter.hpp"
+#include "FPSCounter.hpp"
 
 #include "SDLDevice.hpp"
 

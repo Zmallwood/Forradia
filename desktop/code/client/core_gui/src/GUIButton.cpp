@@ -8,7 +8,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "MinorComponents/Cursor.hpp"
+#include "Cursor.hpp"
 
 #include "Mouse/MouseInput.hpp"
 

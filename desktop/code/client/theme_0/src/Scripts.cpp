@@ -20,7 +20,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "MinorComponents/Cursor.hpp"
+#include "Cursor.hpp"
 
 #include "WorldGenerator.hpp"
 
