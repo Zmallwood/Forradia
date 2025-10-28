@@ -12,60 +12,96 @@ namespace Forradia
     Model::GetVertices(aiMesh *mesh,
                        aiMatrix4x4 transformation)
     {
+        // To hold the resulting vertices.
+
         Vector<GLMVertex> vertices;
+
+        // Iterate over all vertices.
 
         for (unsigned int i = 0; i < mesh->mNumVertices;
              i++)
         {
+            // To hold the resulting vertex.
+
             GLMVertex vertex;
 
-            glm::vec3 vector3;
+            // To hold the resulting position for the
+            // vertex.
 
-            aiVector3D v{transformation *
-                         mesh->mVertices[i]};
+            glm::vec3 position;
 
-            // Vertices.
+            // Get the transformed vertex position.
 
-            vector3.x = v.x;
+            auto v{transformation * mesh->mVertices[i]};
 
-            vector3.y = v.y;
+            // Set the position coordinates.
 
-            vector3.z = v.z;
+            position.x = v.x;
 
-            vertex.position = vector3;
+            position.y = v.y;
 
-            // Normals.
+            position.z = v.z;
+
+            // Add the position to the vertex.
+
+            vertex.position = position;
+
+            // If there are normals.
 
             if (mesh->mNormals)
             {
-                vector3.x = mesh->mNormals[i].x;
+                // To hold the resulting normal for the
+                // vertex.
 
-                vector3.y = mesh->mNormals[i].y;
+                glm::vec3 normal;
 
-                vector3.z = mesh->mNormals[i].z;
+                // Set the normal coordinates.
 
-                vertex.normal = vector3;
+                normal.x = mesh->mNormals[i].x;
+
+                normal.y = mesh->mNormals[i].y;
+
+                normal.z = mesh->mNormals[i].z;
+
+                // Add the normal to the vertex.
+
+                vertex.normal = normal;
             }
 
-            // Texture coordinates.
+            // If there are texture coordinates.
 
             if (mesh->mTextureCoords[0])
             {
-                glm::vec2 vector2;
+                // To hold the resulting texture
+                // coordinates for the vertex.
 
-                vector2.x = mesh->mTextureCoords[0][i].x;
+                glm::vec2 uv;
 
-                vector2.y = mesh->mTextureCoords[0][i].y;
+                // Set the texture coordinates.
 
-                vertex.uv = vector2;
+                uv.x = mesh->mTextureCoords[0][i].x;
+
+                uv.y = mesh->mTextureCoords[0][i].y;
+
+                // Add the texture coordinates to the
+                // vertex.
+
+                vertex.uv = uv;
             }
             else
             {
+                // In case there are no texture
+                // coordinates, set them to zero.
+
                 vertex.uv = glm::vec2(0, 0);
             }
 
+            // Add the vertex to the results.
+
             vertices.push_back(vertex);
         }
+
+        // Return the vertices results.
 
         return vertices;
     }

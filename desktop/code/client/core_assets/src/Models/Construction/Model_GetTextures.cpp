@@ -11,15 +11,25 @@ namespace Forradia
     Vector<Texture> Model::GetTextures(aiMesh *mesh,
                                        const aiScene *scene)
     {
+        // To hold the resulting textures.
+
         Vector<Texture> textures;
 
-        aiString s;
+        // To hold the texture path.
+
+        aiString textureFilePath;
+
+        // Get the texture path.
 
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(
-            aiTextureType_DIFFUSE, 0, &s);
+            aiTextureType_DIFFUSE, 0, &textureFilePath);
 
-        textures.push_back(
-            Texture(GetFileNameNoExtension(s.C_Str())));
+        // Add the texture to the results.
+
+        textures.push_back(Texture(GetFileNameNoExtension(
+            textureFilePath.C_Str())));
+
+        // Return the textures results.
 
         return textures;
     }
