@@ -35,7 +35,6 @@ target_include_directories(ForradiaCommonUtilities PRIVATE
     "code/client/common_lang/src"
     "code/client/common_matter/src"
     "code/client/common_utilities/src"
-    "code/client/common_core_utilities/src"
 )
 target_precompile_headers(ForradiaCommonUtilities PUBLIC code/client/common_utilities/src/StdAfx.hpp)
 
