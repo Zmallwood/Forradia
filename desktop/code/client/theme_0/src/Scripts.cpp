@@ -42,7 +42,7 @@
 
 #include "GUIChatBox.hpp"
 
-#include "Rendering/Images2D/Image2DRenderer.hpp"
+#include "Images2D/Image2DRenderer.hpp"
 
 #include "Update/TileHovering.hpp"
 

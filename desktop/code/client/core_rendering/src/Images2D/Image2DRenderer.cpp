@@ -6,7 +6,7 @@
 
 #include "Image2DRenderer.hpp"
 
-#include "Rendering/ShaderProgram.hpp"
+#include "ShaderProgram.hpp"
 
 #include "Textures/TextureBank.hpp"
 

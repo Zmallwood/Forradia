@@ -6,7 +6,7 @@
 
 #include "GUIPlayerStatusBox.hpp"
 
-#include "Rendering/Text/TextRenderer.hpp"
+#include "Text/TextRenderer.hpp"
 
 #include "PlayerCharacter.hpp"
 

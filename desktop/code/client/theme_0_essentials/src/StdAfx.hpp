@@ -17,3 +17,5 @@
 // Internal.
 
 #include "Geometry/SizeF.hpp"
+
+#include "Singleton.hpp"

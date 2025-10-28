@@ -6,7 +6,7 @@
 
 #include "ModelRenderer.hpp"
 
-#include "Rendering/ShaderProgram.hpp"
+#include "ShaderProgram.hpp"
 
 #include "Theme0Properties.hpp"
 

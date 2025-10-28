@@ -22,7 +22,7 @@
 
 #include "Mouse/MouseInput.hpp"
 
-#include "Rendering/Text/TextRenderer.hpp"
+#include "Text/TextRenderer.hpp"
 
 #include "Update/TileHovering.hpp"
 

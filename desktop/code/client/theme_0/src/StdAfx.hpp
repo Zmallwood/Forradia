@@ -19,3 +19,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <glm/gtx/intersect.hpp>
+
+// Internal.
+
+#include "Geometry/Point3F.hpp"
