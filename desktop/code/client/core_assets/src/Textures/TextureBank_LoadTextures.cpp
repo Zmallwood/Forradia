@@ -21,7 +21,7 @@ namespace Forradia
 
         // Ensure the path exists to continue.
 
-        if (!std::filesystem::exists(imagesPath))
+        if (false == std::filesystem::exists(imagesPath))
         {
             return;
         }
