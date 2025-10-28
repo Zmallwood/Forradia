@@ -26,21 +26,21 @@
 
 #include "WorldView.hpp"
 
-#include "ScenesCore/IScene.hpp"
+#include "IScene.hpp"
 
-#include "ScenesCore/SceneManager.hpp"
+#include "SceneManager.hpp"
 
 #include "Keyboard/KeyboardInput.hpp"
 
 #include "Mouse/MouseInput.hpp"
 
-#include "GUICore/GUILabel.hpp"
+#include "GUILabel.hpp"
 
-#include "GUICore/GUIButton.hpp"
+#include "GUIButton.hpp"
 
-#include "GUICore/GUIFPSPanel.hpp"
+#include "GUIFPSPanel.hpp"
 
-#include "GUICore/GUIChatBox.hpp"
+#include "GUIChatBox.hpp"
 
 #include "Rendering/Images2D/Image2DRenderer.hpp"
 

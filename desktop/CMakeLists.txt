@@ -95,6 +95,52 @@ target_link_libraries(ForradiaCore
 )
 target_precompile_headers(ForradiaCore PUBLIC code/client/core/src/StdAfx.hpp)
 
+# ForradiaCoreGUI
+file(GLOB_RECURSE CORE_GUI_SOURCES "code/client/core_gui/src/*.cpp")
+add_library(ForradiaCoreGUI ${CORE_GUI_SOURCES})
+target_include_directories(ForradiaCoreGUI PRIVATE
+    "code/client/core_gui/src"
+    "code/client/core_graphics_devices/src"
+    "code/client/core/src"
+    "code/client/core_input/src"
+    "code/client/common_lang/src"
+    "code/client/common_matter/src"
+    "code/client/common_general/src"
+    "code/client/common_utilities/src"
+)
+target_precompile_headers(ForradiaCoreGUI PUBLIC code/client/core_gui/src/StdAfx.hpp)
+target_link_libraries(ForradiaCoreGUI
+    ForradiaCoreInput
+)
+
+# ForradiaCoreScenes
+file(GLOB_RECURSE CORE_SCENES_SOURCES "code/client/core_scenes/src/*.cpp")
+add_library(ForradiaCoreScenes ${CORE_SCENES_SOURCES})
+target_include_directories(ForradiaCoreScenes PRIVATE
+    "code/client/core_scenes/src"
+    "code/client/core_gui/src"
+    "code/client/common_lang/src"
+    "code/client/common_matter/src"
+    "code/client/common_utilities/src"
+)
+target_precompile_headers(ForradiaCoreScenes PUBLIC code/client/core_scenes/src/StdAfx.hpp)
+
+# ForradiaCoreEngine
+file(GLOB_RECURSE CORE_ENGINE_SOURCES "code/client/core_engine/src/*.cpp")
+add_library(ForradiaCoreEngine ${CORE_ENGINE_SOURCES})
+target_include_directories(ForradiaCoreEngine PRIVATE
+    "code/client/core_engine/src"
+    "code/client/core_graphics_devices/src"
+    "code/client/core/src"
+    "code/client/core_scenes/src"
+    "code/client/core_input/src"
+    "code/client/common_lang/src"
+    "code/client/common_matter/src"
+    "code/client/common_utilities/src"
+    "code/client/common_general/src"
+)
+target_precompile_headers(ForradiaCoreEngine PUBLIC code/client/core_engine/src/StdAfx.hpp)
+
 # ForradiaTheme0WorldStruct
 file(GLOB_RECURSE WORLD_STRUCT_SOURCES "code/client/theme_0_world_struct/src/*.cpp")
 add_library(ForradiaTheme0WorldStruct ${WORLD_STRUCT_SOURCES})
@@ -158,6 +204,9 @@ target_include_directories(Forradia PRIVATE
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
     "code/client/core_input/src"
+    "code/client/core_gui/src"
+    "code/client/core_engine/src"
+    "code/client/core_scenes/src"
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommonGeneral
@@ -167,6 +216,8 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCoreAssets
-    ForradiaCoreInput
+    ForradiaCoreGUI
+    ForradiaCoreScenes
+    ForradiaCoreEngine
 )
 install(TARGETS Forradia RUNTIME DESTINATION bin)

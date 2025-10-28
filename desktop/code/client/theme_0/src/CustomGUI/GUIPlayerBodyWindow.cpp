@@ -10,9 +10,9 @@
 
 #include "PlayerCharacter.hpp"
 
-#include "GUICore/GUIButton.hpp"
+#include "GUIButton.hpp"
 
-#include "GUICore/GUILabel.hpp"
+#include "GUILabel.hpp"
 
 namespace Forradia::Theme0
 {

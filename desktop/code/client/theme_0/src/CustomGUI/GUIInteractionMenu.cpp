@@ -16,7 +16,7 @@
 
 #include "Object.hpp"
 
-#include "GUICore/GUIChatBox.hpp"
+#include "GUIChatBox.hpp"
 
 #include "SDLDevice.hpp"
 

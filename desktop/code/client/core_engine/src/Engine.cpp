@@ -14,7 +14,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "ScenesCore/SceneManager.hpp"
+#include "SceneManager.hpp"
 
 #include "Keyboard/KeyboardInput.hpp"
 

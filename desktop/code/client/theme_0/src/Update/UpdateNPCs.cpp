@@ -14,7 +14,7 @@
 
 #include "NPC.hpp"
 
-#include "GUICore/GUIChatBox.hpp"
+#include "GUIChatBox.hpp"
 
 #include "NumbersUtilities.hpp"
 

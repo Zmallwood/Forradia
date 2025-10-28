@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "GUICore/GUIWindow.hpp"
+#include "GUIWindow.hpp"
 
 namespace Forradia::Theme0
 {
