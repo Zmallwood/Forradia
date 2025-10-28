@@ -35,8 +35,19 @@ target_include_directories(ForradiaCommonUtilities PRIVATE
     "code/client/common_lang/src"
     "code/client/common_matter/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_precompile_headers(ForradiaCommonUtilities PUBLIC code/client/common_utilities/src/StdAfx.hpp)
+
+# ForradiaCommonCoreUtilities
+file(GLOB_RECURSE COMMON_CORE_UTILITIES_SOURCES "code/client/common_core_utilities/src/*.cpp")
+add_library(ForradiaCommonCoreUtilities ${COMMON_CORE_UTILITIES_SOURCES})
+target_include_directories(ForradiaCommonCoreUtilities PRIVATE
+    "code/client/common_core_utilities/src"
+    "code/client/common_lang/src"
+    "code/client/common_matter/src"
+)
+target_precompile_headers(ForradiaCommonCoreUtilities PUBLIC code/client/common_core_utilities/src/StdAfx.hpp)
 
 # ForradiaCoreGraphicsDevices
 file(GLOB_RECURSE CORE_SOURCES "code/client/core_graphics_devices/src/*.cpp")
@@ -59,6 +70,7 @@ target_include_directories(ForradiaCoreAssets PRIVATE
     "code/client/core_assets/src"
     "code/client/common_matter/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
     "code/client/common_general/src"
 )
 target_link_libraries(ForradiaCoreAssets
@@ -85,6 +97,7 @@ target_include_directories(ForradiaCore PRIVATE
     "code/client/core_graphics_devices/src"
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
     "code/client/core_assets/src"
     "code/client/core_input/src"
 )
@@ -107,6 +120,7 @@ target_include_directories(ForradiaCoreGUI PRIVATE
     "code/client/common_matter/src"
     "code/client/common_general/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_precompile_headers(ForradiaCoreGUI PUBLIC code/client/core_gui/src/StdAfx.hpp)
 target_link_libraries(ForradiaCoreGUI
@@ -122,6 +136,7 @@ target_include_directories(ForradiaCoreScenes PRIVATE
     "code/client/common_lang/src"
     "code/client/common_matter/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_precompile_headers(ForradiaCoreScenes PUBLIC code/client/core_scenes/src/StdAfx.hpp)
 
@@ -149,6 +164,7 @@ target_include_directories(ForradiaTheme0WorldStruct PRIVATE
     "code/client/common_matter/src"
     "code/client/common_general/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_link_libraries(ForradiaTheme0WorldStruct ForradiaCommonGeneral)
 target_precompile_headers(ForradiaTheme0WorldStruct PUBLIC code/client/theme_0_world_struct/src/StdAfx.hpp)
@@ -173,6 +189,7 @@ target_include_directories(ForradiaTheme0WorldGen PRIVATE
     "code/client/theme_0_world_struct/src"
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_link_libraries(ForradiaTheme0WorldGen ForradiaTheme0WorldStruct)
 target_precompile_headers(ForradiaTheme0WorldGen PUBLIC code/client/theme_0_world_gen/src/StdAfx.hpp)
@@ -189,6 +206,7 @@ target_include_directories(ForradiaTheme0Essentials PRIVATE
     "code/client/theme_0_properties/src"
     "code/client/core_graphics_devices/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
 )
 target_link_libraries(ForradiaTheme0Essentials
     ForradiaCore
@@ -213,6 +231,7 @@ target_include_directories(Forradia PRIVATE
     "code/client/core_graphics_devices/src"
     "code/client/theme_0_properties/src"
     "code/client/common_utilities/src"
+    "code/client/common_core_utilities/src"
     "code/client/core_input/src"
     "code/client/core_gui/src"
     "code/client/core_engine/src"
@@ -225,6 +244,7 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0WorldGen
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
+    ForradiaCommonCoreUtilities
     ForradiaCoreAssets
     ForradiaCoreGUI
     ForradiaCoreScenes
