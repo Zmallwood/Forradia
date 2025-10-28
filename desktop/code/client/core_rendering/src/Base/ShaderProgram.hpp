@@ -34,6 +34,9 @@ namespace Forradia
 
         void Cleanup();
 
+        GLuint GetShader(StringView shaderSource,
+                         int shaderType) const;
+
         GLuint m_programID;
     };
 }

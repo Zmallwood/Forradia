@@ -12,66 +12,24 @@ namespace Forradia
         StringView vertexShaderSource,
         StringView fragmentShaderSource)
     {
-        GLuint vertexShader{
-            glCreateShader(GL_VERTEX_SHADER)};
+        auto vertexShader{GetShader(vertexShaderSource,
+                                    GL_VERTEX_SHADER)};
 
-        const GLchar *source{
-            (const GLchar *)vertexShaderSource.data()};
-
-        glShaderSource(vertexShader, 1, &source, 0);
-
-        glCompileShader(vertexShader);
-
-        GLint isCompiled{0};
-
-        glGetShaderiv(vertexShader, GL_COMPILE_STATUS,
-                      &isCompiled);
-
-        if (isCompiled == GL_FALSE)
+        if (0 == vertexShader)
         {
-            GLint maxLength{0};
-
-            glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH,
-                          &maxLength);
-
-            Vector<GLchar> infoLog(maxLength);
-
-            glGetShaderInfoLog(vertexShader, maxLength,
-                               &maxLength, &infoLog[0]);
-
             glDeleteShader(vertexShader);
 
             return;
         }
 
-        GLuint fragmentShader{
-            glCreateShader(GL_FRAGMENT_SHADER)};
+        auto fragmentShader{GetShader(fragmentShaderSource,
+                                      GL_FRAGMENT_SHADER)};
 
-        source =
-            (const GLchar *)fragmentShaderSource.data();
-
-        glShaderSource(fragmentShader, 1, &source, 0);
-
-        glCompileShader(fragmentShader);
-
-        glGetShaderiv(fragmentShader, GL_COMPILE_STATUS,
-                      &isCompiled);
-
-        if (isCompiled == GL_FALSE)
+        if (0 == fragmentShader)
         {
-            GLint maxLength{0};
-
-            glGetShaderiv(fragmentShader,
-                          GL_INFO_LOG_LENGTH, &maxLength);
-
-            Vector<GLchar> infoLog(maxLength);
-
-            glGetShaderInfoLog(fragmentShader, maxLength,
-                               &maxLength, &infoLog[0]);
+            glDeleteShader(vertexShader);
 
             glDeleteShader(fragmentShader);
-
-            glDeleteShader(vertexShader);
 
             return;
         }
@@ -117,6 +75,41 @@ namespace Forradia
         glDeleteShader(vertexShader);
 
         glDeleteShader(fragmentShader);
+    }
+
+    GLuint ShaderProgram::GetShader(StringView shaderSource,
+                                    int shaderType) const
+    {
+        auto vertexShader{glCreateShader(shaderType)};
+
+        const auto *source{
+            (const GLchar *)shaderSource.data()};
+
+        glShaderSource(vertexShader, 1, &source, 0);
+
+        glCompileShader(vertexShader);
+
+        GLint isCompiled{0};
+
+        glGetShaderiv(vertexShader, GL_COMPILE_STATUS,
+                      &isCompiled);
+
+        if (isCompiled == GL_FALSE)
+        {
+            GLint maxLength{0};
+
+            glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH,
+                          &maxLength);
+
+            Vector<GLchar> infoLog(maxLength);
+
+            glGetShaderInfoLog(vertexShader, maxLength,
+                               &maxLength, &infoLog[0]);
+
+            return 0;
+        }
+
+        return vertexShader;
     }
 
     void ShaderProgram::Cleanup()
