@@ -8,7 +8,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Images/ImageBank.hpp"
+#include "Textures/TextureBank.hpp"
 
 #include "Rendering/Images2D/Image2DRenderer.hpp"
 
@@ -96,10 +96,10 @@ namespace Forradia
         auto yy{CFloat(CInt(y * 1000))};
 
         auto textureAlreadyExists{
-            _<ImageBank>().TextTextureExists(xx, yy,
+            _<TextureBank>().TextTextureExists(xx, yy,
                                              textHash)};
 
-        auto texture{_<ImageBank>().ObtainTextTexture(
+        auto texture{_<TextureBank>().ObtainTextTexture(
             xx, yy, textHash)};
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

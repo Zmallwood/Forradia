@@ -4,24 +4,34 @@
 // (see LICENSE for details)
 //
 
-#include "ImageBank.hpp"
+#include "TextureBank.hpp"
 
 namespace Forradia
 {
-    GLuint ImageBank::ObtainTextTexture(float x, float y,
-                                        int textHash)
+    GLuint TextureBank::ObtainTextTexture(float x, float y,
+                                          int textHash)
     {
+        // Check if the text texture exists.
+
         if (this->TextTextureExists(x, y, textHash))
         {
+            // If it does, return it.
+
             return m_textTextureIDs.at(x).at(y).at(
                 textHash);
         }
+
+        // If it doesn't, create it.
 
         GLuint textureID;
 
         glGenTextures(1, &textureID);
 
+        // Store the new texture ID in the map.
+
         m_textTextureIDs[x][y][textHash] = textureID;
+
+        // Return the texture ID.
 
         return textureID;
     }

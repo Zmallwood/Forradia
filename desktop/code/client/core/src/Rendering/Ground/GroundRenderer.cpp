@@ -8,7 +8,7 @@
 
 #include "Rendering/ShaderProgram.hpp"
 
-#include "Images/ImageBank.hpp"
+#include "Textures/TextureBank.hpp"
 
 #include "SDLDevice.hpp"
 
@@ -95,7 +95,7 @@ namespace Forradia
         Vector<float> &elevations, float elevationHeight)
     {
         auto textureID{
-            _<ImageBank>().GetTexture(imageNameHash)};
+            _<TextureBank>().GetTexture(imageNameHash)};
 
         auto x{tileSize * (xCoordinate)};
 

@@ -16,7 +16,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "Images/ImageBank.hpp"
+#include "Textures/TextureBank.hpp"
 
 namespace Forradia
 {
@@ -399,7 +399,7 @@ namespace Forradia
         auto textureNameHash{Hash(textureName)};
 
         auto textureID{
-            _<ImageBank>().GetTexture(textureNameHash)};
+            _<TextureBank>().GetTexture(textureNameHash)};
 
         glBindTexture(GL_TEXTURE_2D, textureID);
 

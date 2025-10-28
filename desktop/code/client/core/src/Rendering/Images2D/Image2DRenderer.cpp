@@ -8,7 +8,7 @@
 
 #include "Rendering/ShaderProgram.hpp"
 
-#include "Images/ImageBank.hpp"
+#include "Textures/TextureBank.hpp"
 
 #include "SDLDevice.hpp"
 
@@ -81,7 +81,7 @@ namespace Forradia
                                     float height)
     {
         auto textureID{
-            _<ImageBank>().GetTexture(imageNameHash)};
+            _<TextureBank>().GetTexture(imageNameHash)};
 
         Image2DRenderer::DrawTexture(textureID, x, y, width,
                                      height, true);
@@ -268,7 +268,7 @@ namespace Forradia
         auto hash{Forradia::Hash(imageName)};
 
         auto imageDimensions{
-            _<ImageBank>().GetTextureDimensions(hash)};
+            _<TextureBank>().GetTextureDimensions(hash)};
 
         if (imageDimensions.width <= 0 ||
             imageDimensions.height <= 0)

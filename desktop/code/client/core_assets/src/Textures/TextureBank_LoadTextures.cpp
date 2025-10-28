@@ -4,11 +4,11 @@
 // (see LICENSE for details)
 //
 
-#include "ImageBank.hpp"
+#include "TextureBank.hpp"
 
 namespace Forradia
 {
-    void ImageBank::LoadTextures()
+    void TextureBank::LoadTextures()
     {
         // Take base path from SDL.
 
@@ -60,18 +60,28 @@ namespace Forradia
                     IMG_Load(filePath.data()),
                     SDLDeleter())};
 
+                // Load the image as a texture (from the SDL
+                // surface) and get its ID.
+
+                auto textureID{
+                    this->LoadSingleTexture(surface)};
+
                 // Obtain the image dimensions.
 
                 auto imageSize{
                     Size{surface->w, surface->h}};
 
-                auto textureID{
-                    this->LoadSingleTexture(surface)};
+                // Create a new texture entry.
 
                 TextureEntry newTextureEntry;
 
+                // Set the texture ID and dimensions.
+
                 newTextureEntry.textureID = textureID;
+
                 newTextureEntry.dimensions = imageSize;
+
+                // Store the texture entry.
 
                 m_textureEntries[hash] = newTextureEntry;
             }
