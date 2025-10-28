@@ -11,35 +11,53 @@ namespace Forradia
     GLuint ShaderProgram::GetShader(StringView shaderSource,
                                     int shaderType) const
     {
-        auto vertexShader{glCreateShader(shaderType)};
+        // Create a new shader.
+
+        auto shader{glCreateShader(shaderType)};
+
+        // Get the shader source in correct format.
 
         const auto *source{
             (const GLchar *)shaderSource.data()};
 
-        glShaderSource(vertexShader, 1, &source, 0);
+        // Compile the shader.
 
-        glCompileShader(vertexShader);
+        glShaderSource(shader, 1, &source, 0);
+
+        glCompileShader(shader);
+
+        // Get the compile status.
 
         GLint isCompiled{0};
 
-        glGetShaderiv(vertexShader, GL_COMPILE_STATUS,
+        glGetShaderiv(shader, GL_COMPILE_STATUS,
                       &isCompiled);
+
+        // If the compile failed.
 
         if (isCompiled == GL_FALSE)
         {
+            // Get the length of the info log.
+
             GLint maxLength{0};
 
-            glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH,
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH,
                           &maxLength);
+
+            // Get the info log.
 
             Vector<GLchar> infoLog(maxLength);
 
-            glGetShaderInfoLog(vertexShader, maxLength,
+            glGetShaderInfoLog(shader, maxLength,
                                &maxLength, &infoLog[0]);
+
+            // Return failed status.
 
             return 0;
         }
 
-        return vertexShader;
+        // Return the shader.
+
+        return shader;
     }
 }
