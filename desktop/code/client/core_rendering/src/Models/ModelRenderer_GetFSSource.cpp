@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    String ModelRenderer::GetFragmentShaderSource() const
+    String ModelRenderer::GetFSSource() const
     {
         return R"(
             #version 330 core

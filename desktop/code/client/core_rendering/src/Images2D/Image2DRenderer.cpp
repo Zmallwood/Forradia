@@ -14,18 +14,6 @@
 
 namespace Forradia
 {
-    void Image2DRenderer::Initialize()
-    {
-        String vertexShaderSource{
-            this->GetVertexShaderSource()};
-
-        String fragmentShaderSource{
-            this->GetFragmentShaderSource()};
-
-        m_shaderProgram = std::make_shared<ShaderProgram>(
-            vertexShaderSource, fragmentShaderSource);
-    }
-
     void Image2DRenderer::Cleanup()
     {
         for (auto &entry : m_operationsMemory)
@@ -69,7 +57,7 @@ namespace Forradia
         glViewport(0, 0, canvasSize.width,
                    canvasSize.height);
 
-        glUseProgram(m_shaderProgram->GetProgramID());
+        glUseProgram(GetShaderProgram()->GetProgramID());
 
         glEnable(GL_BLEND);
 

@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    String GroundRenderer::GetFragmentShaderSource() const
+    String GroundRenderer::GetFSSource() const
     {
         return R"(
             #version 330 core

@@ -6,23 +6,18 @@
 
 #pragma once
 
+#include "Base/RendererBase.hpp"
+
 #include "Image2DRenderingOperation.hpp"
 
 namespace Forradia
 {
-    class ShaderProgram;
-
-    class Image2DRenderer
+    class Image2DRenderer : public RendererBase
     {
       public:
-        Image2DRenderer()
-        {
-            Initialize();
-        };
-
         ~Image2DRenderer()
         {
-            Cleanup();
+            this->Cleanup();
         }
 
         void DrawImage(StringView imageName, float x,
@@ -39,16 +34,14 @@ namespace Forradia
                                  float x, float y,
                                  float width);
 
-      private:
-        void Initialize();
+      protected:
+        String GetVSSource() const override;
 
+        String GetFSSource() const override;
+
+      private:
         void Cleanup();
 
-        String GetVertexShaderSource() const;
-
-        String GetFragmentShaderSource() const;
-
-        SharedPtr<ShaderProgram> m_shaderProgram;
         std::map<
             float,
             std::map<float,

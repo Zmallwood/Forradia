@@ -16,6 +16,10 @@
 
 #include <SDL2/SDL.h>
 
+#include <GL/gl.h>
+
+#include <glm/glm.hpp>
+
 // Internal.
 
 #include "Aliases.hpp"
@@ -23,6 +27,8 @@
 #include "Coloring/Color.hpp"
 
 #include "Geometry/Size.hpp"
+
+#include "Geometry/Point3F.hpp"
 
 #include "RandomizationUtilities.hpp"
 

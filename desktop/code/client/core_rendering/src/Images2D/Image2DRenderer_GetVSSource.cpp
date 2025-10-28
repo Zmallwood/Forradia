@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    String Image2DRenderer::GetVertexShaderSource() const
+    String Image2DRenderer::GetVSSource() const
     {
         return R"(
             #version 330 core

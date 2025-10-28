@@ -6,23 +6,18 @@
 
 #pragma once
 
+#include "Base/RendererBase.hpp"
+
 #include "ModelRenderingOperation.hpp"
 
 namespace Forradia
 {
-    class ShaderProgram;
-
-    class ModelRenderer
+    class ModelRenderer : public RendererBase
     {
       public:
-        ModelRenderer()
-        {
-            Initialize();
-        }
-
         ~ModelRenderer()
         {
-            Cleanup();
+            this->Cleanup();
         }
 
         void DrawModel(int modelNameHash, float x, float y,
@@ -30,16 +25,13 @@ namespace Forradia
                        Point3F cameraPosition,
                        float elevationHeight);
 
+      protected:
+        String GetVSSource() const override;
+
+        String GetFSSource() const override;
+
       private:
-        void Initialize();
-
         void Cleanup();
-
-        String GetVertexShaderSource() const;
-
-        String GetFragmentShaderSource() const;
-
-        SharedPtr<ShaderProgram> m_shaderProgram;
 
         std::map<
             float,

@@ -20,6 +20,12 @@
 
 #include "Mouse/MouseInput.hpp"
 
+#include "Images2D/Image2DRenderer.hpp"
+
+#include "Ground/GroundRenderer.hpp"
+
+#include "Models/ModelRenderer.hpp"
+
 namespace Forradia
 {
     void Engine::Initialize(StringView gameWindowTitle,
@@ -31,6 +37,12 @@ namespace Forradia
                                   clearColor);
 
         _<GLDevice>().Initialize();
+
+        _<Image2DRenderer>().Initialize();
+
+        _<GroundRenderer>().Initialize();
+
+        _<ModelRenderer>().Initialize();
     }
 
     void Engine::Run()

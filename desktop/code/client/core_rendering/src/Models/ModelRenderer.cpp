@@ -20,18 +20,6 @@
 
 namespace Forradia
 {
-    void ModelRenderer::Initialize()
-    {
-        String vertexShaderSource{
-            this->GetVertexShaderSource()};
-
-        String fragmentShaderSource{
-            this->GetFragmentShaderSource()};
-
-        m_shaderProgram = std::make_shared<ShaderProgram>(
-            vertexShaderSource, fragmentShaderSource);
-    }
-
     void ModelRenderer::Cleanup()
     {
         for (auto &entry : m_operationsMemory)
@@ -86,7 +74,7 @@ namespace Forradia
         glViewport(0, 0, canvasSize.width,
                    canvasSize.height);
 
-        glUseProgram(m_shaderProgram->GetProgramID());
+        glUseProgram(GetShaderProgram()->GetProgramID());
 
         glEnable(GL_BLEND);
 
@@ -310,17 +298,17 @@ namespace Forradia
             90.0f, aspectRatio, 0.1f, 100.0f);
 
         GLuint matrixProjection = glGetUniformLocation(
-            m_shaderProgram->GetProgramID(), "projection");
+            GetShaderProgram()->GetProgramID(), "projection");
         glUniformMatrix4fv(matrixProjection, 1, GL_FALSE,
                            &projectionMatrix[0][0]);
 
         GLuint matrixModel = glGetUniformLocation(
-            m_shaderProgram->GetProgramID(), "model");
+            GetShaderProgram()->GetProgramID(), "model");
         glUniformMatrix4fv(matrixModel, 1, GL_FALSE,
                            &modelMatrix[0][0]);
 
         GLuint matrixView = glGetUniformLocation(
-            m_shaderProgram->GetProgramID(), "view");
+            GetShaderProgram()->GetProgramID(), "view");
 
         glUniformMatrix4fv(matrixView, 1, GL_FALSE,
                            &cameraMatrix[0][0]);

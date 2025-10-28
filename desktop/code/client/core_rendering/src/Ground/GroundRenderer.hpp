@@ -6,23 +6,18 @@
 
 #pragma once
 
+#include "Base/RendererBase.hpp"
+
 #include "GroundRenderingOperation.hpp"
 
 namespace Forradia
 {
-    class ShaderProgram;
-
-    class GroundRenderer
+    class GroundRenderer : public RendererBase
     {
       public:
-        GroundRenderer()
-        {
-            Initialize();
-        };
-
         ~GroundRenderer()
         {
-            Cleanup();
+            this->Cleanup();
         }
 
         void DrawTile(int imageNameHash, int xCoordinate,
@@ -35,19 +30,16 @@ namespace Forradia
                          Vector<float> &vertices,
                          Point3F cameraPosition);
 
+      protected:
+        String GetVSSource() const override;
+
+        String GetFSSource() const override;
+
       private:
-        void Initialize();
-
         void Cleanup();
-
-        String GetVertexShaderSource() const;
-
-        String GetFragmentShaderSource() const;
 
         glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2,
                                 glm::vec3 p3);
-
-        SharedPtr<ShaderProgram> m_shaderProgram;
 
         std::map<
             float,
