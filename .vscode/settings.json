@@ -78,5 +78,10 @@
         "unordered_set": "cpp",
         "source_location": "cpp",
         "csetjmp": "cpp"
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#280C8E",
+        "titleBar.activeBackground": "#3910C7",
+        "titleBar.activeForeground": "#FAF9FE"
     }
 }

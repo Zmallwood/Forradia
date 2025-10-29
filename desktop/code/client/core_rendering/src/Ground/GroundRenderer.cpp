@@ -6,7 +6,7 @@
 
 #include "GroundRenderer.hpp"
 
-#include "Base/ShaderProgram.hpp"
+#include "ShaderProgram.hpp"
 
 #include "Textures/TextureBank.hpp"
 

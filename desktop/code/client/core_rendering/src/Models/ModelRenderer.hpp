@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Base/RendererBase.hpp"
+#include "RendererBase.hpp"
 
 #include "ModelRenderingOperation.hpp"
 
