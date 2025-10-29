@@ -393,14 +393,6 @@ namespace Forradia
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-        // auto tileSize{0.5f};
-
-        // modelMatrix = glm::translate(
-        //     modelMatrix,
-        //     glm::vec3(0.5f/2, 0.5f/2, 0.0f));
-
-        //  lookAt function takes camera position, camera
-        //  target and up vector.
         glm::mat4 cameraMatrix = glm::lookAt(
             glm::vec3(cameraPosition.x,
                       cameraPosition.y - 2.0f,
