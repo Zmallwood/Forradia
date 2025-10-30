@@ -30,6 +30,8 @@
 
 #include "ObjectsInventory.hpp"
 
+#include "Actions.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIInteractionMenu::Initialize()
@@ -54,6 +56,25 @@ namespace Forradia::Theme0
         auto tile{worldArea->GetTile(
             worldAreaSize.width - hoveredCoordinate.x,
             worldAreaSize.height - hoveredCoordinate.y)};
+
+        // GetAction<*nextAction>();
+
+        // for (auto &timedAction : m_timedActions)
+        // {
+        //     if (GetTicks() > timedAction.first)
+        //     {
+        //         GetAction<timedAction.second>()();
+        //     }
+        // }
+
+        auto actionTest{GetAction<Hash("ActionTest")>()};
+
+        if (tile && tile->GetGround() ==
+                        actionTest.groundMatches[0])
+        {
+            m_entries.push_back(
+                {"Test", actionTest.action});
+        };
 
         if (tile &&
             tile->GetGround() == Hash("GroundGrass"))

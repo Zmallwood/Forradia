@@ -21,6 +21,12 @@ namespace Forradia::Theme0
 
         void BuildMenu();
 
+        auto &GetTimedActionsRef()
+        {
+            return m_timedActions;
+        }
+
+
       protected:
         void Initialize();
 
@@ -61,5 +67,7 @@ namespace Forradia::Theme0
         Vector<GUIInteractionMenuEntry> m_entries;
 
         Point m_clickedCoordinate{-1, -1};
+
+        std::map<int, int> m_timedActions;
     };
 }

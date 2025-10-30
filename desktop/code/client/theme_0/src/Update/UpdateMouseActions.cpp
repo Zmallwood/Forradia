@@ -8,7 +8,7 @@
 
 #include "Mouse/MouseInput.hpp"
 
-#include "CustomGUI/GUIInteractionMenu.hpp"
+#include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
 
 #include "SDLDevice.hpp"
 

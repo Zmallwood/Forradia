@@ -31,6 +31,7 @@ from embedded import (
     update_crea_movem,
     update_mouse_movem,
     update_kb_movem,
+    update_actions,
     get_tl_hovering,
     get_world_view,
     get_img_2d_rend,
@@ -244,6 +245,8 @@ class MainScene(IScene):
             update_kb_movem()
 
             get_tl_hovering().update()
+
+            update_actions()
 
         def render_derived():
             get_world_view().render()

@@ -16,7 +16,7 @@
 
 #include "CustomGUI/GUISystemMenu.hpp"
 
-#include "CustomGUI/GUIInteractionMenu.hpp"
+#include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
 
 #include "SDLDevice.hpp"
 
@@ -57,6 +57,8 @@
 #include "Update/UpdateMouseMovement.hpp"
 
 #include "Update/UpdateKeyboardMovement.hpp"
+
+#include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
 namespace Forradia::Theme0
 {
@@ -387,6 +389,8 @@ namespace Forradia::Theme0
         m.def(
             "update_kb_movem",
             &Theme0::GameplayCore::UpdateKeyboardMovement);
+
+        m.def("update_actions", &Theme0::UpdateActions);
 
         m.def("setup_scenes",
               []
