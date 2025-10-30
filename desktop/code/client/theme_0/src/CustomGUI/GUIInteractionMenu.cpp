@@ -26,6 +26,10 @@
 
 #include "Update/TileHovering.hpp"
 
+#include "PlayerCharacter.hpp"
+
+#include "ObjectsInventory.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIInteractionMenu::Initialize()
@@ -60,6 +64,10 @@ namespace Forradia::Theme0
                      _<GUIChatBox>().Print(
                          "Grass foraged. You "
                          "found blue berries.");
+
+                     _<GameplayCore::PlayerCharacter>()
+                         .GetObjectsInventoryRef()
+                         .AddObject("ObjectBlueBerries");
                  }});
         }
 

@@ -12,21 +12,33 @@ namespace Forradia::Theme0::GameplayCore
 {
     ObjectsInventory::ObjectsInventory()
     {
-        m_objects[0][0] =
-            std::make_shared<Object>("ObjectRedApple");
-        m_objects[2][0] =
-            std::make_shared<Object>("ObjectRedApple");
+        AddObject("ObjectRedApple");
+        AddObject("ObjectRedApple");
     }
 
-    SharedPtr<Object> ObjectsInventory::GetObject(int x,
-                                                  int y)
+    SharedPtr<Object> ObjectsInventory::GetObject(int index)
     {
-        if (m_objects.contains(x) &&
-            m_objects.at(x).contains(y))
+        if (index >= 0 && index < m_objects.size())
         {
-            return m_objects.at(x).at(y);
+            return m_objects[index];
         }
 
         return nullptr;
+    }
+
+    void ObjectsInventory::AddObject(StringView objectName)
+    {
+        for (size_t i = 0; i < m_objects.size(); i++)
+        {
+            if (!m_objects[i])
+            {
+                m_objects[i] =
+                    std::make_shared<Object>(objectName);
+                return;
+            }
+        }
+
+        m_objects.push_back(
+            std::make_shared<Object>(objectName));
     }
 }

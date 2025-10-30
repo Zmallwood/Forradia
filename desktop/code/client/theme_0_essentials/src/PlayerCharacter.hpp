@@ -73,9 +73,9 @@ namespace Forradia::Theme0::GameplayCore
             return m_money;
         }
 
-        auto GetObjectsInventory() const
+        auto &GetObjectsInventoryRef() const
         {
-            return m_objectsInventory;
+            return *m_objectsInventory;
         }
 
       private:

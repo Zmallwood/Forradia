@@ -48,9 +48,9 @@ namespace Forradia::Theme0
                            (yStart - bounds.y)) /
                           slotHeight)};
 
-        auto objectsInventory{
+        auto &objectsInventory{
             _<GameplayCore::PlayerCharacter>()
-                .GetObjectsInventory()};
+                .GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++)
         {
@@ -62,8 +62,10 @@ namespace Forradia::Theme0
                     yStart + y * (slotHeight + marginY),
                     slotWidth, slotHeight);
 
+                auto index{x + y * numColumns};
+
                 auto inventoryObject{
-                    objectsInventory->GetObject(x, y)};
+                    objectsInventory.GetObject(index)};
 
                 if (inventoryObject)
                 {

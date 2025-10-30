@@ -18,10 +18,11 @@ namespace Forradia::Theme0::GameplayCore
       public:
         ObjectsInventory();
 
-        SharedPtr<Object> GetObject(int x, int y);
+        SharedPtr<Object> GetObject(int index);
+
+        void AddObject(StringView objectName);
 
       private:
-        std::map<int, std::map<int, SharedPtr<Object>>>
-            m_objects;
+        Vector<SharedPtr<Object>> m_objects;
     };
 }
