@@ -22,7 +22,7 @@
 
 #include "TimeUtilities.hpp"
 
-#include "HashUtilities.hpp"
+#include "Hash.hpp"
 
 #include "Geometry/PointF.hpp"
 

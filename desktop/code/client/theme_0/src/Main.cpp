@@ -12,10 +12,24 @@
 
 #include "World.hpp"
 
+#include "Coloring/Palette.hpp"
+
 int main(int argc, char **argv)
 {
     using namespace Forradia;
     using namespace Theme0;
+
+    //auto c {Palette::GetColor<Hash("Black")>()};
+
+    //static_assert(Palette::ColorExists<123>());
+
+    //auto colorExists {_<Palette>().ColorExists("Red")};
+    //const Palette p = Palette();
+    //static_assert(p.ColorExists("Red"));
+    //std::cout << colorExists << std::endl;
+    //auto color {_<Palette>().GetColor("Black")};
+
+    //auto c {GET_COLOR(Black)};
 
     _<Engine>().Initialize(
         _<Theme0Properties>().GetGameWindowTitle(),

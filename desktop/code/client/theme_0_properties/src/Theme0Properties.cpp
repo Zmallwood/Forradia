@@ -15,7 +15,7 @@ namespace Forradia::Theme0
 
     Color Theme0Properties::GetClearColor() const
     {
-        return Colors::MildBlue;
+        return Palette::GetColor<Hash("MildBlue")>();
     }
 
     Size Theme0Properties::GetGridSize() const

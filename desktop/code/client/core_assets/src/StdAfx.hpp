@@ -38,7 +38,7 @@
 
 #include "FilePathUtilities.hpp"
 
-#include "HashUtilities.hpp"
+#include "Hash.hpp"
 
 #include "MessageUtilities.hpp"
 

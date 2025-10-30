@@ -22,8 +22,8 @@ namespace Forradia
         DrawString(StringView text, float x, float y,
                    FontSizes fontSizes = FontSizes::_20,
                    bool centerAlign = false,
-                   Color textColor =
-                       Colors::WheatTransparent) const;
+                   Color textColor = Palette::GetColor<
+                       Hash("WheatTransparent")>()) const;
 
       private:
         void Initialize();

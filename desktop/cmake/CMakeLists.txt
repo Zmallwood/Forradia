@@ -12,6 +12,7 @@ add_library(ForradiaCommonMatter ${COMMON_MATTER_SOURCES})
 target_include_directories(ForradiaCommonMatter PUBLIC
     "../code/client/common_matter/src"
     "../code/client/common_lang/src"
+    "../code/client/common_general/src"
 )
 target_precompile_headers(ForradiaCommonMatter PUBLIC ../code/client/common_matter/src/StdAfx.hpp)
 
@@ -43,6 +44,7 @@ file(GLOB_RECURSE COMMON_CORE_UTILITIES_SOURCES "../code/client/common_core_util
 add_library(ForradiaCommonCoreUtilities ${COMMON_CORE_UTILITIES_SOURCES})
 target_include_directories(ForradiaCommonCoreUtilities PUBLIC
     "../code/client/common_core_utilities/src"
+    "../code/client/common_general/src"
     "../code/client/common_lang/src"
     "../code/client/common_matter/src"
 )
@@ -133,7 +135,7 @@ target_include_directories(ForradiaCoreScenes PUBLIC
     "../code/client/core_gui/src"
     "../code/client/common_lang/src"
     "../code/client/common_matter/src"
-    "../code/client/common_core_utilities/src"
+    "../code/client/common_general/src"
 )
 target_precompile_headers(ForradiaCoreScenes PUBLIC ../code/client/core_scenes/src/StdAfx.hpp)
 
@@ -173,6 +175,7 @@ target_include_directories(ForradiaTheme0Properties PUBLIC
     "../code/client/theme_0_properties/src"
     "../code/client/common_lang/src"
     "../code/client/common_matter/src"
+    "../code/client/common_general/src"
 )
 target_precompile_headers(ForradiaTheme0Properties PUBLIC ../code/client/theme_0_properties/src/StdAfx.hpp)
 

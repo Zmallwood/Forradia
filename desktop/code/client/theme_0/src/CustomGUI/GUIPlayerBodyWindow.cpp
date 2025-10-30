@@ -87,7 +87,7 @@ namespace Forradia::Theme0
 
         m_labelBodyPartName = std::make_shared<GUILabel>(
             0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
-            Colors::YellowTransparent);
+            Palette::GetColor<Hash("YellowTransparent")>());
 
         m_labelBodyPartStrength =
             std::make_shared<GUILabel>(

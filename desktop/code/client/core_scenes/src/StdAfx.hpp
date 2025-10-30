@@ -16,4 +16,4 @@
 
 #include "Geometry/RectF.hpp"
 
-#include "HashUtilities.hpp"
+#include "Hash.hpp"

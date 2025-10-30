@@ -16,7 +16,8 @@ namespace Forradia
         GUILabel(float x, float y, float width,
                  float height, StringView text = "",
                  bool centerAlign = false,
-                 Color color = Colors::WheatTransparent)
+                 Color color = Palette::GetColor<
+                     Hash("WheatTransparent")>())
             : GUIComponent(x, y, width, height),
               m_text(text), m_centerAlign(centerAlign),
               m_color(color)

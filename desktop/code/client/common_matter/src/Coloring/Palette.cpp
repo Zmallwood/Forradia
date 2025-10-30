@@ -1,0 +1,55 @@
+//
+// Copyright 2025 Andreas Åkerberg
+// This code is licensed under MIT license
+// (see LICENSE for details)
+//
+
+#include "Palette.hpp"
+#include "Hash.hpp"
+
+namespace Forradia::Palette
+{
+    template <>
+    Color GetColor<Hash("Black")>()
+    {
+        return {0.0f, 0.0f, 0.0f, 1.0f};
+    }
+
+    template <>
+    Color GetColor<Hash("Wheat")>()
+    {
+        return {1.0f, 1.0f, 0.65f, 1.0f};
+    }
+
+    template <>
+    Color GetColor<Hash("WheatTransparent")>()
+    {
+        auto color{GetColor<Hash("Wheat")>()};
+
+        color.a = 0.7f;
+
+        return color;
+    }
+
+    template <>
+    Color GetColor<Hash("Yellow")>()
+    {
+        return {1.0f, 1.0f, 0.0f, 1.0f};
+    }
+
+    template <>
+    Color GetColor<Hash("YellowTransparent")>()
+    {
+        auto color{GetColor<Hash("Yellow")>()};
+
+        color.a = 0.7f;
+
+        return color;
+    }
+
+    template <>
+    Color GetColor<Hash("MildBlue")>()
+    {
+        return {0.0f, 0.4f, 0.9f, 1.0f};
+    }
+}

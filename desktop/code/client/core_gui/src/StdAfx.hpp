@@ -34,10 +34,12 @@
 
 #include "Coloring/Color.hpp"
 
-#include "Coloring/Colors.hpp"
+#include "Coloring/Palette.hpp"
 
 #include "Singleton.hpp"
 
 #include "MouseUtilities.hpp"
 
 #include "CanvasUtilities.hpp"
+
+#include "Hash.hpp"

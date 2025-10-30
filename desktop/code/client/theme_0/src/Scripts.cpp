@@ -97,8 +97,8 @@ namespace Forradia::Theme0
                  py::arg("x"), py::arg("y"), py::arg("w"),
                  py::arg("h"), py::arg("text") = "",
                  py::arg("cent_align") = false,
-                 py::arg("color") =
-                     Colors::WheatTransparent)
+                 py::arg("color") = Palette::GetColor<Hash(
+                     "YellowTransparent")>())
             .def("set_text", &GUILabel::SetText)
             .def("set_visible", &GUIComponent::SetVisible);
 
@@ -250,7 +250,8 @@ namespace Forradia::Theme0
               {
                   return std::make_shared<GUILabel>(
                       x, y, w, h, text, cent_align,
-                      Colors::WheatTransparent);
+                      Palette::GetColor<Hash(
+                          "YellowTransparent")>());
               });
 
         m.def("make_shared_gui_panel",

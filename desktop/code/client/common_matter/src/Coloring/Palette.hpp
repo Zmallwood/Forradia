@@ -6,10 +6,10 @@
 
 #pragma once
 
-// Internal.
-
-#include "Aliases.hpp"
-
-#include "Singleton.hpp"
-
 #include "Coloring/Color.hpp"
+
+namespace Forradia::Palette
+{
+    template <int N>
+    Color GetColor();
+}

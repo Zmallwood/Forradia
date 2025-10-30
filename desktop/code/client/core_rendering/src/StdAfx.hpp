@@ -36,7 +36,7 @@
 
 #include "Coloring/Color.hpp"
 
-#include "Coloring/Colors.hpp"
+#include "Coloring/Palette.hpp"
 
 #include "CanvasUtilities.hpp"
 
@@ -50,7 +50,7 @@
 
 #include "TimeUtilities.hpp"
 
-#include "HashUtilities.hpp"
+#include "Hash.hpp"
 
 #include "MessageUtilities.hpp"
 

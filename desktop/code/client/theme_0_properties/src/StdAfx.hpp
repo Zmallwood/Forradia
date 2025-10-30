@@ -12,6 +12,8 @@
 
 #include "Coloring/Color.hpp"
 
-#include "Coloring/Colors.hpp"
+#include "Coloring/Palette.hpp"
 
 #include "Geometry/Size.hpp"
+
+#include "Hash.hpp"

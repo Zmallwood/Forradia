@@ -38,7 +38,7 @@ namespace Forradia
         _<TextRenderer>().DrawString(
             k_windowTitle, parentWindowBounds.x + 0.01f,
             parentWindowBounds.y + 0.01f, FontSizes::_20,
-            false, Colors::Yellow);
+            false, Palette::GetColor<Hash("Yellow")>());
     }
 
     RectF GUIWindow::GUIWindowTitleBar::GetBounds() const

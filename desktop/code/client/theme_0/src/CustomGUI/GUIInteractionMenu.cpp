@@ -154,7 +154,7 @@ namespace Forradia::Theme0
         _<TextRenderer>().DrawString(
             "Actions", bounds.x + 0.01f, bounds.y + 0.01f,
             FontSizes::_20, false,
-            Colors::YellowTransparent);
+            Palette::GetColor<Hash("YellowTransparent")>());
 
         auto i{0};
 
