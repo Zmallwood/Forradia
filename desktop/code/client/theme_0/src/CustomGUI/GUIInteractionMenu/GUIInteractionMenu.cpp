@@ -68,29 +68,32 @@ namespace Forradia::Theme0
         // }
 
         auto actionTest{GetAction<Hash("ActionTest")>()};
+        auto actionForage{GetAction<Hash("ActionForage")>()};
 
         if (tile && tile->GetGround() ==
                         actionTest.groundMatches[0])
         {
             m_entries.push_back(
                 {"Test", actionTest.action});
+            m_entries.push_back(
+                {"Forage", actionForage.action});
         };
 
-        if (tile &&
-            tile->GetGround() == Hash("GroundGrass"))
-        {
-            m_entries.push_back(
-                {"Forage", [=]()
-                 {
-                     _<GUIChatBox>().Print(
-                         "Grass foraged. You "
-                         "found blue berries.");
+        // if (tile &&
+        //     tile->GetGround() == Hash("GroundGrass"))
+        // {
+        //     m_entries.push_back(
+        //         {"Forage", [=]()
+        //          {
+        //              _<GUIChatBox>().Print(
+        //                  "Grass foraged. You "
+        //                  "found blue berries.");
 
-                     _<GameplayCore::PlayerCharacter>()
-                         .GetObjectsInventoryRef()
-                         .AddObject("ObjectBlueBerries");
-                 }});
-        }
+        //              _<GameplayCore::PlayerCharacter>()
+        //                  .GetObjectsInventoryRef()
+        //                  .AddObject("ObjectBlueBerries");
+        //          }});
+        // }
 
         auto objects{tile->GetObjectsStack()->GetObjects()};
 
