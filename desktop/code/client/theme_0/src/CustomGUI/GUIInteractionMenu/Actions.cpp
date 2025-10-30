@@ -34,25 +34,10 @@ namespace Forradia::Theme0
             {
                 _<GUIChatBox>().Print("Test!!");
 
-                // GetAction<Hash("ActionTestContinue")>()
-                //     .action();
-
                 s_timedActions.insert(
                     {GetTicks() + 1000,
                      GetAction<Hash("ActionTestContinue")>()
                          .action});
-
-                // static constexpr int
-                // k_ActionTestContinue{
-                //     Hash("ActionTestContinue")};
-
-                // _<GUIInteractionMenu>().nextAction =
-                //     &k_ActionTestContinue;
-
-                // _<GUIInteractionMenu>()
-                //     .GetTimedActionsRef()
-                //     .insert({GetTicks() + 1000,
-                //              Hash("ActionTestContinue")});
             }};
     }
 
