@@ -48,6 +48,9 @@ namespace Forradia::Theme0
                             auto tile{
                                 m_worldArea->GetTile(x, y)};
 
+                            auto currentElevation{
+                                tile->GetElevation()};
+
                             if (tile &&
                                 tile->GetGround() !=
                                     Hash("GroundWater"))
@@ -84,45 +87,147 @@ namespace Forradia::Theme0
                                     m_worldArea->GetTile(
                                         x + 1, y + 1)};
 
-                                if ((tileN &&
-                                     tileN->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileS &&
-                                     tileS->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileW &&
-                                     tileW->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileE &&
-                                     tileE->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileNW &&
-                                     tileNW->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileNE &&
-                                     tileNE->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileSW &&
-                                     tileSW->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")) ||
-                                    (tileSE &&
-                                     tileSE->GetGround() ==
-                                         Hash("GroundWa"
-                                              "ter")))
+                                auto elevationThreshold{
+                                    currentElevation - 3};
+
+                                if (tileN)
                                 {
-                                    continue;
+                                    if (tileN
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileN
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileE)
+                                {
+                                    if (tileE
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileE
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileS)
+                                {
+                                    if (tileS
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileS
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileW)
+                                {
+                                    if (tileW
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileW
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileNE)
+                                {
+                                    if (tileNE
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileNE
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileSE)
+                                {
+                                    if (tileSE
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileSE
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileSW)
+                                {
+                                    if (tileSW
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileSW
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (tileNW)
+                                {
+                                    if (tileNW
+                                            ->GetGround() ==
+                                        Hash("GroundWater"))
+                                    {
+                                        continue;
+                                    }
+
+                                    if (tileNW
+                                            ->GetElevation() <
+                                        elevationThreshold)
+                                    {
+                                        continue;
+                                    }
                                 }
 
                                 tile->SetElevation(
-                                    tile->GetElevation() +
-                                    1);
+                                    currentElevation + 1);
                             }
                         }
                     }
