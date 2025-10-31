@@ -57,43 +57,15 @@ namespace Forradia::Theme0
             worldAreaSize.width - hoveredCoordinate.x,
             worldAreaSize.height - hoveredCoordinate.y)};
 
-        // GetAction<*nextAction>();
-
-        // for (auto &timedAction : m_timedActions)
-        // {
-        //     if (GetTicks() > timedAction.first)
-        //     {
-        //         GetAction<timedAction.second>()();
-        //     }
-        // }
-
-        auto actionTest{GetAction<Hash("ActionTest")>()};
-        auto actionForage{GetAction<Hash("ActionForage")>()};
+        auto actionForage{
+            GetAction<Hash("ActionForage")>()};
 
         if (tile && tile->GetGround() ==
-                        actionTest.groundMatches[0])
+                        actionForage.groundMatches[0])
         {
-            m_entries.push_back(
-                {"Test", actionTest.action});
             m_entries.push_back(
                 {"Forage", actionForage.action});
         };
-
-        // if (tile &&
-        //     tile->GetGround() == Hash("GroundGrass"))
-        // {
-        //     m_entries.push_back(
-        //         {"Forage", [=]()
-        //          {
-        //              _<GUIChatBox>().Print(
-        //                  "Grass foraged. You "
-        //                  "found blue berries.");
-
-        //              _<GameplayCore::PlayerCharacter>()
-        //                  .GetObjectsInventoryRef()
-        //                  .AddObject("ObjectBlueBerries");
-        //          }});
-        // }
 
         auto objects{tile->GetObjectsStack()->GetObjects()};
 
@@ -101,38 +73,15 @@ namespace Forradia::Theme0
         {
             auto type{object->GetType()};
 
-            if (type == Hash("ObjectFirTree"))
-            {
-                m_entries.push_back(
-                    {"Cut down tree", [=]()
-                     {
-                         tile->GetObjectsStack()
-                             ->RemoveObjectOfType(
-                                 "ObjectFirTree");
-                         tile->GetObjectsStack()->AddObject(
-                             "ObjectFelledTree");
-                         _<GUIChatBox>().Print(
-                             "Tree cut down. "
-                             "You found some "
-                             "wood.");
-                     }});
-            }
+            auto action {GetAction<Hash("ActionPickBranch")>()};
 
-            if (type == Hash("ObjectBirchTree"))
+            for (auto actionObjectTypes : action.objectMatches)
             {
-                m_entries.push_back(
-                    {"Cut down tree", [=]()
-                     {
-                         tile->GetObjectsStack()
-                             ->RemoveObjectOfType(
-                                 "ObjectBirchTree");
-                         tile->GetObjectsStack()->AddObject(
-                             "ObjectFelledTree");
-                         _<GUIChatBox>().Print(
-                             "Tree cut down. "
-                             "You found some "
-                             "wood.");
-                     }});
+                if (type == actionObjectTypes)
+                {
+                    m_entries.push_back(
+                        {"Pick branch", action.action});
+                }
             }
         }
     }

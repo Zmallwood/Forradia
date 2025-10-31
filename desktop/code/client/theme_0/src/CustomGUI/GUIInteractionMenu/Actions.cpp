@@ -20,42 +20,13 @@ namespace Forradia::Theme0
     static std::map<int, Function<void()>> s_timedActions;
 
     template <>
-    Action GetAction<Hash("ActionTest")>();
-
-    template <>
-    Action GetAction<Hash("ActionTestContinue")>();
-
-    template <>
     Action GetAction<Hash("ActionForage")>();
 
     template <>
     Action GetAction<Hash("ActionForageContinue")>();
 
     template <>
-    Action GetAction<Hash("ActionTest")>()
-    {
-        return {
-            .groundMatches = {Hash("GroundGrass")},
-            .objectMatches = {},
-            .action = []()
-            {
-                _<GUIChatBox>().Print("Test!!");
-
-                s_timedActions.insert(
-                    {GetTicks() + 1000,
-                     GetAction<Hash("ActionTestContinue")>()
-                         .action});
-            }};
-    }
-
-    template <>
-    Action GetAction<Hash("ActionTestContinue")>()
-    {
-        return {.groundMatches = {Hash("GroundGrass")},
-                .objectMatches = {},
-                .action = []()
-                { _<GUIChatBox>().Print("Mer Test!!"); }};
-    }
+    Action GetAction<Hash("ActionPickBranch")>();
 
     template <>
     Action GetAction<Hash("ActionForage")>()
@@ -69,7 +40,7 @@ namespace Forradia::Theme0
                             .GetObjectsInventoryRef()};
 
                     inventory.AddObject(
-                        "ObjectBlueBerries");
+                        "ObjectBlueberries");
 
                     _<GUIChatBox>().Print(
                         "Foraging... You found some "
@@ -105,12 +76,34 @@ namespace Forradia::Theme0
                             .GetObjectsInventoryRef()};
 
                     inventory.AddObject(
-                        "ObjectBlueBerries");
+                        "ObjectBlueberries");
 
                     _<GUIChatBox>().Print(
                         "Continue foraging... You "
                         "found some blueberries!");
                 }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionPickBranch")>()
+    {
+        return
+        {
+            .groundMatches = {},
+            .objectMatches = {Hash("ObjectFirTree"),
+                              Hash("ObjectBirchTree")},
+            .action = []()
+            {
+                auto &inventory{
+                    _<GameplayCore::PlayerCharacter>()
+                        .GetObjectsInventoryRef()};
+
+                inventory.AddObject("ObjectBranch");
+
+                    _<GUIChatBox>().Print(
+                        "You picked a branch!");
+            }
+        };
     }
 
     void UpdateActions()
