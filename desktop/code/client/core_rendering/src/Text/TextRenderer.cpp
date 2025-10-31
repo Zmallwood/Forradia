@@ -156,8 +156,8 @@ namespace Forradia
         auto heightF{CFloat(destination.h) /
                      canvasSize.height};
 
-        _<Image2DRenderer>().DoRendering(texture, xF, yF,
-                                         widthF, heightF);
+        _<Image2DRenderer>().DrawImageByTextureID(
+            texture, xF, yF, widthF, heightF, false);
 
         glDisable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);

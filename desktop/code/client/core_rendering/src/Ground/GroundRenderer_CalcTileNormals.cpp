@@ -13,18 +13,16 @@ namespace Forradia
     {
         Vector<glm::vec3> normals;
 
-        constexpr size_t VERTEX_STRIDE = 8;
-        constexpr size_t REQUIRED_VERTICES = 9;
-        constexpr size_t MIN_ARRAY_SIZE =
-            REQUIRED_VERTICES * VERTEX_STRIDE;
+        constexpr size_t k_vertexStride = 8;
+        constexpr size_t k_requiredVertices = 9;
+        constexpr size_t k_minArraySize =
+            k_requiredVertices * k_vertexStride;
 
-        if (verticesNoNormals.size() < MIN_ARRAY_SIZE)
+        if (verticesNoNormals.size() < k_minArraySize)
         {
             throw std::invalid_argument(
-                "Insufficient vertex data");
+                "Insufficient vertex data.");
         }
-
-        auto k_vertexStride{8};
 
         auto &_00x{
             verticesNoNormals[0 * k_vertexStride + 0]};

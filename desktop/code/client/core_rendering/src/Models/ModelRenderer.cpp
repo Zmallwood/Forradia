@@ -22,7 +22,7 @@ namespace Forradia
 {
     void ModelRenderer::Cleanup()
     {
-        for (auto &entryLevel1 : m_operationsMemory)
+        for (auto &entryLevel1 : m_operationsCache)
         {
             for (auto &entryLevel2 : entryLevel1.second)
             {
@@ -47,27 +47,15 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void ModelRenderer::DrawModel(int modelNameHash,
-                                  float x, float y,
-                                  float elevation,
-                                  Point3F cameraPosition,
-                                  float elevationHeight)
+    void ModelRenderer::SetupState() const
     {
-        x += _<Theme0::Theme0Properties>().GetTileSize() *
-             4.0f / 2.0f;
-
-        y += _<Theme0::Theme0Properties>().GetTileSize() *
-             4.0f / 2.0f;
-
         glEnable(GL_DEPTH_TEST);
 
         glEnable(GL_CULL_FACE);
 
         glCullFace(GL_FRONT);
 
-        auto model{_<ModelBank>().GetModel(modelNameHash)};
-
-        auto &meshes{model->GetMeshesRef()};
+        glFrontFace(GL_CCW);
 
         auto canvasSize{
             GetCanvasSize(_<SDLDevice>().GetWindow())};
@@ -83,6 +71,36 @@ namespace Forradia
 
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA,
                             GL_ONE_MINUS_DST_ALPHA, GL_ONE);
+    }
+
+    void ModelRenderer::ResetState() const
+    {
+        glBindVertexArray(0);
+
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        glDisable(GL_DEPTH_TEST);
+    }
+
+    void ModelRenderer::DrawModel(int modelNameHash,
+                                  float x, float y,
+                                  float elevation,
+                                  Point3F cameraPosition,
+                                  float elevationHeight)
+    {
+        this->SetupState();
+
+        x += _<Theme0::Theme0Properties>().GetTileSize() *
+             4.0f / 2.0f;
+
+        y += _<Theme0::Theme0Properties>().GetTileSize() *
+             4.0f / 2.0f;
+
+        auto model{_<ModelBank>().GetModel(modelNameHash)};
+
+        auto &meshes{model->GetMeshesRef()};
 
         GLuint vao;
         GLuint ibo;
@@ -90,11 +108,11 @@ namespace Forradia
 
         auto needCreateBuffers{false};
 
-        if (m_operationsMemory.contains(x) &&
-            m_operationsMemory.at(x).contains(y) &&
-            m_operationsMemory.at(x).at(y).contains(
+        if (m_operationsCache.contains(x) &&
+            m_operationsCache.at(x).contains(y) &&
+            m_operationsCache.at(x).at(y).contains(
                 elevation) &&
-            m_operationsMemory.at(x)
+            m_operationsCache.at(x)
                 .at(y)
                 .at(elevation)
                 .contains(modelNameHash))
@@ -116,7 +134,7 @@ namespace Forradia
 
         if (!needCreateBuffers)
         {
-            auto &entry = m_operationsMemory.at(x)
+            auto &entry = m_operationsCache.at(x)
                               .at(y)
                               .at(elevation)
                               .at(modelNameHash);
@@ -167,17 +185,15 @@ namespace Forradia
 
             entry.z = elevation;
 
-            m_operationsMemory[x][y][elevation]
-                              [modelNameHash] = entry;
+            m_operationsCache[x][y][elevation]
+                             [modelNameHash] = entry;
 
             needFillBuffers = true;
         }
         if (needFillBuffers)
         {
 
-            Vector<unsigned int> indicesVector;
-
-            Vector<glm::vec3> normals;
+            Vector<unsigned short> indicesVector;
 
             Vector<float> verticesVector;
 
@@ -263,7 +279,7 @@ namespace Forradia
 
             glEnableVertexAttribArray(2);
 
-            auto &entry = m_operationsMemory.at(x)
+            auto &entry = m_operationsCache.at(x)
                               .at(y)
                               .at(elevation)
                               .at(modelNameHash);
@@ -272,7 +288,7 @@ namespace Forradia
         }
 
         auto &entry =
-            m_operationsMemory.at(x).at(y).at(elevation).at(
+            m_operationsCache.at(x).at(y).at(elevation).at(
                 modelNameHash);
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
@@ -296,7 +312,7 @@ namespace Forradia
         // distance.
 
         glm::mat4 projectionMatrix = glm::perspective(
-            90.0f, aspectRatio, 0.1f, 100.0f);
+            glm::radians(90.0f), aspectRatio, 0.1f, 100.0f);
 
         GLuint matrixProjection = glGetUniformLocation(
             GetShaderProgram()->GetProgramID(),
@@ -331,14 +347,8 @@ namespace Forradia
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glDrawElements(GL_TRIANGLES, entry.verticesCount,
-                       GL_UNSIGNED_INT, nullptr);
+                       GL_UNSIGNED_SHORT, nullptr);
 
-        glBindVertexArray(0);
-
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-        glDisable(GL_DEPTH_TEST);
+        this->ResetState();
     }
 }

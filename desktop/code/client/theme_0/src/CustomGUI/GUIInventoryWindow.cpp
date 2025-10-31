@@ -56,7 +56,7 @@ namespace Forradia::Theme0
         {
             for (auto x = 0; x < numColumns; x++)
             {
-                _<Image2DRenderer>().DrawImage(
+                _<Image2DRenderer>().DrawImageByName(
                     k_slotImageName,
                     xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY),
@@ -69,7 +69,7 @@ namespace Forradia::Theme0
 
                 if (inventoryObject)
                 {
-                    _<Image2DRenderer>().DrawImage(
+                    _<Image2DRenderer>().DrawImageByHash(
                         inventoryObject->GetType(),
                         xStart + x * (slotWidth + marginX),
                         yStart + y * (slotHeight + marginY),

@@ -34,6 +34,10 @@ namespace Forradia
       private:
         void Cleanup();
 
+        void SetupState() const;
+
+        void ResetState() const;
+
         Vector<float> CalcTileVerticesNoNormals(
             int xCoordinate, int yCoordinate,
             float tileSize, const Vector<float> &elevations,
@@ -45,11 +49,14 @@ namespace Forradia
         Vector<glm::vec3> CalcTileNormals(
             const Vector<float> &verticesNoNormals);
 
+        static constexpr unsigned short k_indices[] = {
+            0, 1, 2, 3};
+
         std::map<
             int,
             std::map<
                 int,
                 std::map<GLuint, GroundRenderingOperation>>>
-            m_operationsMemory;
+            m_operationsCache;
     };
 }

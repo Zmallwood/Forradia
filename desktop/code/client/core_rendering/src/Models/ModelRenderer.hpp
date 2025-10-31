@@ -33,6 +33,10 @@ namespace Forradia
       private:
         void Cleanup();
 
+        void SetupState() const;
+
+        void ResetState() const;
+
         std::map<
             float,
             std::map<
@@ -41,7 +45,7 @@ namespace Forradia
                     float,
                     std::map<int,
                              ModelRenderingOperation>>>>
-            m_operationsMemory;
+            m_operationsCache;
 
         static constexpr float k_modelScale{0.25f};
     };

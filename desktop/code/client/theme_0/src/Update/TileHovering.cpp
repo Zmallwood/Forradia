@@ -77,7 +77,7 @@ namespace Forradia::Theme0::GameplayCore
             CalcAspectRatio(_<SDLDevice>().GetWindow())};
 
         glm::mat4 proj = glm::perspective(
-            90.0f, aspectRatio, 0.1f, 100.0f);
+            glm::radians(90.0f), aspectRatio, 0.1f, 100.0f);
 
         auto c = glm::vec3(cameraPos.x, cameraPos.y - 2.0f,
                            -cameraPos.z + 2.5f);

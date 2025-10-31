@@ -170,19 +170,21 @@ namespace Forradia::Theme0
                      AnyMouseButtonIsPressedPickResult);
 
         py::class_<Image2DRenderer>(m, "Image2DRenderer")
-            .def(
-                "draw_img",
-                [](Image2DRenderer &self,
-                   StringView image_name, float x, float y,
-                   float w, float h)
-                { self.DrawImage(image_name, x, y, w, h); })
+            .def("draw_img",
+                 [](Image2DRenderer &self,
+                    StringView image_name, float x, float y,
+                    float w, float h)
+                 {
+                     self.DrawImageByName(image_name, x, y,
+                                          w, h);
+                 })
             .def("draw_img",
                  [](Image2DRenderer &self,
                     int image_name_hash, float x, float y,
                     float w, float h)
                  {
-                     self.DrawImage(image_name_hash, x, y,
-                                    w, h);
+                     self.DrawImageByHash(image_name_hash,
+                                          x, y, w, h);
                  })
             .def("draw_img_auto_h",
                  [](Image2DRenderer &self,

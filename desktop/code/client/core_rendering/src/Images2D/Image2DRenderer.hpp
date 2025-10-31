@@ -20,15 +20,18 @@ namespace Forradia
             this->Cleanup();
         }
 
-        void DrawImage(StringView imageName, float x,
-                       float y, float width, float height);
+        void DrawImageByName(StringView imageName, float x,
+                             float y, float width,
+                             float height);
 
-        void DrawImage(int imageNameHash, float x, float y,
-                       float width, float height);
+        void
+        DrawImageByHash(int imageNameHash, float x, float y,
+                        float width, float height,
+                        bool useOperationsCache = true);
 
-        void DoRendering(GLuint textureID, float x, float y,
-                         float width, float height,
-                         bool useOperationsMemory = false);
+        void DrawImageByTextureID(
+            GLuint textureID, float x, float y, float width,
+            float height, bool useOperationsCache = true);
 
         void DrawImageAutoHeight(StringView imageName,
                                  float x, float y,
@@ -42,11 +45,15 @@ namespace Forradia
       private:
         void Cleanup();
 
+        void SetupState() const;
+
+        void ResetState() const;
+
         std::map<
             float,
             std::map<float,
                      std::map<GLuint,
                               Image2DRenderingOperation>>>
-            m_operationsMemory;
+            m_operationsCache;
     };
 }
