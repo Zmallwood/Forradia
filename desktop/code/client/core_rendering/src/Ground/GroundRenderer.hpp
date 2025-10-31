@@ -23,16 +23,10 @@ namespace Forradia
         void DrawTile(int imageNameHash, int xCoordinate,
                       int yCoordinate, float tileSize,
                       Point3F cameraPosition,
-                      Vector<float> &elevations,
+                      const Vector<float> &elevations,
                       float elevationHeight);
 
       protected:
-        void DoRendering(int imageNameHash, int xCoordinate,
-                         int yCoordinate, float tileSize,
-                         Point3F cameraPosition,
-                         const Vector<float> &elevations,
-                         float elevationHeight);
-
         String GetVSSource() const override;
 
         String GetFSSource() const override;
@@ -40,19 +34,21 @@ namespace Forradia
       private:
         void Cleanup();
 
-        Vector<float>
-        GetTileVertices(int xCoordinate, int yCoordinate,
-                        float tileSize,
-                        const Vector<float> &elevations,
-                        float elevationHeight);
+        Vector<float> CalcTileVerticesNoNormals(
+            int xCoordinate, int yCoordinate,
+            float tileSize, const Vector<float> &elevations,
+            float elevationHeight);
 
-        glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2,
-                                glm::vec3 p3);
+        Vector<float> CalcTileVerticesWithNormals(
+            const Vector<float> &verticesNoNormals);
+
+        Vector<glm::vec3> CalcTileNormals(
+            const Vector<float> &verticesNoNormals);
 
         std::map<
-            float,
+            int,
             std::map<
-                float,
+                int,
                 std::map<GLuint, GroundRenderingOperation>>>
             m_operationsMemory;
     };

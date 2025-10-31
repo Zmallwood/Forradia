@@ -22,22 +22,23 @@ namespace Forradia
 {
     void ModelRenderer::Cleanup()
     {
-        for (auto &entry : m_operationsMemory)
+        for (auto &entryLevel1 : m_operationsMemory)
         {
-            for (auto &entry2 : entry.second)
+            for (auto &entryLevel2 : entryLevel1.second)
             {
-                for (auto &entry3 : entry2.second)
+                for (auto &entryLevel3 : entryLevel2.second)
                 {
-                    for (auto &entry4 : entry3.second)
+                    for (auto &entryLevel4 :
+                         entryLevel3.second)
                     {
                         glDeleteVertexArrays(
-                            1, &entry4.second.vao);
+                            1, &entryLevel4.second.vao);
 
-                        glDeleteBuffers(1,
-                                        &entry4.second.ibo);
+                        glDeleteBuffers(
+                            1, &entryLevel4.second.ibo);
 
-                        glDeleteBuffers(1,
-                                        &entry4.second.vbo);
+                        glDeleteBuffers(
+                            1, &entryLevel4.second.vbo);
                     }
                 }
             }
@@ -298,7 +299,8 @@ namespace Forradia
             90.0f, aspectRatio, 0.1f, 100.0f);
 
         GLuint matrixProjection = glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "projection");
+            GetShaderProgram()->GetProgramID(),
+            "projection");
         glUniformMatrix4fv(matrixProjection, 1, GL_FALSE,
                            &projectionMatrix[0][0]);
 

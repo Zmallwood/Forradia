@@ -55,3 +55,5 @@
 #include "MessageUtilities.hpp"
 
 #include "Geometry/GLMTypes/GLMMesh.hpp"
+
+#include "MathUtilities.hpp"

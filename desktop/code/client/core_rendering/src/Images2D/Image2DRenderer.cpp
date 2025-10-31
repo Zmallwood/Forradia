@@ -16,18 +16,20 @@ namespace Forradia
 {
     void Image2DRenderer::Cleanup()
     {
-        for (auto &entry : m_operationsMemory)
+        for (auto &entryLevel1 : m_operationsMemory)
         {
-            for (auto &entry2 : entry.second)
+            for (auto &entryLevel2 : entryLevel1.second)
             {
-                for (auto &entry3 : entry2.second)
+                for (auto &entryLevel3 : entryLevel2.second)
                 {
                     glDeleteVertexArrays(
-                        1, &entry3.second.vao);
+                        1, &entryLevel3.second.vao);
 
-                    glDeleteBuffers(1, &entry3.second.ibo);
+                    glDeleteBuffers(
+                        1, &entryLevel3.second.ibo);
 
-                    glDeleteBuffers(1, &entry3.second.vbo);
+                    glDeleteBuffers(
+                        1, &entryLevel3.second.vbo);
                 }
             }
         }

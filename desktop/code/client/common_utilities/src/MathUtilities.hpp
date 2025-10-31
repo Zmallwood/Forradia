@@ -8,13 +8,7 @@
 
 namespace Forradia
 {
-    class GroundRenderingOperation
-    {
-      public:
-        GLuint vao;
-
-        GLuint ibo;
-
-        GLuint vbo;
-    };
+    glm::vec3 ComputeNormal(const glm::vec3 &p1,
+                            const glm::vec3 &p2,
+                            const glm::vec3 &p3);
 }
