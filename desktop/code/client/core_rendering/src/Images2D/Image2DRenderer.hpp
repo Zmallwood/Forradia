@@ -26,7 +26,7 @@ namespace Forradia
         void DrawImage(int imageNameHash, float x, float y,
                        float width, float height);
 
-        void DrawTexture(GLuint textureID, float x, float y,
+        void DoRendering(GLuint textureID, float x, float y,
                          float width, float height,
                          bool useOperationsMemory = false);
 

@@ -40,9 +40,16 @@ namespace Forradia
         float tileSize, Point3F cameraPosition,
         Vector<float> &elevations, float elevationHeight)
     {
-        auto textureID{
-            _<TextureBank>().GetTexture(imageNameHash)};
+        this->DoRendering(imageNameHash, xCoordinate,
+                          yCoordinate, tileSize,
+                          cameraPosition, elevations,
+                          elevationHeight);
+    }
 
+    Vector<float> GroundRenderer::GetTileVertices(
+        int xCoordinate, int yCoordinate, float tileSize,
+        const Vector<float> &elevations, float elevationHeight)
+    {
         auto x{tileSize * (xCoordinate)};
 
         auto y{tileSize * (yCoordinate)};
@@ -51,89 +58,90 @@ namespace Forradia
 
         auto height{tileSize};
 
-        Vector<float> vertices{
-            {x,
-             y,
-             elevations.at(0) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             0.0,
-             0.0,
-             x + width,
-             y,
-             elevations.at(1) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             0.0,
-             x + width + width,
-             y,
-             elevations.at(2) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0,
-             x,
-             y + height,
-             elevations.at(3) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             0.0,
-             1.0,
-             x + width,
-             y + height,
-             elevations.at(4) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0,
-             x + width + width,
-             y + height,
-             elevations.at(5) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0,
-             x,
-             y + height + height,
-             elevations.at(6) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0,
-             x + width,
-             y + height + height,
-             elevations.at(7) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0,
-             x + width + width,
-             y + height + height,
-             elevations.at(8) * elevationHeight,
-             1.0f,
-             1.0f,
-             1.0f,
-             1.0,
-             1.0}};
-
-        GroundRenderer::DrawTexture(textureID, vertices,
-                                    cameraPosition);
+        return {x,
+                y,
+                elevations.at(0) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                0.0,
+                0.0,
+                x + width,
+                y,
+                elevations.at(1) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                0.0,
+                x + width + width,
+                y,
+                elevations.at(2) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0,
+                x,
+                y + height,
+                elevations.at(3) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                0.0,
+                1.0,
+                x + width,
+                y + height,
+                elevations.at(4) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0,
+                x + width + width,
+                y + height,
+                elevations.at(5) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0,
+                x,
+                y + height + height,
+                elevations.at(6) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0,
+                x + width,
+                y + height + height,
+                elevations.at(7) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0,
+                x + width + width,
+                y + height + height,
+                elevations.at(8) * elevationHeight,
+                1.0f,
+                1.0f,
+                1.0f,
+                1.0,
+                1.0};
     }
 
-    void
-    GroundRenderer::DrawTexture(GLuint textureID,
-                                Vector<float> &verticesVec,
-                                Point3F cameraPosition)
+    void GroundRenderer::DoRendering(
+        int imageNameHash, int xCoordinate, int yCoordinate,
+        float tileSize, Point3F cameraPosition,
+        const Vector<float> &elevations,
+        float elevationHeight)
     {
+
+        auto textureID{
+            _<TextureBank>().GetTexture(imageNameHash)};
+
         glEnable(GL_DEPTH_TEST);
 
         glEnable(GL_CULL_FACE);
@@ -152,131 +160,17 @@ namespace Forradia
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        auto verticesNoNormals = verticesVec.data();
-
-        unsigned int indices[] = {0, 1, 2, 3};
-
-        Vector<glm::vec3> normals;
-
-        auto verticesCount{4};
-
-        auto indicesCount{4};
-
-        auto _00x{verticesNoNormals[0 * 8 + 0]};
-        auto _00y{verticesNoNormals[0 * 8 + 1]};
-        auto _00z{verticesNoNormals[0 * 8 + 2]};
-        auto _10x{verticesNoNormals[1 * 8 + 0]};
-        auto _10y{verticesNoNormals[1 * 8 + 1]};
-        auto _10z{verticesNoNormals[1 * 8 + 2]};
-        auto _20x{verticesNoNormals[2 * 8 + 0]};
-        auto _20y{verticesNoNormals[2 * 8 + 1]};
-        auto _20z{verticesNoNormals[2 * 8 + 2]};
-        auto _01x{verticesNoNormals[3 * 8 + 0]};
-        auto _01y{verticesNoNormals[3 * 8 + 1]};
-        auto _01z{verticesNoNormals[3 * 8 + 2]};
-        auto _11x{verticesNoNormals[4 * 8 + 0]};
-        auto _11y{verticesNoNormals[4 * 8 + 1]};
-        auto _11z{verticesNoNormals[4 * 8 + 2]};
-        auto _21x{verticesNoNormals[5 * 8 + 0]};
-        auto _21y{verticesNoNormals[5 * 8 + 1]};
-        auto _21z{verticesNoNormals[5 * 8 + 2]};
-        auto _02x{verticesNoNormals[6 * 8 + 0]};
-        auto _02y{verticesNoNormals[6 * 8 + 1]};
-        auto _02z{verticesNoNormals[6 * 8 + 2]};
-        auto _12x{verticesNoNormals[7 * 8 + 0]};
-        auto _12y{verticesNoNormals[7 * 8 + 1]};
-        auto _12z{verticesNoNormals[7 * 8 + 2]};
-        auto _22x{verticesNoNormals[8 * 8 + 0]};
-        auto _22y{verticesNoNormals[8 * 8 + 1]};
-        auto _22z{verticesNoNormals[8 * 8 + 2]};
-
-        glm::vec3 v00 = {_00x, _00y, _00z};
-        glm::vec3 v10 = {_10x, _10y, _10z};
-        glm::vec3 v20 = {_20x, _20y, _20z};
-        glm::vec3 v01 = {_01x, _01y, _01z};
-        glm::vec3 v11 = {_11x, _11y, _11z};
-        glm::vec3 v21 = {_21x, _21y, _21z};
-        glm::vec3 v02 = {_02x, _02y, _02z};
-        glm::vec3 v12 = {_12x, _12y, _12z};
-        glm::vec3 v22 = {_22x, _22y, _22z};
-
-        glm::vec3 normal00 =
-            this->ComputeNormal(v10, v00, v01);
-        glm::vec3 normal10 =
-            this->ComputeNormal(v20, v10, v11);
-        glm::vec3 normal11 =
-            this->ComputeNormal(v21, v11, v12);
-        glm::vec3 normal01 =
-            this->ComputeNormal(v11, v01, v02);
-
-        normal00.z *= -1.0f;
-        normal10.z *= -1.0f;
-        normal11.z *= -1.0f;
-        normal01.z *= -1.0f;
-
-        normals.push_back(normal00);
-        normals.push_back(normal10);
-        normals.push_back(normal11);
-        normals.push_back(normal01);
-
-        Vector<float> verticesVector;
-
-        auto fn{
-            [&](int i, int j)
-            {
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 0]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 1]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 2]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 3]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 4]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 5]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 6]);
-
-                verticesVector.push_back(
-                    verticesNoNormals[i * 8 + 7]);
-
-                verticesVector.push_back(normals.at(j).x);
-
-                verticesVector.push_back(normals.at(j).y);
-
-                verticesVector.push_back(normals.at(j).z);
-            }};
-
-        fn(0, 0);
-
-        fn(1, 1);
-
-        fn(4, 2);
-
-        fn(3, 3);
-
-        auto vertices{verticesVector.data()};
-
         GLuint vao;
         GLuint ibo;
         GLuint vbo;
 
         auto needCreateBuffers{false};
 
-        if (m_operationsMemory.contains(
-                verticesVec.at(0)) &&
-            m_operationsMemory.at(verticesVec.at(0))
-                .contains(verticesVec.at(1)) &&
-            m_operationsMemory.at(verticesVec.at(0))
-                .at(verticesVec.at(1))
+        if (m_operationsMemory.contains(xCoordinate) &&
+            m_operationsMemory.at(xCoordinate)
+                .contains(yCoordinate) &&
+            m_operationsMemory.at(xCoordinate)
+                .at(yCoordinate)
                 .contains(textureID))
         {
             needCreateBuffers = false;
@@ -284,22 +178,15 @@ namespace Forradia
         else
         {
             needCreateBuffers = true;
-
-            glGenVertexArrays(1, &vao);
-
-            glGenBuffers(1, &vbo);
-
-            glGenBuffers(1, &ibo);
         }
 
-        auto needFillBuffers{false};
+        // auto needFillBuffers{false};
 
         if (!needCreateBuffers)
         {
-            auto &entry =
-                m_operationsMemory.at(verticesVec.at(0))
-                    .at(verticesVec.at(1))
-                    .at(textureID);
+            auto &entry = m_operationsMemory.at(xCoordinate)
+                              .at(yCoordinate)
+                              .at(textureID);
 
             vao = entry.vao;
 
@@ -313,23 +200,33 @@ namespace Forradia
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-            if (verticesVec.at(0) != entry.x ||
-                verticesVec.at(1) != entry.y)
-            {
-                needFillBuffers = true;
+            // if (verticesVec.at(0) != entry.x ||
+            //     verticesVec.at(1) != entry.y)
+            // {
+            //     needFillBuffers = true;
 
-                entry.x = verticesVec.at(0);
+            //     entry.x = verticesVec.at(0);
 
-                entry.y = verticesVec.at(1);
-            }
+            //     entry.y = verticesVec.at(1);
+            // }
         }
         else
         {
+            glGenVertexArrays(1, &vao);
+
+            glGenBuffers(1, &vbo);
+
+            glGenBuffers(1, &ibo);
+
             glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+            auto verticesVec{this->GetTileVertices(
+                xCoordinate, yCoordinate, tileSize,
+                elevations, elevationHeight)};
 
             GroundRenderingOperation entry;
 
@@ -343,13 +240,126 @@ namespace Forradia
 
             entry.y = verticesVec.at(1);
 
-            m_operationsMemory[verticesVec.at(
-                0)][verticesVec.at(1)][textureID] = entry;
+            m_operationsMemory[xCoordinate][yCoordinate]
+                              [textureID] = entry;
 
-            needFillBuffers = true;
-        }
-        if (needFillBuffers)
-        {
+            auto verticesNoNormals = verticesVec.data();
+
+            unsigned int indices[] = {0, 1, 2, 3};
+
+            Vector<glm::vec3> normals;
+
+            auto verticesCount{4};
+
+            auto indicesCount{4};
+
+            auto _00x{verticesNoNormals[0 * 8 + 0]};
+            auto _00y{verticesNoNormals[0 * 8 + 1]};
+            auto _00z{verticesNoNormals[0 * 8 + 2]};
+            auto _10x{verticesNoNormals[1 * 8 + 0]};
+            auto _10y{verticesNoNormals[1 * 8 + 1]};
+            auto _10z{verticesNoNormals[1 * 8 + 2]};
+            auto _20x{verticesNoNormals[2 * 8 + 0]};
+            auto _20y{verticesNoNormals[2 * 8 + 1]};
+            auto _20z{verticesNoNormals[2 * 8 + 2]};
+            auto _01x{verticesNoNormals[3 * 8 + 0]};
+            auto _01y{verticesNoNormals[3 * 8 + 1]};
+            auto _01z{verticesNoNormals[3 * 8 + 2]};
+            auto _11x{verticesNoNormals[4 * 8 + 0]};
+            auto _11y{verticesNoNormals[4 * 8 + 1]};
+            auto _11z{verticesNoNormals[4 * 8 + 2]};
+            auto _21x{verticesNoNormals[5 * 8 + 0]};
+            auto _21y{verticesNoNormals[5 * 8 + 1]};
+            auto _21z{verticesNoNormals[5 * 8 + 2]};
+            auto _02x{verticesNoNormals[6 * 8 + 0]};
+            auto _02y{verticesNoNormals[6 * 8 + 1]};
+            auto _02z{verticesNoNormals[6 * 8 + 2]};
+            auto _12x{verticesNoNormals[7 * 8 + 0]};
+            auto _12y{verticesNoNormals[7 * 8 + 1]};
+            auto _12z{verticesNoNormals[7 * 8 + 2]};
+            auto _22x{verticesNoNormals[8 * 8 + 0]};
+            auto _22y{verticesNoNormals[8 * 8 + 1]};
+            auto _22z{verticesNoNormals[8 * 8 + 2]};
+
+            glm::vec3 v00 = {_00x, _00y, _00z};
+            glm::vec3 v10 = {_10x, _10y, _10z};
+            glm::vec3 v20 = {_20x, _20y, _20z};
+            glm::vec3 v01 = {_01x, _01y, _01z};
+            glm::vec3 v11 = {_11x, _11y, _11z};
+            glm::vec3 v21 = {_21x, _21y, _21z};
+            glm::vec3 v02 = {_02x, _02y, _02z};
+            glm::vec3 v12 = {_12x, _12y, _12z};
+            glm::vec3 v22 = {_22x, _22y, _22z};
+
+            glm::vec3 normal00 =
+                this->ComputeNormal(v10, v00, v01);
+            glm::vec3 normal10 =
+                this->ComputeNormal(v20, v10, v11);
+            glm::vec3 normal11 =
+                this->ComputeNormal(v21, v11, v12);
+            glm::vec3 normal01 =
+                this->ComputeNormal(v11, v01, v02);
+
+            normal00.z *= -1.0f;
+            normal10.z *= -1.0f;
+            normal11.z *= -1.0f;
+            normal01.z *= -1.0f;
+
+            normals.push_back(normal00);
+            normals.push_back(normal10);
+            normals.push_back(normal11);
+            normals.push_back(normal01);
+
+            Vector<float> verticesVector;
+
+            auto fn{[&](int i, int j)
+                    {
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 0]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 1]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 2]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 3]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 4]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 5]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 6]);
+
+                        verticesVector.push_back(
+                            verticesNoNormals[i * 8 + 7]);
+
+                        verticesVector.push_back(
+                            normals.at(j).x);
+
+                        verticesVector.push_back(
+                            normals.at(j).y);
+
+                        verticesVector.push_back(
+                            normals.at(j).z);
+                    }};
+
+            fn(0, 0);
+
+            fn(1, 1);
+
+            fn(4, 2);
+
+            fn(3, 3);
+
+            auto vertices{verticesVector.data()};
+
+            // needFillBuffers = true;
+
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
             glBufferData(GL_ELEMENT_ARRAY_BUFFER,

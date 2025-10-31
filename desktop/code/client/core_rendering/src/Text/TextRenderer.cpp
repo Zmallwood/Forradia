@@ -97,7 +97,7 @@ namespace Forradia
 
         auto textureAlreadyExists{
             _<TextureBank>().TextTextureExists(xx, yy,
-                                             textHash)};
+                                               textHash)};
 
         auto texture{_<TextureBank>().ObtainTextTexture(
             xx, yy, textHash)};
@@ -156,7 +156,11 @@ namespace Forradia
         auto heightF{CFloat(destination.h) /
                      canvasSize.height};
 
-        _<Image2DRenderer>().DrawTexture(texture, xF, yF,
+        _<Image2DRenderer>().DoRendering(texture, xF, yF,
                                          widthF, heightF);
+
+        glDisable(GL_BLEND);
+        glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 }

@@ -43,11 +43,11 @@ namespace Forradia
         auto textureID{
             _<TextureBank>().GetTexture(imageNameHash)};
 
-        Image2DRenderer::DrawTexture(textureID, x, y, width,
-                                     height, true);
+        this->DoRendering(textureID, x, y, width, height,
+                          true);
     }
 
-    void Image2DRenderer::DrawTexture(
+    void Image2DRenderer::DoRendering(
         GLuint textureID, float x, float y, float width,
         float height, bool useOperationsMemory)
     {
@@ -245,7 +245,7 @@ namespace Forradia
         auto height{width / imageAspectRatio *
                     canvasAspectRatio};
 
-        DrawImage(hash, x, y, width, height);
+        this->DrawImage(hash, x, y, width, height);
     }
 
     void Image2DRenderer::DrawImage(StringView imageName,

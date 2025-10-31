@@ -26,17 +26,25 @@ namespace Forradia
                       Vector<float> &elevations,
                       float elevationHeight);
 
-        void DrawTexture(GLuint textureID,
-                         Vector<float> &vertices,
-                         Point3F cameraPosition);
-
       protected:
+        void DoRendering(int imageNameHash, int xCoordinate,
+                         int yCoordinate, float tileSize,
+                         Point3F cameraPosition,
+                         const Vector<float> &elevations,
+                         float elevationHeight);
+
         String GetVSSource() const override;
 
         String GetFSSource() const override;
 
       private:
         void Cleanup();
+
+        Vector<float>
+        GetTileVertices(int xCoordinate, int yCoordinate,
+                        float tileSize,
+                        const Vector<float> &elevations,
+                        float elevationHeight);
 
         glm::vec3 ComputeNormal(glm::vec3 p1, glm::vec3 p2,
                                 glm::vec3 p3);

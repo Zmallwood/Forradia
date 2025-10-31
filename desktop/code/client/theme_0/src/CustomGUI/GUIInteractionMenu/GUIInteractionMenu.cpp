@@ -60,7 +60,7 @@ namespace Forradia::Theme0
         auto actionForage{
             GetAction<Hash("ActionForage")>()};
 
-        if (tile && tile->GetGround() ==
+        if (tile && !actionForage.groundMatches.empty() && tile->GetGround() ==
                         actionForage.groundMatches[0])
         {
             m_entries.push_back(
@@ -73,14 +73,18 @@ namespace Forradia::Theme0
         {
             auto type{object->GetType()};
 
-            auto action {GetAction<Hash("ActionPickBranch")>()};
+            auto action{
+                GetAction<Hash("ActionPickBranch")>()};
 
-            for (auto actionObjectTypes : action.objectMatches)
+            for (const auto &actionObjectTypes :
+                 action.objectMatches)
             {
                 if (type == actionObjectTypes)
                 {
                     m_entries.push_back(
                         {"Pick branch", action.action});
+
+                    break;
                 }
             }
         }
