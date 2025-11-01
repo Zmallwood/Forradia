@@ -25,7 +25,6 @@ namespace Forradia
     void ModelRenderer::DrawModel(int modelNameHash,
                                   float x, float y,
                                   float elevation,
-                                  Point3F cameraPosition,
                                   float elevationHeight)
     {
         this->SetupState();
@@ -234,12 +233,11 @@ namespace Forradia
         // lookAt function takes camera position, camera
         // target and up vector.
 
-        cameraPosition = _<Camera>().GetPosition();
+        auto cameraPosition{_<Camera>().GetPosition()};
         auto cameraLookAt{_<Camera>().GetLookAt()};
 
         glm::mat4 cameraMatrix = glm::lookAt(
-            glm::vec3(cameraPosition.x,
-                      cameraPosition.y,
+            glm::vec3(cameraPosition.x, cameraPosition.y,
                       cameraPosition.z),
             glm::vec3(cameraLookAt.x, cameraLookAt.y,
                       cameraLookAt.z),

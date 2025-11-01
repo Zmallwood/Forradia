@@ -18,8 +18,7 @@ namespace Forradia
 {
     void GroundRenderer::DrawTile(
         int imageNameHash, int xCoordinate, int yCoordinate,
-        float tileSize, Point3F cameraPosition,
-        const Vector<float> &elevations,
+        float tileSize, const Vector<float> &elevations,
         float elevationHeight)
     {
         auto textureID{
@@ -142,12 +141,11 @@ namespace Forradia
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-        cameraPosition = _<Camera>().GetPosition();
+        auto cameraPosition{_<Camera>().GetPosition()};
         auto cameraLookAt{_<Camera>().GetLookAt()};
 
         glm::mat4 cameraMatrix = glm::lookAt(
-            glm::vec3(cameraPosition.x,
-                      cameraPosition.y,
+            glm::vec3(cameraPosition.x, cameraPosition.y,
                       cameraPosition.z),
             glm::vec3(cameraLookAt.x, cameraLookAt.y,
                       cameraLookAt.z),

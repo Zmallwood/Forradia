@@ -22,7 +22,6 @@ namespace Forradia
 
         void DrawModel(int modelNameHash, float x, float y,
                        float elevations,
-                       Point3F cameraPosition,
                        float elevationHeight);
 
       protected:

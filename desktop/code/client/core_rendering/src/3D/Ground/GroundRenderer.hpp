@@ -22,7 +22,6 @@ namespace Forradia
 
         void DrawTile(int imageNameHash, int xCoordinate,
                       int yCoordinate, float tileSize,
-                      Point3F cameraPosition,
                       const Vector<float> &elevations,
                       float elevationHeight);
 

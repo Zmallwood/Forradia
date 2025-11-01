@@ -59,15 +59,6 @@ namespace Forradia::Theme0::GameplayCore
         auto rendTileSize{
             _<Theme0Properties>().GetTileSize()};
 
-        Point3F cameraPos{
-            (worldAreaSize.width - playerPos.x) *
-                    rendTileSize +
-                rendTileSize / 2,
-            (worldAreaSize.height - playerPos.y) *
-                    rendTileSize +
-                rendTileSize / 2,
-            -playerElev * elevHeight};
-
         for (auto y = -extraRows;
              y < gridSize.height + extraRows; y++)
         {
@@ -330,7 +321,7 @@ namespace Forradia::Theme0::GameplayCore
                                     trunkPartWidth / 2,
                                 elevationAverage -
                                     trunkPartZ,
-                                cameraPos, elevHeight);
+                                elevHeight);
 
                             auto needleWidth{treeWidth};
 
@@ -347,7 +338,6 @@ namespace Forradia::Theme0::GameplayCore
                                             trunkPartZ -
                                             needleHeight /
                                                 2,
-                                        cameraPos,
                                         elevHeight);
                             }
                         }
@@ -360,8 +350,7 @@ namespace Forradia::Theme0::GameplayCore
                                 rendTileSize / 2,
                             (yCoordinate)*rendTileSize -
                                 rendTileSize / 2,
-                            elevationMax, cameraPos,
-                            elevHeight);
+                            elevationMax, elevHeight);
                     }
                 }
 
@@ -380,8 +369,7 @@ namespace Forradia::Theme0::GameplayCore
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize -
                             rendTileSize / 2,
-                        elevationMax, cameraPos,
-                        elevHeight);
+                        elevationMax, elevHeight);
                 }
 
                 if (xCoordinate + 1 ==
@@ -395,14 +383,12 @@ namespace Forradia::Theme0::GameplayCore
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize -
                             rendTileSize / 2,
-                        elevationMax, cameraPos,
-                        elevHeight);
+                        elevationMax, elevHeight);
                 }
 
                 _<GroundRenderer>().DrawTile(
                     ground, xCoordinate, yCoordinate,
-                    rendTileSize, cameraPos, elevations,
-                    elevHeight);
+                    rendTileSize, elevations, elevHeight);
 
                 if (xCoordinate ==
                         worldAreaSize.width -
@@ -418,7 +404,7 @@ namespace Forradia::Theme0::GameplayCore
                     _<GroundRenderer>().DrawTile(
                         Hash("HoveredTile"), xCoordinate,
                         yCoordinate, rendTileSize,
-                        cameraPos, elevations, elevHeight);
+                        elevations, elevHeight);
                 }
             }
         }
