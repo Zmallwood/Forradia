@@ -16,6 +16,8 @@
 
 namespace Forradia
 {
+    // Convenience aliases.
+
     using String = std::string;
 
     using StringView = std::string_view;

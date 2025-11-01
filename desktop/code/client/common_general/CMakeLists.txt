@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(Forradia)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+file(GLOB_RECURSE COMMON_SOURCES "./src/*.cpp")
+add_library(ForradiaCommonGeneral ${COMMON_SOURCES})
+target_include_directories(ForradiaCommonGeneral PUBLIC
+    "../common_lang/src"
+    "../common_matter/src"
+    "../common_general/src"
+)
+target_link_libraries(ForradiaCommonGeneral PRIVATE ForradiaCommonMatter SDL2 SDL2_image SDL2_ttf fmt GL GLEW)
+target_precompile_headers(ForradiaCommonGeneral PUBLIC ./src/StdAfx.hpp)

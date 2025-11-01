@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(Forradia)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+file(GLOB_RECURSE CORE_ASSETS_SOURCES "./src/*.cpp")
+add_library(ForradiaCoreAssets ${CORE_ASSETS_SOURCES})
+target_include_directories(ForradiaCoreAssets PUBLIC
+    "../core_assets/src"
+    "../common_matter/src"
+    "../common_core_utilities/src"
+    "../common_general/src"
+)
+target_link_libraries(ForradiaCoreAssets
+    ForradiaCommonUtilities
+)
+target_precompile_headers(ForradiaCoreAssets PUBLIC ./src/StdAfx.hpp)
