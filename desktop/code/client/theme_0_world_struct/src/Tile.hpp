@@ -14,8 +14,6 @@ namespace Forradia::Theme0
 
     class Creature;
 
-    class NPC;
-
     class Tile
     {
       public:
@@ -45,16 +43,6 @@ namespace Forradia::Theme0
             SharedPtr<Forradia::Theme0::Creature> val)
         {
             m_creature = val;
-        }
-
-        auto GetNPC() const
-        {
-            return m_npc;
-        }
-
-        void SetNPC(SharedPtr<Forradia::Theme0::NPC> value)
-        {
-            m_npc = value;
         }
 
         auto GetElevation() const
@@ -106,8 +94,6 @@ namespace Forradia::Theme0
             m_objectsStack;
 
         SharedPtr<Forradia::Theme0::Creature> m_creature;
-
-        SharedPtr<Forradia::Theme0::NPC> m_npc;
 
         int m_elevation{0};
 

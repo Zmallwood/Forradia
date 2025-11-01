@@ -16,8 +16,6 @@
 
 #include "SceneManager.hpp"
 
-#include "Keyboard/KeyboardInput.hpp"
-
 #include "Mouse/MouseInput.hpp"
 
 #include "Images2D/Image2DRenderer.hpp"
@@ -31,12 +29,19 @@ namespace Forradia
     void Engine::Initialize(StringView gameWindowTitle,
                             Color clearColor) const
     {
+        // Initialize random number generator so that unique
+        // random numbers are generated on each game run.
+
         Randomize();
+
+        // Initialize SDL and GL devices.
 
         _<SDLDevice>().Initialize(gameWindowTitle,
                                   clearColor);
 
         _<GLDevice>().Initialize();
+
+        // Initialize renderers.
 
         _<Image2DRenderer>().Initialize();
 
@@ -47,19 +52,33 @@ namespace Forradia
 
     void Engine::Run()
     {
+        // Enclose the main game loop in a try-catch block,
+        // to catch exceptions thrown anywhere in the game.
+
         try
         {
+            // Main game loop.
+
             while (m_running)
             {
+                // Reset the mouse input and cursor before
+                // polling events.
+
                 _<MouseInput>().Reset();
 
                 _<Cursor>().ResetStyleToNormal();
 
-                this->PollEvents();
+                // Poll events and handle them.
+
+                this->HandleEvents();
+
+                // Update.
 
                 _<SceneManager>().UpdateCurrentScene();
 
                 _<FPSCounter>().Update();
+
+                // Render.
 
                 _<SDLDevice>().ClearCanvas();
 
@@ -67,66 +86,24 @@ namespace Forradia
 
                 _<Cursor>().Render();
 
+                // Present the canvas.
+
                 _<SDLDevice>().PresentCanvas();
             }
         }
         catch (std::exception &e)
         {
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
-                                     "Error", e.what(),
-                                     nullptr);
+            // Print error message on catched exception.
+
+            PrintLine("An error occured: " +
+                      String(e.what()));
         }
     }
 
     void Engine::Stop()
     {
+        // Stop the engine.
+
         m_running = false;
-    }
-
-    void Engine::PollEvents()
-    {
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-
-                this->Stop();
-
-                break;
-
-            case SDL_KEYDOWN:
-
-                _<KeyboardInput>().RegisterKeyPress(
-                    event.key.keysym.sym);
-
-                break;
-
-            case SDL_KEYUP:
-
-                _<KeyboardInput>().RegisterKeyRelease(
-                    event.key.keysym.sym);
-
-                break;
-
-            case SDL_MOUSEBUTTONDOWN:
-
-                _<MouseInput>()
-                    .RegisterMouseButtonDown(
-                        event.button.button);
-
-                break;
-
-            case SDL_MOUSEBUTTONUP:
-
-                _<MouseInput>()
-                    .RegisterMouseButtonUp(
-                        event.button.button);
-
-                break;
-            }
-        }
     }
 }

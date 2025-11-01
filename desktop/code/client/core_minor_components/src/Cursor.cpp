@@ -14,12 +14,14 @@ namespace Forradia
 {
     void Cursor::Initialize()
     {
+        // Disable the default system cursor.
+
         this->DisableSystemCursor();
     }
 
     void Cursor::DisableSystemCursor()
     {
-        // Hide the default system cursor.
+        // Hide the default system cursor using SDL.
 
         SDL_ShowCursor(SDL_DISABLE);
     }

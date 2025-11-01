@@ -22,7 +22,7 @@ namespace Forradia
         ///
         Cursor()
         {
-            Initialize();
+            this->Initialize();
         }
 
         ///

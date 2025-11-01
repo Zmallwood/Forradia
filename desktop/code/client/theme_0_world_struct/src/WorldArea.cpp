@@ -10,14 +10,14 @@
 
 namespace Forradia::Theme0
 {
-    void WorldArea::Initialize(Size w_area_sz,
-                               float world_scaling)
+    void WorldArea::Initialize(Size worldAreaSize,
+                               float worldScaling)
     {
-        auto size{w_area_sz};
+        auto size{worldAreaSize};
 
-        size.width *= world_scaling;
+        size.width *= worldScaling;
 
-        size.height *= world_scaling;
+        size.height *= worldScaling;
 
         for (auto x = 0; x < size.width; x++)
         {

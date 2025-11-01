@@ -17,9 +17,9 @@ namespace Forradia::Theme0
     class WorldArea
     {
       public:
-        WorldArea(Size w_area_sz, float world_scaling)
+        WorldArea(Size worldAreaSize, float worldScaling)
         {
-            this->Initialize(w_area_sz, world_scaling);
+            this->Initialize(worldAreaSize, worldScaling);
         }
 
         Size GetSize() const;
@@ -43,8 +43,8 @@ namespace Forradia::Theme0
         }
 
       private:
-        void Initialize(Size w_area_sz,
-                        float world_scaling);
+        void Initialize(Size worldAreaSize,
+                        float worldScaling);
 
         Vector<Vector<SharedPtr<Tile>>> m_tiles;
 

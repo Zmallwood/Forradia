@@ -19,7 +19,7 @@ namespace Forradia
         void Stop();
 
       private:
-        void PollEvents();
+        void HandleEvents();
 
         bool m_running{true};
     };

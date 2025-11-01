@@ -32,4 +32,6 @@
 
 #include "RandomizationUtilities.hpp"
 
+#include "MessageUtilities.hpp"
+
 #include "Singleton.hpp"

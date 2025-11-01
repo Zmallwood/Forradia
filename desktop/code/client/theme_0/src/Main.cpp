@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     _<ScriptEngine>().LoadScripts();
 
     _<World>().Initialize(
-        _<Theme0Properties>().GetWorldAreaSize(),
+        _<Theme0Properties>().GetBaseWorldAreaSize(),
         _<Theme0Properties>().GetWorldScaling());
 
     _<Engine>().Run();
