@@ -50,16 +50,6 @@ namespace Forradia::Theme0
             m_destination = value;
         }
 
-        auto GetTicksNextSpontaneousSpeech() const
-        {
-            return m_ticksNextSpontaneousSpeech;
-        }
-
-        void SetTicksNextSpontaneousSpeech(int value)
-        {
-            m_ticksNextSpontaneousSpeech = value;
-        }
-
       private:
         int m_type{0};
 
@@ -70,7 +60,5 @@ namespace Forradia::Theme0
         float m_movementSpeed{2.0f};
 
         Point m_destination{-1, -1};
-
-        int m_ticksNextSpontaneousSpeech{0};
     };
 }

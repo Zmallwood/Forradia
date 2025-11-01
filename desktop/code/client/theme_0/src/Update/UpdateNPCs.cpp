@@ -22,7 +22,6 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateNPCs()
     {
-        return;
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto &npcs{worldArea->GetNPCsMirrorRef()};
@@ -35,26 +34,6 @@ namespace Forradia::Theme0::GameplayCore
 
             auto position{it->second};
 
-            if (now > npc->GetTicksNextSpontaneousSpeech())
-            {
-                auto name{npc->GetName()};
-
-                if (GetRandomInt(20) == 0)
-                {
-                    _<GUIChatBox>().Print(
-                        name + ": Buying blueberries, "
-                               "one gold each.");
-                }
-                else
-                {
-                    _<GUIChatBox>().Print(name +
-                                          ": Hello all!");
-                }
-
-                npc->SetTicksNextSpontaneousSpeech(
-                    now + 5 * k_oneSecMillis +
-                    (6000 * k_oneSecMillis));
-            }
             if (now < npc->GetTicksLastMovement() +
                           InvertMovementSpeed(
                               npc->GetMovementSpeed()))

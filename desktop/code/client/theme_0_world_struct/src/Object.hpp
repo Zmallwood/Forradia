@@ -8,20 +8,34 @@
 
 namespace Forradia::Theme0
 {
+    ///
+    /// An object, either in the game world, a
+    /// container or inventory.
+    ///
     class Object
     {
       public:
-        Object(StringView object_type_name)
-            : m_type(Hash(object_type_name))
+        ///
+        /// Constructor.
+        ///
+        /// @param objectTypeName The object type by name.
+        ///
+        Object(StringView objectTypeName)
+            : m_type(Hash(objectTypeName))
         {
         }
 
+        ///
+        /// Gets the object type.
+        ///
+        /// @return The object type as a hash.
+        ///
         auto GetType() const
         {
             return m_type;
         }
 
       private:
-        int m_type{0};
+        int m_type{0}; ///< The object type as a hash.
     };
 }
