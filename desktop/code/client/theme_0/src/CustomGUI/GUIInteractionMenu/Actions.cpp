@@ -16,7 +16,6 @@
 
 namespace Forradia::Theme0
 {
-
     static std::map<int, Function<void()>> s_timedActions;
 
     template <>
