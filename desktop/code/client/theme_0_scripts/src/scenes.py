@@ -27,7 +27,6 @@ from embedded import (
     get_gui_interact_menu_ptr,
     update_kb_actions,
     update_mouse_actions,
-    update_npcs,
     update_crea_movem,
     update_mouse_movem,
     update_kb_movem,
@@ -235,8 +234,6 @@ class MainScene(IScene):
             update_kb_actions()
 
             update_mouse_actions()
-
-            update_npcs()
 
             update_crea_movem()
 

@@ -50,8 +50,6 @@
 
 #include "Update/UpdateMouseActions.hpp"
 
-#include "Update/UpdateNPCs.hpp"
-
 #include "Update/UpdateCreaturesMovement.hpp"
 
 #include "Update/UpdateMouseMovement.hpp"
@@ -377,9 +375,6 @@ namespace Forradia::Theme0
 
         m.def("update_mouse_actions",
               &Theme0::GameplayCore::UpdateMouseActions);
-
-        m.def("update_npcs",
-              &Theme0::GameplayCore::UpdateNPCs);
 
         m.def(
             "update_crea_movem",

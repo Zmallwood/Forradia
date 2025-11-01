@@ -23,6 +23,8 @@ namespace Forradia::Theme0
     void ObjectsStack::AddObject<Object>(
         StringView objectTypeName)
     {
+        // Add new object of Object type to the stack.
+
         m_objects.push_back(
             std::make_shared<Object>(objectTypeName));
     }
@@ -31,31 +33,46 @@ namespace Forradia::Theme0
     void ObjectsStack::AddObject<TreeObject>(
         StringView objectTypeName)
     {
+        // Add new object of TreeObject type to the stack.
+
         m_objects.push_back(
             std::make_shared<TreeObject>(objectTypeName));
     }
 
-    void ObjectsStack::RemoveObjectOfType(
+    void ObjectsStack::RemoveOneOfObjectOfType(
         StringView objectTypeName)
     {
+        // Iterate through the stack.
+
         for (auto it = m_objects.begin();
              it != m_objects.end();)
         {
+            // If the object type matches.
+
             if ((*it)->GetType() == Hash(objectTypeName))
             {
-                it = m_objects.erase(it);
+                // Delete the object.
+
+                m_objects.erase(it);
+
+                // Stop iterating since only one object
+                // should be removed.
 
                 return;
             }
             else
             {
-                it++;
+                // If no match, move to the next object.
+
+                ++it;
             }
         }
     }
 
     int ObjectsStack::GetSize() const
     {
+        // Return the number of objects in the stack.
+
         return m_objects.size();
     }
 }
