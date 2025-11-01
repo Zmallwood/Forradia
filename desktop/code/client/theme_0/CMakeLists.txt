@@ -31,5 +31,5 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreEngine
     ForradiaTheme0Properties
     ForradiaCoreMinorComponents
-    ForradiaCoreRenderingBase
+    ForradiaCoreRenderingCommon
 )

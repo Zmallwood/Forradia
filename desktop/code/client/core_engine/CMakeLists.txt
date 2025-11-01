@@ -19,6 +19,6 @@ target_include_directories(ForradiaCoreEngine PUBLIC
     "../common_utilities/src"
     "../common_general/src"
     "../core_minor_components/src"
-    "../core_rendering_base/src"
+    "../core_rendering_common/src"
 )
 target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/StdAfx.hpp)
