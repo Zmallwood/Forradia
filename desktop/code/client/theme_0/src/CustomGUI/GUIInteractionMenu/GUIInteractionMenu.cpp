@@ -47,11 +47,19 @@ namespace Forradia::Theme0
             _<GameplayCore::TileHovering>()
                 .GetHoveredCoordinate()};
 
-        m_clickedCoordinate = hoveredCoordinate;
-
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto worldAreaSize{worldArea->GetSize()};
+
+        m_clickedCoordinate = hoveredCoordinate;
+
+        m_clickedRobot =
+            worldArea
+                ->GetTile(worldAreaSize.width -
+                              hoveredCoordinate.x,
+                          worldAreaSize.height -
+                              hoveredCoordinate.y)
+                ->GetRobot();
 
         auto tile{worldArea->GetTile(
             worldAreaSize.width - hoveredCoordinate.x,
@@ -122,6 +130,16 @@ namespace Forradia::Theme0
                     break;
                 }
             }
+        }
+
+        auto robot{tile->GetRobot()};
+
+        if (robot)
+        {
+            m_entries.push_back(
+                {"Attack robot",
+                 GetAction<Hash("ActionTargetRobot")>()
+                     .action});
         }
     }
 

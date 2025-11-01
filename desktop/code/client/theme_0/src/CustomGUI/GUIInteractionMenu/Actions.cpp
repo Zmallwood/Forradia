@@ -24,6 +24,8 @@
 
 #include "Object.hpp"
 
+#include "Combat.hpp"
+
 namespace Forradia::Theme0
 {
     static std::map<int, Function<void()>> s_timedActions;
@@ -51,6 +53,9 @@ namespace Forradia::Theme0
 
     template <>
     Action GetAction<Hash("ActionBuildSimpleShelter")>();
+
+    template <>
+    Action GetAction<Hash("ActionTargetRobot")>();
 
     template <>
     Action GetAction<Hash("ActionStop")>()
@@ -325,6 +330,33 @@ namespace Forradia::Theme0
                             " more branches to "
                             "build a simple "
                             "shelter.");
+                    }
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionTargetRobot")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto robot{_<GUIInteractionMenu>()
+                                   .GetClickedRobot()};
+
+                    if (robot)
+                    {
+                        // _<GameplayCore::Combat>()
+                        //     .SetTargetedRobot(robot);
+
+                        _<GUIChatBox>().Print(
+                            "You target a robot.");
+                    }
+                    else
+                    {
+                        _<GUIChatBox>().Print(
+                            "There is no robot to target "
+                            "at that location.");
                     }
                 }};
     }

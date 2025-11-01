@@ -10,6 +10,8 @@
 
 namespace Forradia::Theme0
 {
+    class Robot;
+
     class GUIInteractionMenu : public GUIPanel
     {
       public:
@@ -26,6 +28,10 @@ namespace Forradia::Theme0
             return m_timedActions;
         }
 
+        auto GetClickedRobot() const
+        {
+            return m_clickedRobot;
+        }
 
       protected:
         void Initialize();
@@ -67,6 +73,8 @@ namespace Forradia::Theme0
         Vector<GUIInteractionMenuEntry> m_entries;
 
         Point m_clickedCoordinate{-1, -1};
+
+        SharedPtr<Robot> m_clickedRobot;
 
         std::map<int, int> m_timedActions;
     };
