@@ -22,8 +22,8 @@ namespace Forradia
     {
         auto point{GetLookAt()};
 
-        point.y -= 2.0f;
-        point.z += 1.0f;
+        point.y -= 6.0f;
+        point.z += 6.0f;
 
         return point;
     }

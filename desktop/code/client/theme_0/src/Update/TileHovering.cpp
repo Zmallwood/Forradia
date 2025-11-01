@@ -18,6 +18,8 @@
 
 #include "SDLDevice.hpp"
 
+#include "3D/Camera.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void TileHovering::Update()
@@ -66,12 +68,15 @@ namespace Forradia::Theme0::GameplayCore
                           rendTileSize,
                       0.0f));
 
+        auto cameraPosition{_<Camera>().GetPosition()};
+        auto cameraLookAt{_<Camera>().GetLookAt()};
+
         glm::mat4 view = glm::lookAt(
-            glm::vec3(cameraPos.x, cameraPos.y - 2.0f,
-                      -cameraPos.z + 2.5f),
-            glm::vec3(cameraPos.x, cameraPos.y,
-                      -cameraPos.z),
-            glm::vec3(0.0f, 0.0f, -1.0f));
+            glm::vec3(cameraPosition.x, cameraPosition.y,
+                      cameraPosition.z),
+            glm::vec3(cameraLookAt.x, cameraLookAt.y,
+                      cameraLookAt.z),
+            glm::vec3(0.0f, 0.0f, -1.0f));  
 
         auto aspectRatio{
             CalcAspectRatio(_<SDLDevice>().GetWindow())};
