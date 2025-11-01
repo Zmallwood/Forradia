@@ -14,6 +14,8 @@ namespace Forradia::Theme0
 
     class Creature;
 
+    class Robot;
+
     class Tile
     {
       public:
@@ -43,6 +45,17 @@ namespace Forradia::Theme0
             SharedPtr<Forradia::Theme0::Creature> val)
         {
             m_creature = val;
+        }
+
+        auto GetRobot() const
+        {
+            return m_robot;
+        }
+
+        void
+        SetRobot(SharedPtr<Forradia::Theme0::Robot> val)
+        {
+            m_robot = val;
         }
 
         auto GetElevation() const
@@ -94,6 +107,8 @@ namespace Forradia::Theme0
             m_objectsStack;
 
         SharedPtr<Forradia::Theme0::Creature> m_creature;
+
+        SharedPtr<Forradia::Theme0::Robot> m_robot;
 
         int m_elevation{0};
 

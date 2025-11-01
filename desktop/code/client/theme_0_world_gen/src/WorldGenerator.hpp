@@ -38,7 +38,7 @@ namespace Forradia::Theme0
 
         void GenerateCreatures() const;
 
-        void GenerateNPCs() const;
+        void GenerateRobots() const;
 
         SharedPtr<Theme0::WorldArea> m_worldArea;
 

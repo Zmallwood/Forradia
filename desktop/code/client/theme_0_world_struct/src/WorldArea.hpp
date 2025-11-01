@@ -12,7 +12,7 @@ namespace Forradia::Theme0
 
     class Creature;
 
-    class NPC;
+    class Robot;
 
     class WorldArea
     {
@@ -37,9 +37,9 @@ namespace Forradia::Theme0
             return m_creaturesMirror;
         }
 
-        auto &GetNPCsMirrorRef()
+        auto &GetRobotsMirrorRef()
         {
-            return m_npcsMirror;
+            return m_robotsMirror;
         }
 
       private:
@@ -51,6 +51,6 @@ namespace Forradia::Theme0
         std::map<SharedPtr<Creature>, Point>
             m_creaturesMirror;
 
-        std::map<SharedPtr<NPC>, Point> m_npcsMirror;
+        std::map<SharedPtr<Robot>, Point> m_robotsMirror;
     };
 }

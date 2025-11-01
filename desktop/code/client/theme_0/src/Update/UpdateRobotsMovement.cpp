@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-#include "UpdateCreaturesMovement.hpp"
+#include "UpdateRobotsMovement.hpp"
 
 #include "TileHovering.hpp"
 
@@ -14,37 +14,36 @@
 
 #include "Tile.hpp"
 
-#include "Creature.hpp"
+#include "Robot.hpp"
 
 #include "NumbersUtilities.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
-    void UpdateCreaturesMovement()
+    void UpdateRobotsMovement()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto &creatures{worldArea->GetCreaturesMirrorRef()};
+        auto &robots{worldArea->GetRobotsMirrorRef()};
 
         auto now{GetTicks()};
 
-        for (auto it = creatures.begin();
-             it != creatures.end();)
+        for (auto it = robots.begin(); it != robots.end();)
         {
-            auto creature{it->first};
+            auto robot{it->first};
 
             auto position{it->second};
 
-            if (now < creature->GetTicksLastMovement() +
+            if (now < robot->GetTicksLastMovement() +
                           InvertMovementSpeed(
-                              creature->GetMovementSpeed()))
+                              robot->GetMovementSpeed()))
             {
                 ++it;
 
                 continue;
             }
 
-            auto destination{creature->GetDestination()};
+            auto destination{robot->GetDestination()};
 
             if (destination.x == -1 && destination.y == -1)
             {
@@ -54,21 +53,18 @@ namespace Forradia::Theme0::GameplayCore
                 auto newDestinationY{position.y +
                                      GetRandomInt(11) - 5};
 
-                creature->SetDestination(
+                robot->SetDestination(
                     {newDestination, newDestinationY});
             }
 
             auto worldArea{
                 _<World>().GetCurrentWorldArea()};
 
-            auto &creatures{
-                worldArea->GetCreaturesMirrorRef()};
+            auto &robots{worldArea->GetRobotsMirrorRef()};
 
-            auto dX{creature->GetDestination().x -
-                    position.x};
+            auto dX{robot->GetDestination().x - position.x};
 
-            auto dY{creature->GetDestination().y -
-                    position.y};
+            auto dY{robot->GetDestination().y - position.y};
 
             auto normalizedDX{Normalize(dX)};
 
@@ -80,20 +76,20 @@ namespace Forradia::Theme0::GameplayCore
 
             Point newPosition{newX, newY};
 
-            if (newPosition == creature->GetDestination())
+            if (newPosition == robot->GetDestination())
             {
-                creature->SetDestination({-1, -1});
+                robot->SetDestination({-1, -1});
             }
 
             auto tile{worldArea->GetTile(newPosition.x,
                                          newPosition.y)};
 
-            if (tile && !tile->GetCreature() &&
+            if (tile && !tile->GetRobot() &&
                 tile->GetGround() != Hash("GroundWater"))
             {
-                auto oldPosition{creatures.at(creature)};
+                auto oldPosition{robots.at(robot)};
 
-                creature->SetTicksLastMovement(now);
+                robot->SetTicksLastMovement(now);
 
                 auto oldTile{worldArea->GetTile(
                     oldPosition.x, oldPosition.y)};
@@ -101,19 +97,19 @@ namespace Forradia::Theme0::GameplayCore
                 auto newTile{worldArea->GetTile(
                     newPosition.x, newPosition.y)};
 
-                oldTile->SetCreature(nullptr);
+                oldTile->SetRobot(nullptr);
 
-                newTile->SetCreature(creature);
+                newTile->SetRobot(robot);
 
-                creatures.erase(creature);
+                robots.erase(robot);
 
-                creatures.insert(
-                    {creature,
+                robots.insert(
+                    {robot,
                      {newPosition.x, newPosition.y}});
             }
             else
             {
-                creature->SetDestination({-1, -1});
+                robot->SetDestination({-1, -1});
             }
 
             ++it;

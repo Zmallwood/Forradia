@@ -56,6 +56,8 @@
 
 #include "Update/UpdateKeyboardMovement.hpp"
 
+#include "Update/UpdateRobotsMovement.hpp"
+
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
 namespace Forradia::Theme0
@@ -379,6 +381,10 @@ namespace Forradia::Theme0
         m.def(
             "update_crea_movem",
             &Theme0::GameplayCore::UpdateCreaturesMovement);
+
+        m.def(
+            "update_robots_movem",
+            &Theme0::GameplayCore::UpdateRobotsMovement);
 
         m.def("update_mouse_movem",
               &Theme0::GameplayCore::UpdateMouseMovement);

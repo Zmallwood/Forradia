@@ -26,6 +26,8 @@
 
 #include "Creature.hpp"
 
+#include "Robot.hpp"
+
 #include "3D/Ground/GroundRenderer.hpp"
 
 #include "3D/Models/ModelRenderer.hpp"
@@ -365,6 +367,23 @@ namespace Forradia::Theme0::GameplayCore
 
                     _<ModelRenderer>().DrawModel(
                         creatureType,
+                        (xCoordinate)*rendTileSize -
+                            rendTileSize / 2,
+                        (yCoordinate)*rendTileSize -
+                            rendTileSize / 2,
+                        elevationMax, elevHeight);
+                }
+
+                auto robot{tile->GetRobot()};
+
+                if (robot)
+                {
+                    auto robotType{robot->GetType()};
+
+                    robotType = Hash("RobotMechWolf");
+
+                    _<ModelRenderer>().DrawModel(
+                        robotType,
                         (xCoordinate)*rendTileSize -
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize -

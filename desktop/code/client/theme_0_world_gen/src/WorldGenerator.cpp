@@ -33,6 +33,8 @@ namespace Forradia::Theme0
         this->GenerateObjects();
 
         this->GenerateCreatures();
+
+        this->GenerateRobots();
     }
 
     void WorldGenerator::Prepare()

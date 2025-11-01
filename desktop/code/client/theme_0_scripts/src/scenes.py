@@ -31,6 +31,7 @@ from embedded import (
     update_mouse_movem,
     update_kb_movem,
     update_actions,
+    update_robots_movem,
     get_tl_hovering,
     get_world_view,
     get_img_2d_rend,
@@ -236,6 +237,8 @@ class MainScene(IScene):
             update_mouse_actions()
 
             update_crea_movem()
+
+            update_robots_movem()
 
             update_mouse_movem()
 
