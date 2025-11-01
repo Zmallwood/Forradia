@@ -32,6 +32,9 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionStop")>();
 
     template <>
+    Action GetAction<Hash("ActionSitByComputer")>();
+
+    template <>
     Action GetAction<Hash("ActionForage")>();
 
     template <>
@@ -60,6 +63,20 @@ namespace Forradia::Theme0
 
                     _<GUIChatBox>().Print(
                         "You stopped current action.");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionSitByComputer")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectComputer")},
+                .action = []()
+                {
+                    _<GUIChatBox>().Print(
+                        "You sit by the computer.");
+
+                    _<GUIChatBox>().EnableInput();
                 }};
     }
 

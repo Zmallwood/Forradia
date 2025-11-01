@@ -13,7 +13,6 @@ namespace Forradia::Theme0
       public:
         NPC(StringView type_name) : m_type{Hash(type_name)}
         {
-            this->Initialize();
         }
 
         auto GetType() const
@@ -62,10 +61,6 @@ namespace Forradia::Theme0
         }
 
       private:
-        void Initialize();
-
-        void GenerateName();
-
         int m_type{0};
 
         String m_name;

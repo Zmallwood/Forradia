@@ -105,6 +105,23 @@ namespace Forradia::Theme0
                     break;
                 }
             }
+
+            auto actionSitByComputer{
+                GetAction<Hash("ActionSitByComputer")>()};
+
+            for (const auto &actionObjectTypes :
+                 actionSitByComputer.objectMatches)
+            {
+                if (type == actionObjectTypes)
+                {
+
+                    m_entries.push_back(
+                        {"Sit by computer",
+                         actionSitByComputer.action});
+
+                    break;
+                }
+            }
         }
     }
 
