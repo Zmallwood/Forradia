@@ -15,9 +15,8 @@ namespace Forradia::Theme0
       public:
         void ClearObjects();
 
+        template<class T = Object>
         void AddObject(StringView objectTypeName);
-
-        void AddTreeObject(StringView objectTypeName);
 
         void RemoveObjectOfType(StringView objectTypeName);
 

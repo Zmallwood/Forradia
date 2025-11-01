@@ -14,17 +14,22 @@ namespace Forradia::Theme0
 {
     void ObjectsStack::ClearObjects()
     {
+        // Delete all objects in the stack.
+
         m_objects.clear();
     }
 
-    void ObjectsStack::AddObject(StringView objectTypeName)
+    template <>
+    void ObjectsStack::AddObject<Object>(
+        StringView objectTypeName)
     {
         m_objects.push_back(
             std::make_shared<Object>(objectTypeName));
     }
 
-    void
-    ObjectsStack::AddTreeObject(StringView objectTypeName)
+    template <>
+    void ObjectsStack::AddObject<TreeObject>(
+        StringView objectTypeName)
     {
         m_objects.push_back(
             std::make_shared<TreeObject>(objectTypeName));
