@@ -18,11 +18,11 @@
 
 #include "Mouse/MouseInput.hpp"
 
-#include "Images2D/Image2DRenderer.hpp"
+#include "2D/Images/Image2DRenderer.hpp"
 
-#include "Ground/GroundRenderer.hpp"
+#include "3D/Ground/GroundRenderer.hpp"
 
-#include "Models/ModelRenderer.hpp"
+#include "3D/Models/ModelRenderer.hpp"
 
 namespace Forradia
 {

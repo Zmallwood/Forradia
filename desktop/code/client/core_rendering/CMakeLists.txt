@@ -15,6 +15,9 @@ target_include_directories(ForradiaCoreRendering PUBLIC
     "../common_core_utilities/src"
     "../core_assets/src"
     "../core_rendering_base/src"
+    "../theme_0_world_struct/src"
+    "../theme_0_essentials/src"
+    "../common_matter/src"
 )
 target_link_libraries(ForradiaCoreRendering
     ForradiaCommonGeneral

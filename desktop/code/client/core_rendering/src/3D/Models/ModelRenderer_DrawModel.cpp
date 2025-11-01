@@ -18,6 +18,8 @@
 
 #include "ShaderProgram.hpp"
 
+#include "3D/Camera.hpp"
+
 namespace Forradia
 {
     void ModelRenderer::DrawModel(int modelNameHash,
@@ -232,12 +234,15 @@ namespace Forradia
         // lookAt function takes camera position, camera
         // target and up vector.
 
+        cameraPosition = _<Camera>().GetPosition();
+        auto cameraLookAt{_<Camera>().GetLookAt()};
+
         glm::mat4 cameraMatrix = glm::lookAt(
             glm::vec3(cameraPosition.x,
-                      cameraPosition.y - 2.0f,
-                      -cameraPosition.z + 2.5f),
-            glm::vec3(cameraPosition.x, cameraPosition.y,
-                      -cameraPosition.z),
+                      cameraPosition.y,
+                      cameraPosition.z),
+            glm::vec3(cameraLookAt.x, cameraLookAt.y,
+                      cameraLookAt.z),
             glm::vec3(0.0f, 0.0f, -1.0f));
 
         auto aspectRatio{

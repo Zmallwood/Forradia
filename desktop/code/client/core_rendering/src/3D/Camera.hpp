@@ -1,0 +1,18 @@
+//
+// Copyright 2025 Andreas Åkerberg
+// This code is licensed under MIT license
+// (see LICENSE for details)
+//
+
+#pragma once
+
+namespace Forradia
+{
+    class Camera
+    {
+      public:
+        Point3F GetPosition() const;
+
+        Point3F GetLookAt() const;
+    };
+}

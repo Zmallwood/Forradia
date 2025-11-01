@@ -26,9 +26,9 @@
 
 #include "Creature.hpp"
 
-#include "Ground/GroundRenderer.hpp"
+#include "3D/Ground/GroundRenderer.hpp"
 
-#include "Models/ModelRenderer.hpp"
+#include "3D/Models/ModelRenderer.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {

@@ -30,6 +30,8 @@
 
 #include "Singleton.hpp"
 
+#include "Geometry/Point.hpp"
+
 #include "Geometry/Point3F.hpp"
 
 #include "Geometry/RectF.hpp"

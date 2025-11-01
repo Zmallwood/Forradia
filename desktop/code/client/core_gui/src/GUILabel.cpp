@@ -6,7 +6,7 @@
 
 #include "GUILabel.hpp"
 
-#include "Text/TextRenderer.hpp"
+#include "2D/Text/TextRenderer.hpp"
 
 namespace Forradia
 {
