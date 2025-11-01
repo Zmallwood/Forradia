@@ -23,6 +23,15 @@ namespace Forradia
 
         void Print(StringView text);
 
+        void EnableInput();
+
+        void SubmitInput();
+
+        auto GetInputActive() const
+        {
+            return m_inputActive;
+        }
+
       private:
         constexpr static StringView
             k_defaultBackgroundImageDerived{
@@ -35,5 +44,9 @@ namespace Forradia
         inline static const float k_margin{0.008f};
 
         Vector<String> m_lines;
+
+        String m_input;
+
+        bool m_inputActive{false};
     };
 }

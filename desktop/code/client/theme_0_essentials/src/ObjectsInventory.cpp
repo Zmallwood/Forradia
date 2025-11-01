@@ -12,6 +12,7 @@ namespace Forradia::Theme0::GameplayCore
 {
     ObjectsInventory::ObjectsInventory()
     {
+        AddObject("ObjectComputer");
         AddObject("ObjectRedApple");
         AddObject("ObjectRedApple");
     }
@@ -40,5 +41,21 @@ namespace Forradia::Theme0::GameplayCore
 
         m_objects.push_back(
             std::make_shared<Object>(objectName));
+    }
+
+    int
+    ObjectsInventory::CountHasObject(StringView objectName)
+    {
+        auto findCount{0};
+
+        for (size_t i = 0; i < m_objects.size(); i++)
+        {
+            if (m_objects[i]->GetType() == Hash(objectName))
+            {
+                ++findCount;
+            }
+        }
+
+        return findCount;
     }
 }

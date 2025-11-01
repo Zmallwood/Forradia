@@ -19,7 +19,7 @@ namespace Forradia::Theme0
       public:
         WorldArea(Size w_area_sz, float world_scaling)
         {
-            Initialize(w_area_sz, world_scaling);
+            this->Initialize(w_area_sz, world_scaling);
         }
 
         Size GetSize() const;

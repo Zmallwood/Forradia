@@ -22,6 +22,7 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateNPCs()
     {
+        return;
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto &npcs{worldArea->GetNPCsMirrorRef()};

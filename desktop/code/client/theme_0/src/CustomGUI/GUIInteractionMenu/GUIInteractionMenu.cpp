@@ -57,11 +57,29 @@ namespace Forradia::Theme0
             worldAreaSize.width - hoveredCoordinate.x,
             worldAreaSize.height - hoveredCoordinate.y)};
 
+        auto actionStop{GetAction<Hash("ActionStop")>()};
+
+        m_entries.push_back(
+            {"Stop current action", actionStop.action});
+
+        auto actionChopDownTrees{
+            GetAction<Hash("ActionChopTrees")>()};
+
+        m_entries.push_back({"Chop down trees",
+                             actionChopDownTrees.action});
+
+        auto actionSimpleShelter{
+            GetAction<Hash("ActionBuildSimpleShelter")>()};
+
+        m_entries.push_back({"Build simple shelter",
+                             actionSimpleShelter.action});
+
         auto actionForage{
             GetAction<Hash("ActionForage")>()};
 
-        if (tile && !actionForage.groundMatches.empty() && tile->GetGround() ==
-                        actionForage.groundMatches[0])
+        if (tile && !actionForage.groundMatches.empty() &&
+            tile->GetGround() ==
+                actionForage.groundMatches[0])
         {
             m_entries.push_back(
                 {"Forage", actionForage.action});

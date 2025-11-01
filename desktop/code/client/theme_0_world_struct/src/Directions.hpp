@@ -8,24 +8,27 @@
 
 namespace Forradia::Theme0
 {
+    ///
+    /// Compass directions in the game world.
+    ///
     enum class Directions
     {
-        None,
+        None, ///< No direction.
 
-        North,
+        North, ///< North direction.
 
-        East,
+        East, ///< East direction.
 
-        South,
+        South, ///< South direction.
 
-        West,
+        West, ///< West direction.
 
-        NorthEast,
+        NorthEast, ///< North-east direction.
 
-        SouthEast,
+        SouthEast, ///< South-east direction.
 
-        SouthWest,
+        SouthWest, ///< South-west direction.
 
-        NorthWest
+        NorthWest ///< North-west direction.
     };
 }

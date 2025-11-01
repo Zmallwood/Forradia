@@ -22,6 +22,8 @@ namespace Forradia::Theme0::GameplayCore
 
         void AddObject(StringView objectName);
 
+        int CountHasObject(StringView objectName);
+
       private:
         Vector<SharedPtr<Object>> m_objects;
     };

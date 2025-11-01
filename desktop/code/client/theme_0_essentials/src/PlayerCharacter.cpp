@@ -12,6 +12,8 @@
 
 #include "Tile.hpp"
 
+#include "ObjectsStack.hpp"
+
 #include "ObjectsInventory.hpp"
 
 namespace Forradia::Theme0::GameplayCore
@@ -22,6 +24,16 @@ namespace Forradia::Theme0::GameplayCore
             std::make_shared<ObjectsInventory>();
 
         this->MoveToSuitablePosition();
+
+        auto worldArea{_<World>().GetCurrentWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        worldArea
+            ->GetTile(size.width - m_position.x,
+                      size.height - m_position.y - 1)
+            ->GetObjectsStack()
+            ->AddObject("ObjectComputer");
     }
 
     void PlayerCharacter::MoveToSuitablePosition()

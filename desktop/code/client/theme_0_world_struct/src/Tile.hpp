@@ -21,7 +21,7 @@ namespace Forradia::Theme0
       public:
         Tile()
         {
-            Initialize();
+            this->Initialize();
         }
 
         auto GetGround() const

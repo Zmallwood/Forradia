@@ -10,6 +10,9 @@ namespace Forradia::Theme0
 {
     void Creature::Initialize()
     {
+        // Multiply movement speed by a random number
+        // between 0.5 and 2.
+
         m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
     }
 }

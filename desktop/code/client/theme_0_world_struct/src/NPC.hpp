@@ -13,7 +13,7 @@ namespace Forradia::Theme0
       public:
         NPC(StringView type_name) : m_type{Hash(type_name)}
         {
-            Initialize();
+            this->Initialize();
         }
 
         auto GetType() const

@@ -14,6 +14,8 @@
 
 #include "CustomGUI/GUIInventoryWindow.hpp"
 
+#include "GUIChatBox.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void UpdateKeyboardActions()
@@ -32,6 +34,18 @@ namespace Forradia::Theme0::GameplayCore
                      SDLK_b))
         {
             _<GUIInventoryWindow>().ToggleVisibility();
+        }
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(
+                     SDLK_RETURN))
+        {
+            if (_<GUIChatBox>().GetInputActive())
+            {
+                _<GUIChatBox>().SubmitInput();
+            }
+            else
+            {
+                _<GUIChatBox>().EnableInput();
+            }
         }
     }
 }
