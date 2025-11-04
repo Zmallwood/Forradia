@@ -19,8 +19,9 @@ CMakeUserPresets.json
 #cmake-build-*
 
 # Andreas
-build/*
+desktop/build/*
 !build/Resources
 bin
 __pycache__
 .vscode
+.cache
