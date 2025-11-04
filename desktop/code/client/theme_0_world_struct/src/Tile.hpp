@@ -78,26 +78,6 @@ namespace Forradia::Theme0
             m_waterDepth = value;
         }
 
-        auto GetRiverDirection1() const
-        {
-            return m_riverDirection1;
-        }
-
-        void SetRiverDirection1(Directions value)
-        {
-            m_riverDirection1 = value;
-        }
-
-        auto GetRiverDirection2() const
-        {
-            return m_riverDirection2;
-        }
-
-        void SetRiverDirection2(Directions value)
-        {
-            m_riverDirection2 = value;
-        }
-
       private:
         void Initialize();
 
@@ -113,9 +93,5 @@ namespace Forradia::Theme0
         int m_elevation{0};
 
         int m_waterDepth{0};
-
-        Directions m_riverDirection1{Directions::None};
-
-        Directions m_riverDirection2{Directions::None};
     };
 }

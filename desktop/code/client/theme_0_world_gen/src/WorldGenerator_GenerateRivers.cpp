@@ -27,12 +27,6 @@ namespace Forradia::Theme0
 
             auto length{45 + GetRandomInt(20)};
 
-            auto prevXCoordinate{-1};
-
-            auto prevYCoordinate{-1};
-
-            SharedPtr<Theme0::Tile> prevTile;
-
             for (auto j = 0; j < length; j++)
             {
                 auto angle{startAngle +
@@ -51,103 +45,9 @@ namespace Forradia::Theme0
                 auto tile = m_worldArea->GetTile(
                     xCoordinate, yCoordinate);
 
-                if (tile && prevTile)
+                if (tile)
                 {
-                    if (xCoordinate == prevXCoordinate &&
-                        yCoordinate > prevYCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::South);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::North);
-                    }
-                    else if (xCoordinate ==
-                                 prevXCoordinate &&
-                             yCoordinate < prevYCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::North);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::South);
-                    }
-                    else if (yCoordinate ==
-                                 prevYCoordinate &&
-                             xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::East);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::West);
-                    }
-                    else if (yCoordinate ==
-                                 prevYCoordinate &&
-                             xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::West);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::East);
-                    }
-                    else if (yCoordinate <
-                                 prevYCoordinate &&
-                             xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::NorthEast);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::SouthWest);
-                    }
-                    else if (yCoordinate >
-                                 prevYCoordinate &&
-                             xCoordinate > prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::SouthEast);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::NorthWest);
-                    }
-                    else if (yCoordinate <
-                                 prevYCoordinate &&
-                             xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::NorthWest);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::SouthEast);
-                    }
-                    else if (yCoordinate >
-                                 prevYCoordinate &&
-                             xCoordinate < prevXCoordinate)
-                    {
-                        prevTile->SetRiverDirection1(
-                            Theme0::
-
-                                Directions::SouthWest);
-
-                        tile->SetRiverDirection2(
-                            Theme0::Directions::NorthEast);
-                    }
+                    tile->SetGround("GroundWater");
                 }
 
                 auto dX = std::cos(angle * M_PI / 180.0f);
@@ -157,12 +57,6 @@ namespace Forradia::Theme0
                 x += dX;
 
                 y += dY;
-
-                prevXCoordinate = xCoordinate;
-
-                prevYCoordinate = yCoordinate;
-
-                prevTile = tile;
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Forradia
     {
         this->SetupState();
 
-        unsigned short indices[] = {0, 1, 2, 3};
+        unsigned short indices[] {0, 1, 2, 3};
 
         const auto k_verticesCount{4};
 
