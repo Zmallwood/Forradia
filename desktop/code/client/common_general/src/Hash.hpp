@@ -21,7 +21,7 @@ namespace Forradia
     ///
     constexpr int Hash(StringView text)
     {
-        // Use djb2 algorithm by Daniel J. Bernstein
+        // Use djb2 algorithm by Daniel J. Bernstein.
 
         unsigned long hash{5381};
 

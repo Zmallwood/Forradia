@@ -29,6 +29,8 @@ namespace Forradia
 
         String GetFSSource() const override;
 
+        void SetupAttributeLayout() const override;
+
       private:
         void Cleanup();
 

@@ -43,10 +43,19 @@ namespace Forradia
 
         GLenum status{glewInit()};
 
+        // Check that GLEW was initialized successfully.
+
         if (GLEW_OK != status)
         {
-            printf("GLEW Error: ",
-                   glewGetErrorString(status));
+            // Get the error string.
+
+            auto errorString{
+                String(reinterpret_cast<const char *>(
+                    glewGetErrorString(status)))};
+
+            // Print the error string.
+
+            PrintLine("GLEW error: " + errorString);
         }
 
         // Turn of vertical sync.

@@ -32,13 +32,20 @@ namespace Forradia
          */
         Point3F GetLookAt() const;
 
+        /**
+         * Add a delta to the current zoom amount.
+         *
+         * @param zoomAmountDelta The delta to add.
+         */
         void AddZoomAmountDelta(float zoomAmountDelta);
 
       private:
-        const float k_minZoomAmount{2.0f};
-        
-        const float k_maxZoomAmount{15.0f};
+        const float k_minZoomAmount{
+            2.0f}; ///< Minimum zoom amount.
 
-        float m_zoomAmount{6.0f};
+        const float k_maxZoomAmount{
+            15.0f}; ///< Maximum zoom amount.
+
+        float m_zoomAmount{6.0f}; ///< Current zoom amount.
     };
 }

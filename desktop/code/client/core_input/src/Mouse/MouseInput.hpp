@@ -45,8 +45,21 @@ namespace Forradia
         ///
         bool AnyMouseButtonIsPressedPickResult();
 
+        ///
+        /// Adds a mouse wheel delta to the current mouse
+        /// wheel delta.
+        ///
+        /// @param delta Mouse wheel delta to add.
+        ///
         void AddMouseWheelDelta(int delta);
 
+        ///
+        /// Returns the current mouse wheel delta, picking
+        /// the result (I.e. the result can only be obtained
+        /// once).
+        ///
+        /// @return Current mouse wheel delta.
+        ///
         int GetMouseWheelDeltaPickResult();
 
         ///

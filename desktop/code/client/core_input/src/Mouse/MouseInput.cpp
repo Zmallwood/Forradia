@@ -39,14 +39,24 @@ namespace Forradia
 
     void MouseInput::AddMouseWheelDelta(int delta)
     {
+        // Add the mouse wheel delta to the current mouse
+        // wheel delta.
+
         m_mouseWheelDelta += delta;
     }
 
     int MouseInput::GetMouseWheelDeltaPickResult()
     {
+        // Get the current mouse wheel delta and store as
+        // result.
+
         auto result{m_mouseWheelDelta};
 
+        // Reset the mouse wheel delta.
+
         m_mouseWheelDelta = 0;
+
+        // Return the result.
 
         return result;
     }

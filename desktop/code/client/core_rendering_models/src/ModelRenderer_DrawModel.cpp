@@ -196,25 +196,7 @@ namespace Forradia
                              verticesCount,
                          vertices, GL_STATIC_DRAW);
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                                  sizeof(vertices[0]) * 8,
-                                  0);
-
-            glEnableVertexAttribArray(0);
-
-            glVertexAttribPointer(
-                1, 3, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 8,
-                (void *)(sizeof(vertices[0]) * 3));
-
-            glEnableVertexAttribArray(1);
-
-            glVertexAttribPointer(
-                2, 2, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 8,
-                (void *)(sizeof(vertices[0]) * 6));
-
-            glEnableVertexAttribArray(2);
+            this->SetupAttributeLayout();
 
             auto &entry = m_operationsCache.at(x)
                               .at(y)
@@ -289,5 +271,26 @@ namespace Forradia
                        GL_UNSIGNED_SHORT, nullptr);
 
         this->ResetState();
+    }
+
+    void ModelRenderer::SetupAttributeLayout() const
+    {
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 0));
+
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 3));
+
+        glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 6));
+
+        glEnableVertexAttribArray(2);
     }
 }

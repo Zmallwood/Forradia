@@ -111,32 +111,7 @@ namespace Forradia
                              verticesCount,
                          vertices, GL_STATIC_DRAW);
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                                  sizeof(vertices[0]) * 11,
-                                  0);
-
-            glEnableVertexAttribArray(0);
-
-            glVertexAttribPointer(
-                1, 3, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 11,
-                (void *)(sizeof(vertices[0]) * 3));
-
-            glEnableVertexAttribArray(1);
-
-            glVertexAttribPointer(
-                2, 2, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 11,
-                (void *)(sizeof(vertices[0]) * 6));
-
-            glEnableVertexAttribArray(2);
-
-            glVertexAttribPointer(
-                3, 3, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 11,
-                (void *)(sizeof(vertices[0]) * 8));
-
-            glEnableVertexAttribArray(3);
+            this->SetupAttributeLayout();
         }
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
@@ -176,5 +151,32 @@ namespace Forradia
                        GL_UNSIGNED_SHORT, nullptr);
 
         this->ResetState();
+    }
+
+    void GroundRenderer::SetupAttributeLayout() const
+    {
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 11,
+                              (void *)(sizeof(float) * 0));
+
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 11,
+                              (void *)(sizeof(float) * 3));
+
+        glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 11,
+                              (void *)(sizeof(float) * 6));
+
+        glEnableVertexAttribArray(2);
+
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 11,
+                              (void *)(sizeof(float) * 8));
+
+        glEnableVertexAttribArray(3);
     }
 }

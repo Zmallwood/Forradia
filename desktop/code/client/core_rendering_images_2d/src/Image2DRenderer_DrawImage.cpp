@@ -18,7 +18,7 @@ namespace Forradia
     {
         this->SetupState();
 
-        unsigned short indices[] {0, 1, 2, 3};
+        unsigned short indices[]{0, 1, 2, 3};
 
         const auto k_verticesCount{4};
 
@@ -130,25 +130,7 @@ namespace Forradia
                              k_verticesCount,
                          vertices, GL_DYNAMIC_DRAW);
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                                  sizeof(vertices[0]) * 8,
-                                  0);
-
-            glEnableVertexAttribArray(0);
-
-            glVertexAttribPointer(
-                1, 3, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 8,
-                (void *)(sizeof(vertices[0]) * 3));
-
-            glEnableVertexAttribArray(1);
-
-            glVertexAttribPointer(
-                2, 2, GL_FLOAT, GL_FALSE,
-                sizeof(vertices[0]) * 8,
-                (void *)(sizeof(vertices[0]) * 6));
-
-            glEnableVertexAttribArray(2);
+            this->SetupAttributeLayout();
         }
 
         glBindVertexArray(vao);

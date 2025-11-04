@@ -10,8 +10,6 @@
 
 #include "SDLDevice.hpp"
 
-#include "Textures/TextureBank.hpp"
-
 namespace Forradia
 {
     void Image2DRenderer::Cleanup()
@@ -61,50 +59,24 @@ namespace Forradia
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-    void Image2DRenderer::DrawImageByName(
-        StringView imageName, float x, float y, float width,
-        float height)
+    void Image2DRenderer::SetupAttributeLayout() const
     {
-        this->DrawImageByHash(Hash(imageName), x, y, width,
-                              height);
-    }
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 0));
 
-    void Image2DRenderer::DrawImageByHash(
-        int imageNameHash, float x, float y, float width,
-        float height, bool useOperationsCache)
-    {
-        auto textureID{
-            _<TextureBank>().GetTexture(imageNameHash)};
+        glEnableVertexAttribArray(0);
 
-        this->DrawImageByTextureID(textureID, x, y, width,
-                                   height,
-                                   useOperationsCache);
-    }
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 3));
 
-    void Image2DRenderer::DrawImageAutoHeight(
-        StringView imageName, float x, float y, float width)
-    {
-        auto hash{Forradia::Hash(imageName)};
+        glEnableVertexAttribArray(1);
 
-        auto imageDimensions{
-            _<TextureBank>().GetTextureDimensions(hash)};
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 8,
+                              (void *)(sizeof(float) * 6));
 
-        if (imageDimensions.width <= 0 ||
-            imageDimensions.height <= 0)
-        {
-            return;
-        }
-
-        auto canvasAspectRatio{
-            CalcAspectRatio(_<SDLDevice>().GetWindow())};
-
-        auto imageAspectRatio{
-            CFloat(imageDimensions.width) /
-            imageDimensions.height};
-
-        auto height{width / imageAspectRatio *
-                    canvasAspectRatio};
-
-        this->DrawImageByHash(hash, x, y, width, height);
+        glEnableVertexAttribArray(2);
     }
 }

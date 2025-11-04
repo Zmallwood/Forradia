@@ -49,6 +49,11 @@ namespace Forradia
         ///
         virtual String GetFSSource() const = 0;
 
+        ///
+        /// Sets up the attribute layout.
+        ///
+        virtual void SetupAttributeLayout() const = 0;
+
       private:
         SharedPtr<ShaderProgram>
             m_shaderProgram; ///< The shader program.
