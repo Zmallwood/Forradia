@@ -28,9 +28,9 @@
 
 #include "Robot.hpp"
 
-#include "3D/Ground/GroundRenderer.hpp"
+#include "GroundRenderer.hpp"
 
-#include "3D/Models/ModelRenderer.hpp"
+#include "ModelRenderer.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {

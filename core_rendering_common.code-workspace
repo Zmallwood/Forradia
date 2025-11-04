@@ -166,22 +166,43 @@
         "projects": [
           {
             "isGitRepo": true,
-            "id": "coreq11p7kogxmh4h1s4u",
-            "name": "D1. Core Rendering",
-            "path": "../core_rendering.code-workspace",
+            "id": "coreq11p7kogxmh4h1s41",
+            "name": "D1. Core Rendering Images 2D",
+            "path": "../core_rendering_images_2d.code-workspace",
+            "color": "#FFBEFF"
+          },
+          {
+            "isGitRepo": true,
+            "id": "coreq11p7kogxmh4h1s42",
+            "name": "D2. Core Rendering Text",
+            "path": "../core_rendering_text.code-workspace",
+            "color": "#00BE0B"
+          },
+          {
+            "isGitRepo": true,
+            "id": "coreq11p7kogxmh4h1s43",
+            "name": "D3. Core Rendering Ground",
+            "path": "../core_rendering_ground.code-workspace",
+            "color": "#FFFF0B"
+          },
+          {
+            "isGitRepo": true,
+            "id": "coreq11p7kogxmh4h1s44",
+            "name": "D4. Core Rendering Models",
+            "path": "../core_rendering_models.code-workspace",
             "color": "#FFBE0B"
           },
           {
             "isGitRepo": true,
             "id": "theme_0_world_structkqs340zxfmh4jbt2j",
-            "name": "D2. Theme 0 World Structure",
+            "name": "D5. Theme 0 World Structure",
             "path": "../theme_0_world_struct.code-workspace",
             "color": "#3a86ff"
           },
           {
             "isGitRepo": true,
             "id": "b3theme0gameproperties9y17hnxbamh4mqkcf",
-            "name": "D3. Theme 0 Properties",
+            "name": "D6. Theme 0 Properties",
             "path": "../theme_0_properties.code-workspace",
             "color": "#20A39E"
           }

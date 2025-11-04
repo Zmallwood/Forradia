@@ -12,12 +12,16 @@ namespace Forradia::Theme0
 {
     void Tile::Initialize()
     {
+        // Initialize the objects stack.
+
         m_objectsStack = std::make_shared<
             Forradia::Theme0::ObjectsStack>();
     }
 
     void Tile::SetGround(StringView ground_name)
     {
+        // Set the ground type as hash.
+
         m_ground = Hash(ground_name);
     }
 }

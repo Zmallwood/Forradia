@@ -10,7 +10,7 @@
 
 #include "Textures/TextureBank.hpp"
 
-#include "2D/Images/Image2DRenderer.hpp"
+#include "Image2DRenderer.hpp"
 
 namespace Forradia
 {

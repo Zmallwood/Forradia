@@ -19,7 +19,10 @@ target_include_directories(Forradia PUBLIC
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommonGeneral
-    ForradiaCoreRendering
+    ForradiaCoreRenderingImages2D
+    ForradiaCoreRenderingText
+    ForradiaCoreRenderingGround
+    ForradiaCoreRenderingModels
     ForradiaTheme0WorldStruct
     ForradiaTheme0WorldGen
     ForradiaTheme0Essentials
@@ -32,4 +35,5 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0Properties
     ForradiaCoreMinorComponents
     ForradiaCoreRenderingCommon
+    ForradiaCoreRenderingGround
 )

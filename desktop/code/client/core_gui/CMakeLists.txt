@@ -18,6 +18,8 @@ target_include_directories(ForradiaCoreGUI PUBLIC
     "../common_core_utilities/src"
     "../core_minor_components/src"
     "../core_rendering_common/src"
+    "../core_rendering_text/src"
+    "../core_rendering_images_2d/src"
 )
 target_precompile_headers(ForradiaCoreGUI PUBLIC ./src/StdAfx.hpp)
 target_link_libraries(ForradiaCoreGUI

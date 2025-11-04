@@ -8,7 +8,7 @@
 
 #include "SDLDevice.hpp"
 
-#include "2D/Images/Image2DRenderer.hpp"
+#include "Image2DRenderer.hpp"
 
 #include "PlayerCharacter.hpp"
 

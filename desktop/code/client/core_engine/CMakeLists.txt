@@ -20,5 +20,8 @@ target_include_directories(ForradiaCoreEngine PUBLIC
     "../common_general/src"
     "../core_minor_components/src"
     "../core_rendering_common/src"
+    "../core_rendering_ground/src"
+    "../core_rendering_images_2d/src"
+    "../core_rendering_models/src"
 )
 target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/StdAfx.hpp)

@@ -13,7 +13,6 @@ target_include_directories(ForradiaTheme0Essentials PUBLIC
     "../theme_0_world_struct/src"
 )
 target_link_libraries(ForradiaTheme0Essentials
-    ForradiaCoreRendering
     ForradiaTheme0WorldStruct
 )
 target_precompile_headers(ForradiaTheme0Essentials PUBLIC ./src/StdAfx.hpp)

@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-file(GLOB_RECURSE CORE_RENDERING_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreRendering ${CORE_RENDERING_SOURCES})
-target_include_directories(ForradiaCoreRendering PUBLIC
+file(GLOB_RECURSE CORE_RENDERING_IMAGES_2D_SOURCES "./src/*.cpp")
+add_library(ForradiaCoreRenderingImages2D ${CORE_RENDERING_IMAGES_2D_SOURCES})
+target_include_directories(ForradiaCoreRenderingImages2D PUBLIC
     "../core_rendering/src"
     "../theme_0_properties/src"
     "../common_core_utilities/src"
@@ -19,9 +19,8 @@ target_include_directories(ForradiaCoreRendering PUBLIC
     "../theme_0_essentials/src"
     "../common_matter/src"
 )
-target_link_libraries(ForradiaCoreRendering
+target_link_libraries(ForradiaCoreRenderingImages2D
     ForradiaCommonGeneral
     ForradiaCoreGrahicsDevices
-    assimp
 )
-target_precompile_headers(ForradiaCoreRendering PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreRenderingImages2D PUBLIC ./src/StdAfx.hpp)

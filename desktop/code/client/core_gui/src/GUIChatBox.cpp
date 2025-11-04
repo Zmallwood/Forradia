@@ -6,9 +6,9 @@
 
 #include "GUIChatBox.hpp"
 
-#include "2D/Text/TextRenderer.hpp"
+#include "TextRenderer.hpp"
 
-#include "2D/Images/Image2DRenderer.hpp"
+#include "Image2DRenderer.hpp"
 
 namespace Forradia
 {
