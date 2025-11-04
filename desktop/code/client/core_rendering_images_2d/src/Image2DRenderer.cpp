@@ -79,4 +79,13 @@ namespace Forradia
 
         glEnableVertexAttribArray(2);
     }
+
+    bool Image2DRenderer::DrawingOperationIsCached(
+        float x, float y, GLuint textureID) const
+    {
+        return m_operationsCache.contains(x) &&
+               m_operationsCache.at(x).contains(y) &&
+               m_operationsCache.at(x).at(y).contains(
+                   textureID);
+    }
 }

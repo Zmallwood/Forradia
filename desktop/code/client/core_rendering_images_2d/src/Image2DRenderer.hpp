@@ -51,6 +51,10 @@ namespace Forradia
 
         void ResetState() const;
 
+        bool
+        DrawingOperationIsCached(float x, float y,
+                                 GLuint textureID) const;
+
         std::map<
             float,
             std::map<float,

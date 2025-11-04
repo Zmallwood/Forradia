@@ -14,19 +14,20 @@ namespace Forradia
 {
     void Image2DRenderer::DrawImageByTextureID(
         GLuint textureID, float x, float y, float width,
-        float height, bool useOperationsMemory)
+        float height, bool useOperationsCache)
     {
+        // Setup state.
+
         this->SetupState();
 
-        unsigned short indices[]{0, 1, 2, 3};
-
-        const auto k_verticesCount{4};
-
-        const auto k_indicesCount{4};
+        // To store the vertex array object, index buffer
+        // object and vertex buffer object.
 
         GLuint vao;
         GLuint ibo;
         GLuint vbo;
+
+        // To store whether the buffers need to be filled.
 
         auto needFillBuffers{false};
 
@@ -34,11 +35,8 @@ namespace Forradia
         // memory, which is used when the operations cache
         // reaches a certain limit.
 
-        if (useOperationsMemory &&
-            m_operationsCache.contains(x) &&
-            m_operationsCache.at(x).contains(y) &&
-            m_operationsCache.at(x).at(y).contains(
-                textureID))
+        if (useOperationsCache &&
+            this->DrawingOperationIsCached(x, y, textureID))
         {
             auto &entry =
                 m_operationsCache.at(x).at(y).at(textureID);
@@ -108,6 +106,10 @@ namespace Forradia
             needFillBuffers = true;
         }
 
+        const auto k_verticesCount{4};
+
+        const auto k_indicesCount{4};
+
         if (needFillBuffers)
         {
             float vertices[] = {
@@ -119,6 +121,8 @@ namespace Forradia
                 1.0f,      1.0f,       1.0,  1.0,
                 x,         y + height, 0.0f, 1.0f,
                 1.0f,      1.0f,       0.0,  1.0};
+
+            unsigned short indices[]{0, 1, 2, 3};
 
             glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                          sizeof(indices[0]) *

@@ -39,6 +39,10 @@ namespace Forradia
 
         void ResetState() const;
 
+        bool DrawingOperationIsCached(int xCoordinate,
+                                      int yCoordinate,
+                                      int textureID) const;
+
         Vector<float> CalcTileVerticesNoNormals(
             int xCoordinate, int yCoordinate,
             float tileSize, const Vector<float> &elevations,

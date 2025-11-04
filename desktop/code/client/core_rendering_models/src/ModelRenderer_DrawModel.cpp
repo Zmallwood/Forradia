@@ -45,14 +45,8 @@ namespace Forradia
 
         auto needCreateBuffers{false};
 
-        if (m_operationsCache.contains(x) &&
-            m_operationsCache.at(x).contains(y) &&
-            m_operationsCache.at(x).at(y).contains(
-                elevation) &&
-            m_operationsCache.at(x)
-                .at(y)
-                .at(elevation)
-                .contains(modelNameHash))
+        if (this->DrawingOperationIsCached(x, y, elevation,
+                                           modelNameHash))
         {
             needCreateBuffers = false;
         }
@@ -273,24 +267,17 @@ namespace Forradia
         this->ResetState();
     }
 
-    void ModelRenderer::SetupAttributeLayout() const
+    bool ModelRenderer::DrawingOperationIsCached(
+        float x, float y, float elevation,
+        int modelNameHash) const
     {
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
-                              (void *)(sizeof(float) * 0));
-
-        glEnableVertexAttribArray(0);
-
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
-                              (void *)(sizeof(float) * 3));
-
-        glEnableVertexAttribArray(1);
-
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
-                              (void *)(sizeof(float) * 6));
-
-        glEnableVertexAttribArray(2);
+        return m_operationsCache.contains(x) &&
+               m_operationsCache.at(x).contains(y) &&
+               m_operationsCache.at(x).at(y).contains(
+                   elevation) &&
+               m_operationsCache.at(x)
+                   .at(y)
+                   .at(elevation)
+                   .contains(modelNameHash);
     }
 }

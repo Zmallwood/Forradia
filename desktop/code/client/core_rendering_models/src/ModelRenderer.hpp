@@ -38,6 +38,11 @@ namespace Forradia
 
         void ResetState() const;
 
+        bool
+        DrawingOperationIsCached(float x, float y,
+                                 float elevation,
+                                 int modelNameHash) const;
+
         std::map<
             float,
             std::map<

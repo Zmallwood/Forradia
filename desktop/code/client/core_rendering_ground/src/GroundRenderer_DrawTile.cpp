@@ -34,12 +34,8 @@ namespace Forradia
         GLuint ibo;
         GLuint vbo;
 
-        if (m_operationsCache.contains(xCoordinate) &&
-            m_operationsCache.at(xCoordinate)
-                .contains(yCoordinate) &&
-            m_operationsCache.at(xCoordinate)
-                .at(yCoordinate)
-                .contains(textureID))
+        if (this->DrawingOperationIsCached(
+                xCoordinate, yCoordinate, textureID))
         {
             auto &entry = m_operationsCache.at(xCoordinate)
                               .at(yCoordinate)
@@ -153,30 +149,15 @@ namespace Forradia
         this->ResetState();
     }
 
-    void GroundRenderer::SetupAttributeLayout() const
+    bool GroundRenderer::DrawingOperationIsCached(
+        int xCoordinate, int yCoordinate,
+        int textureID) const
     {
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
-                              (void *)(sizeof(float) * 0));
-
-        glEnableVertexAttribArray(0);
-
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
-                              (void *)(sizeof(float) * 3));
-
-        glEnableVertexAttribArray(1);
-
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
-                              (void *)(sizeof(float) * 6));
-
-        glEnableVertexAttribArray(2);
-
-        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
-                              (void *)(sizeof(float) * 8));
-
-        glEnableVertexAttribArray(3);
+        return m_operationsCache.contains(xCoordinate) &&
+               m_operationsCache.at(xCoordinate)
+                   .contains(yCoordinate) &&
+               m_operationsCache.at(xCoordinate)
+                   .at(yCoordinate)
+                   .contains(textureID);
     }
 }
