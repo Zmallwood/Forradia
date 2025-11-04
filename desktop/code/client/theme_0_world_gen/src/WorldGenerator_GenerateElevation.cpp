@@ -88,7 +88,7 @@ namespace Forradia::Theme0
                                         x + 1, y + 1)};
 
                                 auto elevationThreshold{
-                                    currentElevation - 3};
+                                    currentElevation -8};
 
                                 if (tileN)
                                 {
@@ -227,7 +227,7 @@ namespace Forradia::Theme0
                                 }
 
                                 tile->SetElevation(
-                                    currentElevation + 1);
+                                    currentElevation + GetRandomInt(4));
                             }
                         }
                     }
