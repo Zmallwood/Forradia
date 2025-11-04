@@ -35,6 +35,10 @@ namespace Forradia
         void AddZoomAmountDelta(float zoomAmountDelta);
 
       private:
+        const float k_minZoomAmount{2.0f};
+        
+        const float k_maxZoomAmount{15.0f};
+
         float m_zoomAmount{6.0f};
     };
 }

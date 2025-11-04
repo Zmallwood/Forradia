@@ -97,5 +97,9 @@ namespace Forradia
     void Camera::AddZoomAmountDelta(float zoomAmountDelta)
     {
         m_zoomAmount += zoomAmountDelta;
+
+        m_zoomAmount = std::max(
+            std::min(m_zoomAmount, k_maxZoomAmount),
+            k_minZoomAmount);
     }
 }
