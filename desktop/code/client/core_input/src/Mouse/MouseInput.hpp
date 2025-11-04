@@ -45,6 +45,10 @@ namespace Forradia
         ///
         bool AnyMouseButtonIsPressedPickResult();
 
+        void AddMouseWheelDelta(int delta);
+
+        int GetMouseWheelDeltaPickResult();
+
         ///
         /// Returns a reference to the left mouse button.
         ///
@@ -71,5 +75,8 @@ namespace Forradia
 
         MouseButton
             m_rightMouseButton; ///< Right mouse button.
+
+        int m_mouseWheelDelta{
+            0}; ///< Mouse wheel scroll delta.
     };
 }

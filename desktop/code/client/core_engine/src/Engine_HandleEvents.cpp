@@ -69,6 +69,13 @@ namespace Forradia
                     event.button.button);
 
                 break;
+
+            case SDL_MOUSEWHEEL:
+
+                _<MouseInput>().AddMouseWheelDelta(
+                    event.wheel.y);
+
+                break;
             }
         }
     }

@@ -20,18 +20,32 @@ namespace Forradia
     {
         GUIPanel::UpdateDerived();
 
+        // Get normalized mouse position to compare against
+        // GUI bounds.
+
         auto mousePosition{GetNormallizedMousePosition(
             _<SDLDevice>().GetWindow())};
+
+        // Check if the mouse is hovering this button.
 
         auto hovered{GetBounds().Contains(mousePosition)};
 
         if (hovered)
         {
+            // Show hovered background when pointer is over
+            // the button.
+
             this->SetBackgroundImage(
                 m_hoveredBackgroundImage);
 
+            // Change cursor to indicate the button is
+            // clickable.
+
             _<Cursor>().SetCursorStyle(
                 CursorStyles::HoveringClickableGUI);
+
+            // Trigger the assigned action on mouse
+            // left-button click.
 
             if (_<MouseInput>()
                     .GetLeftMouseButtonRef()
@@ -42,6 +56,9 @@ namespace Forradia
         }
         else
         {
+            // Revert to default background when not
+            // hovered.
+
             SetBackgroundImage(m_backgroundImage);
         }
     }
@@ -50,7 +67,12 @@ namespace Forradia
     {
         GUIPanel::RenderDerived();
 
+        // Retrieve current bounds to position the label.
+
         auto bounds{this->GetBounds()};
+
+        // Draw centered button text using the shared text
+        // renderer.
 
         _<TextRenderer>().DrawString(
             m_text, bounds.x + bounds.width / 2,

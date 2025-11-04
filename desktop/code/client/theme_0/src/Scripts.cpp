@@ -58,6 +58,8 @@
 
 #include "Update/UpdateRobotsMovement.hpp"
 
+#include "Update/UpdateCameraZoom.hpp"
+
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
 namespace Forradia::Theme0
@@ -382,9 +384,11 @@ namespace Forradia::Theme0
             "update_crea_movem",
             &Theme0::GameplayCore::UpdateCreaturesMovement);
 
-        m.def(
-            "update_robots_movem",
-            &Theme0::GameplayCore::UpdateRobotsMovement);
+        m.def("update_robots_movem",
+              &Theme0::GameplayCore::UpdateRobotsMovement);
+
+        m.def("update_camera_zoom",
+              &Theme0::GameplayCore::UpdateCameraZoom);
 
         m.def("update_mouse_movem",
               &Theme0::GameplayCore::UpdateMouseMovement);

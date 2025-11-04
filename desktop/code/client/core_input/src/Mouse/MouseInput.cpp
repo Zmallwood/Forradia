@@ -36,4 +36,18 @@ namespace Forradia
 
         return result;
     }
+
+    void MouseInput::AddMouseWheelDelta(int delta)
+    {
+        m_mouseWheelDelta += delta;
+    }
+
+    int MouseInput::GetMouseWheelDeltaPickResult()
+    {
+        auto result{m_mouseWheelDelta};
+
+        m_mouseWheelDelta = 0;
+
+        return result;
+    }
 }

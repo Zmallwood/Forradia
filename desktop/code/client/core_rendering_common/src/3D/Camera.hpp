@@ -31,5 +31,10 @@ namespace Forradia
          * @return The target point as a Point3F.
          */
         Point3F GetLookAt() const;
+
+        void AddZoomAmountDelta(float zoomAmountDelta);
+
+      private:
+        float m_zoomAmount{6.0f};
     };
 }

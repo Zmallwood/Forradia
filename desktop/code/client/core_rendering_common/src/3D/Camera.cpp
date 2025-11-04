@@ -28,8 +28,8 @@ namespace Forradia
 
         auto point{GetLookAt()};
 
-        point.y -= 6.0f;
-        point.z += 6.0f;
+        point.y -= m_zoomAmount;
+        point.z += m_zoomAmount;
 
         return point;
     }
@@ -77,10 +77,10 @@ namespace Forradia
                               playerPos.y)
                 ->GetElevation()};
 
-        // Construct the resulting look-at point in world space. Again, the 
-        // coordinates are (currently, it would be preferred if it
-        // wasnt) flipped relative to render space (width - x,
-        // height - y).
+        // Construct the resulting look-at point in world
+        // space. Again, the coordinates are (currently, it
+        // would be preferred if it wasnt) flipped relative
+        // to render space (width - x, height - y).
 
         Point3F lookAt{
             (worldAreaSize.width - playerPos.x) *
@@ -92,5 +92,10 @@ namespace Forradia
             playerElev * elevHeight};
 
         return lookAt;
+    }
+
+    void Camera::AddZoomAmountDelta(float zoomAmountDelta)
+    {
+        m_zoomAmount += zoomAmountDelta;
     }
 }
