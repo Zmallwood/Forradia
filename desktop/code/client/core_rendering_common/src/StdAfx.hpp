@@ -6,6 +6,10 @@
 
 #pragma once
 
+// Std.
+
+#include <map>
+
 // External.
 
 #include <GL/glew.h>
@@ -15,3 +19,13 @@
 // Internal.
 
 #include "Aliases.hpp"
+
+#include "Singleton.hpp"
+
+#include "Geometry/Point.hpp"
+
+#include "Geometry/Point3F.hpp"
+
+#include "Geometry/Size.hpp"
+
+#include "Coloring/Color.hpp"

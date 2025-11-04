@@ -12,5 +12,10 @@ add_library(ForradiaCoreRenderingCommon ${CORE_RENDERING_BASE_SOURCES})
 target_include_directories(ForradiaCoreRenderingCommon PUBLIC
     "../core_rendering_common/src"
     "../common_lang/src"
+    "../common_general/src"
+    "../theme_0_world_struct/src"
+    "../theme_0_essentials/src"
+    "../theme_0_properties/src"
+    "../common_matter/src"
 )
 target_precompile_headers(ForradiaCoreRenderingCommon PUBLIC ./src/StdAfx.hpp)
