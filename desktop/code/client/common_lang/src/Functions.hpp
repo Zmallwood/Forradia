@@ -35,17 +35,6 @@ namespace Forradia
     }
 
     ///
-    /// Cast a value to double.
-    ///
-    /// @param value Value to cast.
-    /// @return Casted value.
-    ///
-    float CDouble(auto value)
-    {
-        return static_cast<double>(value);
-    }
-
-    ///
     /// Cast a value to Uint8.
     ///
     /// @param value Value to cast.
