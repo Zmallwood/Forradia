@@ -20,20 +20,28 @@ namespace Forradia
             this->Cleanup();
         }
 
-        void DrawImageByName(StringView imageName, float x,
+        void DrawImageByName(int uniqueRenderID,
+                             StringView imageName, float x,
                              float y, float width,
-                             float height);
+                             float height,
+                             bool useOperationsCache = true,
+                             bool updateExisting = false);
 
-        void
-        DrawImageByHash(int imageNameHash, float x, float y,
-                        float width, float height,
-                        bool useOperationsCache = true);
+        void DrawImageByHash(int uniqueRenderID,
+                             int imageNameHash, float x,
+                             float y, float width,
+                             float height,
+                             bool useOperationsCache = true,
+                             bool updateExisting = false);
 
         void DrawImageByTextureID(
-            GLuint textureID, float x, float y, float width,
-            float height, bool useOperationsCache = true);
+            int uniqueRenderID, GLuint textureID, float x,
+            float y, float width, float height,
+            bool useOperationsCache = true,
+            bool updateExisting = false);
 
-        void DrawImageAutoHeight(StringView imageName,
+        void DrawImageAutoHeight(int uniqueRenderID,
+                                 StringView imageName,
                                  float x, float y,
                                  float width);
 
@@ -52,14 +60,9 @@ namespace Forradia
         void ResetState() const;
 
         bool
-        DrawingOperationIsCached(float x, float y,
-                                 GLuint textureID) const;
+        DrawingOperationIsCached(int uniqueRenderID) const;
 
-        std::map<
-            float,
-            std::map<float,
-                     std::map<GLuint,
-                              Image2DRenderingOperation>>>
+        std::map<int, Image2DRenderingOperation>
             m_operationsCache;
     };
 }

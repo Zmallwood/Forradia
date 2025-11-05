@@ -14,11 +14,13 @@
 
 namespace Forradia
 {
-    void GUIWindow::GUIWindowTitleBar::Initialize()
+    void GUIWindow::GUIWindowTitleBar::Initialize(
+        StringView uniqueName)
     {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
         AddChildComponent(std::make_shared<GUIButton>(
+            uniqueName.data() + String("CloseButton"),
             parentWindowBounds.width -
                 ConvertWidthToHeight(
                     0.015f, _<SDLDevice>().GetWindow()),
@@ -57,13 +59,14 @@ namespace Forradia
 
         return boundsResult;
     }
-    void GUIWindow::Initialize(StringView windowTitle)
+    void GUIWindow::Initialize(StringView uniqueName,
+                               StringView windowTitle)
     {
         this->SetVisible(false);
 
         m_guiWindowTitleBar =
             std::make_shared<GUIWindowTitleBar>(
-                *this, windowTitle);
+                uniqueName, *this, windowTitle);
 
         this->AddChildComponent(m_guiWindowTitleBar);
     }

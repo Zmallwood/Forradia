@@ -15,7 +15,8 @@ namespace Forradia
         auto bounds{this->GetBounds()};
 
         _<Image2DRenderer>().DrawImageByName(
-            m_backgroundImage, bounds.x, bounds.y,
-            bounds.width, bounds.height);
+            k_renderIDBackground, m_backgroundImage,
+            bounds.x, bounds.y, bounds.width,
+            bounds.height);
     }
 }

@@ -18,6 +18,20 @@
 
 namespace Forradia::Theme0
 {
+    void GUIInventoryWindow::Initialize()
+    {
+        for (auto i = 0; i < k_maxNumSlots; i++)
+        {
+            m_renderIDsSlotsBackground[i] =
+                Hash("GUIInventoryWindowSlotBackground" +
+                     std::to_string(i));
+
+            m_renderIDsSlotsObject[i] =
+                Hash("GUIInventoryWindowSlotobject" +
+                     std::to_string(i));
+        }
+    }
+
     void GUIInventoryWindow::RenderDerived() const
     {
         GUIWindow::RenderDerived();
@@ -56,20 +70,58 @@ namespace Forradia::Theme0
         {
             for (auto x = 0; x < numColumns; x++)
             {
+                auto index{x + y * numColumns};
+
+                int renderIDBackground{0};
+
+                if (m_renderIDsSlotsBackground.contains(
+                        index))
+                {
+                    renderIDBackground =
+                        m_renderIDsSlotsBackground.at(
+                            index);
+                }
+                else
+                {
+                    PrintLine(
+                        "GUIInventoryWindow: Render ID not "
+                        "found for index: " +
+                        std::to_string(index));
+
+                    return;
+                }
+
                 _<Image2DRenderer>().DrawImageByName(
-                    k_slotImageName,
+                    renderIDBackground, k_slotImageName,
                     xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY),
                     slotWidth, slotHeight);
-
-                auto index{x + y * numColumns};
 
                 auto inventoryObject{
                     objectsInventory.GetObject(index)};
 
                 if (inventoryObject)
                 {
+                    int renderIDObject{0};
+
+                    if (m_renderIDsSlotsObject.contains(
+                            index))
+                    {
+                        renderIDObject =
+                            m_renderIDsSlotsObject.at(
+                                index);
+                    }
+                    else
+                    {
+                        PrintLine("GUIInventoryWindow: "
+                                  "Render ID not "
+                                  "found for index: " +
+                                  std::to_string(index));
+                        return;
+                    }
+
                     _<Image2DRenderer>().DrawImageByHash(
+                        renderIDObject,
                         inventoryObject->GetType(),
                         xStart + x * (slotWidth + marginX),
                         yStart + y * (slotHeight + marginY),

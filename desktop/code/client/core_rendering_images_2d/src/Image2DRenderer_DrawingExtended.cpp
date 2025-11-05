@@ -13,27 +13,31 @@
 namespace Forradia
 {
     void Image2DRenderer::DrawImageByName(
-        StringView imageName, float x, float y, float width,
-        float height)
+        int uniqueRenderID, StringView imageName, float x,
+        float y, float width, float height,
+        bool useOperationsCache, bool updateExisting)
     {
-        this->DrawImageByHash(Hash(imageName), x, y, width,
-                              height);
+        this->DrawImageByHash(
+            uniqueRenderID, Hash(imageName), x, y, width,
+            height, useOperationsCache, updateExisting);
     }
 
     void Image2DRenderer::DrawImageByHash(
-        int imageNameHash, float x, float y, float width,
-        float height, bool useOperationsCache)
+        int uniqueRenderID, int imageNameHash, float x,
+        float y, float width, float height,
+        bool useOperationsCache, bool updateExisting)
     {
         auto textureID{
             _<TextureBank>().GetTexture(imageNameHash)};
 
-        this->DrawImageByTextureID(textureID, x, y, width,
-                                   height,
-                                   useOperationsCache);
+        this->DrawImageByTextureID(
+            uniqueRenderID, textureID, x, y, width, height,
+            useOperationsCache, updateExisting);
     }
 
     void Image2DRenderer::DrawImageAutoHeight(
-        StringView imageName, float x, float y, float width)
+        int uniqueRenderID, StringView imageName, float x,
+        float y, float width)
     {
         auto hash{Forradia::Hash(imageName)};
 
@@ -56,6 +60,7 @@ namespace Forradia
         auto height{width / imageAspectRatio *
                     canvasAspectRatio};
 
-        this->DrawImageByHash(hash, x, y, width, height);
+        this->DrawImageByHash(uniqueRenderID, hash, x, y,
+                              width, height);
     }
 }

@@ -13,8 +13,9 @@
 namespace Forradia
 {
     void Image2DRenderer::DrawImageByTextureID(
-        GLuint textureID, float x, float y, float width,
-        float height, bool useOperationsCache)
+        int uniqueRenderID, GLuint textureID, float x,
+        float y, float width, float height,
+        bool useOperationsCache, bool updateExisting)
     {
         // Setup state.
 
@@ -31,15 +32,33 @@ namespace Forradia
 
         auto needFillBuffers{false};
 
+        auto canvasSize{
+            GetCanvasSize(_<SDLDevice>().GetWindow())};
+
+        // Convert the coordinates to pixel coordinates.
+
+        auto xPx{CInt(x * canvasSize.width)};
+        auto yPx{CInt(y * canvasSize.height)};
+        auto widthPx{CInt(width * canvasSize.width)};
+        auto heightPx{CInt(height * canvasSize.height)};
+
+        // If the operation is cached, use the cached
+        // operation.
+
         // TODO: Implement LRU eviction of operations
         // memory, which is used when the operations cache
         // reaches a certain limit.
 
         if (useOperationsCache &&
-            this->DrawingOperationIsCached(x, y, textureID))
+            this->DrawingOperationIsCached(uniqueRenderID))
         {
+            // Get the cached operation.
+
             auto &entry =
-                m_operationsCache.at(x).at(y).at(textureID);
+                m_operationsCache.at(uniqueRenderID);
+
+            // Set the vertex array object, index buffer
+            // object and vertex buffer object.
 
             vao = entry.vao;
 
@@ -47,29 +66,14 @@ namespace Forradia
 
             vbo = entry.vbo;
 
+            // Bind the vertex array object, index buffer
+            // object and vertex buffer object.
+
             glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-            // TODO: Consider using epsilon-based comparions
-            // for float values below.
-
-            if (x != entry.x || y != entry.y ||
-                width != entry.width ||
-                height != entry.height)
-            {
-                needFillBuffers = true;
-
-                entry.x = x;
-
-                entry.y = y;
-
-                entry.width = width;
-
-                entry.height = height;
-            }
         }
         else
         {
@@ -93,15 +97,7 @@ namespace Forradia
 
             entry.vbo = vbo;
 
-            entry.x = x;
-
-            entry.y = y;
-
-            entry.width = width;
-
-            entry.height = height;
-
-            m_operationsCache[x][y][textureID] = entry;
+            m_operationsCache[uniqueRenderID] = entry;
 
             needFillBuffers = true;
         }
@@ -110,7 +106,7 @@ namespace Forradia
 
         const auto k_indicesCount{4};
 
-        if (needFillBuffers)
+        if (needFillBuffers || updateExisting)
         {
             float vertices[] = {
                 x,         y,          0.0f, 1.0f,

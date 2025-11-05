@@ -14,7 +14,7 @@ namespace Forradia
     {
       public:
         GUIChatBox()
-            : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f,
+            : GUIPanel("ChatBox", 0.0f, 0.8f, 0.4f, 0.2f,
                        k_defaultBackgroundImageDerived)
         {
         }
@@ -42,6 +42,12 @@ namespace Forradia
         inline static const float k_separatorHeight{0.003f};
 
         inline static const float k_margin{0.008f};
+
+        const int k_renderIDSeparator{
+            Hash("RenderIDSeparator")};
+
+        const int k_renderIDInputCursor{
+            Hash("RenderIDInputCursor")};
 
         Vector<String> m_lines;
 

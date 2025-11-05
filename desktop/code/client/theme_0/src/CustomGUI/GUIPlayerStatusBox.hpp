@@ -14,7 +14,8 @@ namespace Forradia::Theme0
     {
       public:
         GUIPlayerStatusBox()
-            : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+            : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f,
+                       0.2f, 0.14f)
         {
         }
 

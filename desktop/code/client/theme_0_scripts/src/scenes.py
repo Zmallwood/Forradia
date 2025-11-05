@@ -36,6 +36,7 @@ from embedded import (
     get_tl_hovering,
     get_world_view,
     get_img_2d_rend,
+    get_hash
 )
 
 
@@ -65,9 +66,9 @@ class IntroScene(IScene):
                 get_scene_mngr().go_to_scene("main_menu_scene")
 
         def render_derived():
-            get_img_2d_rend().draw_img("DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
+            get_img_2d_rend().draw_img(get_hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
 
-            get_img_2d_rend().draw_img_auto_h("ForradiaLogo", 0.25, 0.2, 0.5)
+            get_img_2d_rend().draw_img_auto_h(get_hash("IntroSceneLogo"), "ForradiaLogo", 0.25, 0.2, 0.5)
 
         self.set_init_derived(init_derived)
         self.set_on_enter_derived(on_enter_derived)
@@ -80,11 +81,12 @@ class MainMenuScene(IScene):
         IScene.__init__(self)
 
         def init_derived():
-            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.2)
+            pnl = make_shared_gui_panel("MainMenuScenePanel", 0.4, 0.32, 0.2, 0.2)
 
             self.gui().add_child_comp(pnl)
 
             btn_play = make_shared_gui_button(
+                "MainMenuSceneButtonPlay",
                 0.45,
                 0.36,
                 0.1,
@@ -96,6 +98,7 @@ class MainMenuScene(IScene):
             self.gui().add_child_comp(btn_play)
 
             btn_quit = make_shared_gui_button(
+                "MainMenuSceneButtonQuit",
                 0.45, 0.44, 0.1, 0.04, "Quit", lambda: get_engine().stop()
             )
 
@@ -104,9 +107,9 @@ class MainMenuScene(IScene):
             self.gui().add_child_comp(get_gui_chat_box_ptr())
 
         def render_derived():
-            get_img_2d_rend().draw_img("DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
+            get_img_2d_rend().draw_img(get_hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
 
-            get_img_2d_rend().draw_img_auto_h("ForradiaLogo", 0.35, 0.1, 0.3)
+            get_img_2d_rend().draw_img_auto_h(get_hash("MainMenuSceneLogo"), "ForradiaLogo", 0.35, 0.1, 0.3)
 
         self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
@@ -117,11 +120,12 @@ class PlayScene(IScene):
         IScene.__init__(self)
 
         def init_derived():
-            pnl = make_shared_gui_panel(0.4, 0.32, 0.2, 0.32)
+            pnl = make_shared_gui_panel("PlayScenePanel", 0.4, 0.32, 0.2, 0.32)
 
             self.gui().add_child_comp(pnl)
 
             btn_new_game = make_shared_gui_button(
+                "PlaySceneButtonNewGame",
                 0.45,
                 0.36,
                 0.1,
@@ -133,12 +137,14 @@ class PlayScene(IScene):
             self.gui().add_child_comp(btn_new_game)
 
             btn_load_game = make_shared_gui_button(
+                "PlaySceneButtonLoadGame",
                 0.45, 0.44, 0.1, 0.04, "Load game", lambda: ...
             )
 
             self.gui().add_child_comp(btn_load_game)
 
             btn_quit = make_shared_gui_button(
+                "PlaySceneButtonBack",
                 0.45,
                 0.56,
                 0.1,
@@ -152,9 +158,9 @@ class PlayScene(IScene):
             self.gui().add_child_comp(get_gui_chat_box_ptr())
 
         def render_derived():
-            get_img_2d_rend().draw_img("DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
+            get_img_2d_rend().draw_img(get_hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0, 0.0, 1.0, 1.0)
 
-            get_img_2d_rend().draw_img_auto_h("ForradiaLogo", 0.35, 0.1, 0.3)
+            get_img_2d_rend().draw_img_auto_h(get_hash("PlaySceneLogo"), "ForradiaLogo", 0.35, 0.1, 0.3)
 
         self.set_init_derived(init_derived)
         self.set_render_derived(render_derived)
@@ -186,6 +192,7 @@ class MainScene(IScene):
             self.gui().add_child_comp(get_gui_chat_box_ptr())
 
             btn_gui_player_body_win = make_shared_gui_button(
+                "MainSceneButtonPlayerBodyWin",
                 0.78,
                 0.9,
                 0.05,
@@ -199,6 +206,7 @@ class MainScene(IScene):
             self.gui().add_child_comp(btn_gui_player_body_win)
 
             btn_gui_inventory_win = make_shared_gui_button(
+                "MainSceneButtonInventoryWin",
                 0.85,
                 0.9,
                 0.05,
@@ -212,6 +220,7 @@ class MainScene(IScene):
             self.gui().add_child_comp(btn_gui_inventory_win)
 
             btn_gui_sys_menu = make_shared_gui_button(
+                "MainSceneButtonSystemMenu",
                 0.92,
                 0.9,
                 0.05,

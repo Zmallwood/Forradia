@@ -14,11 +14,15 @@ namespace Forradia::Theme0
     {
       public:
         GUIInventoryWindow()
-            : GUIWindow(0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
+            : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f,
+                        0.2f, 0.5f, "Inventory")
         {
+            this->Initialize();
         }
 
       protected:
+        void Initialize();
+
         void RenderDerived() const override;
 
       private:
@@ -28,5 +32,10 @@ namespace Forradia::Theme0
 
         inline static const String k_slotImageName{
             "GUIInventoryWindowSlotBackground"};
+
+        const int k_maxNumSlots{60};
+
+        std::map<int, int> m_renderIDsSlotsBackground;
+        std::map<int, int> m_renderIDsSlotsObject;
     };
 }

@@ -58,6 +58,8 @@ namespace Forradia
         constexpr static float k_cursorSize{
             0.05f}; ///< The size of the cursor.
 
+        const int k_renderID{Hash("RenderIDCursor")};
+
         CursorStyles m_cursorStyle{
             CursorStyles::Normal}; ///< The cursor style
     };

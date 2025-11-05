@@ -14,22 +14,14 @@ namespace Forradia
 {
     void Image2DRenderer::Cleanup()
     {
-        for (auto &entryLevel1 : m_operationsCache)
+        for (auto &entryLevel : m_operationsCache)
         {
-            for (auto &entryLevel2 : entryLevel1.second)
-            {
-                for (auto &entryLevel3 : entryLevel2.second)
-                {
-                    glDeleteVertexArrays(
-                        1, &entryLevel3.second.vao);
+            glDeleteVertexArrays(1,
+                                 &entryLevel.second.vao);
 
-                    glDeleteBuffers(
-                        1, &entryLevel3.second.ibo);
+            glDeleteBuffers(1, &entryLevel.second.ibo);
 
-                    glDeleteBuffers(
-                        1, &entryLevel3.second.vbo);
-                }
-            }
+            glDeleteBuffers(1, &entryLevel.second.vbo);
         }
 
         glUseProgram(0);
@@ -81,11 +73,8 @@ namespace Forradia
     }
 
     bool Image2DRenderer::DrawingOperationIsCached(
-        float x, float y, GLuint textureID) const
+        int uniqueRenderID) const
     {
-        return m_operationsCache.contains(x) &&
-               m_operationsCache.at(x).contains(y) &&
-               m_operationsCache.at(x).at(y).contains(
-                   textureID);
+        return m_operationsCache.contains(uniqueRenderID);
     }
 }

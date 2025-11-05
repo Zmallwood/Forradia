@@ -46,8 +46,9 @@ namespace Forradia
                   bounds.width, k_separatorHeight}};
 
         _<Image2DRenderer>().DrawImageByName(
-            "Black", separatorRect.x, separatorRect.y,
-            separatorRect.width, separatorRect.height);
+            k_renderIDSeparator, "Black", separatorRect.x,
+            separatorRect.y, separatorRect.width,
+            separatorRect.height);
 
         if (m_inputActive)
         {
@@ -57,9 +58,9 @@ namespace Forradia
                 0.01f, k_lineHeight}};
 
             _<Image2DRenderer>().DrawImageByName(
-                "GUIInputCursor", cursorBounds.x,
-                cursorBounds.y, cursorBounds.width,
-                cursorBounds.height);
+                k_renderIDInputCursor, "GUIInputCursor",
+                cursorBounds.x, cursorBounds.y,
+                cursorBounds.width, cursorBounds.height);
         }
     }
 

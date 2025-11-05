@@ -99,7 +99,7 @@ namespace Forradia
             _<TextureBank>().TextTextureExists(xx, yy,
                                                textHash)};
 
-        auto texture{_<TextureBank>().ObtainTextTexture(
+        auto textureID{_<TextureBank>().ObtainTextTexture(
             xx, yy, textHash)};
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -110,7 +110,7 @@ namespace Forradia
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, textureID);
 
         if (!textureAlreadyExists)
         {
@@ -156,8 +156,13 @@ namespace Forradia
         auto heightF{CFloat(destination.h) /
                      canvasSize.height};
 
+        auto uniqueRenderID{Hash(text.data() +
+                                 std::to_string(x) +
+                                 std::to_string(y))};
+
         _<Image2DRenderer>().DrawImageByTextureID(
-            texture, xF, yF, widthF, heightF, false);
+            uniqueRenderID, textureID, xF, yF, widthF,
+            heightF, true);
 
         glDisable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);

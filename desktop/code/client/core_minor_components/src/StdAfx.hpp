@@ -33,3 +33,5 @@
 #include "TimeUtilities.hpp"
 
 #include "Constants.hpp"
+
+#include "Hash.hpp"

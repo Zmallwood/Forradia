@@ -11,14 +11,6 @@ namespace Forradia
     class Image2DRenderingOperation
     {
       public:
-        float x;
-
-        float y;
-
-        float width;
-
-        float height;
-
         GLuint vao;
 
         GLuint ibo;

@@ -35,3 +35,5 @@
 #include "MessageUtilities.hpp"
 
 #include "Singleton.hpp"
+
+#include "Hash.hpp"

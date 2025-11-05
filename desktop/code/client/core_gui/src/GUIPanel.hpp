@@ -13,11 +13,12 @@ namespace Forradia
     class GUIPanel : public GUIComponent
     {
       public:
-        GUIPanel(float x, float y, float width,
-                 float height,
+        GUIPanel(StringView uniqueName, float x, float y,
+                 float width, float height,
                  StringView backgroundImage =
                      k_defaultBackgroundImage)
             : GUIComponent(x, y, width, height),
+              k_renderIDBackground(Hash(uniqueName)),
               m_backgroundImage(backgroundImage)
         {
         }
@@ -33,6 +34,8 @@ namespace Forradia
       private:
         inline static const String k_defaultBackgroundImage{
             "GUIPanelBackground"};
+
+        const int k_renderIDBackground;
 
         String m_backgroundImage;
     };

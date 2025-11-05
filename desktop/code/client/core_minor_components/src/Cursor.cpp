@@ -71,7 +71,9 @@ namespace Forradia
         // Draw the cursor image.
 
         _<Image2DRenderer>().DrawImageByName(
-            cursorImage, mousePosition.x - width / 2,
-            mousePosition.y - height / 2, width, height);
+            k_renderID, cursorImage,
+            mousePosition.x - width / 2,
+            mousePosition.y - height / 2, width, height,
+            false, true);
     }
 }

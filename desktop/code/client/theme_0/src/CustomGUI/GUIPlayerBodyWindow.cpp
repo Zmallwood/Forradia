@@ -25,6 +25,7 @@ namespace Forradia::Theme0
 
         auto overallBodyImageButton{
             std::make_shared<GUIButton>(
+                "GUIButtonOverallBody",
                 0.1f - imageWidth / 2, 0.04f, imageWidth,
                 imageHeight, "",
                 [this]
@@ -41,6 +42,7 @@ namespace Forradia::Theme0
 
         auto rightArmBodyImageButton{
             std::make_shared<GUIButton>(
+                "GUIButtonRightArm",
                 0.1f - imageWidth / 2 - imageWidth, 0.04f,
                 imageWidth, imageHeight, "",
                 [this]
@@ -57,6 +59,7 @@ namespace Forradia::Theme0
 
         auto leftArmBodyImageButton{
             std::make_shared<GUIButton>(
+                "GUIButtonLeftArm",
                 0.1f - imageWidth / 2 + imageWidth, 0.04f,
                 imageWidth, imageHeight, "",
                 [this]
@@ -72,8 +75,9 @@ namespace Forradia::Theme0
         this->AddChildComponent(leftArmBodyImageButton);
 
         auto legsImageButton{std::make_shared<GUIButton>(
-            0.1f - imageWidth / 2, 0.04f + imageHeight,
-            imageWidth, imageHeight, "",
+            "GUIButtonLegs", 0.1f - imageWidth / 2,
+            0.04f + imageHeight, imageWidth, imageHeight,
+            "",
             [this]
             {
                 this->SelectBodyPart(

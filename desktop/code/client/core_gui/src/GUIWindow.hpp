@@ -13,11 +13,15 @@ namespace Forradia
     class GUIWindow : public GUIMovablePanel
     {
       public:
-        GUIWindow(float x, float y, float width,
-                  float height, StringView windowTitle)
-            : GUIMovablePanel(x, y, width, height)
+        GUIWindow(StringView uniqueName, float x, float y,
+                  float width, float height,
+                  StringView windowTitle)
+            : GUIMovablePanel(uniqueName, x, y, width,
+                              height)
         {
-            Initialize(windowTitle);
+            Initialize(uniqueName.data() +
+                           String("WindowTitleBar"),
+                       windowTitle);
         }
 
       protected:
@@ -31,19 +35,22 @@ namespace Forradia
         }
 
       private:
-        void Initialize(StringView windowTitle);
+        void Initialize(StringView uniqueName,
+                        StringView windowTitle);
 
         class GUIWindowTitleBar : public GUIPanel
         {
           public:
-            GUIWindowTitleBar(GUIWindow &parentWindow,
+            GUIWindowTitleBar(StringView uniqueName,
+                              GUIWindow &parentWindow,
                               StringView windowTitle)
                 : m_parentWindow(parentWindow),
                   k_windowTitle(windowTitle),
-                  GUIPanel(0.0f, 0.0f, 0.0f, 0.0f,
+                  GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f,
+                           0.0f,
                            "GUIWindowTitleBarBackground")
             {
-                Initialize();
+                Initialize(uniqueName);
             }
 
             void RenderDerived() const override;
@@ -51,7 +58,7 @@ namespace Forradia
             RectF GetBounds() const override;
 
           private:
-            void Initialize();
+            void Initialize(StringView uniqueName);
 
             inline static const float k_h{0.04f};
 

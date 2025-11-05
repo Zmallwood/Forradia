@@ -16,7 +16,8 @@ namespace Forradia::Theme0
     {
       public:
         GUIInteractionMenu()
-            : GUIPanel(0.0f, 0.0f, 0.2f, 0.14f)
+            : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f,
+                       0.2f, 0.14f)
         {
             Initialize();
         }

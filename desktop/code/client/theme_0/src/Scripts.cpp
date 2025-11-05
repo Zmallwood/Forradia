@@ -62,6 +62,8 @@
 
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
+#include "Hash.hpp"
+
 namespace Forradia::Theme0
 {
     class IScenePublic : public IScene
@@ -174,27 +176,30 @@ namespace Forradia::Theme0
         py::class_<Image2DRenderer>(m, "Image2DRenderer")
             .def("draw_img",
                  [](Image2DRenderer &self,
+                    int uniqueRenderID,
                     StringView image_name, float x, float y,
                     float w, float h)
                  {
-                     self.DrawImageByName(image_name, x, y,
+                     self.DrawImageByName(uniqueRenderID,
+                                          image_name, x, y,
                                           w, h);
                  })
             .def("draw_img",
                  [](Image2DRenderer &self,
-                    int image_name_hash, float x, float y,
-                    float w, float h)
+                    int uniqueRenderID, int image_name_hash,
+                    float x, float y, float w, float h)
                  {
-                     self.DrawImageByHash(image_name_hash,
+                     self.DrawImageByHash(uniqueRenderID,
+                                          image_name_hash,
                                           x, y, w, h);
                  })
             .def("draw_img_auto_h",
                  [](Image2DRenderer &self,
-                    StringView img_name, float x, float y,
-                    float w)
+                    int uniqueRenderID, StringView img_name,
+                    float x, float y, float w)
                  {
-                     self.DrawImageAutoHeight(img_name, x,
-                                              y, w);
+                     self.DrawImageAutoHeight(
+                         uniqueRenderID, img_name, x, y, w);
                  });
 
         py::class_<Theme0::GUIPlayerStatusBox,
@@ -233,6 +238,9 @@ namespace Forradia::Theme0
             .def("render",
                  &Theme0::GameplayCore::WorldView::Render);
 
+        m.def("get_hash",
+              [](StringView str) { return Hash(str); });
+
         m.def("ticks", [] { return GetTicks(); });
 
         m.def("conv_w_to_h",
@@ -261,31 +269,33 @@ namespace Forradia::Theme0
               });
 
         m.def("make_shared_gui_panel",
-              [](float x, float y, float w, float h)
+              [](StringView uniqueName, float x, float y,
+                 float w, float h)
               {
-                  return std::make_shared<GUIPanel>(x, y, w,
-                                                    h);
+                  return std::make_shared<GUIPanel>(
+                      uniqueName, x, y, w, h);
               });
 
         m.def("make_shared_gui_button",
-              [](float x, float y, float w, float h,
-                 StringView text, py::function action)
+              [](StringView uniqueName, float x, float y,
+                 float w, float h, StringView text,
+                 py::function action)
               {
                   return std::make_shared<
 
-                      GUIButton>(x, y, w, h, text, action);
+                      GUIButton>(uniqueName, x, y, w, h,
+                                 text, action);
               });
 
         m.def("make_shared_gui_button",
-              [](float x, float y, float w, float h,
-                 StringView text, py::function action,
-                 StringView bg_img,
+              [](StringView uniqueName, float x, float y,
+                 float w, float h, StringView text,
+                 py::function action, StringView bg_img,
                  StringView hovered_bg_img)
               {
-                  return std::make_shared<
-
-                      GUIButton>(x, y, w, h, text, action,
-                                 bg_img, hovered_bg_img);
+                  return std::make_shared<GUIButton>(
+                      uniqueName, x, y, w, h, text, action,
+                      bg_img, hovered_bg_img);
               });
 
         m.def("get_gui_interact_menu_ptr",
