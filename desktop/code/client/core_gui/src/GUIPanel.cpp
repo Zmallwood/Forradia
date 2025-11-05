@@ -16,7 +16,7 @@ namespace Forradia
 
         _<Image2DRenderer>().DrawImageByName(
             k_renderIDBackground, m_backgroundImage,
-            bounds.x, bounds.y, bounds.width,
-            bounds.height);
+            bounds.x, bounds.y, bounds.width, bounds.height,
+            true);
     }
 }

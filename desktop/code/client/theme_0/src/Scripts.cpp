@@ -60,6 +60,8 @@
 
 #include "Update/UpdateCameraZoom.hpp"
 
+#include "Update/UpdateCameraRotation.hpp"
+
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
 #include "Hash.hpp"
@@ -399,6 +401,9 @@ namespace Forradia::Theme0
 
         m.def("update_camera_zoom",
               &Theme0::GameplayCore::UpdateCameraZoom);
+
+        m.def("update_camera_rotation",
+              &Theme0::GameplayCore::UpdateCameraRotation);
 
         m.def("update_mouse_movem",
               &Theme0::GameplayCore::UpdateMouseMovement);
