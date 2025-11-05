@@ -12,8 +12,6 @@
 
 namespace Forradia
 {
-    // TODO: Remove the useOperationsCache parameter from
-    // all methods. Probably not needed anymore.
     class Image2DRenderer : public RendererBase
     {
       public:

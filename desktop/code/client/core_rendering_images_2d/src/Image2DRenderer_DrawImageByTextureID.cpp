@@ -76,17 +76,27 @@ namespace Forradia
         }
         else
         {
+
+            // Generate the vertex array object, index
+            // buffer object and vertex buffer object.
+
             glGenVertexArrays(1, &vao);
 
             glGenBuffers(1, &vbo);
 
             glGenBuffers(1, &ibo);
 
+            // Bind the vertex array object, index buffer
+            // object and vertex buffer object.
+
             glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+            // Create a new rendering operation and cache
+            // it.
 
             Image2DRenderingOperation entry;
 
@@ -98,15 +108,24 @@ namespace Forradia
 
             m_operationsCache[uniqueRenderID] = entry;
 
+            // Set the need to fill the buffers to true.
+
             needFillBuffers = true;
         }
+
+        // To store the number of vertices and indices.
 
         const auto k_verticesCount{4};
 
         const auto k_indicesCount{4};
 
+        // If the buffers need to be filled or the
+        // operation is being updated, fill the buffers.
+
         if (needFillBuffers || updateExisting)
         {
+            // Define the vertices and indices.
+
             float vertices[] = {
                 x,         y,          0.0f, 1.0f,
                 1.0f,      1.0f,       0.0,  0.0,
@@ -119,18 +138,27 @@ namespace Forradia
 
             unsigned short indices[]{0, 1, 2, 3};
 
+            // Fill the index buffer.
+
             glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                          sizeof(indices[0]) *
                              k_indicesCount,
                          indices, GL_DYNAMIC_DRAW);
+
+            // Fill the vertex buffer.
 
             glBufferData(GL_ARRAY_BUFFER,
                          sizeof(vertices[0]) * 8 *
                              k_verticesCount,
                          vertices, GL_DYNAMIC_DRAW);
 
+            // Setup the attribute layout.
+
             this->SetupAttributeLayout();
         }
+
+        // Bind the vertex array object, index buffer
+        // object and vertex buffer object.
 
         glBindVertexArray(vao);
 
@@ -138,10 +166,16 @@ namespace Forradia
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
+        // Bind the texture.
+
         glBindTexture(GL_TEXTURE_2D, textureID);
+
+        // Draw the image.
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount,
                        GL_UNSIGNED_SHORT, nullptr);
+
+        // Reset the state.
 
         this->ResetState();
     }
