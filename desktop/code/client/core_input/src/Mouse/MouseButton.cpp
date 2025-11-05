@@ -26,6 +26,8 @@ namespace Forradia
         m_pressed = true;
 
         m_hasBeenFired = true;
+
+        m_ticksFired = GetTicks();
     }
 
     void MouseButton::RegisterRelease()
@@ -35,6 +37,8 @@ namespace Forradia
         m_pressed = false;
 
         m_hasBeenReleased = true;
+
+        m_ticksClickSpeed = GetTicks() - m_ticksFired;
     }
 
     bool MouseButton::IsPressedPickResult()

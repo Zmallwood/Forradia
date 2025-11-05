@@ -79,6 +79,16 @@ namespace Forradia
         ///
         bool HasBeenReleased();
 
+        ///
+        /// Returns the speed of the most recent click.
+        ///
+        /// @return The speed of the most recent click.
+        ///
+        auto GetTicksClickSpeed() const
+        {
+            return m_ticksClickSpeed;
+        }
+
       private:
         bool m_pressed{false}; ///< True if the button is
                                ///< currently pressed.
@@ -87,7 +97,14 @@ namespace Forradia
                                     ///< has been fired.
 
         bool m_hasBeenReleased{false}; ///< True if the
-                                       ///< button has been
-                                       ///< released.
+        ///< button has been
+        ///< released.
+
+        int m_ticksFired{
+            0}; ///< The point in time, as ticks, when the
+        ///< button was last fired.
+
+        int m_ticksClickSpeed{
+            0}; ///< The speed of the most recent click.
     };
 }
