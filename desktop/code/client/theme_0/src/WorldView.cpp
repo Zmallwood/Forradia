@@ -409,6 +409,17 @@ namespace Forradia::Theme0::GameplayCore
                     ground, xCoordinate, yCoordinate,
                     rendTileSize, elevations, elevHeight);
 
+                auto waterDepth{tile->GetWaterDepth()};
+
+                for (auto i = 0; i < waterDepth; i++)
+                {
+                    _<GroundRenderer>().DrawTile(
+                        Hash("GroundWaterDepth"),
+                        xCoordinate, yCoordinate,
+                        rendTileSize, elevations,
+                        elevHeight);
+                }
+
                 if (xCoordinate ==
                         worldAreaSize.width -
                             hoveredCoordinate.x &&

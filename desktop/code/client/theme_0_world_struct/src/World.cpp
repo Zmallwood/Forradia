@@ -10,10 +10,12 @@
 
 namespace Forradia::Theme0
 {
-    void World::Initialize(Size w_area_sz,
-                           float world_scaling)
+    void World::Initialize(Size worldAreaSize,
+                           float worldScaling)
     {
+        // Create a new world area.
+
         m_currentWorldArea = std::make_shared<WorldArea>(
-            w_area_sz, world_scaling);
+            worldAreaSize, worldScaling);
     }
 }
