@@ -28,7 +28,14 @@ namespace Forradia
 
         auto point{GetLookAt()};
 
-        point.y -= m_zoomAmount;
+        auto cosRotation{
+            std::cos(m_rotationAngle - M_PI / 2)};
+        auto sinRotation{
+            std::sin(m_rotationAngle - M_PI / 2)};
+
+        point.x += cosRotation * m_zoomAmount;
+        point.y += sinRotation * m_zoomAmount;
+
         point.z += m_zoomAmount;
 
         return point;
@@ -105,5 +112,12 @@ namespace Forradia
         m_zoomAmount = std::max(
             std::min(m_zoomAmount, k_maxZoomAmount),
             k_minZoomAmount);
+    }
+
+    void Camera::AddRotationDelta(float rotationDelta)
+    {
+        // Add the delta to the current rotation amount.
+
+        m_rotationAngle += rotationDelta;
     }
 }

@@ -39,6 +39,13 @@ namespace Forradia
         ///
         void AddZoomAmountDelta(float zoomAmountDelta);
 
+        ///
+        /// Add a delta to the current rotation amount.
+        ///
+        /// @param rotationDelta The delta to add.
+        ///
+        void AddRotationDelta(float rotationDelta);
+
       private:
         const float k_minZoomAmount{
             2.0f}; ///< Minimum zoom amount.
@@ -47,5 +54,8 @@ namespace Forradia
             15.0f}; ///< Maximum zoom amount.
 
         float m_zoomAmount{6.0f}; ///< Current zoom amount.
+
+        float m_rotationAngle{
+            0.0f}; ///< Current rotation amount.
     };
 }

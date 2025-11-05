@@ -18,7 +18,7 @@ namespace Forradia::Theme0::GameplayCore
     {
         if (_<MouseInput>()
                 .GetRightMouseButtonRef()
-                .HasBeenFiredPickResult())
+                .HasBeenReleased())
         {
             _<GUIInteractionMenu>().BuildMenu();
 

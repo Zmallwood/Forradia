@@ -12,5 +12,10 @@ namespace Forradia::Theme0::GameplayCore
     {
       public:
         void Update();
+
+      private:
+        bool m_isRotating{false};
+
+        PointF m_mousePositionLastUpdate{-1.0f, -1.0f};
     };
 }

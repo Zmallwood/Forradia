@@ -10,6 +10,8 @@
 
 #include <map>
 
+#include <cmath>
+
 // External.
 
 #include <GL/glew.h>
