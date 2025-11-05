@@ -74,6 +74,6 @@ namespace Forradia
             k_renderID, cursorImage,
             mousePosition.x - width / 2,
             mousePosition.y - height / 2, width, height,
-            false, true);
+            true);
     }
 }

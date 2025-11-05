@@ -15,24 +15,24 @@ namespace Forradia
     void Image2DRenderer::DrawImageByName(
         int uniqueRenderID, StringView imageName, float x,
         float y, float width, float height,
-        bool useOperationsCache, bool updateExisting)
+        bool updateExisting)
     {
-        this->DrawImageByHash(
-            uniqueRenderID, Hash(imageName), x, y, width,
-            height, useOperationsCache, updateExisting);
+        this->DrawImageByHash(uniqueRenderID,
+                              Hash(imageName), x, y, width,
+                              height, updateExisting);
     }
 
     void Image2DRenderer::DrawImageByHash(
         int uniqueRenderID, int imageNameHash, float x,
         float y, float width, float height,
-        bool useOperationsCache, bool updateExisting)
+        bool updateExisting)
     {
         auto textureID{
             _<TextureBank>().GetTexture(imageNameHash)};
 
-        this->DrawImageByTextureID(
-            uniqueRenderID, textureID, x, y, width, height,
-            useOperationsCache, updateExisting);
+        this->DrawImageByTextureID(uniqueRenderID,
+                                   textureID, x, y, width,
+                                   height, updateExisting);
     }
 
     void Image2DRenderer::DrawImageAutoHeight(

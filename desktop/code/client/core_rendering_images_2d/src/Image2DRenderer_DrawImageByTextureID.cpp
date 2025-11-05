@@ -15,7 +15,7 @@ namespace Forradia
     void Image2DRenderer::DrawImageByTextureID(
         int uniqueRenderID, GLuint textureID, float x,
         float y, float width, float height,
-        bool useOperationsCache, bool updateExisting)
+        bool updateExisting)
     {
         // Setup state.
 
@@ -49,8 +49,7 @@ namespace Forradia
         // memory, which is used when the operations cache
         // reaches a certain limit.
 
-        if (useOperationsCache &&
-            this->DrawingOperationIsCached(uniqueRenderID))
+        if (this->DrawingOperationIsCached(uniqueRenderID))
         {
             // Get the cached operation.
 

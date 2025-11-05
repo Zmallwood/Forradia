@@ -12,6 +12,8 @@
 
 namespace Forradia
 {
+    // TODO: Remove the useOperationsCache parameter from
+    // all methods. Probably not needed anymore.
     class Image2DRenderer : public RendererBase
     {
       public:
@@ -24,20 +26,17 @@ namespace Forradia
                              StringView imageName, float x,
                              float y, float width,
                              float height,
-                             bool useOperationsCache = true,
                              bool updateExisting = false);
 
         void DrawImageByHash(int uniqueRenderID,
                              int imageNameHash, float x,
                              float y, float width,
                              float height,
-                             bool useOperationsCache = true,
                              bool updateExisting = false);
 
         void DrawImageByTextureID(
             int uniqueRenderID, GLuint textureID, float x,
             float y, float width, float height,
-            bool useOperationsCache = true,
             bool updateExisting = false);
 
         void DrawImageAutoHeight(int uniqueRenderID,
