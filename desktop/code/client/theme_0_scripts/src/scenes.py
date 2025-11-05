@@ -33,8 +33,8 @@ from embedded import (
     update_actions,
     update_robots_movem,
     update_camera_zoom,
-    update_camera_rotation,
     get_tl_hovering,
+    get_camera_rotator,
     get_world_view,
     get_img_2d_rend,
     get_hash
@@ -253,13 +253,13 @@ class MainScene(IScene):
 
             update_camera_zoom()
 
-            update_camera_rotation()
-
             update_mouse_movem()
 
             update_kb_movem()
 
             get_tl_hovering().update()
+
+            get_camera_rotator().update()
 
             update_actions()
 

@@ -8,5 +8,9 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
-    void UpdateCameraRotation();
+    class CameraRotator
+    {
+      public:
+        void Update();
+    };
 }

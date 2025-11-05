@@ -4,11 +4,15 @@
 // (see LICENSE for details)
 //
 
-#include "UpdateCameraRotation.hpp"
+#include "CameraRotator.hpp"
+
+#include "Mouse/MouseInput.hpp"
+
+#include "3D/Camera.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
-    void UpdateCameraRotation()
+    void CameraRotator::Update()
     {
     }
 }

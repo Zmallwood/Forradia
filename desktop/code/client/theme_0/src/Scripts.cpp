@@ -60,7 +60,7 @@
 
 #include "Update/UpdateCameraZoom.hpp"
 
-#include "Update/UpdateCameraRotation.hpp"
+#include "Update/CameraRotator.hpp"
 
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
@@ -235,6 +235,11 @@ namespace Forradia::Theme0
             .def("update", &Theme0::GameplayCore::
                                TileHovering::Update);
 
+        py::class_<Theme0::GameplayCore::CameraRotator>(
+            m, "CameraRotator")
+            .def("update", &Theme0::GameplayCore::
+                               CameraRotator::Update);
+
         py::class_<Theme0::GameplayCore::WorldView>(
             m, "WorldView")
             .def("render",
@@ -379,6 +384,15 @@ namespace Forradia::Theme0
             py::return_value_policy::reference);
 
         m.def(
+            "get_camera_rotator",
+            []() -> Theme0::GameplayCore::CameraRotator &
+            {
+                return _<
+                    Theme0::GameplayCore::CameraRotator>();
+            },
+            py::return_value_policy::reference);
+
+        m.def(
             "get_world_view",
             []() -> Theme0::GameplayCore::WorldView &
             {
@@ -401,9 +415,6 @@ namespace Forradia::Theme0
 
         m.def("update_camera_zoom",
               &Theme0::GameplayCore::UpdateCameraZoom);
-
-        m.def("update_camera_rotation",
-              &Theme0::GameplayCore::UpdateCameraRotation);
 
         m.def("update_mouse_movem",
               &Theme0::GameplayCore::UpdateMouseMovement);
