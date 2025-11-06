@@ -12,14 +12,31 @@
 
 namespace Forradia
 {
+    void GUIChatBox::Initialize()
+    {
+        auto maxNumLines{this->GetMaxNumLines()};
+
+        for (auto i = 0; i < maxNumLines; i++)
+        {
+            m_renderIDsTextLines.push_back(
+                Hash(fmt::format("RenderIDTextLine{}", i)));
+        }
+    }
+
+    int GUIChatBox::GetMaxNumLines() const
+    {
+        auto bounds{this->GetBounds()};
+
+        return CInt(bounds.height / k_lineHeight - 1);
+    }
+
     void GUIChatBox::RenderDerived() const
     {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};
 
-        auto maxNumLines{
-            CInt(bounds.height / k_lineHeight - 1)};
+        auto maxNumLines{this->GetMaxNumLines()};
 
         auto y{bounds.y + k_margin};
 
@@ -35,7 +52,8 @@ namespace Forradia
             auto textLine = m_lines.at(index);
 
             _<TextRenderer>().DrawString(
-                textLine, bounds.x + k_margin, y);
+                m_renderIDsTextLines.at(i), textLine,
+                bounds.x + k_margin, y);
 
             y += k_lineHeight;
         }

@@ -8,31 +8,34 @@
 
 namespace Forradia
 {
-    GLuint TextureBank::ObtainTextTexture(float x, float y,
-                                          int textHash)
+    bool TextureBank::ObtainTextTexture(int uniqueTextureID,
+                                        GLuint &textureID)
     {
         // Check if the text texture exists.
 
-        if (this->TextTextureExists(x, y, textHash))
+        if (m_textTextureIDs.contains(uniqueTextureID))
         {
-            // If it does, return it.
+            // If it does, set the texture ID and return
+            // true, indicating that the texture already
+            // exists.
 
-            return m_textTextureIDs.at(x).at(y).at(
-                textHash);
+            textureID =
+                m_textTextureIDs.at(uniqueTextureID);
+
+            return true;
         }
 
         // If it doesn't, create it.
-
-        GLuint textureID;
 
         glGenTextures(1, &textureID);
 
         // Store the new texture ID in the map.
 
-        m_textTextureIDs[x][y][textHash] = textureID;
+        m_textTextureIDs[uniqueTextureID] = textureID;
 
-        // Return the texture ID.
+        // Return false, indicating that the texture was not
+        // found.
 
-        return textureID;
+        return false;
     }
 }

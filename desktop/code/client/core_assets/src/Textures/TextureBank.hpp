@@ -53,35 +53,17 @@ namespace Forradia
         Size GetTextureDimensions(int imageNameHash) const;
 
         ///
-        /// Checks if a text texture exists for the given
-        /// combination of x, y and text hash values.
+        /// Obtains a text texture ID for the given unique
+        /// texture ID.
         ///
-        /// @param x The x position of the related text
-        /// rendering operation.
-        /// @param y The y position of the related text
-        /// rendering operation.
-        /// @param texthash The hash of the text for the
-        /// related text rendering operation.
-        /// @return True if the text texture exists,
-        /// otherwise false.
+        /// @param uniqueTextureID The unique texture ID.
+        /// @param[out] textureID The texture ID (output
+        /// parameter).
+        /// @return True if the texture was found, false
+        /// otherwise.
         ///
-        bool TextTextureExists(float x, float y,
-                               int texthash) const;
-
-        ///
-        /// Obtain the text texture ID for the given
-        /// combination of x, y and text hash values.
-        ///
-        /// @param x The x position of the related text
-        /// rendering operation.
-        /// @param y The y position of the related text
-        /// rendering operation.
-        /// @param texthash The hash of the text for the
-        /// related text rendering operation.
-        /// @return The texture ID.
-        ///
-        GLuint ObtainTextTexture(float x, float y,
-                                 int textHash);
+        bool ObtainTextTexture(int uniqueTextureID,
+                               GLuint &textureID);
 
       private:
         ///
@@ -121,8 +103,7 @@ namespace Forradia
                               ///< stored by image name
                               ///< hash.
 
-        std::map<float,
-                 std::map<float, std::map<int, GLuint>>>
+        std::map<int, GLuint>
             m_textTextureIDs; ///< The text texture IDs,
                               ///< stored by x, y and
                               ///< text hash values.

@@ -46,6 +46,9 @@ namespace Forradia
                               StringView windowTitle)
                 : m_parentWindow(parentWindow),
                   k_windowTitle(windowTitle),
+                  k_renderIDWindowTitleText(
+                      Hash(uniqueName.data() +
+                           String("WindowTitleText"))),
                   GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f,
                            0.0f,
                            "GUIWindowTitleBarBackground")
@@ -63,6 +66,8 @@ namespace Forradia
             inline static const float k_h{0.04f};
 
             const String k_windowTitle;
+
+            const int k_renderIDWindowTitleText;
 
             GUIWindow &m_parentWindow;
         };

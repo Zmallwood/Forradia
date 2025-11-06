@@ -21,5 +21,9 @@ namespace Forradia::Theme0
 
       protected:
         virtual void RenderDerived() const override;
+
+      private:
+        const int k_renderIDNameString{
+            Hash("GUIPlayerStatusBoxName")};
     };
 }

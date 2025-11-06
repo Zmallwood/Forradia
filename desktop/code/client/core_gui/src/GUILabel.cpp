@@ -26,7 +26,7 @@ namespace Forradia
         }
 
         _<TextRenderer>().DrawString(
-            m_text, bounds.x, bounds.y, FontSizes::_20,
-            m_centerAlign, m_color);
+            k_renderIDText, m_text, bounds.x, bounds.y,
+            FontSizes::_20, m_centerAlign, true, m_color);
     }
 }

@@ -37,6 +37,13 @@ namespace Forradia::Theme0
     void GUIInteractionMenu::Initialize()
     {
         this->SetVisible(false);
+
+        for (auto i = 0; i < k_maxNumMenuEntries; i++)
+        {
+            m_renderIDsMenuEntryStrings.push_back(
+                Hash("GUIInteractionMenuEntryString" +
+                     std::to_string(i)));
+        }
     }
 
     void GUIInteractionMenu::BuildMenu()
@@ -190,8 +197,9 @@ namespace Forradia::Theme0
         auto bounds{this->GetBounds()};
 
         _<TextRenderer>().DrawString(
-            "Actions", bounds.x + 0.01f, bounds.y + 0.01f,
-            FontSizes::_20, false,
+            k_renderIDActionsString, "Actions",
+            bounds.x + 0.01f, bounds.y + 0.01f,
+            FontSizes::_20, false, true,
             Palette::GetColor<Hash("YellowTransparent")>());
 
         auto i{0};
@@ -199,6 +207,7 @@ namespace Forradia::Theme0
         for (auto &entry : m_entries)
         {
             _<TextRenderer>().DrawString(
+                m_renderIDsMenuEntryStrings[i],
                 entry.GetLabel(),
                 bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight,

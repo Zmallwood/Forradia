@@ -75,7 +75,8 @@ namespace Forradia
         // renderer.
 
         _<TextRenderer>().DrawString(
-            m_text, bounds.x + bounds.width / 2,
+            k_renderIDText, m_text,
+            bounds.x + bounds.width / 2,
             bounds.y + bounds.height / 2, FontSizes::_20,
             true);
     }

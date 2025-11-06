@@ -90,20 +90,23 @@ namespace Forradia::Theme0
         this->AddChildComponent(legsImageButton);
 
         m_labelBodyPartName = std::make_shared<GUILabel>(
-            0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
+            "GUILabelBodyPartName", 0.01f, 0.3f, 0.2f,
+            0.05f, "Body part: ", false,
             Palette::GetColor<Hash("YellowTransparent")>());
 
         m_labelBodyPartStrength =
             std::make_shared<GUILabel>(
-                0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f,
-                0.05f, "Strength: ");
+                "GUILabelBodyPartStrength", 0.01f + 0.01f,
+                0.3f + 1 * 0.02f, 0.2f, 0.05f,
+                "Strength: ");
 
         m_labelBodyPartEnergy = std::make_shared<GUILabel>(
-            0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f,
-            "Energy: ");
+            "GUILabelBodyPartEnergy", 0.01f + 0.01f,
+            0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
 
         m_labelBodyPartTemperature =
             std::make_shared<GUILabel>(
+                "GUILabelBodyPartTemperature",
                 0.01f + 0.01f, 0.3f + 3 * 0.02f, 0.2f,
                 0.05f, "Temperature: ");
 

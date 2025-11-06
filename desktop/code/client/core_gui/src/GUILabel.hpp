@@ -13,12 +13,14 @@ namespace Forradia
     class GUILabel : public GUIComponent
     {
       public:
-        GUILabel(float x, float y, float width,
-                 float height, StringView text = "",
+        GUILabel(StringView uniqueName, float x, float y,
+                 float width, float height,
+                 StringView text = "",
                  bool centerAlign = false,
                  Color color = Palette::GetColor<
                      Hash("WheatTransparent")>())
             : GUIComponent(x, y, width, height),
+              k_renderIDText(Hash(uniqueName)),
               m_text(text), m_centerAlign(centerAlign),
               m_color(color)
         {
@@ -33,6 +35,8 @@ namespace Forradia
         virtual void RenderDerived() const override;
 
       private:
+        const int k_renderIDText;
+
         String m_text;
 
         bool m_centerAlign{false};

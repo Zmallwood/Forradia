@@ -21,6 +21,8 @@ namespace Forradia
             StringView hoveredBackgroundImage =
                 k_hoveredBackgroundImage)
             : GUIPanel(uniqueName, x, y, width, height),
+              k_renderIDText(
+                  Hash(uniqueName.data() + String("Text"))),
               m_text(text), m_action(action),
               m_backgroundImage(backgroundImage),
               m_hoveredBackgroundImage(
@@ -39,6 +41,8 @@ namespace Forradia
 
         inline static const String k_hoveredBackgroundImage{
             "GUIButtonHoveredBackground"};
+
+        const int k_renderIDText;
 
         String m_text;
 

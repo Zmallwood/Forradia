@@ -71,6 +71,13 @@ namespace Forradia::Theme0
             Function<void()> m_action;
         };
 
+        const int k_renderIDActionsString{
+            Hash("GUIInteractionMenuActionsString")};
+
+        const int k_maxNumMenuEntries{40};
+
+        Vector<int> m_renderIDsMenuEntryStrings;
+
         Vector<GUIInteractionMenuEntry> m_entries;
 
         Point m_clickedCoordinate{-1, -1};

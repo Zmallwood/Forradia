@@ -17,6 +17,7 @@ namespace Forradia
             : GUIPanel("ChatBox", 0.0f, 0.8f, 0.4f, 0.2f,
                        k_defaultBackgroundImageDerived)
         {
+            this->Initialize();
         }
 
         void RenderDerived() const override;
@@ -33,6 +34,10 @@ namespace Forradia
         }
 
       private:
+        void Initialize();
+
+        int GetMaxNumLines() const;
+
         constexpr static StringView
             k_defaultBackgroundImageDerived{
                 "GUIChatBoxBackground"};
@@ -48,6 +53,8 @@ namespace Forradia
 
         const int k_renderIDInputCursor{
             Hash("RenderIDInputCursor")};
+
+        Vector<int> m_renderIDsTextLines;
 
         Vector<String> m_lines;
 

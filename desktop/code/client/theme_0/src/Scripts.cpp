@@ -100,10 +100,11 @@ namespace Forradia::Theme0
 
         py::class_<GUILabel, SharedPtr<GUILabel>,
                    GUIComponent>(m, "GUILabel")
-            .def(py::init<float, float, float, float,
-                          StringView, bool, Color>(),
-                 py::arg("x"), py::arg("y"), py::arg("w"),
-                 py::arg("h"), py::arg("text") = "",
+            .def(py::init<StringView, float, float, float,
+                          float, StringView, bool, Color>(),
+                 py::arg("uniqueName"), py::arg("x"),
+                 py::arg("y"), py::arg("w"), py::arg("h"),
+                 py::arg("text") = "",
                  py::arg("cent_align") = false,
                  py::arg("color") = Palette::GetColor<Hash(
                      "YellowTransparent")>())
@@ -266,11 +267,13 @@ namespace Forradia::Theme0
               });
 
         m.def("make_shared_gui_label",
-              [](float x, float y, float w, float h,
-                 StringView text, bool cent_align)
+              [](StringView uniqueName, float x, float y,
+                 float w, float h, StringView text,
+                 bool cent_align)
               {
                   return std::make_shared<GUILabel>(
-                      x, y, w, h, text, cent_align,
+                      uniqueName, x, y, w, h, text,
+                      cent_align,
                       Palette::GetColor<Hash(
                           "YellowTransparent")>());
               });

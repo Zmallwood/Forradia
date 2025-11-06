@@ -26,16 +26,9 @@ namespace Forradia
 
         // Delete text textures.
 
-        for (auto entryLevel1 : m_textTextureIDs)
+        for (auto entry : m_textTextureIDs)
         {
-            for (auto entryLevel2 : entryLevel1.second)
-            {
-                for (auto entryLevel3 : entryLevel2.second)
-                {
-                    glDeleteTextures(1,
-                                     &entryLevel3.second);
-                }
-            }
+            glDeleteTextures(1, &entry.second);
         }
     }
 
@@ -72,17 +65,5 @@ namespace Forradia
         // If it doesn't, return error value.
 
         return {-1, -1};
-    }
-
-    bool TextureBank::TextTextureExists(float x, float y,
-                                        int textHash) const
-    {
-        // Return whether the text texture exists in the
-        // nested map.
-
-        return m_textTextureIDs.contains(x) &&
-               m_textTextureIDs.at(x).contains(y) &&
-               m_textTextureIDs.at(x).at(y).contains(
-                   textHash);
     }
 }
