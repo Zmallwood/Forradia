@@ -14,24 +14,16 @@ namespace Forradia
 {
     void GroundRenderer::Cleanup()
     {
-        for (auto &entryLevel1 : m_operationsCache)
+        for (auto &entry : m_operationsCache)
         {
-            for (auto &entryLevel2 : entryLevel1.second)
-            {
-                for (auto &entryLevel3 : entryLevel2.second)
-                {
-                    glDeleteVertexArrays(
-                        1, &entryLevel3.second.vao);
+            glDeleteVertexArrays(1, &entry.second.vao);
 
-                    glDeleteBuffers(
-                        1, &entryLevel3.second.ibo);
+            glDeleteBuffers(1, &entry.second.ibo);
 
-                    glDeleteBuffers(
-                        1, &entryLevel3.second.vbo);
-                }
-            }
+            glDeleteBuffers(1, &entry.second.vbo);
         }
     }
+
     void GroundRenderer::SetupState() const
     {
         glEnable(GL_DEPTH_TEST);
@@ -53,6 +45,8 @@ namespace Forradia
         glEnable(GL_BLEND);
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        glDepthMask(GL_FALSE);
     }
 
     void GroundRenderer::RestoreState() const
@@ -68,6 +62,8 @@ namespace Forradia
         glDisable(GL_CULL_FACE);
 
         glDisable(GL_BLEND);
+
+        glDepthMask(GL_TRUE);
     }
 
     void GroundRenderer::SetupAttributeLayout() const

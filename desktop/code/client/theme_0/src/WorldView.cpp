@@ -34,6 +34,39 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
+
+    void WorldView::Initiallize()
+    {
+
+        auto worldArea{_<World>().GetCurrentWorldArea()};
+
+        auto worldAreaSize{worldArea->GetSize()};
+
+        for (auto y = 0; y < worldAreaSize.height; y++)
+        {
+            for (auto x = 0; x < worldAreaSize.width; x++)
+            {
+
+                m_renderIDsGround[x][y] =
+                    m_renderIDsGround[x][y] =
+                        Hash("Ground_" + std::to_string(x) +
+                             "_" + std::to_string(y));
+
+                for (auto waterDepth = 0;
+                     waterDepth < k_maxWaterDepthRendering;
+                     waterDepth++)
+                {
+                    m_renderIDsWaterDepth
+                        [x][y][waterDepth] = Hash(
+                            "WaterDepth_" +
+                            std::to_string(x) + "_" +
+                            std::to_string(y) + "_" +
+                            std::to_string(waterDepth));
+                }
+            }
+        }
+    }
+
     void WorldView::Render() const
     {
         auto gridSize{_<Theme0Properties>().GetGridSize()};
@@ -406,14 +439,23 @@ namespace Forradia::Theme0::GameplayCore
                 }
 
                 _<GroundRenderer>().DrawTile(
+                    m_renderIDsGround.at(xCoordinate)
+                        .at(yCoordinate),
                     ground, xCoordinate, yCoordinate,
                     rendTileSize, elevations, elevHeight);
 
                 auto waterDepth{tile->GetWaterDepth()};
 
-                for (auto i = 0; i < waterDepth; i++)
+                for (auto i = 0;
+                     i < waterDepth &&
+                     i < k_maxWaterDepthRendering;
+                     i++)
                 {
                     _<GroundRenderer>().DrawTile(
+                        m_renderIDsWaterDepth
+                            .at(xCoordinate)
+                            .at(yCoordinate)
+                            .at(i),
                         Hash("GroundWaterDepth"),
                         xCoordinate, yCoordinate,
                         rendTileSize, elevations,
@@ -432,9 +474,10 @@ namespace Forradia::Theme0::GameplayCore
                     }
 
                     _<GroundRenderer>().DrawTile(
+                        k_renderIDGroundSymbolHoveredTile,
                         Hash("HoveredTile"), xCoordinate,
                         yCoordinate, rendTileSize,
-                        elevations, elevHeight);
+                        elevations, elevHeight, true);
                 }
             }
         }

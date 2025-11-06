@@ -20,10 +20,12 @@ namespace Forradia
             this->Cleanup();
         }
 
-        void DrawTile(int imageNameHash, int xCoordinate,
-                      int yCoordinate, float tileSize,
+        void DrawTile(int uniqueRenderID, int imageNameHash,
+                      int xCoordinate, int yCoordinate,
+                      float tileSize,
                       const Vector<float> &elevations,
-                      float elevationHeight);
+                      float elevationHeight,
+                      bool forceUpdate = false);
 
       protected:
         String GetVSSource() const override;
@@ -39,9 +41,8 @@ namespace Forradia
 
         void RestoreState() const;
 
-        bool DrawingOperationIsCached(int xCoordinate,
-                                      int yCoordinate,
-                                      int textureID) const;
+        bool
+        DrawingOperationIsCached(int uniqueRenderID) const;
 
         Vector<float> CalcTileVerticesNoNormals(
             int xCoordinate, int yCoordinate,
@@ -57,11 +58,7 @@ namespace Forradia
         static constexpr unsigned short k_indices[] = {
             0, 1, 2, 3};
 
-        std::map<
-            int,
-            std::map<
-                int,
-                std::map<GLuint, GroundRenderingOperation>>>
+        std::map<int, GroundRenderingOperation>
             m_operationsCache;
     };
 }

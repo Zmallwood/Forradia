@@ -17,9 +17,10 @@
 namespace Forradia
 {
     void GroundRenderer::DrawTile(
-        int imageNameHash, int xCoordinate, int yCoordinate,
-        float tileSize, const Vector<float> &elevations,
-        float elevationHeight)
+        int uniqueRenderID, int imageNameHash,
+        int xCoordinate, int yCoordinate, float tileSize,
+        const Vector<float> &elevations,
+        float elevationHeight, bool forceUpdate)
     {
         auto textureID{
             _<TextureBank>().GetTexture(imageNameHash)};
@@ -34,12 +35,12 @@ namespace Forradia
         GLuint ibo;
         GLuint vbo;
 
-        if (this->DrawingOperationIsCached(
-                xCoordinate, yCoordinate, textureID))
+        bool fillBuffers{false};
+
+        if (this->DrawingOperationIsCached(uniqueRenderID))
         {
-            auto &entry = m_operationsCache.at(xCoordinate)
-                              .at(yCoordinate)
-                              .at(textureID);
+            auto &entry =
+                m_operationsCache.at(uniqueRenderID);
 
             vao = entry.vao;
 
@@ -75,9 +76,13 @@ namespace Forradia
 
             entry.vbo = vbo;
 
-            m_operationsCache[xCoordinate][yCoordinate]
-                             [textureID] = entry;
+            m_operationsCache[uniqueRenderID] = entry;
 
+            fillBuffers = true;
+        }
+
+        if (fillBuffers || forceUpdate)
+        {
             auto verticesNoNormals{
                 this->CalcTileVerticesNoNormals(
                     xCoordinate, yCoordinate, tileSize,
@@ -150,14 +155,8 @@ namespace Forradia
     }
 
     bool GroundRenderer::DrawingOperationIsCached(
-        int xCoordinate, int yCoordinate,
-        int textureID) const
+        int uniqueRenderID) const
     {
-        return m_operationsCache.contains(xCoordinate) &&
-               m_operationsCache.at(xCoordinate)
-                   .contains(yCoordinate) &&
-               m_operationsCache.at(xCoordinate)
-                   .at(yCoordinate)
-                   .contains(textureID);
+        return m_operationsCache.contains(uniqueRenderID);
     }
 }
