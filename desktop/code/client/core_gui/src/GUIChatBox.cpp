@@ -6,6 +6,7 @@
 
 #include "GUIChatBox.hpp"
 
+#include "FontSizes.hpp"
 #include "TextRenderer.hpp"
 
 #include "Image2DRenderer.hpp"
@@ -53,7 +54,8 @@ namespace Forradia
 
             _<TextRenderer>().DrawString(
                 m_renderIDsTextLines.at(i), textLine,
-                bounds.x + k_margin, y);
+                bounds.x + k_margin, y, FontSizes::_20,
+                false, true);
 
             y += k_lineHeight;
         }

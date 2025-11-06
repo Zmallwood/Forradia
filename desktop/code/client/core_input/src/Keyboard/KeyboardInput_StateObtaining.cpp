@@ -8,7 +8,6 @@
 
 namespace Forradia
 {
-
     bool KeyboardInput::KeyIsPressed(SDL_Keycode key) const
     {
         // Check if the key is in the set of pressed keys.
