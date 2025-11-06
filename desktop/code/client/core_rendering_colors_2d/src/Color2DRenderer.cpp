@@ -4,15 +4,15 @@
 // (see LICENSE for details)
 //
 
-#include "Image2DRenderer.hpp"
-
-#include "ShaderProgram.hpp"
+#include "Color2DRenderer.hpp"
 
 #include "SDLDevice.hpp"
 
+#include "ShaderProgram.hpp"
+
 namespace Forradia
 {
-    void Image2DRenderer::Cleanup()
+    void Color2DRenderer::Cleanup()
     {
         // Delete the vertex array objects, index buffer
         // objects and vertex buffer objects.
@@ -27,7 +27,7 @@ namespace Forradia
         }
     }
 
-    void Image2DRenderer::SetupState() const
+    void Color2DRenderer::SetupState() const
     {
         // Get the canvas size in pixels.
 
@@ -50,7 +50,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void Image2DRenderer::RestoreState() const
+    void Color2DRenderer::RestoreState() const
     {
         // Unbind the vertex array object, index buffer
         // object and vertex buffer object from the
@@ -67,35 +67,26 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void Image2DRenderer::SetupAttributeLayout() const
+    void Color2DRenderer::SetupAttributeLayout() const
     {
         // Setup the attribute layout for the position.
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
+                              sizeof(float) * 7,
                               (void *)(sizeof(float) * 0));
 
         glEnableVertexAttribArray(0);
 
         // Setup the attribute layout for the color.
 
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE,
+                              sizeof(float) * 7,
                               (void *)(sizeof(float) * 3));
 
         glEnableVertexAttribArray(1);
-
-        // Setup the attribute layout for the texture
-        // coordinates.
-
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 8,
-                              (void *)(sizeof(float) * 6));
-
-        glEnableVertexAttribArray(2);
     }
 
-    bool Image2DRenderer::DrawingOperationIsCached(
+    bool Color2DRenderer::DrawingOperationIsCached(
         int uniqueRenderID) const
     {
         // Check if the drawing operation is cached.

@@ -16,10 +16,6 @@
 
 #include <SDL2/SDL.h>
 
-#include <GL/gl.h>
-
-#include <glm/glm.hpp>
-
 // Internal.
 
 #include "Aliases.hpp"

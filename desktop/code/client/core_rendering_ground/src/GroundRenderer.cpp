@@ -31,8 +31,6 @@ namespace Forradia
                 }
             }
         }
-
-        glUseProgram(0);
     }
     void GroundRenderer::SetupState() const
     {

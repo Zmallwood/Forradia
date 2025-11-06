@@ -24,4 +24,7 @@ target_include_directories(ForradiaCoreEngine PUBLIC
     "../core_rendering_images_2d/src"
     "../core_rendering_models/src"
 )
+target_link_libraries(ForradiaCoreEngine PRIVATE
+    ForradiaCoreRenderingColors2D
+)
 target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/StdAfx.hpp)

@@ -8,6 +8,8 @@
 
 #include "Mouse/MouseInput.hpp"
 
+#include "Color2DRenderer.hpp"
+
 namespace Forradia::Theme0
 {
     void GUISystemMenu::Initialize()
@@ -25,6 +27,11 @@ namespace Forradia::Theme0
     void GUISystemMenu::RenderDerived() const
     {
         GUIComponent::RenderDerived();
+
+        _<Color2DRenderer>().DrawFilledRectangle(
+            k_renderIDBackgroundColor,
+            {1.0f, 0.0f, 0.7f, 0.5f}, 0.0f, 0.0f, 1.0f,
+            1.0f);
 
         // auto
         // c_sz{GetCanvasSize(_<SDLDevice>().GetWindow())};

@@ -25,5 +25,9 @@ namespace Forradia::Theme0
         virtual void UpdateDerived() override;
 
         virtual void RenderDerived() const override;
+
+      private:
+        const int k_renderIDBackgroundColor{
+            Hash("GUISystemMenuBackgroundColor")};
     };
 }

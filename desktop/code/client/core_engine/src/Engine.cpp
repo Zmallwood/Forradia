@@ -18,6 +18,8 @@
 
 #include "Mouse/MouseInput.hpp"
 
+#include "Color2DRenderer.hpp"
+
 #include "Image2DRenderer.hpp"
 
 #include "GroundRenderer.hpp"
@@ -42,6 +44,8 @@ namespace Forradia
         _<GLDevice>().Initialize();
 
         // Initialize renderers.
+
+        _<Color2DRenderer>().Initialize();
 
         _<Image2DRenderer>().Initialize();
 

@@ -1,0 +1,84 @@
+//
+// Copyright 2025 Andreas Åkerberg
+// This code is licensed under MIT license
+// (see LICENSE for details)
+//
+
+#pragma once
+
+#include "RendererBase.hpp"
+
+#include "Color2DRenderingOperation.hpp"
+
+namespace Forradia
+{
+    ///
+    /// A renderer for drawing colors to the canvas.
+    ///
+    class Color2DRenderer : public RendererBase
+    {
+      public:
+        ///
+        /// Destructor which cleans up the renderer.
+        ///
+        ~Color2DRenderer()
+        {
+            this->Cleanup();
+        }
+
+        void
+        DrawFilledRectangle(int uniqueRenderID, Color color,
+                            float x, float y, float width,
+                            float height,
+                            bool updateExisting = false);
+
+      protected:
+        ///
+        /// Returns the vertex shader source.
+        ///
+        /// @return The vertex shader source.
+        ///
+        String GetVSSource() const override;
+
+        ///
+        /// Returns the fragment shader source.
+        ///
+        /// @return The fragment shader source.
+        ///
+        String GetFSSource() const override;
+
+        ///
+        /// Sets up the attribute layout.
+        ///
+        void SetupAttributeLayout() const override;
+
+      private:
+        ///
+        /// Cleans up the renderer.
+        ///
+        void Cleanup();
+
+        ///
+        /// Sets up the state.
+        ///
+        void SetupState() const;
+
+        ///
+        /// Resets the state.
+        ///
+        void RestoreState() const;
+
+        ///
+        /// Checks if the drawing operation is cached.
+        ///
+        /// @param uniqueRenderID The unique render ID.
+        /// @return True if the drawing operation is cached,
+        /// false otherwise.
+        ///
+        bool
+        DrawingOperationIsCached(int uniqueRenderID) const;
+
+        std::map<int, Color2DRenderingOperation>
+            m_operationsCache; ///< The operations cache.
+    };
+}

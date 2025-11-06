@@ -35,8 +35,6 @@ namespace Forradia
                 }
             }
         }
-
-        glUseProgram(0);
     }
 
     void ModelRenderer::SetupState() const
