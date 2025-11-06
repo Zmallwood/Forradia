@@ -65,7 +65,7 @@ namespace Forradia
                             GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
-    void ModelRenderer::ResetState() const
+    void ModelRenderer::RestoreState() const
     {
         glBindVertexArray(0);
 

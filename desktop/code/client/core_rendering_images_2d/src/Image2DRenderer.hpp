@@ -120,7 +120,7 @@ namespace Forradia
         ///
         /// Resets the state.
         ///
-        void ResetState() const;
+        void RestoreState() const;
 
         ///
         /// Checks if the drawing operation is cached.

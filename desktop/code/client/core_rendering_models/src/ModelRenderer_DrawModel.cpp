@@ -264,7 +264,7 @@ namespace Forradia
         glDrawElements(GL_TRIANGLES, entry.verticesCount,
                        GL_UNSIGNED_SHORT, nullptr);
 
-        this->ResetState();
+        this->RestoreState();
     }
 
     bool ModelRenderer::DrawingOperationIsCached(

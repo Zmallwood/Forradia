@@ -22,16 +22,20 @@ namespace Forradia
     {
         // Returns the camera position in world space.
         // The position is derived from the look-at point
-        // with a fixed backward (−Y) and upward (+Z) offset
-        // to place the camera slightly behind and above the
-        // target for an angled view.
+        // with an offset which is determined by the zoom
+        // amount and the rotation angle.
 
         auto point{GetLookAt()};
 
+        // Calculate the rotation in the X and Y axes.
+
         auto cosRotation{
             std::cos(m_rotationAngle - M_PI / 2)};
+
         auto sinRotation{
             std::sin(m_rotationAngle - M_PI / 2)};
+
+        // Apply the distance based on the zoom amount.
 
         point.x += cosRotation * m_zoomAmount;
         point.y += sinRotation * m_zoomAmount;

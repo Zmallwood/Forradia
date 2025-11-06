@@ -15,7 +15,7 @@ namespace Forradia
       public:
         TextRenderer()
         {
-            Initialize();
+            this->Initialize();
         }
 
         void
@@ -29,6 +29,12 @@ namespace Forradia
         void Initialize();
 
         void AddFonts();
+
+        void SetupState() const;
+
+        void RestoreState() const;
+
+        void DefineTexture(SharedPtr<SDL_Surface> surface) const;
 
         const String k_defaultFontPath{
             "./Resources/Fonts/PixeloidSans.ttf"};

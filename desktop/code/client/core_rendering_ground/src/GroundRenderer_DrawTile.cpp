@@ -146,7 +146,7 @@ namespace Forradia
         glDrawElements(GL_TRIANGLE_FAN, 4,
                        GL_UNSIGNED_SHORT, nullptr);
 
-        this->ResetState();
+        this->RestoreState();
     }
 
     bool GroundRenderer::DrawingOperationIsCached(

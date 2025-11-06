@@ -57,7 +57,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void Image2DRenderer::ResetState() const
+    void Image2DRenderer::RestoreState() const
     {
         // Unbind the vertex array object, index buffer
         // object and vertex buffer object from the

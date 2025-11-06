@@ -57,7 +57,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void GroundRenderer::ResetState() const
+    void GroundRenderer::RestoreState() const
     {
         glBindVertexArray(0);
 

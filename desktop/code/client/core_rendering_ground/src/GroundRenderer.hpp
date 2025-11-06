@@ -37,7 +37,7 @@ namespace Forradia
 
         void SetupState() const;
 
-        void ResetState() const;
+        void RestoreState() const;
 
         bool DrawingOperationIsCached(int xCoordinate,
                                       int yCoordinate,

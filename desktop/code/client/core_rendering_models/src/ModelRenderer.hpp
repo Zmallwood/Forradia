@@ -36,7 +36,7 @@ namespace Forradia
 
         void SetupState() const;
 
-        void ResetState() const;
+        void RestoreState() const;
 
         bool
         DrawingOperationIsCached(float x, float y,

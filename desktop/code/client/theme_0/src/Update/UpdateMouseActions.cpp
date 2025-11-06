@@ -21,7 +21,7 @@ namespace Forradia::Theme0::GameplayCore
                 .HasBeenReleased() &&
             _<MouseInput>()
                     .GetRightMouseButtonRef()
-                    .GetTicksClickSpeed() < 500)
+                    .GetTicksClickSpeed() < 300)
         {
             _<GUIInteractionMenu>().BuildMenu();
 

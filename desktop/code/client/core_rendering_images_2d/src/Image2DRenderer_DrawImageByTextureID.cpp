@@ -175,8 +175,8 @@ namespace Forradia
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount,
                        GL_UNSIGNED_SHORT, nullptr);
 
-        // Reset the state.
+        // Restore the state.
 
-        this->ResetState();
+        this->RestoreState();
     }
 }
