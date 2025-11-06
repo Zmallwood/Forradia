@@ -16,6 +16,14 @@
 
 namespace Forradia
 {
+
+    void GroundRenderer::Reset()
+    {
+        this->Cleanup();
+
+        m_operationsCache.clear();
+    }
+
     void GroundRenderer::DrawTile(
         int uniqueRenderID, int imageNameHash,
         int xCoordinate, int yCoordinate, float tileSize,

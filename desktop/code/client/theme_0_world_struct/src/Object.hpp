@@ -15,6 +15,10 @@ namespace Forradia::Theme0
     class Object
     {
       public:
+        Object(int objectNameHash) : m_type(objectNameHash)
+        {
+        }
+
         ///
         /// Constructor.
         ///

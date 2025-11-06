@@ -21,6 +21,8 @@ namespace Forradia::Theme0
         ///
         void ClearObjects();
 
+        void AddObject(int objectNameHash);
+
         ///
         /// Add new object of type T to the stack.
         ///

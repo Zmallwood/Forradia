@@ -14,6 +14,11 @@ namespace Forradia::Theme0
     class Creature
     {
       public:
+        Creature(int type_hash) : m_type(type_hash)
+        {
+            this->Initialize();
+        }
+
         ///
         /// Constructor. Creates a creature of the given
         /// type.

@@ -18,6 +18,11 @@ namespace Forradia::Theme0
             Forradia::Theme0::ObjectsStack>();
     }
 
+    void Tile::SetGround(int ground_hash)
+    {
+        m_ground = ground_hash;
+    }
+
     void Tile::SetGround(StringView ground_name)
     {
         // Set the ground type as hash.

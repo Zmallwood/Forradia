@@ -29,6 +29,8 @@ namespace Forradia::Theme0
             return m_ground;
         }
 
+        void SetGround(int ground_hash);
+
         void SetGround(StringView ground_name);
 
         auto GetObjectsStack() const

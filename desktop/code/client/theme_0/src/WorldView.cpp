@@ -444,6 +444,7 @@ namespace Forradia::Theme0::GameplayCore
                     ground, xCoordinate, yCoordinate,
                     rendTileSize, elevations, elevHeight);
 
+
                 auto waterDepth{tile->GetWaterDepth()};
 
                 for (auto i = 0;

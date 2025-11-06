@@ -19,6 +19,14 @@ namespace Forradia::Theme0
         m_objects.clear();
     }
 
+    void ObjectsStack::AddObject(int objectNameHash)
+    {
+        // Add new object of type Object to the stack.
+
+        m_objects.push_back(
+            std::make_shared<Object>(objectNameHash));
+    }
+
     template <>
     void ObjectsStack::AddObject<Object>(
         StringView objectTypeName)

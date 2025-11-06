@@ -14,6 +14,8 @@
 
 #include "GUIChatBox.hpp"
 
+#include "GameSaveFiles/GameSaving.hpp"
+
 namespace Forradia::Theme0
 {
     void GUISystemMenu::Initialize()
@@ -22,10 +24,25 @@ namespace Forradia::Theme0
 
         auto saveGameButton{std::make_shared<GUIButton>(
             "GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f,
-            0.08f, 0.05f, "Save game", [this]
-            { _<GUIChatBox>().Print("Saving game..."); })};
+            0.08f, 0.05f, "Save game",
+            [this]
+            {
+                _<GUIChatBox>().Print("Saving game...");
+                _<GameSaving>().SaveGame();
+            })};
 
         this->AddChildComponent(saveGameButton);
+
+        auto loadGameButton{std::make_shared<GUIButton>(
+            "GUIButtonLoadGame", 0.5f - 0.08f / 2,
+            0.5f + 0.05f, 0.08f, 0.05f, "Load game",
+            [this]
+            {
+                _<GUIChatBox>().Print("Loading game...");
+                _<GameSaving>().LoadGame();
+            })};
+
+        this->AddChildComponent(loadGameButton);
     }
 
     void GUISystemMenu::UpdateDerived()

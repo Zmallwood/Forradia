@@ -27,6 +27,8 @@ namespace Forradia
                       float elevationHeight,
                       bool forceUpdate = false);
 
+        void Reset();
+
       protected:
         String GetVSSource() const override;
 

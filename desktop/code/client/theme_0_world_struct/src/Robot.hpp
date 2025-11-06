@@ -14,6 +14,11 @@ namespace Forradia::Theme0
     class Robot
     {
       public:
+        Robot(int type_hash) : m_type(type_hash)
+        {
+            this->Initialize();
+        }
+
         ///
         /// Constructor. Creates a robot of the given
         /// type.
