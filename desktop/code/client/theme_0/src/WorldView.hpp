@@ -21,7 +21,7 @@ namespace Forradia::Theme0::GameplayCore
       private:
         void Initiallize();
 
-        const int k_maxWaterDepthRendering{10};
+        const int k_maxWaterDepthRendering{20};
 
         const int k_renderIDGroundSymbolHoveredTile{
             Hash("GroundSymbolHoveredTile")};
