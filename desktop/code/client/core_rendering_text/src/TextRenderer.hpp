@@ -14,20 +14,12 @@ namespace Forradia
     /// Renders text strings to the screen using
     /// SDL_ttf and OpenGL.
     ///
-    /// This class manages font loading, texture creation,
-    /// and OpenGL state management for rendering text. It
-    /// supports multiple font sizes and provides options
-    /// for text alignment and color customization.
-    ///
     class TextRenderer
     {
       public:
         ///
         /// Constructs a TextRenderer and initializes
         /// the rendering system.
-        ///
-        /// Initializes SDL_ttf, loads all available fonts,
-        /// and prepares the renderer for use.
         ///
         TextRenderer()
         {
@@ -37,12 +29,6 @@ namespace Forradia
         ///
         /// Draws a text string at the specified
         /// position.
-        ///
-        /// Renders the given text string at the specified
-        /// screen coordinates using the specified font
-        /// size, alignment, and color. The text is rendered
-        /// as a texture and cached for efficient repeated
-        /// rendering.
         ///
         /// @param uniqueRenderID A unique identifier for
         /// the render operation.
@@ -74,27 +60,16 @@ namespace Forradia
         ///
         /// Initializes the text rendering system.
         ///
-        /// Initializes SDL_ttf and loads all available
-        /// fonts.
-        ///
         void Initialize();
 
         ///
         /// Loads all available font sizes from the
         /// default font file.
         ///
-        /// Iterates through all available font sizes and
-        /// loads them from the default font path. Fonts are
-        /// stored in the m_fonts map for later use.
-        ///
         void AddFonts();
 
         ///
         /// Sets up OpenGL state for text rendering.
-        ///
-        /// Configures pixel storage alignment, enables 2D
-        /// texture rendering, and sets up alpha blending
-        /// for proper transparency handling.
         ///
         void SetupState() const;
 
@@ -102,18 +77,11 @@ namespace Forradia
         /// Restores the previous OpenGL state after
         /// text rendering.
         ///
-        /// Disables blending and texture rendering, and
-        /// unbinds the current texture to restore the
-        /// OpenGL state to its previous condition.
-        ///
         void RestoreState() const;
 
         ///
         /// Creates an OpenGL texture from an SDL
         /// surface.
-        ///
-        /// Uploads the pixel data from the SDL surface to
-        /// the currently bound OpenGL texture.
         ///
         /// @param surface The SDL surface containing the
         /// text image data.
@@ -128,14 +96,8 @@ namespace Forradia
         const String k_defaultFontPath{
             "./Resources/Fonts/PixeloidSans.ttf"};
 
-        ///
-        /// Map of font sizes to loaded TTF font
-        /// objects.
-        ///
-        /// Stores all loaded fonts indexed by their
-        /// FontSizes enum value for efficient lookup during
-        /// rendering.
-        ///
-        std::map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
+        std::map<FontSizes, SharedPtr<TTF_Font>>
+            m_fonts; ///< Map of font sizes to loaded TTF
+                     ///< font objects.
     };
 }
