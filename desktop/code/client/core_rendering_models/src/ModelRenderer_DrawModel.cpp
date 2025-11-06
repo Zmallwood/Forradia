@@ -206,28 +206,10 @@ namespace Forradia
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-        // lookAt function takes camera position, camera
-        // target and up vector.
+        auto viewMatrix = _<Camera>().GetViewMatrix();
 
-        auto cameraPosition{_<Camera>().GetPosition()};
-        auto cameraLookAt{_<Camera>().GetLookAt()};
-
-        glm::mat4 cameraMatrix = glm::lookAt(
-            glm::vec3(cameraPosition.x, cameraPosition.y,
-                      cameraPosition.z),
-            glm::vec3(cameraLookAt.x, cameraLookAt.y,
-                      cameraLookAt.z),
-            glm::vec3(0.0f, 0.0f, -1.0f));
-
-        auto aspectRatio{
-            CalcAspectRatio(_<SDLDevice>().GetWindow())};
-
-        // perspective function takes field of view, aspect
-        // ratio, near clipping distance and far clipping
-        // distance.
-
-        glm::mat4 projectionMatrix = glm::perspective(
-            glm::radians(90.0f), aspectRatio, 0.1f, 100.0f);
+        auto projectionMatrix =
+            _<Camera>().GetProjectionMatrix();
 
         GLuint matrixProjection = glGetUniformLocation(
             GetShaderProgram()->GetProgramID(),
@@ -244,7 +226,7 @@ namespace Forradia
             GetShaderProgram()->GetProgramID(), "view");
 
         glUniformMatrix4fv(matrixView, 1, GL_FALSE,
-                           &cameraMatrix[0][0]);
+                           &viewMatrix[0][0]);
 
         glBindVertexArray(vao);
 

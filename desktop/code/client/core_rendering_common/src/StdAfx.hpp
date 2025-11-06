@@ -18,6 +18,8 @@
 
 #include <GL/gl.h>
 
+#include <glm/gtc/matrix_transform.hpp>
+
 // Internal.
 
 #include "Aliases.hpp"
@@ -31,3 +33,5 @@
 #include "Geometry/Size.hpp"
 
 #include "Coloring/Color.hpp"
+
+#include "CanvasUtilities.hpp"

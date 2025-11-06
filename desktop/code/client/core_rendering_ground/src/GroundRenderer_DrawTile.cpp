@@ -117,28 +117,13 @@ namespace Forradia
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-        auto cameraPosition{_<Camera>().GetPosition()};
-        auto cameraLookAt{_<Camera>().GetLookAt()};
+        auto viewMatrix{_<Camera>().GetViewMatrix()};
 
-        glm::mat4 cameraMatrix = glm::lookAt(
-            glm::vec3(cameraPosition.x, cameraPosition.y,
-                      cameraPosition.z),
-            glm::vec3(cameraLookAt.x, cameraLookAt.y,
-                      cameraLookAt.z),
-            glm::vec3(0.0f, 0.0f, -1.0f));
-
-        auto aspectRatio{
-            CalcAspectRatio(_<SDLDevice>().GetWindow())};
-
-        // Perspective function takes field of view, aspect
-        // ratio, near clipping distance and far clipping
-        // distance.
-
-        glm::mat4 projectionMatrix = glm::perspective(
-            glm::radians(90.0f), aspectRatio, 0.1f, 100.0f);
+        auto projectionMatrix{
+            _<Camera>().GetProjectionMatrix()};
 
         glm::mat4 finalMatrix =
-            projectionMatrix * cameraMatrix * modelMatrix;
+            projectionMatrix * viewMatrix * modelMatrix;
 
         GLuint mvpMatrixID = glGetUniformLocation(
             GetShaderProgram()->GetProgramID(), "MVP");

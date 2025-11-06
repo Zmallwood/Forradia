@@ -16,8 +16,34 @@
 
 #include "Theme0Properties.hpp"
 
+#include "SDLDevice.hpp"
+
 namespace Forradia
 {
+    glm::mat4 Camera::GetViewMatrix() const
+    {
+        auto cameraPosition{GetPosition()};
+
+        auto cameraLookAt{GetLookAt()};
+
+        return glm::lookAt(
+            glm::vec3(cameraPosition.x, cameraPosition.y,
+                      cameraPosition.z),
+            glm::vec3(cameraLookAt.x, cameraLookAt.y,
+                      cameraLookAt.z),
+            glm::vec3(0.0f, 0.0f, -1.0f));
+    }
+
+    glm::mat4 Camera::GetProjectionMatrix() const
+    {
+
+        auto aspectRatio{
+            CalcAspectRatio(_<SDLDevice>().GetWindow())};
+
+        return glm::perspective(glm::radians(90.0f),
+                                aspectRatio, 0.1f, 100.0f);
+    }
+
     Point3F Camera::GetPosition() const
     {
         // Returns the camera position in world space.

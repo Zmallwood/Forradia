@@ -18,19 +18,18 @@ namespace Forradia
     {
       public:
         ///
-        /// Get the camera's world-space position.
+        /// Get the view matrix.
         ///
-        /// @return The position of the camera as a Point3F.
+        /// @return The view matrix.
         ///
-        Point3F GetPosition() const;
+        glm::mat4 GetViewMatrix() const;
 
         ///
-        /// Get the world-space point the camera is looking
-        /// at.
+        /// Get the projection matrix.
         ///
-        /// @return The target point as a Point3F.
+        /// @return The projection matrix.
         ///
-        Point3F GetLookAt() const;
+        glm::mat4 GetProjectionMatrix() const;
 
         ///
         /// Add a delta to the current zoom amount.
@@ -47,6 +46,21 @@ namespace Forradia
         void AddRotationDelta(float rotationDelta);
 
       private:
+        ///
+        /// Get the camera's world-space position.
+        ///
+        /// @return The position of the camera as a Point3F.
+        ///
+        Point3F GetPosition() const;
+
+        ///
+        /// Get the world-space point the camera is looking
+        /// at.
+        ///
+        /// @return The target point as a Point3F.
+        ///
+        Point3F GetLookAt() const;
+
         const float k_minZoomAmount{
             2.0f}; ///< Minimum zoom amount.
 

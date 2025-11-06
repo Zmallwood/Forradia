@@ -18,4 +18,8 @@ target_include_directories(ForradiaCoreRenderingCommon PUBLIC
     "../theme_0_properties/src"
     "../common_matter/src"
 )
+target_link_libraries(ForradiaCoreRenderingCommon PRIVATE
+    ForradiaCoreGrahicsDevices
+    ForradiaCommonCoreUtilities
+)
 target_precompile_headers(ForradiaCoreRenderingCommon PUBLIC ./src/StdAfx.hpp)
