@@ -211,8 +211,7 @@ namespace Forradia::Theme0
                 entry.GetLabel(),
                 bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight,
-
-                FontSizes::_20);
+                FontSizes::_20, false, true);
 
             ++i;
         }

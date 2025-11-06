@@ -14,26 +14,13 @@ namespace Forradia
 {
     void ModelRenderer::Cleanup()
     {
-        for (auto &entryLevel1 : m_operationsCache)
+        for (auto &entry : m_operationsCache)
         {
-            for (auto &entryLevel2 : entryLevel1.second)
-            {
-                for (auto &entryLevel3 : entryLevel2.second)
-                {
-                    for (auto &entryLevel4 :
-                         entryLevel3.second)
-                    {
-                        glDeleteVertexArrays(
-                            1, &entryLevel4.second.vao);
+            glDeleteVertexArrays(1, &entry.second.vao);
 
-                        glDeleteBuffers(
-                            1, &entryLevel4.second.ibo);
+            glDeleteBuffers(1, &entry.second.ibo);
 
-                        glDeleteBuffers(
-                            1, &entryLevel4.second.vbo);
-                    }
-                }
-            }
+            glDeleteBuffers(1, &entry.second.vbo);
         }
     }
 

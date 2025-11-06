@@ -19,6 +19,7 @@
 #include "ShaderProgram.hpp"
 
 #include "3D/Camera.hpp"
+#include <glm/gtx/transform.hpp>
 
 namespace Forradia
 {
@@ -45,8 +46,7 @@ namespace Forradia
 
         auto needCreateBuffers{false};
 
-        if (this->DrawingOperationIsCached(x, y, elevation,
-                                           modelNameHash))
+        if (this->DrawingOperationIsCached(modelNameHash))
         {
             needCreateBuffers = false;
         }
@@ -65,10 +65,8 @@ namespace Forradia
 
         if (!needCreateBuffers)
         {
-            auto &entry = m_operationsCache.at(x)
-                              .at(y)
-                              .at(elevation)
-                              .at(modelNameHash);
+            auto &entry =
+                m_operationsCache.at(modelNameHash);
 
             vao = entry.vao;
 
@@ -116,14 +114,13 @@ namespace Forradia
 
             entry.z = elevation;
 
-            m_operationsCache[x][y][elevation]
-                             [modelNameHash] = entry;
+            m_operationsCache[modelNameHash] = entry;
 
             needFillBuffers = true;
         }
+
         if (needFillBuffers)
         {
-
             Vector<unsigned short> indicesVector;
 
             Vector<float> verticesVector;
@@ -135,15 +132,12 @@ namespace Forradia
                 for (auto &vertex : mesh.vertices)
                 {
                     verticesVector.push_back(
-                        x +
                         vertex.position.x * k_modelScale);
 
                     verticesVector.push_back(
-                        y +
                         vertex.position.y * k_modelScale);
 
                     verticesVector.push_back(
-                        elevation * elevationHeight +
                         vertex.position.z * k_modelScale);
 
                     verticesVector.push_back(
@@ -192,19 +186,19 @@ namespace Forradia
 
             this->SetupAttributeLayout();
 
-            auto &entry = m_operationsCache.at(x)
-                              .at(y)
-                              .at(elevation)
-                              .at(modelNameHash);
+            auto &entry =
+                m_operationsCache.at(modelNameHash);
 
             entry.verticesCount = verticesCount;
         }
 
-        auto &entry =
-            m_operationsCache.at(x).at(y).at(elevation).at(
-                modelNameHash);
+        auto &entry = m_operationsCache.at(modelNameHash);
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+        modelMatrix = glm::translate(
+            modelMatrix,
+            glm::vec3(x, y, elevation * elevationHeight));
 
         auto viewMatrix = _<Camera>().GetViewMatrix();
 
@@ -250,16 +244,8 @@ namespace Forradia
     }
 
     bool ModelRenderer::DrawingOperationIsCached(
-        float x, float y, float elevation,
         int modelNameHash) const
     {
-        return m_operationsCache.contains(x) &&
-               m_operationsCache.at(x).contains(y) &&
-               m_operationsCache.at(x).at(y).contains(
-                   elevation) &&
-               m_operationsCache.at(x)
-                   .at(y)
-                   .at(elevation)
-                   .contains(modelNameHash);
+        return m_operationsCache.contains(modelNameHash);
     }
 }

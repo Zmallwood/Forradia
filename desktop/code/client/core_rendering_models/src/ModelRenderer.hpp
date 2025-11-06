@@ -39,18 +39,9 @@ namespace Forradia
         void RestoreState() const;
 
         bool
-        DrawingOperationIsCached(float x, float y,
-                                 float elevation,
-                                 int modelNameHash) const;
+        DrawingOperationIsCached(int modelNameHash) const;
 
-        std::map<
-            float,
-            std::map<
-                float,
-                std::map<
-                    float,
-                    std::map<int,
-                             ModelRenderingOperation>>>>
+        std::map<int, ModelRenderingOperation>
             m_operationsCache;
 
         static constexpr float k_modelScale{0.25f};
