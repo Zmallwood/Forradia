@@ -168,7 +168,9 @@ namespace Forradia::Theme0::GameplayCore
         // Get tile size and elevation height
         auto rendTileSize{
             _<Theme0Properties>().GetTileSize()};
-        auto elevHeight{0.1f};
+
+        auto elevHeight{
+            _<Theme0Properties>().GetElevationHeight()};
 
         // Convert tile coordinates to world space positions
         auto worldXNW{xCoordinate * rendTileSize -

@@ -109,7 +109,8 @@ namespace Forradia
         // Multiplier mapping tile elevation to world Z
         // height.
 
-        auto elevHeight{0.1f};
+        auto elevHeight{_<Theme0::Theme0Properties>()
+                            .GetElevationHeight()};
 
         // Elevation at the player's tile. Coordinates are
         // (currently, it would be preferred if it wasnt)
