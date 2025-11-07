@@ -80,7 +80,8 @@ namespace Forradia::Theme0::GameplayCore
         auto hoveredCoordinate{
             _<TileHovering>().GetHoveredCoordinate()};
 
-        auto elevHeight{0.1f};
+        auto elevHeight{
+            _<Theme0Properties>().GetElevationHeight()};
 
         auto playerElev{
             worldArea
@@ -352,8 +353,7 @@ namespace Forradia::Theme0::GameplayCore
                                 trunkPartYCenter -
                                     trunkPartWidth / 2,
                                 elevationAverage -
-                                    trunkPartZ,
-                                elevHeight);
+                                    trunkPartZ);
 
                             auto needleWidth{treeWidth};
 
@@ -369,8 +369,7 @@ namespace Forradia::Theme0::GameplayCore
                                         elevationAverage -
                                             trunkPartZ -
                                             needleHeight /
-                                                2,
-                                        elevHeight);
+                                                2);
                             }
                         }
                     }
@@ -382,7 +381,7 @@ namespace Forradia::Theme0::GameplayCore
                                 rendTileSize / 2,
                             (yCoordinate)*rendTileSize +
                                 rendTileSize / 2,
-                            elevationMax, elevHeight);
+                            elevationMax);
                     }
                 }
 
@@ -401,7 +400,7 @@ namespace Forradia::Theme0::GameplayCore
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        elevationMax, elevHeight);
+                        elevationMax);
                 }
 
                 auto robot{tile->GetRobot()};
@@ -418,7 +417,7 @@ namespace Forradia::Theme0::GameplayCore
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        elevationMax, elevHeight);
+                        elevationMax);
                 }
 
                 if (xCoordinate + 1 ==
@@ -432,14 +431,14 @@ namespace Forradia::Theme0::GameplayCore
                             rendTileSize / 2,
                         (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        elevationMax, elevHeight);
+                        elevationMax);
                 }
 
                 _<GroundRenderer>().DrawTile(
                     m_renderIDsGround.at(xCoordinate)
                         .at(yCoordinate),
                     ground, xCoordinate, yCoordinate,
-                    rendTileSize, elevations, elevHeight);
+                    rendTileSize, elevations);
 
                 auto waterDepth{tile->GetWaterDepth()};
 
@@ -455,8 +454,7 @@ namespace Forradia::Theme0::GameplayCore
                             .at(i),
                         Hash("GroundWaterDepth"),
                         xCoordinate, yCoordinate,
-                        rendTileSize, elevations,
-                        elevHeight);
+                        rendTileSize, elevations);
                 }
 
                 if (xCoordinate ==
@@ -474,7 +472,7 @@ namespace Forradia::Theme0::GameplayCore
                         k_renderIDGroundSymbolHoveredTile,
                         Hash("HoveredTile"), xCoordinate,
                         yCoordinate, rendTileSize,
-                        elevations, elevHeight, true);
+                        elevations, true);
                 }
             }
         }

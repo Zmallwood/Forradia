@@ -26,8 +26,7 @@ namespace Forradia
 {
     void ModelRenderer::DrawModel(int modelNameHash,
                                   float x, float y,
-                                  float elevation,
-                                  float elevationHeight)
+                                  float elevation)
     {
         // Setup state.
 
@@ -212,6 +211,11 @@ namespace Forradia
 
             m_operationsCache[modelNameHash] = entry;
         }
+
+        // Get the elevation height.
+
+        auto elevationHeight{_<Theme0::Theme0Properties>()
+                                 .GetElevationHeight()};
 
         // Calculate the model matrix. This matrix differs
         // between different rendering operations, even

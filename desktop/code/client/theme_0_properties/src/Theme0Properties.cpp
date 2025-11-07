@@ -55,4 +55,12 @@ namespace Forradia::Theme0
 
         return 0.8f;
     }
+
+    float Theme0Properties::GetElevationHeight() const
+    {
+        // Return the height of one unit of elevation in
+        // opengl 3D space.
+
+        return 0.1f;
+    }
 }

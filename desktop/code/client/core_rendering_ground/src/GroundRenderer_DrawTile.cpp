@@ -19,8 +19,7 @@ namespace Forradia
     void GroundRenderer::DrawTile(
         int uniqueRenderID, int imageNameHash,
         int xCoordinate, int yCoordinate, float tileSize,
-        const Vector<float> &elevations,
-        float elevationHeight, bool forceUpdate)
+        const Vector<float> &elevations, bool forceUpdate)
     {
         // TODO: Set viewport and configure blending etc.
         // outside the per-tile-loop as settings on every
@@ -112,7 +111,7 @@ namespace Forradia
             auto verticesNoNormals{
                 this->CalcTileVerticesNoNormals(
                     xCoordinate, yCoordinate, tileSize,
-                    elevations, elevationHeight)};
+                    elevations)};
 
             // Define the number of vertices and indices.
 

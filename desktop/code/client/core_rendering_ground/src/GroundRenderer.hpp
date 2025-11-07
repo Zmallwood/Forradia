@@ -37,7 +37,6 @@ namespace Forradia
         /// @param yCoordinate The y coordinate.
         /// @param tileSize The tile size.
         /// @param elevations The elevations.
-        /// @param elevationHeight The elevation height.
         /// @param forceUpdate Whether to force update the
         /// tile.
         ///
@@ -45,7 +44,6 @@ namespace Forradia
                       int xCoordinate, int yCoordinate,
                       float tileSize,
                       const Vector<float> &elevations,
-                      float elevationHeight,
                       bool forceUpdate = false);
 
         ///
@@ -111,13 +109,12 @@ namespace Forradia
         /// @param yCoordinate The y coordinate.
         /// @param tileSize The tile size.
         /// @param elevations The elevations.
-        /// @param elevationHeight The elevation height.
         /// @return The vertices for a tile without normals.
         ///
         Vector<float> CalcTileVerticesNoNormals(
             int xCoordinate, int yCoordinate,
-            float tileSize, const Vector<float> &elevations,
-            float elevationHeight);
+            float tileSize,
+            const Vector<float> &elevations);
 
         ///
         /// Calculates the vertices for a tile with normals.

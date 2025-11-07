@@ -6,12 +6,13 @@
 
 #include "GroundRenderer.hpp"
 
+#include "Theme0Properties.hpp"
+
 namespace Forradia
 {
     Vector<float> GroundRenderer::CalcTileVerticesNoNormals(
         int xCoordinate, int yCoordinate, float tileSize,
-        const Vector<float> &elevations,
-        float elevationHeight)
+        const Vector<float> &elevations)
     {
         // Calculate the x and y coordinates and width and
         // height in opengl space for the tile.
@@ -23,6 +24,11 @@ namespace Forradia
         auto width{tileSize};
 
         auto height{tileSize};
+
+        // Get the elevation height.
+
+        auto elevationHeight{_<Theme0::Theme0Properties>()
+                                 .GetElevationHeight()};
 
         // Return the nine vertices.
 

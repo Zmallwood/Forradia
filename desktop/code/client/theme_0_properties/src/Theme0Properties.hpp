@@ -59,5 +59,13 @@ namespace Forradia::Theme0
         /// space.
         ///
         float GetTileSize() const;
+
+        ///
+        /// Get the height of one unit of elevation in
+        /// opengl 3D space.
+        ///
+        /// @return The height of one unit of elevation.
+        ///
+        float GetElevationHeight() const;
     };
 }

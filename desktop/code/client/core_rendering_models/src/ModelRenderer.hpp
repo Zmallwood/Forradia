@@ -12,47 +12,97 @@
 
 namespace Forradia
 {
+    ///
+    /// Renders models from the model bank in 3D space.
+    ///
     class ModelRenderer : public RendererBase
     {
       public:
+        ///
+        /// Destructor.
+        ///
         ~ModelRenderer()
         {
             this->Cleanup();
         }
 
+        ///
+        /// Draws a model in 3D space.
+        ///
+        /// @param modelNameHash The hash of the model to
+        /// draw.
+        /// @param x The x coordinate of the model.
+        /// @param y The y coordinate of the model.
+        /// @param elevations The elevations of the tile
+        /// where the model is located.
+        ///
         void DrawModel(int modelNameHash, float x, float y,
-                       float elevations,
-                       float elevationHeight);
+                       float elevations);
 
       protected:
+        ///
+        /// Gets the vertex shader source.
+        ///
         String GetVSSource() const override;
 
+        ///
+        /// Gets the fragment shader source.
+        ///
         String GetFSSource() const override;
 
+        ///
+        /// Additional initialization for this derived
+        /// class.
+        ///
         void InitializeDerived() override;
 
+        ///
+        /// Sets up the attribute layout.
+        ///
         void SetupAttributeLayout() const override;
 
       private:
+        ///
+        /// Cleans up the renderer.
+        ///
         void Cleanup();
 
+        ///
+        /// Sets up the state for the renderer.
+        ///
         void SetupState() const;
 
+        ///
+        /// Restores the state for the renderer.
+        ///
         void RestoreState() const;
 
+        ///
+        /// Checks if the drawing operation is cached.
+        ///
+        /// @param modelNameHash The hash of the model to
+        /// check.
+        /// @return True if the drawing operation is cached,
+        /// false otherwise.
+        ///
         bool
         DrawingOperationIsCached(int modelNameHash) const;
 
-        static constexpr float k_modelScale{0.25f};
+        static constexpr float k_modelScale{
+            0.25f}; ///< Global scale factor for models.
 
-        std::map<int, ModelRenderingOperation>
-            m_operationsCache;
+        std::map<
+            int,
+            ModelRenderingOperation> ///< The operations
+                                     ///< cache.
+                                         m_operationsCache;
 
-        GLint m_layoutLocationProjectionMatrix; /// < The
-                                                /// location
-                                                /// of the
-                                                /// projection
-                                                /// matrix.
+        GLint
+            m_layoutLocationProjectionMatrix; /// < The
+                                              /// location
+                                              /// of the
+                                              /// projection
+                                              /// matrix.
 
         GLint m_layoutLocationViewMatrix; /// < The location
                                           /// of the view
