@@ -19,17 +19,33 @@ int main(int argc, char **argv)
     using namespace Forradia;
     using namespace Theme0;
 
-    //auto c {Palette::GetColor<Hash("Black")>()};
+    // std::cout << "GroundGrass: "
+    //           << static_cast<uint64_t>(Hash("GroundGrass"))
+    //           << std::endl;
+    // std::cout << "GroundRock: "
+    //           << static_cast<uint64_t>(Hash("GroundRock"))
+    //           << std::endl;
+    // std::cout << "GroundDirt: "
+    //           << static_cast<uint64_t>(Hash("GroundDirt"))
+    //           << std::endl;
+    // std::cout << "GroundWater: "
+    //           << static_cast<uint64_t>(Hash("GroundWater"))
+    //           << std::endl;
 
-    //static_assert(Palette::ColorExists<123>());
-
-    //auto colorExists {_<Palette>().ColorExists("Red")};
-    //const Palette p = Palette();
-    //static_assert(p.ColorExists("Red"));
-    //std::cout << colorExists << std::endl;
-    //auto color {_<Palette>().GetColor("Black")};
-
-    //auto c {GET_COLOR(Black)};
+    // std::cout << "ObjectFirTree: "
+    //           << static_cast<uint64_t>(
+    //                  Hash("ObjectFirTree"))
+    //           << std::endl;
+    // std::cout << "ObjectBirchTree: "
+    //           << static_cast<uint64_t>(
+    //                  Hash("ObjectBirchTree"))
+    //           << std::endl;
+    // std::cout << "ObjectBush1: "
+    //           << static_cast<uint64_t>(Hash("ObjectBush1"))
+    //           << std::endl;
+    // std::cout << "ObjectBush2: "
+    //           << static_cast<uint64_t>(Hash("ObjectBush2"))
+    //           << std::endl;
 
     _<Engine>().Initialize(
         _<Theme0Properties>().GetGameWindowTitle(),
