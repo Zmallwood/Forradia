@@ -75,8 +75,6 @@ namespace Forradia::Theme0::GameplayCore
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        auto extraRows{8};
-
         auto worldAreaSize{worldArea->GetSize()};
 
         auto hoveredCoordinate{
@@ -94,8 +92,7 @@ namespace Forradia::Theme0::GameplayCore
         auto rendTileSize{
             _<Theme0Properties>().GetTileSize()};
 
-        for (auto y = -extraRows;
-             y < gridSize.height + extraRows; y++)
+        for (auto y = 0; y < gridSize.height; y++)
         {
             for (auto x = 0; x < gridSize.width; x++)
             {
@@ -443,7 +440,6 @@ namespace Forradia::Theme0::GameplayCore
                         .at(yCoordinate),
                     ground, xCoordinate, yCoordinate,
                     rendTileSize, elevations, elevHeight);
-
 
                 auto waterDepth{tile->GetWaterDepth()};
 

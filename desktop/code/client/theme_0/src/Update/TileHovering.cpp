@@ -45,10 +45,7 @@ namespace Forradia::Theme0::GameplayCore
 
         auto gridSize{_<Theme0Properties>().GetGridSize()};
 
-        auto extraRows{8};
-
-        for (auto y = -extraRows;
-             y < gridSize.height + extraRows; y++)
+        for (auto y = 0; y < gridSize.height; y++)
         {
             for (auto x = 0; x < gridSize.width; x++)
             {
