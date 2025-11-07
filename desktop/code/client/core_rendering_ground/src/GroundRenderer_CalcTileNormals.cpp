@@ -11,10 +11,10 @@ namespace Forradia
     Vector<glm::vec3> GroundRenderer::CalcTileNormals(
         const Vector<float> &verticesNoNormals)
     {
-        Vector<glm::vec3> normals;
-
         constexpr size_t k_vertexStride = 8;
+
         constexpr size_t k_requiredVertices = 9;
+
         constexpr size_t k_minArraySize =
             k_requiredVertices * k_vertexStride;
 
@@ -24,80 +24,46 @@ namespace Forradia
                 "Insufficient vertex data.");
         }
 
-        auto &_00x{
-            verticesNoNormals[0 * k_vertexStride + 0]};
-        auto &_00y{
-            verticesNoNormals[0 * k_vertexStride + 1]};
-        auto &_00z{
-            verticesNoNormals[0 * k_vertexStride + 2]};
-        auto &_10x{
-            verticesNoNormals[1 * k_vertexStride + 0]};
-        auto &_10y{
-            verticesNoNormals[1 * k_vertexStride + 1]};
-        auto &_10z{
-            verticesNoNormals[1 * k_vertexStride + 2]};
-        auto &_20x{
-            verticesNoNormals[2 * k_vertexStride + 0]};
-        auto &_20y{
-            verticesNoNormals[2 * k_vertexStride + 1]};
-        auto &_20z{
-            verticesNoNormals[2 * k_vertexStride + 2]};
-        auto &_01x{
-            verticesNoNormals[3 * k_vertexStride + 0]};
-        auto &_01y{
-            verticesNoNormals[3 * k_vertexStride + 1]};
-        auto &_01z{
-            verticesNoNormals[3 * k_vertexStride + 2]};
-        auto &_11x{
-            verticesNoNormals[4 * k_vertexStride + 0]};
-        auto &_11y{
-            verticesNoNormals[4 * k_vertexStride + 1]};
-        auto &_11z{
-            verticesNoNormals[4 * k_vertexStride + 2]};
-        auto &_21x{
-            verticesNoNormals[5 * k_vertexStride + 0]};
-        auto &_21y{
-            verticesNoNormals[5 * k_vertexStride + 1]};
-        auto &_21z{
-            verticesNoNormals[5 * k_vertexStride + 2]};
-        auto &_02x{
-            verticesNoNormals[6 * k_vertexStride + 0]};
-        auto &_02y{
-            verticesNoNormals[6 * k_vertexStride + 1]};
-        auto &_02z{
-            verticesNoNormals[6 * k_vertexStride + 2]};
-        auto &_12x{
-            verticesNoNormals[7 * k_vertexStride + 0]};
-        auto &_12y{
-            verticesNoNormals[7 * k_vertexStride + 1]};
-        auto &_12z{
-            verticesNoNormals[7 * k_vertexStride + 2]};
-        auto &_22x{
-            verticesNoNormals[8 * k_vertexStride + 0]};
-        auto &_22y{
-            verticesNoNormals[8 * k_vertexStride + 1]};
-        auto &_22z{
-            verticesNoNormals[8 * k_vertexStride + 2]};
+        std::map<int, std::map<int, glm::vec3>> v;
 
-        glm::vec3 v00 = {_00x, _00y, _00z};
-        glm::vec3 v10 = {_10x, _10y, _10z};
-        glm::vec3 v20 = {_20x, _20y, _20z};
-        glm::vec3 v01 = {_01x, _01y, _01z};
-        glm::vec3 v11 = {_11x, _11y, _11z};
-        glm::vec3 v21 = {_21x, _21y, _21z};
-        glm::vec3 v02 = {_02x, _02y, _02z};
-        glm::vec3 v12 = {_12x, _12y, _12z};
-        glm::vec3 v22 = {_22x, _22y, _22z};
+        for (auto y = 0; y < 3; y++)
+        {
+            for (auto x = 0; x < 3; x++)
+            {
+                auto i{y * 3 + x};
 
-        glm::vec3 normal00 = ComputeNormal(v10, v00, v01);
-        glm::vec3 normal10 = ComputeNormal(v20, v10, v11);
-        glm::vec3 normal11 = ComputeNormal(v21, v11, v12);
-        glm::vec3 normal01 = ComputeNormal(v11, v01, v02);
+                auto vX{
+                    verticesNoNormals[i * k_vertexStride +
+                                      0]};
+                auto vY{
+                    verticesNoNormals[i * k_vertexStride +
+                                      1]};
+                auto vZ{
+                    verticesNoNormals[i * k_vertexStride +
+                                      2]};
+
+                v[x][y] = glm::vec3{vX, vY, vZ};
+            }
+        }
+
+        auto normal00{
+            ComputeNormal(v[1][0], v[0][0], v[0][1])};
+
+        auto normal10{
+            ComputeNormal(v[2][0], v[1][0], v[1][1])};
+
+        auto normal11{
+            ComputeNormal(v[2][1], v[1][1], v[1][2])};
+
+        auto normal01{
+            ComputeNormal(v[1][1], v[0][1], v[0][2])};
 
         normal00.z *= -1.0f;
         normal10.z *= -1.0f;
         normal11.z *= -1.0f;
         normal01.z *= -1.0f;
+
+        Vector<glm::vec3> normals;
 
         normals.push_back(normal00);
         normals.push_back(normal10);

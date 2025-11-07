@@ -8,13 +8,16 @@
 
 namespace Forradia
 {
+    ///
+    /// A rendering operation for a ground tile.
+    ///
     class GroundRenderingOperation
     {
       public:
-        GLuint vao;
+        GLuint vao; ///< Vertex array object.
 
-        GLuint ibo;
+        GLuint ibo; ///< Index buffer object.
 
-        GLuint vbo;
+        GLuint vbo; ///< Vertex buffer object.
     };
 }

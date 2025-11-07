@@ -30,7 +30,7 @@ namespace Forradia::Theme0
         // Return the size of the grid rendered by the
         // WorldView.
 
-        return {30, 35};
+        return {35, 35};
     }
 
     Size Theme0Properties::GetBaseWorldAreaSize() const
