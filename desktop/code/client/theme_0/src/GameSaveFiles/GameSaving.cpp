@@ -71,10 +71,8 @@ namespace Forradia::Theme0
                 tileJson["y"] = y;
                 tileJson["elevation"] =
                     tile->GetElevation();
-                tileJson["ground"] = static_cast<uint64_t>(
-                    tile->GetGround());
-
-                auto groundHash{tile->GetGround()};
+                tileJson["ground"] =
+                    GetNameFromAnyHash(tile->GetGround());
 
                 // Serialize objects on this tile
                 auto objectsStack{tile->GetObjectsStack()};
@@ -91,7 +89,7 @@ namespace Forradia::Theme0
                         {
                             nlohmann::json objectJson;
                             objectJson["type"] =
-                                static_cast<uint64_t>(
+                                GetNameFromAnyHash(
                                     object->GetType());
                             tileJson["objects"].push_back(
                                 objectJson);
@@ -99,59 +97,33 @@ namespace Forradia::Theme0
                     }
                 }
 
+                // Serialize creature on this tile
+                auto creature{tile->GetCreature()};
+                if (creature)
+                {
+                    nlohmann::json creatureJson;
+                    creatureJson["type"] =
+                        GetNameFromAnyHash(
+                            creature->GetType());
+                    tileJson["creature"] = creatureJson;
+                }
+
                 // Serialize robot on this tile
                 auto robot{tile->GetRobot()};
                 if (robot)
                 {
                     nlohmann::json robotJson;
-                    robotJson["type"] =
-                        static_cast<uint64_t>(
-                            robot->GetType());
+                    robotJson["type"] = GetNameFromAnyHash(
+                        robot->GetType());
                     robotJson["position"]["x"] = x;
                     robotJson["position"]["y"] = y;
+                    auto origin{robot->GetOrigin()};
+                    robotJson["origin"]["x"] = origin.x;
+                    robotJson["origin"]["y"] = origin.y;
                     tileJson["robot"] = robotJson;
                 }
 
                 jsonData["tiles"].push_back(tileJson);
-            }
-        }
-
-        // Serialize robots from WorldArea
-        auto &robots{worldArea->GetRobotsMirrorRef()};
-        jsonData["robots"] = nlohmann::json::array();
-
-        for (auto &[robot, position] : robots)
-        {
-            if (robot)
-            {
-                nlohmann::json robotJson;
-                robotJson["type"] =
-                    static_cast<uint64_t>(robot->GetType());
-                robotJson["position"]["x"] = position.x;
-                robotJson["position"]["y"] = position.y;
-                auto origin{robot->GetOrigin()};
-                robotJson["origin"]["x"] = origin.x;
-                robotJson["origin"]["y"] = origin.y;
-                jsonData["robots"].push_back(robotJson);
-            }
-        }
-
-        // Serialize creatures from WorldArea
-        auto &creatures{worldArea->GetCreaturesMirrorRef()};
-        jsonData["creatures"] = nlohmann::json::array();
-
-        for (auto &[creature, position] : creatures)
-        {
-            if (creature)
-            {
-                nlohmann::json creatureJson;
-                creatureJson["type"] =
-                    static_cast<uint64_t>(
-                        creature->GetType());
-                creatureJson["position"]["x"] = position.x;
-                creatureJson["position"]["y"] = position.y;
-                jsonData["creatures"].push_back(
-                    creatureJson);
             }
         }
 
@@ -194,6 +166,10 @@ namespace Forradia::Theme0
         }
 
         worldArea->Reset();
+
+        auto &robots{worldArea->GetRobotsMirrorRef()};
+
+        auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
         if (jsonData.contains("size"))
         {
@@ -239,8 +215,8 @@ namespace Forradia::Theme0
 
                 if (tileJson.contains("ground"))
                 {
-                    auto groundHash{
-                        tileJson["ground"].get<uint64_t>()};
+                    auto groundHash{Hash(
+                        tileJson["ground"].get<String>())};
                     tile->SetGround(groundHash);
                 }
 
@@ -258,9 +234,9 @@ namespace Forradia::Theme0
                         {
                             if (objectJson.contains("type"))
                             {
-                                auto objectType{
+                                auto objectType{Hash(
                                     objectJson["type"]
-                                        .get<uint64_t>()};
+                                        .get<String>())};
 
                                 // Check if this is a
                                 // TreeObject type and
@@ -298,75 +274,42 @@ namespace Forradia::Theme0
                         }
                     }
                 }
-            }
-        }
 
-        // Load robots from WorldArea
-        if (jsonData.contains("robots") &&
-            jsonData["robots"].is_array())
-        {
-            auto &robots{worldArea->GetRobotsMirrorRef()};
-
-            for (const auto &robotJson : jsonData["robots"])
-            {
-                if (!robotJson.contains("type") ||
-                    !robotJson.contains("position") ||
-                    !robotJson.contains("origin"))
+                if (tileJson.contains("creature"))
                 {
-                    continue;
+                    auto creatureType{
+                        Hash(tileJson["creature"]["type"]
+                                 .get<String>())};
+
+                    auto creature{
+                        std::make_shared<Creature>(
+                            creatureType)};
+
+                    tile->SetCreature(creature);
+
+                    creatures.insert({creature, {x, y}});
                 }
 
-                auto robotType{
-                    robotJson["type"].get<uint64_t>()};
-
-                if (!robotJson["position"].contains("x") ||
-                    !robotJson["position"].contains("y"))
+                if (tileJson.contains("robot"))
                 {
-                    continue;
+                    auto robotType{
+                        Hash(tileJson["robot"]["type"]
+                                 .get<String>())};
+
+                    auto originX{
+                        tileJson["robot"]["origin"]["x"]
+                            .get<int>()};
+                    auto originY{
+                        tileJson["robot"]["origin"]["y"]
+                            .get<int>()};
+
+                    auto robot{std::make_shared<Robot>(
+                        robotType, originX, originY)};
+
+                    tile->SetRobot(robot);
+
+                    robots.insert({robot, {x, y}});
                 }
-
-                auto positionX{
-                    robotJson["position"]["x"].get<int>()};
-                auto positionY{
-                    robotJson["position"]["y"].get<int>()};
-
-                if (!worldArea->IsValidCoordinate(
-                        positionX, positionY))
-                {
-                    continue;
-                }
-
-                if (!robotJson["origin"].contains("x") ||
-                    !robotJson["origin"].contains("y"))
-                {
-                    continue;
-                }
-
-                auto originX{
-                    robotJson["origin"]["x"].get<int>()};
-                auto originY{
-                    robotJson["origin"]["y"].get<int>()};
-
-                auto tile{worldArea->GetTile(positionX,
-                                             positionY)};
-
-                if (!tile || tile->GetRobot())
-                {
-                    continue;
-                }
-
-                // Create robot with type hash and
-                // origin
-                auto newRobot{std::make_shared<Robot>(
-                    static_cast<int>(robotType), originX,
-                    originY)};
-
-                // Set robot on tile
-                tile->SetRobot(newRobot);
-
-                // Insert robot into robotsMirror
-                robots.insert(
-                    {newRobot, {positionX, positionY}});
             }
         }
     }

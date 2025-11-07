@@ -14,7 +14,7 @@ namespace Forradia::Theme0
     class Creature
     {
       public:
-        Creature(int type_hash) : m_type(type_hash)
+        Creature(int typeHash) : m_type(typeHash)
         {
             this->Initialize();
         }
@@ -23,10 +23,10 @@ namespace Forradia::Theme0
         /// Constructor. Creates a creature of the given
         /// type.
         ///
-        /// @param type_name The creature type by name.
+        /// @param typeName The creature type by name.
         ///
-        Creature(StringView type_name)
-            : m_type{Hash(type_name)}
+        Creature(StringView typeName)
+            : m_type{Hash(typeName)}
         {
             this->Initialize();
         }

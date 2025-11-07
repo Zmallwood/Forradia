@@ -38,11 +38,70 @@ namespace Forradia::Theme0
         return "GroundCobbleStone";
     }
 
+    template <>
+    String GetNameFromHash<Hash("ObjectFirTree")>()
+    {
+        return "ObjectFirTree";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectBirchTree")>()
+    {
+        return "ObjectBirchTree";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectBush1")>()
+    {
+        return "ObjectBush1";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectBush2")>()
+    {
+        return "ObjectBush2";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectStoneBoulder")>()
+    {
+        return "ObjectStoneBoulder";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectPinkFlower")>()
+    {
+        return "ObjectPinkFlower";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("ObjectTallGrass")>()
+    {
+        return "ObjectTallGrass";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("CreatureWhiteRabbit")>()
+    {
+        return "CreatureWhiteRabbit";
+    }
+
+    template <>
+    String GetNameFromHash<Hash("RobotMechWolf")>()
+    {
+        return "RobotMechWolf";
+    }
+
     String GetNameFromAnyHash(int hash)
     {
-        static constexpr std::array<StringView, 5> names{
-            "GroundGrass", "GroundWater", "GroundRock",
-            "GroundDirt", "GroundCobbleStone"};
+        static constexpr std::array<StringView, 14> names{
+            "GroundGrass",         "GroundWater",
+            "GroundRock",          "GroundDirt",
+            "GroundCobbleStone",   "ObjectFirTree",
+            "ObjectBirchTree",     "ObjectBush1",
+            "ObjectBush2",         "ObjectStoneBoulder",
+            "ObjectPinkFlower",    "ObjectTallGrass",
+            "CreatureWhiteRabbit", "RobotMechWolf"};
 
         auto nameResults =
             [&]<std::size_t... I>(std::index_sequence<I...>)

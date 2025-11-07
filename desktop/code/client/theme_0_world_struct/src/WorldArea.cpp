@@ -8,6 +8,8 @@
 
 #include "Tile.hpp"
 
+#include "ObjectsStack.hpp"
+
 namespace Forradia::Theme0
 {
     void WorldArea::Initialize(Size worldAreaSize,
@@ -50,6 +52,7 @@ namespace Forradia::Theme0
                 tile->SetGround(Hash("GroundGrass"));
                 tile->SetElevation(0.0f);
                 tile->SetWaterDepth(0);
+                tile->GetObjectsStack()->ClearObjects();
             }
         }
     }
