@@ -29,36 +29,17 @@ namespace Forradia
                                   float elevation,
                                   float elevationHeight)
     {
+        // Setup state.
+
         this->SetupState();
-
-        auto model{_<ModelBank>().GetModel(modelNameHash)};
-
-        auto &meshes{model->GetMeshesRef()};
 
         GLuint vao;
         GLuint ibo;
         GLuint vbo;
 
-        auto needCreateBuffers{false};
-
-        if (this->DrawingOperationIsCached(modelNameHash))
-        {
-            needCreateBuffers = false;
-        }
-        else
-        {
-            needCreateBuffers = true;
-
-            glGenVertexArrays(1, &vao);
-
-            glGenBuffers(1, &vbo);
-
-            glGenBuffers(1, &ibo);
-        }
-
         auto needFillBuffers{false};
 
-        if (!needCreateBuffers)
+        if (this->DrawingOperationIsCached(modelNameHash))
         {
             auto &entry{
                 m_operationsCache.at(modelNameHash)};
@@ -77,6 +58,12 @@ namespace Forradia
         }
         else
         {
+            glGenVertexArrays(1, &vao);
+
+            glGenBuffers(1, &vbo);
+
+            glGenBuffers(1, &ibo);
+
             glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -95,6 +82,10 @@ namespace Forradia
 
             needFillBuffers = true;
         }
+
+        auto model{_<ModelBank>().GetModel(modelNameHash)};
+
+        auto &meshes{model->GetMeshesRef()};
 
         if (needFillBuffers)
         {
