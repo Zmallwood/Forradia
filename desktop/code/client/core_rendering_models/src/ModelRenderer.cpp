@@ -81,4 +81,10 @@ namespace Forradia
 
         glEnableVertexAttribArray(2);
     }
+
+    bool ModelRenderer::DrawingOperationIsCached(
+        int modelNameHash) const
+    {
+        return m_operationsCache.contains(modelNameHash);
+    }
 }

@@ -381,9 +381,9 @@ namespace Forradia::Theme0::GameplayCore
                     {
                         _<ModelRenderer>().DrawModel(
                             objectType,
-                            (xCoordinate)*rendTileSize -
+                            (xCoordinate)*rendTileSize +
                                 rendTileSize / 2,
-                            (yCoordinate)*rendTileSize -
+                            (yCoordinate)*rendTileSize +
                                 rendTileSize / 2,
                             elevationMax, elevHeight);
                     }
@@ -400,9 +400,9 @@ namespace Forradia::Theme0::GameplayCore
 
                     _<ModelRenderer>().DrawModel(
                         creatureType,
-                        (xCoordinate)*rendTileSize -
+                        (xCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        (yCoordinate)*rendTileSize -
+                        (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
                         elevationMax, elevHeight);
                 }
@@ -417,9 +417,9 @@ namespace Forradia::Theme0::GameplayCore
 
                     _<ModelRenderer>().DrawModel(
                         robotType,
-                        (xCoordinate)*rendTileSize -
+                        (xCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        (yCoordinate)*rendTileSize -
+                        (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
                         elevationMax, elevHeight);
                 }
@@ -431,9 +431,9 @@ namespace Forradia::Theme0::GameplayCore
                 {
                     _<ModelRenderer>().DrawModel(
                         Hash("PlayerFemale"),
-                        (xCoordinate)*rendTileSize -
+                        (xCoordinate)*rendTileSize +
                             rendTileSize / 2,
-                        (yCoordinate)*rendTileSize -
+                        (yCoordinate)*rendTileSize +
                             rendTileSize / 2,
                         elevationMax, elevHeight);
                 }

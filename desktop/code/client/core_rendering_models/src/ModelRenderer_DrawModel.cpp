@@ -31,12 +31,6 @@ namespace Forradia
     {
         this->SetupState();
 
-        x += _<Theme0::Theme0Properties>().GetTileSize() *
-             4.0f / 2.0f;
-
-        y += _<Theme0::Theme0Properties>().GetTileSize() *
-             4.0f / 2.0f;
-
         auto model{_<ModelBank>().GetModel(modelNameHash)};
 
         auto &meshes{model->GetMeshesRef()};
@@ -66,8 +60,8 @@ namespace Forradia
 
         if (!needCreateBuffers)
         {
-            auto &entry =
-                m_operationsCache.at(modelNameHash);
+            auto &entry{
+                m_operationsCache.at(modelNameHash)};
 
             vao = entry.vao;
 
@@ -97,12 +91,6 @@ namespace Forradia
 
             entry.vbo = vbo;
 
-            entry.x = x;
-
-            entry.y = y;
-
-            entry.z = elevation;
-
             m_operationsCache[modelNameHash] = entry;
 
             needFillBuffers = true;
@@ -110,7 +98,7 @@ namespace Forradia
 
         if (needFillBuffers)
         {
-            //std::cout << GetTicks() << std::endl;
+            // std::cout << GetTicks() << std::endl;
             Vector<unsigned short> indicesVector;
 
             Vector<float> verticesVector;
@@ -176,38 +164,40 @@ namespace Forradia
 
             this->SetupAttributeLayout();
 
-            auto &entry =
-                m_operationsCache.at(modelNameHash);
+            auto &entry{
+                m_operationsCache.at(modelNameHash)};
 
             entry.verticesCount = verticesCount;
         }
 
-        auto &entry = m_operationsCache.at(modelNameHash);
+        auto &entry{m_operationsCache.at(modelNameHash)};
 
-        glm::mat4 modelMatrix = glm::mat4(1.0f);
+        auto modelMatrix{glm::mat4(1.0f)};
 
         modelMatrix = glm::translate(
             modelMatrix,
             glm::vec3(x, y, elevation * elevationHeight));
 
-        auto viewMatrix = _<Camera>().GetViewMatrix();
+        auto viewMatrix{_<Camera>().GetViewMatrix()};
 
-        auto projectionMatrix =
-            _<Camera>().GetProjectionMatrix();
+        auto projectionMatrix{
+            _<Camera>().GetProjectionMatrix()};
 
-        GLuint matrixProjection = glGetUniformLocation(
+        auto matrixProjection{glGetUniformLocation(
             GetShaderProgram()->GetProgramID(),
-            "projection");
+            "projection")};
+
         glUniformMatrix4fv(matrixProjection, 1, GL_FALSE,
                            &projectionMatrix[0][0]);
 
-        GLuint matrixModel = glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "model");
+        auto matrixModel{glGetUniformLocation(
+            GetShaderProgram()->GetProgramID(), "model")};
+
         glUniformMatrix4fv(matrixModel, 1, GL_FALSE,
                            &modelMatrix[0][0]);
 
-        GLuint matrixView = glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "view");
+        auto matrixView{glGetUniformLocation(
+            GetShaderProgram()->GetProgramID(), "view")};
 
         glUniformMatrix4fv(matrixView, 1, GL_FALSE,
                            &viewMatrix[0][0]);
@@ -231,11 +221,5 @@ namespace Forradia
                        GL_UNSIGNED_SHORT, nullptr);
 
         this->RestoreState();
-    }
-
-    bool ModelRenderer::DrawingOperationIsCached(
-        int modelNameHash) const
-    {
-        return m_operationsCache.contains(modelNameHash);
     }
 }
