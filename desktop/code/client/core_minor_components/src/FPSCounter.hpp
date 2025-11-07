@@ -21,6 +21,7 @@ namespace Forradia
 
         ///
         /// Gets the current FPS.
+        ///
         /// @return The current FPS.
         ///
         auto GetFPS() const

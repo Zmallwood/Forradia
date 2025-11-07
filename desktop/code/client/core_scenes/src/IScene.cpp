@@ -8,7 +8,6 @@
 
 namespace Forradia
 {
-
     void IScene::Initialize()
     {
         m_gui =

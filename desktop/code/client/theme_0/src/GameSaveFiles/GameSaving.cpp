@@ -249,23 +249,31 @@ namespace Forradia::Theme0
                                     objectJson["type"]
                                         .get<uint64_t>()};
 
-                                // Check if this is a TreeObject type
-                                // and create the appropriate object type
-                                if (objectType == Hash("ObjectFirTree"))
+                                // Check if this is a
+                                // TreeObject type and
+                                // create the appropriate
+                                // object type
+                                if (objectType ==
+                                    Hash("ObjectFirTree"))
                                 {
-                                    objectsStack->AddObject<TreeObject>(
+                                    objectsStack->AddObject<
+                                        TreeObject>(
                                         "ObjectFirTree");
                                 }
-                                else if (objectType == Hash("ObjectBirchTree"))
+                                else if (objectType ==
+                                         Hash("ObjectBirchT"
+                                              "ree"))
                                 {
-                                    objectsStack->AddObject<TreeObject>(
+                                    objectsStack->AddObject<
+                                        TreeObject>(
                                         "ObjectBirchTree");
                                 }
                                 else
                                 {
                                     // Regular Object type
                                     objectsStack->AddObject(
-                                        static_cast<int>(objectType));
+                                        static_cast<int>(
+                                            objectType));
                                 }
                             }
                         }
