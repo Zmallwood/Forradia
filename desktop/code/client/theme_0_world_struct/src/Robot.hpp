@@ -14,7 +14,16 @@ namespace Forradia::Theme0
     class Robot
     {
       public:
-        Robot(int type_hash) : m_type(type_hash)
+        ///
+        /// Constructor. Creates a robot of the given
+        /// type.
+        ///
+        /// @param typeHash The robot type as a hash.
+        /// @param originX The x coordinate of the origin.
+        /// @param originY The y coordinate of the origin.
+        ///
+        Robot(int typeHash, int originX, int originY)
+            : m_type(typeHash), m_origin(originX, originY)
         {
             this->Initialize();
         }
@@ -23,10 +32,13 @@ namespace Forradia::Theme0
         /// Constructor. Creates a robot of the given
         /// type.
         ///
-        /// @param type_name The robot type by name.
+        /// @param typeName The robot type by name.
+        /// @param originX The x coordinate of the origin.
+        /// @param originY The y coordinate of the origin.
         ///
-        Robot(StringView type_name)
-            : m_type{Hash(type_name)}
+        Robot(StringView typeName, int originX, int originY)
+            : m_type{Hash(typeName)},
+              m_origin(originX, originY)
         {
             this->Initialize();
         }
@@ -93,6 +105,16 @@ namespace Forradia::Theme0
             m_destination = value;
         }
 
+        ///
+        /// Gets the origin of the robot.
+        ///
+        /// @return The origin of the robot.
+        ///
+        auto GetOrigin() const
+        {
+            return m_origin;
+        }
+
       private:
         ///
         /// Initializes the robot, by randomizing its
@@ -109,5 +131,7 @@ namespace Forradia::Theme0
 
         Point m_destination{-1,
                             -1}; ///< Movement destination.
+
+        Point m_origin{-1, -1}; ///< Movement origin.
     };
 }

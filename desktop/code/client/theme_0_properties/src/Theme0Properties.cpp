@@ -30,7 +30,7 @@ namespace Forradia::Theme0
         // Return the size of the grid rendered by the
         // WorldView.
 
-        return {35, 35};
+        return {45, 45};
     }
 
     Size Theme0Properties::GetBaseWorldAreaSize() const
@@ -53,7 +53,7 @@ namespace Forradia::Theme0
     {
         // Return the size of a single tile in opengl space.
 
-        return 0.8f;
+        return 1.6f;
     }
 
     float Theme0Properties::GetElevationHeight() const
@@ -61,6 +61,6 @@ namespace Forradia::Theme0
         // Return the height of one unit of elevation in
         // opengl 3D space.
 
-        return 0.1f;
+        return 0.15f;
     }
 }

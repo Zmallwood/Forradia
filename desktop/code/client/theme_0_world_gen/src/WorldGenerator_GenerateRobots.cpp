@@ -32,7 +32,7 @@ namespace Forradia::Theme0
             {
                 auto newRobot =
                     std::make_shared<Theme0::Robot>(
-                        "RobotMechWolf");
+                        "RobotMechWolf", x, y);
 
                 tile->SetRobot(newRobot);
 

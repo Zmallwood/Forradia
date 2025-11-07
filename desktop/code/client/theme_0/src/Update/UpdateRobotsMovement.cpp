@@ -43,15 +43,17 @@ namespace Forradia::Theme0::GameplayCore
                 continue;
             }
 
+            auto origin{robot->GetOrigin()};
+
             auto destination{robot->GetDestination()};
 
             if (destination.x == -1 && destination.y == -1)
             {
-                auto newDestination{position.x +
-                                    GetRandomInt(11) - 5};
+                auto newDestination{origin.x +
+                                    GetRandomInt(9) - 4};
 
-                auto newDestinationY{position.y +
-                                     GetRandomInt(11) - 5};
+                auto newDestinationY{origin.y +
+                                     GetRandomInt(9) - 4};
 
                 robot->SetDestination(
                     {newDestination, newDestinationY});

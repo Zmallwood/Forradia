@@ -32,6 +32,28 @@ namespace Forradia::Theme0
         }
     }
 
+    void WorldArea::Reset()
+    {
+        m_creaturesMirror.clear();
+        m_robotsMirror.clear();
+
+        auto size{this->GetSize()};
+
+        for (auto y = 0; y < size.height; y++)
+        {
+            for (auto x = 0; x < size.width; x++)
+            {
+                auto tile{m_tiles[x][y]};
+
+                tile->SetCreature(nullptr);
+                tile->SetRobot(nullptr);
+                tile->SetGround(Hash("GroundGrass"));
+                tile->SetElevation(0.0f);
+                tile->SetWaterDepth(0);
+            }
+        }
+    }
+
     Size WorldArea::GetSize() const
     {
         auto width{CInt(m_tiles.size())};

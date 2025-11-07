@@ -22,6 +22,8 @@ namespace Forradia::Theme0
             this->Initialize(worldAreaSize, worldScaling);
         }
 
+        void Reset();
+
         Size GetSize() const;
 
         bool IsValidCoordinate(int x, int y) const;
