@@ -148,7 +148,8 @@ namespace Forradia
 
     void GroundRenderer::InitializeDerived()
     {
-        // Get the layout location for the MVP matrix.
+        // Get the layout location for the uniform MVP
+        // matrix.
 
         m_layoutLocationMVP = glGetUniformLocation(
             GetShaderProgram()->GetProgramID(), "MVP");

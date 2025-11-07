@@ -47,12 +47,6 @@ namespace Forradia
         auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
-        //
-        // Note: For this renderer the modelNameHash can be
-        // used as a key since what changes between
-        // different rendering operations is the model
-        // matrix, not the vertex data (which is the case
-        // for the other renderers).
 
         if (this->DrawingOperationIsCached(modelNameHash))
         {
@@ -275,6 +269,8 @@ namespace Forradia
 
         glDrawElements(GL_TRIANGLES, entry.verticesCount,
                        GL_UNSIGNED_SHORT, nullptr);
+
+        // Restore the state.
 
         this->RestoreState();
     }
