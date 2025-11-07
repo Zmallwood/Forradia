@@ -420,9 +420,9 @@ namespace Forradia::Theme0::GameplayCore
                         elevationMax);
                 }
 
-                if (xCoordinate + 1 ==
+                if (xCoordinate ==
                         worldAreaSize.width - playerPos.x &&
-                    yCoordinate + 1 ==
+                    yCoordinate ==
                         worldAreaSize.height - playerPos.y)
                 {
                     _<ModelRenderer>().DrawModel(
