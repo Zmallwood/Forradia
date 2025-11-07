@@ -65,6 +65,17 @@ namespace Forradia
 
         glDepthMask(GL_TRUE);
     }
+    
+    void GroundRenderer::Reset()
+    {
+        // Clean up the renderer.
+
+        this->Cleanup();
+
+        // Clear the operations cache.
+
+        m_operationsCache.clear();
+    }
 
     void GroundRenderer::SetupAttributeLayout() const
     {
@@ -91,5 +102,14 @@ namespace Forradia
                               (void *)(sizeof(float) * 8));
 
         glEnableVertexAttribArray(3);
+    }
+
+    bool GroundRenderer::DrawingOperationIsCached(
+        int uniqueRenderID) const
+    {
+        // Check if the unique render ID is in the
+        // operations cache.
+
+        return m_operationsCache.contains(uniqueRenderID);
     }
 }

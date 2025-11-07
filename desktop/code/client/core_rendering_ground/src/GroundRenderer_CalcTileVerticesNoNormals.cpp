@@ -13,13 +13,18 @@ namespace Forradia
         const Vector<float> &elevations,
         float elevationHeight)
     {
-        auto x{tileSize * xCoordinate};
+        // Calculate the x and y coordinates and width and
+        // height in opengl space for the tile.
 
-        auto y{tileSize * yCoordinate};
+        auto x{xCoordinate * tileSize};
+
+        auto y{yCoordinate * tileSize};
 
         auto width{tileSize};
 
         auto height{tileSize};
+
+        // Return the nine vertices.
 
         // clang-format off
 
