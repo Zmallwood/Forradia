@@ -29,6 +29,8 @@ namespace Forradia
 
         String GetFSSource() const override;
 
+        void InitializeDerived() override;
+
         void SetupAttributeLayout() const override;
 
       private:
@@ -41,9 +43,24 @@ namespace Forradia
         bool
         DrawingOperationIsCached(int modelNameHash) const;
 
+        static constexpr float k_modelScale{0.25f};
+
         std::map<int, ModelRenderingOperation>
             m_operationsCache;
 
-        static constexpr float k_modelScale{0.25f};
+        GLint m_layoutLocationProjectionMatrix; /// < The
+                                                /// location
+                                                /// of the
+                                                /// projection
+                                                /// matrix.
+
+        GLint m_layoutLocationViewMatrix; /// < The location
+                                          /// of the view
+                                          /// matrix.
+
+        GLint
+            m_layoutLocationModelMatrix; /// < The location
+                                         /// of the model
+                                         /// matrix.
     };
 }

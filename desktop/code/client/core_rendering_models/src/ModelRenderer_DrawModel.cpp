@@ -236,36 +236,21 @@ namespace Forradia
         auto projectionMatrix{
             _<Camera>().GetProjectionMatrix()};
 
-        // Get the matrix projection location.
-
-        auto matrixProjection{glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(),
-            "projection")};
-
         // Upload the projection matrix to the shader.
 
-        glUniformMatrix4fv(matrixProjection, 1, GL_FALSE,
+        glUniformMatrix4fv(m_layoutLocationProjectionMatrix,
+                           1, GL_FALSE,
                            &projectionMatrix[0][0]);
-
-        // Get the matrix model location.
-
-        auto matrixModel{glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "model")};
 
         // Upload the model matrix to the shader.
 
-        glUniformMatrix4fv(matrixModel, 1, GL_FALSE,
-                           &modelMatrix[0][0]);
-
-        // Get the matrix view location.
-
-        auto matrixView{glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "view")};
+        glUniformMatrix4fv(m_layoutLocationModelMatrix, 1,
+                           GL_FALSE, &modelMatrix[0][0]);
 
         // Upload the view matrix to the shader.
 
-        glUniformMatrix4fv(matrixView, 1, GL_FALSE,
-                           &viewMatrix[0][0]);
+        glUniformMatrix4fv(m_layoutLocationViewMatrix, 1,
+                           GL_FALSE, &viewMatrix[0][0]);
 
         // Get the texture name and its hash.
 

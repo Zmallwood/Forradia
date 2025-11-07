@@ -66,6 +66,12 @@ namespace Forradia
         String GetFSSource() const override;
 
         ///
+        /// Does initialization that is specific to this
+        /// renderer.
+        ///
+        void InitializeDerived() override;
+
+        ///
         /// Sets up the attribute layout for the vertex
         /// shader.
         ///
@@ -138,5 +144,9 @@ namespace Forradia
 
         std::map<int, GroundRenderingOperation>
             m_operationsCache; ///< Operations cache.
+
+        GLint m_layoutLocationMVP; ///< Layout location for
+                                   ///< the MVP matrix in
+                                   ///< the shader.
     };
 }

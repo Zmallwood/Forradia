@@ -26,5 +26,10 @@ namespace Forradia
 
         m_shaderProgram = std::make_shared<ShaderProgram>(
             vertexShaderSource, fragmentShaderSource);
+
+        // Do additional initialization, implemented in
+        // deriving class.
+
+        this->InitializeDerived();
     }
 }

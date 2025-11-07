@@ -87,4 +87,18 @@ namespace Forradia
     {
         return m_operationsCache.contains(modelNameHash);
     }
+
+    void ModelRenderer::InitializeDerived()
+    {
+        m_layoutLocationProjectionMatrix =
+            glGetUniformLocation(
+                GetShaderProgram()->GetProgramID(),
+                "projection");
+
+        m_layoutLocationViewMatrix = glGetUniformLocation(
+            GetShaderProgram()->GetProgramID(), "view");
+
+        m_layoutLocationModelMatrix = glGetUniformLocation(
+            GetShaderProgram()->GetProgramID(), "model");
+    }
 }

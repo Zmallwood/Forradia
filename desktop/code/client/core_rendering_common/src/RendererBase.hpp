@@ -23,16 +23,6 @@ namespace Forradia
 
       protected:
         ///
-        /// Gets the shader program.
-        ///
-        /// @return
-        ///
-        auto GetShaderProgram() const
-        {
-            return m_shaderProgram;
-        }
-
-        ///
         /// Gets the vertex shader source code. This is used
         /// by Initialize() to create the shader program.
         ///
@@ -50,9 +40,27 @@ namespace Forradia
         virtual String GetFSSource() const = 0;
 
         ///
+        /// Can be used to do additional initialization
+        /// implemented in deriving class.
+        ///
+        virtual void InitializeDerived()
+        {
+        }
+
+        ///
         /// Sets up the attribute layout.
         ///
         virtual void SetupAttributeLayout() const = 0;
+
+        ///
+        /// Gets the shader program.
+        ///
+        /// @return
+        ///
+        auto GetShaderProgram() const
+        {
+            return m_shaderProgram;
+        }
 
       private:
         SharedPtr<ShaderProgram>

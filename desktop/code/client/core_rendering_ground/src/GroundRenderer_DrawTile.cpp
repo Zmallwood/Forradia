@@ -171,14 +171,9 @@ namespace Forradia
         auto mvpMatrix{projectionMatrix * viewMatrix *
                        modelMatrix};
 
-        // Get the location of the MVP matrix uniform.
-
-        auto mvpMatrixID{glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "MVP")};
-
         // Upload the MVP matrix to the shader.
 
-        glUniformMatrix4fv(mvpMatrixID, 1, GL_FALSE,
+        glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE,
                            &mvpMatrix[0][0]);
 
         // Get the texture ID and bind it.
