@@ -19,11 +19,11 @@ namespace Forradia
 
         for (auto &entry : m_operationsCache)
         {
-            glDeleteVertexArrays(1, &entry.second.vao);
-
             glDeleteBuffers(1, &entry.second.ibo);
 
             glDeleteBuffers(1, &entry.second.vbo);
+
+            glDeleteVertexArrays(1, &entry.second.vao);
         }
 
         // Clear the operations cache.
