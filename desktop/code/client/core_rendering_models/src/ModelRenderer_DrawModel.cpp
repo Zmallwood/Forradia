@@ -47,6 +47,12 @@ namespace Forradia
         auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
+        //
+        // Note: For this renderer the modelNameHash can be
+        // used as a key since what changes between
+        // different rendering operations is the model
+        // matrix, not the vertex data (which is the case
+        // for the other renderers).
 
         if (this->DrawingOperationIsCached(modelNameHash))
         {
@@ -175,9 +181,15 @@ namespace Forradia
 
             // Calculate the number of vertices and indices.
 
-            auto verticesCount{verticesVector.size() / 8};
+            constexpr auto k_floatsPerVertex{8};
+
+            auto verticesCount{verticesVector.size() /
+                               k_floatsPerVertex};
 
             auto indicesCount{indicesVector.size()};
+
+            // Upload the indices to the index buffer
+            // object.
 
             glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                          sizeof(indicesVector.data()[0]) *
@@ -185,57 +197,96 @@ namespace Forradia
                          indicesVector.data(),
                          GL_STATIC_DRAW);
 
+            // Upload the vertices to the vertex buffer
+            // object.
+
             glBufferData(GL_ARRAY_BUFFER,
                          sizeof(verticesVector.data()[0]) *
                              8 * verticesCount,
                          verticesVector.data(),
                          GL_STATIC_DRAW);
 
+            // Setup the attribute layout.
+
             this->SetupAttributeLayout();
+
+            // Update the drawing operation.
 
             entry.verticesCount = verticesCount;
 
+            // Cache the drawing operation.
+
             m_operationsCache[modelNameHash] = entry;
         }
+
+        // Calculate the model matrix. This matrix differs
+        // between different rendering operations, even
+        // though they use the same model.
 
         auto modelMatrix{glm::translate(
             glm::mat4(1.0f),
             glm::vec3(x, y, elevation * elevationHeight))};
 
+        // Get the view matrix.
+
         auto viewMatrix{_<Camera>().GetViewMatrix()};
+
+        // Get the projection matrix.
 
         auto projectionMatrix{
             _<Camera>().GetProjectionMatrix()};
+
+        // Get the matrix projection location.
 
         auto matrixProjection{glGetUniformLocation(
             GetShaderProgram()->GetProgramID(),
             "projection")};
 
+        // Upload the projection matrix to the shader.
+
         glUniformMatrix4fv(matrixProjection, 1, GL_FALSE,
                            &projectionMatrix[0][0]);
+
+        // Get the matrix model location.
 
         auto matrixModel{glGetUniformLocation(
             GetShaderProgram()->GetProgramID(), "model")};
 
+        // Upload the model matrix to the shader.
+
         glUniformMatrix4fv(matrixModel, 1, GL_FALSE,
                            &modelMatrix[0][0]);
+
+        // Get the matrix view location.
 
         auto matrixView{glGetUniformLocation(
             GetShaderProgram()->GetProgramID(), "view")};
 
+        // Upload the view matrix to the shader.
+
         glUniformMatrix4fv(matrixView, 1, GL_FALSE,
                            &viewMatrix[0][0]);
+
+        // Get the texture name and its hash.
 
         auto textureName{meshes.at(0).textures.at(0).path};
 
         auto textureNameHash{Hash(textureName)};
 
+        // Get the texture ID.
+
         auto textureID{
             _<TextureBank>().GetTexture(textureNameHash)};
 
+        // Bind the texture to the shader.
+
         glBindTexture(GL_TEXTURE_2D, textureID);
 
+        // Get the drawing operation.
+
         auto &entry{m_operationsCache.at(modelNameHash)};
+
+        // Draw the model.
 
         glDrawElements(GL_TRIANGLES, entry.verticesCount,
                        GL_UNSIGNED_SHORT, nullptr);
