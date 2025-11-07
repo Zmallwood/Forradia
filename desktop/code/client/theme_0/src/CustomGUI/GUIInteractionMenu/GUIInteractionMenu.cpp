@@ -144,7 +144,7 @@ namespace Forradia::Theme0
         if (robot)
         {
             m_entries.push_back(
-                {"Attack robot",
+                {"Battle robot",
                  GetAction<Hash("ActionTargetRobot")>()
                      .action});
         }

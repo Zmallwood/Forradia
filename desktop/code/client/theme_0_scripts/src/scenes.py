@@ -38,6 +38,7 @@ from embedded import (
     get_world_view,
     get_img_2d_rend,
     get_hash,
+    get_battle_system
 )
 
 
@@ -289,6 +290,8 @@ class MainScene(IScene):
             update_robots_movem()
 
             update_camera_zoom()
+
+            get_battle_system().update()
 
             update_mouse_movem()
 

@@ -46,6 +46,8 @@
 
 #include "Update/TileHovering.hpp"
 
+#include "Update/BattleSystem.hpp"
+
 #include "Update/UpdateKeyboardActions.hpp"
 
 #include "Update/UpdateMouseActions.hpp"
@@ -236,6 +238,11 @@ namespace Forradia::Theme0
             .def("update", &Theme0::GameplayCore::
                                TileHovering::Update);
 
+        py::class_<Theme0::GameplayCore::BattleSystem>(
+            m, "BattleSystem")
+            .def("update", &Theme0::GameplayCore::
+                               BattleSystem::Update);
+
         py::class_<Theme0::GameplayCore::CameraRotator>(
             m, "CameraRotator")
             .def("update", &Theme0::GameplayCore::
@@ -383,6 +390,15 @@ namespace Forradia::Theme0
             {
                 return _<
                     Theme0::GameplayCore::TileHovering>();
+            },
+            py::return_value_policy::reference);
+
+        m.def(
+            "get_battle_system",
+            []() -> Theme0::GameplayCore::BattleSystem &
+            {
+                return _<
+                    Theme0::GameplayCore::BattleSystem>();
             },
             py::return_value_policy::reference);
 

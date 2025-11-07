@@ -24,7 +24,7 @@
 
 #include "Object.hpp"
 
-#include "Combat.hpp"
+#include "Update/BattleSystem.hpp"
 
 namespace Forradia::Theme0
 {
@@ -346,11 +346,11 @@ namespace Forradia::Theme0
 
                     if (robot)
                     {
-                        // _<GameplayCore::Combat>()
-                        //     .SetTargetedRobot(robot);
+                        _<GameplayCore::BattleSystem>()
+                            .SetTargetedRobot(robot);
 
                         _<GUIChatBox>().Print(
-                            "You target a robot.");
+                            "You start battling a robot.");
                     }
                     else
                     {

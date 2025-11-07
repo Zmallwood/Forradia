@@ -13,13 +13,10 @@ namespace Forradia::Theme0
 
 namespace Forradia::Theme0::GameplayCore
 {
-    class Combat
+    class BattleSystem
     {
       public:
-        auto GetTargetedRobot() const
-        {
-            return m_targetedRobot;
-        }
+        void Update();
 
         void SetTargetedRobot(SharedPtr<Robot> value)
         {
