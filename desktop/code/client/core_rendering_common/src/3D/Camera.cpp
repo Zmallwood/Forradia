@@ -22,9 +22,14 @@ namespace Forradia
 {
     glm::mat4 Camera::GetViewMatrix() const
     {
+        // Compute the view matrix using the camera position
+        // and look-at point.
+
         auto cameraPosition{GetPosition()};
 
         auto cameraLookAt{GetLookAt()};
+
+        // Return the view matrix.
 
         return glm::lookAt(
             glm::vec3(cameraPosition.x, cameraPosition.y,
@@ -36,9 +41,13 @@ namespace Forradia
 
     glm::mat4 Camera::GetProjectionMatrix() const
     {
+        // Compute the projection matrix using the aspect
+        // ratio.
 
         auto aspectRatio{
             CalcAspectRatio(_<SDLDevice>().GetWindow())};
+
+        // Return the projection matrix.
 
         return glm::perspective(glm::radians(90.0f),
                                 aspectRatio, 0.1f, 100.0f);

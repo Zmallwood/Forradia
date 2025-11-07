@@ -31,6 +31,9 @@ int main(int argc, char **argv)
     // std::cout << "GroundWater: "
     //           << static_cast<uint64_t>(Hash("GroundWater"))
     //           << std::endl;
+    // std::cout << "GroundCobbleStone: "
+    //           << static_cast<uint64_t>(Hash("GroundCobbleStone"))
+    //           << std::endl;
 
     // std::cout << "ObjectFirTree: "
     //           << static_cast<uint64_t>(

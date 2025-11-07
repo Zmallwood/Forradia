@@ -16,7 +16,6 @@
 
 namespace Forradia
 {
-
     void GroundRenderer::Reset()
     {
         this->Cleanup();

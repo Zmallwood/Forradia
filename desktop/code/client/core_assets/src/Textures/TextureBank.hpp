@@ -24,7 +24,7 @@ namespace Forradia
         ///
         TextureBank()
         {
-            Initialize();
+            this->Initialize();
         }
 
         ///
@@ -32,7 +32,7 @@ namespace Forradia
         ///
         ~TextureBank()
         {
-            Cleanup();
+            this->Cleanup();
         }
 
         ///

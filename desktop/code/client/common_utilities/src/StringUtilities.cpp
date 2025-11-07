@@ -15,7 +15,8 @@ namespace Forradia
 
         String result{text.data()};
 
-        // Replace all instances of repl with repl_with.
+        // Replace all instances of the replace character
+        // with the replaceWith character.
 
         std::replace(result.begin(), result.end(), replace,
                      replaceWith);

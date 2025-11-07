@@ -35,7 +35,7 @@ namespace Forradia
         // Calculate the absolute value.
 
         auto absValue{std::abs(value)};
-        
+
         auto normalized{0};
 
         // Calculate the normalized value.
@@ -50,7 +50,8 @@ namespace Forradia
 
     float Ceil(float number, float numDecimalPlaces)
     {
-        // Calculate the ceiled value with k decimal places.
+        // Calculate the ceiled value with a given number of
+        // decimal places.
 
         auto p{std::pow(10.0, numDecimalPlaces)};
 

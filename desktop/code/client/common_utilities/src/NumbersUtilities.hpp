@@ -25,7 +25,8 @@ namespace Forradia
     int Normalize(int value);
 
     ///
-    /// Calculate the ceiled value with k decimal places.
+    /// Calculate the ceiled value with a given number of
+    /// decimal places.
     ///
     /// @param number The value to ceil.
     /// @param numDecimalPlaces The number of decimal

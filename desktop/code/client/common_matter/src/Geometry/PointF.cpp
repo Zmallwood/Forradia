@@ -12,7 +12,7 @@ namespace Forradia
     {
         // Sum the dimensions of the two points.
 
-        return {x + other.x, y + other.y};
+        return {this->x + other.x, this->y + other.y};
     }
 
     PointF PointF::operator-(const PointF &other) const
@@ -20,6 +20,6 @@ namespace Forradia
         // Subract the dimensions of the other point from
         // this point.
 
-        return {x - other.x, y - other.y};
+        return {this->x - other.x, this->y - other.y};
     }
 }

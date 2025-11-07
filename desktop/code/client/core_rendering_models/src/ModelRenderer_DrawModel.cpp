@@ -19,7 +19,8 @@
 #include "ShaderProgram.hpp"
 
 #include "3D/Camera.hpp"
-#include <glm/gtx/transform.hpp>
+
+#include "TimeUtilities.hpp"
 
 namespace Forradia
 {
@@ -79,18 +80,6 @@ namespace Forradia
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-            if (x != entry.x || y != entry.y ||
-                elevation != entry.z)
-            {
-                needFillBuffers = true;
-
-                entry.x = x;
-
-                entry.y = y;
-
-                entry.z = elevation;
-            }
         }
         else
         {
@@ -121,6 +110,7 @@ namespace Forradia
 
         if (needFillBuffers)
         {
+            //std::cout << GetTicks() << std::endl;
             Vector<unsigned short> indicesVector;
 
             Vector<float> verticesVector;

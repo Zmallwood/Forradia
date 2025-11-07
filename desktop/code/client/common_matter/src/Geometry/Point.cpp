@@ -12,6 +12,6 @@ namespace Forradia
     {
         // Compare x and y dimensions.
 
-        return other.x == x && other.y == y;
+        return other.x == this->x && other.y == this->y;
     }
 }

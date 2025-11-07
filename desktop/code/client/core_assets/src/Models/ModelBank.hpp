@@ -21,7 +21,7 @@ namespace Forradia
         ///
         ModelBank()
         {
-            Initialize();
+            this->Initialize();
         }
 
         ///
