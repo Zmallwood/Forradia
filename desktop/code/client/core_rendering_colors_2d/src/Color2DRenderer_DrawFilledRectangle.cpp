@@ -75,7 +75,6 @@ namespace Forradia
         }
         else
         {
-
             // Generate the vertex array object, index
             // buffer object and vertex buffer object.
 

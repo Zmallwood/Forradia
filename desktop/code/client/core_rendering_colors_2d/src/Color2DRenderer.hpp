@@ -26,6 +26,18 @@ namespace Forradia
             this->Cleanup();
         }
 
+        ///
+        /// Draws a filled rectangle.
+        ///
+        /// @param uniqueRenderID The unique render ID.
+        /// @param color The color of the rectangle.
+        /// @param x The x coordinate of the rectangle.
+        /// @param y The y coordinate of the rectangle.
+        /// @param width The width of the rectangle.
+        /// @param height The height of the rectangle.
+        /// @param updateExisting Whether to update the
+        /// existing operation.
+        ///
         void
         DrawFilledRectangle(int uniqueRenderID, Color color,
                             float x, float y, float width,
