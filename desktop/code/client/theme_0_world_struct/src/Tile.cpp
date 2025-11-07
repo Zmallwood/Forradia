@@ -20,12 +20,14 @@ namespace Forradia::Theme0
 
     void Tile::SetGround(int ground_hash)
     {
+        // Set the ground type provided as hash.
+
         m_ground = ground_hash;
     }
 
     void Tile::SetGround(StringView ground_name)
     {
-        // Set the ground type as hash.
+        // Set the ground type, provided by name, as hash.
 
         m_ground = Hash(ground_name);
     }
