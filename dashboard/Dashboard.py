@@ -392,9 +392,9 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "E2. Theme 0 World Generator",
+            "E2. Theme 0 World Generation",
             "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGen.code-workspace",
+            "/home/andreas/code/git/Forradia/Theme0WorldGeneration.code-workspace",
             "icons/DefaultButton.png",
             0,
             1,
