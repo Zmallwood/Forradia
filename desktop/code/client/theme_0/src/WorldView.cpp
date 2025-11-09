@@ -195,85 +195,9 @@ namespace Forradia::Theme0::GameplayCore
                 {
                     auto objectType{object->GetType()};
 
-                    if (objectType == Hash("ObjectFirTree") ||
-                        objectType == Hash("ObjectBirchTree"))
-                    {
-                        auto treeObjects{
-                            std::static_pointer_cast<Forradia::Theme0::TreeObject>(object)};
-
-                        auto trunkParts{treeObjects->GetTrunkParts()};
-
-                        auto needleTypes{treeObjects->GetNeedleTypes()};
-
-                        auto widthFactor{treeObjects->GetWidthFactor()};
-
-                        for (auto i = 0; i < trunkParts.size(); i++)
-                        {
-                            auto trunkPart{trunkParts.at(i)};
-
-                            auto needleType{needleTypes.at(i)};
-
-                            auto widthDecreaseFactor{0.5f + (trunkParts.size() - i) /
-                                                                CFloat(trunkParts.size()) / 2};
-
-                            auto treeWidth{rendTileSize * widthFactor * widthDecreaseFactor};
-
-                            auto trunkPartX{trunkPart.x};
-
-                            auto trunkPartY{trunkPart.x};
-
-                            trunkPartX *= CFloat(i) / trunkParts.size();
-
-                            trunkPartY *= CFloat(i) / trunkParts.size();
-
-                            auto trunkPartXCenter{(xCoordinate - 1) * rendTileSize -
-                                                  rendTileSize / 2 - trunkPartX * treeWidth};
-
-                            auto trunkPartYCenter{(yCoordinate - 1) * rendTileSize -
-                                                  rendTileSize / 2 - trunkPartY * treeWidth};
-
-                            auto trunkPartZ{-trunkPart.y * rendTileSize};
-
-                            auto trunkPartWidth{rendTileSize * 0.2f * widthDecreaseFactor};
-
-                            auto trunkPartHeight{rendTileSize * 0.2f};
-
-                            String trunkPartName;
-
-                            if (objectType == Hash("ObjectFirTree"))
-                            {
-                                trunkPartName = "ObjectFirTreeTrunkPar"
-                                                "t";
-                            }
-                            else if (objectType == Hash("ObjectBirchTree"))
-                            {
-                                trunkPartName = "ObjectBirchTreeTrunkPa"
-                                                "rt";
-                            }
-
-                            _<ModelRenderer>().DrawModel(Hash(trunkPartName),
-                                                         trunkPartXCenter - trunkPartWidth / 2,
-                                                         trunkPartYCenter - trunkPartWidth / 2,
-                                                         elevationAverage - trunkPartZ);
-
-                            auto needleWidth{treeWidth};
-
-                            auto needleHeight{rendTileSize};
-
-                            if (needleType)
-                            {
-                                _<ModelRenderer>().DrawModel(
-                                    needleType, trunkPartXCenter, trunkPartYCenter,
-                                    elevationAverage - trunkPartZ - needleHeight / 2);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        _<ModelRenderer>().DrawModel(
-                            objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-                    }
+                    _<ModelRenderer>().DrawModel(
+                        objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                 }
 
                 auto creature{tile->GetCreature()};

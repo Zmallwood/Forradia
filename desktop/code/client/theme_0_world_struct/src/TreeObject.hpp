@@ -13,33 +13,34 @@ namespace Forradia::Theme0
     class TreeObject : public Object
     {
       public:
-        TreeObject(StringView obj_type_name) : Object(obj_type_name)
-        {
-            this->Initialize(obj_type_name);
-        }
+        using Object::Object;
+        //     TreeObject(StringView obj_type_name) : Object(obj_type_name)
+        //     {
+        //         this->Initialize(obj_type_name);
+        //     }
 
-        auto GetTrunkParts() const
-        {
-            return m_trunkParts;
-        }
+        //     auto GetTrunkParts() const
+        //     {
+        //         return m_trunkParts;
+        //     }
 
-        auto GetNeedleTypes() const
-        {
-            return m_needleTypes;
-        }
+        //     auto GetNeedleTypes() const
+        //     {
+        //         return m_needleTypes;
+        //     }
 
-        auto GetWidthFactor() const
-        {
-            return m_widthFactor;
-        }
+        //     auto GetWidthFactor() const
+        //     {
+        //         return m_widthFactor;
+        //     }
 
-      private:
-        void Initialize(StringView obj_type_name);
+        //   private:
+        //     void Initialize(StringView obj_type_name);
 
-        Vector<PointF> m_trunkParts;
+        //     Vector<PointF> m_trunkParts;
 
-        Vector<int> m_needleTypes;
+        //     Vector<int> m_needleTypes;
 
-        float m_widthFactor{1.0f};
+        //     float m_widthFactor{1.0f};
     };
 }
