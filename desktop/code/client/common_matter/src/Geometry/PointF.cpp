@@ -17,8 +17,7 @@ namespace Forradia
 
     PointF PointF::operator-(const PointF &other) const
     {
-        // Subract the dimensions of the other point from
-        // this point.
+        // Subract the dimensions of the other point from this point.
 
         return {this->x - other.x, this->y - other.y};
     }

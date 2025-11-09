@@ -10,8 +10,7 @@ namespace Forradia
 {
     bool MouseButton::HasBeenReleasedPickResult()
     {
-        // Check if the button has been released
-        // and store as result.
+        // Check if the button has been released and store as result.
 
         auto result{m_hasBeenReleased};
 

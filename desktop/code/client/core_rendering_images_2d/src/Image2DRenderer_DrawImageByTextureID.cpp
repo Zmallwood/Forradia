@@ -12,17 +12,15 @@
 
 namespace Forradia
 {
-    void Image2DRenderer::DrawImageByTextureID(
-        int uniqueRenderID, GLuint textureID, float x,
-        float y, float width, float height,
-        bool updateExisting)
+    void Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x,
+                                               float y, float width, float height,
+                                               bool updateExisting)
     {
         // Setup state.
 
         this->SetupState();
 
-        // To store the vertex array object, index buffer
-        // object and vertex buffer object.
+        // To store the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao;
         GLuint ibo;
@@ -32,8 +30,7 @@ namespace Forradia
 
         auto needFillBuffers{false};
 
-        auto canvasSize{
-            GetCanvasSize(_<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         // Convert the coordinates to pixel coordinates.
 
@@ -42,22 +39,18 @@ namespace Forradia
         auto widthPx{CInt(width * canvasSize.width)};
         auto heightPx{CInt(height * canvasSize.height)};
 
-        // If the operation is cached, use the cached
-        // operation.
+        // If the operation is cached, use the cached operation.
 
-        // TODO: Implement LRU eviction of operations
-        // memory, which is used when the operations cache
-        // reaches a certain limit.
+        // TODO: Implement LRU eviction of operations memory, which is used when the operations
+        // cache reaches a certain limit.
 
         if (this->DrawingOperationIsCached(uniqueRenderID))
         {
             // Get the cached operation.
 
-            auto &entry =
-                m_operationsCache.at(uniqueRenderID);
+            auto &entry = m_operationsCache.at(uniqueRenderID);
 
-            // Set the vertex array object, index buffer
-            // object and vertex buffer object.
+            // Set the vertex array object, index buffer object and vertex buffer object.
 
             vao = entry.vao;
 
@@ -65,8 +58,7 @@ namespace Forradia
 
             vbo = entry.vbo;
 
-            // Bind the vertex array object, index buffer
-            // object and vertex buffer object.
+            // Bind the vertex array object, index buffer object and vertex buffer object.
 
             glBindVertexArray(vao);
 
@@ -77,8 +69,7 @@ namespace Forradia
         else
         {
 
-            // Generate the vertex array object, index
-            // buffer object and vertex buffer object.
+            // Generate the vertex array object, index buffer object and vertex buffer object.
 
             glGenVertexArrays(1, &vao);
 
@@ -86,8 +77,7 @@ namespace Forradia
 
             glGenBuffers(1, &ibo);
 
-            // Bind the vertex array object, index buffer
-            // object and vertex buffer object.
+            // Bind the vertex array object, index buffer object and vertex buffer object.
 
             glBindVertexArray(vao);
 
@@ -95,8 +85,7 @@ namespace Forradia
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-            // Create a new rendering operation and cache
-            // it.
+            // Create a new rendering operation and cache it.
 
             Image2DRenderingOperation entry;
 
@@ -119,46 +108,35 @@ namespace Forradia
 
         const auto k_indicesCount{4};
 
-        // If the buffers need to be filled or the
-        // operation is being updated, fill the buffers.
+        // If the buffers need to be filled or the operation is being updated, fill the buffers.
 
         if (needFillBuffers || updateExisting)
         {
             // Define the vertices and indices.
 
-            float vertices[] = {
-                x,         y,          0.0f, 1.0f,
-                1.0f,      1.0f,       0.0,  0.0,
-                x + width, y,          0.0f, 1.0f,
-                1.0f,      1.0f,       1.0,  0.0,
-                x + width, y + height, 0.0f, 1.0f,
-                1.0f,      1.0f,       1.0,  1.0,
-                x,         y + height, 0.0f, 1.0f,
-                1.0f,      1.0f,       0.0,  1.0};
+            float vertices[] = {x,         y,          0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
+                                x + width, y,          0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
+                                x + width, y + height, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
+                                x,         y + height, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0};
 
             unsigned short indices[]{0, 1, 2, 3};
 
             // Fill the index buffer.
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                         sizeof(indices[0]) *
-                             k_indicesCount,
-                         indices, GL_DYNAMIC_DRAW);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
+                         GL_DYNAMIC_DRAW);
 
             // Fill the vertex buffer.
 
-            glBufferData(GL_ARRAY_BUFFER,
-                         sizeof(vertices[0]) * 8 *
-                             k_verticesCount,
-                         vertices, GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * k_verticesCount, vertices,
+                         GL_DYNAMIC_DRAW);
 
             // Setup the attribute layout.
 
             this->SetupAttributeLayout();
         }
 
-        // Bind the vertex array object, index buffer
-        // object and vertex buffer object.
+        // Bind the vertex array object, index buffer object and vertex buffer object.
 
         glBindVertexArray(vao);
 
@@ -172,8 +150,7 @@ namespace Forradia
 
         // Draw the image.
 
-        glDrawElements(GL_TRIANGLE_FAN, k_indicesCount,
-                       GL_UNSIGNED_SHORT, nullptr);
+        glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
         // Restore the state.
 

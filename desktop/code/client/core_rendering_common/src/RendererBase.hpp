@@ -23,16 +23,15 @@ namespace Forradia
 
       protected:
         ///
-        /// Gets the vertex shader source code. This is used
-        /// by Initialize() to create the shader program.
+        /// Gets the vertex shader source code. This is used by Initialize() to create the shader
+        /// program.
         ///
         /// @return The vertex shader source code.
         ///
         virtual String GetVSSource() const = 0;
 
         ///
-        /// Gets the fragment shader source code. This is
-        /// used by Initialize() to create the shader
+        /// Gets the fragment shader source code. This is used by Initialize() to create the shader
         /// program.
         ///
         /// @return The fragment shader source code.
@@ -40,8 +39,7 @@ namespace Forradia
         virtual String GetFSSource() const = 0;
 
         ///
-        /// Can be used to do additional initialization
-        /// implemented in deriving class.
+        /// Can be used to do additional initialization implemented in deriving class.
         ///
         virtual void InitializeDerived()
         {
@@ -63,7 +61,6 @@ namespace Forradia
         }
 
       private:
-        SharedPtr<ShaderProgram>
-            m_shaderProgram; ///< The shader program.
+        SharedPtr<ShaderProgram> m_shaderProgram; ///< The shader program.
     };
 }

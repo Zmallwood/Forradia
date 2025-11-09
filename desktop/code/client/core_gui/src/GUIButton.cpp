@@ -20,11 +20,9 @@ namespace Forradia
     {
         GUIPanel::UpdateDerived();
 
-        // Get normalized mouse position to compare against
-        // GUI bounds.
+        // Get normalized mouse position to compare against GUI bounds.
 
-        auto mousePosition{GetNormallizedMousePosition(
-            _<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
         // Check if the mouse is hovering this button.
 
@@ -32,32 +30,24 @@ namespace Forradia
 
         if (hovered)
         {
-            // Show hovered background when pointer is over
-            // the button.
+            // Show hovered background when pointer is over the button.
 
-            this->SetBackgroundImage(
-                m_hoveredBackgroundImage);
+            this->SetBackgroundImage(m_hoveredBackgroundImage);
 
-            // Change cursor to indicate the button is
-            // clickable.
+            // Change cursor to indicate the button is clickable.
 
-            _<Cursor>().SetCursorStyle(
-                CursorStyles::HoveringClickableGUI);
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-            // Trigger the assigned action on mouse
-            // left-button click.
+            // Trigger the assigned action on mouse left-button click.
 
-            if (_<MouseInput>()
-                    .GetLeftMouseButtonRef()
-                    .HasBeenFiredPickResult())
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
             {
                 m_action();
             }
         }
         else
         {
-            // Revert to default background when not
-            // hovered.
+            // Revert to default background when not hovered.
 
             SetBackgroundImage(m_backgroundImage);
         }
@@ -71,13 +61,9 @@ namespace Forradia
 
         auto bounds{this->GetBounds()};
 
-        // Draw centered button text using the shared text
-        // renderer.
+        // Draw centered button text using the shared text renderer.
 
-        _<TextRenderer>().DrawString(
-            k_renderIDText, m_text,
-            bounds.x + bounds.width / 2,
-            bounds.y + bounds.height / 2, FontSizes::_20,
-            true);
+        _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
+                                     bounds.y + bounds.height / 2, FontSizes::_20, true);
     }
 }

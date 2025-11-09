@@ -26,27 +26,23 @@ namespace Forradia::Theme0
         Color GetClearColor() const;
 
         ///
-        /// Get the size of the grid rendered by the
-        /// WorldView.
+        /// Get the size of the grid rendered by the WorldView.
         ///
-        /// @return The size of the grid rendered by the
-        /// WorldView.
+        /// @return The size of the grid rendered by the WorldView.
         ///
         Size GetGridSize() const;
 
         ///
-        /// Get the base size of a single world area. This
-        /// size is being scaled using GetWorldScaling() to
-        /// obtain the resulting world area size.
+        /// Get the base size of a single world area. This size is being scaled using
+        /// GetWorldScaling() to obtain the resulting world area size.
         ///
         /// @return The base size of a single world area.
         ///
         Size GetBaseWorldAreaSize() const;
 
         ///
-        /// Get the world scaling factor which is applied
-        /// to the world area size and world generation
-        /// amounts.
+        /// Get the world scaling factor which is applied to the world area size and world
+        /// generation amounts.
         ///
         /// @return The world scaling factor.
         ///
@@ -55,14 +51,12 @@ namespace Forradia::Theme0
         ///
         /// Get the size of a single tile in opengl space.
         ///
-        /// @return The size of a single tile in opengl
-        /// space.
+        /// @return The size of a single tile in opengl space.
         ///
         float GetTileSize() const;
 
         ///
-        /// Get the height of one unit of elevation in
-        /// opengl 3D space.
+        /// Get the height of one unit of elevation in opengl 3D space.
         ///
         /// @return The height of one unit of elevation.
         ///

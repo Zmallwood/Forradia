@@ -22,19 +22,15 @@ namespace Forradia::Theme0
 
             auto yCenter{GetRandomInt(m_size.height)};
 
-            auto maxRadius{5 * m_scale +
-                           GetRandomInt(5 * m_scale)};
+            auto maxRadius{5 * m_scale + GetRandomInt(5 * m_scale)};
 
             for (auto r = maxRadius; r >= 0; r--)
             {
-                for (auto y = yCenter - r; y <= yCenter + r;
-                     y++)
+                for (auto y = yCenter - r; y <= yCenter + r; y++)
                 {
-                    for (auto x = xCenter - r;
-                         x <= xCenter + r; x++)
+                    for (auto x = xCenter - r; x <= xCenter + r; x++)
                     {
-                        if (!m_worldArea->IsValidCoordinate(
-                                x, y))
+                        if (!m_worldArea->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -45,63 +41,38 @@ namespace Forradia::Theme0
 
                         if (dX * dX + dY * dY <= r * r)
                         {
-                            auto tile{
-                                m_worldArea->GetTile(x, y)};
+                            auto tile{m_worldArea->GetTile(x, y)};
 
-                            auto currentElevation{
-                                tile->GetElevation()};
+                            auto currentElevation{tile->GetElevation()};
 
-                            if (tile &&
-                                tile->GetGround() !=
-                                    Hash("GroundWater"))
+                            if (tile && tile->GetGround() != Hash("GroundWater"))
                             {
-                                auto tileN{
-                                    m_worldArea->GetTile(
-                                        x, y - 1)};
+                                auto tileN{m_worldArea->GetTile(x, y - 1)};
 
-                                auto tileS{
-                                    m_worldArea->GetTile(
-                                        x, y + 1)};
+                                auto tileS{m_worldArea->GetTile(x, y + 1)};
 
-                                auto tileW{
-                                    m_worldArea->GetTile(
-                                        x - 1, y)};
+                                auto tileW{m_worldArea->GetTile(x - 1, y)};
 
-                                auto tileE{
-                                    m_worldArea->GetTile(
-                                        x + 1, y)};
+                                auto tileE{m_worldArea->GetTile(x + 1, y)};
 
-                                auto tileNW{
-                                    m_worldArea->GetTile(
-                                        x - 1, y - 1)};
+                                auto tileNW{m_worldArea->GetTile(x - 1, y - 1)};
 
-                                auto tileNE{
-                                    m_worldArea->GetTile(
-                                        x + 1, y - 1)};
+                                auto tileNE{m_worldArea->GetTile(x + 1, y - 1)};
 
-                                auto tileSW{
-                                    m_worldArea->GetTile(
-                                        x - 1, y + 1)};
+                                auto tileSW{m_worldArea->GetTile(x - 1, y + 1)};
 
-                                auto tileSE{
-                                    m_worldArea->GetTile(
-                                        x + 1, y + 1)};
+                                auto tileSE{m_worldArea->GetTile(x + 1, y + 1)};
 
-                                auto elevationThreshold{
-                                    currentElevation -8};
+                                auto elevationThreshold{currentElevation - 8};
 
                                 if (tileN)
                                 {
-                                    if (tileN
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileN->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileN
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileN->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -109,16 +80,12 @@ namespace Forradia::Theme0
 
                                 if (tileE)
                                 {
-                                    if (tileE
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileE->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileE
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileE->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -126,16 +93,12 @@ namespace Forradia::Theme0
 
                                 if (tileS)
                                 {
-                                    if (tileS
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileS->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileS
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileS->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -143,16 +106,12 @@ namespace Forradia::Theme0
 
                                 if (tileW)
                                 {
-                                    if (tileW
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileW->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileW
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileW->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -160,16 +119,12 @@ namespace Forradia::Theme0
 
                                 if (tileNE)
                                 {
-                                    if (tileNE
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileNE->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileNE
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileNE->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -177,16 +132,12 @@ namespace Forradia::Theme0
 
                                 if (tileSE)
                                 {
-                                    if (tileSE
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileSE->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileSE
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileSE->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -194,16 +145,12 @@ namespace Forradia::Theme0
 
                                 if (tileSW)
                                 {
-                                    if (tileSW
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileSW->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileSW
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileSW->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
@@ -211,23 +158,18 @@ namespace Forradia::Theme0
 
                                 if (tileNW)
                                 {
-                                    if (tileNW
-                                            ->GetGround() ==
-                                        Hash("GroundWater"))
+                                    if (tileNW->GetGround() == Hash("GroundWater"))
                                     {
                                         continue;
                                     }
 
-                                    if (tileNW
-                                            ->GetElevation() <
-                                        elevationThreshold)
+                                    if (tileNW->GetElevation() < elevationThreshold)
                                     {
                                         continue;
                                     }
                                 }
 
-                                tile->SetElevation(
-                                    currentElevation + GetRandomInt(4));
+                                tile->SetElevation(currentElevation + GetRandomInt(4));
                             }
                         }
                     }

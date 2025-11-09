@@ -28,16 +28,14 @@ namespace Forradia::Theme0::GameplayCore
 
         auto now{GetTicks()};
 
-        for (auto it = creatures.begin();
-             it != creatures.end();)
+        for (auto it = creatures.begin(); it != creatures.end();)
         {
             auto creature{it->first};
 
             auto position{it->second};
 
             if (now < creature->GetTicksLastMovement() +
-                          InvertMovementSpeed(
-                              creature->GetMovementSpeed()))
+                          InvertMovementSpeed(creature->GetMovementSpeed()))
             {
                 ++it;
 
@@ -48,27 +46,20 @@ namespace Forradia::Theme0::GameplayCore
 
             if (destination.x == -1 && destination.y == -1)
             {
-                auto newDestination{position.x +
-                                    GetRandomInt(11) - 5};
+                auto newDestination{position.x + GetRandomInt(11) - 5};
 
-                auto newDestinationY{position.y +
-                                     GetRandomInt(11) - 5};
+                auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
-                creature->SetDestination(
-                    {newDestination, newDestinationY});
+                creature->SetDestination({newDestination, newDestinationY});
             }
 
-            auto worldArea{
-                _<World>().GetCurrentWorldArea()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-            auto &creatures{
-                worldArea->GetCreaturesMirrorRef()};
+            auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
-            auto dX{creature->GetDestination().x -
-                    position.x};
+            auto dX{creature->GetDestination().x - position.x};
 
-            auto dY{creature->GetDestination().y -
-                    position.y};
+            auto dY{creature->GetDestination().y - position.y};
 
             auto normalizedDX{Normalize(dX)};
 
@@ -85,21 +76,17 @@ namespace Forradia::Theme0::GameplayCore
                 creature->SetDestination({-1, -1});
             }
 
-            auto tile{worldArea->GetTile(newPosition.x,
-                                         newPosition.y)};
+            auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-            if (tile && !tile->GetCreature() &&
-                tile->GetGround() != Hash("GroundWater"))
+            if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
                 auto oldPosition{creatures.at(creature)};
 
                 creature->SetTicksLastMovement(now);
 
-                auto oldTile{worldArea->GetTile(
-                    oldPosition.x, oldPosition.y)};
+                auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
 
-                auto newTile{worldArea->GetTile(
-                    newPosition.x, newPosition.y)};
+                auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
                 oldTile->SetCreature(nullptr);
 
@@ -107,9 +94,7 @@ namespace Forradia::Theme0::GameplayCore
 
                 creatures.erase(creature);
 
-                creatures.insert(
-                    {creature,
-                     {newPosition.x, newPosition.y}});
+                creatures.insert({creature, {newPosition.x, newPosition.y}});
             }
             else
             {

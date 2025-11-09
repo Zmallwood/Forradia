@@ -20,8 +20,7 @@ namespace Forradia
         ~GLDevice();
 
         ///
-        /// Initializes this device by setting up the GL
-        /// functionality.
+        /// Initializes this device by setting up the GL functionality.
         ///
         void Initialize();
 
@@ -31,7 +30,6 @@ namespace Forradia
         ///
         void SetupGL();
 
-        SharedPtr<SDL_GLContext>
-            m_context; ///< The OpenGL context.
+        SharedPtr<SDL_GLContext> m_context; ///< The OpenGL context.
     };
 }

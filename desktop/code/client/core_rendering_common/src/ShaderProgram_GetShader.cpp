@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    GLuint ShaderProgram::GetShader(StringView shaderSource,
-                                    int shaderType) const
+    GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const
     {
         // Create a new shader.
 
@@ -17,8 +16,7 @@ namespace Forradia
 
         // Get the shader source in correct format.
 
-        const auto *source{
-            (const GLchar *)shaderSource.data()};
+        const auto *source{(const GLchar *)shaderSource.data()};
 
         // Compile the shader.
 
@@ -30,8 +28,7 @@ namespace Forradia
 
         GLint isCompiled{0};
 
-        glGetShaderiv(shader, GL_COMPILE_STATUS,
-                      &isCompiled);
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
         // If the compile failed.
 
@@ -41,15 +38,13 @@ namespace Forradia
 
             GLint maxLength{0};
 
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH,
-                          &maxLength);
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
 
             // Get the info log.
 
             Vector<GLchar> infoLog(maxLength);
 
-            glGetShaderInfoLog(shader, maxLength,
-                               &maxLength, &infoLog[0]);
+            glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
 
             // Return failed status.
 

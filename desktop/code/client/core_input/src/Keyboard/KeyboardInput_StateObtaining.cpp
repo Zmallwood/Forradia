@@ -15,11 +15,9 @@ namespace Forradia
         return m_pressed.contains(key);
     }
 
-    bool
-    KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
+    bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
     {
-        // Check if the key is in the set of pressed keys
-        // and store as result.
+        // Check if the key is in the set of pressed keys and store as result.
 
         auto result{m_pressed.contains(key)};
 
@@ -34,8 +32,7 @@ namespace Forradia
 
     bool KeyboardInput::AnyKeyIsPressedPickResult()
     {
-        // Check if any key is in the set of pressed keys
-        // and store as result.
+        // Check if any key is in the set of pressed keys and store as result.
 
         auto result{m_pressed.size() > 0};
 

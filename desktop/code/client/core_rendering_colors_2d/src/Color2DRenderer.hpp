@@ -38,11 +38,8 @@ namespace Forradia
         /// @param updateExisting Whether to update the
         /// existing operation.
         ///
-        void
-        DrawFilledRectangle(int uniqueRenderID, Color color,
-                            float x, float y, float width,
-                            float height,
-                            bool updateExisting = false);
+        void DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
+                                 float height, bool updateExisting = false);
 
       protected:
         ///
@@ -84,13 +81,10 @@ namespace Forradia
         /// Checks if the drawing operation is cached.
         ///
         /// @param uniqueRenderID The unique render ID.
-        /// @return True if the drawing operation is cached,
-        /// false otherwise.
+        /// @return True if the drawing operation is cached, false otherwise.
         ///
-        bool
-        DrawingOperationIsCached(int uniqueRenderID) const;
+        bool DrawingOperationIsCached(int uniqueRenderID) const;
 
-        std::map<int, Color2DRenderingOperation>
-            m_operationsCache; ///< The operations cache.
+        std::map<int, Color2DRenderingOperation> m_operationsCache; ///< The operations cache.
     };
 }

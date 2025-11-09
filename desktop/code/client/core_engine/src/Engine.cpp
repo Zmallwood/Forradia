@@ -28,18 +28,16 @@
 
 namespace Forradia
 {
-    void Engine::Initialize(StringView gameWindowTitle,
-                            Color clearColor) const
+    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
     {
-        // Initialize random number generator so that unique
-        // random numbers are generated on each game run.
+        // Initialize random number generator so that unique random numbers are generated on each
+        // game run.
 
         Randomize();
 
         // Initialize SDL and GL devices.
 
-        _<SDLDevice>().Initialize(gameWindowTitle,
-                                  clearColor);
+        _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
 
         _<GLDevice>().Initialize();
 
@@ -56,8 +54,8 @@ namespace Forradia
 
     void Engine::Run()
     {
-        // Enclose the main game loop in a try-catch block,
-        // to catch exceptions thrown anywhere in the game.
+        // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere in
+        // the game.
 
         try
         {
@@ -65,8 +63,7 @@ namespace Forradia
 
             while (m_running)
             {
-                // Reset the mouse input and cursor before
-                // polling events.
+                // Reset the mouse input and cursor before polling events.
 
                 _<MouseInput>().Reset();
 
@@ -99,8 +96,7 @@ namespace Forradia
         {
             // Print error message on catched exception.
 
-            PrintLine("An error occured: " +
-                      String(e.what()));
+            PrintLine("An error occured: " + String(e.what()));
         }
     }
 

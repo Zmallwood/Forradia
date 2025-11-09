@@ -24,9 +24,7 @@ namespace Forradia::Theme0
 
         void GenerateLakes() const;
 
-        void GenerateSingleLake(int minX, int minY,
-                                int maxX, int maxY,
-                                int recursion) const;
+        void GenerateSingleLake(int minX, int minY, int maxX, int maxY, int recursion) const;
 
         void GenerateElevation() const;
 

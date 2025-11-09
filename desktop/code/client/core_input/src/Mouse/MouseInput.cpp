@@ -10,8 +10,7 @@ namespace Forradia
 {
     void MouseInput::Reset()
     {
-        // Completely reset the state of the two mouse
-        // buttons.
+        // Completely reset the state of the two mouse buttons.
 
         m_leftMouseButton.Reset();
 
@@ -20,14 +19,11 @@ namespace Forradia
 
     bool MouseInput::AnyMouseButtonIsPressedPickResult()
     {
-        // Check if the left mouse button is currently
-        // pressed and store as result.
+        // Check if the left mouse button is currently pressed and store as result.
 
-        auto result{
-            m_leftMouseButton.IsPressedPickResult()};
+        auto result{m_leftMouseButton.IsPressedPickResult()};
 
-        // Also check if the right mouse button is
-        // currently pressed and add to the result using a
+        // Also check if the right mouse button is currently pressed and add to the result using a
         // logical OR.
 
         result |= m_rightMouseButton.IsPressedPickResult();
@@ -39,16 +35,14 @@ namespace Forradia
 
     void MouseInput::AddMouseWheelDelta(int delta)
     {
-        // Add the mouse wheel delta to the current mouse
-        // wheel delta.
+        // Add the mouse wheel delta to the current mouse wheel delta.
 
         m_mouseWheelDelta += delta;
     }
 
     int MouseInput::GetMouseWheelDeltaPickResult()
     {
-        // Get the current mouse wheel delta and store as
-        // result.
+        // Get the current mouse wheel delta and store as result.
 
         auto result{m_mouseWheelDelta};
 

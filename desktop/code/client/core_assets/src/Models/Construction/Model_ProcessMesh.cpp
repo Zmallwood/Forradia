@@ -8,14 +8,11 @@
 
 namespace Forradia
 {
-    GLMMesh Model::ProcessMesh(aiMesh *mesh,
-                               const aiScene *scene,
-                               aiMatrix4x4 transformation)
+    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
     {
         // Get the mesh's vertices.
 
-        auto vertices{
-            this->GetVertices(mesh, transformation)};
+        auto vertices{this->GetVertices(mesh, transformation)};
 
         // Get the mesh's indices.
 
@@ -25,8 +22,7 @@ namespace Forradia
 
         auto textures{this->GetTextures(mesh, scene)};
 
-        // Create and return a mesh (non-assimp type)
-        // object.
+        // Create and return a mesh (non-assimp type) object.
 
         return GLMMesh(vertices, indices, textures);
     }

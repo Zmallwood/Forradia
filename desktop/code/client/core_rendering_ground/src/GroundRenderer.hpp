@@ -37,18 +37,13 @@ namespace Forradia
         /// @param yCoordinate The y coordinate.
         /// @param tileSize The tile size.
         /// @param elevations The elevations.
-        /// @param forceUpdate Whether to force update the
-        /// tile.
+        /// @param forceUpdate Whether to force update the tile.
         ///
-        void DrawTile(int uniqueRenderID, int imageNameHash,
-                      int xCoordinate, int yCoordinate,
-                      float tileSize,
-                      const Vector<float> &elevations,
-                      bool forceUpdate = false);
+        void DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate, int yCoordinate,
+                      float tileSize, const Vector<float> &elevations, bool forceUpdate = false);
 
         ///
-        /// Resets the renderer with regards to the
-        /// operations cache.
+        /// Resets the renderer with regards to the operations cache.
         ///
         void Reset();
 
@@ -64,14 +59,12 @@ namespace Forradia
         String GetFSSource() const override;
 
         ///
-        /// Does initialization that is specific to this
-        /// renderer.
+        /// Does initialization that is specific to this renderer.
         ///
         void InitializeDerived() override;
 
         ///
-        /// Sets up the attribute layout for the vertex
-        /// shader.
+        /// Sets up the attribute layout for the vertex shader.
         ///
         void SetupAttributeLayout() const override;
 
@@ -95,15 +88,12 @@ namespace Forradia
         /// Checks if a drawing operation is cached.
         ///
         /// @param uniqueRenderID The unique render ID.
-        /// @return True if the drawing operation is cached,
-        /// false otherwise.
+        /// @return True if the drawing operation is cached, false otherwise.
         ///
-        bool
-        DrawingOperationIsCached(int uniqueRenderID) const;
+        bool DrawingOperationIsCached(int uniqueRenderID) const;
 
         ///
-        /// Calculates the vertices for a tile without
-        /// normals.
+        /// Calculates the vertices for a tile without normals.
         ///
         /// @param xCoordinate The x coordinate.
         /// @param yCoordinate The y coordinate.
@@ -111,39 +101,29 @@ namespace Forradia
         /// @param elevations The elevations.
         /// @return The vertices for a tile without normals.
         ///
-        Vector<float> CalcTileVerticesNoNormals(
-            int xCoordinate, int yCoordinate,
-            float tileSize,
-            const Vector<float> &elevations);
+        Vector<float> CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+                                                const Vector<float> &elevations);
 
         ///
         /// Calculates the vertices for a tile with normals.
         ///
-        /// @param verticesNoNormals The vertices without
-        /// normals.
+        /// @param verticesNoNormals The vertices without normals.
         /// @return The vertices for a tile with normals.
         ///
-        Vector<float> CalcTileVerticesWithNormals(
-            const Vector<float> &verticesNoNormals);
+        Vector<float> CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals);
 
         ///
         /// Calculates the normals for a tile.
         ///
-        /// @param verticesNoNormals The vertices without
-        /// normals.
+        /// @param verticesNoNormals The vertices without normals.
         /// @return The normals for a tile.
         ///
-        Vector<glm::vec3> CalcTileNormals(
-            const Vector<float> &verticesNoNormals);
+        Vector<glm::vec3> CalcTileNormals(const Vector<float> &verticesNoNormals);
 
-        static constexpr unsigned short k_indices[] = {
-            0, 1, 2, 3}; ///< Indices for every tile.
+        static constexpr unsigned short k_indices[] = {0, 1, 2, 3}; ///< Indices for every tile.
 
-        std::map<int, GroundRenderingOperation>
-            m_operationsCache; ///< Operations cache.
+        std::map<int, GroundRenderingOperation> m_operationsCache; ///< Operations cache.
 
-        GLint m_layoutLocationMVP; ///< Layout location for
-                                   ///< the MVP matrix in
-                                   ///< the shader.
+        GLint m_layoutLocationMVP; ///< Layout location for the MVP matrix in the shader.
     };
 }

@@ -33,13 +33,11 @@ namespace Forradia::Theme0
         void AddObject(StringView objectTypeName);
 
         ///
-        /// Remove one object of a specific type from the
-        /// stack.
+        /// Remove one object of a specific type from the stack.
         ///
         /// @param objectTypeName The object type by name.
         ///
-        void
-        RemoveOneOfObjectOfType(StringView objectTypeName);
+        void RemoveOneOfObjectOfType(StringView objectTypeName);
 
         ///
         /// Gets the number of objects in the stack.
@@ -59,8 +57,6 @@ namespace Forradia::Theme0
         }
 
       private:
-        Vector<SharedPtr<Object>>
-            m_objects; ///< The collection of objects in the
-                       ///< stack.
+        Vector<SharedPtr<Object>> m_objects; ///< The collection of objects in the stack.
     };
 }

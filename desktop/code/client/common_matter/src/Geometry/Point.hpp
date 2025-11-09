@@ -17,10 +17,8 @@ namespace Forradia
         ///
         /// Equality operator between two Points.
         ///
-        /// @param other Other Point to check equality
-        /// against.
-        /// @return True if the two points are equal,
-        /// otherwise false.
+        /// @param other Other Point to check equality against.
+        /// @return True if the two points are equal, otherwise false.
         ///
         bool operator==(const Point &other) const;
 

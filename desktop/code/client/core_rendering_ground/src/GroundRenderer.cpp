@@ -14,8 +14,7 @@ namespace Forradia
 {
     void GroundRenderer::Cleanup()
     {
-        // Delete the vertex array objects and buffer
-        // objects in the operations cache.
+        // Delete the vertex array objects and buffer objects in the operations cache.
 
         for (auto &entry : m_operationsCache)
         {
@@ -45,11 +44,9 @@ namespace Forradia
 
         // Get the canvas size and set the viewport.
 
-        auto canvasSize{
-            GetCanvasSize(_<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-        glViewport(0, 0, canvasSize.width,
-                   canvasSize.height);
+        glViewport(0, 0, canvasSize.width, canvasSize.height);
 
         // Use the shader program.
 
@@ -61,16 +58,14 @@ namespace Forradia
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        // Disable depth writing to allow for transparency
-        // of the ground tiles.
+        // Disable depth writing to allow for transparency of the ground tiles.
 
         glDepthMask(GL_FALSE);
     }
 
     void GroundRenderer::RestoreState() const
     {
-        // Unbind the vertex array object, vertex buffer
-        // object and index buffer object.
+        // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
 
@@ -86,8 +81,7 @@ namespace Forradia
 
         glDisable(GL_BLEND);
 
-        // Enable depth writing which was disabled to allow
-        // for transparency of the ground tiles.
+        // Enable depth writing which was disabled to allow for transparency of the ground tiles.
 
         glDepthMask(GL_TRUE);
     }
@@ -101,57 +95,48 @@ namespace Forradia
 
     void GroundRenderer::SetupAttributeLayout() const
     {
-        // Set up the attribute layout for the vertex
-        // shader.
+        // Set up the attribute layout for the vertex shader.
 
         // Position.
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
                               (void *)(sizeof(float) * 0));
 
         glEnableVertexAttribArray(0);
 
         // Color.
 
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
                               (void *)(sizeof(float) * 3));
 
         glEnableVertexAttribArray(1);
 
         // Texture coordinates.
 
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
                               (void *)(sizeof(float) * 6));
 
         glEnableVertexAttribArray(2);
 
         // Normals.
 
-        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE,
-                              sizeof(float) * 11,
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
                               (void *)(sizeof(float) * 8));
 
         glEnableVertexAttribArray(3);
     }
 
-    bool GroundRenderer::DrawingOperationIsCached(
-        int uniqueRenderID) const
+    bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const
     {
-        // Check if the unique render ID is in the
-        // operations cache.
+        // Check if the unique render ID is in the operations cache.
 
         return m_operationsCache.contains(uniqueRenderID);
     }
 
     void GroundRenderer::InitializeDerived()
     {
-        // Get the layout location for the uniform MVP
-        // matrix.
+        // Get the layout location for the uniform MVP matrix.
 
-        m_layoutLocationMVP = glGetUniformLocation(
-            GetShaderProgram()->GetProgramID(), "MVP");
+        m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
     }
 }

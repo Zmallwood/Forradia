@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    void SDLDevice::Initialize(StringView gameWindowTitle,
-                               Color clearColor)
+    void SDLDevice::Initialize(StringView gameWindowTitle, Color clearColor)
     {
         // Set the game window title and clear color.
 
@@ -34,8 +33,7 @@ namespace Forradia
 
         // Set the clear color.
 
-        glClearColor(clearColor.r, clearColor.g,
-                     clearColor.b, clearColor.a);
+        glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 
         // Clear the canvas.
 

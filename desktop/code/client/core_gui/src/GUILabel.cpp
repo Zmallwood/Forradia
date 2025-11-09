@@ -25,8 +25,7 @@ namespace Forradia
             bounds.y += bounds.height / 2;
         }
 
-        _<TextRenderer>().DrawString(
-            k_renderIDText, m_text, bounds.x, bounds.y,
-            FontSizes::_20, m_centerAlign, true, m_color);
+        _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x, bounds.y, FontSizes::_20,
+                                     m_centerAlign, true, m_color);
     }
 }

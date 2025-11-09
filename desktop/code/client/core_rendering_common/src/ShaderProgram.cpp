@@ -8,14 +8,11 @@
 
 namespace Forradia
 {
-    void ShaderProgram::Initialize(
-        StringView vertexShaderSource,
-        StringView fragmentShaderSource)
+    void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource)
     {
         // Create the vertex shader program.
 
-        auto vertexShader{this->GetShader(
-            vertexShaderSource, GL_VERTEX_SHADER)};
+        auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
         // If the vertex shader failed.
 
@@ -30,8 +27,7 @@ namespace Forradia
 
         // Create the fragment shader program.
 
-        auto fragmentShader{this->GetShader(
-            fragmentShaderSource, GL_FRAGMENT_SHADER)};
+        auto fragmentShader{this->GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
         // If the fragment shader failed.
 
@@ -48,8 +44,7 @@ namespace Forradia
 
         // Create the linked shader program.
 
-        auto isLinked{this->CreateProgram(vertexShader,
-                                          fragmentShader)};
+        auto isLinked{this->CreateProgram(vertexShader, fragmentShader)};
 
         // If the link failed, dont continue.
 

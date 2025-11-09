@@ -41,8 +41,7 @@ namespace Forradia::Theme0
         //     }
         // }
 
-        auto numWhiteRabbits{200 * m_scale +
-                             GetRandomInt(15 * m_scale)};
+        auto numWhiteRabbits{200 * m_scale + GetRandomInt(15 * m_scale)};
 
         for (auto i = 0; i < numWhiteRabbits; i++)
         {
@@ -52,17 +51,13 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile && !tile->GetCreature() &&
-                tile->GetGround() != Hash("GroundWater"))
+            if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater"))
             {
-                auto newCreature =
-                    std::make_shared<Theme0::Creature>(
-                        "CreatureWhiteRabbit");
+                auto newCreature = std::make_shared<Theme0::Creature>("CreatureWhiteRabbit");
 
                 tile->SetCreature(newCreature);
 
-                m_worldArea->GetCreaturesMirrorRef().insert(
-                    {tile->GetCreature(), {x, y}});
+                m_worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
             }
         }
 

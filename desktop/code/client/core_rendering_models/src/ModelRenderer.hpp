@@ -33,11 +33,9 @@ namespace Forradia
         /// draw.
         /// @param x The x coordinate of the model.
         /// @param y The y coordinate of the model.
-        /// @param elevations The elevations of the tile
-        /// where the model is located.
+        /// @param elevations The elevations of the tile where the model is located.
         ///
-        void DrawModel(int modelNameHash, float x, float y,
-                       float elevations);
+        void DrawModel(int modelNameHash, float x, float y, float elevations);
 
       protected:
         ///
@@ -51,8 +49,7 @@ namespace Forradia
         String GetFSSource() const override;
 
         ///
-        /// Additional initialization for this derived
-        /// class.
+        /// Additional initialization for this derived class.
         ///
         void InitializeDerived() override;
 
@@ -80,37 +77,20 @@ namespace Forradia
         ///
         /// Checks if the drawing operation is cached.
         ///
-        /// @param modelNameHash The hash of the model to
-        /// check.
-        /// @return True if the drawing operation is cached,
-        /// false otherwise.
+        /// @param modelNameHash The hash of the model to check.
+        /// @return True if the drawing operation is cached, false otherwise.
         ///
-        bool
-        DrawingOperationIsCached(int modelNameHash) const;
+        bool DrawingOperationIsCached(int modelNameHash) const;
 
-        static constexpr float k_modelScale{
-            0.35f}; ///< Global scale factor for models.
+        static constexpr float k_modelScale{0.35f}; ///< Global scale factor for models.
 
-        std::map<
-            int,
-            ModelRenderingOperation> ///< The operations
-                                     ///< cache.
-                                         m_operationsCache;
+        std::map<int,
+                 ModelRenderingOperation> m_operationsCache; ///< The operations cache.
 
-        GLint
-            m_layoutLocationProjectionMatrix; /// < The
-                                              /// location
-                                              /// of the
-                                              /// projection
-                                              /// matrix.
+        GLint m_layoutLocationProjectionMatrix; /// < The location of the projection matrix.
 
-        GLint m_layoutLocationViewMatrix; /// < The location
-                                          /// of the view
-                                          /// matrix.
+        GLint m_layoutLocationViewMatrix; /// < The location of the view matrix.
 
-        GLint
-            m_layoutLocationModelMatrix; /// < The location
-                                         /// of the model
-                                         /// matrix.
+        GLint m_layoutLocationModelMatrix; /// < The location of the model matrix.
     };
 }

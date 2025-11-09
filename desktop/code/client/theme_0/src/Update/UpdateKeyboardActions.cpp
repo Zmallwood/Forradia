@@ -20,23 +20,19 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateKeyboardActions()
     {
-        if (_<KeyboardInput>().KeyIsPressedPickResult(
-                SDLK_ESCAPE))
+        if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE))
         {
             _<GUISystemMenu>().ToggleVisibility();
         }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(
-                     SDLK_c))
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c))
         {
             _<GUIPlayerBodyWindow>().ToggleVisibility();
         }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(
-                     SDLK_b))
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b))
         {
             _<GUIInventoryWindow>().ToggleVisibility();
         }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(
-                     SDLK_RETURN))
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN))
         {
             if (_<GUIChatBox>().GetInputActive())
             {

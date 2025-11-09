@@ -31,8 +31,7 @@ namespace Forradia::Theme0
         }
 
         ///
-        /// Gets the ground type of the tile, which is the
-        /// hash of the ground type name.
+        /// Gets the ground type of the tile, which is the hash of the ground type name.
         ///
         /// @return The ground type of the tile.
         ///
@@ -42,17 +41,14 @@ namespace Forradia::Theme0
         }
 
         ///
-        /// Sets the ground type of the tile, which is the
-        /// hash of the ground type name.
+        /// Sets the ground type of the tile, which is the hash of the ground type name.
         ///
-        /// @param groundHash The hash of the ground type
-        /// name.
+        /// @param groundHash The hash of the ground type name.
         ///
         void SetGround(int groundHash);
 
         ///
-        /// Sets the ground type of the tile, which is the
-        /// name of the ground type.
+        /// Sets the ground type of the tile, which is the name of the ground type.
         ///
         /// @param groundName The name of the ground type.
         ///
@@ -71,8 +67,7 @@ namespace Forradia::Theme0
         ///
         /// Gets the creature on the tile.
         ///
-        /// @return The creature on the tile, or nullptr
-        /// if no creature is on the tile.
+        /// @return The creature on the tile, or nullptr if no creature is on the tile.
         ///
         auto GetCreature() const
         {
@@ -92,8 +87,7 @@ namespace Forradia::Theme0
         ///
         /// Gets the robot on the tile.
         ///
-        /// @return The robot on the tile, or nullptr
-        /// if no robot is on the tile.
+        /// @return The robot on the tile, or nullptr if no robot is on the tile.
         ///
         auto GetRobot() const
         {
@@ -131,8 +125,7 @@ namespace Forradia::Theme0
         }
 
         ///
-        /// Gets the water depth of the tile. Is zero if
-        /// there is no water on the tile.
+        /// Gets the water depth of the tile. Is zero if there is no water on the tile.
         ///
         /// @return The water depth of the tile.
         ///
@@ -142,8 +135,7 @@ namespace Forradia::Theme0
         }
 
         ///
-        /// Sets the water depth of the tile. Is should be
-        /// zero if there is no water on the tile.
+        /// Sets the water depth of the tile. Is should be zero if there is no water on the tile.
         ///
         /// @param value The water depth of the tile.
         ///
@@ -160,19 +152,14 @@ namespace Forradia::Theme0
 
         int m_ground{0}; ///< The ground type of the tile.
 
-        SharedPtr<ObjectsStack>
-            m_objectsStack; ///< The objects stack of the
-                            ///< tile.
+        SharedPtr<ObjectsStack> m_objectsStack; ///< The objects stack of the tile.
 
-        SharedPtr<Creature>
-            m_creature; ///< The creature on the tile.
+        SharedPtr<Creature> m_creature; ///< The creature on the tile.
 
-        SharedPtr<Robot>
-            m_robot; ///< The robot on the tile.
+        SharedPtr<Robot> m_robot; ///< The robot on the tile.
 
         int m_elevation{0}; ///< The elevation of the tile.
 
-        int m_waterDepth{
-            0}; ///< The water depth of the tile.
+        int m_waterDepth{0}; ///< The water depth of the tile.
     };
 }

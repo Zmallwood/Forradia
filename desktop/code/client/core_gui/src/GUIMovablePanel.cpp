@@ -16,27 +16,21 @@ namespace Forradia
 {
     void GUIMovablePanel::UpdateDerived()
     {
-        auto mousePosition{GetNormallizedMousePosition(
-            _<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
         auto dragArea{this->GetDragArea()};
 
         if (dragArea.Contains(mousePosition))
         {
-            _<Cursor>().SetCursorStyle(
-                CursorStyles::HoveringClickableGUI);
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-            if (_<MouseInput>()
-                    .GetLeftMouseButtonRef()
-                    .HasBeenFiredPickResult())
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
             {
                 this->StartMove();
             }
         }
 
-        if (_<MouseInput>()
-                .GetLeftMouseButtonRef()
-                .HasBeenReleased())
+        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
         {
             this->StopMove();
         }
@@ -45,25 +39,17 @@ namespace Forradia
 
         if (bounds.Contains(mousePosition))
         {
-            if (_<MouseInput>()
-                    .GetLeftMouseButtonRef()
-                    .HasBeenFired())
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired())
             {
-                _<MouseInput>()
-                    .GetLeftMouseButtonRef()
-                    .Reset();
+                _<MouseInput>().GetLeftMouseButtonRef().Reset();
             }
         }
         if (GetIsBeingMoved())
         {
-            auto currentMousePosition{
-                GetNormallizedMousePosition(
-                    _<SDLDevice>().GetWindow())};
+            auto currentMousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
-            auto newPosition{
-                GetMoveStartingPosition() +
-                currentMousePosition -
-                GetMoveStartingMousePosition()};
+            auto newPosition{GetMoveStartingPosition() + currentMousePosition -
+                             GetMoveStartingMousePosition()};
 
             this->SetPosition(newPosition);
         }
@@ -73,12 +59,9 @@ namespace Forradia
     {
         m_isBeingMoved = true;
 
-        m_moveStartingPosition =
-            this->GetBounds().GetPosition();
+        m_moveStartingPosition = this->GetBounds().GetPosition();
 
-        m_moveStartingMousePosition =
-            GetNormallizedMousePosition(
-                _<SDLDevice>().GetWindow());
+        m_moveStartingMousePosition = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
     }
 
     void GUIMovablePanel::StopMove()

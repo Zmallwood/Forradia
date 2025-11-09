@@ -8,9 +8,7 @@
 
 namespace Forradia
 {
-    Vector<GLMVertex>
-    Model::GetVertices(aiMesh *mesh,
-                       aiMatrix4x4 transformation)
+    Vector<GLMVertex> Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation)
     {
         // To hold the resulting vertices.
 
@@ -18,15 +16,13 @@ namespace Forradia
 
         // Iterate over all vertices.
 
-        for (unsigned int i = 0; i < mesh->mNumVertices;
-             i++)
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
             // To hold the resulting vertex.
 
             GLMVertex vertex;
 
-            // To hold the resulting position for the
-            // vertex.
+            // To hold the resulting position for the vertex.
 
             glm::vec3 position;
 
@@ -50,8 +46,7 @@ namespace Forradia
 
             if (mesh->mNormals)
             {
-                // To hold the resulting normal for the
-                // vertex.
+                // To hold the resulting normal for the vertex.
 
                 glm::vec3 normal;
 
@@ -72,8 +67,7 @@ namespace Forradia
 
             if (mesh->mTextureCoords[0])
             {
-                // To hold the resulting texture
-                // coordinates for the vertex.
+                // To hold the resulting texture coordinates for the vertex.
 
                 glm::vec2 uv;
 
@@ -83,15 +77,13 @@ namespace Forradia
 
                 uv.y = mesh->mTextureCoords[0][i].y;
 
-                // Add the texture coordinates to the
-                // vertex.
+                // Add the texture coordinates to the vertex.
 
                 vertex.uv = uv;
             }
             else
             {
-                // In case there are no texture
-                // coordinates, set them to zero.
+                // In case there are no texture coordinates, set them to zero.
 
                 vertex.uv = glm::vec2(0, 0);
             }

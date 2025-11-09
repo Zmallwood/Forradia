@@ -13,8 +13,7 @@ namespace Forradia
     class GUIMovablePanel : public GUIPanel
     {
       public:
-        GUIMovablePanel(StringView uniqueName, float x,
-                        float y, float width, float height)
+        GUIMovablePanel(StringView uniqueName, float x, float y, float width, float height)
             : GUIPanel(uniqueName, x, y, width, height)
         {
         }

@@ -41,8 +41,7 @@ namespace Forradia::Theme0
         for (auto i = 0; i < k_maxNumMenuEntries; i++)
         {
             m_renderIDsMenuEntryStrings.push_back(
-                Hash("GUIInteractionMenuEntryString" +
-                     std::to_string(i)));
+                Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
         }
     }
 
@@ -50,9 +49,7 @@ namespace Forradia::Theme0
     {
         m_entries.clear();
 
-        auto hoveredCoordinate{
-            _<GameplayCore::TileHovering>()
-                .GetHoveredCoordinate()};
+        auto hoveredCoordinate{_<GameplayCore::TileHovering>().GetHoveredCoordinate()};
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
@@ -60,44 +57,32 @@ namespace Forradia::Theme0
 
         m_clickedCoordinate = hoveredCoordinate;
 
-        m_clickedRobot =
-            worldArea
-                ->GetTile(worldAreaSize.width -
-                              hoveredCoordinate.x,
-                          worldAreaSize.height -
-                              hoveredCoordinate.y)
-                ->GetRobot();
+        m_clickedRobot = worldArea
+                             ->GetTile(worldAreaSize.width - hoveredCoordinate.x,
+                                       worldAreaSize.height - hoveredCoordinate.y)
+                             ->GetRobot();
 
-        auto tile{worldArea->GetTile(
-            worldAreaSize.width - hoveredCoordinate.x,
-            worldAreaSize.height - hoveredCoordinate.y)};
+        auto tile{worldArea->GetTile(worldAreaSize.width - hoveredCoordinate.x,
+                                     worldAreaSize.height - hoveredCoordinate.y)};
 
         auto actionStop{GetAction<Hash("ActionStop")>()};
 
-        m_entries.push_back(
-            {"Stop current action", actionStop.action});
+        m_entries.push_back({"Stop current action", actionStop.action});
 
-        auto actionChopDownTrees{
-            GetAction<Hash("ActionChopTrees")>()};
+        auto actionChopDownTrees{GetAction<Hash("ActionChopTrees")>()};
 
-        m_entries.push_back({"Chop down trees",
-                             actionChopDownTrees.action});
+        m_entries.push_back({"Chop down trees", actionChopDownTrees.action});
 
-        auto actionSimpleShelter{
-            GetAction<Hash("ActionBuildSimpleShelter")>()};
+        auto actionSimpleShelter{GetAction<Hash("ActionBuildSimpleShelter")>()};
 
-        m_entries.push_back({"Build simple shelter",
-                             actionSimpleShelter.action});
+        m_entries.push_back({"Build simple shelter", actionSimpleShelter.action});
 
-        auto actionForage{
-            GetAction<Hash("ActionForage")>()};
+        auto actionForage{GetAction<Hash("ActionForage")>()};
 
         if (tile && !actionForage.groundMatches.empty() &&
-            tile->GetGround() ==
-                actionForage.groundMatches[0])
+            tile->GetGround() == actionForage.groundMatches[0])
         {
-            m_entries.push_back(
-                {"Forage", actionForage.action});
+            m_entries.push_back({"Forage", actionForage.action});
         };
 
         auto objects{tile->GetObjectsStack()->GetObjects()};
@@ -106,33 +91,26 @@ namespace Forradia::Theme0
         {
             auto type{object->GetType()};
 
-            auto action{
-                GetAction<Hash("ActionPickBranch")>()};
+            auto action{GetAction<Hash("ActionPickBranch")>()};
 
-            for (const auto &actionObjectTypes :
-                 action.objectMatches)
+            for (const auto &actionObjectTypes : action.objectMatches)
             {
                 if (type == actionObjectTypes)
                 {
-                    m_entries.push_back(
-                        {"Pick branch", action.action});
+                    m_entries.push_back({"Pick branch", action.action});
 
                     break;
                 }
             }
 
-            auto actionSitByComputer{
-                GetAction<Hash("ActionSitByComputer")>()};
+            auto actionSitByComputer{GetAction<Hash("ActionSitByComputer")>()};
 
-            for (const auto &actionObjectTypes :
-                 actionSitByComputer.objectMatches)
+            for (const auto &actionObjectTypes : actionSitByComputer.objectMatches)
             {
                 if (type == actionObjectTypes)
                 {
 
-                    m_entries.push_back(
-                        {"Sit by computer",
-                         actionSitByComputer.action});
+                    m_entries.push_back({"Sit by computer", actionSitByComputer.action});
 
                     break;
                 }
@@ -143,10 +121,7 @@ namespace Forradia::Theme0
 
         if (robot)
         {
-            m_entries.push_back(
-                {"Battle robot",
-                 GetAction<Hash("ActionTargetRobot")>()
-                     .action});
+            m_entries.push_back({"Battle robot", GetAction<Hash("ActionTargetRobot")>().action});
         }
     }
 
@@ -156,21 +131,17 @@ namespace Forradia::Theme0
 
         auto bounds{this->GetBounds()};
 
-        auto mousePosition{GetNormallizedMousePosition(
-            _<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
         auto i{0};
 
         for (auto &entry : m_entries)
         {
-            auto menuEntryRect{RectF{
-                bounds.x + 0.01f + k_indentWidth,
-                bounds.y + 0.01f + k_lineHeight * (i + 1),
-                bounds.width, k_lineHeight}};
+            auto menuEntryRect{RectF{bounds.x + 0.01f + k_indentWidth,
+                                     bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
+                                     k_lineHeight}};
 
-            if (_<MouseInput>()
-                    .GetLeftMouseButtonRef()
-                    .HasBeenFired())
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired())
             {
                 if (menuEntryRect.Contains(mousePosition))
                 {
@@ -182,9 +153,7 @@ namespace Forradia::Theme0
 
             ++i;
         }
-        if (_<MouseInput>()
-                .GetLeftMouseButtonRef()
-                .HasBeenFiredPickResult())
+        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
         {
             this->SetVisible(false);
         }
@@ -196,22 +165,17 @@ namespace Forradia::Theme0
 
         auto bounds{this->GetBounds()};
 
-        _<TextRenderer>().DrawString(
-            k_renderIDActionsString, "Actions",
-            bounds.x + 0.01f, bounds.y + 0.01f,
-            FontSizes::_20, false, true,
-            Palette::GetColor<Hash("YellowTransparent")>());
+        _<TextRenderer>().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
+                                     bounds.y + 0.01f, FontSizes::_20, false, true,
+                                     Palette::GetColor<Hash("YellowTransparent")>());
 
         auto i{0};
 
         for (auto &entry : m_entries)
         {
             _<TextRenderer>().DrawString(
-                m_renderIDsMenuEntryStrings[i],
-                entry.GetLabel(),
-                bounds.x + 0.01f + k_indentWidth,
-                bounds.y + 0.01f + (i + 1) * k_lineHeight,
-                FontSizes::_20, false, true);
+                m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
+                bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
 
             ++i;
         }

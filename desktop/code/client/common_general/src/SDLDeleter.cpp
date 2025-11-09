@@ -15,8 +15,7 @@ namespace Forradia
         SDL_DestroyWindow(window);
     }
 
-    void
-    SDLDeleter::operator()(SDL_Renderer *renderer) const
+    void SDLDeleter::operator()(SDL_Renderer *renderer) const
     {
         // Free up resources from a SDL_Renderer object.
 

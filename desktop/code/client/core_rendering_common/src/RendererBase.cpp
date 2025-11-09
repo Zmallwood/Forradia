@@ -12,23 +12,19 @@ namespace Forradia
 {
     void RendererBase::Initialize()
     {
-        // Get vertex shader source, implemented in deriving
-        // class.
+        // Get vertex shader source, implemented in deriving class.
 
         String vertexShaderSource{this->GetVSSource()};
 
-        // Get fragment shader source, implemented in
-        // deriving class.
+        // Get fragment shader source, implemented in deriving class.
 
         String fragmentShaderSource{this->GetFSSource()};
 
         // Create the shader program.
 
-        m_shaderProgram = std::make_shared<ShaderProgram>(
-            vertexShaderSource, fragmentShaderSource);
+        m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);
 
-        // Do additional initialization, implemented in
-        // deriving class.
+        // Do additional initialization, implemented in deriving class.
 
         this->InitializeDerived();
     }

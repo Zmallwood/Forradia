@@ -40,8 +40,7 @@ namespace Forradia
         {
             // If it does, return it.
 
-            return m_textureEntries.at(imageNameHash)
-                .textureID;
+            return m_textureEntries.at(imageNameHash).textureID;
         }
 
         // If it doesn't, return error value.
@@ -49,8 +48,7 @@ namespace Forradia
         return -1;
     }
 
-    Size TextureBank::GetTextureDimensions(
-        int imageNameHash) const
+    Size TextureBank::GetTextureDimensions(int imageNameHash) const
     {
         // Check if the texture exists.
 
@@ -58,8 +56,7 @@ namespace Forradia
         {
             // If it does, return it.
 
-            return m_textureEntries.at(imageNameHash)
-                .dimensions;
+            return m_textureEntries.at(imageNameHash).dimensions;
         }
 
         // If it doesn't, return error value.

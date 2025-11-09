@@ -19,8 +19,7 @@
 namespace Forradia
 {
     ///
-    /// A mesh used primarily for models, using GLM
-    /// types.
+    /// A mesh used primarily for models, using GLM types.
     ///
     class GLMMesh
     {

@@ -9,14 +9,12 @@
 namespace Forradia
 {
     ///
-    /// Holds information about a texture, used by
-    /// the TextureBank.
+    /// Holds information about a texture, used by the TextureBank.
     ///
     class TextureEntry
     {
       public:
-        GLuint
-            textureID; ///< The texture ID, used by opengl.
+        GLuint textureID; ///< The texture ID, used by opengl.
 
         Size dimensions; ///< The texture width and height.
     };

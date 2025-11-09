@@ -16,15 +16,14 @@ namespace Forradia
 
         if (movemenSpeed)
         {
-            // If the movement speed is not zero, invert it
-            // and return.
+            // If the movement speed is not zero, invert it and return.
 
             return k_oneSecMillis / movemenSpeed;
         }
         else
         {
-            // If the movement speed is zero, avoid division
-            // by zero and return zero directly instead.
+            // If the movement speed is zero, avoid division by zero and return zero directly
+            // instead.
 
             return 0.0f;
         }
@@ -50,8 +49,7 @@ namespace Forradia
 
     float Ceil(float number, float numDecimalPlaces)
     {
-        // Calculate the ceiled value with a given number of
-        // decimal places.
+        // Calculate the ceiled value with a given number of decimal places.
 
         auto p{std::pow(10.0, numDecimalPlaces)};
 

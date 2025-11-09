@@ -22,17 +22,13 @@ namespace Forradia::Theme0
 
             auto yCenter{GetRandomInt(m_size.height)};
 
-            auto radius{3 * m_scale +
-                        GetRandomInt(10 * m_scale)};
+            auto radius{3 * m_scale + GetRandomInt(10 * m_scale)};
 
-            for (auto y = yCenter - radius;
-                 y <= yCenter + radius; y++)
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
-                for (auto x = xCenter - radius;
-                     x <= xCenter + radius; x++)
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
-                    if (!m_worldArea->IsValidCoordinate(x,
-                                                        y))
+                    if (!m_worldArea->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -41,11 +37,9 @@ namespace Forradia::Theme0
 
                     auto dY{y - yCenter};
 
-                    if (dX * dX + dY * dY <=
-                        radius * radius)
+                    if (dX * dX + dY * dY <= radius * radius)
                     {
-                        auto tile{
-                            m_worldArea->GetTile(x, y)};
+                        auto tile{m_worldArea->GetTile(x, y)};
 
                         tile->SetGround("GroundGrass");
                     }

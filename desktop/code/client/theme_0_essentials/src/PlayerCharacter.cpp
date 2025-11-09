@@ -20,8 +20,7 @@ namespace Forradia::Theme0::GameplayCore
 {
     void PlayerCharacter::Initialize()
     {
-        m_objectsInventory =
-            std::make_shared<ObjectsInventory>();
+        m_objectsInventory = std::make_shared<ObjectsInventory>();
 
         this->MoveToSuitablePosition();
 
@@ -29,9 +28,7 @@ namespace Forradia::Theme0::GameplayCore
 
         auto size{worldArea->GetSize()};
 
-        worldArea
-            ->GetTile(size.width - m_position.x,
-                      size.height - m_position.y - 1)
+        worldArea->GetTile(size.width - m_position.x, size.height - m_position.y - 1)
             ->GetObjectsStack()
             ->AddObject("ObjectComputer");
     }
@@ -44,12 +41,9 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position = {size.width / 2, size.height / 2};
 
-        while (
-            worldArea->GetTile(m_position)->GetGround() ==
-            Hash("GroundWater"))
+        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
         {
-            m_position = {GetRandomInt(size.width),
-                          GetRandomInt(size.height)};
+            m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
         }
     }
 

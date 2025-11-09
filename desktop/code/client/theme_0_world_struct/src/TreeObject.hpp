@@ -13,8 +13,7 @@ namespace Forradia::Theme0
     class TreeObject : public Object
     {
       public:
-        TreeObject(StringView obj_type_name)
-            : Object(obj_type_name)
+        TreeObject(StringView obj_type_name) : Object(obj_type_name)
         {
             this->Initialize(obj_type_name);
         }

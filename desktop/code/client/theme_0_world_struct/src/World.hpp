@@ -22,8 +22,7 @@ namespace Forradia::Theme0
         /// @param w_area_sz The size of the world area.
         /// @param world_scaling The scaling of the world.
         ///
-        void Initialize(Size worldAreaSize,
-                        float worldScaling);
+        void Initialize(Size worldAreaSize, float worldScaling);
 
         ///
         /// Gets the current world area.
@@ -36,7 +35,6 @@ namespace Forradia::Theme0
         }
 
       private:
-        SharedPtr<WorldArea>
-            m_currentWorldArea; ///< The current world area.
+        SharedPtr<WorldArea> m_currentWorldArea; ///< The current world area.
     };
 }

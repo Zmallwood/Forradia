@@ -10,11 +10,9 @@ namespace Forradia
 {
     bool RectF::Contains(PointF point)
     {
-        // Create condition by checking against the
-        // boundaries of this rectangle.
+        // Create condition by checking against the boundaries of this rectangle.
 
-        return point.x >= this->x && point.y >= this->y &&
-               point.x < this->x + this->width &&
+        return point.x >= this->x && point.y >= this->y && point.x < this->x + this->width &&
                point.y < this->y + this->height;
     }
 

@@ -8,19 +8,16 @@
 
 namespace Forradia
 {
-    bool TextureBank::ObtainTextTexture(int uniqueTextureID,
-                                        GLuint &textureID)
+    bool TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID)
     {
         // Check if the text texture exists.
 
         if (m_textTextureIDs.contains(uniqueTextureID))
         {
-            // If it does, set the texture ID and return
-            // true, indicating that the texture already
+            // If it does, set the texture ID and return true, indicating that the texture already
             // exists.
 
-            textureID =
-                m_textTextureIDs.at(uniqueTextureID);
+            textureID = m_textTextureIDs.at(uniqueTextureID);
 
             return true;
         }
@@ -33,8 +30,7 @@ namespace Forradia
 
         m_textTextureIDs[uniqueTextureID] = textureID;
 
-        // Return false, indicating that the texture was not
-        // found.
+        // Return false, indicating that the texture was not found.
 
         return false;
     }

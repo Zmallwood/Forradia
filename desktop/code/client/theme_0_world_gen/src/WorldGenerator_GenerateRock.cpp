@@ -22,17 +22,13 @@ namespace Forradia::Theme0
 
             auto yCenter{GetRandomInt(m_size.height)};
 
-            auto r{3 * m_scale +
-                   GetRandomInt(10 * m_scale)};
+            auto r{3 * m_scale + GetRandomInt(10 * m_scale)};
 
-            for (auto y = yCenter - r; y <= yCenter + r;
-                 y++)
+            for (auto y = yCenter - r; y <= yCenter + r; y++)
             {
-                for (auto x = xCenter - r; x <= xCenter + r;
-                     x++)
+                for (auto x = xCenter - r; x <= xCenter + r; x++)
                 {
-                    if (!m_worldArea->IsValidCoordinate(x,
-                                                        y))
+                    if (!m_worldArea->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -43,8 +39,7 @@ namespace Forradia::Theme0
 
                     if (dX * dX + dY * dY <= r * r)
                     {
-                        auto tile{
-                            m_worldArea->GetTile(x, y)};
+                        auto tile{m_worldArea->GetTile(x, y)};
 
                         if (tile->GetElevation() > 0)
                         {

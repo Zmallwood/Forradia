@@ -16,8 +16,7 @@ namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateRobots() const
     {
-        auto numRobots{200 * m_scale +
-                       GetRandomInt(15 * m_scale)};
+        auto numRobots{200 * m_scale + GetRandomInt(15 * m_scale)};
 
         for (auto i = 0; i < numRobots; i++)
         {
@@ -27,17 +26,13 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile && !tile->GetRobot() &&
-                tile->GetGround() != Hash("GroundWater"))
+            if (tile && !tile->GetRobot() && tile->GetGround() != Hash("GroundWater"))
             {
-                auto newRobot =
-                    std::make_shared<Theme0::Robot>(
-                        "RobotMechWolf", x, y);
+                auto newRobot = std::make_shared<Theme0::Robot>("RobotMechWolf", x, y);
 
                 tile->SetRobot(newRobot);
 
-                m_worldArea->GetRobotsMirrorRef().insert(
-                    {tile->GetRobot(), {x, y}});
+                m_worldArea->GetRobotsMirrorRef().insert({tile->GetRobot(), {x, y}});
             }
         }
     }

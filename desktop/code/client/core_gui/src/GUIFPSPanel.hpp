@@ -15,9 +15,7 @@ namespace Forradia
     class GUIFPSPanel : public GUIMovablePanel
     {
       public:
-        GUIFPSPanel()
-            : GUIMovablePanel("FPSPanel", 0.92f, 0.02f,
-                              0.07f, 0.04f)
+        GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92f, 0.02f, 0.07f, 0.04f)
         {
             Initialize();
         }

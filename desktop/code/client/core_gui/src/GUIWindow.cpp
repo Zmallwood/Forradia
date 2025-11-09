@@ -14,20 +14,14 @@
 
 namespace Forradia
 {
-    void GUIWindow::GUIWindowTitleBar::Initialize(
-        StringView uniqueName)
+    void GUIWindow::GUIWindowTitleBar::Initialize(StringView uniqueName)
     {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
         AddChildComponent(std::make_shared<GUIButton>(
             uniqueName.data() + String("CloseButton"),
-            parentWindowBounds.width -
-                ConvertWidthToHeight(
-                    0.015f, _<SDLDevice>().GetWindow()),
-            0.01f, 0.015f,
-            ConvertWidthToHeight(
-                0.015f, _<SDLDevice>().GetWindow()),
-            "X",
+            parentWindowBounds.width - ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()),
+            0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), "X",
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
@@ -37,12 +31,10 @@ namespace Forradia
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-        _<TextRenderer>().DrawString(
-            k_renderIDWindowTitleText, k_windowTitle,
-            parentWindowBounds.x + 0.01f,
-            parentWindowBounds.y + 0.01f, FontSizes::_20,
-            false, false,
-            Palette::GetColor<Hash("Yellow")>());
+        _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
+                                     parentWindowBounds.x + 0.01f, parentWindowBounds.y + 0.01f,
+                                     FontSizes::_20, false, false,
+                                     Palette::GetColor<Hash("Yellow")>());
     }
 
     RectF GUIWindow::GUIWindowTitleBar::GetBounds() const
@@ -61,14 +53,11 @@ namespace Forradia
 
         return boundsResult;
     }
-    void GUIWindow::Initialize(StringView uniqueName,
-                               StringView windowTitle)
+    void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle)
     {
         this->SetVisible(false);
 
-        m_guiWindowTitleBar =
-            std::make_shared<GUIWindowTitleBar>(
-                uniqueName, *this, windowTitle);
+        m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
 
         this->AddChildComponent(m_guiWindowTitleBar);
     }

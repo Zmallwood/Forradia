@@ -16,8 +16,7 @@ namespace Forradia
         {
         case SDL_BUTTON_LEFT:
 
-            // Register that the left mouse button
-            // has been pressed.
+            // Register that the left mouse button has been pressed.
 
             m_leftMouseButton.RegisterPress();
 
@@ -25,8 +24,7 @@ namespace Forradia
 
         case SDL_BUTTON_RIGHT:
 
-            // Register that the right mouse button
-            // has been pressed.
+            // Register that the right mouse button has been pressed.
 
             m_rightMouseButton.RegisterPress();
 
@@ -42,8 +40,7 @@ namespace Forradia
         {
         case SDL_BUTTON_LEFT:
 
-            // Register that the left mouse button
-            // has been released.
+            // Register that the left mouse button has been released.
 
             m_leftMouseButton.RegisterRelease();
 
@@ -51,8 +48,7 @@ namespace Forradia
 
         case SDL_BUTTON_RIGHT:
 
-            // Register that the right mouse button
-            // has been released.
+            // Register that the right mouse button has been released.
 
             m_rightMouseButton.RegisterRelease();
 

@@ -18,9 +18,7 @@ namespace Forradia::Theme0
 
         for (auto i = 0; i < numLakes; i++)
         {
-            this->GenerateSingleLake(0, 0, m_size.width,
-                                     m_size.height,
-                                     2 + GetRandomInt(5));
+            this->GenerateSingleLake(0, 0, m_size.width, m_size.height, 2 + GetRandomInt(5));
         }
     }
 }

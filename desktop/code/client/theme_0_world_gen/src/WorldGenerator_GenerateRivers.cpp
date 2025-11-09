@@ -14,8 +14,7 @@ namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateRivers() const
     {
-        auto numRivers{20 * m_scale +
-                       GetRandomInt(5 * m_scale)};
+        auto numRivers{20 * m_scale + GetRandomInt(5 * m_scale)};
 
         for (auto i = 0; i < numRivers; i++)
         {
@@ -29,21 +28,18 @@ namespace Forradia::Theme0
 
             for (auto j = 0; j < length; j++)
             {
-                auto angle{startAngle +
-                           std::sin(j * M_PI / 10.0f) * 45};
+                auto angle{startAngle + std::sin(j * M_PI / 10.0f) * 45};
 
                 auto xCoordinate{CInt(x)};
 
                 auto yCoordinate{CInt(y)};
 
-                if (!m_worldArea->IsValidCoordinate(
-                        xCoordinate, yCoordinate))
+                if (!m_worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {
                     continue;
                 }
 
-                auto tile = m_worldArea->GetTile(
-                    xCoordinate, yCoordinate);
+                auto tile = m_worldArea->GetTile(xCoordinate, yCoordinate);
 
                 if (tile)
                 {

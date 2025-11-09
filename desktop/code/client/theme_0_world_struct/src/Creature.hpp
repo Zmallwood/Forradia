@@ -20,13 +20,11 @@ namespace Forradia::Theme0
         }
 
         ///
-        /// Constructor. Creates a creature of the given
-        /// type.
+        /// Constructor. Creates a creature of the given type.
         ///
         /// @param typeName The creature type by name.
         ///
-        Creature(StringView typeName)
-            : m_type{Hash(typeName)}
+        Creature(StringView typeName) : m_type{Hash(typeName)}
         {
             this->Initialize();
         }
@@ -54,8 +52,7 @@ namespace Forradia::Theme0
         ///
         /// Sets the ticks since the creature last moved.
         ///
-        /// @param value The new ticks since the creature
-        /// last moved.
+        /// @param value The new ticks since the creature last moved.
         ///
         void SetTicksLastMovement(int value)
         {
@@ -85,8 +82,7 @@ namespace Forradia::Theme0
         ///
         /// Sets the destination of the creature.
         ///
-        /// @param value The new destination of the
-        /// creature.
+        /// @param value The new destination of the creature.
         ///
         void SetDestination(Point value)
         {
@@ -95,19 +91,16 @@ namespace Forradia::Theme0
 
       private:
         ///
-        /// Initializes the creature, by randomizing its
-        /// movement speed slightly.
+        /// Initializes the creature, by randomizing its movement speed slightly.
         ///
         void Initialize();
 
         int m_type{0}; ///< The creature type as a hash.
 
-        int m_ticksLastMovement{
-            0}; ///< Ticks since last moved.
+        int m_ticksLastMovement{0}; ///< Ticks since last moved.
 
         float m_movementSpeed{2.0f}; ///< Movement speed.
 
-        Point m_destination{-1,
-                            -1}; ///< Movement destination.
+        Point m_destination{-1, -1}; ///< Movement destination.
     };
 }

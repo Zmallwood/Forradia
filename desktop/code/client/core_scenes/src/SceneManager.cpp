@@ -10,8 +10,7 @@
 
 namespace Forradia
 {
-    void SceneManager::AddScene(StringView sceneName,
-                                IScene &scene)
+    void SceneManager::AddScene(StringView sceneName, IScene &scene)
     {
         scene.Initialize();
 

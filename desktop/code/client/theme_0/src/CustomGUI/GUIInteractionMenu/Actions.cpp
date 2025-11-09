@@ -66,8 +66,7 @@ namespace Forradia::Theme0
                 {
                     s_timedActions.clear();
 
-                    _<GUIChatBox>().Print(
-                        "You stopped current action.");
+                    _<GUIChatBox>().Print("You stopped current action.");
                 }};
     }
 
@@ -78,8 +77,7 @@ namespace Forradia::Theme0
                 .objectMatches = {Hash("ObjectComputer")},
                 .action = []()
                 {
-                    _<GUIChatBox>().Print(
-                        "You sit by the computer.");
+                    _<GUIChatBox>().Print("You sit by the computer.");
 
                     _<GUIChatBox>().EnableInput();
                 }};
@@ -88,112 +86,85 @@ namespace Forradia::Theme0
     template <>
     Action GetAction<Hash("ActionChopTrees")>()
     {
-        return {
-            .groundMatches = {Hash("GroundGrass")},
-            .objectMatches = {},
-            .action = []()
-            {
-                _<GUIChatBox>().Print(
-                    "You start chopping down trees.");
+        return {.groundMatches = {Hash("GroundGrass")},
+                .objectMatches = {},
+                .action = []()
+                {
+                    _<GUIChatBox>().Print("You start chopping down trees.");
 
-                GetAction<Hash("ActionMoveToClosestTree")>()
-                    .action();
-            }};
+                    GetAction<Hash("ActionMoveToClosestTree")>().action();
+                }};
     }
 
     template <>
     Action GetAction<Hash("ActionMoveToClosestTree")>()
     {
-        return {
-            .groundMatches = {Hash("GroundGrass")},
-            .objectMatches = {},
-            .action = []()
-            {
-                _<GUIChatBox>().Print(
-                    "You start moving to closest tree.");
-
-                auto radius{10};
-
-                auto worldArea{
-                    _<World>().GetCurrentWorldArea()};
-
-                auto playerPos{
-                    _<GameplayCore::PlayerCharacter>()
-                        .GetPosition()};
-
-                auto worldAreaSize{worldArea->GetSize()};
-
-                auto minDist{999999};
-
-                Point closestTree{-1, -1};
-
-                for (auto y = playerPos.y - radius;
-                     y <= playerPos.y + radius; ++y)
+        return {.groundMatches = {Hash("GroundGrass")},
+                .objectMatches = {},
+                .action = []()
                 {
-                    for (auto x = playerPos.x - radius;
-                         x <= playerPos.x + radius; ++x)
+                    _<GUIChatBox>().Print("You start moving to closest tree.");
+
+                    auto radius{10};
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto playerPos{_<GameplayCore::PlayerCharacter>().GetPosition()};
+
+                    auto worldAreaSize{worldArea->GetSize()};
+
+                    auto minDist{999999};
+
+                    Point closestTree{-1, -1};
+
+                    for (auto y = playerPos.y - radius; y <= playerPos.y + radius; ++y)
                     {
-                        auto dx = x - playerPos.x;
-                        auto dy = y - playerPos.y;
-
-                        if (dx * dx + dy * dy <=
-                            radius * radius)
+                        for (auto x = playerPos.x - radius; x <= playerPos.x + radius; ++x)
                         {
-                            auto xCoord{
-                                worldAreaSize.width - x +
-                                1};
+                            auto dx = x - playerPos.x;
+                            auto dy = y - playerPos.y;
 
-                            auto yCoord{
-                                worldAreaSize.height - y +
-                                1};
-
-                            auto tile{worldArea->GetTile(
-                                xCoord, yCoord)};
-
-                            auto objectsStack{
-                                tile->GetObjectsStack()};
-
-                            for (auto object :
-                                 objectsStack->GetObjects())
+                            if (dx * dx + dy * dy <= radius * radius)
                             {
-                                if (object->GetType() ==
-                                        Hash("ObjectFirTre"
-                                             "e") ||
-                                    object->GetType() ==
-                                        Hash("ObjectBirchTr"
-                                             "ee"))
+                                auto xCoord{worldAreaSize.width - x + 1};
+
+                                auto yCoord{worldAreaSize.height - y + 1};
+
+                                auto tile{worldArea->GetTile(xCoord, yCoord)};
+
+                                auto objectsStack{tile->GetObjectsStack()};
+
+                                for (auto object : objectsStack->GetObjects())
                                 {
-                                    auto dist{
-                                        (x - playerPos.x) *
-                                            (x -
-                                             playerPos.x) +
-                                        (y - playerPos.y) *
-                                            (y -
-                                             playerPos.y)};
-
-                                    if (dist < minDist)
+                                    if (object->GetType() == Hash("ObjectFirTre"
+                                                                  "e") ||
+                                        object->GetType() == Hash("ObjectBirchTr"
+                                                                  "ee"))
                                     {
-                                        minDist = dist;
+                                        auto dist{(x - playerPos.x) * (x - playerPos.x) +
+                                                  (y - playerPos.y) * (y - playerPos.y)};
 
-                                        closestTree = {x,
-                                                       y};
+                                        if (dist < minDist)
+                                        {
+                                            minDist = dist;
+
+                                            closestTree = {x, y};
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
 
-                if (closestTree.x != -1)
-                {
-                    _<GameplayCore::PlayerCharacter>()
-                        .SetDestination(
+                    if (closestTree.x != -1)
+                    {
+                        _<GameplayCore::PlayerCharacter>().SetDestination(
                             {closestTree.x, closestTree.y});
-                }
+                    }
 
-                _<GUIChatBox>().Print("You dont find any "
-                                      "tree closeby.");
-            }};
+                    _<GUIChatBox>().Print("You dont find any "
+                                          "tree closeby.");
+                }};
     }
 
     template <>
@@ -203,22 +174,15 @@ namespace Forradia::Theme0
                 .objectMatches = {},
                 .action = []()
                 {
-                    auto &inventory{
-                        _<GameplayCore::PlayerCharacter>()
-                            .GetObjectsInventoryRef()};
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    inventory.AddObject(
-                        "ObjectBlueberries");
+                    inventory.AddObject("ObjectBlueberries");
 
-                    _<GUIChatBox>().Print(
-                        "Foraging... You found some "
-                        "blueberries!");
+                    _<GUIChatBox>().Print("Foraging... You found some "
+                                          "blueberries!");
 
                     s_timedActions.insert(
-                        {GetTicks() + 2000,
-                         GetAction<Hash(
-                             "ActionForageContinue")>()
-                             .action});
+                        {GetTicks() + 2000, GetAction<Hash("ActionForageContinue")>().action});
                 }};
     }
 
@@ -234,39 +198,28 @@ namespace Forradia::Theme0
                     switch (direction)
                     {
                     case 0:
-                        _<GameplayCore::PlayerCharacter>()
-                            .MoveNorth();
+                        _<GameplayCore::PlayerCharacter>().MoveNorth();
                         break;
                     case 1:
-                        _<GameplayCore::PlayerCharacter>()
-                            .MoveEast();
+                        _<GameplayCore::PlayerCharacter>().MoveEast();
                         break;
                     case 2:
-                        _<GameplayCore::PlayerCharacter>()
-                            .MoveSouth();
+                        _<GameplayCore::PlayerCharacter>().MoveSouth();
                         break;
                     case 3:
-                        _<GameplayCore::PlayerCharacter>()
-                            .MoveWest();
+                        _<GameplayCore::PlayerCharacter>().MoveWest();
                         break;
                     }
 
-                    auto &inventory{
-                        _<GameplayCore::PlayerCharacter>()
-                            .GetObjectsInventoryRef()};
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    inventory.AddObject(
-                        "ObjectBlueberries");
+                    inventory.AddObject("ObjectBlueberries");
 
-                    _<GUIChatBox>().Print(
-                        "Continue foraging... You "
-                        "found some blueberries!");
+                    _<GUIChatBox>().Print("Continue foraging... You "
+                                          "found some blueberries!");
 
                     s_timedActions.insert(
-                        {GetTicks() + 2000,
-                         GetAction<Hash(
-                             "ActionForageContinue")>()
-                             .action});
+                        {GetTicks() + 2000, GetAction<Hash("ActionForageContinue")>().action});
                 }};
     }
 
@@ -274,18 +227,14 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionPickBranch")>()
     {
         return {.groundMatches = {},
-                .objectMatches = {Hash("ObjectFirTree"),
-                                  Hash("ObjectBirchTree")},
+                .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
                 .action = []()
                 {
-                    auto &inventory{
-                        _<GameplayCore::PlayerCharacter>()
-                            .GetObjectsInventoryRef()};
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBranch");
 
-                    _<GUIChatBox>().Print(
-                        "You picked a branch!");
+                    _<GUIChatBox>().Print("You picked a branch!");
                 }};
     }
 
@@ -296,40 +245,29 @@ namespace Forradia::Theme0
                 .objectMatches = {},
                 .action = []()
                 {
-                    _<GUIChatBox>().Print(
-                        "You start build a simple "
-                        "shelter.");
+                    _<GUIChatBox>().Print("You start build a simple "
+                                          "shelter.");
 
-                    auto &inventory{
-                        _<GameplayCore::PlayerCharacter>()
-                            .GetObjectsInventoryRef()};
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    auto hasBranchesCount{
-                        inventory.CountHasObject(
-                            "ObjectBranch")};
+                    auto hasBranchesCount{inventory.CountHasObject("ObjectBranch")};
 
                     auto requiredBranchesCount{4};
 
-                    auto lackingBranchesCount{
-                        requiredBranchesCount -
-                        hasBranchesCount};
+                    auto lackingBranchesCount{requiredBranchesCount - hasBranchesCount};
 
                     if (lackingBranchesCount <= 0)
                     {
-                        _<GUIChatBox>().Print(
-                            "You finished building a "
-                            "simple "
-                            "shelter.");
+                        _<GUIChatBox>().Print("You finished building a "
+                                              "simple "
+                                              "shelter.");
                     }
                     else
                     {
-                        _<GUIChatBox>().Print(
-                            "You need " +
-                            std::to_string(
-                                lackingBranchesCount) +
-                            " more branches to "
-                            "build a simple "
-                            "shelter.");
+                        _<GUIChatBox>().Print("You need " + std::to_string(lackingBranchesCount) +
+                                              " more branches to "
+                                              "build a simple "
+                                              "shelter.");
                     }
                 }};
     }
@@ -341,30 +279,25 @@ namespace Forradia::Theme0
                 .objectMatches = {},
                 .action = []()
                 {
-                    auto robot{_<GUIInteractionMenu>()
-                                   .GetClickedRobot()};
+                    auto robot{_<GUIInteractionMenu>().GetClickedRobot()};
 
                     if (robot)
                     {
-                        _<GameplayCore::BattleSystem>()
-                            .SetTargetedRobot(robot);
+                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
 
-                        _<GUIChatBox>().Print(
-                            "You start battling a robot.");
+                        _<GUIChatBox>().Print("You start battling a robot.");
                     }
                     else
                     {
-                        _<GUIChatBox>().Print(
-                            "There is no robot to target "
-                            "at that location.");
+                        _<GUIChatBox>().Print("There is no robot to target "
+                                              "at that location.");
                     }
                 }};
     }
 
     void UpdateActions()
     {
-        for (auto it = s_timedActions.begin();
-             it != s_timedActions.end();)
+        for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
         {
             if (GetTicks() > it->first)
             {

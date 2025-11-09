@@ -14,8 +14,7 @@ namespace Forradia
     class ModelRenderingOperation
     {
       public:
-        int verticesCount; ///< The number of vertices in
-                           ///< the model.
+        int verticesCount; ///< The number of vertices in the model.
 
         GLuint vao; ///< The vertex array object.
 

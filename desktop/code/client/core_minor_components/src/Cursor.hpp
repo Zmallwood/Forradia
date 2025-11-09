@@ -11,8 +11,7 @@
 namespace Forradia
 {
     ///
-    /// Class for the game cursor, which replaces the
-    /// default system cursor.
+    /// Class for the game cursor, which replaces the default system cursor.
     ///
     class Cursor
     {
@@ -55,14 +54,10 @@ namespace Forradia
         ///
         void DisableSystemCursor();
 
-        constexpr static float k_cursorSize{
-            0.05f}; ///< The size of the cursor.
+        constexpr static float k_cursorSize{0.05f}; ///< The size of the cursor.
 
-        const int k_renderID{
-            Hash("RenderIDCursor")}; ///< The render ID for
-                                     ///< the cursor image.
+        const int k_renderID{Hash("RenderIDCursor")}; ///< The render ID for the cursor image.
 
-        CursorStyles m_cursorStyle{
-            CursorStyles::Normal}; ///< The cursor style
+        CursorStyles m_cursorStyle{CursorStyles::Normal}; ///< The cursor style
     };
 }

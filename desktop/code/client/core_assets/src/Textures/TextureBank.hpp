@@ -13,8 +13,7 @@ struct SDL_Surface;
 namespace Forradia
 {
     ///
-    /// Manages loading and providing of textures
-    /// which are being used in opengl rendering.
+    /// Manages loading and providing of textures which are being used in opengl rendering.
     ///
     class TextureBank
     {
@@ -44,8 +43,7 @@ namespace Forradia
         GLuint GetTexture(int imageNameHash) const;
 
         ///
-        /// Gets the dimensions of a texture with the
-        /// given hash.
+        /// Gets the dimensions of a texture with the given hash.
         ///
         /// @param imageNameHash The hash of the image name.
         /// @return The dimensions of the texture.
@@ -53,17 +51,13 @@ namespace Forradia
         Size GetTextureDimensions(int imageNameHash) const;
 
         ///
-        /// Obtains a text texture ID for the given unique
-        /// texture ID.
+        /// Obtains a text texture ID for the given unique texture ID.
         ///
         /// @param uniqueTextureID The unique texture ID.
-        /// @param[out] textureID The texture ID (output
-        /// parameter).
-        /// @return True if the texture was found, false
-        /// otherwise.
+        /// @param[out] textureID The texture ID (output parameter).
+        /// @return True if the texture was found, false otherwise.
         ///
-        bool ObtainTextTexture(int uniqueTextureID,
-                               GLuint &textureID);
+        bool ObtainTextTexture(int uniqueTextureID, GLuint &textureID);
 
       private:
         ///
@@ -83,29 +77,20 @@ namespace Forradia
         void LoadTextures();
 
         ///
-        /// Obtains a texture ID for a single loaded
-        /// texture.
+        /// Obtains a texture ID for a single loaded texture.
         ///
-        /// @param surface The SDL surface to create the
-        /// texture from.
+        /// @param surface The SDL surface to create the texture from.
         /// @return The texture ID.
         ///
-        GLuint
-        LoadSingleTexture(SharedPtr<SDL_Surface> surface);
+        GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface);
 
         inline static const String k_relativeImagesPath{
-            "./Resources/Images/"}; ///< The relative path
-                                    ///< to the image
-                                    ///< resource directory.
+            "./Resources/Images/"}; ///< The relative path to the image resource directory.
 
         std::map<int, TextureEntry>
-            m_textureEntries; ///< The texture entries,
-                              ///< stored by image name
-                              ///< hash.
+            m_textureEntries; ///< The texture entries, stored by image name hash.
 
         std::map<int, GLuint>
-            m_textTextureIDs; ///< The text texture IDs,
-                              ///< stored by x, y and
-                              ///< text hash values.
+            m_textTextureIDs; ///< The text texture IDs, stored by x, y and text hash values.
     };
 }

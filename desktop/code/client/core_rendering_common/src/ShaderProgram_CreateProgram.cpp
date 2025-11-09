@@ -8,16 +8,13 @@
 
 namespace Forradia
 {
-    GLint
-    ShaderProgram::CreateProgram(GLuint vertexShader,
-                                 GLuint fragmentShader)
+    GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader)
     {
         // Create a new shader program.
 
         m_programID = glCreateProgram();
 
-        // Attach the vertex and fragment shaders to
-        // the program.
+        // Attach the vertex and fragment shaders to the program.
 
         glAttachShader(m_programID, vertexShader);
 
@@ -31,8 +28,7 @@ namespace Forradia
 
         GLint isLinked{0};
 
-        glGetProgramiv(m_programID, GL_LINK_STATUS,
-                       (int *)&isLinked);
+        glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
         // If the link failed.
 
@@ -42,15 +38,13 @@ namespace Forradia
 
             GLint maxLength{0};
 
-            glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH,
-                           &maxLength);
+            glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
 
             // Get the info log.
 
             Vector<GLchar> infoLog(maxLength);
 
-            glGetProgramInfoLog(m_programID, maxLength,
-                                &maxLength, &infoLog[0]);
+            glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
 
             // Delete the program.
 

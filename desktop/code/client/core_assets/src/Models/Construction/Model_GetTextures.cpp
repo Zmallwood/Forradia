@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    Vector<Texture> Model::GetTextures(aiMesh *mesh,
-                                       const aiScene *scene)
+    Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene)
     {
         // To hold the resulting textures.
 
@@ -21,13 +20,12 @@ namespace Forradia
 
         // Get the texture path.
 
-        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(
-            aiTextureType_DIFFUSE, 0, &textureFilePath);
+        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0,
+                                                            &textureFilePath);
 
         // Add the texture to the results.
 
-        textures.push_back(Texture(GetFileNameNoExtension(
-            textureFilePath.C_Str())));
+        textures.push_back(Texture(GetFileNameNoExtension(textureFilePath.C_Str())));
 
         // Return the textures results.
 

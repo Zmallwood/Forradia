@@ -28,20 +28,16 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()
-                    ->AddObject<TreeObject>(
-                        "ObjectFirTree");
+                tile->GetObjectsStack()->AddObject<TreeObject>("ObjectFirTree");
             }
         }
 
-        auto numBirchTrees{2000 * m_scale +
-                           GetRandomInt(50)};
+        auto numBirchTrees{2000 * m_scale + GetRandomInt(50)};
 
         for (auto i = 0; i < numBirchTrees; i++)
         {
@@ -51,15 +47,12 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()
-                    ->AddObject<TreeObject>(
-                        "ObjectBirchTree");
+                tile->GetObjectsStack()->AddObject<TreeObject>("ObjectBirchTree");
             }
         }
 
@@ -73,14 +66,12 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject(
-                    "ObjectBush1");
+                tile->GetObjectsStack()->AddObject("ObjectBush1");
             }
         }
 
@@ -94,19 +85,16 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject(
-                    "ObjectBush2");
+                tile->GetObjectsStack()->AddObject("ObjectBush2");
             }
         }
 
-        auto numPinkFlowers{400 * m_scale +
-                            GetRandomInt(100)};
+        auto numPinkFlowers{400 * m_scale + GetRandomInt(100)};
 
         for (auto i = 0; i < numPinkFlowers; i++)
         {
@@ -116,19 +104,16 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject(
-                    "ObjectPinkFlower");
+                tile->GetObjectsStack()->AddObject("ObjectPinkFlower");
             }
         }
 
-        auto numTallGrasses{400 * m_scale +
-                            GetRandomInt(100)};
+        auto numTallGrasses{400 * m_scale + GetRandomInt(100)};
 
         for (auto i = 0; i < numTallGrasses; i++)
         {
@@ -138,19 +123,16 @@ namespace Forradia::Theme0
 
             auto tile{m_worldArea->GetTile(x, y)};
 
-            if (tile &&
-                tile->GetGround() != Hash("GroundWater") &&
+            if (tile && tile->GetGround() != Hash("GroundWater") &&
                 tile->GetGround() != Hash("GroundRock"))
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject(
-                    "ObjectTallGrass");
+                tile->GetObjectsStack()->AddObject("ObjectTallGrass");
             }
         }
 
-        auto numStoneBoulders{200 * m_scale +
-                              GetRandomInt(100)};
+        auto numStoneBoulders{200 * m_scale + GetRandomInt(100)};
 
         for (auto i = 0; i < numStoneBoulders; i++)
         {
@@ -164,8 +146,7 @@ namespace Forradia::Theme0
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject(
-                    "ObjectStoneBoulder");
+                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
             }
         }
     }

@@ -16,22 +16,16 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateMouseMovement()
     {
-        if (_<MouseInput>()
-                .GetLeftMouseButtonRef()
-                .HasBeenFiredPickResult())
+        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
         {
-            auto newDestination{
-                _<TileHovering>().GetHoveredCoordinate()};
+            auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
-            _<Theme0::GameplayCore::PlayerCharacter>()
-                .SetDestination(newDestination);
+            _<Theme0::GameplayCore::PlayerCharacter>().SetDestination(newDestination);
         }
 
-        auto playerPosition{
-            _<PlayerCharacter>().GetPosition()};
+        auto playerPosition{_<PlayerCharacter>().GetPosition()};
 
-        auto destination{
-            _<PlayerCharacter>().GetDestination()};
+        auto destination{_<PlayerCharacter>().GetDestination()};
 
         if (destination == Point{-1, -1})
         {
@@ -40,11 +34,8 @@ namespace Forradia::Theme0::GameplayCore
 
         auto now{GetTicks()};
 
-        if (now >=
-            _<PlayerCharacter>().GetTicksLastMovement() +
-                InvertMovementSpeed(
-                    _<PlayerCharacter>()
-                        .GetMovementSpeed()))
+        if (now >= _<PlayerCharacter>().GetTicksLastMovement() +
+                       InvertMovementSpeed(_<PlayerCharacter>().GetMovementSpeed()))
         {
             auto dX{destination.x - playerPosition.x};
 
@@ -72,8 +63,7 @@ namespace Forradia::Theme0::GameplayCore
 
             if (destination == playerPosition)
             {
-                _<PlayerCharacter>().SetDestination(
-                    {-1, -1});
+                _<PlayerCharacter>().SetDestination({-1, -1});
             }
 
             _<PlayerCharacter>().SetTicksLastMovement(now);

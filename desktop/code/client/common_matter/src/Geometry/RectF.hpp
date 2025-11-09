@@ -18,13 +18,10 @@ namespace Forradia
     {
       public:
         ///
-        /// Check if this rectangle contains a certian
-        /// point.
+        /// Check if this rectangle contains a certian point.
         ///
-        /// @param point Point to check if it is contained
-        /// in this rectangle.
-        /// @return True if the Point is within this
-        /// rectangle, otherwise false.
+        /// @param point Point to check if it is contained in this rectangle.
+        /// @return True if the Point is within this rectangle, otherwise false.
         ///
         bool Contains(PointF point);
 
@@ -36,8 +33,7 @@ namespace Forradia
         PointF GetPosition() const;
 
         ///
-        /// Adds an offset to this rectangle, with the
-        /// dimensions altered separately.
+        /// Adds an offset to this rectangle, with the dimensions altered separately.
         ///
         /// @param offset The offset to add.
         ///
@@ -47,10 +43,8 @@ namespace Forradia
 
         float y{0.0f}; ///< The y coordinate.
 
-        float width{
-            0.0f}; ///< The width, in the x dimension.
+        float width{0.0f}; ///< The width, in the x dimension.
 
-        float height{
-            0.0f}; ///< The height, in the y dimension.
+        float height{0.0f}; ///< The height, in the y dimension.
     };
 }

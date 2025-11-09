@@ -39,12 +39,10 @@ namespace Forradia::Theme0
 
     void WorldGenerator::Prepare()
     {
-        m_worldArea =
-            _<Theme0::World>().GetCurrentWorldArea();
+        m_worldArea = _<Theme0::World>().GetCurrentWorldArea();
 
         m_size = m_worldArea->GetSize();
 
-        m_scale =
-            _<Theme0::Theme0Properties>().GetWorldScaling();
+        m_scale = _<Theme0::Theme0Properties>().GetWorldScaling();
     }
 }

@@ -13,15 +13,11 @@ namespace Forradia
     class GUIWindow : public GUIMovablePanel
     {
       public:
-        GUIWindow(StringView uniqueName, float x, float y,
-                  float width, float height,
+        GUIWindow(StringView uniqueName, float x, float y, float width, float height,
                   StringView windowTitle)
-            : GUIMovablePanel(uniqueName, x, y, width,
-                              height)
+            : GUIMovablePanel(uniqueName, x, y, width, height)
         {
-            Initialize(uniqueName.data() +
-                           String("WindowTitleBar"),
-                       windowTitle);
+            Initialize(uniqueName.data() + String("WindowTitleBar"), windowTitle);
         }
 
       protected:
@@ -35,23 +31,16 @@ namespace Forradia
         }
 
       private:
-        void Initialize(StringView uniqueName,
-                        StringView windowTitle);
+        void Initialize(StringView uniqueName, StringView windowTitle);
 
         class GUIWindowTitleBar : public GUIPanel
         {
           public:
-            GUIWindowTitleBar(StringView uniqueName,
-                              GUIWindow &parentWindow,
+            GUIWindowTitleBar(StringView uniqueName, GUIWindow &parentWindow,
                               StringView windowTitle)
-                : m_parentWindow(parentWindow),
-                  k_windowTitle(windowTitle),
-                  k_renderIDWindowTitleText(
-                      Hash(uniqueName.data() +
-                           String("WindowTitleText"))),
-                  GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f,
-                           0.0f,
-                           "GUIWindowTitleBarBackground")
+                : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
+                  k_renderIDWindowTitleText(Hash(uniqueName.data() + String("WindowTitleText"))),
+                  GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground")
             {
                 Initialize(uniqueName);
             }

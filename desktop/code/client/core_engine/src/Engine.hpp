@@ -11,8 +11,7 @@ namespace Forradia
     class Engine
     {
       public:
-        void Initialize(StringView gameWindowTitle,
-                        Color clearColor) const;
+        void Initialize(StringView gameWindowTitle, Color clearColor) const;
 
         void Run();
 

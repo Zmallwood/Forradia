@@ -23,12 +23,10 @@ namespace Forradia::Theme0::GameplayCore
 
         const int k_maxWaterDepthRendering{20};
 
-        const int k_renderIDGroundSymbolHoveredTile{
-            Hash("GroundSymbolHoveredTile")};
+        const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
 
         std::map<int, std::map<int, int>> m_renderIDsGround;
 
-        std::map<int, std::map<int, std::map<int, int>>>
-            m_renderIDsWaterDepth;
+        std::map<int, std::map<int, std::map<int, int>>> m_renderIDsWaterDepth;
     };
 }

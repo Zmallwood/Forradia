@@ -10,8 +10,7 @@ namespace Forradia::Theme0
 {
     void TreeObject::Initialize(StringView objectTypeName)
     {
-        if (objectTypeName != "ObjectFirTree" &&
-            objectTypeName != "ObjectBirchTree")
+        if (objectTypeName != "ObjectFirTree" && objectTypeName != "ObjectBirchTree")
         {
             return;
         }
@@ -28,8 +27,7 @@ namespace Forradia::Theme0
             numTrunkParts = 45 + GetRandomInt(14);
         }
 
-        m_widthFactor *=
-            (GetRandomInt(5) + 1) / 2.0f + 1.0f;
+        m_widthFactor *= (GetRandomInt(5) + 1) / 2.0f + 1.0f;
 
         auto offsetX{0.0f};
 
@@ -70,11 +68,8 @@ namespace Forradia::Theme0
                 needlesName = "ObjectBirchTreeBranch";
             }
 
-            m_needleTypes.push_back(
-                needlesType
-                    ? Hash(needlesName +
-                           std::to_string(needlesType))
-                    : 0);
+            m_needleTypes.push_back(needlesType ? Hash(needlesName + std::to_string(needlesType))
+                                                : 0);
         }
     }
 }

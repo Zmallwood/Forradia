@@ -23,37 +23,30 @@ namespace Forradia::Theme0
     {
         // Add new object of type Object to the stack.
 
-        m_objects.push_back(
-            std::make_shared<Object>(objectNameHash));
+        m_objects.push_back(std::make_shared<Object>(objectNameHash));
     }
 
     template <>
-    void ObjectsStack::AddObject<Object>(
-        StringView objectTypeName)
+    void ObjectsStack::AddObject<Object>(StringView objectTypeName)
     {
         // Add new object of Object type to the stack.
 
-        m_objects.push_back(
-            std::make_shared<Object>(objectTypeName));
+        m_objects.push_back(std::make_shared<Object>(objectTypeName));
     }
 
     template <>
-    void ObjectsStack::AddObject<TreeObject>(
-        StringView objectTypeName)
+    void ObjectsStack::AddObject<TreeObject>(StringView objectTypeName)
     {
         // Add new object of TreeObject type to the stack.
 
-        m_objects.push_back(
-            std::make_shared<TreeObject>(objectTypeName));
+        m_objects.push_back(std::make_shared<TreeObject>(objectTypeName));
     }
 
-    void ObjectsStack::RemoveOneOfObjectOfType(
-        StringView objectTypeName)
+    void ObjectsStack::RemoveOneOfObjectOfType(StringView objectTypeName)
     {
         // Iterate through the stack.
 
-        for (auto it = m_objects.begin();
-             it != m_objects.end();)
+        for (auto it = m_objects.begin(); it != m_objects.end();)
         {
             // If the object type matches.
 
@@ -63,8 +56,7 @@ namespace Forradia::Theme0
 
                 m_objects.erase(it);
 
-                // Stop iterating since only one object
-                // should be removed.
+                // Stop iterating since only one object should be removed.
 
                 return;
             }

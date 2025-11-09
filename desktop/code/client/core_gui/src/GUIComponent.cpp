@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    SharedPtr<GUIComponent> GUIComponent::AddChildComponent(
-        SharedPtr<GUIComponent> component)
+    SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
     {
         component->SetParentComponent(this);
 
@@ -25,8 +24,7 @@ namespace Forradia
             return;
         }
 
-        for (auto component :
-             std::views::reverse(m_childComponents))
+        for (auto component : std::views::reverse(m_childComponents))
         {
             component->Update();
         }
@@ -55,9 +53,7 @@ namespace Forradia
 
         if (m_parentComponent)
         {
-            auto parentPosition{
-                m_parentComponent->GetBounds()
-                    .GetPosition()};
+            auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
 
             boundsResult.Offset(parentPosition);
         }

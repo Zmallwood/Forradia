@@ -16,8 +16,7 @@ namespace Forradia
 
         // Get the size of the window.
 
-        SDL_GetWindowSize(window.get(), &canvasSize.width,
-                          &canvasSize.height);
+        SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
 
         return canvasSize;
     }
@@ -28,27 +27,22 @@ namespace Forradia
 
         // Calculate the aspect ratio.
 
-        auto aspectRatio{CFloat(canvasSize.width) /
-                         canvasSize.height};
+        auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
 
         return aspectRatio;
     }
 
-    float ConvertWidthToHeight(float width,
-                               SharedPtr<SDL_Window> window)
+    float ConvertWidthToHeight(float width, SharedPtr<SDL_Window> window)
     {
-        // Calculate the height based on the width and the
-        // aspect ratio.
+        // Calculate the height based on the width and the aspect ratio.
 
         return width * CalcAspectRatio(window);
     }
 
-    float ConvertHeightToWidth(float height,
-                               SharedPtr<SDL_Window> window)
+    float ConvertHeightToWidth(float height, SharedPtr<SDL_Window> window)
     {
-        // Calculate the width based on the height and the
-        // aspect ratio.
-        
+        // Calculate the width based on the height and the aspect ratio.
+
         return height / CalcAspectRatio(window);
     }
 }

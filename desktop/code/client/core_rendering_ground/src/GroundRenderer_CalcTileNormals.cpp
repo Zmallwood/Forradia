@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    Vector<glm::vec3> GroundRenderer::CalcTileNormals(
-        const Vector<float> &verticesNoNormals)
+    Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals)
     {
         // Define constants.
 
@@ -17,25 +16,21 @@ namespace Forradia
 
         constexpr size_t k_requiredVertices = 9;
 
-        constexpr size_t k_minArraySize =
-            k_requiredVertices * k_vertexStride;
+        constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
 
-        // Check if the vertex data is sufficient, cancel if
-        // not.
+        // Check if the vertex data is sufficient, cancel if not.
 
         if (verticesNoNormals.size() < k_minArraySize)
         {
-            throw std::invalid_argument(
-                "Insufficient vertex data.");
+            throw std::invalid_argument("Insufficient vertex data.");
         }
 
-        // Create a map to store the vertices with positions
-        // only. This will be used to calculate the normals.
+        // Create a map to store the vertices with positions only. This will be used to calculate
+        // the normals.
 
         std::map<int, std::map<int, glm::vec3>> v;
 
-        // Loop through the vertices and store them in the
-        // map.
+        // Loop through the vertices and store them in the map.
 
         for (auto y = 0; y < 3; y++)
         {
@@ -47,15 +42,9 @@ namespace Forradia
 
                 // Get the vertex coordinates.
 
-                auto vX{
-                    verticesNoNormals[i * k_vertexStride +
-                                      0]};
-                auto vY{
-                    verticesNoNormals[i * k_vertexStride +
-                                      1]};
-                auto vZ{
-                    verticesNoNormals[i * k_vertexStride +
-                                      2]};
+                auto vX{verticesNoNormals[i * k_vertexStride + 0]};
+                auto vY{verticesNoNormals[i * k_vertexStride + 1]};
+                auto vZ{verticesNoNormals[i * k_vertexStride + 2]};
 
                 // Store the vertex coordinates in the map.
 
@@ -65,17 +54,13 @@ namespace Forradia
 
         // Calculate the normals.
 
-        auto normal00{
-            ComputeNormal(v[1][0], v[0][0], v[0][1])};
+        auto normal00{ComputeNormal(v[1][0], v[0][0], v[0][1])};
 
-        auto normal10{
-            ComputeNormal(v[2][0], v[1][0], v[1][1])};
+        auto normal10{ComputeNormal(v[2][0], v[1][0], v[1][1])};
 
-        auto normal11{
-            ComputeNormal(v[2][1], v[1][1], v[1][2])};
+        auto normal11{ComputeNormal(v[2][1], v[1][1], v[1][2])};
 
-        auto normal01{
-            ComputeNormal(v[1][1], v[0][1], v[0][2])};
+        auto normal01{ComputeNormal(v[1][1], v[0][1], v[0][2])};
 
         // Invert the z-component of the normals.
 
@@ -86,8 +71,7 @@ namespace Forradia
 
         // Group the normals and return them.
 
-        auto normals{Vector<glm::vec3>{normal00, normal10,
-                                       normal11, normal01}};
+        auto normals{Vector<glm::vec3>{normal00, normal10, normal11, normal01}};
 
         return normals;
     }

@@ -49,14 +49,11 @@ namespace Forradia
         /// @param filePath The path to the model file.
         /// @return The loaded model.
         ///
-        SharedPtr<Model>
-        LoadSingleModel(StringView filePath);
+        SharedPtr<Model> LoadSingleModel(StringView filePath);
 
         inline static const String k_relativeModelsPath{
-            "./Resources/Models/"}; ///< Relative path to
-                                    ///< models.
+            "./Resources/Models/"}; ///< Relative path to models.
 
-        std::map<int, SharedPtr<Model>>
-            m_models; ///< Models.
+        std::map<int, SharedPtr<Model>> m_models; ///< Models.
     };
 }

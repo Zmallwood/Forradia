@@ -9,8 +9,7 @@
 namespace Forradia::Theme0
 {
     ///
-    /// An object, either in the game world, a
-    /// container or inventory.
+    /// An object, either in the game world, a container or inventory.
     ///
     class Object
     {
@@ -24,8 +23,7 @@ namespace Forradia::Theme0
         ///
         /// @param objectTypeName The object type by name.
         ///
-        Object(StringView objectTypeName)
-            : m_type(Hash(objectTypeName))
+        Object(StringView objectTypeName) : m_type(Hash(objectTypeName))
         {
         }
 

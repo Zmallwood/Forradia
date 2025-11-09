@@ -15,9 +15,7 @@ namespace Forradia::Theme0
     class GUIInteractionMenu : public GUIPanel
     {
       public:
-        GUIInteractionMenu()
-            : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f,
-                       0.2f, 0.14f)
+        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
         {
             Initialize();
         }
@@ -49,8 +47,7 @@ namespace Forradia::Theme0
         class GUIInteractionMenuEntry
         {
           public:
-            GUIInteractionMenuEntry(StringView label,
-                                    Function<void()> action)
+            GUIInteractionMenuEntry(StringView label, Function<void()> action)
                 : m_label(label), m_action(action)
             {
             }
@@ -71,8 +68,7 @@ namespace Forradia::Theme0
             Function<void()> m_action;
         };
 
-        const int k_renderIDActionsString{
-            Hash("GUIInteractionMenuActionsString")};
+        const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
 
         const int k_maxNumMenuEntries{40};
 

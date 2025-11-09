@@ -15,11 +15,8 @@ namespace Forradia
     {
         Normal, ///< The default cursor style.
 
-        HoveringClickableGUI, ///< The cursor style when
-                              ///< hovering over a clickable
-                              ///< GUI element.
+        HoveringClickableGUI, ///< The cursor style when hovering over a clickable GUI element.
 
-        HoveringCreature /// < The cursor style when
-                         ///< hovering over a creature.
+        HoveringCreature /// < The cursor style when hovering over a creature.
     };
 }

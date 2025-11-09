@@ -10,7 +10,7 @@
 namespace Forradia::Palette
 {
     // Define a palette of colors for the application.
-    
+
     template <>
     Color GetColor<Hash("Black")>()
     {

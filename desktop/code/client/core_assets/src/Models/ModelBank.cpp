@@ -25,8 +25,7 @@ namespace Forradia
 
         // Add relative path to base path.
 
-        auto imagesPath{basePath +
-                        k_relativeModelsPath.data()};
+        auto imagesPath{basePath + k_relativeModelsPath.data()};
 
         // Ensure the path exists to continue.
 
@@ -35,11 +34,9 @@ namespace Forradia
             return;
         }
 
-        // Create a recursive directory iterator for the
-        // path.
+        // Create a recursive directory iterator for the path.
 
-        std::filesystem::recursive_directory_iterator rdi{
-            imagesPath};
+        std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         // Iterate through the directory using the rdi.
 
@@ -47,8 +44,7 @@ namespace Forradia
         {
             // Replace backslashes with forward slashes.
 
-            auto filePath{
-                Replace(it.path().string(), '\\', '/')};
+            auto filePath{Replace(it.path().string(), '\\', '/')};
 
             // If the file is an OBJ file.
 
@@ -56,8 +52,7 @@ namespace Forradia
             {
                 // Get the file name.
 
-                auto fileName{
-                    GetFileNameNoExtension(filePath)};
+                auto fileName{GetFileNameNoExtension(filePath)};
 
                 // Get the hash of the file name.
 
@@ -74,8 +69,7 @@ namespace Forradia
         }
     }
 
-    SharedPtr<Model>
-    ModelBank::GetModel(int modelNameHash) const
+    SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const
     {
         // If the model is in the map.
 
@@ -91,8 +85,7 @@ namespace Forradia
         return nullptr;
     }
 
-    SharedPtr<Model>
-    ModelBank::LoadSingleModel(StringView filePath)
+    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath)
     {
         // Load the model from the file at the path.
 

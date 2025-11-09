@@ -43,8 +43,7 @@ namespace Forradia
 
     bool MouseButton::IsPressedPickResult()
     {
-        // Check if the button is currently pressed
-        // and store as result.
+        // Check if the button is currently pressed and store as result.
 
         auto result{m_pressed};
 

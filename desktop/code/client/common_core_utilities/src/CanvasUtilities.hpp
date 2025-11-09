@@ -24,35 +24,26 @@ namespace Forradia
     ///
     /// Calculate the aspect ratio of a given window.
     ///
-    /// @param window Window to calculate the aspect ratio
-    /// for.
+    /// @param window Window to calculate the aspect ratio for.
     /// @return The calculated aspect ratio.
     ///
     float CalcAspectRatio(SharedPtr<SDL_Window> window);
 
     ///
-    /// Convert a width to a height based on the width and
-    /// the aspect ratio.
+    /// Convert a width to a height based on the width and the aspect ratio.
     ///
     /// @param width Width to convert.
-    /// @param window Window to calculate the aspect ratio
-    /// for.
+    /// @param window Window to calculate the aspect ratio for.
     /// @return The resulting height.
     ///
-    float
-    ConvertWidthToHeight(float width,
-                         SharedPtr<SDL_Window> window);
+    float ConvertWidthToHeight(float width, SharedPtr<SDL_Window> window);
 
     ///
-    /// Convert a height to a width base on the height and
-    /// the aspect ratio.
+    /// Convert a height to a width base on the height and the aspect ratio.
     ///
     /// @param height Height to convert.
-    /// @param window Window to calculate the aspect ratio
-    /// for.
+    /// @param window Window to calculate the aspect ratio for.
     /// @return The resulting width.
     ///
-    float
-    ConvertHeightToWidth(float height,
-                         SharedPtr<SDL_Window> window);
+    float ConvertHeightToWidth(float height, SharedPtr<SDL_Window> window);
 }

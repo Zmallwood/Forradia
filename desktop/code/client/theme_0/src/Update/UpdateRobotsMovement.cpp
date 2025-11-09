@@ -34,9 +34,8 @@ namespace Forradia::Theme0::GameplayCore
 
             auto position{it->second};
 
-            if (now < robot->GetTicksLastMovement() +
-                          InvertMovementSpeed(
-                              robot->GetMovementSpeed()))
+            if (now <
+                robot->GetTicksLastMovement() + InvertMovementSpeed(robot->GetMovementSpeed()))
             {
                 ++it;
 
@@ -49,18 +48,14 @@ namespace Forradia::Theme0::GameplayCore
 
             if (destination.x == -1 && destination.y == -1)
             {
-                auto newDestination{origin.x +
-                                    GetRandomInt(9) - 4};
+                auto newDestination{origin.x + GetRandomInt(9) - 4};
 
-                auto newDestinationY{origin.y +
-                                     GetRandomInt(9) - 4};
+                auto newDestinationY{origin.y + GetRandomInt(9) - 4};
 
-                robot->SetDestination(
-                    {newDestination, newDestinationY});
+                robot->SetDestination({newDestination, newDestinationY});
             }
 
-            auto worldArea{
-                _<World>().GetCurrentWorldArea()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
             auto &robots{worldArea->GetRobotsMirrorRef()};
 
@@ -83,21 +78,17 @@ namespace Forradia::Theme0::GameplayCore
                 robot->SetDestination({-1, -1});
             }
 
-            auto tile{worldArea->GetTile(newPosition.x,
-                                         newPosition.y)};
+            auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-            if (tile && !tile->GetRobot() &&
-                tile->GetGround() != Hash("GroundWater"))
+            if (tile && !tile->GetRobot() && tile->GetGround() != Hash("GroundWater"))
             {
                 auto oldPosition{robots.at(robot)};
 
                 robot->SetTicksLastMovement(now);
 
-                auto oldTile{worldArea->GetTile(
-                    oldPosition.x, oldPosition.y)};
+                auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
 
-                auto newTile{worldArea->GetTile(
-                    newPosition.x, newPosition.y)};
+                auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
                 oldTile->SetRobot(nullptr);
 
@@ -105,9 +96,7 @@ namespace Forradia::Theme0::GameplayCore
 
                 robots.erase(robot);
 
-                robots.insert(
-                    {robot,
-                     {newPosition.x, newPosition.y}});
+                robots.insert({robot, {newPosition.x, newPosition.y}});
             }
             else
             {

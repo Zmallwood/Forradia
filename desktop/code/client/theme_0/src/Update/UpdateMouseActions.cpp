@@ -16,20 +16,15 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateMouseActions()
     {
-        if (_<MouseInput>()
-                .GetRightMouseButtonRef()
-                .HasBeenReleased() &&
-            _<MouseInput>()
-                    .GetRightMouseButtonRef()
-                    .GetTicksClickSpeed() < 200)
+        if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
+            _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
         {
             _<GUIInteractionMenu>().BuildMenu();
 
             _<GUIInteractionMenu>().SetVisible(true);
 
             _<GUIInteractionMenu>().SetPosition(
-                GetNormallizedMousePosition(
-                    _<SDLDevice>().GetWindow()));
+                GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
         }
     }
 }

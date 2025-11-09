@@ -57,17 +57,15 @@ int main(int argc, char **argv)
     //           static_cast<uint64_t>(Hash("ObjectBush2"))
     //           << std::endl;
 
-    _<Engine>().Initialize(
-        _<Theme0Properties>().GetGameWindowTitle(),
-        _<Theme0Properties>().GetClearColor());
+    _<Engine>().Initialize(_<Theme0Properties>().GetGameWindowTitle(),
+                           _<Theme0Properties>().GetClearColor());
 
     _<ScriptEngine>().Initialize();
 
     _<ScriptEngine>().LoadScripts();
 
-    _<World>().Initialize(
-        _<Theme0Properties>().GetBaseWorldAreaSize(),
-        _<Theme0Properties>().GetWorldScaling());
+    _<World>().Initialize(_<Theme0Properties>().GetBaseWorldAreaSize(),
+                          _<Theme0Properties>().GetWorldScaling());
 
     _<Engine>().Run();
 

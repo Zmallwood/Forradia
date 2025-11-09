@@ -11,15 +11,13 @@ struct SDL_Color;
 namespace Forradia
 {
     ///
-    /// A RGBA color with components defined with float
-    /// values.
+    /// A RGBA color with components defined with float values.
     ///
     class Color
     {
       public:
         ///
-        /// Convert this color to a corresponding SDL_Color
-        /// object.
+        /// Convert this color to a corresponding SDL_Color object.
         ///
         /// @return Corresponding SDL_Color object.
         ///

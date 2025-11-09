@@ -17,13 +17,10 @@ namespace Forradia
         ///
         /// Sets up SDL and OpenGL.
         ///
-        /// @param gameWindowTitle The title of the game
-        /// window.
-        /// @param clearColor The color to clear the canvas
-        /// with.
+        /// @param gameWindowTitle The title of the game window.
+        /// @param clearColor The color to clear the canvas with.
         ///
-        void Initialize(StringView gameWindowTitle,
-                        Color clearColor);
+        void Initialize(StringView gameWindowTitle, Color clearColor);
 
         ///
         /// Clears the canvas.
@@ -59,18 +56,14 @@ namespace Forradia
         Size GetScreenSize() const;
 
         constexpr static Uint32 k_windowFlags{
-            SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
-            SDL_WINDOW_MAXIMIZED |
+            SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED |
             SDL_WINDOW_FULLSCREEN_DESKTOP |
-            SDL_WINDOW_OPENGL}; ///< Flags used in the setup
-                                ///< of the SDL window.
+            SDL_WINDOW_OPENGL}; ///< Flags used in the setup of the SDL window.
 
         SharedPtr<SDL_Window> m_window; ///< The SDL window.
 
-        String m_gameWindowTitle; ///< The title of the game
-                                  ///< window.
+        String m_gameWindowTitle; ///< The title of the game window.
 
-        Color m_clearColor; ///< The color to clear the
-                            ///< canvas with.
+        Color m_clearColor; ///< The color to clear the canvas with.
     };
 }

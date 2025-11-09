@@ -33,18 +33,15 @@ namespace Forradia::Theme0::GameplayCore
         {
             if (!m_objects[i])
             {
-                m_objects[i] =
-                    std::make_shared<Object>(objectName);
+                m_objects[i] = std::make_shared<Object>(objectName);
                 return;
             }
         }
 
-        m_objects.push_back(
-            std::make_shared<Object>(objectName));
+        m_objects.push_back(std::make_shared<Object>(objectName));
     }
 
-    int
-    ObjectsInventory::CountHasObject(StringView objectName)
+    int ObjectsInventory::CountHasObject(StringView objectName)
     {
         auto findCount{0};
 

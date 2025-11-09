@@ -24,16 +24,13 @@
 
 namespace Forradia
 {
-    void ModelRenderer::DrawModel(int modelNameHash,
-                                  float x, float y,
-                                  float elevation)
+    void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation)
     {
         // Setup state.
 
         this->SetupState();
 
-        // To contain the vertex array object, index buffer
-        // object and vertex buffer object.
+        // To contain the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao;
         GLuint ibo;
@@ -51,11 +48,9 @@ namespace Forradia
         {
             // Get the cached drawing operation.
 
-            auto &entry{
-                m_operationsCache.at(modelNameHash)};
+            auto &entry{m_operationsCache.at(modelNameHash)};
 
-            // Get the vertex array object, index buffer
-            // object and vertex buffer object.
+            // Get the vertex array object, index buffer object and vertex buffer object.
 
             vao = entry.vao;
 
@@ -73,8 +68,7 @@ namespace Forradia
         }
         else
         {
-            // Generate the vertex array object, index
-            // buffer object and vertex buffer object.
+            // Generate the vertex array object, index buffer object and vertex buffer object.
 
             glGenVertexArrays(1, &vao);
 
@@ -108,8 +102,7 @@ namespace Forradia
 
             Vector<float> verticesVector;
 
-            // To contain the index of the first vertex of
-            // the next mesh.
+            // To contain the index of the first vertex of the next mesh.
 
             auto indexFirstVertexOfMesh{0};
 
@@ -123,25 +116,19 @@ namespace Forradia
                 {
                     // Add position.
 
-                    verticesVector.push_back(
-                        vertex.position.x * k_modelScale);
+                    verticesVector.push_back(vertex.position.x * k_modelScale);
 
-                    verticesVector.push_back(
-                        vertex.position.y * k_modelScale);
+                    verticesVector.push_back(vertex.position.y * k_modelScale);
 
-                    verticesVector.push_back(
-                        vertex.position.z * k_modelScale);
+                    verticesVector.push_back(vertex.position.z * k_modelScale);
 
                     // Add normal.
 
-                    verticesVector.push_back(
-                        vertex.normal.x);
+                    verticesVector.push_back(vertex.normal.x);
 
-                    verticesVector.push_back(
-                        vertex.normal.y);
+                    verticesVector.push_back(vertex.normal.y);
 
-                    verticesVector.push_back(
-                        vertex.normal.z);
+                    verticesVector.push_back(vertex.normal.z);
 
                     // Add texture coordinates.
 
@@ -156,48 +143,35 @@ namespace Forradia
                 {
                     // Calculate the total index.
 
-                    auto totalIndex{indexFirstVertexOfMesh +
-                                    mesh.indices[index]};
+                    auto totalIndex{indexFirstVertexOfMesh + mesh.indices[index]};
 
-                    // Add the total index to the indices
-                    // vector.
+                    // Add the total index to the indices vector.
 
                     indicesVector.push_back(totalIndex);
                 }
 
-                // Update the index of the first vertex of
-                // the next mesh.
+                // Update the index of the first vertex of the next mesh.
 
-                indexFirstVertexOfMesh +=
-                    mesh.vertices.size();
+                indexFirstVertexOfMesh += mesh.vertices.size();
             }
 
             // Calculate the number of vertices and indices.
 
             constexpr auto k_floatsPerVertex{8};
 
-            auto verticesCount{verticesVector.size() /
-                               k_floatsPerVertex};
+            auto verticesCount{verticesVector.size() / k_floatsPerVertex};
 
             auto indicesCount{indicesVector.size()};
 
-            // Upload the indices to the index buffer
-            // object.
+            // Upload the indices to the index buffer object.
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                         sizeof(indicesVector.data()[0]) *
-                             indicesCount,
-                         indicesVector.data(),
-                         GL_STATIC_DRAW);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesVector.data()[0]) * indicesCount,
+                         indicesVector.data(), GL_STATIC_DRAW);
 
-            // Upload the vertices to the vertex buffer
-            // object.
+            // Upload the vertices to the vertex buffer object.
 
-            glBufferData(GL_ARRAY_BUFFER,
-                         sizeof(verticesVector.data()[0]) *
-                             8 * verticesCount,
-                         verticesVector.data(),
-                         GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(verticesVector.data()[0]) * 8 * verticesCount,
+                         verticesVector.data(), GL_STATIC_DRAW);
 
             // Setup the attribute layout.
 
@@ -214,16 +188,13 @@ namespace Forradia
 
         // Get the elevation height.
 
-        auto elevationHeight{_<Theme0::Theme0Properties>()
-                                 .GetElevationHeight()};
+        auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-        // Calculate the model matrix. This matrix differs
-        // between different rendering operations, even
-        // though they use the same model.
+        // Calculate the model matrix. This matrix differs between different rendering operations,
+        // even though they use the same model.
 
-        auto modelMatrix{glm::translate(
-            glm::mat4(1.0f),
-            glm::vec3(x, y, elevation * elevationHeight))};
+        auto modelMatrix{
+            glm::translate(glm::mat4(1.0f), glm::vec3(x, y, elevation * elevationHeight))};
 
         // Get the view matrix.
 
@@ -231,24 +202,19 @@ namespace Forradia
 
         // Get the projection matrix.
 
-        auto projectionMatrix{
-            _<Camera>().GetProjectionMatrix()};
+        auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
 
         // Upload the projection matrix to the shader.
 
-        glUniformMatrix4fv(m_layoutLocationProjectionMatrix,
-                           1, GL_FALSE,
-                           &projectionMatrix[0][0]);
+        glUniformMatrix4fv(m_layoutLocationProjectionMatrix, 1, GL_FALSE, &projectionMatrix[0][0]);
 
         // Upload the model matrix to the shader.
 
-        glUniformMatrix4fv(m_layoutLocationModelMatrix, 1,
-                           GL_FALSE, &modelMatrix[0][0]);
+        glUniformMatrix4fv(m_layoutLocationModelMatrix, 1, GL_FALSE, &modelMatrix[0][0]);
 
         // Upload the view matrix to the shader.
 
-        glUniformMatrix4fv(m_layoutLocationViewMatrix, 1,
-                           GL_FALSE, &viewMatrix[0][0]);
+        glUniformMatrix4fv(m_layoutLocationViewMatrix, 1, GL_FALSE, &viewMatrix[0][0]);
 
         // Get the texture name and its hash.
 
@@ -258,8 +224,7 @@ namespace Forradia
 
         // Get the texture ID.
 
-        auto textureID{
-            _<TextureBank>().GetTexture(textureNameHash)};
+        auto textureID{_<TextureBank>().GetTexture(textureNameHash)};
 
         // Bind the texture to the shader.
 
@@ -271,8 +236,7 @@ namespace Forradia
 
         // Draw the model.
 
-        glDrawElements(GL_TRIANGLES, entry.verticesCount,
-                       GL_UNSIGNED_SHORT, nullptr);
+        glDrawElements(GL_TRIANGLES, entry.verticesCount, GL_UNSIGNED_SHORT, nullptr);
 
         // Restore the state.
 

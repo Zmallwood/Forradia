@@ -36,27 +36,23 @@ namespace Forradia
         void RegisterMouseButtonUp(Uint8 button);
 
         ///
-        /// Checks if any mouse button is currently
-        /// pressed, picking the result (I.e. the result
-        /// can only be obtained once).
+        /// Checks if any mouse button is currently pressed, picking the result (I.e. the result can
+        /// only be obtained once).
         ///
-        /// @return True if any mouse button is pressed,
-        /// otherwise false.
+        /// @return True if any mouse button is pressed, otherwise false.
         ///
         bool AnyMouseButtonIsPressedPickResult();
 
         ///
-        /// Adds a mouse wheel delta to the current mouse
-        /// wheel delta.
+        /// Adds a mouse wheel delta to the current mouse wheel delta.
         ///
         /// @param delta Mouse wheel delta to add.
         ///
         void AddMouseWheelDelta(int delta);
 
         ///
-        /// Returns the current mouse wheel delta, picking
-        /// the result (I.e. the result can only be obtained
-        /// once).
+        /// Returns the current mouse wheel delta, picking the result (I.e. the result can only be
+        /// obtained once).
         ///
         /// @return Current mouse wheel delta.
         ///
@@ -83,13 +79,10 @@ namespace Forradia
         }
 
       private:
-        MouseButton
-            m_leftMouseButton; ///< Left mouse button.
+        MouseButton m_leftMouseButton; ///< Left mouse button.
 
-        MouseButton
-            m_rightMouseButton; ///< Right mouse button.
+        MouseButton m_rightMouseButton; ///< Right mouse button.
 
-        int m_mouseWheelDelta{
-            0}; ///< Mouse wheel scroll delta.
+        int m_mouseWheelDelta{0}; ///< Mouse wheel scroll delta.
     };
 }

@@ -38,7 +38,7 @@ from embedded import (
     get_world_view,
     get_img_2d_rend,
     get_hash,
-    get_battle_system
+    get_battle_system,
 )
 
 
@@ -49,7 +49,15 @@ class IntroScene(IScene):
         self.start_text_comp = None
 
         def init_derived():
-            lbl = make_shared_gui_label("GUILabelIntroSceneStartText", 0.45, 0.5, 0.1, 0.04, "Press to start", True)
+            lbl = make_shared_gui_label(
+                "GUILabelIntroSceneStartText",
+                0.45,
+                0.5,
+                0.1,
+                0.04,
+                "Press to start",
+                True,
+            )
 
             self.start_text_comp = self.gui().add_child_comp(lbl)
 

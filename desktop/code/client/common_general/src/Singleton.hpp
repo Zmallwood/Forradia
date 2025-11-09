@@ -11,8 +11,7 @@
 namespace Forradia
 {
     ///
-    /// Returns a singleton of an object of type T, in the
-    /// form of a SharedPtr.
+    /// Returns a singleton of an object of type T, in the form of a SharedPtr.
     ///
     /// @tparam T Type to get singleton for.
     /// @return The singleton object as a SharedPtr.
@@ -28,8 +27,7 @@ namespace Forradia
     }
 
     ///
-    /// Returns a singleton of an object of type T, in the
-    /// form of a reference.
+    /// Returns a singleton of an object of type T, in the form of a reference.
     ///
     /// @tparam T Type to get singleton for.
     /// @return The singleton object as a reference.
@@ -37,9 +35,9 @@ namespace Forradia
     template <class T>
     T &_()
     {
-        // Use the SharedPtr singleton function to obtain
-        // the singleton, but return a reference to it.
-        
+        // Use the SharedPtr singleton function to obtain he singleton, but return a reference to
+        // it.
+
         return *__<T>();
     }
 }

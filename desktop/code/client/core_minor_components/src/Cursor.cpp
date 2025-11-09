@@ -37,15 +37,13 @@ namespace Forradia
     {
         // Get the mouse position.
 
-        auto mousePosition{GetNormallizedMousePosition(
-            _<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
         // Determine cursor image dimensions.
 
         auto width{k_cursorSize};
 
-        auto height{ConvertWidthToHeight(
-            k_cursorSize, _<SDLDevice>().GetWindow())};
+        auto height{ConvertWidthToHeight(k_cursorSize, _<SDLDevice>().GetWindow())};
 
         // To hold the cursor image name.
 
@@ -70,10 +68,7 @@ namespace Forradia
 
         // Draw the cursor image.
 
-        _<Image2DRenderer>().DrawImageByName(
-            k_renderID, cursorImage,
-            mousePosition.x - width / 2,
-            mousePosition.y - height / 2, width, height,
-            true);
+        _<Image2DRenderer>().DrawImageByName(k_renderID, cursorImage, mousePosition.x - width / 2,
+                                             mousePosition.y - height / 2, width, height, true);
     }
 }

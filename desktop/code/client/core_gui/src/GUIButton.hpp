@@ -13,20 +13,14 @@ namespace Forradia
     class GUIButton : public GUIPanel
     {
       public:
-        GUIButton(
-            StringView uniqueName, float x, float y,
-            float width, float height, StringView text,
-            Function<void()> action,
-            StringView backgroundImage = k_backgroundImage,
-            StringView hoveredBackgroundImage =
-                k_hoveredBackgroundImage)
+        GUIButton(StringView uniqueName, float x, float y, float width, float height,
+                  StringView text, Function<void()> action,
+                  StringView backgroundImage = k_backgroundImage,
+                  StringView hoveredBackgroundImage = k_hoveredBackgroundImage)
             : GUIPanel(uniqueName, x, y, width, height),
-              k_renderIDText(
-                  Hash(uniqueName.data() + String("Text"))),
-              m_text(text), m_action(action),
-              m_backgroundImage(backgroundImage),
-              m_hoveredBackgroundImage(
-                  hoveredBackgroundImage)
+              k_renderIDText(Hash(uniqueName.data() + String("Text"))), m_text(text),
+              m_action(action), m_backgroundImage(backgroundImage),
+              m_hoveredBackgroundImage(hoveredBackgroundImage)
         {
         }
 
@@ -36,11 +30,9 @@ namespace Forradia
         virtual void RenderDerived() const override;
 
       private:
-        inline static const String k_backgroundImage{
-            "GUIButtonBackground"};
+        inline static const String k_backgroundImage{"GUIButtonBackground"};
 
-        inline static const String k_hoveredBackgroundImage{
-            "GUIButtonHoveredBackground"};
+        inline static const String k_hoveredBackgroundImage{"GUIButtonHoveredBackground"};
 
         const int k_renderIDText;
 

@@ -23,12 +23,9 @@ namespace Forradia::Theme0
         for (auto i = 0; i < k_maxNumSlots; i++)
         {
             m_renderIDsSlotsBackground[i] =
-                Hash("GUIInventoryWindowSlotBackground" +
-                     std::to_string(i));
+                Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
 
-            m_renderIDsSlotsObject[i] =
-                Hash("GUIInventoryWindowSlotobject" +
-                     std::to_string(i));
+            m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
         }
     }
 
@@ -40,31 +37,21 @@ namespace Forradia::Theme0
 
         auto marginX{k_margin};
 
-        auto marginY{ConvertWidthToHeight(
-            k_margin, _<SDLDevice>().GetWindow())};
+        auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
 
         auto xStart{bounds.x + marginX};
 
-        auto yStart{bounds.y + marginY +
-                    this->GetGUIWindowTitleBar()
-                        ->GetBounds()
-                        .height};
+        auto yStart{bounds.y + marginY + this->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
 
-        auto slotHeight{ConvertWidthToHeight(
-            k_slotSize, _<SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
-        auto numColumns{
-            CInt((bounds.width - 2 * marginX) / slotWidth)};
+        auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
 
-        auto numRows{CInt((bounds.height - 2 * marginY -
-                           (yStart - bounds.y)) /
-                          slotHeight)};
+        auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto &objectsInventory{
-            _<GameplayCore::PlayerCharacter>()
-                .GetObjectsInventoryRef()};
+        auto &objectsInventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++)
         {
@@ -74,42 +61,32 @@ namespace Forradia::Theme0
 
                 int renderIDBackground{0};
 
-                if (m_renderIDsSlotsBackground.contains(
-                        index))
+                if (m_renderIDsSlotsBackground.contains(index))
                 {
-                    renderIDBackground =
-                        m_renderIDsSlotsBackground.at(
-                            index);
+                    renderIDBackground = m_renderIDsSlotsBackground.at(index);
                 }
                 else
                 {
-                    PrintLine(
-                        "GUIInventoryWindow: Render ID not "
-                        "found for index: " +
-                        std::to_string(index));
+                    PrintLine("GUIInventoryWindow: Render ID not "
+                              "found for index: " +
+                              std::to_string(index));
 
                     return;
                 }
 
                 _<Image2DRenderer>().DrawImageByName(
-                    renderIDBackground, k_slotImageName,
-                    xStart + x * (slotWidth + marginX),
-                    yStart + y * (slotHeight + marginY),
-                    slotWidth, slotHeight);
+                    renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
+                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight);
 
-                auto inventoryObject{
-                    objectsInventory.GetObject(index)};
+                auto inventoryObject{objectsInventory.GetObject(index)};
 
                 if (inventoryObject)
                 {
                     int renderIDObject{0};
 
-                    if (m_renderIDsSlotsObject.contains(
-                            index))
+                    if (m_renderIDsSlotsObject.contains(index))
                     {
-                        renderIDObject =
-                            m_renderIDsSlotsObject.at(
-                                index);
+                        renderIDObject = m_renderIDsSlotsObject.at(index);
                     }
                     else
                     {
@@ -120,12 +97,10 @@ namespace Forradia::Theme0
                         return;
                     }
 
-                    _<Image2DRenderer>().DrawImageByHash(
-                        renderIDObject,
-                        inventoryObject->GetType(),
-                        xStart + x * (slotWidth + marginX),
-                        yStart + y * (slotHeight + marginY),
-                        slotWidth, slotHeight);
+                    _<Image2DRenderer>().DrawImageByHash(renderIDObject, inventoryObject->GetType(),
+                                                         xStart + x * (slotWidth + marginX),
+                                                         yStart + y * (slotHeight + marginY),
+                                                         slotWidth, slotHeight);
                 }
             }
         }

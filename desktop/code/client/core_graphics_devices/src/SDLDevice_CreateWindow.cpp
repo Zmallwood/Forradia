@@ -16,13 +16,11 @@ namespace Forradia
 
         // Create the SDL window.
 
-        m_window = SharedPtr<SDL_Window>(
-            SDL_CreateWindow(
-                m_gameWindowTitle.data(),
-                SDL_WINDOWPOS_CENTERED,
-                SDL_WINDOWPOS_CENTERED, screenSize.width,
-                screenSize.height, k_windowFlags),
-            SDLDeleter());
+        m_window =
+            SharedPtr<SDL_Window>(SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED,
+                                                   SDL_WINDOWPOS_CENTERED, screenSize.width,
+                                                   screenSize.height, k_windowFlags),
+                                  SDLDeleter());
 
         // Check that the window was created successfully.
 

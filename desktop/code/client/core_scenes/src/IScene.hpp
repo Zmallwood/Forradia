@@ -19,8 +19,7 @@ namespace Forradia
             class GUIRoot : public GUIComponent
             {
               public:
-                GUIRoot()
-                    : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+                GUIRoot() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
                 {
                 }
             };

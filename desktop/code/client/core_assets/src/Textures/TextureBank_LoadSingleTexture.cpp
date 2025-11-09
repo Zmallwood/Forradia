@@ -8,8 +8,7 @@
 
 namespace Forradia
 {
-    GLuint TextureBank::LoadSingleTexture(
-        SharedPtr<SDL_Surface> surface)
+    GLuint TextureBank::LoadSingleTexture(SharedPtr<SDL_Surface> surface)
     {
         // Generate a texture ID.
 
@@ -23,17 +22,14 @@ namespace Forradia
 
         // Create the GL texture out from the SDL surface.
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w,
-                     surface->h, 0, GL_RGBA,
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, surface->pixels);
 
         // Set texture parameters.
 
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-        glTexParameteri(GL_TEXTURE_2D,
-                        GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         // Return the texture ID.
 

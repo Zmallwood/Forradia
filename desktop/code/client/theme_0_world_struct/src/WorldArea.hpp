@@ -45,13 +45,11 @@ namespace Forradia::Theme0
         }
 
       private:
-        void Initialize(Size worldAreaSize,
-                        float worldScaling);
+        void Initialize(Size worldAreaSize, float worldScaling);
 
         Vector<Vector<SharedPtr<Tile>>> m_tiles;
 
-        std::map<SharedPtr<Creature>, Point>
-            m_creaturesMirror;
+        std::map<SharedPtr<Creature>, Point> m_creaturesMirror;
 
         std::map<SharedPtr<Robot>, Point> m_robotsMirror;
     };

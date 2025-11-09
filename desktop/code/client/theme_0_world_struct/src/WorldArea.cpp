@@ -12,8 +12,7 @@
 
 namespace Forradia::Theme0
 {
-    void WorldArea::Initialize(Size worldAreaSize,
-                               float worldScaling)
+    void WorldArea::Initialize(Size worldAreaSize, float worldScaling)
     {
         auto size{worldAreaSize};
 
@@ -23,13 +22,11 @@ namespace Forradia::Theme0
 
         for (auto x = 0; x < size.width; x++)
         {
-            m_tiles.push_back(
-                Vector<std::shared_ptr<Tile>>());
+            m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
 
             for (auto y = 0; y < size.height; y++)
             {
-                m_tiles[x].push_back(
-                    std::make_shared<Tile>());
+                m_tiles[x].push_back(std::make_shared<Tile>());
             }
         }
     }
@@ -75,8 +72,7 @@ namespace Forradia::Theme0
     {
         auto size{GetSize()};
 
-        return x >= 0 && y >= 0 && x < size.width &&
-               y < size.height;
+        return x >= 0 && y >= 0 && x < size.width && y < size.height;
     }
 
     bool WorldArea::IsValidCoordinate(Point coord) const

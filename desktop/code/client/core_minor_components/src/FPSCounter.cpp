@@ -14,8 +14,7 @@ namespace Forradia
 
         auto now{GetTicks()};
 
-        // If it has been more than one second since the
-        // last update:
+        // If it has been more than one second since the last update:
 
         if (now > m_ticksLastUpdate + k_oneSecMillis)
         {

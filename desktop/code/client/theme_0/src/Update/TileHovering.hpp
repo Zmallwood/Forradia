@@ -23,11 +23,9 @@ namespace Forradia::Theme0::GameplayCore
 
         void IterateOverRenderedTiles();
 
-        bool DetermineIfTileIsHovered(int xCoordinate,
-                                      int yCoordinate);
+        bool DetermineIfTileIsHovered(int xCoordinate, int yCoordinate);
 
-        bool CheckIfRayIntersectsTile(int xCoordinate,
-                                      int yCoordinate);
+        bool CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate);
 
         Point m_hoveredCoordinate{-1, -1};
     };

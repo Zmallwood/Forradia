@@ -14,8 +14,7 @@ namespace Forradia::Theme0::GameplayCore
 {
     void UpdateCameraZoom()
     {
-        auto mouseWheelDelta{
-            _<MouseInput>().GetMouseWheelDeltaPickResult()};
+        auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
 
         _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
     }

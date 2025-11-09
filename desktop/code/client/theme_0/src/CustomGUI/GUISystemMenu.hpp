@@ -13,8 +13,7 @@ namespace Forradia::Theme0
     class GUISystemMenu : public GUIComponent
     {
       public:
-        GUISystemMenu()
-            : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
             Initialize();
         }
@@ -27,7 +26,6 @@ namespace Forradia::Theme0
         virtual void RenderDerived() const override;
 
       private:
-        const int k_renderIDBackgroundColor{
-            Hash("GUISystemMenuBackgroundColor")};
+        const int k_renderIDBackgroundColor{Hash("GUISystemMenuBackgroundColor")};
     };
 }

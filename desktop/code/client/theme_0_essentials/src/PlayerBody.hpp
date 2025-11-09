@@ -20,8 +20,7 @@ namespace Forradia::Theme0::GameplayCore
             Initialize();
         }
 
-        BodyPart *
-        GetBodyPartPtr(BodyPartTypes bodyPartType);
+        BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
 
       private:
         void Initialize();

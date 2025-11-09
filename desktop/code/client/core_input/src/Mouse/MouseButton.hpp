@@ -30,52 +30,42 @@ namespace Forradia
         void RegisterRelease();
 
         ///
-        /// Checks if the button is currently being
-        /// pressed, picking the result (I.e. the result can
+        /// Checks if the button is currently being pressed, picking the result (I.e. the result can
         /// only be obtained once).
         ///
-        /// @return True if the button is pressed, otherwise
-        /// false.
+        /// @return True if the button is pressed, otherwise false.
         ///
         bool IsPressedPickResult();
 
         ///
-        /// Checks if the button has been fired,
-        /// picking the result (I.e. the result can only be
+        /// Checks if the button has been fired, picking the result (I.e. the result can only be
         /// obtained once).
         ///
-        /// @return True if the button has been fired,
-        /// otherwise false.
+        /// @return True if the button has been fired, otherwise false.
         ///
         bool HasBeenFiredPickResult();
 
         ///
-        /// Checks if the button has been fired, without
-        /// picking the result (I.e. the result can be
+        /// Checks if the button has been fired, without picking the result (I.e. the result can be
         /// obtained multiple times after each other).
         ///
-        /// @return True if the button has been fired,
-        /// otherwise false.
+        /// @return True if the button has been fired, otherwise false.
         ///
         bool HasBeenFired();
 
         ///
-        /// Checks if the button has been released,
-        /// picking the result (I.e. the result can only be
+        /// Checks if the button has been released, picking the result (I.e. the result can only be
         /// obtained once).
         ///
-        /// @return True if the button has been released,
-        /// otherwise false.
+        /// @return True if the button has been released, otherwise false.
         ///
         bool HasBeenReleasedPickResult();
 
         ///
-        /// Checks if the button has been released,
-        /// without picking the result (I.e. the result can
+        /// Checks if the button has been released, without picking the result (I.e. the result can
         /// be obtained multiple times after each other).
         ///
-        /// @return True if the button has been released,
-        /// otherwise false.
+        /// @return True if the button has been released, otherwise false.
         ///
         bool HasBeenReleased();
 
@@ -90,21 +80,14 @@ namespace Forradia
         }
 
       private:
-        bool m_pressed{false}; ///< True if the button is
-                               ///< currently pressed.
+        bool m_pressed{false}; ///< True if the button is currently pressed.
 
-        bool m_hasBeenFired{false}; ///< True if the button
-                                    ///< has been fired.
+        bool m_hasBeenFired{false}; ///< True if the button has been fired.
 
-        bool m_hasBeenReleased{false}; ///< True if the
-        ///< button has been
-        ///< released.
+        bool m_hasBeenReleased{false}; ///< True if the button has been released.
 
-        int m_ticksFired{
-            0}; ///< The point in time, as ticks, when the
-        ///< button was last fired.
+        int m_ticksFired{0}; ///< The point in time, as ticks, when the button was last fired.
 
-        int m_ticksClickSpeed{
-            0}; ///< The speed of the most recent click.
+        int m_ticksClickSpeed{0}; ///< The speed of the most recent click.
     };
 }

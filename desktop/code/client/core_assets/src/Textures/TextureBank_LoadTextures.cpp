@@ -16,8 +16,7 @@ namespace Forradia
 
         // Add relative path to base path.
 
-        auto imagesPath{basePath +
-                        k_relativeImagesPath.data()};
+        auto imagesPath{basePath + k_relativeImagesPath.data()};
 
         // Ensure the path exists to continue.
 
@@ -26,11 +25,9 @@ namespace Forradia
             return;
         }
 
-        // Create a recursive directory iterator for the
-        // path.
+        // Create a recursive directory iterator for the path.
 
-        std::filesystem::recursive_directory_iterator rdi{
-            imagesPath};
+        std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         // Iterate through the directory using the rdi.
 
@@ -38,8 +35,7 @@ namespace Forradia
         {
             // Replace backslashes with forward slashes.
 
-            auto filePath{
-                Replace(it.path().string(), '\\', '/')};
+            auto filePath{Replace(it.path().string(), '\\', '/')};
 
             // Ensure the file is a png.
 
@@ -47,8 +43,7 @@ namespace Forradia
             {
                 // Get the file name without the extension.
 
-                auto fileName{
-                    GetFileNameNoExtension(filePath)};
+                auto fileName{GetFileNameNoExtension(filePath)};
 
                 // Get the hash of the file name.
 
@@ -56,20 +51,15 @@ namespace Forradia
 
                 // Load the image as a SDL surface.
 
-                auto surface{SharedPtr<SDL_Surface>(
-                    IMG_Load(filePath.data()),
-                    SDLDeleter())};
+                auto surface{SharedPtr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
 
-                // Load the image as a texture (from the SDL
-                // surface) and get its ID.
+                // Load the image as a texture (from the SDL surface) and get its ID.
 
-                auto textureID{
-                    this->LoadSingleTexture(surface)};
+                auto textureID{this->LoadSingleTexture(surface)};
 
                 // Obtain the image dimensions.
 
-                auto imageSize{
-                    Size{surface->w, surface->h}};
+                auto imageSize{Size{surface->w, surface->h}};
 
                 // Create a new texture entry.
 

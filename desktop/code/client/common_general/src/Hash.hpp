@@ -13,8 +13,7 @@
 namespace Forradia
 {
     ///
-    /// Compute hash code from a given input text, which
-    /// gets computed the same every game start.
+    /// Compute hash code from a given input text, which gets computed the same every game start.
     ///
     /// @param text Text to compute hash code for.
     /// @return Computed hash code.

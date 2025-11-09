@@ -11,14 +11,11 @@ namespace Forradia
     class GUIComponent
     {
       public:
-        GUIComponent(float x, float y, float width,
-                     float height)
-            : m_bounds({x, y, width, height})
+        GUIComponent(float x, float y, float width, float height) : m_bounds({x, y, width, height})
         {
         }
 
-        SharedPtr<GUIComponent> AddChildComponent(
-            SharedPtr<GUIComponent> component);
+        SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> component);
 
         void Update();
 

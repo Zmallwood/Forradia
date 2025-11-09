@@ -19,8 +19,7 @@ namespace Forradia
 
         for (auto i = 0; i < maxNumLines; i++)
         {
-            m_renderIDsTextLines.push_back(
-                Hash(fmt::format("RenderIDTextLine{}", i)));
+            m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
         }
     }
 
@@ -52,35 +51,27 @@ namespace Forradia
 
             auto textLine = m_lines.at(index);
 
-            _<TextRenderer>().DrawString(
-                m_renderIDsTextLines.at(i), textLine,
-                bounds.x + k_margin, y, FontSizes::_20,
-                false, true);
+            _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin,
+                                         y, FontSizes::_20, false, true);
 
             y += k_lineHeight;
         }
 
-        auto separatorRect{
-            RectF{bounds.x,
-                  bounds.y + bounds.height - k_lineHeight,
-                  bounds.width, k_separatorHeight}};
+        auto separatorRect{RectF{bounds.x, bounds.y + bounds.height - k_lineHeight, bounds.width,
+                                 k_separatorHeight}};
 
-        _<Image2DRenderer>().DrawImageByName(
-            k_renderIDSeparator, "Black", separatorRect.x,
-            separatorRect.y, separatorRect.width,
-            separatorRect.height);
+        _<Image2DRenderer>().DrawImageByName(k_renderIDSeparator, "Black", separatorRect.x,
+                                             separatorRect.y, separatorRect.width,
+                                             separatorRect.height);
 
         if (m_inputActive)
         {
-            auto cursorBounds{RectF{
-                bounds.x,
-                bounds.y + bounds.height - k_lineHeight,
-                0.01f, k_lineHeight}};
+            auto cursorBounds{
+                RectF{bounds.x, bounds.y + bounds.height - k_lineHeight, 0.01f, k_lineHeight}};
 
-            _<Image2DRenderer>().DrawImageByName(
-                k_renderIDInputCursor, "GUIInputCursor",
-                cursorBounds.x, cursorBounds.y,
-                cursorBounds.width, cursorBounds.height);
+            _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor",
+                                                 cursorBounds.x, cursorBounds.y, cursorBounds.width,
+                                                 cursorBounds.height);
         }
     }
 

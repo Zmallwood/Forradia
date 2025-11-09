@@ -14,8 +14,7 @@ namespace Forradia
 {
     void GUIFPSPanel::Initialize()
     {
-        m_fpsTextPanel = std::make_shared<GUILabel>(
-            "GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
+        m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
 
         this->AddChildComponent(m_fpsTextPanel);
     }
@@ -26,7 +25,6 @@ namespace Forradia
 
         auto fps{_<FPSCounter>().GetFPS()};
 
-        m_fpsTextPanel->SetText(
-            fmt::format("FPS: {}", fps));
+        m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
     }
 }
