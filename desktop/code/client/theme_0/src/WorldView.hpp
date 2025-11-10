@@ -21,7 +21,12 @@ namespace Forradia::Theme0::GameplayCore
       private:
         void Initiallize();
 
-        const int k_maxWaterDepthRendering{20};
+        // Multiplier for ground rendering distance (1.5 = 50% more distance)
+        // Ground tiles are rendered at this extended distance, while objects/creatures
+        // are still rendered at the normal grid size to maintain performance
+        const float k_groundRenderingDistanceMultiplier{1.5f};
+
+        const int k_maxWaterDepthRendering{3};
 
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
 

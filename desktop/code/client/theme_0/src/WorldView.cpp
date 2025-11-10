@@ -62,6 +62,13 @@ namespace Forradia::Theme0::GameplayCore
     {
         auto gridSize{_<Theme0Properties>().GetGridSize()};
 
+        // Calculate extended ground rendering size
+        auto groundGridSize{
+            decltype(gridSize){static_cast<decltype(gridSize.width)>(
+                                   gridSize.width * k_groundRenderingDistanceMultiplier),
+                               static_cast<decltype(gridSize.height)>(
+                                   gridSize.height * k_groundRenderingDistanceMultiplier)}};
+
         auto playerPos{_<PlayerCharacter>().GetPosition()};
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -79,15 +86,16 @@ namespace Forradia::Theme0::GameplayCore
 
         auto rendTileSize{_<Theme0Properties>().GetTileSize()};
 
-        for (auto y = 0; y < gridSize.height; y++)
+        // First pass: Render ground tiles at extended distance
+        for (auto y = 0; y < groundGridSize.height; y++)
         {
-            for (auto x = 0; x < gridSize.width; x++)
+            for (auto x = 0; x < groundGridSize.width; x++)
             {
-                auto xCoordinate{(worldAreaSize.width - playerPos.x) - (gridSize.width - 1) / 2 +
-                                 x};
+                auto xCoordinate{(worldAreaSize.width - playerPos.x) -
+                                 (groundGridSize.width - 1) / 2 + x};
 
-                auto yCoordinate{(worldAreaSize.height - playerPos.y) - (gridSize.height - 1) / 2 +
-                                 y};
+                auto yCoordinate{(worldAreaSize.height - playerPos.y) -
+                                 (groundGridSize.height - 1) / 2 + y};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {
@@ -183,68 +191,76 @@ namespace Forradia::Theme0::GameplayCore
 
                 if (ground == Hash("GroundWater"))
                 {
+                    auto waterDepth{tile->GetWaterDepth()};
+
+                    waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
+
+                    String waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+
                     auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 %
                                         3};
 
-                    ground = Hash("GroundWater_" + std::to_string(animationIndex));
+                    waterImageString += "_" + std::to_string(animationIndex);
+
+                    ground = Hash(waterImageString);
                 }
 
-                for (auto object : objects)
+                // Check if this tile is within the normal grid size for object/creature rendering
+                auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
+                                        x < (groundGridSize.width + gridSize.width) / 2 &&
+                                        y >= (groundGridSize.height - gridSize.height) / 2 &&
+                                        y < (groundGridSize.height + gridSize.height) / 2};
+
+                // Only render objects, creatures, and robots within the normal grid size
+                if (isWithinNormalGrid)
                 {
-                    auto objectType{object->GetType()};
+                    for (auto object : objects)
+                    {
+                        auto objectType{object->GetType()};
 
-                    _<ModelRenderer>().DrawModel(
-                        objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-                }
+                        _<ModelRenderer>().DrawModel(
+                            objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    }
 
-                auto creature{tile->GetCreature()};
+                    auto creature{tile->GetCreature()};
 
-                if (creature)
-                {
-                    auto creatureType{creature->GetType()};
+                    if (creature)
+                    {
+                        auto creatureType{creature->GetType()};
 
-                    creatureType = Hash("CreatureWhiteRabbit");
+                        creatureType = Hash("CreatureWhiteRabbit");
 
-                    _<ModelRenderer>().DrawModel(
-                        creatureType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-                }
+                        _<ModelRenderer>().DrawModel(
+                            creatureType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    }
 
-                auto robot{tile->GetRobot()};
+                    auto robot{tile->GetRobot()};
 
-                if (robot)
-                {
-                    auto robotType{robot->GetType()};
+                    if (robot)
+                    {
+                        auto robotType{robot->GetType()};
 
-                    robotType = Hash("RobotMechWolf");
+                        robotType = Hash("RobotMechWolf");
 
-                    _<ModelRenderer>().DrawModel(
-                        robotType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-                }
+                        _<ModelRenderer>().DrawModel(
+                            robotType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    }
 
-                if (xCoordinate == worldAreaSize.width - playerPos.x &&
-                    yCoordinate == worldAreaSize.height - playerPos.y)
-                {
-                    _<ModelRenderer>().DrawModel(
-                        Hash("PlayerFemale"), (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    if (xCoordinate == worldAreaSize.width - playerPos.x &&
+                        yCoordinate == worldAreaSize.height - playerPos.y)
+                    {
+                        _<ModelRenderer>().DrawModel(
+                            Hash("PlayerFemale"), (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    }
                 }
 
                 _<GroundRenderer>().DrawTile(m_renderIDsGround.at(xCoordinate).at(yCoordinate),
                                              ground, xCoordinate, yCoordinate, rendTileSize,
                                              elevations);
-
-                auto waterDepth{tile->GetWaterDepth()};
-
-                for (auto i = 0; i < waterDepth && i < k_maxWaterDepthRendering; i++)
-                {
-                    _<GroundRenderer>().DrawTile(
-                        m_renderIDsWaterDepth.at(xCoordinate).at(yCoordinate).at(i),
-                        Hash("GroundWaterDepth"), xCoordinate, yCoordinate, rendTileSize,
-                        elevations);
-                }
 
                 if (xCoordinate == worldAreaSize.width - hoveredCoordinate.x &&
                     yCoordinate == worldAreaSize.height - hoveredCoordinate.y)
