@@ -76,7 +76,7 @@ namespace Forradia::Theme0
 
                 _<Image2DRenderer>().DrawImageByName(
                     renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
-                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight);
+                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
 
                 auto inventoryObject{objectsInventory.GetObject(index)};
 
@@ -100,7 +100,7 @@ namespace Forradia::Theme0
                     _<Image2DRenderer>().DrawImageByHash(renderIDObject, inventoryObject->GetType(),
                                                          xStart + x * (slotWidth + marginX),
                                                          yStart + y * (slotHeight + marginY),
-                                                         slotWidth, slotHeight);
+                                                         slotWidth, slotHeight, true);
                 }
             }
         }

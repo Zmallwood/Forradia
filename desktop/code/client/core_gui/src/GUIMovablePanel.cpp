@@ -16,11 +16,15 @@ namespace Forradia
 {
     void GUIMovablePanel::UpdateDerived()
     {
+        // Get the normalized mouse position.
+
         auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
-        auto dragArea{this->GetDragArea()};
+        // Get the drag area, which is the area where the panel can be moved.
 
-        if (dragArea.Contains(mousePosition))
+        auto draggableArea{this->GetDraggableArea()};
+
+        if (draggableArea.Contains(mousePosition))
         {
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
@@ -69,7 +73,7 @@ namespace Forradia
         m_isBeingMoved = false;
     }
 
-    RectF GUIMovablePanel::GetDragArea()
+    RectF GUIMovablePanel::GetDraggableArea()
     {
         return this->GetBounds();
     }

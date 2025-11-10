@@ -23,7 +23,7 @@ namespace Forradia
       protected:
         void RenderDerived() const override;
 
-        RectF GetDragArea() override;
+        RectF GetDraggableArea() override;
 
         auto GetGUIWindowTitleBar() const
         {

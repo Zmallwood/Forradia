@@ -67,7 +67,7 @@ namespace Forradia
         GUIMovablePanel::RenderDerived();
     }
 
-    RectF GUIWindow::GetDragArea()
+    RectF GUIWindow::GetDraggableArea()
     {
         return m_guiWindowTitleBar->GetBounds();
     }

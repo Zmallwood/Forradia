@@ -25,7 +25,7 @@ namespace Forradia
 
         void StopMove();
 
-        virtual RectF GetDragArea();
+        virtual RectF GetDraggableArea();
 
         auto GetIsBeingMoved() const
         {

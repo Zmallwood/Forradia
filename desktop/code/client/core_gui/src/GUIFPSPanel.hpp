@@ -12,20 +12,34 @@ namespace Forradia
 {
     class GUILabel;
 
+    ///
+    /// A panel that displays the FPS.
+    ///
     class GUIFPSPanel : public GUIMovablePanel
     {
       public:
+        ///
+        /// Constructor.
+        ///
         GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92f, 0.02f, 0.07f, 0.04f)
         {
-            Initialize();
+            // Initialize this FPSPanel.
+
+            this->Initialize();
         }
 
       protected:
+        ///
+        /// Update tasks specific to the FPSPanel, called by the GUIComponent base class.
+        ///
         void UpdateDerived() override;
 
       private:
+        ///
+        /// Initializes this FPSPanel.
+        ///
         void Initialize();
 
-        SharedPtr<GUILabel> m_fpsTextPanel;
+        SharedPtr<GUILabel> m_fpsTextPanel; ///< The text label that displays the FPS.
     };
 }
