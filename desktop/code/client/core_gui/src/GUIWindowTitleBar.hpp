@@ -30,7 +30,7 @@ namespace Forradia
       private:
         void Initialize(StringView uniqueName);
 
-        inline static const float k_h{0.04f};
+        inline static const float k_height{0.04f};
 
         const String k_windowTitle;
 
