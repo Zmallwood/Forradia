@@ -37,4 +37,5 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreMinorComponents
     ForradiaCoreRenderingCommon
     ForradiaCoreRenderingColors2D
+    ForradiaCoreRenderingSky
 )

@@ -338,6 +338,17 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
+            "D5. Core Rendering Sky",
+            "cursor",
+            "/home/andreas/code/git/Forradia/CoreRenderingSky.code-workspace",
+            "icons/DefaultButton.png",
+            0,
+            5,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
             "D6. Theme 0 World Structure",
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0WorldStructure.code-workspace",
