@@ -113,11 +113,11 @@ namespace Forradia::Theme0
         return x >= 0 && y >= 0 && x < size.width && y < size.height;
     }
 
-    bool WorldArea::IsValidCoordinate(Point coord) const
+    bool WorldArea::IsValidCoordinate(Point coordinate) const
     {
         // Forward the call to other IsValidCoordinate method.
 
-        return this->IsValidCoordinate(coord.x, coord.y);
+        return this->IsValidCoordinate(coordinate.x, coordinate.y);
     }
 
     SharedPtr<Tile> WorldArea::GetTile(int x, int y) const

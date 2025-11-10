@@ -24,18 +24,9 @@ namespace Forradia::Theme0
         ///
         /// Add new object to the stack.
         ///
-        /// @param objectNameHash The object name hash.
+        /// @param objectName The object name.
         ///
-        void AddObject(int objectNameHash);
-
-        ///
-        /// Add new object of type T to the stack.
-        ///
-        /// @tparam T The object type, defaults to Object.
-        /// @param objectTypeName The object type by name.
-        ///
-        template <class T = Object>
-        void AddObject(StringView objectTypeName);
+        void AddObject(StringView objectName);
 
         ///
         /// Remove one object of a specific type from the stack.

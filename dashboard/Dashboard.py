@@ -342,8 +342,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0WorldStructure.code-workspace",
             "icons/DefaultButton.png",
+            1,
             0,
-            5,
             self.script_dir,
         )
 
@@ -353,8 +353,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0Properties.code-workspace",
             "icons/DefaultButton.png",
-            0,
-            7,
+            1,
+            1,
             self.script_dir,
         )
 

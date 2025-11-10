@@ -18,6 +18,9 @@ namespace Forradia
 {
     void GUIButton::UpdateDerived()
     {
+        // Call the base class specific update tasks as well as a standard procedure, even if they
+        // do nothing in this case.
+
         GUIPanel::UpdateDerived();
 
         // Get normalized mouse position to compare against GUI bounds.
@@ -55,6 +58,9 @@ namespace Forradia
 
     void GUIButton::RenderDerived() const
     {
+        // Call the base class specific render tasks as well as a standard procedure, even if they
+        // do nothing in this case.
+
         GUIPanel::RenderDerived();
 
         // Retrieve current bounds to position the label.

@@ -22,8 +22,6 @@
 
 #include "Object.hpp"
 
-#include "TreeObject.hpp"
-
 #include "Creature.hpp"
 
 #include "Robot.hpp"

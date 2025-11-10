@@ -16,8 +16,6 @@
 
 #include "Object.hpp"
 
-#include "TreeObject.hpp"
-
 #include "Robot.hpp"
 
 #include "Creature.hpp"
@@ -69,30 +67,23 @@ namespace Forradia::Theme0
                 nlohmann::json tileJson;
                 tileJson["x"] = x;
                 tileJson["y"] = y;
-                tileJson["elevation"] =
-                    tile->GetElevation();
-                tileJson["ground"] =
-                    GetNameFromAnyHash(tile->GetGround());
+                tileJson["elevation"] = tile->GetElevation();
+                tileJson["ground"] = GetNameFromAnyHash(tile->GetGround());
 
                 // Serialize objects on this tile
                 auto objectsStack{tile->GetObjectsStack()};
                 if (objectsStack)
                 {
-                    auto objects{
-                        objectsStack->GetObjects()};
-                    tileJson["objects"] =
-                        nlohmann::json::array();
+                    auto objects{objectsStack->GetObjects()};
+                    tileJson["objects"] = nlohmann::json::array();
 
                     for (auto &object : objects)
                     {
                         if (object)
                         {
                             nlohmann::json objectJson;
-                            objectJson["type"] =
-                                GetNameFromAnyHash(
-                                    object->GetType());
-                            tileJson["objects"].push_back(
-                                objectJson);
+                            objectJson["type"] = GetNameFromAnyHash(object->GetType());
+                            tileJson["objects"].push_back(objectJson);
                         }
                     }
                 }
@@ -102,9 +93,7 @@ namespace Forradia::Theme0
                 if (creature)
                 {
                     nlohmann::json creatureJson;
-                    creatureJson["type"] =
-                        GetNameFromAnyHash(
-                            creature->GetType());
+                    creatureJson["type"] = GetNameFromAnyHash(creature->GetType());
                     tileJson["creature"] = creatureJson;
                 }
 
@@ -113,8 +102,7 @@ namespace Forradia::Theme0
                 if (robot)
                 {
                     nlohmann::json robotJson;
-                    robotJson["type"] = GetNameFromAnyHash(
-                        robot->GetType());
+                    robotJson["type"] = GetNameFromAnyHash(robot->GetType());
                     robotJson["position"]["x"] = x;
                     robotJson["position"]["y"] = y;
                     auto origin{robot->GetOrigin()};
@@ -131,8 +119,7 @@ namespace Forradia::Theme0
         std::ofstream file("savegame.json");
         if (file.is_open())
         {
-            file << jsonData.dump(
-                4); // Pretty print with 4-space indent
+            file << jsonData.dump(4); // Pretty print with 4-space indent
             file.close();
         }
     }
@@ -173,20 +160,16 @@ namespace Forradia::Theme0
 
         if (jsonData.contains("size"))
         {
-            auto savedWidth{
-                jsonData["size"]["width"].get<int>()};
-            auto savedHeight{
-                jsonData["size"]["height"].get<int>()};
+            auto savedWidth{jsonData["size"]["width"].get<int>()};
+            auto savedHeight{jsonData["size"]["height"].get<int>()};
             auto currentSize{worldArea->GetSize()};
         }
 
-        if (jsonData.contains("tiles") &&
-            jsonData["tiles"].is_array())
+        if (jsonData.contains("tiles") && jsonData["tiles"].is_array())
         {
             for (const auto &tileJson : jsonData["tiles"])
             {
-                if (!tileJson.contains("x") ||
-                    !tileJson.contains("y"))
+                if (!tileJson.contains("x") || !tileJson.contains("y"))
                 {
                     continue;
                 }
@@ -208,68 +191,30 @@ namespace Forradia::Theme0
 
                 if (tileJson.contains("elevation"))
                 {
-                    auto elevation{
-                        tileJson["elevation"].get<float>()};
+                    auto elevation{tileJson["elevation"].get<float>()};
                     tile->SetElevation(elevation);
                 }
 
                 if (tileJson.contains("ground"))
                 {
-                    auto groundHash{Hash(
-                        tileJson["ground"].get<String>())};
+                    auto groundHash{Hash(tileJson["ground"].get<String>())};
                     tile->SetGround(groundHash);
                 }
 
-                if (tileJson.contains("objects") &&
-                    tileJson["objects"].is_array())
+                if (tileJson.contains("objects") && tileJson["objects"].is_array())
                 {
-                    auto objectsStack{
-                        tile->GetObjectsStack()};
+                    auto objectsStack{tile->GetObjectsStack()};
                     if (objectsStack)
                     {
                         objectsStack->ClearObjects();
 
-                        for (const auto &objectJson :
-                             tileJson["objects"])
+                        for (const auto &objectJson : tileJson["objects"])
                         {
                             if (objectJson.contains("type"))
                             {
-                                auto objectType{Hash(
-                                    objectJson["type"]
-                                        .get<String>())};
+                                auto objectType{objectJson["type"].get<String>()};
 
-                                // Check if this is a
-                                // TreeObject type and
-                                // create the
-                                // appropriate object
-                                // type
-                                if (objectType ==
-                                    Hash("ObjectFirTre"
-                                         "e"))
-                                {
-                                    objectsStack->AddObject<
-                                        TreeObject>(
-                                        "ObjectFirT"
-                                        "ree");
-                                }
-                                else if (objectType ==
-                                         Hash("ObjectBi"
-                                              "rchT"
-                                              "ree"))
-                                {
-                                    objectsStack->AddObject<
-                                        TreeObject>(
-                                        "ObjectBirc"
-                                        "hTree");
-                                }
-                                else
-                                {
-                                    // Regular Object
-                                    // type
-                                    objectsStack->AddObject(
-                                        static_cast<int>(
-                                            objectType));
-                                }
+                                objectsStack->AddObject(objectType);
                             }
                         }
                     }
@@ -277,13 +222,9 @@ namespace Forradia::Theme0
 
                 if (tileJson.contains("creature"))
                 {
-                    auto creatureType{
-                        Hash(tileJson["creature"]["type"]
-                                 .get<String>())};
+                    auto creatureType{Hash(tileJson["creature"]["type"].get<String>())};
 
-                    auto creature{
-                        std::make_shared<Creature>(
-                            creatureType)};
+                    auto creature{std::make_shared<Creature>(creatureType)};
 
                     tile->SetCreature(creature);
 
@@ -292,19 +233,12 @@ namespace Forradia::Theme0
 
                 if (tileJson.contains("robot"))
                 {
-                    auto robotType{
-                        Hash(tileJson["robot"]["type"]
-                                 .get<String>())};
+                    auto robotType{Hash(tileJson["robot"]["type"].get<String>())};
 
-                    auto originX{
-                        tileJson["robot"]["origin"]["x"]
-                            .get<int>()};
-                    auto originY{
-                        tileJson["robot"]["origin"]["y"]
-                            .get<int>()};
+                    auto originX{tileJson["robot"]["origin"]["x"].get<int>()};
+                    auto originY{tileJson["robot"]["origin"]["y"].get<int>()};
 
-                    auto robot{std::make_shared<Robot>(
-                        robotType, originX, originY)};
+                    auto robot{std::make_shared<Robot>(robotType, originX, originY)};
 
                     tile->SetRobot(robot);
 

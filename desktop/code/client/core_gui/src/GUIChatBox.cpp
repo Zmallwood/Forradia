@@ -7,6 +7,7 @@
 #include "GUIChatBox.hpp"
 
 #include "FontSizes.hpp"
+
 #include "TextRenderer.hpp"
 
 #include "Image2DRenderer.hpp"

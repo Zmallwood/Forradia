@@ -8,8 +8,6 @@
 
 #include "Object.hpp"
 
-#include "TreeObject.hpp"
-
 namespace Forradia::Theme0
 {
     void ObjectsStack::ClearObjects()
@@ -19,27 +17,11 @@ namespace Forradia::Theme0
         m_objects.clear();
     }
 
-    void ObjectsStack::AddObject(int objectNameHash)
+    void ObjectsStack::AddObject(StringView objectName)
     {
         // Add new object of type Object to the stack.
 
-        m_objects.push_back(std::make_shared<Object>(objectNameHash));
-    }
-
-    template <>
-    void ObjectsStack::AddObject<Object>(StringView objectTypeName)
-    {
-        // Add new object of Object type to the stack.
-
-        m_objects.push_back(std::make_shared<Object>(objectTypeName));
-    }
-
-    template <>
-    void ObjectsStack::AddObject<TreeObject>(StringView objectTypeName)
-    {
-        // Add new object of TreeObject type to the stack.
-
-        m_objects.push_back(std::make_shared<TreeObject>(objectTypeName));
+        m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
     }
 
     void ObjectsStack::RemoveOneOfObjectOfType(StringView objectTypeName)

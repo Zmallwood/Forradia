@@ -12,8 +12,6 @@
 
 #include "ObjectsStack.hpp"
 
-#include "TreeObject.hpp"
-
 namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateObjects() const
@@ -33,7 +31,7 @@ namespace Forradia::Theme0
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject<TreeObject>("ObjectFirTree");
+                tile->GetObjectsStack()->AddObject("ObjectFirTree");
             }
         }
 
@@ -52,7 +50,7 @@ namespace Forradia::Theme0
             {
                 tile->GetObjectsStack()->ClearObjects();
 
-                tile->GetObjectsStack()->AddObject<TreeObject>("ObjectBirchTree");
+                tile->GetObjectsStack()->AddObject("ObjectBirchTree");
             }
         }
 
