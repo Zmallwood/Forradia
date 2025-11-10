@@ -35,6 +35,9 @@ namespace Forradia::Theme0
         this->GenerateLakesInValleys();
         this->GenerateNaturalRivers();
 
+        // 3.5. Enforce minimum elevation for non-water tiles
+        this->EnforceMinimumElevationForNonWaterTiles();
+
         // 4. Generate vegetation in appropriate biomes
         this->GenerateForests();
         this->GenerateMeadows();

@@ -31,7 +31,7 @@ namespace Forradia::Theme0
             }
 
             auto radius{CInt(8 * m_scale + GetRandomInt(12 * m_scale))};
-            auto treeDensity{0.4f + GetRandomInt(20) / 100.0f}; // 0.4 to 0.6
+            auto treeDensity{0.1f + GetRandomInt(20) / 100.0f}; // 0.4 to 0.6
 
             // Decide on forest type (fir or birch dominated)
             auto useFir{GetRandomInt(100) < 60};

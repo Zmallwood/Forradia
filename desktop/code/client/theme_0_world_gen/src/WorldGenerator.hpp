@@ -35,6 +35,8 @@ namespace Forradia::Theme0
 
         void GenerateLakesInValleys() const;
 
+        void EnforceMinimumElevationForNonWaterTiles() const;
+
         void GenerateGrassBiomes() const;
 
         void GenerateRockFormations() const;
@@ -59,6 +61,8 @@ namespace Forradia::Theme0
         bool IsValidForTree(int x, int y) const;
 
         bool IsNearWater(int x, int y, int radius) const;
+
+        bool IsAdjacentToWater(int x, int y) const;
 
         void CreateBiomeCluster(int centerX, int centerY, int radius, const char* groundType, float density) const;
 

@@ -123,4 +123,39 @@ namespace Forradia::Theme0
             }
         }
     }
+
+    void WorldGenerator::EnforceMinimumElevationForNonWaterTiles() const
+    {
+        // Enforce that all non-water tiles have elevation >= 1
+        // Exception: tiles adjacent to water can have elevation < 1
+        for (auto y = 0; y < m_size.height; y++)
+        {
+            for (auto x = 0; x < m_size.width; x++)
+            {
+                auto tile = m_worldArea->GetTile(x, y);
+                if (!tile)
+                {
+                    continue;
+                }
+
+                // Skip water tiles
+                if (tile->GetGround() == Hash("GroundWater"))
+                {
+                    continue;
+                }
+
+                // Check if elevation is below 1
+                auto currentElevation = tile->GetElevation();
+                if (currentElevation < 1)
+                {
+                    // Exception: if tile is adjacent to water, leave elevation as is
+                    if (!IsAdjacentToWater(x, y))
+                    {
+                        // Set elevation to at least 1
+                        tile->SetElevation(1);
+                    }
+                }
+            }
+        }
+    }
 }

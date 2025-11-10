@@ -94,6 +94,32 @@ namespace Forradia::Theme0
         return false;
     }
 
+    bool WorldGenerator::IsAdjacentToWater(int x, int y) const
+    {
+        // Check all 8 adjacent tiles (including diagonals) for water
+        int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+
+        for (auto dir = 0; dir < 8; dir++)
+        {
+            auto adjX = x + directions[dir][0];
+            auto adjY = y + directions[dir][1];
+
+            if (!m_worldArea->IsValidCoordinate(adjX, adjY))
+            {
+                continue;
+            }
+
+            auto adjTile = m_worldArea->GetTile(adjX, adjY);
+            if (adjTile && adjTile->GetGround() == Hash("GroundWater"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void WorldGenerator::CreateBiomeCluster(int centerX, int centerY, int radius,
                                             const char* groundType, float density) const
     {
