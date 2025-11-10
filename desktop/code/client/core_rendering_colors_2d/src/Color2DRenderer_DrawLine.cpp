@@ -8,10 +8,12 @@
 
 #include "ShaderProgram.hpp"
 
+#include <cmath>
+
 namespace Forradia
 {
     void Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,
-                                   float y2, bool updateExisting)
+                                   float y2, float lineWidth, bool updateExisting)
     {
         // Setup state.
 
@@ -91,9 +93,9 @@ namespace Forradia
 
         // To store the number of vertices and indices.
 
-        const auto k_verticesCount{2};
+        const auto k_verticesCount{4};
 
-        const auto k_indicesCount{2};
+        const auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
 
@@ -101,20 +103,72 @@ namespace Forradia
         {
             auto &c{color};
 
+            // Calculate the line direction vector.
+
+            auto dx{x2 - x1};
+            auto dy{y2 - y1};
+
+            // Calculate the length of the line.
+
+            auto length{std::sqrt(dx * dx + dy * dy)};
+
+            // Calculate the perpendicular vector (normalized) for the line width.
+            // Perpendicular to (dx, dy) is (-dy, dx) or (dy, -dx).
+            // We'll use (-dy, dx) normalized.
+
+            auto halfWidth{lineWidth * 0.5f};
+
+            float perpX{0.0f};
+            float perpY{0.0f};
+
+            if (length > 0.0001f)
+            {
+                // Normalize the perpendicular vector and scale by half width.
+
+                perpX = (-dy / length) * halfWidth;
+                perpY = (dx / length) * halfWidth;
+            }
+            else
+            {
+                // If the line has zero length, use a default perpendicular vector.
+                // Use a small default width direction.
+
+                perpX = halfWidth;
+                perpY = 0.0f;
+            }
+
+            // Calculate the four corners of the line quad.
+            // The quad is formed by offsetting the start and end points
+            // perpendicular to the line direction.
+
+            auto x1Top{x1 + perpX};
+            auto y1Top{y1 + perpY};
+            auto x1Bottom{x1 - perpX};
+            auto y1Bottom{y1 - perpY};
+
+            auto x2Top{x2 + perpX};
+            auto y2Top{y2 + perpY};
+            auto x2Bottom{x2 - perpX};
+            auto y2Bottom{y2 - perpY};
+
             // Define the vertices and indices.
 
             // clang-format off
 
             float vertices[] = {
-                x1,     y1,     0.0f,
-                c.r,    c.g,     c.b,    c.a,
-                x2,     y2,     0.0f,
-                c.r,    c.g,     c.b,    c.a
+                x1Bottom,   y1Bottom,   0.0f,
+                c.r,        c.g,        c.b,    c.a,
+                x1Top,      y1Top,      0.0f,
+                c.r,        c.g,        c.b,    c.a,
+                x2Top,      y2Top,      0.0f,
+                c.r,        c.g,        c.b,    c.a,
+                x2Bottom,   y2Bottom,   0.0f,
+                c.r,        c.g,        c.b,    c.a
             };
 
             // clang-format on
 
-            unsigned short indices[]{0, 1};
+            unsigned short indices[]{0, 1, 2, 3};
 
             // Fill the index buffer.
 
@@ -139,9 +193,9 @@ namespace Forradia
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-        // Draw the line.
+        // Draw the line as a quad using triangle fan.
 
-        glDrawElements(GL_LINES, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
+        glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
         // Restore the state.
 

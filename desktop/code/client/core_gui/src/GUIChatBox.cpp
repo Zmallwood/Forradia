@@ -18,59 +18,90 @@ namespace Forradia
 {
     void GUIChatBox::Initialize()
     {
+        // Initialize the render IDs for the text lines.
+
         auto maxNumLines{this->GetMaxNumLines()};
 
         for (auto i = 0; i < maxNumLines; i++)
         {
+            // Create a render ID for the text line.
+
             m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
         }
     }
 
     int GUIChatBox::GetMaxNumLines() const
     {
+        // Get the bounds of the chat box.
+
         auto bounds{this->GetBounds()};
+
+        // Calculate the maximum number of lines that can fit in the chat box.
 
         return CInt(bounds.height / k_lineHeight - 1);
     }
 
     void GUIChatBox::RenderDerived() const
     {
+        // Call the base class specific render tasks as well as a standard procedure, even if they
+        // do nothing in this case.
+
         GUIPanel::RenderDerived();
+
+        // Get the bounds of the chat box.
 
         auto bounds{this->GetBounds()};
 
+        // Get the maximum number of lines that can fit in the chat box.
+
         auto maxNumLines{this->GetMaxNumLines()};
+
+        // Initialize the y-coordinate for the text lines.
 
         auto y{bounds.y + k_margin};
 
+        // Loop through the text lines.
+
         for (auto i = 0; i < maxNumLines; i++)
         {
+            // Compute the index of the text line.
+
             auto index{m_lines.size() - maxNumLines + i};
+
+            // Index out of bounds check.
 
             if (index < 0 || index >= m_lines.size())
             {
                 continue;
             }
 
+            // Get the text line.
+
             auto textLine = m_lines.at(index);
+
+            // Draw the text line.
 
             _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin,
                                          y, FontSizes::_20, false, true);
 
+            // Update the y-coordinate for the next text line.
+
             y += k_lineHeight;
         }
 
-        auto separatorRect{RectF{bounds.x, bounds.y + bounds.height - k_lineHeight, bounds.width,
-                                 k_separatorHeight}};
+        // Draw the separator.
+
+        auto separatorX{bounds.x + k_margin};
+
+        auto separatorY{bounds.y + bounds.height - k_lineHeight};
+
+        auto separatorWidth{bounds.width - 2 * k_margin};
+
+        auto sepratorHeight{k_separatorHeight};
 
         _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
-                                      separatorRect.x, separatorRect.y,
-                                      separatorRect.x + separatorRect.width,
-                                      separatorRect.y + separatorRect.height);
-
-        // _<Image2DRenderer>().DrawImageByName(k_renderIDSeparator, "Black", separatorRect.x,
-        //                                      separatorRect.y, separatorRect.width,
-        //                                      separatorRect.height);
+                                      separatorX, separatorY, separatorX + separatorWidth,
+                                      separatorY, sepratorHeight);
 
         if (m_inputActive)
         {

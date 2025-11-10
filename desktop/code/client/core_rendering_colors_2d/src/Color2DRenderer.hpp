@@ -52,11 +52,13 @@ namespace Forradia
         /// @param y1 The y coordinate of the first point.
         /// @param x2 The x coordinate of the second point.
         /// @param y2 The y coordinate of the second point.
+        /// @param lineWidth The width of the line (normalized, as a
+        /// fraction of canvas size).
         /// @param updateExisting Whether to update the
         /// existing operation.
         ///
         void DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                      bool updateExisting = false);
+                      float lineWidth = 0.001f, bool updateExisting = false);
 
       protected:
         ///
