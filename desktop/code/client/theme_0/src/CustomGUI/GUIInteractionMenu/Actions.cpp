@@ -58,6 +58,31 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionTargetRobot")>();
 
     template <>
+    Action GetAction<Hash("ActionClaimLand")>();
+
+    template <>
+    Action GetAction<Hash("ActionClaimLand")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
+                    }
+
+                    _<GUIChatBox>().Print("You claim land.");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionStop")>()
     {
         return {.groundMatches = {Hash("GroundGrass")},

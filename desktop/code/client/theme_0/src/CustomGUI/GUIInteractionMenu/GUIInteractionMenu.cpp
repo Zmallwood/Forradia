@@ -51,17 +51,17 @@ namespace Forradia::Theme0
 
         m_clickedCoordinate = hoveredCoordinate;
 
-        m_clickedRobot = worldArea
-                             ->GetTile(hoveredCoordinate.x,
-                                       hoveredCoordinate.y)
-                             ->GetRobot();
+        m_clickedRobot = worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)->GetRobot();
 
-        auto tile{worldArea->GetTile(hoveredCoordinate.x,
-                                     hoveredCoordinate.y)};
+        auto tile{worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
         auto actionStop{GetAction<Hash("ActionStop")>()};
 
         m_entries.push_back({"Stop current action", actionStop.action});
+
+        auto actionClaimLand{GetAction<Hash("ActionClaimLand")>()};
+
+        m_entries.push_back({"Claim land", actionClaimLand.action});
 
         auto actionChopDownTrees{GetAction<Hash("ActionChopTrees")>()};
 

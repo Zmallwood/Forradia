@@ -32,6 +32,11 @@ namespace Forradia::Theme0
             return m_clickedRobot;
         }
 
+        auto GetClickedCoordinate() const
+        {
+            return m_clickedCoordinate;
+        }
+
       protected:
         void Initialize();
 
