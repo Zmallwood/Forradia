@@ -15,7 +15,7 @@ namespace Forradia::Theme0
         m_entries.insert({Hash("ObjectBirchTree"), ObjectIndexEntry{2.0f}});
 
         m_entries.insert({Hash("ObjectBush1"), ObjectIndexEntry{2.0f}});
-        
+
         m_entries.insert({Hash("ObjectBush2"), ObjectIndexEntry{2.0f}});
     }
 
@@ -26,5 +26,10 @@ namespace Forradia::Theme0
             return m_entries.at(objectHash).modelScaling;
         }
         return 1.0f;
+    }
+
+    bool ObjectIndex::ObjectEntryExists(int objectHash) const
+    {
+        return m_entries.contains(objectHash);
     }
 }

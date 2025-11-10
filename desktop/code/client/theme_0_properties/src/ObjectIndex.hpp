@@ -17,6 +17,8 @@ namespace Forradia::Theme0
 
         float GetModelScaling(int objectHash) const;
 
+        bool ObjectEntryExists(int objectHash) const;
+
       private:
         std::map<int, ObjectIndexEntry> m_entries;
     };

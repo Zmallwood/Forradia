@@ -12,6 +12,8 @@
 
 #include "Creature.hpp"
 
+#include "ObjectsStack.hpp"
+
 namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateCreaturesInEcosystems() const
@@ -54,6 +56,81 @@ namespace Forradia::Theme0
             if (prefersLocation)
             {
                 auto newCreature = std::make_shared<Theme0::Creature>("CreatureWhiteRabbit");
+
+                tile->SetCreature(newCreature);
+
+                m_worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+            }
+        }
+
+        // Generate red birds - prefer areas with trees (forests) but also allow in open areas
+        auto numRedBirds{120 * m_scale + GetRandomInt(30 * m_scale)};
+
+        for (auto i = 0; i < numRedBirds; i++)
+        {
+            auto x{GetRandomInt(m_size.width)};
+            auto y{GetRandomInt(m_size.height)};
+
+            auto tile = m_worldArea->GetTile(x, y);
+            if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
+            {
+                continue;
+            }
+
+            // Birds prefer areas with trees nearby (forests)
+            // Check for trees in surrounding area
+            int nearbyTreesCount = 0;
+            for (auto checkY = y - 3; checkY <= y + 3; checkY++)
+            {
+                for (auto checkX = x - 3; checkX <= x + 3; checkX++)
+                {
+                    if (checkX == x && checkY == y)
+                    {
+                        continue; // Skip the current tile
+                    }
+
+                    if (!m_worldArea->IsValidCoordinate(checkX, checkY))
+                    {
+                        continue;
+                    }
+
+                    auto nearbyTile = m_worldArea->GetTile(checkX, checkY);
+                    if (nearbyTile)
+                    {
+                        auto objectsStack = nearbyTile->GetObjectsStack();
+                        if (objectsStack->GetSize() > 0)
+                        {
+                            // Check if it's a tree (FirTree or BirchTree)
+                            // Note: We check if there are objects, which likely includes trees
+                            // Birds can perch on trees, so nearby trees increase probability
+                            nearbyTreesCount++;
+                        }
+                    }
+                }
+            }
+
+            auto prefersLocation = false;
+
+            // Birds strongly prefer areas with trees (forests)
+            if (nearbyTreesCount >= 2)
+            {
+                // High probability in forest areas
+                prefersLocation = GetRandomInt(100) < 50;
+            }
+            else if (nearbyTreesCount == 1)
+            {
+                // Moderate probability near a single tree
+                prefersLocation = GetRandomInt(100) < 25;
+            }
+            else if (tile->GetGround() == Hash("GroundGrass"))
+            {
+                // Lower probability in open grass areas (birds can still be found there)
+                prefersLocation = GetRandomInt(100) < 8;
+            }
+
+            if (prefersLocation)
+            {
+                auto newCreature = std::make_shared<Theme0::Creature>("CreatureRedBird");
 
                 tile->SetCreature(newCreature);
 

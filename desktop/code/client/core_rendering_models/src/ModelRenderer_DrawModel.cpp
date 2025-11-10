@@ -18,6 +18,8 @@
 
 #include "ObjectIndex.hpp"
 
+#include "CreatureIndex.hpp"
+
 namespace Forradia
 {
     void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation)
@@ -102,7 +104,21 @@ namespace Forradia
 
             auto indexFirstVertexOfMesh{0};
 
-            auto objectTypeModelScaling{_<Theme0::ObjectIndex>().GetModelScaling(modelNameHash)};
+            float modelScaling{1.0f};
+
+            float levitationHeight{0.0f};
+
+            if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
+            {
+                modelScaling *= _<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
+            }
+
+            if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash))
+            {
+                modelScaling *= _<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
+
+                levitationHeight = _<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash);
+            }
 
             // For each mesh.
 
@@ -115,13 +131,13 @@ namespace Forradia
                     // Add position.
 
                     verticesVector.push_back(vertex.position.x * k_globalModelScaling *
-                                             objectTypeModelScaling);
+                                             modelScaling);
 
                     verticesVector.push_back(vertex.position.y * k_globalModelScaling *
-                                             objectTypeModelScaling);
+                                             modelScaling);
 
-                    verticesVector.push_back(vertex.position.z * k_globalModelScaling *
-                                             objectTypeModelScaling);
+                    verticesVector.push_back(
+                        vertex.position.z * k_globalModelScaling * modelScaling + levitationHeight);
 
                     // Add normal.
 

@@ -226,8 +226,6 @@ namespace Forradia::Theme0::GameplayCore
                     {
                         auto creatureType{creature->GetType()};
 
-                        creatureType = Hash("CreatureWhiteRabbit");
-
                         _<ModelRenderer>().DrawModel(
                             creatureType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                             (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
