@@ -267,6 +267,81 @@ namespace Forradia::Theme0
                 tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
             }
         }
+
+        // Brown mushrooms - prefer forest areas with trees nearby
+        // Mushrooms grow on forest floors, often near trees
+        auto numMushrooms{600 * m_scale + GetRandomInt(400 * m_scale)};
+
+        for (auto i = 0; i < numMushrooms; i++)
+        {
+            auto x{GetRandomInt(m_size.width)};
+            auto y{GetRandomInt(m_size.height)};
+
+            auto tile = m_worldArea->GetTile(x, y);
+            if (!tile || !IsValidForTree(x, y))
+            {
+                continue;
+            }
+
+            // Mushrooms prefer grass or dirt ground
+            auto ground = tile->GetGround();
+            if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
+            {
+                continue;
+            }
+
+            // Don't place mushrooms on tiles that already have trees or large objects
+            // (mushrooms are undergrowth, not replacement for trees)
+            auto objectsStack = tile->GetObjectsStack();
+            if (objectsStack->GetSize() > 0)
+            {
+                // Skip if there's already a significant object (like a tree)
+                // But we might want to allow mushrooms with bushes
+                continue;
+            }
+
+            // Check if there are objects (likely trees) nearby
+            // Mushrooms often grow near trees in forest environments
+            int nearbyObjectsCount = 0;
+            for (auto checkY = y - 2; checkY <= y + 2; checkY++)
+            {
+                for (auto checkX = x - 2; checkX <= x + 2; checkX++)
+                {
+                    if (checkX == x && checkY == y)
+                    {
+                        continue; // Skip the current tile
+                    }
+
+                    if (!m_worldArea->IsValidCoordinate(checkX, checkY))
+                    {
+                        continue;
+                    }
+
+                    auto nearbyTile = m_worldArea->GetTile(checkX, checkY);
+                    if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
+                    {
+                        nearbyObjectsCount++;
+                    }
+                }
+            }
+
+            // Higher probability if there are objects (trees) nearby (forest environment)
+            // Mushrooms thrive in forest ecosystems
+            auto baseProbability = 6;                  // 6% base probability
+            auto forestBonus = nearbyObjectsCount * 3; // +3% per nearby object (tree)
+            auto mushroomProbability = baseProbability + forestBonus;
+
+            // Cap probability at a reasonable maximum
+            if (mushroomProbability > 25)
+            {
+                mushroomProbability = 25;
+            }
+
+            if (GetRandomInt(100) < mushroomProbability)
+            {
+                tile->GetObjectsStack()->ClearObjects();
+                tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
+            }
+        }
     }
 }
-

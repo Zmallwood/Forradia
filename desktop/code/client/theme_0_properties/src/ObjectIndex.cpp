@@ -13,6 +13,10 @@ namespace Forradia::Theme0
         m_entries.insert({Hash("ObjectFirTree"), ObjectIndexEntry{2.0f}});
 
         m_entries.insert({Hash("ObjectBirchTree"), ObjectIndexEntry{2.0f}});
+
+        m_entries.insert({Hash("ObjectBush1"), ObjectIndexEntry{2.0f}});
+        
+        m_entries.insert({Hash("ObjectBush2"), ObjectIndexEntry{2.0f}});
     }
 
     float ObjectIndex::GetModelScaling(int objectHash) const
