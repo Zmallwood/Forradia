@@ -24,6 +24,7 @@ from embedded import (
     get_gui_sys_menu_ptr,
     conv_w_to_h,
     make_shared_fps_panel,
+    make_shared_energy_statistics_panel,
     get_gui_interact_menu_ptr,
     update_kb_actions,
     update_mouse_actions,
@@ -283,6 +284,7 @@ class MainScene(IScene):
             self.gui().add_child_comp(get_gui_inventory_win_ptr())
             self.gui().add_child_comp(get_gui_sys_menu_ptr())
             self.gui().add_child_comp(make_shared_fps_panel())
+            self.gui().add_child_comp(make_shared_energy_statistics_panel())
             self.gui().add_child_comp(get_gui_interact_menu_ptr())
 
         def on_enter_derived():

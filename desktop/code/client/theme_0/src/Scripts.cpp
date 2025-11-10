@@ -66,6 +66,8 @@
 
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
+#include "CustomGUI/GUIEnergyStatisticsPanel.hpp"
+
 namespace Forradia::Theme0
 {
     class IScenePublic : public IScene
@@ -105,6 +107,9 @@ namespace Forradia::Theme0
         py::class_<GUIButton, SharedPtr<GUIButton>, GUIComponent>(m, "gui_button");
 
         py::class_<GUIFPSPanel, SharedPtr<GUIFPSPanel>, GUIComponent>(m, "gui_fps_panel");
+
+        py::class_<GUIEnergyStatisticsPanel, SharedPtr<GUIEnergyStatisticsPanel>, GUIComponent>(
+            m, "gui_energy_statistics_panel");
 
         py::class_<IScene>(m, "IScene")
             .def(py::init<>())
@@ -201,6 +206,14 @@ namespace Forradia::Theme0
                   return std::make_shared<
 
                       GUIFPSPanel>();
+              });
+
+        m.def("make_shared_energy_statistics_panel",
+              []
+              {
+                  return std::make_shared<
+
+                      GUIEnergyStatisticsPanel>();
               });
 
         m.def("make_shared_gui_label",
