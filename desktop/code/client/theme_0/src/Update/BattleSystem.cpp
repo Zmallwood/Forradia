@@ -32,6 +32,6 @@ namespace Forradia::Theme0::GameplayCore
         auto &player{_<PlayerCharacter>()};
 
         player.SetDestination(
-            {worldAreaSize.width - coordinate.x, worldAreaSize.height - coordinate.y});
+            {coordinate.x, coordinate.y});
     }
 }

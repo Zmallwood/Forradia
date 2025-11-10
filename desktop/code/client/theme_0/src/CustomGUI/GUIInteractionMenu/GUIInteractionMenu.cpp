@@ -52,12 +52,12 @@ namespace Forradia::Theme0
         m_clickedCoordinate = hoveredCoordinate;
 
         m_clickedRobot = worldArea
-                             ->GetTile(worldAreaSize.width - hoveredCoordinate.x,
-                                       worldAreaSize.height - hoveredCoordinate.y)
+                             ->GetTile(hoveredCoordinate.x,
+                                       hoveredCoordinate.y)
                              ->GetRobot();
 
-        auto tile{worldArea->GetTile(worldAreaSize.width - hoveredCoordinate.x,
-                                     worldAreaSize.height - hoveredCoordinate.y)};
+        auto tile{worldArea->GetTile(hoveredCoordinate.x,
+                                     hoveredCoordinate.y)};
 
         auto actionStop{GetAction<Hash("ActionStop")>()};
 

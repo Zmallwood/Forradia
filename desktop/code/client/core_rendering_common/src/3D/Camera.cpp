@@ -55,9 +55,9 @@ namespace Forradia
 
         // Calculate the rotation in the X and Y axes.
 
-        auto cosRotation{std::cos(m_rotationAngleSideways - M_PI / 2)};
+        auto cosRotation{std::cos(m_rotationAngleSideways + M_PI / 2)};
 
-        auto sinRotation{std::sin(m_rotationAngleSideways - M_PI / 2)};
+        auto sinRotation{std::sin(m_rotationAngleSideways + M_PI / 2)};
 
         // Calculate the vertical rotation.
 
@@ -108,15 +108,15 @@ namespace Forradia
 
         auto playerElev{
             worldArea
-                ->GetTile(worldAreaSize.width - playerPos.x, worldAreaSize.height - playerPos.y)
+                ->GetTile(playerPos.x, playerPos.y)
                 ->GetElevation()};
 
         // Construct the resulting look-at point in world space. Again, the coordinates are
         // (currently, it would be preferred if it wasnt) flipped relative to render space (width -
         // x, height - y).
 
-        Point3F lookAt{(worldAreaSize.width - playerPos.x) * rendTileSize + rendTileSize / 2,
-                       (worldAreaSize.height - playerPos.y) * rendTileSize + rendTileSize / 2,
+        Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
+                       playerPos.y * rendTileSize + rendTileSize / 2,
                        playerElev * elevHeight};
 
         return lookAt;

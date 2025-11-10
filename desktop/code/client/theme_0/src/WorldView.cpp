@@ -88,7 +88,7 @@ namespace Forradia::Theme0::GameplayCore
 
         auto playerElev{
             worldArea
-                ->GetTile(worldAreaSize.width - playerPos.x, worldAreaSize.height - playerPos.y)
+                ->GetTile(playerPos.x, playerPos.y)
                 ->GetElevation()};
 
         auto rendTileSize{_<Theme0Properties>().GetTileSize()};
@@ -98,11 +98,9 @@ namespace Forradia::Theme0::GameplayCore
         {
             for (auto x = 0; x < groundGridSize.width; x++)
             {
-                auto xCoordinate{(worldAreaSize.width - playerPos.x) -
-                                 (groundGridSize.width - 1) / 2 + x};
+                auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
 
-                auto yCoordinate{(worldAreaSize.height - playerPos.y) -
-                                 (groundGridSize.height - 1) / 2 + y};
+                auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {
@@ -256,8 +254,8 @@ namespace Forradia::Theme0::GameplayCore
                             (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                     }
 
-                    if (xCoordinate == worldAreaSize.width - playerPos.x &&
-                        yCoordinate == worldAreaSize.height - playerPos.y)
+                    if (xCoordinate == playerPos.x &&
+                        yCoordinate == playerPos.y)
                     {
                         _<ModelRenderer>().DrawModel(
                             Hash("PlayerFemale"), (xCoordinate)*rendTileSize + rendTileSize / 2,
@@ -269,8 +267,8 @@ namespace Forradia::Theme0::GameplayCore
                                              ground, xCoordinate, yCoordinate, rendTileSize,
                                              elevations);
 
-                if (xCoordinate == worldAreaSize.width - hoveredCoordinate.x &&
-                    yCoordinate == worldAreaSize.height - hoveredCoordinate.y)
+                if (xCoordinate == hoveredCoordinate.x &&
+                    yCoordinate == hoveredCoordinate.y)
                 {
                     for (auto &elevation : elevations)
                     {

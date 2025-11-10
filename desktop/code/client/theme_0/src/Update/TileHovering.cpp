@@ -46,18 +46,15 @@ namespace Forradia::Theme0::GameplayCore
         {
             for (auto x = 0; x < gridSize.width; x++)
             {
-                auto xCoordinate{(worldAreaSize.width - playerPos.x) - (gridSize.width - 1) / 2 +
-                                 x};
+                auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
 
-                auto yCoordinate{(worldAreaSize.height - playerPos.y) - (gridSize.height - 1) / 2 +
-                                 y};
+                auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + y};
 
                 auto result{DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
 
                 if (result)
                 {
-                    m_hoveredCoordinate = {worldAreaSize.width - xCoordinate,
-                                           worldAreaSize.height - yCoordinate};
+                    m_hoveredCoordinate = {xCoordinate, yCoordinate};
 
                     return;
                 }
