@@ -89,7 +89,7 @@ namespace Forradia
             y += k_lineHeight;
         }
 
-        // Draw the separator.
+        // Get separator bounds.
 
         auto separatorX{bounds.x + k_margin};
 
@@ -99,33 +99,55 @@ namespace Forradia
 
         auto sepratorHeight{k_separatorHeight};
 
+        // Draw the separator.
+
         _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
                                       separatorX, separatorY, separatorX + separatorWidth,
                                       separatorY, sepratorHeight);
 
+        // If the input is active.
+
         if (m_inputActive)
         {
-            auto cursorBounds{
-                RectF{bounds.x, bounds.y + bounds.height - k_lineHeight, 0.01f, k_lineHeight}};
+            // Get the cursor bounds.
 
-            _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor",
-                                                 cursorBounds.x, cursorBounds.y, cursorBounds.width,
-                                                 cursorBounds.height);
+            // TODO: Calculate the cursor x-coordinate based on the text input.
+
+            auto cursorX{bounds.x};
+
+            auto cursorY{bounds.y + bounds.height - k_lineHeight};
+
+            auto cursorWidth{0.01f};
+
+            auto cursorHeight{k_lineHeight};
+
+            // Draw the cursor.
+
+            _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX,
+                                                 cursorY, cursorWidth, cursorHeight);
         }
     }
 
     void GUIChatBox::Print(StringView text)
     {
+        // Add the text to the lines.
+
         m_lines.push_back(text.data());
     }
 
     void GUIChatBox::EnableInput()
     {
+        // Set the input active flag to true.
+
         m_inputActive = true;
     }
 
     void GUIChatBox::SubmitInput()
     {
+        // TODO: Act on the typed input.
+
+        // Reset the input state.
+        
         m_inputActive = false;
 
         m_input = "";
