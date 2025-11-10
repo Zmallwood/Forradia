@@ -30,6 +30,8 @@
 
 #include "ModelRenderer.hpp"
 
+#include "SkyRenderer.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
 
@@ -60,6 +62,11 @@ namespace Forradia::Theme0::GameplayCore
 
     void WorldView::Render() const
     {
+        SkyRenderer skyRenderer;
+        glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f)); // 45 degrees up in +Z
+        float sunElevation = M_PI / 4.0f;                                     // 45 degrees
+        _<SkyRenderer>().Render(sunDirection, sunElevation);
+
         auto gridSize{_<Theme0Properties>().GetGridSize()};
 
         // Calculate extended ground rendering size

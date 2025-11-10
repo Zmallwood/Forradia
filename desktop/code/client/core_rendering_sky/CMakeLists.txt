@@ -11,6 +11,7 @@ file(GLOB_RECURSE CORE_RENDERING_SKY_SOURCES "./src/*.cpp")
 add_library(ForradiaCoreRenderingSky ${CORE_RENDERING_SKY_SOURCES})
 target_include_directories(ForradiaCoreRenderingSky PUBLIC
     "../core_rendering/src"
+    "../core_rendering_sky/src"
     "../theme_0_properties/src"
     "../common_core_utilities/src"
     "../core_assets/src"
