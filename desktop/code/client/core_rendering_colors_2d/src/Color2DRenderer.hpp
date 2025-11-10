@@ -43,6 +43,21 @@ namespace Forradia
         void DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
                                  float height, bool updateExisting = false);
 
+        ///
+        /// Draws a line between two points.
+        ///
+        /// @param uniqueRenderID The unique render ID.
+        /// @param color The color of the line.
+        /// @param x1 The x coordinate of the first point.
+        /// @param y1 The y coordinate of the first point.
+        /// @param x2 The x coordinate of the second point.
+        /// @param y2 The y coordinate of the second point.
+        /// @param updateExisting Whether to update the
+        /// existing operation.
+        ///
+        void DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
+                      bool updateExisting = false);
+
       protected:
         ///
         /// Returns the vertex shader source.

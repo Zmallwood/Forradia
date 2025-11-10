@@ -24,4 +24,5 @@ target_include_directories(ForradiaCoreGUI PUBLIC
 target_precompile_headers(ForradiaCoreGUI PUBLIC ./src/StdAfx.hpp)
 target_link_libraries(ForradiaCoreGUI
     ForradiaCoreInput
+    ForradiaCoreRenderingColors2D
 )

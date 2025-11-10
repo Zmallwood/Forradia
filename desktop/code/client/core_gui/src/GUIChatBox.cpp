@@ -12,6 +12,8 @@
 
 #include "Image2DRenderer.hpp"
 
+#include "Color2DRenderer.hpp"
+
 namespace Forradia
 {
     void GUIChatBox::Initialize()
@@ -61,9 +63,14 @@ namespace Forradia
         auto separatorRect{RectF{bounds.x, bounds.y + bounds.height - k_lineHeight, bounds.width,
                                  k_separatorHeight}};
 
-        _<Image2DRenderer>().DrawImageByName(k_renderIDSeparator, "Black", separatorRect.x,
-                                             separatorRect.y, separatorRect.width,
-                                             separatorRect.height);
+        _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
+                                      separatorRect.x, separatorRect.y,
+                                      separatorRect.x + separatorRect.width,
+                                      separatorRect.y + separatorRect.height);
+
+        // _<Image2DRenderer>().DrawImageByName(k_renderIDSeparator, "Black", separatorRect.x,
+        //                                      separatorRect.y, separatorRect.width,
+        //                                      separatorRect.height);
 
         if (m_inputActive)
         {

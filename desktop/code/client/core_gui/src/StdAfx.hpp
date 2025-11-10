@@ -18,8 +18,6 @@
 
 #include <SDL2/SDL_ttf.h>
 
-#include <GL/gl.h>
-
 #include <fmt/format.h>
 
 // Internal.
