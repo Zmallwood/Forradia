@@ -16,6 +16,8 @@
 
 #include "3D/Camera.hpp"
 
+#include "ObjectIndex.hpp"
+
 namespace Forradia
 {
     void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation)
@@ -100,6 +102,8 @@ namespace Forradia
 
             auto indexFirstVertexOfMesh{0};
 
+            auto objectTypeModelScaling{_<Theme0::ObjectIndex>().GetModelScaling(modelNameHash)};
+
             // For each mesh.
 
             for (auto &mesh : meshes)
@@ -110,11 +114,14 @@ namespace Forradia
                 {
                     // Add position.
 
-                    verticesVector.push_back(vertex.position.x * k_modelScale);
+                    verticesVector.push_back(vertex.position.x * k_globalModelScaling *
+                                             objectTypeModelScaling);
 
-                    verticesVector.push_back(vertex.position.y * k_modelScale);
+                    verticesVector.push_back(vertex.position.y * k_globalModelScaling *
+                                             objectTypeModelScaling);
 
-                    verticesVector.push_back(vertex.position.z * k_modelScale);
+                    verticesVector.push_back(vertex.position.z * k_globalModelScaling *
+                                             objectTypeModelScaling);
 
                     // Add normal.
 

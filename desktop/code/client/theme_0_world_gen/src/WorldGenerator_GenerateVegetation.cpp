@@ -216,7 +216,7 @@ namespace Forradia::Theme0
         }
 
         // Scattered bushes
-        auto numScatteredBushes{200 * m_scale + GetRandomInt(100 * m_scale)};
+        auto numScatteredBushes{1000 * m_scale + GetRandomInt(100 * m_scale)};
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {

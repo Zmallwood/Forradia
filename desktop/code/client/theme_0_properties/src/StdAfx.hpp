@@ -6,6 +6,10 @@
 
 #pragma once
 
+// Std.
+
+#include <map>
+
 // Internal.
 
 #include "Aliases.hpp"
