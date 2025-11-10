@@ -16,6 +16,8 @@
 
 #include "Object.hpp"
 
+#include "GUIWindowTitleBar.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIInventoryWindow::Initialize()

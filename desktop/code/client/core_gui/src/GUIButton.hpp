@@ -19,7 +19,7 @@ namespace Forradia
         ///
         /// Constructor.
         ///
-        /// @param uniqueName The unique name of the button.
+        /// @param uniqueName An unique name for the button.
         /// @param x The x-coordinate of the button.
         /// @param y The y-coordinate of the button.
         /// @param width The width of the button.
@@ -28,6 +28,7 @@ namespace Forradia
         /// @param action The action to perform when the button is clicked.
         /// @param backgroundImage The background image of the button.
         /// @param hoveredBackgroundImage The background image of the button when hovered.
+        ///
         GUIButton(StringView uniqueName, float x, float y, float width, float height,
                   StringView text, Function<void()> action,
                   StringView backgroundImage = k_defaultBackgroundImage,
