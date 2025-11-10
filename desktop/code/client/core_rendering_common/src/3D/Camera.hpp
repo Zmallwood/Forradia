@@ -38,11 +38,18 @@ namespace Forradia
         void AddZoomAmountDelta(float zoomAmountDelta);
 
         ///
-        /// Add a delta to the current rotation amount.
+        /// Add a delta to the current rotation amount, sideways.
         ///
-        /// @param rotationDelta The delta to add.
+        /// @param rotationDeltaSideways The delta to add.
         ///
-        void AddRotationDelta(float rotationDelta);
+        void AddRotationDeltaSideways(float rotationDeltaSideways);
+
+        ///
+        /// Add a delta to the current rotation amount, vertical.
+        ///
+        /// @param rotationDeltaVertical The delta to add.
+        ///
+        void AddRotationDeltaVertical(float rotationDeltaVertical);
 
       private:
         ///
@@ -63,8 +70,15 @@ namespace Forradia
 
         const float k_maxZoomAmount{15.0f}; ///< Maximum zoom amount.
 
+        const float k_minRotationAngleVertical{-M_PI * 3.0f /
+                                               8.0f}; ///< Minimum vertical rotation angle.
+
+        const float k_maxRotationAngleVertical{-M_PI / 8.0f}; ///< Maximum vertical rotation angle.
+
         float m_zoomAmount{6.0f}; ///< Current zoom amount.
 
-        float m_rotationAngle{0.0f}; ///< Current rotation amount.
+        float m_rotationAngleSideways{0.0f}; ///< Current rotation amount.
+
+        float m_rotationAngleVertical{-M_PI / 4.0f}; ///< Current vertical rotation amount.
     };
 }

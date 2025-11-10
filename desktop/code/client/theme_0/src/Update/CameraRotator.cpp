@@ -39,7 +39,11 @@ namespace Forradia::Theme0::GameplayCore
 
             auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-            _<Camera>().AddRotationDelta(dX);
+            _<Camera>().AddRotationDeltaSideways(dX);
+
+            auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
+
+            _<Camera>().AddRotationDeltaVertical(dY);
         }
     }
 }

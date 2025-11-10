@@ -55,17 +55,27 @@ namespace Forradia
 
         // Calculate the rotation in the X and Y axes.
 
-        auto cosRotation{std::cos(m_rotationAngle - M_PI / 2)};
+        auto cosRotation{std::cos(m_rotationAngleSideways - M_PI / 2)};
 
-        auto sinRotation{std::sin(m_rotationAngle - M_PI / 2)};
+        auto sinRotation{std::sin(m_rotationAngleSideways - M_PI / 2)};
 
-        // Apply the distance based on the zoom amount.
+        // Calculate the vertical rotation.
 
-        point.x += cosRotation * m_zoomAmount;
+        auto cosVertical{std::cos(-m_rotationAngleVertical)};
 
-        point.y += sinRotation * m_zoomAmount;
+        auto sinVertical{std::sin(-m_rotationAngleVertical)};
 
-        point.z += m_zoomAmount;
+        // Apply the distance based on the zoom amount and vertical rotation.
+        // The horizontal distance is scaled by the vertical angle, and the vertical offset
+        // is determined by the vertical angle.
+
+        auto horizontalDistance{cosVertical * m_zoomAmount};
+
+        point.x += cosRotation * horizontalDistance;
+
+        point.y += sinRotation * horizontalDistance;
+
+        point.z += sinVertical * m_zoomAmount;
 
         return point;
     }
@@ -122,10 +132,20 @@ namespace Forradia
         m_zoomAmount = std::max(std::min(m_zoomAmount, k_maxZoomAmount), k_minZoomAmount);
     }
 
-    void Camera::AddRotationDelta(float rotationDelta)
+    void Camera::AddRotationDeltaSideways(float rotationDeltaSideways)
     {
         // Add the delta to the current rotation amount.
 
-        m_rotationAngle += rotationDelta;
+        m_rotationAngleSideways += rotationDeltaSideways;
+    }
+
+    void Camera::AddRotationDeltaVertical(float rotationDeltaVertical)
+    {
+        // Add the delta to the current vertical rotation amount and clamp it between the minimum
+        // and maximum vertical rotation angles.
+
+        m_rotationAngleVertical += rotationDeltaVertical;
+
+        m_rotationAngleVertical = std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical), k_minRotationAngleVertical);
     }
 }

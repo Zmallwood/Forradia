@@ -84,7 +84,7 @@ namespace Forradia
         ///
         bool DrawingOperationIsCached(int modelNameHash) const;
 
-        static constexpr float k_modelScale{0.35f}; ///< Global scale factor for models.
+        static constexpr float k_modelScale{0.5f}; ///< Global scale factor for models.
 
         std::map<int,
                  ModelRenderingOperation> m_operationsCache; ///< The operations cache.
