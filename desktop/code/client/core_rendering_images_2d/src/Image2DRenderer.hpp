@@ -23,6 +23,8 @@ namespace Forradia
         ///
         ~Image2DRenderer()
         {
+            // Clean up the renderer.
+
             this->Cleanup();
         }
 

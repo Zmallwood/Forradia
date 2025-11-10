@@ -23,7 +23,9 @@ namespace Forradia
         // To store the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao;
+
         GLuint ibo;
+
         GLuint vbo;
 
         // To store whether the buffers need to be filled.
@@ -35,8 +37,11 @@ namespace Forradia
         // Convert the coordinates to pixel coordinates.
 
         auto xPx{CInt(x * canvasSize.width)};
+
         auto yPx{CInt(y * canvasSize.height)};
+
         auto widthPx{CInt(width * canvasSize.width)};
+
         auto heightPx{CInt(height * canvasSize.height)};
 
         // If the operation is cached, use the cached operation.

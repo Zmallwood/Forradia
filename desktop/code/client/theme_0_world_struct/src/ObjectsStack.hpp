@@ -21,6 +21,11 @@ namespace Forradia::Theme0
         ///
         void ClearObjects();
 
+        ///
+        /// Add new object to the stack.
+        ///
+        /// @param objectNameHash The object name hash.
+        ///
         void AddObject(int objectNameHash);
 
         ///

@@ -23,6 +23,8 @@ namespace Forradia
         ///
         ~Color2DRenderer()
         {
+            // Cleanup the renderer.
+
             this->Cleanup();
         }
 

@@ -43,7 +43,9 @@ namespace Forradia
                 // Get the vertex coordinates.
 
                 auto vX{verticesNoNormals[i * k_vertexStride + 0]};
+
                 auto vY{verticesNoNormals[i * k_vertexStride + 1]};
+
                 auto vZ{verticesNoNormals[i * k_vertexStride + 2]};
 
                 // Store the vertex coordinates in the map.
@@ -65,8 +67,11 @@ namespace Forradia
         // Invert the z-component of the normals.
 
         normal00.z *= -1.0f;
+
         normal10.z *= -1.0f;
+
         normal11.z *= -1.0f;
+
         normal01.z *= -1.0f;
 
         // Group the normals and return them.

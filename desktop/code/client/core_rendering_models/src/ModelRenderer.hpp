@@ -19,10 +19,12 @@ namespace Forradia
     {
       public:
         ///
-        /// Destructor.
+        /// Destructor that cleans up the renderer.
         ///
         ~ModelRenderer()
         {
+            // Clean up the renderer.
+
             this->Cleanup();
         }
 

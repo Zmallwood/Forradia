@@ -62,6 +62,7 @@ namespace Forradia
         // Apply the distance based on the zoom amount.
 
         point.x += cosRotation * m_zoomAmount;
+
         point.y += sinRotation * m_zoomAmount;
 
         point.z += m_zoomAmount;
