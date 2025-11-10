@@ -10,169 +10,115 @@
 
 #include "Tile.hpp"
 
+#include <cmath>
+
 namespace Forradia::Theme0
 {
-    void WorldGenerator::GenerateElevation() const
+    void WorldGenerator::GenerateElevationWithBiomes() const
     {
-        auto numHills{140 + GetRandomInt(30)};
+        // Create a more natural elevation system using overlapping hills and valleys
+        // This creates a more organic terrain pattern
 
-        for (auto i = 0; i < numHills; i++)
+        auto numMajorHills{40 + GetRandomInt(20)};
+
+        for (auto i = 0; i < numMajorHills; i++)
         {
             auto xCenter{GetRandomInt(m_size.width)};
-
             auto yCenter{GetRandomInt(m_size.height)};
+            auto radius{CInt(8 * m_scale + GetRandomInt(12 * m_scale))};
+            auto maxElevation{30 + GetRandomInt(20)};
 
-            auto maxRadius{5 * m_scale + GetRandomInt(5 * m_scale)};
+            CreateElevationHill(xCenter, yCenter, radius, maxElevation);
+        }
+    }
 
-            for (auto r = maxRadius; r >= 0; r--)
+    void WorldGenerator::GenerateMountainRanges() const
+    {
+        // Create mountain ranges - chains of connected hills
+        auto numMountainRanges{3 + GetRandomInt(3)};
+
+        for (auto range = 0; range < numMountainRanges; range++)
+        {
+            auto startX{GetRandomInt(m_size.width)};
+            auto startY{GetRandomInt(m_size.height)};
+            auto length{30 + GetRandomInt(40)};
+            auto direction{GetRandomInt(360)};
+
+            auto currentX = static_cast<float>(startX);
+            auto currentY = static_cast<float>(startY);
+
+            for (auto i = 0; i < length; i++)
             {
-                for (auto y = yCenter - r; y <= yCenter + r; y++)
+                auto x{CInt(currentX)};
+                auto y{CInt(currentY)};
+
+                if (m_worldArea->IsValidCoordinate(x, y))
                 {
-                    for (auto x = xCenter - r; x <= xCenter + r; x++)
+                    auto radius{CInt(4 * m_scale + GetRandomInt(6 * m_scale))};
+                    auto elevation{120 + GetRandomInt(160)};
+
+                    CreateElevationHill(x, y, radius, elevation);
+                }
+
+                // Move along the mountain range with some variation
+                auto angleRad = (direction + GetRandomInt(60) - 30) * M_PI / 180.0f;
+                currentX += std::cos(angleRad) * (2.0f + GetRandomInt(3));
+                currentY += std::sin(angleRad) * (2.0f + GetRandomInt(3));
+
+                // Occasionally change direction
+                if (GetRandomInt(100) < 20)
+                {
+                    direction += GetRandomInt(60) - 30;
+                    if (direction < 0)
+                        direction += 360;
+                    if (direction >= 360)
+                        direction -= 360;
+                }
+            }
+        }
+    }
+
+    void WorldGenerator::GenerateValleys() const
+    {
+        // Create valleys by reducing elevation in certain areas
+        auto numValleys{15 + GetRandomInt(10)};
+
+        for (auto i = 0; i < numValleys; i++)
+        {
+            auto xCenter{GetRandomInt(m_size.width)};
+            auto yCenter{GetRandomInt(m_size.height)};
+            auto radius{CInt(10 * m_scale + GetRandomInt(15 * m_scale))};
+
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            {
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                {
+                    if (!m_worldArea->IsValidCoordinate(x, y))
                     {
-                        if (!m_worldArea->IsValidCoordinate(x, y))
-                        {
-                            continue;
-                        }
-
-                        auto dX{x - xCenter};
-
-                        auto dY{y - yCenter};
-
-                        if (dX * dX + dY * dY <= r * r)
-                        {
-                            auto tile{m_worldArea->GetTile(x, y)};
-
-                            auto currentElevation{tile->GetElevation()};
-
-                            if (tile && tile->GetGround() != Hash("GroundWater"))
-                            {
-                                auto tileN{m_worldArea->GetTile(x, y - 1)};
-
-                                auto tileS{m_worldArea->GetTile(x, y + 1)};
-
-                                auto tileW{m_worldArea->GetTile(x - 1, y)};
-
-                                auto tileE{m_worldArea->GetTile(x + 1, y)};
-
-                                auto tileNW{m_worldArea->GetTile(x - 1, y - 1)};
-
-                                auto tileNE{m_worldArea->GetTile(x + 1, y - 1)};
-
-                                auto tileSW{m_worldArea->GetTile(x - 1, y + 1)};
-
-                                auto tileSE{m_worldArea->GetTile(x + 1, y + 1)};
-
-                                auto elevationThreshold{currentElevation - 8};
-
-                                if (tileN)
-                                {
-                                    if (tileN->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileN->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileE)
-                                {
-                                    if (tileE->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileE->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileS)
-                                {
-                                    if (tileS->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileS->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileW)
-                                {
-                                    if (tileW->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileW->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileNE)
-                                {
-                                    if (tileNE->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileNE->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileSE)
-                                {
-                                    if (tileSE->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileSE->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileSW)
-                                {
-                                    if (tileSW->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileSW->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                if (tileNW)
-                                {
-                                    if (tileNW->GetGround() == Hash("GroundWater"))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (tileNW->GetElevation() < elevationThreshold)
-                                    {
-                                        continue;
-                                    }
-                                }
-
-                                tile->SetElevation(currentElevation + GetRandomInt(4));
-                            }
-                        }
+                        continue;
                     }
+
+                    auto distance = GetDistance(x, y, xCenter, yCenter);
+                    if (distance > radius)
+                    {
+                        continue;
+                    }
+
+                    auto tile = m_worldArea->GetTile(x, y);
+                    if (!tile)
+                    {
+                        continue;
+                    }
+
+                    // Reduce elevation in valleys (but not below 0)
+                    auto normalizedDistance = distance / radius;
+                    auto elevationReduction = static_cast<int>((1.0f - normalizedDistance) * 40.0f);
+
+                    auto currentElevation = tile->GetElevation();
+                    auto newElevation = currentElevation - elevationReduction;
+                    
+                    // Clamp elevation to valid range (0 to max)
+                    tile->SetElevation(ClampElevation(newElevation));
                 }
             }
         }

@@ -20,23 +20,59 @@ namespace Forradia::Theme0
 
         void ClearWithDirt() const;
 
-        void GenerateGrass() const;
+        // New creative generation methods
+        void GenerateBiomeBasedTerrain() const;
 
-        void GenerateLakes() const;
+        void GenerateElevationWithBiomes() const;
 
-        void GenerateSingleLake(int minX, int minY, int maxX, int maxY, int recursion) const;
+        void GenerateMountainRanges() const;
 
-        void GenerateElevation() const;
+        void GenerateValleys() const;
 
-        void GenerateRock() const;
+        void GenerateNaturalRivers() const;
 
-        void GenerateRivers() const;
+        void GenerateRiverFromSource(int startX, int startY, int length) const;
 
-        void GenerateObjects() const;
+        void GenerateLakesInValleys() const;
 
-        void GenerateCreatures() const;
+        void GenerateGrassBiomes() const;
 
-        void GenerateRobots() const;
+        void GenerateRockFormations() const;
+
+        void GenerateForests() const;
+
+        void GenerateMeadows() const;
+
+        void GenerateObjectsInBiomes() const;
+
+        void GenerateCreaturesInEcosystems() const;
+
+        void GenerateRobotsInAreas() const;
+
+        // Helper methods
+        float GetDistance(int x1, int y1, int x2, int y2) const;
+
+        int GetElevationAt(int x, int y) const;
+
+        bool IsValidForWater(int x, int y) const;
+
+        bool IsValidForTree(int x, int y) const;
+
+        bool IsNearWater(int x, int y, int radius) const;
+
+        void CreateBiomeCluster(int centerX, int centerY, int radius, const char* groundType, float density) const;
+
+        void CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const;
+
+        void SetAdjacentTilesElevationToZero(int x, int y) const;
+
+        int GetMaxElevation() const;
+
+        int GetMaxSlopePerTile() const;
+
+        int ClampElevation(int elevation) const;
+
+        int GetMaxAllowedElevation(int x, int y, int currentElevation) const;
 
         SharedPtr<Theme0::WorldArea> m_worldArea;
 

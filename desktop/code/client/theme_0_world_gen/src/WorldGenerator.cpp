@@ -20,21 +20,29 @@ namespace Forradia::Theme0
 
         this->ClearWithDirt();
 
-        this->GenerateGrass();
+        // New creative generation order:
+        // 1. Create elevation and terrain features first
+        this->GenerateElevationWithBiomes();
+        this->GenerateMountainRanges();
+        this->GenerateValleys();
 
-        this->GenerateLakes();
+        // 2. Generate ground types based on biomes
+        this->GenerateBiomeBasedTerrain();
+        this->GenerateGrassBiomes();
+        this->GenerateRockFormations();
 
-        this->GenerateElevation();
+        // 3. Generate water features in valleys and flowing from mountains
+        this->GenerateLakesInValleys();
+        this->GenerateNaturalRivers();
 
-        this->GenerateRock();
+        // 4. Generate vegetation in appropriate biomes
+        this->GenerateForests();
+        this->GenerateMeadows();
+        this->GenerateObjectsInBiomes();
 
-        this->GenerateRivers();
-
-        this->GenerateObjects();
-
-        this->GenerateCreatures();
-
-        this->GenerateRobots();
+        // 5. Generate creatures and robots in ecosystems
+        this->GenerateCreaturesInEcosystems();
+        this->GenerateRobotsInAreas();
     }
 
     void WorldGenerator::Prepare()
