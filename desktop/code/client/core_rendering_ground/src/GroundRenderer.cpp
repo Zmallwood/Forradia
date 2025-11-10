@@ -57,10 +57,6 @@ namespace Forradia
         glEnable(GL_BLEND);
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        // Disable depth writing to allow for transparency of the ground tiles.
-
-        glDepthMask(GL_FALSE);
     }
 
     void GroundRenderer::RestoreState() const
@@ -80,10 +76,6 @@ namespace Forradia
         glDisable(GL_CULL_FACE);
 
         glDisable(GL_BLEND);
-
-        // Enable depth writing which was disabled to allow for transparency of the ground tiles.
-
-        glDepthMask(GL_TRUE);
     }
 
     void GroundRenderer::Reset()
