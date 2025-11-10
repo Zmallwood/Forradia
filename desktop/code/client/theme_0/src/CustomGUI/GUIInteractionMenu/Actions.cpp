@@ -76,6 +76,15 @@ namespace Forradia::Theme0
                     if (tile)
                     {
                         tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
+
+                        for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
+                        {
+                            for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3;
+                                 x++)
+                            {
+                                worldArea->AddClaimedCoordinate({x, y});
+                            }
+                        }
                     }
 
                     _<GUIChatBox>().Print("You claim land.");

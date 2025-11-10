@@ -46,16 +46,11 @@ namespace Forradia::Theme0::GameplayCore
         {
             for (auto x = 0; x < worldAreaSize.width; x++)
             {
-
-                m_renderIDsGround[x][y] = m_renderIDsGround[x][y] =
+                m_renderIDsGround[x][y] =
                     Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
 
-                for (auto waterDepth = 0; waterDepth < k_maxWaterDepthRendering; waterDepth++)
-                {
-                    m_renderIDsWaterDepth[x][y][waterDepth] =
-                        Hash("WaterDepth_" + std::to_string(x) + "_" + std::to_string(y) + "_" +
-                             std::to_string(waterDepth));
-                }
+                m_renderIDsClaimedTiles[x][y] =
+                    Hash("ClaimedTile_" + std::to_string(x) + "_" + std::to_string(y));
             }
         }
     }
@@ -86,10 +81,7 @@ namespace Forradia::Theme0::GameplayCore
 
         auto elevHeight{_<Theme0Properties>().GetElevationHeight()};
 
-        auto playerElev{
-            worldArea
-                ->GetTile(playerPos.x, playerPos.y)
-                ->GetElevation()};
+        auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
         auto rendTileSize{_<Theme0Properties>().GetTileSize()};
 
@@ -254,8 +246,7 @@ namespace Forradia::Theme0::GameplayCore
                             (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                     }
 
-                    if (xCoordinate == playerPos.x &&
-                        yCoordinate == playerPos.y)
+                    if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
                     {
                         _<ModelRenderer>().DrawModel(
                             Hash("PlayerFemale"), (xCoordinate)*rendTileSize + rendTileSize / 2,
@@ -267,8 +258,15 @@ namespace Forradia::Theme0::GameplayCore
                                              ground, xCoordinate, yCoordinate, rendTileSize,
                                              elevations);
 
-                if (xCoordinate == hoveredCoordinate.x &&
-                    yCoordinate == hoveredCoordinate.y)
+                // Only render ClaimedTile symbol within the normal grid size
+                if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
+                {
+                    _<GroundRenderer>().DrawTile(
+                        m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
+                        Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize, elevations);
+                }
+
+                if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
                 {
                     for (auto &elevation : elevations)
                     {

@@ -22,6 +22,14 @@ namespace Forradia
         ///
         bool operator==(const Point &other) const;
 
+        ///
+        /// Less than operator between two Points.
+        ///
+        /// @param other Other Point to check less than against.
+        /// @return True if the current point is less than the other point, otherwise false.
+        ///
+        bool operator<(const Point &other) const;
+
         int x{0}; ///< The x dimension.
 
         int y{0}; ///< The y dimension.

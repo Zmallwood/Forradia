@@ -140,4 +140,18 @@ namespace Forradia::Theme0
 
         return this->GetTile(coord.x, coord.y);
     }
+
+    void WorldArea::AddClaimedCoordinate(Point coordinate)
+    {
+        // Add the coordinate to the claimed coordinates.
+
+        m_claimedCoordinates.insert(coordinate);
+    }
+
+    bool WorldArea::CoordinateIsClaimed(Point coordinate) const
+    {
+        // Return true if the coordinate is claimed, false otherwise.
+        
+        return m_claimedCoordinates.contains(coordinate);
+    }
 }

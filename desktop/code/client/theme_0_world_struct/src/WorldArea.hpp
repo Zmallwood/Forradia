@@ -84,6 +84,22 @@ namespace Forradia::Theme0
         SharedPtr<Tile> GetTile(Point coord) const;
 
         ///
+        /// Adds a claimed coordinate.
+        ///
+        /// @param coordinate The coordinate to add.
+        ///
+        void AddClaimedCoordinate(Point coordinate);
+
+        ///
+        /// Checks if a coordinate is claimed.
+        ///
+        /// @param coordinate The coordinate to check.
+        ///
+        /// @return True if the coordinate is claimed, false otherwise.
+        ///
+        bool CoordinateIsClaimed(Point coordinate) const;
+
+        ///
         /// Gets a reference to the creatures mirror.
         ///
         /// @return A reference to the creatures mirror.
@@ -117,5 +133,7 @@ namespace Forradia::Theme0
         std::map<SharedPtr<Creature>, Point> m_creaturesMirror; ///< The creatures mirror.
 
         std::map<SharedPtr<Robot>, Point> m_robotsMirror; ///< The robots mirror.
+
+        std::set<Point> m_claimedCoordinates; ///< The claimed coordinates.
     };
 }
