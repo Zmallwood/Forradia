@@ -16,8 +16,6 @@
 
 #include "Object.hpp"
 
-#include "GUIChatBox.hpp"
-
 #include "SDLDevice.hpp"
 
 #include "Mouse/MouseInput.hpp"
@@ -25,10 +23,6 @@
 #include "TextRenderer.hpp"
 
 #include "Update/TileHovering.hpp"
-
-#include "PlayerCharacter.hpp"
-
-#include "ObjectsInventory.hpp"
 
 #include "Actions.hpp"
 

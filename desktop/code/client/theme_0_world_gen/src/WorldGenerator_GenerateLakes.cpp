@@ -6,10 +6,6 @@
 
 #include "WorldGenerator.hpp"
 
-#include "WorldArea.hpp"
-
-#include "Tile.hpp"
-
 namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateLakes() const

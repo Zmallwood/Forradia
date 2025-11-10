@@ -28,9 +28,6 @@
 
 #include "HashCodes.hpp"
 
-#include <array>
-#include <utility>
-
 namespace Forradia::Theme0
 {
 

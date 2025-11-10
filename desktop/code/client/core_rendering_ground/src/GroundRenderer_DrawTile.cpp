@@ -6,11 +6,7 @@
 
 #include "GroundRenderer.hpp"
 
-#include "ShaderProgram.hpp"
-
 #include "Textures/TextureBank.hpp"
-
-#include "SDLDevice.hpp"
 
 #include "3D/Camera.hpp"
 

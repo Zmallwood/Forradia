@@ -6,10 +6,6 @@
 
 #include "Color2DRenderer.hpp"
 
-#include "ShaderProgram.hpp"
-
-#include <cmath>
-
 namespace Forradia
 {
     void Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,

@@ -66,8 +66,6 @@
 
 #include "CustomGUI/GUIInteractionMenu/Actions.hpp"
 
-#include "Hash.hpp"
-
 namespace Forradia::Theme0
 {
     class IScenePublic : public IScene

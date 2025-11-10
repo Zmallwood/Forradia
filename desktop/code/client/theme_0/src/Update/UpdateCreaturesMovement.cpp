@@ -6,8 +6,6 @@
 
 #include "UpdateCreaturesMovement.hpp"
 
-#include "TileHovering.hpp"
-
 #include "World.hpp"
 
 #include "WorldArea.hpp"

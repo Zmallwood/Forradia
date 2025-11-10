@@ -6,8 +6,6 @@
 
 #include "Color2DRenderer.hpp"
 
-#include "ShaderProgram.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace Forradia

@@ -20,8 +20,6 @@
 
 #include "3D/Camera.hpp"
 
-#include "Mouse/MouseInput.hpp"
-
 namespace Forradia::Theme0::GameplayCore
 {
     void TileHovering::Update()

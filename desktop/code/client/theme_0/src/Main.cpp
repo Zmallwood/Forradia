@@ -12,8 +12,6 @@
 
 #include "World.hpp"
 
-#include "Coloring/Palette.hpp"
-
 int main(int argc, char **argv)
 {
     using namespace Forradia;

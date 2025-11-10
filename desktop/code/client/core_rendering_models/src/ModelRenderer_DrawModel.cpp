@@ -10,17 +10,11 @@
 
 #include "Models/ModelBank.hpp"
 
-#include "SDLDevice.hpp"
-
 #include "Theme0Properties.hpp"
 
 #include "Models/Construction/Model.hpp"
 
-#include "ShaderProgram.hpp"
-
 #include "3D/Camera.hpp"
-
-#include "TimeUtilities.hpp"
 
 namespace Forradia
 {

@@ -4,6 +4,8 @@
 // (see LICENSE for details)
 //
 
+#include "UpdateMouseMovement.hpp"
+
 #include "TileHovering.hpp"
 
 #include "Mouse/MouseInput.hpp"
