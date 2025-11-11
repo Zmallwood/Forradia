@@ -27,18 +27,24 @@ namespace Forradia::Theme0::GameplayCore
         return nullptr;
     }
 
-    void ObjectsInventory::AddObject(StringView objectName)
+    void ObjectsInventory::AddObject(int objectType)
     {
         for (size_t i = 0; i < m_objects.size(); i++)
         {
             if (!m_objects[i])
             {
-                m_objects[i] = std::make_shared<Object>(objectName);
+                m_objects[i] = std::make_shared<Object>(objectType);
+
                 return;
             }
         }
 
-        m_objects.push_back(std::make_shared<Object>(objectName));
+        m_objects.push_back(std::make_shared<Object>(objectType));
+    }
+
+    void ObjectsInventory::AddObject(StringView objectName)
+    {
+        AddObject(Hash(objectName));
     }
 
     int ObjectsInventory::CountHasObject(StringView objectName)

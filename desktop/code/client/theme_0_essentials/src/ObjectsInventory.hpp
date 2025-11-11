@@ -20,6 +20,8 @@ namespace Forradia::Theme0::GameplayCore
 
         SharedPtr<Object> GetObject(int index);
 
+        void AddObject(int objectType);
+
         void AddObject(StringView objectName);
 
         int CountHasObject(StringView objectName);

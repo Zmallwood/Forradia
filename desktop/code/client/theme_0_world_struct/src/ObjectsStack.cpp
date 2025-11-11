@@ -57,4 +57,20 @@ namespace Forradia::Theme0
 
         return m_objects.size();
     }
+
+    SharedPtr<Object> ObjectsStack::PopObject()
+    {
+        // Pop one object from the stack.
+
+        if (m_objects.empty())
+        {
+            return nullptr;
+        }
+
+        auto object{m_objects.back()};
+
+        m_objects.pop_back();
+
+        return object;
+    }
 }

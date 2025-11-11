@@ -59,6 +59,10 @@ namespace Forradia::Theme0
 
         m_entries.push_back({"Stop current action", actionStop.action});
 
+        auto actionPickUp{GetAction<Hash("Pick up")>()};
+
+        m_entries.push_back({"Pick up", actionPickUp.action});
+
         auto actionClaimLand{GetAction<Hash("ActionClaimLand")>()};
 
         m_entries.push_back({"Claim land", actionClaimLand.action});

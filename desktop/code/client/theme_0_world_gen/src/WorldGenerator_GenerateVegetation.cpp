@@ -343,5 +343,39 @@ namespace Forradia::Theme0
                 tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
             }
         }
+
+        // Scattered metal scraps - random remnants across the landscape
+        auto numMetalScraps{300 * m_scale + GetRandomInt(120 * m_scale)};
+
+        for (auto i = 0; i < numMetalScraps; i++)
+        {
+            auto x{GetRandomInt(m_size.width)};
+            auto y{GetRandomInt(m_size.height)};
+
+            auto tile = m_worldArea->GetTile(x, y);
+            if (!tile)
+            {
+                continue;
+            }
+
+            // Avoid placing scraps in water or on submerged tiles
+            if (tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
+            {
+                continue;
+            }
+
+            // Only place scraps on relatively clear tiles to prevent replacing major objects
+            auto objectsStack = tile->GetObjectsStack();
+            if (objectsStack->GetSize() > 0)
+            {
+                continue;
+            }
+
+            if (GetRandomInt(100) < 5)
+            {
+                objectsStack->ClearObjects();
+                objectsStack->AddObject("ObjectMetalScraps");
+            }
+        }
     }
 }

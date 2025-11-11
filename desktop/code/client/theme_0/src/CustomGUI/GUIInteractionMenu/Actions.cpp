@@ -61,6 +61,39 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionClaimLand")>();
 
     template <>
+    Action GetAction<Hash("Pick up")>();
+
+    template <>
+    Action GetAction<Hash("Pick up")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        auto objectsStack{tile->GetObjectsStack()};
+
+                        auto object{objectsStack->PopObject()};
+
+                        if (object)
+                        {
+                            auto &inventory{
+                                _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                            inventory.AddObject(object->GetType());
+                        }
+                    }
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionClaimLand")>()
     {
         return {.groundMatches = {},

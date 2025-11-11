@@ -43,6 +43,13 @@ namespace Forradia::Theme0
         int GetSize() const;
 
         ///
+        /// Pop one object from the stack.
+        ///
+        /// @return The object popped from the stack.
+        ///
+        SharedPtr<Object> PopObject();
+
+        ///
         /// Gets the collection of objects in the stack.
         ///
         /// @return The collection of objects in the stack.
