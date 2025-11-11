@@ -31,7 +31,7 @@ class Dashboard(ctk.CTk):
         self.minsize(800, 500)
 
         # Default Theme
-        ctk.set_appearance_mode("dark")
+        ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("blue")
 
         self.grid_columnconfigure(1, weight=1)
