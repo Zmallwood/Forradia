@@ -8,9 +8,12 @@
 
 namespace Forradia::Theme0
 {
+    ///
+    /// Class for storing object properties.
+    ///
     class ObjectIndexEntry
     {
       public:
-        float modelScaling{1.0f};
+        float modelScaling{1.0f}; ///< The scaling factor for the object model.
     };
 }

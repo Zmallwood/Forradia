@@ -60,14 +60,18 @@ namespace Forradia::Theme0
 
     SharedPtr<Object> ObjectsStack::PopObject()
     {
-        // Pop one object from the stack.
+        // If the stack is empty, return nullptr.
 
         if (m_objects.empty())
         {
             return nullptr;
         }
 
+        // Obtain the last object in the stack.
+
         auto object{m_objects.back()};
+
+        // Remove the last object from the stack.
 
         m_objects.pop_back();
 

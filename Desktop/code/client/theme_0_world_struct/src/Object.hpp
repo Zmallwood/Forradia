@@ -14,6 +14,11 @@ namespace Forradia::Theme0
     class Object
     {
       public:
+        ///
+        /// Constructor.
+        ///
+        /// @param objectNameHash The object name as a hash.
+        ///
         Object(int objectNameHash) : m_type(objectNameHash)
         {
         }
