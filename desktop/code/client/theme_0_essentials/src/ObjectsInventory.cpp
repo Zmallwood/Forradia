@@ -53,12 +53,31 @@ namespace Forradia::Theme0::GameplayCore
 
         for (size_t i = 0; i < m_objects.size(); i++)
         {
-            if (m_objects[i]->GetType() == Hash(objectName))
+            if (m_objects[i])
             {
-                ++findCount;
+                if (m_objects[i]->GetType() == Hash(objectName))
+                {
+                    ++findCount;
+                }
             }
         }
 
         return findCount;
+    }
+
+    void ObjectsInventory::RemoveObject(StringView objectName, int count)
+    {
+        for (size_t i = 0; i < m_objects.size() && count > 0; i++)
+        {
+            if (m_objects[i])
+            {
+                if (m_objects[i]->GetType() == Hash(objectName))
+                {
+                    m_objects[i] = nullptr;
+
+                    count--;
+                }
+            }
+        }
     }
 }

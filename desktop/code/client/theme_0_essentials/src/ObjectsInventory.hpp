@@ -26,6 +26,8 @@ namespace Forradia::Theme0::GameplayCore
 
         int CountHasObject(StringView objectName);
 
+        void RemoveObject(StringView objectName, int count = 1);
+
       private:
         Vector<SharedPtr<Object>> m_objects;
     };

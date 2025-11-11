@@ -61,6 +61,66 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionClaimLand")>();
 
     template <>
+    Action GetAction<Hash("ActionLayMetalFloor")>();
+
+    template <>
+    Action GetAction<Hash("ActionLayMetalFloor")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    auto numMetalScrapsInInventory{inventory.CountHasObject("ObjectMetalScrap")};
+
+                    if (numMetalScrapsInInventory <= 0)
+                    {
+                        _<GUIChatBox>().Print("You don't have any metal scraps to lay.");
+
+                        return;
+                    }
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->SetGround(Hash("GroundMetalFloor"));
+
+                        inventory.RemoveObject("ObjectMetalScrap");
+                    }
+
+                    _<GUIChatBox>().Print("You lay some metal floor.");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionPlowLand")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->SetGround(Hash("GroundPlowedLand"));
+                    }
+
+                    _<GUIChatBox>().Print("You plow the land.");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("Pick up")>();
 
     template <>

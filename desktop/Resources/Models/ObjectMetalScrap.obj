@@ -1,6 +1,6 @@
 # Blender 3.4.1
 # www.blender.org
-mtllib ObjectMetalScraps.mtl
+mtllib ObjectMetalScrap.mtl
 o Cube
 v -3.002931 1.767922 0.587925
 v -2.984873 1.751658 0.873029

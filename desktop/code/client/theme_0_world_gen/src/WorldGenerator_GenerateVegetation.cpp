@@ -345,7 +345,7 @@ namespace Forradia::Theme0
         }
 
         // Scattered metal scraps - random remnants across the landscape
-        auto numMetalScraps{300 * m_scale + GetRandomInt(120 * m_scale)};
+        auto numMetalScraps{10000 * m_scale + GetRandomInt(120 * m_scale)};
 
         for (auto i = 0; i < numMetalScraps; i++)
         {
@@ -374,7 +374,7 @@ namespace Forradia::Theme0
             if (GetRandomInt(100) < 5)
             {
                 objectsStack->ClearObjects();
-                objectsStack->AddObject("ObjectMetalScraps");
+                objectsStack->AddObject("ObjectMetalScrap");
             }
         }
     }

@@ -63,9 +63,17 @@ namespace Forradia::Theme0
 
         m_entries.push_back({"Pick up", actionPickUp.action});
 
+        auto actionLayMetalFloor{GetAction<Hash("ActionLayMetalFloor")>()};
+
+        m_entries.push_back({"Lay metal floor", actionLayMetalFloor.action});
+
         auto actionClaimLand{GetAction<Hash("ActionClaimLand")>()};
 
         m_entries.push_back({"Claim land", actionClaimLand.action});
+
+        auto actionPlowLand{GetAction<Hash("ActionPlowLand")>()};
+
+        m_entries.push_back({"Plow land", actionPlowLand.action});
 
         auto actionChopDownTrees{GetAction<Hash("ActionChopTrees")>()};
 
