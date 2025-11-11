@@ -68,6 +68,8 @@
 
 #include "CustomGUI/GUIEnergyStatisticsPanel.hpp"
 
+#include "GUI.hpp"
+
 namespace Forradia::Theme0
 {
     class IScenePublic : public IScene
@@ -86,13 +88,12 @@ namespace Forradia::Theme0
 
         py::class_<GUIComponent, SharedPtr<GUIComponent>>(m, "GUIComponent");
 
-        py::class_<IScene::ScenesGUI::GUIRoot, SharedPtr<IScene::ScenesGUI::GUIRoot>>(m, "GUIRoot")
-            .def(
-                "add_child_comp",
-                [](IScene::ScenesGUI::GUIRoot &self, SharedPtr<GUIComponent> comp) -> SharedPtr<
+        py::class_<GUI, SharedPtr<GUI>>(m, "GUI").def(
+            "add_child_comp",
+            [](GUI &self, SharedPtr<GUIComponent> comp) -> SharedPtr<
 
-                                                                                       GUIComponent>
-                { return self.AddChildComponent(comp); });
+                                                            GUIComponent>
+            { return self.AddChildComponent(comp); });
 
         py::class_<GUILabel, SharedPtr<GUILabel>, GUIComponent>(m, "GUILabel")
             .def(py::init<StringView, float, float, float, float, StringView, bool, Color>(),

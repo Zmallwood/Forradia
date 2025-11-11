@@ -10,21 +10,11 @@
 
 namespace Forradia
 {
+    class GUI;
+
     class IScene
     {
       public:
-        class ScenesGUI
-        {
-          public:
-            class GUIRoot : public GUIComponent
-            {
-              public:
-                GUIRoot() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
-                {
-                }
-            };
-        };
-
         void Initialize();
 
         void Update();
@@ -60,7 +50,7 @@ namespace Forradia
         }
 
       private:
-        SharedPtr<ScenesGUI::GUIRoot> m_gui;
+        SharedPtr<GUI> m_gui;
 
         Function<void()> m_initializeDerived{[] {}};
 

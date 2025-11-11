@@ -6,12 +6,13 @@
 
 #include "IScene.hpp"
 
+#include "GUI.hpp"
+
 namespace Forradia
 {
     void IScene::Initialize()
     {
-        m_gui =
-            std::make_shared<IScene::ScenesGUI::GUIRoot>();
+        m_gui = std::make_shared<GUI>();
 
         m_initializeDerived();
     }
