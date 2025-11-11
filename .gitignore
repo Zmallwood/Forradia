@@ -19,7 +19,7 @@ CMakeUserPresets.json
 #cmake-build-*
 
 # Andreas
-desktop/build/*
+Desktop/build/*
 !build/Resources
 bin
 __pycache__
