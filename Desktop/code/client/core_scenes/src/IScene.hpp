@@ -12,6 +12,9 @@ namespace Forradia
 {
     class GUI;
 
+    ///
+    /// The base class for all scenes.
+    ///
     class IScene
     {
       public:
