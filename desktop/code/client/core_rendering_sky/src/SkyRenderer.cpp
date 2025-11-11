@@ -108,7 +108,8 @@ namespace Forradia
 
         for (int ring = 0; ring <= rings; ++ring)
         {
-            float theta{ring * M_PI / (2.0f * rings)}; // Elevation angle (0 to PI/2).
+            float theta{ring * static_cast<float>(M_PI) /
+                        (2.0f * rings)}; // Elevation angle (0 to PI/2).
 
             float sinTheta{std::sin(theta)};
 
@@ -116,7 +117,8 @@ namespace Forradia
 
             for (int segment = 0; segment <= segments; ++segment)
             {
-                float phi{segment * 2.0f * M_PI / segments}; // Azimuth angle (0 to 2*PI).
+                float phi{segment * 2.0f * static_cast<float>(M_PI) /
+                          segments}; // Azimuth angle (0 to 2*PI).
 
                 float sinPhi{std::sin(phi)};
 
@@ -132,7 +134,7 @@ namespace Forradia
 
                 float y{sinPhi * sinTheta};
 
-                float z{cosTheta};  // Z ranges from 1.0 (zenith) to 0.0 (horizon)
+                float z{cosTheta}; // Z ranges from 1.0 (zenith) to 0.0 (horizon)
 
                 // Store vertex position (3 floats).
 
@@ -260,15 +262,18 @@ namespace Forradia
         // For sky rendering, extract only the rotation part of the view matrix.
         // The view matrix from glm::lookAt has translation in the 4th column.
         // We want to keep the rotation (upper-left 3x3) but remove translation.
-        
+
         // Create identity matrix and copy rotation elements.
         glm::mat4 viewMatrixRotationOnly{1.0f};
-        
+
         // Copy rotation part (upper-left 3x3) from view matrix.
         // In GLM: matrix[column][row], so we copy columns 0-2, rows 0-2.
-        viewMatrixRotationOnly[0] = glm::vec4(viewMatrix[0].x, viewMatrix[0].y, viewMatrix[0].z, 0.0f);
-        viewMatrixRotationOnly[1] = glm::vec4(viewMatrix[1].x, viewMatrix[1].y, viewMatrix[1].z, 0.0f);
-        viewMatrixRotationOnly[2] = glm::vec4(viewMatrix[2].x, viewMatrix[2].y, viewMatrix[2].z, 0.0f);
+        viewMatrixRotationOnly[0] =
+            glm::vec4(viewMatrix[0].x, viewMatrix[0].y, viewMatrix[0].z, 0.0f);
+        viewMatrixRotationOnly[1] =
+            glm::vec4(viewMatrix[1].x, viewMatrix[1].y, viewMatrix[1].z, 0.0f);
+        viewMatrixRotationOnly[2] =
+            glm::vec4(viewMatrix[2].x, viewMatrix[2].y, viewMatrix[2].z, 0.0f);
         viewMatrixRotationOnly[3] = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
         auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
