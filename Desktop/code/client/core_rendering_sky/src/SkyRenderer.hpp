@@ -19,7 +19,12 @@ namespace Forradia
         ///
         /// Constructor.
         ///
-        SkyRenderer();
+        SkyRenderer() : m_vao{0}, m_ibo{0}, m_vbo{0}, m_indexCount{0}, m_initialized{false}
+        {
+            // Initialize the renderer base class.
+
+            this->Initialize();
+        }
 
         ///
         /// Destructor that cleans up the renderer.

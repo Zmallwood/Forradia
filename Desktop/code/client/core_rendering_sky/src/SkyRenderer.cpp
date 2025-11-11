@@ -10,13 +10,6 @@
 
 namespace Forradia
 {
-    SkyRenderer::SkyRenderer() : m_vao{0}, m_ibo{0}, m_vbo{0}, m_indexCount{0}, m_initialized{false}
-    {
-        // Initialize the renderer base class.
-
-        this->Initialize();
-    }
-
     void SkyRenderer::Cleanup()
     {
         // Delete the vertex array object, index buffer object and vertex buffer object.

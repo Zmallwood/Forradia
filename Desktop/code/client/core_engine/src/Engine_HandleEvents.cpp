@@ -38,8 +38,7 @@ namespace Forradia
 
                 // Register key press.
 
-                _<KeyboardInput>().RegisterKeyPress(
-                    event.key.keysym.sym);
+                _<KeyboardInput>().RegisterKeyPress(event.key.keysym.sym);
 
                 break;
 
@@ -47,8 +46,7 @@ namespace Forradia
 
                 // Register key release.
 
-                _<KeyboardInput>().RegisterKeyRelease(
-                    event.key.keysym.sym);
+                _<KeyboardInput>().RegisterKeyRelease(event.key.keysym.sym);
 
                 break;
 
@@ -56,8 +54,7 @@ namespace Forradia
 
                 // Register mouse button press.
 
-                _<MouseInput>().RegisterMouseButtonDown(
-                    event.button.button);
+                _<MouseInput>().RegisterMouseButtonDown(event.button.button);
 
                 break;
 
@@ -65,15 +62,15 @@ namespace Forradia
 
                 // Register mouse button release.
 
-                _<MouseInput>().RegisterMouseButtonUp(
-                    event.button.button);
+                _<MouseInput>().RegisterMouseButtonUp(event.button.button);
 
                 break;
 
             case SDL_MOUSEWHEEL:
 
-                _<MouseInput>().AddMouseWheelDelta(
-                    event.wheel.y);
+                // Add mouse wheel delta.
+
+                _<MouseInput>().AddMouseWheelDelta(event.wheel.y);
 
                 break;
             }
