@@ -96,9 +96,13 @@ namespace Forradia
     {
         // Generate a hemisphere (sky dome) mesh.
 
-        const int segments{64}; // Number of horizontal segments (increased for better coverage).
+        // Number of horizontal segments (increased for better coverage).
 
-        const int rings{32}; // Number of vertical rings (increased for smoother dome).
+        const int segments{64};
+
+        // Number of vertical rings (increased for smoother dome).
+
+        const int rings{32};
 
         Vector<float> vertices;
 
@@ -108,8 +112,9 @@ namespace Forradia
 
         for (int ring = 0; ring <= rings; ++ring)
         {
-            float theta{ring * static_cast<float>(M_PI) /
-                        (2.0f * rings)}; // Elevation angle (0 to PI/2).
+            // Elevation angle (0 to PI/2).
+
+            float theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
 
             float sinTheta{std::sin(theta)};
 
@@ -117,8 +122,9 @@ namespace Forradia
 
             for (int segment = 0; segment <= segments; ++segment)
             {
-                float phi{segment * 2.0f * static_cast<float>(M_PI) /
-                          segments}; // Azimuth angle (0 to 2*PI).
+                // Azimuth angle (0 to 2*PI).
+
+                float phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
 
                 float sinPhi{std::sin(phi)};
 
@@ -134,7 +140,9 @@ namespace Forradia
 
                 float y{sinPhi * sinTheta};
 
-                float z{cosTheta}; // Z ranges from 1.0 (zenith) to 0.0 (horizon)
+                // Z ranges from 1.0 (zenith) to 0.0 (horizon)
+
+                float z{cosTheta};
 
                 // Store vertex position (3 floats).
 
@@ -158,19 +166,23 @@ namespace Forradia
             for (int segment = 0; segment < segments; ++segment)
             {
                 // Current ring vertices.
+
                 int v0{baseIndex + segment};
                 int v1{baseIndex + segment + 1};
 
                 // Next ring vertices.
+
                 int v2{nextBaseIndex + segment};
                 int v3{nextBaseIndex + segment + 1};
 
                 // First triangle: v0 -> v2 -> v1 (counter-clockwise when viewed from outside).
+
                 indices.push_back(v0);
                 indices.push_back(v2);
                 indices.push_back(v1);
 
                 // Second triangle: v1 -> v2 -> v3 (counter-clockwise when viewed from outside).
+
                 indices.push_back(v1);
                 indices.push_back(v2);
                 indices.push_back(v3);
@@ -244,7 +256,9 @@ namespace Forradia
         // Camera far plane is 100.0, so we use a radius slightly less than that.
         // We'll scale it to be at the far plane (depth = 1.0 in NDC) regardless of actual distance.
 
-        float skyRadius{90.0f}; // Within the far plane of 100.0
+        // Within the far plane of 100.0
+
+        float skyRadius{90.0f};
 
         modelMatrix = glm::scale(modelMatrix, glm::vec3(skyRadius, skyRadius, skyRadius));
 
@@ -253,7 +267,9 @@ namespace Forradia
         // in view space, effectively lowering the sky in the camera's view.
         // Negative Z moves it down (since +Z is up in this coordinate system).
 
-        float skyOffsetZ{-0.5f}; // Adjust this value to control how much to lower the sky
+        // Adjust this value to control how much to lower the sky
+
+        float skyOffsetZ{-0.5f};
 
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, skyOffsetZ));
 

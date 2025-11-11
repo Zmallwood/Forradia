@@ -38,7 +38,8 @@ namespace Forradia
         ///       to ensure the sky appears as the background.
         ///
         /// @param sunDirection The direction vector of the sun (should be normalized).
-        /// @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 = zenith).
+        /// @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
+        /// zenith).
         ///                     Negative values indicate night time (darker sky).
         ///
         void Render(const glm::vec3 &sunDirection, float sunElevation);
@@ -99,9 +100,11 @@ namespace Forradia
 
         GLint m_layoutLocationMVP; ///< Layout location for the MVP matrix in the shader.
 
-        GLint m_layoutLocationSunDirection; ///< Layout location for the sun direction in the shader.
+        GLint
+            m_layoutLocationSunDirection; ///< Layout location for the sun direction in the shader.
 
-        GLint m_layoutLocationSunElevation; ///< Layout location for the sun elevation in the shader.
+        GLint
+            m_layoutLocationSunElevation; ///< Layout location for the sun elevation in the shader.
 
         bool m_initialized; ///< Whether the sky dome mesh has been initialized.
     };
