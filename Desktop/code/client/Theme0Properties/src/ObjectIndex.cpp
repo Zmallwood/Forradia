@@ -17,9 +17,9 @@ namespace Forradia::Theme0
 
         AddObjectEntry("ObjectBirchTree", 2.0f);
 
-        AddObjectEntry("ObjectBush1", 2.0f);
+        AddObjectEntry("ObjectBush1", 1.2f);
 
-        AddObjectEntry("ObjectBush2", 2.0f);
+        AddObjectEntry("ObjectBush2", 1.2f);
     }
 
     void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling)
