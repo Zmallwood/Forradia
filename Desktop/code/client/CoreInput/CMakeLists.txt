@@ -9,7 +9,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE CORE_INPUT_SOURCES "./src/*.cpp")
 add_library(ForradiaCoreInput ${CORE_INPUT_SOURCES})
 target_include_directories(ForradiaCoreInput PUBLIC
-    "../core_input/src"
+    "./src"
 )
-target_link_libraries(ForradiaCoreInput PRIVATE ForradiaCommonCoreUtilities)
+target_link_libraries(ForradiaCoreInput PRIVATE
+    ForradiaCommonCoreUtilities
+)
 target_precompile_headers(ForradiaCoreInput PUBLIC ./src/StdAfx.hpp)

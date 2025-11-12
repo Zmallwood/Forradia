@@ -29,7 +29,7 @@ namespace Forradia
     /// @param value Value to cast.
     /// @return Casted value.
     ///
-    float CFloat(auto value)
+    constexpr float CFloat(auto value)
     {
         return static_cast<float>(value);
     }
@@ -40,7 +40,7 @@ namespace Forradia
     /// @param value Value to cast.
     /// @return Casted value.
     ///
-    Uint8 CUint8(auto value)
+    constexpr Uint8 CUint8(auto value)
     {
         return static_cast<Uint8>(value);
     }

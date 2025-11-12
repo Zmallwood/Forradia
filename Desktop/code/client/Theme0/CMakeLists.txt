@@ -13,9 +13,7 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 #target_link_libraries(Forradia PRIVATE )
 target_precompile_headers(Forradia PUBLIC ./src/StdAfx.hpp)
 target_include_directories(Forradia PUBLIC
-    "../theme_0/src"
-    "../theme_0_essentials/src"
-    "../common_matter/src"
+    "./src"
 )
 target_link_libraries(Forradia PRIVATE
     ${PYTHON_LIBRARIES}
@@ -24,8 +22,8 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreRenderingText
     ForradiaCoreRenderingGround
     ForradiaCoreRenderingModels
-    ForradiaTheme0WorldStruct
-    ForradiaTheme0WorldGen
+    ForradiaTheme0WorldStructure
+    ForradiaTheme0WorldGeneration
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities

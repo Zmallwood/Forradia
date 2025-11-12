@@ -9,10 +9,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE THEME_0_ESSENTIALS_SOURCES "./src/*.cpp")
 add_library(ForradiaTheme0Essentials ${THEME_0_ESSENTIALS_SOURCES})
 target_include_directories(ForradiaTheme0Essentials PUBLIC
-    "../common_lang/src"
-    "../theme_0_world_struct/src"
+    "./src"
 )
 target_link_libraries(ForradiaTheme0Essentials
-    ForradiaTheme0WorldStruct
+    ForradiaCommonLang
+    ForradiaCommonGeneral
+    ForradiaCommonMatter
+    ForradiaCommonUtilities
+    ForradiaCommonCoreUtilities
+    ForradiaTheme0WorldStructure
 )
 target_precompile_headers(ForradiaTheme0Essentials PUBLIC ./src/StdAfx.hpp)

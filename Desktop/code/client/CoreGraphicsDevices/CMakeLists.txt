@@ -8,13 +8,16 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 file(GLOB_RECURSE CORE_GRAPHICS_DEVICES_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreGrahicsDevices ${CORE_GRAPHICS_DEVICES_SOURCES})
-target_include_directories(ForradiaCoreGrahicsDevices PUBLIC
-    "../core_graphics_devices/src"
-    "../common_utilities/src"
-    "../common_matter/src"
-    "../common_lang/src"
-    "../common_general/src"
+add_library(ForradiaCoreGraphicsDevices ${CORE_GRAPHICS_DEVICES_SOURCES})
+target_include_directories(ForradiaCoreGraphicsDevices PUBLIC
+    "./src"
 )
-target_link_libraries(ForradiaCoreGrahicsDevices ForradiaCommonGeneral assimp)
-target_precompile_headers(ForradiaCoreGrahicsDevices PUBLIC ./src/StdAfx.hpp)
+target_link_libraries(ForradiaCoreGraphicsDevices PRIVATE
+    ForradiaCommonLang
+    ForradiaCommonMatter
+    ForradiaCommonGeneral
+    ForradiaCommonUtilities
+    ForradiaCommonCoreUtilities
+    assimp
+)
+target_precompile_headers(ForradiaCoreGraphicsDevices PUBLIC ./src/StdAfx.hpp)

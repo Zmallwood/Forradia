@@ -10,16 +10,18 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE CORE_RENDERING_BASE_SOURCES "./src/*.cpp")
 add_library(ForradiaCoreRenderingCommon ${CORE_RENDERING_BASE_SOURCES})
 target_include_directories(ForradiaCoreRenderingCommon PUBLIC
-    "../core_rendering_common/src"
-    "../common_lang/src"
-    "../common_general/src"
-    "../theme_0_world_struct/src"
-    "../theme_0_essentials/src"
-    "../theme_0_properties/src"
-    "../common_matter/src"
+    "./src"
 )
 target_link_libraries(ForradiaCoreRenderingCommon PRIVATE
-    ForradiaCoreGrahicsDevices
+    ForradiaCommonLang
+    ForradiaCommonGeneral
+    ForradiaCommonMatter
+    ForradiaCoreGraphicsDevices
+    ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
+    ForradiaTheme0WorldStructure
+    ForradiaTheme0Properties
+    ForradiaTheme0WorldGeneration
+    ForradiaTheme0Essentials
 )
 target_precompile_headers(ForradiaCoreRenderingCommon PUBLIC ./src/StdAfx.hpp)

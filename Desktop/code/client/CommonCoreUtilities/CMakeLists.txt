@@ -9,9 +9,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE COMMON_CORE_UTILITIES_SOURCES "./src/*.cpp")
 add_library(ForradiaCommonCoreUtilities ${COMMON_CORE_UTILITIES_SOURCES})
 target_include_directories(ForradiaCommonCoreUtilities PUBLIC
-    "../common_core_utilities/src"
-    "../common_general/src"
-    "../common_lang/src"
-    "../common_matter/src"
+    "./src"
+)
+target_link_libraries(ForradiaCommonCoreUtilities PRIVATE
+    ForradiaCommonLang
+    ForradiaCommonMatter
 )
 target_precompile_headers(ForradiaCommonCoreUtilities PUBLIC ./src/StdAfx.hpp)

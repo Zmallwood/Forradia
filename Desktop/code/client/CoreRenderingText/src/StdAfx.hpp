@@ -15,3 +15,7 @@
 #include "StringUtilities.hpp"
 
 #include "CanvasUtilities.hpp"
+
+#include "SDLDeleter.hpp"
+
+#include "MessageUtilities.hpp"
