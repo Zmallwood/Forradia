@@ -18,38 +18,57 @@ namespace Forradia::Theme0
 {
     void WorldGenerator::GenerateNewWorld()
     {
+        // Prepare the world generator for generating a new world.
+
         this->Prepare();
+
+        // Go through all the steps of generating a new world.
 
         _<WorldGeneratorGround>().ClearWithDirt();
 
+        // Ground
+
         _<WorldGeneratorGround>().GenerateElevationWithBiomes();
+
         _<WorldGeneratorGround>().GenerateMountainRanges();
+
         _<WorldGeneratorGround>().GenerateValleys();
 
-        // 2. Generate ground types based on biomes
         _<WorldGeneratorGround>().GenerateBiomeBasedTerrain();
+
         _<WorldGeneratorGround>().GenerateGrassBiomes();
+
         _<WorldGeneratorGround>().GenerateRockFormations();
 
-        // 3. Generate water features in valleys and flowing from mountains
+        // Water
+
         _<WorldGeneratorWater>().GenerateLakesInValleys();
+
         _<WorldGeneratorWater>().GenerateNaturalRivers();
 
-        // // 3.5. Enforce minimum elevation for non-water tiles
+        // Grounda again/ 5. Generate creatures and robots in ecosystems
+
         _<WorldGeneratorGround>().EnforceMinimumElevationForNonWaterTiles();
 
-        // // 4. Generate vegetation in appropriate biomes
+        // Objects
+
         _<WorldGeneratorObjects>().GenerateForests();
+
         _<WorldGeneratorObjects>().GenerateMeadows();
+
         _<WorldGeneratorObjects>().GenerateObjectsInBiomes();
 
-        // // 5. Generate creatures and robots in ecosystems
+        // Entities
+
         _<WorldGeneratorEntities>().GenerateCreaturesInEcosystems();
+
         _<WorldGeneratorEntities>().GenerateRobotsInAreas();
     }
 
     void WorldGenerator::Prepare()
     {
+        // Prepare all the generators for generating a new world.
+
         _<WorldGeneratorGround>().Prepare();
 
         _<WorldGeneratorWater>().Prepare();
