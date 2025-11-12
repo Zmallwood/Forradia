@@ -44,8 +44,8 @@ namespace Forradia
                 
                 // Base sky colors for day time.
 
-                vec3 horizonColor = vec3(0.5, 0.7, 1.0);  // Light blue at horizon.
-                vec3 zenithColor = vec3(0.3, 0.5, 0.9);   // Darker blue at zenith.
+                vec3 horizonColor = vec3(0.0, 0.5, 1.0);  // Light blue at horizon.
+                vec3 zenithColor = vec3(0.1, 0.1, 0.2);   // Darker blue at zenith.
                 vec3 sunColor = vec3(1.0, 0.9, 0.7);      // Warm sun color.
                 
                 // Adjust colors based on sun elevation.
