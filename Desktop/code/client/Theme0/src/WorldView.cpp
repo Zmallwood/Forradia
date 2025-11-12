@@ -215,9 +215,10 @@ namespace Forradia::Theme0::GameplayCore
                     {
                         auto objectType{object->GetType()};
 
-                        _<ModelRenderer>().DrawModel(
-                            objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                        _<ModelRenderer>().DrawModel(objectType,
+                                                     (xCoordinate)*rendTileSize + rendTileSize / 2,
+                                                     (yCoordinate)*rendTileSize + rendTileSize / 2,
+                                                     elevationMax, object->GetModelScaling());
                     }
 
                     auto creature{tile->GetCreature()};

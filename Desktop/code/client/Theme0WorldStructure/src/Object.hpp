@@ -21,6 +21,9 @@ namespace Forradia::Theme0
         ///
         Object(int objectNameHash) : m_type(objectNameHash)
         {
+            // Initialize the object.
+
+            this->Initialize();
         }
 
         ///
@@ -30,6 +33,9 @@ namespace Forradia::Theme0
         ///
         Object(StringView objectTypeName) : m_type(Hash(objectTypeName))
         {
+            // Initialize the object.
+
+            this->Initialize();
         }
 
         ///
@@ -42,7 +48,24 @@ namespace Forradia::Theme0
             return m_type;
         }
 
+        ///
+        /// Gets the model scaling of the object.
+        ///
+        /// @return The model scaling of the object.
+        ///
+        auto GetModelScaling() const
+        {
+            return m_modelScaling;
+        }
+
       private:
+        ///
+        /// Initializes the object.
+        ///
+        void Initialize();
+
         int m_type{0}; ///< The object type as a hash.
+
+        float m_modelScaling{1.0f}; ///< The model scaling of the object.
     };
 }

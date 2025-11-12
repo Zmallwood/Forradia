@@ -22,7 +22,8 @@
 
 namespace Forradia
 {
-    void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation)
+    void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation,
+                                  float modelScaling)
     {
         // Setup state.
 
@@ -104,20 +105,16 @@ namespace Forradia
 
             auto indexFirstVertexOfMesh{0};
 
-            float modelScaling{1.0f};
-
-            float levitationHeight{0.0f};
+            float totalModelScaling{k_globalModelScaling * modelScaling};
 
             if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
             {
-                modelScaling *= _<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
+                totalModelScaling *= _<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
             }
 
             if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash))
             {
-                modelScaling *= _<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
-
-                levitationHeight = _<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash);
+                totalModelScaling *= _<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
             }
 
             // For each mesh.
@@ -130,14 +127,11 @@ namespace Forradia
                 {
                     // Add position.
 
-                    verticesVector.push_back(vertex.position.x * k_globalModelScaling *
-                                             modelScaling);
+                    verticesVector.push_back(vertex.position.x * totalModelScaling);
 
-                    verticesVector.push_back(vertex.position.y * k_globalModelScaling *
-                                             modelScaling);
+                    verticesVector.push_back(vertex.position.y * totalModelScaling);
 
-                    verticesVector.push_back(
-                        vertex.position.z * k_globalModelScaling * modelScaling + levitationHeight);
+                    verticesVector.push_back(vertex.position.z * totalModelScaling);
 
                     // Add normal.
 
@@ -207,11 +201,21 @@ namespace Forradia
 
         auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
+        float levitationHeight{_<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash)};
+
         // Calculate the model matrix. This matrix differs between different rendering operations,
         // even though they use the same model.
 
-        auto modelMatrix{
-            glm::translate(glm::mat4(1.0f), glm::vec3(x, y, elevation * elevationHeight))};
+        auto modelMatrix{glm::mat4(1.0f)};
+
+        // Translate the model to the position.
+
+        modelMatrix = glm::translate(
+            modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
+
+        // Scale the model.
+
+        modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
         // Get the view matrix.
 

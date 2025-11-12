@@ -37,7 +37,8 @@ namespace Forradia
         /// @param y The y coordinate of the model.
         /// @param elevations The elevations of the tile where the model is located.
         ///
-        void DrawModel(int modelNameHash, float x, float y, float elevations);
+        void DrawModel(int modelNameHash, float x, float y, float elevations,
+                       float modelScaling = 1.0f);
 
       protected:
         ///
