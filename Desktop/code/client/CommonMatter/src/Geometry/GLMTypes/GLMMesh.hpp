@@ -8,13 +8,7 @@
 
 #include "GLMVertex.hpp"
 
-#include "Aliases.hpp"
-
 #include "Texturing/Texture.hpp"
-
-#include <glm/glm.hpp>
-
-#include <assimp/scene.h>
 
 namespace Forradia
 {
