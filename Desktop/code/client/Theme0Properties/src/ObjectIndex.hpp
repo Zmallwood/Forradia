@@ -38,6 +38,14 @@ namespace Forradia::Theme0
         bool ObjectEntryExists(int objectHash) const;
 
       private:
+        ///
+        /// Add an object entry to the index.
+        ///
+        /// @param objectName The name of the object.
+        /// @param modelScaling The scaling factor for the object model.
+        ///
+        void AddObjectEntry(StringView objectName, float modelScaling);
+
         std::map<int, ObjectIndexEntry>
             m_entries; ///< Map of object hashes to object index entries.
     };

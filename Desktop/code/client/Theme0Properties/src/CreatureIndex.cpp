@@ -13,7 +13,15 @@ namespace Forradia::Theme0
         // Add creatures here with their specific properties.
         // Note: Creatures not added here will get default properties.
 
-        m_entries.insert({Hash("CreatureRedBird"), CreatureIndexEntry{2.0f, 3.0f}});
+        AddCreatureEntry("CreatureRedBird", 0.5f, 3.0f);
+    }
+
+    void CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
+                                         float levitationHeight)
+    {
+        // Add a creature entry to the index.
+
+        m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
     }
 
     float CreatureIndex::GetModelScaling(int creatureHash) const
@@ -24,6 +32,8 @@ namespace Forradia::Theme0
         {
             return m_entries.at(creatureHash).modelScaling;
         }
+
+        // If no entry exists, return the default model scaling.
 
         return 1.0f;
     }
@@ -36,6 +46,8 @@ namespace Forradia::Theme0
         {
             return m_entries.at(creatureHash).levitationHeight;
         }
+
+        // If no entry exists, return the default levitation height.
 
         return 0.0f;
     }

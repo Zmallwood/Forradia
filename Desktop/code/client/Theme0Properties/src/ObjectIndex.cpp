@@ -13,13 +13,20 @@ namespace Forradia::Theme0
         // Add objects here with their specific properties.
         // Note: Objects not added here will get default properties.
 
-        m_entries.insert({Hash("ObjectFirTree"), ObjectIndexEntry{2.0f}});
+        AddObjectEntry("ObjectFirTree", 2.0f);
 
-        m_entries.insert({Hash("ObjectBirchTree"), ObjectIndexEntry{2.0f}});
+        AddObjectEntry("ObjectBirchTree", 2.0f);
 
-        m_entries.insert({Hash("ObjectBush1"), ObjectIndexEntry{2.0f}});
+        AddObjectEntry("ObjectBush1", 2.0f);
 
-        m_entries.insert({Hash("ObjectBush2"), ObjectIndexEntry{2.0f}});
+        AddObjectEntry("ObjectBush2", 2.0f);
+    }
+
+    void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling)
+    {
+        // Add an object entry to the index.
+
+        m_entries.insert({Hash(objectName), {modelScaling}});
     }
 
     float ObjectIndex::GetModelScaling(int objectHash) const
@@ -30,6 +37,9 @@ namespace Forradia::Theme0
         {
             return m_entries.at(objectHash).modelScaling;
         }
+
+        // If no entry exists, return the default model scaling.
+
         return 1.0f;
     }
 
