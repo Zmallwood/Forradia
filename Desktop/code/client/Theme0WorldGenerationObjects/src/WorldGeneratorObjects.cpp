@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-#include "WorldGenerator.hpp"
+#include "WorldGeneratorObjects.hpp"
 
 #include "WorldArea.hpp"
 
@@ -14,23 +14,29 @@
 
 namespace Forradia::Theme0
 {
-    void WorldGenerator::GenerateForests() const
+    void WorldGeneratorObjects::GenerateForests() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        auto scale{GetScale()};
+
         // Create dense forest clusters
         auto numForests{15 + GetRandomInt(10)};
 
         for (auto i = 0; i < numForests; i++)
         {
-            auto centerX{GetRandomInt(m_size.width)};
-            auto centerY{GetRandomInt(m_size.height)};
+            auto centerX{GetRandomInt(size.width)};
+            auto centerY{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(centerX, centerY);
+            auto tile = worldArea->GetTile(centerX, centerY);
             if (!tile || !IsValidForTree(centerX, centerY))
             {
                 continue;
             }
 
-            auto radius{CInt(8 * m_scale + GetRandomInt(12 * m_scale))};
+            auto radius{CInt(8 * scale + GetRandomInt(12 * scale))};
             auto treeDensity{0.1f + GetRandomInt(20) / 100.0f}; // 0.4 to 0.6
 
             // Decide on forest type (fir or birch dominated)
@@ -40,7 +46,7 @@ namespace Forradia::Theme0
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!m_worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -62,7 +68,7 @@ namespace Forradia::Theme0
 
                     if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
                     {
-                        auto forestTile = m_worldArea->GetTile(x, y);
+                        auto forestTile = worldArea->GetTile(x, y);
                         if (forestTile)
                         {
                             forestTile->GetObjectsStack()->ClearObjects();
@@ -110,17 +116,23 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGenerator::GenerateMeadows() const
+    void WorldGeneratorObjects::GenerateMeadows() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        auto scale{GetScale()};
+        
         // Create meadow areas with flowers and tall grass
         auto numMeadows{20 + GetRandomInt(15)};
 
         for (auto i = 0; i < numMeadows; i++)
         {
-            auto centerX{GetRandomInt(m_size.width)};
-            auto centerY{GetRandomInt(m_size.height)};
+            auto centerX{GetRandomInt(size.width)};
+            auto centerY{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(centerX, centerY);
+            auto tile = worldArea->GetTile(centerX, centerY);
             if (!tile || !IsValidForTree(centerX, centerY))
             {
                 continue;
@@ -132,7 +144,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{CInt(5 * m_scale + GetRandomInt(8 * m_scale))};
+            auto radius{CInt(5 * scale + GetRandomInt(8 * scale))};
             auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f}; // 0.15 to 0.3
             auto grassDensity{0.2f + GetRandomInt(20) / 100.0f};   // 0.2 to 0.4
 
@@ -140,7 +152,7 @@ namespace Forradia::Theme0
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!m_worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -150,7 +162,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto meadowTile = m_worldArea->GetTile(x, y);
+                    auto meadowTile = worldArea->GetTile(x, y);
                     if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
                     {
                         continue;
@@ -181,20 +193,26 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGenerator::GenerateObjectsInBiomes() const
+    void WorldGeneratorObjects::GenerateObjectsInBiomes() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        auto scale{GetScale()};
+
         // Add scattered objects throughout the world based on biomes
         // This complements the forests and meadows
 
         // Scattered trees outside of forests
-        auto numScatteredTrees{300 * m_scale + GetRandomInt(150 * m_scale)};
+        auto numScatteredTrees{300 * scale + GetRandomInt(150 * scale)};
 
         for (auto i = 0; i < numScatteredTrees; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || !IsValidForTree(x, y))
             {
                 continue;
@@ -216,14 +234,14 @@ namespace Forradia::Theme0
         }
 
         // Scattered bushes
-        auto numScatteredBushes{1000 * m_scale + GetRandomInt(100 * m_scale)};
+        auto numScatteredBushes{1000 * scale + GetRandomInt(100 * scale)};
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || !IsValidForTree(x, y))
             {
                 continue;
@@ -244,14 +262,14 @@ namespace Forradia::Theme0
         }
 
         // Stone boulders - prefer higher elevation areas
-        auto numBoulders{150 * m_scale + GetRandomInt(100 * m_scale)};
+        auto numBoulders{150 * scale + GetRandomInt(100 * scale)};
 
         for (auto i = 0; i < numBoulders; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || tile->GetWaterDepth() >= 4)
             {
                 continue;
@@ -270,14 +288,14 @@ namespace Forradia::Theme0
 
         // Brown mushrooms - prefer forest areas with trees nearby
         // Mushrooms grow on forest floors, often near trees
-        auto numMushrooms{600 * m_scale + GetRandomInt(400 * m_scale)};
+        auto numMushrooms{600 * scale + GetRandomInt(400 * scale)};
 
         for (auto i = 0; i < numMushrooms; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || !IsValidForTree(x, y))
             {
                 continue;
@@ -312,12 +330,12 @@ namespace Forradia::Theme0
                         continue; // Skip the current tile
                     }
 
-                    if (!m_worldArea->IsValidCoordinate(checkX, checkY))
+                    if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
-                    auto nearbyTile = m_worldArea->GetTile(checkX, checkY);
+                    auto nearbyTile = worldArea->GetTile(checkX, checkY);
                     if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
                     {
                         nearbyObjectsCount++;
@@ -345,14 +363,14 @@ namespace Forradia::Theme0
         }
 
         // Scattered metal scraps - random remnants across the landscape
-        auto numMetalScraps{10000 * m_scale + GetRandomInt(120 * m_scale)};
+        auto numMetalScraps{10000 * scale + GetRandomInt(120 * scale)};
 
         for (auto i = 0; i < numMetalScraps; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile)
             {
                 continue;

@@ -7,11 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB_RECURSE SOURCES "./src/*.cpp")
-add_library(ForradiaTheme0WorldGenerationObjects ${SOURCES})
-target_include_directories(ForradiaTheme0WorldGenerationObjects PUBLIC
+add_library(ForradiaTheme0WorldGenerationMain ${SOURCES})
+target_include_directories(ForradiaTheme0WorldGenerationMain PUBLIC
     "./src"
 )
-target_link_libraries(ForradiaTheme0WorldGenerationObjects PRIVATE
+target_link_libraries(ForradiaTheme0WorldGenerationMain PRIVATE
     ForradiaCommonLang
     ForradiaCommonMatter
     ForradiaCommonGeneral
@@ -19,6 +19,10 @@ target_link_libraries(ForradiaTheme0WorldGenerationObjects PRIVATE
     ForradiaCommonCoreUtilities
     ForradiaTheme0WorldStructure
     ForradiaTheme0Properties
+    ForradiaTheme0WorldGenerationGround
+    ForradiaTheme0WorldGenerationWater
+    ForradiaTheme0WorldGenerationObjects
+    ForradiaTheme0WorldGenerationEntities
     ForradiaTheme0WorldGenerationCommon
 )
-target_precompile_headers(ForradiaTheme0WorldGenerationObjects PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0WorldGenerationMain PUBLIC ./src/StdAfx.hpp)

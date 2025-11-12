@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-file(GLOB_RECURSE CORE_INPUT_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreInput ${CORE_INPUT_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaCoreInput ${SOURCES})
 target_include_directories(ForradiaCoreInput PUBLIC
     "./src"
 )

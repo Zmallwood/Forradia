@@ -8,8 +8,4 @@
 
 // Internal.
 
-#include "Aliases.hpp"
-
 #include "Singleton.hpp"
-
-#include "Coloring/Color.hpp"

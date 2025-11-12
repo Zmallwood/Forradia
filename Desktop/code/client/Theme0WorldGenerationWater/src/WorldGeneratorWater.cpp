@@ -4,18 +4,20 @@
 // (see LICENSE for details)
 //
 
-#include "WorldGenerator.hpp"
+#include "WorldGeneratorWater.hpp"
 
 #include "WorldArea.hpp"
 
 #include "Tile.hpp"
 
-#include <cmath>
-
 namespace Forradia::Theme0
 {
-    void WorldGenerator::GenerateNaturalRivers() const
+    void WorldGeneratorWater::GenerateNaturalRivers() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{GetSize()};
+
         // Generate rivers from various elevations
         auto numRivers{150 + GetRandomInt(100)};
 
@@ -29,7 +31,7 @@ namespace Forradia::Theme0
             // Vary starting elevations - some high, some medium, some low
             auto elevationType = GetRandomInt(100);
             int minElevation = 0;
-            
+
             if (elevationType < 40)
             {
                 // 40% start from high elevation
@@ -49,10 +51,10 @@ namespace Forradia::Theme0
             // Find a starting point
             while (attempts < 100 && !foundStart)
             {
-                startX = GetRandomInt(m_size.width);
-                startY = GetRandomInt(m_size.height);
+                startX = GetRandomInt(size.width);
+                startY = GetRandomInt(size.height);
 
-                auto tile = m_worldArea->GetTile(startX, startY);
+                auto tile = worldArea->GetTile(startX, startY);
                 if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
                 {
                     foundStart = true;
@@ -66,10 +68,10 @@ namespace Forradia::Theme0
             }
 
             // Determine river length based on starting elevation
-            auto startElevation = m_worldArea->GetTile(startX, startY)->GetElevation();
+            auto startElevation = worldArea->GetTile(startX, startY)->GetElevation();
             int baseLength = 40;
             int lengthVariation = 60;
-            
+
             if (startElevation > 40)
             {
                 baseLength = 60;
@@ -80,14 +82,18 @@ namespace Forradia::Theme0
                 baseLength = 50;
                 lengthVariation = 70;
             }
-            
+
             auto length{baseLength + GetRandomInt(lengthVariation)};
             GenerateRiverFromSource(startX, startY, length);
         }
     }
 
-    void WorldGenerator::GenerateRiverFromSource(int startX, int startY, int length) const
+    void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{GetSize()};
+
         const int minRiverLength = 20;
         auto currentX = static_cast<float>(startX);
         auto currentY = static_cast<float>(startY);
@@ -101,19 +107,19 @@ namespace Forradia::Theme0
             // Validate and clamp coordinates to map bounds
             if (x < 0)
                 x = 0;
-            if (x >= m_size.width)
-                x = m_size.width - 1;
+            if (x >= size.width)
+                x = size.width - 1;
             if (y < 0)
                 y = 0;
-            if (y >= m_size.height)
-                y = m_size.height - 1;
+            if (y >= size.height)
+                y = size.height - 1;
 
             // If we're at the edge and have placed enough tiles, we can stop
-            if ((x == 0 || x == m_size.width - 1 || y == 0 || y == m_size.height - 1) && 
+            if ((x == 0 || x == size.width - 1 || y == 0 || y == size.height - 1) &&
                 tilesPlaced >= minRiverLength)
             {
                 // Still try to place water at the edge if valid
-                auto edgeTile = m_worldArea->GetTile(x, y);
+                auto edgeTile = worldArea->GetTile(x, y);
                 if (edgeTile && IsValidForWater(x, y))
                 {
                     edgeTile->SetGround("GroundWater");
@@ -123,7 +129,7 @@ namespace Forradia::Theme0
                 break;
             }
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile)
             {
                 if (tilesPlaced >= minRiverLength)
@@ -163,9 +169,9 @@ namespace Forradia::Theme0
                 {
                     auto adjX = x + directions[dir][0];
                     auto adjY = y + directions[dir][1];
-                    if (m_worldArea->IsValidCoordinate(adjX, adjY))
+                    if (worldArea->IsValidCoordinate(adjX, adjY))
                     {
-                        auto adjTile = m_worldArea->GetTile(adjX, adjY);
+                        auto adjTile = worldArea->GetTile(adjX, adjY);
                         if (adjTile && IsValidForWater(adjX, adjY))
                         {
                             x = adjX;
@@ -203,9 +209,9 @@ namespace Forradia::Theme0
                 {
                     auto adjX = x + directions[dir][0];
                     auto adjY = y + directions[dir][1];
-                    if (m_worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
+                    if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
                     {
-                        auto adjTile = m_worldArea->GetTile(adjX, adjY);
+                        auto adjTile = worldArea->GetTile(adjX, adjY);
                         if (adjTile && GetRandomInt(100) < 40)
                         {
                             adjTile->SetGround("GroundWater");
@@ -220,7 +226,7 @@ namespace Forradia::Theme0
             // Prefer downhill but allow other directions (rivers can flow in any direction)
             int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
                                     {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
-            
+
             float bestDX = 0.0f;
             float bestDY = 0.0f;
             int bestElevation = tile->GetElevation();
@@ -232,12 +238,12 @@ namespace Forradia::Theme0
                 auto checkX = x + directions[dir][0];
                 auto checkY = y + directions[dir][1];
 
-                if (!m_worldArea->IsValidCoordinate(checkX, checkY))
+                if (!worldArea->IsValidCoordinate(checkX, checkY))
                 {
                     continue;
                 }
 
-                auto checkTile = m_worldArea->GetTile(checkX, checkY);
+                auto checkTile = worldArea->GetTile(checkX, checkY);
                 if (!checkTile)
                 {
                     continue;
@@ -247,7 +253,8 @@ namespace Forradia::Theme0
                 bool canPlaceHere = IsValidForWater(checkX, checkY);
                 if (!canPlaceHere && tilesPlaced < minRiverLength)
                 {
-                    if (checkTile->GetElevation() < 90 && checkTile->GetGround() != Hash("GroundRock"))
+                    if (checkTile->GetElevation() < 90 &&
+                        checkTile->GetGround() != Hash("GroundRock"))
                     {
                         canPlaceHere = true;
                     }
@@ -286,15 +293,16 @@ namespace Forradia::Theme0
                     auto checkX = x + directions[dir][0];
                     auto checkY = y + directions[dir][1];
 
-                    if (m_worldArea->IsValidCoordinate(checkX, checkY))
+                    if (worldArea->IsValidCoordinate(checkX, checkY))
                     {
-                        auto checkTile = m_worldArea->GetTile(checkX, checkY);
+                        auto checkTile = worldArea->GetTile(checkX, checkY);
                         if (checkTile)
                         {
                             bool canPlaceHere = IsValidForWater(checkX, checkY);
                             if (!canPlaceHere && tilesPlaced < minRiverLength)
                             {
-                                if (checkTile->GetElevation() < 90 && checkTile->GetGround() != Hash("GroundRock"))
+                                if (checkTile->GetElevation() < 90 &&
+                                    checkTile->GetGround() != Hash("GroundRock"))
                                 {
                                     canPlaceHere = true;
                                 }
@@ -328,8 +336,14 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGenerator::GenerateLakesInValleys() const
+    void WorldGeneratorWater::GenerateLakesInValleys() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{GetSize()};
+
+        auto scale{GetScale()};
+
         // Create lakes in low-lying areas
         auto numLakes{12 + GetRandomInt(8)};
 
@@ -343,10 +357,10 @@ namespace Forradia::Theme0
             // Find a suitable valley location
             while (attempts < 50 && !foundLocation)
             {
-                centerX = GetRandomInt(m_size.width);
-                centerY = GetRandomInt(m_size.height);
+                centerX = GetRandomInt(size.width);
+                centerY = GetRandomInt(size.height);
 
-                auto tile = m_worldArea->GetTile(centerX, centerY);
+                auto tile = worldArea->GetTile(centerX, centerY);
                 if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
                 {
                     foundLocation = true;
@@ -360,19 +374,19 @@ namespace Forradia::Theme0
             }
 
             // Create an organic-shaped lake
-            auto radius{CInt(3 * m_scale + GetRandomInt(6 * m_scale))};
+            auto radius{CInt(3 * scale + GetRandomInt(6 * scale))};
             auto irregularity{0.3f + GetRandomInt(20) / 100.0f};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!m_worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    auto tile = m_worldArea->GetTile(x, y);
+                    auto tile = worldArea->GetTile(x, y);
                     if (!tile)
                     {
                         continue;
@@ -385,7 +399,8 @@ namespace Forradia::Theme0
                     }
 
                     auto distance = GetDistance(x, y, centerX, centerY);
-                    auto maxDistance = radius * (1.0f + irregularity * (GetRandomInt(100) - 50) / 100.0f);
+                    auto maxDistance =
+                        radius * (1.0f + irregularity * (GetRandomInt(100) - 50) / 100.0f);
 
                     if (distance <= maxDistance)
                     {
@@ -394,7 +409,7 @@ namespace Forradia::Theme0
                         auto depth = static_cast<int>((1.0f - distance / radius) * 4.0f) + 1;
                         tile->SetWaterDepth(depth);
                         tile->SetElevation(0);
-                        
+
                         // Set adjacent tiles' elevation to 0 for shoreline effect
                         SetAdjacentTilesElevationToZero(x, y);
                     }

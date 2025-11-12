@@ -4,29 +4,37 @@
 // (see LICENSE for details)
 //
 
-#include "WorldGenerator.hpp"
+#include "WorldGeneratorEntities.hpp"
 
 #include "WorldArea.hpp"
 
 #include "Tile.hpp"
 
+#include "ObjectsStack.hpp"
+
 #include "Creature.hpp"
 
-#include "ObjectsStack.hpp"
+#include "Robot.hpp"
 
 namespace Forradia::Theme0
 {
-    void WorldGenerator::GenerateCreaturesInEcosystems() const
+    void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const
     {
+        auto worldArea{GetWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        auto scale{GetScale()};
+
         // Generate white rabbits - prefer areas near water and in meadows/grass
-        auto numWhiteRabbits{180 * m_scale + GetRandomInt(40 * m_scale)};
+        auto numWhiteRabbits{180 * scale + GetRandomInt(40 * scale)};
 
         for (auto i = 0; i < numWhiteRabbits; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
                 continue;
@@ -59,19 +67,19 @@ namespace Forradia::Theme0
 
                 tile->SetCreature(newCreature);
 
-                m_worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+                worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
             }
         }
 
         // Generate red birds - prefer areas with trees (forests) but also allow in open areas
-        auto numRedBirds{120 * m_scale + GetRandomInt(30 * m_scale)};
+        auto numRedBirds{120 * scale + GetRandomInt(30 * scale)};
 
         for (auto i = 0; i < numRedBirds; i++)
         {
-            auto x{GetRandomInt(m_size.width)};
-            auto y{GetRandomInt(m_size.height)};
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
 
-            auto tile = m_worldArea->GetTile(x, y);
+            auto tile = worldArea->GetTile(x, y);
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
                 continue;
@@ -89,12 +97,12 @@ namespace Forradia::Theme0
                         continue; // Skip the current tile
                     }
 
-                    if (!m_worldArea->IsValidCoordinate(checkX, checkY))
+                    if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
-                    auto nearbyTile = m_worldArea->GetTile(checkX, checkY);
+                    auto nearbyTile = worldArea->GetTile(checkX, checkY);
                     if (nearbyTile)
                     {
                         auto objectsStack = nearbyTile->GetObjectsStack();
@@ -134,7 +142,7 @@ namespace Forradia::Theme0
 
                 tile->SetCreature(newCreature);
 
-                m_worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+                worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
             }
         }
 
@@ -151,10 +159,10 @@ namespace Forradia::Theme0
             // Find a water tile
             while (attempts < 30 && !foundWater)
             {
-                waterX = GetRandomInt(m_size.width);
-                waterY = GetRandomInt(m_size.height);
+                waterX = GetRandomInt(size.width);
+                waterY = GetRandomInt(size.height);
 
-                auto tile = m_worldArea->GetTile(waterX, waterY);
+                auto tile = worldArea->GetTile(waterX, waterY);
                 if (tile && tile->GetGround() == Hash("GroundWater"))
                 {
                     foundWater = true;
@@ -178,12 +186,12 @@ namespace Forradia::Theme0
                 auto creatureX = waterX + CInt(std::cos(angle) * distance);
                 auto creatureY = waterY + CInt(std::sin(angle) * distance);
 
-                if (!m_worldArea->IsValidCoordinate(creatureX, creatureY))
+                if (!worldArea->IsValidCoordinate(creatureX, creatureY))
                 {
                     continue;
                 }
 
-                auto creatureTile = m_worldArea->GetTile(creatureX, creatureY);
+                auto creatureTile = worldArea->GetTile(creatureX, creatureY);
                 if (!creatureTile || creatureTile->GetCreature() ||
                     creatureTile->GetGround() == Hash("GroundWater"))
                 {
@@ -197,9 +205,90 @@ namespace Forradia::Theme0
 
                     creatureTile->SetCreature(newCreature);
 
-                    m_worldArea->GetCreaturesMirrorRef().insert(
+                    worldArea->GetCreaturesMirrorRef().insert(
                         {creatureTile->GetCreature(), {creatureX, creatureY}});
                 }
+            }
+        }
+    }
+
+    void WorldGeneratorEntities::GenerateRobotsInAreas() const
+    {
+        auto worldArea{GetWorldArea()};
+
+        auto size{worldArea->GetSize()};
+
+        auto scale{GetScale()};
+
+        // Generate robots in clusters and patrol areas
+        // Robots avoid water but can be found in various terrain types
+
+        // First, create robot patrol clusters
+        auto numRobotClusters{8 + GetRandomInt(7)};
+
+        for (auto cluster = 0; cluster < numRobotClusters; cluster++)
+        {
+            auto centerX{GetRandomInt(size.width)};
+            auto centerY{GetRandomInt(size.height)};
+
+            auto centerTile = worldArea->GetTile(centerX, centerY);
+            if (!centerTile || centerTile->GetGround() == Hash("GroundWater"))
+            {
+                continue;
+            }
+
+            auto clusterRadius{10 + GetRandomInt(15)};
+            auto robotsInCluster{5 + GetRandomInt(10)};
+
+            for (auto r = 0; r < robotsInCluster; r++)
+            {
+                auto angle = GetRandomInt(360) * M_PI / 180.0f;
+                auto distance = GetRandomInt(clusterRadius);
+                auto robotX = centerX + CInt(std::cos(angle) * distance);
+                auto robotY = centerY + CInt(std::sin(angle) * distance);
+
+                if (!worldArea->IsValidCoordinate(robotX, robotY))
+                {
+                    continue;
+                }
+
+                auto robotTile = worldArea->GetTile(robotX, robotY);
+                if (!robotTile || robotTile->GetRobot() ||
+                    robotTile->GetGround() == Hash("GroundWater"))
+                {
+                    continue;
+                }
+
+                auto newRobot = std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY);
+
+                robotTile->SetRobot(newRobot);
+
+                worldArea->GetRobotsMirrorRef().insert({robotTile->GetRobot(), {robotX, robotY}});
+            }
+        }
+
+        // Also add scattered robots throughout the world
+        auto numScatteredRobots{120 * scale + GetRandomInt(40 * scale)};
+
+        for (auto i = 0; i < numScatteredRobots; i++)
+        {
+            auto x{GetRandomInt(size.width)};
+            auto y{GetRandomInt(size.height)};
+
+            auto tile = worldArea->GetTile(x, y);
+            if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater"))
+            {
+                continue;
+            }
+
+            // Robots can appear anywhere except water, with equal probability
+            if (GetRandomInt(100) < 15)
+            {
+                auto newRobot = std::make_shared<Theme0::Robot>("RobotMechWolf", x, y);
+
+                tile->SetRobot(newRobot);
+
+                worldArea->GetRobotsMirrorRef().insert({tile->GetRobot(), {x, y}});
             }
         }
     }

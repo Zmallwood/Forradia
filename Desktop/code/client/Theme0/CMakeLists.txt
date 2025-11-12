@@ -23,7 +23,7 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreRenderingGround
     ForradiaCoreRenderingModels
     ForradiaTheme0WorldStructure
-    ForradiaTheme0WorldGeneration
+    ForradiaTheme0WorldGenerationMain
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities

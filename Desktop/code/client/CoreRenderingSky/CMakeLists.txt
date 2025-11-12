@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-file(GLOB_RECURSE CORE_RENDERING_SKY_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreRenderingSky ${CORE_RENDERING_SKY_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaCoreRenderingSky ${SOURCES})
 target_include_directories(ForradiaCoreRenderingSky PUBLIC
     "./src"
 )

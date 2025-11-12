@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-file(GLOB_RECURSE CORE_RENDERING_COLORS_2D_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreRenderingColors2D ${CORE_RENDERING_COLORS_2D_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaCoreRenderingColors2D ${SOURCES})
 target_include_directories(ForradiaCoreRenderingColors2D PUBLIC
     "./src"
 )

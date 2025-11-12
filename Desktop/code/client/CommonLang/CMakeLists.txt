@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-file(GLOB_RECURSE COMMON_LANG_SOURCES "./src/*.cpp")
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
 add_library(ForradiaCommonLang INTERFACE)
-target_sources(ForradiaCommonLang INTERFACE ${COMMON_LANG_SOURCES})
+target_sources(ForradiaCommonLang INTERFACE ${SOURCES})
 target_include_directories(ForradiaCommonLang INTERFACE
     "./src"
 )

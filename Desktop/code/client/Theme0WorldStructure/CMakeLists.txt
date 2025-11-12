@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-file(GLOB_RECURSE WORLD_STRUCT_SOURCES "./src/*.cpp")
-add_library(ForradiaTheme0WorldStructure ${WORLD_STRUCT_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaTheme0WorldStructure ${SOURCES})
 target_include_directories(ForradiaTheme0WorldStructure PUBLIC
     "./src"
 )

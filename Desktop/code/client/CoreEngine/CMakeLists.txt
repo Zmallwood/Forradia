@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-file(GLOB_RECURSE CORE_ENGINE_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreEngine ${CORE_ENGINE_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaCoreEngine ${SOURCES})
 target_include_directories(ForradiaCoreEngine PUBLIC
     "./src"
 )

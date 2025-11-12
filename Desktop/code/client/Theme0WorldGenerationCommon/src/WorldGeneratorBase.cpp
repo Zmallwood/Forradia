@@ -4,24 +4,35 @@
 // (see LICENSE for details)
 //
 
-#include "WorldGenerator.hpp"
+#include "WorldGeneratorBase.hpp"
+
+#include "World.hpp"
 
 #include "WorldArea.hpp"
 
-#include "Tile.hpp"
+#include "Theme0Properties.hpp"
 
-#include <cmath>
+#include "Tile.hpp"
 
 namespace Forradia::Theme0
 {
-    float WorldGenerator::GetDistance(int x1, int y1, int x2, int y2) const
+    void WorldGeneratorBase::Prepare()
+    {
+        m_worldArea = _<Theme0::World>().GetCurrentWorldArea();
+
+        m_size = m_worldArea->GetSize();
+
+        m_scale = _<Theme0::Theme0Properties>().GetWorldScaling();
+    }
+
+    float WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) const
     {
         auto dx = static_cast<float>(x2 - x1);
         auto dy = static_cast<float>(y2 - y1);
         return std::sqrt(dx * dx + dy * dy);
     }
 
-    int WorldGenerator::GetElevationAt(int x, int y) const
+    int WorldGeneratorBase::GetElevationAt(int x, int y) const
     {
         if (!m_worldArea->IsValidCoordinate(x, y))
         {
@@ -32,7 +43,7 @@ namespace Forradia::Theme0
         return tile ? tile->GetElevation() : 0;
     }
 
-    bool WorldGenerator::IsValidForWater(int x, int y) const
+    bool WorldGeneratorBase::IsValidForWater(int x, int y) const
     {
         if (!m_worldArea->IsValidCoordinate(x, y))
         {
@@ -49,7 +60,7 @@ namespace Forradia::Theme0
         return tile->GetElevation() < 80;
     }
 
-    bool WorldGenerator::IsValidForTree(int x, int y) const
+    bool WorldGeneratorBase::IsValidForTree(int x, int y) const
     {
         if (!m_worldArea->IsValidCoordinate(x, y))
         {
@@ -68,7 +79,7 @@ namespace Forradia::Theme0
                tile->GetWaterDepth() == 0;
     }
 
-    bool WorldGenerator::IsNearWater(int x, int y, int radius) const
+    bool WorldGeneratorBase::IsNearWater(int x, int y, int radius) const
     {
         for (auto checkY = y - radius; checkY <= y + radius; checkY++)
         {
@@ -94,7 +105,7 @@ namespace Forradia::Theme0
         return false;
     }
 
-    bool WorldGenerator::IsAdjacentToWater(int x, int y) const
+    bool WorldGeneratorBase::IsAdjacentToWater(int x, int y) const
     {
         // Check all 8 adjacent tiles (including diagonals) for water
         int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
@@ -120,8 +131,8 @@ namespace Forradia::Theme0
         return false;
     }
 
-    void WorldGenerator::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                            const char* groundType, float density) const
+    void WorldGeneratorBase::CreateBiomeCluster(int centerX, int centerY, int radius,
+                                                const char *groundType, float density) const
     {
         for (auto y = centerY - radius; y <= centerY + radius; y++)
         {
@@ -154,7 +165,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGenerator::SetAdjacentTilesElevationToZero(int x, int y) const
+    void WorldGeneratorBase::SetAdjacentTilesElevationToZero(int x, int y) const
     {
         // Set elevation to 0 for all tiles adjacent to a water tile
         // This creates a shoreline effect where land around water is at sea level
@@ -185,29 +196,30 @@ namespace Forradia::Theme0
         }
     }
 
-    int WorldGenerator::GetMaxElevation() const
+    int WorldGeneratorBase::GetMaxElevation() const
     {
         // Maximum elevation cap to prevent excessive stacking
         return 300;
     }
 
-    int WorldGenerator::GetMaxSlopePerTile() const
+    int WorldGeneratorBase::GetMaxSlopePerTile() const
     {
         // Maximum elevation difference between adjacent tiles
         // This prevents mountains from becoming too steep
         return 8;
     }
 
-    int WorldGenerator::GetMaxAllowedElevation(int x, int y, int currentElevation) const
+    int WorldGeneratorBase::GetMaxAllowedElevation(int x, int y, int currentElevation) const
     {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
         auto maxSlope = GetMaxSlopePerTile();
-        
+
         // Start with allowing max slope increase from current elevation
         int maxAllowedElevation = currentElevation + maxSlope;
 
-        // Check all 8 adjacent tiles (including diagonals) to ensure we don't create too steep a slope
+        // Check all 8 adjacent tiles (including diagonals) to ensure we don't create too steep a
+        // slope
         int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
                                 {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
@@ -234,7 +246,7 @@ namespace Forradia::Theme0
             }
 
             auto adjElevation = adjTile->GetElevation();
-            
+
             // The new elevation should not exceed adjacent tile elevation + max slope
             // This prevents creating a steep upward slope from the adjacent tile
             auto maxFromAdjacent = adjElevation + maxSlope;
@@ -247,7 +259,7 @@ namespace Forradia::Theme0
         return maxAllowedElevation;
     }
 
-    int WorldGenerator::ClampElevation(int elevation) const
+    int WorldGeneratorBase::ClampElevation(int elevation) const
     {
         auto maxElev = GetMaxElevation();
         if (elevation > maxElev)
@@ -261,8 +273,8 @@ namespace Forradia::Theme0
         return elevation;
     }
 
-    void WorldGenerator::CreateElevationHill(int centerX, int centerY, int radius,
-                                             int maxElevation) const
+    void WorldGeneratorBase::CreateElevationHill(int centerX, int centerY, int radius,
+                                                 int maxElevation) const
     {
         for (auto y = centerY - radius; y <= centerY + radius; y++)
         {
@@ -294,22 +306,24 @@ namespace Forradia::Theme0
                 // Check current elevation for smooth capping
                 auto currentElevation = tile->GetElevation();
                 auto maxElev = GetMaxElevation();
-                
+
                 // Skip if already at maximum
                 if (currentElevation >= maxElev)
                 {
                     continue;
                 }
-                
+
                 // Create smooth elevation based on distance
                 auto normalizedDistance = distance / radius;
-                auto baseElevationGain = static_cast<float>((1.0f - normalizedDistance * normalizedDistance) * maxElevation);
-                
+                auto baseElevationGain = static_cast<float>(
+                    (1.0f - normalizedDistance * normalizedDistance) * maxElevation);
+
                 // Apply smooth falloff as we approach the elevation cap
                 // Start reducing gain when we're above 60% of max elevation for smoother transition
-                auto elevationRatio = static_cast<float>(currentElevation) / static_cast<float>(maxElev);
-                auto falloffStart = 0.6f; // Start falloff at 60% of max elevation
-                
+                auto elevationRatio =
+                    static_cast<float>(currentElevation) / static_cast<float>(maxElev);
+                auto falloffStart = 0.6f; // Start falloff at 60 % of max elevation
+
                 float smoothScale = 1.0f;
                 if (elevationRatio >= falloffStart)
                 {
@@ -318,29 +332,30 @@ namespace Forradia::Theme0
                     // When at 1.0 (100%), scale is 0.0
                     auto falloffRange = 1.0f - falloffStart;
                     auto t = (elevationRatio - falloffStart) / falloffRange; // t goes from 0 to 1
+
                     // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition
                     // This gives a smoother, more natural falloff
                     smoothScale = 1.0f - (t * t * (3.0f - 2.0f * t));
                 }
-                
+
                 // Apply smooth scaling to elevation gain
                 auto elevationGain = static_cast<int>(baseElevationGain * smoothScale);
-                
+
                 // Only add elevation if the scaled gain is meaningful
                 if (elevationGain > 0)
                 {
                     auto desiredElevation = currentElevation + elevationGain;
-                    
+
                     // Limit elevation based on adjacent tiles to prevent steep slopes
                     auto maxAllowedElevation = GetMaxAllowedElevation(x, y, currentElevation);
-                    
+
                     // Use the minimum of desired elevation and max allowed elevation
                     auto newElevation = desiredElevation;
                     if (newElevation > maxAllowedElevation)
                     {
                         newElevation = maxAllowedElevation;
                     }
-                    
+
                     // Final safety clamp (elevation cap and minimum)
                     tile->SetElevation(ClampElevation(newElevation));
                 }
@@ -348,4 +363,3 @@ namespace Forradia::Theme0
         }
     }
 }
-

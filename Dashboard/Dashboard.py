@@ -403,12 +403,67 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "E2. Theme 0 World Generation",
+            "E2. Theme 0 World Generation Common",
             "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGeneration.code-workspace",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationCommon.code-workspace",
+            "icons/DefaultButton.png",
+            0,
+            1,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "E2. Theme 0 World Generation Ground",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationGround.code-workspace",
             "icons/DefaultButton.png",
             1,
+            1,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "E2. Theme 0 World Generation Water",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationWater.code-workspace",
+            "icons/DefaultButton.png",
+            2,
+            1,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "E2. Theme 0 World Generation Objects",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationObjects.code-workspace",
+            "icons/DefaultButton.png",
+            3,
+            1,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "E2. Theme 0 World Generation Entities",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationEntities.code-workspace",
+            "icons/DefaultButton.png",
+            4,
+            1,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "E2. Theme 0 World Generation Main",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0WorldGenerationMain.code-workspace",
+            "icons/DefaultButton.png",
             0,
+            2,
             self.script_dir,
         )
 
@@ -419,7 +474,7 @@ class Dashboard(ctk.CTk):
             "/home/andreas/code/git/Forradia/Theme0Essentials.code-workspace",
             "icons/DefaultButton.png",
             0,
-            1,
+            3,
             self.script_dir,
         )
 
@@ -430,7 +485,7 @@ class Dashboard(ctk.CTk):
             "/home/andreas/code/git/Forradia/CoreMinorComponents.code-workspace",
             "icons/DefaultButton.png",
             1,
-            1,
+            3,
             self.script_dir,
         )
     

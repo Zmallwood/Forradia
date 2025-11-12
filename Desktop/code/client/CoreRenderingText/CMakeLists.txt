@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-file(GLOB_RECURSE CORE_RENDERING_TEXT_SOURCES "./src/*.cpp")
-add_library(ForradiaCoreRenderingText ${CORE_RENDERING_TEXT_SOURCES})
+file(GLOB_RECURSE SOURCES "./src/*.cpp")
+add_library(ForradiaCoreRenderingText ${SOURCES})
 target_include_directories(ForradiaCoreRenderingText PUBLIC
     "./src"
 )
