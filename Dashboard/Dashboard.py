@@ -93,8 +93,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CMake.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -136,8 +136,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CommonGeneral.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -147,8 +147,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CommonMatter.code-workspace",
             "icons/DefaultButton.png",
-            0,
             2,
+            0,
             self.script_dir,
         )
 
@@ -190,8 +190,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CommonCoreUtilities.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -233,8 +233,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreAssets.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -244,8 +244,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreInput.code-workspace",
             "icons/DefaultButton.png",
-            0,
             2,
+            0,
             self.script_dir,
         )
 
@@ -255,8 +255,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingCommon.code-workspace",
             "icons/DefaultButton.png",
-            0,
             3,
+            0,
             self.script_dir,
         )
 
@@ -298,8 +298,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingImages2D.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -309,8 +309,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingText.code-workspace",
             "icons/DefaultButton.png",
-            0,
             2,
+            0,
             self.script_dir,
         )
 
@@ -320,8 +320,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingGround.code-workspace",
             "icons/DefaultButton.png",
-            0,
             3,
+            0,
             self.script_dir,
         )
 
@@ -331,8 +331,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingModels.code-workspace",
             "icons/DefaultButton.png",
-            0,
             4,
+            0,
             self.script_dir,
         )
 
@@ -342,8 +342,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/CoreRenderingSky.code-workspace",
             "icons/DefaultButton.png",
-            0,
             5,
+            0,
             self.script_dir,
         )
 
@@ -353,8 +353,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0WorldStructure.code-workspace",
             "icons/DefaultButton.png",
-            1,
             0,
+            1,
             self.script_dir,
         )
 
@@ -407,8 +407,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0WorldGeneration.code-workspace",
             "icons/DefaultButton.png",
-            0,
             1,
+            0,
             self.script_dir,
         )
 
@@ -418,8 +418,8 @@ class Dashboard(ctk.CTk):
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0Essentials.code-workspace",
             "icons/DefaultButton.png",
-            1,
             0,
+            1,
             self.script_dir,
         )
 
@@ -563,7 +563,7 @@ class Dashboard(ctk.CTk):
         )
 
 def create_app_button(
-    parent, app_name, command, path, icon_path, row, column, script_dir
+    parent, app_name, command, path, icon_path, column, row, script_dir
 ):
     def open_app():
         subprocess.run([command, path, "-r"])
