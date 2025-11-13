@@ -62,14 +62,14 @@ namespace Forradia::Theme0::GameplayCore
         }
     }
 
-    bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate)
+    bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const
     {
         auto result{CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
 
         return result;
     }
 
-    bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate)
+    bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const
     {
         // Get mouse position in normalized screen
         // coordinates
