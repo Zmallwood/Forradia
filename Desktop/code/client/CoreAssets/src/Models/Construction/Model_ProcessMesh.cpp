@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
+    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const
     {
         // Get the mesh's vertices.
 

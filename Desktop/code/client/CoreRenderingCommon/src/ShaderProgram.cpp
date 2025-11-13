@@ -66,6 +66,12 @@ namespace Forradia
 
     void ShaderProgram::Cleanup()
     {
+        // Delete the program.
+
         glDeleteProgram(m_programID);
+
+        // Reset the program ID.
+
+        m_programID = 0;
     }
 }

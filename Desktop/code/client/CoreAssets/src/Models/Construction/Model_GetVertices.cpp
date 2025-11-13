@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    Vector<GLMVertex> Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation)
+    Vector<GLMVertex> Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const
     {
         // To hold the resulting vertices.
 

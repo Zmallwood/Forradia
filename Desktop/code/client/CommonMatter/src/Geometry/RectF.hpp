@@ -23,7 +23,7 @@ namespace Forradia
         /// @param point Point to check if it is contained in this rectangle.
         /// @return True if the Point is within this rectangle, otherwise false.
         ///
-        bool Contains(PointF point);
+        bool Contains(PointF point) const;
 
         ///
         /// Returns only the position of this rectangle.

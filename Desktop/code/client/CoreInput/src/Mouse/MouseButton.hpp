@@ -51,7 +51,7 @@ namespace Forradia
         ///
         /// @return True if the button has been fired, otherwise false.
         ///
-        bool HasBeenFired();
+        bool HasBeenFired() const;
 
         ///
         /// Checks if the button has been released, picking the result (I.e. the result can only be
@@ -67,7 +67,7 @@ namespace Forradia
         ///
         /// @return True if the button has been released, otherwise false.
         ///
-        bool HasBeenReleased();
+        bool HasBeenReleased() const;
 
         ///
         /// Returns the speed of the most recent click.

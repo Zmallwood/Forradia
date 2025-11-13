@@ -30,6 +30,12 @@ namespace Forradia
         {
             glDeleteTextures(1, &entry.second);
         }
+
+        // Clear the maps.
+
+        m_textureEntries.clear();
+
+        m_textTextureIDs.clear();
     }
 
     GLuint TextureBank::GetTexture(int imageNameHash) const

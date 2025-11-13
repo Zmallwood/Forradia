@@ -82,7 +82,7 @@ namespace Forradia
         /// @param surface The SDL surface to create the texture from.
         /// @return The texture ID.
         ///
-        GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface);
+        GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface) const;
 
         inline static const String k_relativeImagesPath{
             "./Resources/Images/"}; ///< The relative path to the image resource directory.

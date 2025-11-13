@@ -21,7 +21,7 @@ namespace Forradia
         ///
         Model(StringView filePath)
         {
-            Initialize(filePath);
+            this->Initialize(filePath);
         };
 
         ///
@@ -62,7 +62,7 @@ namespace Forradia
         /// with regards to its parent nodes.
         /// @return The processed mesh as a GLMMesh (non-assimp type) object.
         ///
-        GLMMesh ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation);
+        GLMMesh ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const;
 
         ///
         /// Gets the vertices of a mesh.
@@ -72,7 +72,7 @@ namespace Forradia
         /// mesh.
         /// @return The vertices of the mesh.
         ///
-        Vector<GLMVertex> GetVertices(aiMesh *mesh, aiMatrix4x4 transformation);
+        Vector<GLMVertex> GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const;
 
         ///
         /// Gets the indices of a mesh.
@@ -80,7 +80,7 @@ namespace Forradia
         /// @param mesh The mesh to get the indices of.
         /// @return The indices of the mesh.
         ///
-        Vector<unsigned int> GetIndices(aiMesh *mesh);
+        Vector<unsigned int> GetIndices(aiMesh *mesh) const;
 
         ///
         /// Gets the textures of a mesh.
@@ -89,7 +89,7 @@ namespace Forradia
         /// @param scene The scene the mesh is in.
         /// @return The textures of the mesh.
         ///
-        Vector<Texture> GetTextures(aiMesh *mesh, const aiScene *scene);
+        Vector<Texture> GetTextures(aiMesh *mesh, const aiScene *scene) const;
 
         Vector<GLMMesh> m_meshes; ///< The model's meshes.
     };

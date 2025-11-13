@@ -23,7 +23,7 @@ namespace Forradia
         return result;
     }
 
-    bool MouseButton::HasBeenFired()
+    bool MouseButton::HasBeenFired() const
     {
         // Return the been-fired state of the button.
 

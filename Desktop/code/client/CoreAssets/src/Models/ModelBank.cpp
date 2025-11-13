@@ -85,7 +85,7 @@ namespace Forradia
         return nullptr;
     }
 
-    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath)
+    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const
     {
         // Load the model from the file at the path.
 

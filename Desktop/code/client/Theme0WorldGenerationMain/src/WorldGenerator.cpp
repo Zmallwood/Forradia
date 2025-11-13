@@ -22,11 +22,9 @@ namespace Forradia::Theme0
 
         this->Prepare();
 
-        // Go through all the steps of generating a new world.
+        // Ground
 
         _<WorldGeneratorGround>().ClearWithDirt();
-
-        // Ground
 
         _<WorldGeneratorGround>().GenerateElevationWithBiomes();
 
@@ -46,7 +44,7 @@ namespace Forradia::Theme0
 
         _<WorldGeneratorWater>().GenerateNaturalRivers();
 
-        // Grounda again/ 5. Generate creatures and robots in ecosystems
+        // Grounda again
 
         _<WorldGeneratorGround>().EnforceMinimumElevationForNonWaterTiles();
 

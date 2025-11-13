@@ -23,7 +23,7 @@ namespace Forradia
         return result;
     }
 
-    bool MouseButton::HasBeenReleased()
+    bool MouseButton::HasBeenReleased() const
     {
         // Return the been-released state of the button.
 

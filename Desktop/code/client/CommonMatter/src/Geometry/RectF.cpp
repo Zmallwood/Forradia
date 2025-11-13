@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    bool RectF::Contains(PointF point)
+    bool RectF::Contains(PointF point) const
     {
         // Create condition by checking against the boundaries of this rectangle.
 
