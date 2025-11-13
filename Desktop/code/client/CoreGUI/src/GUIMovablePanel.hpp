@@ -51,7 +51,7 @@ namespace Forradia
         ///
         /// @return The draggable area of the movable panel.
         ///
-        virtual RectF GetDraggableArea();
+        virtual RectF GetDraggableArea() const;
 
         ///
         /// Gets whether the movable panel is being moved.

@@ -107,7 +107,7 @@ namespace Forradia
         m_isBeingMoved = false;
     }
 
-    RectF GUIMovablePanel::GetDraggableArea()
+    RectF GUIMovablePanel::GetDraggableArea() const
     {
         // Set the draggable area to the bounds of this panel as default. This can be overridden by
         // derived classes.

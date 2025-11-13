@@ -16,7 +16,7 @@
 
 namespace Forradia::Theme0
 {
-    void WorldGenerator::GenerateNewWorld()
+    void WorldGenerator::GenerateNewWorld() const
     {
         // Prepare the world generator for generating a new world.
 
@@ -63,7 +63,7 @@ namespace Forradia::Theme0
         _<WorldGeneratorEntities>().GenerateRobotsInAreas();
     }
 
-    void WorldGenerator::Prepare()
+    void WorldGenerator::Prepare() const
     {
         // Prepare all the generators for generating a new world.
 

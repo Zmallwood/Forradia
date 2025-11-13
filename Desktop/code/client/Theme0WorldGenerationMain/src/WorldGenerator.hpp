@@ -19,12 +19,12 @@ namespace Forradia::Theme0
         ///
         /// Generates a new world.
         ///
-        void GenerateNewWorld();
+        void GenerateNewWorld() const;
 
       private:
         ///
         /// Prepares the world generator for generating a new world.
         ///
-        void Prepare();
+        void Prepare() const;
     };
 }

@@ -47,7 +47,7 @@ namespace Forradia
         ///
         /// @return The draggable area of the window.
         ///
-        RectF GetDraggableArea() override;
+        RectF GetDraggableArea() const override;
 
         ///
         /// Gets the window title bar of the window.

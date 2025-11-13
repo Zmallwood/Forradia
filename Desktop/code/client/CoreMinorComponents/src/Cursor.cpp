@@ -19,7 +19,7 @@ namespace Forradia
         this->DisableSystemCursor();
     }
 
-    void Cursor::DisableSystemCursor()
+    void Cursor::DisableSystemCursor() const
     {
         // Hide the default system cursor using SDL.
 
@@ -33,7 +33,7 @@ namespace Forradia
         m_cursorStyle = CursorStyles::Normal;
     }
 
-    void Cursor::Render()
+    void Cursor::Render() const
     {
         // Get the mouse position.
 

@@ -32,7 +32,7 @@ namespace Forradia
         ///
         /// Renders the cursor.
         ///
-        void Render();
+        void Render() const;
 
         ///
         /// @brief Sets the cursor style.
@@ -52,7 +52,7 @@ namespace Forradia
         ///
         /// Hides the default system cursor.
         ///
-        void DisableSystemCursor();
+        void DisableSystemCursor() const;
 
         constexpr static float k_cursorSize{0.05f}; ///< The size of the cursor.
 

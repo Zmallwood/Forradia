@@ -32,7 +32,7 @@ namespace Forradia
         GUIMovablePanel::RenderDerived();
     }
 
-    RectF GUIWindow::GetDraggableArea()
+    RectF GUIWindow::GetDraggableArea() const
     {
         // Return the bounds of the window title bar as the draggable area.
 
