@@ -14,6 +14,15 @@
 
 namespace Forradia::Theme0
 {
+    void WorldGeneratorObjects::GenerateObjects() const
+    {
+        GenerateForests();
+
+        GenerateMeadows();
+
+        GenerateObjectsInBiomes();
+    }
+
     void WorldGeneratorObjects::GenerateForests() const
     {
         auto worldArea{GetWorldArea()};

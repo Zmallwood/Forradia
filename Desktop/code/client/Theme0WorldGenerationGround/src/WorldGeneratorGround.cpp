@@ -12,6 +12,22 @@
 
 namespace Forradia::Theme0
 {
+
+    void WorldGeneratorGround::GenerateGroundWithElevation() const
+    {
+        ClearWithDirt();
+
+        GenerateGrassBiomes();
+
+        GenerateRockFormations();
+
+        GenerateElevationWithBiomes();
+
+        GenerateMountainRanges();
+
+        GenerateValleys();
+    }
+
     void WorldGeneratorGround::ClearWithDirt() const
     {
         auto worldArea{GetWorldArea()};

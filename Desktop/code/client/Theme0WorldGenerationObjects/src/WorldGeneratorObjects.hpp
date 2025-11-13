@@ -13,6 +13,9 @@ namespace Forradia::Theme0
     class WorldGeneratorObjects : public WorldGeneratorBase
     {
       public:
+        void GenerateObjects() const;
+
+      private:
         void GenerateForests() const;
 
         void GenerateMeadows() const;

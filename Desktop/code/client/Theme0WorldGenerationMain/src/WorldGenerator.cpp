@@ -22,39 +22,21 @@ namespace Forradia::Theme0
 
         this->Prepare();
 
-        // Ground
+        // Ground.
 
-        _<WorldGeneratorGround>().ClearWithDirt();
+        _<WorldGeneratorGround>().GenerateGroundWithElevation();
 
-        _<WorldGeneratorGround>().GenerateElevationWithBiomes();
+        // Water.
 
-        _<WorldGeneratorGround>().GenerateMountainRanges();
+        _<WorldGeneratorWater>().GenerateWater();
 
-        _<WorldGeneratorGround>().GenerateValleys();
+        // Objects.
 
-        _<WorldGeneratorGround>().GenerateGrassBiomes();
+        _<WorldGeneratorObjects>().GenerateObjects();
 
-        _<WorldGeneratorGround>().GenerateRockFormations();
+        // Entities.
 
-        // Water
-
-        _<WorldGeneratorWater>().GenerateLakesInValleys();
-
-        _<WorldGeneratorWater>().GenerateNaturalRivers();
-
-        // Objects
-
-        _<WorldGeneratorObjects>().GenerateForests();
-
-        _<WorldGeneratorObjects>().GenerateMeadows();
-
-        _<WorldGeneratorObjects>().GenerateObjectsInBiomes();
-
-        // Entities
-
-        _<WorldGeneratorEntities>().GenerateCreaturesInEcosystems();
-
-        _<WorldGeneratorEntities>().GenerateRobotsInAreas();
+        _<WorldGeneratorEntities>().GenerateEntities();
     }
 
     void WorldGenerator::Prepare() const

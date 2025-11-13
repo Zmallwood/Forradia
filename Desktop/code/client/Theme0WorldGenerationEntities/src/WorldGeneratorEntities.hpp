@@ -13,8 +13,11 @@ namespace Forradia::Theme0
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
       public:
+        void GenerateEntities() const;
+
+      private:
         void GenerateCreaturesInEcosystems() const;
-        
+
         void GenerateRobotsInAreas() const;
     };
 }

@@ -13,6 +13,9 @@ namespace Forradia::Theme0
     class WorldGeneratorGround : public WorldGeneratorBase
     {
       public:
+        void GenerateGroundWithElevation() const;
+
+      private:
         void ClearWithDirt() const;
 
         void GenerateGrassBiomes() const;

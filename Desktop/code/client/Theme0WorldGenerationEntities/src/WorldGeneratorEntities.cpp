@@ -18,6 +18,13 @@
 
 namespace Forradia::Theme0
 {
+    void WorldGeneratorEntities::GenerateEntities() const
+    {
+        GenerateCreaturesInEcosystems();
+
+        GenerateRobotsInAreas();
+    }
+
     void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const
     {
         auto worldArea{GetWorldArea()};

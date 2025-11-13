@@ -12,6 +12,13 @@
 
 namespace Forradia::Theme0
 {
+    void WorldGeneratorWater::GenerateWater() const
+    {
+        GenerateNaturalRivers();
+
+        GenerateLakesInValleys();
+    }
+
     void WorldGeneratorWater::GenerateNaturalRivers() const
     {
         auto worldArea{GetWorldArea()};
@@ -487,8 +494,6 @@ namespace Forradia::Theme0
             {
                 continue;
             }
-
-            // Create an organic-shaped lake.
 
             auto radius{CInt(3 * scale + GetRandomInt(6 * scale))};
 
