@@ -175,6 +175,11 @@ namespace Forradia::Theme0
                     if (tile)
                     {
                         tile->SetGround(groundType);
+
+                        if (tile->GetElevation() < k_defaultGroundElevation)
+                        {
+                            tile->SetElevation(k_defaultGroundElevation);
+                        }
                     }
                 }
             }
@@ -298,9 +303,9 @@ namespace Forradia::Theme0
             return maxElev;
         }
 
-        if (elevation < 0)
+        if (elevation < k_defaultGroundElevation)
         {
-            return 0;
+            return k_defaultGroundElevation;
         }
 
         return elevation;

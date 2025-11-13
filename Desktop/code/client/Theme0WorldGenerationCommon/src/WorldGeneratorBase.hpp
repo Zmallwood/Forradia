@@ -42,7 +42,12 @@ namespace Forradia::Theme0
         int ClampElevation(int elevation) const;
 
         void CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const;
-        
+
+        auto GetDefaultGroundElevation() const
+        {
+            return k_defaultGroundElevation;
+        }
+
         auto GetWorldArea() const
         {
             return m_worldArea;
@@ -59,6 +64,8 @@ namespace Forradia::Theme0
         }
 
       private:
+        const int k_defaultGroundElevation{10};
+
         SharedPtr<WorldArea> m_worldArea;
 
         Size m_size;

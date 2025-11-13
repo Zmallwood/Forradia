@@ -46,7 +46,7 @@ namespace Forradia::Theme0
 
         // Grounda again
 
-        _<WorldGeneratorGround>().EnforceMinimumElevationForNonWaterTiles();
+        // _<WorldGeneratorGround>().EnforceMinimumElevationForNonWaterTiles();
 
         // Objects
 

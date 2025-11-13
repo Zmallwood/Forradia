@@ -68,7 +68,7 @@ namespace Forradia
 
         const float k_minZoomAmount{2.0f}; ///< Minimum zoom amount.
 
-        const float k_maxZoomAmount{20.0f}; ///< Maximum zoom amount.
+        const float k_maxZoomAmount{30.0f}; ///< Maximum zoom amount.
 
         const float k_minRotationAngleVertical{-M_PI * 3.0f /
                                                8.0f}; ///< Minimum vertical rotation angle.

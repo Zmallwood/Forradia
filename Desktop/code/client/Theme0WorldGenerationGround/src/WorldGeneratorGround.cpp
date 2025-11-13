@@ -27,6 +27,8 @@ namespace Forradia::Theme0
                 if (tile)
                 {
                     tile->SetGround("GroundDirt");
+
+                    tile->SetElevation(GetDefaultGroundElevation());
                 }
             }
         }
@@ -95,6 +97,11 @@ namespace Forradia::Theme0
                     if (GetRandomInt(100) < 40)
                     {
                         tile->SetGround("GroundGrass");
+
+                        if (tile->GetElevation() < GetDefaultGroundElevation())
+                        {
+                            tile->SetElevation(GetDefaultGroundElevation());
+                        }
                     }
                 }
             }
@@ -165,6 +172,11 @@ namespace Forradia::Theme0
                         if (GetRandomInt(100) < rockProbability)
                         {
                             rockTile->SetGround("GroundRock");
+
+                            if (tile->GetElevation() < GetDefaultGroundElevation())
+                            {
+                                tile->SetElevation(GetDefaultGroundElevation());
+                            }
                         }
                     }
                 }
