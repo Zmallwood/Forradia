@@ -87,14 +87,11 @@ namespace Forradia::Theme0
                 if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
                     tile->GetGround() != Hash("GroundRock"))
                 {
-                    if (GetRandomInt(100) < 40)
-                    {
-                        tile->SetGround("GroundGrass");
+                    tile->SetGround("GroundGrass");
 
-                        if (tile->GetElevation() < GetDefaultGroundElevation())
-                        {
-                            tile->SetElevation(GetDefaultGroundElevation());
-                        }
+                    if (tile->GetElevation() < GetDefaultGroundElevation())
+                    {
+                        tile->SetElevation(GetDefaultGroundElevation());
                     }
                 }
             }
@@ -159,17 +156,11 @@ namespace Forradia::Theme0
 
                     if (elevation > 60)
                     {
-                        auto rockProbability =
-                            (elevation - 60) * 5 / 4; // Scaled probability based on elevation.
+                        rockTile->SetGround("GroundRock");
 
-                        if (GetRandomInt(100) < rockProbability)
+                        if (tile->GetElevation() < GetDefaultGroundElevation())
                         {
-                            rockTile->SetGround("GroundRock");
-
-                            if (tile->GetElevation() < GetDefaultGroundElevation())
-                            {
-                                tile->SetElevation(GetDefaultGroundElevation());
-                            }
+                            tile->SetElevation(GetDefaultGroundElevation());
                         }
                     }
                 }

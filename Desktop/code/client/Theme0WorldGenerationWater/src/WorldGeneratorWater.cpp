@@ -519,10 +519,7 @@ namespace Forradia::Theme0
 
                     auto distance = GetDistance(x, y, centerX, centerY);
 
-                    auto maxDistance =
-                        radius * (1.0f + irregularity * (GetRandomInt(100) - 50) / 100.0f);
-
-                    if (distance <= maxDistance)
+                    if (distance * distance <= radius * radius)
                     {
                         // Lakes always have elevation 0.
 
