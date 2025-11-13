@@ -44,10 +44,6 @@ namespace Forradia::Theme0
 
         _<WorldGeneratorWater>().GenerateNaturalRivers();
 
-        // Grounda again
-
-        // _<WorldGeneratorGround>().EnforceMinimumElevationForNonWaterTiles();
-
         // Objects
 
         _<WorldGeneratorObjects>().GenerateForests();

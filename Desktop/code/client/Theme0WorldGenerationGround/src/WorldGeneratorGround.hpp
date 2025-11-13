@@ -26,7 +26,5 @@ namespace Forradia::Theme0
         void GenerateMountainRanges() const;
 
         void GenerateValleys() const;
-
-        void EnforceMinimumElevationForNonWaterTiles() const;
     };
 }
