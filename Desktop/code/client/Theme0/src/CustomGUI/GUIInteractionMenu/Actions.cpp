@@ -64,6 +64,59 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionLayMetalFloor")>();
 
     template <>
+    Action GetAction<Hash("ActionChipStone")>();
+
+    template <>
+    Action GetAction<Hash("ActionChipStone")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectStoneBoulder")},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.AddObject("ObjectSmallStones");
+
+                    _<GUIChatBox>().Print("You chip some stone.");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionLayCobbleStone")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
+
+                    if (numSmallStonesInInventory <= 0)
+                    {
+                        _<GUIChatBox>().Print("You don't have any small stones to lay.");
+
+                        return;
+                    }
+
+                    inventory.RemoveObject("ObjectSmallStones");
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->SetGround(Hash("GroundCobbleStone"));
+                    }
+
+                    _<GUIChatBox>().Print("You lay some cobble stone.");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionLayMetalFloor")>()
     {
         return {.groundMatches = {},

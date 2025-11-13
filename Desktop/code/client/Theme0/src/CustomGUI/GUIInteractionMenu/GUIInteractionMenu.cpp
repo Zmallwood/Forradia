@@ -63,6 +63,10 @@ namespace Forradia::Theme0
 
         m_entries.push_back({"Pick up", actionPickUp.action});
 
+        auto actionLayCobbleStone{GetAction<Hash("ActionLayCobbleStone")>()};
+
+        m_entries.push_back({"Lay cobble stone", actionLayCobbleStone.action});
+
         auto actionLayMetalFloor{GetAction<Hash("ActionLayMetalFloor")>()};
 
         m_entries.push_back({"Lay metal floor", actionLayMetalFloor.action});
@@ -97,13 +101,25 @@ namespace Forradia::Theme0
         {
             auto type{object->GetType()};
 
-            auto action{GetAction<Hash("ActionPickBranch")>()};
+            auto actionPickBranch{GetAction<Hash("ActionPickBranch")>()};
 
-            for (const auto &actionObjectTypes : action.objectMatches)
+            for (const auto &actionObjectTypes : actionPickBranch.objectMatches)
             {
                 if (type == actionObjectTypes)
                 {
-                    m_entries.push_back({"Pick branch", action.action});
+                    m_entries.push_back({"Pick branch", actionPickBranch.action});
+
+                    break;
+                }
+            }
+
+            auto actionChipStone{GetAction<Hash("ActionChipStone")>()};
+
+            for (const auto &actionObjectTypes : actionChipStone.objectMatches)
+            {
+                if (type == actionObjectTypes)
+                {
+                    m_entries.push_back({"Chip stone", actionChipStone.action});
 
                     break;
                 }
