@@ -50,7 +50,6 @@ namespace Forradia::Theme0
         ///
         /// @param x The x coordinate.
         /// @param y The y coordinate.
-        ///
         /// @return True if the coordinate is valid, false otherwise.
         ///
         bool IsValidCoordinate(int x, int y) const;
@@ -59,7 +58,6 @@ namespace Forradia::Theme0
         /// Checks if a coordinate is valid in the world area.
         ///
         /// @param coordinate The coordinate.
-        ///
         /// @return True if the coordinate is valid, false otherwise.
         ///
         bool IsValidCoordinate(Point coordinate) const;
@@ -69,7 +67,6 @@ namespace Forradia::Theme0
         ///
         /// @param x The x coordinate.
         /// @param y The y coordinate.
-        ///
         /// @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
         ///
         SharedPtr<Tile> GetTile(int x, int y) const;
@@ -78,7 +75,6 @@ namespace Forradia::Theme0
         /// Gets the tile at the given coordinate.
         ///
         /// @param coordinate The coordinate.
-        ///
         /// @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
         ///
         SharedPtr<Tile> GetTile(Point coord) const;
@@ -94,7 +90,6 @@ namespace Forradia::Theme0
         /// Checks if a coordinate is claimed.
         ///
         /// @param coordinate The coordinate to check.
-        ///
         /// @return True if the coordinate is claimed, false otherwise.
         ///
         bool CoordinateIsClaimed(Point coordinate) const;

@@ -27,6 +27,8 @@ namespace Forradia::Theme0
         ///
         Tile()
         {
+            // Initialize the tile by creating necessary components.
+
             this->Initialize();
         }
 
