@@ -24,6 +24,10 @@ namespace Forradia
 
             glDeleteVertexArrays(1, &entry.second.vao);
         }
+
+        // Clear the operations cache.
+
+        m_operationsCache.clear();
     }
 
     void Color2DRenderer::SetupState() const

@@ -43,7 +43,8 @@ namespace Forradia
                       float tileSize, const Vector<float> &elevations, bool forceUpdate = false);
 
         ///
-        /// Resets the renderer with regards to the operations cache.
+        /// Resets the renderer with regards to the operations cache. Called for instance when a new
+        /// map is loaded from file.
         ///
         void Reset();
 
@@ -102,7 +103,7 @@ namespace Forradia
         /// @return The vertices for a tile without normals.
         ///
         Vector<float> CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                                const Vector<float> &elevations);
+                                                const Vector<float> &elevations) const;
 
         ///
         /// Calculates the vertices for a tile with normals.
@@ -110,7 +111,7 @@ namespace Forradia
         /// @param verticesNoNormals The vertices without normals.
         /// @return The vertices for a tile with normals.
         ///
-        Vector<float> CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals);
+        Vector<float> CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const;
 
         ///
         /// Calculates the normals for a tile.
@@ -118,7 +119,7 @@ namespace Forradia
         /// @param verticesNoNormals The vertices without normals.
         /// @return The normals for a tile.
         ///
-        Vector<glm::vec3> CalcTileNormals(const Vector<float> &verticesNoNormals);
+        Vector<glm::vec3> CalcTileNormals(const Vector<float> &verticesNoNormals) const;
 
         static constexpr unsigned short k_indices[] = {0, 1, 2, 3}; ///< Indices for every tile.
 

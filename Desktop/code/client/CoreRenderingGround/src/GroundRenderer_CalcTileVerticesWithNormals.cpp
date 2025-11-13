@@ -9,7 +9,7 @@
 namespace Forradia
 {
     Vector<float>
-    GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals)
+    GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const
     {
         // Create a vector to store the vertices consisting of only floats.
 

@@ -12,7 +12,7 @@ namespace Forradia
 {
     Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
                                                             float tileSize,
-                                                            const Vector<float> &elevations)
+                                                            const Vector<float> &elevations) const
     {
         // Calculate the x and y coordinates and width and height in opengl space for the tile.
 

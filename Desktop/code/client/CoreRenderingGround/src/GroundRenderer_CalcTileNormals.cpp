@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals)
+    Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const
     {
         // Define constants.
 
