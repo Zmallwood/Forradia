@@ -32,8 +32,6 @@ namespace Forradia::Theme0
 
         _<WorldGeneratorGround>().GenerateValleys();
 
-        _<WorldGeneratorGround>().GenerateBiomeBasedTerrain();
-
         _<WorldGeneratorGround>().GenerateGrassBiomes();
 
         _<WorldGeneratorGround>().GenerateRockFormations();

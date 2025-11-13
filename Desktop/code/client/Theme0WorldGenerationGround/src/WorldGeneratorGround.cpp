@@ -34,13 +34,6 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorGround::GenerateBiomeBasedTerrain() const
-    {
-        // This method is called after elevation generation.
-        // It sets up the basic terrain based on elevation and biome regions.
-        // The actual grass placement is handled by GenerateGrassBiomes.
-    }
-
     void WorldGeneratorGround::GenerateGrassBiomes() const
     {
         auto worldArea{GetWorldArea()};

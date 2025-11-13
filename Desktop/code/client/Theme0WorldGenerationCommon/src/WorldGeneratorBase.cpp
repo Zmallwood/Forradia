@@ -162,24 +162,15 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                // Create falloff effect - edges are less likely to have the biome.
+                auto tile = m_worldArea->GetTile(x, y);
 
-                auto normalizedDistance = distance / radius;
-
-                auto probability = (1.0f - normalizedDistance) * density;
-
-                if (GetRandomInt(1000) < static_cast<int>(probability * 1000.0f))
+                if (tile)
                 {
-                    auto tile = m_worldArea->GetTile(x, y);
+                    tile->SetGround(groundType);
 
-                    if (tile)
+                    if (tile->GetElevation() < k_defaultGroundElevation)
                     {
-                        tile->SetGround(groundType);
-
-                        if (tile->GetElevation() < k_defaultGroundElevation)
-                        {
-                            tile->SetElevation(k_defaultGroundElevation);
-                        }
+                        tile->SetElevation(k_defaultGroundElevation);
                     }
                 }
             }

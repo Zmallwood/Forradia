@@ -15,8 +15,6 @@ namespace Forradia::Theme0
       public:
         void ClearWithDirt() const;
 
-        void GenerateBiomeBasedTerrain() const;
-
         void GenerateGrassBiomes() const;
 
         void GenerateRockFormations() const;
