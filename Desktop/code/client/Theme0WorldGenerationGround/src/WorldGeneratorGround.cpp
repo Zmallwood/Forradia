@@ -17,15 +17,15 @@ namespace Forradia::Theme0
     {
         ClearWithDirt();
 
-        GenerateGrassBiomes();
-
-        GenerateRockFormations();
-
         GenerateElevationWithBiomes();
 
         GenerateMountainRanges();
 
         GenerateValleys();
+
+        GenerateGrassBiomes();
+
+        GenerateRockFormations();
     }
 
     void WorldGeneratorGround::ClearWithDirt() const
