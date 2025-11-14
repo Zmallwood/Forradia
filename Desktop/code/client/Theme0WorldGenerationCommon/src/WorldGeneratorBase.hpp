@@ -28,8 +28,7 @@ namespace Forradia::Theme0
 
         bool IsAdjacentToWater(int x, int y) const;
 
-        void CreateBiomeCluster(int centerX, int centerY, int radius, const char *groundType,
-                                float density) const;
+        void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
 
         void SetAdjacentTilesElevationToZero(int x, int y) const;
 
