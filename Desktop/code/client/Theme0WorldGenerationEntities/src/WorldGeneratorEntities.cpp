@@ -80,7 +80,7 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto newRobot = std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY);
+                auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY)};
 
                 robotTile->SetRobot(newRobot);
 
@@ -98,7 +98,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater"))
             {
@@ -109,7 +109,7 @@ namespace Forradia::Theme0
 
             if (GetRandomInt(100) < 15)
             {
-                auto newRobot = std::make_shared<Theme0::Robot>("RobotMechWolf", x, y);
+                auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", x, y)};
 
                 tile->SetRobot(newRobot);
 

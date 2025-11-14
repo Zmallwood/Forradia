@@ -77,12 +77,12 @@ namespace Forradia::Theme0
 
                 // Move along the mountain range with some variation.
 
-                auto angleRad{
+                auto angleRadians{
                     static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0f)};
 
-                currentX += std::cos(angleRad) * (2.0f + GetRandomInt(3));
+                currentX += std::cos(angleRadians) * (2.0f + GetRandomInt(3));
 
-                currentY += std::sin(angleRad) * (2.0f + GetRandomInt(3));
+                currentY += std::sin(angleRadians) * (2.0f + GetRandomInt(3));
 
                 // Occasionally change direction.
 

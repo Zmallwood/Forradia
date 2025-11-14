@@ -45,35 +45,35 @@ namespace Forradia::Theme0
 
         for (auto dir = 0; dir < 8; dir++)
         {
-            auto adjX{x + directions[dir][0]};
+            auto adjacentX{x + directions[dir][0]};
 
-            auto adjY{y + directions[dir][1]};
+            auto adjacentY{y + directions[dir][1]};
 
-            if (!m_worldArea->IsValidCoordinate(adjX, adjY))
+            if (!m_worldArea->IsValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
-            auto adjTile{m_worldArea->GetTile(adjX, adjY)};
+            auto adjacentTile{m_worldArea->GetTile(adjacentX, adjacentY)};
 
-            if (!adjTile)
+            if (!adjacentTile)
             {
                 continue;
             }
 
             // Skip water tiles - they have their own elevation rules (set to 0).
 
-            if (adjTile->GetGround() == Hash("GroundWater"))
+            if (adjacentTile->GetGround() == Hash("GroundWater"))
             {
                 continue;
             }
 
-            auto adjElevation{adjTile->GetElevation()};
+            auto adjacentElevation{adjacentTile->GetElevation()};
 
             // The new elevation should not exceed adjacent tile elevation + max slope.
             // This prevents creating a steep upward slope from the adjacent tile.
 
-            auto maxFromAdjacent{adjElevation + maxSlope};
+            auto maxFromAdjacent{adjacentElevation + maxSlope};
 
             if (maxFromAdjacent < maxAllowedElevation)
             {
@@ -86,11 +86,11 @@ namespace Forradia::Theme0
 
     int WorldGeneratorBase::ClampElevation(int elevation) const
     {
-        auto maxElev{GetMaxElevation()};
+        auto maxElevation{GetMaxElevation()};
 
-        if (elevation > maxElev)
+        if (elevation > maxElevation)
         {
-            return maxElev;
+            return maxElevation;
         }
 
         if (elevation < k_defaultGroundElevation)

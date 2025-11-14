@@ -32,27 +32,33 @@ namespace Forradia::Theme0
         {
             // Compute the coordinates of the adjacent tile relative to the water tile.
 
-            auto adjX{x + directions[dir][0]};
+            auto adjacentX{x + directions[dir][0]};
 
-            auto adjY{y + directions[dir][1]};
+            auto adjacentY{y + directions[dir][1]};
 
-            if (!m_worldArea->IsValidCoordinate(adjX, adjY))
+            // Skip if the adjacent tile is out of bounds.
+
+            if (!m_worldArea->IsValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
-            auto adjTile{m_worldArea->GetTile(adjX, adjY)};
+            // Get the adjacent tile.
 
-            if (!adjTile)
+            auto adjacentTile{m_worldArea->GetTile(adjacentX, adjacentY)};
+
+            // Skip if the adjacent tile is not found.
+
+            if (!adjacentTile)
             {
                 continue;
             }
 
             // Only set elevation to 0 for non-water tiles (shoreline).
 
-            if (adjTile->GetGround() != Hash("GroundWater"))
+            if (adjacentTile->GetGround() != Hash("GroundWater"))
             {
-                adjTile->SetElevation(0);
+                adjacentTile->SetElevation(0);
             }
         }
     }
@@ -66,21 +72,29 @@ namespace Forradia::Theme0
         {
             for (auto x = centerX - radius; x <= centerX + radius; x++)
             {
+                // Skip if the tile is out of bounds.
+
                 if (!m_worldArea->IsValidCoordinate(x, y))
                 {
                     continue;
                 }
 
+                // Calculate the distance from the center of the hill to the tile.
+
                 auto distance{GetDistance(x, y, centerX, centerY)};
+
+                // Skip if the tile is outside of the circular hill radius.
 
                 if (distance > radius)
                 {
-                    // Skip tiles outside of the circular hill radius.
-
                     continue;
                 }
 
+                // Get the tile.
+
                 auto tile{m_worldArea->GetTile(x, y)};
+
+                // Skip if the tile is not found.
 
                 if (!tile)
                 {
@@ -100,11 +114,11 @@ namespace Forradia::Theme0
 
                 auto currentElevation{tile->GetElevation()};
 
-                auto maxElev{GetMaxElevation()};
+                auto maxElevation{GetMaxElevation()};
 
                 // Skip if already at maximum.
 
-                if (currentElevation >= maxElev)
+                if (currentElevation >= maxElevation)
                 {
                     // Prevent further elevation changes once the cap is reached.
 
@@ -122,12 +136,15 @@ namespace Forradia::Theme0
 
                 // Apply smooth falloff as we approach the elevation cap.
 
-                // Start reducing gain when we're above 60% of max elevation for a smoother transition.
+                // Start reducing gain when we're above 60% of max elevation for a smoother
+                // transition.
 
                 auto elevationRatio{static_cast<float>(currentElevation) /
-                                    static_cast<float>(maxElev)};
+                                    static_cast<float>(maxElevation)};
 
-                auto falloffStart{0.6f}; // Start falloff at 60 % of max elevation.
+                // Start falloff at 60 % of max elevation.
+
+                auto falloffStart{0.6f};
 
                 auto smoothScale{1.0f};
 
@@ -139,7 +156,9 @@ namespace Forradia::Theme0
 
                     auto falloffRange{1.0f - falloffStart};
 
-                    auto t{(elevationRatio - falloffStart) / falloffRange}; // t goes from 0 to 1.
+                    // t goes from 0 to 1.
+
+                    auto t{(elevationRatio - falloffStart) / falloffRange};
 
                     // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
                     // This gives a smoother, more natural falloff.
