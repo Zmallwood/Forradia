@@ -95,7 +95,7 @@ namespace Forradia::Theme0
             // Birds prefer areas with trees nearby (forests).
             // Check for trees in surrounding area.
 
-            int nearbyTreesCount = 0;
+            auto nearbyTreesCount = 0;
 
             for (auto checkY = y - 3; checkY <= y + 3; checkY++)
             {
@@ -172,11 +172,11 @@ namespace Forradia::Theme0
         {
             auto attempts = 0;
 
-            int waterX = 0;
+            auto waterX = 0;
 
-            int waterY = 0;
+            auto waterY = 0;
 
-            bool foundWater = false;
+            auto foundWater = false;
 
             // Find a water tile.
 

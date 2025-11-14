@@ -27,9 +27,9 @@ namespace Forradia::Theme0
 
     float WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) const
     {
-        auto dx = static_cast<float>(x2 - x1);
+        auto dx{static_cast<float>(x2 - x1)};
 
-        auto dy = static_cast<float>(y2 - y1);
+        auto dy{static_cast<float>(y2 - y1)};
 
         return std::sqrt(dx * dx + dy * dy);
     }
@@ -41,7 +41,7 @@ namespace Forradia::Theme0
             return 0;
         }
 
-        auto tile = m_worldArea->GetTile(x, y);
+        auto tile{m_worldArea->GetTile(x, y)};
 
         return tile ? tile->GetElevation() : 0;
     }
@@ -53,7 +53,7 @@ namespace Forradia::Theme0
             return false;
         }
 
-        auto tile = m_worldArea->GetTile(x, y);
+        auto tile{m_worldArea->GetTile(x, y)};
 
         if (!tile)
         {
@@ -73,7 +73,7 @@ namespace Forradia::Theme0
         }
 
         auto tile = m_worldArea->GetTile(x, y);
-        
+
         if (!tile)
         {
             return false;
@@ -81,7 +81,7 @@ namespace Forradia::Theme0
 
         // Trees can't grow in water or on bare rock
 
-        auto ground = tile->GetGround();
+        auto ground{tile->GetGround()};
 
         return ground != Hash("GroundWater") && ground != Hash("GroundRock") &&
                tile->GetWaterDepth() == 0;
@@ -98,11 +98,11 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto tile = m_worldArea->GetTile(checkX, checkY);
+                auto tile{m_worldArea->GetTile(checkX, checkY)};
 
                 if (tile && tile->GetGround() == Hash("GroundWater"))
                 {
-                    auto distance = GetDistance(x, y, checkX, checkY);
+                    auto distance{GetDistance(x, y, checkX, checkY)};
 
                     if (distance <= radius)
                     {
@@ -124,16 +124,16 @@ namespace Forradia::Theme0
 
         for (auto dir = 0; dir < 8; dir++)
         {
-            auto adjX = x + directions[dir][0];
+            auto adjX{x + directions[dir][0]};
 
-            auto adjY = y + directions[dir][1];
+            auto adjY{y + directions[dir][1]};
 
             if (!m_worldArea->IsValidCoordinate(adjX, adjY))
             {
                 continue;
             }
 
-            auto adjTile = m_worldArea->GetTile(adjX, adjY);
+            auto adjTile{m_worldArea->GetTile(adjX, adjY)};
 
             if (adjTile && adjTile->GetGround() == Hash("GroundWater"))
             {
@@ -156,14 +156,14 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto distance = GetDistance(x, y, centerX, centerY);
+                auto distance{GetDistance(x, y, centerX, centerY)};
 
                 if (distance > radius)
                 {
                     continue;
                 }
 
-                auto tile = m_worldArea->GetTile(x, y);
+                auto tile{m_worldArea->GetTile(x, y)};
 
                 if (tile)
                 {

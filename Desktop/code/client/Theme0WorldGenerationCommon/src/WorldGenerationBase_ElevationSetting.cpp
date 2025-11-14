@@ -17,21 +17,25 @@ namespace Forradia::Theme0
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.
 
-        int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+        // clang-format off
+
+        int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                             {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+
+        // clang-format on
 
         for (auto dir = 0; dir < 8; dir++)
         {
-            auto adjX = x + directions[dir][0];
+            auto adjX{x + directions[dir][0]};
 
-            auto adjY = y + directions[dir][1];
+            auto adjY{y + directions[dir][1]};
 
             if (!m_worldArea->IsValidCoordinate(adjX, adjY))
             {
                 continue;
             }
 
-            auto adjTile = m_worldArea->GetTile(adjX, adjY);
+            auto adjTile{m_worldArea->GetTile(adjX, adjY)};
 
             if (!adjTile)
             {
@@ -59,14 +63,14 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto distance = GetDistance(x, y, centerX, centerY);
+                auto distance{GetDistance(x, y, centerX, centerY)};
 
                 if (distance > radius)
                 {
                     continue;
                 }
 
-                auto tile = m_worldArea->GetTile(x, y);
+                auto tile{m_worldArea->GetTile(x, y)};
 
                 if (!tile)
                 {
@@ -82,9 +86,9 @@ namespace Forradia::Theme0
 
                 // Check current elevation for smooth capping.
 
-                auto currentElevation = tile->GetElevation();
+                auto currentElevation{tile->GetElevation()};
 
-                auto maxElev = GetMaxElevation();
+                auto maxElev{GetMaxElevation()};
 
                 // Skip if already at maximum.
 
@@ -95,21 +99,21 @@ namespace Forradia::Theme0
 
                 // Create smooth elevation based on distance.
 
-                auto normalizedDistance = distance / radius;
+                auto normalizedDistance{distance / radius};
 
-                auto baseElevationGain = static_cast<float>(
-                    (1.0f - normalizedDistance * normalizedDistance) * maxElevation);
+                auto baseElevationGain{static_cast<float>(
+                    (1.0f - normalizedDistance * normalizedDistance) * maxElevation)};
 
                 // Apply smooth falloff as we approach the elevation cap.
                 // Start reducing gain when we're above 60% of max elevation for smoother
                 // transition.
 
-                auto elevationRatio =
-                    static_cast<float>(currentElevation) / static_cast<float>(maxElev);
+                auto elevationRatio{static_cast<float>(currentElevation) /
+                                    static_cast<float>(maxElev)};
 
-                auto falloffStart = 0.6f; // Start falloff at 60 % of max elevation
+                auto falloffStart{0.6f}; // Start falloff at 60 % of max elevation
 
-                float smoothScale = 1.0f;
+                auto smoothScale{1.0f};
 
                 if (elevationRatio >= falloffStart)
                 {
@@ -117,9 +121,9 @@ namespace Forradia::Theme0
                     // When at falloffStart (60%), scale is 1.0.
                     // When at 1.0 (100%), scale is 0.0.
 
-                    auto falloffRange = 1.0f - falloffStart;
+                    auto falloffRange{1.0f - falloffStart};
 
-                    auto t = (elevationRatio - falloffStart) / falloffRange; // t goes from 0 to 1
+                    auto t{(elevationRatio - falloffStart) / falloffRange}; // t goes from 0 to 1
 
                     // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
                     // This gives a smoother, more natural falloff.
@@ -129,21 +133,21 @@ namespace Forradia::Theme0
 
                 // Apply smooth scaling to elevation gain.
 
-                auto elevationGain = static_cast<int>(baseElevationGain * smoothScale);
+                auto elevationGain{static_cast<int>(baseElevationGain * smoothScale)};
 
                 // Only add elevation if the scaled gain is meaningful.
 
                 if (elevationGain > 0)
                 {
-                    auto desiredElevation = currentElevation + elevationGain;
+                    auto desiredElevation{currentElevation + elevationGain};
 
                     // Limit elevation based on adjacent tiles to prevent steep slopes.
 
-                    auto maxAllowedElevation = GetMaxAllowedElevation(x, y, currentElevation);
+                    auto maxAllowedElevation{GetMaxAllowedElevation(x, y, currentElevation)};
 
                     // Use the minimum of desired elevation and max allowed elevation.
 
-                    auto newElevation = desiredElevation;
+                    auto newElevation{desiredElevation};
 
                     if (newElevation > maxAllowedElevation)
                     {

@@ -70,7 +70,7 @@ namespace Forradia::Theme0
 
             // Check if this area is suitable for grass (moderate elevation, not water).
 
-            auto tile = worldArea->GetTile(xCenter, yCenter);
+            auto tile{worldArea->GetTile(xCenter, yCenter)};
 
             if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
             {
@@ -126,7 +126,7 @@ namespace Forradia::Theme0
 
             auto yCenter{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(xCenter, yCenter);
+            auto tile{worldArea->GetTile(xCenter, yCenter)};
 
             if (!tile || tile->GetElevation() < 80)
             {
@@ -146,14 +146,14 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto distance = GetDistance(x, y, xCenter, yCenter);
+                    auto distance{GetDistance(x, y, xCenter, yCenter)};
 
                     if (distance > radius)
                     {
                         continue;
                     }
 
-                    auto rockTile = worldArea->GetTile(x, y);
+                    auto rockTile{worldArea->GetTile(x, y)};
 
                     if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
                     {
@@ -162,7 +162,7 @@ namespace Forradia::Theme0
 
                     // Higher elevation = more likely to be rock.
 
-                    auto elevation = rockTile->GetElevation();
+                    auto elevation{rockTile->GetElevation()};
 
                     if (elevation > 60)
                     {

@@ -32,30 +32,29 @@ namespace Forradia::Theme0
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
 
-        auto maxSlope = GetMaxSlopePerTile();
+        auto maxSlope{GetMaxSlopePerTile()};
 
         // Start with allowing max slope increase from current elevation
 
-        int maxAllowedElevation = currentElevation + maxSlope;
+        auto maxAllowedElevation{currentElevation + maxSlope};
 
         // Check all 8 adjacent tiles (including diagonals) to ensure we don't create too steep a
         // slope.
 
-        int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+        int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}};
 
         for (auto dir = 0; dir < 8; dir++)
         {
-            auto adjX = x + directions[dir][0];
+            auto adjX{x + directions[dir][0]};
 
-            auto adjY = y + directions[dir][1];
+            auto adjY{y + directions[dir][1]};
 
             if (!m_worldArea->IsValidCoordinate(adjX, adjY))
             {
                 continue;
             }
 
-            auto adjTile = m_worldArea->GetTile(adjX, adjY);
+            auto adjTile{m_worldArea->GetTile(adjX, adjY)};
 
             if (!adjTile)
             {
@@ -69,12 +68,12 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto adjElevation = adjTile->GetElevation();
+            auto adjElevation{adjTile->GetElevation()};
 
             // The new elevation should not exceed adjacent tile elevation + max slope.
             // This prevents creating a steep upward slope from the adjacent tile.
 
-            auto maxFromAdjacent = adjElevation + maxSlope;
+            auto maxFromAdjacent{adjElevation + maxSlope};
 
             if (maxFromAdjacent < maxAllowedElevation)
             {
@@ -87,7 +86,7 @@ namespace Forradia::Theme0
 
     int WorldGeneratorBase::ClampElevation(int elevation) const
     {
-        auto maxElev = GetMaxElevation();
+        auto maxElev{GetMaxElevation()};
 
         if (elevation > maxElev)
         {

@@ -18,19 +18,19 @@ namespace Forradia::Theme0
 
         auto size{GetSize()};
 
-        const int minRiverLength = 20;
+        const auto minRiverLength{20};
 
-        auto currentX = static_cast<float>(startX);
+        auto currentX{static_cast<float>(startX)};
 
-        auto currentY = static_cast<float>(startY);
+        auto currentY{static_cast<float>(startY)};
 
-        int tilesPlaced = 0;
+        auto tilesPlaced{0};
 
         for (auto step = 0; step < length && tilesPlaced < length; step++)
         {
-            auto x = CInt(currentX);
+            auto x{CInt(currentX)};
 
-            auto y = CInt(currentY);
+            auto y{CInt(currentY)};
 
             // Validate and clamp coordinates to map bounds.
 
@@ -61,7 +61,7 @@ namespace Forradia::Theme0
             {
                 // Still try to place water at the edge if valid.
 
-                auto edgeTile = worldArea->GetTile(x, y);
+                auto edgeTile{worldArea->GetTile(x, y)};
 
                 if (edgeTile && IsValidForWater(x, y))
                 {
@@ -71,10 +71,11 @@ namespace Forradia::Theme0
 
                     tilesPlaced++;
                 }
+
                 break;
             }
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile)
             {
@@ -85,7 +86,7 @@ namespace Forradia::Theme0
 
                 // Continue in a random direction.
 
-                auto angle = GetRandomInt(360) * M_PI / 180.0f;
+                auto angle{GetRandomInt(360) * M_PI / 180.0f};
 
                 currentX += std::cos(angle) * 1.0f;
 
@@ -97,7 +98,7 @@ namespace Forradia::Theme0
             // Check if we can place water here.
             // Before minimum length, be more lenient.
 
-            bool canPlace = IsValidForWater(x, y);
+            auto canPlace{IsValidForWater(x, y)};
 
             if (!canPlace && tilesPlaced < minRiverLength)
             {
@@ -118,20 +119,20 @@ namespace Forradia::Theme0
 
                 // Try to find an adjacent valid tile.
 
-                bool foundAdjacent = false;
+                bool foundAdjacent{false};
 
                 int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
                                         {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
                 for (auto dir = 0; dir < 8 && !foundAdjacent; dir++)
                 {
-                    auto adjX = x + directions[dir][0];
+                    auto adjX{x + directions[dir][0]};
 
-                    auto adjY = y + directions[dir][1];
+                    auto adjY{y + directions[dir][1]};
 
                     if (worldArea->IsValidCoordinate(adjX, adjY))
                     {
-                        auto adjTile = worldArea->GetTile(adjX, adjY);
+                        auto adjTile{worldArea->GetTile(adjX, adjY)};
 
                         if (adjTile && IsValidForWater(adjX, adjY))
                         {
@@ -156,7 +157,7 @@ namespace Forradia::Theme0
                 {
                     // Continue in random direction.
 
-                    auto angle = GetRandomInt(360) * M_PI / 180.0f;
+                    auto angle{GetRandomInt(360) * M_PI / 180.0f};
 
                     currentX += std::cos(angle) * 1.0f;
 
@@ -185,13 +186,13 @@ namespace Forradia::Theme0
 
                 for (auto dir = 0; dir < 8; dir++)
                 {
-                    auto adjX = x + directions[dir][0];
+                    auto adjX{x + directions[dir][0]};
 
-                    auto adjY = y + directions[dir][1];
+                    auto adjY{y + directions[dir][1]};
 
                     if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
                     {
-                        auto adjTile = worldArea->GetTile(adjX, adjY);
+                        auto adjTile{worldArea->GetTile(adjX, adjY)};
 
                         if (adjTile && GetRandomInt(100) < 40)
                         {
@@ -211,28 +212,28 @@ namespace Forradia::Theme0
             int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
                                     {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
-            float bestDX = 0.0f;
+            auto bestDX{0.0f};
 
-            float bestDY = 0.0f;
+            auto bestDY{0.0f};
 
-            int bestElevation = tile->GetElevation();
+            auto bestElevation{tile->GetElevation()};
 
-            bool foundDownhill = false;
+            auto foundDownhill{false};
 
             // First, try to find a downhill direction (preferred but not required).
 
             for (auto dir = 0; dir < 8; dir++)
             {
-                auto checkX = x + directions[dir][0];
+                auto checkX{x + directions[dir][0]};
 
-                auto checkY = y + directions[dir][1];
+                auto checkY{y + directions[dir][1]};
 
                 if (!worldArea->IsValidCoordinate(checkX, checkY))
                 {
                     continue;
                 }
 
-                auto checkTile = worldArea->GetTile(checkX, checkY);
+                auto checkTile{worldArea->GetTile(checkX, checkY)};
 
                 if (!checkTile)
                 {
@@ -241,7 +242,7 @@ namespace Forradia::Theme0
 
                 // Check if it's a valid water placement location.
 
-                bool canPlaceHere = IsValidForWater(checkX, checkY);
+                auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
                 if (!canPlaceHere && tilesPlaced < minRiverLength)
                 {
@@ -257,7 +258,7 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto checkElevation = checkTile->GetElevation();
+                auto checkElevation{checkTile->GetElevation()};
 
                 if (checkElevation < bestElevation)
                 {
@@ -284,25 +285,25 @@ namespace Forradia::Theme0
                 // No clear downhill path - choose a random valid direction.
                 // Rivers don't need to flow downhill, they can flow in any direction.
 
-                bool foundDirection = false;
+                auto foundDirection{false};
 
-                int attempts = 0;
+                auto attempts{0};
 
                 while (!foundDirection && attempts < 20)
                 {
-                    auto dir = GetRandomInt(8);
+                    auto dir{GetRandomInt(8)};
 
-                    auto checkX = x + directions[dir][0];
+                    auto checkX{x + directions[dir][0]};
 
-                    auto checkY = y + directions[dir][1];
+                    auto checkY{y + directions[dir][1]};
 
                     if (worldArea->IsValidCoordinate(checkX, checkY))
                     {
-                        auto checkTile = worldArea->GetTile(checkX, checkY);
+                        auto checkTile{worldArea->GetTile(checkX, checkY)};
 
                         if (checkTile)
                         {
-                            bool canPlaceHere = IsValidForWater(checkX, checkY);
+                            auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
                             if (!canPlaceHere && tilesPlaced < minRiverLength)
                             {
@@ -331,7 +332,7 @@ namespace Forradia::Theme0
                 {
                     // Just move in a random direction.
 
-                    auto angle = GetRandomInt(360) * M_PI / 180.0f;
+                    auto angle{GetRandomInt(360) * M_PI / 180.0f};
 
                     currentX += std::cos(angle) * 1.0f;
 

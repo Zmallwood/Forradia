@@ -33,17 +33,17 @@ namespace Forradia::Theme0
         {
             auto attempts = 0;
 
-            int startX = 0;
+            auto startX = 0;
 
-            int startY = 0;
+            auto startY = 0;
 
-            bool foundStart = false;
+            auto foundStart = false;
 
             // Vary starting elevations - some high, some medium, some low.
 
             auto elevationType = GetRandomInt(100);
 
-            int minElevation = 0;
+            auto minElevation = 0;
 
             if (elevationType < 40)
             {
@@ -91,9 +91,9 @@ namespace Forradia::Theme0
 
             auto startElevation = worldArea->GetTile(startX, startY)->GetElevation();
 
-            int baseLength = 40;
+            auto baseLength = 40;
 
-            int lengthVariation = 60;
+            auto lengthVariation = 60;
 
             if (startElevation > 40)
             {
@@ -130,11 +130,11 @@ namespace Forradia::Theme0
         {
             auto attempts = 0;
 
-            int centerX = 0;
+            auto centerX = 0;
 
-            int centerY = 0;
+            auto centerY = 0;
 
-            bool foundLocation = false;
+            auto foundLocation = false;
 
             // Find a suitable valley location.
 

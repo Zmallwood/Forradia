@@ -56,9 +56,9 @@ namespace Forradia::Theme0
 
             auto direction{GetRandomInt(360)};
 
-            auto currentX = static_cast<float>(startX);
+            auto currentX{static_cast<float>(startX)};
 
-            auto currentY = static_cast<float>(startY);
+            auto currentY{static_cast<float>(startY)};
 
             for (auto i = 0; i < length; i++)
             {
@@ -77,7 +77,8 @@ namespace Forradia::Theme0
 
                 // Move along the mountain range with some variation.
 
-                auto angleRad = (direction + GetRandomInt(60) - 30) * M_PI / 180.0f;
+                auto angleRad{
+                    static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0f)};
 
                 currentX += std::cos(angleRad) * (2.0f + GetRandomInt(3));
 
@@ -132,7 +133,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto distance = GetDistance(x, y, xCenter, yCenter);
+                    auto distance{GetDistance(x, y, xCenter, yCenter)};
 
                     if (distance > radius)
                     {
@@ -148,13 +149,13 @@ namespace Forradia::Theme0
 
                     // Reduce elevation in valleys (but not below 0).
 
-                    auto normalizedDistance = distance / radius;
+                    auto normalizedDistance{distance / radius};
 
-                    auto elevationReduction = static_cast<int>((1.0f - normalizedDistance) * 40.0f);
+                    auto elevationReduction{static_cast<int>((1.0f - normalizedDistance) * 40.0f)};
 
-                    auto currentElevation = tile->GetElevation();
+                    auto currentElevation{tile->GetElevation()};
 
-                    auto newElevation = currentElevation - elevationReduction;
+                    auto newElevation{currentElevation - elevationReduction};
 
                     // Clamp elevation to valid range (0 to max).
 
