@@ -39,45 +39,4 @@ namespace Forradia::Theme0
 
         return std::sqrt(dx * dx + dy * dy);
     }
-
-    void WorldGeneratorBase::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                                StringView groundType) const
-    {
-        // Enumerate all tiles in the radius.
-
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
-        {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
-            {
-                // Skip if the tile is out of bounds.
-
-                if (!m_worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
-
-                // Calculate the distance between the tile and the center of the cluster.
-
-                auto distance{GetDistance(x, y, centerX, centerY)};
-
-                // Skip if the distance is greater than the radius.
-
-                if (distance > radius)
-                {
-                    continue;
-                }
-
-                // Get the tile at the given coordinates.
-
-                auto tile{m_worldArea->GetTile(x, y)};
-
-                // Set the ground type of the tile.
-
-                if (tile)
-                {
-                    tile->SetGround(groundType);
-                }
-            }
-        }
-    }
 }

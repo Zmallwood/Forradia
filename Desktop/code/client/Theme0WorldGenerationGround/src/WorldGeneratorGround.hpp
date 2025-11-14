@@ -27,5 +27,7 @@ namespace Forradia::Theme0
         void GenerateMountainRanges() const;
 
         void GenerateValleys() const;
+
+        void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
     };
 }

@@ -18,8 +18,6 @@ namespace Forradia::Theme0
       protected:
         float GetDistance(int x1, int y1, int x2, int y2) const;
 
-        void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
-
         int GetMaxElevation() const;
 
         int GetMaxSlopePerTile() const;
