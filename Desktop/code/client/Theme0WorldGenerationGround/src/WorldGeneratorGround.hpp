@@ -29,5 +29,15 @@ namespace Forradia::Theme0
         void GenerateValleys() const;
 
         void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
+
+        int GetMaxElevation() const;
+
+        int GetMaxSlopePerTile() const;
+
+        int GetMaxAllowedElevation(int x, int y, int currentElevation) const;
+
+        int ClampElevation(int elevation) const;
+
+        void CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const;
     };
 }
