@@ -17,6 +17,8 @@ namespace Forradia::Theme0
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.
 
+        // Enumerate all eight surrounding directions for neighbor checks.
+
         // clang-format off
 
         int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
@@ -24,8 +26,12 @@ namespace Forradia::Theme0
 
         // clang-format on
 
+        // Visit each neighboring tile and update elevation when needed.
+
         for (auto dir = 0; dir < 8; dir++)
         {
+            // Compute the coordinates of the adjacent tile relative to the water tile.
+
             auto adjX{x + directions[dir][0]};
 
             auto adjY{y + directions[dir][1]};
@@ -54,6 +60,8 @@ namespace Forradia::Theme0
     void WorldGeneratorBase::CreateElevationHill(int centerX, int centerY, int radius,
                                                  int maxElevation) const
     {
+        // Traverse the candidate tiles within the bounding square of the hill footprint.
+
         for (auto y = centerY - radius; y <= centerY + radius; y++)
         {
             for (auto x = centerX - radius; x <= centerX + radius; x++)
@@ -67,6 +75,8 @@ namespace Forradia::Theme0
 
                 if (distance > radius)
                 {
+                    // Skip tiles outside of the circular hill radius.
+
                     continue;
                 }
 
@@ -81,6 +91,8 @@ namespace Forradia::Theme0
 
                 if (tile->GetGround() == Hash("GroundWater"))
                 {
+                    // Preserve water elevation to maintain coastlines.
+
                     continue;
                 }
 
@@ -94,6 +106,8 @@ namespace Forradia::Theme0
 
                 if (currentElevation >= maxElev)
                 {
+                    // Prevent further elevation changes once the cap is reached.
+
                     continue;
                 }
 
@@ -104,14 +118,16 @@ namespace Forradia::Theme0
                 auto baseElevationGain{static_cast<float>(
                     (1.0f - normalizedDistance * normalizedDistance) * maxElevation)};
 
+                // Adjust the elevation gain to avoid abrupt height increases near the peak.
+
                 // Apply smooth falloff as we approach the elevation cap.
-                // Start reducing gain when we're above 60% of max elevation for smoother
-                // transition.
+
+                // Start reducing gain when we're above 60% of max elevation for a smoother transition.
 
                 auto elevationRatio{static_cast<float>(currentElevation) /
                                     static_cast<float>(maxElev)};
 
-                auto falloffStart{0.6f}; // Start falloff at 60 % of max elevation
+                auto falloffStart{0.6f}; // Start falloff at 60 % of max elevation.
 
                 auto smoothScale{1.0f};
 
@@ -123,7 +139,7 @@ namespace Forradia::Theme0
 
                     auto falloffRange{1.0f - falloffStart};
 
-                    auto t{(elevationRatio - falloffStart) / falloffRange}; // t goes from 0 to 1
+                    auto t{(elevationRatio - falloffStart) / falloffRange}; // t goes from 0 to 1.
 
                     // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
                     // This gives a smoother, more natural falloff.
@@ -139,6 +155,8 @@ namespace Forradia::Theme0
 
                 if (elevationGain > 0)
                 {
+                    // Calculate the target elevation before applying slope limits.
+
                     auto desiredElevation{currentElevation + elevationGain};
 
                     // Limit elevation based on adjacent tiles to prevent steep slopes.
@@ -151,6 +169,8 @@ namespace Forradia::Theme0
 
                     if (newElevation > maxAllowedElevation)
                     {
+                        // Respect the slope constraint when the desired elevation is too high.
+
                         newElevation = maxAllowedElevation;
                     }
 
