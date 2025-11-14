@@ -34,7 +34,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
@@ -43,7 +43,7 @@ namespace Forradia::Theme0
 
             // Rabbits prefer grass areas, especially near water.
 
-            auto prefersLocation = false;
+            auto prefersLocation{false};
 
             if (tile->GetGround() == Hash("GroundGrass"))
             {
@@ -67,7 +67,7 @@ namespace Forradia::Theme0
 
             if (prefersLocation)
             {
-                auto newCreature = std::make_shared<Theme0::Creature>("CreatureWhiteRabbit");
+                auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
 
                 tile->SetCreature(newCreature);
 
@@ -85,7 +85,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
@@ -95,7 +95,7 @@ namespace Forradia::Theme0
             // Birds prefer areas with trees nearby (forests).
             // Check for trees in surrounding area.
 
-            auto nearbyTreesCount = 0;
+            auto nearbyTreesCount{0};
 
             for (auto checkY = y - 3; checkY <= y + 3; checkY++)
             {
@@ -113,11 +113,11 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto nearbyTile = worldArea->GetTile(checkX, checkY);
+                    auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
                     if (nearbyTile)
                     {
-                        auto objectsStack = nearbyTile->GetObjectsStack();
+                        auto objectsStack{nearbyTile->GetObjectsStack()};
 
                         if (objectsStack->GetSize() > 0)
                         {
@@ -131,7 +131,7 @@ namespace Forradia::Theme0
                 }
             }
 
-            auto prefersLocation = false;
+            auto prefersLocation{false};
 
             // Birds strongly prefer areas with trees (forests).
 
@@ -156,7 +156,7 @@ namespace Forradia::Theme0
 
             if (prefersLocation)
             {
-                auto newCreature = std::make_shared<Theme0::Creature>("CreatureRedBird");
+                auto newCreature{std::make_shared<Theme0::Creature>("CreatureRedBird")};
 
                 tile->SetCreature(newCreature);
 
@@ -170,13 +170,13 @@ namespace Forradia::Theme0
 
         for (auto source = 0; source < numWaterSources; source++)
         {
-            auto attempts = 0;
+            auto attempts{0};
 
-            auto waterX = 0;
+            auto waterX{0};
 
-            auto waterY = 0;
+            auto waterY{0};
 
-            auto foundWater = false;
+            auto foundWater{false};
 
             // Find a water tile.
 
@@ -186,7 +186,7 @@ namespace Forradia::Theme0
 
                 waterY = GetRandomInt(size.height);
 
-                auto tile = worldArea->GetTile(waterX, waterY);
+                auto tile{worldArea->GetTile(waterX, waterY)};
 
                 if (tile && tile->GetGround() == Hash("GroundWater"))
                 {
@@ -209,20 +209,20 @@ namespace Forradia::Theme0
 
             for (auto c = 0; c < creaturesInEcosystem; c++)
             {
-                auto angle = GetRandomInt(360) * M_PI / 180.0f;
+                auto angle{GetRandomInt(360) * M_PI / 180.0f};
 
-                auto distance = 2 + GetRandomInt(ecosystemRadius);
+                auto distance{2 + GetRandomInt(ecosystemRadius)};
 
-                auto creatureX = waterX + CInt(std::cos(angle) * distance);
+                auto creatureX{waterX + CInt(std::cos(angle) * distance)};
 
-                auto creatureY = waterY + CInt(std::sin(angle) * distance);
+                auto creatureY{waterY + CInt(std::sin(angle) * distance)};
 
                 if (!worldArea->IsValidCoordinate(creatureX, creatureY))
                 {
                     continue;
                 }
 
-                auto creatureTile = worldArea->GetTile(creatureX, creatureY);
+                auto creatureTile{worldArea->GetTile(creatureX, creatureY)};
 
                 if (!creatureTile || creatureTile->GetCreature() ||
                     creatureTile->GetGround() == Hash("GroundWater"))
@@ -234,7 +234,7 @@ namespace Forradia::Theme0
 
                 if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)
                 {
-                    auto newCreature = std::make_shared<Theme0::Creature>("CreatureWhiteRabbit");
+                    auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
 
                     creatureTile->SetCreature(newCreature);
 

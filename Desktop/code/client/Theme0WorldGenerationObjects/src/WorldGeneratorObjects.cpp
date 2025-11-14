@@ -41,7 +41,7 @@ namespace Forradia::Theme0
 
             auto centerY{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(centerX, centerY);
+            auto tile{worldArea->GetTile(centerX, centerY)};
 
             if (!tile || !IsValidForTree(centerX, centerY))
             {
@@ -70,7 +70,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto distance = GetDistance(x, y, centerX, centerY);
+                    auto distance{GetDistance(x, y, centerX, centerY)};
 
                     if (distance > radius)
                     {
@@ -79,13 +79,13 @@ namespace Forradia::Theme0
 
                     // Higher density in center, lower at edges.
 
-                    auto normalizedDistance = distance / radius;
+                    auto normalizedDistance{distance / radius};
 
-                    auto localDensity = treeDensity * (1.0f - normalizedDistance * 0.5f);
+                    auto localDensity{treeDensity * (1.0f - normalizedDistance * 0.5f)};
 
                     if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
                     {
-                        auto forestTile = worldArea->GetTile(x, y);
+                        auto forestTile{worldArea->GetTile(x, y)};
 
                         if (forestTile)
                         {
@@ -154,7 +154,7 @@ namespace Forradia::Theme0
 
             auto centerY{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(centerX, centerY);
+            auto tile{worldArea->GetTile(centerX, centerY)};
 
             if (!tile || !IsValidForTree(centerX, centerY))
             {
@@ -190,14 +190,14 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto meadowTile = worldArea->GetTile(x, y);
+                    auto meadowTile{worldArea->GetTile(x, y)};
 
                     if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
                     {
                         continue;
                     }
 
-                    auto distance = GetDistance(x, y, centerX, centerY);
+                    auto distance{GetDistance(x, y, centerX, centerY)};
 
                     if (distance > radius)
                     {

@@ -69,7 +69,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || !IsValidForTree(x, y))
             {
@@ -101,7 +101,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetWaterDepth() >= 4)
             {
@@ -110,7 +110,7 @@ namespace Forradia::Theme0
 
             // Higher elevation = more likely to have boulders.
 
-            auto elevation = tile->GetElevation();
+            auto elevation{tile->GetElevation()};
 
             // 3% base, +1% per 5 elevation.
             auto boulderProbability = 3 + (elevation / 5);
@@ -134,7 +134,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || !IsValidForTree(x, y))
             {
@@ -143,7 +143,7 @@ namespace Forradia::Theme0
 
             // Mushrooms prefer grass or dirt ground.
 
-            auto ground = tile->GetGround();
+            auto ground{tile->GetGround()};
 
             if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
             {
@@ -153,7 +153,7 @@ namespace Forradia::Theme0
             // Don't place mushrooms on tiles that already have trees or large objects.
             // (mushrooms are undergrowth, not replacement for trees).
 
-            auto objectsStack = tile->GetObjectsStack();
+            auto objectsStack{tile->GetObjectsStack()};
 
             if (objectsStack->GetSize() > 0)
             {
@@ -166,7 +166,7 @@ namespace Forradia::Theme0
             // Check if there are objects (likely trees) nearby.
             // Mushrooms often grow near trees in forest environments.
 
-            int nearbyObjectsCount = 0;
+            auto nearbyObjectsCount{0};
 
             for (auto checkY = y - 2; checkY <= y + 2; checkY++)
             {
@@ -184,7 +184,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto nearbyTile = worldArea->GetTile(checkX, checkY);
+                    auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
                     if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
                     {
@@ -196,11 +196,11 @@ namespace Forradia::Theme0
             // Higher probability if there are objects (trees) nearby (forest environment).
             // Mushrooms thrive in forest ecosystems.
 
-            auto baseProbability = 6; // 6% base probability.
+            auto baseProbability{6}; // 6% base probability.
 
-            auto forestBonus = nearbyObjectsCount * 3; // +3% per nearby object (tree).
+            auto forestBonus{nearbyObjectsCount * 3}; // +3% per nearby object (tree).
 
-            auto mushroomProbability = baseProbability + forestBonus;
+            auto mushroomProbability{baseProbability + forestBonus};
 
             // Cap probability at a reasonable maximum.
 
@@ -227,7 +227,7 @@ namespace Forradia::Theme0
 
             auto y{GetRandomInt(size.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile{worldArea->GetTile(x, y)};
 
             if (!tile)
             {
@@ -243,7 +243,7 @@ namespace Forradia::Theme0
 
             // Only place scraps on relatively clear tiles to prevent replacing major objects.
 
-            auto objectsStack = tile->GetObjectsStack();
+            auto objectsStack{tile->GetObjectsStack()};
 
             if (objectsStack->GetSize() > 0)
             {

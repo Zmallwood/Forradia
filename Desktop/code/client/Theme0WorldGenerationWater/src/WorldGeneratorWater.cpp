@@ -89,11 +89,11 @@ namespace Forradia::Theme0
 
             // Determine river length based on starting elevation.
 
-            auto startElevation = worldArea->GetTile(startX, startY)->GetElevation();
+            auto startElevation{worldArea->GetTile(startX, startY)->GetElevation()};
 
-            auto baseLength = 40;
+            auto baseLength{40};
 
-            auto lengthVariation = 60;
+            auto lengthVariation{60};
 
             if (startElevation > 40)
             {
@@ -128,13 +128,13 @@ namespace Forradia::Theme0
 
         for (auto i = 0; i < numLakes; i++)
         {
-            auto attempts = 0;
+            auto attempts{0};
 
-            auto centerX = 0;
+            auto centerX{0};
 
-            auto centerY = 0;
+            auto centerY{0};
 
-            auto foundLocation = false;
+            auto foundLocation{false};
 
             // Find a suitable valley location.
 
@@ -144,7 +144,7 @@ namespace Forradia::Theme0
 
                 centerY = GetRandomInt(size.height);
 
-                auto tile = worldArea->GetTile(centerX, centerY);
+                auto tile{worldArea->GetTile(centerX, centerY)};
 
                 if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
                 {
@@ -172,7 +172,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto tile = worldArea->GetTile(x, y);
+                    auto tile{worldArea->GetTile(x, y)};
 
                     if (!tile)
                     {
@@ -186,7 +186,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto distance = GetDistance(x, y, centerX, centerY);
+                    auto distance{GetDistance(x, y, centerX, centerY)};
 
                     if (distance * distance <= radius * radius)
                     {
@@ -194,7 +194,7 @@ namespace Forradia::Theme0
 
                         tile->SetGround("GroundWater");
 
-                        auto depth = static_cast<int>((1.0f - distance / radius) * 4.0f) + 1;
+                        auto depth{static_cast<int>((1.0f - distance / radius) * 4.0f) + 1};
 
                         tile->SetWaterDepth(depth);
 
