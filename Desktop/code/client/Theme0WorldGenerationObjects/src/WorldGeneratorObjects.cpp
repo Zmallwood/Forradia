@@ -228,4 +228,38 @@ namespace Forradia::Theme0
             }
         }
     }
+
+    bool WorldGeneratorObjects::IsValidForTree(int x, int y) const
+    {
+        // Check if the coordinates are valid.
+
+        if (!GetWorldArea()->IsValidCoordinate(x, y))
+        {
+            // Return false if not valid.
+
+            return false;
+        }
+
+        // Get the tile at the given coordinates.
+
+        auto tile = GetWorldArea()->GetTile(x, y);
+
+        // Return false if the tile is not found.
+
+        if (!tile)
+        {
+            // Return false if the tile is not found.
+
+            return false;
+        }
+
+        // Get the ground type of the tile.
+
+        auto ground{tile->GetGround()};
+
+        // Trees can't grow in water or on bare rock
+
+        return ground != Hash("GroundWater") && ground != Hash("GroundRock") &&
+               tile->GetWaterDepth() == 0;
+    }
 }

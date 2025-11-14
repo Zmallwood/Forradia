@@ -21,5 +21,7 @@ namespace Forradia::Theme0
         void GenerateMeadows() const;
 
         void GenerateObjectsInBiomes() const;
+
+        bool IsValidForTree(int x, int y) const;
     };
 }

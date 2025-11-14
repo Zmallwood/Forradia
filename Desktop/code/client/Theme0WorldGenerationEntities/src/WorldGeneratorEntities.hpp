@@ -19,5 +19,7 @@ namespace Forradia::Theme0
         void GenerateCreaturesInEcosystems() const;
 
         void GenerateRobotsInAreas() const;
+
+        bool IsNearWater(int x, int y, int radius) const;
     };
 }

@@ -208,4 +208,83 @@ namespace Forradia::Theme0
             }
         }
     }
+
+    bool WorldGeneratorWater::IsValidForWater(int x, int y) const
+    {
+        // Check if the coordinates are valid.
+
+        if (!GetWorldArea()->IsValidCoordinate(x, y))
+        {
+            // Return false if not valid.
+
+            return false;
+        }
+
+        // Get the tile at the given coordinates.
+
+        auto tile{GetWorldArea()->GetTile(x, y)};
+
+        // Return false if the tile is not found.
+
+        if (!tile)
+        {
+            // Return false if the tile is not found.
+
+            return false;
+        }
+
+        // Don't place water on high elevation (mountains).
+
+        return tile->GetElevation() < 80;
+    }
+    void WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const
+    {
+        // Set elevation to 0 for all tiles adjacent to a water tile.
+        // This creates a shoreline effect where land around water is at sea level.
+
+        // Enumerate all eight surrounding directions for neighbor checks.
+
+        // clang-format off
+
+        int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                             {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+
+        // clang-format on
+
+        // Visit each neighboring tile and update elevation when needed.
+
+        for (auto dir = 0; dir < 8; dir++)
+        {
+            // Compute the coordinates of the adjacent tile relative to the water tile.
+
+            auto adjacentX{x + directions[dir][0]};
+
+            auto adjacentY{y + directions[dir][1]};
+
+            // Skip if the adjacent tile is out of bounds.
+
+            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
+            {
+                continue;
+            }
+
+            // Get the adjacent tile.
+
+            auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
+
+            // Skip if the adjacent tile is not found.
+
+            if (!adjacentTile)
+            {
+                continue;
+            }
+
+            // Only set elevation to 0 for non-water tiles (shoreline).
+
+            if (adjacentTile->GetGround() != Hash("GroundWater"))
+            {
+                adjacentTile->SetElevation(0);
+            }
+        }
+    }
 }

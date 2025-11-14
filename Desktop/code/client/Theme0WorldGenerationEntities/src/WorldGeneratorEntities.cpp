@@ -117,4 +117,46 @@ namespace Forradia::Theme0
             }
         }
     }
+
+    bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const
+    {
+        // Check all tiles in the radius.
+
+        for (auto checkY = y - radius; checkY <= y + radius; checkY++)
+        {
+            for (auto checkX = x - radius; checkX <= x + radius; checkX++)
+            {
+                // Skip if the tile is out of bounds.
+
+                if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
+                {
+                    continue;
+                }
+
+                // Get the tile at the given coordinates.
+
+                auto tile{GetWorldArea()->GetTile(checkX, checkY)};
+
+                // Check if the tile is water.
+
+                if (tile && tile->GetGround() == Hash("GroundWater"))
+                {
+                    // Calculate the distance between the tile and the given coordinates.
+
+                    auto distance{GetDistance(x, y, checkX, checkY)};
+
+                    // Return true if the distance is less than or equal to the radius.
+
+                    if (distance <= radius)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // Return false if no adjacent tile is water.
+
+        return false;
+    }
 }

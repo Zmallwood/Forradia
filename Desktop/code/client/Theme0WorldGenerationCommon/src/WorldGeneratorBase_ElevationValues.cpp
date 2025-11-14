@@ -45,16 +45,24 @@ namespace Forradia::Theme0
 
         for (auto dir = 0; dir < 8; dir++)
         {
+            // Get the adjacent tile coordinates.
+
             auto adjacentX{x + directions[dir][0]};
 
             auto adjacentY{y + directions[dir][1]};
+
+            // Skip if the adjacent tile is out of bounds.
 
             if (!m_worldArea->IsValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
+            // Get the adjacent tile.
+
             auto adjacentTile{m_worldArea->GetTile(adjacentX, adjacentY)};
+
+            // Skip if the adjacent tile is not found.
 
             if (!adjacentTile)
             {
@@ -68,12 +76,16 @@ namespace Forradia::Theme0
                 continue;
             }
 
+            // Get the adjacent tile elevation.
+
             auto adjacentElevation{adjacentTile->GetElevation()};
 
             // The new elevation should not exceed adjacent tile elevation + max slope.
             // This prevents creating a steep upward slope from the adjacent tile.
 
             auto maxFromAdjacent{adjacentElevation + maxSlope};
+
+            // Update the maximum allowed elevation if the adjacent tile elevation is lower.
 
             if (maxFromAdjacent < maxAllowedElevation)
             {
@@ -86,17 +98,25 @@ namespace Forradia::Theme0
 
     int WorldGeneratorBase::ClampElevation(int elevation) const
     {
+        // Get the maximum elevation.
+
         auto maxElevation{GetMaxElevation()};
+
+        // Clamp the elevation to the maximum elevation.
 
         if (elevation > maxElevation)
         {
             return maxElevation;
         }
 
+        // Clamp the elevation to the minimum elevation.
+
         if (elevation < k_defaultGroundElevation)
         {
             return k_defaultGroundElevation;
         }
+
+        // Return the elevation.
 
         return elevation;
     }

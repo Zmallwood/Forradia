@@ -18,19 +18,7 @@ namespace Forradia::Theme0
       protected:
         float GetDistance(int x1, int y1, int x2, int y2) const;
 
-        int GetElevationAt(int x, int y) const;
-
-        bool IsValidForWater(int x, int y) const;
-
-        bool IsValidForTree(int x, int y) const;
-
-        bool IsNearWater(int x, int y, int radius) const;
-
-        bool IsAdjacentToWater(int x, int y) const;
-
         void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
-
-        void SetAdjacentTilesElevationToZero(int x, int y) const;
 
         int GetMaxElevation() const;
 

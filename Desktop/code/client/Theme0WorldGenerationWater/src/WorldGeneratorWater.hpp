@@ -21,5 +21,9 @@ namespace Forradia::Theme0
         void GenerateRiverFromSource(int startX, int startY, int length) const;
 
         void GenerateLakesInValleys() const;
+
+        bool IsValidForWater(int x, int y) const;
+
+        void SetAdjacentTilesElevationToZero(int x, int y) const;
     };
 }
