@@ -29,9 +29,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{worldArea->GetSize()};
+        auto worldAreaSize{worldArea->GetSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Generate robots in clusters and patrol areas.
         // Robots avoid water but can be found in various terrain types.
@@ -42,9 +42,9 @@ namespace Forradia::Theme0
 
         for (auto cluster = 0; cluster < numRobotClusters; cluster++)
         {
-            auto centerX{GetRandomInt(size.width)};
+            auto centerX{GetRandomInt(worldAreaSize.width)};
 
-            auto centerY{GetRandomInt(size.height)};
+            auto centerY{GetRandomInt(worldAreaSize.height)};
 
             auto centerTile = worldArea->GetTile(centerX, centerY);
 
@@ -90,13 +90,13 @@ namespace Forradia::Theme0
 
         // Also add scattered robots throughout the world.
 
-        auto numScatteredRobots{120 * scale + GetRandomInt(40 * scale)};
+        auto numScatteredRobots{120 * worldScaling + GetRandomInt(40 * worldScaling)};
 
         for (auto i = 0; i < numScatteredRobots; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 

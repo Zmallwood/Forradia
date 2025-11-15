@@ -23,7 +23,7 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
         // Generate rivers from various elevations.
 
@@ -68,9 +68,9 @@ namespace Forradia::Theme0
 
             while (attempts < 100 && !foundStart)
             {
-                startX = GetRandomInt(size.width);
+                startX = GetRandomInt(worldAreaSize.width);
 
-                startY = GetRandomInt(size.height);
+                startY = GetRandomInt(worldAreaSize.height);
 
                 auto tile = worldArea->GetTile(startX, startY);
 
@@ -118,9 +118,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create lakes in low-lying areas.
 
@@ -140,9 +140,9 @@ namespace Forradia::Theme0
 
             while (attempts < 50 && !foundLocation)
             {
-                centerX = GetRandomInt(size.width);
+                centerX = GetRandomInt(worldAreaSize.width);
 
-                centerY = GetRandomInt(size.height);
+                centerY = GetRandomInt(worldAreaSize.height);
 
                 auto tile{worldArea->GetTile(centerX, centerY)};
 
@@ -159,7 +159,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{CInt(3 * scale + GetRandomInt(6 * scale))};
+            auto radius{CInt(3 * worldScaling + GetRandomInt(6 * worldScaling))};
 
             auto irregularity{0.3f + GetRandomInt(20) / 100.0f};
 

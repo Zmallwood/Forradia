@@ -31,11 +31,11 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        for (auto y = 0; y < size.height; y++)
+        for (auto y = 0; y < worldAreaSize.height; y++)
         {
-            for (auto x = 0; x < size.width; x++)
+            for (auto x = 0; x < worldAreaSize.width; x++)
             {
                 auto tile{worldArea->GetTile(x, y)};
 
@@ -53,9 +53,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create distinct grass biomes with organic shapes.
         // Grass appears in areas with moderate elevation (not mountains, not deep valleys).
@@ -64,9 +64,9 @@ namespace Forradia::Theme0
 
         for (auto i = 0; i < numGrassBiomes; i++)
         {
-            auto xCenter{GetRandomInt(size.width)};
+            auto xCenter{GetRandomInt(worldAreaSize.width)};
 
-            auto yCenter{GetRandomInt(size.height)};
+            auto yCenter{GetRandomInt(worldAreaSize.height)};
 
             // Check if this area is suitable for grass (moderate elevation, not water).
 
@@ -77,7 +77,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{CInt(6 * scale + GetRandomInt(10 * scale))};
+            auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
 
             auto density{0.7f + GetRandomInt(30) / 100.0f}; // 0.7 to 1.0.
 
@@ -86,9 +86,9 @@ namespace Forradia::Theme0
 
         // Also add grass in valleys and low-lying areas naturally.
 
-        for (auto y = 0; y < size.height; y++)
+        for (auto y = 0; y < worldAreaSize.height; y++)
         {
-            for (auto x = 0; x < size.width; x++)
+            for (auto x = 0; x < worldAreaSize.width; x++)
             {
                 auto tile = worldArea->GetTile(x, y);
 
@@ -112,9 +112,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Place rocks on mountain peaks and high elevation areas.
 
@@ -122,9 +122,9 @@ namespace Forradia::Theme0
 
         for (auto i = 0; i < numRockFormations; i++)
         {
-            auto xCenter{GetRandomInt(size.width)};
+            auto xCenter{GetRandomInt(worldAreaSize.width)};
 
-            auto yCenter{GetRandomInt(size.height)};
+            auto yCenter{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(xCenter, yCenter)};
 
@@ -135,7 +135,7 @@ namespace Forradia::Theme0
 
             // Create rock formations on high elevation.
 
-            auto radius{CInt(2 * scale + GetRandomInt(5 * scale))};
+            auto radius{CInt(2 * worldScaling + GetRandomInt(5 * worldScaling))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {

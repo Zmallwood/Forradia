@@ -29,7 +29,7 @@ namespace Forradia::Theme0
 
         auto size{worldArea->GetSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create dense forest clusters.
 
@@ -48,7 +48,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{CInt(8 * scale + GetRandomInt(12 * scale))};
+            auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
 
             auto treeDensity{0.1f + GetRandomInt(20) / 100.0f}; // 0.4 to 0.6.
 
@@ -142,7 +142,7 @@ namespace Forradia::Theme0
 
         auto size{worldArea->GetSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create meadow areas with flowers and tall grass.
 
@@ -168,7 +168,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{CInt(5 * scale + GetRandomInt(8 * scale))};
+            auto radius{CInt(5 * worldScaling + GetRandomInt(8 * worldScaling))};
 
             // 0.15 to 0.3.
             auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f};

@@ -18,22 +18,22 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{worldArea->GetSize()};
+        auto worldAreaSize{worldArea->GetSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Add scattered objects throughout the world based on biomes.
         // This complements the forests and meadows.
 
         // Scattered trees outside of forests.
 
-        auto numScatteredTrees{300 * scale + GetRandomInt(150 * scale)};
+        auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
 
         for (auto i = 0; i < numScatteredTrees; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile = worldArea->GetTile(x, y);
 
@@ -61,13 +61,13 @@ namespace Forradia::Theme0
 
         // Scattered bushes.
 
-        auto numScatteredBushes{1000 * scale + GetRandomInt(100 * scale)};
+        auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -93,13 +93,13 @@ namespace Forradia::Theme0
 
         // Stone boulders - prefer higher elevation areas.
 
-        auto numBoulders{150 * scale + GetRandomInt(100 * scale)};
+        auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
 
         for (auto i = 0; i < numBoulders; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -126,13 +126,13 @@ namespace Forradia::Theme0
         // Brown mushrooms - prefer forest areas with trees nearby.
         // Mushrooms grow on forest floors, often near trees.
 
-        auto numMushrooms{600 * scale + GetRandomInt(400 * scale)};
+        auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
 
         for (auto i = 0; i < numMushrooms; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -219,13 +219,13 @@ namespace Forradia::Theme0
 
         // Scattered metal scraps - random remnants across the landscape.
 
-        auto numMetalScraps{10000 * scale + GetRandomInt(120 * scale)};
+        auto numMetalScraps{10000 * worldScaling + GetRandomInt(120 * worldScaling)};
 
         for (auto i = 0; i < numMetalScraps; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 

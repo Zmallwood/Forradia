@@ -20,19 +20,19 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{worldArea->GetSize()};
+        auto worldAreaSize{worldArea->GetSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Generate white rabbits - prefer areas near water and in meadows/grass.
 
-        auto numWhiteRabbits{180 * scale + GetRandomInt(40 * scale)};
+        auto numWhiteRabbits{180 * worldScaling + GetRandomInt(40 * worldScaling)};
 
         for (auto i = 0; i < numWhiteRabbits; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -77,13 +77,13 @@ namespace Forradia::Theme0
 
         // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
 
-        auto numRedBirds{120 * scale + GetRandomInt(30 * scale)};
+        auto numRedBirds{120 * worldScaling + GetRandomInt(30 * worldScaling)};
 
         for (auto i = 0; i < numRedBirds; i++)
         {
-            auto x{GetRandomInt(size.width)};
+            auto x{GetRandomInt(worldAreaSize.width)};
 
-            auto y{GetRandomInt(size.height)};
+            auto y{GetRandomInt(worldAreaSize.height)};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -182,9 +182,9 @@ namespace Forradia::Theme0
 
             while (attempts < 30 && !foundWater)
             {
-                waterX = GetRandomInt(size.width);
+                waterX = GetRandomInt(worldAreaSize.width);
 
-                waterY = GetRandomInt(size.height);
+                waterY = GetRandomInt(worldAreaSize.height);
 
                 auto tile{worldArea->GetTile(waterX, waterY)};
 

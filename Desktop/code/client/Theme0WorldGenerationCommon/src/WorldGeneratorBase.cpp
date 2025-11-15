@@ -22,9 +22,9 @@ namespace Forradia::Theme0
 
         m_worldArea = _<Theme0::World>().GetCurrentWorldArea();
 
-        m_size = m_worldArea->GetSize();
+        m_worldAreaSize = m_worldArea->GetSize();
 
-        m_scale = _<Theme0::Theme0Properties>().GetWorldScaling();
+        m_worldScaling = _<Theme0::Theme0Properties>().GetWorldScaling();
     }
 
     float WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) const

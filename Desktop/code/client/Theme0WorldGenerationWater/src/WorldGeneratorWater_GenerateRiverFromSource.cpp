@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
         const auto minRiverLength{20};
 
@@ -39,9 +39,9 @@ namespace Forradia::Theme0
                 x = 0;
             }
 
-            if (x >= size.width)
+            if (x >= worldAreaSize.width)
             {
-                x = size.width - 1;
+                x = worldAreaSize.width - 1;
             }
 
             if (y < 0)
@@ -49,14 +49,15 @@ namespace Forradia::Theme0
                 y = 0;
             }
 
-            if (y >= size.height)
+            if (y >= worldAreaSize.height)
             {
-                y = size.height - 1;
+                y = worldAreaSize.height - 1;
             }
 
             // If we're at the edge and have placed enough tiles, we can stop.
 
-            if ((x == 0 || x == size.width - 1 || y == 0 || y == size.height - 1) &&
+            if ((x == 0 || x == worldAreaSize.width - 1 || y == 0 ||
+                 y == worldAreaSize.height - 1) &&
                 tilesPlaced >= minRiverLength)
             {
                 // Still try to place water at the edge if valid.

@@ -14,19 +14,19 @@ namespace Forradia::Theme0
 {
     void WorldGeneratorGround::GenerateElevationWithBiomes() const
     {
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         auto numMajorHills{40 + GetRandomInt(20)};
 
         for (auto i = 0; i < numMajorHills; i++)
         {
-            auto xCenter{GetRandomInt(size.width)};
+            auto xCenter{GetRandomInt(worldAreaSize.width)};
 
-            auto yCenter{GetRandomInt(size.height)};
+            auto yCenter{GetRandomInt(worldAreaSize.height)};
 
-            auto radius{CInt(8 * scale + GetRandomInt(12 * scale))};
+            auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
 
             auto maxElevation{30 + GetRandomInt(20)};
 
@@ -38,9 +38,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create mountain ranges - chains of connected hills.
 
@@ -48,9 +48,9 @@ namespace Forradia::Theme0
 
         for (auto range = 0; range < numMountainRanges; range++)
         {
-            auto startX{GetRandomInt(size.width)};
+            auto startX{GetRandomInt(worldAreaSize.width)};
 
-            auto startY{GetRandomInt(size.height)};
+            auto startY{GetRandomInt(worldAreaSize.height)};
 
             auto length{30 + GetRandomInt(40)};
 
@@ -68,7 +68,7 @@ namespace Forradia::Theme0
 
                 if (worldArea->IsValidCoordinate(x, y))
                 {
-                    auto radius{CInt(4 * scale + GetRandomInt(6 * scale))};
+                    auto radius{CInt(4 * worldScaling + GetRandomInt(6 * worldScaling))};
 
                     auto elevation{120 + GetRandomInt(160)};
 
@@ -108,9 +108,9 @@ namespace Forradia::Theme0
     {
         auto worldArea{GetWorldArea()};
 
-        auto size{GetSize()};
+        auto worldAreaSize{GetWorldAreaSize()};
 
-        auto scale{GetScale()};
+        auto worldScaling{GetWorldScaling()};
 
         // Create valleys by reducing elevation in certain areas.
 
@@ -118,11 +118,11 @@ namespace Forradia::Theme0
 
         for (auto i = 0; i < numValleys; i++)
         {
-            auto xCenter{GetRandomInt(size.width)};
+            auto xCenter{GetRandomInt(worldAreaSize.width)};
 
-            auto yCenter{GetRandomInt(size.height)};
+            auto yCenter{GetRandomInt(worldAreaSize.height)};
 
-            auto radius{CInt(10 * scale + GetRandomInt(15 * scale))};
+            auto radius{CInt(10 * worldScaling + GetRandomInt(15 * worldScaling))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
