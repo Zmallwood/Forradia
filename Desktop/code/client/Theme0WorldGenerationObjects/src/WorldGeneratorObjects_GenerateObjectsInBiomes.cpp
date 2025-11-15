@@ -16,6 +16,8 @@ namespace Forradia::Theme0
 {
     void WorldGeneratorObjects::GenerateObjectsInBiomes() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto worldAreaSize{worldArea->GetSize()};
@@ -27,26 +29,42 @@ namespace Forradia::Theme0
 
         // Scattered trees outside of forests.
 
+        // Number of scattered trees.
+
         auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
+
+        // Create the scattered trees.
 
         for (auto i = 0; i < numScatteredTrees; i++)
         {
+            // Obtain a random position for the tree.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile = worldArea->GetTile(x, y);
 
-            if (!tile || !IsValidForTree(x, y))
+            // Do not continue if the tile is invalid or not valid for a tree.
+
+            if (!tile || !IsValidForFlora(x, y))
             {
                 continue;
             }
 
             // Prefer grass ground for scattered trees.
 
+            // Check if the tile has grass ground and if the random number is less than 8.
+
             if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
             {
+                // Clear the objects stack on the tile.
+
                 tile->GetObjectsStack()->ClearObjects();
+
+                // Add a tree with type of either fir or birch with a 50% chance.
 
                 if (GetRandomInt(100) < 50)
                 {
@@ -61,24 +79,40 @@ namespace Forradia::Theme0
 
         // Scattered bushes.
 
+        // Number of scattered bushes.
+
         auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
+
+        // Create the scattered bushes.
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {
+            // Obtain a random position for the bush.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile{worldArea->GetTile(x, y)};
 
-            if (!tile || !IsValidForTree(x, y))
+            // Do not continue if the tile is invalid or not valid for a bush.
+
+            if (!tile || !IsValidForFlora(x, y))
             {
                 continue;
             }
 
+            // Check probability of adding a bush.
+
             if (GetRandomInt(100) < 8)
             {
+                // Make it so that the tile has no other objects on it.
+
                 tile->GetObjectsStack()->ClearObjects();
+
+                // Add a bush with type of either bush1 or bush2 with a 50% chance.
 
                 if (GetRandomInt(100) < 50)
                 {
@@ -93,15 +127,26 @@ namespace Forradia::Theme0
 
         // Stone boulders - prefer higher elevation areas.
 
+        // Number of stone boulders.
+
         auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
+
+        // Create the stone boulders.
 
         for (auto i = 0; i < numBoulders; i++)
         {
+            // Obtain a random position for the boulder.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile{worldArea->GetTile(x, y)};
+
+            // Do not continue if the tile is invalid or the water depth is greater than or equal
+            // to 4.
 
             if (!tile || tile->GetWaterDepth() >= 4)
             {
@@ -113,11 +158,20 @@ namespace Forradia::Theme0
             auto elevation{tile->GetElevation()};
 
             // 3% base, +1% per 5 elevation.
+
+            // Calculate the probability of adding a boulder.
+
             auto boulderProbability = 3 + (elevation / 5);
+
+            // Check if a random number is less than the probability of adding a boulder.
 
             if (GetRandomInt(100) < boulderProbability)
             {
+                // Make it so that the tile has no other objects on it.
+
                 tile->GetObjectsStack()->ClearObjects();
+
+                // Add a stone boulder to the tile.
 
                 tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
             }
@@ -126,17 +180,27 @@ namespace Forradia::Theme0
         // Brown mushrooms - prefer forest areas with trees nearby.
         // Mushrooms grow on forest floors, often near trees.
 
+        // Number of brown mushrooms.
+
         auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
+
+        // Create the brown mushrooms.
 
         for (auto i = 0; i < numMushrooms; i++)
         {
+            // Obtain a random position for the mushroom.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile{worldArea->GetTile(x, y)};
 
-            if (!tile || !IsValidForTree(x, y))
+            // Do not continue if the tile is invalid or not valid for a mushroom.
+
+            if (!tile || !IsValidForFlora(x, y))
             {
                 continue;
             }

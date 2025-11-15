@@ -22,6 +22,6 @@ namespace Forradia::Theme0
 
         void GenerateObjectsInBiomes() const;
 
-        bool IsValidForTree(int x, int y) const;
+        bool IsValidForFlora(int x, int y) const;
     };
 }

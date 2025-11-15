@@ -43,7 +43,7 @@ namespace Forradia::Theme0
 
             auto tile{worldArea->GetTile(centerX, centerY)};
 
-            if (!tile || !IsValidForTree(centerX, centerY))
+            if (!tile || !IsValidForFlora(centerX, centerY))
             {
                 continue;
             }
@@ -65,7 +65,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    if (!IsValidForTree(x, y))
+                    if (!IsValidForFlora(x, y))
                     {
                         continue;
                     }
@@ -156,7 +156,7 @@ namespace Forradia::Theme0
 
             auto tile{worldArea->GetTile(centerX, centerY)};
 
-            if (!tile || !IsValidForTree(centerX, centerY))
+            if (!tile || !IsValidForFlora(centerX, centerY))
             {
                 continue;
             }
@@ -185,7 +185,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    if (!IsValidForTree(x, y))
+                    if (!IsValidForFlora(x, y))
                     {
                         continue;
                     }
@@ -229,7 +229,7 @@ namespace Forradia::Theme0
         }
     }
 
-    bool WorldGeneratorObjects::IsValidForTree(int x, int y) const
+    bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const
     {
         // Check if the coordinates are valid.
 
