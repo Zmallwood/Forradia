@@ -16,6 +16,8 @@ namespace Forradia::Theme0
 {
     void WorldGeneratorObjects::GenerateObjects() const
     {
+        // Do the steps to generate objects in the world.
+
         GenerateForests();
 
         GenerateMeadows();
@@ -25,6 +27,8 @@ namespace Forradia::Theme0
 
     void WorldGeneratorObjects::GenerateForests() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto size{worldArea->GetSize()};
@@ -33,68 +37,113 @@ namespace Forradia::Theme0
 
         // Create dense forest clusters.
 
+        // Number of forests.
+
         auto numForests{15 + GetRandomInt(10)};
+
+        // Create the forests.
 
         for (auto i = 0; i < numForests; i++)
         {
+            // Obtain a random position for the forest.
+
             auto centerX{GetRandomInt(size.width)};
 
             auto centerY{GetRandomInt(size.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile{worldArea->GetTile(centerX, centerY)};
+
+            // If the tile is invalid or not valid for a forest.
 
             if (!tile || !IsValidForFlora(centerX, centerY))
             {
+                // Continue to the next forest.
+
                 continue;
             }
 
+            // Calculate the radius of the forest.
+
             auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
 
-            auto treeDensity{0.1f + GetRandomInt(20) / 100.0f}; // 0.4 to 0.6.
+            // Calculate the tree density.
+
+            auto treeDensity{0.1f + GetRandomInt(20) / 100.0f};
 
             // Decide on forest type (fir or birch dominated).
 
             auto useFir{GetRandomInt(100) < 60};
 
+            // Create the forest.
+
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
+                    // If the coordinates are invalid.
+
                     if (!worldArea->IsValidCoordinate(x, y))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
+
+                    // If the tile is not valid for flora.
 
                     if (!IsValidForFlora(x, y))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
+
+                    // Calculate the distance between the tile and the center of the forest.
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
+                    // If the distance is greater than the radius.
+
                     if (distance > radius)
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
 
-                    // Higher density in center, lower at edges.
+                    // Calculate the normalized distance.
 
                     auto normalizedDistance{distance / radius};
 
+                    // Calculate the local density. Higher density in center, lower at edges.
+
                     auto localDensity{treeDensity * (1.0f - normalizedDistance * 0.5f)};
+
+                    // Check if a random number is less than the local density.
 
                     if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
                     {
+                        // Obtain the tile at the coordinates.
+
                         auto forestTile{worldArea->GetTile(x, y)};
+
+                        // If the tile is valid.
 
                         if (forestTile)
                         {
+                            // Make it so that the tile has no other objects on it.
+
                             forestTile->GetObjectsStack()->ClearObjects();
 
-                            // Mix of tree types, but favor one type.
+                            // Check if the forest should use fir or birch trees.
 
                             if (useFir)
                             {
+                                // Add a tree of fir type with a 70% chance, otherwise add a tree of
+                                // birch type.
+
                                 if (GetRandomInt(100) < 70)
                                 {
                                     forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
@@ -106,6 +155,9 @@ namespace Forradia::Theme0
                             }
                             else
                             {
+                                // Add a tree of birch type with a 70% chance, otherwise add a tree
+                                // of fir type.
+
                                 if (GetRandomInt(100) < 70)
                                 {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
