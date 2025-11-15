@@ -14,6 +14,8 @@ namespace Forradia::Theme0
 {
     void WorldGeneratorWater::GenerateWater() const
     {
+        // Do the steps to generate water.
+
         GenerateNaturalRivers();
 
         GenerateLakesInValleys();
@@ -21,29 +23,41 @@ namespace Forradia::Theme0
 
     void WorldGeneratorWater::GenerateNaturalRivers() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto worldAreaSize{GetWorldAreaSize()};
 
-        // Generate rivers from various elevations.
+        // Set the number of rivers to generate.
 
         auto numRivers{150 + GetRandomInt(100)};
 
+        // Generate the rivers.
+
         for (auto i = 0; i < numRivers; i++)
         {
-            auto attempts = 0;
+            // Initialize the number of attempts to find a starting point.
 
-            auto startX = 0;
+            auto attempts{0};
 
-            auto startY = 0;
+            // Initialize the starting coordinates.
 
-            auto foundStart = false;
+            auto startX{0};
+
+            auto startY{0};
+
+            // Initialize the flag to indicate that we found a starting point.
+
+            auto foundStart{false};
 
             // Vary starting elevations - some high, some medium, some low.
 
-            auto elevationType = GetRandomInt(100);
+            auto elevationType{GetRandomInt(100)};
 
-            auto minElevation = 0;
+            // Initialize the minimum elevation.
+
+            auto minElevation{0};
 
             if (elevationType < 40)
             {
@@ -68,47 +82,76 @@ namespace Forradia::Theme0
 
             while (attempts < 100 && !foundStart)
             {
+                // Generate a random starting point.
+
                 startX = GetRandomInt(worldAreaSize.width);
 
                 startY = GetRandomInt(worldAreaSize.height);
 
-                auto tile = worldArea->GetTile(startX, startY);
+                // Get the tile at the starting point.
+
+                auto tile{worldArea->GetTile(startX, startY)};
+
+                // If the tile is found and the elevation is greater than the minimum elevation, and
+                // the tile is a valid water placement location.
 
                 if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
                 {
+                    // Set the flag to indicate that we found a starting point.
+
                     foundStart = true;
                 }
+
+                // Increment the number of attempts.
 
                 attempts++;
             }
 
+            // If we didn't find a starting point.
+
             if (!foundStart)
             {
+                // Just continue to the next river.
+
                 continue;
             }
 
-            // Determine river length based on starting elevation.
+            // Obtain the starting elevation.
 
             auto startElevation{worldArea->GetTile(startX, startY)->GetElevation()};
 
+            // Initialize the base length.
+
             auto baseLength{40};
+
+            // Initialize the length variation.
 
             auto lengthVariation{60};
 
+            // Check if the starting elevation is within certain ranges.
+
             if (startElevation > 40)
             {
+                // Increase the base length and the length variation.
+
                 baseLength = 60;
 
                 lengthVariation = 80;
             }
             else if (startElevation > 15)
             {
+                // Increase the base length and the length variation.
+
                 baseLength = 50;
 
                 lengthVariation = 70;
             }
 
+            // Generate the length of the river.
+
             auto length{baseLength + GetRandomInt(lengthVariation)};
+
+            // Generate the river from the source.
 
             GenerateRiverFromSource(startX, startY, length);
         }
@@ -116,23 +159,33 @@ namespace Forradia::Theme0
 
     void WorldGeneratorWater::GenerateLakesInValleys() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto worldAreaSize{GetWorldAreaSize()};
 
         auto worldScaling{GetWorldScaling()};
 
-        // Create lakes in low-lying areas.
+        // Set the number of lakes to generate.
 
         auto numLakes{12 + GetRandomInt(8)};
 
+        // Generate the lakes.
+
         for (auto i = 0; i < numLakes; i++)
         {
+            // Initialize the number of attempts to find a suitable valley location.
+
             auto attempts{0};
+
+            // Initialize the center coordinates.
 
             auto centerX{0};
 
             auto centerY{0};
+
+            // Initialize the flag to indicate that we found a suitable valley location.
 
             auto foundLocation{false};
 
@@ -140,63 +193,104 @@ namespace Forradia::Theme0
 
             while (attempts < 50 && !foundLocation)
             {
+                // Generate a random center point.
+
                 centerX = GetRandomInt(worldAreaSize.width);
 
                 centerY = GetRandomInt(worldAreaSize.height);
 
+                // Get the tile at the center point.
+
                 auto tile{worldArea->GetTile(centerX, centerY)};
+
+                // If the tile is found and the elevation is less than or equal to 32, and the tile
+                // is not a water tile.
 
                 if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
                 {
+                    // Set the flag to indicate that we found a suitable valley location.
+
                     foundLocation = true;
                 }
 
                 attempts++;
             }
 
+            // If we didn't find a suitable valley location.
+
             if (!foundLocation)
             {
+                // Just continue to the next lake.
+
                 continue;
             }
 
+            // Obtain the radius of the lake.
+
             auto radius{CInt(3 * worldScaling + GetRandomInt(6 * worldScaling))};
 
+            // Obtain the irregularity of the lake.
+
             auto irregularity{0.3f + GetRandomInt(20) / 100.0f};
+
+            // Generate the lake.
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
+                    // Check if the coordinates are not valid.
+
                     if (!worldArea->IsValidCoordinate(x, y))
                     {
+                        // Just continue to the next tile.
+
                         continue;
                     }
+
+                    // Get the tile at the given coordinates.
 
                     auto tile{worldArea->GetTile(x, y)};
 
+                    // Skip if the tile is not found.
+
                     if (!tile)
                     {
+                        // Just continue to the next tile.
+
                         continue;
                     }
 
-                    // Skip if not suitable for water.
+                    // If not suitable for water.
 
                     if (!IsValidForWater(x, y))
                     {
+                        // Just continue to the next tile.
+
                         continue;
                     }
 
+                    // Obtain the distance from the center of the lake.
+
                     auto distance{GetDistance(x, y, centerX, centerY)};
+
+                    // If the distance is less than or equal to the radius of the lake.
 
                     if (distance * distance <= radius * radius)
                     {
-                        // Lakes always have elevation 0.
+                        // Set the ground to water.
 
                         tile->SetGround("GroundWater");
 
+                        // Obtain the depth of the water.
+
                         auto depth{static_cast<int>((1.0f - distance / radius) * 4.0f) + 1};
 
+                        // Set the water depth.
+
                         tile->SetWaterDepth(depth);
+
+                        // Lakes always have elevation 0.
 
                         tile->SetElevation(0);
 
