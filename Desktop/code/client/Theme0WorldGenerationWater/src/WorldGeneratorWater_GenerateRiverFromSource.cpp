@@ -24,6 +24,8 @@ namespace Forradia::Theme0
 
         const auto minRiverLength{20};
 
+        // Define the eight surrounding directions.
+
         int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
                                 {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
@@ -276,16 +278,24 @@ namespace Forradia::Theme0
 
                 for (auto dir = 0; dir < 8; dir++)
                 {
+                    // Compute the coordinates of the adjacent tile relative to the current tile.
+
                     auto checkX{x + directions[dir][0]};
 
                     auto checkY{y + directions[dir][1]};
+
+                    // Skip if the adjacent tile is out of bounds.
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
+                    // Get the adjacent tile.
+
                     auto checkTile{worldArea->GetTile(checkX, checkY)};
+
+                    // Skip if the adjacent tile is not found.
 
                     if (!checkTile)
                     {
@@ -296,6 +306,9 @@ namespace Forradia::Theme0
 
                     auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
+                    // If the adjacent tile is not a valid water placement location, and we haven't
+                    // placed enough tiles, try to place water here.
+
                     if (!canPlaceHere && tilesPlaced < minRiverLength)
                     {
                         if (checkTile->GetElevation() < 90 &&
@@ -305,29 +318,44 @@ namespace Forradia::Theme0
                         }
                     }
 
+                    // Skip if the adjacent tile is not a valid water placement location.
+
                     if (!canPlaceHere)
                     {
                         continue;
                     }
 
+                    // Get the elevation of the adjacent tile.
+
                     auto checkElevation{checkTile->GetElevation()};
+
+                    // If the elevation of the adjacent tile is lower than the best elevation,
+                    // update the best elevation.
 
                     if (checkElevation < bestElevation)
                     {
+                        // Update the best elevation.
+
                         bestElevation = checkElevation;
+
+                        // Update the best direction.
 
                         bestDX = static_cast<float>(directions[dir][0]);
 
                         bestDY = static_cast<float>(directions[dir][1]);
 
+                        // Set the flag to indicate that we found a downhill direction.
+
                         foundDownhill = true;
                     }
                 }
 
-                // Move in the chosen direction.
+                // If we found a downhill direction, move in the chosen direction.
 
                 if (foundDownhill)
                 {
+                    // Update the current position.
+
                     currentX += bestDX;
 
                     currentY += bestDY;
@@ -337,37 +365,67 @@ namespace Forradia::Theme0
                     // No clear downhill path - choose a random valid direction.
                     // Rivers don't need to flow downhill, they can flow in any direction.
 
+                    // To hold the result of whether we found a direction.
+
                     auto foundDirection{false};
+
+                    // Initialize the number of attempts to find a direction.
 
                     auto attempts{0};
 
+                    // Try to find a direction for 20 attempts.
+
                     while (!foundDirection && attempts < 20)
                     {
+                        // Get a random direction.
+
                         auto dir{GetRandomInt(8)};
+
+                        // Compute the coordinates of the tile to check.
 
                         auto checkX{x + directions[dir][0]};
 
                         auto checkY{y + directions[dir][1]};
 
+                        // If the coordinates are valid.
+
                         if (worldArea->IsValidCoordinate(checkX, checkY))
                         {
+                            // Get the adjacent tile.
+
                             auto checkTile{worldArea->GetTile(checkX, checkY)};
+
+                            // If the checked tile is found.
 
                             if (checkTile)
                             {
+                                // Check if the tile is a valid water placement location.
+
                                 auto canPlaceHere{IsValidForWater(checkX, checkY)};
+
+                                // If the tile is not a valid water placement location, and we
+                                // haven't placed enough tiles, try to place water here.
 
                                 if (!canPlaceHere && tilesPlaced < minRiverLength)
                                 {
+                                    // If the tile is a valid water placement location.
+
                                     if (checkTile->GetElevation() < 90 &&
                                         checkTile->GetGround() != Hash("GroundRock"))
                                     {
+                                        // Set the flag to indicate that we can place water here.
+
                                         canPlaceHere = true;
                                     }
                                 }
 
+                                // If the tile is a valid water placement location.
+
                                 if (canPlaceHere)
                                 {
+                                    // update the current osition and set the flag to indicate that
+                                    // we found a direction.
+
                                     currentX = static_cast<float>(checkX);
 
                                     currentY = static_cast<float>(checkY);
@@ -377,8 +435,12 @@ namespace Forradia::Theme0
                             }
                         }
 
+                        // Increment the number of attempts.
+
                         attempts++;
                     }
+
+                    // If we didn't find a direction.
 
                     if (!foundDirection)
                     {
