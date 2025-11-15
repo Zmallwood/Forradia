@@ -222,7 +222,8 @@ namespace Forradia::Theme0
             if (objectsStack->GetSize() > 0)
             {
                 // Skip if there's already a significant object (like a tree).
-                // But we might want to allow mushrooms with bushes.
+
+                // TODO: But we might want to allow mushrooms with bushes.
 
                 continue;
             }
@@ -236,22 +237,34 @@ namespace Forradia::Theme0
             {
                 for (auto checkX = x - 2; checkX <= x + 2; checkX++)
                 {
+                    // If the coordinates are the same as the current tile.
+
                     if (checkX == x && checkY == y)
                     {
-                        // Skip the current tile.
+                        // Continue to the next tile.
 
                         continue;
                     }
+
+                    // If the coordinates are invalid.
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
 
+                    // Obtain the tile at the coordinates.
+
                     auto nearbyTile{worldArea->GetTile(checkX, checkY)};
+
+                    // If the tile is valid and has objects on it.
 
                     if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
                     {
+                        // Increment the number of nearby objects.
+
                         nearbyObjectsCount++;
                     }
                 }
@@ -260,9 +273,15 @@ namespace Forradia::Theme0
             // Higher probability if there are objects (trees) nearby (forest environment).
             // Mushrooms thrive in forest ecosystems.
 
-            auto baseProbability{6}; // 6% base probability.
+            // 6% base probability.
 
-            auto forestBonus{nearbyObjectsCount * 3}; // +3% per nearby object (tree).
+            auto baseProbability{6};
+
+            // +3% per nearby object (tree).
+
+            auto forestBonus{nearbyObjectsCount * 3};
+
+            // Calculate the probability of adding a mushroom.
 
             auto mushroomProbability{baseProbability + forestBonus};
 
@@ -273,9 +292,15 @@ namespace Forradia::Theme0
                 mushroomProbability = 25;
             }
 
+            // Check if a random number is less than the probability of adding a mushroom.
+
             if (GetRandomInt(100) < mushroomProbability)
             {
+                // Make it so that the tile has no other objects on it.
+
                 tile->GetObjectsStack()->ClearObjects();
+
+                // Add a brown mushroom to the tile.
 
                 tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
             }
