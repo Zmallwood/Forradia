@@ -14,10 +14,14 @@
 
 #include "ObjectsStack.hpp"
 
+#include "Object.hpp"
+
 namespace Forradia::Theme0
 {
     void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto worldAreaSize{worldArea->GetSize()};
@@ -26,35 +30,54 @@ namespace Forradia::Theme0
 
         // Generate white rabbits - prefer areas near water and in meadows/grass.
 
+        // Number of white rabbits to generate.
+
         auto numWhiteRabbits{180 * worldScaling + GetRandomInt(40 * worldScaling)};
+
+        // Generate white rabbits.
 
         for (auto i = 0; i < numWhiteRabbits; i++)
         {
+            // Generate a random position.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Get the tile at the position.
+
             auto tile{worldArea->GetTile(x, y)};
+
+            // If the tile is invalid, or already has a creature or is water.
 
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
+                // Skip this position.
+
                 continue;
             }
 
-            // Rabbits prefer grass areas, especially near water.
+            // To hold result from the algorithm for determining if the rabbit should be placed at
+            // this position.
 
             auto prefersLocation{false};
 
+            // Rabbits prefer grass areas.
+
             if (tile->GetGround() == Hash("GroundGrass"))
             {
-                // Higher chance if near water.
+                // Check if there is water within 8 tiles of the rabbit.
 
                 if (IsNearWater(x, y, 8))
                 {
+                    // Higher chance if near water.
+
                     prefersLocation = GetRandomInt(100) < 40;
                 }
                 else
                 {
+                    // Lower chance if not near water.
+
                     prefersLocation = GetRandomInt(100) < 20;
                 }
             }
@@ -65,11 +88,19 @@ namespace Forradia::Theme0
                 prefersLocation = GetRandomInt(100) < 5;
             }
 
+            // If the rabbit should be placed at this position.
+
             if (prefersLocation)
             {
+                // Create a new rabbit.
+
                 auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
 
+                // Set the rabbit on the tile.
+
                 tile->SetCreature(newCreature);
+
+                // Add the rabbit to the world area creatures mirror.
 
                 worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
             }
@@ -77,30 +108,48 @@ namespace Forradia::Theme0
 
         // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
 
+        // Number of red birds to generate.
+
         auto numRedBirds{120 * worldScaling + GetRandomInt(30 * worldScaling)};
+
+        // Generate the red birds.
 
         for (auto i = 0; i < numRedBirds; i++)
         {
+            // Generate a random position.
+
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
 
+            // Get the tile at the position.
+
             auto tile{worldArea->GetTile(x, y)};
+
+            // If the tile is invalid, or already has a creature or is water.
 
             if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
             {
+                // Skip this position.
+
                 continue;
             }
 
             // Birds prefer areas with trees nearby (forests).
             // Check for trees in surrounding area.
 
+            // To hold the number of trees nearby.
+
             auto nearbyTreesCount{0};
+
+            // Check for trees in the surrounding area.
 
             for (auto checkY = y - 3; checkY <= y + 3; checkY++)
             {
                 for (auto checkX = x - 3; checkX <= x + 3; checkX++)
                 {
+                    // If the current tile is the same as the bird's tile.
+
                     if (checkX == x && checkY == y)
                     {
                         // Skip the current tile.
@@ -108,24 +157,46 @@ namespace Forradia::Theme0
                         continue;
                     }
 
+                    // If the current tile is out of bounds.
+
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
+                        // Skip the current tile.
+
                         continue;
                     }
 
+                    // Get the tile at the position.
+
                     auto nearbyTile{worldArea->GetTile(checkX, checkY)};
+
+                    // If the tile is valid.
 
                     if (nearbyTile)
                     {
+                        // Get the objects stack from the tile.
+
                         auto objectsStack{nearbyTile->GetObjectsStack()};
+
+                        // If the objects stack is not empty.
 
                         if (objectsStack->GetSize() > 0)
                         {
-                            // Check if it's a tree (FirTree or BirchTree).
-                            // Note: We check if there are objects, which likely includes trees.
-                            // Birds can perch on trees, so nearby trees increase probability.
+                            for (auto object : objectsStack->GetObjects())
+                            {
+                                auto objectType{object->GetType()};
 
-                            nearbyTreesCount++;
+                                if (objectType == Hash("ObjectFirTree") ||
+                                    objectType == Hash("ObjectBirchTree"))
+                                {
+                                    nearbyTreesCount++;
+
+                                    // Birds can perch on trees, so nearby trees increase
+                                    // probability.
+
+                                    nearbyTreesCount++;
+                                }
+                            }
                         }
                     }
                 }
