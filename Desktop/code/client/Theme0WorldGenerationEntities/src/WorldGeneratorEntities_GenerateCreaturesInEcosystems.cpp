@@ -202,6 +202,9 @@ namespace Forradia::Theme0
                 }
             }
 
+            // To hold result from the algorithm for determining if the bird should be placed at
+            // this position.
+
             auto prefersLocation{false};
 
             // Birds strongly prefer areas with trees (forests).
@@ -225,11 +228,19 @@ namespace Forradia::Theme0
                 prefersLocation = GetRandomInt(100) < 8;
             }
 
+            // If the bird should be placed at this position.
+
             if (prefersLocation)
             {
+                // Create a new bird.
+
                 auto newCreature{std::make_shared<Theme0::Creature>("CreatureRedBird")};
 
+                // Set the bird on the tile.
+
                 tile->SetCreature(newCreature);
+
+                // Add the bird to the world area creatures mirror.
 
                 worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
             }
@@ -239,13 +250,33 @@ namespace Forradia::Theme0
 
         auto numWaterSources{15 + GetRandomInt(10)};
 
+        // Generate the creature clusters near water sources.
+
         for (auto source = 0; source < numWaterSources; source++)
         {
+            // Generate a random position.
+
+            auto x{GetRandomInt(worldAreaSize.width)};
+
+            auto y{GetRandomInt(worldAreaSize.height)};
+
+            // Get the tile at the position.
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            // To hold the number of attempts to find a water tile.
+
             auto attempts{0};
+
+            // To hold the x coordinate of the water tile.
 
             auto waterX{0};
 
+            // To hold the y coordinate of the water tile.
+
             auto waterY{0};
+
+            // To hold if a water tile was found.
 
             auto foundWater{false};
 
@@ -253,14 +284,22 @@ namespace Forradia::Theme0
 
             while (attempts < 30 && !foundWater)
             {
+                // Generate a random position.
+
                 waterX = GetRandomInt(worldAreaSize.width);
 
                 waterY = GetRandomInt(worldAreaSize.height);
 
+                // Get the tile at the position.
+
                 auto tile{worldArea->GetTile(waterX, waterY)};
+
+                // If the tile is valid and is water.
 
                 if (tile && tile->GetGround() == Hash("GroundWater"))
                 {
+                    // Water tile has been found.
+
                     foundWater = true;
                 }
 
