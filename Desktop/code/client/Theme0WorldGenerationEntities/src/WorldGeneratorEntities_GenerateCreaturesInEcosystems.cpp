@@ -303,19 +303,31 @@ namespace Forradia::Theme0
                     foundWater = true;
                 }
 
+                // Increment the attempts counter.
+
                 attempts++;
             }
 
+            // If no water tile was found.
+
             if (!foundWater)
             {
+                // Skip this source.
+
                 continue;
             }
 
             // Create a small ecosystem around the water source.
 
+            // Determine the radius of the ecosystem.
+
             auto ecosystemRadius{5 + GetRandomInt(8)};
 
+            // Determine the number of creatures in the ecosystem.
+
             auto creaturesInEcosystem{3 + GetRandomInt(5)};
+
+            // Generate the creatures in the ecosystem.
 
             for (auto c = 0; c < creaturesInEcosystem; c++)
             {
