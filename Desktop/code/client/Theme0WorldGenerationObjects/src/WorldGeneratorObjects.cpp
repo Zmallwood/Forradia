@@ -170,14 +170,22 @@ namespace Forradia::Theme0
 
                             // Add undergrowth in forests.
 
+                            // If a random number between 0 and 100 is less than 25.
+
                             if (GetRandomInt(100) < 25)
                             {
+                                // Check if a random number between 0 and 100 is less than 50.
+
                                 if (GetRandomInt(100) < 50)
                                 {
+                                    // Add a bush of type 1.
+
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush1");
                                 }
                                 else
                                 {
+                                    // Otherwise add a bush of type 2.
+
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush2");
                                 }
                             }
@@ -190,6 +198,8 @@ namespace Forradia::Theme0
 
     void WorldGeneratorObjects::GenerateMeadows() const
     {
+        // Obtain required data.
+
         auto worldArea{GetWorldArea()};
 
         auto size{worldArea->GetSize()};
@@ -198,18 +208,30 @@ namespace Forradia::Theme0
 
         // Create meadow areas with flowers and tall grass.
 
+        // Number of meadows.
+
         auto numMeadows{20 + GetRandomInt(15)};
+
+        // Create the meadows.
 
         for (auto i = 0; i < numMeadows; i++)
         {
+            // Obtain a random position for the meadow.
+
             auto centerX{GetRandomInt(size.width)};
 
             auto centerY{GetRandomInt(size.height)};
 
+            // Obtain the tile at the random position.
+
             auto tile{worldArea->GetTile(centerX, centerY)};
+
+            // If the tile is invalid or not valid for a meadow.
 
             if (!tile || !IsValidForFlora(centerX, centerY))
             {
+                // Continue to the next meadow.
+
                 continue;
             }
 
@@ -220,39 +242,65 @@ namespace Forradia::Theme0
                 continue;
             }
 
+            // Calculate the radius of the meadow.
+
             auto radius{CInt(5 * worldScaling + GetRandomInt(8 * worldScaling))};
 
             // 0.15 to 0.3.
+
             auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f};
 
             // 0.2 to 0.4.
+
             auto grassDensity{0.2f + GetRandomInt(20) / 100.0f};
+
+            // Create the meadow.
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
+                    // If the coordinates are invalid.
+
                     if (!worldArea->IsValidCoordinate(x, y))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
+
+                    // If the tile is not valid for flora.
 
                     if (!IsValidForFlora(x, y))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
+
+                    // Obtain the tile at the coordinates.
 
                     auto meadowTile{worldArea->GetTile(x, y)};
 
+                    // If the tile is invalid or not valid for a meadow.
+
                     if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
 
+                    // Calculate the distance between the tile and the center of the meadow.
+
                     auto distance{GetDistance(x, y, centerX, centerY)};
+
+                    // If the distance is greater than the radius.
 
                     if (distance > radius)
                     {
+                        // Continue to the next tile.
+
                         continue;
                     }
 
@@ -260,19 +308,24 @@ namespace Forradia::Theme0
 
                     if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
                     {
+                        // Clear the objects on the tile.
+
                         meadowTile->GetObjectsStack()->ClearObjects();
+
+                        // Add a pink flower to the tile.
 
                         meadowTile->GetObjectsStack()->AddObject("ObjectPinkFlower");
                     }
-
-                    // Add tall grass (only if no flower was placed).
-
                     else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
                     {
                         // Only add if we didn't just add a flower above.
                         // (This is handled by the else if, so we're good).
 
+                        // Clear the objects on the tile.
+
                         meadowTile->GetObjectsStack()->ClearObjects();
+
+                        // Add a tall grass to the tile.
 
                         meadowTile->GetObjectsStack()->AddObject("ObjectTallGrass");
                     }
