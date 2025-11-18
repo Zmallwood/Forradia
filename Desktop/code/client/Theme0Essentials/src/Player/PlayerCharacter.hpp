@@ -75,7 +75,7 @@ namespace Forradia::Theme0::GameplayCore
 
         auto &GetObjectsInventoryRef() const
         {
-            return *m_objectsInventory;
+            return *m_playerObjectsInventory;
         }
 
       private:
@@ -97,6 +97,6 @@ namespace Forradia::Theme0::GameplayCore
 
         int m_money{0};
 
-        SharedPtr<PlayerObjectsInventory> m_objectsInventory;
+        SharedPtr<PlayerObjectsInventory> m_playerObjectsInventory;
     };
 }
