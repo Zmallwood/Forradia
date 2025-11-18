@@ -10,7 +10,7 @@
 
 #include "Mouse/MouseInput.hpp"
 
-#include "PlayerCharacter.hpp"
+#include "Player/PlayerCharacter.hpp"
 
 #include "NumbersUtilities.hpp"
 

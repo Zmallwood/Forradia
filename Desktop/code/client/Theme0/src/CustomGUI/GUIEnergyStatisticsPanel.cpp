@@ -8,7 +8,7 @@
 
 #include "GUILabel.hpp"
 
-#include "EnergyComputation.hpp"
+#include "Energy/EnergyComputation.hpp"
 
 namespace Forradia
 {

@@ -13,10 +13,14 @@ namespace Forradia::Theme0
 
 namespace Forradia::Theme0::GameplayCore
 {
-    class ObjectsInventory
+    ///
+    /// Represents the inventory of objects for the player.
+    /// TODO: Decide if should be used also for other entities.
+    ///
+    class PlayerObjectsInventory
     {
       public:
-        ObjectsInventory();
+        PlayerObjectsInventory();
 
         SharedPtr<Object> GetObject(int index);
 

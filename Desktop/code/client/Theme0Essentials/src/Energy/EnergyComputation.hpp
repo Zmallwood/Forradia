@@ -8,9 +8,17 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
+    ///
+    /// Does computations related to energy for the player.
+    ///
     class EnergyComputation
     {
       public:
+        ///
+        /// Computes the energy production per tile.
+        ///
+        /// @return The energy production per tile.
+        ///
         float ComputeEnergyProductionPerTile();
     };
 }

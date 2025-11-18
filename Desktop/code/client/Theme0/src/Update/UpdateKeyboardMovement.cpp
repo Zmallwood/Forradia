@@ -8,7 +8,7 @@
 
 #include "Keyboard/KeyboardInput.hpp"
 
-#include "PlayerCharacter.hpp"
+#include "Player/PlayerCharacter.hpp"
 
 #include "NumbersUtilities.hpp"
 

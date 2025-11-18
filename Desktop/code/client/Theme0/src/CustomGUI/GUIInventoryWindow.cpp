@@ -10,9 +10,9 @@
 
 #include "Image2DRenderer.hpp"
 
-#include "PlayerCharacter.hpp"
+#include "Player/PlayerCharacter.hpp"
 
-#include "ObjectsInventory.hpp"
+#include "Player/PlayerObjectsInventory.hpp"
 
 #include "Object.hpp"
 

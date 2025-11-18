@@ -4,16 +4,14 @@
 // (see LICENSE for details)
 //
 
-#pragma once
+#include "EnergyComputation.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
-    enum class BodyPartTypes
+    float EnergyComputation::ComputeEnergyProductionPerTile()
     {
-        None,
-        OverallBody,
-        RightArm,
-        LeftArm,
-        Legs
-    };
+        // TODO: Implement this.
+
+        return 0.0f;
+    }
 }

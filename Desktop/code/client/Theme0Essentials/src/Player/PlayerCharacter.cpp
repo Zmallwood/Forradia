@@ -14,13 +14,13 @@
 
 #include "ObjectsStack.hpp"
 
-#include "ObjectsInventory.hpp"
+#include "PlayerObjectsInventory.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
     void PlayerCharacter::Initialize()
     {
-        m_objectsInventory = std::make_shared<ObjectsInventory>();
+        m_objectsInventory = std::make_shared<PlayerObjectsInventory>();
 
         this->MoveToSuitablePosition();
 

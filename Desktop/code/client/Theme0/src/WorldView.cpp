@@ -6,7 +6,7 @@
 
 #include "WorldView.hpp"
 
-#include "PlayerCharacter.hpp"
+#include "Player/PlayerCharacter.hpp"
 
 #include "Theme0Properties.hpp"
 

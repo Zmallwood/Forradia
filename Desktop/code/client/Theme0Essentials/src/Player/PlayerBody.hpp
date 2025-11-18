@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include "BodyPartTypes.hpp"
-
-#include "BodyPart.hpp"
+#include "PlayerBodyPartTypes.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
+    class PlayerBodyPart;
+
     class PlayerBody
     {
       public:
@@ -20,11 +20,11 @@ namespace Forradia::Theme0::GameplayCore
             Initialize();
         }
 
-        BodyPart *GetBodyPartPtr(BodyPartTypes bodyPartType);
+        SharedPtr<PlayerBodyPart> GetBodyPartPtr(PlayerBodyPartTypes bodyPartType);
 
       private:
         void Initialize();
 
-        std::map<BodyPartTypes, BodyPart> m_bodyParts;
+        std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts;
     };
 }

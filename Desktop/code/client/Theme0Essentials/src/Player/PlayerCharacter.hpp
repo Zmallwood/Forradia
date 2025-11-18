@@ -10,7 +10,7 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
-    class ObjectsInventory;
+    class PlayerObjectsInventory;
 
     class PlayerCharacter
     {
@@ -97,6 +97,6 @@ namespace Forradia::Theme0::GameplayCore
 
         int m_money{0};
 
-        SharedPtr<ObjectsInventory> m_objectsInventory;
+        SharedPtr<PlayerObjectsInventory> m_objectsInventory;
     };
 }

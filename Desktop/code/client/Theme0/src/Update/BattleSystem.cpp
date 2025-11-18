@@ -10,7 +10,7 @@
 
 #include "WorldArea.hpp"
 
-#include "PlayerCharacter.hpp"
+#include "Player/PlayerCharacter.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
