@@ -30,7 +30,6 @@
 
 namespace Forradia::Theme0
 {
-
     void GameSaving::SaveGame()
     {
         auto worldArea{_<World>().GetCurrentWorldArea()};

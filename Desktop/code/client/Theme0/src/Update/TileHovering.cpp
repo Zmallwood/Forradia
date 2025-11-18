@@ -24,12 +24,12 @@ namespace Forradia::Theme0::GameplayCore
 {
     void TileHovering::Update()
     {
-        DetermineHoveredCoordinateWithRaycasting();
+        this->DetermineHoveredCoordinateWithRaycasting();
     }
 
     void TileHovering::DetermineHoveredCoordinateWithRaycasting()
     {
-        IterateOverRenderedTiles();
+        this->IterateOverRenderedTiles();
     }
 
     void TileHovering::IterateOverRenderedTiles()

@@ -34,10 +34,8 @@
 
 namespace Forradia::Theme0::GameplayCore
 {
-
     void WorldView::Initiallize()
     {
-
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto worldAreaSize{worldArea->GetSize()};

@@ -15,7 +15,7 @@ namespace Forradia::Theme0
       public:
         GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
-            Initialize();
+            this->Initialize();
         }
 
       protected:
