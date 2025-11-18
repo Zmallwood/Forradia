@@ -37,9 +37,6 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionForage")>();
 
     template <>
-    Action GetAction<Hash("ActionForageContinue")>();
-
-    template <>
     Action GetAction<Hash("ActionChopTree")>();
 
     template <>
@@ -301,46 +298,6 @@ namespace Forradia::Theme0
 
                     _<GUIChatBox>().Print("Foraging... You found some "
                                           "blueberries!");
-
-                    s_timedActions.insert(
-                        {GetTicks() + 2000, GetAction<Hash("ActionForageContinue")>().action});
-                }};
-    }
-
-    template <>
-    Action GetAction<Hash("ActionForageContinue")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
-                    auto direction{GetRandomInt(4)};
-
-                    switch (direction)
-                    {
-                    case 0:
-                        _<GameplayCore::PlayerCharacter>().MoveNorth();
-                        break;
-                    case 1:
-                        _<GameplayCore::PlayerCharacter>().MoveEast();
-                        break;
-                    case 2:
-                        _<GameplayCore::PlayerCharacter>().MoveSouth();
-                        break;
-                    case 3:
-                        _<GameplayCore::PlayerCharacter>().MoveWest();
-                        break;
-                    }
-
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-                    inventory.AddObject("ObjectBlueberries");
-
-                    _<GUIChatBox>().Print("Continue foraging... You "
-                                          "found some blueberries!");
-
-                    s_timedActions.insert(
-                        {GetTicks() + 2000, GetAction<Hash("ActionForageContinue")>().action});
                 }};
     }
 
