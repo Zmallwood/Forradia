@@ -331,24 +331,40 @@ namespace Forradia::Theme0
 
             for (auto c = 0; c < creaturesInEcosystem; c++)
             {
+                // Generate a random angle.
+
                 auto angle{GetRandomInt(360) * M_PI / 180.0f};
 
+                // Generate a random distance.
+
                 auto distance{2 + GetRandomInt(ecosystemRadius)};
+
+                // Calculate the coordinates of the creature.
 
                 auto creatureX{waterX + CInt(std::cos(angle) * distance)};
 
                 auto creatureY{waterY + CInt(std::sin(angle) * distance)};
 
+                // If the coordinates are out of bounds.
+
                 if (!worldArea->IsValidCoordinate(creatureX, creatureY))
                 {
+                    // Skip this creature.
+
                     continue;
                 }
 
+                // Get the tile at the coordinates.
+
                 auto creatureTile{worldArea->GetTile(creatureX, creatureY)};
+
+                // If the tile is invalid, or already has a creature or is water.
 
                 if (!creatureTile || creatureTile->GetCreature() ||
                     creatureTile->GetGround() == Hash("GroundWater"))
                 {
+                    // Skip this creature.
+
                     continue;
                 }
 
@@ -356,9 +372,15 @@ namespace Forradia::Theme0
 
                 if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)
                 {
+                    // Create a new creature.
+
                     auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
 
+                    // Set the creature on the tile.
+
                     creatureTile->SetCreature(newCreature);
+
+                    // Add the creature to the world area creatures mirror.
 
                     worldArea->GetCreaturesMirrorRef().insert(
                         {creatureTile->GetCreature(), {creatureX, creatureY}});
