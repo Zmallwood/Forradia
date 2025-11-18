@@ -246,7 +246,7 @@ namespace Forradia::Theme0::GameplayCore
                     if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
                     {
                         _<ModelRenderer>().DrawModel(
-                            Hash("PlayerFemale"), (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
                             (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                     }
                 }
