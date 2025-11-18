@@ -79,9 +79,9 @@ namespace Forradia::Theme0
 
         m_entries.push_back({"Plow land", actionPlowLand.action});
 
-        auto actionChopDownTrees{GetAction<Hash("ActionChopTrees")>()};
+        auto actionChopTree{GetAction<Hash("ActionChopTree")>()};
 
-        m_entries.push_back({"Chop down trees", actionChopDownTrees.action});
+        m_entries.push_back({"Chop tree", actionChopTree.action});
 
         auto actionSimpleShelter{GetAction<Hash("ActionBuildSimpleShelter")>()};
 
@@ -150,6 +150,10 @@ namespace Forradia::Theme0
     void GUIInteractionMenu::UpdateDerived()
     {
         GUIPanel::UpdateDerived();
+
+        auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
+
+        this->SetHeight(newHeight);
 
         auto bounds{this->GetBounds()};
 

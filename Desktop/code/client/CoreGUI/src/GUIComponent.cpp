@@ -106,4 +106,11 @@ namespace Forradia
 
         m_bounds.y = newPosition.y;
     }
+
+    void GUIComponent::SetHeight(float newHeight)
+    {
+        // Update the height of the component's bounds.
+
+        m_bounds.height = newHeight;
+    }
 }

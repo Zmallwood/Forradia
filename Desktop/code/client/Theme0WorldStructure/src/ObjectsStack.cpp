@@ -77,4 +77,13 @@ namespace Forradia::Theme0
 
         return object;
     }
+
+    int ObjectsStack::CountHasObject(StringView objectTypeName) const
+    {
+        // Return the number of objects of the specified type in the stack.
+
+        return std::count_if(m_objects.begin(), m_objects.end(),
+                             [&](const SharedPtr<Object> &object)
+                             { return object->GetType() == Hash(objectTypeName); });
+    }
 }

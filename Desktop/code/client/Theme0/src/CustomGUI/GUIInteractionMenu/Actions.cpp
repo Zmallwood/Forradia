@@ -34,19 +34,13 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionStop")>();
 
     template <>
-    Action GetAction<Hash("ActionSitByComputer")>();
-
-    template <>
     Action GetAction<Hash("ActionForage")>();
 
     template <>
     Action GetAction<Hash("ActionForageContinue")>();
 
     template <>
-    Action GetAction<Hash("ActionChopTrees")>();
-
-    template <>
-    Action GetAction<Hash("ActionMoveToClosestTree")>();
+    Action GetAction<Hash("ActionChopTree")>();
 
     template <>
     Action GetAction<Hash("ActionPickBranch")>();
@@ -264,86 +258,33 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionChopTrees")>()
+    Action GetAction<Hash("ActionChopTree")>()
     {
         return {.groundMatches = {Hash("GroundGrass")},
                 .objectMatches = {},
                 .action = []()
                 {
-                    _<GUIChatBox>().Print("You start chopping down trees.");
-
-                    GetAction<Hash("ActionMoveToClosestTree")>().action();
-                }};
-    }
-
-    template <>
-    Action GetAction<Hash("ActionMoveToClosestTree")>()
-    {
-        return {.groundMatches = {Hash("GroundGrass")},
-                .objectMatches = {},
-                .action = []()
-                {
-                    _<GUIChatBox>().Print("You start moving to closest tree.");
-
-                    auto radius{10};
-
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
-                    auto playerPos{_<GameplayCore::PlayerCharacter>().GetPosition()};
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
-                    auto worldAreaSize{worldArea->GetSize()};
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    auto minDist{999999};
-
-                    Point closestTree{-1, -1};
-
-                    for (auto y = playerPos.y - radius; y <= playerPos.y + radius; ++y)
+                    if (tile)
                     {
-                        for (auto x = playerPos.x - radius; x <= playerPos.x + radius; ++x)
+                        if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0)
                         {
-                            auto dx = x - playerPos.x;
-                            auto dy = y - playerPos.y;
-
-                            if (dx * dx + dy * dy <= radius * radius)
-                            {
-                                auto xCoord{worldAreaSize.width - x + 1};
-
-                                auto yCoord{worldAreaSize.height - y + 1};
-
-                                auto tile{worldArea->GetTile(xCoord, yCoord)};
-
-                                auto objectsStack{tile->GetObjectsStack()};
-
-                                for (auto object : objectsStack->GetObjects())
-                                {
-                                    if (object->GetType() == Hash("ObjectFirTre"
-                                                                  "e") ||
-                                        object->GetType() == Hash("ObjectBirchTr"
-                                                                  "ee"))
-                                    {
-                                        auto dist{(x - playerPos.x) * (x - playerPos.x) +
-                                                  (y - playerPos.y) * (y - playerPos.y)};
-
-                                        if (dist < minDist)
-                                        {
-                                            minDist = dist;
-
-                                            closestTree = {x, y};
-                                        }
-                                    }
-                                }
-                            }
+                            tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectFirTree");
                         }
+                        else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0)
+                        {
+                            tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectBirchTree");
+                        }
+
+                        tile->GetObjectsStack()->AddObject("ObjectFelledTree");
                     }
 
-                    if (closestTree.x != -1)
-                    {
-                        _<GameplayCore::PlayerCharacter>().SetDestination(
-                            {closestTree.x, closestTree.y});
-                    }
-
-                    _<GUIChatBox>().Print("You dont find any "
-                                          "tree closeby.");
+                    _<GUIChatBox>().Print("You chop down a tree.");
                 }};
     }
 

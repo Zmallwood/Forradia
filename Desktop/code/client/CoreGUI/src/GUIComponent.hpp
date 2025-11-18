@@ -59,6 +59,13 @@ namespace Forradia
         void SetPosition(PointF newPosition);
 
         ///
+        /// Sets the height of the component.
+        ///
+        /// @param newHeight The new height of the component.
+        ///
+        void SetHeight(float newHeight);
+
+        ///
         /// Toggles the visibility of the component.
         ///
         void ToggleVisibility();

@@ -14,8 +14,6 @@ namespace Forradia::Theme0::GameplayCore
     {
         // Add starting objects.
 
-        AddObject("ObjectComputer");
-
         AddObject("ObjectRedApple");
 
         AddObject("ObjectRedApple");

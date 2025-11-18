@@ -27,16 +27,6 @@ namespace Forradia::Theme0::GameplayCore
         // Move to a suitable position.
 
         this->MoveToSuitablePosition();
-
-        // Add player related starting objects to the world.
-
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-        auto size{worldArea->GetSize()};
-
-        worldArea->GetTile(size.width - m_position.x, size.height - m_position.y - 1)
-            ->GetObjectsStack()
-            ->AddObject("ObjectComputer");
     }
 
     void PlayerCharacter::MoveToSuitablePosition()

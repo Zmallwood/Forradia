@@ -8,6 +8,8 @@
 
 #include "GUIPanel.hpp"
 
+#include "GUIInteractionMenuEntry.hpp"
+
 namespace Forradia::Theme0
 {
     class Robot;
@@ -17,7 +19,7 @@ namespace Forradia::Theme0
       public:
         GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
         {
-            Initialize();
+            this->Initialize();
         }
 
         void BuildMenu();
@@ -48,30 +50,6 @@ namespace Forradia::Theme0
         static constexpr float k_indentWidth{0.01f};
 
         static constexpr float k_lineHeight{0.025f};
-
-        class GUIInteractionMenuEntry
-        {
-          public:
-            GUIInteractionMenuEntry(StringView label, Function<void()> action)
-                : m_label(label), m_action(action)
-            {
-            }
-
-            auto GetLabel() const
-            {
-                return m_label;
-            }
-
-            auto GetAction() const
-            {
-                return m_action;
-            }
-
-          private:
-            String m_label;
-
-            Function<void()> m_action;
-        };
 
         const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
 

@@ -50,6 +50,14 @@ namespace Forradia::Theme0
         SharedPtr<Object> PopObject();
 
         ///
+        /// Count the number of objects of a specific type in the stack.
+        ///
+        /// @param objectTypeName The object type by name.
+        /// @return The number of objects of the specified type in the stack.
+        ///
+        int CountHasObject(StringView objectTypeName) const;
+
+        ///
         /// Gets the collection of objects in the stack.
         ///
         /// @return The collection of objects in the stack.
