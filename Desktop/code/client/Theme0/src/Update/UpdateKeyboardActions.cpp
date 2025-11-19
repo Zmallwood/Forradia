@@ -8,11 +8,11 @@
 
 #include "Keyboard/KeyboardInput.hpp"
 
-#include "CustomGUI/GUISystemMenu.hpp"
+#include "GUISystemMenu.hpp"
 
-#include "CustomGUI/GUIPlayerBodyWindow.hpp"
+#include "GUIPlayerBodyWindow.hpp"
 
-#include "CustomGUI/GUIInventoryWindow.hpp"
+#include "GUIInventoryWindow.hpp"
 
 #include "GUIChatBox.hpp"
 

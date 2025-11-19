@@ -576,11 +576,33 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "H1. Theme 0",
+            "H1. Theme 0 Core",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0Core.code-workspace",
+            "icons/DefaultButton.png",
+            0,
+            0,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "H2. Theme 0 Custom GUI",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0CustomGUI.code-workspace",
+            "icons/DefaultButton.png",
+            1,
+            0,
+            self.script_dir,
+        )
+
+        create_app_button(
+            app_frame,
+            "H3. Theme 0",
             "cursor",
             "/home/andreas/code/git/Forradia/Theme0.code-workspace",
             "icons/DefaultButton.png",
-            0,
+            2,
             0,
             self.script_dir,
         )

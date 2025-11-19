@@ -36,4 +36,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCoreRenderingCommon
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingSky
+    ForradiaTheme0Core
+    ForradiaTheme0CustomGUI
 )

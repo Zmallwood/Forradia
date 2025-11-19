@@ -8,15 +8,15 @@
 
 #include "Engine.hpp"
 
-#include "CustomGUI/GUIPlayerStatusBox.hpp"
+#include "GUIPlayerStatusBox.hpp"
 
-#include "CustomGUI/GUIPlayerBodyWindow.hpp"
+#include "GUIPlayerBodyWindow.hpp"
 
-#include "CustomGUI/GUIInventoryWindow.hpp"
+#include "GUIInventoryWindow.hpp"
 
-#include "CustomGUI/GUISystemMenu.hpp"
+#include "GUISystemMenu.hpp"
 
-#include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
+#include "GUIInteractionMenu/GUIInteractionMenu.hpp"
 
 #include "SDLDevice.hpp"
 
@@ -64,9 +64,9 @@
 
 #include "Update/CameraRotator.hpp"
 
-#include "CustomGUI/GUIInteractionMenu/Actions.hpp"
+#include "GUIInteractionMenu/Actions.hpp"
 
-#include "CustomGUI/GUIEnergyStatisticsPanel.hpp"
+#include "GUIEnergyStatisticsPanel.hpp"
 
 #include "GUI.hpp"
 
