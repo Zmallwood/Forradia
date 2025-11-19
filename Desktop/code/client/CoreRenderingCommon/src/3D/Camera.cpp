@@ -43,7 +43,7 @@ namespace Forradia
 
         // Return the projection matrix.
 
-        return glm::perspective(glm::radians(90.0f), aspectRatio, 0.1f, 100.0f);
+        return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
     }
 
     Point3F Camera::GetPosition() const
@@ -106,18 +106,14 @@ namespace Forradia
         // Elevation at the player's tile. Coordinates are (currently, it would be preferred if it
         // wasnt) flipped relative to render space (width - x, height - y).
 
-        auto playerElev{
-            worldArea
-                ->GetTile(playerPos.x, playerPos.y)
-                ->GetElevation()};
+        auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
         // Construct the resulting look-at point in world space. Again, the coordinates are
         // (currently, it would be preferred if it wasnt) flipped relative to render space (width -
         // x, height - y).
 
         Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
-                       playerPos.y * rendTileSize + rendTileSize / 2,
-                       playerElev * elevHeight};
+                       playerPos.y * rendTileSize + rendTileSize / 2, playerElev * elevHeight};
 
         return lookAt;
     }
@@ -146,6 +142,8 @@ namespace Forradia
 
         m_rotationAngleVertical += rotationDeltaVertical;
 
-        m_rotationAngleVertical = std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical), k_minRotationAngleVertical);
+        m_rotationAngleVertical =
+            std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical),
+                     k_minRotationAngleVertical);
     }
 }

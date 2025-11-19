@@ -75,6 +75,8 @@ namespace Forradia
 
         const float k_maxRotationAngleVertical{-M_PI / 8.0f}; ///< Maximum vertical rotation angle.
 
+        const float k_defaultFOV{80.0f}; ///< Default field of view.
+
         float m_zoomAmount{6.0f}; ///< Current zoom amount.
 
         float m_rotationAngleSideways{0.0f}; ///< Current rotation amount.
