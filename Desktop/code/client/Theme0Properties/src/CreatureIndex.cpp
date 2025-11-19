@@ -26,10 +26,12 @@ namespace Forradia::Theme0
 
     float CreatureIndex::GetModelScaling(int creatureHash) const
     {
-        // Return the model scaling for a given creature hash.
+        // Check if the creature hash exists in the index.
 
         if (m_entries.contains(creatureHash))
         {
+            // If so, return its model scaling.
+
             return m_entries.at(creatureHash).modelScaling;
         }
 
@@ -40,10 +42,12 @@ namespace Forradia::Theme0
 
     float CreatureIndex::GetLevitationHeight(int creatureHash) const
     {
-        // Return the levitation height for a given creature hash.
+        // Check if the creature hash exists in the index.
 
         if (m_entries.contains(creatureHash))
         {
+            // If so, return its levitation height.
+
             return m_entries.at(creatureHash).levitationHeight;
         }
 

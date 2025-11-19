@@ -19,8 +19,8 @@ namespace Forradia::Theme0
         ///
         /// Initializes the world.
         ///
-        /// @param w_area_sz The size of the world area.
-        /// @param world_scaling The scaling of the world.
+        /// @param worldAreaSize The size of the world area.
+        /// @param worldScaling The scaling of the world.
         ///
         void Initialize(Size worldAreaSize, float worldScaling);
 
