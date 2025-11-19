@@ -21,7 +21,7 @@ namespace Forradia
 
         // Set up the state for the renderer.
 
-        this->SetupState();
+        // this->SetupState();
 
         // To be filled with the vertex array object, index buffer object and vertex buffer object.
 
@@ -162,6 +162,6 @@ namespace Forradia
 
         // Restore the state.
 
-        this->RestoreState();
+        // this->RestoreState();
     }
 }

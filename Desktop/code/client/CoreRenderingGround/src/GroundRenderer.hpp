@@ -48,6 +48,21 @@ namespace Forradia
         ///
         void Reset();
 
+        ///
+        /// Cleans up the renderer.
+        ///
+        void Cleanup();
+
+        ///
+        /// Sets up the state for the renderer.
+        ///
+        void SetupState() const;
+
+        ///
+        /// Restores the state for the renderer.
+        ///
+        void RestoreState() const;
+
       protected:
         ///
         /// Returns the vertex shader source.
@@ -70,21 +85,6 @@ namespace Forradia
         void SetupAttributeLayout() const override;
 
       private:
-        ///
-        /// Cleans up the renderer.
-        ///
-        void Cleanup();
-
-        ///
-        /// Sets up the state for the renderer.
-        ///
-        void SetupState() const;
-
-        ///
-        /// Restores the state for the renderer.
-        ///
-        void RestoreState() const;
-
         ///
         /// Checks if a drawing operation is cached.
         ///
