@@ -6,12 +6,14 @@
 
 #pragma once
 
+#include <memory>
+
 namespace Forradia
 {
     ///
     /// Base class for all GUI components.
     ///
-    class GUIComponent
+    class GUIComponent : public std::enable_shared_from_this<GUIComponent>
     {
       public:
         ///

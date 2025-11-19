@@ -21,7 +21,7 @@ namespace Forradia::Theme0
         GUIPlayerBodyWindow()
             : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
-            Initialize();
+            this->Initialize();
         }
 
       protected:
