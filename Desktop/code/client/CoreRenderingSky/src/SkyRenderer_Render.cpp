@@ -36,7 +36,7 @@ namespace Forradia
 
         // Within the far plane of 100.0
 
-        float skyRadius{90.0f};
+        auto skyRadius{90.0f};
 
         modelMatrix = glm::scale(modelMatrix, glm::vec3(skyRadius, skyRadius, skyRadius));
 
@@ -47,7 +47,7 @@ namespace Forradia
 
         // Adjust this value to control how much to lower the sky
 
-        float skyOffsetZ{-0.5f};
+        auto skyOffsetZ{-0.5f};
 
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, skyOffsetZ));
 
@@ -58,16 +58,21 @@ namespace Forradia
         // We want to keep the rotation (upper-left 3x3) but remove translation.
 
         // Create identity matrix and copy rotation elements.
+
         glm::mat4 viewMatrixRotationOnly{1.0f};
 
         // Copy rotation part (upper-left 3x3) from view matrix.
         // In GLM: matrix[column][row], so we copy columns 0-2, rows 0-2.
+        
         viewMatrixRotationOnly[0] =
             glm::vec4(viewMatrix[0].x, viewMatrix[0].y, viewMatrix[0].z, 0.0f);
+
         viewMatrixRotationOnly[1] =
             glm::vec4(viewMatrix[1].x, viewMatrix[1].y, viewMatrix[1].z, 0.0f);
+
         viewMatrixRotationOnly[2] =
             glm::vec4(viewMatrix[2].x, viewMatrix[2].y, viewMatrix[2].z, 0.0f);
+
         viewMatrixRotationOnly[3] = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
         auto projectionMatrix{_<Camera>().GetProjectionMatrix()};

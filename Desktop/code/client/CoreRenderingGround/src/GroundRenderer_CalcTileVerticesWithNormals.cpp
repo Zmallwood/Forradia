@@ -21,7 +21,7 @@ namespace Forradia
 
         // Define the vertex stride.
 
-        constexpr int k_vertexStride{8};
+        constexpr auto k_vertexStride{8};
 
         // Define a lambda function to add a vertex to the floats vector.
 

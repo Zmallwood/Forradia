@@ -26,7 +26,9 @@ namespace Forradia
         // To be filled with the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao{0};
+
         GLuint ibo{0};
+        
         GLuint vbo{0};
 
         // Check if the tile is cached.

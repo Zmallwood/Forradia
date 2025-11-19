@@ -32,7 +32,9 @@ namespace Forradia
         // To contain the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao;
+
         GLuint ibo;
+        
         GLuint vbo;
 
         // Get the model and its meshes from the model bank.
@@ -201,7 +203,7 @@ namespace Forradia
 
         auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-        float levitationHeight{_<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash)};
+        auto levitationHeight{_<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash)};
 
         // Calculate the model matrix. This matrix differs between different rendering operations,
         // even though they use the same model.

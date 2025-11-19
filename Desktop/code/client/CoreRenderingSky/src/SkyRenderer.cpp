@@ -8,6 +8,8 @@
 
 #include "ShaderProgram.hpp"
 
+#include "GUIChatBox.hpp"
+
 namespace Forradia
 {
     void SkyRenderer::Cleanup()
@@ -29,10 +31,18 @@ namespace Forradia
             glDeleteBuffers(1, &m_vbo);
         }
 
+        // Reset the object variables.
+
         m_vao = 0;
+
         m_ibo = 0;
+
         m_vbo = 0;
+
+        // Reset the index count and initialized flag.
+
         m_indexCount = 0;
+
         m_initialized = false;
     }
 
@@ -112,8 +122,10 @@ namespace Forradia
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
             m_layoutLocationSunElevation == -1)
         {
-            // Uniform locations not found - shader might have compilation errors.
-            // This will be visible when trying to render.
+            // Let the player know that the shader might have compilation errors.
+
+            _<GUIChatBox>().Print(
+                "Uniform locations not found - shader might have compilation errors.");
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Forradia
 
         // Number of horizontal segments (increased for better coverage).
 
-        const int segments{64};
+        const auto segments{64};
 
         // Number of vertical rings (increased for smoother dome).
 
-        const int rings{32};
+        const auto rings{32};
 
         Vector<float> vertices;
 
@@ -30,21 +30,21 @@ namespace Forradia
         {
             // Elevation angle (0 to PI/2).
 
-            float theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
+            auto theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
 
-            float sinTheta{std::sin(theta)};
+            auto sinTheta{std::sin(theta)};
 
-            float cosTheta{std::cos(theta)};
+            auto cosTheta{std::cos(theta)};
 
             for (int segment = 0; segment <= segments; ++segment)
             {
                 // Azimuth angle (0 to 2*PI).
 
-                float phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
+                auto phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
 
-                float sinPhi{std::sin(phi)};
+                auto sinPhi{std::sin(phi)};
 
-                float cosPhi{std::cos(phi)};
+                auto cosPhi{std::cos(phi)};
 
                 // Calculate position on sphere.
                 // Using standard spherical coordinates where:
@@ -52,13 +52,13 @@ namespace Forradia
                 // - phi is azimuth (0 to 2*PI, full circle)
                 // - Z is up (matches the game's coordinate system where +Z is vertical)
 
-                float x{cosPhi * sinTheta};
+                auto x{cosPhi * sinTheta};
 
-                float y{sinPhi * sinTheta};
+                auto y{sinPhi * sinTheta};
 
                 // Z ranges from 1.0 (zenith) to 0.0 (horizon)
 
-                float z{cosTheta};
+                auto z{cosTheta};
 
                 // Store vertex position (3 floats).
 
@@ -76,31 +76,38 @@ namespace Forradia
 
         for (int ring = 0; ring < rings; ++ring)
         {
-            int baseIndex{ring * (segments + 1)};
-            int nextBaseIndex{(ring + 1) * (segments + 1)};
+            auto baseIndex{ring * (segments + 1)};
+
+            auto nextBaseIndex{(ring + 1) * (segments + 1)};
 
             for (int segment = 0; segment < segments; ++segment)
             {
                 // Current ring vertices.
 
-                int v0{baseIndex + segment};
-                int v1{baseIndex + segment + 1};
+                auto v0{baseIndex + segment};
+
+                auto v1{baseIndex + segment + 1};
 
                 // Next ring vertices.
 
-                int v2{nextBaseIndex + segment};
-                int v3{nextBaseIndex + segment + 1};
+                auto v2{nextBaseIndex + segment};
+
+                auto v3{nextBaseIndex + segment + 1};
 
                 // First triangle: v0 -> v2 -> v1 (counter-clockwise when viewed from outside).
 
                 indices.push_back(v0);
+
                 indices.push_back(v2);
+
                 indices.push_back(v1);
 
                 // Second triangle: v1 -> v2 -> v3 (counter-clockwise when viewed from outside).
 
                 indices.push_back(v1);
+
                 indices.push_back(v2);
+
                 indices.push_back(v3);
             }
         }

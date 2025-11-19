@@ -18,7 +18,9 @@ namespace Forradia
         // To store the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao;
+
         GLuint ibo;
+
         GLuint vbo;
 
         // To store whether the buffers need to be filled.
@@ -102,6 +104,7 @@ namespace Forradia
             // Calculate the line direction vector.
 
             auto dx{x2 - x1};
+
             auto dy{y2 - y1};
 
             // Calculate the length of the line.
@@ -114,38 +117,55 @@ namespace Forradia
 
             auto halfWidth{lineWidth * 0.5f};
 
-            float perpX{0.0f};
-            float perpY{0.0f};
+            auto perpendicularX{0.0f};
+
+            auto perpendicularY{0.0f};
 
             if (length > 0.0001f)
             {
                 // Normalize the perpendicular vector and scale by half width.
 
-                perpX = (-dy / length) * halfWidth;
-                perpY = (dx / length) * halfWidth;
+                perpendicularX = (-dy / length) * halfWidth;
+
+                perpendicularY = (dx / length) * halfWidth;
             }
             else
             {
                 // If the line has zero length, use a default perpendicular vector.
                 // Use a small default width direction.
 
-                perpX = halfWidth;
-                perpY = 0.0f;
+                perpendicularX = halfWidth;
+
+                perpendicularY = 0.0f;
             }
 
             // Calculate the four corners of the line quad.
             // The quad is formed by offsetting the start and end points
             // perpendicular to the line direction.
 
-            auto x1Top{x1 + perpX};
-            auto y1Top{y1 + perpY};
-            auto x1Bottom{x1 - perpX};
-            auto y1Bottom{y1 - perpY};
+            // 1Top
 
-            auto x2Top{x2 + perpX};
-            auto y2Top{y2 + perpY};
-            auto x2Bottom{x2 - perpX};
-            auto y2Bottom{y2 - perpY};
+            auto x1Top{x1 + perpendicularX};
+
+            auto y1Top{y1 + perpendicularY};
+
+            // 1Bottom
+
+            auto x1Bottom{x1 - perpendicularX};
+
+            auto y1Bottom{y1 - perpendicularY};
+
+            // 2Top
+
+            auto x2Top{x2 + perpendicularX};
+
+            auto y2Top{y2 + perpendicularY};
+
+            // 2Bottom
+
+            auto x2Bottom{x2 - perpendicularX};
+
+            auto y2Bottom{y2 - perpendicularY};
 
             // Define the vertices and indices.
 

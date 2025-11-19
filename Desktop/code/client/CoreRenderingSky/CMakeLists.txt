@@ -20,5 +20,6 @@ target_link_libraries(ForradiaCoreRenderingSky
     ForradiaCommonCoreUtilities
     ForradiaCoreGraphicsDevices
     ForradiaCoreRenderingCommon
+    ForradiaCoreGUI
 )
 target_precompile_headers(ForradiaCoreRenderingSky PUBLIC ./src/StdAfx.hpp)
