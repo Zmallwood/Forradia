@@ -16,6 +16,8 @@ namespace Forradia::Theme0
       public:
         Creature(int typeHash) : m_type(typeHash)
         {
+            // Initialize the creature.
+
             this->Initialize();
         }
 
