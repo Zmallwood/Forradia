@@ -32,6 +32,8 @@
 
 #include "SkyRenderer.hpp"
 
+#include "TileData.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void WorldView::Initiallize()
@@ -82,6 +84,10 @@ namespace Forradia::Theme0::GameplayCore
         auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
         auto rendTileSize{_<Theme0Properties>().GetTileSize()};
+
+        Vector<TileData> tiles;
+
+        std::map<int, std::map<int, Vector<float>>> elevationsAll;
 
         auto fnIterationGround{
             [&](int x, int y)
@@ -175,6 +181,8 @@ namespace Forradia::Theme0::GameplayCore
                 elevations.push_back(elevationSES);
                 elevations.push_back(elevationSESE);
 
+                elevationsAll[xCoordinate][yCoordinate] = elevations;
+
                 auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
 
                 auto elevationMax{std::max(
@@ -204,29 +212,12 @@ namespace Forradia::Theme0::GameplayCore
                                         y >= (groundGridSize.height - gridSize.height) / 2 &&
                                         y < (groundGridSize.height + gridSize.height) / 2};
 
-                _<GroundRenderer>().DrawTile(m_renderIDsGround.at(xCoordinate).at(yCoordinate),
-                                             ground, xCoordinate, yCoordinate, rendTileSize,
-                                             elevations);
+                // _<GroundRenderer>().DrawTile(m_renderIDsGround.at(xCoordinate).at(yCoordinate),
+                //                              ground, xCoordinate, yCoordinate, rendTileSize,
+                //                              elevations);
 
-                // Only render ClaimedTile symbol within the normal grid size
-                if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
-                {
-                    _<GroundRenderer>().DrawTile(
-                        m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
-                        Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize, elevations);
-                }
-
-                if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
-                {
-                    for (auto &elevation : elevations)
-                    {
-                        elevation += 0.01f;
-                    }
-
-                    _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile,
-                                                 Hash("HoveredTile"), xCoordinate, yCoordinate,
-                                                 rendTileSize, elevations, true);
-                }
+                tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
+                                 xCoordinate, yCoordinate, rendTileSize, elevations, false});
             }};
 
         auto fnIterationAllExceptGround{
@@ -247,79 +238,96 @@ namespace Forradia::Theme0::GameplayCore
 
                 auto objects{objectsStack->GetObjects()};
 
-                auto coordinateNW{Point{xCoordinate, yCoordinate}};
+                // auto coordinateNW{Point{xCoordinate, yCoordinate}};
 
-                auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+                // auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
 
-                auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+                // auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
 
-                auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+                // auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
 
-                auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
+                // auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
 
-                auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
+                // auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
 
-                auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
+                // auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
 
-                auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
+                // auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
 
-                auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
+                // auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
-                if (!worldArea->IsValidCoordinate(coordinateNW) ||
-                    !worldArea->IsValidCoordinate(coordinateNE) ||
-                    !worldArea->IsValidCoordinate(coordinateSW) ||
-                    !worldArea->IsValidCoordinate(coordinateSE))
+                // if (!worldArea->IsValidCoordinate(coordinateNW) ||
+                //     !worldArea->IsValidCoordinate(coordinateNE) ||
+                //     !worldArea->IsValidCoordinate(coordinateSW) ||
+                //     !worldArea->IsValidCoordinate(coordinateSE))
+                // {
+                //     return;
+                // }
+
+                // auto tileNW{worldArea->GetTile(coordinateNW)};
+
+                // auto tileNE{worldArea->GetTile(coordinateNE)};
+
+                // auto tileSW{worldArea->GetTile(coordinateSW)};
+
+                // auto tileSE{worldArea->GetTile(coordinateSE)};
+
+                // auto tileNEE{worldArea->GetTile(coordinateNEE)};
+
+                // auto tileSEE{worldArea->GetTile(coordinateSEE)};
+
+                // auto tileSESE{worldArea->GetTile(coordinateSESE)};
+
+                // auto tileSES{worldArea->GetTile(coordinateSES)};
+
+                // auto tileSS{worldArea->GetTile(coordinateSS)};
+
+                if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
+                    elevationsAll[xCoordinate].find(yCoordinate) ==
+                        elevationsAll[xCoordinate].end())
                 {
                     return;
                 }
 
-                auto tileNW{worldArea->GetTile(coordinateNW)};
+                Vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
 
-                auto tileNE{worldArea->GetTile(coordinateNE)};
+                // auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
 
-                auto tileSW{worldArea->GetTile(coordinateSW)};
+                // auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
 
-                auto tileSE{worldArea->GetTile(coordinateSE)};
+                // auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
 
-                auto tileNEE{worldArea->GetTile(coordinateNEE)};
+                // auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
 
-                auto tileSEE{worldArea->GetTile(coordinateSEE)};
+                // auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
 
-                auto tileSESE{worldArea->GetTile(coordinateSESE)};
+                // auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
 
-                auto tileSES{worldArea->GetTile(coordinateSES)};
+                // auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0f};
 
-                auto tileSS{worldArea->GetTile(coordinateSS)};
+                // auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
 
-                Vector<float> elevations;
+                // auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
 
-                auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
+                // elevations.push_back(elevationNW);
+                // elevations.push_back(elevationNE);
+                // elevations.push_back(elevationNEE);
+                // elevations.push_back(elevationSW);
+                // elevations.push_back(elevationSE);
+                // elevations.push_back(elevationSEE);
+                // elevations.push_back(elevationSS);
+                // elevations.push_back(elevationSES);
+                // elevations.push_back(elevationSESE);
 
-                auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-
-                auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
-
-                auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-
-                auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
-
-                auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
-
-                auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0f};
-
-                auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
-
-                auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
-
-                elevations.push_back(elevationNW);
-                elevations.push_back(elevationNE);
-                elevations.push_back(elevationNEE);
-                elevations.push_back(elevationSW);
-                elevations.push_back(elevationSE);
-                elevations.push_back(elevationSEE);
-                elevations.push_back(elevationSS);
-                elevations.push_back(elevationSES);
-                elevations.push_back(elevationSESE);
+                auto &elevationNW = elevations[0];
+                auto &elevationNE = elevations[1];
+                auto &elevationNEE = elevations[2];
+                auto &elevationSW = elevations[3];
+                auto &elevationSE = elevations[4];
+                auto &elevationSEE = elevations[5];
+                auto &elevationSS = elevations[6];
+                auto &elevationSES = elevations[7];
+                auto &elevationSESE = elevations[8];
 
                 auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
 
@@ -394,16 +402,64 @@ namespace Forradia::Theme0::GameplayCore
                             (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                     }
                 }
+
+                if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
+                {
+                    for (auto &elevation : elevations)
+                    {
+                        elevation += 0.01f;
+                    }
+
+                    _<GroundRenderer>().SetupState();
+
+                    _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile,
+                                                 Hash("HoveredTile"), xCoordinate, yCoordinate,
+                                                 rendTileSize, elevations, true);
+
+                    // Only render ClaimedTile symbol within the normal grid size
+                    if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
+                    {
+                        _<GroundRenderer>().DrawTile(
+                            m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
+                            Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize,
+                            elevations);
+                    }
+
+                    _<GroundRenderer>().SetupState();
+                }
             }};
 
         _<GroundRenderer>().SetupState();
+
+        auto tilesGroupSize{20};
 
         // First pass: Render ground tiles at extended distance
         for (auto y = 0; y < groundGridSize.height; y++)
         {
             for (auto x = 0; x < groundGridSize.width; x++)
             {
-                fnIterationGround(x, y);
+                auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
+
+                auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
+
+                if (xCoordinate % tilesGroupSize == 0 && yCoordinate % tilesGroupSize == 0)
+                {
+                    for (auto yy = 0; yy < tilesGroupSize; yy++)
+                    {
+                        for (auto xx = 0; xx < tilesGroupSize; xx++)
+                        {
+                            fnIterationGround(x + xx, y + yy);
+                        }
+                    }
+                    if (!tiles.empty())
+                    {
+                        _<GroundRenderer>().DrawTiles(tiles);
+                    }
+
+                    tiles.clear();
+                }
+
+                // fnIterationGround(x, y);
             }
         }
 

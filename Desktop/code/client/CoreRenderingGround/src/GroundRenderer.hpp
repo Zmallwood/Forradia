@@ -10,6 +10,10 @@
 
 #include "GroundRenderingOperation.hpp"
 
+#include "TileDrawGroup.hpp"
+
+#include "GroundRenderingGroupOperation.hpp"
+
 namespace Forradia
 {
     ///
@@ -41,6 +45,14 @@ namespace Forradia
         ///
         void DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate, int yCoordinate,
                       float tileSize, const Vector<float> &elevations, bool forceUpdate = false);
+
+        ///
+        /// Draws a batch of tiles in a single operation. Tiles are automatically grouped by texture
+        /// and rendered efficiently.
+        ///
+        /// @param tiles The vector of tiles to draw.
+        ///
+        void DrawTiles(const Vector<TileData> &tiles);
 
         ///
         /// Resets the renderer with regards to the operations cache. Called for instance when a new
@@ -126,5 +138,7 @@ namespace Forradia
         std::map<int, GroundRenderingOperation> m_operationsCache; ///< Operations cache.
 
         GLint m_layoutLocationMVP; ///< Layout location for the MVP matrix in the shader.
+
+        std::map<int, GroundRenderingGroupOperation> m_groupOperationsCache; ///< Operations cache.
     };
 }

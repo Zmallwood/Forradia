@@ -6,14 +6,9 @@
 
 #pragma once
 
-#include "TileData.hpp"
-
 namespace Forradia
 {
-    ///
-    /// A rendering operation for a ground tile.
-    ///
-    class GroundRenderingOperation
+    class TileDrawGroup
     {
       public:
         GLuint vao; ///< Vertex array object.
@@ -21,5 +16,7 @@ namespace Forradia
         GLuint ibo; ///< Index buffer object.
 
         GLuint vbo; ///< Vertex buffer object.
+
+        int combinedIndicesCount; ///< The combined indices count.
     };
 }
