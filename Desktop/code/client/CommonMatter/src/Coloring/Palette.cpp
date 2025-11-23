@@ -5,6 +5,7 @@
 //
 
 #include "Palette.hpp"
+
 #include "Hash.hpp"
 
 namespace Forradia::Palette
@@ -26,6 +27,8 @@ namespace Forradia::Palette
     template <>
     Color GetColor<Hash("WheatTransparent")>()
     {
+        // Use existing wheat color and just change the alpha.
+
         auto color{GetColor<Hash("Wheat")>()};
 
         color.a = 0.7f;
@@ -42,6 +45,8 @@ namespace Forradia::Palette
     template <>
     Color GetColor<Hash("YellowTransparent")>()
     {
+        // Use existing yellow color and just change the alpha.
+
         auto color{GetColor<Hash("Yellow")>()};
 
         color.a = 0.7f;
