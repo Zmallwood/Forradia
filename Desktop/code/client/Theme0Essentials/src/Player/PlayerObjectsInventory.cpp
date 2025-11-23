@@ -17,6 +17,8 @@ namespace Forradia::Theme0::GameplayCore
         AddObject("ObjectRedApple");
 
         AddObject("ObjectRedApple");
+
+        AddObject("ObjectPlasticAxe");
     }
 
     SharedPtr<Object> PlayerObjectsInventory::GetObject(int index)
