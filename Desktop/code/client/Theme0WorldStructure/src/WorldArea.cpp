@@ -10,6 +10,8 @@
 
 #include "ObjectsStack.hpp"
 
+#include "Satan.hpp"
+
 namespace Forradia::Theme0
 {
     void WorldArea::Initialize(Size worldAreaSize, float worldScaling)
@@ -39,6 +41,14 @@ namespace Forradia::Theme0
                 m_tiles[x].push_back(std::make_shared<Tile>());
             }
         }
+
+        auto randomX{GetRandomInt(size.width)};
+
+        auto randomY{GetRandomInt(size.height)};
+
+        // Create a new Satan.
+
+        m_tiles[randomX][randomY]->SetSatan(std::make_shared<Satan>());
     }
 
     void WorldArea::Reset()

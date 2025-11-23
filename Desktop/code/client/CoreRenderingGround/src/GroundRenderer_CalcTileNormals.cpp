@@ -78,6 +78,8 @@ namespace Forradia
 
         auto normals{Vector<glm::vec3>{normal00, normal10, normal11, normal01}};
 
+        // Return the normals.
+
         return normals;
     }
 }

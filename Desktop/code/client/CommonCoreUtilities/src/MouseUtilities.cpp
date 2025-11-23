@@ -17,6 +17,7 @@ namespace Forradia
         // To hold the mouse position in pixels.
 
         int xPx;
+        
         int yPx;
 
         // Get the mouse position.

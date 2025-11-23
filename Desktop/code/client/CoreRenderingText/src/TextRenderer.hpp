@@ -21,6 +21,8 @@ namespace Forradia
         ///
         TextRenderer()
         {
+            // Initialize SDL TTF and load fonts.
+
             this->Initialize();
         }
 
