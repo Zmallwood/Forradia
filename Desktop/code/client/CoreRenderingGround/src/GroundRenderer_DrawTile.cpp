@@ -19,10 +19,6 @@ namespace Forradia
         // TODO: Set viewport and configure blending etc. outside the per-tile-loop as settings on
         // every tile draw is inefficient.
 
-        // Set up the state for the renderer.
-
-        // this->SetupState();
-
         // To be filled with the vertex array object, index buffer object and vertex buffer object.
 
         GLuint vao{0};
@@ -159,9 +155,5 @@ namespace Forradia
         // Draw the tile.
 
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);
-
-        // Restore the state.
-
-        // this->RestoreState();
     }
 }
