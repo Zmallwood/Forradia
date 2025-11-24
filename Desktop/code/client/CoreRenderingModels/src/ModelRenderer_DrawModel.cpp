@@ -107,6 +107,8 @@ namespace Forradia
 
             auto indexFirstVertexOfMesh{0};
 
+            // To contain the total model scaling.
+
             float totalModelScaling{k_globalModelScaling * modelScaling};
 
             if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))

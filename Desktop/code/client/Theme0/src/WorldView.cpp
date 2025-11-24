@@ -58,8 +58,15 @@ namespace Forradia::Theme0::GameplayCore
     void WorldView::Render() const
     {
         SkyRenderer skyRenderer;
-        glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f)); // 45 degrees up in +Z
-        float sunElevation = M_PI / 4.0f;                                     // 45 degrees
+
+        // 45 degrees up in +Z
+
+        glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f));
+
+        // 45 degrees
+
+        float sunElevation = M_PI / 4.0f;
+
         _<SkyRenderer>().Render(sunDirection, sunElevation);
 
         auto gridSize{_<Theme0Properties>().GetGridSize()};
@@ -206,15 +213,12 @@ namespace Forradia::Theme0::GameplayCore
                     ground = Hash(waterImageString);
                 }
 
-                // Check if this tile is within the normal grid size for object/creature rendering
+                // Check if this tile is within the normal grid size for object/creature rendering.
+
                 auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                                         x < (groundGridSize.width + gridSize.width) / 2 &&
                                         y >= (groundGridSize.height - gridSize.height) / 2 &&
                                         y < (groundGridSize.height + gridSize.height) / 2};
-
-                // _<GroundRenderer>().DrawTile(m_renderIDsGround.at(xCoordinate).at(yCoordinate),
-                //                              ground, xCoordinate, yCoordinate, rendTileSize,
-                //                              elevations);
 
                 tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
                                  xCoordinate, yCoordinate, rendTileSize, elevations, false});
@@ -238,50 +242,6 @@ namespace Forradia::Theme0::GameplayCore
 
                 auto objects{objectsStack->GetObjects()};
 
-                // auto coordinateNW{Point{xCoordinate, yCoordinate}};
-
-                // auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
-
-                // auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
-
-                // auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
-
-                // auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
-
-                // auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
-
-                // auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
-
-                // auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
-
-                // auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
-
-                // if (!worldArea->IsValidCoordinate(coordinateNW) ||
-                //     !worldArea->IsValidCoordinate(coordinateNE) ||
-                //     !worldArea->IsValidCoordinate(coordinateSW) ||
-                //     !worldArea->IsValidCoordinate(coordinateSE))
-                // {
-                //     return;
-                // }
-
-                // auto tileNW{worldArea->GetTile(coordinateNW)};
-
-                // auto tileNE{worldArea->GetTile(coordinateNE)};
-
-                // auto tileSW{worldArea->GetTile(coordinateSW)};
-
-                // auto tileSE{worldArea->GetTile(coordinateSE)};
-
-                // auto tileNEE{worldArea->GetTile(coordinateNEE)};
-
-                // auto tileSEE{worldArea->GetTile(coordinateSEE)};
-
-                // auto tileSESE{worldArea->GetTile(coordinateSESE)};
-
-                // auto tileSES{worldArea->GetTile(coordinateSES)};
-
-                // auto tileSS{worldArea->GetTile(coordinateSS)};
-
                 if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
                     elevationsAll[xCoordinate].find(yCoordinate) ==
                         elevationsAll[xCoordinate].end())
@@ -290,34 +250,6 @@ namespace Forradia::Theme0::GameplayCore
                 }
 
                 Vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
-
-                // auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
-
-                // auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-
-                // auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
-
-                // auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-
-                // auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
-
-                // auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
-
-                // auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0f};
-
-                // auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
-
-                // auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
-
-                // elevations.push_back(elevationNW);
-                // elevations.push_back(elevationNE);
-                // elevations.push_back(elevationNEE);
-                // elevations.push_back(elevationSW);
-                // elevations.push_back(elevationSE);
-                // elevations.push_back(elevationSEE);
-                // elevations.push_back(elevationSS);
-                // elevations.push_back(elevationSES);
-                // elevations.push_back(elevationSESE);
 
                 auto &elevationNW = elevations[0];
                 auto &elevationNE = elevations[1];
@@ -352,13 +284,15 @@ namespace Forradia::Theme0::GameplayCore
                     ground = Hash(waterImageString);
                 }
 
-                // Check if this tile is within the normal grid size for object/creature rendering
+                // Check if this tile is within the normal grid size for object/creature rendering.
+
                 auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                                         x < (groundGridSize.width + gridSize.width) / 2 &&
                                         y >= (groundGridSize.height - gridSize.height) / 2 &&
                                         y < (groundGridSize.height + gridSize.height) / 2};
 
-                // Only render objects, creatures, and robots within the normal grid size
+                // Only render objects, creatures, and robots within the normal grid size.
+
                 if (isWithinNormalGrid)
                 {
                     for (auto object : objects)
@@ -416,7 +350,8 @@ namespace Forradia::Theme0::GameplayCore
                                                  Hash("HoveredTile"), xCoordinate, yCoordinate,
                                                  rendTileSize, elevations, true);
 
-                    // Only render ClaimedTile symbol within the normal grid size
+                    // Only render ClaimedTile symbol within the normal grid size.
+
                     if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
                     {
                         _<GroundRenderer>().DrawTile(
@@ -433,7 +368,8 @@ namespace Forradia::Theme0::GameplayCore
 
         auto tilesGroupSize{20};
 
-        // First pass: Render ground tiles at extended distance
+        // First pass: Render ground tiles at extended distance.
+
         for (auto y = 0; y < groundGridSize.height; y++)
         {
             for (auto x = 0; x < groundGridSize.width; x++)
@@ -458,14 +394,12 @@ namespace Forradia::Theme0::GameplayCore
 
                     tiles.clear();
                 }
-
-                // fnIterationGround(x, y);
             }
         }
 
         _<GroundRenderer>().SetupState();
 
-        // Second pass: Render all except ground tiles
+        // Second pass: Render all except ground tiles.
 
         for (auto y = 0; y < worldAreaSize.height; y++)
         {

@@ -44,8 +44,7 @@ namespace Forradia
         ///
         /// @param sunDirection The direction vector of the sun (should be normalized).
         /// @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
-        /// zenith).
-        ///                     Negative values indicate night time (darker sky).
+        /// zenith). Negative values indicate night time (darker sky).
         ///
         void Render(const glm::vec3 &sunDirection, float sunElevation);
 
