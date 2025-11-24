@@ -30,6 +30,8 @@ namespace Forradia
 
         auto aUint{CUint8(a * 255)};
 
+        // Return the SDL_Color object.
+
         return {rUint, rUint, bUint, aUint};
     }
 }

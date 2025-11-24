@@ -16,8 +16,6 @@ namespace Forradia::Theme0
 
     class Robot;
 
-    class Satan;
-
     ///
     /// A tile in the game world.
     ///
@@ -147,26 +145,6 @@ namespace Forradia::Theme0
         {
             m_waterDepth = value;
         }
-
-        ///
-        /// Gets the Satan on the tile.
-        ///
-        /// @return The Satan on the tile.
-        ///
-        auto GetSatan() const
-        {
-            return m_satan;
-        }
-
-        ///
-        /// Sets the Satan on the tile.
-        ///
-        /// @param value The Satan on the tile.
-        ///
-        void SetSatan(SharedPtr<Satan> value)
-        {
-            m_satan = value;
-        }
         
       private:
         ///
@@ -181,8 +159,6 @@ namespace Forradia::Theme0
         SharedPtr<Creature> m_creature; ///< The creature on the tile.
 
         SharedPtr<Robot> m_robot; ///< The robot on the tile.
-
-        SharedPtr<Satan> m_satan; ///< The Satan on the tile.
 
         int m_elevation{0}; ///< The elevation of the tile.
 

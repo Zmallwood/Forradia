@@ -11,7 +11,7 @@ typedef uint8_t Uint8;
 namespace Forradia
 {
     ///
-    /// Cast a value to int.
+    /// Can be used to cast any value to int.
     ///
     /// @param value Value to cast.
     /// @return Casted value.
@@ -22,7 +22,7 @@ namespace Forradia
     }
 
     ///
-    /// Cast a value to float.
+    /// Can be used to cast any value to float.
     ///
     /// @param value Value to cast.
     /// @return Casted value.
@@ -33,7 +33,7 @@ namespace Forradia
     }
 
     ///
-    /// Cast a value to Uint8.
+    /// Can be used to cast any value to Uint8.
     ///
     /// @param value Value to cast.
     /// @return Casted value.
