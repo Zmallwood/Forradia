@@ -57,7 +57,7 @@ namespace Forradia
 
                 auto &tileData = entry.second;
 
-                // group.combinedIndicesCount = tileData.size() * 4;
+                // Generate the vertex array object, index buffer object and vertex buffer object.
 
                 glGenVertexArrays(1, &group.vao);
 
@@ -125,12 +125,14 @@ namespace Forradia
                 }
 
                 /// Upload indices.
+
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, group.ibo);
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                              sizeof(combinedIndices[0]) * combinedIndices.size(),
                              combinedIndices.data(), GL_STATIC_DRAW);
 
                 // Upload vertices.
+
                 glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
                 glBufferData(GL_ARRAY_BUFFER, sizeof(combinedVertices[0]) * combinedVertices.size(),
                              combinedVertices.data(), GL_STATIC_DRAW);
