@@ -105,8 +105,6 @@ namespace Forradia
 
                     // Get the vertices as a float array.
 
-                    // auto vertices{verticesVector.data()};
-
                     // Add vertices to the combined buffer.
                     combinedVertices.insert(combinedVertices.end(), verticesVector.begin(),
                                             verticesVector.end());
@@ -121,26 +119,9 @@ namespace Forradia
                     combinedIndices.push_back(vertexOffset + 2);
                     combinedIndices.push_back(vertexOffset + 3);
 
+                    // Add to the vertex offset.
+
                     vertexOffset += 4;
-
-                    // // Upload the indices to the index buffer object.
-
-                    // glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                    //              sizeof(combinedIndices[0]) * combinedIndices.size(),
-                    //              combinedIndices.data(), GL_STATIC_DRAW);
-
-                    // // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(combinedIndices[0]) *
-                    // // indicesCount,
-                    // //              combinedIndices, GL_STATIC_DRAW);
-
-                    // // Bind the vertex buffer object.
-
-                    // glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
-
-                    // // Upload the vertices to the vertex buffer object.
-
-                    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount,
-                    //              vertices, GL_STATIC_DRAW);
                 }
 
                 /// Upload indices.

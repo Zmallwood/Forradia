@@ -14,23 +14,13 @@ namespace Forradia
     {
         // Calculate individual color components.
 
-        // Red.
-
         auto rUint{CUint8(r * 255)};
-
-        // Green.
 
         auto gUint{CUint8(g * 255)};
 
-        // Blue.
-
         auto bUint{CUint8(b * 255)};
 
-        // Alpha.
-
         auto aUint{CUint8(a * 255)};
-
-        // Return the SDL_Color object.
 
         return {rUint, rUint, bUint, aUint};
     }
