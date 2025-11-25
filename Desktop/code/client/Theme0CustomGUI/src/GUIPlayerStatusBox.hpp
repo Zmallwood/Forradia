@@ -22,5 +22,7 @@ namespace Forradia::Theme0
 
       private:
         const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
+
+        const int k_renderLevelString{Hash("GUIPlayerStatusBoxLevel")};
     };
 }

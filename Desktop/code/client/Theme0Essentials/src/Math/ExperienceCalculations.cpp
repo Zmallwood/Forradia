@@ -25,8 +25,11 @@ namespace Forradia::Theme0::GameplayCore
     int CalculateExperienceDifferenceToNextLevel(int experience)
     {
         auto currentLevel{CalculateCurrentLevel(experience)};
+
         auto nextLevel{currentLevel + 1};
+
         auto totalExperienceForCurrentLevel{CalculateExperienceForLevel(currentLevel)};
+
         auto totalExperienceForNextLevel{CalculateExperienceForLevel(nextLevel)};
 
         return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
@@ -48,6 +51,7 @@ namespace Forradia::Theme0::GameplayCore
     {
         auto experienceGain{experience -
                             CalculateExperienceRequiredForCurrentLevelStart(experience)};
+
         auto experienceDiff{CalculateExperienceDifferenceToNextLevel(experience)};
 
         return CFloat(experienceGain) / experienceDiff;

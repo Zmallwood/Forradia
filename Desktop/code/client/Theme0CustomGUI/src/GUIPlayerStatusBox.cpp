@@ -10,6 +10,8 @@
 
 #include "Player/PlayerCharacter.hpp"
 
+#include "Math/ExperienceCalculations.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIPlayerStatusBox::RenderDerived() const
@@ -21,5 +23,12 @@ namespace Forradia::Theme0
         _<TextRenderer>().DrawString(k_renderIDNameString,
                                      _<Theme0::GameplayCore::PlayerCharacter>().GetName(),
                                      bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+
+        auto experience{_<Theme0::GameplayCore::PlayerCharacter>().GetExperience()};
+
+        auto level{GameplayCore::CalculateCurrentLevel(experience)};
+
+        _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
+                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26);
     }
 }

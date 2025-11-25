@@ -48,6 +48,8 @@ namespace Forradia::Theme0::GameplayCore
         ///
         void MoveWest();
 
+        void AddExperience(int experience);
+
         ///
         /// Gets the name of the player.
         ///
@@ -138,6 +140,16 @@ namespace Forradia::Theme0::GameplayCore
             return *m_playerObjectsInventory;
         }
 
+        ///
+        /// Gets the experience of the player.
+        ///
+        /// @return The experience of the player.
+        ///
+        auto GetExperience() const
+        {
+            return m_experience;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -163,5 +175,7 @@ namespace Forradia::Theme0::GameplayCore
 
         SharedPtr<PlayerObjectsInventory>
             m_playerObjectsInventory; ///< The objects inventory of the player.
+
+        int m_experience{0}; ///< The experience of the player.
     };
 }

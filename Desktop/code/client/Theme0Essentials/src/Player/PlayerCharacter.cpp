@@ -78,4 +78,11 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position.x -= 1;
     }
+
+    void PlayerCharacter::AddExperience(int experience)
+    {
+        // Add experience to the player.
+
+        m_experience += experience;
+    }
 }
