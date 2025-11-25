@@ -70,6 +70,8 @@
 
 #include "GUI.hpp"
 
+#include "GUIExperienceBar.hpp"
+
 namespace Forradia::Theme0
 {
     class IScenePublic : public IScene
@@ -83,6 +85,13 @@ namespace Forradia::Theme0
     PYBIND11_EMBEDDED_MODULE(embedded, m)
     {
         py::class_<Color>(m, "Color").def(py::init<float, float, float, float>());
+
+        py::class_<RectF>(m, "RectF")
+            .def(py::init<float, float, float, float>())
+            .def_readwrite("height", &RectF::height);
+
+        py::class_<PointF>(m, "PointF")
+            .def(py::init<float, float>());
 
         py::class_<Engine>(m, "Engine").def("stop", &Engine::Stop);
 
@@ -111,6 +120,10 @@ namespace Forradia::Theme0
 
         py::class_<GUIEnergyStatisticsPanel, SharedPtr<GUIEnergyStatisticsPanel>, GUIComponent>(
             m, "gui_energy_statistics_panel");
+
+        py::class_<GUIExperienceBar, SharedPtr<GUIExperienceBar>, GUIComponent>(
+            m, "gui_experience_bar")
+            .def("get_bounds", &GUIExperienceBar::GetBounds);
 
         py::class_<IScene>(m, "IScene")
             .def(py::init<>())
@@ -141,7 +154,9 @@ namespace Forradia::Theme0
 
         py::class_<GUIChatBox, SharedPtr<GUIChatBox>, GUIComponent>(m, "GUIChatBox")
             .def(py::init<>())
-            .def("print", &GUIChatBox::Print);
+            .def("print", &GUIChatBox::Print)
+            .def("get_bounds", &GUIChatBox::GetBounds)
+            .def("set_position", &GUIChatBox::SetPosition);
 
         py::class_<Theme0::WorldGenerator>(m, "WorldGenerator")
             .def(py::init<>())
@@ -217,6 +232,14 @@ namespace Forradia::Theme0
                       GUIEnergyStatisticsPanel>();
               });
 
+        m.def("make_shared_experience_bar",
+              []
+              {
+                  return std::make_shared<
+
+                      GUIExperienceBar>();
+              });
+
         m.def("make_shared_gui_label",
               [](StringView uniqueName, float x, float y, float w, float h, StringView text,
                  bool cent_align)
@@ -275,6 +298,9 @@ namespace Forradia::Theme0
         m.def(
             "get_gui_chat_box", []() -> GUIChatBox & { return _<GUIChatBox>(); },
             py::return_value_policy::reference);
+
+        m.def("get_gui_experience_bar",
+              []() -> GUIExperienceBar & { return _<GUIExperienceBar>(); });
 
         m.def("get_gui_chat_box_ptr", []() -> SharedPtr<GUIChatBox> { return __<GUIChatBox>(); });
 

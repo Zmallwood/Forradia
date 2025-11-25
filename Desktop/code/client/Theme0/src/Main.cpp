@@ -12,6 +12,10 @@
 
 #include "World.hpp"
 
+#include "GUIChatBox.hpp"
+
+#include "GUIExperienceBar.hpp"
+
 int main(int argc, char **argv)
 {
     // Use namespaces for readability.

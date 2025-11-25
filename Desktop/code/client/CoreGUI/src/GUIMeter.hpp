@@ -20,6 +20,8 @@ namespace Forradia
             : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
               k_renderIDFilled(Hash(uniqueName.data() + String("Filled")))
         {
+            std::cout << "GUIMeter: x: " << x << ", y: " << y << ", width: " << width
+                      << ", height: " << height << std::endl;
         }
 
       protected:

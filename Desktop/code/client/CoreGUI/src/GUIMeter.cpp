@@ -12,6 +12,10 @@ namespace Forradia
 {
     void GUIMeter::RenderDerived() const
     {
+        auto bounds{GetBounds()};
+
+        //std::cout << "bounds: " << bounds.x << ", " << bounds.y << ", " << bounds.width << ", "
+        //          << bounds.height << std::endl;
         // Render the background.
 
         _<Color2DRenderer>().DrawFilledRectangle(
