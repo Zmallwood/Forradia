@@ -16,5 +16,22 @@ namespace Forradia
     class GUIMeter : public GUIComponent
     {
       public:
+        GUIMeter(StringView uniqueName, float x, float y, float width, float height)
+            : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
+              k_renderIDFilled(Hash(uniqueName.data() + String("Filled")))
+        {
+        }
+
+      protected:
+        void RenderDerived() const override;
+
+      private:
+        const int k_renderIDBackground; ///< The render ID of the background image.
+
+        const int k_renderIDFilled; ///< The render ID of the filled part of the meter.
+
+        float m_filledPercentage; ///< The percentage of the meter that is filled.
+
+        Color m_filledColor; ///< The color of the filled part of the meter.
     };
 }
