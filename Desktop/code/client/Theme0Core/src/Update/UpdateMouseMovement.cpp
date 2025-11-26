@@ -14,6 +14,8 @@
 
 #include "NumbersUtilities.hpp"
 
+#include "BattleSystem.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void UpdateMouseMovement()
@@ -23,6 +25,8 @@ namespace Forradia::Theme0::GameplayCore
             auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
             _<Theme0::GameplayCore::PlayerCharacter>().SetDestination(newDestination);
+
+            _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
         }
 
         auto playerPosition{_<PlayerCharacter>().GetPosition()};

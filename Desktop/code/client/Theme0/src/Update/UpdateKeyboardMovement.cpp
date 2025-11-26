@@ -12,6 +12,8 @@
 
 #include "NumbersUtilities.hpp"
 
+#include "Update/BattleSystem.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void UpdateKeyboardMovement()
@@ -32,9 +34,11 @@ namespace Forradia::Theme0::GameplayCore
 
         auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
 
-        if (upPress || rightPress || downPress || leftPress)
+        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)
         {
             _<Theme0::GameplayCore::PlayerCharacter>().SetDestination({-1, -1});
+
+            _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
         }
 
         auto now{GetTicks()};

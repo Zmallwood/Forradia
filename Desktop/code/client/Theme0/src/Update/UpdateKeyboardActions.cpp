@@ -16,6 +16,8 @@
 
 #include "GUIChatBox.hpp"
 
+#include "Player/PlayerCharacter.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void UpdateKeyboardActions()
@@ -41,6 +43,24 @@ namespace Forradia::Theme0::GameplayCore
             else
             {
                 _<GUIChatBox>().EnableInput();
+            }
+        }
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB))
+        {
+            auto currentMode{_<PlayerCharacter>().GetPlayerMode()};
+
+            switch (currentMode)
+            {
+            case PlayerModes::Interaction:
+                _<PlayerCharacter>().SetPlayerMode(PlayerModes::Battle);
+
+                _<GUIChatBox>().Print("You are now in battle mode.");
+                break;
+            case PlayerModes::Battle:
+                _<PlayerCharacter>().SetPlayerMode(PlayerModes::Interaction);
+
+                _<GUIChatBox>().Print("You are now in interaction mode.");
+                break;
             }
         }
     }

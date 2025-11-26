@@ -119,7 +119,7 @@ namespace Forradia::Theme0
 
         int m_ticksLastMovement{0}; ///< Ticks since last moved.
 
-        float m_movementSpeed{2.0f}; ///< Movement speed.
+        float m_movementSpeed{1.0f}; ///< Movement speed.
 
         Point m_destination{-1, -1}; ///< Movement destination.
 

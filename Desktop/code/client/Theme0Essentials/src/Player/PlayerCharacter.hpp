@@ -8,6 +8,8 @@
 
 #include "PlayerBody.hpp"
 
+#include "PlayerModes.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     class PlayerObjectsInventory;
@@ -150,6 +152,16 @@ namespace Forradia::Theme0::GameplayCore
             return m_experience;
         }
 
+        auto GetPlayerMode() const
+        {
+            return m_playerMode;
+        }
+
+        void SetPlayerMode(PlayerModes playerMode)
+        {
+            m_playerMode = playerMode;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -177,5 +189,7 @@ namespace Forradia::Theme0::GameplayCore
             m_playerObjectsInventory; ///< The objects inventory of the player.
 
         int m_experience{0}; ///< The experience of the player.
+
+        PlayerModes m_playerMode{PlayerModes::Interaction}; ///< The mode of the player.
     };
 }
