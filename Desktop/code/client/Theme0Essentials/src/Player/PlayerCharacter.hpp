@@ -162,14 +162,14 @@ namespace Forradia::Theme0::GameplayCore
             m_playerMode = playerMode;
         }
 
-        auto GetHealth() const
+        auto GetWellBeing() const
         {
-            return m_health;
+            return m_wellBeing;
         }
 
-        auto GetMaxHealth() const
+        auto GetMaxWellBeing() const
         {
-            return m_maxHealth;
+            return m_maxWellBeing;
         }
 
         auto GetAttackSpeed() const
@@ -217,12 +217,12 @@ namespace Forradia::Theme0::GameplayCore
 
         PlayerModes m_playerMode{PlayerModes::Interaction}; ///< The mode of the player.
 
-        float m_health{10.0f}; ///< The health of the player.
+        float m_wellBeing{10.0f}; ///< The well being of the player.
 
-        float m_maxHealth{10.0f}; ///< The max health of the player.
+        float m_maxWellBeing{10.0f}; ///< The max well being of the player.
 
         float m_attackSpeed{3.0f}; ///< The attack speed of the player.
 
-        int m_ticksLastHitAnother {0}; ///< The ticks since last hit another entity.
+        int m_ticksLastHitAnother{0}; ///< The ticks since last hit another entity.
     };
 }

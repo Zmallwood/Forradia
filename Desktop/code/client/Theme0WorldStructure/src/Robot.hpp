@@ -132,8 +132,8 @@ namespace Forradia::Theme0
 
         Point m_origin{-1, -1}; ///< Movement origin.
 
-        float m_wellBeing{10.0f}; ///< Health.
+        float m_wellBeing{10.0f}; ///< Well-being.
 
-        float m_maxWellBeing{10.0f}; ///< Maximum health.
+        float m_maxWellBeing{10.0f}; ///< Maximum well-being.
     };
 }

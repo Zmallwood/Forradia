@@ -10,11 +10,11 @@
 
 namespace Forradia::Theme0
 {
-    class GUIHealthMeter : public GUIMeter
+    class GUIWellBeingMeter : public GUIMeter
     {
       public:
-        GUIHealthMeter(float x, float y, float width, float height)
-            : GUIMeter("GUIHealthMeter", x, y, width, height, GetFilledColor())
+        GUIWellBeingMeter(float x, float y, float width, float height)
+            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor())
         {
         }
 

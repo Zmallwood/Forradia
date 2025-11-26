@@ -12,7 +12,7 @@
 
 #include "Math/ExperienceCalculations.hpp"
 
-#include "GUIHealthMeter.hpp"
+#include "GUIWellBeingMeter.hpp"
 
 #include "GUILabel.hpp"
 
@@ -22,28 +22,28 @@ namespace Forradia::Theme0
     {
         // Create the health meter.
 
-        auto healthMeter{std::make_shared<GUIHealthMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+        auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
 
         // Add the name text label to this panel.
 
-        this->AddChildComponent(healthMeter);
+        this->AddChildComponent(wellBeingMeter);
 
-        m_healthValueTextLabel =
+        m_wellBeingValueTextLabel =
             std::make_shared<GUILabel>("GUILabelHealthValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
                                        false, Palette::GetColor<Hash("Black")>());
 
-        this->AddChildComponent(m_healthValueTextLabel);
+        this->AddChildComponent(m_wellBeingValueTextLabel);
     }
 
     void GUIPlayerStatusBox::UpdateDerived()
     {
         GUIPanel::UpdateDerived();
 
-        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetHealth()};
+        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
 
-        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxHealth()};
+        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
 
-        m_healthValueTextLabel->SetText(fmt::format("{} / {}", health, maxHealth));
+        m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", health, maxHealth));
     }
 
     void GUIPlayerStatusBox::RenderDerived() const
@@ -64,7 +64,7 @@ namespace Forradia::Theme0
                                      bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
                                      true);
 
-        _<TextRenderer>().DrawString(k_renderHealthString, "Health", bounds.x + 0.01f,
+        _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
                                      bounds.y + 0.095f, FontSizes::_20);
     }
 }
