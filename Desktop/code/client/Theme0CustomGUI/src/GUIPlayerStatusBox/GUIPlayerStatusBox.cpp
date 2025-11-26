@@ -14,6 +14,8 @@
 
 #include "GUIHealthMeter.hpp"
 
+#include "GUILabel.hpp"
+
 namespace Forradia::Theme0
 {
     void GUIPlayerStatusBox::Initialize()
@@ -25,6 +27,22 @@ namespace Forradia::Theme0
         // Add the name text label to this panel.
 
         this->AddChildComponent(healthMeter);
+
+        m_healthValueTextLabel = std::make_shared<GUILabel>("GUILabelHealthValueText", 0.08f,
+                                                            0.095f, 0.1f, 0.05f, "asd");
+
+        this->AddChildComponent(m_healthValueTextLabel);
+    }
+
+    void GUIPlayerStatusBox::UpdateDerived()
+    {
+        GUIPanel::UpdateDerived();
+
+        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetHealth()};
+
+        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxHealth()};
+
+        m_healthValueTextLabel->SetText(fmt::format("{} / {}", health, maxHealth));
     }
 
     void GUIPlayerStatusBox::RenderDerived() const
@@ -45,8 +63,7 @@ namespace Forradia::Theme0
                                      bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
                                      true);
 
-        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetHealth()};
-
-        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxHealth()};
+        _<TextRenderer>().DrawString(k_renderHealthString, "Health", bounds.x + 0.01f,
+                                     bounds.y + 0.095f, FontSizes::_20);
     }
 }

@@ -8,6 +8,11 @@
 
 #include "GUIPanel.hpp"
 
+namespace Forradia
+{
+    class GUILabel;
+}
+
 namespace Forradia::Theme0
 {
     class GUIPlayerStatusBox : public GUIPanel
@@ -21,7 +26,9 @@ namespace Forradia::Theme0
       protected:
         void Initialize();
 
-        virtual void RenderDerived() const override;
+        void UpdateDerived() override;
+
+        void RenderDerived() const override;
 
       private:
         const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
@@ -31,5 +38,7 @@ namespace Forradia::Theme0
         const int k_renderHealthString{Hash("GUIPlayerStatusBoxHealth")};
 
         const int k_renderHealthValueString{Hash("GUIPlayerStatusBoxHealthValue")};
+
+        SharedPtr<GUILabel> m_healthValueTextLabel;
     };
 }
