@@ -6,6 +6,8 @@
 
 #include "Robot.hpp"
 
+#include "GUIChatBox.hpp"
+
 namespace Forradia::Theme0
 {
     void Robot::Initialize()
@@ -17,6 +19,8 @@ namespace Forradia::Theme0
 
     void Robot::TakeDamage(float damage)
     {
+        _<GUIChatBox>().Print("Robot took damage: " + std::to_string(damage));
+
         // Subtract the damage from the health.
 
         m_health -= damage;
