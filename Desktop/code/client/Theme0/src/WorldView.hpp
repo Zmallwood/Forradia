@@ -27,6 +27,8 @@ namespace Forradia::Theme0::GameplayCore
 
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
 
+        const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
+
         std::map<int, std::map<int, int>> m_renderIDsGround;
 
         std::map<int, std::map<int, int>> m_renderIDsClaimedTiles;

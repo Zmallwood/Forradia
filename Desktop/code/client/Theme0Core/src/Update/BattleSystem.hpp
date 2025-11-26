@@ -18,6 +18,11 @@ namespace Forradia::Theme0::GameplayCore
       public:
         void Update();
 
+        auto GetTargetedRobot() const
+        {
+            return m_targetedRobot;
+        }
+
         void SetTargetedRobot(SharedPtr<Robot> value)
         {
             m_targetedRobot = value;

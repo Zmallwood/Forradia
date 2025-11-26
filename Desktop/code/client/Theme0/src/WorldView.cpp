@@ -34,6 +34,8 @@
 
 #include "TileData.hpp"
 
+#include "Update/BattleSystem.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void WorldView::Initiallize()
@@ -360,7 +362,33 @@ namespace Forradia::Theme0::GameplayCore
                             elevations);
                     }
 
-                    _<GroundRenderer>().SetupState();
+                    _<GroundRenderer>().RestoreState();
+                }
+
+                auto targetedRobot{_<BattleSystem>().GetTargetedRobot()};
+
+                if (targetedRobot)
+                {
+                    auto &robots{worldArea->GetRobotsMirrorRef()};
+
+                    auto targetedRobotCoordinates{robots.at(targetedRobot)};
+
+                    if (targetedRobotCoordinates.x == xCoordinate &&
+                        targetedRobotCoordinates.y == yCoordinate)
+                    {
+                        for (auto &elevation : elevations)
+                        {
+                            elevation += 0.01f;
+                        }
+
+                        _<GroundRenderer>().SetupState();
+
+                        _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot,
+                                                     Hash("TargetedRobot"), xCoordinate,
+                                                     yCoordinate, rendTileSize, elevations, true);
+
+                        _<GroundRenderer>().RestoreState();
+                    }
                 }
             }};
 
