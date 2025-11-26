@@ -28,8 +28,9 @@ namespace Forradia::Theme0
 
         this->AddChildComponent(healthMeter);
 
-        m_healthValueTextLabel = std::make_shared<GUILabel>("GUILabelHealthValueText", 0.08f,
-                                                            0.095f, 0.1f, 0.05f, "asd");
+        m_healthValueTextLabel =
+            std::make_shared<GUILabel>("GUILabelHealthValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+                                       false, Palette::GetColor<Hash("Black")>());
 
         this->AddChildComponent(m_healthValueTextLabel);
     }
