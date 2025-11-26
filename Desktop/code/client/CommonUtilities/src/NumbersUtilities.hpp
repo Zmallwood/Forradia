@@ -9,12 +9,12 @@
 namespace Forradia
 {
     ///
-    /// Calculate the inverse of the movement speed.
+    /// Calculate the inverse of the speed.
     ///
-    /// @param movementSpeed Movement speed to invert.
-    /// @return The inverse of the movement speed.
+    /// @param speed Speed to invert.
+    /// @return The inverse of the speed.
     ///
-    float InvertMovementSpeed(float movementSpeed);
+    float InvertSpeed(float speed);
 
     ///
     /// Calculate the normalized value.

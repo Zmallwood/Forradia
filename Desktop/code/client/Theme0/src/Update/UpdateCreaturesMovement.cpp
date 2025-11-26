@@ -32,8 +32,7 @@ namespace Forradia::Theme0::GameplayCore
 
             auto position{it->second};
 
-            if (now < creature->GetTicksLastMovement() +
-                          InvertMovementSpeed(creature->GetMovementSpeed()))
+            if (now < creature->GetTicksLastMovement() + InvertSpeed(creature->GetMovementSpeed()))
             {
                 ++it;
 

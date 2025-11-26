@@ -44,10 +44,10 @@ namespace Forradia::Theme0::GameplayCore
         auto now{GetTicks()};
 
         if (now >= _<Theme0::GameplayCore::PlayerCharacter>().GetTicksLastMovement() +
-                       InvertMovementSpeed(_<Theme0::GameplayCore::
+                       InvertSpeed(_<Theme0::GameplayCore::
 
-                                                 PlayerCharacter>()
-                                               .GetMovementSpeed()) &&
+                                         PlayerCharacter>()
+                                       .GetMovementSpeed()) &&
             (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
              dPress))
         {

@@ -10,15 +10,15 @@
 
 namespace Forradia
 {
-    float InvertMovementSpeed(float movemenSpeed)
+    float InvertSpeed(float speed)
     {
         // Calculate the inverse of the movement speed.
 
-        if (movemenSpeed)
+        if (speed)
         {
             // If the movement speed is not zero, invert it and return.
 
-            return k_oneSecMillis / movemenSpeed;
+            return k_oneSecMillis / speed;
         }
         else
         {

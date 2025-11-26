@@ -177,6 +177,16 @@ namespace Forradia::Theme0::GameplayCore
             return m_attackSpeed;
         }
 
+        auto GetTicksLastHitAnother() const
+        {
+            return m_ticksLastHitAnother;
+        }
+
+        void SetTicksLastHitAnother(int value)
+        {
+            m_ticksLastHitAnother = value;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -212,5 +222,7 @@ namespace Forradia::Theme0::GameplayCore
         float m_maxHealth{10.0f}; ///< The max health of the player.
 
         float m_attackSpeed{3.0f}; ///< The attack speed of the player.
+
+        int m_ticksLastHitAnother {0}; ///< The ticks since last hit another entity.
     };
 }

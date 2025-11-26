@@ -41,7 +41,7 @@ namespace Forradia::Theme0::GameplayCore
         auto now{GetTicks()};
 
         if (now >= _<PlayerCharacter>().GetTicksLastMovement() +
-                       InvertMovementSpeed(_<PlayerCharacter>().GetMovementSpeed()))
+                       InvertSpeed(_<PlayerCharacter>().GetMovementSpeed()))
         {
             auto dX{destination.x - playerPosition.x};
 

@@ -15,6 +15,7 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
+    ForradiaCommonUtilities
     ForradiaCoreGUI
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials

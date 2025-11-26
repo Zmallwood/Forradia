@@ -39,7 +39,7 @@ namespace Forradia::Theme0
             this->Initialize();
         }
 
-        void TakeDamage(float damage);
+        void Hit(float points);
 
         ///
         /// Gets the robot type.
@@ -110,10 +110,10 @@ namespace Forradia::Theme0
         {
             return m_origin;
         }
-
-        auto GetHealth() const
+        
+        auto GetWellBeing() const
         {
-            return m_health;
+            return m_wellBeing;
         }
 
       private:
@@ -132,8 +132,8 @@ namespace Forradia::Theme0
 
         Point m_origin{-1, -1}; ///< Movement origin.
 
-        float m_health{10.0f}; ///< Health.
+        float m_wellBeing{10.0f}; ///< Health.
 
-        float m_maxHealth{10.0f}; ///< Maximum health.
+        float m_maxWellBeing{10.0f}; ///< Maximum health.
     };
 }

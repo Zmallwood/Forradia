@@ -32,8 +32,7 @@ namespace Forradia::Theme0::GameplayCore
 
             auto position{it->second};
 
-            if (now <
-                robot->GetTicksLastMovement() + InvertMovementSpeed(robot->GetMovementSpeed()))
+            if (now < robot->GetTicksLastMovement() + InvertSpeed(robot->GetMovementSpeed()))
             {
                 ++it;
 

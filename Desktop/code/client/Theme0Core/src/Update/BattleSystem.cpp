@@ -45,7 +45,14 @@ namespace Forradia::Theme0::GameplayCore
 
         if (dx*dx + dy*dy <= attackRange*attackRange)
         {
-            m_targetedRobot->TakeDamage(1);
+            auto now{GetTicks()};
+
+            if (now >= player.GetTicksLastHitAnother() + InvertSpeed(player.GetAttackSpeed()))
+            {
+                m_targetedRobot->Hit(1);
+                
+                player.SetTicksLastHitAnother(now);
+            }
         }
     }
 }

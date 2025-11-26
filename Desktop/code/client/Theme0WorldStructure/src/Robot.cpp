@@ -17,12 +17,12 @@ namespace Forradia::Theme0
         m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
     }
 
-    void Robot::TakeDamage(float damage)
+    void Robot::Hit(float points)
     {
-        _<GUIChatBox>().Print("Robot took damage: " + std::to_string(damage));
+        _<GUIChatBox>().Print("You hit robot for: " + std::to_string(points));
 
-        // Subtract the damage from the health.
+        // Subtract the points from the health.
 
-        m_health -= damage;
+        m_wellBeing -= points;
     }
 }
