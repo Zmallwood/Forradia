@@ -162,6 +162,16 @@ namespace Forradia::Theme0::GameplayCore
             m_playerMode = playerMode;
         }
 
+        auto GetHealth() const
+        {
+            return m_health;
+        }
+
+        auto GetMaxHealth() const
+        {
+            return m_maxHealth;
+        }
+        
       private:
         ///
         /// Initializes the player character.
@@ -191,5 +201,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_experience{0}; ///< The experience of the player.
 
         PlayerModes m_playerMode{PlayerModes::Interaction}; ///< The mode of the player.
+
+        float m_health{10.0f}; ///< The health of the player.
+
+        float m_maxHealth{10.0f}; ///< The max health of the player.
     };
 }

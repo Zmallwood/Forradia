@@ -12,8 +12,21 @@
 
 #include "Math/ExperienceCalculations.hpp"
 
+#include "GUIHealthMeter.hpp"
+
 namespace Forradia::Theme0
 {
+    void GUIPlayerStatusBox::Initialize()
+    {
+        // Create the health meter.
+
+        auto healthMeter{std::make_shared<GUIHealthMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+
+        // Add the name text label to this panel.
+
+        this->AddChildComponent(healthMeter);
+    }
+
     void GUIPlayerStatusBox::RenderDerived() const
     {
         GUIPanel::RenderDerived();
@@ -31,5 +44,9 @@ namespace Forradia::Theme0
         _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
                                      bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
                                      true);
+
+        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetHealth()};
+
+        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxHealth()};
     }
 }

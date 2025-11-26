@@ -23,7 +23,7 @@ namespace Forradia
         // Render the filled part.
 
         _<Color2DRenderer>().DrawFilledRectangle(
-            k_renderIDFilled, Palette::GetColor<Hash("Yellow")>(), GetBounds().x, GetBounds().y,
-            GetFilledPercentage(), GetBounds().height, true);
+            k_renderIDFilled, k_filledColor, GetBounds().x, GetBounds().y,
+            GetBounds().width * GetFilledPercentage(), GetBounds().height, true);
     }
 }

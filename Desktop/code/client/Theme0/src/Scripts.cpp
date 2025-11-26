@@ -8,7 +8,7 @@
 
 #include "Engine.hpp"
 
-#include "GUIPlayerStatusBox.hpp"
+#include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 
 #include "GUIPlayerBodyWindow.hpp"
 

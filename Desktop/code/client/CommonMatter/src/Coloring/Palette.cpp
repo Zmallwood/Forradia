@@ -59,4 +59,10 @@ namespace Forradia::Palette
     {
         return {0.0f, 0.4f, 0.9f, 1.0f};
     }
+
+    template <>
+    Color GetColor<Hash("Red")>()
+    {
+        return {1.0f, 0.0f, 0.0f, 1.0f};
+    }
 }
