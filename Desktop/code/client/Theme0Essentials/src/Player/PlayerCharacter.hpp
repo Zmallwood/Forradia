@@ -171,7 +171,12 @@ namespace Forradia::Theme0::GameplayCore
         {
             return m_maxHealth;
         }
-        
+
+        auto GetAttackSpeed() const
+        {
+            return m_attackSpeed;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -205,5 +210,7 @@ namespace Forradia::Theme0::GameplayCore
         float m_health{10.0f}; ///< The health of the player.
 
         float m_maxHealth{10.0f}; ///< The max health of the player.
+
+        float m_attackSpeed{3.0f}; ///< The attack speed of the player.
     };
 }

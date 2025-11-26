@@ -12,6 +12,8 @@
 
 #include "Player/PlayerCharacter.hpp"
 
+#include "Robot.hpp"
+
 namespace Forradia::Theme0::GameplayCore
 {
     void BattleSystem::Update()
@@ -27,11 +29,23 @@ namespace Forradia::Theme0::GameplayCore
 
         auto &robots{worldArea->GetRobotsMirrorRef()};
 
-        auto coordinate{robots.at(m_targetedRobot)};
+        auto robotCoordinates{robots.at(m_targetedRobot)};
 
         auto &player{_<PlayerCharacter>()};
 
-        player.SetDestination(
-            {coordinate.x, coordinate.y});
+        player.SetDestination({robotCoordinates.x, robotCoordinates.y});
+
+        auto playerPosition{player.GetPosition()};
+
+        auto dx {robotCoordinates.x - playerPosition.x};
+
+        auto dy {robotCoordinates.y - playerPosition.y};
+
+        auto attackRange{1.0f};
+
+        if (dx*dx + dy*dy <= attackRange*attackRange)
+        {
+            m_targetedRobot->TakeDamage(1);
+        }
     }
 }
