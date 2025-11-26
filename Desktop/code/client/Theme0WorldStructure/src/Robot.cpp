@@ -14,4 +14,11 @@ namespace Forradia::Theme0
 
         m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
     }
+
+    void Robot::TakeDamage(float damage)
+    {
+        // Subtract the damage from the health.
+
+        m_health -= damage;
+    }
 }

@@ -39,6 +39,8 @@ namespace Forradia::Theme0
             this->Initialize();
         }
 
+        void TakeDamage(float damage);
+
         ///
         /// Gets the robot type.
         ///
@@ -109,6 +111,11 @@ namespace Forradia::Theme0
             return m_origin;
         }
 
+        auto GetHealth() const
+        {
+            return m_health;
+        }
+
       private:
         ///
         /// Initializes the robot, by randomizing its movement speed slightly.
@@ -124,5 +131,9 @@ namespace Forradia::Theme0
         Point m_destination{-1, -1}; ///< Movement destination.
 
         Point m_origin{-1, -1}; ///< Movement origin.
+
+        float m_health{10.0f}; ///< Health.
+
+        float m_maxHealth{10.0f}; ///< Maximum health.
     };
 }
