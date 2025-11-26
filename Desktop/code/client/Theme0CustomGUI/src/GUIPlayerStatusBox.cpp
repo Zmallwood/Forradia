@@ -29,6 +29,7 @@ namespace Forradia::Theme0
         auto level{GameplayCore::CalculateCurrentLevel(experience)};
 
         _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26);
+                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
+                                     true);
     }
 }
