@@ -90,8 +90,7 @@ namespace Forradia::Theme0
             .def(py::init<float, float, float, float>())
             .def_readwrite("height", &RectF::height);
 
-        py::class_<PointF>(m, "PointF")
-            .def(py::init<float, float>());
+        py::class_<PointF>(m, "PointF").def(py::init<float, float>());
 
         py::class_<Engine>(m, "Engine").def("stop", &Engine::Stop);
 
@@ -299,8 +298,8 @@ namespace Forradia::Theme0
             "get_gui_chat_box", []() -> GUIChatBox & { return _<GUIChatBox>(); },
             py::return_value_policy::reference);
 
-        m.def("get_gui_experience_bar",
-              []() -> GUIExperienceBar & { return _<GUIExperienceBar>(); });
+        m.def("get_gui_experience_bar_ptr",
+              []() -> SharedPtr<GUIExperienceBar> { return __<GUIExperienceBar>(); });
 
         m.def("get_gui_chat_box_ptr", []() -> SharedPtr<GUIChatBox> { return __<GUIChatBox>(); });
 

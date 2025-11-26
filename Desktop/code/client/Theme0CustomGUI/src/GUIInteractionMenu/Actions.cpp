@@ -298,6 +298,8 @@ namespace Forradia::Theme0
 
                     _<GUIChatBox>().Print("Foraging... You found some "
                                           "blueberries!");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
                 }};
     }
 

@@ -14,8 +14,6 @@ namespace Forradia
     {
         auto bounds{GetBounds()};
 
-        //std::cout << "bounds: " << bounds.x << ", " << bounds.y << ", " << bounds.width << ", "
-        //          << bounds.height << std::endl;
         // Render the background.
 
         _<Color2DRenderer>().DrawFilledRectangle(
@@ -25,7 +23,7 @@ namespace Forradia
         // Render the filled part.
 
         _<Color2DRenderer>().DrawFilledRectangle(
-            k_renderIDFilled, m_filledColor, GetBounds().x, GetBounds().y,
-            GetBounds().width * m_filledPercentage, GetBounds().height);
+            k_renderIDFilled, Palette::GetColor<Hash("Yellow")>(), GetBounds().x, GetBounds().y,
+            GetFilledPercentage(), GetBounds().height, true);
     }
 }

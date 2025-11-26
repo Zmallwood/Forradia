@@ -40,8 +40,7 @@ from embedded import (
     get_img_2d_rend,
     get_hash,
     get_battle_system,
-    make_shared_experience_bar,
-    get_gui_experience_bar,
+    get_gui_experience_bar_ptr,
     PointF
 )
 
@@ -289,12 +288,12 @@ class MainScene(IScene):
             self.gui().add_child_comp(make_shared_fps_panel())
             self.gui().add_child_comp(make_shared_energy_statistics_panel())
             self.gui().add_child_comp(get_gui_interact_menu_ptr())
-            self.gui().add_child_comp(make_shared_experience_bar())
+            self.gui().add_child_comp(get_gui_experience_bar_ptr())
 
         def on_enter_derived():
 
             chat_box_height = get_gui_chat_box().get_bounds().height
-            experience_bar_height = get_gui_experience_bar().get_bounds().height
+            experience_bar_height = get_gui_experience_bar_ptr().get_bounds().height
             get_gui_chat_box().set_position(PointF(0.0, 1.0 - chat_box_height - experience_bar_height))
 
             get_gui_chat_box().print("You have entered the world.")

@@ -8,12 +8,15 @@
 
 #include "GUIMeter.hpp"
 
+#include "Coloring/Palette.hpp"
+
 namespace Forradia::Theme0
 {
     class GUIExperienceBar : public GUIMeter
     {
       public:
-        GUIExperienceBar() : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height)
+        GUIExperienceBar()
+            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, GetFilledColor())
         {
         }
 
@@ -22,7 +25,19 @@ namespace Forradia::Theme0
             return k_height;
         }
 
+      protected:
+        void UpdateDerived() override;
+
+        float GetFilledPercentage() const override;
+
+        Color GetFilledColor() const
+        {
+            return Palette::GetColor<Hash("Yellow")>();
+        }
+
       private:
-        constexpr static float k_height{0.04f};
+        constexpr static float k_height{0.02f};
+
+        float m_filledPercentage{0.0f};
     };
 }
