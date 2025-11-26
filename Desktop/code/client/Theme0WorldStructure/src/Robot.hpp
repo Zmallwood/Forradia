@@ -41,6 +41,8 @@ namespace Forradia::Theme0
 
         void Hit(float points);
 
+        bool IsKnockedOut() const;
+
         ///
         /// Gets the robot type.
         ///

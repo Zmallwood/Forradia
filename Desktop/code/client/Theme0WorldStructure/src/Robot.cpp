@@ -25,4 +25,11 @@ namespace Forradia::Theme0
 
         m_wellBeing -= points;
     }
+
+    bool Robot::IsKnockedOut() const
+    {
+        // Return true if the robot's well-being is less than or equal to 0.
+
+        return m_wellBeing <= 0.0f;
+    }
 }

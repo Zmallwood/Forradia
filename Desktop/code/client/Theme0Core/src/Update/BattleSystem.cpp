@@ -6,6 +6,7 @@
 
 #include "BattleSystem.hpp"
 
+#include "GUIChatBox.hpp"
 #include "World.hpp"
 
 #include "WorldArea.hpp"
@@ -52,6 +53,19 @@ namespace Forradia::Theme0::GameplayCore
                 m_targetedRobot->Hit(1);
                 
                 player.SetTicksLastHitAnother(now);
+
+                auto isKnockedOut{m_targetedRobot->IsKnockedOut()};
+
+                if (isKnockedOut)
+                {
+                    _<GUIChatBox>().Print("You have knocked out the robot!");
+
+                    _<PlayerCharacter>().AddExperience(10);
+
+                    _<GUIChatBox>().Print("You have gained 10 experience!");
+                    
+                    m_targetedRobot = nullptr;
+                }
             }
         }
     }
