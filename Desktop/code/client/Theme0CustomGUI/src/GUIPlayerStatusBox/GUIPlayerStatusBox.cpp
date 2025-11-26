@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         this->AddChildComponent(wellBeingMeter);
 
         m_wellBeingValueTextLabel =
-            std::make_shared<GUILabel>("GUILabelHealthValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+            std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
                                        false, Palette::GetColor<Hash("Black")>());
 
         this->AddChildComponent(m_wellBeingValueTextLabel);
@@ -39,11 +39,11 @@ namespace Forradia::Theme0
     {
         GUIPanel::UpdateDerived();
 
-        auto health{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
+        auto wellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
 
-        auto maxHealth{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
+        auto maxWellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
 
-        m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", health, maxHealth));
+        m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
 
     void GUIPlayerStatusBox::RenderDerived() const
