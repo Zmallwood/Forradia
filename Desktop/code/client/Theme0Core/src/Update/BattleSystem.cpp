@@ -7,6 +7,7 @@
 #include "BattleSystem.hpp"
 
 #include "GUIChatBox.hpp"
+
 #include "World.hpp"
 
 #include "WorldArea.hpp"
@@ -14,6 +15,8 @@
 #include "Player/PlayerCharacter.hpp"
 
 #include "Robot.hpp"
+
+#include "Tile.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
@@ -63,6 +66,12 @@ namespace Forradia::Theme0::GameplayCore
                     _<PlayerCharacter>().AddExperience(10);
 
                     _<GUIChatBox>().Print("You have gained 10 experience!");
+
+                    auto robotTile{worldArea->GetTile(robotCoordinates.x, robotCoordinates.y)};
+
+                    robotTile->SetRobot(nullptr);
+
+                    robots.erase(m_targetedRobot);
                     
                     m_targetedRobot = nullptr;
                 }

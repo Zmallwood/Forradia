@@ -42,7 +42,7 @@ namespace Forradia::Theme0
 
         // Number of robot clusters to generate.
 
-        auto numRobotClusters{8 + GetRandomInt(7)};
+        auto numRobotClusters{38 + GetRandomInt(7)};
 
         // Generate robots in clusters.
 
@@ -132,7 +132,7 @@ namespace Forradia::Theme0
 
         // Number of scattered robots to generate.
 
-        auto numScatteredRobots{120 * worldScaling + GetRandomInt(40 * worldScaling)};
+        auto numScatteredRobots{220 * worldScaling + GetRandomInt(40 * worldScaling)};
 
         // Generate scattered robots.
 
