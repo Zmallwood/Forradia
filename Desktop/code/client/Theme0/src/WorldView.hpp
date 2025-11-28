@@ -32,5 +32,9 @@ namespace Forradia::Theme0::GameplayCore
         std::map<int, std::map<int, int>> m_renderIDsGround;
 
         std::map<int, std::map<int, int>> m_renderIDsClaimedTiles;
+
+        std::map<int, std::map<int, int>> m_renderIDsRivers1;
+
+        std::map<int, std::map<int, int>> m_renderIDsRivers2;
     };
 }

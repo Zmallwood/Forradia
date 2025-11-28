@@ -145,7 +145,27 @@ namespace Forradia::Theme0
         {
             m_waterDepth = value;
         }
-        
+
+        auto GetRiverDirection1() const
+        {
+            return m_riverDirection1;
+        }
+
+        void SetRiverDirection1(Directions value)
+        {
+            m_riverDirection1 = value;
+        }
+
+        auto GetRiverDirection2() const
+        {
+            return m_riverDirection2;
+        }
+
+        void SetRiverDirection2(Directions value)
+        {
+            m_riverDirection2 = value;
+        }
+
       private:
         ///
         /// Initializes the tile.
@@ -163,5 +183,9 @@ namespace Forradia::Theme0
         int m_elevation{0}; ///< The elevation of the tile.
 
         int m_waterDepth{0}; ///< The water depth of the tile.
+
+        Directions m_riverDirection1{Directions::None}; ///< The direction of the river on the tile.
+
+        Directions m_riverDirection2{Directions::None}; ///< The direction of the river on the tile.
     };
 }

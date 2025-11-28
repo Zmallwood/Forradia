@@ -19,6 +19,139 @@ namespace Forradia::Theme0
         GenerateNaturalRivers();
 
         GenerateLakesInValleys();
+
+        auto worldArea{GetWorldArea()};
+
+        auto worldAreaSize{GetWorldAreaSize()};
+
+        auto numRivers{100 + GetRandomInt(20)};
+
+        for (auto i = 0; i < numRivers; i++)
+        {
+            // Generate a random starting point.
+
+            auto startX{GetRandomInt(worldAreaSize.width)};
+
+            auto startY{GetRandomInt(worldAreaSize.height)};
+
+            auto currentX{startX};
+
+            auto currentY{startY};
+
+            auto riverLength{10 + GetRandomInt(50)};
+
+            auto previousX{startX};
+
+            auto previousY{startY};
+
+            for (auto j = 0; j < riverLength; j++)
+            {
+                // Get the tile at the current point.
+
+                auto tile{worldArea->GetTile(currentX, currentY)};
+
+                if (nullptr == tile)
+                {
+                    break;
+                }
+
+                // If the tile is found and the elevation is greater than 0, and the tile is a valid
+                // water placement location.
+
+                if (tile && tile->GetElevation() > 0 && IsValidForWater(currentX, currentY))
+                {
+                    // Set the tile to water.
+
+                    auto dx{currentX - previousX};
+
+                    auto dy{currentY - previousY};
+
+                    if (dx == 0 && dy > 0)
+                    {
+                        tile->SetRiverDirection1(Directions::North);
+                    }
+                    else if (dx == 0 && dy < 0)
+                    {
+                        tile->SetRiverDirection1(Directions::South);
+                    }
+                    else if (dx > 0 && dy == 0)
+                    {
+                        tile->SetRiverDirection1(Directions::West);
+                    }
+                    else if (dx < 0 && dy == 0)
+                    {
+                        tile->SetRiverDirection1(Directions::East);
+                    }
+
+                    auto newDx{0};
+
+                    auto newDy{0};
+
+                    auto direction{GetRandomInt(9)};
+
+                    switch (direction)
+                    {
+                    case 0:
+                        newDx = 0;
+                        newDy = 1;
+                        break;
+                    case 1:
+                        newDx = 0;
+                        newDy = -1;
+                        break;
+                    case 2:
+                        newDx = 1;
+                        newDy = 0;
+                        break;
+                    case 3:
+                        newDx = -1;
+                        newDy = 0;
+                        break;
+                    case 4:
+                        newDx = 1;
+                        newDy = 1;
+                        break;
+                    case 5:
+                        newDx = 1;
+                        newDy = -1;
+                        break;
+                    case 6:
+                        newDx = -1;
+                        newDy = 1;
+                        break;
+                    case 7:
+                        newDx = -1;
+                        newDy = -1;
+                        break;
+                    }
+
+                    if (newDx == 0 && newDy > 0)
+                    {
+                        tile->SetRiverDirection2(Directions::South);
+                    }
+                    else if (newDx == 0 && newDy < 0)
+                    {
+                        tile->SetRiverDirection2(Directions::North);
+                    }
+                    else if (newDx > 0 && newDy == 0)
+                    {
+                        tile->SetRiverDirection2(Directions::East);
+                    }
+                    else if (newDx < 0 && newDy == 0)
+                    {
+                        tile->SetRiverDirection2(Directions::West);
+                    }
+
+                    previousX = currentX;
+
+                    previousY = currentY;
+
+                    currentX += newDx;
+
+                    currentY += newDy;
+                }
+            }
+        }
     }
 
     void WorldGeneratorWater::GenerateNaturalRivers() const

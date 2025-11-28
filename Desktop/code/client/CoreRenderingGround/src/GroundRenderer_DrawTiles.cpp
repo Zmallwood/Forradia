@@ -173,6 +173,31 @@ namespace Forradia
         {
             auto imageNameHash = entry.first;
 
+            if (imageNameHash == 0)
+            {
+                continue;
+            }
+
+            // if (imageNameHash == Hash("RiverNorth"))
+            // {
+            //     std::cout << "RiverNorth\n";
+            // }
+
+            // if (imageNameHash == Hash("RiverEast"))
+            // {
+            //     std::cout << "RiverEast\n";
+            // }
+
+            // if (imageNameHash == Hash("RiverSouth"))
+            // {
+            //     std::cout << "RiverSouth\n";
+            // }
+
+            // if (imageNameHash == Hash("RiverWest"))
+            // {
+            //     std::cout << "RiverWest\n";
+            // }
+
             auto group = entry.second;
 
             // Get the texture ID and bind it.
