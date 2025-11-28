@@ -49,6 +49,14 @@ namespace Forradia
                 _<KeyboardInput>().RegisterKeyRelease(event.key.keysym.sym);
 
                 break;
+            
+            case SDL_TEXTINPUT:
+
+                // Register text input.
+
+                _<KeyboardInput>().AddTextInput(event.text.text);
+
+                break;
 
             case SDL_MOUSEBUTTONDOWN:
 

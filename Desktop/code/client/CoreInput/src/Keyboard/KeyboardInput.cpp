@@ -28,4 +28,29 @@ namespace Forradia
 
         m_pressed.erase(key);
     }
+
+    void KeyboardInput::StartTextInput()
+    {
+        // Start text input.
+
+        SDL_StartTextInput();
+    }
+
+    void KeyboardInput::StopTextInput()
+    {
+        // Stop text input.
+
+        SDL_StopTextInput();
+
+        // Clear the text input.
+
+        m_textInput.clear();
+    }
+
+    void KeyboardInput::AddTextInput(StringView text)
+    {
+        // Add the text to the text input.
+
+        m_textInput += text;
+    }
 }

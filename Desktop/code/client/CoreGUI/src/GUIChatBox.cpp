@@ -14,6 +14,8 @@
 
 #include "Engine.hpp"
 
+#include "Keyboard/KeyboardInput.hpp"
+
 namespace Forradia
 {
     void GUIChatBox::Initialize()
@@ -39,6 +41,13 @@ namespace Forradia
         // Calculate the maximum number of lines that can fit in the chat box.
 
         return CInt(bounds.height / k_lineHeight - 1);
+    }
+
+    void GUIChatBox::UpdateDerived()
+    {
+        GUIPanel::UpdateDerived();
+
+        m_input = _<KeyboardInput>().GetTextInput();
     }
 
     void GUIChatBox::RenderDerived() const
@@ -125,6 +134,9 @@ namespace Forradia
 
             _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX,
                                                  cursorY, cursorWidth, cursorHeight);
+
+            _<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
+                                         FontSizes::_20, false, true);
         }
     }
 
@@ -137,6 +149,8 @@ namespace Forradia
 
     void GUIChatBox::EnableInput()
     {
+        _<KeyboardInput>().StartTextInput();
+
         // Set the input active flag to true.
 
         m_inputActive = true;
@@ -150,6 +164,8 @@ namespace Forradia
         {
             _<Engine>().Stop();
         }
+
+        _<KeyboardInput>().StopTextInput();
 
         // Reset the input state.
 

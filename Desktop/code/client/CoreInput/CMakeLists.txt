@@ -12,6 +12,7 @@ target_include_directories(ForradiaCoreInput PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreInput PRIVATE
+    ForradiaCommonLang
     ForradiaCommonCoreUtilities
 )
 target_precompile_headers(ForradiaCoreInput PUBLIC ./src/StdAfx.hpp)

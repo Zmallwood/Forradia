@@ -58,7 +58,20 @@ namespace Forradia
         /// @return True if any key is pressed, otherwise false.
         bool AnyKeyIsPressedPickResult();
 
+        void StartTextInput();
+
+        void StopTextInput();
+
+        void AddTextInput(StringView text);
+
+        auto GetTextInput() const
+        {
+            return m_textInput;
+        }
+
       private:
         std::set<SDL_Keycode> m_pressed; ///< The set of keys currently being pressed.
+
+        String m_textInput; ///< The text input from the keyboard.
     };
 }

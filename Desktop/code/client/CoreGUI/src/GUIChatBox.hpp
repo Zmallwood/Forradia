@@ -26,6 +26,11 @@ namespace Forradia
         }
 
         ///
+        /// Update tasks specific to the chat box, called by the GUIComponent base class.
+        ///
+        void UpdateDerived() override;
+
+        ///
         /// Render tasks specific to the chat box, called by the GUIComponent base class.
         ///
         void RenderDerived() const override;
@@ -88,7 +93,9 @@ namespace Forradia
         const int k_renderIDSeparator{Hash("RenderIDSeparator")}; ///< Render ID of the separator.
 
         const int k_renderIDInputCursor{Hash("RenderIDInputCursor")}; ///< Render ID of the input
-                                                                      ///< cursor.
+        ///< cursor.
+
+        const int k_renderIDInputText{Hash("RenderIDInputText")}; ///< Render ID of the input text.
 
         Vector<int> m_renderIDsTextLines; ///< Render IDs of the text lines.
 
