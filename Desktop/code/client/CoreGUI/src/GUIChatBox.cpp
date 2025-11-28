@@ -101,7 +101,7 @@ namespace Forradia
 
         _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
                                       separatorX, separatorY, separatorX + separatorWidth,
-                                      separatorY, sepratorHeight);
+                                      separatorY, sepratorHeight, true);
 
         // If the input is active.
 
@@ -145,7 +145,7 @@ namespace Forradia
         // TODO: Act on the typed input.
 
         // Reset the input state.
-        
+
         m_inputActive = false;
 
         m_input = "";

@@ -11,6 +11,8 @@ namespace Forradia
     void Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,
                                    float y2, float lineWidth, bool updateExisting)
     {
+        // this->DrawFilledRectangle(uniqueRenderID, color, x1, y1, x2 - x1, lineWidth,
+        //                           updateExisting);
         // Setup state.
 
         this->SetupState();
@@ -101,88 +103,15 @@ namespace Forradia
         {
             auto &c{color};
 
-            // Calculate the line direction vector.
+            auto x{x1};
+            auto y{y1};
+            auto width{x2 - x1};
+            auto height{lineWidth};
 
-            auto dx{x2 - x1};
-
-            auto dy{y2 - y1};
-
-            // Calculate the length of the line.
-
-            auto length{std::sqrt(dx * dx + dy * dy)};
-
-            // Calculate the perpendicular vector (normalized) for the line width.
-            // Perpendicular to (dx, dy) is (-dy, dx) or (dy, -dx).
-            // We'll use (-dy, dx) normalized.
-
-            auto halfWidth{lineWidth * 0.5f};
-
-            auto perpendicularX{0.0f};
-
-            auto perpendicularY{0.0f};
-
-            if (length > 0.0001f)
-            {
-                // Normalize the perpendicular vector and scale by half width.
-
-                perpendicularX = (-dy / length) * halfWidth;
-
-                perpendicularY = (dx / length) * halfWidth;
-            }
-            else
-            {
-                // If the line has zero length, use a default perpendicular vector.
-                // Use a small default width direction.
-
-                perpendicularX = halfWidth;
-
-                perpendicularY = 0.0f;
-            }
-
-            // Calculate the four corners of the line quad.
-            // The quad is formed by offsetting the start and end points
-            // perpendicular to the line direction.
-
-            // 1Top
-
-            auto x1Top{x1 + perpendicularX};
-
-            auto y1Top{y1 + perpendicularY};
-
-            // 1Bottom
-
-            auto x1Bottom{x1 - perpendicularX};
-
-            auto y1Bottom{y1 - perpendicularY};
-
-            // 2Top
-
-            auto x2Top{x2 + perpendicularX};
-
-            auto y2Top{y2 + perpendicularY};
-
-            // 2Bottom
-
-            auto x2Bottom{x2 - perpendicularX};
-
-            auto y2Bottom{y2 - perpendicularY};
-
-            // Define the vertices and indices.
-
-            // clang-format off
-
-            float vertices[] = {
-                x1Bottom,   y1Bottom,   0.0f,
-                c.r,        c.g,        c.b,    c.a,
-                x1Top,      y1Top,      0.0f,
-                c.r,        c.g,        c.b,    c.a,
-                x2Top,      y2Top,      0.0f,
-                c.r,        c.g,        c.b,    c.a,
-                x2Bottom,   y2Bottom,   0.0f,
-                c.r,        c.g,        c.b,    c.a
-            };
-
-            // clang-format on
+            float vertices[] = {x,         y,          0.0f, c.r, c.g, c.b, c.a,
+                                x + width, y,          0.0f, c.r, c.g, c.b, c.a,
+                                x + width, y + height, 0.0f, c.r, c.g, c.b, c.a,
+                                x,         y + height, 0.0f, c.r, c.g, c.b, c.a};
 
             unsigned short indices[]{0, 1, 2, 3};
 
