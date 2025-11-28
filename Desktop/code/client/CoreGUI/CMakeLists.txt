@@ -17,4 +17,5 @@ target_link_libraries(ForradiaCoreGUI
     ForradiaCoreMinorComponents
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingText
+    ForradiaCoreEngine
 )

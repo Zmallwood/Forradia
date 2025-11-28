@@ -12,6 +12,8 @@
 
 #include "Color2DRenderer.hpp"
 
+#include "Engine.hpp"
+
 namespace Forradia
 {
     void GUIChatBox::Initialize()
@@ -143,6 +145,11 @@ namespace Forradia
     void GUIChatBox::SubmitInput()
     {
         // TODO: Act on the typed input.
+
+        if (m_input == "/quit")
+        {
+            _<Engine>().Stop();
+        }
 
         // Reset the input state.
 

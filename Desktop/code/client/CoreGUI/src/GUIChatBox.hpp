@@ -76,7 +76,7 @@ namespace Forradia
                                      ///< is named "Derived".
 
         inline static const float k_lineHeight{
-            0.025f}; ///< The height of each line in the chat box.
+            0.028f}; ///< The height of each line in the chat box.
 
         inline static const float k_separatorHeight{
             0.003f}; ///< The height of the separator between
