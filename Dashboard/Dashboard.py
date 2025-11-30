@@ -715,6 +715,7 @@ def create_app_button(
         height=100,
         corner_radius=10,
         fg_color=color,
+        hover_color="#AA00AA",
     )
     button.grid(row=row, column=column, padx=10, pady=10)
 
