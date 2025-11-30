@@ -53,6 +53,18 @@ namespace Forradia::Theme0::GameplayCore
                 m_renderIDsGround[x][y] =
                     Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
 
+                // m_renderIDsGroundCorners1[x][y] =
+                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
+
+                // m_renderIDsGroundCorners2[x][y] =
+                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
+
+                // m_renderIDsGroundCorners3[x][y] =
+                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
+
+                // m_renderIDsGroundCorners4[x][y] =
+                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
+
                 m_renderIDsClaimedTiles[x][y] =
                     Hash("ClaimedTile_" + std::to_string(x) + "_" + std::to_string(y));
 
@@ -104,6 +116,14 @@ namespace Forradia::Theme0::GameplayCore
 
         Vector<TileData> tiles;
 
+        // Vector<TileData> tileCorners1;
+
+        // Vector<TileData> tileCorners2;
+
+        // Vector<TileData> tileCorners3;
+
+        // Vector<TileData> tileCorners4;
+
         Vector<TileData> rivers1;
 
         Vector<TileData> rivers2;
@@ -127,6 +147,16 @@ namespace Forradia::Theme0::GameplayCore
                 auto objectsStack{tile->GetObjectsStack()};
 
                 auto objects{objectsStack->GetObjects()};
+
+                auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
+
+                auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
+
+                auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
+
+                auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
+
+                auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
 
                 auto coordinateNW{Point{xCoordinate, yCoordinate}};
 
@@ -153,6 +183,16 @@ namespace Forradia::Theme0::GameplayCore
                 {
                     return;
                 }
+
+                auto tileNWW{worldArea->GetTile(coordinateNWW)};
+
+                auto tileNNW{worldArea->GetTile(coordinateNNW)};
+
+                auto tileNNWW{worldArea->GetTile(coordinateNNWW)};
+
+                auto tileNNE{worldArea->GetTile(coordinateNNE)};
+
+                auto tileSWW{worldArea->GetTile(coordinateSWW)};
 
                 auto tileNW{worldArea->GetTile(coordinateNW)};
 
@@ -210,6 +250,24 @@ namespace Forradia::Theme0::GameplayCore
                     elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
 
                 auto ground{tile->GetGround()};
+
+                // if (ground == Hash("GroundWater"))
+                // {
+                //     auto grassCornerNW{false};
+                //     auto grassCornerNE{false};
+                //     auto grassCornerSE{false};
+                //     auto grassCornerSW{false};
+
+                //     if (tileNWW && tileNWW->GetGround() == Hash("GroundGrass") && tileNNW &&
+                //         tileNNW->GetGround() == Hash("GroundGrass") && tileNNWW &&
+                //         tileNNWW->GetGround() == Hash("GroundGrass"))
+                //     {
+                //         tileCorners1.push_back(
+                //             {m_renderIDsGroundCorners1.at(xCoordinate).at(yCoordinate),
+                //              Hash("GroundGrassCornerNW"), xCoordinate, yCoordinate, rendTileSize,
+                //              elevations, false});
+                //     }
+                // }
 
                 if (ground == Hash("GroundWater"))
                 {
@@ -327,23 +385,23 @@ namespace Forradia::Theme0::GameplayCore
                     break;
                 case Forradia::Theme0::Directions::NorthWest:
                     rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthWest"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
+                                       Hash("RiverNorthWest"), xCoordinate, yCoordinate,
+                                       rendTileSize, elevationsRiver2, false});
                     break;
                 case Forradia::Theme0::Directions::NorthEast:
                     rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthEast"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
+                                       Hash("RiverNorthEast"), xCoordinate, yCoordinate,
+                                       rendTileSize, elevationsRiver2, false});
                     break;
                 case Forradia::Theme0::Directions::SouthWest:
                     rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthWest"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
+                                       Hash("RiverSouthWest"), xCoordinate, yCoordinate,
+                                       rendTileSize, elevationsRiver2, false});
                     break;
                 case Forradia::Theme0::Directions::SouthEast:
                     rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthEast"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
+                                       Hash("RiverSouthEast"), xCoordinate, yCoordinate,
+                                       rendTileSize, elevationsRiver2, false});
                     break;
                 default:
                     rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate), 0,
