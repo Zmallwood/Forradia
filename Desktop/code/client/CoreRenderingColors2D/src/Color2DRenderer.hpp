@@ -10,100 +10,103 @@
 
 #include "Color2DRenderingOperation.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A renderer for drawing colors to the canvas.
-    ///
-    class Color2DRenderer : public RendererBase
+    namespace Forradia
     {
-      public:
         ///
-        /// Destructor which cleans up the renderer.
+        /// A renderer for drawing colors to the canvas.
         ///
-        ~Color2DRenderer()
+        class Color2DRenderer : public RendererBase
         {
-            // Cleanup the renderer.
+          public:
+            ///
+            /// Destructor which cleans up the renderer.
+            ///
+            ~Color2DRenderer()
+            {
+                // Cleanup the renderer.
 
-            this->Cleanup();
-        }
+                this->Cleanup();
+            }
 
-        ///
-        /// Draws a filled rectangle.
-        ///
-        /// @param uniqueRenderID The unique render ID.
-        /// @param color The color of the rectangle.
-        /// @param x The x coordinate of the rectangle.
-        /// @param y The y coordinate of the rectangle.
-        /// @param width The width of the rectangle.
-        /// @param height The height of the rectangle.
-        /// @param updateExisting Whether to update the
-        /// existing operation.
-        ///
-        void DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
-                                 float height, bool updateExisting = false);
+            ///
+            /// Draws a filled rectangle.
+            ///
+            /// @param uniqueRenderID The unique render ID.
+            /// @param color The color of the rectangle.
+            /// @param x The x coordinate of the rectangle.
+            /// @param y The y coordinate of the rectangle.
+            /// @param width The width of the rectangle.
+            /// @param height The height of the rectangle.
+            /// @param updateExisting Whether to update the
+            /// existing operation.
+            ///
+            void DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
+                                     float height, bool updateExisting = false);
 
-        ///
-        /// Draws a line between two points.
-        ///
-        /// @param uniqueRenderID The unique render ID.
-        /// @param color The color of the line.
-        /// @param x1 The x coordinate of the first point.
-        /// @param y1 The y coordinate of the first point.
-        /// @param x2 The x coordinate of the second point.
-        /// @param y2 The y coordinate of the second point.
-        /// @param lineWidth The width of the line (normalized, as a
-        /// fraction of canvas size).
-        /// @param updateExisting Whether to update the
-        /// existing operation.
-        ///
-        void DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                      float lineWidth = 0.001f, bool updateExisting = false);
+            ///
+            /// Draws a line between two points.
+            ///
+            /// @param uniqueRenderID The unique render ID.
+            /// @param color The color of the line.
+            /// @param x1 The x coordinate of the first point.
+            /// @param y1 The y coordinate of the first point.
+            /// @param x2 The x coordinate of the second point.
+            /// @param y2 The y coordinate of the second point.
+            /// @param lineWidth The width of the line (normalized, as a
+            /// fraction of canvas size).
+            /// @param updateExisting Whether to update the
+            /// existing operation.
+            ///
+            void DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
+                          float lineWidth = 0.001f, bool updateExisting = false);
 
-      protected:
-        ///
-        /// Returns the vertex shader source.
-        ///
-        /// @return The vertex shader source.
-        ///
-        String GetVSSource() const override;
+          protected:
+            ///
+            /// Returns the vertex shader source.
+            ///
+            /// @return The vertex shader source.
+            ///
+            String GetVSSource() const override;
 
-        ///
-        /// Returns the fragment shader source.
-        ///
-        /// @return The fragment shader source.
-        ///
-        String GetFSSource() const override;
+            ///
+            /// Returns the fragment shader source.
+            ///
+            /// @return The fragment shader source.
+            ///
+            String GetFSSource() const override;
 
-        ///
-        /// Sets up the attribute layout.
-        ///
-        void SetupAttributeLayout() const override;
+            ///
+            /// Sets up the attribute layout.
+            ///
+            void SetupAttributeLayout() const override;
 
-      private:
-        ///
-        /// Cleans up the renderer.
-        ///
-        void Cleanup();
+          private:
+            ///
+            /// Cleans up the renderer.
+            ///
+            void Cleanup();
 
-        ///
-        /// Sets up the state.
-        ///
-        void SetupState() const;
+            ///
+            /// Sets up the state.
+            ///
+            void SetupState() const;
 
-        ///
-        /// Resets the state.
-        ///
-        void RestoreState() const;
+            ///
+            /// Resets the state.
+            ///
+            void RestoreState() const;
 
-        ///
-        /// Checks if the drawing operation is cached.
-        ///
-        /// @param uniqueRenderID The unique render ID.
-        /// @return True if the drawing operation is cached, false otherwise.
-        ///
-        bool DrawingOperationIsCached(int uniqueRenderID) const;
+            ///
+            /// Checks if the drawing operation is cached.
+            ///
+            /// @param uniqueRenderID The unique render ID.
+            /// @return True if the drawing operation is cached, false otherwise.
+            ///
+            bool DrawingOperationIsCached(int uniqueRenderID) const;
 
-        std::map<int, Color2DRenderingOperation> m_operationsCache; ///< The operations cache.
-    };
+            std::map<int, Color2DRenderingOperation> m_operationsCache; ///< The operations cache.
+        };
+    }
 }

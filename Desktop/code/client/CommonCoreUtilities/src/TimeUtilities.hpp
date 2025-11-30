@@ -6,12 +6,15 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Get the number of ticks.
-    ///
-    /// @return The number of ticks.
-    ///
-    int GetTicks();
+    namespace Forradia
+    {
+        ///
+        /// Get the number of ticks.
+        ///
+        /// @return The number of ticks.
+        ///
+        int GetTicks();
+    }
 }

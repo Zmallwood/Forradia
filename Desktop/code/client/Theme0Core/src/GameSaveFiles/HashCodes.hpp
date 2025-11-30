@@ -6,10 +6,13 @@
 
 #pragma once
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    template <int N>
-    String GetNameFromHash();
+    namespace Forradia::Theme0
+    {
+        template <int N>
+        String GetNameFromHash();
 
-    String GetNameFromAnyHash(int hash);
+        String GetNameFromAnyHash(int hash);
+    }
 }

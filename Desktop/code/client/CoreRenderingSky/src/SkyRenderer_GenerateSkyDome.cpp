@@ -6,150 +6,153 @@
 
 #include "SkyRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void SkyRenderer::GenerateSkyDome()
+    namespace Forradia
     {
-        // Generate a hemisphere (sky dome) mesh.
-
-        // Number of horizontal segments (increased for better coverage).
-
-        const auto segments{64};
-
-        // Number of vertical rings (increased for smoother dome).
-
-        const auto rings{32};
-
-        Vector<float> vertices;
-
-        Vector<unsigned short> indices;
-
-        // Generate vertices.
-
-        for (int ring = 0; ring <= rings; ++ring)
+        void SkyRenderer::GenerateSkyDome()
         {
-            // Elevation angle (0 to PI/2).
+            // Generate a hemisphere (sky dome) mesh.
 
-            auto theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
+            // Number of horizontal segments (increased for better coverage).
 
-            auto sinTheta{std::sin(theta)};
+            const auto segments{64};
 
-            auto cosTheta{std::cos(theta)};
+            // Number of vertical rings (increased for smoother dome).
 
-            for (int segment = 0; segment <= segments; ++segment)
+            const auto rings{32};
+
+            Vector<float> vertices;
+
+            Vector<unsigned short> indices;
+
+            // Generate vertices.
+
+            for (int ring = 0; ring <= rings; ++ring)
             {
-                // Azimuth angle (0 to 2*PI).
+                // Elevation angle (0 to PI/2).
 
-                auto phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
+                auto theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
 
-                auto sinPhi{std::sin(phi)};
+                auto sinTheta{std::sin(theta)};
 
-                auto cosPhi{std::cos(phi)};
+                auto cosTheta{std::cos(theta)};
 
-                // Calculate position on sphere.
-                // Using standard spherical coordinates where:
-                // - theta is elevation (0 = horizon, PI/2 = zenith)
-                // - phi is azimuth (0 to 2*PI, full circle)
-                // - Z is up (matches the game's coordinate system where +Z is vertical)
+                for (int segment = 0; segment <= segments; ++segment)
+                {
+                    // Azimuth angle (0 to 2*PI).
 
-                auto x{cosPhi * sinTheta};
+                    auto phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
 
-                auto y{sinPhi * sinTheta};
+                    auto sinPhi{std::sin(phi)};
 
-                // Z ranges from 1.0 (zenith) to 0.0 (horizon)
+                    auto cosPhi{std::cos(phi)};
 
-                auto z{cosTheta};
+                    // Calculate position on sphere.
+                    // Using standard spherical coordinates where:
+                    // - theta is elevation (0 = horizon, PI/2 = zenith)
+                    // - phi is azimuth (0 to 2*PI, full circle)
+                    // - Z is up (matches the game's coordinate system where +Z is vertical)
 
-                // Store vertex position (3 floats).
+                    auto x{cosPhi * sinTheta};
 
-                vertices.push_back(x);
+                    auto y{sinPhi * sinTheta};
 
-                vertices.push_back(y);
+                    // Z ranges from 1.0 (zenith) to 0.0 (horizon)
 
-                vertices.push_back(z);
+                    auto z{cosTheta};
+
+                    // Store vertex position (3 floats).
+
+                    vertices.push_back(x);
+
+                    vertices.push_back(y);
+
+                    vertices.push_back(z);
+                }
             }
-        }
 
-        // Generate indices for the sky dome mesh.
-        // Create triangles that form a complete 360-degree hemisphere.
-        // Each quad (formed by two triangles) connects vertices in adjacent rings.
+            // Generate indices for the sky dome mesh.
+            // Create triangles that form a complete 360-degree hemisphere.
+            // Each quad (formed by two triangles) connects vertices in adjacent rings.
 
-        for (int ring = 0; ring < rings; ++ring)
-        {
-            auto baseIndex{ring * (segments + 1)};
-
-            auto nextBaseIndex{(ring + 1) * (segments + 1)};
-
-            for (int segment = 0; segment < segments; ++segment)
+            for (int ring = 0; ring < rings; ++ring)
             {
-                // Current ring vertices.
+                auto baseIndex{ring * (segments + 1)};
 
-                auto v0{baseIndex + segment};
+                auto nextBaseIndex{(ring + 1) * (segments + 1)};
 
-                auto v1{baseIndex + segment + 1};
+                for (int segment = 0; segment < segments; ++segment)
+                {
+                    // Current ring vertices.
 
-                // Next ring vertices.
+                    auto v0{baseIndex + segment};
 
-                auto v2{nextBaseIndex + segment};
+                    auto v1{baseIndex + segment + 1};
 
-                auto v3{nextBaseIndex + segment + 1};
+                    // Next ring vertices.
 
-                // First triangle: v0 -> v2 -> v1 (counter-clockwise when viewed from outside).
+                    auto v2{nextBaseIndex + segment};
 
-                indices.push_back(v0);
+                    auto v3{nextBaseIndex + segment + 1};
 
-                indices.push_back(v2);
+                    // First triangle: v0 -> v2 -> v1 (counter-clockwise when viewed from outside).
 
-                indices.push_back(v1);
+                    indices.push_back(v0);
 
-                // Second triangle: v1 -> v2 -> v3 (counter-clockwise when viewed from outside).
+                    indices.push_back(v2);
 
-                indices.push_back(v1);
+                    indices.push_back(v1);
 
-                indices.push_back(v2);
+                    // Second triangle: v1 -> v2 -> v3 (counter-clockwise when viewed from outside).
 
-                indices.push_back(v3);
+                    indices.push_back(v1);
+
+                    indices.push_back(v2);
+
+                    indices.push_back(v3);
+                }
             }
+
+            m_indexCount = static_cast<int>(indices.size());
+
+            // Generate and bind vertex array object.
+
+            glGenVertexArrays(1, &m_vao);
+
+            glBindVertexArray(m_vao);
+
+            // Generate and bind vertex buffer object.
+
+            glGenBuffers(1, &m_vbo);
+
+            glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+
+            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(),
+                         GL_STATIC_DRAW);
+
+            // Generate and bind index buffer object.
+
+            glGenBuffers(1, &m_ibo);
+
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
+
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short),
+                         indices.data(), GL_STATIC_DRAW);
+
+            // Setup attribute layout.
+
+            this->SetupAttributeLayout();
+
+            // Unbind.
+
+            glBindVertexArray(0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+            m_initialized = true;
         }
-
-        m_indexCount = static_cast<int>(indices.size());
-
-        // Generate and bind vertex array object.
-
-        glGenVertexArrays(1, &m_vao);
-
-        glBindVertexArray(m_vao);
-
-        // Generate and bind vertex buffer object.
-
-        glGenBuffers(1, &m_vbo);
-
-        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(),
-                     GL_STATIC_DRAW);
-
-        // Generate and bind index buffer object.
-
-        glGenBuffers(1, &m_ibo);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short),
-                     indices.data(), GL_STATIC_DRAW);
-
-        // Setup attribute layout.
-
-        this->SetupAttributeLayout();
-
-        // Unbind.
-
-        glBindVertexArray(0);
-
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-        m_initialized = true;
     }
 }

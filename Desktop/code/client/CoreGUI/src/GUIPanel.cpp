@@ -8,17 +8,20 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void GUIPanel::RenderDerived() const
+    namespace Forradia
     {
-        // Get the bounds of this panel.
+        void GUIPanel::RenderDerived() const
+        {
+            // Get the bounds of this panel.
 
-        auto bounds{this->GetBounds()};
+            auto bounds{this->GetBounds()};
 
-        // Draw the background image of this panel.
+            // Draw the background image of this panel.
 
-        _<Image2DRenderer>().DrawImageByName(k_renderIDBackground, m_backgroundImage, bounds.x,
-                                             bounds.y, bounds.width, bounds.height, true);
+            _<Image2DRenderer>().DrawImageByName(k_renderIDBackground, m_backgroundImage, bounds.x,
+                                                 bounds.y, bounds.width, bounds.height, true);
+        }
     }
 }

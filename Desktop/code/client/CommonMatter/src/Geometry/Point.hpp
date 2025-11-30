@@ -6,32 +6,35 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Point in 2D space, using dimensions of int type.
-    ///
-    class Point
+    namespace Forradia
     {
-      public:
         ///
-        /// Equality operator between two Points.
+        /// Point in 2D space, using dimensions of int type.
         ///
-        /// @param other Other Point to check equality against.
-        /// @return True if the two points are equal, otherwise false.
-        ///
-        bool operator==(const Point &other) const;
+        class Point
+        {
+          public:
+            ///
+            /// Equality operator between two Points.
+            ///
+            /// @param other Other Point to check equality against.
+            /// @return True if the two points are equal, otherwise false.
+            ///
+            bool operator==(const Point &other) const;
 
-        ///
-        /// Less than operator between two Points.
-        ///
-        /// @param other Other Point to check less than against.
-        /// @return True if the current point is less than the other point, otherwise false.
-        ///
-        bool operator<(const Point &other) const;
+            ///
+            /// Less than operator between two Points.
+            ///
+            /// @param other Other Point to check less than against.
+            /// @return True if the current point is less than the other point, otherwise false.
+            ///
+            bool operator<(const Point &other) const;
 
-        int x{0}; ///< The x dimension.
+            int x{0}; ///< The x dimension.
 
-        int y{0}; ///< The y dimension.
-    };
+            int y{0}; ///< The y dimension.
+        };
+    }
 }

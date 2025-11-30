@@ -8,27 +8,30 @@
 
 struct SDL_Color;
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A RGBA color with components defined with float values.
-    ///
-    class Color
+    namespace Forradia
     {
-      public:
         ///
-        /// Convert this color to a corresponding SDL_Color object.
+        /// A RGBA color with components defined with float values.
         ///
-        /// @return Corresponding SDL_Color object.
-        ///
-        SDL_Color ToSDLColor() const;
+        class Color
+        {
+          public:
+            ///
+            /// Convert this color to a corresponding SDL_Color object.
+            ///
+            /// @return Corresponding SDL_Color object.
+            ///
+            SDL_Color ToSDLColor() const;
 
-        float r{0.0f}; ///< Red.
+            float r{0.0f}; ///< Red.
 
-        float g{0.0f}; ///< Green.
+            float g{0.0f}; ///< Green.
 
-        float b{0.0f}; ///< Blue.
+            float b{0.0f}; ///< Blue.
 
-        float a{0.0f}; ///< Alpha.
-    };
+            float a{0.0f}; ///< Alpha.
+        };
+    }
 }

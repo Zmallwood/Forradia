@@ -12,38 +12,41 @@
 
 #include "SDLDevice.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void CameraRotator::Update()
+    namespace Forradia::Theme0::GameplayCore
     {
-        if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult())
+        void CameraRotator::Update()
         {
-            m_isRotating = true;
-
-            m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
-        }
-
-        if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased())
-        {
-            if (m_isRotating)
+            if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult())
             {
-                _<MouseInput>().GetRightMouseButtonRef().Reset();
+                m_isRotating = true;
+
+                m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
             }
 
-            m_isRotating = false;
-        }
+            if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased())
+            {
+                if (m_isRotating)
+                {
+                    _<MouseInput>().GetRightMouseButtonRef().Reset();
+                }
 
-        if (m_isRotating)
-        {
-            auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+                m_isRotating = false;
+            }
 
-            auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
+            if (m_isRotating)
+            {
+                auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
-            _<Camera>().AddRotationDeltaSideways(dX);
+                auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-            auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
+                _<Camera>().AddRotationDeltaSideways(dX);
 
-            _<Camera>().AddRotationDeltaVertical(dY);
+                auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
+
+                _<Camera>().AddRotationDeltaVertical(dY);
+            }
         }
     }
 }

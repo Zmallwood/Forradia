@@ -8,14 +8,17 @@
 
 #include "Aliases.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A texture, primarily used for models.
-    ///
-    class Texture
+    namespace Forradia
     {
-      public:
-        String path; ///< The path to the texture.
-    };
+        ///
+        /// A texture, primarily used for models.
+        ///
+        class Texture
+        {
+          public:
+            String path; ///< The path to the texture.
+        };
+    }
 }

@@ -8,37 +8,40 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    class GUILabel;
-}
-
-namespace Forradia::Theme0
-{
-    class GUIPlayerStatusBox : public GUIPanel
+    namespace Forradia
     {
-      public:
-        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
+        class GUILabel;
+    }
+
+    namespace Forradia::Theme0
+    {
+        class GUIPlayerStatusBox : public GUIPanel
         {
-            this->Initialize();
-        }
+          public:
+            GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
+            {
+                this->Initialize();
+            }
 
-      protected:
-        void Initialize();
+          protected:
+            void Initialize();
 
-        void UpdateDerived() override;
+            void UpdateDerived() override;
 
-        void RenderDerived() const override;
+            void RenderDerived() const override;
 
-      private:
-        const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
+          private:
+            const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
 
-        const int k_renderLevelString{Hash("GUIPlayerStatusBoxLevel")};
+            const int k_renderLevelString{Hash("GUIPlayerStatusBoxLevel")};
 
-        const int k_renderWellBeingString{Hash("GUIPlayerStatusBoxWellBeing")};
+            const int k_renderWellBeingString{Hash("GUIPlayerStatusBoxWellBeing")};
 
-        const int k_renderWellBeingValueString{Hash("GUIPlayerStatusBoxWellBeingValue")};
+            const int k_renderWellBeingValueString{Hash("GUIPlayerStatusBoxWellBeingValue")};
 
-        SharedPtr<GUILabel> m_wellBeingValueTextLabel;
-    };
+            SharedPtr<GUILabel> m_wellBeingValueTextLabel;
+        };
+    }
 }

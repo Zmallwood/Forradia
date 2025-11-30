@@ -16,73 +16,76 @@
 
 #include "PlayerObjectsInventory.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void PlayerCharacter::Initialize()
+    namespace Forradia::Theme0::GameplayCore
     {
-        // Initialize the objects inventory.
-
-        m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
-
-        // Move to a suitable position.
-
-        this->MoveToSuitablePosition();
-    }
-
-    void PlayerCharacter::MoveToSuitablePosition()
-    {
-        // Get the current world area and size.
-
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-        auto size{worldArea->GetSize()};
-
-        // Set the initial position to the center of the world area.
-
-        m_position = {size.width / 2, size.height / 2};
-
-        // While the position is on water.
-
-        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
+        void PlayerCharacter::Initialize()
         {
-            // Move to a random position.
+            // Initialize the objects inventory.
 
-            m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
+            m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
+
+            // Move to a suitable position.
+
+            this->MoveToSuitablePosition();
         }
-    }
 
-    void PlayerCharacter::MoveNorth()
-    {
-        // Move the player north.
+        void PlayerCharacter::MoveToSuitablePosition()
+        {
+            // Get the current world area and size.
 
-        m_position.y -= 1;
-    }
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-    void PlayerCharacter::MoveEast()
-    {
-        // Move the player east.
+            auto size{worldArea->GetSize()};
 
-        m_position.x += 1;
-    }
+            // Set the initial position to the center of the world area.
 
-    void PlayerCharacter::MoveSouth()
-    {
-        // Move the player south.
+            m_position = {size.width / 2, size.height / 2};
 
-        m_position.y += 1;
-    }
+            // While the position is on water.
 
-    void PlayerCharacter::MoveWest()
-    {
-        // Move the player west.
+            while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
+            {
+                // Move to a random position.
 
-        m_position.x -= 1;
-    }
+                m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
+            }
+        }
 
-    void PlayerCharacter::AddExperience(int experience)
-    {
-        // Add experience to the player.
+        void PlayerCharacter::MoveNorth()
+        {
+            // Move the player north.
 
-        m_experience += experience;
+            m_position.y -= 1;
+        }
+
+        void PlayerCharacter::MoveEast()
+        {
+            // Move the player east.
+
+            m_position.x += 1;
+        }
+
+        void PlayerCharacter::MoveSouth()
+        {
+            // Move the player south.
+
+            m_position.y += 1;
+        }
+
+        void PlayerCharacter::MoveWest()
+        {
+            // Move the player west.
+
+            m_position.x -= 1;
+        }
+
+        void PlayerCharacter::AddExperience(int experience)
+        {
+            // Add experience to the player.
+
+            m_experience += experience;
+        }
     }
 }

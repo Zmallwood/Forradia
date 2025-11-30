@@ -10,142 +10,197 @@
 
 #include "Tile.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void WorldGeneratorGround::GenerateGrassBiomes() const
+    namespace Forradia::Theme0
     {
-        // Obtain required data.
-
-        auto worldArea{GetWorldArea()};
-
-        auto worldAreaSize{GetWorldAreaSize()};
-
-        auto worldScaling{GetWorldScaling()};
-
-        // Create distinct grass biomes with organic shapes.
-        // Grass appears in areas with moderate elevation (not mountains, not deep valleys).
-
-        // Generate random number of grass biomes.
-
-        auto numGrassBiomes{25 + GetRandomInt(15)};
-
-        for (auto i = 0; i < numGrassBiomes; i++)
+        void WorldGeneratorGround::GenerateGrassBiomes() const
         {
-            // Generate random center coordinates for the grass biome.
+            // Obtain required data.
 
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
+            auto worldArea{GetWorldArea()};
 
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
+            auto worldAreaSize{GetWorldAreaSize()};
 
-            // Check if this area is suitable for grass (moderate elevation, not water).
+            auto worldScaling{GetWorldScaling()};
 
-            auto tile{worldArea->GetTile(xCenter, yCenter)};
+            // Create distinct grass biomes with organic shapes.
+            // Grass appears in areas with moderate elevation (not mountains, not deep valleys).
 
-            if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
+            // Generate random number of grass biomes.
+
+            auto numGrassBiomes{25 + GetRandomInt(15)};
+
+            for (auto i = 0; i < numGrassBiomes; i++)
             {
-                continue;
-            }
+                // Generate random center coordinates for the grass biome.
 
-            // Generate random radius for the grass biome.
+                auto xCenter{GetRandomInt(worldAreaSize.width)};
 
-            auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
+                auto yCenter{GetRandomInt(worldAreaSize.height)};
 
-            // Generate random density for the grass biome.
+                // Check if this area is suitable for grass (moderate elevation, not water).
 
-            auto density{0.7f + GetRandomInt(30) / 100.0f}; // 0.7 to 1.0.
+                auto tile{worldArea->GetTile(xCenter, yCenter)};
 
-            // Create the grass biome.
-
-            CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
-        }
-
-        // Also add grass in valleys and low-lying areas naturally.
-
-        for (auto y = 0; y < worldAreaSize.height; y++)
-        {
-            for (auto x = 0; x < worldAreaSize.width; x++)
-            {
-                // Get the tile.
-
-                auto tile = worldArea->GetTile(x, y);
-
-                // Skip if the tile is not found.
-
-                if (!tile)
+                if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
                 {
                     continue;
                 }
 
-                // Grass naturally grows in low-lying areas that aren't water.
+                // Generate random radius for the grass biome.
 
-                if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
-                    tile->GetGround() != Hash("GroundRock"))
-                {
-                    // Do the ground change.
+                auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
 
-                    tile->SetGround("GroundGrass");
-                }
-            }
-        }
-    }
+                // Generate random density for the grass biome.
 
-    void WorldGeneratorGround::GenerateRockFormations() const
-    {
-        // Obtain required data.
+                auto density{0.7f + GetRandomInt(30) / 100.0f}; // 0.7 to 1.0.
 
-        auto worldArea{GetWorldArea()};
+                // Create the grass biome.
 
-        auto worldAreaSize{GetWorldAreaSize()};
-
-        auto worldScaling{GetWorldScaling()};
-
-        // Place rocks on mountain peaks and high elevation areas.
-
-        auto numRockFormations{20 + GetRandomInt(15)};
-
-        // Create rock formations.
-
-        for (auto i = 0; i < numRockFormations; i++)
-        {
-            // Generate random center coordinates for the rock formation.
-
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
-
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
-
-            // Get the tile.
-
-            auto tile{worldArea->GetTile(xCenter, yCenter)};
-
-            // Skip if the tile is not found or the elevation is less than 80.
-
-            if (!tile || tile->GetElevation() < 80)
-            {
-                continue;
+                CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
             }
 
-            // Create rock formations on high elevation.
+            // Also add grass in valleys and low-lying areas naturally.
 
-            // Generate random radius for the rock formation.
-
-            auto radius{CInt(2 * worldScaling + GetRandomInt(5 * worldScaling))};
-
-            // Create the rock formation.
-
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            for (auto y = 0; y < worldAreaSize.height; y++)
             {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                for (auto x = 0; x < worldAreaSize.width; x++)
                 {
-                    // Skip if the coordinates are out of bounds.
+                    // Get the tile.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    auto tile = worldArea->GetTile(x, y);
+
+                    // Skip if the tile is not found.
+
+                    if (!tile)
                     {
                         continue;
                     }
 
-                    // Calculate the distance from the center of the rock formation to the tile.
+                    // Grass naturally grows in low-lying areas that aren't water.
 
-                    auto distance{GetDistance(x, y, xCenter, yCenter)};
+                    if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
+                        tile->GetGround() != Hash("GroundRock"))
+                    {
+                        // Do the ground change.
+
+                        tile->SetGround("GroundGrass");
+                    }
+                }
+            }
+        }
+
+        void WorldGeneratorGround::GenerateRockFormations() const
+        {
+            // Obtain required data.
+
+            auto worldArea{GetWorldArea()};
+
+            auto worldAreaSize{GetWorldAreaSize()};
+
+            auto worldScaling{GetWorldScaling()};
+
+            // Place rocks on mountain peaks and high elevation areas.
+
+            auto numRockFormations{20 + GetRandomInt(15)};
+
+            // Create rock formations.
+
+            for (auto i = 0; i < numRockFormations; i++)
+            {
+                // Generate random center coordinates for the rock formation.
+
+                auto xCenter{GetRandomInt(worldAreaSize.width)};
+
+                auto yCenter{GetRandomInt(worldAreaSize.height)};
+
+                // Get the tile.
+
+                auto tile{worldArea->GetTile(xCenter, yCenter)};
+
+                // Skip if the tile is not found or the elevation is less than 80.
+
+                if (!tile || tile->GetElevation() < 80)
+                {
+                    continue;
+                }
+
+                // Create rock formations on high elevation.
+
+                // Generate random radius for the rock formation.
+
+                auto radius{CInt(2 * worldScaling + GetRandomInt(5 * worldScaling))};
+
+                // Create the rock formation.
+
+                for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+                {
+                    for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                    {
+                        // Skip if the coordinates are out of bounds.
+
+                        if (!worldArea->IsValidCoordinate(x, y))
+                        {
+                            continue;
+                        }
+
+                        // Calculate the distance from the center of the rock formation to the tile.
+
+                        auto distance{GetDistance(x, y, xCenter, yCenter)};
+
+                        // Skip if the distance is greater than the radius.
+
+                        if (distance > radius)
+                        {
+                            continue;
+                        }
+
+                        // Get the tile.
+
+                        auto rockTile{worldArea->GetTile(x, y)};
+
+                        // Skip if the tile is not found or the ground is water.
+
+                        if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
+                        {
+                            continue;
+                        }
+
+                        // Higher elevation = more likely to be rock.
+
+                        auto elevation{rockTile->GetElevation()};
+
+                        if (elevation > 60)
+                        {
+                            // Do the ground change.
+
+                            rockTile->SetGround("GroundRock");
+                        }
+                    }
+                }
+            }
+        }
+
+        void WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
+                                                      StringView groundType) const
+        {
+            // Enumerate all tiles in the radius.
+
+            for (auto y = centerY - radius; y <= centerY + radius; y++)
+            {
+                for (auto x = centerX - radius; x <= centerX + radius; x++)
+                {
+                    // Skip if the tile is out of bounds.
+
+                    if (!GetWorldArea()->IsValidCoordinate(x, y))
+                    {
+                        continue;
+                    }
+
+                    // Calculate the distance between the tile and the center of the cluster.
+
+                    auto distance{GetDistance(x, y, centerX, centerY)};
 
                     // Skip if the distance is greater than the radius.
 
@@ -154,68 +209,16 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    // Get the tile.
+                    // Get the tile at the given coordinates.
 
-                    auto rockTile{worldArea->GetTile(x, y)};
+                    auto tile{GetWorldArea()->GetTile(x, y)};
 
-                    // Skip if the tile is not found or the ground is water.
+                    // Set the ground type of the tile.
 
-                    if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
+                    if (tile)
                     {
-                        continue;
+                        tile->SetGround(groundType);
                     }
-
-                    // Higher elevation = more likely to be rock.
-
-                    auto elevation{rockTile->GetElevation()};
-
-                    if (elevation > 60)
-                    {
-                        // Do the ground change.
-
-                        rockTile->SetGround("GroundRock");
-                    }
-                }
-            }
-        }
-    }
-
-    void WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                                  StringView groundType) const
-    {
-        // Enumerate all tiles in the radius.
-
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
-        {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
-            {
-                // Skip if the tile is out of bounds.
-
-                if (!GetWorldArea()->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
-
-                // Calculate the distance between the tile and the center of the cluster.
-
-                auto distance{GetDistance(x, y, centerX, centerY)};
-
-                // Skip if the distance is greater than the radius.
-
-                if (distance > radius)
-                {
-                    continue;
-                }
-
-                // Get the tile at the given coordinates.
-
-                auto tile{GetWorldArea()->GetTile(x, y)};
-
-                // Set the ground type of the tile.
-
-                if (tile)
-                {
-                    tile->SetGround(groundType);
                 }
             }
         }

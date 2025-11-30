@@ -6,30 +6,33 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Sets up the objects related to OpenGL.
-    ///
-    class GLDevice
+    namespace Forradia
     {
-      public:
         ///
-        /// Default destructor.
+        /// Sets up the objects related to OpenGL.
         ///
-        ~GLDevice();
+        class GLDevice
+        {
+          public:
+            ///
+            /// Default destructor.
+            ///
+            ~GLDevice();
 
-        ///
-        /// Initializes this device by setting up the GL functionality.
-        ///
-        void Initialize();
+            ///
+            /// Initializes this device by setting up the GL functionality.
+            ///
+            void Initialize();
 
-      private:
-        ///
-        /// Sets up the OpenGL context.
-        ///
-        void SetupGL();
+          private:
+            ///
+            /// Sets up the OpenGL context.
+            ///
+            void SetupGL();
 
-        SharedPtr<SDL_GLContext> m_context; ///< The OpenGL context.
-    };
+            SharedPtr<SDL_GLContext> m_context; ///< The OpenGL context.
+        };
+    }
 }

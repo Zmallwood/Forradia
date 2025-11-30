@@ -6,34 +6,37 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    ///  Class for the FPS counter.
-    ///
-    class FPSCounter
+    namespace Forradia
     {
-      public:
         ///
-        /// Updates the FPS counter.
+        ///  Class for the FPS counter.
         ///
-        void Update();
-
-        ///
-        /// Gets the current FPS.
-        ///
-        /// @return The current FPS.
-        ///
-        auto GetFPS() const
+        class FPSCounter
         {
-            return m_fps;
-        }
+          public:
+            ///
+            /// Updates the FPS counter.
+            ///
+            void Update();
 
-      private:
-        int m_fps{0}; ///< The current FPS.
+            ///
+            /// Gets the current FPS.
+            ///
+            /// @return The current FPS.
+            ///
+            auto GetFPS() const
+            {
+                return m_fps;
+            }
 
-        int m_framesCount{0}; ///< The frame count.
+          private:
+            int m_fps{0}; ///< The current FPS.
 
-        int m_ticksLastUpdate{0}; ///< The last update time.
-    };
+            int m_framesCount{0}; ///< The frame count.
+
+            int m_ticksLastUpdate{0}; ///< The last update time.
+        };
+    }
 }

@@ -8,104 +8,106 @@
 
 #include "SDLDevice.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
-                                              float width, float height, bool updateExisting)
+    namespace Forradia
     {
-        // Setup state.
-
-        this->SetupState();
-
-        // To store the vertex array object, index buffer object and vertex buffer object.
-
-        GLuint vao;
-
-        GLuint ibo;
-
-        GLuint vbo;
-
-        // To store whether the buffers need to be filled.
-
-        auto needFillBuffers{false};
-
-        // If the operation is cached, use the cached operation.
-
-        // TODO: Implement LRU eviction of operations memory, which is used when the operations
-        // cache reaches a certain limit.
-
-        if (this->DrawingOperationIsCached(uniqueRenderID))
+        void Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
+                                                  float width, float height, bool updateExisting)
         {
-            // Get the cached operation.
+            // Setup state.
 
-            auto &entry = m_operationsCache.at(uniqueRenderID);
+            this->SetupState();
 
-            // Set the vertex array object, index buffer object and vertex buffer object.
+            // To store the vertex array object, index buffer object and vertex buffer object.
 
-            vao = entry.vao;
+            GLuint vao;
 
-            ibo = entry.ibo;
+            GLuint ibo;
 
-            vbo = entry.vbo;
+            GLuint vbo;
 
-            // Bind the vertex array object, index buffer object and vertex buffer object.
+            // To store whether the buffers need to be filled.
 
-            glBindVertexArray(vao);
+            auto needFillBuffers{false};
 
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            // If the operation is cached, use the cached operation.
 
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        }
-        else
-        {
-            // Generate the vertex array object, index buffer object and vertex buffer object.
+            // TODO: Implement LRU eviction of operations memory, which is used when the operations
+            // cache reaches a certain limit.
 
-            glGenVertexArrays(1, &vao);
+            if (this->DrawingOperationIsCached(uniqueRenderID))
+            {
+                // Get the cached operation.
 
-            glGenBuffers(1, &vbo);
+                auto &entry = m_operationsCache.at(uniqueRenderID);
 
-            glGenBuffers(1, &ibo);
+                // Set the vertex array object, index buffer object and vertex buffer object.
 
-            // Bind the vertex array object, index buffer object and vertex buffer object.
+                vao = entry.vao;
 
-            glBindVertexArray(vao);
+                ibo = entry.ibo;
 
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+                vbo = entry.vbo;
 
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+                // Bind the vertex array object, index buffer object and vertex buffer object.
 
-            // Create a new rendering operation and cache it.
+                glBindVertexArray(vao);
 
-            Color2DRenderingOperation entry;
+                glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-            entry.vao = vao;
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+            }
+            else
+            {
+                // Generate the vertex array object, index buffer object and vertex buffer object.
 
-            entry.ibo = ibo;
+                glGenVertexArrays(1, &vao);
 
-            entry.vbo = vbo;
+                glGenBuffers(1, &vbo);
 
-            m_operationsCache[uniqueRenderID] = entry;
+                glGenBuffers(1, &ibo);
 
-            // Set the need to fill the buffers to true.
+                // Bind the vertex array object, index buffer object and vertex buffer object.
 
-            needFillBuffers = true;
-        }
+                glBindVertexArray(vao);
 
-        // To store the number of vertices and indices.
+                glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-        const auto k_verticesCount{4};
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-        const auto k_indicesCount{4};
+                // Create a new rendering operation and cache it.
 
-        // If the buffers need to be filled or the operation is being updated, fill the buffers.
+                Color2DRenderingOperation entry;
 
-        if (needFillBuffers || updateExisting)
-        {
-            auto &c{color};
+                entry.vao = vao;
 
-            // Define the vertices and indices.
+                entry.ibo = ibo;
 
-            // clang-format off
+                entry.vbo = vbo;
+
+                m_operationsCache[uniqueRenderID] = entry;
+
+                // Set the need to fill the buffers to true.
+
+                needFillBuffers = true;
+            }
+
+            // To store the number of vertices and indices.
+
+            const auto k_verticesCount{4};
+
+            const auto k_indicesCount{4};
+
+            // If the buffers need to be filled or the operation is being updated, fill the buffers.
+
+            if (needFillBuffers || updateExisting)
+            {
+                auto &c{color};
+
+                // Define the vertices and indices.
+
+                // clang-format off
 
             float vertices[] = {
                 x,          y,              0.0f,
@@ -118,39 +120,40 @@ namespace Forradia
                 c.r,        c.g,            c.b,    c.a
             };
 
-            // clang-format on
+                // clang-format on
 
-            unsigned short indices[]{0, 1, 2, 3};
+                unsigned short indices[]{0, 1, 2, 3};
 
-            // Fill the index buffer.
+                // Fill the index buffer.
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
-                         GL_DYNAMIC_DRAW);
+                glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
+                             GL_DYNAMIC_DRAW);
 
-            // Fill the vertex buffer.
+                // Fill the vertex buffer.
 
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 7 * k_verticesCount, vertices,
-                         GL_DYNAMIC_DRAW);
+                glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 7 * k_verticesCount, vertices,
+                             GL_DYNAMIC_DRAW);
 
-            // Setup the attribute layout.
+                // Setup the attribute layout.
 
-            this->SetupAttributeLayout();
+                this->SetupAttributeLayout();
+            }
+
+            // Bind the vertex array object, index buffer object and vertex buffer object.
+
+            glBindVertexArray(vao);
+
+            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+            // Draw the image.
+
+            glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
+
+            // Restore the state.
+
+            this->RestoreState();
         }
-
-        // Bind the vertex array object, index buffer object and vertex buffer object.
-
-        glBindVertexArray(vao);
-
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-        // Draw the image.
-
-        glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
-
-        // Restore the state.
-
-        this->RestoreState();
     }
 }

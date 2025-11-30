@@ -6,17 +6,20 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Enum for the available cursor styles.
-    ///
-    enum class CursorStyles
+    namespace Forradia
     {
-        Normal, ///< The default cursor style.
+        ///
+        /// Enum for the available cursor styles.
+        ///
+        enum class CursorStyles
+        {
+            Normal, ///< The default cursor style.
 
-        HoveringClickableGUI, ///< The cursor style when hovering over a clickable GUI element.
+            HoveringClickableGUI, ///< The cursor style when hovering over a clickable GUI element.
 
-        HoveringCreature /// < The cursor style when hovering over a creature.
-    };
+            HoveringCreature /// < The cursor style when hovering over a creature.
+        };
+    }
 }

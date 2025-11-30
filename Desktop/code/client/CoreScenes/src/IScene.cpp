@@ -8,45 +8,48 @@
 
 #include "GUI.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void IScene::Initialize()
+    namespace Forradia
     {
-        // Initialize the GUI.
+        void IScene::Initialize()
+        {
+            // Initialize the GUI.
 
-        m_gui = std::make_shared<GUI>();
+            m_gui = std::make_shared<GUI>();
 
-        // Call the derived initialize function.
+            // Call the derived initialize function.
 
-        m_initializeDerived();
-    }
+            m_initializeDerived();
+        }
 
-    void IScene::OnEnter()
-    {
-        // Call the derived on enter function.
+        void IScene::OnEnter()
+        {
+            // Call the derived on enter function.
 
-        m_onEnterDerived();
-    }
+            m_onEnterDerived();
+        }
 
-    void IScene::Update()
-    {
-        // Update the GUI.
+        void IScene::Update()
+        {
+            // Update the GUI.
 
-        m_gui->Update();
+            m_gui->Update();
 
-        // Call the derived update function.
+            // Call the derived update function.
 
-        m_updateDerived();
-    }
+            m_updateDerived();
+        }
 
-    void IScene::Render() const
-    {
-        // Call the derived render function.
+        void IScene::Render() const
+        {
+            // Call the derived render function.
 
-        m_renderDerived();
+            m_renderDerived();
 
-        // Render the GUI.
+            // Render the GUI.
 
-        m_gui->Render();
+            m_gui->Render();
+        }
     }
 }

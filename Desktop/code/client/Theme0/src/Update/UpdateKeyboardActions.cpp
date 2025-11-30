@@ -18,49 +18,52 @@
 
 #include "Player/PlayerCharacter.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void UpdateKeyboardActions()
+    namespace Forradia::Theme0::GameplayCore
     {
-        if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE))
+        void UpdateKeyboardActions()
         {
-            _<GUISystemMenu>().ToggleVisibility();
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c))
-        {
-            _<GUIPlayerBodyWindow>().ToggleVisibility();
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b))
-        {
-            _<GUIInventoryWindow>().ToggleVisibility();
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN))
-        {
-            if (_<GUIChatBox>().GetInputActive())
+            if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE))
             {
-                _<GUIChatBox>().SubmitInput();
+                _<GUISystemMenu>().ToggleVisibility();
             }
-            else
+            else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c))
             {
-                _<GUIChatBox>().EnableInput();
+                _<GUIPlayerBodyWindow>().ToggleVisibility();
             }
-        }
-        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB))
-        {
-            auto currentMode{_<PlayerCharacter>().GetPlayerMode()};
-
-            switch (currentMode)
+            else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b))
             {
-            case PlayerModes::Interaction:
-                _<PlayerCharacter>().SetPlayerMode(PlayerModes::Battle);
+                _<GUIInventoryWindow>().ToggleVisibility();
+            }
+            else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN))
+            {
+                if (_<GUIChatBox>().GetInputActive())
+                {
+                    _<GUIChatBox>().SubmitInput();
+                }
+                else
+                {
+                    _<GUIChatBox>().EnableInput();
+                }
+            }
+            else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB))
+            {
+                auto currentMode{_<PlayerCharacter>().GetPlayerMode()};
 
-                _<GUIChatBox>().Print("You are now in battle mode.");
-                break;
-            case PlayerModes::Battle:
-                _<PlayerCharacter>().SetPlayerMode(PlayerModes::Interaction);
+                switch (currentMode)
+                {
+                case PlayerModes::Interaction:
+                    _<PlayerCharacter>().SetPlayerMode(PlayerModes::Battle);
 
-                _<GUIChatBox>().Print("You are now in interaction mode.");
-                break;
+                    _<GUIChatBox>().Print("You are now in battle mode.");
+                    break;
+                case PlayerModes::Battle:
+                    _<PlayerCharacter>().SetPlayerMode(PlayerModes::Interaction);
+
+                    _<GUIChatBox>().Print("You are now in interaction mode.");
+                    break;
+                }
             }
         }
     }

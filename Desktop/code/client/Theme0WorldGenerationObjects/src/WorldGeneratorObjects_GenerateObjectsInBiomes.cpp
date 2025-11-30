@@ -12,362 +12,365 @@
 
 #include "ObjectsStack.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void WorldGeneratorObjects::GenerateObjectsInBiomes() const
+    namespace Forradia::Theme0
     {
-        // Obtain required data.
-
-        auto worldArea{GetWorldArea()};
-
-        auto worldAreaSize{worldArea->GetSize()};
-
-        auto worldScaling{GetWorldScaling()};
-
-        // Add scattered objects throughout the world based on biomes.
-        // This complements the forests and meadows.
-
-        // Scattered trees outside of forests.
-
-        // Number of scattered trees.
-
-        auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
-
-        // Create the scattered trees.
-
-        for (auto i = 0; i < numScatteredTrees; i++)
+        void WorldGeneratorObjects::GenerateObjectsInBiomes() const
         {
-            // Obtain a random position for the tree.
+            // Obtain required data.
 
-            auto x{GetRandomInt(worldAreaSize.width)};
+            auto worldArea{GetWorldArea()};
 
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto worldAreaSize{worldArea->GetSize()};
 
-            // Obtain the tile at the random position.
+            auto worldScaling{GetWorldScaling()};
 
-            auto tile = worldArea->GetTile(x, y);
+            // Add scattered objects throughout the world based on biomes.
+            // This complements the forests and meadows.
 
-            // Do not continue if the tile is invalid or not valid for a tree.
+            // Scattered trees outside of forests.
 
-            if (!tile || !IsValidForFlora(x, y))
+            // Number of scattered trees.
+
+            auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
+
+            // Create the scattered trees.
+
+            for (auto i = 0; i < numScatteredTrees; i++)
             {
-                continue;
-            }
+                // Obtain a random position for the tree.
 
-            // Prefer grass ground for scattered trees.
+                auto x{GetRandomInt(worldAreaSize.width)};
 
-            // Check if the tile has grass ground and if the random number is less than 8.
+                auto y{GetRandomInt(worldAreaSize.height)};
 
-            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
-            {
-                // Clear the objects stack on the tile.
+                // Obtain the tile at the random position.
 
-                tile->GetObjectsStack()->ClearObjects();
+                auto tile = worldArea->GetTile(x, y);
 
-                // Add a tree with type of either fir or birch with a 50% chance.
+                // Do not continue if the tile is invalid or not valid for a tree.
 
-                if (GetRandomInt(100) < 50)
+                if (!tile || !IsValidForFlora(x, y))
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectFirTree");
+                    continue;
                 }
-                else
+
+                // Prefer grass ground for scattered trees.
+
+                // Check if the tile has grass ground and if the random number is less than 8.
+
+                if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectBirchTree");
-                }
-            }
-        }
+                    // Clear the objects stack on the tile.
 
-        // Scattered bushes.
+                    tile->GetObjectsStack()->ClearObjects();
 
-        // Number of scattered bushes.
+                    // Add a tree with type of either fir or birch with a 50% chance.
 
-        auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
-
-        // Create the scattered bushes.
-
-        for (auto i = 0; i < numScatteredBushes; i++)
-        {
-            // Obtain a random position for the bush.
-
-            auto x{GetRandomInt(worldAreaSize.width)};
-
-            auto y{GetRandomInt(worldAreaSize.height)};
-
-            // Obtain the tile at the random position.
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            // Do not continue if the tile is invalid or not valid for a bush.
-
-            if (!tile || !IsValidForFlora(x, y))
-            {
-                continue;
-            }
-
-            // Check probability of adding a bush.
-
-            if (GetRandomInt(100) < 8)
-            {
-                // Make it so that the tile has no other objects on it.
-
-                tile->GetObjectsStack()->ClearObjects();
-
-                // Add a bush with type of either bush1 or bush2 with a 50% chance.
-
-                if (GetRandomInt(100) < 50)
-                {
-                    tile->GetObjectsStack()->AddObject("ObjectBush1");
-                }
-                else
-                {
-                    tile->GetObjectsStack()->AddObject("ObjectBush2");
-                }
-            }
-        }
-
-        // Stone boulders - prefer higher elevation areas.
-
-        // Number of stone boulders.
-
-        auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
-
-        // Create the stone boulders.
-
-        for (auto i = 0; i < numBoulders; i++)
-        {
-            // Obtain a random position for the boulder.
-
-            auto x{GetRandomInt(worldAreaSize.width)};
-
-            auto y{GetRandomInt(worldAreaSize.height)};
-
-            // Obtain the tile at the random position.
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            // Do not continue if the tile is invalid or the water depth is greater than or equal
-            // to 4.
-
-            if (!tile || tile->GetWaterDepth() >= 4)
-            {
-                continue;
-            }
-
-            // Higher elevation = more likely to have boulders.
-
-            auto elevation{tile->GetElevation()};
-
-            // 3% base, +1% per 5 elevation.
-
-            // Calculate the probability of adding a boulder.
-
-            auto boulderProbability = 3 + (elevation / 5);
-
-            // Check if a random number is less than the probability of adding a boulder.
-
-            if (GetRandomInt(100) < boulderProbability)
-            {
-                // Make it so that the tile has no other objects on it.
-
-                tile->GetObjectsStack()->ClearObjects();
-
-                // Add a stone boulder to the tile.
-
-                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
-            }
-        }
-
-        // Brown mushrooms - prefer forest areas with trees nearby.
-        // Mushrooms grow on forest floors, often near trees.
-
-        // Number of brown mushrooms.
-
-        auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
-
-        // Create the brown mushrooms.
-
-        for (auto i = 0; i < numMushrooms; i++)
-        {
-            // Obtain a random position for the mushroom.
-
-            auto x{GetRandomInt(worldAreaSize.width)};
-
-            auto y{GetRandomInt(worldAreaSize.height)};
-
-            // Obtain the tile at the random position.
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            // Do not continue if the tile is invalid or not valid for a mushroom.
-
-            if (!tile || !IsValidForFlora(x, y))
-            {
-                continue;
-            }
-
-            // Mushrooms prefer grass or dirt ground.
-
-            auto ground{tile->GetGround()};
-
-            if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
-            {
-                continue;
-            }
-
-            // Don't place mushrooms on tiles that already have trees or large objects.
-            // (mushrooms are undergrowth, not replacement for trees).
-
-            auto objectsStack{tile->GetObjectsStack()};
-
-            if (objectsStack->GetSize() > 0)
-            {
-                // Skip if there's already a significant object (like a tree).
-
-                // TODO: But we might want to allow mushrooms with bushes.
-
-                continue;
-            }
-
-            // Check if there are objects (likely trees) nearby.
-            // Mushrooms often grow near trees in forest environments.
-
-            auto nearbyObjectsCount{0};
-
-            for (auto checkY = y - 2; checkY <= y + 2; checkY++)
-            {
-                for (auto checkX = x - 2; checkX <= x + 2; checkX++)
-                {
-                    // If the coordinates are the same as the current tile.
-
-                    if (checkX == x && checkY == y)
+                    if (GetRandomInt(100) < 50)
                     {
-                        // Continue to the next tile.
-
-                        continue;
+                        tile->GetObjectsStack()->AddObject("ObjectFirTree");
                     }
-
-                    // If the coordinates are invalid.
-
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    else
                     {
-                        // Continue to the next tile.
-
-                        continue;
-                    }
-
-                    // Obtain the tile at the coordinates.
-
-                    auto nearbyTile{worldArea->GetTile(checkX, checkY)};
-
-                    // If the tile is valid and has objects on it.
-
-                    if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
-                    {
-                        // Increment the number of nearby objects.
-
-                        nearbyObjectsCount++;
+                        tile->GetObjectsStack()->AddObject("ObjectBirchTree");
                     }
                 }
             }
 
-            // Higher probability if there are objects (trees) nearby (forest environment).
-            // Mushrooms thrive in forest ecosystems.
+            // Scattered bushes.
 
-            // 6% base probability.
+            // Number of scattered bushes.
 
-            auto baseProbability{6};
+            auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
 
-            // +3% per nearby object (tree).
+            // Create the scattered bushes.
 
-            auto forestBonus{nearbyObjectsCount * 3};
-
-            // Calculate the probability of adding a mushroom.
-
-            auto mushroomProbability{baseProbability + forestBonus};
-
-            // Cap probability at a reasonable maximum.
-
-            if (mushroomProbability > 25)
+            for (auto i = 0; i < numScatteredBushes; i++)
             {
-                mushroomProbability = 25;
+                // Obtain a random position for the bush.
+
+                auto x{GetRandomInt(worldAreaSize.width)};
+
+                auto y{GetRandomInt(worldAreaSize.height)};
+
+                // Obtain the tile at the random position.
+
+                auto tile{worldArea->GetTile(x, y)};
+
+                // Do not continue if the tile is invalid or not valid for a bush.
+
+                if (!tile || !IsValidForFlora(x, y))
+                {
+                    continue;
+                }
+
+                // Check probability of adding a bush.
+
+                if (GetRandomInt(100) < 8)
+                {
+                    // Make it so that the tile has no other objects on it.
+
+                    tile->GetObjectsStack()->ClearObjects();
+
+                    // Add a bush with type of either bush1 or bush2 with a 50% chance.
+
+                    if (GetRandomInt(100) < 50)
+                    {
+                        tile->GetObjectsStack()->AddObject("ObjectBush1");
+                    }
+                    else
+                    {
+                        tile->GetObjectsStack()->AddObject("ObjectBush2");
+                    }
+                }
             }
 
-            // Check if a random number is less than the probability of adding a mushroom.
+            // Stone boulders - prefer higher elevation areas.
 
-            if (GetRandomInt(100) < mushroomProbability)
+            // Number of stone boulders.
+
+            auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
+
+            // Create the stone boulders.
+
+            for (auto i = 0; i < numBoulders; i++)
             {
-                // Make it so that the tile has no other objects on it.
+                // Obtain a random position for the boulder.
 
-                tile->GetObjectsStack()->ClearObjects();
+                auto x{GetRandomInt(worldAreaSize.width)};
 
-                // Add a brown mushroom to the tile.
+                auto y{GetRandomInt(worldAreaSize.height)};
 
-                tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
-            }
-        }
+                // Obtain the tile at the random position.
 
-        // Scattered metal scraps - random remnants across the landscape.
+                auto tile{worldArea->GetTile(x, y)};
 
-        // Number of metal scraps.
+                // Do not continue if the tile is invalid or the water depth is greater than or
+                // equal to 4.
 
-        auto numMetalScraps{10000 * worldScaling + GetRandomInt(120 * worldScaling)};
+                if (!tile || tile->GetWaterDepth() >= 4)
+                {
+                    continue;
+                }
 
-        // Create the metal scraps.
+                // Higher elevation = more likely to have boulders.
 
-        for (auto i = 0; i < numMetalScraps; i++)
-        {
-            // Obtain a random position for the metal scrap.
+                auto elevation{tile->GetElevation()};
 
-            auto x{GetRandomInt(worldAreaSize.width)};
+                // 3% base, +1% per 5 elevation.
 
-            auto y{GetRandomInt(worldAreaSize.height)};
+                // Calculate the probability of adding a boulder.
 
-            // Obtain the tile at the random position.
+                auto boulderProbability = 3 + (elevation / 5);
 
-            auto tile{worldArea->GetTile(x, y)};
+                // Check if a random number is less than the probability of adding a boulder.
 
-            // If the tile is invalid.
+                if (GetRandomInt(100) < boulderProbability)
+                {
+                    // Make it so that the tile has no other objects on it.
 
-            if (!tile)
-            {
-                // Continue to the next metal scrap.
+                    tile->GetObjectsStack()->ClearObjects();
 
-                continue;
-            }
+                    // Add a stone boulder to the tile.
 
-            // If tile is of type water or is submerged.
-
-            if (tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
-            {
-                // Continue to the next metal scrap.
-
-                continue;
-            }
-
-            // Only place scraps on relatively clear tiles to prevent replacing major objects.
-
-            auto objectsStack{tile->GetObjectsStack()};
-
-            // If the tile has objects on it.
-
-            if (objectsStack->GetSize() > 0)
-            {
-                // Continue to the next metal scrap.
-
-                continue;
+                    tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+                }
             }
 
-            // Check if a random number is less than 5.
+            // Brown mushrooms - prefer forest areas with trees nearby.
+            // Mushrooms grow on forest floors, often near trees.
 
-            if (GetRandomInt(100) < 5)
+            // Number of brown mushrooms.
+
+            auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
+
+            // Create the brown mushrooms.
+
+            for (auto i = 0; i < numMushrooms; i++)
             {
-                // Make it so that the tile has no other objects on it.
+                // Obtain a random position for the mushroom.
 
-                objectsStack->ClearObjects();
+                auto x{GetRandomInt(worldAreaSize.width)};
 
-                // Add a metal scrap to the tile.
+                auto y{GetRandomInt(worldAreaSize.height)};
 
-                objectsStack->AddObject("ObjectMetalScrap");
+                // Obtain the tile at the random position.
+
+                auto tile{worldArea->GetTile(x, y)};
+
+                // Do not continue if the tile is invalid or not valid for a mushroom.
+
+                if (!tile || !IsValidForFlora(x, y))
+                {
+                    continue;
+                }
+
+                // Mushrooms prefer grass or dirt ground.
+
+                auto ground{tile->GetGround()};
+
+                if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
+                {
+                    continue;
+                }
+
+                // Don't place mushrooms on tiles that already have trees or large objects.
+                // (mushrooms are undergrowth, not replacement for trees).
+
+                auto objectsStack{tile->GetObjectsStack()};
+
+                if (objectsStack->GetSize() > 0)
+                {
+                    // Skip if there's already a significant object (like a tree).
+
+                    // TODO: But we might want to allow mushrooms with bushes.
+
+                    continue;
+                }
+
+                // Check if there are objects (likely trees) nearby.
+                // Mushrooms often grow near trees in forest environments.
+
+                auto nearbyObjectsCount{0};
+
+                for (auto checkY = y - 2; checkY <= y + 2; checkY++)
+                {
+                    for (auto checkX = x - 2; checkX <= x + 2; checkX++)
+                    {
+                        // If the coordinates are the same as the current tile.
+
+                        if (checkX == x && checkY == y)
+                        {
+                            // Continue to the next tile.
+
+                            continue;
+                        }
+
+                        // If the coordinates are invalid.
+
+                        if (!worldArea->IsValidCoordinate(checkX, checkY))
+                        {
+                            // Continue to the next tile.
+
+                            continue;
+                        }
+
+                        // Obtain the tile at the coordinates.
+
+                        auto nearbyTile{worldArea->GetTile(checkX, checkY)};
+
+                        // If the tile is valid and has objects on it.
+
+                        if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
+                        {
+                            // Increment the number of nearby objects.
+
+                            nearbyObjectsCount++;
+                        }
+                    }
+                }
+
+                // Higher probability if there are objects (trees) nearby (forest environment).
+                // Mushrooms thrive in forest ecosystems.
+
+                // 6% base probability.
+
+                auto baseProbability{6};
+
+                // +3% per nearby object (tree).
+
+                auto forestBonus{nearbyObjectsCount * 3};
+
+                // Calculate the probability of adding a mushroom.
+
+                auto mushroomProbability{baseProbability + forestBonus};
+
+                // Cap probability at a reasonable maximum.
+
+                if (mushroomProbability > 25)
+                {
+                    mushroomProbability = 25;
+                }
+
+                // Check if a random number is less than the probability of adding a mushroom.
+
+                if (GetRandomInt(100) < mushroomProbability)
+                {
+                    // Make it so that the tile has no other objects on it.
+
+                    tile->GetObjectsStack()->ClearObjects();
+
+                    // Add a brown mushroom to the tile.
+
+                    tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
+                }
+            }
+
+            // Scattered metal scraps - random remnants across the landscape.
+
+            // Number of metal scraps.
+
+            auto numMetalScraps{10000 * worldScaling + GetRandomInt(120 * worldScaling)};
+
+            // Create the metal scraps.
+
+            for (auto i = 0; i < numMetalScraps; i++)
+            {
+                // Obtain a random position for the metal scrap.
+
+                auto x{GetRandomInt(worldAreaSize.width)};
+
+                auto y{GetRandomInt(worldAreaSize.height)};
+
+                // Obtain the tile at the random position.
+
+                auto tile{worldArea->GetTile(x, y)};
+
+                // If the tile is invalid.
+
+                if (!tile)
+                {
+                    // Continue to the next metal scrap.
+
+                    continue;
+                }
+
+                // If tile is of type water or is submerged.
+
+                if (tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
+                {
+                    // Continue to the next metal scrap.
+
+                    continue;
+                }
+
+                // Only place scraps on relatively clear tiles to prevent replacing major objects.
+
+                auto objectsStack{tile->GetObjectsStack()};
+
+                // If the tile has objects on it.
+
+                if (objectsStack->GetSize() > 0)
+                {
+                    // Continue to the next metal scrap.
+
+                    continue;
+                }
+
+                // Check if a random number is less than 5.
+
+                if (GetRandomInt(100) < 5)
+                {
+                    // Make it so that the tile has no other objects on it.
+
+                    objectsStack->ClearObjects();
+
+                    // Add a metal scrap to the tile.
+
+                    objectsStack->AddObject("ObjectMetalScrap");
+                }
             }
         }
     }

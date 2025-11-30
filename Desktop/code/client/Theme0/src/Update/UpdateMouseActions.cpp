@@ -24,44 +24,47 @@
 
 #include "Tile.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void UpdateMouseActions()
+    namespace Forradia::Theme0::GameplayCore
     {
-        if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
-            _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
+        void UpdateMouseActions()
         {
-            auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
-
-            switch (currentPlayerMode)
+            if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
+                _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
             {
-            case PlayerModes::Interaction:
+                auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
 
-                _<GUIInteractionMenu>().BuildMenu();
-
-                _<GUIInteractionMenu>().SetVisible(true);
-
-                _<GUIInteractionMenu>().SetPosition(
-                    GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
-                break;
-            case PlayerModes::Battle:
-
-                auto currentWorldArea{_<World>().GetCurrentWorldArea()};
-
-                auto hoveredTile{
-                    currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
-
-                if (hoveredTile)
+                switch (currentPlayerMode)
                 {
-                    auto robot{hoveredTile->GetRobot()};
+                case PlayerModes::Interaction:
 
-                    if (robot)
+                    _<GUIInteractionMenu>().BuildMenu();
+
+                    _<GUIInteractionMenu>().SetVisible(true);
+
+                    _<GUIInteractionMenu>().SetPosition(
+                        GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+                    break;
+                case PlayerModes::Battle:
+
+                    auto currentWorldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto hoveredTile{
+                        currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
+
+                    if (hoveredTile)
                     {
-                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
-                    }
-                }
+                        auto robot{hoveredTile->GetRobot()};
 
-                break;
+                        if (robot)
+                        {
+                            _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
+                        }
+                    }
+
+                    break;
+                }
             }
         }
     }

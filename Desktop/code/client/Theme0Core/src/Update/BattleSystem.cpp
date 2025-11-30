@@ -18,62 +18,65 @@
 
 #include "Tile.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void BattleSystem::Update()
+    namespace Forradia::Theme0::GameplayCore
     {
-        if (m_targetedRobot == nullptr)
+        void BattleSystem::Update()
         {
-            return;
-        }
-
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-        auto worldAreaSize{worldArea->GetSize()};
-
-        auto &robots{worldArea->GetRobotsMirrorRef()};
-
-        auto robotCoordinates{robots.at(m_targetedRobot)};
-
-        auto &player{_<PlayerCharacter>()};
-
-        player.SetDestination({robotCoordinates.x, robotCoordinates.y});
-
-        auto playerPosition{player.GetPosition()};
-
-        auto dx {robotCoordinates.x - playerPosition.x};
-
-        auto dy {robotCoordinates.y - playerPosition.y};
-
-        auto attackRange{1.0f};
-
-        if (dx*dx + dy*dy <= attackRange*attackRange)
-        {
-            auto now{GetTicks()};
-
-            if (now >= player.GetTicksLastHitAnother() + InvertSpeed(player.GetAttackSpeed()))
+            if (m_targetedRobot == nullptr)
             {
-                m_targetedRobot->Hit(1);
-                
-                player.SetTicksLastHitAnother(now);
+                return;
+            }
 
-                auto isKnockedOut{m_targetedRobot->IsKnockedOut()};
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-                if (isKnockedOut)
+            auto worldAreaSize{worldArea->GetSize()};
+
+            auto &robots{worldArea->GetRobotsMirrorRef()};
+
+            auto robotCoordinates{robots.at(m_targetedRobot)};
+
+            auto &player{_<PlayerCharacter>()};
+
+            player.SetDestination({robotCoordinates.x, robotCoordinates.y});
+
+            auto playerPosition{player.GetPosition()};
+
+            auto dx{robotCoordinates.x - playerPosition.x};
+
+            auto dy{robotCoordinates.y - playerPosition.y};
+
+            auto attackRange{1.0f};
+
+            if (dx * dx + dy * dy <= attackRange * attackRange)
+            {
+                auto now{GetTicks()};
+
+                if (now >= player.GetTicksLastHitAnother() + InvertSpeed(player.GetAttackSpeed()))
                 {
-                    _<GUIChatBox>().Print("You have knocked out the robot!");
+                    m_targetedRobot->Hit(1);
 
-                    _<PlayerCharacter>().AddExperience(10);
+                    player.SetTicksLastHitAnother(now);
 
-                    _<GUIChatBox>().Print("You have gained 10 experience!");
+                    auto isKnockedOut{m_targetedRobot->IsKnockedOut()};
 
-                    auto robotTile{worldArea->GetTile(robotCoordinates.x, robotCoordinates.y)};
+                    if (isKnockedOut)
+                    {
+                        _<GUIChatBox>().Print("You have knocked out the robot!");
 
-                    robotTile->SetRobot(nullptr);
+                        _<PlayerCharacter>().AddExperience(10);
 
-                    robots.erase(m_targetedRobot);
-                    
-                    m_targetedRobot = nullptr;
+                        _<GUIChatBox>().Print("You have gained 10 experience!");
+
+                        auto robotTile{worldArea->GetTile(robotCoordinates.x, robotCoordinates.y)};
+
+                        robotTile->SetRobot(nullptr);
+
+                        robots.erase(m_targetedRobot);
+
+                        m_targetedRobot = nullptr;
+                    }
                 }
             }
         }

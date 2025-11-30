@@ -6,16 +6,19 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Size in 2D space with dimensions of float values.
-    ///
-    class SizeF
+    namespace Forradia
     {
-      public:
-        float width{0.0f}; ///< Width.
+        ///
+        /// Size in 2D space with dimensions of float values.
+        ///
+        class SizeF
+        {
+          public:
+            float width{0.0f}; ///< Width.
 
-        float height{0.0f}; ///< Height.
-    };
+            float height{0.0f}; ///< Height.
+        };
+    }
 }

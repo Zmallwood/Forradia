@@ -6,42 +6,45 @@
 
 #include "KeyboardInput.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    bool KeyboardInput::KeyIsPressed(SDL_Keycode key) const
+    namespace Forradia
     {
-        // Check if the key is in the set of pressed keys.
+        bool KeyboardInput::KeyIsPressed(SDL_Keycode key) const
+        {
+            // Check if the key is in the set of pressed keys.
 
-        return m_pressed.contains(key);
-    }
+            return m_pressed.contains(key);
+        }
 
-    bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
-    {
-        // Check if the key is in the set of pressed keys and store as result.
+        bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
+        {
+            // Check if the key is in the set of pressed keys and store as result.
 
-        auto result{m_pressed.contains(key)};
+            auto result{m_pressed.contains(key)};
 
-        // Remove the key from the set of pressed keys.
+            // Remove the key from the set of pressed keys.
 
-        m_pressed.erase(key);
+            m_pressed.erase(key);
 
-        // Return the result.
+            // Return the result.
 
-        return result;
-    }
+            return result;
+        }
 
-    bool KeyboardInput::AnyKeyIsPressedPickResult()
-    {
-        // Check if any key is in the set of pressed keys and store as result.
+        bool KeyboardInput::AnyKeyIsPressedPickResult()
+        {
+            // Check if any key is in the set of pressed keys and store as result.
 
-        auto result{m_pressed.size() > 0};
+            auto result{m_pressed.size() > 0};
 
-        // Clear the set of pressed keys.
+            // Clear the set of pressed keys.
 
-        m_pressed.clear();
+            m_pressed.clear();
 
-        // Return the result.
+            // Return the result.
 
-        return result;
+            return result;
+        }
     }
 }

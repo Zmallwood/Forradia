@@ -8,32 +8,35 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A meter component for the GUI.
-    ///
-    class GUIMeter : public GUIComponent
+    namespace Forradia
     {
-      public:
-        GUIMeter(StringView uniqueName, float x, float y, float width, float height,
-                 Color filledColor)
-            : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
-              k_renderIDFilled(Hash(uniqueName.data() + String("Filled"))),
-              k_filledColor(filledColor)
+        ///
+        /// A meter component for the GUI.
+        ///
+        class GUIMeter : public GUIComponent
         {
-        }
+          public:
+            GUIMeter(StringView uniqueName, float x, float y, float width, float height,
+                     Color filledColor)
+                : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
+                  k_renderIDFilled(Hash(uniqueName.data() + String("Filled"))),
+                  k_filledColor(filledColor)
+            {
+            }
 
-      protected:
-        void RenderDerived() const override;
+          protected:
+            void RenderDerived() const override;
 
-        virtual float GetFilledPercentage() const = 0;
+            virtual float GetFilledPercentage() const = 0;
 
-      private:
-        const int k_renderIDBackground; ///< The render ID of the background image.
+          private:
+            const int k_renderIDBackground; ///< The render ID of the background image.
 
-        const int k_renderIDFilled; ///< The render ID of the filled part of the meter.
+            const int k_renderIDFilled; ///< The render ID of the filled part of the meter.
 
-        const Color k_filledColor; ///< The color of the filled part of the meter.
-    };
+            const Color k_filledColor; ///< The color of the filled part of the meter.
+        };
+    }
 }

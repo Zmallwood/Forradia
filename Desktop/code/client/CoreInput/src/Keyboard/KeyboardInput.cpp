@@ -6,51 +6,54 @@
 
 #include "KeyboardInput.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void KeyboardInput::Reset()
+    namespace Forradia
     {
-        // Clear the pressed keys.
+        void KeyboardInput::Reset()
+        {
+            // Clear the pressed keys.
 
-        m_pressed.clear();
-    }
+            m_pressed.clear();
+        }
 
-    void KeyboardInput::RegisterKeyPress(SDL_Keycode key)
-    {
-        // Insert the key into the set of pressed keys.
+        void KeyboardInput::RegisterKeyPress(SDL_Keycode key)
+        {
+            // Insert the key into the set of pressed keys.
 
-        m_pressed.insert(key);
-    }
+            m_pressed.insert(key);
+        }
 
-    void KeyboardInput::RegisterKeyRelease(SDL_Keycode key)
-    {
-        // Remove the key from the set of pressed keys.
+        void KeyboardInput::RegisterKeyRelease(SDL_Keycode key)
+        {
+            // Remove the key from the set of pressed keys.
 
-        m_pressed.erase(key);
-    }
+            m_pressed.erase(key);
+        }
 
-    void KeyboardInput::StartTextInput()
-    {
-        // Start text input.
+        void KeyboardInput::StartTextInput()
+        {
+            // Start text input.
 
-        SDL_StartTextInput();
-    }
+            SDL_StartTextInput();
+        }
 
-    void KeyboardInput::StopTextInput()
-    {
-        // Stop text input.
+        void KeyboardInput::StopTextInput()
+        {
+            // Stop text input.
 
-        SDL_StopTextInput();
+            SDL_StopTextInput();
 
-        // Clear the text input.
+            // Clear the text input.
 
-        m_textInput.clear();
-    }
+            m_textInput.clear();
+        }
 
-    void KeyboardInput::AddTextInput(StringView text)
-    {
-        // Add the text to the text input.
+        void KeyboardInput::AddTextInput(StringView text)
+        {
+            // Add the text to the text input.
 
-        m_textInput += text;
+            m_textInput += text;
+        }
     }
 }

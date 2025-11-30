@@ -8,22 +8,25 @@
 
 #include "Color2DRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void GUIMeter::RenderDerived() const
+    namespace Forradia
     {
-        auto bounds{GetBounds()};
+        void GUIMeter::RenderDerived() const
+        {
+            auto bounds{GetBounds()};
 
-        // Render the background.
+            // Render the background.
 
-        _<Color2DRenderer>().DrawFilledRectangle(
-            k_renderIDBackground, Palette::GetColor<Hash("Black")>(), GetBounds().x, GetBounds().y,
-            GetBounds().width, GetBounds().height);
+            _<Color2DRenderer>().DrawFilledRectangle(
+                k_renderIDBackground, Palette::GetColor<Hash("Black")>(), GetBounds().x,
+                GetBounds().y, GetBounds().width, GetBounds().height);
 
-        // Render the filled part.
+            // Render the filled part.
 
-        _<Color2DRenderer>().DrawFilledRectangle(
-            k_renderIDFilled, k_filledColor, GetBounds().x, GetBounds().y,
-            GetBounds().width * GetFilledPercentage(), GetBounds().height, true);
+            _<Color2DRenderer>().DrawFilledRectangle(
+                k_renderIDFilled, k_filledColor, GetBounds().x, GetBounds().y,
+                GetBounds().width * GetFilledPercentage(), GetBounds().height, true);
+        }
     }
 }

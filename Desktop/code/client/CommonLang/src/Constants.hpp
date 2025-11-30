@@ -6,7 +6,10 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
+    namespace Forradia
+    {
+        static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
+    }
 }

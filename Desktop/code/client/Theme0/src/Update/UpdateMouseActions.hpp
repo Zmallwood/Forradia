@@ -6,7 +6,10 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void UpdateMouseActions();
+    namespace Forradia::Theme0::GameplayCore
+    {
+        void UpdateMouseActions();
+    }
 }

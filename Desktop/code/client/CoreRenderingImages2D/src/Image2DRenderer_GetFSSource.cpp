@@ -6,26 +6,29 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    String Image2DRenderer::GetFSSource() const
+    namespace Forradia
     {
-        // Return the fragment shader source.
+        String Image2DRenderer::GetFSSource() const
+        {
+            // Return the fragment shader source.
 
-        return R"(
-            #version 330 core
-            
-            out vec4 FragColor;
+            return R"(
+                #version 330 core
                 
-            in vec3 ourColor;
-            in vec2 TexCoord;
+                out vec4 FragColor;
+                    
+                in vec3 ourColor;
+                in vec2 TexCoord;
 
-            uniform sampler2D ourTexture;
+                uniform sampler2D ourTexture;
 
-            void main()
-            {
-                FragColor = texture(ourTexture, TexCoord);
-            }
-        )";
+                void main()
+                {
+                    FragColor = texture(ourTexture, TexCoord);
+                }
+            )";
+        }
     }
 }

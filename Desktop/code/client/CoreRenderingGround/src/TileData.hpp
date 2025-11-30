@@ -6,26 +6,29 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Tile data structure for batched rendering.
-    ///
-    class TileData
+    namespace Forradia
     {
-      public:
-        int uniqueRenderID; ///< The unique render ID.
+        ///
+        /// Tile data structure for batched rendering.
+        ///
+        class TileData
+        {
+          public:
+            int uniqueRenderID; ///< The unique render ID.
 
-        int imageNameHash; ///< The image name hash.
+            int imageNameHash; ///< The image name hash.
 
-        int xCoordinate; ///< The x coordinate.
+            int xCoordinate; ///< The x coordinate.
 
-        int yCoordinate; ///< The y coordinate.
+            int yCoordinate; ///< The y coordinate.
 
-        float tileSize; ///< The tile size.
+            float tileSize; ///< The tile size.
 
-        Vector<float> elevations; ///< The elevations.
+            Vector<float> elevations; ///< The elevations.
 
-        bool forceUpdate; ///< Whether to force update the tile.
-    };
+            bool forceUpdate; ///< Whether to force update the tile.
+        };
+    }
 }

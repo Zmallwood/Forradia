@@ -8,34 +8,38 @@
 
 #include "PlayerBodyPart.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void PlayerBody::Initialize()
+    namespace Forradia::Theme0::GameplayCore
     {
-        // Add all body parts.
-
-        m_bodyParts.insert({PlayerBodyPartTypes::OverallBody, std::make_shared<PlayerBodyPart>()});
-
-        m_bodyParts.insert({PlayerBodyPartTypes::RightArm, std::make_shared<PlayerBodyPart>()});
-
-        m_bodyParts.insert({PlayerBodyPartTypes::LeftArm, std::make_shared<PlayerBodyPart>()});
-
-        m_bodyParts.insert({PlayerBodyPartTypes::Legs, std::make_shared<PlayerBodyPart>()});
-    }
-
-    SharedPtr<PlayerBodyPart> PlayerBody::GetBodyPartPtr(PlayerBodyPartTypes bodyPartType)
-    {
-        // Check if body part exists.
-
-        if (!m_bodyParts.contains(bodyPartType))
+        void PlayerBody::Initialize()
         {
-            // The body part does not exist.
+            // Add all body parts.
 
-            return nullptr;
+            m_bodyParts.insert(
+                {PlayerBodyPartTypes::OverallBody, std::make_shared<PlayerBodyPart>()});
+
+            m_bodyParts.insert({PlayerBodyPartTypes::RightArm, std::make_shared<PlayerBodyPart>()});
+
+            m_bodyParts.insert({PlayerBodyPartTypes::LeftArm, std::make_shared<PlayerBodyPart>()});
+
+            m_bodyParts.insert({PlayerBodyPartTypes::Legs, std::make_shared<PlayerBodyPart>()});
         }
 
-        // Return pointer to body part.
+        SharedPtr<PlayerBodyPart> PlayerBody::GetBodyPartPtr(PlayerBodyPartTypes bodyPartType)
+        {
+            // Check if body part exists.
 
-        return m_bodyParts.at(bodyPartType);
+            if (!m_bodyParts.contains(bodyPartType))
+            {
+                // The body part does not exist.
+
+                return nullptr;
+            }
+
+            // Return pointer to body part.
+
+            return m_bodyParts.at(bodyPartType);
+        }
     }
 }

@@ -6,19 +6,22 @@
 
 #include "MessageUtilities.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void Print(StringView text)
+    namespace Forradia
     {
-        // Print out text without a following line break.
+        void Print(StringView text)
+        {
+            // Print out text without a following line break.
 
-        std::cout << text;
-    }
+            std::cout << text;
+        }
 
-    void PrintLine(StringView text)
-    {
-        // Print out text with a following line break.
+        void PrintLine(StringView text)
+        {
+            // Print out text with a following line break.
 
-        std::cout << text << std::endl;
+            std::cout << text << std::endl;
+        }
     }
 }

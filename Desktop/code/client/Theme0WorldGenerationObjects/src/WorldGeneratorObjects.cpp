@@ -12,181 +12,184 @@
 
 #include "ObjectsStack.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void WorldGeneratorObjects::GenerateObjects() const
+    namespace Forradia::Theme0
     {
-        // Do the steps to generate objects in the world.
-
-        GenerateForests();
-
-        GenerateMeadows();
-
-        GenerateObjectsInBiomes();
-    }
-
-    void WorldGeneratorObjects::GenerateForests() const
-    {
-        // Obtain required data.
-
-        auto worldArea{GetWorldArea()};
-
-        auto size{worldArea->GetSize()};
-
-        auto worldScaling{GetWorldScaling()};
-
-        // Create dense forest clusters.
-
-        // Number of forests.
-
-        auto numForests{15 + GetRandomInt(10)};
-
-        // Create the forests.
-
-        for (auto i = 0; i < numForests; i++)
+        void WorldGeneratorObjects::GenerateObjects() const
         {
-            // Obtain a random position for the forest.
+            // Do the steps to generate objects in the world.
 
-            auto centerX{GetRandomInt(size.width)};
+            GenerateForests();
 
-            auto centerY{GetRandomInt(size.height)};
+            GenerateMeadows();
 
-            // Obtain the tile at the random position.
+            GenerateObjectsInBiomes();
+        }
 
-            auto tile{worldArea->GetTile(centerX, centerY)};
+        void WorldGeneratorObjects::GenerateForests() const
+        {
+            // Obtain required data.
 
-            // If the tile is invalid or not valid for a forest.
+            auto worldArea{GetWorldArea()};
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
+            auto size{worldArea->GetSize()};
+
+            auto worldScaling{GetWorldScaling()};
+
+            // Create dense forest clusters.
+
+            // Number of forests.
+
+            auto numForests{15 + GetRandomInt(10)};
+
+            // Create the forests.
+
+            for (auto i = 0; i < numForests; i++)
             {
-                // Continue to the next forest.
+                // Obtain a random position for the forest.
 
-                continue;
-            }
+                auto centerX{GetRandomInt(size.width)};
 
-            // Calculate the radius of the forest.
+                auto centerY{GetRandomInt(size.height)};
 
-            auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
+                // Obtain the tile at the random position.
 
-            // Calculate the tree density.
+                auto tile{worldArea->GetTile(centerX, centerY)};
 
-            auto treeDensity{0.1f + GetRandomInt(20) / 100.0f};
+                // If the tile is invalid or not valid for a forest.
 
-            // Decide on forest type (fir or birch dominated).
-
-            auto useFir{GetRandomInt(100) < 60};
-
-            // Create the forest.
-
-            for (auto y = centerY - radius; y <= centerY + radius; y++)
-            {
-                for (auto x = centerX - radius; x <= centerX + radius; x++)
+                if (!tile || !IsValidForFlora(centerX, centerY))
                 {
-                    // If the coordinates are invalid.
+                    // Continue to the next forest.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    continue;
+                }
+
+                // Calculate the radius of the forest.
+
+                auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
+
+                // Calculate the tree density.
+
+                auto treeDensity{0.1f + GetRandomInt(20) / 100.0f};
+
+                // Decide on forest type (fir or birch dominated).
+
+                auto useFir{GetRandomInt(100) < 60};
+
+                // Create the forest.
+
+                for (auto y = centerY - radius; y <= centerY + radius; y++)
+                {
+                    for (auto x = centerX - radius; x <= centerX + radius; x++)
                     {
-                        // Continue to the next tile.
+                        // If the coordinates are invalid.
 
-                        continue;
-                    }
-
-                    // If the tile is not valid for flora.
-
-                    if (!IsValidForFlora(x, y))
-                    {
-                        // Continue to the next tile.
-
-                        continue;
-                    }
-
-                    // Calculate the distance between the tile and the center of the forest.
-
-                    auto distance{GetDistance(x, y, centerX, centerY)};
-
-                    // If the distance is greater than the radius.
-
-                    if (distance > radius)
-                    {
-                        // Continue to the next tile.
-
-                        continue;
-                    }
-
-                    // Calculate the normalized distance.
-
-                    auto normalizedDistance{distance / radius};
-
-                    // Calculate the local density. Higher density in center, lower at edges.
-
-                    auto localDensity{treeDensity * (1.0f - normalizedDistance * 0.5f)};
-
-                    // Check if a random number is less than the local density.
-
-                    if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
-                    {
-                        // Obtain the tile at the coordinates.
-
-                        auto forestTile{worldArea->GetTile(x, y)};
-
-                        // If the tile is valid.
-
-                        if (forestTile)
+                        if (!worldArea->IsValidCoordinate(x, y))
                         {
-                            // Make it so that the tile has no other objects on it.
+                            // Continue to the next tile.
 
-                            forestTile->GetObjectsStack()->ClearObjects();
+                            continue;
+                        }
 
-                            // Check if the forest should use fir or birch trees.
+                        // If the tile is not valid for flora.
 
-                            if (useFir)
+                        if (!IsValidForFlora(x, y))
+                        {
+                            // Continue to the next tile.
+
+                            continue;
+                        }
+
+                        // Calculate the distance between the tile and the center of the forest.
+
+                        auto distance{GetDistance(x, y, centerX, centerY)};
+
+                        // If the distance is greater than the radius.
+
+                        if (distance > radius)
+                        {
+                            // Continue to the next tile.
+
+                            continue;
+                        }
+
+                        // Calculate the normalized distance.
+
+                        auto normalizedDistance{distance / radius};
+
+                        // Calculate the local density. Higher density in center, lower at edges.
+
+                        auto localDensity{treeDensity * (1.0f - normalizedDistance * 0.5f)};
+
+                        // Check if a random number is less than the local density.
+
+                        if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
+                        {
+                            // Obtain the tile at the coordinates.
+
+                            auto forestTile{worldArea->GetTile(x, y)};
+
+                            // If the tile is valid.
+
+                            if (forestTile)
                             {
-                                // Add a tree of fir type with a 70% chance, otherwise add a tree of
-                                // birch type.
+                                // Make it so that the tile has no other objects on it.
 
-                                if (GetRandomInt(100) < 70)
+                                forestTile->GetObjectsStack()->ClearObjects();
+
+                                // Check if the forest should use fir or birch trees.
+
+                                if (useFir)
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                    // Add a tree of fir type with a 70% chance, otherwise add a
+                                    // tree of birch type.
+
+                                    if (GetRandomInt(100) < 70)
+                                    {
+                                        forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                    }
+                                    else
+                                    {
+                                        forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                    }
                                 }
                                 else
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                    // Add a tree of birch type with a 70% chance, otherwise add a
+                                    // tree of fir type.
+
+                                    if (GetRandomInt(100) < 70)
+                                    {
+                                        forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                    }
+                                    else
+                                    {
+                                        forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                // Add a tree of birch type with a 70% chance, otherwise add a tree
-                                // of fir type.
 
-                                if (GetRandomInt(100) < 70)
+                                // Add undergrowth in forests.
+
+                                // If a random number between 0 and 100 is less than 25.
+
+                                if (GetRandomInt(100) < 25)
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
-                                }
-                                else
-                                {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
-                                }
-                            }
+                                    // Check if a random number between 0 and 100 is less than 50.
 
-                            // Add undergrowth in forests.
+                                    if (GetRandomInt(100) < 50)
+                                    {
+                                        // Add a bush of type 1.
 
-                            // If a random number between 0 and 100 is less than 25.
+                                        forestTile->GetObjectsStack()->AddObject("ObjectBush1");
+                                    }
+                                    else
+                                    {
+                                        // Otherwise add a bush of type 2.
 
-                            if (GetRandomInt(100) < 25)
-                            {
-                                // Check if a random number between 0 and 100 is less than 50.
-
-                                if (GetRandomInt(100) < 50)
-                                {
-                                    // Add a bush of type 1.
-
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBush1");
-                                }
-                                else
-                                {
-                                    // Otherwise add a bush of type 2.
-
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBush2");
+                                        forestTile->GetObjectsStack()->AddObject("ObjectBush2");
+                                    }
                                 }
                             }
                         }
@@ -194,177 +197,177 @@ namespace Forradia::Theme0
                 }
             }
         }
-    }
 
-    void WorldGeneratorObjects::GenerateMeadows() const
-    {
-        // Obtain required data.
-
-        auto worldArea{GetWorldArea()};
-
-        auto size{worldArea->GetSize()};
-
-        auto worldScaling{GetWorldScaling()};
-
-        // Create meadow areas with flowers and tall grass.
-
-        // Number of meadows.
-
-        auto numMeadows{20 + GetRandomInt(15)};
-
-        // Create the meadows.
-
-        for (auto i = 0; i < numMeadows; i++)
+        void WorldGeneratorObjects::GenerateMeadows() const
         {
-            // Obtain a random position for the meadow.
+            // Obtain required data.
 
-            auto centerX{GetRandomInt(size.width)};
+            auto worldArea{GetWorldArea()};
 
-            auto centerY{GetRandomInt(size.height)};
+            auto size{worldArea->GetSize()};
 
-            // Obtain the tile at the random position.
+            auto worldScaling{GetWorldScaling()};
 
-            auto tile{worldArea->GetTile(centerX, centerY)};
+            // Create meadow areas with flowers and tall grass.
 
-            // If the tile is invalid or not valid for a meadow.
+            // Number of meadows.
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
+            auto numMeadows{20 + GetRandomInt(15)};
+
+            // Create the meadows.
+
+            for (auto i = 0; i < numMeadows; i++)
             {
-                // Continue to the next meadow.
+                // Obtain a random position for the meadow.
 
-                continue;
-            }
+                auto centerX{GetRandomInt(size.width)};
 
-            // Meadows prefer grass ground.
+                auto centerY{GetRandomInt(size.height)};
 
-            if (tile->GetGround() != Hash("GroundGrass"))
-            {
-                continue;
-            }
+                // Obtain the tile at the random position.
 
-            // Calculate the radius of the meadow.
+                auto tile{worldArea->GetTile(centerX, centerY)};
 
-            auto radius{CInt(5 * worldScaling + GetRandomInt(8 * worldScaling))};
+                // If the tile is invalid or not valid for a meadow.
 
-            // 0.15 to 0.3.
-
-            auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f};
-
-            // 0.2 to 0.4.
-
-            auto grassDensity{0.2f + GetRandomInt(20) / 100.0f};
-
-            // Create the meadow.
-
-            for (auto y = centerY - radius; y <= centerY + radius; y++)
-            {
-                for (auto x = centerX - radius; x <= centerX + radius; x++)
+                if (!tile || !IsValidForFlora(centerX, centerY))
                 {
-                    // If the coordinates are invalid.
+                    // Continue to the next meadow.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    continue;
+                }
+
+                // Meadows prefer grass ground.
+
+                if (tile->GetGround() != Hash("GroundGrass"))
+                {
+                    continue;
+                }
+
+                // Calculate the radius of the meadow.
+
+                auto radius{CInt(5 * worldScaling + GetRandomInt(8 * worldScaling))};
+
+                // 0.15 to 0.3.
+
+                auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f};
+
+                // 0.2 to 0.4.
+
+                auto grassDensity{0.2f + GetRandomInt(20) / 100.0f};
+
+                // Create the meadow.
+
+                for (auto y = centerY - radius; y <= centerY + radius; y++)
+                {
+                    for (auto x = centerX - radius; x <= centerX + radius; x++)
                     {
-                        // Continue to the next tile.
+                        // If the coordinates are invalid.
 
-                        continue;
-                    }
+                        if (!worldArea->IsValidCoordinate(x, y))
+                        {
+                            // Continue to the next tile.
 
-                    // If the tile is not valid for flora.
+                            continue;
+                        }
 
-                    if (!IsValidForFlora(x, y))
-                    {
-                        // Continue to the next tile.
+                        // If the tile is not valid for flora.
 
-                        continue;
-                    }
+                        if (!IsValidForFlora(x, y))
+                        {
+                            // Continue to the next tile.
 
-                    // Obtain the tile at the coordinates.
+                            continue;
+                        }
 
-                    auto meadowTile{worldArea->GetTile(x, y)};
+                        // Obtain the tile at the coordinates.
 
-                    // If the tile is invalid or not valid for a meadow.
+                        auto meadowTile{worldArea->GetTile(x, y)};
 
-                    if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
-                    {
-                        // Continue to the next tile.
+                        // If the tile is invalid or not valid for a meadow.
 
-                        continue;
-                    }
+                        if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
+                        {
+                            // Continue to the next tile.
 
-                    // Calculate the distance between the tile and the center of the meadow.
+                            continue;
+                        }
 
-                    auto distance{GetDistance(x, y, centerX, centerY)};
+                        // Calculate the distance between the tile and the center of the meadow.
 
-                    // If the distance is greater than the radius.
+                        auto distance{GetDistance(x, y, centerX, centerY)};
 
-                    if (distance > radius)
-                    {
-                        // Continue to the next tile.
+                        // If the distance is greater than the radius.
 
-                        continue;
-                    }
+                        if (distance > radius)
+                        {
+                            // Continue to the next tile.
 
-                    // Add flowers.
+                            continue;
+                        }
 
-                    if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
-                    {
-                        // Clear the objects on the tile.
+                        // Add flowers.
 
-                        meadowTile->GetObjectsStack()->ClearObjects();
+                        if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
+                        {
+                            // Clear the objects on the tile.
 
-                        // Add a pink flower to the tile.
+                            meadowTile->GetObjectsStack()->ClearObjects();
 
-                        meadowTile->GetObjectsStack()->AddObject("ObjectPinkFlower");
-                    }
-                    else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
-                    {
-                        // Only add if we didn't just add a flower above.
-                        // (This is handled by the else if, so we're good).
+                            // Add a pink flower to the tile.
 
-                        // Clear the objects on the tile.
+                            meadowTile->GetObjectsStack()->AddObject("ObjectPinkFlower");
+                        }
+                        else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
+                        {
+                            // Only add if we didn't just add a flower above.
+                            // (This is handled by the else if, so we're good).
 
-                        meadowTile->GetObjectsStack()->ClearObjects();
+                            // Clear the objects on the tile.
 
-                        // Add a tall grass to the tile.
+                            meadowTile->GetObjectsStack()->ClearObjects();
 
-                        meadowTile->GetObjectsStack()->AddObject("ObjectTallGrass");
+                            // Add a tall grass to the tile.
+
+                            meadowTile->GetObjectsStack()->AddObject("ObjectTallGrass");
+                        }
                     }
                 }
             }
         }
-    }
 
-    bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const
-    {
-        // Check if the coordinates are valid.
-
-        if (!GetWorldArea()->IsValidCoordinate(x, y))
+        bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const
         {
-            // Return false if not valid.
+            // Check if the coordinates are valid.
 
-            return false;
-        }
+            if (!GetWorldArea()->IsValidCoordinate(x, y))
+            {
+                // Return false if not valid.
 
-        // Get the tile at the given coordinates.
+                return false;
+            }
 
-        auto tile = GetWorldArea()->GetTile(x, y);
+            // Get the tile at the given coordinates.
 
-        // Return false if the tile is not found.
+            auto tile = GetWorldArea()->GetTile(x, y);
 
-        if (!tile)
-        {
             // Return false if the tile is not found.
 
-            return false;
+            if (!tile)
+            {
+                // Return false if the tile is not found.
+
+                return false;
+            }
+
+            // Get the ground type of the tile.
+
+            auto ground{tile->GetGround()};
+
+            // Trees can't grow in water or on bare rock
+
+            return ground != Hash("GroundWater") && ground != Hash("GroundRock") &&
+                   tile->GetWaterDepth() == 0;
         }
-
-        // Get the ground type of the tile.
-
-        auto ground{tile->GetGround()};
-
-        // Trees can't grow in water or on bare rock
-
-        return ground != Hash("GroundWater") && ground != Hash("GroundRock") &&
-               tile->GetWaterDepth() == 0;
     }
 }

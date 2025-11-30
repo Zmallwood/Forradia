@@ -14,41 +14,44 @@
 
 #include "WorldGeneratorEntities.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void WorldGenerator::GenerateNewWorld() const
+    namespace Forradia::Theme0
     {
-        // Prepare the world generator for generating a new world.
+        void WorldGenerator::GenerateNewWorld() const
+        {
+            // Prepare the world generator for generating a new world.
 
-        this->Prepare();
+            this->Prepare();
 
-        // Ground.
+            // Ground.
 
-        _<WorldGeneratorGround>().GenerateGroundWithElevation();
+            _<WorldGeneratorGround>().GenerateGroundWithElevation();
 
-        // Water.
+            // Water.
 
-        _<WorldGeneratorWater>().GenerateWater();
+            _<WorldGeneratorWater>().GenerateWater();
 
-        // Objects.
+            // Objects.
 
-        _<WorldGeneratorObjects>().GenerateObjects();
+            _<WorldGeneratorObjects>().GenerateObjects();
 
-        // Entities.
+            // Entities.
 
-        _<WorldGeneratorEntities>().GenerateEntities();
-    }
+            _<WorldGeneratorEntities>().GenerateEntities();
+        }
 
-    void WorldGenerator::Prepare() const
-    {
-        // Prepare all the generators for generating a new world.
+        void WorldGenerator::Prepare() const
+        {
+            // Prepare all the generators for generating a new world.
 
-        _<WorldGeneratorGround>().Prepare();
+            _<WorldGeneratorGround>().Prepare();
 
-        _<WorldGeneratorWater>().Prepare();
+            _<WorldGeneratorWater>().Prepare();
 
-        _<WorldGeneratorObjects>().Prepare();
+            _<WorldGeneratorObjects>().Prepare();
 
-        _<WorldGeneratorEntities>().Prepare();
+            _<WorldGeneratorEntities>().Prepare();
+        }
     }
 }

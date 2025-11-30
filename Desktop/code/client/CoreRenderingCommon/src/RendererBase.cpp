@@ -8,24 +8,28 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void RendererBase::Initialize()
+    namespace Forradia
     {
-        // Get vertex shader source, implemented in deriving class.
+        void RendererBase::Initialize()
+        {
+            // Get vertex shader source, implemented in deriving class.
 
-        String vertexShaderSource{this->GetVSSource()};
+            String vertexShaderSource{this->GetVSSource()};
 
-        // Get fragment shader source, implemented in deriving class.
+            // Get fragment shader source, implemented in deriving class.
 
-        String fragmentShaderSource{this->GetFSSource()};
+            String fragmentShaderSource{this->GetFSSource()};
 
-        // Create the shader program.
+            // Create the shader program.
 
-        m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);
+            m_shaderProgram =
+                std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);
 
-        // Do additional initialization, implemented in deriving class.
+            // Do additional initialization, implemented in deriving class.
 
-        this->InitializeDerived();
+            this->InitializeDerived();
+        }
     }
 }

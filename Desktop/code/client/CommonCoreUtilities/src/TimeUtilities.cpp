@@ -6,12 +6,15 @@
 
 #include "TimeUtilities.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    int GetTicks()
+    namespace Forradia
     {
-        // Get the number of ticks.
+        int GetTicks()
+        {
+            // Get the number of ticks.
 
-        return SDL_GetTicks();
+            return SDL_GetTicks();
+        }
     }
 }

@@ -10,33 +10,36 @@
 
 #include "Energy/EnergyComputation.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void GUIEnergyStatisticsPanel::Initialize()
+    namespace Forradia
     {
-        // Create the energy-per-tile text label.
+        void GUIEnergyStatisticsPanel::Initialize()
+        {
+            // Create the energy-per-tile text label.
 
-        m_energyPerTileTextPanel =
-            std::make_shared<GUILabel>("GUILabelEnergyPerTilePanel", 0.01f, 0.01f, 0.1f, 0.05f);
+            m_energyPerTileTextPanel =
+                std::make_shared<GUILabel>("GUILabelEnergyPerTilePanel", 0.01f, 0.01f, 0.1f, 0.05f);
 
-        // Add the energy-per-tile text label to this panel.
+            // Add the energy-per-tile text label to this panel.
 
-        this->AddChildComponent(m_energyPerTileTextPanel);
-    }
+            this->AddChildComponent(m_energyPerTileTextPanel);
+        }
 
-    void GUIEnergyStatisticsPanel::UpdateDerived()
-    {
-        // Do the updating specific to the base class (GUIMovablePanel).
+        void GUIEnergyStatisticsPanel::UpdateDerived()
+        {
+            // Do the updating specific to the base class (GUIMovablePanel).
 
-        GUIMovablePanel::UpdateDerived();
+            GUIMovablePanel::UpdateDerived();
 
-        // Get the  energy-per-tile.
+            // Get the  energy-per-tile.
 
-        auto energyPerTile{
-            _<Theme0::GameplayCore::EnergyComputation>().ComputeEnergyProductionPerTile()};
+            auto energyPerTile{
+                _<Theme0::GameplayCore::EnergyComputation>().ComputeEnergyProductionPerTile()};
 
-        // Set the text of the  energy-per-tile text label.
+            // Set the text of the  energy-per-tile text label.
 
-        m_energyPerTileTextPanel->SetText(fmt::format("Energy per tile: {}", energyPerTile));
+            m_energyPerTileTextPanel->SetText(fmt::format("Energy per tile: {}", energyPerTile));
+        }
     }
 }

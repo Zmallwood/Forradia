@@ -8,24 +8,27 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    class GUISystemMenu : public GUIComponent
+    namespace Forradia::Theme0
     {
-      public:
-        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        class GUISystemMenu : public GUIComponent
         {
-            this->Initialize();
-        }
+          public:
+            GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+            {
+                this->Initialize();
+            }
 
-      protected:
-        void Initialize();
+          protected:
+            void Initialize();
 
-        virtual void UpdateDerived() override;
+            virtual void UpdateDerived() override;
 
-        virtual void RenderDerived() const override;
+            virtual void RenderDerived() const override;
 
-      private:
-        const int k_renderIDBackgroundColor{Hash("GUISystemMenuBackgroundColor")};
-    };
+          private:
+            const int k_renderIDBackgroundColor{Hash("GUISystemMenuBackgroundColor")};
+        };
+    }
 }

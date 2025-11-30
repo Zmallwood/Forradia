@@ -8,38 +8,41 @@
 
 #include "WorldGeneratorBase.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    ///
-    /// Generates entities for the world.
-    ///
-    class WorldGeneratorEntities : public WorldGeneratorBase
+    namespace Forradia::Theme0
     {
-      public:
         ///
         /// Generates entities for the world.
         ///
-        void GenerateEntities() const;
+        class WorldGeneratorEntities : public WorldGeneratorBase
+        {
+          public:
+            ///
+            /// Generates entities for the world.
+            ///
+            void GenerateEntities() const;
 
-      private:
-        ///
-        /// Generates creatures in ecosystems.
-        ///
-        void GenerateCreaturesInEcosystems() const;
+          private:
+            ///
+            /// Generates creatures in ecosystems.
+            ///
+            void GenerateCreaturesInEcosystems() const;
 
-        ///
-        /// Generates robots in areas.
-        ///
-        void GenerateRobotsInAreas() const;
+            ///
+            /// Generates robots in areas.
+            ///
+            void GenerateRobotsInAreas() const;
 
-        ///
-        /// Checks if a point is near water.
-        ///
-        /// @param x The x coordinate of the point.
-        /// @param y The y coordinate of the point.
-        /// @param radius The radius to check.
-        /// @return True if the point is near water, false otherwise.
-        ///
-        bool IsNearWater(int x, int y, int radius) const;
-    };
+            ///
+            /// Checks if a point is near water.
+            ///
+            /// @param x The x coordinate of the point.
+            /// @param y The y coordinate of the point.
+            /// @param radius The radius to check.
+            /// @return True if the point is near water, false otherwise.
+            ///
+            bool IsNearWater(int x, int y, int radius) const;
+        };
+    }
 }

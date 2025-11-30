@@ -6,27 +6,30 @@
 
 #include "MouseButton.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    bool MouseButton::HasBeenReleasedPickResult()
+    namespace Forradia
     {
-        // Check if the button has been released and store as result.
+        bool MouseButton::HasBeenReleasedPickResult()
+        {
+            // Check if the button has been released and store as result.
 
-        auto result{m_hasBeenReleased};
+            auto result{m_hasBeenReleased};
 
-        // Clear the been-released state of the button.
+            // Clear the been-released state of the button.
 
-        m_hasBeenReleased = false;
+            m_hasBeenReleased = false;
 
-        // Return the result.
+            // Return the result.
 
-        return result;
-    }
+            return result;
+        }
 
-    bool MouseButton::HasBeenReleased() const
-    {
-        // Return the been-released state of the button.
+        bool MouseButton::HasBeenReleased() const
+        {
+            // Return the been-released state of the button.
 
-        return m_hasBeenReleased;
+            return m_hasBeenReleased;
+        }
     }
 }

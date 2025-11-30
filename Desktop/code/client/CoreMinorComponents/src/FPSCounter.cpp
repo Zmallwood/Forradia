@@ -6,33 +6,36 @@
 
 #include "FPSCounter.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void FPSCounter::Update()
+    namespace Forradia
     {
-        // Get the current time in milliseconds.
-
-        auto now{GetTicks()};
-
-        // If it has been more than one second since the last update:
-
-        if (now > m_ticksLastUpdate + k_oneSecMillis)
+        void FPSCounter::Update()
         {
-            // Update the FPS value.
+            // Get the current time in milliseconds.
 
-            m_fps = m_framesCount;
+            auto now{GetTicks()};
 
-            // Reset the frame count.
+            // If it has been more than one second since the last update:
 
-            m_framesCount = 0;
+            if (now > m_ticksLastUpdate + k_oneSecMillis)
+            {
+                // Update the FPS value.
 
-            // Update the last update time.
+                m_fps = m_framesCount;
 
-            m_ticksLastUpdate = now;
+                // Reset the frame count.
+
+                m_framesCount = 0;
+
+                // Update the last update time.
+
+                m_ticksLastUpdate = now;
+            }
+
+            // Increment the frame count.
+
+            ++m_framesCount;
         }
-
-        // Increment the frame count.
-
-        ++m_framesCount;
     }
 }

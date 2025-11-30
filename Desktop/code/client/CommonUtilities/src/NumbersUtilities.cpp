@@ -8,51 +8,54 @@
 
 #include "Constants.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    float InvertSpeed(float speed)
+    namespace Forradia
     {
-        // Calculate the inverse of the movement speed.
-
-        if (speed)
+        float InvertSpeed(float speed)
         {
-            // If the movement speed is not zero, invert it and return.
+            // Calculate the inverse of the movement speed.
 
-            return k_oneSecMillis / speed;
-        }
-        else
-        {
-            // If the movement speed is zero, avoid division by zero and return zero directly
-            // instead.
+            if (speed)
+            {
+                // If the movement speed is not zero, invert it and return.
 
-            return 0.0f;
-        }
-    }
+                return k_oneSecMillis / speed;
+            }
+            else
+            {
+                // If the movement speed is zero, avoid division by zero and return zero directly
+                // instead.
 
-    int Normalize(int value)
-    {
-        // Calculate the absolute value.
-
-        auto absValue{std::abs(value)};
-
-        auto normalized{0};
-
-        // Calculate the normalized value.
-
-        if (value)
-        {
-            normalized = value / absValue;
+                return 0.0f;
+            }
         }
 
-        return normalized;
-    }
+        int Normalize(int value)
+        {
+            // Calculate the absolute value.
 
-    float Ceil(float number, float numDecimalPlaces)
-    {
-        // Calculate the ceiled value with a given number of decimal places.
+            auto absValue{std::abs(value)};
 
-        auto p{std::pow(10.0, numDecimalPlaces)};
+            auto normalized{0};
 
-        return std::ceil(number * p) / p;
+            // Calculate the normalized value.
+
+            if (value)
+            {
+                normalized = value / absValue;
+            }
+
+            return normalized;
+        }
+
+        float Ceil(float number, float numDecimalPlaces)
+        {
+            // Calculate the ceiled value with a given number of decimal places.
+
+            auto p{std::pow(10.0, numDecimalPlaces)};
+
+            return std::ceil(number * p) / p;
+        }
     }
 }

@@ -6,16 +6,19 @@
 
 #pragma once
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    ///
-    /// Class for storing creature properties.
-    ///
-    class CreatureIndexEntry
+    namespace Forradia::Theme0
     {
-      public:
-        float modelScaling{1.0f}; ///< The scaling factor for the creature model.
+        ///
+        /// Class for storing creature properties.
+        ///
+        class CreatureIndexEntry
+        {
+          public:
+            float modelScaling{1.0f}; ///< The scaling factor for the creature model.
 
-        float levitationHeight{0.0f}; ///< The height at which the creature levitates.
-    };
+            float levitationHeight{0.0f}; ///< The height at which the creature levitates.
+        };
+    }
 }

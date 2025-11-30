@@ -8,39 +8,43 @@
 
 #include "PlayerBodyPartTypes.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    class PlayerBodyPart;
-
-    ///
-    /// Represents the body of the player.
-    ///
-    class PlayerBody
+    namespace Forradia::Theme0::GameplayCore
     {
-      public:
+        class PlayerBodyPart;
+
         ///
-        /// Constructor.
+        /// Represents the body of the player.
         ///
-        PlayerBody()
+        class PlayerBody
         {
-            this->Initialize();
-        }
+          public:
+            ///
+            /// Constructor.
+            ///
+            PlayerBody()
+            {
+                this->Initialize();
+            }
 
-        ///
-        /// Gets a pointer to the body part.
-        ///
-        /// @param bodyPartType The type of the body part.
-        ///
-        /// @return A pointer to the body part.
-        ///
-        SharedPtr<PlayerBodyPart> GetBodyPartPtr(PlayerBodyPartTypes bodyPartType);
+            ///
+            /// Gets a pointer to the body part.
+            ///
+            /// @param bodyPartType The type of the body part.
+            ///
+            /// @return A pointer to the body part.
+            ///
+            SharedPtr<PlayerBodyPart> GetBodyPartPtr(PlayerBodyPartTypes bodyPartType);
 
-      private:
-        ///
-        /// Initializes the body.
-        ///
-        void Initialize();
+          private:
+            ///
+            /// Initializes the body.
+            ///
+            void Initialize();
 
-        std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts; ///< The body parts.
-    };
+            std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>>
+                m_bodyParts; ///< The body parts.
+        };
+    }
 }

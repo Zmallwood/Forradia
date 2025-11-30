@@ -6,17 +6,20 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    int CalculateCurrentLevel(int experience);
+    namespace Forradia::Theme0::GameplayCore
+    {
+        int CalculateCurrentLevel(int experience);
 
-    int CalculateExperienceForLevel(int level);
+        int CalculateExperienceForLevel(int level);
 
-    int CalculateExperienceDifferenceToNextLevel(int experience);
+        int CalculateExperienceDifferenceToNextLevel(int experience);
 
-    int CalculateExperienceRequiredForCurrentLevelStart(int experience);
+        int CalculateExperienceRequiredForCurrentLevelStart(int experience);
 
-    int CalculateExperienceGainedSinceLevelStart(int experience);
+        int CalculateExperienceGainedSinceLevelStart(int experience);
 
-    float CalculateFractionalExperienceProgress(int experience);
+        float CalculateFractionalExperienceProgress(int experience);
+    }
 }

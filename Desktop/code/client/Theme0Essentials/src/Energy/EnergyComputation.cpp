@@ -6,12 +6,15 @@
 
 #include "EnergyComputation.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    float EnergyComputation::ComputeEnergyProductionPerTile()
+    namespace Forradia::Theme0::GameplayCore
     {
-        // TODO: Implement this.
+        float EnergyComputation::ComputeEnergyProductionPerTile()
+        {
+            // TODO: Implement this.
 
-        return 0.0f;
+            return 0.0f;
+        }
     }
 }

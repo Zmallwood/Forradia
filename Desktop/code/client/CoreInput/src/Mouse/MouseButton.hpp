@@ -6,88 +6,91 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// Represents a mouse button.
-    ///
-    class MouseButton
+    namespace Forradia
     {
-      public:
         ///
-        /// Resets the state of the button.
+        /// Represents a mouse button.
         ///
-        void Reset();
-
-        ///
-        /// Registers that the button has been pressed.
-        ///
-        void RegisterPress();
-
-        ///
-        /// Registers that the button has been released.
-        ///
-        void RegisterRelease();
-
-        ///
-        /// Checks if the button is currently being pressed, picking the result (I.e. the result can
-        /// only be obtained once).
-        ///
-        /// @return True if the button is pressed, otherwise false.
-        ///
-        bool IsPressedPickResult();
-
-        ///
-        /// Checks if the button has been fired, picking the result (I.e. the result can only be
-        /// obtained once).
-        ///
-        /// @return True if the button has been fired, otherwise false.
-        ///
-        bool HasBeenFiredPickResult();
-
-        ///
-        /// Checks if the button has been fired, without picking the result (I.e. the result can be
-        /// obtained multiple times after each other).
-        ///
-        /// @return True if the button has been fired, otherwise false.
-        ///
-        bool HasBeenFired() const;
-
-        ///
-        /// Checks if the button has been released, picking the result (I.e. the result can only be
-        /// obtained once).
-        ///
-        /// @return True if the button has been released, otherwise false.
-        ///
-        bool HasBeenReleasedPickResult();
-
-        ///
-        /// Checks if the button has been released, without picking the result (I.e. the result can
-        /// be obtained multiple times after each other).
-        ///
-        /// @return True if the button has been released, otherwise false.
-        ///
-        bool HasBeenReleased() const;
-
-        ///
-        /// Returns the speed of the most recent click.
-        ///
-        /// @return The speed of the most recent click.
-        ///
-        auto GetTicksClickSpeed() const
+        class MouseButton
         {
-            return m_ticksClickSpeed;
-        }
+          public:
+            ///
+            /// Resets the state of the button.
+            ///
+            void Reset();
 
-      private:
-        bool m_pressed{false}; ///< True if the button is currently pressed.
+            ///
+            /// Registers that the button has been pressed.
+            ///
+            void RegisterPress();
 
-        bool m_hasBeenFired{false}; ///< True if the button has been fired.
+            ///
+            /// Registers that the button has been released.
+            ///
+            void RegisterRelease();
 
-        bool m_hasBeenReleased{false}; ///< True if the button has been released.
+            ///
+            /// Checks if the button is currently being pressed, picking the result (I.e. the result
+            /// can only be obtained once).
+            ///
+            /// @return True if the button is pressed, otherwise false.
+            ///
+            bool IsPressedPickResult();
 
-        int m_ticksFired{0}; ///< The point in time, as ticks, when the button was last fired.
+            ///
+            /// Checks if the button has been fired, picking the result (I.e. the result can only be
+            /// obtained once).
+            ///
+            /// @return True if the button has been fired, otherwise false.
+            ///
+            bool HasBeenFiredPickResult();
 
-        int m_ticksClickSpeed{0}; ///< The speed of the most recent click.
-    };
+            ///
+            /// Checks if the button has been fired, without picking the result (I.e. the result can
+            /// be obtained multiple times after each other).
+            ///
+            /// @return True if the button has been fired, otherwise false.
+            ///
+            bool HasBeenFired() const;
+
+            ///
+            /// Checks if the button has been released, picking the result (I.e. the result can only
+            /// be obtained once).
+            ///
+            /// @return True if the button has been released, otherwise false.
+            ///
+            bool HasBeenReleasedPickResult();
+
+            ///
+            /// Checks if the button has been released, without picking the result (I.e. the result
+            /// can be obtained multiple times after each other).
+            ///
+            /// @return True if the button has been released, otherwise false.
+            ///
+            bool HasBeenReleased() const;
+
+            ///
+            /// Returns the speed of the most recent click.
+            ///
+            /// @return The speed of the most recent click.
+            ///
+            auto GetTicksClickSpeed() const
+            {
+                return m_ticksClickSpeed;
+            }
+
+          private:
+            bool m_pressed{false}; ///< True if the button is currently pressed.
+
+            bool m_hasBeenFired{false}; ///< True if the button has been fired.
+
+            bool m_hasBeenReleased{false}; ///< True if the button has been released.
+
+            int m_ticksFired{0}; ///< The point in time, as ticks, when the button was last fired.
+
+            int m_ticksClickSpeed{0}; ///< The speed of the most recent click.
+        };
+    }
 }

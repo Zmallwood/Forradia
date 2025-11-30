@@ -6,59 +6,62 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader)
+    namespace Forradia
     {
-        // Create a new shader program.
-
-        m_programID = glCreateProgram();
-
-        // Attach the vertex and fragment shaders to the program.
-
-        glAttachShader(m_programID, vertexShader);
-
-        glAttachShader(m_programID, fragmentShader);
-
-        // Link the program.
-
-        glLinkProgram(m_programID);
-
-        // Get the link status.
-
-        GLint isLinked{0};
-
-        glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
-
-        // If the link failed.
-
-        if (isLinked == GL_FALSE)
+        GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader)
         {
-            // Get the length of the info log.
+            // Create a new shader program.
 
-            GLint maxLength{0};
+            m_programID = glCreateProgram();
 
-            glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
+            // Attach the vertex and fragment shaders to the program.
 
-            // Get the info log.
+            glAttachShader(m_programID, vertexShader);
 
-            Vector<GLchar> infoLog(maxLength);
+            glAttachShader(m_programID, fragmentShader);
 
-            glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
+            // Link the program.
 
-            // Delete the program.
+            glLinkProgram(m_programID);
 
-            glDeleteProgram(m_programID);
+            // Get the link status.
 
-            // Delete the shaders.
+            GLint isLinked{0};
 
-            glDeleteShader(vertexShader);
+            glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
-            glDeleteShader(fragmentShader);
+            // If the link failed.
+
+            if (isLinked == GL_FALSE)
+            {
+                // Get the length of the info log.
+
+                GLint maxLength{0};
+
+                glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
+
+                // Get the info log.
+
+                Vector<GLchar> infoLog(maxLength);
+
+                glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
+
+                // Delete the program.
+
+                glDeleteProgram(m_programID);
+
+                // Delete the shaders.
+
+                glDeleteShader(vertexShader);
+
+                glDeleteShader(fragmentShader);
+            }
+
+            // Return the link status.
+
+            return isLinked;
         }
-
-        // Return the link status.
-
-        return isLinked;
     }
 }

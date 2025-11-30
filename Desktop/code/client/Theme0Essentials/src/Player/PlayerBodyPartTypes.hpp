@@ -6,22 +6,25 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    ///
-    /// Types of body parts for the player.
-    /// TODO: Decide if should be used also for other entities.
-    ///
-    enum class PlayerBodyPartTypes
+    namespace Forradia::Theme0::GameplayCore
     {
-        None, ///< No body part.
+        ///
+        /// Types of body parts for the player.
+        /// TODO: Decide if should be used also for other entities.
+        ///
+        enum class PlayerBodyPartTypes
+        {
+            None, ///< No body part.
 
-        OverallBody, ///< The overall body.
+            OverallBody, ///< The overall body.
 
-        RightArm, ///< The right arm.
+            RightArm, ///< The right arm.
 
-        LeftArm, ///< The left arm.
+            LeftArm, ///< The left arm.
 
-        Legs ///< The legs.
-    };
+            Legs ///< The legs.
+        };
+    }
 }

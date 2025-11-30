@@ -6,18 +6,21 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A rendering operation for colors in 2D.
-    ///
-    class Color2DRenderingOperation
+    namespace Forradia
     {
-      public:
-        GLuint vao; ///< The vertex array object.
+        ///
+        /// A rendering operation for colors in 2D.
+        ///
+        class Color2DRenderingOperation
+        {
+          public:
+            GLuint vao; ///< The vertex array object.
 
-        GLuint ibo; ///< The index buffer object.
+            GLuint ibo; ///< The index buffer object.
 
-        GLuint vbo; ///< The vertex buffer object.
-    };
+            GLuint vbo; ///< The vertex buffer object.
+        };
+    }
 }

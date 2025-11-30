@@ -14,64 +14,68 @@
 
 #include "Update/BattleSystem.hpp"
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    void UpdateKeyboardMovement()
+    namespace Forradia::Theme0::GameplayCore
     {
-        auto upPress{_<KeyboardInput>().KeyIsPressed(SDLK_UP)};
-
-        auto rightPress{_<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
-
-        auto downPress{_<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
-
-        auto leftPress{_<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
-
-        auto wPress{_<KeyboardInput>().KeyIsPressed(SDLK_w)};
-
-        auto aPress{_<KeyboardInput>().KeyIsPressed(SDLK_a)};
-
-        auto sPress{_<KeyboardInput>().KeyIsPressed(SDLK_s)};
-
-        auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
-
-        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)
+        void UpdateKeyboardMovement()
         {
-            _<Theme0::GameplayCore::PlayerCharacter>().SetDestination({-1, -1});
+            auto upPress{_<KeyboardInput>().KeyIsPressed(SDLK_UP)};
 
-            _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
-        }
+            auto rightPress{_<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
 
-        auto now{GetTicks()};
+            auto downPress{_<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
 
-        if (now >= _<Theme0::GameplayCore::PlayerCharacter>().GetTicksLastMovement() +
-                       InvertSpeed(_<Theme0::GameplayCore::
+            auto leftPress{_<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
 
-                                         PlayerCharacter>()
-                                       .GetMovementSpeed()) &&
-            (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
-             dPress))
-        {
-            if (upPress || wPress)
+            auto wPress{_<KeyboardInput>().KeyIsPressed(SDLK_w)};
+
+            auto aPress{_<KeyboardInput>().KeyIsPressed(SDLK_a)};
+
+            auto sPress{_<KeyboardInput>().KeyIsPressed(SDLK_s)};
+
+            auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
+
+            if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
+                dPress)
             {
-                _<Theme0::GameplayCore::PlayerCharacter>().MoveNorth();
+                _<Theme0::GameplayCore::PlayerCharacter>().SetDestination({-1, -1});
+
+                _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
             }
 
-            if (rightPress || dPress)
-            {
-                _<Theme0::GameplayCore::PlayerCharacter>().MoveEast();
-            }
+            auto now{GetTicks()};
 
-            if (downPress || sPress)
-            {
-                _<Theme0::GameplayCore::PlayerCharacter>().MoveSouth();
-            }
+            if (now >= _<Theme0::GameplayCore::PlayerCharacter>().GetTicksLastMovement() +
+                           InvertSpeed(_<Theme0::GameplayCore::
 
-            if (leftPress || aPress)
+                                             PlayerCharacter>()
+                                           .GetMovementSpeed()) &&
+                (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
+                 dPress))
             {
-                _<Theme0::GameplayCore::PlayerCharacter>().MoveWest();
-            }
+                if (upPress || wPress)
+                {
+                    _<Theme0::GameplayCore::PlayerCharacter>().MoveNorth();
+                }
 
-            _<Theme0::GameplayCore::PlayerCharacter>().SetTicksLastMovement(now);
+                if (rightPress || dPress)
+                {
+                    _<Theme0::GameplayCore::PlayerCharacter>().MoveEast();
+                }
+
+                if (downPress || sPress)
+                {
+                    _<Theme0::GameplayCore::PlayerCharacter>().MoveSouth();
+                }
+
+                if (leftPress || aPress)
+                {
+                    _<Theme0::GameplayCore::PlayerCharacter>().MoveWest();
+                }
+
+                _<Theme0::GameplayCore::PlayerCharacter>().SetTicksLastMovement(now);
+            }
         }
     }
 }

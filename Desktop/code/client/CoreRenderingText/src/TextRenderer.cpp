@@ -6,90 +6,93 @@
 
 #include "TextRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void TextRenderer::Initialize()
+    namespace Forradia
     {
-        // Initialize the SDL TTF library.
-
-        TTF_Init();
-
-        // Load all available fonts.
-
-        this->AddFonts();
-    }
-
-    void TextRenderer::AddFonts()
-    {
-        // Construct the absolute path to the font file.
-
-        auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
-
-        // Convert path once outside the loop for efficiency.
-
-        auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
-
-        // Iterate over all available font sizes.
-
-        for (auto fontSize : {FontSizes::_20, FontSizes::_26})
+        void TextRenderer::Initialize()
         {
-            // Convert the font size enum to an integer value.
+            // Initialize the SDL TTF library.
 
-            auto fontSizeN{CInt(fontSize)};
+            TTF_Init();
 
-            // Open the font file with the specified size.
+            // Load all available fonts.
 
-            auto newFont{SharedPtr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN),
-                                             SDLDeleter())};
-
-            if (!newFont)
-            {
-                // Continue loading other fonts even if one fails, and provide specific error
-                // information.
-
-                PrintLine("Error loading font size " + std::to_string(fontSizeN) +
-                          " from: " + fontPathUnixStyle);
-
-                continue;
-            }
-
-            // Store the successfully loaded font in the map.
-
-            m_fonts.insert({fontSize, newFont});
+            this->AddFonts();
         }
-    }
 
-    void TextRenderer::SetupState() const
-    {
-        // Set pixel storage alignment for texture data.
+        void TextRenderer::AddFonts()
+        {
+            // Construct the absolute path to the font file.
 
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
 
-        // Enable 2D texture rendering.
+            // Convert path once outside the loop for efficiency.
 
-        glEnable(GL_TEXTURE_2D);
+            auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
-        // Enable alpha blending for transparency.
+            // Iterate over all available font sizes.
 
-        glEnable(GL_BLEND);
+            for (auto fontSize : {FontSizes::_20, FontSizes::_26})
+            {
+                // Convert the font size enum to an integer value.
 
-        // Configure blend function for proper alpha compositing.
+                auto fontSizeN{CInt(fontSize)};
 
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    }
+                // Open the font file with the specified size.
 
-    void TextRenderer::RestoreState() const
-    {
-        // Disable alpha blending.
+                auto newFont{SharedPtr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN),
+                                                 SDLDeleter())};
 
-        glDisable(GL_BLEND);
+                if (!newFont)
+                {
+                    // Continue loading other fonts even if one fails, and provide specific error
+                    // information.
 
-        // Disable 2D texture rendering.
+                    PrintLine("Error loading font size " + std::to_string(fontSizeN) +
+                              " from: " + fontPathUnixStyle);
 
-        glDisable(GL_TEXTURE_2D);
+                    continue;
+                }
 
-        // Unbind the current texture.
+                // Store the successfully loaded font in the map.
 
-        glBindTexture(GL_TEXTURE_2D, 0);
+                m_fonts.insert({fontSize, newFont});
+            }
+        }
+
+        void TextRenderer::SetupState() const
+        {
+            // Set pixel storage alignment for texture data.
+
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+            // Enable 2D texture rendering.
+
+            glEnable(GL_TEXTURE_2D);
+
+            // Enable alpha blending for transparency.
+
+            glEnable(GL_BLEND);
+
+            // Configure blend function for proper alpha compositing.
+
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        }
+
+        void TextRenderer::RestoreState() const
+        {
+            // Disable alpha blending.
+
+            glDisable(GL_BLEND);
+
+            // Disable 2D texture rendering.
+
+            glDisable(GL_TEXTURE_2D);
+
+            // Unbind the current texture.
+
+            glBindTexture(GL_TEXTURE_2D, 0);
+        }
     }
 }

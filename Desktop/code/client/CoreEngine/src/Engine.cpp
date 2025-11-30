@@ -26,84 +26,87 @@
 
 #include "ModelRenderer.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
+    namespace Forradia
     {
-        // Initialize random number generator so that unique random numbers are generated on each
-        // game run.
-
-        Randomize();
-
-        // Initialize SDL and GL devices.
-
-        _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
-
-        _<GLDevice>().Initialize();
-
-        // Initialize renderers.
-
-        _<Color2DRenderer>().Initialize();
-
-        _<Image2DRenderer>().Initialize();
-
-        _<GroundRenderer>().Initialize();
-
-        _<ModelRenderer>().Initialize();
-    }
-
-    void Engine::Run()
-    {
-        // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere in
-        // the game.
-
-        try
+        void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
         {
-            // Main game loop.
+            // Initialize random number generator so that unique random numbers are generated on
+            // each game run.
 
-            while (m_running)
+            Randomize();
+
+            // Initialize SDL and GL devices.
+
+            _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
+
+            _<GLDevice>().Initialize();
+
+            // Initialize renderers.
+
+            _<Color2DRenderer>().Initialize();
+
+            _<Image2DRenderer>().Initialize();
+
+            _<GroundRenderer>().Initialize();
+
+            _<ModelRenderer>().Initialize();
+        }
+
+        void Engine::Run()
+        {
+            // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
+            // in the game.
+
+            try
             {
-                // Reset the mouse input and cursor before polling events.
+                // Main game loop.
 
-                _<MouseInput>().Reset();
+                while (m_running)
+                {
+                    // Reset the mouse input and cursor before polling events.
 
-                _<Cursor>().ResetStyleToNormal();
+                    _<MouseInput>().Reset();
 
-                // Poll events and handle them.
+                    _<Cursor>().ResetStyleToNormal();
 
-                this->HandleEvents();
+                    // Poll events and handle them.
 
-                // Update.
+                    this->HandleEvents();
 
-                _<SceneManager>().UpdateCurrentScene();
+                    // Update.
 
-                _<FPSCounter>().Update();
+                    _<SceneManager>().UpdateCurrentScene();
 
-                // Render.
+                    _<FPSCounter>().Update();
 
-                _<SDLDevice>().ClearCanvas();
+                    // Render.
 
-                _<SceneManager>().RenderCurrentScene();
+                    _<SDLDevice>().ClearCanvas();
 
-                _<Cursor>().Render();
+                    _<SceneManager>().RenderCurrentScene();
 
-                // Present the canvas.
+                    _<Cursor>().Render();
 
-                _<SDLDevice>().PresentCanvas();
+                    // Present the canvas.
+
+                    _<SDLDevice>().PresentCanvas();
+                }
+            }
+            catch (std::exception &e)
+            {
+                // Print error message on catched exception.
+
+                PrintLine("An error occured: " + String(e.what()));
             }
         }
-        catch (std::exception &e)
+
+        void Engine::Stop()
         {
-            // Print error message on catched exception.
+            // Stop the engine.
 
-            PrintLine("An error occured: " + String(e.what()));
+            m_running = false;
         }
-    }
-
-    void Engine::Stop()
-    {
-        // Stop the engine.
-
-        m_running = false;
     }
 }

@@ -6,17 +6,20 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    class TileDrawGroup
+    namespace Forradia
     {
-      public:
-        GLuint vao; ///< Vertex array object.
+        class TileDrawGroup
+        {
+          public:
+            GLuint vao; ///< Vertex array object.
 
-        GLuint ibo; ///< Index buffer object.
+            GLuint ibo; ///< Index buffer object.
 
-        GLuint vbo; ///< Vertex buffer object.
+            GLuint vbo; ///< Vertex buffer object.
 
-        int combinedIndicesCount; ///< The combined indices count.
-    };
+            int combinedIndicesCount; ///< The combined indices count.
+        };
+    }
 }

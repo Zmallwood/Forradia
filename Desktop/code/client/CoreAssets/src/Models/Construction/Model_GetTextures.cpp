@@ -6,29 +6,32 @@
 
 #include "Model.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const
+    namespace Forradia
     {
-        // To hold the resulting textures.
+        Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const
+        {
+            // To hold the resulting textures.
 
-        Vector<Texture> textures;
+            Vector<Texture> textures;
 
-        // To hold the texture path.
+            // To hold the texture path.
 
-        aiString textureFilePath;
+            aiString textureFilePath;
 
-        // Get the texture path.
+            // Get the texture path.
 
-        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0,
-                                                            &textureFilePath);
+            scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0,
+                                                                &textureFilePath);
 
-        // Add the texture to the results.
+            // Add the texture to the results.
 
-        textures.push_back(Texture(GetFileNameNoExtension(textureFilePath.C_Str())));
+            textures.push_back(Texture(GetFileNameNoExtension(textureFilePath.C_Str())));
 
-        // Return the textures results.
+            // Return the textures results.
 
-        return textures;
+            return textures;
+        }
     }
 }

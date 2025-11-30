@@ -8,82 +8,85 @@
 
 #include "Object.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void ObjectsStack::ClearObjects()
+    namespace Forradia::Theme0
     {
-        // Delete all objects in the stack.
-
-        m_objects.clear();
-    }
-
-    void ObjectsStack::AddObject(StringView objectName)
-    {
-        // Add new object of type Object to the stack.
-
-        m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
-    }
-
-    void ObjectsStack::RemoveOneOfObjectOfType(StringView objectTypeName)
-    {
-        // Iterate through the stack.
-
-        for (auto it = m_objects.begin(); it != m_objects.end();)
+        void ObjectsStack::ClearObjects()
         {
-            // If the object type matches.
+            // Delete all objects in the stack.
 
-            if ((*it)->GetType() == Hash(objectTypeName))
-            {
-                // Delete the object.
-
-                m_objects.erase(it);
-
-                // Stop iterating since only one object should be removed.
-
-                return;
-            }
-            else
-            {
-                // If no match, move to the next object.
-
-                ++it;
-            }
-        }
-    }
-
-    int ObjectsStack::GetSize() const
-    {
-        // Return the number of objects in the stack.
-
-        return m_objects.size();
-    }
-
-    SharedPtr<Object> ObjectsStack::PopObject()
-    {
-        // If the stack is empty, return nullptr.
-
-        if (m_objects.empty())
-        {
-            return nullptr;
+            m_objects.clear();
         }
 
-        // Obtain the last object in the stack.
+        void ObjectsStack::AddObject(StringView objectName)
+        {
+            // Add new object of type Object to the stack.
 
-        auto object{m_objects.back()};
+            m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
+        }
 
-        // Remove the last object from the stack.
+        void ObjectsStack::RemoveOneOfObjectOfType(StringView objectTypeName)
+        {
+            // Iterate through the stack.
 
-        m_objects.pop_back();
+            for (auto it = m_objects.begin(); it != m_objects.end();)
+            {
+                // If the object type matches.
 
-        return object;
-    }
+                if ((*it)->GetType() == Hash(objectTypeName))
+                {
+                    // Delete the object.
 
-    int ObjectsStack::CountHasObject(StringView objectTypeName) const
-    {
-        // Return the number of objects of the specified type in the stack.
+                    m_objects.erase(it);
 
-        return std::count_if(m_objects.begin(), m_objects.end(),
-                             [&](const SharedPtr<Object> &object)
-                             { return object->GetType() == Hash(objectTypeName); });
+                    // Stop iterating since only one object should be removed.
+
+                    return;
+                }
+                else
+                {
+                    // If no match, move to the next object.
+
+                    ++it;
+                }
+            }
+        }
+
+        int ObjectsStack::GetSize() const
+        {
+            // Return the number of objects in the stack.
+
+            return m_objects.size();
+        }
+
+        SharedPtr<Object> ObjectsStack::PopObject()
+        {
+            // If the stack is empty, return nullptr.
+
+            if (m_objects.empty())
+            {
+                return nullptr;
+            }
+
+            // Obtain the last object in the stack.
+
+            auto object{m_objects.back()};
+
+            // Remove the last object from the stack.
+
+            m_objects.pop_back();
+
+            return object;
+        }
+
+        int ObjectsStack::CountHasObject(StringView objectTypeName) const
+        {
+            // Return the number of objects of the specified type in the stack.
+
+            return std::count_if(m_objects.begin(), m_objects.end(),
+                                 [&](const SharedPtr<Object> &object)
+                                 { return object->GetType() == Hash(objectTypeName); });
+        }
     }
 }

@@ -8,91 +8,94 @@
 
 #include "Construction/Model.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void ModelBank::Initialize()
+    namespace Forradia
     {
-        // Load models from the file system.
-
-        this->LoadModels();
-    }
-
-    void ModelBank::LoadModels()
-    {
-        // Take base path from SDL.
-
-        auto basePath{String(SDL_GetBasePath())};
-
-        // Add relative path to base path.
-
-        auto imagesPath{basePath + k_relativeModelsPath.data()};
-
-        // Ensure the path exists to continue.
-
-        if (false == std::filesystem::exists(imagesPath))
+        void ModelBank::Initialize()
         {
-            return;
+            // Load models from the file system.
+
+            this->LoadModels();
         }
 
-        // Create a recursive directory iterator for the path.
-
-        std::filesystem::recursive_directory_iterator rdi{imagesPath};
-
-        // Iterate through the directory using the rdi.
-
-        for (auto it : rdi)
+        void ModelBank::LoadModels()
         {
-            // Replace backslashes with forward slashes.
+            // Take base path from SDL.
 
-            auto filePath{Replace(it.path().string(), '\\', '/')};
+            auto basePath{String(SDL_GetBasePath())};
 
-            // If the file is an OBJ file.
+            // Add relative path to base path.
 
-            if (GetFileExtension(filePath) == "obj")
+            auto imagesPath{basePath + k_relativeModelsPath.data()};
+
+            // Ensure the path exists to continue.
+
+            if (false == std::filesystem::exists(imagesPath))
             {
-                // Get the file name.
+                return;
+            }
 
-                auto fileName{GetFileNameNoExtension(filePath)};
+            // Create a recursive directory iterator for the path.
 
-                // Get the hash of the file name.
+            std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
-                auto hash{Forradia::Hash(fileName)};
+            // Iterate through the directory using the rdi.
 
-                // Load the model from the file at the path.
+            for (auto it : rdi)
+            {
+                // Replace backslashes with forward slashes.
 
-                auto model{this->LoadSingleModel(filePath)};
+                auto filePath{Replace(it.path().string(), '\\', '/')};
 
-                // Insert the model into the map.
+                // If the file is an OBJ file.
 
-                m_models.insert({hash, model});
+                if (GetFileExtension(filePath) == "obj")
+                {
+                    // Get the file name.
+
+                    auto fileName{GetFileNameNoExtension(filePath)};
+
+                    // Get the hash of the file name.
+
+                    auto hash{Forradia::Hash(fileName)};
+
+                    // Load the model from the file at the path.
+
+                    auto model{this->LoadSingleModel(filePath)};
+
+                    // Insert the model into the map.
+
+                    m_models.insert({hash, model});
+                }
             }
         }
-    }
 
-    SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const
-    {
-        // If the model is in the map.
-
-        if (m_models.contains(modelNameHash))
+        SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const
         {
-            // Return it.
+            // If the model is in the map.
 
-            return m_models.at(modelNameHash);
+            if (m_models.contains(modelNameHash))
+            {
+                // Return it.
+
+                return m_models.at(modelNameHash);
+            }
+
+            // If the model is not in the map.
+
+            return nullptr;
         }
 
-        // If the model is not in the map.
+        SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const
+        {
+            // Load the model from the file at the path.
 
-        return nullptr;
-    }
+            auto modelResult{std::make_shared<Model>(filePath)};
 
-    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const
-    {
-        // Load the model from the file at the path.
+            // Return the model.
 
-        auto modelResult{std::make_shared<Model>(filePath)};
-
-        // Return the model.
-
-        return modelResult;
+            return modelResult;
+        }
     }
 }

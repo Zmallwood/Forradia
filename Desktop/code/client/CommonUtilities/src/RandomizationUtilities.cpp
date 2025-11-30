@@ -6,19 +6,22 @@
 
 #include "RandomizationUtilities.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void Randomize()
+    namespace Forradia
     {
-        // Randomize the seed.
+        void Randomize()
+        {
+            // Randomize the seed.
 
-        srand(time(nullptr));
-    }
+            srand(time(nullptr));
+        }
 
-    int GetRandomInt(int upperLimit)
-    {
-        // Generate a random integer.
+        int GetRandomInt(int upperLimit)
+        {
+            // Generate a random integer.
 
-        return rand() % upperLimit;
+            return rand() % upperLimit;
+        }
     }
 }

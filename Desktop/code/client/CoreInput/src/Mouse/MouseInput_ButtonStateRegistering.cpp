@@ -6,53 +6,56 @@
 
 #include "MouseInput.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void MouseInput::RegisterMouseButtonDown(Uint8 button)
+    namespace Forradia
     {
-        // Determine which button has been pressed.
-
-        switch (button)
+        void MouseInput::RegisterMouseButtonDown(Uint8 button)
         {
-        case SDL_BUTTON_LEFT:
+            // Determine which button has been pressed.
 
-            // Register that the left mouse button has been pressed.
+            switch (button)
+            {
+            case SDL_BUTTON_LEFT:
 
-            m_leftMouseButton.RegisterPress();
+                // Register that the left mouse button has been pressed.
 
-            break;
+                m_leftMouseButton.RegisterPress();
 
-        case SDL_BUTTON_RIGHT:
+                break;
 
-            // Register that the right mouse button has been pressed.
+            case SDL_BUTTON_RIGHT:
 
-            m_rightMouseButton.RegisterPress();
+                // Register that the right mouse button has been pressed.
 
-            break;
+                m_rightMouseButton.RegisterPress();
+
+                break;
+            }
         }
-    }
 
-    void MouseInput::RegisterMouseButtonUp(Uint8 button)
-    {
-        // Determine which button has been released.
-
-        switch (button)
+        void MouseInput::RegisterMouseButtonUp(Uint8 button)
         {
-        case SDL_BUTTON_LEFT:
+            // Determine which button has been released.
 
-            // Register that the left mouse button has been released.
+            switch (button)
+            {
+            case SDL_BUTTON_LEFT:
 
-            m_leftMouseButton.RegisterRelease();
+                // Register that the left mouse button has been released.
 
-            break;
+                m_leftMouseButton.RegisterRelease();
 
-        case SDL_BUTTON_RIGHT:
+                break;
 
-            // Register that the right mouse button has been released.
+            case SDL_BUTTON_RIGHT:
 
-            m_rightMouseButton.RegisterRelease();
+                // Register that the right mouse button has been released.
 
-            break;
+                m_rightMouseButton.RegisterRelease();
+
+                break;
+            }
         }
     }
 }

@@ -8,99 +8,102 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    class GUI;
-
-    ///
-    /// The base class for all scenes.
-    ///
-    class IScene
+    namespace Forradia
     {
-      public:
-        ///
-        /// Initializes the scene.
-        ///
-        void Initialize();
+        class GUI;
 
         ///
-        /// Called when the scene is entered.
+        /// The base class for all scenes.
         ///
-        void OnEnter();
-
-        ///
-        /// Updates the scene.
-        ///
-        void Update();
-
-        ///
-        /// Renders the scene.
-        ///
-        void Render() const;
-
-        ///
-        /// Sets the derived initialize function.
-        ///
-        /// @param value The function to set.
-        ///
-        void SetInitializeDerived(Function<void()> value)
+        class IScene
         {
-            m_initializeDerived = value;
-        }
+          public:
+            ///
+            /// Initializes the scene.
+            ///
+            void Initialize();
 
-        ///
-        /// Sets the derived on enter function.
-        ///
-        /// @param value The function to set.
-        ///
-        void SetOnEnterDerived(Function<void()> value)
-        {
-            m_onEnterDerived = value;
-        }
+            ///
+            /// Called when the scene is entered.
+            ///
+            void OnEnter();
 
-        ///
-        /// Sets the derived update function.
-        ///
-        /// @param value The function to set.
-        ///
-        void SetUpdateDerived(Function<void()> value)
-        {
-            m_updateDerived = value;
-        }
+            ///
+            /// Updates the scene.
+            ///
+            void Update();
 
-        ///
-        /// Sets the derived render function.
-        ///
-        /// @param value The function to set.
-        ///
-        void SetRenderDerived(Function<void()> value)
-        {
-            m_renderDerived = value;
-        }
+            ///
+            /// Renders the scene.
+            ///
+            void Render() const;
 
-      protected:
-        ///
-        /// Gets the GUI.
-        ///
-        /// @return The GUI.
-        ///
-        auto GetGUI() const
-        {
-            return m_gui;
-        }
+            ///
+            /// Sets the derived initialize function.
+            ///
+            /// @param value The function to set.
+            ///
+            void SetInitializeDerived(Function<void()> value)
+            {
+                m_initializeDerived = value;
+            }
 
-      private:
-        SharedPtr<GUI> m_gui; ///< The GUI.
+            ///
+            /// Sets the derived on enter function.
+            ///
+            /// @param value The function to set.
+            ///
+            void SetOnEnterDerived(Function<void()> value)
+            {
+                m_onEnterDerived = value;
+            }
 
-        /// TODO: Consider if the Functions should be replaced with virtual methods. Right now it is
-        /// used to make it work with Python bindings.
+            ///
+            /// Sets the derived update function.
+            ///
+            /// @param value The function to set.
+            ///
+            void SetUpdateDerived(Function<void()> value)
+            {
+                m_updateDerived = value;
+            }
 
-        Function<void()> m_initializeDerived{[] {}}; ///< The derived initialize function.
+            ///
+            /// Sets the derived render function.
+            ///
+            /// @param value The function to set.
+            ///
+            void SetRenderDerived(Function<void()> value)
+            {
+                m_renderDerived = value;
+            }
 
-        Function<void()> m_onEnterDerived{[] {}}; ///< The derived on enter function.
+          protected:
+            ///
+            /// Gets the GUI.
+            ///
+            /// @return The GUI.
+            ///
+            auto GetGUI() const
+            {
+                return m_gui;
+            }
 
-        Function<void()> m_updateDerived{[] {}}; ///< The derived update function.
+          private:
+            SharedPtr<GUI> m_gui; ///< The GUI.
 
-        Function<void()> m_renderDerived{[] {}}; ///< The derived render function.
-    };
+            /// TODO: Consider if the Functions should be replaced with virtual methods. Right now
+            /// it is used to make it work with Python bindings.
+
+            Function<void()> m_initializeDerived{[] {}}; ///< The derived initialize function.
+
+            Function<void()> m_onEnterDerived{[] {}}; ///< The derived on enter function.
+
+            Function<void()> m_updateDerived{[] {}}; ///< The derived update function.
+
+            Function<void()> m_renderDerived{[] {}}; ///< The derived render function.
+        };
+    }
 }

@@ -8,29 +8,31 @@
 
 #include "Theme0Properties.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
-                                                            float tileSize,
-                                                            const Vector<float> &elevations) const
+    namespace Forradia
     {
-        // Calculate the x and y coordinates and width and height in opengl space for the tile.
+        Vector<float>
+        GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+                                                  const Vector<float> &elevations) const
+        {
+            // Calculate the x and y coordinates and width and height in opengl space for the tile.
 
-        auto x{xCoordinate * tileSize};
+            auto x{xCoordinate * tileSize};
 
-        auto y{yCoordinate * tileSize};
+            auto y{yCoordinate * tileSize};
 
-        auto width{tileSize};
+            auto width{tileSize};
 
-        auto height{tileSize};
+            auto height{tileSize};
 
-        // Get the elevation height.
+            // Get the elevation height.
 
-        auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
+            auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-        // Return the nine vertices.
+            // Return the nine vertices.
 
-        // clang-format off
+            // clang-format off
 
         return {x, y, elevations.at(0) * elevationHeight,
                 1.0f, 1.0f, 1.0f, 0.0, 0.0,
@@ -51,6 +53,7 @@ namespace Forradia
                 x + width + width, y + height + height, elevations.at(8) * elevationHeight,
                 1.0f, 1.0f, 1.0f, 1.0, 1.0};
 
-        // clang-format on
+            // clang-format on
+        }
     }
 }

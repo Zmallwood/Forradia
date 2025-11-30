@@ -6,32 +6,35 @@
 
 #include "TextureBank.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    bool TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID)
+    namespace Forradia
     {
-        // Check if the text texture exists.
-
-        if (m_textTextureIDs.contains(uniqueTextureID))
+        bool TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID)
         {
-            // If it does, set the texture ID and return true, indicating that the texture already
-            // exists.
+            // Check if the text texture exists.
 
-            textureID = m_textTextureIDs.at(uniqueTextureID);
+            if (m_textTextureIDs.contains(uniqueTextureID))
+            {
+                // If it does, set the texture ID and return true, indicating that the texture
+                // already exists.
 
-            return true;
+                textureID = m_textTextureIDs.at(uniqueTextureID);
+
+                return true;
+            }
+
+            // If it doesn't, create it.
+
+            glGenTextures(1, &textureID);
+
+            // Store the new texture ID in the map.
+
+            m_textTextureIDs[uniqueTextureID] = textureID;
+
+            // Return false, indicating that the texture was not found.
+
+            return false;
         }
-
-        // If it doesn't, create it.
-
-        glGenTextures(1, &textureID);
-
-        // Store the new texture ID in the map.
-
-        m_textTextureIDs[uniqueTextureID] = textureID;
-
-        // Return false, indicating that the texture was not found.
-
-        return false;
     }
 }

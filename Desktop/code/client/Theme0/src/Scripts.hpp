@@ -6,13 +6,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    class ScriptEngine
+    namespace Forradia::Theme0
     {
-      public:
-        void Initialize();
+        class ScriptEngine
+        {
+          public:
+            void Initialize();
 
-        void LoadScripts();
-    };
+            void LoadScripts();
+        };
+    }
 }

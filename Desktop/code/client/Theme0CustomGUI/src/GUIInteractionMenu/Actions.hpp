@@ -8,10 +8,13 @@
 
 #include "Action.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    template <int N>
-    Action GetAction();
+    namespace Forradia::Theme0
+    {
+        template <int N>
+        Action GetAction();
 
-    void UpdateActions();
+        void UpdateActions();
+    }
 }

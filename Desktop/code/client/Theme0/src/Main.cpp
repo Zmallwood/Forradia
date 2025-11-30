@@ -20,6 +20,8 @@ int main(int argc, char **argv)
 {
     // Use namespaces for readability.
 
+    using namespace AAK;
+
     using namespace Forradia;
 
     using namespace Theme0;

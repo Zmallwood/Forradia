@@ -6,44 +6,47 @@
 
 #pragma once
 
-namespace Forradia
+namespace AAK
 {
-    class IScene;
-
-    ///
-    /// The manager for the scenes.
-    ///
-    class SceneManager
+    namespace Forradia
     {
-      public:
-        ///
-        /// Adds a scene to the manager.
-        ///
-        /// @param sceneName The name of the scene.
-        /// @param scene The scene to add.
-        ///
-        void AddScene(StringView sceneName, IScene &scene);
+        class IScene;
 
         ///
-        /// Goes to a scene.
+        /// The manager for the scenes.
         ///
-        /// @param sceneName The name of the scene to go to.
-        ///
-        void GoToScene(StringView sceneName);
+        class SceneManager
+        {
+          public:
+            ///
+            /// Adds a scene to the manager.
+            ///
+            /// @param sceneName The name of the scene.
+            /// @param scene The scene to add.
+            ///
+            void AddScene(StringView sceneName, IScene &scene);
 
-        ///
-        /// Updates the current scene.
-        ///
-        void UpdateCurrentScene();
+            ///
+            /// Goes to a scene.
+            ///
+            /// @param sceneName The name of the scene to go to.
+            ///
+            void GoToScene(StringView sceneName);
 
-        ///
-        /// Renders the current scene.
-        ///
-        void RenderCurrentScene() const;
+            ///
+            /// Updates the current scene.
+            ///
+            void UpdateCurrentScene();
 
-      private:
-        std::map<int, IScene &> m_scenes; ///< The scenes.
+            ///
+            /// Renders the current scene.
+            ///
+            void RenderCurrentScene() const;
 
-        int m_currentScene{0}; ///< The current scene, as the name hash of the scene.
-    };
+          private:
+            std::map<int, IScene &> m_scenes; ///< The scenes.
+
+            int m_currentScene{0}; ///< The current scene, as the name hash of the scene.
+        };
+    }
 }

@@ -6,40 +6,43 @@
 
 #include "SDLDeleter.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void SDLDeleter::operator()(SDL_Window *window) const
+    namespace Forradia
     {
-        // Free up resources from a SDL_Window object.
+        void SDLDeleter::operator()(SDL_Window *window) const
+        {
+            // Free up resources from a SDL_Window object.
 
-        SDL_DestroyWindow(window);
-    }
+            SDL_DestroyWindow(window);
+        }
 
-    void SDLDeleter::operator()(SDL_Renderer *renderer) const
-    {
-        // Free up resources from a SDL_Renderer object.
+        void SDLDeleter::operator()(SDL_Renderer *renderer) const
+        {
+            // Free up resources from a SDL_Renderer object.
 
-        SDL_DestroyRenderer(renderer);
-    }
+            SDL_DestroyRenderer(renderer);
+        }
 
-    void SDLDeleter::operator()(SDL_Surface *surface) const
-    {
-        // Free up resources from a SDL_Surface object.
+        void SDLDeleter::operator()(SDL_Surface *surface) const
+        {
+            // Free up resources from a SDL_Surface object.
 
-        SDL_FreeSurface(surface);
-    }
+            SDL_FreeSurface(surface);
+        }
 
-    void SDLDeleter::operator()(SDL_Texture *texture) const
-    {
-        // Free up resources from a SDL_Texture object.
+        void SDLDeleter::operator()(SDL_Texture *texture) const
+        {
+            // Free up resources from a SDL_Texture object.
 
-        SDL_DestroyTexture(texture);
-    }
+            SDL_DestroyTexture(texture);
+        }
 
-    void SDLDeleter::operator()(TTF_Font *font) const
-    {
-        // Free up resources from a TTF_Font object.
+        void SDLDeleter::operator()(TTF_Font *font) const
+        {
+            // Free up resources from a TTF_Font object.
 
-        TTF_CloseFont(font);
+            TTF_CloseFont(font);
+        }
     }
 }

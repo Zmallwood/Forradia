@@ -6,53 +6,56 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const
+    namespace Forradia
     {
-        // Create a new shader.
-
-        auto shader{glCreateShader(shaderType)};
-
-        // Get the shader source in correct format.
-
-        const auto *source{(const GLchar *)shaderSource.data()};
-
-        // Compile the shader.
-
-        glShaderSource(shader, 1, &source, 0);
-
-        glCompileShader(shader);
-
-        // Get the compile status.
-
-        GLint isCompiled{0};
-
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
-
-        // If the compile failed.
-
-        if (isCompiled == GL_FALSE)
+        GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const
         {
-            // Get the length of the info log.
+            // Create a new shader.
 
-            GLint maxLength{0};
+            auto shader{glCreateShader(shaderType)};
 
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+            // Get the shader source in correct format.
 
-            // Get the info log.
+            const auto *source{(const GLchar *)shaderSource.data()};
 
-            Vector<GLchar> infoLog(maxLength);
+            // Compile the shader.
 
-            glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+            glShaderSource(shader, 1, &source, 0);
 
-            // Return failed status.
+            glCompileShader(shader);
 
-            return 0;
+            // Get the compile status.
+
+            GLint isCompiled{0};
+
+            glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+
+            // If the compile failed.
+
+            if (isCompiled == GL_FALSE)
+            {
+                // Get the length of the info log.
+
+                GLint maxLength{0};
+
+                glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
+
+                // Get the info log.
+
+                Vector<GLchar> infoLog(maxLength);
+
+                glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
+
+                // Return failed status.
+
+                return 0;
+            }
+
+            // Return the shader.
+
+            return shader;
         }
-
-        // Return the shader.
-
-        return shader;
     }
 }

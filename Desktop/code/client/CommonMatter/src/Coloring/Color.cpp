@@ -8,20 +8,23 @@
 
 #include "Functions.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    SDL_Color Color::ToSDLColor() const
+    namespace Forradia
     {
-        // Calculate individual color components.
+        SDL_Color Color::ToSDLColor() const
+        {
+            // Calculate individual color components.
 
-        auto rUint{CUint8(r * 255)};
+            auto rUint{CUint8(r * 255)};
 
-        auto gUint{CUint8(g * 255)};
+            auto gUint{CUint8(g * 255)};
 
-        auto bUint{CUint8(b * 255)};
+            auto bUint{CUint8(b * 255)};
 
-        auto aUint{CUint8(a * 255)};
+            auto aUint{CUint8(a * 255)};
 
-        return {rUint, rUint, bUint, aUint};
+            return {rUint, rUint, bUint, aUint};
+        }
     }
 }

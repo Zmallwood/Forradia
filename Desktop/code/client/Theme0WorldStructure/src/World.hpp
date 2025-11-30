@@ -6,35 +6,38 @@
 
 #pragma once
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    class WorldArea;
-
-    ///
-    /// The world in the game.
-    ///
-    class World
+    namespace Forradia::Theme0
     {
-      public:
-        ///
-        /// Initializes the world.
-        ///
-        /// @param worldAreaSize The size of the world area.
-        /// @param worldScaling The scaling of the world.
-        ///
-        void Initialize(Size worldAreaSize, float worldScaling);
+        class WorldArea;
 
         ///
-        /// Gets the current world area.
+        /// The world in the game.
         ///
-        /// @return The current world area.
-        ///
-        auto GetCurrentWorldArea() const
+        class World
         {
-            return m_currentWorldArea;
-        }
+          public:
+            ///
+            /// Initializes the world.
+            ///
+            /// @param worldAreaSize The size of the world area.
+            /// @param worldScaling The scaling of the world.
+            ///
+            void Initialize(Size worldAreaSize, float worldScaling);
 
-      private:
-        SharedPtr<WorldArea> m_currentWorldArea; ///< The current world area.
-    };
+            ///
+            /// Gets the current world area.
+            ///
+            /// @return The current world area.
+            ///
+            auto GetCurrentWorldArea() const
+            {
+                return m_currentWorldArea;
+            }
+
+          private:
+            SharedPtr<WorldArea> m_currentWorldArea; ///< The current world area.
+        };
+    }
 }

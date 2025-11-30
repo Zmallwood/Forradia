@@ -18,91 +18,95 @@
 
 #include "GUIWindowTitleBar.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void GUIInventoryWindow::Initialize()
+    namespace Forradia::Theme0
     {
-        for (auto i = 0; i < k_maxNumSlots; i++)
+        void GUIInventoryWindow::Initialize()
         {
-            m_renderIDsSlotsBackground[i] =
-                Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
-
-            m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
-        }
-    }
-
-    void GUIInventoryWindow::RenderDerived() const
-    {
-        GUIWindow::RenderDerived();
-
-        auto bounds{this->GetBounds()};
-
-        auto marginX{k_margin};
-
-        auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
-
-        auto xStart{bounds.x + marginX};
-
-        auto yStart{bounds.y + marginY + this->GetGUIWindowTitleBar()->GetBounds().height};
-
-        auto slotWidth{k_slotSize};
-
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
-
-        auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-
-        auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
-
-        auto &objectsInventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-        for (auto y = 0; y < numRows; y++)
-        {
-            for (auto x = 0; x < numColumns; x++)
+            for (auto i = 0; i < k_maxNumSlots; i++)
             {
-                auto index{x + y * numColumns};
+                m_renderIDsSlotsBackground[i] =
+                    Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
 
-                int renderIDBackground{0};
+                m_renderIDsSlotsObject[i] =
+                    Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
+            }
+        }
 
-                if (m_renderIDsSlotsBackground.contains(index))
+        void GUIInventoryWindow::RenderDerived() const
+        {
+            GUIWindow::RenderDerived();
+
+            auto bounds{this->GetBounds()};
+
+            auto marginX{k_margin};
+
+            auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
+
+            auto xStart{bounds.x + marginX};
+
+            auto yStart{bounds.y + marginY + this->GetGUIWindowTitleBar()->GetBounds().height};
+
+            auto slotWidth{k_slotSize};
+
+            auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
+
+            auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
+
+            auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
+
+            auto &objectsInventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+            for (auto y = 0; y < numRows; y++)
+            {
+                for (auto x = 0; x < numColumns; x++)
                 {
-                    renderIDBackground = m_renderIDsSlotsBackground.at(index);
-                }
-                else
-                {
-                    PrintLine("GUIInventoryWindow: Render ID not "
-                              "found for index: " +
-                              std::to_string(index));
+                    auto index{x + y * numColumns};
 
-                    return;
-                }
+                    int renderIDBackground{0};
 
-                _<Image2DRenderer>().DrawImageByName(
-                    renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
-                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
-
-                auto inventoryObject{objectsInventory.GetObject(index)};
-
-                if (inventoryObject)
-                {
-                    int renderIDObject{0};
-
-                    if (m_renderIDsSlotsObject.contains(index))
+                    if (m_renderIDsSlotsBackground.contains(index))
                     {
-                        renderIDObject = m_renderIDsSlotsObject.at(index);
+                        renderIDBackground = m_renderIDsSlotsBackground.at(index);
                     }
                     else
                     {
-                        PrintLine("GUIInventoryWindow: "
-                                  "Render ID not "
+                        PrintLine("GUIInventoryWindow: Render ID not "
                                   "found for index: " +
                                   std::to_string(index));
+
                         return;
                     }
 
-                    _<Image2DRenderer>().DrawImageByHash(renderIDObject, inventoryObject->GetType(),
-                                                         xStart + x * (slotWidth + marginX),
-                                                         yStart + y * (slotHeight + marginY),
-                                                         slotWidth, slotHeight, true);
+                    _<Image2DRenderer>().DrawImageByName(
+                        renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
+                        yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
+
+                    auto inventoryObject{objectsInventory.GetObject(index)};
+
+                    if (inventoryObject)
+                    {
+                        int renderIDObject{0};
+
+                        if (m_renderIDsSlotsObject.contains(index))
+                        {
+                            renderIDObject = m_renderIDsSlotsObject.at(index);
+                        }
+                        else
+                        {
+                            PrintLine("GUIInventoryWindow: "
+                                      "Render ID not "
+                                      "found for index: " +
+                                      std::to_string(index));
+                            return;
+                        }
+
+                        _<Image2DRenderer>().DrawImageByHash(
+                            renderIDObject, inventoryObject->GetType(),
+                            xStart + x * (slotWidth + marginX), yStart + y * (slotHeight + marginY),
+                            slotWidth, slotHeight, true);
+                    }
                 }
             }
         }

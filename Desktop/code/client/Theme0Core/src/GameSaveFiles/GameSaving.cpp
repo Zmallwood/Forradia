@@ -28,217 +28,220 @@
 
 #include "HashCodes.hpp"
 
-namespace Forradia::Theme0
+namespace AAK
 {
-    void GameSaving::SaveGame()
+    namespace Forradia::Theme0
     {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-        if (!worldArea)
+        void GameSaving::SaveGame()
         {
-            return;
-        }
+            auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        nlohmann::json jsonData;
-
-        // Get world area size
-        auto worldAreaSize{worldArea->GetSize()};
-        jsonData["size"]["width"] = worldAreaSize.width;
-        jsonData["size"]["height"] = worldAreaSize.height;
-
-        // Serialize tiles
-        jsonData["tiles"] = nlohmann::json::array();
-
-        for (auto y = 0; y < worldAreaSize.height; y++)
-        {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            if (!worldArea)
             {
-                auto tile{worldArea->GetTile(x, y)};
-
-                if (!tile)
-                {
-                    continue;
-                }
-
-                nlohmann::json tileJson;
-                tileJson["x"] = x;
-                tileJson["y"] = y;
-                tileJson["elevation"] = tile->GetElevation();
-                tileJson["ground"] = GetNameFromAnyHash(tile->GetGround());
-
-                // Serialize objects on this tile
-                auto objectsStack{tile->GetObjectsStack()};
-                if (objectsStack)
-                {
-                    auto objects{objectsStack->GetObjects()};
-                    tileJson["objects"] = nlohmann::json::array();
-
-                    for (auto &object : objects)
-                    {
-                        if (object)
-                        {
-                            nlohmann::json objectJson;
-                            objectJson["type"] = GetNameFromAnyHash(object->GetType());
-                            tileJson["objects"].push_back(objectJson);
-                        }
-                    }
-                }
-
-                // Serialize creature on this tile
-                auto creature{tile->GetCreature()};
-                if (creature)
-                {
-                    nlohmann::json creatureJson;
-                    creatureJson["type"] = GetNameFromAnyHash(creature->GetType());
-                    tileJson["creature"] = creatureJson;
-                }
-
-                // Serialize robot on this tile
-                auto robot{tile->GetRobot()};
-                if (robot)
-                {
-                    nlohmann::json robotJson;
-                    robotJson["type"] = GetNameFromAnyHash(robot->GetType());
-                    robotJson["position"]["x"] = x;
-                    robotJson["position"]["y"] = y;
-                    auto origin{robot->GetOrigin()};
-                    robotJson["origin"]["x"] = origin.x;
-                    robotJson["origin"]["y"] = origin.y;
-                    tileJson["robot"] = robotJson;
-                }
-
-                jsonData["tiles"].push_back(tileJson);
+                return;
             }
-        }
 
-        // Write to file
-        std::ofstream file("savegame.json");
-        if (file.is_open())
-        {
-            file << jsonData.dump(4); // Pretty print with 4-space indent
-            file.close();
-        }
-    }
+            nlohmann::json jsonData;
 
-    void GameSaving::LoadGame()
-    {
-        _<GroundRenderer>().Reset();
+            // Get world area size
+            auto worldAreaSize{worldArea->GetSize()};
+            jsonData["size"]["width"] = worldAreaSize.width;
+            jsonData["size"]["height"] = worldAreaSize.height;
 
-        std::ifstream file("savegame.json");
-        if (!file.is_open())
-        {
-            return;
-        }
+            // Serialize tiles
+            jsonData["tiles"] = nlohmann::json::array();
 
-        nlohmann::json jsonData;
-        try
-        {
-            file >> jsonData;
-            file.close();
-        }
-        catch (const std::exception &)
-        {
-            return;
-        }
-
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-        if (!worldArea)
-        {
-            return;
-        }
-
-        worldArea->Reset();
-
-        auto &robots{worldArea->GetRobotsMirrorRef()};
-
-        auto &creatures{worldArea->GetCreaturesMirrorRef()};
-
-        if (jsonData.contains("size"))
-        {
-            auto savedWidth{jsonData["size"]["width"].get<int>()};
-            auto savedHeight{jsonData["size"]["height"].get<int>()};
-            auto currentSize{worldArea->GetSize()};
-        }
-
-        if (jsonData.contains("tiles") && jsonData["tiles"].is_array())
-        {
-            for (const auto &tileJson : jsonData["tiles"])
+            for (auto y = 0; y < worldAreaSize.height; y++)
             {
-                if (!tileJson.contains("x") || !tileJson.contains("y"))
+                for (auto x = 0; x < worldAreaSize.width; x++)
                 {
-                    continue;
-                }
+                    auto tile{worldArea->GetTile(x, y)};
 
-                auto x{tileJson["x"].get<int>()};
-                auto y{tileJson["y"].get<int>()};
+                    if (!tile)
+                    {
+                        continue;
+                    }
 
-                if (!worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
+                    nlohmann::json tileJson;
+                    tileJson["x"] = x;
+                    tileJson["y"] = y;
+                    tileJson["elevation"] = tile->GetElevation();
+                    tileJson["ground"] = GetNameFromAnyHash(tile->GetGround());
 
-                auto tile{worldArea->GetTile(x, y)};
-
-                if (!tile)
-                {
-                    continue;
-                }
-
-                if (tileJson.contains("elevation"))
-                {
-                    auto elevation{tileJson["elevation"].get<float>()};
-                    tile->SetElevation(elevation);
-                }
-
-                if (tileJson.contains("ground"))
-                {
-                    auto groundHash{Hash(tileJson["ground"].get<String>())};
-                    tile->SetGround(groundHash);
-                }
-
-                if (tileJson.contains("objects") && tileJson["objects"].is_array())
-                {
+                    // Serialize objects on this tile
                     auto objectsStack{tile->GetObjectsStack()};
                     if (objectsStack)
                     {
-                        objectsStack->ClearObjects();
+                        auto objects{objectsStack->GetObjects()};
+                        tileJson["objects"] = nlohmann::json::array();
 
-                        for (const auto &objectJson : tileJson["objects"])
+                        for (auto &object : objects)
                         {
-                            if (objectJson.contains("type"))
+                            if (object)
                             {
-                                auto objectType{objectJson["type"].get<String>()};
-
-                                objectsStack->AddObject(objectType);
+                                nlohmann::json objectJson;
+                                objectJson["type"] = GetNameFromAnyHash(object->GetType());
+                                tileJson["objects"].push_back(objectJson);
                             }
                         }
                     }
+
+                    // Serialize creature on this tile
+                    auto creature{tile->GetCreature()};
+                    if (creature)
+                    {
+                        nlohmann::json creatureJson;
+                        creatureJson["type"] = GetNameFromAnyHash(creature->GetType());
+                        tileJson["creature"] = creatureJson;
+                    }
+
+                    // Serialize robot on this tile
+                    auto robot{tile->GetRobot()};
+                    if (robot)
+                    {
+                        nlohmann::json robotJson;
+                        robotJson["type"] = GetNameFromAnyHash(robot->GetType());
+                        robotJson["position"]["x"] = x;
+                        robotJson["position"]["y"] = y;
+                        auto origin{robot->GetOrigin()};
+                        robotJson["origin"]["x"] = origin.x;
+                        robotJson["origin"]["y"] = origin.y;
+                        tileJson["robot"] = robotJson;
+                    }
+
+                    jsonData["tiles"].push_back(tileJson);
                 }
+            }
 
-                if (tileJson.contains("creature"))
+            // Write to file
+            std::ofstream file("savegame.json");
+            if (file.is_open())
+            {
+                file << jsonData.dump(4); // Pretty print with 4-space indent
+                file.close();
+            }
+        }
+
+        void GameSaving::LoadGame()
+        {
+            _<GroundRenderer>().Reset();
+
+            std::ifstream file("savegame.json");
+            if (!file.is_open())
+            {
+                return;
+            }
+
+            nlohmann::json jsonData;
+            try
+            {
+                file >> jsonData;
+                file.close();
+            }
+            catch (const std::exception &)
+            {
+                return;
+            }
+
+            auto worldArea{_<World>().GetCurrentWorldArea()};
+
+            if (!worldArea)
+            {
+                return;
+            }
+
+            worldArea->Reset();
+
+            auto &robots{worldArea->GetRobotsMirrorRef()};
+
+            auto &creatures{worldArea->GetCreaturesMirrorRef()};
+
+            if (jsonData.contains("size"))
+            {
+                auto savedWidth{jsonData["size"]["width"].get<int>()};
+                auto savedHeight{jsonData["size"]["height"].get<int>()};
+                auto currentSize{worldArea->GetSize()};
+            }
+
+            if (jsonData.contains("tiles") && jsonData["tiles"].is_array())
+            {
+                for (const auto &tileJson : jsonData["tiles"])
                 {
-                    auto creatureType{Hash(tileJson["creature"]["type"].get<String>())};
+                    if (!tileJson.contains("x") || !tileJson.contains("y"))
+                    {
+                        continue;
+                    }
 
-                    auto creature{std::make_shared<Creature>(creatureType)};
+                    auto x{tileJson["x"].get<int>()};
+                    auto y{tileJson["y"].get<int>()};
 
-                    tile->SetCreature(creature);
+                    if (!worldArea->IsValidCoordinate(x, y))
+                    {
+                        continue;
+                    }
 
-                    creatures.insert({creature, {x, y}});
-                }
+                    auto tile{worldArea->GetTile(x, y)};
 
-                if (tileJson.contains("robot"))
-                {
-                    auto robotType{Hash(tileJson["robot"]["type"].get<String>())};
+                    if (!tile)
+                    {
+                        continue;
+                    }
 
-                    auto originX{tileJson["robot"]["origin"]["x"].get<int>()};
-                    auto originY{tileJson["robot"]["origin"]["y"].get<int>()};
+                    if (tileJson.contains("elevation"))
+                    {
+                        auto elevation{tileJson["elevation"].get<float>()};
+                        tile->SetElevation(elevation);
+                    }
 
-                    auto robot{std::make_shared<Robot>(robotType, originX, originY)};
+                    if (tileJson.contains("ground"))
+                    {
+                        auto groundHash{Hash(tileJson["ground"].get<String>())};
+                        tile->SetGround(groundHash);
+                    }
 
-                    tile->SetRobot(robot);
+                    if (tileJson.contains("objects") && tileJson["objects"].is_array())
+                    {
+                        auto objectsStack{tile->GetObjectsStack()};
+                        if (objectsStack)
+                        {
+                            objectsStack->ClearObjects();
 
-                    robots.insert({robot, {x, y}});
+                            for (const auto &objectJson : tileJson["objects"])
+                            {
+                                if (objectJson.contains("type"))
+                                {
+                                    auto objectType{objectJson["type"].get<String>()};
+
+                                    objectsStack->AddObject(objectType);
+                                }
+                            }
+                        }
+                    }
+
+                    if (tileJson.contains("creature"))
+                    {
+                        auto creatureType{Hash(tileJson["creature"]["type"].get<String>())};
+
+                        auto creature{std::make_shared<Creature>(creatureType)};
+
+                        tile->SetCreature(creature);
+
+                        creatures.insert({creature, {x, y}});
+                    }
+
+                    if (tileJson.contains("robot"))
+                    {
+                        auto robotType{Hash(tileJson["robot"]["type"].get<String>())};
+
+                        auto originX{tileJson["robot"]["origin"]["x"].get<int>()};
+                        auto originY{tileJson["robot"]["origin"]["y"].get<int>()};
+
+                        auto robot{std::make_shared<Robot>(robotType, originX, originY)};
+
+                        tile->SetRobot(robot);
+
+                        robots.insert({robot, {x, y}});
+                    }
                 }
             }
         }

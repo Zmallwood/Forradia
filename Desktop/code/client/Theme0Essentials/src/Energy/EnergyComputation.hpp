@@ -6,19 +6,22 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
+namespace AAK
 {
-    ///
-    /// Does computations related to energy for the player.
-    ///
-    class EnergyComputation
+    namespace Forradia::Theme0::GameplayCore
     {
-      public:
         ///
-        /// Computes the energy production per tile.
+        /// Does computations related to energy for the player.
         ///
-        /// @return The energy production per tile.
-        ///
-        float ComputeEnergyProductionPerTile();
-    };
+        class EnergyComputation
+        {
+          public:
+            ///
+            /// Computes the energy production per tile.
+            ///
+            /// @return The energy production per tile.
+            ///
+            float ComputeEnergyProductionPerTile();
+        };
+    }
 }

@@ -8,18 +8,21 @@
 
 #include <glm/glm.hpp>
 
-namespace Forradia
+namespace AAK
 {
-    ///
-    /// A vertex used for models using GLM types.
-    ///
-    class GLMVertex
+    namespace Forradia
     {
-      public:
-        glm::vec3 position; ///< The position.
+        ///
+        /// A vertex used for models using GLM types.
+        ///
+        class GLMVertex
+        {
+          public:
+            glm::vec3 position; ///< The position.
 
-        glm::vec3 normal; ///< The normal.
+            glm::vec3 normal; ///< The normal.
 
-        glm::vec2 uv; ///< The texture coordinates.
-    };
+            glm::vec2 uv; ///< The texture coordinates.
+        };
+    }
 }

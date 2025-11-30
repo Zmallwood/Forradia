@@ -6,29 +6,32 @@
 
 #include "RectF.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    bool RectF::Contains(PointF point) const
+    namespace Forradia
     {
-        // Create condition by checking against the boundaries of this rectangle.
+        bool RectF::Contains(PointF point) const
+        {
+            // Create condition by checking against the boundaries of this rectangle.
 
-        return point.x >= this->x && point.y >= this->y && point.x < this->x + this->width &&
-               point.y < this->y + this->height;
-    }
+            return point.x >= this->x && point.y >= this->y && point.x < this->x + this->width &&
+                   point.y < this->y + this->height;
+        }
 
-    PointF RectF::GetPosition() const
-    {
-        // Return only the coordinates.
+        PointF RectF::GetPosition() const
+        {
+            // Return only the coordinates.
 
-        return {this->x, this->y};
-    }
+            return {this->x, this->y};
+        }
 
-    void RectF::Offset(PointF offset)
-    {
-        // Add the offset to the dimensions separately.
+        void RectF::Offset(PointF offset)
+        {
+            // Add the offset to the dimensions separately.
 
-        this->x += offset.x;
+            this->x += offset.x;
 
-        this->y += offset.y;
+            this->y += offset.y;
+        }
     }
 }

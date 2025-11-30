@@ -6,34 +6,37 @@
 
 #include "Model.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    void Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
+    namespace Forradia
     {
-        // Iterate over all meshes in the node.
-
-        for (unsigned int i = 0; i < node->mNumMeshes; i++)
+        void Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
         {
-            // Access the mesh.
+            // Iterate over all meshes in the node.
 
-            auto mesh{scene->mMeshes[node->mMeshes[i]]};
+            for (unsigned int i = 0; i < node->mNumMeshes; i++)
+            {
+                // Access the mesh.
 
-            // Multiply the transformation with the node's transformation.
+                auto mesh{scene->mMeshes[node->mMeshes[i]]};
 
-            transformation *= node->mTransformation;
+                // Multiply the transformation with the node's transformation.
 
-            // Process the mesh.
+                transformation *= node->mTransformation;
 
-            m_meshes.push_back(ProcessMesh(mesh, scene, transformation));
-        }
+                // Process the mesh.
 
-        // Iterate over all child nodes.
+                m_meshes.push_back(ProcessMesh(mesh, scene, transformation));
+            }
 
-        for (unsigned int i = 0; i < node->mNumChildren; i++)
-        {
-            // Process the child node (recursively).
+            // Iterate over all child nodes.
 
-            this->ProcessNode(node->mChildren[i], scene, transformation);
+            for (unsigned int i = 0; i < node->mNumChildren; i++)
+            {
+                // Process the child node (recursively).
+
+                this->ProcessNode(node->mChildren[i], scene, transformation);
+            }
         }
     }
 }

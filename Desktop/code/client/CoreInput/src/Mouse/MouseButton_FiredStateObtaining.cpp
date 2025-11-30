@@ -6,27 +6,30 @@
 
 #include "MouseButton.hpp"
 
-namespace Forradia
+namespace AAK
 {
-    bool MouseButton::HasBeenFiredPickResult()
+    namespace Forradia
     {
-        // Check if the button has been fired and store as result.
+        bool MouseButton::HasBeenFiredPickResult()
+        {
+            // Check if the button has been fired and store as result.
 
-        auto result{m_hasBeenFired};
+            auto result{m_hasBeenFired};
 
-        // Clear the been-fired state of the button.
+            // Clear the been-fired state of the button.
 
-        m_hasBeenFired = false;
+            m_hasBeenFired = false;
 
-        // Return the result.
+            // Return the result.
 
-        return result;
-    }
+            return result;
+        }
 
-    bool MouseButton::HasBeenFired() const
-    {
-        // Return the been-fired state of the button.
+        bool MouseButton::HasBeenFired() const
+        {
+            // Return the been-fired state of the button.
 
-        return m_hasBeenFired;
+            return m_hasBeenFired;
+        }
     }
 }
