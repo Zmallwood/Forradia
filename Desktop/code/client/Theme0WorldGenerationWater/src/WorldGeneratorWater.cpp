@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     {
         // Do the steps to generate water.
 
-        GenerateNaturalRivers();
+        //GenerateNaturalRivers();
 
         GenerateLakesInValleys();
 
@@ -30,9 +30,9 @@ namespace Forradia::Theme0
         {
             // Generate a random starting point.
 
-            auto startX{GetRandomInt(worldAreaSize.width)};
+            auto startX{CFloat(GetRandomInt(worldAreaSize.width))};
 
-            auto startY{GetRandomInt(worldAreaSize.height)};
+            auto startY{CFloat(GetRandomInt(worldAreaSize.height))};
 
             auto currentX{startX};
 
@@ -44,7 +44,9 @@ namespace Forradia::Theme0
 
             auto previousY{startY};
 
-            auto direction{GetRandomInt(9)};
+            auto baseAngle{CFloat(GetRandomInt(360))};
+
+            //auto direction{GetRandomInt(9)};
 
             for (auto j = 0; j < riverLength; j++)
             {
@@ -60,7 +62,7 @@ namespace Forradia::Theme0
                 // If the tile is found and the elevation is greater than 0, and the tile is a valid
                 // water placement location.
 
-                if (tile && tile->GetElevation() > 0 && IsValidForWater(currentX, currentY))
+                if (tile && tile->GetElevation() > 0 && IsValidForWater(CInt(currentX), CInt(currentY)))
                 {
                     // Set the tile to water.
 
@@ -107,41 +109,52 @@ namespace Forradia::Theme0
 
                     //auto direction{GetRandomInt(9)};
 
-                    switch (direction)
-                    {
-                    case 0:
-                        newDx = 0;
-                        newDy = 1;
-                        break;
-                    case 1:
-                        newDx = 0;
-                        newDy = -1;
-                        break;
-                    case 2:
-                        newDx = 1;
-                        newDy = 0;
-                        break;
-                    case 3:
-                        newDx = -1;
-                        newDy = 0;
-                        break;
-                    case 4:
-                        newDx = 1;
-                        newDy = 1;
-                        break;
-                    case 5:
-                        newDx = 1;
-                        newDy = -1;
-                        break;
-                    case 6:
-                        newDx = -1;
-                        newDy = 1;
-                        break;
-                    case 7:
-                        newDx = -1;
-                        newDy = -1;
-                        break;
-                    }
+                    auto angle{baseAngle + 90*std::sin(CFloat(j)/riverLength*M_PI*2.0f)};
+
+                    auto cosAngle{std::cos(angle*M_PI/180.0f)};
+
+                    auto sinAngle{std::sin(angle*M_PI/180.0f)};
+
+                    newDx = std::round(cosAngle);
+                    newDy = std::round(sinAngle);
+
+                    //angle += 10;
+
+                    // switch (direction)
+                    // {
+                    // case 0:
+                    //     newDx = 0;
+                    //     newDy = 1;
+                    //     break;
+                    // case 1:
+                    //     newDx = 0;
+                    //     newDy = -1;
+                    //     break;
+                    // case 2:
+                    //     newDx = 1;
+                    //     newDy = 0;
+                    //     break;
+                    // case 3:
+                    //     newDx = -1;
+                    //     newDy = 0;
+                    //     break;
+                    // case 4:
+                    //     newDx = 1;
+                    //     newDy = 1;
+                    //     break;
+                    // case 5:
+                    //     newDx = 1;
+                    //     newDy = -1;
+                    //     break;
+                    // case 6:
+                    //     newDx = -1;
+                    //     newDy = 1;
+                    //     break;
+                    // case 7:
+                    //     newDx = -1;
+                    //     newDy = -1;
+                    //     break;
+                    // }
 
                     if (newDx == 0 && newDy > 0)
                     {
