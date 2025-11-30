@@ -85,6 +85,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#AAAA00",
         )
 
         create_app_button(
@@ -96,6 +97,7 @@ class Dashboard(ctk.CTk):
             1,
             0,
             self.script_dir,
+            "#AAAA00",
         )
 
     def create_area_a(self):
@@ -128,6 +130,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#007700",
         )
 
         create_app_button(
@@ -139,6 +142,7 @@ class Dashboard(ctk.CTk):
             1,
             0,
             self.script_dir,
+            "#007700",
         )
 
         create_app_button(
@@ -150,6 +154,7 @@ class Dashboard(ctk.CTk):
             2,
             0,
             self.script_dir,
+            "#007700",
         )
 
     def create_area_b(self):
@@ -182,6 +187,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#007700",
         )
 
         create_app_button(
@@ -193,6 +199,7 @@ class Dashboard(ctk.CTk):
             1,
             0,
             self.script_dir,
+            "#007700",
         )
 
     def create_area_c(self):
@@ -225,6 +232,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -236,6 +244,7 @@ class Dashboard(ctk.CTk):
             1,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -247,6 +256,7 @@ class Dashboard(ctk.CTk):
             2,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -258,6 +268,7 @@ class Dashboard(ctk.CTk):
             3,
             0,
             self.script_dir,
+            "#990000",
         )
 
     def create_area_d(self):
@@ -290,6 +301,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -301,6 +313,7 @@ class Dashboard(ctk.CTk):
             1,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -312,6 +325,7 @@ class Dashboard(ctk.CTk):
             2,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -323,6 +337,7 @@ class Dashboard(ctk.CTk):
             3,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -334,6 +349,7 @@ class Dashboard(ctk.CTk):
             4,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -345,6 +361,7 @@ class Dashboard(ctk.CTk):
             5,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -399,6 +416,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#990000",
         )
 
         create_app_button(
@@ -487,6 +505,7 @@ class Dashboard(ctk.CTk):
             1,
             3,
             self.script_dir,
+            "#990000",
         )
     
     def create_area_f(self):
@@ -519,6 +538,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#990000",
         )
 
     def create_area_g(self):
@@ -551,6 +571,7 @@ class Dashboard(ctk.CTk):
             0,
             0,
             self.script_dir,
+            "#990000",
         )
 
     def create_area_h(self):
@@ -640,7 +661,7 @@ class Dashboard(ctk.CTk):
         )
 
 def create_app_button(
-    parent, app_name, command, path, icon_path, column, row, script_dir
+    parent, app_name, command, path, icon_path, column, row, script_dir, color = "#0055DD"
 ):
     def open_app():
         subprocess.run([command, path, "-r"])
@@ -660,6 +681,7 @@ def create_app_button(
         width=100,
         height=100,
         corner_radius=10,
+        fg_color=color,
     )
     button.grid(row=row, column=column, padx=10, pady=10)
 
