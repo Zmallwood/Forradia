@@ -44,6 +44,8 @@ namespace Forradia::Theme0
 
             auto previousY{startY};
 
+            auto direction{GetRandomInt(4)};
+
             for (auto j = 0; j < riverLength; j++)
             {
                 // Get the tile at the current point.
@@ -82,12 +84,28 @@ namespace Forradia::Theme0
                     {
                         tile->SetRiverDirection1(Directions::East);
                     }
+                    else if (dx > 0 && dy > 0)
+                    {
+                        tile->SetRiverDirection1(Directions::NorthEast);
+                    }
+                    else if (dx > 0 && dy < 0)
+                    {
+                        tile->SetRiverDirection1(Directions::SouthEast);
+                    }
+                    else if (dx < 0 && dy > 0)
+                    {
+                        tile->SetRiverDirection1(Directions::NorthWest);
+                    }
+                    else if (dx < 0 && dy < 0)
+                    {
+                        tile->SetRiverDirection1(Directions::SouthWest);
+                    }
 
                     auto newDx{0};
 
                     auto newDy{0};
 
-                    auto direction{GetRandomInt(9)};
+                    //auto direction{GetRandomInt(9)};
 
                     switch (direction)
                     {
@@ -140,6 +158,22 @@ namespace Forradia::Theme0
                     else if (newDx < 0 && newDy == 0)
                     {
                         tile->SetRiverDirection2(Directions::West);
+                    }
+                    else if (newDx > 0 && newDy > 0)
+                    {
+                        tile->SetRiverDirection2(Directions::NorthEast);
+                    }
+                    else if (newDx > 0 && newDy < 0)
+                    {
+                        tile->SetRiverDirection2(Directions::SouthEast);
+                    }
+                    else if (newDx < 0 && newDy > 0)
+                    {
+                        tile->SetRiverDirection2(Directions::NorthWest);
+                    }
+                    else if (newDx < 0 && newDy < 0)
+                    {
+                        tile->SetRiverDirection2(Directions::SouthWest);
                     }
 
                     previousX = currentX;
