@@ -38,7 +38,7 @@ class Dashboard(ctk.CTk):
         self.grid_rowconfigure(0, weight=1)
 
         # Main area frame
-        self.main_frame = ctk.CTkScrollableFrame(self)
+        self.main_frame = ctk.CTkScrollableFrame(self, fg_color="#002255")
         self.main_frame.grid(row=0, column=1, sticky="nsew")
         self.main_frame.grid_columnconfigure(0, weight=1)
         self.main_frame.grid_rowconfigure(1, weight=1)
@@ -62,7 +62,11 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame,
+            corner_radius=10,
+            border_width=2,
+            border_color="gray30",
+            fg_color="#004477",
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -107,14 +111,20 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame,
+            corner_radius=10,
+            border_width=2,
+            border_color="gray30",
+            fg_color="#004477",
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="A. Dependencies for many", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="A. Dependencies for many",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -164,14 +174,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="B. Dependencies for many", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="B. Dependencies for many",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -209,14 +222,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="C. Dependencies for >= D1", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="C. Dependencies for >= D1",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -278,14 +294,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="D. Dependencies for >= E", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="D. Dependencies for >= E",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -393,14 +412,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="E. Dependencies for >= F", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="E. Dependencies for >= F",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -507,7 +529,7 @@ class Dashboard(ctk.CTk):
             self.script_dir,
             "#990000",
         )
-    
+
     def create_area_f(self):
         center_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
         center_frame.grid(row=6, column=0, sticky="nsew")
@@ -515,14 +537,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="F. Dependencies for >= G", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="F. Dependencies for >= G",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -548,14 +573,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="G. Dependencies for >= H", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="G. Dependencies for >= H",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -581,14 +609,17 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
         quick_launch_frame.grid_columnconfigure(0, weight=1)
 
         apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="H. Dependencies for >= I", font=("Noto Sans", 20, "bold")
+            quick_launch_frame,
+            text="H. Dependencies for >= I",
+            font=("Noto Sans", 20, "bold"),
         )
         apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
@@ -635,7 +666,8 @@ class Dashboard(ctk.CTk):
         center_frame.grid_columnconfigure(0, weight=1)
 
         quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30"
+            center_frame, corner_radius=10, border_width=2, border_color="gray30",
+            fg_color="#004477"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -644,7 +676,7 @@ class Dashboard(ctk.CTk):
         apps_label = ctk.CTkLabel(
             quick_launch_frame, text="I. Runtime", font=("Noto Sans", 20, "bold")
         )
-        apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n") 
+        apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
 
         app_frame = ctk.CTkFrame(quick_launch_frame, fg_color="transparent")
         app_frame.grid(row=1, column=0, pady=(10, 10), sticky="n")
@@ -660,8 +692,9 @@ class Dashboard(ctk.CTk):
             self.script_dir,
         )
 
+
 def create_app_button(
-    parent, app_name, command, path, icon_path, column, row, script_dir, color = "#0055DD"
+    parent, app_name, command, path, icon_path, column, row, script_dir, color="#0055DD"
 ):
     def open_app():
         subprocess.run([command, path, "-r"])
