@@ -7,7 +7,6 @@
 #pragma once
 
 #include "GUIMeter.hpp"
-
 #include "Coloring/Palette.hpp"
 
 namespace AAK

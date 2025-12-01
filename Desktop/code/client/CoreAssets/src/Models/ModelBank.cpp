@@ -5,7 +5,6 @@
 //
 
 #include "ModelBank.hpp"
-
 #include "Construction/Model.hpp"
 
 namespace AAK

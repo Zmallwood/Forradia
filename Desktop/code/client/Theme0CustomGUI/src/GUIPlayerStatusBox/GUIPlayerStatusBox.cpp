@@ -5,15 +5,10 @@
 //
 
 #include "GUIPlayerStatusBox.hpp"
-
 #include "TextRenderer.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Math/ExperienceCalculations.hpp"
-
 #include "GUIWellBeingMeter.hpp"
-
 #include "GUILabel.hpp"
 
 namespace AAK

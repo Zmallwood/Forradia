@@ -13,7 +13,5 @@
 // Internal.
 
 #include "Aliases.hpp"
-
 #include "Geometry/RectF.hpp"
-
 #include "Hash.hpp"

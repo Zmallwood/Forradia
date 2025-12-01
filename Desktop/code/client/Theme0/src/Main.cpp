@@ -5,15 +5,10 @@
 //
 
 #include "Engine.hpp"
-
 #include "Scripts.hpp"
-
 #include "Theme0Properties.hpp"
-
 #include "World.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "GUIExperienceBar.hpp"
 
 int main(int argc, char **argv)

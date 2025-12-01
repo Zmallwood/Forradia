@@ -5,15 +5,10 @@
 //
 
 #include "GUIPlayerBodyWindow.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Player/PlayerBodyPart.hpp"
-
 #include "GUIButton.hpp"
-
 #include "GUILabel.hpp"
 
 namespace AAK

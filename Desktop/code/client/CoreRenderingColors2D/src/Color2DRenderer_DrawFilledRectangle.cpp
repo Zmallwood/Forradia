@@ -5,7 +5,6 @@
 //
 
 #include "Color2DRenderer.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace AAK

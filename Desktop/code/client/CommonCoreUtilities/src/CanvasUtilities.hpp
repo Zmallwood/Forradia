@@ -7,7 +7,6 @@
 #pragma once
 
 #include "Aliases.hpp"
-
 #include "Geometry/Size.hpp"
 
 struct SDL_Window;

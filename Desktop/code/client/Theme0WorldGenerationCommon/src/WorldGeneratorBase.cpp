@@ -5,13 +5,9 @@
 //
 
 #include "WorldGeneratorBase.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Theme0Properties.hpp"
-
 #include "Tile.hpp"
 
 namespace AAK

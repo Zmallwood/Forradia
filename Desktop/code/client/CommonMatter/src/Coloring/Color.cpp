@@ -5,7 +5,6 @@
 //
 
 #include "Color.hpp"
-
 #include "Functions.hpp"
 
 namespace AAK

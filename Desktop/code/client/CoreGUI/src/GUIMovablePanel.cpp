@@ -5,11 +5,8 @@
 //
 
 #include "GUIMovablePanel.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Cursor.hpp"
-
 #include "Mouse/MouseInput.hpp"
 
 namespace AAK

@@ -7,7 +7,6 @@
 #pragma once
 
 #include "GLMVertex.hpp"
-
 #include "Texturing/Texture.hpp"
 
 namespace AAK

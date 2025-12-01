@@ -7,7 +7,6 @@
 #pragma once
 
 #include "RendererBase.hpp"
-
 #include "Color2DRenderingOperation.hpp"
 
 namespace AAK

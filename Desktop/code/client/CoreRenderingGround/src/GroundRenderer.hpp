@@ -7,11 +7,8 @@
 #pragma once
 
 #include "RendererBase.hpp"
-
 #include "GroundRenderingOperation.hpp"
-
 #include "TileDrawGroup.hpp"
-
 #include "GroundRenderingGroupOperation.hpp"
 
 namespace AAK

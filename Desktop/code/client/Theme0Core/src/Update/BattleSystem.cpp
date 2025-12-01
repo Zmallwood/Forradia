@@ -5,17 +5,11 @@
 //
 
 #include "BattleSystem.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Robot.hpp"
-
 #include "Tile.hpp"
 
 namespace AAK

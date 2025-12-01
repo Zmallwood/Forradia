@@ -9,5 +9,4 @@
 // Internal.
 
 #include "CanvasUtilities.hpp"
-
 #include "Hash.hpp"

@@ -13,27 +13,17 @@
 // External.
 
 #include <SDL2/SDL.h>
-
 #include <GL/glew.h>
-
 #include <GL/gl.h>
 
 // Internal.
 
 #include "Aliases.hpp"
-
 #include "Coloring/Color.hpp"
-
 #include "Geometry/Size.hpp"
-
 #include "Singleton.hpp"
-
 #include "MouseUtilities.hpp"
-
 #include "CanvasUtilities.hpp"
-
 #include "TimeUtilities.hpp"
-
 #include "Constants.hpp"
-
 #include "Hash.hpp"

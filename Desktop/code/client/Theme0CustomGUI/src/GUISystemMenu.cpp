@@ -5,15 +5,10 @@
 //
 
 #include "GUISystemMenu.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "Color2DRenderer.hpp"
-
 #include "GUIButton.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "GameSaveFiles/GameSaving.hpp"
 
 namespace AAK

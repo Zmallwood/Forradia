@@ -5,7 +5,6 @@
 //
 
 #include "GUIWellBeingMeter.hpp"
-
 #include "Player/PlayerCharacter.hpp"
 
 namespace AAK

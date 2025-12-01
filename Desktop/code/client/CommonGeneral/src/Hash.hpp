@@ -7,7 +7,6 @@
 #pragma once
 
 #include "Aliases.hpp"
-
 #include "Functions.hpp"
 
 namespace AAK

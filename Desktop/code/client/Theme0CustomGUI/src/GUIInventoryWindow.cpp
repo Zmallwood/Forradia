@@ -5,17 +5,11 @@
 //
 
 #include "GUIInventoryWindow.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Image2DRenderer.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Player/PlayerObjectsInventory.hpp"
-
 #include "Object.hpp"
-
 #include "GUIWindowTitleBar.hpp"
 
 namespace AAK

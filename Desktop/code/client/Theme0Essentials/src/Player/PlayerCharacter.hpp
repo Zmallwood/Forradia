@@ -7,7 +7,6 @@
 #pragma once
 
 #include "PlayerBody.hpp"
-
 #include "PlayerModes.hpp"
 
 namespace AAK

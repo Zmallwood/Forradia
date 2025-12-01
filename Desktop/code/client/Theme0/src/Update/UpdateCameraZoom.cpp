@@ -5,9 +5,7 @@
 //
 
 #include "UpdateCameraZoom.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "3D/Camera.hpp"
 
 namespace AAK

@@ -5,15 +5,10 @@
 //
 
 #include "UpdateRobotsMovement.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "Robot.hpp"
-
 #include "NumbersUtilities.hpp"
 
 namespace AAK

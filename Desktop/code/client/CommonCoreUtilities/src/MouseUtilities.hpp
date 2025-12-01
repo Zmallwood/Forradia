@@ -7,7 +7,6 @@
 #pragma once
 
 #include "Geometry/PointF.hpp"
-
 #include "Aliases.hpp"
 
 struct SDL_Window;

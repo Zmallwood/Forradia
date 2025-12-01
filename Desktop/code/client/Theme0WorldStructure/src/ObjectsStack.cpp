@@ -5,7 +5,6 @@
 //
 
 #include "ObjectsStack.hpp"
-
 #include "Object.hpp"
 
 namespace AAK

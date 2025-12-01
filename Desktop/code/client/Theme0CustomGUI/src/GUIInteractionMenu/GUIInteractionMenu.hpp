@@ -7,7 +7,6 @@
 #pragma once
 
 #include "GUIPanel.hpp"
-
 #include "GUIInteractionMenuEntry.hpp"
 
 namespace AAK

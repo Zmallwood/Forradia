@@ -5,7 +5,6 @@
 //
 
 #include "Palette.hpp"
-
 #include "Hash.hpp"
 
 namespace AAK

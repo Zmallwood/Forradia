@@ -10,6 +10,8 @@ namespace AAK
 {
     namespace Forradia
     {
+        // Tume related constants.
+
         static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
     }
 }

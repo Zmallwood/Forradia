@@ -5,19 +5,12 @@
 //
 
 #include "TileHovering.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Theme0Properties.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "3D/Camera.hpp"
 
 namespace AAK

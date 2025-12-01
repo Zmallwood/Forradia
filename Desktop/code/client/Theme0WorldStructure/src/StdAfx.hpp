@@ -13,17 +13,10 @@
 // Internal.
 
 #include "Functions.hpp"
-
 #include "Constants.hpp"
-
 #include "Geometry/Point.hpp"
-
 #include "RandomizationUtilities.hpp"
-
 #include "TimeUtilities.hpp"
-
 #include "Hash.hpp"
-
 #include "Geometry/PointF.hpp"
-
 #include "Geometry/Size.hpp"

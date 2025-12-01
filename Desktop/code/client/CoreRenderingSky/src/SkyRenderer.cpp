@@ -5,9 +5,7 @@
 //
 
 #include "SkyRenderer.hpp"
-
 #include "ShaderProgram.hpp"
-
 #include "GUIChatBox.hpp"
 
 namespace AAK

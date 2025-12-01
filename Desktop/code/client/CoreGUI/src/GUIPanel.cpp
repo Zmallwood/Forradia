@@ -5,7 +5,6 @@
 //
 
 #include "GUIPanel.hpp"
-
 #include "Image2DRenderer.hpp"
 
 namespace AAK

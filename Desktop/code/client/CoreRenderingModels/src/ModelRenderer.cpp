@@ -5,9 +5,7 @@
 //
 
 #include "ModelRenderer.hpp"
-
 #include "ShaderProgram.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace AAK

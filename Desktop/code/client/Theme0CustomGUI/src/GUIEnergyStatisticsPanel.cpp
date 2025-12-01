@@ -5,9 +5,7 @@
 //
 
 #include "GUIEnergyStatisticsPanel.hpp"
-
 #include "GUILabel.hpp"
-
 #include "Energy/EnergyComputation.hpp"
 
 namespace AAK

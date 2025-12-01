@@ -5,7 +5,6 @@
 //
 
 #include "GUILabel.hpp"
-
 #include "TextRenderer.hpp"
 
 namespace AAK

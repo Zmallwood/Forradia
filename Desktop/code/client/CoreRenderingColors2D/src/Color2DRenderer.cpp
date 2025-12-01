@@ -5,9 +5,7 @@
 //
 
 #include "Color2DRenderer.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "ShaderProgram.hpp"
 
 namespace AAK

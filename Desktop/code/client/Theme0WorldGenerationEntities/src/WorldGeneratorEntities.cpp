@@ -5,15 +5,10 @@
 //
 
 #include "WorldGeneratorEntities.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "Creature.hpp"
-
 #include "Robot.hpp"
 
 namespace AAK

@@ -5,11 +5,8 @@
 //
 
 #include "TextRenderer.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Textures/TextureBank.hpp"
-
 #include "Image2DRenderer.hpp"
 
 namespace AAK

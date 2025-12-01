@@ -5,13 +5,9 @@
 //
 
 #include "GUIButton.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Cursor.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "TextRenderer.hpp"
 
 namespace AAK

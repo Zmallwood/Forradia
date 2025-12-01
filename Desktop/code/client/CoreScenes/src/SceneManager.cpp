@@ -5,7 +5,6 @@
 //
 
 #include "SceneManager.hpp"
-
 #include "IScene.hpp"
 
 namespace AAK

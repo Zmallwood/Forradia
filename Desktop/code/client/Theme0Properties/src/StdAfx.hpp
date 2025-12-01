@@ -13,11 +13,7 @@
 // Internal.
 
 #include "Aliases.hpp"
-
 #include "Coloring/Color.hpp"
-
 #include "Coloring/Palette.hpp"
-
 #include "Geometry/Size.hpp"
-
 #include "Hash.hpp"

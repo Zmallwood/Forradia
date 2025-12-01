@@ -9,13 +9,8 @@
 // Internal.
 
 #include "Coloring/Palette.hpp"
-
 #include "Hash.hpp"
-
 #include "StringUtilities.hpp"
-
 #include "CanvasUtilities.hpp"
-
 #include "SDLDeleter.hpp"
-
 #include "MessageUtilities.hpp"

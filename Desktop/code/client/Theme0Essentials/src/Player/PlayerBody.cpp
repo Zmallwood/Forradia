@@ -5,7 +5,6 @@
 //
 
 #include "PlayerBody.hpp"
-
 #include "PlayerBodyPart.hpp"
 
 namespace AAK

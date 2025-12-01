@@ -5,7 +5,6 @@
 //
 
 #include "IScene.hpp"
-
 #include "GUI.hpp"
 
 namespace AAK

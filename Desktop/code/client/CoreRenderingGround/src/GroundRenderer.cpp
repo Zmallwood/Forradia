@@ -5,9 +5,7 @@
 //
 
 #include "GroundRenderer.hpp"
-
 #include "ShaderProgram.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace AAK

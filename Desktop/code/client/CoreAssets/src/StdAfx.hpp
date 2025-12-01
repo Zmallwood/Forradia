@@ -9,41 +9,26 @@
 // Std.
 
 #include <iostream>
-
 #include <map>
-
 #include <filesystem>
 
 // External.
 
 #include <SDL2/SDL.h>
-
 #include <SDL2/SDL_image.h>
-
 #include <GL/glew.h>
-
 #include <GL/gl.h>
-
 #include "assimp/Importer.hpp"
-
 #include "assimp/postprocess.h"
-
 #include "assimp/scene.h"
 
 // Internal.
 
 #include "Aliases.hpp"
-
 #include "Geometry/Size.hpp"
-
 #include "StringUtilities.hpp"
-
 #include "FilePathUtilities.hpp"
-
 #include "Hash.hpp"
-
 #include "MessageUtilities.hpp"
-
 #include "SDLDeleter.hpp"
-
 #include "Geometry/GLMTypes/GLMMesh.hpp"

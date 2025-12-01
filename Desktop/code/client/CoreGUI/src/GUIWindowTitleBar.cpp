@@ -5,13 +5,9 @@
 //
 
 #include "GUIWindowTitleBar.hpp"
-
 #include "GUIButton.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "TextRenderer.hpp"
-
 #include "GUIWindow.hpp"
 
 namespace AAK

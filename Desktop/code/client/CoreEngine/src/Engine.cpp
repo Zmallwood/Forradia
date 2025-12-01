@@ -5,25 +5,15 @@
 //
 
 #include "Engine.hpp"
-
 #include "GLDevice.hpp"
-
 #include "Cursor.hpp"
-
 #include "FPSCounter.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "SceneManager.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "Color2DRenderer.hpp"
-
 #include "Image2DRenderer.hpp"
-
 #include "GroundRenderer.hpp"
-
 #include "ModelRenderer.hpp"
 
 namespace AAK

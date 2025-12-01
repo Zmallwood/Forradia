@@ -5,13 +5,9 @@
 //
 
 #include "WorldGenerator.hpp"
-
 #include "WorldGeneratorGround.hpp"
-
 #include "WorldGeneratorWater.hpp"
-
 #include "WorldGeneratorObjects.hpp"
-
 #include "WorldGeneratorEntities.hpp"
 
 namespace AAK

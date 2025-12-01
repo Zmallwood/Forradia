@@ -5,37 +5,21 @@
 //
 
 #include "WorldView.hpp"
-
 #include "Directions.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Theme0Properties.hpp"
-
 #include "Update/TileHovering.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "Object.hpp"
-
 #include "Creature.hpp"
-
 #include "Robot.hpp"
-
 #include "GroundRenderer.hpp"
-
 #include "ModelRenderer.hpp"
-
 #include "SkyRenderer.hpp"
-
 #include "TileData.hpp"
-
 #include "Update/BattleSystem.hpp"
 
 namespace AAK

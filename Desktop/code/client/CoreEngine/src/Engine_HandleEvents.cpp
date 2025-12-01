@@ -5,9 +5,7 @@
 //
 
 #include "Engine.hpp"
-
 #include "Keyboard/KeyboardInput.hpp"
-
 #include "Mouse/MouseInput.hpp"
 
 namespace AAK

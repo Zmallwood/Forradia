@@ -7,7 +7,6 @@
 #pragma once
 
 #include "RendererBase.hpp"
-
 #include "ModelRenderingOperation.hpp"
 
 namespace AAK

@@ -5,27 +5,14 @@
 //
 
 #include "GameSaving.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "Object.hpp"
-
 #include "Robot.hpp"
-
 #include "Creature.hpp"
-
-#include <fstream>
-
-#include <nlohmann/json.hpp>
-
 #include "GroundRenderer.hpp"
-
 #include "HashCodes.hpp"
 
 namespace AAK

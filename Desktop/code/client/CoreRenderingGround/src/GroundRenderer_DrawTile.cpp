@@ -5,9 +5,7 @@
 //
 
 #include "GroundRenderer.hpp"
-
 #include "Textures/TextureBank.hpp"
-
 #include "3D/Camera.hpp"
 
 namespace AAK

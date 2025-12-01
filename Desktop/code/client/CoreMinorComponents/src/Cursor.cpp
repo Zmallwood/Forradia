@@ -5,9 +5,7 @@
 //
 
 #include "Cursor.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Image2DRenderer.hpp"
 
 namespace AAK

@@ -5,19 +5,12 @@
 //
 
 #include "ModelRenderer.hpp"
-
 #include "Textures/TextureBank.hpp"
-
 #include "Models/ModelBank.hpp"
-
 #include "Theme0Properties.hpp"
-
 #include "Models/Construction/Model.hpp"
-
 #include "3D/Camera.hpp"
-
 #include "ObjectIndex.hpp"
-
 #include "CreatureIndex.hpp"
 
 namespace AAK

@@ -5,9 +5,7 @@
 //
 
 #include "GUIExperienceBar.hpp"
-
 #include "Math/ExperienceCalculations.hpp"
-
 #include "Player/PlayerCharacter.hpp"
 
 namespace AAK

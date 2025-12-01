@@ -5,11 +5,8 @@
 //
 
 #include "Image2DRenderer.hpp"
-
 #include "ShaderProgram.hpp"
-
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace AAK
 {

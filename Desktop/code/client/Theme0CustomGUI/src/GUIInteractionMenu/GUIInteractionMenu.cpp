@@ -5,25 +5,15 @@
 //
 
 #include "GUIInteractionMenu.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "Object.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "TextRenderer.hpp"
-
 #include "Update/TileHovering.hpp"
-
 #include "Actions.hpp"
 
 namespace AAK

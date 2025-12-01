@@ -5,71 +5,38 @@
 //
 
 #include "Scripts.hpp"
-
 #include "Engine.hpp"
-
 #include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
-
 #include "GUIPlayerBodyWindow.hpp"
-
 #include "GUIInventoryWindow.hpp"
-
 #include "GUISystemMenu.hpp"
-
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Cursor.hpp"
-
 #include "WorldGenerator.hpp"
-
 #include "WorldView.hpp"
-
 #include "IScene.hpp"
-
 #include "SceneManager.hpp"
-
 #include "Keyboard/KeyboardInput.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "GUILabel.hpp"
-
 #include "GUIButton.hpp"
-
 #include "GUIFPSPanel.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "Image2DRenderer.hpp"
-
 #include "Update/TileHovering.hpp"
-
 #include "Update/BattleSystem.hpp"
-
 #include "Update/UpdateKeyboardActions.hpp"
-
 #include "Update/UpdateMouseActions.hpp"
-
 #include "Update/UpdateCreaturesMovement.hpp"
-
 #include "Update/UpdateMouseMovement.hpp"
-
 #include "Update/UpdateKeyboardMovement.hpp"
-
 #include "Update/UpdateRobotsMovement.hpp"
-
 #include "Update/UpdateCameraZoom.hpp"
-
 #include "Update/CameraRotator.hpp"
-
 #include "GUIInteractionMenu/Actions.hpp"
-
 #include "GUIEnergyStatisticsPanel.hpp"
-
 #include "GUI.hpp"
-
 #include "GUIExperienceBar.hpp"
 
 namespace AAK

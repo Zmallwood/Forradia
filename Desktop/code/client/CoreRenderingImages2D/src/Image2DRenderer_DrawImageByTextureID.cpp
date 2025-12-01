@@ -5,7 +5,6 @@
 //
 
 #include "Image2DRenderer.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace AAK

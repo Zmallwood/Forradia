@@ -5,7 +5,6 @@
 //
 
 #include "NumbersUtilities.hpp"
-
 #include "Constants.hpp"
 
 namespace AAK

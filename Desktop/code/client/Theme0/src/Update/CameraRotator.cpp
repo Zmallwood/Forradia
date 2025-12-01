@@ -5,11 +5,8 @@
 //
 
 #include "CameraRotator.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "3D/Camera.hpp"
-
 #include "SDLDevice.hpp"
 
 namespace AAK

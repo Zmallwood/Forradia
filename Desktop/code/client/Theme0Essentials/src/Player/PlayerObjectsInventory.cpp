@@ -5,7 +5,6 @@
 //
 
 #include "PlayerObjectsInventory.hpp"
-
 #include "Object.hpp"
 
 namespace AAK

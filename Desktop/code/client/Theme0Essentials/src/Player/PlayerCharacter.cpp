@@ -5,15 +5,10 @@
 //
 
 #include "PlayerCharacter.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "PlayerObjectsInventory.hpp"
 
 namespace AAK

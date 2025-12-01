@@ -5,7 +5,6 @@
 //
 
 #include "GroundRenderer.hpp"
-
 #include "Theme0Properties.hpp"
 
 namespace AAK

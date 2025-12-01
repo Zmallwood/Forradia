@@ -5,15 +5,10 @@
 //
 
 #include "UpdateMouseMovement.hpp"
-
 #include "TileHovering.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "NumbersUtilities.hpp"
-
 #include "BattleSystem.hpp"
 
 namespace AAK

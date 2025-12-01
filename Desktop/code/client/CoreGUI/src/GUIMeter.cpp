@@ -5,7 +5,6 @@
 //
 
 #include "GUIMeter.hpp"
-
 #include "Color2DRenderer.hpp"
 
 namespace AAK

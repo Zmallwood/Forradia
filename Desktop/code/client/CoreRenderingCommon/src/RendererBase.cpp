@@ -5,7 +5,6 @@
 //
 
 #include "RendererBase.hpp"
-
 #include "ShaderProgram.hpp"
 
 namespace AAK

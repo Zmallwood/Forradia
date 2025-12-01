@@ -5,25 +5,15 @@
 //
 
 #include "Actions.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "GUIInteractionMenu.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Player/PlayerObjectsInventory.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
-
 #include "Object.hpp"
-
 #include "Update/BattleSystem.hpp"
 
 namespace AAK

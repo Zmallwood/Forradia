@@ -5,15 +5,10 @@
 //
 
 #include "GUIChatBox.hpp"
-
 #include "TextRenderer.hpp"
-
 #include "Image2DRenderer.hpp"
-
 #include "Color2DRenderer.hpp"
-
 #include "Engine.hpp"
-
 #include "Keyboard/KeyboardInput.hpp"
 
 namespace AAK

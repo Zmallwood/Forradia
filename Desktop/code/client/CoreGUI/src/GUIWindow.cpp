@@ -5,7 +5,6 @@
 //
 
 #include "GUIWindow.hpp"
-
 #include "GUIWindowTitleBar.hpp"
 
 namespace AAK

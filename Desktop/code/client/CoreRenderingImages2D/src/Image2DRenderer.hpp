@@ -7,7 +7,6 @@
 #pragma once
 
 #include "RendererBase.hpp"
-
 #include "Image2DRenderingOperation.hpp"
 
 namespace AAK

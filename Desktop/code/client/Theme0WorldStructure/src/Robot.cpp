@@ -5,7 +5,6 @@
 //
 
 #include "Robot.hpp"
-
 #include "GUIChatBox.hpp"
 
 namespace AAK

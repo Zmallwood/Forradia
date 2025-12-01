@@ -5,13 +5,9 @@
 //
 
 #include "UpdateKeyboardMovement.hpp"
-
 #include "Keyboard/KeyboardInput.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "NumbersUtilities.hpp"
-
 #include "Update/BattleSystem.hpp"
 
 namespace AAK

@@ -5,23 +5,14 @@
 //
 
 #include "UpdateMouseActions.hpp"
-
 #include "Mouse/MouseInput.hpp"
-
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
-
 #include "SDLDevice.hpp"
-
 #include "Player/PlayerCharacter.hpp"
-
 #include "Update/BattleSystem.hpp"
-
 #include "Update/TileHovering.hpp"
-
 #include "World.hpp"
-
 #include "WorldArea.hpp"
-
 #include "Tile.hpp"
 
 namespace AAK

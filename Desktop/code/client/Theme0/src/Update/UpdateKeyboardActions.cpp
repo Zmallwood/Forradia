@@ -5,17 +5,11 @@
 //
 
 #include "UpdateKeyboardActions.hpp"
-
 #include "Keyboard/KeyboardInput.hpp"
-
 #include "GUISystemMenu.hpp"
-
 #include "GUIPlayerBodyWindow.hpp"
-
 #include "GUIInventoryWindow.hpp"
-
 #include "GUIChatBox.hpp"
-
 #include "Player/PlayerCharacter.hpp"
 
 namespace AAK

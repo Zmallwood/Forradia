@@ -5,9 +5,7 @@
 //
 
 #include "GUIFPSPanel.hpp"
-
 #include "GUILabel.hpp"
-
 #include "FPSCounter.hpp"
 
 namespace AAK
