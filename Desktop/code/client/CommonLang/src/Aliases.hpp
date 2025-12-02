@@ -6,10 +6,7 @@
 
 #pragma once
 
-#include <functional>
-#include <memory>
-#include <string>
-#include <vector>
+#include "Headers.hpp"
 
 namespace AAK
 {
