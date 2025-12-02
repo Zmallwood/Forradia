@@ -5,22 +5,23 @@
 //
 
 #include "WorldView.hpp"
+#include "Coloring/Palette.hpp"
+#include "Creature.hpp"
 #include "Directions.hpp"
+#include "GroundRenderer.hpp"
+#include "ModelRenderer.hpp"
+#include "Object.hpp"
+#include "ObjectsStack.hpp"
 #include "Player/PlayerCharacter.hpp"
+#include "Robot.hpp"
+#include "SkyRenderer.hpp"
 #include "Theme0Properties.hpp"
+#include "Tile.hpp"
+#include "TileData.hpp"
+#include "Update/BattleSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
-#include "Tile.hpp"
-#include "ObjectsStack.hpp"
-#include "Object.hpp"
-#include "Creature.hpp"
-#include "Robot.hpp"
-#include "GroundRenderer.hpp"
-#include "ModelRenderer.hpp"
-#include "SkyRenderer.hpp"
-#include "TileData.hpp"
-#include "Update/BattleSystem.hpp"
 
 namespace AAK
 {
@@ -256,6 +257,84 @@ namespace AAK
                     //     }
                     // }
 
+                    auto color00{Palette::GetColor<Hash("White")>()};
+                    auto color10{Palette::GetColor<Hash("White")>()};
+                    auto color11{Palette::GetColor<Hash("White")>()};
+                    auto color01{Palette::GetColor<Hash("White")>()};
+
+                    switch (ground)
+                    {
+                    case Hash("GroundGrass"):
+                        color00 = Palette::GetColor<Hash("Green")>();
+                        break;
+                    case Hash("GroundWater"):
+                        color00 = Palette::GetColor<Hash("MildBlue")>();
+                        break;
+                    case Hash("GroundDirt"):
+                        color00 = Palette::GetColor<Hash("Brown")>();
+                        break;
+                    case Hash("GroundRock"):
+                        color00 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    }
+
+                    if (tileNE)
+                    {
+                        switch (tileNE->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color10 = Palette::GetColor<Hash("Green")>();
+                            break;
+                        case Hash("GroundWater"):
+                            color10 = Palette::GetColor<Hash("MildBlue")>();
+                            break;
+                        case Hash("GroundDirt"):
+                            color10 = Palette::GetColor<Hash("Brown")>();
+                            break;
+                        case Hash("GroundRock"):
+                            color10 = Palette::GetColor<Hash("Gray")>();
+                            break;
+                        }
+                    }
+
+                    if (tileSE)
+                    {
+                        switch (tileSE->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color11 = Palette::GetColor<Hash("Green")>();
+                            break;
+                        case Hash("GroundWater"):
+                            color11 = Palette::GetColor<Hash("MildBlue")>();
+                            break;
+                        case Hash("GroundDirt"):
+                            color11 = Palette::GetColor<Hash("Brown")>();
+                            break;
+                        case Hash("GroundRock"):
+                            color11 = Palette::GetColor<Hash("Gray")>();
+                            break;
+                        }
+                    }
+
+                    if (tileSW)
+                    {
+                        switch (tileSW->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color01 = Palette::GetColor<Hash("Green")>();
+                            break;
+                        case Hash("GroundWater"):
+                            color01 = Palette::GetColor<Hash("MildBlue")>();
+                            break;
+                        case Hash("GroundDirt"):
+                            color01 = Palette::GetColor<Hash("Brown")>();
+                            break;
+                        case Hash("GroundRock"):
+                            color01 = Palette::GetColor<Hash("Gray")>();
+                            break;
+                        }
+                    }
+
                     if (ground == Hash("GroundWater"))
                     {
                         auto waterDepth{tile->GetWaterDepth()};
@@ -281,7 +360,8 @@ namespace AAK
                                             y < (groundGridSize.height + gridSize.height) / 2};
 
                     tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
-                                     xCoordinate, yCoordinate, rendTileSize, elevations, false});
+                                     xCoordinate, yCoordinate, rendTileSize, elevations, false,
+                                     color00, color10, color11, color01});
 
                     auto riverDirection1{tile->GetRiverDirection1()};
 

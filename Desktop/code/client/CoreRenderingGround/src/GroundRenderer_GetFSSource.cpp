@@ -33,7 +33,15 @@ namespace AAK
                     float diff = max(dot(norm, lightDir), 0.0);
                     vec3 diffuse = diff * lightColor*0.05;
                     vec4 objectColor = texture(ourTexture, TexCoord);
-                    vec3 result = diffuse* objectColor.rgb;
+                    vec3 tintedColor = objectColor.rgb * ourColor;
+                    vec3 result = diffuse * tintedColor;
+                    //vec3 blendedColor = mix(objectColor.rgb, ourColor, 0.5);
+                    //vec3 result = diffuse * blendedColor;
+                    //vec3 result = diffuse * objectColor.rgb * ourColor;
+                    //vec3 result = diffuse* objectColor.rgb;
+                    //vec3 baseColor = ourColor * objectColor.rgb;
+                    //vec3 result = diffuse * baseColor;
+                    //vec3 result = diffuse * (objectColor.rgb + ourColor * 0.2);
                     FragColor = vec4(result, objectColor.a);
                 }
             )";

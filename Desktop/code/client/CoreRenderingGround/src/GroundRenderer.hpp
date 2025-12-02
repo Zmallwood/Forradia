@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include "RendererBase.hpp"
-#include "GroundRenderingOperation.hpp"
-#include "TileDrawGroup.hpp"
 #include "GroundRenderingGroupOperation.hpp"
+#include "GroundRenderingOperation.hpp"
+#include "RendererBase.hpp"
+#include "TileDrawGroup.hpp"
 
 namespace AAK
 {
@@ -115,8 +115,8 @@ namespace AAK
             /// @return The vertices for a tile without normals.
             ///
             Vector<float> CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
-                                                    float tileSize,
-                                                    const Vector<float> &elevations) const;
+                                                    float tileSize, const Vector<float> &elevations,
+                                                    Vector<Color> colors) const;
 
             ///
             /// Calculates the vertices for a tile with normals.

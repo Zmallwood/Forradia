@@ -20,6 +20,12 @@ namespace AAK
         }
 
         template <>
+        Color GetColor<Hash("White")>()
+        {
+            return {1.0f, 1.0f, 0.65f, 1.0f};
+        }
+
+        template <>
         Color GetColor<Hash("Wheat")>()
         {
             return {1.0f, 1.0f, 0.65f, 1.0f};
@@ -65,6 +71,24 @@ namespace AAK
         Color GetColor<Hash("Red")>()
         {
             return {1.0f, 0.0f, 0.0f, 1.0f};
+        }
+
+        template <>
+        Color GetColor<Hash("Green")>()
+        {
+            return {0.0f, 1.0f, 0.0f, 1.0f};
+        }
+
+        template <>
+        Color GetColor<Hash("Brown")>()
+        {
+            return {0.5f, 0.25f, 0.0f, 1.0f};
+        }
+
+        template <>
+        Color GetColor<Hash("Gray")>()
+        {
+            return {0.5f, 0.5f, 0.5f, 1.0f};
         }
     }
 }

@@ -78,7 +78,7 @@ namespace AAK
             const float k_maxRotationAngleVertical{-M_PI /
                                                    8.0f}; ///< Maximum vertical rotation angle.
 
-            const float k_defaultFOV{60.0f}; ///< Default field of view.
+            const float k_defaultFOV{55.0f}; ///< Default field of view.
 
             float m_zoomAmount{6.0f}; ///< Current zoom amount.
 

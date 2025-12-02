@@ -18,191 +18,191 @@ namespace AAK
         {
             // Do the steps to generate water.
 
-            // GenerateNaturalRivers();
+            GenerateNaturalRivers();
 
             GenerateLakesInValleys();
 
-            auto worldArea{GetWorldArea()};
+            // auto worldArea{GetWorldArea()};
 
-            auto worldAreaSize{GetWorldAreaSize()};
+            // auto worldAreaSize{GetWorldAreaSize()};
 
-            auto numRivers{100 + GetRandomInt(20)};
+            // auto numRivers{100 + GetRandomInt(20)};
 
-            for (auto i = 0; i < numRivers; i++)
-            {
-                // Generate a random starting point.
+            // for (auto i = 0; i < numRivers; i++)
+            // {
+            //     // Generate a random starting point.
 
-                auto startX{CFloat(GetRandomInt(worldAreaSize.width))};
+            //     auto startX{CFloat(GetRandomInt(worldAreaSize.width))};
 
-                auto startY{CFloat(GetRandomInt(worldAreaSize.height))};
+            //     auto startY{CFloat(GetRandomInt(worldAreaSize.height))};
 
-                auto currentX{startX};
+            //     auto currentX{startX};
 
-                auto currentY{startY};
+            //     auto currentY{startY};
 
-                auto riverLength{10 + GetRandomInt(50)};
+            //     auto riverLength{10 + GetRandomInt(50)};
 
-                auto previousX{startX};
+            //     auto previousX{startX};
 
-                auto previousY{startY};
+            //     auto previousY{startY};
 
-                auto baseAngle{CFloat(GetRandomInt(360))};
+            //     auto baseAngle{CFloat(GetRandomInt(360))};
 
-                // auto direction{GetRandomInt(9)};
+            //     // auto direction{GetRandomInt(9)};
 
-                for (auto j = 0; j < riverLength; j++)
-                {
-                    // Get the tile at the current point.
+            //     for (auto j = 0; j < riverLength; j++)
+            //     {
+            //         // Get the tile at the current point.
 
-                    auto tile{worldArea->GetTile(currentX, currentY)};
+            //         auto tile{worldArea->GetTile(currentX, currentY)};
 
-                    if (nullptr == tile)
-                    {
-                        break;
-                    }
+            //         if (nullptr == tile)
+            //         {
+            //             break;
+            //         }
 
-                    // If the tile is found and the elevation is greater than 0, and the tile is a
-                    // valid water placement location.
+            //         // If the tile is found and the elevation is greater than 0, and the tile is a
+            //         // valid water placement location.
 
-                    if (tile && tile->GetElevation() > 0 &&
-                        IsValidForWater(CInt(currentX), CInt(currentY)))
-                    {
-                        // Set the tile to water.
+            //         if (tile && tile->GetElevation() > 0 &&
+            //             IsValidForWater(CInt(currentX), CInt(currentY)))
+            //         {
+            //             // Set the tile to water.
 
-                        auto dx{currentX - previousX};
+            //             auto dx{currentX - previousX};
 
-                        auto dy{currentY - previousY};
+            //             auto dy{currentY - previousY};
 
-                        if (dx == 0 && dy > 0)
-                        {
-                            tile->SetRiverDirection1(Directions::North);
-                        }
-                        else if (dx == 0 && dy < 0)
-                        {
-                            tile->SetRiverDirection1(Directions::South);
-                        }
-                        else if (dx > 0 && dy == 0)
-                        {
-                            tile->SetRiverDirection1(Directions::West);
-                        }
-                        else if (dx < 0 && dy == 0)
-                        {
-                            tile->SetRiverDirection1(Directions::East);
-                        }
-                        else if (dx > 0 && dy > 0)
-                        {
-                            tile->SetRiverDirection1(Directions::NorthWest);
-                        }
-                        else if (dx > 0 && dy < 0)
-                        {
-                            tile->SetRiverDirection1(Directions::SouthWest);
-                        }
-                        else if (dx < 0 && dy > 0)
-                        {
-                            tile->SetRiverDirection1(Directions::NorthEast);
-                        }
-                        else if (dx < 0 && dy < 0)
-                        {
-                            tile->SetRiverDirection1(Directions::SouthEast);
-                        }
+            //             if (dx == 0 && dy > 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::North);
+            //             }
+            //             else if (dx == 0 && dy < 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::South);
+            //             }
+            //             else if (dx > 0 && dy == 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::West);
+            //             }
+            //             else if (dx < 0 && dy == 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::East);
+            //             }
+            //             else if (dx > 0 && dy > 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::NorthWest);
+            //             }
+            //             else if (dx > 0 && dy < 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::SouthWest);
+            //             }
+            //             else if (dx < 0 && dy > 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::NorthEast);
+            //             }
+            //             else if (dx < 0 && dy < 0)
+            //             {
+            //                 tile->SetRiverDirection1(Directions::SouthEast);
+            //             }
 
-                        auto newDx{0};
+            //             auto newDx{0};
 
-                        auto newDy{0};
+            //             auto newDy{0};
 
-                        // auto direction{GetRandomInt(9)};
+            //             // auto direction{GetRandomInt(9)};
 
-                        auto angle{baseAngle +
-                                   90 * std::sin(CFloat(j) / riverLength * M_PI * 2.0f)};
+            //             auto angle{baseAngle +
+            //                        90 * std::sin(CFloat(j) / riverLength * M_PI * 2.0f)};
 
-                        auto cosAngle{std::cos(angle * M_PI / 180.0f)};
+            //             auto cosAngle{std::cos(angle * M_PI / 180.0f)};
 
-                        auto sinAngle{std::sin(angle * M_PI / 180.0f)};
+            //             auto sinAngle{std::sin(angle * M_PI / 180.0f)};
 
-                        newDx = std::round(cosAngle);
-                        newDy = std::round(sinAngle);
+            //             newDx = std::round(cosAngle);
+            //             newDy = std::round(sinAngle);
 
-                        // angle += 10;
+            //             // angle += 10;
 
-                        // switch (direction)
-                        // {
-                        // case 0:
-                        //     newDx = 0;
-                        //     newDy = 1;
-                        //     break;
-                        // case 1:
-                        //     newDx = 0;
-                        //     newDy = -1;
-                        //     break;
-                        // case 2:
-                        //     newDx = 1;
-                        //     newDy = 0;
-                        //     break;
-                        // case 3:
-                        //     newDx = -1;
-                        //     newDy = 0;
-                        //     break;
-                        // case 4:
-                        //     newDx = 1;
-                        //     newDy = 1;
-                        //     break;
-                        // case 5:
-                        //     newDx = 1;
-                        //     newDy = -1;
-                        //     break;
-                        // case 6:
-                        //     newDx = -1;
-                        //     newDy = 1;
-                        //     break;
-                        // case 7:
-                        //     newDx = -1;
-                        //     newDy = -1;
-                        //     break;
-                        // }
+            //             // switch (direction)
+            //             // {
+            //             // case 0:
+            //             //     newDx = 0;
+            //             //     newDy = 1;
+            //             //     break;
+            //             // case 1:
+            //             //     newDx = 0;
+            //             //     newDy = -1;
+            //             //     break;
+            //             // case 2:
+            //             //     newDx = 1;
+            //             //     newDy = 0;
+            //             //     break;
+            //             // case 3:
+            //             //     newDx = -1;
+            //             //     newDy = 0;
+            //             //     break;
+            //             // case 4:
+            //             //     newDx = 1;
+            //             //     newDy = 1;
+            //             //     break;
+            //             // case 5:
+            //             //     newDx = 1;
+            //             //     newDy = -1;
+            //             //     break;
+            //             // case 6:
+            //             //     newDx = -1;
+            //             //     newDy = 1;
+            //             //     break;
+            //             // case 7:
+            //             //     newDx = -1;
+            //             //     newDy = -1;
+            //             //     break;
+            //             // }
 
-                        if (newDx == 0 && newDy > 0)
-                        {
-                            tile->SetRiverDirection2(Directions::South);
-                        }
-                        else if (newDx == 0 && newDy < 0)
-                        {
-                            tile->SetRiverDirection2(Directions::North);
-                        }
-                        else if (newDx > 0 && newDy == 0)
-                        {
-                            tile->SetRiverDirection2(Directions::East);
-                        }
-                        else if (newDx < 0 && newDy == 0)
-                        {
-                            tile->SetRiverDirection2(Directions::West);
-                        }
-                        else if (newDx > 0 && newDy > 0)
-                        {
-                            tile->SetRiverDirection2(Directions::SouthEast);
-                        }
-                        else if (newDx > 0 && newDy < 0)
-                        {
-                            tile->SetRiverDirection2(Directions::NorthEast);
-                        }
-                        else if (newDx < 0 && newDy > 0)
-                        {
-                            tile->SetRiverDirection2(Directions::SouthWest);
-                        }
-                        else if (newDx < 0 && newDy < 0)
-                        {
-                            tile->SetRiverDirection2(Directions::NorthWest);
-                        }
+            //             if (newDx == 0 && newDy > 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::South);
+            //             }
+            //             else if (newDx == 0 && newDy < 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::North);
+            //             }
+            //             else if (newDx > 0 && newDy == 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::East);
+            //             }
+            //             else if (newDx < 0 && newDy == 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::West);
+            //             }
+            //             else if (newDx > 0 && newDy > 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::SouthEast);
+            //             }
+            //             else if (newDx > 0 && newDy < 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::NorthEast);
+            //             }
+            //             else if (newDx < 0 && newDy > 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::SouthWest);
+            //             }
+            //             else if (newDx < 0 && newDy < 0)
+            //             {
+            //                 tile->SetRiverDirection2(Directions::NorthWest);
+            //             }
 
-                        previousX = currentX;
+            //             previousX = currentX;
 
-                        previousY = currentY;
+            //             previousY = currentY;
 
-                        currentX += newDx;
+            //             currentX += newDx;
 
-                        currentY += newDy;
-                    }
-                }
-            }
+            //             currentY += newDy;
+            //         }
+            //     }
+            // }
         }
 
         void WorldGeneratorWater::GenerateNaturalRivers() const

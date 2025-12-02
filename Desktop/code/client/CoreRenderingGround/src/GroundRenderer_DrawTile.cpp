@@ -4,9 +4,9 @@
 // (see LICENSE for details)
 //
 
+#include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
 #include "Textures/TextureBank.hpp"
-#include "3D/Camera.hpp"
 
 namespace AAK
 {
@@ -93,8 +93,12 @@ namespace AAK
             {
                 // Calculate the vertices without normals.
 
-                auto verticesNoNormals{this->CalcTileVerticesNoNormals(xCoordinate, yCoordinate,
-                                                                       tileSize, elevations)};
+                Vector<Color> colors{
+                    Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
+                    Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
+
+                auto verticesNoNormals{this->CalcTileVerticesNoNormals(
+                    xCoordinate, yCoordinate, tileSize, elevations, colors)};
 
                 // Define the number of vertices and indices.
 

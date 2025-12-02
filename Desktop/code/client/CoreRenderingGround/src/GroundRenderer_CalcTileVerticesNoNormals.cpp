@@ -11,9 +11,10 @@ namespace AAK
 {
     namespace Forradia
     {
-        Vector<float>
-        GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                                  const Vector<float> &elevations) const
+        Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
+                                                                float tileSize,
+                                                                const Vector<float> &elevations,
+                                                                Vector<Color> colors) const
         {
             // Calculate the x and y coordinates and width and height in opengl space for the tile.
 
@@ -34,15 +35,15 @@ namespace AAK
             // clang-format off
 
         return {x, y, elevations.at(0) * elevationHeight,
-                1.0f, 1.0f, 1.0f, 0.0, 0.0,
+                colors.at(0).r, colors.at(0).g, colors.at(0).b, 0.0, 0.0,
                 x + width, y, elevations.at(1) * elevationHeight,
-                1.0f, 1.0f, 1.0f, 1.0, 0.0,
+                colors.at(1).r, colors.at(1).g, colors.at(1).b, 1.0, 0.0,
                 x + width + width, y, elevations.at(2) * elevationHeight,
                 1.0f, 1.0f, 1.0f, 1.0, 1.0,
                 x, y + height, elevations.at(3) * elevationHeight,
-                1.0f, 1.0f, 1.0f, 0.0, 1.0,
+                colors.at(3).r, colors.at(3).g, colors.at(3).b, 0.0, 1.0,
                 x + width, y + height, elevations.at(4) * elevationHeight,
-                1.0f, 1.0f, 1.0f, 1.0, 1.0,
+                colors.at(2).r, colors.at(2).g, colors.at(2).b, 1.0, 1.0,
                 x + width + width, y + height, elevations.at(5) * elevationHeight,
                 1.0f, 1.0f, 1.0f, 1.0, 1.0,
                 x, y + height + height, elevations.at(6) * elevationHeight,
