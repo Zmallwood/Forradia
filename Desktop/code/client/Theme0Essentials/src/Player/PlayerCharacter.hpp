@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Consider adding something like m_mindState = "Normal"
+
 #pragma once
 
 #include "PlayerBody.hpp"
