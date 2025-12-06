@@ -22,7 +22,16 @@ namespace AAK
 
             auto uniqueRenderID{tiles.at(0).uniqueRenderID};
 
-            auto forceUpdate{tiles.at(0).forceUpdate};
+            bool forceUpdate{false};
+
+            for (auto &tile : tiles)
+            {
+                if (tile.forceUpdate)
+                {
+                    forceUpdate = true;
+                    break;
+                }
+            }
 
             GroundRenderingGroupOperation groupOperation;
 

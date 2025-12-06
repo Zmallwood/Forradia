@@ -359,9 +359,13 @@ namespace AAK
                                             y >= (groundGridSize.height - gridSize.height) / 2 &&
                                             y < (groundGridSize.height + gridSize.height) / 2};
 
+                    auto forceRedraw{tile->GetForceRedraw()};
+
+                    tile->SetForceRedraw(false);
+
                     tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
-                                     xCoordinate, yCoordinate, rendTileSize, elevations, false,
-                                     color00, color10, color11, color01});
+                                     xCoordinate, yCoordinate, rendTileSize, elevations,
+                                     forceRedraw, color00, color10, color11, color01});
 
                     auto riverDirection1{tile->GetRiverDirection1()};
 

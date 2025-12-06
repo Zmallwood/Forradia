@@ -23,13 +23,15 @@ namespace AAK
             // Set the ground type provided as hash.
 
             m_ground = groundHash;
+
+            this->SetForceRedraw(true);
         }
 
         void Tile::SetGround(StringView groundName)
         {
             // Set the ground type, provided by name, as hash.
 
-            m_ground = Hash(groundName);
+            this->SetGround(Hash(groundName));
         }
     }
 }

@@ -33,7 +33,7 @@ namespace AAK
 
                 this->Initialize();
             }
-
+            
             ///
             /// Gets the ground type of the tile, which is the hash of the ground type name.
             ///
@@ -169,6 +169,16 @@ namespace AAK
                 m_riverDirection2 = value;
             }
 
+            auto GetForceRedraw() const
+            {
+                return m_forceRedraw;
+            }
+
+            void SetForceRedraw(bool value)
+            {
+                m_forceRedraw = value;
+            }
+
           private:
             ///
             /// Initializes the tile.
@@ -192,6 +202,8 @@ namespace AAK
 
             Directions m_riverDirection2{
                 Directions::None}; ///< The direction of the river on the tile.
+
+            bool m_forceRedraw{false}; ///< Whether to force a redraw of the tile.
         };
     }
 }
