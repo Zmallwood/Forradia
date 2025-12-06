@@ -7,59 +7,56 @@
 #include "SceneManager.hpp"
 #include "IScene.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void SceneManager::AddScene(StringView sceneName, IScene &scene)
     {
-        void SceneManager::AddScene(StringView sceneName, IScene &scene)
+        // Initialize the scene.
+
+        scene.Initialize();
+
+        // Add the scene to the map.
+
+        m_scenes.insert({Hash(sceneName), scene});
+    }
+
+    void SceneManager::GoToScene(StringView sceneName)
+    {
+        // Calculate hash.
+
+        m_currentScene = Hash(sceneName);
+
+        // Check if the scene is in the map.
+
+        if (m_scenes.contains(m_currentScene))
         {
-            // Initialize the scene.
+            // Call the OnEnter function of the scene.
 
-            scene.Initialize();
-
-            // Add the scene to the map.
-
-            m_scenes.insert({Hash(sceneName), scene});
+            m_scenes.at(m_currentScene).OnEnter();
         }
+    }
 
-        void SceneManager::GoToScene(StringView sceneName)
+    void SceneManager::UpdateCurrentScene()
+    {
+        // Check if the scene is in the map.
+
+        if (m_scenes.contains(m_currentScene))
         {
-            // Calculate hash.
+            // Call the Update function of the scene.
 
-            m_currentScene = Hash(sceneName);
-
-            // Check if the scene is in the map.
-
-            if (m_scenes.contains(m_currentScene))
-            {
-                // Call the OnEnter function of the scene.
-
-                m_scenes.at(m_currentScene).OnEnter();
-            }
+            m_scenes.at(m_currentScene).Update();
         }
+    }
 
-        void SceneManager::UpdateCurrentScene()
+    void SceneManager::RenderCurrentScene() const
+    {
+        // Check if the scene is in the map.
+
+        if (m_scenes.contains(m_currentScene))
         {
-            // Check if the scene is in the map.
+            // Call the Render function of the scene.
 
-            if (m_scenes.contains(m_currentScene))
-            {
-                // Call the Update function of the scene.
-
-                m_scenes.at(m_currentScene).Update();
-            }
-        }
-
-        void SceneManager::RenderCurrentScene() const
-        {
-            // Check if the scene is in the map.
-
-            if (m_scenes.contains(m_currentScene))
-            {
-                // Call the Render function of the scene.
-
-                m_scenes.at(m_currentScene).Render();
-            }
+            m_scenes.at(m_currentScene).Render();
         }
     }
 }

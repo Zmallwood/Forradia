@@ -5,17 +5,15 @@
 //
 
 #include "Engine.hpp"
+#include "GUIChatBox.hpp"
+#include "GUIExperienceBar.hpp"
 #include "Scripts.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"
-#include "GUIChatBox.hpp"
-#include "GUIExperienceBar.hpp"
 
 int main(int argc, char **argv)
 {
     // Use namespaces for readability.
-
-    using namespace AAK;
 
     using namespace Forradia;
 

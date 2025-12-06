@@ -5,38 +5,34 @@
 //
 
 #include "GUIFPSPanel.hpp"
-#include "GUILabel.hpp"
 #include "FPSCounter.hpp"
+#include "GUILabel.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void GUIFPSPanel::Initialize()
     {
-        void GUIFPSPanel::Initialize()
-        {
-            // Create the FPS text label.
+        // Create the FPS text label.
 
-            m_fpsTextPanel =
-                std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
+        m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
 
-            // Add the FPS text label to this panel.
+        // Add the FPS text label to this panel.
 
-            this->AddChildComponent(m_fpsTextPanel);
-        }
+        this->AddChildComponent(m_fpsTextPanel);
+    }
 
-        void GUIFPSPanel::UpdateDerived()
-        {
-            // Do the updating specific to the base class (GUIMovablePanel).
+    void GUIFPSPanel::UpdateDerived()
+    {
+        // Do the updating specific to the base class (GUIMovablePanel).
 
-            GUIMovablePanel::UpdateDerived();
+        GUIMovablePanel::UpdateDerived();
 
-            // Get the FPS.
+        // Get the FPS.
 
-            auto fps{_<FPSCounter>().GetFPS()};
+        auto fps{_<FPSCounter>().GetFPS()};
 
-            // Set the text of the FPS text label.
+        // Set the text of the FPS text label.
 
-            m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
-        }
+        m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
     }
 }

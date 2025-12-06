@@ -6,15 +6,13 @@
 
 #include "SkyRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String SkyRenderer::GetFSSource() const
     {
-        String SkyRenderer::GetFSSource() const
-        {
-            // Return the fragment shader source.
+        // Return the fragment shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 #define PI 3.14159265359
@@ -97,6 +95,5 @@ namespace AAK
                     FragColor = vec4(skyColor, 1.0);
                 }
             )";
-        }
     }
 }

@@ -6,77 +6,74 @@
 
 #include "TextureBank.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void TextureBank::LoadTextures()
     {
-        void TextureBank::LoadTextures()
+        // Take base path from SDL.
+
+        auto basePath{String(SDL_GetBasePath())};
+
+        // Add relative path to base path.
+
+        auto imagesPath{basePath + k_relativeImagesPath.data()};
+
+        // Ensure the path exists to continue.
+
+        if (false == std::filesystem::exists(imagesPath))
         {
-            // Take base path from SDL.
+            return;
+        }
 
-            auto basePath{String(SDL_GetBasePath())};
+        // Create a recursive directory iterator for the path.
 
-            // Add relative path to base path.
+        std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
-            auto imagesPath{basePath + k_relativeImagesPath.data()};
+        // Iterate through the directory using the rdi.
 
-            // Ensure the path exists to continue.
+        for (auto it : rdi)
+        {
+            // Replace backslashes with forward slashes.
 
-            if (false == std::filesystem::exists(imagesPath))
+            auto filePath{Replace(it.path().string(), '\\', '/')};
+
+            // Ensure the file is a png.
+
+            if (GetFileExtension(filePath) == "png")
             {
-                return;
-            }
+                // Get the file name without the extension.
 
-            // Create a recursive directory iterator for the path.
+                auto fileName{GetFileNameNoExtension(filePath)};
 
-            std::filesystem::recursive_directory_iterator rdi{imagesPath};
+                // Get the hash of the file name.
 
-            // Iterate through the directory using the rdi.
+                auto hash{Forradia::Hash(fileName)};
 
-            for (auto it : rdi)
-            {
-                // Replace backslashes with forward slashes.
+                // Load the image as a SDL surface.
 
-                auto filePath{Replace(it.path().string(), '\\', '/')};
+                auto surface{SharedPtr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
 
-                // Ensure the file is a png.
+                // Load the image as a texture (from the SDL surface) and get its ID.
 
-                if (GetFileExtension(filePath) == "png")
-                {
-                    // Get the file name without the extension.
+                auto textureID{this->LoadSingleTexture(surface)};
 
-                    auto fileName{GetFileNameNoExtension(filePath)};
+                // Obtain the image dimensions.
 
-                    // Get the hash of the file name.
+                auto imageSize{Size{surface->w, surface->h}};
 
-                    auto hash{Forradia::Hash(fileName)};
+                // Create a new texture entry.
 
-                    // Load the image as a SDL surface.
+                TextureEntry newTextureEntry;
 
-                    auto surface{SharedPtr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
+                // Set the texture ID and dimensions.
 
-                    // Load the image as a texture (from the SDL surface) and get its ID.
+                newTextureEntry.textureID = textureID;
 
-                    auto textureID{this->LoadSingleTexture(surface)};
+                newTextureEntry.dimensions = imageSize;
 
-                    // Obtain the image dimensions.
+                // Store the texture entry.
 
-                    auto imageSize{Size{surface->w, surface->h}};
-
-                    // Create a new texture entry.
-
-                    TextureEntry newTextureEntry;
-
-                    // Set the texture ID and dimensions.
-
-                    newTextureEntry.textureID = textureID;
-
-                    newTextureEntry.dimensions = imageSize;
-
-                    // Store the texture entry.
-
-                    m_textureEntries[hash] = newTextureEntry;
-                }
+                m_textureEntries[hash] = newTextureEntry;
             }
         }
     }

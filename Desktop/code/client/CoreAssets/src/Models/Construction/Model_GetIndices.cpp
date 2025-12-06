@@ -6,37 +6,34 @@
 
 #include "Model.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    Vector<unsigned int> Model::GetIndices(aiMesh *mesh) const
     {
-        Vector<unsigned int> Model::GetIndices(aiMesh *mesh) const
+        // To hold the resulting indices.
+
+        Vector<unsigned int> indices;
+
+        // Iterate over all faces.
+
+        for (unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
-            // To hold the resulting indices.
+            // Access the face.
 
-            Vector<unsigned int> indices;
+            auto face{mesh->mFaces[i]};
 
-            // Iterate over all faces.
+            // Iterate over all indices in the face.
 
-            for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+            for (unsigned int j = 0; j < face.mNumIndices; j++)
             {
-                // Access the face.
+                // Add the index.
 
-                auto face{mesh->mFaces[i]};
-
-                // Iterate over all indices in the face.
-
-                for (unsigned int j = 0; j < face.mNumIndices; j++)
-                {
-                    // Add the index.
-
-                    indices.push_back(face.mIndices[j]);
-                }
+                indices.push_back(face.mIndices[j]);
             }
-
-            // Return the indices results.
-
-            return indices;
         }
+
+        // Return the indices results.
+
+        return indices;
     }
 }

@@ -5,70 +5,67 @@
 //
 
 #include "GUIButton.hpp"
-#include "SDLDevice.hpp"
 #include "Cursor.hpp"
 #include "Mouse/MouseInput.hpp"
+#include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void GUIButton::UpdateDerived()
     {
-        void GUIButton::UpdateDerived()
+        // Call the base class specific update tasks as well as a standard procedure, even if
+        // they do nothing in this case.
+
+        GUIPanel::UpdateDerived();
+
+        // Get normalized mouse position to compare against GUI bounds.
+
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+
+        // Check if the mouse is hovering this button.
+
+        auto hovered{GetBounds().Contains(mousePosition)};
+
+        if (hovered)
         {
-            // Call the base class specific update tasks as well as a standard procedure, even if
-            // they do nothing in this case.
+            // Show hovered background when pointer is over the button.
 
-            GUIPanel::UpdateDerived();
+            this->SetBackgroundImage(m_hoveredBackgroundImage);
 
-            // Get normalized mouse position to compare against GUI bounds.
+            // Change cursor to indicate the button is clickable.
 
-            auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-            // Check if the mouse is hovering this button.
+            // Trigger the assigned action on mouse left-button click.
 
-            auto hovered{GetBounds().Contains(mousePosition)};
-
-            if (hovered)
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
             {
-                // Show hovered background when pointer is over the button.
-
-                this->SetBackgroundImage(m_hoveredBackgroundImage);
-
-                // Change cursor to indicate the button is clickable.
-
-                _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-
-                // Trigger the assigned action on mouse left-button click.
-
-                if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-                {
-                    m_action();
-                }
-            }
-            else
-            {
-                // Revert to default background when not hovered.
-
-                SetBackgroundImage(m_backgroundImage);
+                m_action();
             }
         }
-
-        void GUIButton::RenderDerived() const
+        else
         {
-            // Call the base class specific render tasks as well as a standard procedure, even if
-            // they do nothing in this case.
+            // Revert to default background when not hovered.
 
-            GUIPanel::RenderDerived();
-
-            // Retrieve current bounds to position the label.
-
-            auto bounds{this->GetBounds()};
-
-            // Draw centered button text using the shared text renderer.
-
-            _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
-                                         bounds.y + bounds.height / 2, FontSizes::_20, true);
+            SetBackgroundImage(m_backgroundImage);
         }
+    }
+
+    void GUIButton::RenderDerived() const
+    {
+        // Call the base class specific render tasks as well as a standard procedure, even if
+        // they do nothing in this case.
+
+        GUIPanel::RenderDerived();
+
+        // Retrieve current bounds to position the label.
+
+        auto bounds{this->GetBounds()};
+
+        // Draw centered button text using the shared text renderer.
+
+        _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
+                                     bounds.y + bounds.height / 2, FontSizes::_20, true);
     }
 }

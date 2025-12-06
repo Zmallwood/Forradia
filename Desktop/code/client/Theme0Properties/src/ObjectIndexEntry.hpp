@@ -6,17 +6,14 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    ///
+    /// Class for storing object properties.
+    ///
+    class ObjectIndexEntry
     {
-        ///
-        /// Class for storing object properties.
-        ///
-        class ObjectIndexEntry
-        {
-          public:
-            float modelScaling{1.0f}; ///< The scaling factor for the object model.
-        };
-    }
+      public:
+        float modelScaling{1.0f}; ///< The scaling factor for the object model.
+    };
 }

@@ -5,98 +5,95 @@
 //
 
 #include "Engine.hpp"
-#include "GLDevice.hpp"
+#include "Color2DRenderer.hpp"
 #include "Cursor.hpp"
 #include "FPSCounter.hpp"
+#include "GLDevice.hpp"
+#include "GroundRenderer.hpp"
+#include "Image2DRenderer.hpp"
+#include "ModelRenderer.hpp"
+#include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
-#include "Mouse/MouseInput.hpp"
-#include "Color2DRenderer.hpp"
-#include "Image2DRenderer.hpp"
-#include "GroundRenderer.hpp"
-#include "ModelRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
     {
-        void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
+        // Initialize random number generator so that unique random numbers are generated on
+        // each game run.
+
+        Randomize();
+
+        // Initialize SDL and GL devices.
+
+        _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
+
+        _<GLDevice>().Initialize();
+
+        // Initialize renderers.
+
+        _<Color2DRenderer>().Initialize();
+
+        _<Image2DRenderer>().Initialize();
+
+        _<GroundRenderer>().Initialize();
+
+        _<ModelRenderer>().Initialize();
+    }
+
+    void Engine::Run()
+    {
+        // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
+        // in the game.
+
+        try
         {
-            // Initialize random number generator so that unique random numbers are generated on
-            // each game run.
+            // Main game loop.
 
-            Randomize();
-
-            // Initialize SDL and GL devices.
-
-            _<SDLDevice>().Initialize(gameWindowTitle, clearColor);
-
-            _<GLDevice>().Initialize();
-
-            // Initialize renderers.
-
-            _<Color2DRenderer>().Initialize();
-
-            _<Image2DRenderer>().Initialize();
-
-            _<GroundRenderer>().Initialize();
-
-            _<ModelRenderer>().Initialize();
-        }
-
-        void Engine::Run()
-        {
-            // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
-            // in the game.
-
-            try
+            while (m_running)
             {
-                // Main game loop.
+                // Reset the mouse input and cursor before polling events.
 
-                while (m_running)
-                {
-                    // Reset the mouse input and cursor before polling events.
+                _<MouseInput>().Reset();
 
-                    _<MouseInput>().Reset();
+                _<Cursor>().ResetStyleToNormal();
 
-                    _<Cursor>().ResetStyleToNormal();
+                // Poll events and handle them.
 
-                    // Poll events and handle them.
+                this->HandleEvents();
 
-                    this->HandleEvents();
+                // Update.
 
-                    // Update.
+                _<SceneManager>().UpdateCurrentScene();
 
-                    _<SceneManager>().UpdateCurrentScene();
+                _<FPSCounter>().Update();
 
-                    _<FPSCounter>().Update();
+                // Render.
 
-                    // Render.
+                _<SDLDevice>().ClearCanvas();
 
-                    _<SDLDevice>().ClearCanvas();
+                _<SceneManager>().RenderCurrentScene();
 
-                    _<SceneManager>().RenderCurrentScene();
+                _<Cursor>().Render();
 
-                    _<Cursor>().Render();
+                // Present the canvas.
 
-                    // Present the canvas.
-
-                    _<SDLDevice>().PresentCanvas();
-                }
-            }
-            catch (std::exception &e)
-            {
-                // Print error message on catched exception.
-
-                PrintLine("An error occured: " + String(e.what()));
+                _<SDLDevice>().PresentCanvas();
             }
         }
-
-        void Engine::Stop()
+        catch (std::exception &e)
         {
-            // Stop the engine.
+            // Print error message on catched exception.
 
-            m_running = false;
+            PrintLine("An error occured: " + String(e.what()));
         }
+    }
+
+    void Engine::Stop()
+    {
+        // Stop the engine.
+
+        m_running = false;
     }
 }

@@ -7,38 +7,34 @@
 #include "GUIWindow.hpp"
 #include "GUIWindowTitleBar.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle)
     {
-        void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle)
-        {
-            // Hide the window initially.
+        // Hide the window initially.
 
-            this->SetVisible(false);
+        this->SetVisible(false);
 
-            // Create the window title bar.
+        // Create the window title bar.
 
-            m_guiWindowTitleBar =
-                std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
+        m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
 
-            // Add the window title bar to the window.
+        // Add the window title bar to the window.
 
-            this->AddChildComponent(m_guiWindowTitleBar);
-        }
+        this->AddChildComponent(m_guiWindowTitleBar);
+    }
 
-        void GUIWindow::RenderDerived() const
-        {
-            // Call the GUIMovablePanel base class render derived method.
+    void GUIWindow::RenderDerived() const
+    {
+        // Call the GUIMovablePanel base class render derived method.
 
-            GUIMovablePanel::RenderDerived();
-        }
+        GUIMovablePanel::RenderDerived();
+    }
 
-        RectF GUIWindow::GetDraggableArea() const
-        {
-            // Return the bounds of the window title bar as the draggable area.
+    RectF GUIWindow::GetDraggableArea() const
+    {
+        // Return the bounds of the window title bar as the draggable area.
 
-            return m_guiWindowTitleBar->GetBounds();
-        }
+        return m_guiWindowTitleBar->GetBounds();
     }
 }

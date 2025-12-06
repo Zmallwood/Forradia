@@ -4,23 +4,23 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// Point in 3D space using dimensions of float type.
+    ///
+    class Point3F
     {
-        ///
-        /// Point in 3D space using dimensions of float type.
-        ///
-        class Point3F
-        {
-          public:
-            float x{0.0f}; ///< The x dimension.
+      public:
+        float x{0.0f}; ///< The x dimension.
 
-            float y{0.0f}; ///< The y dimension.
+        float y{0.0f}; ///< The y dimension.
 
-            float z{0.0f}; ///< The z dimension.
-        };
-    }
+        float z{0.0f}; ///< The z dimension.
+    };
 }

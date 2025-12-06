@@ -6,15 +6,13 @@
 
 #include "GroundRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String GroundRenderer::GetVSSource() const
     {
-        String GroundRenderer::GetVSSource() const
-        {
-            // Return the vertex shader source.
+        // Return the vertex shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 layout (location = 0) in vec3 aPos;
@@ -38,6 +36,5 @@ namespace AAK
                     Normal = aNormal;
                 }
             )";
-        }
     }
 }

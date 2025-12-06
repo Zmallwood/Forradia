@@ -4,24 +4,24 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #include "PointF.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    PointF PointF::operator+(const PointF &other) const
     {
-        PointF PointF::operator+(const PointF &other) const
-        {
-            // Sum the dimensions of the two points.
+        // Sum the dimensions of the two points.
 
-            return {this->x + other.x, this->y + other.y};
-        }
+        return {this->x + other.x, this->y + other.y};
+    }
 
-        PointF PointF::operator-(const PointF &other) const
-        {
-            // Subract the dimensions of the other point from this point.
+    PointF PointF::operator-(const PointF &other) const
+    {
+        // Subract the dimensions of the other point from this point.
 
-            return {this->x - other.x, this->y - other.y};
-        }
+        return {this->x - other.x, this->y - other.y};
     }
 }

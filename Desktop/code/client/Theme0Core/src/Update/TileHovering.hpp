@@ -6,51 +6,48 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
+    ///
+    /// Determines and provides the tile hovered by the mouse.
+    ///
+    class TileHovering
     {
+      public:
         ///
-        /// Determines and provides the tile hovered by the mouse.
+        /// Updates the tile hovering.
         ///
-        class TileHovering
+        void Update();
+
+        ///
+        /// Provides the hovered coordinate.
+        ///
+        auto GetHoveredCoordinate() const
         {
-          public:
-            ///
-            /// Updates the tile hovering.
-            ///
-            void Update();
+            return m_hoveredCoordinate;
+        }
 
-            ///
-            /// Provides the hovered coordinate.
-            ///
-            auto GetHoveredCoordinate() const
-            {
-                return m_hoveredCoordinate;
-            }
+      private:
+        ///
+        /// Determines the hovered coordinate with raycasting.
+        ///
+        void DetermineHoveredCoordinateWithRaycasting();
 
-          private:
-            ///
-            /// Determines the hovered coordinate with raycasting.
-            ///
-            void DetermineHoveredCoordinateWithRaycasting();
+        ///
+        /// Iterates over the rendered tiles.
+        ///
+        void IterateOverRenderedTiles();
 
-            ///
-            /// Iterates over the rendered tiles.
-            ///
-            void IterateOverRenderedTiles();
+        ///
+        /// Determines if the tile is hovered.
+        ///
+        bool DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const;
 
-            ///
-            /// Determines if the tile is hovered.
-            ///
-            bool DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const;
+        ///
+        /// Checks if the ray intersects the tile.
+        ///
+        bool CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const;
 
-            ///
-            /// Checks if the ray intersects the tile.
-            ///
-            bool CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const;
-
-            Point m_hoveredCoordinate{-1, -1}; ///< The coordinate of the tile hovered by the mouse.
-        };
-    }
+        Point m_hoveredCoordinate{-1, -1}; ///< The coordinate of the tile hovered by the mouse.
+    };
 }

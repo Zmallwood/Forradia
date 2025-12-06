@@ -5,64 +5,61 @@
 //
 
 #include "GUIPlayerStatusBox.hpp"
-#include "TextRenderer.hpp"
-#include "Player/PlayerCharacter.hpp"
-#include "Math/ExperienceCalculations.hpp"
-#include "GUIWellBeingMeter.hpp"
 #include "GUILabel.hpp"
+#include "GUIWellBeingMeter.hpp"
+#include "Math/ExperienceCalculations.hpp"
+#include "Player/PlayerCharacter.hpp"
+#include "TextRenderer.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    void GUIPlayerStatusBox::Initialize()
     {
-        void GUIPlayerStatusBox::Initialize()
-        {
-            // Create the health meter.
+        // Create the health meter.
 
-            auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+        auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
 
-            // Add the name text label to this panel.
+        // Add the name text label to this panel.
 
-            this->AddChildComponent(wellBeingMeter);
+        this->AddChildComponent(wellBeingMeter);
 
-            m_wellBeingValueTextLabel =
-                std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f,
-                                           "", false, Palette::GetColor<Hash("Black")>());
+        m_wellBeingValueTextLabel =
+            std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+                                       false, Palette::GetColor<Hash("Black")>());
 
-            this->AddChildComponent(m_wellBeingValueTextLabel);
-        }
+        this->AddChildComponent(m_wellBeingValueTextLabel);
+    }
 
-        void GUIPlayerStatusBox::UpdateDerived()
-        {
-            GUIPanel::UpdateDerived();
+    void GUIPlayerStatusBox::UpdateDerived()
+    {
+        GUIPanel::UpdateDerived();
 
-            auto wellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
+        auto wellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
 
-            auto maxWellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
+        auto maxWellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
 
-            m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
-        }
+        m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
+    }
 
-        void GUIPlayerStatusBox::RenderDerived() const
-        {
-            GUIPanel::RenderDerived();
+    void GUIPlayerStatusBox::RenderDerived() const
+    {
+        GUIPanel::RenderDerived();
 
-            auto bounds{this->GetBounds()};
+        auto bounds{this->GetBounds()};
 
-            _<TextRenderer>().DrawString(k_renderIDNameString,
-                                         _<Theme0::GameplayCore::PlayerCharacter>().GetName(),
-                                         bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+        _<TextRenderer>().DrawString(k_renderIDNameString,
+                                     _<Theme0::GameplayCore::PlayerCharacter>().GetName(),
+                                     bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-            auto experience{_<Theme0::GameplayCore::PlayerCharacter>().GetExperience()};
+        auto experience{_<Theme0::GameplayCore::PlayerCharacter>().GetExperience()};
 
-            auto level{GameplayCore::CalculateCurrentLevel(experience)};
+        auto level{GameplayCore::CalculateCurrentLevel(experience)};
 
-            _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                         bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
-                                         true);
+        _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
+                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
+                                     true);
 
-            _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                         bounds.y + 0.095f, FontSizes::_20);
-        }
+        _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
+                                     bounds.y + 0.095f, FontSizes::_20);
     }
 }

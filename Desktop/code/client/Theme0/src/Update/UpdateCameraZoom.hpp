@@ -6,13 +6,10 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
-    {
-        ///
-        /// Updates the camera zoom with the mouse wheel.
-        ///
-        void UpdateCameraZoom();
-    }
+    ///
+    /// Updates the camera zoom with the mouse wheel.
+    ///
+    void UpdateCameraZoom();
 }

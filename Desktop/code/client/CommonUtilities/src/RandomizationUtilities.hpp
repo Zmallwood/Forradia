@@ -6,21 +6,18 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
-    {
-        ///
-        /// Randomize the seed.
-        ///
-        void Randomize();
+    ///
+    /// Randomize the seed.
+    ///
+    void Randomize();
 
-        ///
-        /// Generate a random integer.
-        ///
-        /// @param upperLimit Upper limit.
-        /// @return Random integer.
-        ///
-        int GetRandomInt(int upperLimit);
-    }
+    ///
+    /// Generate a random integer.
+    ///
+    /// @param upperLimit Upper limit.
+    /// @return Random integer.
+    ///
+    int GetRandomInt(int upperLimit);
 }

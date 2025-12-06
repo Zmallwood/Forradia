@@ -8,41 +8,38 @@
 
 #include "GUIMovablePanel.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    class GUILabel;
+
+    ///
+    /// A panel that displays the FPS.
+    ///
+    class GUIFPSPanel : public GUIMovablePanel
     {
-        class GUILabel;
-
+      public:
         ///
-        /// A panel that displays the FPS.
+        /// Constructor.
         ///
-        class GUIFPSPanel : public GUIMovablePanel
+        GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92f, 0.02f, 0.07f, 0.04f)
         {
-          public:
-            ///
-            /// Constructor.
-            ///
-            GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92f, 0.02f, 0.07f, 0.04f)
-            {
-                // Initialize this FPSPanel.
+            // Initialize this FPSPanel.
 
-                this->Initialize();
-            }
+            this->Initialize();
+        }
 
-          protected:
-            ///
-            /// Update tasks specific to the FPSPanel, called by the GUIComponent base class.
-            ///
-            void UpdateDerived() override;
+      protected:
+        ///
+        /// Update tasks specific to the FPSPanel, called by the GUIComponent base class.
+        ///
+        void UpdateDerived() override;
 
-          private:
-            ///
-            /// Initializes this FPSPanel.
-            ///
-            void Initialize();
+      private:
+        ///
+        /// Initializes this FPSPanel.
+        ///
+        void Initialize();
 
-            SharedPtr<GUILabel> m_fpsTextPanel; ///< The text label that displays the FPS.
-        };
-    }
+        SharedPtr<GUILabel> m_fpsTextPanel; ///< The text label that displays the FPS.
+    };
 }

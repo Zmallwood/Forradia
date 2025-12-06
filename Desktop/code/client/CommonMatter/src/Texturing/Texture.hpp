@@ -4,21 +4,21 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
 #include "Aliases.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// A texture, primarily used for models.
+    ///
+    class Texture
     {
-        ///
-        /// A texture, primarily used for models.
-        ///
-        class Texture
-        {
-          public:
-            String path; ///< The path to the texture.
-        };
-    }
+      public:
+        String path; ///< The path to the texture.
+    };
 }

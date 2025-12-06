@@ -6,63 +6,60 @@
 
 #include "CreatureIndex.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    CreatureIndex::CreatureIndex()
     {
-        CreatureIndex::CreatureIndex()
-        {
-            // Add creatures here with their specific properties.
-            // Note: Creatures not added here will get default properties.
+        // Add creatures here with their specific properties.
+        // Note: Creatures not added here will get default properties.
 
-            AddCreatureEntry("CreatureRedBird", 0.5f, 3.0f);
+        AddCreatureEntry("CreatureRedBird", 0.5f, 3.0f);
+    }
+
+    void CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
+                                         float levitationHeight)
+    {
+        // Add a creature entry to the index.
+
+        m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
+    }
+
+    float CreatureIndex::GetModelScaling(int creatureHash) const
+    {
+        // Check if the creature hash exists in the index.
+
+        if (m_entries.contains(creatureHash))
+        {
+            // If so, return its model scaling.
+
+            return m_entries.at(creatureHash).modelScaling;
         }
 
-        void CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
-                                             float levitationHeight)
-        {
-            // Add a creature entry to the index.
+        // If no entry exists, return the default model scaling.
 
-            m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
+        return 1.0f;
+    }
+
+    float CreatureIndex::GetLevitationHeight(int creatureHash) const
+    {
+        // Check if the creature hash exists in the index.
+
+        if (m_entries.contains(creatureHash))
+        {
+            // If so, return its levitation height.
+
+            return m_entries.at(creatureHash).levitationHeight;
         }
 
-        float CreatureIndex::GetModelScaling(int creatureHash) const
-        {
-            // Check if the creature hash exists in the index.
+        // If no entry exists, return the default levitation height.
 
-            if (m_entries.contains(creatureHash))
-            {
-                // If so, return its model scaling.
+        return 0.0f;
+    }
 
-                return m_entries.at(creatureHash).modelScaling;
-            }
+    bool CreatureIndex::CreatureEntryExists(int creatureHash) const
+    {
+        // Return true if a creature entry exists for a given creature hash.
 
-            // If no entry exists, return the default model scaling.
-
-            return 1.0f;
-        }
-
-        float CreatureIndex::GetLevitationHeight(int creatureHash) const
-        {
-            // Check if the creature hash exists in the index.
-
-            if (m_entries.contains(creatureHash))
-            {
-                // If so, return its levitation height.
-
-                return m_entries.at(creatureHash).levitationHeight;
-            }
-
-            // If no entry exists, return the default levitation height.
-
-            return 0.0f;
-        }
-
-        bool CreatureIndex::CreatureEntryExists(int creatureHash) const
-        {
-            // Return true if a creature entry exists for a given creature hash.
-
-            return m_entries.contains(creatureHash);
-        }
+        return m_entries.contains(creatureHash);
     }
 }

@@ -7,69 +7,65 @@
 #include "Actions.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInteractionMenu.hpp"
+#include "Object.hpp"
+#include "ObjectsStack.hpp"
 #include "Player/PlayerCharacter.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
+#include "Tile.hpp"
+#include "Update/BattleSystem.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
-#include "Tile.hpp"
-#include "ObjectsStack.hpp"
-#include "Object.hpp"
-#include "Update/BattleSystem.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    static std::map<int, Function<void()>> s_timedActions;
+
+    template <>
+    Action GetAction<Hash("ActionStop")>();
+
+    template <>
+    Action GetAction<Hash("ActionForage")>();
+
+    template <>
+    Action GetAction<Hash("ActionChopTree")>();
+
+    template <>
+    Action GetAction<Hash("ActionPickBranch")>();
+
+    template <>
+    Action GetAction<Hash("ActionBuildSimpleShelter")>();
+
+    template <>
+    Action GetAction<Hash("ActionTargetRobot")>();
+
+    template <>
+    Action GetAction<Hash("ActionClaimLand")>();
+
+    template <>
+    Action GetAction<Hash("ActionLayMetalFloor")>();
+
+    template <>
+    Action GetAction<Hash("ActionChipStone")>();
+
+    template <>
+    Action GetAction<Hash("ActionChipStone")>()
     {
-        static std::map<int, Function<void()>> s_timedActions;
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectStoneBoulder")},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-        template <>
-        Action GetAction<Hash("ActionStop")>();
+                    inventory.AddObject("ObjectSmallStones");
 
-        template <>
-        Action GetAction<Hash("ActionForage")>();
+                    _<GUIChatBox>().Print("You chip some stone.");
+                }};
+    }
 
-        template <>
-        Action GetAction<Hash("ActionChopTree")>();
-
-        template <>
-        Action GetAction<Hash("ActionPickBranch")>();
-
-        template <>
-        Action GetAction<Hash("ActionBuildSimpleShelter")>();
-
-        template <>
-        Action GetAction<Hash("ActionTargetRobot")>();
-
-        template <>
-        Action GetAction<Hash("ActionClaimLand")>();
-
-        template <>
-        Action GetAction<Hash("ActionLayMetalFloor")>();
-
-        template <>
-        Action GetAction<Hash("ActionChipStone")>();
-
-        template <>
-        Action GetAction<Hash("ActionChipStone")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {Hash("ObjectStoneBoulder")},
-                    .action = []()
-                    {
-                        auto &inventory{
-                            _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-                        inventory.AddObject("ObjectSmallStones");
-
-                        _<GUIChatBox>().Print("You chip some stone.");
-                    }};
-        }
-
-        template <>
-        Action GetAction<Hash("ActionLayCobbleStone")>()
-        {
-            return {
-                .groundMatches = {},
+    template <>
+    Action GetAction<Hash("ActionLayCobbleStone")>()
+    {
+        return {.groundMatches = {},
                 .objectMatches = {},
                 .action = []()
                 {
@@ -99,13 +95,12 @@ namespace AAK
 
                     _<GUIChatBox>().Print("You lay some cobble stone.");
                 }};
-        }
+    }
 
-        template <>
-        Action GetAction<Hash("ActionLayMetalFloor")>()
-        {
-            return {
-                .groundMatches = {},
+    template <>
+    Action GetAction<Hash("ActionLayMetalFloor")>()
+    {
+        return {.groundMatches = {},
                 .objectMatches = {},
                 .action = []()
                 {
@@ -135,192 +130,188 @@ namespace AAK
 
                     _<GUIChatBox>().Print("You lay some metal floor.");
                 }};
-        }
+    }
 
-        template <>
-        Action GetAction<Hash("ActionPlowLand")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {},
-                    .action = []()
+    template <>
+    Action GetAction<Hash("ActionPlowLand")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
                     {
-                        auto worldArea{_<World>().GetCurrentWorldArea()};
+                        tile->SetGround(Hash("GroundPlowedLand"));
+                    }
 
-                        auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+                    _<GUIChatBox>().Print("You plow the land.");
+                }};
+    }
 
-                        auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+    template <>
+    Action GetAction<Hash("Pick up")>();
 
-                        if (tile)
+    template <>
+    Action GetAction<Hash("Pick up")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        auto objectsStack{tile->GetObjectsStack()};
+
+                        auto object{objectsStack->PopObject()};
+
+                        if (object)
                         {
-                            tile->SetGround(Hash("GroundPlowedLand"));
+                            auto &inventory{
+                                _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                            inventory.AddObject(object->GetType());
                         }
+                    }
+                }};
+    }
 
-                        _<GUIChatBox>().Print("You plow the land.");
-                    }};
-        }
+    template <>
+    Action GetAction<Hash("ActionClaimLand")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        template <>
-        Action GetAction<Hash("Pick up")>();
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
-        template <>
-        Action GetAction<Hash("Pick up")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {},
-                    .action = []()
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
                     {
-                        auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+                        tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
 
-                        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-                        auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
-
-                        if (tile)
+                        for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
                         {
-                            auto objectsStack{tile->GetObjectsStack()};
-
-                            auto object{objectsStack->PopObject()};
-
-                            if (object)
+                            for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3;
+                                 x++)
                             {
-                                auto &inventory{
-                                    _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-                                inventory.AddObject(object->GetType());
+                                worldArea->AddClaimedCoordinate({x, y});
                             }
                         }
-                    }};
-        }
+                    }
 
-        template <>
-        Action GetAction<Hash("ActionClaimLand")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {},
-                    .action = []()
+                    _<GUIChatBox>().Print("You claim land.");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionStop")>()
+    {
+        return {.groundMatches = {Hash("GroundGrass")},
+                .objectMatches = {},
+                .action = []()
+                {
+                    s_timedActions.clear();
+
+                    _<GUIChatBox>().Print("You stopped current action.");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionSitByComputer")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectComputer")},
+                .action = []()
+                {
+                    _<GUIChatBox>().Print("You sit by the computer.");
+
+                    _<GUIChatBox>().EnableInput();
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionChopTree")>()
+    {
+        return {.groundMatches = {Hash("GroundGrass")},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
                     {
-                        auto worldArea{_<World>().GetCurrentWorldArea()};
-
-                        auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
-                        auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
-
-                        if (tile)
+                        if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0)
                         {
-                            tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
-
-                            for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3;
-                                 y++)
-                            {
-                                for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3;
-                                     x++)
-                                {
-                                    worldArea->AddClaimedCoordinate({x, y});
-                                }
-                            }
+                            tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectFirTree");
+                        }
+                        else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0)
+                        {
+                            tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectBirchTree");
                         }
 
-                        _<GUIChatBox>().Print("You claim land.");
-                    }};
-        }
+                        tile->GetObjectsStack()->AddObject("ObjectFelledTree");
+                    }
 
-        template <>
-        Action GetAction<Hash("ActionStop")>()
-        {
-            return {.groundMatches = {Hash("GroundGrass")},
-                    .objectMatches = {},
-                    .action = []()
-                    {
-                        s_timedActions.clear();
+                    _<GUIChatBox>().Print("You chop down a tree.");
+                }};
+    }
 
-                        _<GUIChatBox>().Print("You stopped current action.");
-                    }};
-        }
+    template <>
+    Action GetAction<Hash("ActionForage")>()
+    {
+        return {.groundMatches = {Hash("GroundGrass")},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-        template <>
-        Action GetAction<Hash("ActionSitByComputer")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {Hash("ObjectComputer")},
-                    .action = []()
-                    {
-                        _<GUIChatBox>().Print("You sit by the computer.");
+                    inventory.AddObject("ObjectBlueberries");
 
-                        _<GUIChatBox>().EnableInput();
-                    }};
-        }
+                    _<GUIChatBox>().Print("Foraging... You found some "
+                                          "blueberries!");
 
-        template <>
-        Action GetAction<Hash("ActionChopTree")>()
-        {
-            return {.groundMatches = {Hash("GroundGrass")},
-                    .objectMatches = {},
-                    .action = []()
-                    {
-                        auto worldArea{_<World>().GetCurrentWorldArea()};
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                }};
+    }
 
-                        auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+    template <>
+    Action GetAction<Hash("ActionPickBranch")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                        auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+                    inventory.AddObject("ObjectBranch");
 
-                        if (tile)
-                        {
-                            if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0)
-                            {
-                                tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectFirTree");
-                            }
-                            else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0)
-                            {
-                                tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectBirchTree");
-                            }
+                    _<GUIChatBox>().Print("You picked a branch!");
+                }};
+    }
 
-                            tile->GetObjectsStack()->AddObject("ObjectFelledTree");
-                        }
-
-                        _<GUIChatBox>().Print("You chop down a tree.");
-                    }};
-        }
-
-        template <>
-        Action GetAction<Hash("ActionForage")>()
-        {
-            return {.groundMatches = {Hash("GroundGrass")},
-                    .objectMatches = {},
-                    .action = []()
-                    {
-                        auto &inventory{
-                            _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-                        inventory.AddObject("ObjectBlueberries");
-
-                        _<GUIChatBox>().Print("Foraging... You found some "
-                                              "blueberries!");
-
-                        _<GameplayCore::PlayerCharacter>().AddExperience(10);
-                    }};
-        }
-
-        template <>
-        Action GetAction<Hash("ActionPickBranch")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
-                    .action = []()
-                    {
-                        auto &inventory{
-                            _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
-
-                        inventory.AddObject("ObjectBranch");
-
-                        _<GUIChatBox>().Print("You picked a branch!");
-                    }};
-        }
-
-        template <>
-        Action GetAction<Hash("ActionBuildSimpleShelter")>()
-        {
-            return {
-                .groundMatches = {},
+    template <>
+    Action GetAction<Hash("ActionBuildSimpleShelter")>()
+    {
+        return {.groundMatches = {},
                 .objectMatches = {},
                 .action = []()
                 {
@@ -349,44 +340,43 @@ namespace AAK
                                               "shelter.");
                     }
                 }};
-        }
+    }
 
-        template <>
-        Action GetAction<Hash("ActionTargetRobot")>()
-        {
-            return {.groundMatches = {},
-                    .objectMatches = {},
-                    .action = []()
+    template <>
+    Action GetAction<Hash("ActionTargetRobot")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto robot{_<GUIInteractionMenu>().GetClickedRobot()};
+
+                    if (robot)
                     {
-                        auto robot{_<GUIInteractionMenu>().GetClickedRobot()};
+                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
 
-                        if (robot)
-                        {
-                            _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
+                        _<GUIChatBox>().Print("You start battling a robot.");
+                    }
+                    else
+                    {
+                        _<GUIChatBox>().Print("There is no robot to target "
+                                              "at that location.");
+                    }
+                }};
+    }
 
-                            _<GUIChatBox>().Print("You start battling a robot.");
-                        }
-                        else
-                        {
-                            _<GUIChatBox>().Print("There is no robot to target "
-                                                  "at that location.");
-                        }
-                    }};
-        }
-
-        void UpdateActions()
+    void UpdateActions()
+    {
+        for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
         {
-            for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
+            if (GetTicks() > it->first)
             {
-                if (GetTicks() > it->first)
-                {
-                    it->second();
-                    it = s_timedActions.erase(it);
-                }
-                else
-                {
-                    ++it;
-                }
+                it->second();
+                it = s_timedActions.erase(it);
+            }
+            else
+            {
+                ++it;
             }
         }
     }

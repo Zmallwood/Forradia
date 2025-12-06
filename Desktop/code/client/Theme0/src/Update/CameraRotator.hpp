@@ -6,19 +6,16 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
+    class CameraRotator
     {
-        class CameraRotator
-        {
-          public:
-            void Update();
+      public:
+        void Update();
 
-          private:
-            bool m_isRotating{false};
+      private:
+        bool m_isRotating{false};
 
-            PointF m_mousePositionLastUpdate{-1.0f, -1.0f};
-        };
-    }
+        PointF m_mousePositionLastUpdate{-1.0f, -1.0f};
+    };
 }

@@ -5,22 +5,19 @@
 //
 
 #include "UpdateCameraZoom.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "3D/Camera.hpp"
+#include "Mouse/MouseInput.hpp"
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
+    void UpdateCameraZoom()
     {
-        void UpdateCameraZoom()
-        {
-            // Obtain the mouse wheel delta.
+        // Obtain the mouse wheel delta.
 
-            auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
+        auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
 
-            // Add the mouse wheel delta to the camera zoom amount.
+        // Add the mouse wheel delta to the camera zoom amount.
 
-            _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
-        }
+        _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
     }
 }

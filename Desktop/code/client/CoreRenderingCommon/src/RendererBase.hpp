@@ -6,64 +6,61 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    class ShaderProgram;
+
+    ///
+    /// Base class for all renderers.
+    ///
+    class RendererBase
     {
-        class ShaderProgram;
+      public:
+        ///
+        /// Initialize the renderer with its shader program.
+        ///
+        void Initialize();
+
+      protected:
+        ///
+        /// Gets the vertex shader source code. This is used by Initialize() to create the
+        /// shader program.
+        ///
+        /// @return The vertex shader source code.
+        ///
+        virtual String GetVSSource() const = 0;
 
         ///
-        /// Base class for all renderers.
+        /// Gets the fragment shader source code. This is used by Initialize() to create the
+        /// shader program.
         ///
-        class RendererBase
+        /// @return The fragment shader source code.
+        ///
+        virtual String GetFSSource() const = 0;
+
+        ///
+        /// Can be used to do additional initialization implemented in deriving class.
+        ///
+        virtual void InitializeDerived()
         {
-          public:
-            ///
-            /// Initialize the renderer with its shader program.
-            ///
-            void Initialize();
+        }
 
-          protected:
-            ///
-            /// Gets the vertex shader source code. This is used by Initialize() to create the
-            /// shader program.
-            ///
-            /// @return The vertex shader source code.
-            ///
-            virtual String GetVSSource() const = 0;
+        ///
+        /// Sets up the attribute layout.
+        ///
+        virtual void SetupAttributeLayout() const = 0;
 
-            ///
-            /// Gets the fragment shader source code. This is used by Initialize() to create the
-            /// shader program.
-            ///
-            /// @return The fragment shader source code.
-            ///
-            virtual String GetFSSource() const = 0;
+        ///
+        /// Gets the shader program.
+        ///
+        /// @return
+        ///
+        auto GetShaderProgram() const
+        {
+            return m_shaderProgram;
+        }
 
-            ///
-            /// Can be used to do additional initialization implemented in deriving class.
-            ///
-            virtual void InitializeDerived()
-            {
-            }
-
-            ///
-            /// Sets up the attribute layout.
-            ///
-            virtual void SetupAttributeLayout() const = 0;
-
-            ///
-            /// Gets the shader program.
-            ///
-            /// @return
-            ///
-            auto GetShaderProgram() const
-            {
-                return m_shaderProgram;
-            }
-
-          private:
-            SharedPtr<ShaderProgram> m_shaderProgram; ///< The shader program.
-        };
-    }
+      private:
+        SharedPtr<ShaderProgram> m_shaderProgram; ///< The shader program.
+    };
 }

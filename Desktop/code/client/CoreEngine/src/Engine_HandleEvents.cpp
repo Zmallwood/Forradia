@@ -8,80 +8,77 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void Engine::HandleEvents()
     {
-        void Engine::HandleEvents()
+        // To hold polled events.
+
+        SDL_Event event;
+
+        // While there are events to poll.
+
+        while (SDL_PollEvent(&event))
         {
-            // To hold polled events.
+            // Switch on event type.
 
-            SDL_Event event;
-
-            // While there are events to poll.
-
-            while (SDL_PollEvent(&event))
+            switch (event.type)
             {
-                // Switch on event type.
+            case SDL_QUIT:
 
-                switch (event.type)
-                {
-                case SDL_QUIT:
+                // Stop the engine.
 
-                    // Stop the engine.
+                this->Stop();
 
-                    this->Stop();
+                break;
 
-                    break;
+            case SDL_KEYDOWN:
 
-                case SDL_KEYDOWN:
+                // Register key press.
 
-                    // Register key press.
+                _<KeyboardInput>().RegisterKeyPress(event.key.keysym.sym);
 
-                    _<KeyboardInput>().RegisterKeyPress(event.key.keysym.sym);
+                break;
 
-                    break;
+            case SDL_KEYUP:
 
-                case SDL_KEYUP:
+                // Register key release.
 
-                    // Register key release.
+                _<KeyboardInput>().RegisterKeyRelease(event.key.keysym.sym);
 
-                    _<KeyboardInput>().RegisterKeyRelease(event.key.keysym.sym);
+                break;
 
-                    break;
+            case SDL_TEXTINPUT:
 
-                case SDL_TEXTINPUT:
+                // Register text input.
 
-                    // Register text input.
+                _<KeyboardInput>().AddTextInput(event.text.text);
 
-                    _<KeyboardInput>().AddTextInput(event.text.text);
+                break;
 
-                    break;
+            case SDL_MOUSEBUTTONDOWN:
 
-                case SDL_MOUSEBUTTONDOWN:
+                // Register mouse button press.
 
-                    // Register mouse button press.
+                _<MouseInput>().RegisterMouseButtonDown(event.button.button);
 
-                    _<MouseInput>().RegisterMouseButtonDown(event.button.button);
+                break;
 
-                    break;
+            case SDL_MOUSEBUTTONUP:
 
-                case SDL_MOUSEBUTTONUP:
+                // Register mouse button release.
 
-                    // Register mouse button release.
+                _<MouseInput>().RegisterMouseButtonUp(event.button.button);
 
-                    _<MouseInput>().RegisterMouseButtonUp(event.button.button);
+                break;
 
-                    break;
+            case SDL_MOUSEWHEEL:
 
-                case SDL_MOUSEWHEEL:
+                // Add mouse wheel delta.
 
-                    // Add mouse wheel delta.
+                _<MouseInput>().AddMouseWheelDelta(event.wheel.y);
 
-                    _<MouseInput>().AddMouseWheelDelta(event.wheel.y);
-
-                    break;
-                }
+                break;
             }
         }
     }

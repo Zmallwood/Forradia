@@ -6,42 +6,39 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// The engine class is responsible for initializing, running and stopping
+    /// the game.
+    ///
+    class Engine
     {
+      public:
         ///
-        /// The engine class is responsible for initializing, running and stopping
-        /// the game.
+        /// Initializes the engine.
         ///
-        class Engine
-        {
-          public:
-            ///
-            /// Initializes the engine.
-            ///
-            /// @param gameWindowTitle The title of the game window.
-            /// @param clearColor The color to clear the canvas with.
-            ///
-            void Initialize(StringView gameWindowTitle, Color clearColor) const;
+        /// @param gameWindowTitle The title of the game window.
+        /// @param clearColor The color to clear the canvas with.
+        ///
+        void Initialize(StringView gameWindowTitle, Color clearColor) const;
 
-            ///
-            /// Runs the engine.
-            ///
-            void Run();
+        ///
+        /// Runs the engine.
+        ///
+        void Run();
 
-            ///
-            /// Stops the engine.
-            ///
-            void Stop();
+        ///
+        /// Stops the engine.
+        ///
+        void Stop();
 
-          private:
-            ///
-            /// Polls and handles events.
-            ///
-            void HandleEvents();
+      private:
+        ///
+        /// Polls and handles events.
+        ///
+        void HandleEvents();
 
-            bool m_running{true}; ///< Whether the engine is running.
-        };
-    }
+        bool m_running{true}; ///< Whether the engine is running.
+    };
 }

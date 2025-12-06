@@ -6,15 +6,12 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
+    enum class PlayerModes
     {
-        enum class PlayerModes
-        {
-            Interaction,
+        Interaction,
 
-            Battle
-        };
-    }
+        Battle
+    };
 }

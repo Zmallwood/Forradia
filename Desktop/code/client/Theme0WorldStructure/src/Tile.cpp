@@ -7,31 +7,28 @@
 #include "Tile.hpp"
 #include "ObjectsStack.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    void Tile::Initialize()
     {
-        void Tile::Initialize()
-        {
-            // Initialize the objects stack.
+        // Initialize the objects stack.
 
-            m_objectsStack = std::make_shared<Forradia::Theme0::ObjectsStack>();
-        }
+        m_objectsStack = std::make_shared<Forradia::Theme0::ObjectsStack>();
+    }
 
-        void Tile::SetGround(int groundHash)
-        {
-            // Set the ground type provided as hash.
+    void Tile::SetGround(int groundHash)
+    {
+        // Set the ground type provided as hash.
 
-            m_ground = groundHash;
+        m_ground = groundHash;
 
-            this->SetForceRedraw(true);
-        }
+        this->SetForceRedraw(true);
+    }
 
-        void Tile::SetGround(StringView groundName)
-        {
-            // Set the ground type, provided by name, as hash.
+    void Tile::SetGround(StringView groundName)
+    {
+        // Set the ground type, provided by name, as hash.
 
-            this->SetGround(Hash(groundName));
-        }
+        this->SetGround(Hash(groundName));
     }
 }

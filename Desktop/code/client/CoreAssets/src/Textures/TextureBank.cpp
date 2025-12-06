@@ -6,70 +6,67 @@
 
 #include "TextureBank.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void TextureBank::Initialize()
     {
-        void TextureBank::Initialize()
-        {
-            // Load textures.
+        // Load textures.
 
-            this->LoadTextures();
+        this->LoadTextures();
+    }
+
+    void TextureBank::Cleanup()
+    {
+        // Delete regular textures.
+
+        for (auto entry : m_textureEntries)
+        {
+            glDeleteTextures(1, &entry.second.textureID);
         }
 
-        void TextureBank::Cleanup()
+        // Delete text textures.
+
+        for (auto entry : m_textTextureIDs)
         {
-            // Delete regular textures.
-
-            for (auto entry : m_textureEntries)
-            {
-                glDeleteTextures(1, &entry.second.textureID);
-            }
-
-            // Delete text textures.
-
-            for (auto entry : m_textTextureIDs)
-            {
-                glDeleteTextures(1, &entry.second);
-            }
-
-            // Clear the maps.
-
-            m_textureEntries.clear();
-
-            m_textTextureIDs.clear();
+            glDeleteTextures(1, &entry.second);
         }
 
-        GLuint TextureBank::GetTexture(int imageNameHash) const
+        // Clear the maps.
+
+        m_textureEntries.clear();
+
+        m_textTextureIDs.clear();
+    }
+
+    GLuint TextureBank::GetTexture(int imageNameHash) const
+    {
+        // Check if the texture exists.
+
+        if (m_textureEntries.contains(imageNameHash))
         {
-            // Check if the texture exists.
+            // If it does, return it.
 
-            if (m_textureEntries.contains(imageNameHash))
-            {
-                // If it does, return it.
-
-                return m_textureEntries.at(imageNameHash).textureID;
-            }
-
-            // If it doesn't, return error value.
-
-            return -1;
+            return m_textureEntries.at(imageNameHash).textureID;
         }
 
-        Size TextureBank::GetTextureDimensions(int imageNameHash) const
+        // If it doesn't, return error value.
+
+        return -1;
+    }
+
+    Size TextureBank::GetTextureDimensions(int imageNameHash) const
+    {
+        // Check if the texture exists.
+
+        if (m_textureEntries.contains(imageNameHash))
         {
-            // Check if the texture exists.
+            // If it does, return it.
 
-            if (m_textureEntries.contains(imageNameHash))
-            {
-                // If it does, return it.
-
-                return m_textureEntries.at(imageNameHash).dimensions;
-            }
-
-            // If it doesn't, return error value.
-
-            return {-1, -1};
+            return m_textureEntries.at(imageNameHash).dimensions;
         }
+
+        // If it doesn't, return error value.
+
+        return {-1, -1};
     }
 }

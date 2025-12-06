@@ -8,87 +8,84 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void Color2DRenderer::Cleanup()
     {
-        void Color2DRenderer::Cleanup()
+        // Delete the vertex array objects, index buffer objects and vertex buffer objects.
+
+        for (auto &entry : m_operationsCache)
         {
-            // Delete the vertex array objects, index buffer objects and vertex buffer objects.
+            glDeleteBuffers(1, &entry.second.ibo);
 
-            for (auto &entry : m_operationsCache)
-            {
-                glDeleteBuffers(1, &entry.second.ibo);
+            glDeleteBuffers(1, &entry.second.vbo);
 
-                glDeleteBuffers(1, &entry.second.vbo);
-
-                glDeleteVertexArrays(1, &entry.second.vao);
-            }
-
-            // Clear the operations cache.
-
-            m_operationsCache.clear();
+            glDeleteVertexArrays(1, &entry.second.vao);
         }
 
-        void Color2DRenderer::SetupState() const
-        {
-            // Get the canvas size in pixels.
+        // Clear the operations cache.
 
-            auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
+        m_operationsCache.clear();
+    }
 
-            // Set the viewport to the canvas size.
+    void Color2DRenderer::SetupState() const
+    {
+        // Get the canvas size in pixels.
 
-            glViewport(0, 0, canvasSize.width, canvasSize.height);
+        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-            // Use the shader program.
+        // Set the viewport to the canvas size.
 
-            glUseProgram(GetShaderProgram()->GetProgramID());
+        glViewport(0, 0, canvasSize.width, canvasSize.height);
 
-            // Enable blending and set the blend function.
+        // Use the shader program.
 
-            glEnable(GL_BLEND);
+        glUseProgram(GetShaderProgram()->GetProgramID());
 
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
+        // Enable blending and set the blend function.
 
-        void Color2DRenderer::RestoreState() const
-        {
-            // Unbind the vertex array object, index buffer object and vertex buffer object from the
-            // current shader program.
+        glEnable(GL_BLEND);
 
-            glBindVertexArray(0);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    }
 
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+    void Color2DRenderer::RestoreState() const
+    {
+        // Unbind the vertex array object, index buffer object and vertex buffer object from the
+        // current shader program.
 
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
 
-            // Unuse the shader program.
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-            glUseProgram(0);
-        }
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        void Color2DRenderer::SetupAttributeLayout() const
-        {
-            // Setup the attribute layout for the position.
+        // Unuse the shader program.
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7,
-                                  (void *)(sizeof(float) * 0));
+        glUseProgram(0);
+    }
 
-            glEnableVertexAttribArray(0);
+    void Color2DRenderer::SetupAttributeLayout() const
+    {
+        // Setup the attribute layout for the position.
 
-            // Setup the attribute layout for the color.
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7,
+                              (void *)(sizeof(float) * 0));
 
-            glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7,
-                                  (void *)(sizeof(float) * 3));
+        glEnableVertexAttribArray(0);
 
-            glEnableVertexAttribArray(1);
-        }
+        // Setup the attribute layout for the color.
 
-        bool Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const
-        {
-            // Check if the drawing operation is cached.
+        glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7,
+                              (void *)(sizeof(float) * 3));
 
-            return m_operationsCache.contains(uniqueRenderID);
-        }
+        glEnableVertexAttribArray(1);
+    }
+
+    bool Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const
+    {
+        // Check if the drawing operation is cached.
+
+        return m_operationsCache.contains(uniqueRenderID);
     }
 }

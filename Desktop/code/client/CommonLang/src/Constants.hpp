@@ -4,14 +4,13 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
-    {
-        // Time related constants.
-
-        static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
-    }
+    // Time related constants.
+    static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
 }

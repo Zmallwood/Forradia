@@ -6,32 +6,29 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    class GUIInteractionMenuEntry
     {
-        class GUIInteractionMenuEntry
+      public:
+        GUIInteractionMenuEntry(StringView label, Function<void()> action)
+            : m_label(label), m_action(action)
         {
-          public:
-            GUIInteractionMenuEntry(StringView label, Function<void()> action)
-                : m_label(label), m_action(action)
-            {
-            }
+        }
 
-            auto GetLabel() const
-            {
-                return m_label;
-            }
+        auto GetLabel() const
+        {
+            return m_label;
+        }
 
-            auto GetAction() const
-            {
-                return m_action;
-            }
+        auto GetAction() const
+        {
+            return m_action;
+        }
 
-          private:
-            String m_label;
+      private:
+        String m_label;
 
-            Function<void()> m_action;
-        };
-    }
+        Function<void()> m_action;
+    };
 }

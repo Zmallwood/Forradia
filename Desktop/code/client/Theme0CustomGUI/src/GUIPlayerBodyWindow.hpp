@@ -8,41 +8,38 @@
 
 #include "GUIWindow.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
-    {
-        class GUILabel;
-    }
+    class GUILabel;
+}
 
-    namespace Forradia::Theme0
+namespace Forradia::Theme0
+{
+    class GUIPlayerBodyWindow : public GUIWindow
     {
-        class GUIPlayerBodyWindow : public GUIWindow
+      public:
+        GUIPlayerBodyWindow()
+            : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body")
         {
-          public:
-            GUIPlayerBodyWindow()
-                : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body")
-            {
-                this->Initialize();
-            }
+            this->Initialize();
+        }
 
-          protected:
-            void Initialize();
+      protected:
+        void Initialize();
 
-          private:
-            void SelectBodyPart(int type);
+      private:
+        void SelectBodyPart(int type);
 
-            void UpdateBodyPartInfoLabels();
+        void UpdateBodyPartInfoLabels();
 
-            int m_selectedBodyPart{0};
+        int m_selectedBodyPart{0};
 
-            SharedPtr<GUILabel> m_labelBodyPartName;
+        SharedPtr<GUILabel> m_labelBodyPartName;
 
-            SharedPtr<GUILabel> m_labelBodyPartStrength;
+        SharedPtr<GUILabel> m_labelBodyPartStrength;
 
-            SharedPtr<GUILabel> m_labelBodyPartEnergy;
+        SharedPtr<GUILabel> m_labelBodyPartEnergy;
 
-            SharedPtr<GUILabel> m_labelBodyPartTemperature;
-        };
-    }
+        SharedPtr<GUILabel> m_labelBodyPartTemperature;
+    };
 }

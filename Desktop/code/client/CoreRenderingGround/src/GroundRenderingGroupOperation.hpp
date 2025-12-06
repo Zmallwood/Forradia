@@ -8,14 +8,11 @@
 
 #include "TileDrawGroup.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    class GroundRenderingGroupOperation
     {
-        class GroundRenderingGroupOperation
-        {
-          public:
-            std::map<int, TileDrawGroup> tilesByTexture;
-        };
-    }
+      public:
+        std::map<int, TileDrawGroup> tilesByTexture;
+    };
 }

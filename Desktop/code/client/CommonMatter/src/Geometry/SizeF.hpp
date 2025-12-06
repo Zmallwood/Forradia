@@ -4,21 +4,21 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// Size in 2D space with dimensions of float values.
+    ///
+    class SizeF
     {
-        ///
-        /// Size in 2D space with dimensions of float values.
-        ///
-        class SizeF
-        {
-          public:
-            float width{0.0f}; ///< Width.
+      public:
+        float width{0.0f}; ///< Width.
 
-            float height{0.0f}; ///< Height.
-        };
-    }
+        float height{0.0f}; ///< Height.
+    };
 }

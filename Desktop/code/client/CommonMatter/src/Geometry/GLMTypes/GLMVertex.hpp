@@ -4,25 +4,25 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
 #include <glm/glm.hpp>
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// A vertex used for models using GLM types.
+    ///
+    class GLMVertex
     {
-        ///
-        /// A vertex used for models using GLM types.
-        ///
-        class GLMVertex
-        {
-          public:
-            glm::vec3 position; ///< The position.
+      public:
+        glm::vec3 position; ///< The position.
 
-            glm::vec3 normal; ///< The normal.
+        glm::vec3 normal; ///< The normal.
 
-            glm::vec2 uv; ///< The texture coordinates.
-        };
-    }
+        glm::vec2 uv; ///< The texture coordinates.
+    };
 }

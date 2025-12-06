@@ -6,32 +6,29 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
-    {
-        class Robot;
-    }
+    class Robot;
+}
 
-    namespace Forradia::Theme0::GameplayCore
+namespace Forradia::Theme0::GameplayCore
+{
+    class BattleSystem
     {
-        class BattleSystem
+      public:
+        void Update();
+
+        auto GetTargetedRobot() const
         {
-          public:
-            void Update();
+            return m_targetedRobot;
+        }
 
-            auto GetTargetedRobot() const
-            {
-                return m_targetedRobot;
-            }
+        void SetTargetedRobot(SharedPtr<Robot> value)
+        {
+            m_targetedRobot = value;
+        }
 
-            void SetTargetedRobot(SharedPtr<Robot> value)
-            {
-                m_targetedRobot = value;
-            }
-
-          private:
-            SharedPtr<Robot> m_targetedRobot;
-        };
-    }
+      private:
+        SharedPtr<Robot> m_targetedRobot;
+    };
 }

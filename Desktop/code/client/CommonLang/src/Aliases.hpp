@@ -4,33 +4,31 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Consider take away the AAK namespace as its just clutter. (In progress)
+
 #pragma once
 
-#include "Headers.hpp"
+#include <functional>
+#include <memory>
+#include <string>
+#include <vector>
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
-    {
-        // Convenience text aliases.
+    // Convenience text aliases.
+    using String = std::string;
+    using StringView = std::string_view;
 
-        using String = std::string;
+    // Convenience smart pointer aliases.
+    template <class T>
+    using SharedPtr = std::shared_ptr<T>;
 
-        using StringView = std::string_view;
+    // Convenience data structure aliases.
+    template <class T>
+    using Vector = std::vector<T>;
 
-        // Convenience smart pointer aliases.
-
-        template <class T>
-        using SharedPtr = std::shared_ptr<T>;
-
-        // Convenience data structure aliases.
-
-        template <class T>
-        using Vector = std::vector<T>;
-
-        // Convenience function aliases.
-
-        template <class T>
-        using Function = std::function<T>;
-    }
+    // Convenience function aliases.
+    template <class T>
+    using Function = std::function<T>;
 }

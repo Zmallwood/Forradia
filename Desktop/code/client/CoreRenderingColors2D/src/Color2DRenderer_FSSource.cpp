@@ -6,15 +6,13 @@
 
 #include "Color2DRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String Color2DRenderer::GetFSSource() const
     {
-        String Color2DRenderer::GetFSSource() const
-        {
-            // Return the fragment shader source.
+        // Return the fragment shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 out vec4 FragColor;
@@ -26,6 +24,5 @@ namespace AAK
                     FragColor = ourColor;
                 }
             )";
-        }
     }
 }

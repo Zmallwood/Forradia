@@ -7,28 +7,25 @@
 #include "GUIWellBeingMeter.hpp"
 #include "Player/PlayerCharacter.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    void GUIWellBeingMeter::UpdateDerived()
     {
-        void GUIWellBeingMeter::UpdateDerived()
-        {
-            GUIMeter::UpdateDerived();
+        GUIMeter::UpdateDerived();
 
-            auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
+        auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
 
-            auto health{playerCharacter.GetWellBeing()};
+        auto health{playerCharacter.GetWellBeing()};
 
-            auto maxHealth{playerCharacter.GetMaxWellBeing()};
+        auto maxHealth{playerCharacter.GetMaxWellBeing()};
 
-            auto bounds{this->GetBounds()};
+        auto bounds{this->GetBounds()};
 
-            m_filledPercentage = health / maxHealth;
-        }
+        m_filledPercentage = health / maxHealth;
+    }
 
-        float GUIWellBeingMeter::GetFilledPercentage() const
-        {
-            return m_filledPercentage;
-        }
+    float GUIWellBeingMeter::GetFilledPercentage() const
+    {
+        return m_filledPercentage;
     }
 }

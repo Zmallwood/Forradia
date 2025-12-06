@@ -5,57 +5,54 @@
 //
 
 #include "UpdateMouseActions.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
-#include "SDLDevice.hpp"
+#include "Mouse/MouseInput.hpp"
 #include "Player/PlayerCharacter.hpp"
+#include "SDLDevice.hpp"
+#include "Tile.hpp"
 #include "Update/BattleSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
-#include "Tile.hpp"
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
+    void UpdateMouseActions()
     {
-        void UpdateMouseActions()
+        if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
+            _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
         {
-            if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
-                _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
+            auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
+
+            switch (currentPlayerMode)
             {
-                auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
+            case PlayerModes::Interaction:
 
-                switch (currentPlayerMode)
+                _<GUIInteractionMenu>().BuildMenu();
+
+                _<GUIInteractionMenu>().SetVisible(true);
+
+                _<GUIInteractionMenu>().SetPosition(
+                    GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+                break;
+            case PlayerModes::Battle:
+
+                auto currentWorldArea{_<World>().GetCurrentWorldArea()};
+
+                auto hoveredTile{
+                    currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
+
+                if (hoveredTile)
                 {
-                case PlayerModes::Interaction:
+                    auto robot{hoveredTile->GetRobot()};
 
-                    _<GUIInteractionMenu>().BuildMenu();
-
-                    _<GUIInteractionMenu>().SetVisible(true);
-
-                    _<GUIInteractionMenu>().SetPosition(
-                        GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
-                    break;
-                case PlayerModes::Battle:
-
-                    auto currentWorldArea{_<World>().GetCurrentWorldArea()};
-
-                    auto hoveredTile{
-                        currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
-
-                    if (hoveredTile)
+                    if (robot)
                     {
-                        auto robot{hoveredTile->GetRobot()};
-
-                        if (robot)
-                        {
-                            _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
-                        }
+                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
                     }
-
-                    break;
                 }
+
+                break;
             }
         }
     }

@@ -6,15 +6,13 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String Image2DRenderer::GetVSSource() const
     {
-        String Image2DRenderer::GetVSSource() const
-        {
-            // Return the vertex shader source.
+        // Return the vertex shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 layout (location = 0) in vec3 aPos;
@@ -33,6 +31,5 @@ namespace AAK
                     TexCoord = aTexCoord;
                 }
             )";
-        }
     }
 }

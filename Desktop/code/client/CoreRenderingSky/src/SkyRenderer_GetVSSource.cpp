@@ -6,15 +6,13 @@
 
 #include "SkyRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String SkyRenderer::GetVSSource() const
     {
-        String SkyRenderer::GetVSSource() const
-        {
-            // Return the vertex shader source.
+        // Return the vertex shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 layout (location = 0) in vec3 aPos;
@@ -45,6 +43,5 @@ namespace AAK
                     viewDirection = normalize(aPos);
                 }
             )";
-        }
     }
 }

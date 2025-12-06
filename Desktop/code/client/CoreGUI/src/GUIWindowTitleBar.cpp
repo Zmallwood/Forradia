@@ -6,66 +6,63 @@
 
 #include "GUIWindowTitleBar.hpp"
 #include "GUIButton.hpp"
+#include "GUIWindow.hpp"
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
-#include "GUIWindow.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void GUIWindowTitleBar::Initialize(StringView uniqueName)
     {
-        void GUIWindowTitleBar::Initialize(StringView uniqueName)
-        {
-            // Get the bounds of the parent window.
+        // Get the bounds of the parent window.
 
-            auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-            // Create the close button.
+        // Create the close button.
 
-            AddChildComponent(std::make_shared<GUIButton>(
-                uniqueName.data() + String("CloseButton"),
-                parentWindowBounds.width - ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()),
-                0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), "X",
-                [this] { m_parentWindow.ToggleVisibility(); }));
-        }
+        AddChildComponent(std::make_shared<GUIButton>(
+            uniqueName.data() + String("CloseButton"),
+            parentWindowBounds.width - ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()),
+            0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), "X",
+            [this] { m_parentWindow.ToggleVisibility(); }));
+    }
 
-        void GUIWindowTitleBar::RenderDerived() const
-        {
-            // Call the class, GUIPanel, render derived method.
+    void GUIWindowTitleBar::RenderDerived() const
+    {
+        // Call the class, GUIPanel, render derived method.
 
-            GUIPanel::RenderDerived();
+        GUIPanel::RenderDerived();
 
-            // Get the bounds of the parent window.
+        // Get the bounds of the parent window.
 
-            auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-            // Draw the window title text.
+        // Draw the window title text.
 
-            _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
-                                         parentWindowBounds.x + 0.01f, parentWindowBounds.y + 0.01f,
-                                         FontSizes::_20, false, false,
-                                         Palette::GetColor<Hash("Yellow")>());
-        }
+        _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
+                                     parentWindowBounds.x + 0.01f, parentWindowBounds.y + 0.01f,
+                                     FontSizes::_20, false, false,
+                                     Palette::GetColor<Hash("Yellow")>());
+    }
 
-        RectF GUIWindowTitleBar::GetBounds() const
-        {
-            // Get the bounds of the parent window.
+    RectF GUIWindowTitleBar::GetBounds() const
+    {
+        // Get the bounds of the parent window.
 
-            auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-            // Create the bounds for the title bar.
+        // Create the bounds for the title bar.
 
-            RectF boundsResult;
+        RectF boundsResult;
 
-            boundsResult.x = parentWindowBounds.x;
+        boundsResult.x = parentWindowBounds.x;
 
-            boundsResult.y = parentWindowBounds.y;
+        boundsResult.y = parentWindowBounds.y;
 
-            boundsResult.width = parentWindowBounds.width;
+        boundsResult.width = parentWindowBounds.width;
 
-            boundsResult.height = k_height;
+        boundsResult.height = k_height;
 
-            return boundsResult;
-        }
+        return boundsResult;
     }
 }

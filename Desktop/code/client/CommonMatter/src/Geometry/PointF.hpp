@@ -4,37 +4,37 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// Point in 2D space using dimensions of float type.
+    ///
+    class PointF
     {
+      public:
         ///
-        /// Point in 2D space using dimensions of float type.
+        /// Summing operator for the two points.
         ///
-        class PointF
-        {
-          public:
-            ///
-            /// Summing operator for the two points.
-            ///
-            /// @param other The other PointF to add to this point.
-            /// @return The resulting PointF with the dimensions added separately.
-            ///
-            PointF operator+(const PointF &other) const;
+        /// @param other The other PointF to add to this point.
+        /// @return The resulting PointF with the dimensions added separately.
+        ///
+        PointF operator+(const PointF &other) const;
 
-            ///
-            /// Subtraction operator for the two points.
-            ///
-            /// @param other The other PointF to subtract from this point.
-            /// @return The resulting PointF with the dimensions subtracted separetely.
-            ///
-            PointF operator-(const PointF &other) const;
+        ///
+        /// Subtraction operator for the two points.
+        ///
+        /// @param other The other PointF to subtract from this point.
+        /// @return The resulting PointF with the dimensions subtracted separetely.
+        ///
+        PointF operator-(const PointF &other) const;
 
-            float x{0.0f}; ///< The x dimension.
+        float x{0.0f}; ///< The x dimension.
 
-            float y{0.0f}; ///< The y dimension.
-        };
-    }
+        float y{0.0f}; ///< The y dimension.
+    };
 }

@@ -4,26 +4,26 @@
 // (see LICENSE for details)
 //
 
+// TODO:
+// Nothing
+
 #pragma once
 
 #include "GLMVertex.hpp"
 #include "Texturing/Texture.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// A mesh used primarily for models, using GLM types.
+    ///
+    class GLMMesh
     {
-        ///
-        /// A mesh used primarily for models, using GLM types.
-        ///
-        class GLMMesh
-        {
-          public:
-            Vector<GLMVertex> vertices; ///< The vertices.
+      public:
+        Vector<GLMVertex> vertices; ///< The vertices.
 
-            Vector<unsigned int> indices; ///< The indices.
+        Vector<unsigned int> indices; ///< The indices.
 
-            Vector<Texture> textures; ///< The textures.
-        };
-    }
+        Vector<Texture> textures; ///< The textures.
+    };
 }

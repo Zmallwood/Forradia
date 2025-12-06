@@ -5,49 +5,46 @@
 //
 
 #include "WorldGenerator.hpp"
-#include "WorldGeneratorGround.hpp"
-#include "WorldGeneratorWater.hpp"
-#include "WorldGeneratorObjects.hpp"
 #include "WorldGeneratorEntities.hpp"
+#include "WorldGeneratorGround.hpp"
+#include "WorldGeneratorObjects.hpp"
+#include "WorldGeneratorWater.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    void WorldGenerator::GenerateNewWorld() const
     {
-        void WorldGenerator::GenerateNewWorld() const
-        {
-            // Prepare the world generator for generating a new world.
+        // Prepare the world generator for generating a new world.
 
-            this->Prepare();
+        this->Prepare();
 
-            // Ground.
+        // Ground.
 
-            _<WorldGeneratorGround>().GenerateGroundWithElevation();
+        _<WorldGeneratorGround>().GenerateGroundWithElevation();
 
-            // Water.
+        // Water.
 
-            _<WorldGeneratorWater>().GenerateWater();
+        _<WorldGeneratorWater>().GenerateWater();
 
-            // Objects.
+        // Objects.
 
-            _<WorldGeneratorObjects>().GenerateObjects();
+        _<WorldGeneratorObjects>().GenerateObjects();
 
-            // Entities.
+        // Entities.
 
-            _<WorldGeneratorEntities>().GenerateEntities();
-        }
+        _<WorldGeneratorEntities>().GenerateEntities();
+    }
 
-        void WorldGenerator::Prepare() const
-        {
-            // Prepare all the generators for generating a new world.
+    void WorldGenerator::Prepare() const
+    {
+        // Prepare all the generators for generating a new world.
 
-            _<WorldGeneratorGround>().Prepare();
+        _<WorldGeneratorGround>().Prepare();
 
-            _<WorldGeneratorWater>().Prepare();
+        _<WorldGeneratorWater>().Prepare();
 
-            _<WorldGeneratorObjects>().Prepare();
+        _<WorldGeneratorObjects>().Prepare();
 
-            _<WorldGeneratorEntities>().Prepare();
-        }
+        _<WorldGeneratorEntities>().Prepare();
     }
 }

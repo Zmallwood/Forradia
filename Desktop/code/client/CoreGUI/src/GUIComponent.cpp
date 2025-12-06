@@ -6,114 +6,111 @@
 
 #include "GUIComponent.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
     {
-        SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)
+        // Set this component as the parent of the child component.
+
+        component->SetParentComponent(this);
+
+        // Add the child component to the list of children.
+
+        m_childComponents.push_back(component);
+
+        // Return the added component.
+
+        return component;
+    }
+
+    void GUIComponent::Update()
+    {
+        // Skip update if component is not visible or not enabled.
+
+        if (!m_visible || !m_enabled)
         {
-            // Set this component as the parent of the child component.
-
-            component->SetParentComponent(this);
-
-            // Add the child component to the list of children.
-
-            m_childComponents.push_back(component);
-
-            // Return the added component.
-
-            return component;
+            return;
         }
 
-        void GUIComponent::Update()
+        // Update all child components in reverse order (from last to first).
+
+        for (auto component : std::views::reverse(m_childComponents))
         {
-            // Skip update if component is not visible or not enabled.
-
-            if (!m_visible || !m_enabled)
-            {
-                return;
-            }
-
-            // Update all child components in reverse order (from last to first).
-
-            for (auto component : std::views::reverse(m_childComponents))
-            {
-                component->Update();
-            }
-
-            // Call derived class update method.
-
-            this->UpdateDerived();
+            component->Update();
         }
 
-        void GUIComponent::Render() const
+        // Call derived class update method.
+
+        this->UpdateDerived();
+    }
+
+    void GUIComponent::Render() const
+    {
+        // Skip rendering if component is not visible.
+
+        if (!m_visible)
         {
-            // Skip rendering if component is not visible.
-
-            if (!m_visible)
-            {
-                return;
-            }
-
-            // Render this component's derived class content first.
-
-            this->RenderDerived();
-
-            // Render all child components in order.
-
-            for (auto component : m_childComponents)
-            {
-                component->Render();
-            }
+            return;
         }
 
-        RectF GUIComponent::GetBounds() const
+        // Render this component's derived class content first.
+
+        this->RenderDerived();
+
+        // Render all child components in order.
+
+        for (auto component : m_childComponents)
         {
-            // Start with this component's local bounds.
+            component->Render();
+        }
+    }
 
-            auto boundsResult{m_bounds};
+    RectF GUIComponent::GetBounds() const
+    {
+        // Start with this component's local bounds.
 
-            // If this component has a parent, offset bounds by parent's position.
+        auto boundsResult{m_bounds};
 
-            if (m_parentComponent)
-            {
-                // Get the parent's position in screen coordinates.
+        // If this component has a parent, offset bounds by parent's position.
 
-                auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
+        if (m_parentComponent)
+        {
+            // Get the parent's position in screen coordinates.
 
-                // Offset this component's bounds by the parent's position.
+            auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
 
-                boundsResult.Offset(parentPosition);
-            }
+            // Offset this component's bounds by the parent's position.
 
-            // Return the final bounds in screen coordinates.
-
-            return boundsResult;
+            boundsResult.Offset(parentPosition);
         }
 
-        void GUIComponent::ToggleVisibility()
-        {
-            // Toggle the visibility flag (true becomes false, false becomes true).
+        // Return the final bounds in screen coordinates.
 
-            m_visible = !m_visible;
-        }
+        return boundsResult;
+    }
 
-        void GUIComponent::SetPosition(PointF newPosition)
-        {
-            // Update the x coordinate of the component's bounds.
+    void GUIComponent::ToggleVisibility()
+    {
+        // Toggle the visibility flag (true becomes false, false becomes true).
 
-            m_bounds.x = newPosition.x;
+        m_visible = !m_visible;
+    }
 
-            // Update the y coordinate of the component's bounds.
+    void GUIComponent::SetPosition(PointF newPosition)
+    {
+        // Update the x coordinate of the component's bounds.
 
-            m_bounds.y = newPosition.y;
-        }
+        m_bounds.x = newPosition.x;
 
-        void GUIComponent::SetHeight(float newHeight)
-        {
-            // Update the height of the component's bounds.
+        // Update the y coordinate of the component's bounds.
 
-            m_bounds.height = newHeight;
-        }
+        m_bounds.y = newPosition.y;
+    }
+
+    void GUIComponent::SetHeight(float newHeight)
+    {
+        // Update the height of the component's bounds.
+
+        m_bounds.height = newHeight;
     }
 }

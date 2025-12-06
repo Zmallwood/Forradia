@@ -8,29 +8,26 @@
 #include "CanvasUtilities.hpp"
 #include "Functions.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window)
     {
-        PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window)
-        {
-            // To hold the mouse position in pixels.
+        // To hold the mouse position in pixels.
 
-            int xPx;
+        int xPx;
 
-            int yPx;
+        int yPx;
 
-            // Get the mouse position.
+        // Get the mouse position.
 
-            SDL_GetMouseState(&xPx, &yPx);
+        SDL_GetMouseState(&xPx, &yPx);
 
-            // Get the size of the canvas.
+        // Get the size of the canvas.
 
-            auto canvasSize{GetCanvasSize(window)};
+        auto canvasSize{GetCanvasSize(window)};
 
-            // Calculate the normalized mouse position.
+        // Calculate the normalized mouse position.
 
-            return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
-        }
+        return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
     }
 }

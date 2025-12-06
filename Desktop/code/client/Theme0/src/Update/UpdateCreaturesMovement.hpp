@@ -6,10 +6,7 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0::GameplayCore
 {
-    namespace Forradia::Theme0::GameplayCore
-    {
-        void UpdateCreaturesMovement();
-    }
+    void UpdateCreaturesMovement();
 }

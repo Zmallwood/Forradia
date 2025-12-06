@@ -6,16 +6,13 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    class GameSaving
     {
-        class GameSaving
-        {
-          public:
-            void SaveGame();
+      public:
+        void SaveGame();
 
-            void LoadGame();
-        };
-    }
+        void LoadGame();
+    };
 }

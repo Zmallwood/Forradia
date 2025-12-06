@@ -6,28 +6,25 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    class WorldArea;
+
+    ///
+    /// The WorldGenerator class is responsible for generating a new world.
+    ///
+    class WorldGenerator
     {
-        class WorldArea;
-
+      public:
         ///
-        /// The WorldGenerator class is responsible for generating a new world.
+        /// Generates a new world.
         ///
-        class WorldGenerator
-        {
-          public:
-            ///
-            /// Generates a new world.
-            ///
-            void GenerateNewWorld() const;
+        void GenerateNewWorld() const;
 
-          private:
-            ///
-            /// Prepares the world generator for generating a new world.
-            ///
-            void Prepare() const;
-        };
-    }
+      private:
+        ///
+        /// Prepares the world generator for generating a new world.
+        ///
+        void Prepare() const;
+    };
 }

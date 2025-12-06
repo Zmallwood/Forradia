@@ -6,19 +6,16 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// Holds information about a texture, used by the TextureBank.
+    ///
+    class TextureEntry
     {
-        ///
-        /// Holds information about a texture, used by the TextureBank.
-        ///
-        class TextureEntry
-        {
-          public:
-            GLuint textureID; ///< The texture ID, used by opengl.
+      public:
+        GLuint textureID; ///< The texture ID, used by opengl.
 
-            Size dimensions; ///< The texture width and height.
-        };
-    }
+        Size dimensions; ///< The texture width and height.
+    };
 }

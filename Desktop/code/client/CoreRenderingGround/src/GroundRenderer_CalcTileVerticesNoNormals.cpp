@@ -7,32 +7,30 @@
 #include "GroundRenderer.hpp"
 #include "Theme0Properties.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
+                                                            float tileSize,
+                                                            const Vector<float> &elevations,
+                                                            Vector<Color> colors) const
     {
-        Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
-                                                                float tileSize,
-                                                                const Vector<float> &elevations,
-                                                                Vector<Color> colors) const
-        {
-            // Calculate the x and y coordinates and width and height in opengl space for the tile.
+        // Calculate the x and y coordinates and width and height in opengl space for the tile.
 
-            auto x{xCoordinate * tileSize};
+        auto x{xCoordinate * tileSize};
 
-            auto y{yCoordinate * tileSize};
+        auto y{yCoordinate * tileSize};
 
-            auto width{tileSize};
+        auto width{tileSize};
 
-            auto height{tileSize};
+        auto height{tileSize};
 
-            // Get the elevation height.
+        // Get the elevation height.
 
-            auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
+        auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-            // Return the nine vertices.
+        // Return the nine vertices.
 
-            // clang-format off
+        // clang-format off
 
         return {x, y, elevations.at(0) * elevationHeight,
                 colors.at(0).r, colors.at(0).g, colors.at(0).b, 0.0, 0.0,
@@ -53,7 +51,6 @@ namespace AAK
                 x + width + width, y + height + height, elevations.at(8) * elevationHeight,
                 1.0f, 1.0f, 1.0f, 1.0, 1.0};
 
-            // clang-format on
-        }
+        // clang-format on
     }
 }

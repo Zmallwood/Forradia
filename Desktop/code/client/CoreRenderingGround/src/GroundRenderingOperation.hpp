@@ -8,21 +8,18 @@
 
 #include "TileData.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    ///
+    /// A rendering operation for a ground tile.
+    ///
+    class GroundRenderingOperation
     {
-        ///
-        /// A rendering operation for a ground tile.
-        ///
-        class GroundRenderingOperation
-        {
-          public:
-            GLuint vao; ///< Vertex array object.
+      public:
+        GLuint vao; ///< Vertex array object.
 
-            GLuint ibo; ///< Index buffer object.
+        GLuint ibo; ///< Index buffer object.
 
-            GLuint vbo; ///< Vertex buffer object.
-        };
-    }
+        GLuint vbo; ///< Vertex buffer object.
+    };
 }

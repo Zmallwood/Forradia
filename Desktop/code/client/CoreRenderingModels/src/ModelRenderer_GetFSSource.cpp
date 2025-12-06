@@ -6,15 +6,13 @@
 
 #include "ModelRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String ModelRenderer::GetFSSource() const
     {
-        String ModelRenderer::GetFSSource() const
-        {
-            // Return the fragment shader source.
+        // Return the fragment shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
 
                 out vec4 FragColor;
@@ -56,6 +54,5 @@ namespace AAK
                     FragColor = vec4(result, 1.0);
                 }
             )";
-        }
     }
 }

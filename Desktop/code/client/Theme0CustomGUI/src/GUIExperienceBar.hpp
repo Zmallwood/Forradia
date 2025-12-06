@@ -6,41 +6,37 @@
 
 #pragma once
 
-#include "GUIMeter.hpp"
 #include "Coloring/Palette.hpp"
+#include "GUIMeter.hpp"
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    class GUIExperienceBar : public GUIMeter
     {
-        class GUIExperienceBar : public GUIMeter
+      public:
+        GUIExperienceBar()
+            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, GetFilledColor())
         {
-          public:
-            GUIExperienceBar()
-                : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height,
-                           GetFilledColor())
-            {
-            }
+        }
 
-            auto GetHeight() const
-            {
-                return k_height;
-            }
+        auto GetHeight() const
+        {
+            return k_height;
+        }
 
-          protected:
-            void UpdateDerived() override;
+      protected:
+        void UpdateDerived() override;
 
-            float GetFilledPercentage() const override;
+        float GetFilledPercentage() const override;
 
-            Color GetFilledColor() const
-            {
-                return Palette::GetColor<Hash("Yellow")>();
-            }
+        Color GetFilledColor() const
+        {
+            return Palette::GetColor<Hash("Yellow")>();
+        }
 
-          private:
-            constexpr static float k_height{0.02f};
+      private:
+        constexpr static float k_height{0.02f};
 
-            float m_filledPercentage{0.0f};
-        };
-    }
+        float m_filledPercentage{0.0f};
+    };
 }

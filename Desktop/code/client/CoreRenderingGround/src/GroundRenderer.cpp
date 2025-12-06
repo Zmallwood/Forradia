@@ -5,131 +5,128 @@
 //
 
 #include "GroundRenderer.hpp"
-#include "ShaderProgram.hpp"
 #include "SDLDevice.hpp"
+#include "ShaderProgram.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    void GroundRenderer::Cleanup()
     {
-        void GroundRenderer::Cleanup()
+        // Delete the vertex array objects and buffer objects in the operations cache.
+
+        for (auto &entry : m_operationsCache)
         {
-            // Delete the vertex array objects and buffer objects in the operations cache.
+            glDeleteBuffers(1, &entry.second.ibo);
 
-            for (auto &entry : m_operationsCache)
-            {
-                glDeleteBuffers(1, &entry.second.ibo);
+            glDeleteBuffers(1, &entry.second.vbo);
 
-                glDeleteBuffers(1, &entry.second.vbo);
-
-                glDeleteVertexArrays(1, &entry.second.vao);
-            }
-
-            // Clear the operations cache.
-
-            m_operationsCache.clear();
+            glDeleteVertexArrays(1, &entry.second.vao);
         }
 
-        void GroundRenderer::SetupState() const
-        {
-            // Set up the state for the renderer.
+        // Clear the operations cache.
 
-            glEnable(GL_DEPTH_TEST);
+        m_operationsCache.clear();
+    }
 
-            glEnable(GL_CULL_FACE);
+    void GroundRenderer::SetupState() const
+    {
+        // Set up the state for the renderer.
 
-            glCullFace(GL_BACK);
+        glEnable(GL_DEPTH_TEST);
 
-            glFrontFace(GL_CW);
+        glEnable(GL_CULL_FACE);
 
-            // Get the canvas size and set the viewport.
+        glCullFace(GL_BACK);
 
-            auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
+        glFrontFace(GL_CW);
 
-            glViewport(0, 0, canvasSize.width, canvasSize.height);
+        // Get the canvas size and set the viewport.
 
-            // Use the shader program.
+        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-            glUseProgram(GetShaderProgram()->GetProgramID());
+        glViewport(0, 0, canvasSize.width, canvasSize.height);
 
-            // Enable blending.
+        // Use the shader program.
 
-            glEnable(GL_BLEND);
+        glUseProgram(GetShaderProgram()->GetProgramID());
 
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        }
+        // Enable blending.
 
-        void GroundRenderer::RestoreState() const
-        {
-            // Unbind the vertex array object, vertex buffer object and index buffer object.
+        glEnable(GL_BLEND);
 
-            glBindVertexArray(0);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    }
 
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+    void GroundRenderer::RestoreState() const
+    {
+        // Unbind the vertex array object, vertex buffer object and index buffer object.
 
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
 
-            // Disable depth testing, culling, blending.
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-            glDisable(GL_DEPTH_TEST);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-            glDisable(GL_CULL_FACE);
+        // Disable depth testing, culling, blending.
 
-            glDisable(GL_BLEND);
-        }
+        glDisable(GL_DEPTH_TEST);
 
-        void GroundRenderer::Reset()
-        {
-            // Clean up the renderer.
+        glDisable(GL_CULL_FACE);
 
-            this->Cleanup();
-        }
+        glDisable(GL_BLEND);
+    }
 
-        void GroundRenderer::SetupAttributeLayout() const
-        {
-            // Set up the attribute layout for the vertex shader.
+    void GroundRenderer::Reset()
+    {
+        // Clean up the renderer.
 
-            // Position.
+        this->Cleanup();
+    }
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
-                                  (void *)(sizeof(float) * 0));
+    void GroundRenderer::SetupAttributeLayout() const
+    {
+        // Set up the attribute layout for the vertex shader.
 
-            glEnableVertexAttribArray(0);
+        // Position.
 
-            // Color.
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+                              (void *)(sizeof(float) * 0));
 
-            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
-                                  (void *)(sizeof(float) * 3));
+        glEnableVertexAttribArray(0);
 
-            glEnableVertexAttribArray(1);
+        // Color.
 
-            // Texture coordinates.
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+                              (void *)(sizeof(float) * 3));
 
-            glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
-                                  (void *)(sizeof(float) * 6));
+        glEnableVertexAttribArray(1);
 
-            glEnableVertexAttribArray(2);
+        // Texture coordinates.
 
-            // Normals.
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+                              (void *)(sizeof(float) * 6));
 
-            glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
-                                  (void *)(sizeof(float) * 8));
+        glEnableVertexAttribArray(2);
 
-            glEnableVertexAttribArray(3);
-        }
+        // Normals.
 
-        bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const
-        {
-            // Check if the unique render ID is in the operations cache.
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+                              (void *)(sizeof(float) * 8));
 
-            return m_operationsCache.contains(uniqueRenderID);
-        }
+        glEnableVertexAttribArray(3);
+    }
 
-        void GroundRenderer::InitializeDerived()
-        {
-            // Get the layout location for the uniform MVP matrix.
+    bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const
+    {
+        // Check if the unique render ID is in the operations cache.
 
-            m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
-        }
+        return m_operationsCache.contains(uniqueRenderID);
+    }
+
+    void GroundRenderer::InitializeDerived()
+    {
+        // Get the layout location for the uniform MVP matrix.
+
+        m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
     }
 }

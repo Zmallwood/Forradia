@@ -6,16 +6,13 @@
 
 #pragma once
 
-namespace AAK
+namespace Forradia::Theme0
 {
-    namespace Forradia::Theme0
+    class Action
     {
-        class Action
-        {
-          public:
-            Vector<int> groundMatches;
-            Vector<int> objectMatches;
-            Function<void()> action;
-        };
-    }
+      public:
+        Vector<int> groundMatches;
+        Vector<int> objectMatches;
+        Function<void()> action;
+    };
 }

@@ -6,15 +6,13 @@
 
 #include "GroundRenderer.hpp"
 
-namespace AAK
+namespace Forradia
 {
-    namespace Forradia
+    String GroundRenderer::GetFSSource() const
     {
-        String GroundRenderer::GetFSSource() const
-        {
-            // Return the fragment shader source.
+        // Return the fragment shader source.
 
-            return R"(
+        return R"(
                 #version 330 core
                 
                 out vec4 FragColor;
@@ -45,6 +43,5 @@ namespace AAK
                     FragColor = vec4(result, objectColor.a);
                 }
             )";
-        }
     }
 }
