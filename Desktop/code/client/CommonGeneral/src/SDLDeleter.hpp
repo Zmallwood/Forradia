@@ -7,11 +7,8 @@
 #pragma once
 
 struct SDL_Window;
-
 struct SDL_Renderer;
-
 struct SDL_Texture;
-
 struct SDL_Surface;
 
 typedef struct _TTF_Font TTF_Font;
