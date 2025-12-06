@@ -76,7 +76,7 @@ class IntroScene(IScene):
                 get_kb_inp().any_key_pressed_pick_res()
                 or get_mouse_inp().any_mouse_btn_pressed_pick_res()
             ):
-                get_scene_mngr().go_to_scene("main_menu_scene")
+                get_scene_mngr().go_to_scene("login_scene")
 
         def render_derived():
             get_img_2d_rend().draw_img(
@@ -98,7 +98,7 @@ class IntroScene(IScene):
         self.set_render_derived(render_derived)
 
 
-class MainMenuScene(IScene):
+class LoginScene(IScene):
     def __init__(self):
         IScene.__init__(self)
 
@@ -191,7 +191,7 @@ class PlayScene(IScene):
                 0.1,
                 0.04,
                 "Back",
-                lambda: get_scene_mngr().go_to_scene("main_menu_scene"),
+                lambda: get_scene_mngr().go_to_scene("login_scene"),
             )
 
             self.gui().add_child_comp(btn_quit)
@@ -331,7 +331,7 @@ class MainScene(IScene):
 
 
 intro_scene = IntroScene()
-main_menu_scene = MainMenuScene()
+login_scene = LoginScene()
 play_scene = PlayScene()
 world_gen_scene = WorldGenScene()
 main_scene = MainScene()
@@ -339,7 +339,7 @@ main_scene = MainScene()
 
 def setup_scenes():
     global intro_scene
-    global main_menu_scene
+    global login_scene
     global play_scene
     global world_gen_scene
     global main_scene
@@ -347,7 +347,7 @@ def setup_scenes():
     scene_mngr = get_scene_mngr()
 
     scene_mngr.add_scene("intro_scene", intro_scene)
-    scene_mngr.add_scene("main_menu_scene", main_menu_scene)
+    scene_mngr.add_scene("login_scene", login_scene)
     scene_mngr.add_scene("play_scene", play_scene)
     scene_mngr.add_scene("world_gen_scene", world_gen_scene)
     scene_mngr.add_scene("main_scene", main_scene)
