@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "EnergyComputation.hpp"
 
 namespace Forradia::Theme0::GameplayCore

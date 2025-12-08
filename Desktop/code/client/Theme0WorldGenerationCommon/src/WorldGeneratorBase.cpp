@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldGeneratorBase.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"

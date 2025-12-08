@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Theme0Properties.hpp"
 
 namespace Forradia::Theme0

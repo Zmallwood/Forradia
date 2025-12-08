@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "UpdateMouseMovement.hpp"
 #include "BattleSystem.hpp"
 #include "Mouse/MouseInput.hpp"

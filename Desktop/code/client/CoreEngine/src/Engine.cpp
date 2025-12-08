@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Engine.hpp"
 #include "Color2DRenderer.hpp"
 #include "Cursor.hpp"

@@ -4,19 +4,16 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
-
 #include "GLMVertex.hpp"
 #include "Texturing/Texture.hpp"
 
 namespace Forradia
 {
-    ///
     /// A mesh used primarily for models, using GLM types.
-    ///
     class GLMMesh
     {
       public:

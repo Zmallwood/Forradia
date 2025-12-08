@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUISystemMenu.hpp"
 #include "Color2DRenderer.hpp"
 #include "GUIButton.hpp"

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #include "NumbersUtilities.hpp"
 #include "Constants.hpp"
 
@@ -16,14 +19,12 @@ namespace Forradia
         if (speed)
         {
             // If the movement speed is not zero, invert it and return.
-
             return k_oneSecMillis / speed;
         }
         else
         {
             // If the movement speed is zero, avoid division by zero and return zero directly
             // instead.
-
             return 0.0f;
         }
     }
@@ -31,12 +32,11 @@ namespace Forradia
     int Normalize(int value)
     {
         // Calculate the absolute value.
-
         auto absValue{std::abs(value)};
 
-        auto normalized{0};
-
         // Calculate the normalized value.
+
+        auto normalized{0};
 
         if (value)
         {

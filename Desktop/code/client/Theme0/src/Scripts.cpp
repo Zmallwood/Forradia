@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Scripts.hpp"
 #include "Cursor.hpp"
 #include "Engine.hpp"

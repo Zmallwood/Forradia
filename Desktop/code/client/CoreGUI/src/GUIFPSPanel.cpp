@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIFPSPanel.hpp"
 #include "FPSCounter.hpp"
 #include "GUILabel.hpp"

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "PlayerCharacter.hpp"
 #include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldGenerator.hpp"
 #include "WorldGeneratorEntities.hpp"
 #include "WorldGeneratorGround.hpp"

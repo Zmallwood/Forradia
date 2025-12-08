@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "UpdateKeyboardActions.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"

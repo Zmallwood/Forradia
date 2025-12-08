@@ -4,6 +4,7 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
 // TODO:
 // Consider adding something like m_mindState = "Normal"
 

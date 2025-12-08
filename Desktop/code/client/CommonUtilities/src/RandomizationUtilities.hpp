@@ -4,20 +4,19 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Randomize the seed.
-    ///
     void Randomize();
 
-    ///
     /// Generate a random integer.
     ///
     /// @param upperLimit Upper limit.
     /// @return Random integer.
-    ///
     int GetRandomInt(int upperLimit);
 }

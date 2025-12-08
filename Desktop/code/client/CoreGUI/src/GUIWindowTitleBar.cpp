@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIWindowTitleBar.hpp"
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"

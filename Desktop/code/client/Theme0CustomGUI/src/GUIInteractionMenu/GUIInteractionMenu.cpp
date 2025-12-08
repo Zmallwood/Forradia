@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
 #include "Mouse/MouseInput.hpp"

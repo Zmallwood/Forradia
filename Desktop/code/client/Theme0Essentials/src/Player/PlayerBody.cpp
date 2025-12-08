@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "PlayerBody.hpp"
 #include "PlayerBodyPart.hpp"
 

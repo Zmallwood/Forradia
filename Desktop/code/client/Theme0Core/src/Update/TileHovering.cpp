@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "TileHovering.hpp"
 #include "3D/Camera.hpp"
 #include "Player/PlayerCharacter.hpp"

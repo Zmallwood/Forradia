@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GroundRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"

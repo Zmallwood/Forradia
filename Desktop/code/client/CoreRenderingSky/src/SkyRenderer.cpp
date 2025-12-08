@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "SkyRenderer.hpp"
 #include "GUIChatBox.hpp"
 #include "ShaderProgram.hpp"

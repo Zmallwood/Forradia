@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
 #include "Textures/TextureBank.hpp"

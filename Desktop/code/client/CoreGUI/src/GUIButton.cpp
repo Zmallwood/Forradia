@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIButton.hpp"
 #include "Cursor.hpp"
 #include "Mouse/MouseInput.hpp"

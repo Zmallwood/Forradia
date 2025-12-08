@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIEnergyStatisticsPanel.hpp"
 #include "Energy/EnergyComputation.hpp"
 #include "GUILabel.hpp"

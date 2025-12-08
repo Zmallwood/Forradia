@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldArea.hpp"
 #include "ObjectsStack.hpp"
 #include "Tile.hpp"

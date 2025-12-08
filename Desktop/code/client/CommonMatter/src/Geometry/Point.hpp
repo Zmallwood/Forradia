@@ -4,33 +4,27 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Point in 2D space, using dimensions of int type.
-    ///
     class Point
     {
       public:
-        ///
         /// Equality operator between two Points.
         ///
         /// @param other Other Point to check equality against.
         /// @return True if the two points are equal, otherwise false.
-        ///
         bool operator==(const Point &other) const;
 
-        ///
         /// Less than operator between two Points.
         ///
         /// @param other Other Point to check less than against.
         /// @return True if the current point is less than the other point, otherwise false.
-        ///
         bool operator<(const Point &other) const;
 
         int x{0}; ///< The x dimension.

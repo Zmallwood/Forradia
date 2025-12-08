@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIInventoryWindow.hpp"
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"

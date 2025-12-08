@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldView.hpp"
 #include "Coloring/Palette.hpp"
 #include "Creature.hpp"

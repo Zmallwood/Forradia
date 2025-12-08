@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GameSaving.hpp"
 #include "Creature.hpp"
 #include "GroundRenderer.hpp"

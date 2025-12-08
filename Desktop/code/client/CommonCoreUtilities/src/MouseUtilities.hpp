@@ -4,8 +4,10 @@
 // (see LICENSE for details)
 //
 
-#pragma once
+// Status: Complete.
+// TODO:
 
+#pragma once
 #include "Aliases.hpp"
 #include "Geometry/PointF.hpp"
 
@@ -13,11 +15,9 @@ struct SDL_Window;
 
 namespace Forradia
 {
-    ///
     /// Obtain normalized mouse position.
     ///
     /// @param window Window to get the mouse position for.
     /// @return The normalized mouse position.
-    ///
     PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window);
 }

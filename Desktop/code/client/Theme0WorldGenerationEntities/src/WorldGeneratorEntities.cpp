@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldGeneratorEntities.hpp"
 #include "Creature.hpp"
 #include "ObjectsStack.hpp"

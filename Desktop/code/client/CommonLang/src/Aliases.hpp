@@ -4,11 +4,10 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Consider take away the AAK namespace as its just clutter. (In progress)
 
 #pragma once
-
 #include <functional>
 #include <memory>
 #include <string>

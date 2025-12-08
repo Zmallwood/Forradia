@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Engine.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIExperienceBar.hpp"

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIPlayerBodyWindow.hpp"
 #include "GUIButton.hpp"
 #include "GUILabel.hpp"

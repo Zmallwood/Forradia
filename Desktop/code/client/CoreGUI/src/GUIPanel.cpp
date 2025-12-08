@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
 

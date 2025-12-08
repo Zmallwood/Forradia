@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #include "Camera.hpp"
 #include "Player/PlayerCharacter.hpp"
 #include "SDLDevice.hpp"
@@ -19,11 +22,9 @@ namespace Forradia
         // Compute the view matrix using the camera position and look-at point.
 
         auto cameraPosition{GetPosition()};
-
         auto cameraLookAt{GetLookAt()};
 
         // Return the view matrix.
-
         return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
                            glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
                            glm::vec3(0.0f, 0.0f, -1.0f));
@@ -32,11 +33,9 @@ namespace Forradia
     glm::mat4 Camera::GetProjectionMatrix() const
     {
         // Compute the projection matrix using the aspect ratio.
-
         auto aspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
 
         // Return the projection matrix.
-
         return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
     }
 
@@ -50,13 +49,11 @@ namespace Forradia
         // Calculate the rotation in the X and Y axes.
 
         auto cosRotation{std::cos(m_rotationAngleSideways + M_PI / 2)};
-
         auto sinRotation{std::sin(m_rotationAngleSideways + M_PI / 2)};
 
         // Calculate the vertical rotation.
 
         auto cosVertical{std::cos(-m_rotationAngleVertical)};
-
         auto sinVertical{std::sin(-m_rotationAngleVertical)};
 
         // Apply the distance based on the zoom amount and vertical rotation.
@@ -66,9 +63,7 @@ namespace Forradia
         auto horizontalDistance{cosVertical * m_zoomAmount};
 
         point.x += cosRotation * horizontalDistance;
-
         point.y += sinRotation * horizontalDistance;
-
         point.z += sinVertical * m_zoomAmount;
 
         return point;
@@ -86,28 +81,20 @@ namespace Forradia
         auto worldAreaSize{worldArea->GetSize()};
 
         // Rendered size of a single tile in world units.
-
         auto rendTileSize{_<Theme0::Theme0Properties>().GetTileSize()};
 
         // Player position in tile-space (grid indices).
-
         auto playerPos{_<Theme0::GameplayCore::PlayerCharacter>().GetPosition()};
 
         // Multiplier mapping tile elevation to world Z height.
-
         auto elevHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-        // Elevation at the player's tile. Coordinates are (currently, it would be preferred if
-        // it wasnt) flipped relative to render space (width - x, height - y).
+        // Elevation at the player's tile.
+        auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
-        auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
-
-        // Construct the resulting look-at point in world space. Again, the coordinates are
-        // (currently, it would be preferred if it wasnt) flipped relative to render space
-        // (width - x, height - y).
-
+        // Construct the resulting look-at point in world space.
         Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
-                       playerPos.y * rendTileSize + rendTileSize / 2, playerElev * elevHeight};
+                       playerPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
 
         return lookAt;
     }
@@ -125,7 +112,6 @@ namespace Forradia
     void Camera::AddRotationDeltaSideways(float rotationDeltaSideways)
     {
         // Add the delta to the current rotation amount.
-
         m_rotationAngleSideways += rotationDeltaSideways;
     }
 

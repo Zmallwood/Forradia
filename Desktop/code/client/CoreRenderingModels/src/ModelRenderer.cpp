@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "ModelRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"

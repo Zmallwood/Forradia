@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Creature.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"

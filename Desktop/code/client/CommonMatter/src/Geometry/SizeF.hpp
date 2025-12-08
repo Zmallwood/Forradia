@@ -4,16 +4,14 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Size in 2D space with dimensions of float values.
-    ///
     class SizeF
     {
       public:

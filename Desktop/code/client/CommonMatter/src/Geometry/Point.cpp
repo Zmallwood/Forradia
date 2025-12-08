@@ -4,8 +4,8 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #include "Point.hpp"
 
@@ -14,7 +14,6 @@ namespace Forradia
     bool Point::operator==(const Point &other) const
     {
         // Compare x and y dimensions for this point and the other point.
-
         return other.x == this->x && other.y == this->y;
     }
 

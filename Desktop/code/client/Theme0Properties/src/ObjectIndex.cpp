@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "ObjectIndex.hpp"
 
 namespace Forradia::Theme0

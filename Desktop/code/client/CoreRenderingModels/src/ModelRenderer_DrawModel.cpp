@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Models/Construction/Model.hpp"
 #include "3D/Camera.hpp"
 #include "CreatureIndex.hpp"

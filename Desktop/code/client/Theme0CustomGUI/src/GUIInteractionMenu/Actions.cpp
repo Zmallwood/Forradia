@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Actions.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInteractionMenu.hpp"

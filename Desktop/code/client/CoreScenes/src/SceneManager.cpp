@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "SceneManager.hpp"
 #include "IScene.hpp"
 

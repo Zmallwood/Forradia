@@ -4,13 +4,14 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Holds information about a texture, used by the TextureBank.
-    ///
     class TextureEntry
     {
       public:

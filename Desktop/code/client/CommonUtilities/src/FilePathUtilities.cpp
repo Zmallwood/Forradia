@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #include "FilePathUtilities.hpp"
 
 namespace Forradia
@@ -11,7 +14,6 @@ namespace Forradia
     String GetFileExtension(StringView path)
     {
         // Get the file extension by finding the last dot in the path.
-
         String extension{path.substr(path.find_last_of('.') + 1).data()};
 
         return extension;

@@ -4,55 +4,44 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
+// TODO:
+
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Sets up the objects related to SDL.
-    ///
     class SDLDevice
     {
       public:
-        ///
         /// Sets up SDL and OpenGL.
         ///
         /// @param gameWindowTitle The title of the game window.
         /// @param clearColor The color to clear the canvas with.
-        ///
         void Initialize(StringView gameWindowTitle, Color clearColor);
 
-        ///
         /// Clears the canvas.
-        ///
         void ClearCanvas() const;
 
-        ///
         /// Presents the canvas.
-        ///
         void PresentCanvas() const;
 
-        ///
         /// Returns the SDL window object.
         ///
         /// @return The SDL window object.
-        ///
         auto GetWindow() const
         {
             return m_window;
         }
 
       private:
-        ///
         /// Sets up the SDL window.
-        ///
         void SetupSDLWindow();
 
-        ///
         /// Returns the size of the screen.
         ///
         /// @return The size of the screen.
-        ///
         Size GetScreenSize() const;
 
         constexpr static Uint32 k_windowFlags{

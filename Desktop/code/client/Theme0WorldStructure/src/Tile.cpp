@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Tile.hpp"
 #include "ObjectsStack.hpp"
 

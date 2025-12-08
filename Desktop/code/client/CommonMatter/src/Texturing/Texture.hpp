@@ -4,18 +4,15 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
-
 #include "Aliases.hpp"
 
 namespace Forradia
 {
-    ///
     /// A texture, primarily used for models.
-    ///
     class Texture
     {
       public:

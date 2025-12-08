@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #pragma once
 
 #include "Color2DRenderingOperation.hpp"

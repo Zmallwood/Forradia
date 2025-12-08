@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"

@@ -4,18 +4,15 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
-
 #include <glm/glm.hpp>
 
 namespace Forradia
 {
-    ///
     /// A vertex used for models using GLM types.
-    ///
     class GLMVertex
     {
       public:

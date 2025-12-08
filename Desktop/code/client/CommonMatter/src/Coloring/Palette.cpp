@@ -4,15 +4,15 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #include "Palette.hpp"
 #include "Hash.hpp"
 
 namespace Forradia::Palette
 {
-    // Define a palette of colors for the application.
+    // Define a palette of colors for the game.
 
     template <>
     Color GetColor<Hash("Black")>()

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIExperienceBar.hpp"
 #include "Math/ExperienceCalculations.hpp"
 #include "Player/PlayerCharacter.hpp"

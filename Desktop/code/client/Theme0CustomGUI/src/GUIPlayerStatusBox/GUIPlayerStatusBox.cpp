@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUIPlayerStatusBox.hpp"
 #include "GUILabel.hpp"
 #include "GUIWellBeingMeter.hpp"

@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "BattleSystem.hpp"
 #include "GUIChatBox.hpp"
 #include "Player/PlayerCharacter.hpp"

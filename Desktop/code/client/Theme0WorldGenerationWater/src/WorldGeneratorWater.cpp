@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "WorldGeneratorWater.hpp"
 
 #include "WorldArea.hpp"

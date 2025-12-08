@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "HashCodes.hpp"
 
 namespace Forradia::Theme0

@@ -4,8 +4,8 @@
 // (see LICENSE for details)
 //
 
+// Status: Complete.
 // TODO:
-// Nothing
 
 #pragma once
 
@@ -13,17 +13,13 @@ struct SDL_Color;
 
 namespace Forradia
 {
-    ///
     /// A RGBA color with components defined with float values.
-    ///
     class Color
     {
       public:
-        ///
         /// Convert this color to a corresponding SDL_Color object.
         ///
         /// @return Corresponding SDL_Color object.
-        ///
         SDL_Color ToSDLColor() const;
 
         float r{0.0f}; ///< Red.

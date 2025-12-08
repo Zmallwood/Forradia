@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "GUILabel.hpp"
 #include "TextRenderer.hpp"
 

@@ -4,19 +4,19 @@
 // (see LICENSE for details)
 //
 
-#pragma once
+// Status: Complete.
+// TODO:
 
+#pragma once
 #include "Aliases.hpp"
 
 namespace Forradia
 {
-    ///
     /// Replace all instances of a character in a string with another character.
     ///
     /// @param text String to replace characters in.
     /// @param replace Character to replace.
     /// @param replaceWith Character to replace with.
     /// @return Replaced string.
-    ///
     String Replace(StringView text, char replace, char replaceWith);
 }

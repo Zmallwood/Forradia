@@ -4,6 +4,9 @@
 // (see LICENSE for details)
 //
 
+// Status: Incomplete.
+// TODO:
+
 #include "UpdateCreaturesMovement.hpp"
 #include "Creature.hpp"
 #include "NumbersUtilities.hpp"
