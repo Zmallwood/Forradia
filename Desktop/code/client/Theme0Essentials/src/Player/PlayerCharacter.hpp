@@ -64,6 +64,11 @@ namespace Forradia::Theme0::GameplayCore
             return m_name;
         }
 
+        void SetPosition(Point value)
+        {
+            m_position = value;
+        }
+
         ///
         /// Gets the position of the player.
         ///
