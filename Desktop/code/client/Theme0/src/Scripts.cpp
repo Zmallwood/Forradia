@@ -29,7 +29,6 @@
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
-#include "Update/BattleSystem.hpp"
 #include "Update/CameraRotator.hpp"
 #include "Update/TileHovering.hpp"
 #include "Update/UpdateCameraZoom.hpp"
@@ -169,9 +168,6 @@ namespace Forradia::Theme0
         py::class_<Theme0::GameplayCore::TileHovering>(m, "TileHovering")
             .def("update", &Theme0::GameplayCore::TileHovering::Update);
 
-        py::class_<Theme0::GameplayCore::BattleSystem>(m, "BattleSystem")
-            .def("update", &Theme0::GameplayCore::BattleSystem::Update);
-
         py::class_<Theme0::GameplayCore::CameraRotator>(m, "CameraRotator")
             .def("update", &Theme0::GameplayCore::CameraRotator::Update);
 
@@ -292,11 +288,6 @@ namespace Forradia::Theme0
         m.def(
             "get_tl_hovering", []() -> Theme0::GameplayCore::TileHovering &
             { return _<Theme0::GameplayCore::TileHovering>(); },
-            py::return_value_policy::reference);
-
-        m.def(
-            "get_battle_system", []() -> Theme0::GameplayCore::BattleSystem &
-            { return _<Theme0::GameplayCore::BattleSystem>(); },
             py::return_value_policy::reference);
 
         m.def(
