@@ -131,13 +131,6 @@ namespace Forradia::Theme0
                 }
             }
         }
-
-        auto robot{tile->GetRobot()};
-
-        if (robot)
-        {
-            m_entries.push_back({"Battle robot", GetAction<Hash("ActionTargetRobot")>().action});
-        }
     }
 
     void GUIInteractionMenu::UpdateDerived()

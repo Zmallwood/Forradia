@@ -39,9 +39,6 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionBuildSimpleShelter")>();
 
     template <>
-    Action GetAction<Hash("ActionTargetRobot")>();
-
-    template <>
     Action GetAction<Hash("ActionClaimLand")>();
 
     template <>
@@ -341,29 +338,6 @@ namespace Forradia::Theme0
                                               " more branches to "
                                               "build a simple "
                                               "shelter.");
-                    }
-                }};
-    }
-
-    template <>
-    Action GetAction<Hash("ActionTargetRobot")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
-                    auto robot{_<GUIInteractionMenu>().GetClickedRobot()};
-
-                    if (robot)
-                    {
-                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
-
-                        _<GUIChatBox>().Print("You start battling a robot.");
-                    }
-                    else
-                    {
-                        _<GUIChatBox>().Print("There is no robot to target "
-                                              "at that location.");
                     }
                 }};
     }
