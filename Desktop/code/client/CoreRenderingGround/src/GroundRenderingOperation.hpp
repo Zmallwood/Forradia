@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #pragma once
@@ -13,9 +13,7 @@
 
 namespace Forradia
 {
-    ///
     /// A rendering operation for a ground tile.
-    ///
     class GroundRenderingOperation
     {
       public:

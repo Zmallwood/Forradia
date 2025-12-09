@@ -6,6 +6,7 @@
 
 // Status: Incomplete.
 // TODO:
+// - Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
 
@@ -14,18 +15,15 @@ namespace Forradia
     void SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation)
     {
         // Generate the sky dome mesh if not already initialized.
-
         if (!m_initialized)
         {
             this->GenerateSkyDome();
         }
 
         // Set up the state for the renderer.
-
         this->SetupState();
 
         // Bind the vertex array object.
-
         glBindVertexArray(m_vao);
 
         // Calculate the MVP matrix.
@@ -84,23 +82,18 @@ namespace Forradia
         auto mvpMatrix{projectionMatrix * viewMatrixRotationOnly * modelMatrix};
 
         // Upload the MVP matrix to the shader.
-
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
         // Upload the sun direction to the shader.
-
         glUniform3fv(m_layoutLocationSunDirection, 1, &sunDirection[0]);
 
         // Upload the sun elevation to the shader.
-
         glUniform1f(m_layoutLocationSunElevation, sunElevation);
 
         // Draw the sky dome.
-
         glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 
         // Restore the state.
-
         this->RestoreState();
     }
 }

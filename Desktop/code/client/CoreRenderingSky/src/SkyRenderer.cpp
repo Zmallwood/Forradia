@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #include "SkyRenderer.hpp"
@@ -35,9 +35,7 @@ namespace Forradia
         // Reset the object variables.
 
         m_vao = 0;
-
         m_ibo = 0;
-
         m_vbo = 0;
 
         // Reset the index count and initialized flag.
@@ -56,7 +54,6 @@ namespace Forradia
         glViewport(0, 0, canvasSize.width, canvasSize.height);
 
         // Use the shader program.
-
         glUseProgram(GetShaderProgram()->GetProgramID());
 
         // Enable depth testing with LEQUAL.
@@ -64,16 +61,13 @@ namespace Forradia
         // so they will render behind other geometry but fill empty space.
 
         glEnable(GL_DEPTH_TEST);
-
         glDepthFunc(GL_LEQUAL);
 
         // Disable depth writing so the sky doesn't occlude other objects.
-
         glDepthMask(GL_FALSE);
 
         // Disable face culling entirely to ensure all triangles render.
         // Since we're viewing from inside the dome, we need to see all faces.
-
         glDisable(GL_CULL_FACE);
     }
 
@@ -82,17 +76,13 @@ namespace Forradia
         // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
-
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
         // Restore depth writing.
-
         glDepthMask(GL_TRUE);
 
         // Disable depth testing.
-
         glDisable(GL_DEPTH_TEST);
     }
 
@@ -119,12 +109,10 @@ namespace Forradia
             glGetUniformLocation(GetShaderProgram()->GetProgramID(), "sunElevation");
 
         // Check if uniform locations are valid (should not be -1).
-
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
             m_layoutLocationSunElevation == -1)
         {
             // Let the player know that the shader might have compilation errors.
-
             _<GUIChatBox>().Print(
                 "Uniform locations not found - shader might have compilation errors.");
         }

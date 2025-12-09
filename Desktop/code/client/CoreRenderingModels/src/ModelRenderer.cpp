@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #include "ModelRenderer.hpp"
@@ -15,33 +15,23 @@ namespace Forradia
 {
     void ModelRenderer::Cleanup()
     {
-        // Delete the buffer objects and vertex array objects.
-
+        // For each entry in the operations cache.
         for (auto &entry : m_operationsCache)
         {
+            // Delete the buffer objects and vertex array objects.
+
             glDeleteBuffers(1, &entry.second.ibo);
-
             glDeleteBuffers(1, &entry.second.vbo);
-
             glDeleteVertexArrays(1, &entry.second.vao);
         }
-
         // Clear the operations cache.
-
         m_operationsCache.clear();
     }
 
     void ModelRenderer::SetupState() const
     {
-        // Setup the state for the renderer.
-
+        // Enable depth testing.
         glEnable(GL_DEPTH_TEST);
-
-        glEnable(GL_CULL_FACE);
-
-        glCullFace(GL_FRONT);
-
-        glFrontFace(GL_CCW);
 
         // Get the canvas size and set the viewport.
 
@@ -50,15 +40,12 @@ namespace Forradia
         glViewport(0, 0, canvasSize.width, canvasSize.height);
 
         // Use the shader program.
-
         glUseProgram(GetShaderProgram()->GetProgramID());
 
         // Enable blending.
 
         glEnable(GL_BLEND);
-
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
@@ -67,13 +54,10 @@ namespace Forradia
         // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
-
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
         // Disable depth testing.
-
         glDisable(GL_DEPTH_TEST);
     }
 
@@ -110,7 +94,6 @@ namespace Forradia
         // Note: For this renderer the modelNameHash can be used as a key since what changes
         // between different rendering operations is the model matrix, not the vertex data
         // (which is the case for the other renderers).
-
         return m_operationsCache.contains(modelNameHash);
     }
 
@@ -119,17 +102,14 @@ namespace Forradia
         // Obtain the layout location for the uniform matrices.
 
         // Projection matrix.
-
         m_layoutLocationProjectionMatrix =
             glGetUniformLocation(GetShaderProgram()->GetProgramID(), "projection");
 
         // View matrix.
-
         m_layoutLocationViewMatrix =
             glGetUniformLocation(GetShaderProgram()->GetProgramID(), "view");
 
         // Model matrix.
-
         m_layoutLocationModelMatrix =
             glGetUniformLocation(GetShaderProgram()->GetProgramID(), "model");
     }

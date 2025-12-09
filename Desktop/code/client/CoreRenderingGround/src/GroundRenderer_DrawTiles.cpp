@@ -6,6 +6,7 @@
 
 // Status: Incomplete.
 // TODO:
+// - Consider adding more comments.
 
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
@@ -15,12 +16,6 @@ namespace Forradia
 {
     void GroundRenderer::DrawTiles(const Vector<TileData> &tiles)
     {
-        // TODO: Set viewport and configure blending etc. outside the per-tile-loop as settings
-        // on every tile draw is inefficient.
-
-        // To be filled with the vertex array object, index buffer object and vertex buffer
-        // object.
-
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
 
         bool forceUpdate{false};
@@ -72,17 +67,13 @@ namespace Forradia
                 // object.
 
                 glGenVertexArrays(1, &group.vao);
-
                 glGenBuffers(1, &group.vbo);
-
                 glGenBuffers(1, &group.ibo);
 
                 // Bind them as well.
 
                 glBindVertexArray(group.vao);
-
                 glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
-
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, group.ibo);
 
                 unsigned short vertexOffset{0};
@@ -92,16 +83,14 @@ namespace Forradia
 
                 for (auto tile : tileData)
                 {
-                    auto xCoordinate = tile.xCoordinate;
+                    auto xCoordinate{tile.xCoordinate};
+                    auto yCoordinate{tile.yCoordinate};
 
-                    auto yCoordinate = tile.yCoordinate;
+                    auto tileSize{tile.tileSize};
 
-                    auto tileSize = tile.tileSize;
-
-                    auto elevations = tile.elevations;
+                    auto elevations{tile.elevations};
 
                     // Calculate the vertices without normals.
-
                     auto verticesNoNormals{this->CalcTileVerticesNoNormals(
                         xCoordinate, yCoordinate, tileSize, elevations,
                         {tile.color00, tile.color10, tile.color11, tile.color01})};
@@ -109,14 +98,10 @@ namespace Forradia
                     // Define the number of vertices and indices.
 
                     auto verticesCount{4};
-
                     auto indicesCount{6};
 
                     // Calculate the vertices with normals.
-
                     auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
-
-                    // Get the vertices as a float array.
 
                     // Add vertices to the combined buffer.
                     combinedVertices.insert(combinedVertices.end(), verticesVector.begin(),
@@ -133,7 +118,6 @@ namespace Forradia
                     combinedIndices.push_back(vertexOffset + 3);
 
                     // Add to the vertex offset.
-
                     vertexOffset += 4;
                 }
 
@@ -171,15 +155,12 @@ namespace Forradia
         // Calculate the MVP matrix.
 
         auto modelMatrix{glm::mat4(1.0f)};
-
         auto viewMatrix{_<Camera>().GetViewMatrix()};
-
         auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
 
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
-
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
         for (auto &entry : groupOperation.tilesByTexture)
@@ -194,19 +175,15 @@ namespace Forradia
             auto group = entry.second;
 
             // Get the texture ID and bind it.
-
             auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
 
             glBindTexture(GL_TEXTURE_2D, textureID);
 
             glBindVertexArray(group.vao);
-
             glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
-
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, group.ibo);
 
             // Draw the tiles.
-
             glDrawElements(GL_TRIANGLES, group.combinedIndicesCount, GL_UNSIGNED_SHORT, nullptr);
         }
     }
