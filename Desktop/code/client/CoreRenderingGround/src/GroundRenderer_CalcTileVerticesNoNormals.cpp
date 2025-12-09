@@ -20,11 +20,8 @@ namespace Forradia
         // Calculate the x and y coordinates and width and height in opengl space for the tile.
 
         auto x{xCoordinate * tileSize};
-
         auto y{yCoordinate * tileSize};
-
         auto width{tileSize};
-
         auto height{tileSize};
 
         // Get the elevation height.

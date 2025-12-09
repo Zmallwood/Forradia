@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #include "Color2DRenderer.hpp"
@@ -15,40 +15,33 @@ namespace Forradia
 {
     void Color2DRenderer::Cleanup()
     {
-        // Delete the vertex array objects, index buffer objects and vertex buffer objects.
-
         for (auto &entry : m_operationsCache)
         {
+            // Delete the vertex array objects, index buffer objects and vertex buffer objects.
+    
             glDeleteBuffers(1, &entry.second.ibo);
-
             glDeleteBuffers(1, &entry.second.vbo);
-
             glDeleteVertexArrays(1, &entry.second.vao);
         }
 
         // Clear the operations cache.
-
         m_operationsCache.clear();
     }
 
     void Color2DRenderer::SetupState() const
     {
         // Get the canvas size in pixels.
-
         auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
         // Set the viewport to the canvas size.
-
         glViewport(0, 0, canvasSize.width, canvasSize.height);
 
         // Use the shader program.
-
         glUseProgram(GetShaderProgram()->GetProgramID());
 
         // Enable blending and set the blend function.
 
         glEnable(GL_BLEND);
-
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
@@ -58,13 +51,10 @@ namespace Forradia
         // current shader program.
 
         glBindVertexArray(0);
-
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
         // Unuse the shader program.
-
         glUseProgram(0);
     }
 
@@ -88,7 +78,6 @@ namespace Forradia
     bool Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const
     {
         // Check if the drawing operation is cached.
-
         return m_operationsCache.contains(uniqueRenderID);
     }
 }

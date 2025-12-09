@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #include "Image2DRenderer.hpp"

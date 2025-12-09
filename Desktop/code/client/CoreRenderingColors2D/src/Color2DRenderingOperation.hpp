@@ -4,16 +4,14 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// A rendering operation for colors in 2D.
-    ///
     class Color2DRenderingOperation
     {
       public:

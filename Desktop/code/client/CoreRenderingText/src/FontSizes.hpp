@@ -4,16 +4,14 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #pragma once
 
 namespace Forradia
 {
-    ///
     /// Available font sizes.
-    ///
     enum struct FontSizes
     {
         _20 = 20, ///< Size 20.
