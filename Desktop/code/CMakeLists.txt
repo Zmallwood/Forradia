@@ -39,4 +39,6 @@ add_subdirectory(./client/Theme0CustomGUI/)
 add_subdirectory(./client/Theme0/)
 add_subdirectory(./client/Theme0Scenes/)
 
+add_subdirectory(./map_editor/)
+
 install(TARGETS Forradia RUNTIME DESTINATION bin)
