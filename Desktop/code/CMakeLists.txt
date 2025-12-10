@@ -37,5 +37,6 @@ add_subdirectory(./client/CoreEngine/)
 add_subdirectory(./client/Theme0Core/)
 add_subdirectory(./client/Theme0CustomGUI/)
 add_subdirectory(./client/Theme0/)
+add_subdirectory(./client/Theme0Scenes/)
 
 install(TARGETS Forradia RUNTIME DESTINATION bin)

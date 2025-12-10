@@ -659,6 +659,17 @@ class Dashboard(ctk.CTk):
             self.script_dir,
         )
 
+        create_app_button(
+            app_frame,
+            "H4. Theme 0 Scenes",
+            "cursor",
+            "/home/andreas/code/git/Forradia/Theme0Scenes.code-workspace",
+            "icons/DefaultButton.png",
+            3,
+            0,
+            self.script_dir,
+        )
+
     def create_area_i(self):
         center_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
         center_frame.grid(row=9, column=0, sticky="nsew")
