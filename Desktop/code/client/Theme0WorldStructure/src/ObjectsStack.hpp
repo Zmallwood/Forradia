@@ -4,7 +4,7 @@
 // (see LICENSE for details)
 //
 
-// Status: Incomplete.
+// Status: Complete.
 // TODO:
 
 #pragma once
@@ -13,58 +13,42 @@ namespace Forradia::Theme0
 {
     class Object;
 
-    ///
     /// A stack of objects, primarily a component of a tile.
-    ///
     class ObjectsStack
     {
       public:
-        ///
         /// Delete all objects in the stack.
-        ///
         void ClearObjects();
 
-        ///
         /// Add new object to the stack.
         ///
         /// @param objectName The object name.
-        ///
         void AddObject(StringView objectName);
 
-        ///
         /// Remove one object of a specific type from the stack.
         ///
         /// @param objectTypeName The object type by name.
-        ///
         void RemoveOneOfObjectOfType(StringView objectTypeName);
 
-        ///
         /// Gets the number of objects in the stack.
         ///
         /// @return The number of objects in the stack.
-        ///
         int GetSize() const;
 
-        ///
         /// Pop one object from the stack.
         ///
         /// @return The object popped from the stack.
-        ///
         SharedPtr<Object> PopObject();
 
-        ///
         /// Count the number of objects of a specific type in the stack.
         ///
         /// @param objectTypeName The object type by name.
         /// @return The number of objects of the specified type in the stack.
-        ///
         int CountHasObject(StringView objectTypeName) const;
 
-        ///
         /// Gets the collection of objects in the stack.
         ///
         /// @return The collection of objects in the stack.
-        ///
         auto GetObjects() const
         {
             return m_objects;
