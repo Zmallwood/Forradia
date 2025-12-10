@@ -335,6 +335,9 @@ namespace Forradia::Theme0::GameplayCore
                     }
                 }
 
+                //ground = Hash("GroundWater");
+                
+
                 if (ground == Hash("GroundWater"))
                 {
                     auto waterDepth{tile->GetWaterDepth()};
@@ -363,124 +366,11 @@ namespace Forradia::Theme0::GameplayCore
 
                 tile->SetForceRedraw(false);
 
+                ground = Hash("GroundGrass");
+
                 tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
                                  xCoordinate, yCoordinate, rendTileSize, elevations, forceRedraw,
                                  color00, color10, color11, color01});
-
-                auto riverDirection1{tile->GetRiverDirection1()};
-
-                auto riverDirection2{tile->GetRiverDirection2()};
-
-                auto elevationsRiver1{elevations};
-                auto elevationsRiver2{elevations};
-
-                for (auto &elevation : elevationsRiver1)
-                {
-                    elevation += 0.03f;
-                }
-
-                for (auto &elevation : elevationsRiver2)
-                {
-                    elevation += 2 * 0.03f;
-                }
-
-                switch (riverDirection1)
-                {
-                case Forradia::Theme0::Directions::North:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorth"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::East:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverEast"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::South:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouth"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::West:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverWest"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::NorthWest:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthWest"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::NorthEast:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthEast"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::SouthWest:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthWest"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver1, false});
-                    break;
-                case Forradia::Theme0::Directions::SouthEast:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthEast"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver1, false});
-                    break;
-                default:
-                    rivers1.push_back({m_renderIDsRivers1.at(xCoordinate).at(yCoordinate), 0,
-                                       xCoordinate, yCoordinate, rendTileSize, elevationsRiver1,
-                                       false});
-                    break;
-                }
-
-                switch (riverDirection2)
-                {
-                case Forradia::Theme0::Directions::North:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorth"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::East:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverEast"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::South:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouth"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::West:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverWest"), xCoordinate, yCoordinate, rendTileSize,
-                                       elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::NorthWest:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthWest"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::NorthEast:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverNorthEast"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::SouthWest:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthWest"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver2, false});
-                    break;
-                case Forradia::Theme0::Directions::SouthEast:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate),
-                                       Hash("RiverSouthEast"), xCoordinate, yCoordinate,
-                                       rendTileSize, elevationsRiver2, false});
-                    break;
-                default:
-                    rivers2.push_back({m_renderIDsRivers2.at(xCoordinate).at(yCoordinate), 0,
-                                       xCoordinate, yCoordinate, rendTileSize, elevationsRiver2,
-                                       false});
-                    break;
-                }
             }};
 
         auto fnIterationAllExceptGround{
@@ -683,17 +573,17 @@ namespace Forradia::Theme0::GameplayCore
             // {
             //     std::cout << "rivers1" << std::endl;
             // }
-            _<GroundRenderer>().DrawTiles(rivers1);
+            //_<GroundRenderer>().DrawTiles(rivers1);
             // if (!rivers2.empty())
             // {
             //     std::cout << "rivers2" << std::endl;
             // }
-            _<GroundRenderer>().DrawTiles(rivers2);
+            //_<GroundRenderer>().DrawTiles(rivers2);
         }
 
         tiles.clear();
-        rivers1.clear();
-        rivers2.clear();
+        //rivers1.clear();
+        //rivers2.clear();
 
         _<GroundRenderer>().SetupState();
 

@@ -14,6 +14,10 @@
 #include "GUISystemMenu.hpp"
 #include "Keyboard/KeyboardInput.hpp"
 #include "Player/PlayerCharacter.hpp"
+#include "World.hpp"
+#include "WorldArea.hpp"
+#include "Tile.hpp"
+#include "Update/TileHovering.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
@@ -58,6 +62,18 @@ namespace Forradia::Theme0::GameplayCore
 
                 _<GUIChatBox>().Print("You are now in interaction mode.");
                 break;
+            }
+        }
+        else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_1))
+        {
+            auto currentWorldArea{_<World>().GetCurrentWorldArea()};
+
+            auto hoveredTile{
+                currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
+
+            if (hoveredTile)
+            {
+                hoveredTile->SetGround(Hash("GroundWater"));
             }
         }
     }
