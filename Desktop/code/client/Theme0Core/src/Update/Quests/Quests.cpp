@@ -92,6 +92,13 @@ namespace Forradia::Theme0::GameplayCore
                     m_numStonePicked = true;
                 }
             }
+            if (action == PlayerActionTypes::Craft)
+            {
+                if (entry.second == "ObjectStonePickaxe")
+                {
+                    isCompleted = true;
+                }
+            }
         }
     }
 

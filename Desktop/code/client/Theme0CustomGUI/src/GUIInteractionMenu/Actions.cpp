@@ -52,6 +52,47 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionChipStone")>();
 
     template <>
+    Action GetAction<Hash("ActionCraftStonePickaxe")>();
+
+    template <>
+    Action GetAction<Hash("ActionCraftStonePickaxe")>()
+    {
+        return {
+            .groundMatches = {},
+            .objectMatches = {},
+            .action = []()
+            {
+                auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                if (inventory.CountHasObject("ObjectBranch") < 1)
+                {
+                    _<GUIChatBox>().Print("You don't have any branches to craft a stone pickaxe.");
+
+                    return;
+                }
+
+                if (inventory.CountHasObject("ObjectStone") < 1)
+                {
+                    _<GUIChatBox>().Print("You don't have any stones to craft a stone pickaxe.");
+
+                    return;
+                }
+
+                inventory.RemoveObject("ObjectBranch");
+                inventory.RemoveObject("ObjectStone");
+
+                inventory.AddObject("ObjectStonePickaxe");
+
+                _<GUIChatBox>().Print("You craft a stone pickaxe.");
+
+                _<GameplayCore::PlayerCharacter>().AddExperience(10);
+
+                _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                    GameplayCore::PlayerActionTypes::Craft, "ObjectStonePickaxe");
+            }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionChipStone")>()
     {
         return {.groundMatches = {},

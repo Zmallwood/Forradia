@@ -88,6 +88,10 @@ namespace Forradia::Theme0
             m_entries.push_back({"Forage", actionForage.action});
         };
 
+        auto actionCraftStonePickaxe{GetAction<Hash("ActionCraftStonePickaxe")>()};
+
+        m_entries.push_back({"Craft stone pickaxe", actionCraftStonePickaxe.action});
+
         auto objects{tile->GetObjectsStack()->GetObjects()};
 
         for (auto &object : objects)
