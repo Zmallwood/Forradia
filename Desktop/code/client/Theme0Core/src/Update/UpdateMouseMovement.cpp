@@ -22,13 +22,10 @@ namespace Forradia::Theme0::GameplayCore
         {
             auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
-            // _<Theme0::GameplayCore::PlayerCharacter>().SetDestination(newDestination);
-            _<Theme0::GameplayCore::PlayerCharacter>().SetPosition(newDestination);
+            _<Theme0::GameplayCore::PlayerCharacter>().SetDestination(newDestination);
 
             _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
         }
-
-        return;
 
         auto playerPosition{_<PlayerCharacter>().GetPosition()};
 

@@ -55,6 +55,62 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionCraftStonePickaxe")>();
 
     template <>
+    Action GetAction<Hash("ActionCraftStoneSlab")>();
+
+    template <>
+    Action GetAction<Hash("ActionLayStoneSlab")>();
+
+    template <>
+    Action GetAction<Hash("ActionLayStoneSlab")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.RemoveObject("ObjectStoneSlab");
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->SetGround(Hash("GroundStoneSlab"));
+                    }
+
+                    _<GUIChatBox>().Print("You lay a stone slab.");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionCraftStoneSlab")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.RemoveObject("ObjectStone");
+
+                    inventory.AddObject("ObjectStoneSlab");
+
+                    _<GUIChatBox>().Print("You craft a stone slab.");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneSlab");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionCraftStonePickaxe")>()
     {
         return {
@@ -101,13 +157,13 @@ namespace Forradia::Theme0
                 {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    //inventory.AddObject("ObjectSmallStones");
+                    // inventory.AddObject("ObjectSmallStones");
                     inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You chip some stone.");
 
                     _<GameplayCore::PlayerCharacter>().AddExperience(10);
-    
+
                     _<GameplayCore::PlayerCharacter>().AddPlayerAction(
                         GameplayCore::PlayerActionTypes::Mine, "ObjectStone");
                 }};
@@ -372,6 +428,17 @@ namespace Forradia::Theme0
                 .objectMatches = {Hash("ObjectStone")},
                 .action = []()
                 {
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
+                    }
+
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectStone");

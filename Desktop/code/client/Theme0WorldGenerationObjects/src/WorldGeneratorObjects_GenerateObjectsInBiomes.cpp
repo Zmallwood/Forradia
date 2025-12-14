@@ -157,24 +157,13 @@ namespace Forradia::Theme0
 
             auto elevation{tile->GetElevation()};
 
-            // 3% base, +1% per 5 elevation.
+            // Make it so that the tile has no other objects on it.
 
-            // Calculate the probability of adding a boulder.
+            tile->GetObjectsStack()->ClearObjects();
 
-            auto boulderProbability = 3 + (elevation / 5);
+            // Add a stone boulder to the tile.
 
-            // Check if a random number is less than the probability of adding a boulder.
-
-            if (GetRandomInt(100) < boulderProbability)
-            {
-                // Make it so that the tile has no other objects on it.
-
-                tile->GetObjectsStack()->ClearObjects();
-
-                // Add a stone boulder to the tile.
-
-                tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
-            }
+            tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
         }
 
         // Brown mushrooms - prefer forest areas with trees nearby.

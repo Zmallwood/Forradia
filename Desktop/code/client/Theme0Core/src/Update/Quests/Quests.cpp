@@ -146,4 +146,38 @@ namespace Forradia::Theme0::GameplayCore
     {
         return "Stones left: " + std::to_string(m_numMinedStonesLeft);
     }
+
+    void CraftStoneSlabsQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numCraftedSlabs{0};
+
+        for (auto &entry : playerActions)
+        {
+            auto action{entry.first};
+
+            if (action == PlayerActionTypes::Craft)
+            {
+                if (entry.second == "ObjectStoneSlab")
+                {
+                    numCraftedSlabs++;
+                }
+            }
+        }
+
+        m_numCraftedSlabsLeft = 10 - numCraftedSlabs;
+
+        if (numCraftedSlabs >= 10)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
+        }
+    }
+
+    String CraftStoneSlabsQuest::GetStatus() const
+    {
+        return "Slabs left: " + std::to_string(m_numCraftedSlabsLeft);
+    }
 }
