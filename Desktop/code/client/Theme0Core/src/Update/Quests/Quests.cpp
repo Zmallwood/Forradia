@@ -115,4 +115,35 @@ namespace Forradia::Theme0::GameplayCore
         }
         return "Craft a stone pickaxe out of the branch and stone.";
     }
+
+    void MineStoneFromBoulderQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numMinedStones{0};
+
+        for (auto &entry : playerActions)
+        {
+            auto action{entry.first};
+
+            if (action == PlayerActionTypes::Mine)
+            {
+                numMinedStones++;
+            }
+        }
+
+        m_numMinedStonesLeft = 10 - numMinedStones;
+
+        if (numMinedStones >= 10)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
+        }
+    }
+
+    String MineStoneFromBoulderQuest::GetStatus() const
+    {
+        return "Stones left: " + std::to_string(m_numMinedStonesLeft);
+    }
 }

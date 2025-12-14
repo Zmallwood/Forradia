@@ -27,6 +27,8 @@ namespace Forradia::Theme0::GameplayCore
 
         Pick,
 
-        Craft
+        Craft,
+
+        Mine
     };
 }

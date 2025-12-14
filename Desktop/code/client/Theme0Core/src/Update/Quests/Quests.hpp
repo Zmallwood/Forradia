@@ -65,4 +65,21 @@ namespace Forradia::Theme0::GameplayCore
 
         bool m_numStonePicked{false};
     };
+
+    class MineStoneFromBoulderQuest : public Quest
+    {
+      public:
+        MineStoneFromBoulderQuest()
+        {
+            this->name = "Mine Stone";
+            this->description = "Mine 10 stones from a boulder.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+
+      private:
+        int m_numMinedStonesLeft{10};
+    };
 }
