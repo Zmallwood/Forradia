@@ -180,4 +180,34 @@ namespace Forradia::Theme0::GameplayCore
     {
         return "Slabs left: " + std::to_string(m_numCraftedSlabsLeft);
     }
+
+    void LayStoneSlabsQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numLaidSlabs{0};
+
+        for (auto &entry : playerActions)
+        {
+            auto action{entry.first};
+            if (action == PlayerActionTypes::Lay)
+            {
+                numLaidSlabs++;
+            }
+        }
+
+        m_numLaidSlabsLeft = 10 - numLaidSlabs;
+
+        if (numLaidSlabs >= 10)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
+        }
+    }
+
+    String LayStoneSlabsQuest::GetStatus() const
+    {
+        return "Slabs left: " + std::to_string(m_numLaidSlabsLeft);
+    }
 }

@@ -29,6 +29,8 @@ namespace Forradia::Theme0::GameplayCore
 
         Craft,
 
-        Mine
+        Mine,
+
+        Lay
     };
 }

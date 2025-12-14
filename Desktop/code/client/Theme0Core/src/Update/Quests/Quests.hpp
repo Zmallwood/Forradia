@@ -99,4 +99,21 @@ namespace Forradia::Theme0::GameplayCore
       private:
         int m_numCraftedSlabsLeft{10};
     };
+
+    class LayStoneSlabsQuest : public Quest
+    {
+      public:
+        LayStoneSlabsQuest()
+        {
+            this->name = "Lay Stone Slabs";
+            this->description = "Lay 10 stone slabs.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+
+      private:
+        int m_numLaidSlabsLeft{10};
+    };
 }
