@@ -126,7 +126,7 @@ namespace Forradia::Theme0::GameplayCore
         {
             auto action{entry.first};
 
-            if (action == PlayerActionTypes::Mine)
+            if (action == PlayerActionTypes::Mine && entry.second == "ObjectStone")
             {
                 numMinedStones++;
             }

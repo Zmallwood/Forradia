@@ -101,9 +101,15 @@ namespace Forradia::Theme0
                 {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    inventory.AddObject("ObjectSmallStones");
+                    //inventory.AddObject("ObjectSmallStones");
+                    inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You chip some stone.");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+    
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Mine, "ObjectStone");
                 }};
     }
 
