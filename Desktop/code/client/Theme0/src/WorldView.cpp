@@ -268,7 +268,7 @@ namespace Forradia::Theme0::GameplayCore
                     color00 = Palette::GetColor<Hash("Green")>();
                     break;
                 case Hash("GroundWater"):
-                    color00 = Palette::GetColor<Hash("MildBlue")>();
+                    color00 = Palette::GetColor<Hash("LightBlue")>();
                     break;
                 case Hash("GroundDirt"):
                     color00 = Palette::GetColor<Hash("Brown")>();
@@ -286,7 +286,7 @@ namespace Forradia::Theme0::GameplayCore
                         color10 = Palette::GetColor<Hash("Green")>();
                         break;
                     case Hash("GroundWater"):
-                        color10 = Palette::GetColor<Hash("MildBlue")>();
+                        color10 = Palette::GetColor<Hash("LightBlue")>();
                         break;
                     case Hash("GroundDirt"):
                         color10 = Palette::GetColor<Hash("Brown")>();
@@ -305,7 +305,7 @@ namespace Forradia::Theme0::GameplayCore
                         color11 = Palette::GetColor<Hash("Green")>();
                         break;
                     case Hash("GroundWater"):
-                        color11 = Palette::GetColor<Hash("MildBlue")>();
+                        color11 = Palette::GetColor<Hash("LightBlue")>();
                         break;
                     case Hash("GroundDirt"):
                         color11 = Palette::GetColor<Hash("Brown")>();
@@ -324,7 +324,7 @@ namespace Forradia::Theme0::GameplayCore
                         color01 = Palette::GetColor<Hash("Green")>();
                         break;
                     case Hash("GroundWater"):
-                        color01 = Palette::GetColor<Hash("MildBlue")>();
+                        color01 = Palette::GetColor<Hash("LightBlue")>();
                         break;
                     case Hash("GroundDirt"):
                         color01 = Palette::GetColor<Hash("Brown")>();
@@ -335,8 +335,11 @@ namespace Forradia::Theme0::GameplayCore
                     }
                 }
 
-                //ground = Hash("GroundWater");
-                
+                // ground = Hash("GroundWater");
+
+                auto forceRedraw{tile->GetForceRedraw()};
+
+                tile->SetForceRedraw(false);
 
                 if (ground == Hash("GroundWater"))
                 {
@@ -352,6 +355,8 @@ namespace Forradia::Theme0::GameplayCore
                     waterImageString += "_" + std::to_string(animationIndex);
 
                     ground = Hash(waterImageString);
+
+                    tile->SetForceRedraw(true);
                 }
 
                 // Check if this tile is within the normal grid size for object/creature
@@ -362,11 +367,7 @@ namespace Forradia::Theme0::GameplayCore
                                         y >= (groundGridSize.height - gridSize.height) / 2 &&
                                         y < (groundGridSize.height + gridSize.height) / 2};
 
-                auto forceRedraw{tile->GetForceRedraw()};
-
-                tile->SetForceRedraw(false);
-
-                ground = Hash("GroundGrass");
+                // ground = Hash("GroundGrass");
 
                 tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
                                  xCoordinate, yCoordinate, rendTileSize, elevations, forceRedraw,
@@ -582,8 +583,8 @@ namespace Forradia::Theme0::GameplayCore
         }
 
         tiles.clear();
-        //rivers1.clear();
-        //rivers2.clear();
+        // rivers1.clear();
+        // rivers2.clear();
 
         _<GroundRenderer>().SetupState();
 
