@@ -29,4 +29,18 @@ namespace Forradia::Theme0::GameplayCore
       private:
         int m_numStepsLeft{3};
     };
+
+    class ForageQuest : public Quest
+    {
+      public:
+        ForageQuest()
+        {
+            this->name = "Forage";
+            this->description = "Try to gather some resources";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+    };
 }

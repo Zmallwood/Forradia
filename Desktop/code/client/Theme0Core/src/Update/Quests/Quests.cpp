@@ -42,4 +42,24 @@ namespace Forradia::Theme0::GameplayCore
     {
         return "Movements left: " + std::to_string(m_numStepsLeft);
     }
+
+    void ForageQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        for (auto &action : playerActions)
+        {
+            if (action == PlayerActionTypes::Forage)
+            {
+                isCompleted = true;
+                _<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
+                _<PlayerCharacter>().AddExperience(50);
+            }
+        }
+    }
+
+    String ForageQuest::GetStatus() const
+    {
+        return "Forages left: 1";
+    }
 }

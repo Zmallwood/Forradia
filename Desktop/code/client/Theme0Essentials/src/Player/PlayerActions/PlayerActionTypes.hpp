@@ -21,6 +21,8 @@ namespace Forradia::Theme0::GameplayCore
 
         MoveSouth,
 
-        MoveWest
+        MoveWest,
+
+        Forage
     };
 }
