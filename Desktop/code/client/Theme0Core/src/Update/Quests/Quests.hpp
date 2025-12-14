@@ -66,10 +66,10 @@ namespace Forradia::Theme0::GameplayCore
         bool m_numStonePicked{false};
     };
 
-    class MineStoneFromBoulderQuest : public Quest
+    class MineStoneFromBoulderQuest1 : public Quest
     {
       public:
-        MineStoneFromBoulderQuest()
+        MineStoneFromBoulderQuest1()
         {
             this->name = "Mine Stone";
             this->description = "Mine 10 stones from a boulder.";
@@ -115,5 +115,39 @@ namespace Forradia::Theme0::GameplayCore
 
       private:
         int m_numLaidSlabsLeft{10};
+    };
+
+    class MineStoneFromBoulderQuest2 : public Quest
+    {
+      public:
+        MineStoneFromBoulderQuest2()
+        {
+            this->name = "Mine Stone";
+            this->description = "Mine 10 stones from a boulder.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+
+      private:
+        int m_numMinedStonesLeft{10};
+    };
+
+    class CraftStoneBricksQuest : public Quest
+    {
+      public:
+        CraftStoneBricksQuest()
+        {
+            this->name = "Craft Stone Bricks";
+            this->description = "Craft 10 stone bricks.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+
+      private:
+        int m_numCraftedBricksLeft{10};
     };
 }

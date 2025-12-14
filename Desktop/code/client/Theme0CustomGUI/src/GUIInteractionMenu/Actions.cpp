@@ -61,6 +61,29 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionLayStoneSlab")>();
 
     template <>
+    Action GetAction<Hash("ActionCraftStoneBrick")>();
+
+    template <>
+    Action GetAction<Hash("ActionCraftStoneBrick")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.RemoveObject("ObjectStone");
+
+                    inventory.AddObject("ObjectStoneBrick");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneBrick");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionLayStoneSlab")>()
     {
         return {.groundMatches = {},

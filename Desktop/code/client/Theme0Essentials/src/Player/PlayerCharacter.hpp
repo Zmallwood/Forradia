@@ -203,6 +203,11 @@ namespace Forradia::Theme0::GameplayCore
             return m_playerActions;
         }
 
+        auto &GetQuestCompletionPointsRef()
+        {
+            return m_questCompletionPoints;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -243,5 +248,8 @@ namespace Forradia::Theme0::GameplayCore
 
         Vector<std::pair<PlayerActionTypes, String>>
             m_playerActions; ///< The actions of the player.
+
+        std::map<String, int>
+            m_questCompletionPoints; ///< The quest completion points of the player.
     };
 }

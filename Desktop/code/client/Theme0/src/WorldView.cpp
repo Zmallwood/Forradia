@@ -276,6 +276,9 @@ namespace Forradia::Theme0::GameplayCore
                 case Hash("GroundRock"):
                     color00 = Palette::GetColor<Hash("Gray")>();
                     break;
+                case Hash("GroundStoneSlab"):
+                    color00 = Palette::GetColor<Hash("White")>();
+                    break;
                 }
 
                 if (tileNE)
@@ -293,6 +296,9 @@ namespace Forradia::Theme0::GameplayCore
                         break;
                     case Hash("GroundRock"):
                         color10 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    case Hash("GroundStoneSlab"):
+                        color10 = Palette::GetColor<Hash("White")>();
                         break;
                     }
                 }
@@ -313,6 +319,9 @@ namespace Forradia::Theme0::GameplayCore
                     case Hash("GroundRock"):
                         color11 = Palette::GetColor<Hash("Gray")>();
                         break;
+                    case Hash("GroundStoneSlab"):
+                        color11 = Palette::GetColor<Hash("White")>();
+                        break;
                     }
                 }
 
@@ -331,6 +340,9 @@ namespace Forradia::Theme0::GameplayCore
                         break;
                     case Hash("GroundRock"):
                         color01 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    case Hash("GroundStoneSlab"):
+                        color01 = Palette::GetColor<Hash("White")>();
                         break;
                     }
                 }

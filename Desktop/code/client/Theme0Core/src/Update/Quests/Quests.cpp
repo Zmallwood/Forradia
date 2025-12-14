@@ -116,11 +116,12 @@ namespace Forradia::Theme0::GameplayCore
         return "Craft a stone pickaxe out of the branch and stone.";
     }
 
-    void MineStoneFromBoulderQuest::Update()
+    void MineStoneFromBoulderQuest1::Update()
     {
         auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
+        auto i{0};
 
         for (auto &entry : playerActions)
         {
@@ -129,7 +130,16 @@ namespace Forradia::Theme0::GameplayCore
             if (action == PlayerActionTypes::Mine && entry.second == "ObjectStone")
             {
                 numMinedStones++;
+
+                if (numMinedStones == 10)
+                {
+                    _<PlayerCharacter>()
+                        .GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] = i;
+                    break;
+                }
             }
+
+            i++;
         }
 
         m_numMinedStonesLeft = 10 - numMinedStones;
@@ -142,7 +152,7 @@ namespace Forradia::Theme0::GameplayCore
         }
     }
 
-    String MineStoneFromBoulderQuest::GetStatus() const
+    String MineStoneFromBoulderQuest1::GetStatus() const
     {
         return "Stones left: " + std::to_string(m_numMinedStonesLeft);
     }
@@ -209,5 +219,81 @@ namespace Forradia::Theme0::GameplayCore
     String LayStoneSlabsQuest::GetStatus() const
     {
         return "Slabs left: " + std::to_string(m_numLaidSlabsLeft);
+    }
+
+    void MineStoneFromBoulderQuest2::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numMinedStones{0};
+        auto i{0};
+        auto previousMineQuestCompletionPoint{
+            _<PlayerCharacter>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
+
+        for (auto &entry : playerActions)
+        {
+            if (i <= previousMineQuestCompletionPoint)
+            {
+                i++;
+                continue;
+            }
+
+            auto action{entry.first};
+
+            if (action == PlayerActionTypes::Mine && entry.second == "ObjectStone")
+            {
+                numMinedStones++;
+            }
+
+            i++;
+        }
+
+        m_numMinedStonesLeft = 10 - numMinedStones;
+
+        if (numMinedStones >= 10)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
+        }
+    }
+
+    String MineStoneFromBoulderQuest2::GetStatus() const
+    {
+        return "Stones left: " + std::to_string(m_numMinedStonesLeft);
+    }
+
+    void CraftStoneBricksQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numCraftedBricks{0};
+
+        for (auto &entry : playerActions)
+        {
+            auto action{entry.first};
+
+            if (action == PlayerActionTypes::Craft)
+            {
+                if (entry.second == "ObjectStoneBrick")
+                {
+                    numCraftedBricks++;
+                }
+            }
+        }
+
+        m_numCraftedBricksLeft = 10 - numCraftedBricks;
+
+        if (numCraftedBricks >= 10)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
+        }
+    }
+
+    String CraftStoneBricksQuest::GetStatus() const
+    {
+        return "Bricks left: " + std::to_string(m_numCraftedBricksLeft);
     }
 }
