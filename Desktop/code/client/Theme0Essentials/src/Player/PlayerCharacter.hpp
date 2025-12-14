@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
 
@@ -54,6 +55,8 @@ namespace Forradia::Theme0::GameplayCore
         void MoveWest();
 
         void AddExperience(int experience);
+
+        void AddPlayerAction(PlayerActionTypes playerAction);
 
         ///
         /// Gets the name of the player.
@@ -195,6 +198,11 @@ namespace Forradia::Theme0::GameplayCore
             m_ticksLastHitAnother = value;
         }
 
+        auto& GetPlayerActionsRef() const
+        {
+            return m_playerActions;
+        }
+
       private:
         ///
         /// Initializes the player character.
@@ -232,5 +240,7 @@ namespace Forradia::Theme0::GameplayCore
         float m_attackSpeed{3.0f}; ///< The attack speed of the player.
 
         int m_ticksLastHitAnother{0}; ///< The ticks since last hit another entity.
+
+        Vector<PlayerActionTypes> m_playerActions; ///< The actions of the player.
     };
 }

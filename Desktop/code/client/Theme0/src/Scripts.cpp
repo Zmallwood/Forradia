@@ -22,6 +22,7 @@
 #include "GUILabel.hpp"
 #include "GUIPlayerBodyWindow.hpp"
 #include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
+#include "GUIQuestPanel.hpp"
 #include "GUISystemMenu.hpp"
 #include "IScene.hpp"
 #include "Image2DRenderer.hpp"
@@ -30,6 +31,7 @@
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
 #include "Update/CameraRotator.hpp"
+#include "Update/Quests/QuestSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "Update/UpdateCameraZoom.hpp"
 #include "Update/UpdateCreaturesMovement.hpp"
@@ -88,6 +90,8 @@ namespace Forradia::Theme0
 
         py::class_<GUIEnergyStatisticsPanel, SharedPtr<GUIEnergyStatisticsPanel>, GUIComponent>(
             m, "gui_energy_statistics_panel");
+
+        py::class_<GUIQuestPanel, SharedPtr<GUIQuestPanel>, GUIComponent>(m, "gui_quest_panel");
 
         py::class_<GUIExperienceBar, SharedPtr<GUIExperienceBar>, GUIComponent>(
             m, "gui_experience_bar")
@@ -174,6 +178,9 @@ namespace Forradia::Theme0
         py::class_<Theme0::GameplayCore::WorldView>(m, "WorldView")
             .def("render", &Theme0::GameplayCore::WorldView::Render);
 
+        py::class_<Theme0::GameplayCore::QuestSystem>(m, "QuestSystem")
+            .def("update", &Theme0::GameplayCore::QuestSystem::Update);
+
         m.def("get_hash", [](StringView str) { return Hash(str); });
 
         m.def("ticks", [] { return GetTicks(); });
@@ -196,6 +203,8 @@ namespace Forradia::Theme0
 
                       GUIEnergyStatisticsPanel>();
               });
+
+        m.def("make_shared_quest_panel", [] { return std::make_shared<GUIQuestPanel>(); });
 
         m.def("make_shared_experience_bar",
               []
@@ -298,6 +307,10 @@ namespace Forradia::Theme0
         m.def(
             "get_world_view", []() -> Theme0::GameplayCore::WorldView &
             { return _<Theme0::GameplayCore::WorldView>(); }, py::return_value_policy::reference);
+
+        m.def("get_quest_system", []() -> Theme0::GameplayCore::QuestSystem &
+            { return _<Theme0::GameplayCore::QuestSystem>(); },
+            py::return_value_policy::reference);
 
         m.def("update_kb_actions", &Theme0::GameplayCore::UpdateKeyboardActions);
 

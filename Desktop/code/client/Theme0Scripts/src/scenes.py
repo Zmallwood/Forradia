@@ -25,6 +25,7 @@ from embedded import (
     conv_w_to_h,
     make_shared_fps_panel,
     make_shared_energy_statistics_panel,
+    make_shared_quest_panel,
     get_gui_interact_menu_ptr,
     update_kb_actions,
     update_mouse_actions,
@@ -34,6 +35,7 @@ from embedded import (
     update_actions,
     update_robots_movem,
     update_camera_zoom,
+    get_quest_system,
     get_tl_hovering,
     get_camera_rotator,
     get_world_view,
@@ -286,6 +288,7 @@ class MainScene(IScene):
             self.gui().add_child_comp(get_gui_sys_menu_ptr())
             self.gui().add_child_comp(make_shared_fps_panel())
             self.gui().add_child_comp(make_shared_energy_statistics_panel())
+            self.gui().add_child_comp(make_shared_quest_panel())
             self.gui().add_child_comp(get_gui_interact_menu_ptr())
             self.gui().add_child_comp(get_gui_experience_bar_ptr())
 
@@ -317,6 +320,8 @@ class MainScene(IScene):
             get_camera_rotator().update()
 
             update_actions()
+
+            get_quest_system().update()
 
         def render_derived():
             get_world_view().render()

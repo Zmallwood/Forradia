@@ -54,6 +54,8 @@ namespace Forradia::Theme0::GameplayCore
         // Move the player north.
 
         m_position.y -= 1;
+
+        m_playerActions.push_back(PlayerActionTypes::MoveNorth);
     }
 
     void PlayerCharacter::MoveEast()
@@ -61,6 +63,8 @@ namespace Forradia::Theme0::GameplayCore
         // Move the player east.
 
         m_position.x += 1;
+
+        m_playerActions.push_back(PlayerActionTypes::MoveEast);
     }
 
     void PlayerCharacter::MoveSouth()
@@ -68,6 +72,8 @@ namespace Forradia::Theme0::GameplayCore
         // Move the player south.
 
         m_position.y += 1;
+
+        m_playerActions.push_back(PlayerActionTypes::MoveSouth);
     }
 
     void PlayerCharacter::MoveWest()
@@ -75,6 +81,8 @@ namespace Forradia::Theme0::GameplayCore
         // Move the player west.
 
         m_position.x -= 1;
+
+        m_playerActions.push_back(PlayerActionTypes::MoveWest);
     }
 
     void PlayerCharacter::AddExperience(int experience)
@@ -82,5 +90,12 @@ namespace Forradia::Theme0::GameplayCore
         // Add experience to the player.
 
         m_experience += experience;
+    }
+
+    void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction)
+    {
+        // Add player action to the player.
+
+        m_playerActions.push_back(playerAction);
     }
 }

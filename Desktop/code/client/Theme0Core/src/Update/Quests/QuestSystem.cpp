@@ -1,0 +1,79 @@
+//
+// Copyright 2025 Andreas Åkerberg
+// This code is licensed under MIT license
+// (see LICENSE for details)
+//
+
+// Status: Incomplete.
+// TODO:
+
+#include "QuestSystem.hpp"
+#include "Quest.hpp"
+#include "Quests.hpp"
+
+namespace Forradia::Theme0::GameplayCore
+{
+    void QuestSystem::Initialize()
+    {
+        m_quests.push_back(std::make_shared<MoveQuest>());
+    }
+
+    void QuestSystem::Update()
+    {
+        for (auto &quest : this->m_quests)
+        {
+            if (quest->isCompleted)
+            {
+                continue;
+            }
+
+            quest->Update();
+
+            return;
+        }
+    }
+
+    String QuestSystem::GetCurrentQuestName() const
+    {
+        for (auto &quest : this->m_quests)
+        {
+            if (quest->isCompleted)
+            {
+                continue;
+            }
+
+            return quest->name;
+        }
+
+        return "No quest";
+    }
+
+    String QuestSystem::GetCurrentQuestDescription() const
+    {
+        for (auto &quest : this->m_quests)
+        {
+            if (quest->isCompleted)
+            {
+                continue;
+            }
+
+            return quest->description;
+        }
+        return "";
+    }
+
+    String QuestSystem::GetCurrentQuestStatus() const
+    {
+        for (auto &quest : this->m_quests)
+        {
+            if (quest->isCompleted)
+            {
+                continue;
+            }
+
+            return quest->GetStatus();
+        }
+
+        return "";
+    }
+}
