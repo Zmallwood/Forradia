@@ -19,7 +19,7 @@ namespace Forradia::Theme0::GameplayCore
         MoveQuest()
         {
             this->name = "Movement";
-            this->description = "Try to walk somewhere";
+            this->description = "Try to walk somewhere, 3 times.";
         }
 
         void Update() override;
@@ -36,11 +36,33 @@ namespace Forradia::Theme0::GameplayCore
         ForageQuest()
         {
             this->name = "Forage";
-            this->description = "Try to gather some resources";
+            this->description = "Try to gather some resources, 3 times.";
         }
 
         void Update() override;
 
         String GetStatus() const override;
+
+      private:
+        int m_numForagingsLeft{3};
+    };
+
+    class CraftStonePickaxeQuest : public Quest
+    {
+      public:
+        CraftStonePickaxeQuest()
+        {
+            this->name = "First Crafting: Stone Pickaxe";
+            this->description = "Craft a stone pickaxe.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+
+      private:
+        bool m_numBranchPicked{false};
+
+        bool m_numStonePicked{false};
     };
 }

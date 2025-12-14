@@ -19,8 +19,9 @@ namespace Forradia::Theme0::GameplayCore
 
         auto numSteps{0};
 
-        for (auto &action : playerActions)
+        for (auto &entry : playerActions)
         {
+            auto action{entry.first};
             if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
                 action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
             {
@@ -47,19 +48,50 @@ namespace Forradia::Theme0::GameplayCore
     {
         auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
 
-        for (auto &action : playerActions)
+        auto numForagings{0};
+
+        for (auto &entry : playerActions)
         {
+            auto action{entry.first};
             if (action == PlayerActionTypes::Forage)
             {
-                isCompleted = true;
-                _<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
-                _<PlayerCharacter>().AddExperience(50);
+                numForagings++;
             }
+        }
+
+        m_numForagingsLeft = 3 - numForagings;
+
+        if (numForagings >= 3)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
         }
     }
 
     String ForageQuest::GetStatus() const
     {
-        return "Forages left: 1";
+        return "Forages left: " + std::to_string(m_numForagingsLeft);
+    }
+
+    void CraftStonePickaxeQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        auto numCrafting{0};
+    }
+
+    String CraftStonePickaxeQuest::GetStatus() const
+    {
+        if (!m_numBranchPicked)
+        {
+            return "Pick a branch.";
+        }
+
+        if (!m_numStonePicked)
+        {
+            return "Branch picked. Now pick a stone.";
+        }
+        return "Craft a stone pickaxe out of the branch and stone.";
     }
 }

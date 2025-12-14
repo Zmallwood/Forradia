@@ -55,7 +55,7 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position.y -= 1;
 
-        m_playerActions.push_back(PlayerActionTypes::MoveNorth);
+        m_playerActions.push_back({PlayerActionTypes::MoveNorth, ""});
     }
 
     void PlayerCharacter::MoveEast()
@@ -64,7 +64,7 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position.x += 1;
 
-        m_playerActions.push_back(PlayerActionTypes::MoveEast);
+        m_playerActions.push_back({PlayerActionTypes::MoveEast, ""});
     }
 
     void PlayerCharacter::MoveSouth()
@@ -73,7 +73,7 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position.y += 1;
 
-        m_playerActions.push_back(PlayerActionTypes::MoveSouth);
+        m_playerActions.push_back({PlayerActionTypes::MoveSouth, ""});
     }
 
     void PlayerCharacter::MoveWest()
@@ -82,7 +82,7 @@ namespace Forradia::Theme0::GameplayCore
 
         m_position.x -= 1;
 
-        m_playerActions.push_back(PlayerActionTypes::MoveWest);
+        m_playerActions.push_back({PlayerActionTypes::MoveWest, ""});
     }
 
     void PlayerCharacter::AddExperience(int experience)
@@ -92,10 +92,11 @@ namespace Forradia::Theme0::GameplayCore
         m_experience += experience;
     }
 
-    void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction)
+    void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction, StringView actionArgument)
     {
         // Add player action to the player.
 
-        m_playerActions.push_back(playerAction);
+        m_playerActions.push_back(
+            std::pair<PlayerActionTypes, String>{playerAction, actionArgument});
     }
 }

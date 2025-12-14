@@ -23,6 +23,10 @@ namespace Forradia::Theme0::GameplayCore
 
         MoveWest,
 
-        Forage
+        Forage,
+
+        Pick,
+
+        Craft
     };
 }

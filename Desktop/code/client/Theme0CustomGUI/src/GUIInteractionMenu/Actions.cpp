@@ -290,6 +290,9 @@ namespace Forradia::Theme0
                                           "blueberries!");
 
                     _<GameplayCore::PlayerCharacter>().AddExperience(10);
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Forage);
                 }};
     }
 
