@@ -306,6 +306,36 @@ namespace Forradia::Theme0
             }
         }
 
+        auto numStones{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
+
+        // Create the stones.
+
+        for (auto i = 0; i < numStones; i++)
+        {
+            auto x{GetRandomInt(worldAreaSize.width)};
+
+            auto y{GetRandomInt(worldAreaSize.height)};
+
+            // Obtain the tile at the random position.
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
+            {
+                continue;
+            }
+
+            auto objectsStack{tile->GetObjectsStack()};
+
+            if (objectsStack->GetSize() > 0)
+            {
+                continue;
+            }
+
+            objectsStack->ClearObjects();
+            objectsStack->AddObject("ObjectStone");
+        }
+
         // Scattered metal scraps - random remnants across the landscape.
 
         // Number of metal scraps.
