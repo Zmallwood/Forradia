@@ -78,7 +78,17 @@ namespace Forradia::Theme0::GameplayCore
     {
         auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
 
-        auto numCrafting{0};
+        for (auto &entry : playerActions)
+        {
+            auto action{entry.first};
+            if (action == PlayerActionTypes::Pick)
+            {
+                if (entry.second == "ObjectBranch")
+                {
+                    m_numBranchPicked = true;
+                }
+            }
+        }
     }
 
     String CraftStonePickaxeQuest::GetStatus() const

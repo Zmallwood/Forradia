@@ -12,6 +12,7 @@
 #include "GUIInteractionMenu.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
+#include "Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Player/PlayerCharacter.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
@@ -308,6 +309,9 @@ namespace Forradia::Theme0
                     inventory.AddObject("ObjectBranch");
 
                     _<GUIChatBox>().Print("You picked a branch!");
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Pick, "ObjectBranch");
                 }};
     }
 
