@@ -87,6 +87,10 @@ namespace Forradia::Theme0::GameplayCore
                 {
                     m_numBranchPicked = true;
                 }
+                if (entry.second == "ObjectStone")
+                {
+                    m_numStonePicked = true;
+                }
             }
         }
     }

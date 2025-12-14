@@ -37,6 +37,9 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionPickBranch")>();
 
     template <>
+    Action GetAction<Hash("ActionPickStone")>();
+
+    template <>
     Action GetAction<Hash("ActionBuildSimpleShelter")>();
 
     template <>
@@ -312,6 +315,24 @@ namespace Forradia::Theme0
 
                     _<GameplayCore::PlayerCharacter>().AddPlayerAction(
                         GameplayCore::PlayerActionTypes::Pick, "ObjectBranch");
+                }};
+    }
+
+    template <>
+    Action GetAction<Hash("ActionPickStone")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {Hash("ObjectStone")},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.AddObject("ObjectStone");
+
+                    _<GUIChatBox>().Print("You picked a stone!");
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Pick, "ObjectStone");
                 }};
     }
 

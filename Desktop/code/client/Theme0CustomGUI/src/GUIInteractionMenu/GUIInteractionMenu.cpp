@@ -106,6 +106,18 @@ namespace Forradia::Theme0
                 }
             }
 
+            auto actionPickStone{GetAction<Hash("ActionPickStone")>()};
+
+            for (const auto &actionObjectTypes : actionPickStone.objectMatches)
+            {
+                if (type == actionObjectTypes)
+                {
+                    m_entries.push_back({"Pick stone", actionPickStone.action});
+
+                    break;
+                }
+            }
+
             auto actionChipStone{GetAction<Hash("ActionChipStone")>()};
 
             for (const auto &actionObjectTypes : actionChipStone.objectMatches)
