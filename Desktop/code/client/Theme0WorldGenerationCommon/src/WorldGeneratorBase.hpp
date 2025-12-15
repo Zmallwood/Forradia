@@ -78,11 +78,8 @@ namespace Forradia::Theme0
 
       private:
         const int k_defaultGroundElevation{10}; ///< The default ground elevation.
-
-        SharedPtr<WorldArea> m_worldArea; ///< The world area.
-
-        Size m_worldAreaSize; ///< The size of the world area.
-
-        float m_worldScaling; ///< The scale factor of the world.
+        SharedPtr<WorldArea> m_worldArea;       ///< The world area.
+        Size m_worldAreaSize;                   ///< The size of the world area.
+        float m_worldScaling;                   ///< The scale factor of the world.
     };
 }

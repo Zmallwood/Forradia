@@ -62,7 +62,6 @@ namespace Forradia
 
       private:
         std::set<SDL_Keycode> m_pressed; ///< The set of keys currently being pressed.
-
-        String m_textInput; ///< The text input from the keyboard.
+        String m_textInput;              ///< The text input from the keyboard.
     };
 }

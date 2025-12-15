@@ -35,13 +35,9 @@ namespace Forradia::Theme0
 
       private:
         const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
-
         const int k_renderLevelString{Hash("GUIPlayerStatusBoxLevel")};
-
         const int k_renderWellBeingString{Hash("GUIPlayerStatusBoxWellBeing")};
-
         const int k_renderWellBeingValueString{Hash("GUIPlayerStatusBoxWellBeingValue")};
-
         SharedPtr<GUILabel> m_wellBeingValueTextLabel;
     };
 }

@@ -46,7 +46,6 @@ namespace Forradia
 
       private:
         std::map<int, IScene &> m_scenes; ///< The scenes.
-
-        int m_currentScene{0}; ///< The current scene, as the name hash of the scene.
+        int m_currentScene{0};            ///< The current scene, as the name hash of the scene.
     };
 }

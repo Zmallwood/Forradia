@@ -25,27 +25,12 @@ namespace Forradia::Theme0::GameplayCore
         void Initiallize();
 
         const float k_groundRenderingDistanceMultiplier{1.5f};
-
         const int k_maxWaterDepthRendering{3};
-
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
-
         const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
-
         std::map<int, std::map<int, int>> m_renderIDsGround;
-
-        // std::map<int, std::map<int, int>> m_renderIDsGroundCorners1;
-
-        // std::map<int, std::map<int, int>> m_renderIDsGroundCorners2;
-
-        // std::map<int, std::map<int, int>> m_renderIDsGroundCorners3;
-
-        // std::map<int, std::map<int, int>> m_renderIDsGroundCorners4;
-
         std::map<int, std::map<int, int>> m_renderIDsClaimedTiles;
-
         std::map<int, std::map<int, int>> m_renderIDsRivers1;
-
         std::map<int, std::map<int, int>> m_renderIDsRivers2;
     };
 }

@@ -34,9 +34,7 @@ namespace Forradia
 
       private:
         const int k_renderIDBackground; ///< The render ID of the background image.
-
-        const int k_renderIDFilled; ///< The render ID of the filled part of the meter.
-
-        const Color k_filledColor; ///< The color of the filled part of the meter.
+        const int k_renderIDFilled;     ///< The render ID of the filled part of the meter.
+        const Color k_filledColor;      ///< The color of the filled part of the meter.
     };
 }

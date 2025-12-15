@@ -54,11 +54,9 @@ namespace Forradia
 
       private:
         inline static const String k_defaultBackgroundImage{
-            "GUIPanelBackground"}; ///< The default background image for panels if no other
-                                   ///< background image is specified.
-
+            "GUIPanelBackground"};      ///< The default background image for panels if no other
+                                        ///< background image is specified.
         const int k_renderIDBackground; ///< The render ID of the background image.
-
-        String m_backgroundImage; ///< The background image of the panel.
+        String m_backgroundImage;       ///< The background image of the panel.
     };
 }

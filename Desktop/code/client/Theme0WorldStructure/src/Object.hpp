@@ -53,8 +53,7 @@ namespace Forradia::Theme0
         /// Initializes the object.
         void Initialize();
 
-        int m_type{0}; ///< The object type as a hash.
-
+        int m_type{0};              ///< The object type as a hash.
         float m_modelScaling{1.0f}; ///< The model scaling of the object.
     };
 }

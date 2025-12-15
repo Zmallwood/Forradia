@@ -82,30 +82,20 @@ namespace Forradia
             "GUIChatBoxBackground"}; ///< The default background image of the chat box. The
                                      ///< GUIPanel base class also has a default background
                                      ///< image, why this is named "Derived".
-
         inline static const float k_lineHeight{
             0.028f}; ///< The height of each line in the chat box.
-
         inline static const float k_separatorHeight{
-            0.003f}; ///< The height of the separator between
-                     ///< the input and the messages.
-
+            0.003f};                                ///< The height of the separator between
+                                                    ///< the input and the messages.
         inline static const float k_margin{0.008f}; ///< The margin between the chat box and the
                                                     ///< edges of the screen.
-
         const int k_renderIDSeparator{Hash("RenderIDSeparator")}; ///< Render ID of the separator.
-
         const int k_renderIDInputCursor{Hash("RenderIDInputCursor")}; ///< Render ID of the input
         ///< cursor.
-
         const int k_renderIDInputText{Hash("RenderIDInputText")}; ///< Render ID of the input text.
-
-        Vector<int> m_renderIDsTextLines; ///< Render IDs of the text lines.
-
-        Vector<String> m_lines; ///< The lines of text in the chat box.
-
-        String m_input; ///< The input text in the chat box.
-
+        Vector<int> m_renderIDsTextLines;                         ///< Render IDs of the text lines.
+        Vector<String> m_lines;    ///< The lines of text in the chat box.
+        String m_input;            ///< The input text in the chat box.
         bool m_inputActive{false}; ///< Whether the input is active.
     };
 }

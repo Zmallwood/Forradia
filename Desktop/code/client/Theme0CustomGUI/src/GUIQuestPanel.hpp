@@ -33,11 +33,8 @@ namespace Forradia::Theme0
         void Initialize();
 
         SharedPtr<GUILabel> m_questTitleTextPanel;
-
         SharedPtr<GUILabel> m_questNameTextPanel;
-
         SharedPtr<GUILabel> m_questDescriptionTextPanel;
-
         SharedPtr<GUILabel> m_questStatusTextPanel;
     };
 }

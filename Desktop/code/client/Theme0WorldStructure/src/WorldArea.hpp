@@ -126,12 +126,9 @@ namespace Forradia::Theme0
         ///
         void Initialize(Size worldAreaSize, float worldScaling);
 
-        Vector<Vector<SharedPtr<Tile>>> m_tiles; ///< The tiles in the world area.
-
+        Vector<Vector<SharedPtr<Tile>>> m_tiles;                ///< The tiles in the world area.
         std::map<SharedPtr<Creature>, Point> m_creaturesMirror; ///< The creatures mirror.
-
-        std::map<SharedPtr<Robot>, Point> m_robotsMirror; ///< The robots mirror.
-
-        std::set<Point> m_claimedCoordinates; ///< The claimed coordinates.
+        std::map<SharedPtr<Robot>, Point> m_robotsMirror;       ///< The robots mirror.
+        std::set<Point> m_claimedCoordinates;                   ///< The claimed coordinates.
     };
 }

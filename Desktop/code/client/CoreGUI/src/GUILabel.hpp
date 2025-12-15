@@ -56,12 +56,9 @@ namespace Forradia
         virtual void RenderDerived() const override;
 
       private:
-        const int k_renderIDText; ///< The render ID of the text.
-
-        String m_text; ///< The text of the label.
-
+        const int k_renderIDText;  ///< The render ID of the text.
+        String m_text;             ///< The text of the label.
         bool m_centerAlign{false}; ///< Whether to center the text.
-
-        Color m_color; ///< The color of the text.
+        Color m_color;             ///< The color of the text.
     };
 }

@@ -221,35 +221,21 @@ namespace Forradia::Theme0::GameplayCore
         void MoveToSuitablePosition();
 
         String m_name{"Unnamed Player"}; ///< The name of the player.
-
-        Point m_position{60, 50}; ///< The position of the player.
-
-        float m_movementSpeed{5.0f}; ///< The movement speed of the player.
-
-        int m_ticksLastMovement{0}; ///< The ticks since last movement.
-
-        Point m_destination{-1, -1}; ///< The movement destination of the player.
-
-        PlayerBody m_playerBody; ///< The body of the player.
-
+        Point m_position{60, 50};        ///< The position of the player.
+        float m_movementSpeed{5.0f};     ///< The movement speed of the player.
+        int m_ticksLastMovement{0};      ///< The ticks since last movement.
+        Point m_destination{-1, -1};     ///< The movement destination of the player.
+        PlayerBody m_playerBody;         ///< The body of the player.
         SharedPtr<PlayerObjectsInventory>
             m_playerObjectsInventory; ///< The objects inventory of the player.
-
-        int m_experience{0}; ///< The experience of the player.
-
+        int m_experience{0};          ///< The experience of the player.
         PlayerModes m_playerMode{PlayerModes::Interaction}; ///< The mode of the player.
-
-        float m_wellBeing{10.0f}; ///< The well being of the player.
-
-        float m_maxWellBeing{10.0f}; ///< The max well being of the player.
-
-        float m_attackSpeed{3.0f}; ///< The attack speed of the player.
-
+        float m_wellBeing{10.0f};                           ///< The well being of the player.
+        float m_maxWellBeing{10.0f};                        ///< The max well being of the player.
+        float m_attackSpeed{3.0f};                          ///< The attack speed of the player.
         int m_ticksLastHitAnother{0}; ///< The ticks since last hit another entity.
-
         Vector<std::tuple<PlayerActionTypes, String, Point>>
             m_playerActions; ///< The actions of the player.
-
         std::map<String, int>
             m_questCompletionPoints; ///< The quest completion points of the player.
     };

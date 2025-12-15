@@ -14,7 +14,6 @@ namespace Forradia::Theme0::GameplayCore
     enum class PlayerModes
     {
         Interaction,
-
         Battle
     };
 }

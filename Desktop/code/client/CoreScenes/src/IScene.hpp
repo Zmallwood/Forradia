@@ -94,16 +94,11 @@ namespace Forradia
 
       private:
         SharedPtr<GUI> m_gui; ///< The GUI.
-
         /// TODO: Consider if the Functions should be replaced with virtual methods. Right now
         /// it is used to make it work with Python bindings.
-
         Function<void()> m_initializeDerived{[] {}}; ///< The derived initialize function.
-
-        Function<void()> m_onEnterDerived{[] {}}; ///< The derived on enter function.
-
-        Function<void()> m_updateDerived{[] {}}; ///< The derived update function.
-
-        Function<void()> m_renderDerived{[] {}}; ///< The derived render function.
+        Function<void()> m_onEnterDerived{[] {}};    ///< The derived on enter function.
+        Function<void()> m_updateDerived{[] {}};     ///< The derived update function.
+        Function<void()> m_renderDerived{[] {}};     ///< The derived render function.
     };
 }

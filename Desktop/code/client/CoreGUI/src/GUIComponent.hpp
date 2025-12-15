@@ -120,14 +120,10 @@ namespace Forradia
 
       private:
         RectF m_bounds; ///< The bounds of the component in local coordinates.
-
         Vector<SharedPtr<GUIComponent>>
-            m_childComponents; ///< The child components of this component.
-
-        bool m_visible{true}; ///< Whether the component is visible.
-
-        bool m_enabled{true}; ///< Whether the component is enabled.
-
+            m_childComponents;                    ///< The child components of this component.
+        bool m_visible{true};                     ///< Whether the component is visible.
+        bool m_enabled{true};                     ///< Whether the component is enabled.
         GUIComponent *m_parentComponent{nullptr}; ///< The parent component of this component.
     };
 }

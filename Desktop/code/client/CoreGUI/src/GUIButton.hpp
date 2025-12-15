@@ -63,14 +63,10 @@ namespace Forradia
             "GUIButtonHoveredBackground"}; ///< The default background image of the button when
                                            ///< hovered.
 
-        const int k_renderIDText; ///< The render ID of the text.
-
-        String m_text; ///< The text to display on the button.
-
-        Function<void()> m_action; ///< The action to perform when the button is clicked.
-
-        String m_backgroundImage; ///< The background image of the button when not hovered.
-
+        const int k_renderIDText;        ///< The render ID of the text.
+        String m_text;                   ///< The text to display on the button.
+        Function<void()> m_action;       ///< The action to perform when the button is clicked.
+        String m_backgroundImage;        ///< The background image of the button when not hovered.
         String m_hoveredBackgroundImage; ///< The background image of the button when hovered.
     };
 }

@@ -97,14 +97,10 @@ namespace Forradia::Theme0
         /// Initializes the robot, by randomizing its movement speed slightly.
         void Initialize();
 
-        int m_type{0}; ///< The robot type as a hash.
-
-        int m_ticksLastMovement{0}; ///< Ticks since last moved.
-
+        int m_type{0};               ///< The robot type as a hash.
+        int m_ticksLastMovement{0};  ///< Ticks since last moved.
         float m_movementSpeed{1.0f}; ///< Movement speed.
-
         Point m_destination{-1, -1}; ///< Movement destination.
-
-        Point m_origin{-1, -1}; ///< Movement origin.
+        Point m_origin{-1, -1};      ///< Movement origin.
     };
 }

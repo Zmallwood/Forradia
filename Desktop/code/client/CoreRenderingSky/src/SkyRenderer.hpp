@@ -71,22 +71,15 @@ namespace Forradia
         /// Generates the sky dome mesh vertices and indices.
         void GenerateSkyDome();
 
-        GLuint m_vao; ///< The vertex array object.
-
-        GLuint m_ibo; ///< The index buffer object.
-
-        GLuint m_vbo; ///< The vertex buffer object.
-
-        int m_indexCount; ///< The number of indices in the sky dome.
-
-        GLint m_layoutLocationMVP; ///< Layout location for the MVP matrix in the shader.
-
+        GLuint m_vao;                       ///< The vertex array object.
+        GLuint m_ibo;                       ///< The index buffer object.
+        GLuint m_vbo;                       ///< The vertex buffer object.
+        int m_indexCount;                   ///< The number of indices in the sky dome.
+        GLint m_layoutLocationMVP;          ///< Layout location for the MVP matrix in the shader.
         GLint m_layoutLocationSunDirection; ///< Layout location for the sun direction in the
                                             ///< shader.
-
         GLint m_layoutLocationSunElevation; ///< Layout location for the sun elevation in the
                                             ///< shader.
-
-        bool m_initialized; ///< Whether the sky dome mesh has been initialized.
+        bool m_initialized;                 ///< Whether the sky dome mesh has been initialized.
     };
 }

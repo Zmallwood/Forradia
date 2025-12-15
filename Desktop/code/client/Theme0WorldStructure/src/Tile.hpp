@@ -157,22 +157,14 @@ namespace Forradia::Theme0
         ///
         void Initialize();
 
-        int m_ground{0}; ///< The ground type of the tile.
-
-        SharedPtr<ObjectsStack> m_objectsStack; ///< The objects stack of the tile.
-
-        SharedPtr<Creature> m_creature; ///< The creature on the tile.
-
-        SharedPtr<Robot> m_robot; ///< The robot on the tile.
-
-        int m_elevation{0}; ///< The elevation of the tile.
-
-        int m_waterDepth{0}; ///< The water depth of the tile.
-
+        int m_ground{0};                                ///< The ground type of the tile.
+        SharedPtr<ObjectsStack> m_objectsStack;         ///< The objects stack of the tile.
+        SharedPtr<Creature> m_creature;                 ///< The creature on the tile.
+        SharedPtr<Robot> m_robot;                       ///< The robot on the tile.
+        int m_elevation{0};                             ///< The elevation of the tile.
+        int m_waterDepth{0};                            ///< The water depth of the tile.
         Directions m_riverDirection1{Directions::None}; ///< The direction of the river on the tile.
-
         Directions m_riverDirection2{Directions::None}; ///< The direction of the river on the tile.
-
-        bool m_forceRedraw{false}; ///< Whether to force a redraw of the tile.
+        bool m_forceRedraw{false};                      ///< Whether to force a redraw of the tile.
     };
 }

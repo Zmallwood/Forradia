@@ -88,10 +88,8 @@ namespace Forradia
 
       private:
         bool m_isBeingMoved{false}; ///< Whether the movable panel is being moved.
-
         PointF m_moveStartingPosition{
             -1, -1}; ///< The starting position of the move of the movable panel.
-
         PointF m_moveStartingMousePosition{
             -1, -1}; ///< The starting mouse position of the move of the movable panel.
     };

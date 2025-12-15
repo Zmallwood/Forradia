@@ -16,7 +16,6 @@ namespace Forradia
     {
       public:
         GLuint textureID; ///< The texture ID, used by opengl.
-
-        Size dimensions; ///< The texture width and height.
+        Size dimensions;  ///< The texture width and height.
     };
 }

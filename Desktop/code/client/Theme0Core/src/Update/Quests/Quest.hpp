@@ -19,9 +19,7 @@ namespace Forradia::Theme0::GameplayCore
         virtual String GetStatus() const = 0;
 
         String name;
-
         String description;
-
         bool isCompleted{false};
     };
 }

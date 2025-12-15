@@ -33,10 +33,8 @@ namespace Forradia
         }
 
       private:
-        int m_fps{0}; ///< The current FPS.
-
-        int m_framesCount{0}; ///< The frame count.
-
+        int m_fps{0};             ///< The current FPS.
+        int m_framesCount{0};     ///< The frame count.
         int m_ticksLastUpdate{0}; ///< The last update time.
     };
 }

@@ -59,12 +59,9 @@ namespace Forradia ::Theme0::GameplayCore
         }
 
       private:
-        float m_strength{0.1f}; ///< The strength of the body part.
-
+        float m_strength{0.1f};      ///< The strength of the body part.
         float m_currentEnergy{1.0f}; ///< The current energy of the body part.
-
-        float m_maxEnergy{1.0f}; ///< The max energy of the body part.
-
-        float m_temperature{37.0f}; ///< The temperature of the body part.
+        float m_maxEnergy{1.0f};     ///< The max energy of the body part.
+        float m_temperature{37.0f};  ///< The temperature of the body part.
     };
 }

@@ -18,9 +18,7 @@ namespace Forradia
     {
       public:
         GLuint vao; ///< Vertex array object.
-
         GLuint ibo; ///< Index buffer object.
-
         GLuint vbo; ///< Vertex buffer object.
     };
 }

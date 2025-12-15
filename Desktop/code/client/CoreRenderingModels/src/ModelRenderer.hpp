@@ -65,14 +65,10 @@ namespace Forradia
         bool DrawingOperationIsCached(int modelNameHash) const;
 
         static constexpr float k_globalModelScaling{0.5f}; ///< Global scale factor for models.
-
         std::map<int,
                  ModelRenderingOperation> m_operationsCache; ///< The operations cache.
-
         GLint m_layoutLocationProjectionMatrix; /// < The location of the projection matrix.
-
-        GLint m_layoutLocationViewMatrix; /// < The location of the view matrix.
-
-        GLint m_layoutLocationModelMatrix; /// < The location of the model matrix.
+        GLint m_layoutLocationViewMatrix;       /// < The location of the view matrix.
+        GLint m_layoutLocationModelMatrix;      /// < The location of the model matrix.
     };
 }

@@ -57,11 +57,8 @@ namespace Forradia
         void Initialize(StringView uniqueName);
 
         inline static const float k_height{0.04f}; ///< The height of the title bar.
-
-        const String k_windowTitle; ///< The title of the window.
-
-        const int k_renderIDWindowTitleText; ///< The render ID of the window title text.
-
-        GUIWindow &m_parentWindow; ///< The parent window of the title bar.
+        const String k_windowTitle;                ///< The title of the window.
+        const int k_renderIDWindowTitleText;       ///< The render ID of the window title text.
+        GUIWindow &m_parentWindow;                 ///< The parent window of the title bar.
     };
 }

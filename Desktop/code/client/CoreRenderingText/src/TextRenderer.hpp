@@ -62,7 +62,6 @@ namespace Forradia
 
         /// Default path to the font file relative to the application base path.
         const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
-
         std::map<FontSizes, SharedPtr<TTF_Font>>
             m_fonts; ///< Map of font sizes to loaded TTF font objects.
     };

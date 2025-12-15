@@ -102,11 +102,8 @@ namespace Forradia
         Vector<glm::vec3> CalcTileNormals(const Vector<float> &verticesNoNormals) const;
 
         static constexpr unsigned short k_indices[] = {0, 1, 2, 3}; ///< Indices for every tile.
-
-        std::map<int, GroundRenderingOperation> m_operationsCache; ///< Operations cache.
-
+        std::map<int, GroundRenderingOperation> m_operationsCache;  ///< Operations cache.
         GLint m_layoutLocationMVP; ///< Layout location for the MVP matrix in the shader.
-
         std::map<int, GroundRenderingGroupOperation> m_groupOperationsCache; ///< Operations cache.
     };
 }

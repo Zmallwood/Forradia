@@ -53,21 +53,14 @@ namespace Forradia
         /// @return The target point as a Point3F.
         Point3F GetLookAt() const;
 
-        const float k_minZoomAmount{2.0f}; ///< Minimum zoom amount.
-
+        const float k_minZoomAmount{2.0f};  ///< Minimum zoom amount.
         const float k_maxZoomAmount{30.0f}; ///< Maximum zoom amount.
-
         const float k_minRotationAngleVertical{-M_PI * 3.0f /
-                                               8.0f}; ///< Minimum vertical rotation angle.
-
+                                               8.0f};         ///< Minimum vertical rotation angle.
         const float k_maxRotationAngleVertical{-M_PI / 8.0f}; ///< Maximum vertical rotation angle.
-
-        const float k_defaultFOV{55.0f}; ///< Default field of view.
-
-        float m_zoomAmount{6.0f}; ///< Current zoom amount.
-
-        float m_rotationAngleSideways{0.0f}; ///< Current rotation amount.
-
-        float m_rotationAngleVertical{-M_PI / 4.0f}; ///< Current vertical rotation amount.
+        const float k_defaultFOV{55.0f};                      ///< Default field of view.
+        float m_zoomAmount{6.0f};                             ///< Current zoom amount.
+        float m_rotationAngleSideways{0.0f};                  ///< Current rotation amount.
+        float m_rotationAngleVertical{-M_PI / 4.0f};          ///< Current vertical rotation amount.
     };
 }

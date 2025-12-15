@@ -63,14 +63,10 @@ namespace Forradia
         }
 
       private:
-        bool m_pressed{false}; ///< True if the button is currently pressed.
-
-        bool m_hasBeenFired{false}; ///< True if the button has been fired.
-
+        bool m_pressed{false};         ///< True if the button is currently pressed.
+        bool m_hasBeenFired{false};    ///< True if the button has been fired.
         bool m_hasBeenReleased{false}; ///< True if the button has been released.
-
-        int m_ticksFired{0}; ///< The point in time, as ticks, when the button was last fired.
-
+        int m_ticksFired{0};      ///< The point in time, as ticks, when the button was last fired.
         int m_ticksClickSpeed{0}; ///< The speed of the most recent click.
     };
 }

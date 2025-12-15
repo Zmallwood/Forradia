@@ -36,13 +36,9 @@ namespace Forradia::Theme0
         void UpdateBodyPartInfoLabels();
 
         int m_selectedBodyPart{0};
-
         SharedPtr<GUILabel> m_labelBodyPartName;
-
         SharedPtr<GUILabel> m_labelBodyPartStrength;
-
         SharedPtr<GUILabel> m_labelBodyPartEnergy;
-
         SharedPtr<GUILabel> m_labelBodyPartTemperature;
     };
 }

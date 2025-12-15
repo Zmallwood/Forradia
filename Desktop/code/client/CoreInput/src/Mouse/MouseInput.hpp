@@ -63,10 +63,8 @@ namespace Forradia
         }
 
       private:
-        MouseButton m_leftMouseButton; ///< Left mouse button.
-
+        MouseButton m_leftMouseButton;  ///< Left mouse button.
         MouseButton m_rightMouseButton; ///< Right mouse button.
-
-        int m_mouseWheelDelta{0}; ///< Mouse wheel scroll delta.
+        int m_mouseWheelDelta{0};       ///< Mouse wheel scroll delta.
     };
 }

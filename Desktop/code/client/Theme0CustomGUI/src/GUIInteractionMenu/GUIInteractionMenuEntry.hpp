@@ -31,7 +31,6 @@ namespace Forradia::Theme0
 
       private:
         String m_label;
-
         Function<void()> m_action;
     };
 }

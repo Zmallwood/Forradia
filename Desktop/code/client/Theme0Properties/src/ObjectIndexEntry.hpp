@@ -18,7 +18,6 @@ namespace Forradia::Theme0
     {
       public:
         float modelScaling{1.0f}; ///< The scaling factor for the object model.
-
         bool ignoreIndividualModelScaling{
             false}; ///< Whether to ignore the individual model scaling.
     };

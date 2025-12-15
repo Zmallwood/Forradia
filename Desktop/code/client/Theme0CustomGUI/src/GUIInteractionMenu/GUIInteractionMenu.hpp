@@ -50,21 +50,13 @@ namespace Forradia::Theme0
 
       private:
         static constexpr float k_indentWidth{0.01f};
-
         static constexpr float k_lineHeight{0.025f};
-
         const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
-
         const int k_maxNumMenuEntries{40};
-
         Vector<int> m_renderIDsMenuEntryStrings;
-
         Vector<GUIInteractionMenuEntry> m_entries;
-
         Point m_clickedCoordinate{-1, -1};
-
         SharedPtr<Robot> m_clickedRobot;
-
         std::map<int, int> m_timedActions;
     };
 }

@@ -17,14 +17,10 @@ namespace Forradia::Theme0::GameplayCore
     ///
     enum class PlayerBodyPartTypes
     {
-        None, ///< No body part.
-
+        None,        ///< No body part.
         OverallBody, ///< The overall body.
-
-        RightArm, ///< The right arm.
-
-        LeftArm, ///< The left arm.
-
-        Legs ///< The legs.
+        RightArm,    ///< The right arm.
+        LeftArm,     ///< The left arm.
+        Legs         ///< The legs.
     };
 }

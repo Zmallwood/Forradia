@@ -14,23 +14,14 @@ namespace Forradia::Theme0::GameplayCore
     enum class PlayerActionTypes
     {
         None,
-
         MoveNorth,
-
         MoveEast,
-
         MoveSouth,
-
         MoveWest,
-
         Forage,
-
         Pick,
-
         Craft,
-
         Mine,
-
         Lay
     };
 }
