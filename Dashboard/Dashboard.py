@@ -53,7 +53,6 @@ class Dashboard(ctk.CTk):
         self.create_area_f()
         self.create_area_g()
         self.create_area_h()
-        self.create_area_i()
 
     def create_area_project(self):
         center_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
@@ -650,9 +649,9 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "H3. Theme 0",
+            "H3. Theme 0 Scenes",
             "cursor",
-            "/home/andreas/code/git/Forradia/Theme0.code-workspace",
+            "/home/andreas/code/git/Forradia/Theme0Scenes.code-workspace",
             "icons/DefaultButton.png",
             2,
             0,
@@ -661,44 +660,11 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "H4. Theme 0 Scenes",
+            "H4. Theme 0",
             "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Scenes.code-workspace",
+            "/home/andreas/code/git/Forradia/Theme0.code-workspace",
             "icons/DefaultButton.png",
             3,
-            0,
-            self.script_dir,
-        )
-
-    def create_area_i(self):
-        center_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
-        center_frame.grid(row=9, column=0, sticky="nsew")
-        center_frame.grid_rowconfigure(0, weight=1)
-        center_frame.grid_columnconfigure(0, weight=1)
-
-        quick_launch_frame = ctk.CTkFrame(
-            center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
-        )
-        quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-        quick_launch_frame.grid_rowconfigure(0, weight=1)
-        quick_launch_frame.grid_columnconfigure(0, weight=1)
-
-        apps_label = ctk.CTkLabel(
-            quick_launch_frame, text="I. Runtime", font=("Noto Sans", 20, "bold")
-        )
-        apps_label.grid(row=0, column=0, pady=(10, 10), sticky="n")
-
-        app_frame = ctk.CTkFrame(quick_launch_frame, fg_color="transparent")
-        app_frame.grid(row=1, column=0, pady=(10, 10), sticky="n")
-
-        create_app_button(
-            app_frame,
-            "I1. Theme 0 Scripts",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Scripts.code-workspace",
-            "icons/DefaultButton.png",
-            0,
             0,
             self.script_dir,
         )
