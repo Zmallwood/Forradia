@@ -96,7 +96,8 @@ namespace Forradia::Theme0
                     _<GameplayCore::PlayerCharacter>().AddExperience(10);
 
                     _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWallDoor");
+                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWallDoor",
+                        clickedCoordinate);
                 }};
     }
 
@@ -127,7 +128,8 @@ namespace Forradia::Theme0
                     _<GameplayCore::PlayerCharacter>().AddExperience(10);
 
                     _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWall");
+                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWall",
+                        clickedCoordinate);
                 }};
     }
 

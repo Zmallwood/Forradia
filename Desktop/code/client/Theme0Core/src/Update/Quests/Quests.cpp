@@ -9,7 +9,11 @@
 
 #include "Quests.hpp"
 #include "GUIChatBox.hpp"
+#include "ObjectsStack.hpp"
 #include "Player/PlayerCharacter.hpp"
+#include "Tile.hpp"
+#include "World.hpp"
+#include "WorldArea.hpp"
 
 namespace Forradia::Theme0::GameplayCore
 {
@@ -322,6 +326,7 @@ namespace Forradia::Theme0::GameplayCore
         auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
 
         std::set<Point> wallPositions;
+        auto numIncompleteWallTiles{0};
 
         for (auto &entry : playerActions)
         {
@@ -334,6 +339,94 @@ namespace Forradia::Theme0::GameplayCore
             {
                 wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
             }
+        }
+
+        auto worldArea{_<World>().GetCurrentWorldArea()};
+
+        for (auto &position : wallPositions)
+        {
+            auto tileNorth{worldArea->GetTile(position.x, position.y - 1)};
+            auto tileSouth{worldArea->GetTile(position.x, position.y + 1)};
+            auto tileWest{worldArea->GetTile(position.x - 1, position.y)};
+            auto tileEast{worldArea->GetTile(position.x + 1, position.y)};
+            auto tileNorthEast{worldArea->GetTile(position.x + 1, position.y - 1)};
+            auto tileSouthEast{worldArea->GetTile(position.x + 1, position.y + 1)};
+            auto tileSouthWest{worldArea->GetTile(position.x - 1, position.y + 1)};
+            auto tileNorthWest{worldArea->GetTile(position.x - 1, position.y - 1)};
+
+            auto adjacentStoneSlabTiles{0};
+
+            if (tileNorth && tileNorth->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileSouth && tileSouth->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileWest && tileWest->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileEast && tileEast->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileNorthEast && tileNorthEast->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileSouthEast && tileSouthEast->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileSouthWest && tileSouthWest->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+            if (tileNorthWest && tileNorthWest->GetGround() == Hash("GroundStoneSlab"))
+            {
+                adjacentStoneSlabTiles++;
+            }
+
+            auto adjacentStoneWallOrDoorTiles{0};
+
+            if (tileNorth &&
+                (tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
+                 tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
+                adjacentStoneWallOrDoorTiles++;
+            }
+            if (tileSouth &&
+                (tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
+                 tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
+                adjacentStoneWallOrDoorTiles++;
+            }
+            if (tileWest &&
+                (tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
+                 tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
+                adjacentStoneWallOrDoorTiles++;
+            }
+            if (tileEast &&
+                (tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
+                 tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
+                adjacentStoneWallOrDoorTiles++;
+            }
+
+            if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
+            {
+                numIncompleteWallTiles++;
+            }
+        }
+
+        if (wallPositions.size() > 0 && numIncompleteWallTiles == 0)
+        {
+            isCompleted = true;
+            _<GUIChatBox>().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
+            _<PlayerCharacter>().AddExperience(50);
         }
     }
 
