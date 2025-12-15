@@ -64,6 +64,40 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionCraftStoneBrick")>();
 
     template <>
+    Action GetAction<Hash("ActionCraftStoneWall")>();
+
+    template <>
+    Action GetAction<Hash("ActionCraftStoneWall")>()
+    {
+        return {.groundMatches = {},
+                .objectMatches = {},
+                .action = []()
+                {
+                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+
+                    inventory.RemoveObject("ObjectStone");
+
+                    auto worldArea{_<World>().GetCurrentWorldArea()};
+
+                    auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+
+                    auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+
+                    if (tile)
+                    {
+                        tile->GetObjectsStack()->AddObject("ObjectStoneWall");
+                    }
+
+                    _<GUIChatBox>().Print("You craft a stone wall.");
+
+                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+
+                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
+                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWall");
+                }};
+    }
+
+    template <>
     Action GetAction<Hash("ActionCraftStoneBrick")>()
     {
         return {.groundMatches = {},
@@ -80,6 +114,8 @@ namespace Forradia::Theme0
 
                     _<GameplayCore::PlayerCharacter>().AddPlayerAction(
                         GameplayCore::PlayerActionTypes::Craft, "ObjectStoneBrick");
+
+                    _<GUIChatBox>().Print("You craft a stone brick.");
                 }};
     }
 
