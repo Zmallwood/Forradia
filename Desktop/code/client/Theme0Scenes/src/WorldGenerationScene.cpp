@@ -5,3 +5,25 @@
 //
 
 #include "WorldGenerationScene.hpp"
+#include "GUIChatBox.hpp"
+#include "SceneManager.hpp"
+#include "WorldGenerator.hpp"
+
+namespace Forradia::Theme0
+{
+    WorldGenerationScene::WorldGenerationScene()
+    {
+        this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
+    }
+
+    void WorldGenerationScene::OnEnterDerived()
+    {
+        _<GUIChatBox>().Print("Generating world...");
+
+        _<WorldGenerator>().GenerateNewWorld();
+
+        _<GUIChatBox>().Print("World generation complete.");
+
+        _<SceneManager>().GoToScene("MainScene");
+    }
+}

@@ -5,3 +5,17 @@
 //
 
 #pragma once
+
+#include "IScene.hpp"
+
+namespace Forradia::Theme0
+{
+    class WorldGenerationScene : public IScene
+    {
+      public:
+        WorldGenerationScene();
+
+      protected:
+        virtual void OnEnterDerived();
+    };
+}

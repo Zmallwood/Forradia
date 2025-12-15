@@ -13,6 +13,7 @@
 #include "Scripts.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"
+#include "SetupScenes.hpp"
 
 int main(int argc, char **argv)
 {
@@ -27,13 +28,15 @@ int main(int argc, char **argv)
     _<Engine>().Initialize(_<Theme0Properties>().GetGameWindowTitle(),
                            _<Theme0Properties>().GetClearColor());
 
-    // Initialize the script engine.
+    // // Initialize the script engine.
 
-    _<ScriptEngine>().Initialize();
+    // _<ScriptEngine>().Initialize();
 
-    // Load the scripts.
+    // // Load the scripts.
 
-    _<ScriptEngine>().LoadScripts();
+    // _<ScriptEngine>().LoadScripts();
+
+    SetupScenes();
 
     // Initialize the world.
 

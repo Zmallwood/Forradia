@@ -15,5 +15,10 @@ target_link_libraries(ForradiaTheme0Scenes PRIVATE
     ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
+    ForradiaCoreScenes
+    ForradiaCoreGUI
+    ForradiaTheme0WorldGenerationMain
+    ForradiaTheme0CustomGUI
+    ForradiaTheme0Core
 )
 target_precompile_headers(ForradiaTheme0Scenes PUBLIC ./src/StdAfx.hpp)

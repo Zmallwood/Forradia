@@ -21,5 +21,8 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaTheme0Essentials
     ForradiaTheme0Properties
     ForradiaCoreRenderingGround
+    ForradiaTheme0CustomGUI
+    ForradiaCoreRenderingModels
+    ForradiaCoreRenderingSky
 )
 target_precompile_headers(ForradiaTheme0Core PUBLIC ./src/StdAfx.hpp)

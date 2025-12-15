@@ -5,3 +5,23 @@
 //
 
 #pragma once
+
+#include "IScene.hpp"
+
+namespace Forradia::Theme0
+{
+    class MainScene : public IScene
+    {
+      public:
+        MainScene();
+
+      protected:
+        virtual void InitializeDerived();
+
+        virtual void OnEnterDerived();
+
+        virtual void UpdateDerived();
+
+        virtual void RenderDerived();
+    };
+}

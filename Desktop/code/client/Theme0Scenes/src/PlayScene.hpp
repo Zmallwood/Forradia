@@ -5,3 +5,19 @@
 //
 
 #pragma once
+
+#include "IScene.hpp"
+
+namespace Forradia::Theme0
+{
+    class PlayScene : public IScene
+    {
+      public:
+        PlayScene();
+
+      protected:
+        virtual void InitializeDerived();
+
+        virtual void RenderDerived();
+    };
+}
