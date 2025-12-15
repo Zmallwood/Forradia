@@ -10,10 +10,9 @@
 #include "Engine.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIExperienceBar.hpp"
-#include "Scripts.hpp"
+#include "SetupScenes.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"
-#include "SetupScenes.hpp"
 
 int main(int argc, char **argv)
 {
@@ -27,14 +26,6 @@ int main(int argc, char **argv)
 
     _<Engine>().Initialize(_<Theme0Properties>().GetGameWindowTitle(),
                            _<Theme0Properties>().GetClearColor());
-
-    // // Initialize the script engine.
-
-    // _<ScriptEngine>().Initialize();
-
-    // // Load the scripts.
-
-    // _<ScriptEngine>().LoadScripts();
 
     SetupScenes();
 
