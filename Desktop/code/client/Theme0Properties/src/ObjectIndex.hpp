@@ -40,6 +40,8 @@ namespace Forradia::Theme0
         ///
         bool ObjectEntryExists(int objectHash) const;
 
+        bool GetIgnoreIndividualModelScaling(int objectHash) const;
+
       private:
         ///
         /// Add an object entry to the index.
@@ -47,7 +49,8 @@ namespace Forradia::Theme0
         /// @param objectName The name of the object.
         /// @param modelScaling The scaling factor for the object model.
         ///
-        void AddObjectEntry(StringView objectName, float modelScaling);
+        void AddObjectEntry(StringView objectName, float modelScaling,
+                            bool ignoreIndividualModelScaling);
 
         std::map<int, ObjectIndexEntry>
             m_entries; ///< Map of object hashes to object index entries.

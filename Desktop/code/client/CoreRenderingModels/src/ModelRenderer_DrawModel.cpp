@@ -86,7 +86,12 @@ namespace Forradia
             auto indexFirstVertexOfMesh{0};
 
             // To contain the total model scaling.
-            float totalModelScaling{k_globalModelScaling * modelScaling};
+            float totalModelScaling{k_globalModelScaling};
+
+            if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
+            {
+                totalModelScaling *= modelScaling;
+            }
 
             if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
             {
@@ -175,8 +180,11 @@ namespace Forradia
         modelMatrix = glm::translate(
             modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
 
-        // Scale the model.
-        modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
+        if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
+        {
+            // Scale the model.
+            modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
+        }
 
         // Get the view matrix.
         auto viewMatrix{_<Camera>().GetViewMatrix()};
