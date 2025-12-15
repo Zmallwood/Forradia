@@ -23,6 +23,7 @@ namespace Forradia::Theme0::GameplayCore
         m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());
         m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
         m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
+        m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
     }
 
     void QuestSystem::Update()

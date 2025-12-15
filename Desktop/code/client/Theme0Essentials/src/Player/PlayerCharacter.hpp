@@ -56,7 +56,8 @@ namespace Forradia::Theme0::GameplayCore
 
         void AddExperience(int experience);
 
-        void AddPlayerAction(PlayerActionTypes playerAction, StringView actionArgument = "");
+        void AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument = "",
+                             Point actionSecondArgument = {-1, -1});
 
         ///
         /// Gets the name of the player.
@@ -246,7 +247,7 @@ namespace Forradia::Theme0::GameplayCore
 
         int m_ticksLastHitAnother{0}; ///< The ticks since last hit another entity.
 
-        Vector<std::pair<PlayerActionTypes, String>>
+        Vector<std::tuple<PlayerActionTypes, String, Point>>
             m_playerActions; ///< The actions of the player.
 
         std::map<String, int>

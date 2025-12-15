@@ -21,7 +21,10 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
             if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
                 action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
             {
@@ -52,7 +55,10 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
             if (action == PlayerActionTypes::Forage)
             {
                 numForagings++;
@@ -80,21 +86,24 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
             if (action == PlayerActionTypes::Pick)
             {
-                if (entry.second == "ObjectBranch")
+                if (actionFirstArg == "ObjectBranch")
                 {
                     m_numBranchPicked = true;
                 }
-                if (entry.second == "ObjectStone")
+                if (actionFirstArg == "ObjectStone")
                 {
                     m_numStonePicked = true;
                 }
             }
             if (action == PlayerActionTypes::Craft)
             {
-                if (entry.second == "ObjectStonePickaxe")
+                if (actionFirstArg == "ObjectStonePickaxe")
                 {
                     isCompleted = true;
                 }
@@ -125,9 +134,11 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && entry.second == "ObjectStone")
+            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
                 numMinedStones++;
 
@@ -165,11 +176,13 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (entry.second == "ObjectStoneSlab")
+                if (actionFirstArg == "ObjectStoneSlab")
                 {
                     numCraftedSlabs++;
                 }
@@ -199,7 +212,10 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
             if (action == PlayerActionTypes::Lay)
             {
                 numLaidSlabs++;
@@ -238,9 +254,11 @@ namespace Forradia::Theme0::GameplayCore
                 continue;
             }
 
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && entry.second == "ObjectStone")
+            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
                 numMinedStones++;
             }
@@ -271,11 +289,13 @@ namespace Forradia::Theme0::GameplayCore
 
         for (auto &entry : playerActions)
         {
-            auto action{entry.first};
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (entry.second == "ObjectStoneBrick")
+                if (actionFirstArg == "ObjectStoneBrick")
                 {
                     numCraftedBricks++;
                 }
@@ -295,5 +315,30 @@ namespace Forradia::Theme0::GameplayCore
     String CraftStoneBricksQuest::GetStatus() const
     {
         return "Bricks left: " + std::to_string(m_numCraftedBricksLeft);
+    }
+
+    void BuildStoneWallsQuest::Update()
+    {
+        auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+
+        std::set<Point> wallPositions;
+
+        for (auto &entry : playerActions)
+        {
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
+            if (action == PlayerActionTypes::Craft &&
+                (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
+            {
+                wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
+            }
+        }
+    }
+
+    String BuildStoneWallsQuest::GetStatus() const
+    {
+        return "You need to build more stone walls (and door).";
     }
 }

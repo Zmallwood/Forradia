@@ -150,4 +150,18 @@ namespace Forradia::Theme0::GameplayCore
       private:
         int m_numCraftedBricksLeft{10};
     };
+
+    class BuildStoneWallsQuest : public Quest
+    {
+      public:
+        BuildStoneWallsQuest()
+        {
+            this->name = "Build Stone Wall";
+            this->description = "Build stone walls (and a door) around the stone slabs floor.";
+        }
+
+        void Update() override;
+
+        String GetStatus() const override;
+    };
 }
