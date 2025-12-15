@@ -108,6 +108,10 @@ namespace Forradia::Theme0
 
         m_entries.push_back({"Craft stone wall", actionCraftStoneWall.action});
 
+        auto actionCraftStoneWallDoor{GetAction<Hash("ActionCraftStoneWallDoor")>()};
+
+        m_entries.push_back({"Craft stone wall door", actionCraftStoneWallDoor.action});
+
         auto objects{tile->GetObjectsStack()->GetObjects()};
 
         for (auto &object : objects)

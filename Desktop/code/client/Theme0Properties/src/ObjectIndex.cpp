@@ -25,6 +25,8 @@ namespace Forradia::Theme0
         AddObjectEntry("ObjectBush2", 1.2f, false);
 
         AddObjectEntry("ObjectStoneWall", 0.8f, true);
+
+        AddObjectEntry("ObjectStoneWallDoor", 0.8f, true);
     }
 
     void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
