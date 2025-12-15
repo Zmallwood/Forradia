@@ -16,9 +16,7 @@ namespace Forradia
     {
       public:
         float x{0.0f}; ///< The x dimension.
-
         float y{0.0f}; ///< The y dimension.
-
         float z{0.0f}; ///< The z dimension.
     };
 }

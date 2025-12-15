@@ -18,9 +18,7 @@ namespace Forradia
     {
       public:
         Vector<GLMVertex> vertices; ///< The vertices.
-
         Vector<unsigned int> indices; ///< The indices.
-
         Vector<Texture> textures; ///< The textures.
     };
 }

@@ -68,10 +68,8 @@ namespace Forradia
 
         inline static const String k_relativeImagesPath{
             "./Resources/Images/"}; ///< The relative path to the image resource directory.
-
         std::map<int, TextureEntry>
             m_textureEntries; ///< The texture entries, stored by image name hash.
-
         std::map<int, GLuint>
             m_textTextureIDs; ///< The text texture IDs, stored by x, y and text hash values.
     };

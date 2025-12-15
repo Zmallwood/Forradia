@@ -27,7 +27,6 @@ namespace Forradia
     void RectF::Offset(PointF offset)
     {
         // Add the offset to the dimensions separately.
-
         this->x += offset.x;
         this->y += offset.y;
     }

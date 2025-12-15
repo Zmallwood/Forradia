@@ -23,11 +23,8 @@ namespace Forradia
         SDL_Color ToSDLColor() const;
 
         float r{0.0f}; ///< Red.
-
         float g{0.0f}; ///< Green.
-
         float b{0.0f}; ///< Blue.
-
         float a{0.0f}; ///< Alpha.
     };
 }

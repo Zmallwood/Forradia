@@ -33,12 +33,9 @@ namespace Forradia
         /// @param offset The offset to add.
         void Offset(PointF offset);
 
-        float x{0.0f}; ///< The x coordinate.
-
-        float y{0.0f}; ///< The y coordinate.
-
-        float width{0.0f}; ///< The width, in the x dimension.
-
+        float x{0.0f};      ///< The x coordinate.
+        float y{0.0f};      ///< The y coordinate.
+        float width{0.0f};  ///< The width, in the x dimension.
         float height{0.0f}; ///< The height, in the y dimension.
     };
 }

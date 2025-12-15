@@ -16,7 +16,6 @@ namespace Forradia
     {
       public:
         float width{0.0f}; ///< Width.
-
         float height{0.0f}; ///< Height.
     };
 }

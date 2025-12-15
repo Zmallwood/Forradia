@@ -28,7 +28,6 @@ namespace Forradia
         bool operator<(const Point &other) const;
 
         int x{0}; ///< The x dimension.
-
         int y{0}; ///< The y dimension.
     };
 }

@@ -38,7 +38,6 @@ namespace Forradia::Palette
         // Use existing wheat color and just change the alpha.
 
         auto color{GetColor<Hash("Wheat")>()};
-
         color.a = 0.7f;
 
         return color;
@@ -56,7 +55,6 @@ namespace Forradia::Palette
         // Use existing yellow color and just change the alpha.
 
         auto color{GetColor<Hash("Yellow")>()};
-
         color.a = 0.7f;
 
         return color;

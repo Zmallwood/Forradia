@@ -28,7 +28,6 @@ namespace Forradia
         PointF operator-(const PointF &other) const;
 
         float x{0.0f}; ///< The x dimension.
-
         float y{0.0f}; ///< The y dimension.
     };
 }

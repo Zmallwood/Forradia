@@ -19,9 +19,7 @@ namespace Forradia
 
     bool Point::operator<(const Point &other) const
     {
-        // Compare x and y dimensions using lexicographic ordering.
         // First compare x, then y if x values are equal.
-
         if (this->x != other.x)
         {
             return this->x < other.x;
