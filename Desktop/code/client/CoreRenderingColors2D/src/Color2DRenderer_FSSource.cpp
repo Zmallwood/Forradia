@@ -11,19 +11,17 @@
 
 namespace Forradia {
     String Color2DRenderer::GetFSSource() const {
-        // Return the fragment shader source.
-
         return R"(
-                #version 330 core
+            #version 330 core
+            
+            out vec4 FragColor;
                 
-                out vec4 FragColor;
-                    
-                in vec4 ourColor;
+            in vec4 ourColor;
 
-                void main()
-                {
-                    FragColor = ourColor;
-                }
-            )";
+            void main()
+            {
+                FragColor = ourColor;
+            }
+        )";
     }
 }

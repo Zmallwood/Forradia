@@ -11,12 +11,8 @@
 
 namespace Forradia {
     String Replace(StringView text, char replace, char replaceWith) {
-        // Create a copy of the string.
         String result{text.data()};
-
-        // Replace all instances of the replace character with the replaceWith character.
         std::replace(result.begin(), result.end(), replace, replaceWith);
-
         return result;
     }
 }

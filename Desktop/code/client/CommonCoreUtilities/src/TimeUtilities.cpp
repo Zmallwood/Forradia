@@ -11,7 +11,6 @@
 
 namespace Forradia {
     int GetTicks() {
-        // Get the number of ticks.
         return SDL_GetTicks();
     }
 }

@@ -11,12 +11,10 @@
 
 namespace Forradia {
     void Randomize() {
-        // Randomize the seed.
         srand(time(nullptr));
     }
 
     int GetRandomInt(int upperLimit) {
-        // Generate a random integer.
         return rand() % upperLimit;
     }
 }

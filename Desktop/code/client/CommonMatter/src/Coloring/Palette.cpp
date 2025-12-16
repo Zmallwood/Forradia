@@ -11,8 +11,6 @@
 #include "Hash.hpp"
 
 namespace Forradia::Palette {
-    // Define a palette of colors for the game.
-
     template <>
     Color GetColor<Hash("Black")>() {
         return {0.0f, 0.0f, 0.0f, 1.0f};
@@ -30,11 +28,8 @@ namespace Forradia::Palette {
 
     template <>
     Color GetColor<Hash("WheatTransparent")>() {
-        // Use existing wheat color and just change the alpha.
-
         auto color{GetColor<Hash("Wheat")>()};
         color.a = 0.7f;
-
         return color;
     }
 
@@ -45,11 +40,8 @@ namespace Forradia::Palette {
 
     template <>
     Color GetColor<Hash("YellowTransparent")>() {
-        // Use existing yellow color and just change the alpha.
-
         auto color{GetColor<Hash("Yellow")>()};
         color.a = 0.7f;
-
         return color;
     }
 

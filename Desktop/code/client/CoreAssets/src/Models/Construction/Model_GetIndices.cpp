@@ -11,7 +11,6 @@
 
 namespace Forradia {
     Vector<unsigned int> Model::GetIndices(aiMesh *mesh) const {
-        // To hold the resulting indices.
         Vector<unsigned int> indices;
 
         // Iterate over all faces.
@@ -21,12 +20,9 @@ namespace Forradia {
 
             // Iterate over all indices in the face.
             for (unsigned int j = 0; j < face.mNumIndices; j++) {
-                // Add the index.
                 indices.push_back(face.mIndices[j]);
             }
         }
-
-        // Return the indices results.
         return indices;
     }
 }

@@ -15,8 +15,7 @@
 namespace Forradia {
     void GroundRenderer::DrawTiles(const Vector<TileData> &tiles) {
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
-
-        bool forceUpdate{false};
+        auto forceUpdate{false};
 
         for (auto &tile : tiles) {
             if (tile.forceUpdate) {
@@ -27,12 +26,9 @@ namespace Forradia {
 
         GroundRenderingGroupOperation groupOperation;
 
-        // Check if the tile is cached.
-
         bool tileIsCached{m_groupOperationsCache.contains(uniqueRenderID)};
 
         // If the tile is not cached or the force update flag is set.
-
         if (false == tileIsCached || forceUpdate) {
             std::map<int, Vector<TileData>> tileDataByTexture;
 
@@ -52,17 +48,11 @@ namespace Forradia {
                 TileDrawGroup group;
 
                 auto textureNameHash = entry.first;
-
                 auto &tileData = entry.second;
-
-                // Generate the vertex array object, index buffer object and vertex buffer
-                // object.
 
                 glGenVertexArrays(1, &group.vao);
                 glGenBuffers(1, &group.vbo);
                 glGenBuffers(1, &group.ibo);
-
-                // Bind them as well.
 
                 glBindVertexArray(group.vao);
                 glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
@@ -85,8 +75,6 @@ namespace Forradia {
                     auto verticesNoNormals{this->CalcTileVerticesNoNormals(
                         xCoordinate, yCoordinate, tileSize, elevations,
                         {tile.color00, tile.color10, tile.color11, tile.color01})};
-
-                    // Define the number of vertices and indices.
 
                     auto verticesCount{4};
                     auto indicesCount{6};
@@ -112,20 +100,13 @@ namespace Forradia {
                     vertexOffset += 4;
                 }
 
-                /// Upload indices.
-
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, group.ibo);
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                              sizeof(combinedIndices[0]) * combinedIndices.size(),
                              combinedIndices.data(), GL_STATIC_DRAW);
-
-                // Upload vertices.
-
                 glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
                 glBufferData(GL_ARRAY_BUFFER, sizeof(combinedVertices[0]) * combinedVertices.size(),
                              combinedVertices.data(), GL_STATIC_DRAW);
-
-                // Setup the attribute layout.
 
                 this->SetupAttributeLayout();
 
@@ -142,11 +123,9 @@ namespace Forradia {
         }
 
         // Calculate the MVP matrix.
-
         auto modelMatrix{glm::mat4(1.0f)};
         auto viewMatrix{_<Camera>().GetViewMatrix()};
         auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
-
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
@@ -161,16 +140,13 @@ namespace Forradia {
 
             auto group = entry.second;
 
-            // Get the texture ID and bind it.
             auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
-
             glBindTexture(GL_TEXTURE_2D, textureID);
 
             glBindVertexArray(group.vao);
             glBindBuffer(GL_ARRAY_BUFFER, group.vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, group.ibo);
 
-            // Draw the tiles.
             glDrawElements(GL_TRIANGLES, group.combinedIndicesCount, GL_UNSIGNED_SHORT, nullptr);
         }
     }

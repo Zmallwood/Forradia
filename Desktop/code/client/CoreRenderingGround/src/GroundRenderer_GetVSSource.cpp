@@ -11,8 +11,6 @@
 
 namespace Forradia {
     String GroundRenderer::GetVSSource() const {
-        // Return the vertex shader source.
-
         return R"(
             #version 330 core
             

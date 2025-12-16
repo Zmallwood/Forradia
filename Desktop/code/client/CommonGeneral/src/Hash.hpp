@@ -19,13 +19,10 @@ namespace Forradia {
     /// @return Computed hash code.
     constexpr int Hash(StringView text) {
         // Use djb2 algorithm by Daniel J. Bernstein.
-
         unsigned long hash{5381};
-
         for (size_t i = 0; i < text.size(); ++i) {
             hash = 33 * hash + (unsigned char)text[i];
         }
-
         return CInt(hash);
     }
 }

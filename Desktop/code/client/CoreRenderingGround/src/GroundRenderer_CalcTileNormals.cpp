@@ -12,8 +12,6 @@
 namespace Forradia {
     Vector<glm::vec3>
     GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const {
-        // Define constants.
-
         constexpr size_t k_vertexStride = 8;
         constexpr size_t k_requiredVertices = 9;
         constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
@@ -34,7 +32,6 @@ namespace Forradia {
                 auto i{y * 3 + x};
 
                 // Get the vertex coordinates.
-
                 auto vX{verticesNoNormals[i * k_vertexStride + 0]};
                 auto vY{verticesNoNormals[i * k_vertexStride + 1]};
                 auto vZ{verticesNoNormals[i * k_vertexStride + 2]};
@@ -45,14 +42,12 @@ namespace Forradia {
         }
 
         // Calculate the normals.
-
         auto normal00{ComputeNormal(v[1][0], v[0][0], v[0][1])};
         auto normal10{ComputeNormal(v[2][0], v[1][0], v[1][1])};
         auto normal11{ComputeNormal(v[2][1], v[1][1], v[1][2])};
         auto normal01{ComputeNormal(v[1][1], v[0][1], v[0][2])};
 
         // Invert the z-component of the normals.
-
         normal00.z *= -1.0f;
         normal10.z *= -1.0f;
         normal11.z *= -1.0f;
@@ -60,8 +55,6 @@ namespace Forradia {
 
         // Group the normals and return them.
         auto normals{Vector<glm::vec3>{normal00, normal10, normal11, normal01}};
-
-        // Return the normals.
         return normals;
     }
 }
