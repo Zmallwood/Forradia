@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-
 #include "GroundRenderingGroupOperation.hpp"
 #include "GroundRenderingOperation.hpp"
 #include "RendererBase.hpp"

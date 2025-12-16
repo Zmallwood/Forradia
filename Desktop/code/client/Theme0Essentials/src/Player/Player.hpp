@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"

@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-
 #include "Action.hpp"
 
 namespace Forradia::Theme0 {
