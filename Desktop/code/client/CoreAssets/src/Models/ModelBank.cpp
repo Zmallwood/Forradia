@@ -23,7 +23,8 @@ void ModelBank::LoadModels() {
   for (auto it : rdi) {
     auto filePath{Replace(it.path().string(), '\\', '/')};
 
-    if (GetFileExtension(filePath) == "obj") {
+    if (GetFileExtension(filePath) == "obj"
+  || GetFileExtension(filePath) == "dae") {
       auto fileName{GetFileNameNoExtension(filePath)};
       auto hash{Forradia::Hash(fileName)};
       auto model{this->LoadSingleModel(filePath)};
