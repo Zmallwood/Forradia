@@ -29,32 +29,16 @@
 namespace Forradia::Theme0 {
     void WorldView::Initiallize() {
         auto worldArea{_<World>().GetCurrentWorldArea()};
-
         auto worldAreaSize{worldArea->GetSize()};
 
         for (auto y = 0; y < worldAreaSize.height; y++) {
             for (auto x = 0; x < worldAreaSize.width; x++) {
                 m_renderIDsGround[x][y] =
                     Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
-
-                // m_renderIDsGroundCorners1[x][y] =
-                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
-
-                // m_renderIDsGroundCorners2[x][y] =
-                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
-
-                // m_renderIDsGroundCorners3[x][y] =
-                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
-
-                // m_renderIDsGroundCorners4[x][y] =
-                //     Hash("GroundCorner_" + std::to_string(x) + "_" + std::to_string(y));
-
                 m_renderIDsClaimedTiles[x][y] =
                     Hash("ClaimedTile_" + std::to_string(x) + "_" + std::to_string(y));
-
                 m_renderIDsRivers1[x][y] =
                     Hash("River1_" + std::to_string(x) + "_" + std::to_string(y));
-
                 m_renderIDsRivers2[x][y] =
                     Hash("River2_" + std::to_string(x) + "_" + std::to_string(y));
             }
@@ -62,14 +46,10 @@ namespace Forradia::Theme0 {
     }
 
     void WorldView::Render() const {
-        SkyRenderer skyRenderer;
-
         // 45 degrees up in +Z
-
         glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f));
 
         // 45 degrees
-
         float sunElevation = M_PI / 4.0f;
 
         _<SkyRenderer>().Render(sunDirection, sunElevation);
@@ -84,13 +64,9 @@ namespace Forradia::Theme0 {
                                    gridSize.height * k_groundRenderingDistanceMultiplier)}};
 
         auto playerPos{_<PlayerCharacter>().GetPosition()};
-
         auto worldArea{_<World>().GetCurrentWorldArea()};
-
         auto worldAreaSize{worldArea->GetSize()};
-
         auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
-
         auto elevHeight{_<Theme0Properties>().GetElevationHeight()};
 
         auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
@@ -99,23 +75,10 @@ namespace Forradia::Theme0 {
 
         Vector<TileData> tiles;
 
-        // Vector<TileData> tileCorners1;
-
-        // Vector<TileData> tileCorners2;
-
-        // Vector<TileData> tileCorners3;
-
-        // Vector<TileData> tileCorners4;
-
-        Vector<TileData> rivers1;
-
-        Vector<TileData> rivers2;
-
         std::map<int, std::map<int, Vector<float>>> elevationsAll;
 
         auto fnIterationGround{[&](int x, int y) {
             auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-
             auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
             if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate)) {
@@ -123,37 +86,22 @@ namespace Forradia::Theme0 {
             }
 
             auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
-
             auto objectsStack{tile->GetObjectsStack()};
-
             auto objects{objectsStack->GetObjects()};
 
             auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
-
             auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
-
             auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
-
             auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
-
             auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
-
             auto coordinateNW{Point{xCoordinate, yCoordinate}};
-
             auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
-
             auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
-
             auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
-
             auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
-
             auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
-
             auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
-
             auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
-
             auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
             if (!worldArea->IsValidCoordinate(coordinateNW) ||
@@ -164,51 +112,30 @@ namespace Forradia::Theme0 {
             }
 
             auto tileNWW{worldArea->GetTile(coordinateNWW)};
-
             auto tileNNW{worldArea->GetTile(coordinateNNW)};
-
             auto tileNNWW{worldArea->GetTile(coordinateNNWW)};
-
             auto tileNNE{worldArea->GetTile(coordinateNNE)};
-
             auto tileSWW{worldArea->GetTile(coordinateSWW)};
-
             auto tileNW{worldArea->GetTile(coordinateNW)};
-
             auto tileNE{worldArea->GetTile(coordinateNE)};
-
             auto tileSW{worldArea->GetTile(coordinateSW)};
-
             auto tileSE{worldArea->GetTile(coordinateSE)};
-
             auto tileNEE{worldArea->GetTile(coordinateNEE)};
-
             auto tileSEE{worldArea->GetTile(coordinateSEE)};
-
             auto tileSESE{worldArea->GetTile(coordinateSESE)};
-
             auto tileSES{worldArea->GetTile(coordinateSES)};
-
             auto tileSS{worldArea->GetTile(coordinateSS)};
 
             Vector<float> elevations;
 
             auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
-
             auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-
             auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
-
             auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-
             auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
-
             auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
-
             auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0f};
-
             auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
-
             auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
 
             elevations.push_back(elevationNW);
@@ -229,24 +156,6 @@ namespace Forradia::Theme0 {
                 std::max(elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
 
             auto ground{tile->GetGround()};
-
-            // if (ground == Hash("GroundWater"))
-            // {
-            //     auto grassCornerNW{false};
-            //     auto grassCornerNE{false};
-            //     auto grassCornerSE{false};
-            //     auto grassCornerSW{false};
-
-            //     if (tileNWW && tileNWW->GetGround() == Hash("GroundGrass") && tileNNW &&
-            //         tileNNW->GetGround() == Hash("GroundGrass") && tileNNWW &&
-            //         tileNNWW->GetGround() == Hash("GroundGrass"))
-            //     {
-            //         tileCorners1.push_back(
-            //             {m_renderIDsGroundCorners1.at(xCoordinate).at(yCoordinate),
-            //              Hash("GroundGrassCornerNW"), xCoordinate, yCoordinate,
-            //              rendTileSize, elevations, false});
-            //     }
-            // }
 
             auto color00{Palette::GetColor<Hash("White")>()};
             auto color10{Palette::GetColor<Hash("White")>()};
@@ -331,15 +240,12 @@ namespace Forradia::Theme0 {
                 }
             }
 
-            // ground = Hash("GroundWater");
-
             auto forceRedraw{tile->GetForceRedraw()};
 
             tile->SetForceRedraw(false);
 
             if (ground == Hash("GroundWater")) {
                 auto waterDepth{tile->GetWaterDepth()};
-
                 waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
                 String waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
@@ -355,13 +261,10 @@ namespace Forradia::Theme0 {
 
             // Check if this tile is within the normal grid size for object/creature
             // rendering.
-
             auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                                     x < (groundGridSize.width + gridSize.width) / 2 &&
                                     y >= (groundGridSize.height - gridSize.height) / 2 &&
                                     y < (groundGridSize.height + gridSize.height) / 2};
-
-            // ground = Hash("GroundGrass");
 
             tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
                              yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
@@ -370,7 +273,6 @@ namespace Forradia::Theme0 {
 
         auto fnIterationAllExceptGround{[&](int x, int y) {
             auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-
             auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
             if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate)) {
@@ -378,9 +280,7 @@ namespace Forradia::Theme0 {
             }
 
             auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
-
             auto objectsStack{tile->GetObjectsStack()};
-
             auto objects{objectsStack->GetObjects()};
 
             if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
@@ -409,7 +309,6 @@ namespace Forradia::Theme0 {
 
             if (ground == Hash("GroundWater")) {
                 auto waterDepth{tile->GetWaterDepth()};
-
                 waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
                 String waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
@@ -423,14 +322,12 @@ namespace Forradia::Theme0 {
 
             // Check if this tile is within the normal grid size for object/creature
             // rendering.
-
             auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                                     x < (groundGridSize.width + gridSize.width) / 2 &&
                                     y >= (groundGridSize.height - gridSize.height) / 2 &&
                                     y < (groundGridSize.height + gridSize.height) / 2};
 
             // Only render objects, creatures, and robots within the normal grid size.
-
             if (isWithinNormalGrid) {
                 for (auto object : objects) {
                     auto objectType{object->GetType()};
@@ -476,7 +373,6 @@ namespace Forradia::Theme0 {
                 }
 
                 _<GroundRenderer>().SetupState();
-
                 _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile, Hash("HoveredTile"),
                                              xCoordinate, yCoordinate, rendTileSize, elevations,
                                              true);
@@ -506,11 +402,9 @@ namespace Forradia::Theme0 {
                     }
 
                     _<GroundRenderer>().SetupState();
-
                     _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot,
                                                  Hash("TargetedRobot"), xCoordinate, yCoordinate,
                                                  rendTileSize, elevations, true);
-
                     _<GroundRenderer>().RestoreState();
                 }
             }
@@ -521,11 +415,9 @@ namespace Forradia::Theme0 {
         auto tilesGroupSize{20};
 
         // First pass: Render ground tiles at extended distance.
-
         for (auto y = 0; y < groundGridSize.height; y++) {
             for (auto x = 0; x < groundGridSize.width; x++) {
                 auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-
                 auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
                 if (xCoordinate % tilesGroupSize == 0 && yCoordinate % tilesGroupSize == 0) {
@@ -539,26 +431,13 @@ namespace Forradia::Theme0 {
         }
         if (!tiles.empty()) {
             _<GroundRenderer>().DrawTiles(tiles);
-            // if (!rivers1.empty())
-            // {
-            //     std::cout << "rivers1" << std::endl;
-            // }
-            //_<GroundRenderer>().DrawTiles(rivers1);
-            // if (!rivers2.empty())
-            // {
-            //     std::cout << "rivers2" << std::endl;
-            // }
-            //_<GroundRenderer>().DrawTiles(rivers2);
         }
 
         tiles.clear();
-        // rivers1.clear();
-        // rivers2.clear();
 
         _<GroundRenderer>().SetupState();
 
         // Second pass: Render all except ground tiles.
-
         for (auto y = 0; y < worldAreaSize.height; y++) {
             for (auto x = 0; x < worldAreaSize.width; x++) {
                 fnIterationAllExceptGround(x, y);
