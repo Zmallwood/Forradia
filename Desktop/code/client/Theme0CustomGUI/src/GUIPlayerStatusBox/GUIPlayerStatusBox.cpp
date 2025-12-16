@@ -16,12 +16,7 @@
 
 namespace Forradia::Theme0 {
     void GUIPlayerStatusBox::Initialize() {
-        // Create the health meter.
-
         auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
-
-        // Add the name text label to this panel.
-
         this->AddChildComponent(wellBeingMeter);
 
         m_wellBeingValueTextLabel =
@@ -35,7 +30,6 @@ namespace Forradia::Theme0 {
         GUIPanel::UpdateDerived();
 
         auto wellBeing{_<Theme0::PlayerCharacter>().GetWellBeing()};
-
         auto maxWellBeing{_<Theme0::PlayerCharacter>().GetMaxWellBeing()};
 
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
@@ -50,13 +44,11 @@ namespace Forradia::Theme0 {
                                      bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
         auto experience{_<Theme0::PlayerCharacter>().GetExperience()};
-
         auto level{CalculateCurrentLevel(experience)};
 
         _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
                                      bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
                                      true);
-
         _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
                                      bounds.y + 0.095f, FontSizes::_20);
     }

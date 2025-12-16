@@ -20,7 +20,6 @@ namespace Forradia::Theme0 {
         for (auto i = 0; i < k_maxNumSlots; i++) {
             m_renderIDsSlotsBackground[i] =
                 Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
-
             m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
         }
     }
@@ -29,21 +28,15 @@ namespace Forradia::Theme0 {
         GUIWindow::RenderDerived();
 
         auto bounds{this->GetBounds()};
-
         auto marginX{k_margin};
-
         auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
-
         auto xStart{bounds.x + marginX};
-
         auto yStart{bounds.y + marginY + this->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
-
         auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
         auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-
         auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
         auto &objectsInventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
@@ -51,7 +44,6 @@ namespace Forradia::Theme0 {
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
                 auto index{x + y * numColumns};
-
                 int renderIDBackground{0};
 
                 if (m_renderIDsSlotsBackground.contains(index)) {
@@ -60,7 +52,6 @@ namespace Forradia::Theme0 {
                     PrintLine("GUIInventoryWindow: Render ID not "
                               "found for index: " +
                               std::to_string(index));
-
                     return;
                 }
 

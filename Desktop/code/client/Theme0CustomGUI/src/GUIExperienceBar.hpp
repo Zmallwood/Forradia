@@ -34,7 +34,7 @@ namespace Forradia::Theme0 {
         }
 
       private:
-        constexpr static float k_height{0.02f};
+        constexpr static float k_height{0.018f};
         float m_filledPercentage{0.0f};
     };
 }

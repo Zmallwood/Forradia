@@ -15,27 +15,14 @@
 #include "World.hpp"
 
 int main(int argc, char **argv) {
-    // Use namespaces for readability.
-
     using namespace Forradia;
-
     using namespace Theme0;
-
-    // Initialize the engine.
 
     _<Engine>().Initialize(_<Theme0Properties>().GetGameWindowTitle(),
                            _<Theme0Properties>().GetClearColor());
-
     SetupScenes();
-
-    // Initialize the world.
-
     _<World>().Initialize(_<Theme0Properties>().GetBaseWorldAreaSize(),
                           _<Theme0Properties>().GetWorldScaling());
-
-    // Run the engine.
-
     _<Engine>().Run();
-
     return 0;
 }

@@ -76,9 +76,7 @@ namespace Forradia::Theme0 {
                     inventory.RemoveObject("ObjectStoneBrick");
 
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -86,9 +84,7 @@ namespace Forradia::Theme0 {
                     }
 
                     _<GUIChatBox>().Print("You craft a stone wall door.");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
                                                          "ObjectStoneWallDoor", clickedCoordinate);
                 }};
@@ -102,9 +98,7 @@ namespace Forradia::Theme0 {
                     inventory.RemoveObject("ObjectStoneBrick");
 
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -112,9 +106,7 @@ namespace Forradia::Theme0 {
                     }
 
                     _<GUIChatBox>().Print("You craft a stone wall.");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
                                                          "ObjectStoneWall", clickedCoordinate);
                 }};
@@ -126,14 +118,11 @@ namespace Forradia::Theme0 {
                     auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
-
                     inventory.AddObject("ObjectStoneBrick");
 
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
                                                          "ObjectStoneBrick");
-
                     _<GUIChatBox>().Print("You craft a stone brick.");
                 }};
     }
@@ -146,9 +135,7 @@ namespace Forradia::Theme0 {
                     inventory.RemoveObject("ObjectStoneSlab");
 
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -156,9 +143,7 @@ namespace Forradia::Theme0 {
                     }
 
                     _<GUIChatBox>().Print("You lay a stone slab.");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
                 }};
     }
@@ -169,13 +154,10 @@ namespace Forradia::Theme0 {
                     auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
-
                     inventory.AddObject("ObjectStoneSlab");
 
                     _<GUIChatBox>().Print("You craft a stone slab.");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
                                                          "ObjectStoneSlab");
                 }};
@@ -189,25 +171,20 @@ namespace Forradia::Theme0 {
 
                 if (inventory.CountHasObject("ObjectBranch") < 1) {
                     _<GUIChatBox>().Print("You don't have any branches to craft a stone pickaxe.");
-
                     return;
                 }
 
                 if (inventory.CountHasObject("ObjectStone") < 1) {
                     _<GUIChatBox>().Print("You don't have any stones to craft a stone pickaxe.");
-
                     return;
                 }
 
                 inventory.RemoveObject("ObjectBranch");
                 inventory.RemoveObject("ObjectStone");
-
                 inventory.AddObject("ObjectStonePickaxe");
 
                 _<GUIChatBox>().Print("You craft a stone pickaxe.");
-
                 _<PlayerCharacter>().AddExperience(10);
-
                 _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
                                                      "ObjectStonePickaxe");
             }};
@@ -218,13 +195,10 @@ namespace Forradia::Theme0 {
         return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
                     auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
-                    // inventory.AddObject("ObjectSmallStones");
                     inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You chip some stone.");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
                 }};
     }
@@ -238,16 +212,13 @@ namespace Forradia::Theme0 {
 
                     if (numSmallStonesInInventory <= 0) {
                         _<GUIChatBox>().Print("You don't have any small stones to lay.");
-
                         return;
                     }
 
                     inventory.RemoveObject("ObjectSmallStones");
 
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -267,14 +238,11 @@ namespace Forradia::Theme0 {
 
                     if (numMetalScrapsInInventory <= 0) {
                         _<GUIChatBox>().Print("You don't have any metal scraps to lay.");
-
                         return;
                     }
 
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -291,9 +259,7 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("ActionPlowLand")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -311,19 +277,15 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("Pick up")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
                         auto objectsStack{tile->GetObjectsStack()};
-
                         auto object{objectsStack->PopObject()};
 
                         if (object) {
                             auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
-
                             inventory.AddObject(object->GetType());
                         }
                     }
@@ -334,9 +296,7 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("ActionClaimLand")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -376,9 +336,7 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("ActionChopTree")>() {
         return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -404,9 +362,7 @@ namespace Forradia::Theme0 {
 
                     _<GUIChatBox>().Print("Foraging... You found some "
                                           "blueberries!");
-
                     _<PlayerCharacter>().AddExperience(10);
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Forage);
                 }};
     }
@@ -421,7 +377,6 @@ namespace Forradia::Theme0 {
                     inventory.AddObject("ObjectBranch");
 
                     _<GUIChatBox>().Print("You picked a branch!");
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
                 }};
     }
@@ -430,9 +385,7 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("ActionPickStone")>() {
         return {.groundMatches = {}, .objectMatches = {Hash("ObjectStone")}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
-
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
                     if (tile) {
@@ -444,7 +397,6 @@ namespace Forradia::Theme0 {
                     inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You picked a stone!");
-
                     _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
                 }};
     }
@@ -458,9 +410,7 @@ namespace Forradia::Theme0 {
                     auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto hasBranchesCount{inventory.CountHasObject("ObjectBranch")};
-
                     auto requiredBranchesCount{4};
-
                     auto lackingBranchesCount{requiredBranchesCount - hasBranchesCount};
 
                     if (lackingBranchesCount <= 0) {

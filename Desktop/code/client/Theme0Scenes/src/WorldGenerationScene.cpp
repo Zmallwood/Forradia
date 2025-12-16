@@ -12,11 +12,8 @@
 namespace Forradia::Theme0 {
     void WorldGenerationScene::OnEnterDerived() {
         _<GUIChatBox>().Print("Generating world...");
-
         _<WorldGenerator>().GenerateNewWorld();
-
         _<GUIChatBox>().Print("World generation complete.");
-
         _<SceneManager>().GoToScene("MainScene");
     }
 }

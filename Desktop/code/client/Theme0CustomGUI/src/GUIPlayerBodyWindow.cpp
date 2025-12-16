@@ -17,7 +17,6 @@
 namespace Forradia::Theme0 {
     void GUIPlayerBodyWindow::Initialize() {
         auto imageWidth{0.07f};
-
         auto imageHeight{ConvertWidthToHeight(imageWidth, _<SDLDevice>().GetWindow())};
 
         auto overallBodyImageButton{std::make_shared<GUIButton>(
@@ -66,23 +65,17 @@ namespace Forradia::Theme0 {
         m_labelBodyPartName = std::make_shared<GUILabel>(
             "GUILabelBodyPartName", 0.01f, 0.3f, 0.2f, 0.05f, "Body part: ", false,
             Palette::GetColor<Hash("YellowTransparent")>());
-
         m_labelBodyPartStrength = std::make_shared<GUILabel>(
             "GUILabelBodyPartStrength", 0.01f + 0.01f, 0.3f + 1 * 0.02f, 0.2f, 0.05f, "Strength: ");
-
         m_labelBodyPartEnergy = std::make_shared<GUILabel>(
             "GUILabelBodyPartEnergy", 0.01f + 0.01f, 0.3f + 2 * 0.02f, 0.2f, 0.05f, "Energy: ");
-
         m_labelBodyPartTemperature =
             std::make_shared<GUILabel>("GUILabelBodyPartTemperature", 0.01f + 0.01f,
                                        0.3f + 3 * 0.02f, 0.2f, 0.05f, "Temperature: ");
 
         this->AddChildComponent(m_labelBodyPartName);
-
         this->AddChildComponent(m_labelBodyPartStrength);
-
         this->AddChildComponent(m_labelBodyPartEnergy);
-
         this->AddChildComponent(m_labelBodyPartTemperature);
     }
 
@@ -94,11 +87,8 @@ namespace Forradia::Theme0 {
         auto &playerBody{_<Theme0::PlayerCharacter>().GetBodyRef()};
 
         constexpr auto overallBody{CInt(Theme0::PlayerBodyPartTypes::OverallBody)};
-
         constexpr auto rightArm{CInt(Theme0::PlayerBodyPartTypes::RightArm)};
-
         constexpr auto leftArm{CInt(Theme0::PlayerBodyPartTypes::LeftArm)};
-
         constexpr auto legs{CInt(Theme0::PlayerBodyPartTypes::Legs)};
 
         switch (m_selectedBodyPart) {
@@ -122,10 +112,7 @@ namespace Forradia::Theme0 {
                                  ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
-        }
-
-        break;
-
+        } break;
         case rightArm: {
             m_labelBodyPartName->SetText("Body part: Right arm");
 
@@ -147,10 +134,7 @@ namespace Forradia::Theme0 {
                 playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::RightArm)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
-        }
-
-        break;
-
+        } break;
         case leftArm: {
             m_labelBodyPartName->SetText("Body part: Left arm");
 
@@ -172,10 +156,7 @@ namespace Forradia::Theme0 {
                 playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::LeftArm)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
-        }
-
-        break;
-
+        } break;
         case legs: {
             m_labelBodyPartName->SetText("Body part: Legs");
 
@@ -197,9 +178,7 @@ namespace Forradia::Theme0 {
                 playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::Legs)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
-        }
-
-        break;
+        } break;
         }
     }
 }

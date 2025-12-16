@@ -17,7 +17,6 @@ namespace Forradia::Theme0 {
         auto &playerCharacter{_<Theme0::PlayerCharacter>()};
 
         auto health{playerCharacter.GetWellBeing()};
-
         auto maxHealth{playerCharacter.GetMaxWellBeing()};
 
         auto bounds{this->GetBounds()};
