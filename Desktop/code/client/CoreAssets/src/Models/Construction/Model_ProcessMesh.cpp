@@ -10,11 +10,10 @@
 #include "Model.hpp"
 
 namespace Forradia {
-    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene,
-                               aiMatrix4x4 transformation) const {
-        auto vertices{this->GetVertices(mesh, transformation)};
-        auto indices{this->GetIndices(mesh)};
-        auto textures{this->GetTextures(mesh, scene)};
-        return GLMMesh(vertices, indices, textures);
-    }
+GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const {
+  auto vertices{this->GetVertices(mesh, transformation)};
+  auto indices{this->GetIndices(mesh)};
+  auto textures{this->GetTextures(mesh, scene)};
+  return GLMMesh(vertices, indices, textures);
+}
 }

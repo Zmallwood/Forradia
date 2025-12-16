@@ -11,29 +11,29 @@
 #include "IScene.hpp"
 
 namespace Forradia {
-    void SceneManager::AddScene(StringView sceneName, IScene &scene) {
-        scene.Initialize();
+void SceneManager::AddScene(StringView sceneName, IScene &scene) {
+  scene.Initialize();
 
-        m_scenes.insert({Hash(sceneName), scene});
-    }
+  m_scenes.insert({Hash(sceneName), scene});
+}
 
-    void SceneManager::GoToScene(StringView sceneName) {
-        m_currentScene = Hash(sceneName);
+void SceneManager::GoToScene(StringView sceneName) {
+  m_currentScene = Hash(sceneName);
 
-        if (m_scenes.contains(m_currentScene)) {
-            m_scenes.at(m_currentScene).OnEnter();
-        }
-    }
+  if (m_scenes.contains(m_currentScene)) {
+    m_scenes.at(m_currentScene).OnEnter();
+  }
+}
 
-    void SceneManager::UpdateCurrentScene() {
-        if (m_scenes.contains(m_currentScene)) {
-            m_scenes.at(m_currentScene).Update();
-        }
-    }
+void SceneManager::UpdateCurrentScene() {
+  if (m_scenes.contains(m_currentScene)) {
+    m_scenes.at(m_currentScene).Update();
+  }
+}
 
-    void SceneManager::RenderCurrentScene() const {
-        if (m_scenes.contains(m_currentScene)) {
-            m_scenes.at(m_currentScene).Render();
-        }
-    }
+void SceneManager::RenderCurrentScene() const {
+  if (m_scenes.contains(m_currentScene)) {
+    m_scenes.at(m_currentScene).Render();
+  }
+}
 }

@@ -10,16 +10,16 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    enum class PlayerActionTypes {
-        None,
-        MoveNorth,
-        MoveEast,
-        MoveSouth,
-        MoveWest,
-        Forage,
-        Pick,
-        Craft,
-        Mine,
-        Lay
-    };
+enum class PlayerActionTypes {
+  None,
+  MoveNorth,
+  MoveEast,
+  MoveSouth,
+  MoveWest,
+  Forage,
+  Pick,
+  Craft,
+  Mine,
+  Lay
+};
 }

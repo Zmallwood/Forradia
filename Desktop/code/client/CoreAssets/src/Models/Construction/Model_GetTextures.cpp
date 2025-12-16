@@ -10,15 +10,14 @@
 #include "Model.hpp"
 
 namespace Forradia {
-    Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const {
-        Vector<Texture> textures;
-        aiString textureFilePath;
+Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const {
+  Vector<Texture> textures;
+  aiString textureFilePath;
 
-        // Get the texture path.
-        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0,
-                                                            &textureFilePath);
-        // Add the texture to the results.
-        textures.push_back(Texture(GetFileNameNoExtension(textureFilePath.C_Str())));
-        return textures;
-    }
+  // Get the texture path.
+  scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &textureFilePath);
+  // Add the texture to the results.
+  textures.push_back(Texture(GetFileNameNoExtension(textureFilePath.C_Str())));
+  return textures;
+}
 }

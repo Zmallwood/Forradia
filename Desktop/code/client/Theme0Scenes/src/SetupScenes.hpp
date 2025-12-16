@@ -7,5 +7,5 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    void SetupScenes();
+void SetupScenes();
 }

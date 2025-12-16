@@ -11,9 +11,9 @@
 #include "Image2DRenderer.hpp"
 
 namespace Forradia {
-    void GUIPanel::RenderDerived() const {
-        auto bounds{this->GetBounds()};
-        _<Image2DRenderer>().DrawImageByName(k_renderIDBackground, m_backgroundImage, bounds.x,
-                                             bounds.y, bounds.width, bounds.height, true);
-    }
+void GUIPanel::RenderDerived() const {
+  auto bounds{this->GetBounds()};
+  _<Image2DRenderer>().DrawImageByName(k_renderIDBackground, m_backgroundImage, bounds.x, bounds.y,
+                                       bounds.width, bounds.height, true);
+}
 }

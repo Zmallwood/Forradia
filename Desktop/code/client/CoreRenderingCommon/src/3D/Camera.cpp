@@ -16,78 +16,77 @@
 #include "WorldArea.hpp"
 
 namespace Forradia {
-    glm::mat4 Camera::GetViewMatrix() const {
-        auto cameraPosition{GetPosition()};
-        auto cameraLookAt{GetLookAt()};
-        return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
-                           glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
-                           glm::vec3(0.0f, 0.0f, -1.0f));
-    }
+glm::mat4 Camera::GetViewMatrix() const {
+  auto cameraPosition{GetPosition()};
+  auto cameraLookAt{GetLookAt()};
+  return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
+                     glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
+                     glm::vec3(0.0f, 0.0f, -1.0f));
+}
 
-    glm::mat4 Camera::GetProjectionMatrix() const {
-        auto aspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
-        return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
-    }
+glm::mat4 Camera::GetProjectionMatrix() const {
+  auto aspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
+  return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
+}
 
-    Point3F Camera::GetPosition() const {
-        // Returns the camera position in world space. The position is derived from the look-at
-        // point with an offset which is determined by the zoom amount and the rotation angle.
-        
-        auto point{GetLookAt()};
+Point3F Camera::GetPosition() const {
+  // Returns the camera position in world space. The position is derived from the look-at
+  // point with an offset which is determined by the zoom amount and the rotation angle.
 
-        // Calculate the rotation in the X and Y axes.
-        auto cosRotation{std::cos(m_rotationAngleSideways + M_PI / 2)};
-        auto sinRotation{std::sin(m_rotationAngleSideways + M_PI / 2)};
+  auto point{GetLookAt()};
 
-        // Calculate the vertical rotation.
-        auto cosVertical{std::cos(-m_rotationAngleVertical)};
-        auto sinVertical{std::sin(-m_rotationAngleVertical)};
+  // Calculate the rotation in the X and Y axes.
+  auto cosRotation{std::cos(m_rotationAngleSideways + M_PI / 2)};
+  auto sinRotation{std::sin(m_rotationAngleSideways + M_PI / 2)};
 
-        // Apply the distance based on the zoom amount and vertical rotation.
-        // The horizontal distance is scaled by the vertical angle, and the vertical offset
-        // is determined by the vertical angle.
-        auto horizontalDistance{cosVertical * m_zoomAmount};
+  // Calculate the vertical rotation.
+  auto cosVertical{std::cos(-m_rotationAngleVertical)};
+  auto sinVertical{std::sin(-m_rotationAngleVertical)};
 
-        point.x += cosRotation * horizontalDistance;
-        point.y += sinRotation * horizontalDistance;
-        point.z += sinVertical * m_zoomAmount;
-        return point;
-    }
+  // Apply the distance based on the zoom amount and vertical rotation.
+  // The horizontal distance is scaled by the vertical angle, and the vertical offset
+  // is determined by the vertical angle.
+  auto horizontalDistance{cosVertical * m_zoomAmount};
 
-    Point3F Camera::GetLookAt() const {
-        // Computes the point in world space the camera should look at. This targets the center
-        // of the player's current tile and uses the tile's elevation to set Z.
-        
-        auto worldArea{_<Theme0::World>().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
-        auto rendTileSize{_<Theme0::Theme0Properties>().GetTileSize()};
-        auto playerPos{_<Theme0::PlayerCharacter>().GetPosition()};
-        auto elevHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
-        auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
+  point.x += cosRotation * horizontalDistance;
+  point.y += sinRotation * horizontalDistance;
+  point.z += sinVertical * m_zoomAmount;
+  return point;
+}
 
-        // Construct the resulting look-at point in world space.
-        Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
-                       playerPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
-        return lookAt;
-    }
+Point3F Camera::GetLookAt() const {
+  // Computes the point in world space the camera should look at. This targets the center
+  // of the player's current tile and uses the tile's elevation to set Z.
 
-    void Camera::AddZoomAmountDelta(float zoomAmountDelta) {
-        // Add the delta to the current zoom amount and clamp it between the minimum and maximum
-        // zoom amounts.
-        m_zoomAmount += zoomAmountDelta;
-        m_zoomAmount = std::max(std::min(m_zoomAmount, k_maxZoomAmount), k_minZoomAmount);
-    }
+  auto worldArea{_<Theme0::World>().GetCurrentWorldArea()};
+  auto worldAreaSize{worldArea->GetSize()};
+  auto rendTileSize{_<Theme0::Theme0Properties>().GetTileSize()};
+  auto playerPos{_<Theme0::PlayerCharacter>().GetPosition()};
+  auto elevHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
+  auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
-    void Camera::AddRotationDeltaSideways(float rotationDeltaSideways) {
-        m_rotationAngleSideways += rotationDeltaSideways;
-    }
+  // Construct the resulting look-at point in world space.
+  Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
+                 playerPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
+  return lookAt;
+}
 
-    void Camera::AddRotationDeltaVertical(float rotationDeltaVertical) {
-        // Add the delta to the current vertical rotation amount and clamp it between the
-        // minimum and maximum vertical rotation angles.
-        m_rotationAngleVertical += rotationDeltaVertical;
-        m_rotationAngleVertical =
-            std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical),
-                     k_minRotationAngleVertical);
-    }
+void Camera::AddZoomAmountDelta(float zoomAmountDelta) {
+  // Add the delta to the current zoom amount and clamp it between the minimum and maximum
+  // zoom amounts.
+  m_zoomAmount += zoomAmountDelta;
+  m_zoomAmount = std::max(std::min(m_zoomAmount, k_maxZoomAmount), k_minZoomAmount);
+}
+
+void Camera::AddRotationDeltaSideways(float rotationDeltaSideways) {
+  m_rotationAngleSideways += rotationDeltaSideways;
+}
+
+void Camera::AddRotationDeltaVertical(float rotationDeltaVertical) {
+  // Add the delta to the current vertical rotation amount and clamp it between the
+  // minimum and maximum vertical rotation angles.
+  m_rotationAngleVertical += rotationDeltaVertical;
+  m_rotationAngleVertical = std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical),
+                                     k_minRotationAngleVertical);
+}
 }

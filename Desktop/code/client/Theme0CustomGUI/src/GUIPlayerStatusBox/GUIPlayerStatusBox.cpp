@@ -15,41 +15,40 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia::Theme0 {
-    void GUIPlayerStatusBox::Initialize() {
-        auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
-        this->AddChildComponent(wellBeingMeter);
+void GUIPlayerStatusBox::Initialize() {
+  auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+  this->AddChildComponent(wellBeingMeter);
 
-        m_wellBeingValueTextLabel =
-            std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
-                                       false, Palette::GetColor<Hash("Black")>());
+  m_wellBeingValueTextLabel =
+      std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+                                 false, Palette::GetColor<Hash("Black")>());
 
-        this->AddChildComponent(m_wellBeingValueTextLabel);
-    }
+  this->AddChildComponent(m_wellBeingValueTextLabel);
+}
 
-    void GUIPlayerStatusBox::UpdateDerived() {
-        GUIPanel::UpdateDerived();
+void GUIPlayerStatusBox::UpdateDerived() {
+  GUIPanel::UpdateDerived();
 
-        auto wellBeing{_<Theme0::PlayerCharacter>().GetWellBeing()};
-        auto maxWellBeing{_<Theme0::PlayerCharacter>().GetMaxWellBeing()};
+  auto wellBeing{_<Theme0::PlayerCharacter>().GetWellBeing()};
+  auto maxWellBeing{_<Theme0::PlayerCharacter>().GetMaxWellBeing()};
 
-        m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
-    }
+  m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
+}
 
-    void GUIPlayerStatusBox::RenderDerived() const {
-        GUIPanel::RenderDerived();
+void GUIPlayerStatusBox::RenderDerived() const {
+  GUIPanel::RenderDerived();
 
-        auto bounds{this->GetBounds()};
+  auto bounds{this->GetBounds()};
 
-        _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::PlayerCharacter>().GetName(),
-                                     bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+  _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::PlayerCharacter>().GetName(),
+                               bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-        auto experience{_<Theme0::PlayerCharacter>().GetExperience()};
-        auto level{CalculateCurrentLevel(experience)};
+  auto experience{_<Theme0::PlayerCharacter>().GetExperience()};
+  auto level{CalculateCurrentLevel(experience)};
 
-        _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
-                                     true);
-        _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                     bounds.y + 0.095f, FontSizes::_20);
-    }
+  _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
+                               bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false, true);
+  _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f, bounds.y + 0.095f,
+                               FontSizes::_20);
+}
 }

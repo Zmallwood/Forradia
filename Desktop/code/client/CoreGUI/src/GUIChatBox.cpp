@@ -15,93 +15,93 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-    void GUIChatBox::Initialize() {
-        auto maxNumLines{this->GetMaxNumLines()};
+void GUIChatBox::Initialize() {
+  auto maxNumLines{this->GetMaxNumLines()};
 
-        for (auto i = 0; i < maxNumLines; i++) {
-            m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
-        }
+  for (auto i = 0; i < maxNumLines; i++) {
+    m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
+  }
+}
+
+int GUIChatBox::GetMaxNumLines() const {
+  auto bounds{this->GetBounds()};
+  return CInt(bounds.height / k_lineHeight - 1);
+}
+
+void GUIChatBox::UpdateDerived() {
+  GUIPanel::UpdateDerived();
+
+  m_input = _<KeyboardInput>().GetTextInput();
+}
+
+void GUIChatBox::RenderDerived() const {
+  GUIPanel::RenderDerived();
+
+  auto bounds{this->GetBounds()};
+  auto maxNumLines{this->GetMaxNumLines()};
+  auto y{bounds.y + k_margin};
+
+  // Loop through the text lines.
+  for (auto i = 0; i < maxNumLines; i++) {
+    auto index{m_lines.size() - maxNumLines + i};
+
+    if (index < 0 || index >= m_lines.size()) {
+      continue;
     }
 
-    int GUIChatBox::GetMaxNumLines() const {
-        auto bounds{this->GetBounds()};
-        return CInt(bounds.height / k_lineHeight - 1);
-    }
+    auto textLine = m_lines.at(index);
 
-    void GUIChatBox::UpdateDerived() {
-        GUIPanel::UpdateDerived();
+    _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin, y,
+                                 FontSizes::_20, false, true);
 
-        m_input = _<KeyboardInput>().GetTextInput();
-    }
+    y += k_lineHeight;
+  }
 
-    void GUIChatBox::RenderDerived() const {
-        GUIPanel::RenderDerived();
+  auto separatorX{bounds.x + k_margin};
+  auto separatorY{bounds.y + bounds.height - k_lineHeight};
+  auto separatorWidth{bounds.width - 2 * k_margin};
+  auto sepratorHeight{k_separatorHeight};
 
-        auto bounds{this->GetBounds()};
-        auto maxNumLines{this->GetMaxNumLines()};
-        auto y{bounds.y + k_margin};
+  _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(), separatorX,
+                                separatorY, separatorX + separatorWidth, separatorY, sepratorHeight,
+                                true);
 
-        // Loop through the text lines.
-        for (auto i = 0; i < maxNumLines; i++) {
-            auto index{m_lines.size() - maxNumLines + i};
+  if (m_inputActive) {
+    // TODO: Calculate the cursor x-coordinate based on the text input.
 
-            if (index < 0 || index >= m_lines.size()) {
-                continue;
-            }
+    auto cursorX{bounds.x};
+    auto cursorY{bounds.y + bounds.height - k_lineHeight};
+    auto cursorWidth{0.01f};
+    auto cursorHeight{k_lineHeight};
 
-            auto textLine = m_lines.at(index);
+    _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX, cursorY,
+                                         cursorWidth, cursorHeight);
 
-            _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin,
-                                         y, FontSizes::_20, false, true);
+    _<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY, FontSizes::_20,
+                                 false, true);
+  }
+}
 
-            y += k_lineHeight;
-        }
+void GUIChatBox::Print(StringView text) {
+  m_lines.push_back(text.data());
+}
 
-        auto separatorX{bounds.x + k_margin};
-        auto separatorY{bounds.y + bounds.height - k_lineHeight};
-        auto separatorWidth{bounds.width - 2 * k_margin};
-        auto sepratorHeight{k_separatorHeight};
+void GUIChatBox::EnableInput() {
+  _<KeyboardInput>().StartTextInput();
 
-        _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
-                                      separatorX, separatorY, separatorX + separatorWidth,
-                                      separatorY, sepratorHeight, true);
+  m_inputActive = true;
+}
 
-        if (m_inputActive) {
-            // TODO: Calculate the cursor x-coordinate based on the text input.
+void GUIChatBox::SubmitInput() {
+  // TODO: Act on the typed input.
 
-            auto cursorX{bounds.x};
-            auto cursorY{bounds.y + bounds.height - k_lineHeight};
-            auto cursorWidth{0.01f};
-            auto cursorHeight{k_lineHeight};
+  if (m_input == "/quit") {
+    _<Engine>().Stop();
+  }
 
-            _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX,
-                                                 cursorY, cursorWidth, cursorHeight);
+  _<KeyboardInput>().StopTextInput();
 
-            _<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
-                                         FontSizes::_20, false, true);
-        }
-    }
-
-    void GUIChatBox::Print(StringView text) {
-        m_lines.push_back(text.data());
-    }
-
-    void GUIChatBox::EnableInput() {
-        _<KeyboardInput>().StartTextInput();
-
-        m_inputActive = true;
-    }
-
-    void GUIChatBox::SubmitInput() {
-        // TODO: Act on the typed input.
-
-        if (m_input == "/quit") {
-            _<Engine>().Stop();
-        }
-
-        _<KeyboardInput>().StopTextInput();
-
-        m_inputActive = false;
-        m_input = "";
-    }
+  m_inputActive = false;
+  m_input = "";
+}
 }

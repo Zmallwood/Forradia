@@ -10,14 +10,14 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    class Quest {
-      public:
-        virtual void Update() = 0;
+class Quest {
+ public:
+  virtual void Update() = 0;
 
-        virtual String GetStatus() const = 0;
+  virtual String GetStatus() const = 0;
 
-        String name;
-        String description;
-        bool isCompleted{false};
-    };
+  String name;
+  String description;
+  bool isCompleted{false};
+};
 }

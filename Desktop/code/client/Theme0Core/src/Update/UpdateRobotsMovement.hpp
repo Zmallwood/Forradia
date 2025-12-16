@@ -10,5 +10,5 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    void UpdateRobotsMovement();
+void UpdateRobotsMovement();
 }

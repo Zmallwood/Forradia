@@ -12,24 +12,23 @@
 #include "GUIWindow.hpp"
 
 namespace Forradia::Theme0 {
-    class GUIInventoryWindow : public GUIWindow {
-      public:
-        GUIInventoryWindow()
-            : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {
-            this->Initialize();
-        }
+class GUIInventoryWindow : public GUIWindow {
+ public:
+  GUIInventoryWindow() : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {
+    this->Initialize();
+  }
 
-      protected:
-        void Initialize();
+ protected:
+  void Initialize();
 
-        void RenderDerived() const override;
+  void RenderDerived() const override;
 
-      private:
-        static constexpr float k_margin{0.005f};
-        static constexpr float k_slotSize{0.04f};
-        inline static const String k_slotImageName{"GUIInventoryWindowSlotBackground"};
-        const int k_maxNumSlots{60};
-        std::map<int, int> m_renderIDsSlotsBackground;
-        std::map<int, int> m_renderIDsSlotsObject;
-    };
+ private:
+  static constexpr float k_margin{0.005f};
+  static constexpr float k_slotSize{0.04f};
+  inline static const String k_slotImageName{"GUIInventoryWindowSlotBackground"};
+  const int k_maxNumSlots{60};
+  std::map<int, int> m_renderIDsSlotsBackground;
+  std::map<int, int> m_renderIDsSlotsObject;
+};
 }

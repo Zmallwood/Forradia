@@ -11,71 +11,71 @@
 #include "Object.hpp"
 
 namespace Forradia::Theme0 {
-    PlayerObjectsInventory::PlayerObjectsInventory() {
-        // Add starting objects.
-        AddObject("ObjectRedApple");
-        AddObject("ObjectRedApple");
-        AddObject("ObjectPlasticAxe");
+PlayerObjectsInventory::PlayerObjectsInventory() {
+  // Add starting objects.
+  AddObject("ObjectRedApple");
+  AddObject("ObjectRedApple");
+  AddObject("ObjectPlasticAxe");
+}
+
+SharedPtr<Object> PlayerObjectsInventory::GetObject(int index) {
+  if (index >= 0 && index < m_objects.size()) {
+    return m_objects[index];
+  }
+  return nullptr;
+}
+
+void PlayerObjectsInventory::AddObject(int objectType) {
+  // Check if there is an empty slot.
+  for (size_t i = 0; i < m_objects.size(); i++) {
+    // Check if slot is empty.
+    if (!m_objects[i]) {
+      // Add object to slot.
+      m_objects[i] = std::make_shared<Object>(objectType);
+      // Dont continue as the object has been added.
+      return;
     }
+  }
 
-    SharedPtr<Object> PlayerObjectsInventory::GetObject(int index) {
-        if (index >= 0 && index < m_objects.size()) {
-            return m_objects[index];
-        }
-        return nullptr;
+  // If no empty slot is found, add object to the end of the inventory.
+  m_objects.push_back(std::make_shared<Object>(objectType));
+}
+
+void PlayerObjectsInventory::AddObject(StringView objectName) {
+  AddObject(Hash(objectName));
+}
+
+int PlayerObjectsInventory::CountHasObject(StringView objectName) {
+  auto findCount{0};
+
+  // Check each slot in the inventory.
+  for (size_t i = 0; i < m_objects.size(); i++) {
+    // Check if slot is not empty.
+    if (m_objects[i]) {
+      // Check if object type matches.
+      if (m_objects[i]->GetType() == Hash(objectName)) {
+        // Increment count if object type matches.
+        ++findCount;
+      }
     }
+  }
 
-    void PlayerObjectsInventory::AddObject(int objectType) {
-        // Check if there is an empty slot.
-        for (size_t i = 0; i < m_objects.size(); i++) {
-            // Check if slot is empty.
-            if (!m_objects[i]) {
-                // Add object to slot.
-                m_objects[i] = std::make_shared<Object>(objectType);
-                // Dont continue as the object has been added.
-                return;
-            }
-        }
+  return findCount;
+}
 
-        // If no empty slot is found, add object to the end of the inventory.
-        m_objects.push_back(std::make_shared<Object>(objectType));
+void PlayerObjectsInventory::RemoveObject(StringView objectName, int count) {
+  // Check each slot in the inventory.
+  for (size_t i = 0; i < m_objects.size() && count > 0; i++) {
+    // Check if slot is not empty.
+    if (m_objects[i]) {
+      // Check if object type matches.
+      if (m_objects[i]->GetType() == Hash(objectName)) {
+        // Remove object from slot.
+        m_objects[i] = nullptr;
+        // Decrement count.
+        count--;
+      }
     }
-
-    void PlayerObjectsInventory::AddObject(StringView objectName) {
-        AddObject(Hash(objectName));
-    }
-
-    int PlayerObjectsInventory::CountHasObject(StringView objectName) {
-        auto findCount{0};
-
-        // Check each slot in the inventory.
-        for (size_t i = 0; i < m_objects.size(); i++) {
-            // Check if slot is not empty.
-            if (m_objects[i]) {
-                // Check if object type matches.
-                if (m_objects[i]->GetType() == Hash(objectName)) {
-                    // Increment count if object type matches.
-                    ++findCount;
-                }
-            }
-        }
-
-        return findCount;
-    }
-
-    void PlayerObjectsInventory::RemoveObject(StringView objectName, int count) {
-        // Check each slot in the inventory.
-        for (size_t i = 0; i < m_objects.size() && count > 0; i++) {
-            // Check if slot is not empty.
-            if (m_objects[i]) {
-                // Check if object type matches.
-                if (m_objects[i]->GetType() == Hash(objectName)) {
-                    // Remove object from slot.
-                    m_objects[i] = nullptr;
-                    // Decrement count.
-                    count--;
-                }
-            }
-        }
-    }
+  }
+}
 }

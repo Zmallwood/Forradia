@@ -10,10 +10,10 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    class GameSaving {
-      public:
-        void SaveGame();
+class GameSaving {
+ public:
+  void SaveGame();
 
-        void LoadGame();
-    };
+  void LoadGame();
+};
 }

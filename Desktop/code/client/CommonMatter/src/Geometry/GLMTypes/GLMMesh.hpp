@@ -12,11 +12,11 @@
 #include "Texturing/Texture.hpp"
 
 namespace Forradia {
-    /// A mesh used primarily for models, using GLM types.
-    class GLMMesh {
-      public:
-        Vector<GLMVertex> vertices;   ///< The vertices.
-        Vector<unsigned int> indices; ///< The indices.
-        Vector<Texture> textures;     ///< The textures.
-    };
+/// A mesh used primarily for models, using GLM types.
+class GLMMesh {
+ public:
+  Vector<GLMVertex> vertices;   ///< The vertices.
+  Vector<unsigned int> indices; ///< The indices.
+  Vector<Texture> textures;     ///< The textures.
+};
 }

@@ -10,24 +10,24 @@
 #include "MouseInput.hpp"
 
 namespace Forradia {
-    void MouseInput::Reset() {
-        m_leftMouseButton.Reset();
-        m_rightMouseButton.Reset();
-    }
+void MouseInput::Reset() {
+  m_leftMouseButton.Reset();
+  m_rightMouseButton.Reset();
+}
 
-    bool MouseInput::AnyMouseButtonIsPressedPickResult() {
-        auto result{m_leftMouseButton.IsPressedPickResult()};
-        result |= m_rightMouseButton.IsPressedPickResult();
-        return result;
-    }
+bool MouseInput::AnyMouseButtonIsPressedPickResult() {
+  auto result{m_leftMouseButton.IsPressedPickResult()};
+  result |= m_rightMouseButton.IsPressedPickResult();
+  return result;
+}
 
-    void MouseInput::AddMouseWheelDelta(int delta) {
-        m_mouseWheelDelta += delta;
-    }
+void MouseInput::AddMouseWheelDelta(int delta) {
+  m_mouseWheelDelta += delta;
+}
 
-    int MouseInput::GetMouseWheelDeltaPickResult() {
-        auto result{m_mouseWheelDelta};
-        m_mouseWheelDelta = 0;
-        return result;
-    }
+int MouseInput::GetMouseWheelDeltaPickResult() {
+  auto result{m_mouseWheelDelta};
+  m_mouseWheelDelta = 0;
+  return result;
+}
 }

@@ -12,56 +12,56 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-    class GUI;
+class GUI;
 
-    ///
-    /// The base class for all scenes.
-    ///
-    class IScene {
-      public:
-        ///
-        /// Initializes the scene.
-        ///
-        void Initialize();
+///
+/// The base class for all scenes.
+///
+class IScene {
+ public:
+  ///
+  /// Initializes the scene.
+  ///
+  void Initialize();
 
-        ///
-        /// Called when the scene is entered.
-        ///
-        void OnEnter();
+  ///
+  /// Called when the scene is entered.
+  ///
+  void OnEnter();
 
-        ///
-        /// Updates the scene.
-        ///
-        void Update();
+  ///
+  /// Updates the scene.
+  ///
+  void Update();
 
-        ///
-        /// Renders the scene.
-        ///
-        void Render() const;
+  ///
+  /// Renders the scene.
+  ///
+  void Render() const;
 
-      protected:
-        virtual void InitializeDerived() {
-        }
+ protected:
+  virtual void InitializeDerived() {
+  }
 
-        virtual void OnEnterDerived() {
-        }
+  virtual void OnEnterDerived() {
+  }
 
-        virtual void UpdateDerived() {
-        }
+  virtual void UpdateDerived() {
+  }
 
-        virtual void RenderDerived() const {
-        }
+  virtual void RenderDerived() const {
+  }
 
-        ///
-        /// Gets the GUI.
-        ///
-        /// @return The GUI.
-        ///
-        auto GetGUI() const {
-            return m_gui;
-        }
+  ///
+  /// Gets the GUI.
+  ///
+  /// @return The GUI.
+  ///
+  auto GetGUI() const {
+    return m_gui;
+  }
 
-      private:
-        SharedPtr<GUI> m_gui; ///< The GUI.
-    };
+ private:
+  SharedPtr<GUI> m_gui; ///< The GUI.
+};
 }

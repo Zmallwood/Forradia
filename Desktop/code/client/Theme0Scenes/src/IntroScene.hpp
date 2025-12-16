@@ -9,21 +9,21 @@
 #include "IScene.hpp"
 
 namespace Forradia {
-    class GUIComponent;
+class GUIComponent;
 }
 
 namespace Forradia::Theme0 {
-    class IntroScene : public IScene {
-      protected:
-        virtual void InitializeDerived() override;
+class IntroScene : public IScene {
+ protected:
+  virtual void InitializeDerived() override;
 
-        virtual void OnEnterDerived() override;
+  virtual void OnEnterDerived() override;
 
-        virtual void UpdateDerived() override;
+  virtual void UpdateDerived() override;
 
-        virtual void RenderDerived() const override;
+  virtual void RenderDerived() const override;
 
-      private:
-        SharedPtr<GUIComponent> m_startText; ///< The text component for the start text.
-    };
+ private:
+  SharedPtr<GUIComponent> m_startText; ///< The text component for the start text.
+};
 }

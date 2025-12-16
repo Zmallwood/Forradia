@@ -11,22 +11,22 @@
 #include "Aliases.hpp"
 
 namespace Forradia {
-    /// Returns a singleton of an object of type T, in the form of a SharedPtr.
-    ///
-    /// @tparam T Type to get singleton for.
-    /// @return The singleton object as a SharedPtr.
-    template <class T>
-    SharedPtr<T> __() {
-        static SharedPtr<T> instance{std::make_shared<T>()};
-        return instance;
-    }
+/// Returns a singleton of an object of type T, in the form of a SharedPtr.
+///
+/// @tparam T Type to get singleton for.
+/// @return The singleton object as a SharedPtr.
+template <class T>
+SharedPtr<T> __() {
+  static SharedPtr<T> instance{std::make_shared<T>()};
+  return instance;
+}
 
-    /// Returns a singleton of an object of type T, in the form of a reference.
-    ///
-    /// @tparam T Type to get singleton for.
-    /// @return The singleton object as a reference.
-    template <class T>
-    T &_() {
-        return *__<T>();
-    }
+/// Returns a singleton of an object of type T, in the form of a reference.
+///
+/// @tparam T Type to get singleton for.
+/// @return The singleton object as a reference.
+template <class T>
+T &_() {
+  return *__<T>();
+}
 }

@@ -9,13 +9,13 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
-    class MainScene : public IScene {
-        virtual void InitializeDerived() override;
+class MainScene : public IScene {
+  virtual void InitializeDerived() override;
 
-        virtual void OnEnterDerived() override;
+  virtual void OnEnterDerived() override;
 
-        virtual void UpdateDerived() override;
+  virtual void UpdateDerived() override;
 
-        virtual void RenderDerived() const override;
-    };
+  virtual void RenderDerived() const override;
+};
 }

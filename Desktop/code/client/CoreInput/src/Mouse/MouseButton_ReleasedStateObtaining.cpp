@@ -10,13 +10,13 @@
 #include "MouseButton.hpp"
 
 namespace Forradia {
-    bool MouseButton::HasBeenReleasedPickResult() {
-        auto result{m_hasBeenReleased};
-        m_hasBeenReleased = false;
-        return result;
-    }
+bool MouseButton::HasBeenReleasedPickResult() {
+  auto result{m_hasBeenReleased};
+  m_hasBeenReleased = false;
+  return result;
+}
 
-    bool MouseButton::HasBeenReleased() const {
-        return m_hasBeenReleased;
-    }
+bool MouseButton::HasBeenReleased() const {
+  return m_hasBeenReleased;
+}
 }

@@ -15,109 +15,108 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-    void WorldGeneratorEntities::GenerateEntities() const {
-        GenerateCreaturesInEcosystems();
-        GenerateRobotsInAreas();
+void WorldGeneratorEntities::GenerateEntities() const {
+  GenerateCreaturesInEcosystems();
+  GenerateRobotsInAreas();
+}
+
+void WorldGeneratorEntities::GenerateRobotsInAreas() const {
+  auto worldArea{GetWorldArea()};
+  auto worldAreaSize{worldArea->GetSize()};
+  auto worldScaling{GetWorldScaling()};
+
+  // Generate robots in clusters and patrol areas.
+  // Robots avoid water but can be found in various terrain types.
+
+  auto numRobotClusters{38 + GetRandomInt(7)};
+
+  // Generate robots in clusters.
+  for (auto cluster = 0; cluster < numRobotClusters; cluster++) {
+    auto centerX{GetRandomInt(worldAreaSize.width)};
+    auto centerY{GetRandomInt(worldAreaSize.height)};
+
+    auto centerTile = worldArea->GetTile(centerX, centerY);
+
+    if (!centerTile || centerTile->GetGround() == Hash("GroundWater")) {
+      continue;
     }
 
-    void WorldGeneratorEntities::GenerateRobotsInAreas() const {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
-        auto worldScaling{GetWorldScaling()};
+    auto clusterRadius{10 + GetRandomInt(15)};
+    auto robotsInCluster{5 + GetRandomInt(10)};
 
-        // Generate robots in clusters and patrol areas.
-        // Robots avoid water but can be found in various terrain types.
+    // Generate robots in the cluster.
+    for (auto r = 0; r < robotsInCluster; r++) {
+      // Generate a random angle.
+      auto angle = GetRandomInt(360) * M_PI / 180.0f;
 
-        auto numRobotClusters{38 + GetRandomInt(7)};
+      // Generate a random distance.
+      auto distance = GetRandomInt(clusterRadius);
 
-        // Generate robots in clusters.
-        for (auto cluster = 0; cluster < numRobotClusters; cluster++) {
-            auto centerX{GetRandomInt(worldAreaSize.width)};
-            auto centerY{GetRandomInt(worldAreaSize.height)};
+      auto robotX = centerX + CInt(std::cos(angle) * distance);
+      auto robotY = centerY + CInt(std::sin(angle) * distance);
 
-            auto centerTile = worldArea->GetTile(centerX, centerY);
+      if (!worldArea->IsValidCoordinate(robotX, robotY)) {
+        continue;
+      }
 
-            if (!centerTile || centerTile->GetGround() == Hash("GroundWater")) {
-                continue;
-            }
+      auto robotTile = worldArea->GetTile(robotX, robotY);
 
-            auto clusterRadius{10 + GetRandomInt(15)};
-            auto robotsInCluster{5 + GetRandomInt(10)};
+      if (!robotTile || robotTile->GetRobot() || robotTile->GetGround() == Hash("GroundWater")) {
+        continue;
+      }
 
-            // Generate robots in the cluster.
-            for (auto r = 0; r < robotsInCluster; r++) {
-                // Generate a random angle.
-                auto angle = GetRandomInt(360) * M_PI / 180.0f;
+      auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY)};
 
-                // Generate a random distance.
-                auto distance = GetRandomInt(clusterRadius);
+      robotTile->SetRobot(newRobot);
 
-                auto robotX = centerX + CInt(std::cos(angle) * distance);
-                auto robotY = centerY + CInt(std::sin(angle) * distance);
+      worldArea->GetRobotsMirrorRef().insert({robotTile->GetRobot(), {robotX, robotY}});
+    }
+  }
 
-                if (!worldArea->IsValidCoordinate(robotX, robotY)) {
-                    continue;
-                }
+  // Also add scattered robots throughout the world.
+  auto numScatteredRobots{220 * worldScaling + GetRandomInt(40 * worldScaling)};
 
-                auto robotTile = worldArea->GetTile(robotX, robotY);
+  for (auto i = 0; i < numScatteredRobots; i++) {
+    auto x{GetRandomInt(worldAreaSize.width)};
+    auto y{GetRandomInt(worldAreaSize.height)};
 
-                if (!robotTile || robotTile->GetRobot() ||
-                    robotTile->GetGround() == Hash("GroundWater")) {
-                    continue;
-                }
+    auto tile{worldArea->GetTile(x, y)};
 
-                auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY)};
-
-                robotTile->SetRobot(newRobot);
-
-                worldArea->GetRobotsMirrorRef().insert({robotTile->GetRobot(), {robotX, robotY}});
-            }
-        }
-
-        // Also add scattered robots throughout the world.
-        auto numScatteredRobots{220 * worldScaling + GetRandomInt(40 * worldScaling)};
-
-        for (auto i = 0; i < numScatteredRobots; i++) {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater")) {
-                continue;
-            }
-
-            // Robots can appear anywhere except water, with equal probability.
-
-            if (GetRandomInt(100) < 15) {
-                auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", x, y)};
-
-                tile->SetRobot(newRobot);
-
-                worldArea->GetRobotsMirrorRef().insert({tile->GetRobot(), {x, y}});
-            }
-        }
+    if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater")) {
+      continue;
     }
 
-    bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const {
-        for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
-            for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
-                if (!GetWorldArea()->IsValidCoordinate(checkX, checkY)) {
-                    continue;
-                }
+    // Robots can appear anywhere except water, with equal probability.
 
-                auto tile{GetWorldArea()->GetTile(checkX, checkY)};
+    if (GetRandomInt(100) < 15) {
+      auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", x, y)};
 
-                if (tile && tile->GetGround() == Hash("GroundWater")) {
-                    auto distance{GetDistance(x, y, checkX, checkY)};
+      tile->SetRobot(newRobot);
 
-                    if (distance <= radius) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
+      worldArea->GetRobotsMirrorRef().insert({tile->GetRobot(), {x, y}});
     }
+  }
+}
+
+bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const {
+  for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
+    for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
+      if (!GetWorldArea()->IsValidCoordinate(checkX, checkY)) {
+        continue;
+      }
+
+      auto tile{GetWorldArea()->GetTile(checkX, checkY)};
+
+      if (tile && tile->GetGround() == Hash("GroundWater")) {
+        auto distance{GetDistance(x, y, checkX, checkY)};
+
+        if (distance <= radius) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
 }

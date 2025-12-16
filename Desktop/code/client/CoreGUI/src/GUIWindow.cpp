@@ -11,18 +11,18 @@
 #include "GUIWindowTitleBar.hpp"
 
 namespace Forradia {
-    void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) {
-        this->SetVisible(false);
-        m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
-        this->AddChildComponent(m_guiWindowTitleBar);
-    }
+void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) {
+  this->SetVisible(false);
+  m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
+  this->AddChildComponent(m_guiWindowTitleBar);
+}
 
-    void GUIWindow::RenderDerived() const {
-        GUIMovablePanel::RenderDerived();
-    }
+void GUIWindow::RenderDerived() const {
+  GUIMovablePanel::RenderDerived();
+}
 
-    RectF GUIWindow::GetDraggableArea() const {
-        // Return the bounds of the window title bar as the draggable area.
-        return m_guiWindowTitleBar->GetBounds();
-    }
+RectF GUIWindow::GetDraggableArea() const {
+  // Return the bounds of the window title bar as the draggable area.
+  return m_guiWindowTitleBar->GetBounds();
+}
 }

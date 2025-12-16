@@ -10,8 +10,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    ///
-    /// Updates the camera zoom with the mouse wheel.
-    ///
-    void UpdateCameraZoom();
+///
+/// Updates the camera zoom with the mouse wheel.
+///
+void UpdateCameraZoom();
 }

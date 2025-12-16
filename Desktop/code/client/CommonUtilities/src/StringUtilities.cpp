@@ -10,9 +10,9 @@
 #include "StringUtilities.hpp"
 
 namespace Forradia {
-    String Replace(StringView text, char replace, char replaceWith) {
-        String result{text.data()};
-        std::replace(result.begin(), result.end(), replace, replaceWith);
-        return result;
-    }
+String Replace(StringView text, char replace, char replaceWith) {
+  String result{text.data()};
+  std::replace(result.begin(), result.end(), replace, replaceWith);
+  return result;
+}
 }

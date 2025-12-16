@@ -9,10 +9,10 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
-    class PlayScene : public IScene {
-      protected:
-        virtual void InitializeDerived() override;
+class PlayScene : public IScene {
+ protected:
+  virtual void InitializeDerived() override;
 
-        virtual void RenderDerived() const override;
-    };
+  virtual void RenderDerived() const override;
+};
 }

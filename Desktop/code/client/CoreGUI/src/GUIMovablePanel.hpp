@@ -12,79 +12,79 @@
 #include "GUIPanel.hpp"
 
 namespace Forradia {
-    ///
-    /// A panel that can be moved by the mouse.
-    ///
-    class GUIMovablePanel : public GUIPanel {
-      public:
-        ///
-        /// Constructor.
-        ///
-        /// @param uniqueName An unique name for the movable panel.
-        /// @param x The x-coordinate of the movable panel.
-        /// @param y The y-coordinate of the movable panel.
-        /// @param width The width of the movable panel.
-        /// @param height The height of the movable panel.
-        ///
-        GUIMovablePanel(StringView uniqueName, float x, float y, float width, float height)
-            : GUIPanel(uniqueName, x, y, width, height) {
-        }
+///
+/// A panel that can be moved by the mouse.
+///
+class GUIMovablePanel : public GUIPanel {
+ public:
+  ///
+  /// Constructor.
+  ///
+  /// @param uniqueName An unique name for the movable panel.
+  /// @param x The x-coordinate of the movable panel.
+  /// @param y The y-coordinate of the movable panel.
+  /// @param width The width of the movable panel.
+  /// @param height The height of the movable panel.
+  ///
+  GUIMovablePanel(StringView uniqueName, float x, float y, float width, float height)
+      : GUIPanel(uniqueName, x, y, width, height) {
+  }
 
-      protected:
-        ///
-        /// Update tasks specific to the movable panel, called by the GUIComponent base class.
-        ///
-        void UpdateDerived() override;
+ protected:
+  ///
+  /// Update tasks specific to the movable panel, called by the GUIComponent base class.
+  ///
+  void UpdateDerived() override;
 
-        ///
-        /// Starts the move of the movable panel.
-        ///
-        void StartMove();
+  ///
+  /// Starts the move of the movable panel.
+  ///
+  void StartMove();
 
-        ///
-        /// Stops the move of the movable panel.
-        ///
-        void StopMove();
+  ///
+  /// Stops the move of the movable panel.
+  ///
+  void StopMove();
 
-        ///
-        /// Gets the draggable area of the movable panel.
-        ///
-        /// @return The draggable area of the movable panel.
-        ///
-        virtual RectF GetDraggableArea() const;
+  ///
+  /// Gets the draggable area of the movable panel.
+  ///
+  /// @return The draggable area of the movable panel.
+  ///
+  virtual RectF GetDraggableArea() const;
 
-        ///
-        /// Gets whether the movable panel is being moved.
-        ///
-        /// @return Whether the movable panel is being moved.
-        ///
-        auto GetIsBeingMoved() const {
-            return m_isBeingMoved;
-        }
+  ///
+  /// Gets whether the movable panel is being moved.
+  ///
+  /// @return Whether the movable panel is being moved.
+  ///
+  auto GetIsBeingMoved() const {
+    return m_isBeingMoved;
+  }
 
-        ///
-        /// Gets the starting position of the move of the movable panel.
-        ///
-        /// @return The starting position of the move of the movable panel.
-        ///
-        auto GetMoveStartingPosition() const {
-            return m_moveStartingPosition;
-        }
+  ///
+  /// Gets the starting position of the move of the movable panel.
+  ///
+  /// @return The starting position of the move of the movable panel.
+  ///
+  auto GetMoveStartingPosition() const {
+    return m_moveStartingPosition;
+  }
 
-        ///
-        /// Gets the starting mouse position of the move of the movable panel.
-        ///
-        /// @return The starting mouse position of the move of the movable panel.
-        ///
-        auto GetMoveStartingMousePosition() const {
-            return m_moveStartingMousePosition;
-        }
+  ///
+  /// Gets the starting mouse position of the move of the movable panel.
+  ///
+  /// @return The starting mouse position of the move of the movable panel.
+  ///
+  auto GetMoveStartingMousePosition() const {
+    return m_moveStartingMousePosition;
+  }
 
-      private:
-        bool m_isBeingMoved{false}; ///< Whether the movable panel is being moved.
-        PointF m_moveStartingPosition{
-            -1, -1}; ///< The starting position of the move of the movable panel.
-        PointF m_moveStartingMousePosition{
-            -1, -1}; ///< The starting mouse position of the move of the movable panel.
-    };
+ private:
+  bool m_isBeingMoved{false}; ///< Whether the movable panel is being moved.
+  PointF m_moveStartingPosition{-1,
+                                -1}; ///< The starting position of the move of the movable panel.
+  PointF m_moveStartingMousePosition{
+      -1, -1}; ///< The starting mouse position of the move of the movable panel.
+};
 }

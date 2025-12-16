@@ -11,10 +11,10 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-    void RendererBase::Initialize() {
-        String vertexShaderSource{this->GetVSSource()};
-        String fragmentShaderSource{this->GetFSSource()};
-        m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);
-        this->InitializeDerived();
-    }
+void RendererBase::Initialize() {
+  String vertexShaderSource{this->GetVSSource()};
+  String fragmentShaderSource{this->GetFSSource()};
+  m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);
+  this->InitializeDerived();
+}
 }

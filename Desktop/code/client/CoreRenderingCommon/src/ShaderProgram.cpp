@@ -10,39 +10,39 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-    void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource) {
-        auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
+void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource) {
+  auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
-        // If the vertex shader failed.
-        if (0 == vertexShader) {
-            glDeleteShader(vertexShader);
-            return;
-        }
+  // If the vertex shader failed.
+  if (0 == vertexShader) {
+    glDeleteShader(vertexShader);
+    return;
+  }
 
-        auto fragmentShader{this->GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
+  auto fragmentShader{this->GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
-        // If the fragment shader failed.
-        if (0 == fragmentShader) {
-            glDeleteShader(vertexShader);
-            glDeleteShader(fragmentShader);
-            return;
-        }
+  // If the fragment shader failed.
+  if (0 == fragmentShader) {
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    return;
+  }
 
-        auto isLinked{this->CreateProgram(vertexShader, fragmentShader)};
+  auto isLinked{this->CreateProgram(vertexShader, fragmentShader)};
 
-        // If the link failed, dont continue.
-        if (GL_FALSE == isLinked) {
-            return;
-        }
+  // If the link failed, dont continue.
+  if (GL_FALSE == isLinked) {
+    return;
+  }
 
-        glDetachShader(m_programID, vertexShader);
-        glDetachShader(m_programID, fragmentShader);
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
-    }
+  glDetachShader(m_programID, vertexShader);
+  glDetachShader(m_programID, fragmentShader);
+  glDeleteShader(vertexShader);
+  glDeleteShader(fragmentShader);
+}
 
-    void ShaderProgram::Cleanup() {
-        glDeleteProgram(m_programID);
-        m_programID = 0;
-    }
+void ShaderProgram::Cleanup() {
+  glDeleteProgram(m_programID);
+  m_programID = 0;
+}
 }

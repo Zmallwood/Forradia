@@ -10,23 +10,21 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    class Robot;
-}
+class Robot;
 
-namespace Forradia::Theme0 {
-    class BattleSystem {
-      public:
-        void Update();
+class BattleSystem {
+ public:
+  void Update();
 
-        auto GetTargetedRobot() const {
-            return m_targetedRobot;
-        }
+  auto GetTargetedRobot() const {
+    return m_targetedRobot;
+  }
 
-        void SetTargetedRobot(SharedPtr<Robot> value) {
-            m_targetedRobot = value;
-        }
+  void SetTargetedRobot(SharedPtr<Robot> value) {
+    m_targetedRobot = value;
+  }
 
-      private:
-        SharedPtr<Robot> m_targetedRobot;
-    };
+ private:
+  SharedPtr<Robot> m_targetedRobot;
+};
 }

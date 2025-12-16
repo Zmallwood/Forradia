@@ -10,8 +10,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    enum class PlayerModes {
-        Interaction,
-        Battle
-    };
+enum class PlayerModes {
+  Interaction,
+  Battle
+};
 }

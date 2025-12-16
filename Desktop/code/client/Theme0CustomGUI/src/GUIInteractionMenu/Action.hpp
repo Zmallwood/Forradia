@@ -10,10 +10,10 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    class Action {
-      public:
-        Vector<int> groundMatches;
-        Vector<int> objectMatches;
-        Function<void()> action;
-    };
+class Action {
+ public:
+  Vector<int> groundMatches;
+  Vector<int> objectMatches;
+  Function<void()> action;
+};
 }

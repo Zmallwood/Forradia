@@ -9,9 +9,9 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
-    class MainMenuScene : public IScene {
-        virtual void InitializeDerived() override;
+class MainMenuScene : public IScene {
+  virtual void InitializeDerived() override;
 
-        virtual void RenderDerived() const override;
-    };
+  virtual void RenderDerived() const override;
+};
 }

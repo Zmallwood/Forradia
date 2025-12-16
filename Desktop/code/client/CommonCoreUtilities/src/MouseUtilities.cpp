@@ -12,11 +12,11 @@
 #include "Functions.hpp"
 
 namespace Forradia {
-    PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window) {
-        int xPx;
-        int yPx;
-        SDL_GetMouseState(&xPx, &yPx);
-        auto canvasSize{GetCanvasSize(window)};
-        return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
-    }
+PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window) {
+  int xPx;
+  int yPx;
+  SDL_GetMouseState(&xPx, &yPx);
+  auto canvasSize{GetCanvasSize(window)};
+  return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
+}
 }

@@ -10,11 +10,11 @@
 #include "MessageUtilities.hpp"
 
 namespace Forradia {
-    void Print(StringView text) {
-        std::cout << text;
-    }
+void Print(StringView text) {
+  std::cout << text;
+}
 
-    void PrintLine(StringView text) {
-        std::cout << text << std::endl;
-    }
+void PrintLine(StringView text) {
+  std::cout << text << std::endl;
+}
 }

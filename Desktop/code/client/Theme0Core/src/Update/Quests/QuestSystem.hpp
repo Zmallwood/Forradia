@@ -10,25 +10,25 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-    class Quest;
+class Quest;
 
-    class QuestSystem {
-      public:
-        QuestSystem() {
-            this->Initialize();
-        }
+class QuestSystem {
+ public:
+  QuestSystem() {
+    this->Initialize();
+  }
 
-        void Update();
+  void Update();
 
-        String GetCurrentQuestName() const;
+  String GetCurrentQuestName() const;
 
-        String GetCurrentQuestDescription() const;
+  String GetCurrentQuestDescription() const;
 
-        String GetCurrentQuestStatus() const;
+  String GetCurrentQuestStatus() const;
 
-      private:
-        void Initialize();
+ private:
+  void Initialize();
 
-        Vector<SharedPtr<Quest>> m_quests;
-    };
+  Vector<SharedPtr<Quest>> m_quests;
+};
 }

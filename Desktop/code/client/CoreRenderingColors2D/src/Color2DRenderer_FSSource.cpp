@@ -10,18 +10,18 @@
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-    String Color2DRenderer::GetFSSource() const {
-        return R"(
-            #version 330 core
-            
-            out vec4 FragColor;
-                
-            in vec4 ourColor;
+String Color2DRenderer::GetFSSource() const {
+  return R"(
+      #version 330 core
+      
+      out vec4 FragColor;
+          
+      in vec4 ourColor;
 
-            void main()
-            {
-                FragColor = ourColor;
-            }
-        )";
-    }
+      void main()
+      {
+          FragColor = ourColor;
+      }
+    )";
+}
 }

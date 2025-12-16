@@ -11,11 +11,11 @@
 #include "Functions.hpp"
 
 namespace Forradia {
-    SDL_Color Color::ToSDLColor() const {
-        auto rUint{CUint8(r * 255)};
-        auto gUint{CUint8(g * 255)};
-        auto bUint{CUint8(b * 255)};
-        auto aUint{CUint8(a * 255)};
-        return {rUint, rUint, bUint, aUint};
-    }
+SDL_Color Color::ToSDLColor() const {
+  auto rUint{CUint8(r * 255)};
+  auto gUint{CUint8(g * 255)};
+  auto bUint{CUint8(b * 255)};
+  auto aUint{CUint8(a * 255)};
+  return {rUint, rUint, bUint, aUint};
+}
 }

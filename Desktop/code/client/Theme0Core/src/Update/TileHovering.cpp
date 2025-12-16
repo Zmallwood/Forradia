@@ -17,143 +17,141 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-    void TileHovering::Update() {
-        this->DetermineHoveredCoordinateWithRaycasting();
+void TileHovering::Update() {
+  this->DetermineHoveredCoordinateWithRaycasting();
+}
+
+void TileHovering::DetermineHoveredCoordinateWithRaycasting() {
+  this->IterateOverRenderedTiles();
+}
+
+void TileHovering::IterateOverRenderedTiles() {
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  auto worldAreaSize{worldArea->GetSize()};
+  auto playerPos{_<PlayerCharacter>().GetPosition()};
+  auto gridSize{_<Theme0Properties>().GetGridSize()};
+
+  // Iterate over the rendered tiles.
+  for (auto y = 0; y < gridSize.height; y++) {
+    for (auto x = 0; x < gridSize.width; x++) {
+      auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
+      auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + y};
+
+      auto result{this->DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
+
+      if (result) {
+        m_hoveredCoordinate = {xCoordinate, yCoordinate};
+        return;
+      }
     }
+  }
+}
 
-    void TileHovering::DetermineHoveredCoordinateWithRaycasting() {
-        this->IterateOverRenderedTiles();
-    }
+bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const {
+  auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
+  return result;
+}
 
-    void TileHovering::IterateOverRenderedTiles() {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
-        auto playerPos{_<PlayerCharacter>().GetPosition()};
-        auto gridSize{_<Theme0Properties>().GetGridSize()};
+bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const {
+  auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
-        // Iterate over the rendered tiles.
-        for (auto y = 0; y < gridSize.height; y++) {
-            for (auto x = 0; x < gridSize.width; x++) {
-                auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
-                auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + y};
+  // Get camera matrices.
+  auto viewMatrix{_<Camera>().GetViewMatrix()};
+  auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
 
-                auto result{this->DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
+  // Get inverse view-projection matrix for unprojecting.
+  auto inverseViewProjection{glm::inverse(projectionMatrix * viewMatrix)};
 
-                if (result) {
-                    m_hoveredCoordinate = {xCoordinate, yCoordinate};
-                    return;
-                }
-            }
-        }
-    }
+  // Convert normalized mouse coordinates to clip space (normalized coordinates are in
+  // range
+  // [-1, 1]).
 
-    bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const {
-        auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
-        return result;
-    }
+  glm::vec4 nearPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, -1.0f, 1.0f};
+  glm::vec4 farPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, 1.0f, 1.0f};
 
-    bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const {
-        auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+  // Unproject to world space.
+  nearPoint = inverseViewProjection * nearPoint;
+  farPoint = inverseViewProjection * farPoint;
 
-        // Get camera matrices.
-        auto viewMatrix{_<Camera>().GetViewMatrix()};
-        auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
+  // Perspective divide.
 
-        // Get inverse view-projection matrix for unprojecting.
-        auto inverseViewProjection{glm::inverse(projectionMatrix * viewMatrix)};
+  if (std::abs(nearPoint.w) > 0.0001f) {
+    nearPoint /= nearPoint.w;
+  }
 
-        // Convert normalized mouse coordinates to clip space (normalized coordinates are in
-        // range
-        // [-1, 1]).
+  if (std::abs(farPoint.w) > 0.0001f) {
+    farPoint /= farPoint.w;
+  }
 
-        glm::vec4 nearPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, -1.0f, 1.0f};
-        glm::vec4 farPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, 1.0f, 1.0f};
+  // Compute ray origin and direction.
+  glm::vec3 rayOrigin{nearPoint.x, nearPoint.y, nearPoint.z};
+  glm::vec3 rayDir{glm::normalize(glm::vec3(farPoint.x, farPoint.y, farPoint.z) - rayOrigin)};
 
-        // Unproject to world space.
-        nearPoint = inverseViewProjection * nearPoint;
-        farPoint = inverseViewProjection * farPoint;
+  // Get the world area.
+  auto worldArea{_<World>().GetCurrentWorldArea()};
 
-        // Perspective divide.
+  // Get the tile coordinates.
+  auto coordinateNW{Point{xCoordinate, yCoordinate}};
+  auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+  auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+  auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
 
-        if (std::abs(nearPoint.w) > 0.0001f) {
-            nearPoint /= nearPoint.w;
-        }
+  // Check if coordinates are valid.
+  if (!worldArea->IsValidCoordinate(coordinateNW) || !worldArea->IsValidCoordinate(coordinateNE) ||
+      !worldArea->IsValidCoordinate(coordinateSW) || !worldArea->IsValidCoordinate(coordinateSE)) {
+    return false;
+  }
 
-        if (std::abs(farPoint.w) > 0.0001f) {
-            farPoint /= farPoint.w;
-        }
+  // Get the tiles.
+  auto tileNW{worldArea->GetTile(coordinateNW)};
+  auto tileNE{worldArea->GetTile(coordinateNE)};
+  auto tileSW{worldArea->GetTile(coordinateSW)};
+  auto tileSE{worldArea->GetTile(coordinateSE)};
 
-        // Compute ray origin and direction.
-        glm::vec3 rayOrigin{nearPoint.x, nearPoint.y, nearPoint.z};
-        glm::vec3 rayDir{glm::normalize(glm::vec3(farPoint.x, farPoint.y, farPoint.z) - rayOrigin)};
+  // Get the elevations.
+  auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
+  auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
+  auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
+  auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
 
-        // Get the world area.
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+  // Get tile size and elevation height.
+  auto tileSize{_<Theme0Properties>().GetTileSize()};
+  auto elevationHeight{_<Theme0Properties>().GetElevationHeight()};
 
-        // Get the tile coordinates.
-        auto coordinateNW{Point{xCoordinate, yCoordinate}};
-        auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
-        auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
-        auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+  // Convert tile coordinates to world space positions.
+  auto worldXNW{xCoordinate * tileSize - tileSize / 2};
+  auto worldYNW{yCoordinate * tileSize - tileSize / 2};
+  auto worldXNE{(xCoordinate + 1) * tileSize - tileSize / 2};
+  auto worldYNE{yCoordinate * tileSize - tileSize / 2};
+  auto worldXSW{xCoordinate * tileSize - tileSize / 2};
+  auto worldYSW{(yCoordinate + 1) * tileSize - tileSize / 2};
+  auto worldXSE{(xCoordinate + 1) * tileSize - tileSize / 2};
+  auto worldYSE{(yCoordinate + 1) * tileSize - tileSize / 2};
 
-        // Check if coordinates are valid.
-        if (!worldArea->IsValidCoordinate(coordinateNW) ||
-            !worldArea->IsValidCoordinate(coordinateNE) ||
-            !worldArea->IsValidCoordinate(coordinateSW) ||
-            !worldArea->IsValidCoordinate(coordinateSE)) {
-            return false;
-        }
+  // Create 3D vertices for the tile quad.
+  glm::vec3 vertNW{worldXNW, worldYNW, elevationNW * elevationHeight};
+  glm::vec3 vertNE{worldXNE, worldYNE, elevationNE * elevationHeight};
+  glm::vec3 vertSW{worldXSW, worldYSW, elevationSW * elevationHeight};
+  glm::vec3 vertSE{worldXSE, worldYSE, elevationSE * elevationHeight};
 
-        // Get the tiles.
-        auto tileNW{worldArea->GetTile(coordinateNW)};
-        auto tileNE{worldArea->GetTile(coordinateNE)};
-        auto tileSW{worldArea->GetTile(coordinateSW)};
-        auto tileSE{worldArea->GetTile(coordinateSE)};
+  // Test intersection with two triangles that make up the quad Triangle 1: NW -> NE ->
+  // SE.
 
-        // Get the elevations.
-        auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
-        auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-        auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-        auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
+  glm::vec2 baryPosition1;
+  float distance1;
 
-        // Get tile size and elevation height.
-        auto tileSize{_<Theme0Properties>().GetTileSize()};
-        auto elevationHeight{_<Theme0Properties>().GetElevationHeight()};
+  auto intersects1{glm::intersectRayTriangle(rayOrigin, rayDir, vertNW, vertNE, vertSE,
+                                             baryPosition1, distance1)};
 
-        // Convert tile coordinates to world space positions.
-        auto worldXNW{xCoordinate * tileSize - tileSize / 2};
-        auto worldYNW{yCoordinate * tileSize - tileSize / 2};
-        auto worldXNE{(xCoordinate + 1) * tileSize - tileSize / 2};
-        auto worldYNE{yCoordinate * tileSize - tileSize / 2};
-        auto worldXSW{xCoordinate * tileSize - tileSize / 2};
-        auto worldYSW{(yCoordinate + 1) * tileSize - tileSize / 2};
-        auto worldXSE{(xCoordinate + 1) * tileSize - tileSize / 2};
-        auto worldYSE{(yCoordinate + 1) * tileSize - tileSize / 2};
+  // Triangle 2: NW -> SE -> SW.
 
-        // Create 3D vertices for the tile quad.
-        glm::vec3 vertNW{worldXNW, worldYNW, elevationNW * elevationHeight};
-        glm::vec3 vertNE{worldXNE, worldYNE, elevationNE * elevationHeight};
-        glm::vec3 vertSW{worldXSW, worldYSW, elevationSW * elevationHeight};
-        glm::vec3 vertSE{worldXSE, worldYSE, elevationSE * elevationHeight};
+  glm::vec2 baryPosition2;
+  float distance2;
 
-        // Test intersection with two triangles that make up the quad Triangle 1: NW -> NE ->
-        // SE.
+  auto intersects2{glm::intersectRayTriangle(rayOrigin, rayDir, vertNW, vertSE, vertSW,
+                                             baryPosition2, distance2)};
 
-        glm::vec2 baryPosition1;
-        float distance1;
-
-        auto intersects1{glm::intersectRayTriangle(rayOrigin, rayDir, vertNW, vertNE, vertSE,
-                                                   baryPosition1, distance1)};
-
-        // Triangle 2: NW -> SE -> SW.
-
-        glm::vec2 baryPosition2;
-        float distance2;
-
-        auto intersects2{glm::intersectRayTriangle(rayOrigin, rayDir, vertNW, vertSE, vertSW,
-                                                   baryPosition2, distance2)};
-
-        // Return the result of the intersection tests.
-        return intersects1 || intersects2;
-    }
+  // Return the result of the intersection tests.
+  return intersects1 || intersects2;
+}
 }

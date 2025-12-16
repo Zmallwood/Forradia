@@ -10,21 +10,21 @@
 #include "Image2DRenderer.hpp"
 
 namespace Forradia {
-    String Image2DRenderer::GetFSSource() const {
-        return R"(
-            #version 330 core
+String Image2DRenderer::GetFSSource() const {
+  return R"(
+        #version 330 core
+        
+        out vec4 FragColor;
             
-            out vec4 FragColor;
-                
-            in vec3 ourColor;
-            in vec2 TexCoord;
+        in vec3 ourColor;
+        in vec2 TexCoord;
 
-            uniform sampler2D ourTexture;
+        uniform sampler2D ourTexture;
 
-            void main()
-            {
-                FragColor = texture(ourTexture, TexCoord);
-            }
-        )";
-    }
+        void main()
+        {
+            FragColor = texture(ourTexture, TexCoord);
+        }
+    )";
+}
 }

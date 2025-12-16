@@ -12,62 +12,62 @@
 #include "Quests.hpp"
 
 namespace Forradia::Theme0 {
-    void QuestSystem::Initialize() {
-        m_quests.push_back(std::make_shared<MoveQuest>());
-        m_quests.push_back(std::make_shared<ForageQuest>());
-        m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
-        m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
-        m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());
-        m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());
-        m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
-        m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
-        m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
+void QuestSystem::Initialize() {
+  m_quests.push_back(std::make_shared<MoveQuest>());
+  m_quests.push_back(std::make_shared<ForageQuest>());
+  m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
+  m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
+  m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());
+  m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());
+  m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
+  m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
+  m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
+}
+
+void QuestSystem::Update() {
+  for (auto &quest : this->m_quests) {
+    if (quest->isCompleted) {
+      continue;
     }
 
-    void QuestSystem::Update() {
-        for (auto &quest : this->m_quests) {
-            if (quest->isCompleted) {
-                continue;
-            }
+    quest->Update();
 
-            quest->Update();
+    return;
+  }
+}
 
-            return;
-        }
+String QuestSystem::GetCurrentQuestName() const {
+  for (auto &quest : this->m_quests) {
+    if (quest->isCompleted) {
+      continue;
     }
 
-    String QuestSystem::GetCurrentQuestName() const {
-        for (auto &quest : this->m_quests) {
-            if (quest->isCompleted) {
-                continue;
-            }
+    return quest->name;
+  }
 
-            return quest->name;
-        }
+  return "No quest";
+}
 
-        return "No quest";
+String QuestSystem::GetCurrentQuestDescription() const {
+  for (auto &quest : this->m_quests) {
+    if (quest->isCompleted) {
+      continue;
     }
 
-    String QuestSystem::GetCurrentQuestDescription() const {
-        for (auto &quest : this->m_quests) {
-            if (quest->isCompleted) {
-                continue;
-            }
+    return quest->description;
+  }
+  return "";
+}
 
-            return quest->description;
-        }
-        return "";
+String QuestSystem::GetCurrentQuestStatus() const {
+  for (auto &quest : this->m_quests) {
+    if (quest->isCompleted) {
+      continue;
     }
 
-    String QuestSystem::GetCurrentQuestStatus() const {
-        for (auto &quest : this->m_quests) {
-            if (quest->isCompleted) {
-                continue;
-            }
+    return quest->GetStatus();
+  }
 
-            return quest->GetStatus();
-        }
-
-        return "";
-    }
+  return "";
+}
 }

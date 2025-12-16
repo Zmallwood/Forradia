@@ -14,19 +14,19 @@
 #include "WorldGeneratorWater.hpp"
 
 namespace Forradia::Theme0 {
-    void WorldGenerator::GenerateNewWorld() const {
-        this->Prepare();
+void WorldGenerator::GenerateNewWorld() const {
+  this->Prepare();
 
-        _<WorldGeneratorGround>().GenerateGroundWithElevation();
-        _<WorldGeneratorWater>().GenerateWater();
-        _<WorldGeneratorObjects>().GenerateObjects();
-        _<WorldGeneratorEntities>().GenerateEntities();
-    }
+  _<WorldGeneratorGround>().GenerateGroundWithElevation();
+  _<WorldGeneratorWater>().GenerateWater();
+  _<WorldGeneratorObjects>().GenerateObjects();
+  _<WorldGeneratorEntities>().GenerateEntities();
+}
 
-    void WorldGenerator::Prepare() const {
-        _<WorldGeneratorGround>().Prepare();
-        _<WorldGeneratorWater>().Prepare();
-        _<WorldGeneratorObjects>().Prepare();
-        _<WorldGeneratorEntities>().Prepare();
-    }
+void WorldGenerator::Prepare() const {
+  _<WorldGeneratorGround>().Prepare();
+  _<WorldGeneratorWater>().Prepare();
+  _<WorldGeneratorObjects>().Prepare();
+  _<WorldGeneratorEntities>().Prepare();
+}
 }

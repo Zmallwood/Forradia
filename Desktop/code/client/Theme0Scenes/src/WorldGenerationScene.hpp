@@ -9,8 +9,8 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
-    class WorldGenerationScene : public IScene {
-      protected:
-        virtual void OnEnterDerived() override;
-    };
+class WorldGenerationScene : public IScene {
+ protected:
+  virtual void OnEnterDerived() override;
+};
 }

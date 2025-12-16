@@ -14,33 +14,32 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-    void GUIWindowTitleBar::Initialize(StringView uniqueName) {
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
-        AddChildComponent(std::make_shared<GUIButton>(
-            uniqueName.data() + String("CloseButton"),
-            parentWindowBounds.width - ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()),
-            0.01f, 0.015f, ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), "X",
-            [this] { m_parentWindow.ToggleVisibility(); }));
-    }
+void GUIWindowTitleBar::Initialize(StringView uniqueName) {
+  auto parentWindowBounds{m_parentWindow.GetBounds()};
+  AddChildComponent(std::make_shared<GUIButton>(
+      uniqueName.data() + String("CloseButton"),
+      parentWindowBounds.width - ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), 0.01f,
+      0.015f, ConvertWidthToHeight(0.015f, _<SDLDevice>().GetWindow()), "X",
+      [this] { m_parentWindow.ToggleVisibility(); }));
+}
 
-    void GUIWindowTitleBar::RenderDerived() const {
-        GUIPanel::RenderDerived();
+void GUIWindowTitleBar::RenderDerived() const {
+  GUIPanel::RenderDerived();
 
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
-        _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
-                                     parentWindowBounds.x + 0.01f, parentWindowBounds.y + 0.01f,
-                                     FontSizes::_20, false, false,
-                                     Palette::GetColor<Hash("Yellow")>());
-    }
+  auto parentWindowBounds{m_parentWindow.GetBounds()};
+  _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
+                               parentWindowBounds.x + 0.01f, parentWindowBounds.y + 0.01f,
+                               FontSizes::_20, false, false, Palette::GetColor<Hash("Yellow")>());
+}
 
-    RectF GUIWindowTitleBar::GetBounds() const {
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
+RectF GUIWindowTitleBar::GetBounds() const {
+  auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-        RectF boundsResult;
-        boundsResult.x = parentWindowBounds.x;
-        boundsResult.y = parentWindowBounds.y;
-        boundsResult.width = parentWindowBounds.width;
-        boundsResult.height = k_height;
-        return boundsResult;
-    }
+  RectF boundsResult;
+  boundsResult.x = parentWindowBounds.x;
+  boundsResult.y = parentWindowBounds.y;
+  boundsResult.width = parentWindowBounds.width;
+  boundsResult.height = k_height;
+  return boundsResult;
+}
 }

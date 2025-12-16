@@ -11,8 +11,8 @@
 #include "GUIChatBox.hpp"
 
 namespace Forradia::Theme0 {
-    void Robot::Initialize() {
-        // Multiply movement speed by a random number between 0.5 and 2.
-        m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
-    }
+void Robot::Initialize() {
+  // Multiply movement speed by a random number between 0.5 and 2.
+  m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0f;
+}
 }

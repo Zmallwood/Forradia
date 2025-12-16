@@ -13,44 +13,44 @@
 #include "GUIPanel.hpp"
 
 namespace Forradia::Theme0 {
-    class Robot;
+class Robot;
 
-    class GUIInteractionMenu : public GUIPanel {
-      public:
-        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f) {
-            this->Initialize();
-        }
+class GUIInteractionMenu : public GUIPanel {
+ public:
+  GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f) {
+    this->Initialize();
+  }
 
-        void BuildMenu();
+  void BuildMenu();
 
-        auto &GetTimedActionsRef() {
-            return m_timedActions;
-        }
+  auto &GetTimedActionsRef() {
+    return m_timedActions;
+  }
 
-        auto GetClickedRobot() const {
-            return m_clickedRobot;
-        }
+  auto GetClickedRobot() const {
+    return m_clickedRobot;
+  }
 
-        auto GetClickedCoordinate() const {
-            return m_clickedCoordinate;
-        }
+  auto GetClickedCoordinate() const {
+    return m_clickedCoordinate;
+  }
 
-      protected:
-        void Initialize();
+ protected:
+  void Initialize();
 
-        virtual void UpdateDerived() override;
+  virtual void UpdateDerived() override;
 
-        virtual void RenderDerived() const override;
+  virtual void RenderDerived() const override;
 
-      private:
-        static constexpr float k_indentWidth{0.01f};
-        static constexpr float k_lineHeight{0.025f};
-        const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
-        const int k_maxNumMenuEntries{40};
-        Vector<int> m_renderIDsMenuEntryStrings;
-        Vector<GUIInteractionMenuEntry> m_entries;
-        Point m_clickedCoordinate{-1, -1};
-        SharedPtr<Robot> m_clickedRobot;
-        std::map<int, int> m_timedActions;
-    };
+ private:
+  static constexpr float k_indentWidth{0.01f};
+  static constexpr float k_lineHeight{0.025f};
+  const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
+  const int k_maxNumMenuEntries{40};
+  Vector<int> m_renderIDsMenuEntryStrings;
+  Vector<GUIInteractionMenuEntry> m_entries;
+  Point m_clickedCoordinate{-1, -1};
+  SharedPtr<Robot> m_clickedRobot;
+  std::map<int, int> m_timedActions;
+};
 }

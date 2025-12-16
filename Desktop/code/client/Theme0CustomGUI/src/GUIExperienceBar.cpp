@@ -12,16 +12,16 @@
 #include "Player/PlayerCharacter.hpp"
 
 namespace Forradia::Theme0 {
-    void GUIExperienceBar::UpdateDerived() {
-        GUIMeter::UpdateDerived();
+void GUIExperienceBar::UpdateDerived() {
+  GUIMeter::UpdateDerived();
 
-        auto &playerCharacter{_<Theme0::PlayerCharacter>()};
-        auto experience{playerCharacter.GetExperience()};
-        auto levelProgress{CalculateFractionalExperienceProgress(experience)};
-        m_filledPercentage = levelProgress;
-    }
+  auto &playerCharacter{_<Theme0::PlayerCharacter>()};
+  auto experience{playerCharacter.GetExperience()};
+  auto levelProgress{CalculateFractionalExperienceProgress(experience)};
+  m_filledPercentage = levelProgress;
+}
 
-    float GUIExperienceBar::GetFilledPercentage() const {
-        return m_filledPercentage;
-    }
+float GUIExperienceBar::GetFilledPercentage() const {
+  return m_filledPercentage;
+}
 }

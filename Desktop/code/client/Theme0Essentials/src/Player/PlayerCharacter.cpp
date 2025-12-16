@@ -15,50 +15,49 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-    void PlayerCharacter::Initialize() {
-        m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
-        this->MoveToSuitablePosition();
-    }
+void PlayerCharacter::Initialize() {
+  m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
+  this->MoveToSuitablePosition();
+}
 
-    void PlayerCharacter::MoveToSuitablePosition() {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
-        auto size{worldArea->GetSize()};
+void PlayerCharacter::MoveToSuitablePosition() {
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  auto size{worldArea->GetSize()};
 
-        m_position = {size.width / 2, size.height / 2};
+  m_position = {size.width / 2, size.height / 2};
 
-        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
-            m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
-        }
-    }
+  while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
+    m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
+  }
+}
 
-    void PlayerCharacter::MoveNorth() {
-        m_position.y -= 1;
-        m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
-    }
+void PlayerCharacter::MoveNorth() {
+  m_position.y -= 1;
+  m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+}
 
-    void PlayerCharacter::MoveEast() {
-        m_position.x += 1;
-        m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
-    }
+void PlayerCharacter::MoveEast() {
+  m_position.x += 1;
+  m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
+}
 
-    void PlayerCharacter::MoveSouth() {
-        m_position.y += 1;
-        m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
-    }
+void PlayerCharacter::MoveSouth() {
+  m_position.y += 1;
+  m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
+}
 
-    void PlayerCharacter::MoveWest() {
-        m_position.x -= 1;
-        m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
-    }
+void PlayerCharacter::MoveWest() {
+  m_position.x -= 1;
+  m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
+}
 
-    void PlayerCharacter::AddExperience(int experience) {
-        m_experience += experience;
-    }
+void PlayerCharacter::AddExperience(int experience) {
+  m_experience += experience;
+}
 
-    void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction,
-                                          StringView actionFirstArgument,
-                                          Point actionSecondArgument) {
-        m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{
-            playerAction, actionFirstArgument, actionSecondArgument});
-    }
+void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction,
+                                      StringView actionFirstArgument, Point actionSecondArgument) {
+  m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{
+      playerAction, actionFirstArgument, actionSecondArgument});
+}
 }

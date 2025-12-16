@@ -11,10 +11,10 @@
 #include "Coloring/Color.hpp"
 
 namespace Forradia::Palette {
-    /// Get a color from the palette.
-    ///
-    /// @param N The hash of the name of the color to get.
-    /// @return The color.
-    template <int N>
-    Color GetColor();
+/// Get a color from the palette.
+///
+/// @param N The hash of the name of the color to get.
+/// @return The color.
+template <int N>
+Color GetColor();
 }

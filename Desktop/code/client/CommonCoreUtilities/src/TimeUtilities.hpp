@@ -10,8 +10,8 @@
 #pragma once
 
 namespace Forradia {
-    /// Get the number of ticks.
-    ///
-    /// @return The number of ticks.
-    int GetTicks();
+/// Get the number of ticks.
+///
+/// @return The number of ticks.
+int GetTicks();
 }
