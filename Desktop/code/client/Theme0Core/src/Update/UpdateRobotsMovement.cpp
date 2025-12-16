@@ -14,7 +14,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void UpdateRobotsMovement() {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 

@@ -34,9 +34,9 @@ namespace Forradia::Theme0 {
     void GUIPlayerStatusBox::UpdateDerived() {
         GUIPanel::UpdateDerived();
 
-        auto wellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
+        auto wellBeing{_<Theme0::PlayerCharacter>().GetWellBeing()};
 
-        auto maxWellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetMaxWellBeing()};
+        auto maxWellBeing{_<Theme0::PlayerCharacter>().GetMaxWellBeing()};
 
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
@@ -46,13 +46,12 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
 
-        _<TextRenderer>().DrawString(k_renderIDNameString,
-                                     _<Theme0::GameplayCore::PlayerCharacter>().GetName(),
+        _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::PlayerCharacter>().GetName(),
                                      bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-        auto experience{_<Theme0::GameplayCore::PlayerCharacter>().GetExperience()};
+        auto experience{_<Theme0::PlayerCharacter>().GetExperience()};
 
-        auto level{GameplayCore::CalculateCurrentLevel(experience)};
+        auto level{CalculateCurrentLevel(experience)};
 
         _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
                                      bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,

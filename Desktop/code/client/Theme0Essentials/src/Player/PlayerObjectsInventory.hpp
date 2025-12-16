@@ -11,9 +11,7 @@
 
 namespace Forradia::Theme0 {
     class Object;
-}
 
-namespace Forradia::Theme0::GameplayCore {
     ///
     /// Represents the inventory of objects for the player.
     /// TODO: Decide if should be used also for other entities.

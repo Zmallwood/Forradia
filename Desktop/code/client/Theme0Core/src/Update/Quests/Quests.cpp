@@ -15,7 +15,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void MoveQuest::Update() {
         auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
 

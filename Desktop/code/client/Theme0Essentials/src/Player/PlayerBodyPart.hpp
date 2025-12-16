@@ -9,7 +9,7 @@
 
 #pragma once
 
-namespace Forradia ::Theme0::GameplayCore {
+namespace Forradia ::Theme0 {
     ///
     /// Represents a body part of the player.
     /// TODO: Decide if should be used also for other entities.

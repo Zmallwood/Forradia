@@ -71,7 +71,7 @@ namespace Forradia::Theme0 {
     template <>
     Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
 
@@ -87,18 +87,17 @@ namespace Forradia::Theme0 {
 
                     _<GUIChatBox>().Print("You craft a stone wall door.");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWallDoor",
-                        clickedCoordinate);
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
+                                                         "ObjectStoneWallDoor", clickedCoordinate);
                 }};
     }
 
     template <>
     Action GetAction<Hash("ActionCraftStoneWall")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
 
@@ -114,27 +113,26 @@ namespace Forradia::Theme0 {
 
                     _<GUIChatBox>().Print("You craft a stone wall.");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneWall",
-                        clickedCoordinate);
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
+                                                         "ObjectStoneWall", clickedCoordinate);
                 }};
     }
 
     template <>
     Action GetAction<Hash("ActionCraftStoneBrick")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
 
                     inventory.AddObject("ObjectStoneBrick");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneBrick");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
+                                                         "ObjectStoneBrick");
 
                     _<GUIChatBox>().Print("You craft a stone brick.");
                 }};
@@ -143,7 +141,7 @@ namespace Forradia::Theme0 {
     template <>
     Action GetAction<Hash("ActionLayStoneSlab")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneSlab");
 
@@ -159,17 +157,16 @@ namespace Forradia::Theme0 {
 
                     _<GUIChatBox>().Print("You lay a stone slab.");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Lay, "ObjectStoneSlab");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
                 }};
     }
 
     template <>
     Action GetAction<Hash("ActionCraftStoneSlab")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
 
@@ -177,10 +174,10 @@ namespace Forradia::Theme0 {
 
                     _<GUIChatBox>().Print("You craft a stone slab.");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Craft, "ObjectStoneSlab");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
+                                                         "ObjectStoneSlab");
                 }};
     }
 
@@ -188,7 +185,7 @@ namespace Forradia::Theme0 {
     Action GetAction<Hash("ActionCraftStonePickaxe")>() {
         return {
             .groundMatches = {}, .objectMatches = {}, .action = []() {
-                auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                 if (inventory.CountHasObject("ObjectBranch") < 1) {
                     _<GUIChatBox>().Print("You don't have any branches to craft a stone pickaxe.");
@@ -209,34 +206,33 @@ namespace Forradia::Theme0 {
 
                 _<GUIChatBox>().Print("You craft a stone pickaxe.");
 
-                _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                _<PlayerCharacter>().AddExperience(10);
 
-                _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                    GameplayCore::PlayerActionTypes::Craft, "ObjectStonePickaxe");
+                _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft,
+                                                     "ObjectStonePickaxe");
             }};
     }
 
     template <>
     Action GetAction<Hash("ActionChipStone")>() {
         return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     // inventory.AddObject("ObjectSmallStones");
                     inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You chip some stone.");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Mine, "ObjectStone");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
                 }};
     }
 
     template <>
     Action GetAction<Hash("ActionLayCobbleStone")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
 
@@ -265,7 +261,7 @@ namespace Forradia::Theme0 {
     template <>
     Action GetAction<Hash("ActionLayMetalFloor")>() {
         return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto numMetalScrapsInInventory{inventory.CountHasObject("ObjectMetalScrap")};
 
@@ -326,8 +322,7 @@ namespace Forradia::Theme0 {
                         auto object{objectsStack->PopObject()};
 
                         if (object) {
-                            auto &inventory{
-                                _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                             inventory.AddObject(object->GetType());
                         }
@@ -403,17 +398,16 @@ namespace Forradia::Theme0 {
     template <>
     Action GetAction<Hash("ActionForage")>() {
         return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBlueberries");
 
                     _<GUIChatBox>().Print("Foraging... You found some "
                                           "blueberries!");
 
-                    _<GameplayCore::PlayerCharacter>().AddExperience(10);
+                    _<PlayerCharacter>().AddExperience(10);
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Forage);
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Forage);
                 }};
     }
 
@@ -422,14 +416,13 @@ namespace Forradia::Theme0 {
         return {.groundMatches = {},
                 .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
                 .action = []() {
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBranch");
 
                     _<GUIChatBox>().Print("You picked a branch!");
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Pick, "ObjectBranch");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
                 }};
     }
 
@@ -446,14 +439,13 @@ namespace Forradia::Theme0 {
                         tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
                     }
 
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectStone");
 
                     _<GUIChatBox>().Print("You picked a stone!");
 
-                    _<GameplayCore::PlayerCharacter>().AddPlayerAction(
-                        GameplayCore::PlayerActionTypes::Pick, "ObjectStone");
+                    _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
                 }};
     }
 
@@ -463,7 +455,7 @@ namespace Forradia::Theme0 {
                     _<GUIChatBox>().Print("You start build a simple "
                                           "shelter.");
 
-                    auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+                    auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto hasBranchesCount{inventory.CountHasObject("ObjectBranch")};
 

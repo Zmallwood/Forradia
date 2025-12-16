@@ -12,7 +12,7 @@
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void CameraRotator::Update() {
         if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
             m_isRotating = true;

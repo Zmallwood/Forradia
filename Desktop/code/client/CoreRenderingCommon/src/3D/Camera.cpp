@@ -79,7 +79,7 @@ namespace Forradia {
         auto rendTileSize{_<Theme0::Theme0Properties>().GetTileSize()};
 
         // Player position in tile-space (grid indices).
-        auto playerPos{_<Theme0::GameplayCore::PlayerCharacter>().GetPosition()};
+        auto playerPos{_<Theme0::PlayerCharacter>().GetPosition()};
 
         // Multiplier mapping tile elevation to world Z height.
         auto elevHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};

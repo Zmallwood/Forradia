@@ -11,7 +11,7 @@
 #include "Quest.hpp"
 #include "Quests.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void QuestSystem::Initialize() {
         m_quests.push_back(std::make_shared<MoveQuest>());
         m_quests.push_back(std::make_shared<ForageQuest>());

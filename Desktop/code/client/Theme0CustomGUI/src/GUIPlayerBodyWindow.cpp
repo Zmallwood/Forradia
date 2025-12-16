@@ -23,7 +23,7 @@ namespace Forradia::Theme0 {
         auto overallBodyImageButton{std::make_shared<GUIButton>(
             "GUIButtonOverallBody", 0.1f - imageWidth / 2, 0.04f, imageWidth, imageHeight, "",
             [this] {
-                this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody));
+                this->SelectBodyPart(CInt(Theme0::PlayerBodyPartTypes::OverallBody));
                 this->UpdateBodyPartInfoLabels();
             },
             "GUIImageOverallBody", "GUIImageOverallBodyHovered")};
@@ -34,7 +34,7 @@ namespace Forradia::Theme0 {
             "GUIButtonRightArm", 0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth, imageHeight,
             "",
             [this] {
-                this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm));
+                this->SelectBodyPart(CInt(Theme0::PlayerBodyPartTypes::RightArm));
                 this->UpdateBodyPartInfoLabels();
             },
             "GUIImageRightArm", "GUIImageRightArmHovered")};
@@ -45,7 +45,7 @@ namespace Forradia::Theme0 {
             "GUIButtonLeftArm", 0.1f - imageWidth / 2 + imageWidth, 0.04f, imageWidth, imageHeight,
             "",
             [this] {
-                this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm));
+                this->SelectBodyPart(CInt(Theme0::PlayerBodyPartTypes::LeftArm));
                 this->UpdateBodyPartInfoLabels();
             },
             "GUIImageLeftArm", "GUIImageLeftArmHovered")};
@@ -56,7 +56,7 @@ namespace Forradia::Theme0 {
             "GUIButtonLegs", 0.1f - imageWidth / 2, 0.04f + imageHeight, imageWidth, imageHeight,
             "",
             [this] {
-                this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::Legs));
+                this->SelectBodyPart(CInt(Theme0::PlayerBodyPartTypes::Legs));
                 this->UpdateBodyPartInfoLabels();
             },
             "GUIImageLegs", "GUIImageLegsHovered")};
@@ -91,39 +91,35 @@ namespace Forradia::Theme0 {
     }
 
     void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() {
-        auto &playerBody{_<Theme0::GameplayCore::PlayerCharacter>().GetBodyRef()};
+        auto &playerBody{_<Theme0::PlayerCharacter>().GetBodyRef()};
 
-        constexpr auto overallBody{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)};
+        constexpr auto overallBody{CInt(Theme0::PlayerBodyPartTypes::OverallBody)};
 
-        constexpr auto rightArm{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm)};
+        constexpr auto rightArm{CInt(Theme0::PlayerBodyPartTypes::RightArm)};
 
-        constexpr auto leftArm{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm)};
+        constexpr auto leftArm{CInt(Theme0::PlayerBodyPartTypes::LeftArm)};
 
-        constexpr auto legs{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)};
+        constexpr auto legs{CInt(Theme0::PlayerBodyPartTypes::Legs)};
 
         switch (m_selectedBodyPart) {
         case overallBody: {
             m_labelBodyPartName->SetText("Body part: Overall body");
 
             auto strength{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)
-                    ->GetStrength()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::OverallBody)->GetStrength()};
 
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
-            auto maxEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)
-                    ->GetMaxEnergy()};
+            auto maxEnergy{playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::OverallBody)
+                               ->GetMaxEnergy()};
 
-            auto currentEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)
-                    ->GetCurrentEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::OverallBody)
+                                   ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(
                 fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
-            auto temperature{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)
-                    ->GetTemperature()};
+            auto temperature{playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::OverallBody)
+                                 ->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
@@ -134,25 +130,21 @@ namespace Forradia::Theme0 {
             m_labelBodyPartName->SetText("Body part: Right arm");
 
             auto strength{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm)
-                    ->GetStrength()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::RightArm)->GetStrength()};
 
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
 
             auto maxEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm)
-                    ->GetMaxEnergy()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::RightArm)->GetMaxEnergy()};
 
-            auto currentEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm)
-                    ->GetCurrentEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::RightArm)
+                                   ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(
                 fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
             auto temperature{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm)
-                    ->GetTemperature()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::RightArm)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
@@ -163,25 +155,21 @@ namespace Forradia::Theme0 {
             m_labelBodyPartName->SetText("Body part: Left arm");
 
             auto strength{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm)
-                    ->GetStrength()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::LeftArm)->GetStrength()};
 
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
 
             auto maxEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm)
-                    ->GetMaxEnergy()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::LeftArm)->GetMaxEnergy()};
 
-            auto currentEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm)
-                    ->GetCurrentEnergy()};
+            auto currentEnergy{playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::LeftArm)
+                                   ->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(
                 fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
             auto temperature{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm)
-                    ->GetTemperature()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::LeftArm)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }
@@ -192,25 +180,21 @@ namespace Forradia::Theme0 {
             m_labelBodyPartName->SetText("Body part: Legs");
 
             auto strength{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)
-                    ->GetStrength()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::Legs)->GetStrength()};
 
             m_labelBodyPartStrength->SetText(fmt::format("Strength: {:.2f}", strength));
 
             auto maxEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)
-                    ->GetMaxEnergy()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::Legs)->GetMaxEnergy()};
 
             auto currentEnergy{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)
-                    ->GetCurrentEnergy()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::Legs)->GetCurrentEnergy()};
 
             m_labelBodyPartEnergy->SetText(
                 fmt::format("Energy: {:.2f} / {:.2f}", currentEnergy, maxEnergy));
 
             auto temperature{
-                playerBody.GetBodyPartPtr(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)
-                    ->GetTemperature()};
+                playerBody.GetBodyPartPtr(Theme0::PlayerBodyPartTypes::Legs)->GetTemperature()};
 
             m_labelBodyPartTemperature->SetText(fmt::format("Temperature: {:.2f} C", temperature));
         }

@@ -13,7 +13,7 @@ namespace Forradia::Theme0 {
     class Robot;
 }
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     class BattleSystem {
       public:
         void Update();

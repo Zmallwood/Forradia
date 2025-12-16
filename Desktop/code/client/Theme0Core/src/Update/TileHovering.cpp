@@ -16,7 +16,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void TileHovering::Update() {
         // Forward to the method that determines the hovered coordinate with raycasting.
 

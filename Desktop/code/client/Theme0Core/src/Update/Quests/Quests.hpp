@@ -11,7 +11,7 @@
 
 #include "Quest.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     class MoveQuest : public Quest {
       public:
         MoveQuest() {

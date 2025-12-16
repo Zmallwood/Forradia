@@ -15,11 +15,11 @@ namespace Forradia::Theme0 {
     void GUIExperienceBar::UpdateDerived() {
         GUIMeter::UpdateDerived();
 
-        auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
+        auto &playerCharacter{_<Theme0::PlayerCharacter>()};
 
         auto experience{playerCharacter.GetExperience()};
 
-        auto levelProgress{GameplayCore::CalculateFractionalExperienceProgress(experience)};
+        auto levelProgress{CalculateFractionalExperienceProgress(experience)};
 
         m_filledPercentage = levelProgress;
     }

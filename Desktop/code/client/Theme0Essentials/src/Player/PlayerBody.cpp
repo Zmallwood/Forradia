@@ -10,7 +10,7 @@
 #include "PlayerBody.hpp"
 #include "PlayerBodyPart.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void PlayerBody::Initialize() {
         // Add all body parts.
 

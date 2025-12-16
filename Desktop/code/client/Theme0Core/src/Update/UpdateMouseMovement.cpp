@@ -14,14 +14,14 @@
 #include "Player/PlayerCharacter.hpp"
 #include "TileHovering.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void UpdateMouseMovement() {
         if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
             auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
 
-            _<Theme0::GameplayCore::PlayerCharacter>().SetDestination(newDestination);
+            _<Theme0::PlayerCharacter>().SetDestination(newDestination);
 
-            _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
+            _<BattleSystem>().SetTargetedRobot(nullptr);
         }
 
         auto playerPosition{_<PlayerCharacter>().GetPosition()};

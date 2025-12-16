@@ -18,7 +18,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void UpdateMouseActions() {
         if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
             _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200) {
@@ -45,7 +45,7 @@ namespace Forradia::Theme0::GameplayCore {
                     auto robot{hoveredTile->GetRobot()};
 
                     if (robot) {
-                        _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
+                        _<BattleSystem>().SetTargetedRobot(robot);
                     }
                 }
 

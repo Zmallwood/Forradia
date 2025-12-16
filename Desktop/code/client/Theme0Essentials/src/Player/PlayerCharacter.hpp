@@ -14,7 +14,7 @@
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     class PlayerObjectsInventory;
 
     ///

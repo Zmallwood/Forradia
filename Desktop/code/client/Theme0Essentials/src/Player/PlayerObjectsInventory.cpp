@@ -10,7 +10,7 @@
 #include "PlayerObjectsInventory.hpp"
 #include "Object.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     PlayerObjectsInventory::PlayerObjectsInventory() {
         // Add starting objects.
 

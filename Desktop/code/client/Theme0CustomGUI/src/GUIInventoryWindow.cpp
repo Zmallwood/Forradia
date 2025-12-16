@@ -46,7 +46,7 @@ namespace Forradia::Theme0 {
 
         auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto &objectsInventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
+        auto &objectsInventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {

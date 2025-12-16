@@ -9,7 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     enum class PlayerModes {
         Interaction,
         Battle

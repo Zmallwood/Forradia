@@ -80,20 +80,20 @@ namespace Forradia::Theme0 {
     }
 
     void MainScene::UpdateDerived() {
-        GameplayCore::UpdateKeyboardActions();
-        GameplayCore::UpdateMouseActions();
-        GameplayCore::UpdateCreaturesMovement();
-        GameplayCore::UpdateRobotsMovement();
-        GameplayCore::UpdateCameraZoom();
-        GameplayCore::UpdateMouseMovement();
-        GameplayCore::UpdateKeyboardMovement();
-        _<GameplayCore::TileHovering>().Update();
-        _<GameplayCore::CameraRotator>().Update();
+        UpdateKeyboardActions();
+        UpdateMouseActions();
+        UpdateCreaturesMovement();
+        UpdateRobotsMovement();
+        UpdateCameraZoom();
+        UpdateMouseMovement();
+        UpdateKeyboardMovement();
+        _<TileHovering>().Update();
+        _<CameraRotator>().Update();
         UpdateActions();
-        _<GameplayCore::QuestSystem>().Update();
+        _<QuestSystem>().Update();
     }
 
     void MainScene::RenderDerived() {
-        _<GameplayCore::WorldView>().Render();
+        _<WorldView>().Render();
     }
 }

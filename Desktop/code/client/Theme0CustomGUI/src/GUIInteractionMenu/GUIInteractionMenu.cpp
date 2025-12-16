@@ -32,7 +32,7 @@ namespace Forradia::Theme0 {
     void GUIInteractionMenu::BuildMenu() {
         m_entries.clear();
 
-        auto hoveredCoordinate{_<GameplayCore::TileHovering>().GetHoveredCoordinate()};
+        auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
 

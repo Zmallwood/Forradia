@@ -9,7 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     ///
     /// Determines and provides the tile hovered by the mouse.
     ///

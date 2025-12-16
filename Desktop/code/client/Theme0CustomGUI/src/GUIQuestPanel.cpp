@@ -43,15 +43,15 @@ namespace Forradia::Theme0 {
 
         GUIMovablePanel::UpdateDerived();
 
-        auto questName{_<GameplayCore::QuestSystem>().GetCurrentQuestName()};
+        auto questName{_<QuestSystem>().GetCurrentQuestName()};
 
         m_questNameTextPanel->SetText(questName);
 
-        auto questDescription{_<GameplayCore::QuestSystem>().GetCurrentQuestDescription()};
+        auto questDescription{_<QuestSystem>().GetCurrentQuestDescription()};
 
         m_questDescriptionTextPanel->SetText(questDescription);
 
-        auto questStatus{_<GameplayCore::QuestSystem>().GetCurrentQuestStatus()};
+        auto questStatus{_<QuestSystem>().GetCurrentQuestStatus()};
 
         m_questStatusTextPanel->SetText(questStatus);
     }

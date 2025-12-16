@@ -9,7 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     ///
     /// Types of body parts for the player.
     /// TODO: Decide if should be used also for other entities.

@@ -9,7 +9,7 @@
 
 #include "ExperienceCalculations.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     int CalculateCurrentLevel(int experience) {
         auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
 

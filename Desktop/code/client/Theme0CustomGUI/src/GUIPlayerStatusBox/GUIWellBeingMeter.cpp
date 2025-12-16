@@ -14,7 +14,7 @@ namespace Forradia::Theme0 {
     void GUIWellBeingMeter::UpdateDerived() {
         GUIMeter::UpdateDerived();
 
-        auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
+        auto &playerCharacter{_<Theme0::PlayerCharacter>()};
 
         auto health{playerCharacter.GetWellBeing()};
 

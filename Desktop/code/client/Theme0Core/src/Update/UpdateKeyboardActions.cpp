@@ -19,7 +19,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore {
+namespace Forradia::Theme0 {
     void UpdateKeyboardActions() {
         if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
             _<GUISystemMenu>().ToggleVisibility();
