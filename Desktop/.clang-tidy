@@ -1,0 +1,12 @@
+Checks: >
+  -*,
+  clang-analyzer-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  -readability-simplify-boolean-expr,
+  -readability-braces-around-statements
+
+WarningsAsErrors: ''
+HeaderFilterRegex: 'code/client/CoreAssets/.*'  # Only show warnings from files in the code/ directory
+AnalyzeTemporaryDtors: false

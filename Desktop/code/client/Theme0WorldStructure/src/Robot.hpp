@@ -19,7 +19,7 @@ class Robot {
   /// @param typeHash The robot type as a hash.
   /// @param originX The x coordinate of the origin.
   /// @param originY The y coordinate of the origin.
-  Robot(int typeHash, int originX, int originY) : m_type(typeHash), m_origin(originX, originY) {
+  Robot(int typeHash, int originX, int originY) : m_type(typeHash), m_origin({originX, originY}) {
     this->Initialize();
   }
 
@@ -29,7 +29,7 @@ class Robot {
   /// @param originX The x coordinate of the origin.
   /// @param originY The y coordinate of the origin.
   Robot(StringView typeName, int originX, int originY)
-      : m_type{Hash(typeName)}, m_origin(originX, originY) {
+      : m_type{Hash(typeName)}, m_origin({originX, originY}) {
     this->Initialize();
   }
 

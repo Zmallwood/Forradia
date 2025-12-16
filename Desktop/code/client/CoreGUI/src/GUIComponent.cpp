@@ -23,8 +23,8 @@ void GUIComponent::Update() {
     return;
   }
 
-  for (auto component : std::views::reverse(m_childComponents)) {
-    component->Update();
+  for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it) {
+    (*it)->Update();
   }
 
   this->UpdateDerived();
