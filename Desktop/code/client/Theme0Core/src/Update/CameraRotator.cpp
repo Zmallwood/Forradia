@@ -1,11 +1,5 @@
-//
-// Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license
-// (see LICENSE for details)
-//
-
-// Status: Incomplete.
-// TODO:
+/* Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "CameraRotator.hpp"
 #include "3D/Camera.hpp"

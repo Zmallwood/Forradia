@@ -1,12 +1,5 @@
-//
-// Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license
-// (see LICENSE for details)
-//
-
-// Status: Incomplete.
-// TODO:
-// Consider adding something like m_mindState = "Normal"
+/* Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
 

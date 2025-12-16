@@ -1,12 +1,5 @@
-//
-// Copyright 2025 Andreas Åkerberg
-// This code is licensed under MIT license
-// (see LICENSE for details)
-//
-
-// Status: Incomplete.
-// TODO:
-// - Consider adding more comments.
+/* Copyright 2025 Andreas Åkerberg
+ * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
