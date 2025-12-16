@@ -39,12 +39,10 @@ namespace Forradia::Theme0 {
             switch (currentMode) {
             case PlayerModes::Interaction:
                 _<PlayerCharacter>().SetPlayerMode(PlayerModes::Battle);
-
                 _<GUIChatBox>().Print("You are now in battle mode.");
                 break;
             case PlayerModes::Battle:
                 _<PlayerCharacter>().SetPlayerMode(PlayerModes::Interaction);
-
                 _<GUIChatBox>().Print("You are now in interaction mode.");
                 break;
             }

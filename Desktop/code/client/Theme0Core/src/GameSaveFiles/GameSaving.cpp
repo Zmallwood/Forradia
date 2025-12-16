@@ -123,7 +123,6 @@ namespace Forradia::Theme0 {
         worldArea->Reset();
 
         auto &robots{worldArea->GetRobotsMirrorRef()};
-
         auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
         if (jsonData.contains("size")) {

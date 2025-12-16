@@ -23,9 +23,7 @@ namespace Forradia::Theme0 {
         // }
 
         // auto worldArea{_<World>().GetCurrentWorldArea()};
-
         // auto worldAreaSize{worldArea->GetSize()};
-
         // auto &robots{worldArea->GetRobotsMirrorRef()};
 
         // auto robotCoordinates{robots.at(m_targetedRobot)};
@@ -37,7 +35,6 @@ namespace Forradia::Theme0 {
         // auto playerPosition{player.GetPosition()};
 
         // auto dx{robotCoordinates.x - playerPosition.x};
-
         // auto dy{robotCoordinates.y - playerPosition.y};
 
         // auto attackRange{1.0f};
@@ -57,9 +54,7 @@ namespace Forradia::Theme0 {
         //         if (isKnockedOut)
         //         {
         //             _<GUIChatBox>().Print("You have knocked out the robot!");
-
         //             _<PlayerCharacter>().AddExperience(10);
-
         //             _<GUIChatBox>().Print("You have gained 10 experience!");
 
         //             auto robotTile{worldArea->GetTile(robotCoordinates.x, robotCoordinates.y)};
