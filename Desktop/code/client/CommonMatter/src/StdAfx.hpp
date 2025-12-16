@@ -6,6 +6,4 @@
 
 #pragma once
 
-// External.
-
 #include <SDL2/SDL.h>

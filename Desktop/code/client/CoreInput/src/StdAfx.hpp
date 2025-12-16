@@ -6,15 +6,9 @@
 
 #pragma once
 
-// Std.
-
 #include <set>
 
-// External.
-
 #include <SDL2/SDL.h>
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "TimeUtilities.hpp"

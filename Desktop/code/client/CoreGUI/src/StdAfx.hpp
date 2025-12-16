@@ -6,18 +6,12 @@
 
 #pragma once
 
-// Std.
-
 #include <map>
 #include <ranges>
-
-// External.
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <fmt/format.h>
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "Functions.hpp"

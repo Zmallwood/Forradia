@@ -6,6 +6,4 @@
 
 #pragma once
 
-// Internal.
-
 #include "Singleton.hpp"

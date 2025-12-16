@@ -6,18 +6,12 @@
 
 #pragma once
 
-// Std.
-
 #include <fstream>
-
-// External.
 
 #include <glm/glm.hpp>
 #include <glm/gtx/projection.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <nlohmann/json.hpp>
-
-// Internal.
 
 #include "NumbersUtilities.hpp"

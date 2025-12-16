@@ -6,13 +6,9 @@
 
 #pragma once
 
-// External.
-
 #include <glm/glm.hpp>
 #include <glm/gtx/projection.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
-
-// Internal.
 
 #include "Geometry/Point3F.hpp"

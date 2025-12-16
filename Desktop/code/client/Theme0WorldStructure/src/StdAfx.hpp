@@ -6,11 +6,7 @@
 
 #pragma once
 
-// External.
-
 #include <SDL2/SDL.h>
-
-// Internal.
 
 #include "Functions.hpp"
 #include "Constants.hpp"

@@ -6,11 +6,7 @@
 
 #pragma once
 
-// External.
-
 #include <glm/gtx/transform.hpp>
-
-// Internal.
 
 #include "CanvasUtilities.hpp"
 #include "Geometry/Point3F.hpp"

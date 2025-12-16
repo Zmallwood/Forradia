@@ -6,8 +6,6 @@
 
 #pragma once
 
-// Internal.
-
 #include "Coloring/Palette.hpp"
 #include "Hash.hpp"
 #include "StringUtilities.hpp"

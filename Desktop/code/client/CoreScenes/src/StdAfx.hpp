@@ -6,11 +6,7 @@
 
 #pragma once
 
-// Std.
-
 #include <map>
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "Geometry/RectF.hpp"

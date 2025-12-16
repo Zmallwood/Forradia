@@ -6,17 +6,11 @@
 
 #pragma once
 
-// Std.
-
 #include <map>
-
-// External.
 
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "Coloring/Color.hpp"

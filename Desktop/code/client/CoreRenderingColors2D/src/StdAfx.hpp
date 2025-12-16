@@ -6,7 +6,5 @@
 
 #pragma once
 
-// Internal.
-
 #include "CanvasUtilities.hpp"
 #include "Functions.hpp"

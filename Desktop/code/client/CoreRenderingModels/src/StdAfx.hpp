@@ -6,14 +6,10 @@
 
 #pragma once
 
-// External.
-
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <glm/gtx/transform.hpp>
-
-// Internal.
 
 #include "CanvasUtilities.hpp"
 #include "Geometry/GLMTypes/GLMMesh.hpp"

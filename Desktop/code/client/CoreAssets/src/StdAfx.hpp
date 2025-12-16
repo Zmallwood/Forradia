@@ -6,13 +6,9 @@
 
 #pragma once
 
-// Std.
-
 #include <iostream>
 #include <map>
 #include <filesystem>
-
-// External.
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -21,8 +17,6 @@
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "Geometry/Size.hpp"

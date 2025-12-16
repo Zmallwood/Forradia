@@ -6,8 +6,6 @@
 
 #pragma once
 
-// Std.
-
 #include <algorithm>
 #include <filesystem>
 #include <functional>
@@ -19,8 +17,6 @@
 #include <string>
 #include <vector>
 
-// External.
-
 #include <fmt/core.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -29,7 +25,5 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_ttf.h>
-
-// Internal.
 
 #include "Aliases.hpp"

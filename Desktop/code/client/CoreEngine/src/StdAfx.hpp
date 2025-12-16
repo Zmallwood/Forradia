@@ -6,16 +6,10 @@
 
 #pragma once
 
-// Std.
-
 #include <map>
 #include <set>
 
-// External.
-
 #include <SDL2/SDL.h>
-
-// Internal.
 
 #include "Aliases.hpp"
 #include "Coloring/Color.hpp"
