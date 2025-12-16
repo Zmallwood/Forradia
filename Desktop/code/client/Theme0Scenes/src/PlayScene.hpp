@@ -10,12 +10,9 @@
 
 namespace Forradia::Theme0 {
     class PlayScene : public IScene {
-      public:
-        PlayScene();
-
       protected:
-        virtual void InitializeDerived();
+        virtual void InitializeDerived() override;
 
-        virtual void RenderDerived();
+        virtual void RenderDerived() const override;
     };
 }

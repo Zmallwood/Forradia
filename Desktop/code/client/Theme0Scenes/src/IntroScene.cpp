@@ -15,13 +15,6 @@
 #include "SceneManager.hpp"
 
 namespace Forradia::Theme0 {
-    IntroScene::IntroScene() {
-        this->SetInitializeDerived([this] { this->InitializeDerived(); });
-        this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
-        this->SetUpdateDerived([this] { this->UpdateDerived(); });
-        this->SetRenderDerived([this] { this->RenderDerived(); });
-    }
-
     void IntroScene::InitializeDerived() {
         auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
                                             "Press to start", true)};
@@ -44,7 +37,7 @@ namespace Forradia::Theme0 {
         }
     }
 
-    void IntroScene::RenderDerived() {
+    void IntroScene::RenderDerived() const {
         _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground",
                                              0.0f, 0.0f, 1.0f, 1.0f);
 

@@ -14,17 +14,14 @@ namespace Forradia {
 
 namespace Forradia::Theme0 {
     class IntroScene : public IScene {
-      public:
-        IntroScene();
-
       protected:
-        virtual void InitializeDerived();
+        virtual void InitializeDerived() override;
 
-        virtual void OnEnterDerived();
+        virtual void OnEnterDerived() override;
 
-        virtual void UpdateDerived();
+        virtual void UpdateDerived() override;
 
-        virtual void RenderDerived();
+        virtual void RenderDerived() const override;
 
       private:
         SharedPtr<GUIComponent> m_startText; ///< The text component for the start text.

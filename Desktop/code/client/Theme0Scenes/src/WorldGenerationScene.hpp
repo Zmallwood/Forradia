@@ -10,10 +10,7 @@
 
 namespace Forradia::Theme0 {
     class WorldGenerationScene : public IScene {
-      public:
-        WorldGenerationScene();
-
       protected:
-        virtual void OnEnterDerived();
+        virtual void OnEnterDerived() override;
     };
 }

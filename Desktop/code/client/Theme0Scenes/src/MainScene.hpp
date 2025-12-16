@@ -10,16 +10,12 @@
 
 namespace Forradia::Theme0 {
     class MainScene : public IScene {
-      public:
-        MainScene();
+        virtual void InitializeDerived() override;
 
-      protected:
-        virtual void InitializeDerived();
+        virtual void OnEnterDerived() override;
 
-        virtual void OnEnterDerived();
+        virtual void UpdateDerived() override;
 
-        virtual void UpdateDerived();
-
-        virtual void RenderDerived();
+        virtual void RenderDerived() const override;
     };
 }

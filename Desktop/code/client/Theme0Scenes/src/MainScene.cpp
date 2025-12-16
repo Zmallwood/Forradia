@@ -32,13 +32,6 @@
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0 {
-    MainScene::MainScene() {
-        this->SetInitializeDerived([this] { this->InitializeDerived(); });
-        this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
-        this->SetUpdateDerived([this] { this->UpdateDerived(); });
-        this->SetRenderDerived([this] { this->RenderDerived(); });
-    }
-
     void MainScene::InitializeDerived() {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
         GetGUI()->AddChildComponent(__<GUIChatBox>());
@@ -93,7 +86,7 @@ namespace Forradia::Theme0 {
         _<QuestSystem>().Update();
     }
 
-    void MainScene::RenderDerived() {
+    void MainScene::RenderDerived() const {
         _<WorldView>().Render();
     }
 }

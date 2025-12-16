@@ -10,10 +10,6 @@
 #include "WorldGenerator.hpp"
 
 namespace Forradia::Theme0 {
-    WorldGenerationScene::WorldGenerationScene() {
-        this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
-    }
-
     void WorldGenerationScene::OnEnterDerived() {
         _<GUIChatBox>().Print("Generating world...");
 
