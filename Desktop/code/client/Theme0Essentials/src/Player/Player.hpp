@@ -13,12 +13,12 @@ class PlayerObjectsInventory;
 ///
 /// Represents the player character.
 ///
-class PlayerCharacter {
+class Player {
  public:
   ///
   /// Constructor.
   ///
-  PlayerCharacter() {
+  Player() {
     // Initialize the player character.
 
     this->Initialize();

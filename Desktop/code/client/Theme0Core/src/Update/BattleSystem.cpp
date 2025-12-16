@@ -3,7 +3,7 @@
 
 #include "BattleSystem.hpp"
 #include "GUIChatBox.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Robot.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
@@ -22,7 +22,7 @@ void BattleSystem::Update() {
 
   // auto robotCoordinates{robots.at(m_targetedRobot)};
 
-  // auto &player{_<PlayerCharacter>()};
+  // auto &player{_<Player>()};
 
   // player.SetDestination({robotCoordinates.x, robotCoordinates.y});
 
@@ -48,7 +48,7 @@ void BattleSystem::Update() {
   //         if (isKnockedOut)
   //         {
   //             _<GUIChatBox>().Print("You have knocked out the robot!");
-  //             _<PlayerCharacter>().AddExperience(10);
+  //             _<Player>().AddExperience(10);
   //             _<GUIChatBox>().Print("You have gained 10 experience!");
 
   //             auto robotTile{worldArea->GetTile(robotCoordinates.x, robotCoordinates.y)};

@@ -4,8 +4,8 @@
 #include "GUIPlayerBodyWindow.hpp"
 #include "GUIButton.hpp"
 #include "GUILabel.hpp"
+#include "Player/Player.hpp"
 #include "Player/PlayerBodyPart.hpp"
-#include "Player/PlayerCharacter.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
@@ -74,7 +74,7 @@ void GUIPlayerBodyWindow::SelectBodyPart(int type) {
 }
 
 void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() {
-  auto &playerBody{_<Theme0::PlayerCharacter>().GetBodyRef()};
+  auto &playerBody{_<Theme0::Player>().GetBodyRef()};
 
   constexpr auto overallBody{CInt(Theme0::PlayerBodyPartTypes::OverallBody)};
   constexpr auto rightArm{CInt(Theme0::PlayerBodyPartTypes::RightArm)};

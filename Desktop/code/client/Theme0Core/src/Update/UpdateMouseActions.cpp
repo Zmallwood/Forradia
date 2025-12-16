@@ -4,7 +4,7 @@
 #include "UpdateMouseActions.hpp"
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
 #include "Mouse/MouseInput.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Tile.hpp"
 #include "Update/BattleSystem.hpp"
@@ -16,7 +16,7 @@ namespace Forradia::Theme0 {
 void UpdateMouseActions() {
   if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
       _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200) {
-    auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
+    auto currentPlayerMode{_<Player>().GetPlayerMode()};
 
     switch (currentPlayerMode) {
     case PlayerModes::Interaction:

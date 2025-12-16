@@ -7,7 +7,7 @@
 #include "GUIPlayerBodyWindow.hpp"
 #include "GUISystemMenu.hpp"
 #include "Keyboard/KeyboardInput.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
@@ -28,15 +28,15 @@ void UpdateKeyboardActions() {
       _<GUIChatBox>().EnableInput();
     }
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
-    auto currentMode{_<PlayerCharacter>().GetPlayerMode()};
+    auto currentMode{_<Player>().GetPlayerMode()};
 
     switch (currentMode) {
     case PlayerModes::Interaction:
-      _<PlayerCharacter>().SetPlayerMode(PlayerModes::Battle);
+      _<Player>().SetPlayerMode(PlayerModes::Battle);
       _<GUIChatBox>().Print("You are now in battle mode.");
       break;
     case PlayerModes::Battle:
-      _<PlayerCharacter>().SetPlayerMode(PlayerModes::Interaction);
+      _<Player>().SetPlayerMode(PlayerModes::Interaction);
       _<GUIChatBox>().Print("You are now in interaction mode.");
       break;
     }

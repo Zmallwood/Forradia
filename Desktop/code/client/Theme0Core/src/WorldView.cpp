@@ -9,7 +9,7 @@
 #include "ModelRenderer.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Robot.hpp"
 #include "SkyRenderer.hpp"
 #include "Theme0Properties.hpp"
@@ -53,7 +53,7 @@ void WorldView::Render() const {
       static_cast<decltype(gridSize.height)>(gridSize.height *
                                              k_groundRenderingDistanceMultiplier)}};
 
-  auto playerPos{_<PlayerCharacter>().GetPosition()};
+  auto playerPos{_<Player>().GetPosition()};
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};

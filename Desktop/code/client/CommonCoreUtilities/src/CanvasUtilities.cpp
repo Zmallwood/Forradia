@@ -5,7 +5,7 @@
 #include "Functions.hpp"
 
 namespace Forradia {
-Size GetCanvasSize(SharedPtr<SDL_Window> window) {
+auto GetCanvasSize(SharedPtr<SDL_Window> window) -> Size {
   Size canvasSize;
   SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
   return canvasSize;

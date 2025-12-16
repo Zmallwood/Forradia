@@ -2,7 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Camera.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
@@ -55,7 +55,7 @@ Point3F Camera::GetLookAt() const {
   auto worldArea{_<Theme0::World>().GetCurrentWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto rendTileSize{_<Theme0::Theme0Properties>().GetTileSize()};
-  auto playerPos{_<Theme0::PlayerCharacter>().GetPosition()};
+  auto playerPos{_<Theme0::Player>().GetPosition()};
   auto elevHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
   auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 

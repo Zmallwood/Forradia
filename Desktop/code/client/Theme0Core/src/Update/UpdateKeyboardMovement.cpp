@@ -4,7 +4,7 @@
 #include "UpdateKeyboardMovement.hpp"
 #include "Keyboard/KeyboardInput.hpp"
 #include "NumbersUtilities.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Update/BattleSystem.hpp"
 
 namespace Forradia::Theme0 {
@@ -19,28 +19,28 @@ void UpdateKeyboardMovement() {
   auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
 
   if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress) {
-    _<Theme0::PlayerCharacter>().SetDestination({-1, -1});
+    _<Theme0::Player>().SetDestination({-1, -1});
     _<BattleSystem>().SetTargetedRobot(nullptr);
   }
 
   auto now{GetTicks()};
 
-  if (now >= _<Theme0::PlayerCharacter>().GetTicksLastMovement() +
-                 InvertSpeed(_<Theme0::PlayerCharacter>().GetMovementSpeed()) &&
+  if (now >= _<Theme0::Player>().GetTicksLastMovement() +
+                 InvertSpeed(_<Theme0::Player>().GetMovementSpeed()) &&
       (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)) {
     if (upPress || wPress) {
-      _<Theme0::PlayerCharacter>().MoveNorth();
+      _<Theme0::Player>().MoveNorth();
     }
     if (rightPress || dPress) {
-      _<Theme0::PlayerCharacter>().MoveEast();
+      _<Theme0::Player>().MoveEast();
     }
     if (downPress || sPress) {
-      _<Theme0::PlayerCharacter>().MoveSouth();
+      _<Theme0::Player>().MoveSouth();
     }
     if (leftPress || aPress) {
-      _<Theme0::PlayerCharacter>().MoveWest();
+      _<Theme0::Player>().MoveWest();
     }
-    _<Theme0::PlayerCharacter>().SetTicksLastMovement(now);
+    _<Theme0::Player>().SetTicksLastMovement(now);
   }
 }
 }

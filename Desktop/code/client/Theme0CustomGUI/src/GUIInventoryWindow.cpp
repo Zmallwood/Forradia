@@ -5,7 +5,7 @@
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
 #include "Object.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "SDLDevice.hpp"
 
@@ -32,7 +32,7 @@ void GUIInventoryWindow::RenderDerived() const {
   auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
   auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-  auto &objectsInventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+  auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
 
   for (auto y = 0; y < numRows; y++) {
     for (auto x = 0; x < numColumns; x++) {

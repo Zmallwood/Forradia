@@ -4,14 +4,14 @@
 #include "Quests.hpp"
 #include "GUIChatBox.hpp"
 #include "ObjectsStack.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
 void MoveQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numSteps{0};
 
@@ -29,7 +29,7 @@ void MoveQuest::Update() {
   if (numSteps >= 3) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Movement. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 
   return;
@@ -40,7 +40,7 @@ String MoveQuest::GetStatus() const {
 }
 
 void ForageQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numForagings{0};
 
@@ -59,7 +59,7 @@ void ForageQuest::Update() {
   if (numForagings >= 3) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -68,7 +68,7 @@ String ForageQuest::GetStatus() const {
 }
 
 void CraftStonePickaxeQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   for (auto &entry : playerActions) {
     auto action{get<0>(entry)};
@@ -103,7 +103,7 @@ String CraftStonePickaxeQuest::GetStatus() const {
 }
 
 void MineStoneFromBoulderQuest1::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numMinedStones{0};
   auto i{0};
@@ -117,7 +117,7 @@ void MineStoneFromBoulderQuest1::Update() {
       numMinedStones++;
 
       if (numMinedStones == 10) {
-        _<PlayerCharacter>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] = i;
+        _<Player>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] = i;
         break;
       }
     }
@@ -130,7 +130,7 @@ void MineStoneFromBoulderQuest1::Update() {
   if (numMinedStones >= 10) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -139,7 +139,7 @@ String MineStoneFromBoulderQuest1::GetStatus() const {
 }
 
 void CraftStoneSlabsQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numCraftedSlabs{0};
 
@@ -160,7 +160,7 @@ void CraftStoneSlabsQuest::Update() {
   if (numCraftedSlabs >= 10) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -169,7 +169,7 @@ String CraftStoneSlabsQuest::GetStatus() const {
 }
 
 void LayStoneSlabsQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numLaidSlabs{0};
 
@@ -188,7 +188,7 @@ void LayStoneSlabsQuest::Update() {
   if (numLaidSlabs >= 10) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -197,12 +197,12 @@ String LayStoneSlabsQuest::GetStatus() const {
 }
 
 void MineStoneFromBoulderQuest2::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numMinedStones{0};
   auto i{0};
   auto previousMineQuestCompletionPoint{
-      _<PlayerCharacter>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
+      _<Player>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
 
   for (auto &entry : playerActions) {
     if (i <= previousMineQuestCompletionPoint) {
@@ -226,7 +226,7 @@ void MineStoneFromBoulderQuest2::Update() {
   if (numMinedStones >= 10) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -235,7 +235,7 @@ String MineStoneFromBoulderQuest2::GetStatus() const {
 }
 
 void CraftStoneBricksQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numCraftedBricks{0};
 
@@ -256,7 +256,7 @@ void CraftStoneBricksQuest::Update() {
   if (numCraftedBricks >= 10) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 
@@ -265,7 +265,7 @@ String CraftStoneBricksQuest::GetStatus() const {
 }
 
 void BuildStoneWallsQuest::Update() {
-  auto &playerActions{_<PlayerCharacter>().GetPlayerActionsRef()};
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   std::set<Point> wallPositions;
   auto numIncompleteWallTiles{0};
@@ -347,7 +347,7 @@ void BuildStoneWallsQuest::Update() {
   if (wallPositions.size() > 0 && numIncompleteWallTiles == 0) {
     isCompleted = true;
     _<GUIChatBox>().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
-    _<PlayerCharacter>().AddExperience(50);
+    _<Player>().AddExperience(50);
   }
 }
 

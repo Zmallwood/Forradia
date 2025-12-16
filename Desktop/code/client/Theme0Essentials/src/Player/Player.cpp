@@ -1,7 +1,7 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
-#include "PlayerCharacter.hpp"
+#include "Player.hpp"
 #include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
@@ -9,12 +9,12 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void PlayerCharacter::Initialize() {
+void Player::Initialize() {
   m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
   this->MoveToSuitablePosition();
 }
 
-void PlayerCharacter::MoveToSuitablePosition() {
+void Player::MoveToSuitablePosition() {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto size{worldArea->GetSize()};
 
@@ -25,32 +25,32 @@ void PlayerCharacter::MoveToSuitablePosition() {
   }
 }
 
-void PlayerCharacter::MoveNorth() {
+void Player::MoveNorth() {
   m_position.y -= 1;
   m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
 }
 
-void PlayerCharacter::MoveEast() {
+void Player::MoveEast() {
   m_position.x += 1;
   m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
 }
 
-void PlayerCharacter::MoveSouth() {
+void Player::MoveSouth() {
   m_position.y += 1;
   m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
 }
 
-void PlayerCharacter::MoveWest() {
+void Player::MoveWest() {
   m_position.x -= 1;
   m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
 }
 
-void PlayerCharacter::AddExperience(int experience) {
+void Player::AddExperience(int experience) {
   m_experience += experience;
 }
 
-void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction,
-                                      StringView actionFirstArgument, Point actionSecondArgument) {
+void Player::AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument,
+                             Point actionSecondArgument) {
   m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{
       playerAction, actionFirstArgument, actionSecondArgument});
 }

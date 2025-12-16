@@ -12,7 +12,7 @@ namespace Forradia {
 ///
 /// @param window Window to get the canvas size for.
 /// @return The canvas size in pixels.
-Size GetCanvasSize(SharedPtr<SDL_Window> window);
+auto GetCanvasSize(SharedPtr<SDL_Window> window) -> Size;
 
 /// Calculate the aspect ratio of a given window.
 ///

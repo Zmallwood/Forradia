@@ -3,14 +3,14 @@
 
 #include "GUIExperienceBar.hpp"
 #include "Math/ExperienceCalculations.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 
 namespace Forradia::Theme0 {
 void GUIExperienceBar::UpdateDerived() {
   GUIMeter::UpdateDerived();
 
-  auto &playerCharacter{_<Theme0::PlayerCharacter>()};
-  auto experience{playerCharacter.GetExperience()};
+  auto &player{_<Theme0::Player>()};
+  auto experience{player.GetExperience()};
   auto levelProgress{CalculateFractionalExperienceProgress(experience)};
   m_filledPercentage = levelProgress;
 }

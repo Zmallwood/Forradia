@@ -3,7 +3,7 @@
 
 #include "TileHovering.hpp"
 #include "3D/Camera.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
@@ -22,7 +22,7 @@ void TileHovering::DetermineHoveredCoordinateWithRaycasting() {
 void TileHovering::IterateOverRenderedTiles() {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
-  auto playerPos{_<PlayerCharacter>().GetPosition()};
+  auto playerPos{_<Player>().GetPosition()};
   auto gridSize{_<Theme0Properties>().GetGridSize()};
 
   // Iterate over the rendered tiles.

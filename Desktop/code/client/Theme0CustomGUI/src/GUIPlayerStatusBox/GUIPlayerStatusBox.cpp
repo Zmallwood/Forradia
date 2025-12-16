@@ -5,7 +5,7 @@
 #include "GUILabel.hpp"
 #include "GUIWellBeingMeter.hpp"
 #include "Math/ExperienceCalculations.hpp"
-#include "Player/PlayerCharacter.hpp"
+#include "Player/Player.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia::Theme0 {
@@ -23,8 +23,8 @@ void GUIPlayerStatusBox::Initialize() {
 void GUIPlayerStatusBox::UpdateDerived() {
   GUIPanel::UpdateDerived();
 
-  auto wellBeing{_<Theme0::PlayerCharacter>().GetWellBeing()};
-  auto maxWellBeing{_<Theme0::PlayerCharacter>().GetMaxWellBeing()};
+  auto wellBeing{_<Theme0::Player>().GetWellBeing()};
+  auto maxWellBeing{_<Theme0::Player>().GetMaxWellBeing()};
 
   m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
 }
@@ -34,10 +34,10 @@ void GUIPlayerStatusBox::RenderDerived() const {
 
   auto bounds{this->GetBounds()};
 
-  _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::PlayerCharacter>().GetName(),
+  _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::Player>().GetName(),
                                bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-  auto experience{_<Theme0::PlayerCharacter>().GetExperience()};
+  auto experience{_<Theme0::Player>().GetExperience()};
   auto level{CalculateCurrentLevel(experience)};
 
   _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),

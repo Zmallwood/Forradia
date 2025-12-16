@@ -6,8 +6,8 @@
 #include "GUIInteractionMenu.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
+#include "Player/Player.hpp"
 #include "Player/PlayerActions/PlayerActionTypes.hpp"
-#include "Player/PlayerCharacter.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
 #include "Update/BattleSystem.hpp"
@@ -65,7 +65,7 @@ Action GetAction<Hash("ActionCraftStoneWallDoor")>();
 template <>
 Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.RemoveObject("ObjectStoneBrick");
 
@@ -78,16 +78,16 @@ Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
             }
 
             _<GUIChatBox>().Print("You craft a stone wall door.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWallDoor",
-                                                 clickedCoordinate);
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWallDoor",
+                                        clickedCoordinate);
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionCraftStoneWall")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.RemoveObject("ObjectStoneBrick");
 
@@ -100,22 +100,22 @@ Action GetAction<Hash("ActionCraftStoneWall")>() {
             }
 
             _<GUIChatBox>().Print("You craft a stone wall.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
-                                                 clickedCoordinate);
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
+                                        clickedCoordinate);
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionCraftStoneBrick")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.RemoveObject("ObjectStone");
             inventory.AddObject("ObjectStoneBrick");
 
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBrick");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBrick");
             _<GUIChatBox>().Print("You craft a stone brick.");
           }};
 }
@@ -123,7 +123,7 @@ Action GetAction<Hash("ActionCraftStoneBrick")>() {
 template <>
 Action GetAction<Hash("ActionLayStoneSlab")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.RemoveObject("ObjectStoneSlab");
 
@@ -136,29 +136,29 @@ Action GetAction<Hash("ActionLayStoneSlab")>() {
             }
 
             _<GUIChatBox>().Print("You lay a stone slab.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionCraftStoneSlab")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.RemoveObject("ObjectStone");
             inventory.AddObject("ObjectStoneSlab");
 
             _<GUIChatBox>().Print("You craft a stone slab.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionCraftStonePickaxe")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             if (inventory.CountHasObject("ObjectBranch") < 1) {
               _<GUIChatBox>().Print("You don't have any branches to craft a stone pickaxe.");
@@ -175,28 +175,28 @@ Action GetAction<Hash("ActionCraftStonePickaxe")>() {
             inventory.AddObject("ObjectStonePickaxe");
 
             _<GUIChatBox>().Print("You craft a stone pickaxe.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStonePickaxe");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStonePickaxe");
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionChipStone")>() {
   return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.AddObject("ObjectStone");
 
             _<GUIChatBox>().Print("You chip some stone.");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
           }};
 }
 
 template <>
 Action GetAction<Hash("ActionLayCobbleStone")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
 
@@ -222,7 +222,7 @@ Action GetAction<Hash("ActionLayCobbleStone")>() {
 template <>
 Action GetAction<Hash("ActionLayMetalFloor")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             auto numMetalScrapsInInventory{inventory.CountHasObject("ObjectMetalScrap")};
 
@@ -275,7 +275,7 @@ Action GetAction<Hash("Pick up")>() {
               auto object{objectsStack->PopObject()};
 
               if (object) {
-                auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+                auto &inventory{_<Player>().GetObjectsInventoryRef()};
                 inventory.AddObject(object->GetType());
               }
             }
@@ -345,14 +345,14 @@ Action GetAction<Hash("ActionChopTree")>() {
 template <>
 Action GetAction<Hash("ActionForage")>() {
   return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.AddObject("ObjectBlueberries");
 
             _<GUIChatBox>().Print("Foraging... You found some "
                                   "blueberries!");
-            _<PlayerCharacter>().AddExperience(10);
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Forage);
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Forage);
           }};
 }
 
@@ -361,12 +361,12 @@ Action GetAction<Hash("ActionPickBranch")>() {
   return {.groundMatches = {},
           .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
           .action = []() {
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.AddObject("ObjectBranch");
 
             _<GUIChatBox>().Print("You picked a branch!");
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+            _<Player>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
           }};
 }
 
@@ -381,12 +381,12 @@ Action GetAction<Hash("ActionPickStone")>() {
               tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
             }
 
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             inventory.AddObject("ObjectStone");
 
             _<GUIChatBox>().Print("You picked a stone!");
-            _<PlayerCharacter>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
+            _<Player>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
           }};
 }
 
@@ -396,7 +396,7 @@ Action GetAction<Hash("ActionBuildSimpleShelter")>() {
             _<GUIChatBox>().Print("You start build a simple "
                                   "shelter.");
 
-            auto &inventory{_<PlayerCharacter>().GetObjectsInventoryRef()};
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
             auto hasBranchesCount{inventory.CountHasObject("ObjectBranch")};
             auto requiredBranchesCount{4};
