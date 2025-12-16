@@ -12,15 +12,12 @@
 
 namespace Forradia {
     void SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) {
-        // Generate the sky dome mesh if not already initialized.
         if (!m_initialized) {
             this->GenerateSkyDome();
         }
 
-        // Set up the state for the renderer.
         this->SetupState();
 
-        // Bind the vertex array object.
         glBindVertexArray(m_vao);
 
         // Calculate the MVP matrix.
@@ -45,7 +42,6 @@ namespace Forradia {
         // Negative Z moves it down (since +Z is up in this coordinate system).
 
         // Adjust this value to control how much to lower the sky
-
         auto skyOffsetZ{-0.5f};
 
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, skyOffsetZ));
@@ -87,10 +83,8 @@ namespace Forradia {
         // Upload the sun elevation to the shader.
         glUniform1f(m_layoutLocationSunElevation, sunElevation);
 
-        // Draw the sky dome.
         glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 
-        // Restore the state.
         this->RestoreState();
     }
 }
