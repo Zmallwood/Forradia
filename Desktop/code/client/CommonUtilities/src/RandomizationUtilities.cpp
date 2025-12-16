@@ -4,11 +4,11 @@
 #include "RandomizationUtilities.hpp"
 
 namespace Forradia {
-void Randomize() {
+auto Randomize() -> void {
   srand(time(nullptr));
 }
 
-int GetRandomInt(int upperLimit) {
+auto GetRandomInt(int upperLimit) -> int {
   return rand() % upperLimit;
 }
 }

@@ -5,11 +5,11 @@
 
 namespace Forradia {
 /// Randomize the seed.
-void Randomize();
+auto Randomize() -> void;
 
 /// Generate a random integer.
 ///
 /// @param upperLimit Upper limit.
 /// @return Random integer.
-int GetRandomInt(int upperLimit);
+auto GetRandomInt(int upperLimit) -> int;
 }

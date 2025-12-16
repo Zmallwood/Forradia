@@ -11,5 +11,5 @@ namespace Forradia {
 /// @param replace Character to replace.
 /// @param replaceWith Character to replace with.
 /// @return Replaced string.
-String Replace(StringView text, char replace, char replaceWith);
+auto Replace(StringView text, char replace, char replaceWith) -> String;
 }

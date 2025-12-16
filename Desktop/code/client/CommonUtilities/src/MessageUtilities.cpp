@@ -4,11 +4,11 @@
 #include "MessageUtilities.hpp"
 
 namespace Forradia {
-void Print(StringView text) {
+auto Print(StringView text) -> void {
   std::cout << text;
 }
 
-void PrintLine(StringView text) {
+auto PrintLine(StringView text) -> void {
   std::cout << text << std::endl;
 }
 }

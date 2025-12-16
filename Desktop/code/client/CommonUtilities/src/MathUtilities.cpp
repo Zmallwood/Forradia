@@ -4,7 +4,7 @@
 #include "MathUtilities.hpp"
 
 namespace Forradia {
-glm::vec3 ComputeNormal(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3) {
+auto ComputeNormal(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3) -> glm::vec3 {
   // Uses p2 as a new origin for p1, p3.
   auto a = p3 - p2;
   auto b = p1 - p2;

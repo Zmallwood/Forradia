@@ -30,9 +30,12 @@ void Cursor::Render() const {
   case CursorStyles::Normal:
     cursorImage = "CursorNormal";
     break;
-
   case CursorStyles::HoveringClickableGUI:
     cursorImage = "CursorHoveringClickableGUI";
+    break;
+  case CursorStyles::HoveringCreature:
+    // TODO: Add cursor image for hovering over a creature.
+    cursorImage = "CursorNormal";
     break;
   }
 

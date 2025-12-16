@@ -7,5 +7,5 @@ namespace Forradia {
 /// Get the number of ticks.
 ///
 /// @return The number of ticks.
-int GetTicks();
+auto GetTicks() -> int;
 }

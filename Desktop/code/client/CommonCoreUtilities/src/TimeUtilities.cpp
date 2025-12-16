@@ -4,7 +4,7 @@
 #include "TimeUtilities.hpp"
 
 namespace Forradia {
-int GetTicks() {
+auto GetTicks() -> int {
   return SDL_GetTicks();
 }
 }

@@ -4,7 +4,7 @@
 #include "StringUtilities.hpp"
 
 namespace Forradia {
-String Replace(StringView text, char replace, char replaceWith) {
+auto Replace(StringView text, char replace, char replaceWith) -> String {
   String result{text.data()};
   std::replace(result.begin(), result.end(), replace, replaceWith);
   return result;

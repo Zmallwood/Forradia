@@ -5,7 +5,7 @@
 #include "Constants.hpp"
 
 namespace Forradia {
-float InvertSpeed(float speed) {
+auto InvertSpeed(float speed) -> float {
   if (speed) {
     return k_oneSecMillis / speed;
   } else {
@@ -13,7 +13,7 @@ float InvertSpeed(float speed) {
   }
 }
 
-int Normalize(int value) {
+auto Normalize(int value) -> int {
   auto absValue{std::abs(value)};
   auto normalized{0};
   if (value) {
@@ -22,7 +22,7 @@ int Normalize(int value) {
   return normalized;
 }
 
-float Ceil(float number, float numDecimalPlaces) {
+auto Ceil(float number, float numDecimalPlaces) -> float {
   auto p{std::pow(10.0, numDecimalPlaces)};
   return std::ceil(number * p) / p;
 }

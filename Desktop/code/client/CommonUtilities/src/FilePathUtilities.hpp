@@ -9,11 +9,11 @@ namespace Forradia {
 ///
 /// @param path  Path to the file.
 /// @return File extension.
-String GetFileExtension(StringView path);
+auto GetFileExtension(StringView path) -> String;
 
 /// Get the file name without the extension.
 ///
 /// @param path Path to the file.
 /// @return File name without the extension.
-String GetFileNameNoExtension(StringView path);
+auto GetFileNameNoExtension(StringView path) -> String;
 }
