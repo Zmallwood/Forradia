@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Point in 2D space, using dimensions of int type.
-    class Point
-    {
+    class Point {
       public:
         /// Equality operator between two Points.
         ///

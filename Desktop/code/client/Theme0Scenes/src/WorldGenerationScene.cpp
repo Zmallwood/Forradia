@@ -9,15 +9,12 @@
 #include "SceneManager.hpp"
 #include "WorldGenerator.hpp"
 
-namespace Forradia::Theme0
-{
-    WorldGenerationScene::WorldGenerationScene()
-    {
+namespace Forradia::Theme0 {
+    WorldGenerationScene::WorldGenerationScene() {
         this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
     }
 
-    void WorldGenerationScene::OnEnterDerived()
-    {
+    void WorldGenerationScene::OnEnterDerived() {
         _<GUIChatBox>().Print("Generating world...");
 
         _<WorldGenerator>().GenerateNewWorld();

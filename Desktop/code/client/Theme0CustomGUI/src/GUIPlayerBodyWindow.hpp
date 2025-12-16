@@ -11,19 +11,15 @@
 
 #include "GUIWindow.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUILabel;
 }
 
-namespace Forradia::Theme0
-{
-    class GUIPlayerBodyWindow : public GUIWindow
-    {
+namespace Forradia::Theme0 {
+    class GUIPlayerBodyWindow : public GUIWindow {
       public:
         GUIPlayerBodyWindow()
-            : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body")
-        {
+            : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
             this->Initialize();
         }
 

@@ -7,16 +7,12 @@
 // Status: Incomplete.
 // TODO:
 
+#include "Tile.hpp"
+#include "WorldArea.hpp"
 #include "WorldGeneratorWater.hpp"
 
-#include "WorldArea.hpp"
-
-#include "Tile.hpp"
-
-namespace Forradia::Theme0
-{
-    void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -44,8 +40,7 @@ namespace Forradia::Theme0
 
         // Generate the river.
 
-        for (auto step = 0; step < length && tilesPlaced < length; step++)
-        {
+        for (auto step = 0; step < length && tilesPlaced < length; step++) {
             // Get the current position.
 
             auto x{CInt(currentX)};
@@ -56,29 +51,25 @@ namespace Forradia::Theme0
 
             // Clamp the coordinates to the map bounds.
 
-            if (x < 0)
-            {
+            if (x < 0) {
                 x = 0;
             }
 
             // Clamp the coordinates to the map bounds.
 
-            if (x >= worldAreaSize.width)
-            {
+            if (x >= worldAreaSize.width) {
                 x = worldAreaSize.width - 1;
             }
 
             // Clamp the coordinates to the map bounds.
 
-            if (y < 0)
-            {
+            if (y < 0) {
                 y = 0;
             }
 
             // Clamp the coordinates to the map bounds.
 
-            if (y >= worldAreaSize.height)
-            {
+            if (y >= worldAreaSize.height) {
                 y = worldAreaSize.height - 1;
             }
 
@@ -86,14 +77,12 @@ namespace Forradia::Theme0
 
             if ((x == 0 || x == worldAreaSize.width - 1 || y == 0 ||
                  y == worldAreaSize.height - 1) &&
-                tilesPlaced >= minRiverLength)
-            {
+                tilesPlaced >= minRiverLength) {
                 // Try to place water at the edge if valid.
 
                 auto edgeTile{worldArea->GetTile(x, y)};
 
-                if (edgeTile && IsValidForWater(x, y))
-                {
+                if (edgeTile && IsValidForWater(x, y)) {
                     edgeTile->SetGround("GroundWater");
 
                     edgeTile->SetWaterDepth(1);
@@ -108,12 +97,10 @@ namespace Forradia::Theme0
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (!tile)
-            {
+            if (!tile) {
                 // If we've placed enough tiles, stop.
 
-                if (tilesPlaced >= minRiverLength)
-                {
+                if (tilesPlaced >= minRiverLength) {
                     break;
                 }
 
@@ -133,24 +120,20 @@ namespace Forradia::Theme0
 
             auto canPlace{IsValidForWater(x, y)};
 
-            if (!canPlace && tilesPlaced < minRiverLength)
-            {
+            if (!canPlace && tilesPlaced < minRiverLength) {
                 // Allow water in slightly higher elevation areas if we haven't reached minimum.
 
-                if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock"))
-                {
+                if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock")) {
                     canPlace = true;
                 }
             }
 
             // If we can't place water, try to find an adjacent valid tile.
 
-            if (!canPlace)
-            {
+            if (!canPlace) {
                 // If we've placed enough tiles, stop.
 
-                if (tilesPlaced >= minRiverLength)
-                {
+                if (tilesPlaced >= minRiverLength) {
                     break;
                 }
 
@@ -160,8 +143,7 @@ namespace Forradia::Theme0
 
                 // Visit each neighboring tile and update elevation when needed.
 
-                for (auto dir = 0; dir < 8 && !foundAdjacent; dir++)
-                {
+                for (auto dir = 0; dir < 8 && !foundAdjacent; dir++) {
                     // Compute the coordinates of the adjacent tile relative to the current
                     // tile.
 
@@ -171,16 +153,14 @@ namespace Forradia::Theme0
 
                     // Skip if the adjacent tile is out of bounds.
 
-                    if (worldArea->IsValidCoordinate(adjacentX, adjacentY))
-                    {
+                    if (worldArea->IsValidCoordinate(adjacentX, adjacentY)) {
                         // Get the adjacent tile.
 
                         auto adjacentTile{worldArea->GetTile(adjacentX, adjacentY)};
 
                         // Skip if the adjacent tile is not found.
 
-                        if (adjacentTile && IsValidForWater(adjacentX, adjacentY))
-                        {
+                        if (adjacentTile && IsValidForWater(adjacentX, adjacentY)) {
                             // Update the current position and tile.
 
                             x = adjacentX;
@@ -208,8 +188,7 @@ namespace Forradia::Theme0
 
                 // If we didn't find an adjacent valid tile.
 
-                if (!foundAdjacent)
-                {
+                if (!foundAdjacent) {
                     // Continue in a random direction.
 
                     auto angle{GetRandomInt(360) * M_PI / 180.0f};
@@ -234,12 +213,10 @@ namespace Forradia::Theme0
 
             // Occasionally create wider river sections.
 
-            if (GetRandomInt(100) < 25)
-            {
+            if (GetRandomInt(100) < 25) {
                 // Visit each neighboring tile and update elevation when needed.
 
-                for (auto dir = 0; dir < 8; dir++)
-                {
+                for (auto dir = 0; dir < 8; dir++) {
                     // Compute the coordinates of the adjacent tile relative to the current
                     // tile.
 
@@ -249,16 +226,14 @@ namespace Forradia::Theme0
 
                     // Skip if the adjacent tile is out of bounds.
 
-                    if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
-                    {
+                    if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY)) {
                         // Get the adjacent tile.
 
                         auto adjacentTile{worldArea->GetTile(adjX, adjY)};
 
                         // Skip if the adjacent tile is not found.
 
-                        if (adjacentTile && GetRandomInt(100) < 40)
-                        {
+                        if (adjacentTile && GetRandomInt(100) < 40) {
                             adjacentTile->SetGround("GroundWater");
 
                             adjacentTile->SetWaterDepth(1);
@@ -282,8 +257,7 @@ namespace Forradia::Theme0
 
                 // First, try to find a downhill direction (preferred but not required).
 
-                for (auto dir = 0; dir < 8; dir++)
-                {
+                for (auto dir = 0; dir < 8; dir++) {
                     // Compute the coordinates of the adjacent tile relative to the current
                     // tile.
 
@@ -293,8 +267,7 @@ namespace Forradia::Theme0
 
                     // Skip if the adjacent tile is out of bounds.
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
-                    {
+                    if (!worldArea->IsValidCoordinate(checkX, checkY)) {
                         continue;
                     }
 
@@ -304,8 +277,7 @@ namespace Forradia::Theme0
 
                     // Skip if the adjacent tile is not found.
 
-                    if (!checkTile)
-                    {
+                    if (!checkTile) {
                         continue;
                     }
 
@@ -316,19 +288,16 @@ namespace Forradia::Theme0
                     // If the adjacent tile is not a valid water placement location, and we
                     // haven't placed enough tiles, try to place water here.
 
-                    if (!canPlaceHere && tilesPlaced < minRiverLength)
-                    {
+                    if (!canPlaceHere && tilesPlaced < minRiverLength) {
                         if (checkTile->GetElevation() < 90 &&
-                            checkTile->GetGround() != Hash("GroundRock"))
-                        {
+                            checkTile->GetGround() != Hash("GroundRock")) {
                             canPlaceHere = true;
                         }
                     }
 
                     // Skip if the adjacent tile is not a valid water placement location.
 
-                    if (!canPlaceHere)
-                    {
+                    if (!canPlaceHere) {
                         continue;
                     }
 
@@ -339,8 +308,7 @@ namespace Forradia::Theme0
                     // If the elevation of the adjacent tile is lower than the best elevation,
                     // update the best elevation.
 
-                    if (checkElevation < bestElevation)
-                    {
+                    if (checkElevation < bestElevation) {
                         // Update the best elevation.
 
                         bestElevation = checkElevation;
@@ -359,16 +327,13 @@ namespace Forradia::Theme0
 
                 // If we found a downhill direction, move in the chosen direction.
 
-                if (foundDownhill)
-                {
+                if (foundDownhill) {
                     // Update the current position.
 
                     currentX += bestDX;
 
                     currentY += bestDY;
-                }
-                else
-                {
+                } else {
                     // No clear downhill path - choose a random valid direction.
                     // Rivers don't need to flow downhill, they can flow in any direction.
 
@@ -382,8 +347,7 @@ namespace Forradia::Theme0
 
                     // Try to find a direction for 20 attempts.
 
-                    while (!foundDirection && attempts < 20)
-                    {
+                    while (!foundDirection && attempts < 20) {
                         // Get a random direction.
 
                         auto dir{GetRandomInt(8)};
@@ -396,16 +360,14 @@ namespace Forradia::Theme0
 
                         // If the coordinates are valid.
 
-                        if (worldArea->IsValidCoordinate(checkX, checkY))
-                        {
+                        if (worldArea->IsValidCoordinate(checkX, checkY)) {
                             // Get the adjacent tile.
 
                             auto checkTile{worldArea->GetTile(checkX, checkY)};
 
                             // If the checked tile is found.
 
-                            if (checkTile)
-                            {
+                            if (checkTile) {
                                 // Check if the tile is a valid water placement location.
 
                                 auto canPlaceHere{IsValidForWater(checkX, checkY)};
@@ -413,13 +375,11 @@ namespace Forradia::Theme0
                                 // If the tile is not a valid water placement location, and we
                                 // haven't placed enough tiles, try to place water here.
 
-                                if (!canPlaceHere && tilesPlaced < minRiverLength)
-                                {
+                                if (!canPlaceHere && tilesPlaced < minRiverLength) {
                                     // If the tile is a valid water placement location.
 
                                     if (checkTile->GetElevation() < 90 &&
-                                        checkTile->GetGround() != Hash("GroundRock"))
-                                    {
+                                        checkTile->GetGround() != Hash("GroundRock")) {
                                         // Set the flag to indicate that we can place water
                                         // here.
 
@@ -429,8 +389,7 @@ namespace Forradia::Theme0
 
                                 // If the tile is a valid water placement location.
 
-                                if (canPlaceHere)
-                                {
+                                if (canPlaceHere) {
                                     // update the current osition and set the flag to indicate
                                     // that we found a direction.
 
@@ -450,8 +409,7 @@ namespace Forradia::Theme0
 
                     // If we didn't find a direction.
 
-                    if (!foundDirection)
-                    {
+                    if (!foundDirection) {
                         // Just move in a random direction.
 
                         auto angle{GetRandomInt(360) * M_PI / 180.0f};
@@ -464,8 +422,7 @@ namespace Forradia::Theme0
 
                 // Stop if we've placed enough tiles and reached very low elevation.
 
-                if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5)
-                {
+                if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5) {
                     break;
                 }
             }

@@ -13,8 +13,7 @@
 #include <string>
 #include <vector>
 
-namespace Forradia
-{
+namespace Forradia {
     // Convenience text aliases.
     using String = std::string;
     using StringView = std::string_view;

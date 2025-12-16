@@ -9,19 +9,15 @@
 
 #include "Point.hpp"
 
-namespace Forradia
-{
-    bool Point::operator==(const Point &other) const
-    {
+namespace Forradia {
+    bool Point::operator==(const Point &other) const {
         // Compare x and y dimensions for this point and the other point.
         return other.x == this->x && other.y == this->y;
     }
 
-    bool Point::operator<(const Point &other) const
-    {
+    bool Point::operator<(const Point &other) const {
         // First compare x, then y if x values are equal.
-        if (this->x != other.x)
-        {
+        if (this->x != other.x) {
             return this->x < other.x;
         }
 

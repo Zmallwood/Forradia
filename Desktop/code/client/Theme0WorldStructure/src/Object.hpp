@@ -9,17 +9,14 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     /// An object, either in the game world, a container or inventory.
-    class Object
-    {
+    class Object {
       public:
         /// Constructor.
         ///
         /// @param objectNameHash The object name as a hash.
-        Object(int objectNameHash) : m_type(objectNameHash)
-        {
+        Object(int objectNameHash) : m_type(objectNameHash) {
             // Initialize the object.
             this->Initialize();
         }
@@ -27,8 +24,7 @@ namespace Forradia::Theme0
         /// Constructor.
         ///
         /// @param objectTypeName The object type by name.
-        Object(StringView objectTypeName) : m_type(Hash(objectTypeName))
-        {
+        Object(StringView objectTypeName) : m_type(Hash(objectTypeName)) {
             // Initialize the object.
             this->Initialize();
         }
@@ -36,16 +32,14 @@ namespace Forradia::Theme0
         /// Gets the object type.
         ///
         /// @return The object type as a hash.
-        auto GetType() const
-        {
+        auto GetType() const {
             return m_type;
         }
 
         /// Gets the model scaling of the object.
         ///
         /// @return The model scaling of the object.
-        auto GetModelScaling() const
-        {
+        auto GetModelScaling() const {
             return m_modelScaling;
         }
 

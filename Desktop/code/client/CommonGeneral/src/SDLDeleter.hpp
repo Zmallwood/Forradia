@@ -16,12 +16,10 @@ struct SDL_Surface;
 
 typedef struct _TTF_Font TTF_Font;
 
-namespace Forradia
-{
+namespace Forradia {
     /// Class used for SharedPtrs of SDL objects, which handles automaticallyfreeing up
     /// resources at object deletion.
-    class SDLDeleter
-    {
+    class SDLDeleter {
       public:
         /// Operator overloading for SDL_Window objects.
         ///

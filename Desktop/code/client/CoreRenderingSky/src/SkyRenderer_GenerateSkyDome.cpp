@@ -10,10 +10,8 @@
 
 #include "SkyRenderer.hpp"
 
-namespace Forradia
-{
-    void SkyRenderer::GenerateSkyDome()
-    {
+namespace Forradia {
+    void SkyRenderer::GenerateSkyDome() {
         // Generate a hemisphere (sky dome) mesh.
 
         // Number of horizontal segments (increased for better coverage).
@@ -26,16 +24,14 @@ namespace Forradia
         Vector<unsigned short> indices;
 
         // Generate vertices.
-        for (int ring = 0; ring <= rings; ++ring)
-        {
+        for (int ring = 0; ring <= rings; ++ring) {
             // Elevation angle (0 to PI/2).
             auto theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
 
             auto sinTheta{std::sin(theta)};
             auto cosTheta{std::cos(theta)};
 
-            for (int segment = 0; segment <= segments; ++segment)
-            {
+            for (int segment = 0; segment <= segments; ++segment) {
                 // Azimuth angle (0 to 2*PI).
                 auto phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
 
@@ -66,14 +62,12 @@ namespace Forradia
         // Generate indices for the sky dome mesh.
         // Create triangles that form a complete 360-degree hemisphere.
         // Each quad (formed by two triangles) connects vertices in adjacent rings.
-        for (int ring = 0; ring < rings; ++ring)
-        {
+        for (int ring = 0; ring < rings; ++ring) {
             auto baseIndex{ring * (segments + 1)};
 
             auto nextBaseIndex{(ring + 1) * (segments + 1)};
 
-            for (int segment = 0; segment < segments; ++segment)
-            {
+            for (int segment = 0; segment < segments; ++segment) {
                 // Current ring vertices.
 
                 auto v0{baseIndex + segment};

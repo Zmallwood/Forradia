@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Compute the normal of a triangle.
     ///
     /// @param p1 First point.

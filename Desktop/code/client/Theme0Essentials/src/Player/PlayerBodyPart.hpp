@@ -9,22 +9,19 @@
 
 #pragma once
 
-namespace Forradia ::Theme0::GameplayCore
-{
+namespace Forradia ::Theme0::GameplayCore {
     ///
     /// Represents a body part of the player.
     /// TODO: Decide if should be used also for other entities.
     ///
-    class PlayerBodyPart
-    {
+    class PlayerBodyPart {
       public:
         ///
         /// Gets the strength of the body part.
         ///
         /// @return The strength of the body part.
         ///
-        auto GetStrength() const
-        {
+        auto GetStrength() const {
             return m_strength;
         }
 
@@ -33,8 +30,7 @@ namespace Forradia ::Theme0::GameplayCore
         ///
         /// @return The current energy of the body part.
         ///
-        auto GetCurrentEnergy() const
-        {
+        auto GetCurrentEnergy() const {
             return m_currentEnergy;
         }
 
@@ -43,8 +39,7 @@ namespace Forradia ::Theme0::GameplayCore
         ///
         /// @return The max energy of the body part.
         ///
-        auto GetMaxEnergy() const
-        {
+        auto GetMaxEnergy() const {
             return m_maxEnergy;
         }
 
@@ -53,8 +48,7 @@ namespace Forradia ::Theme0::GameplayCore
         ///
         /// @return The temperature of the body part.
         ///
-        auto GetTemperature() const
-        {
+        auto GetTemperature() const {
             return m_temperature;
         }
 

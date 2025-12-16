@@ -10,22 +10,18 @@
 #include "GLDevice.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia
-{
-    GLDevice::~GLDevice()
-    {
+namespace Forradia {
+    GLDevice::~GLDevice() {
         // Cleanup the context.
         SDL_GL_DeleteContext(*m_context);
     }
 
-    void GLDevice::Initialize()
-    {
+    void GLDevice::Initialize() {
         // Setup the opengl functionality.
         this->SetupGL();
     }
 
-    void GLDevice::SetupGL()
-    {
+    void GLDevice::SetupGL() {
         // Get the SDL window.
         auto window{_<SDLDevice>().GetWindow()};
 
@@ -39,8 +35,7 @@ namespace Forradia
         GLenum status{glewInit()};
 
         // Check that GLEW was initialized successfully.
-        if (GLEW_OK != status)
-        {
+        if (GLEW_OK != status) {
             // Get the error string.
             auto errorString{String(reinterpret_cast<const char *>(glewGetErrorString(status)))};
 

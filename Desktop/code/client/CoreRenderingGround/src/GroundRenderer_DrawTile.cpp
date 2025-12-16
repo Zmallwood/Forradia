@@ -11,12 +11,10 @@
 #include "GroundRenderer.hpp"
 #include "Textures/TextureBank.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     void GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
                                   int yCoordinate, float tileSize, const Vector<float> &elevations,
-                                  bool forceUpdate)
-    {
+                                  bool forceUpdate) {
         // To be filled with the vertex array object, index buffer object and vertex buffer
         // object.
 
@@ -28,8 +26,7 @@ namespace Forradia
         bool tileIsCached{this->DrawingOperationIsCached(uniqueRenderID)};
 
         // If the tile is cached.
-        if (tileIsCached)
-        {
+        if (tileIsCached) {
             // Get the cached entry.
             auto &entry{m_operationsCache.at(uniqueRenderID)};
 
@@ -44,9 +41,7 @@ namespace Forradia
             glBindVertexArray(entry.vao);
             glBindBuffer(GL_ARRAY_BUFFER, entry.vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry.ibo);
-        }
-        else
-        {
+        } else {
             // Generate the vertex array object, index buffer object and vertex buffer object.
 
             glGenVertexArrays(1, &vao);
@@ -71,8 +66,7 @@ namespace Forradia
         }
 
         // If the tile is not cached or the force update flag is set.
-        if (false == tileIsCached || forceUpdate)
-        {
+        if (false == tileIsCached || forceUpdate) {
             Vector<Color> colors{
                 Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
                 Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};

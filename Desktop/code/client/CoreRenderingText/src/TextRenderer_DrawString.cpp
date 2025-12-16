@@ -12,15 +12,12 @@
 #include "TextRenderer.hpp"
 #include "Textures/TextureBank.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     void TextRenderer::DrawString(int uniqueRenderID, StringView text, float x, float y,
                                   FontSizes fontSize, bool centerAlign, bool forceRerender,
-                                  Color textColor) const
-    {
+                                  Color textColor) const {
         // Early return if the text string is empty.
-        if (text.empty())
-        {
+        if (text.empty()) {
             return;
         }
 
@@ -49,8 +46,7 @@ namespace Forradia
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         // If the texture doesn't exist yet, create it from the text surface.
-        if (!textureAlreadyExists || forceRerender)
-        {
+        if (!textureAlreadyExists || forceRerender) {
             // Convert the text color to SDL color format.
             auto sdlColor{textColor.ToSDLColor()};
 
@@ -59,8 +55,7 @@ namespace Forradia
                 TTF_RenderText_Solid(fontRaw, text.data(), sdlColor), SDLDeleter())};
 
             // If the surface is null, print an error message and return.
-            if (nullptr == surface)
-            {
+            if (nullptr == surface) {
                 PrintLine(String("Error rendering text: ") + text.data());
 
                 return;
@@ -79,8 +74,7 @@ namespace Forradia
         auto height{CFloat(textureDimensions.height) / canvasSize.height};
 
         // Adjust position for center alignment if requested.
-        if (centerAlign)
-        {
+        if (centerAlign) {
             x -= width / 2;
             y -= height / 2;
         }

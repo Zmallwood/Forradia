@@ -9,17 +9,14 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     class Model;
 
     /// Loads, stores and provides models.
-    class ModelBank
-    {
+    class ModelBank {
       public:
         /// Default constructor.
-        ModelBank()
-        {
+        ModelBank() {
             this->Initialize();
         }
 

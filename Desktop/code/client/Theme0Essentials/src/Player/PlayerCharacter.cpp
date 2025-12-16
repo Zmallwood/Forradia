@@ -14,10 +14,8 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void PlayerCharacter::Initialize()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void PlayerCharacter::Initialize() {
         // Initialize the objects inventory.
 
         m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
@@ -27,8 +25,7 @@ namespace Forradia::Theme0::GameplayCore
         this->MoveToSuitablePosition();
     }
 
-    void PlayerCharacter::MoveToSuitablePosition()
-    {
+    void PlayerCharacter::MoveToSuitablePosition() {
         // Get the current world area and size.
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -41,16 +38,14 @@ namespace Forradia::Theme0::GameplayCore
 
         // While the position is on water.
 
-        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
-        {
+        while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
             // Move to a random position.
 
             m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
         }
     }
 
-    void PlayerCharacter::MoveNorth()
-    {
+    void PlayerCharacter::MoveNorth() {
         // Move the player north.
 
         m_position.y -= 1;
@@ -58,8 +53,7 @@ namespace Forradia::Theme0::GameplayCore
         m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
     }
 
-    void PlayerCharacter::MoveEast()
-    {
+    void PlayerCharacter::MoveEast() {
         // Move the player east.
 
         m_position.x += 1;
@@ -67,8 +61,7 @@ namespace Forradia::Theme0::GameplayCore
         m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
     }
 
-    void PlayerCharacter::MoveSouth()
-    {
+    void PlayerCharacter::MoveSouth() {
         // Move the player south.
 
         m_position.y += 1;
@@ -76,8 +69,7 @@ namespace Forradia::Theme0::GameplayCore
         m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
     }
 
-    void PlayerCharacter::MoveWest()
-    {
+    void PlayerCharacter::MoveWest() {
         // Move the player west.
 
         m_position.x -= 1;
@@ -85,8 +77,7 @@ namespace Forradia::Theme0::GameplayCore
         m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
     }
 
-    void PlayerCharacter::AddExperience(int experience)
-    {
+    void PlayerCharacter::AddExperience(int experience) {
         // Add experience to the player.
 
         m_experience += experience;
@@ -94,8 +85,7 @@ namespace Forradia::Theme0::GameplayCore
 
     void PlayerCharacter::AddPlayerAction(PlayerActionTypes playerAction,
                                           StringView actionFirstArgument,
-                                          Point actionSecondArgument)
-    {
+                                          Point actionSecondArgument) {
         // Add player action to the player.
 
         m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{

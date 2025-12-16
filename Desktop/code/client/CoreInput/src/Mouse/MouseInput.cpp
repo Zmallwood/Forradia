@@ -9,18 +9,15 @@
 
 #include "MouseInput.hpp"
 
-namespace Forradia
-{
-    void MouseInput::Reset()
-    {
+namespace Forradia {
+    void MouseInput::Reset() {
         // Completely reset the state of the two mouse buttons.
 
         m_leftMouseButton.Reset();
         m_rightMouseButton.Reset();
     }
 
-    bool MouseInput::AnyMouseButtonIsPressedPickResult()
-    {
+    bool MouseInput::AnyMouseButtonIsPressedPickResult() {
         // Check if the left mouse button is currently pressed and store as result.
         auto result{m_leftMouseButton.IsPressedPickResult()};
 
@@ -32,14 +29,12 @@ namespace Forradia
         return result;
     }
 
-    void MouseInput::AddMouseWheelDelta(int delta)
-    {
+    void MouseInput::AddMouseWheelDelta(int delta) {
         // Add the mouse wheel delta to the current mouse wheel delta.
         m_mouseWheelDelta += delta;
     }
 
-    int MouseInput::GetMouseWheelDeltaPickResult()
-    {
+    int MouseInput::GetMouseWheelDeltaPickResult() {
         // Get the current mouse wheel delta and store as result.
         auto result{m_mouseWheelDelta};
 

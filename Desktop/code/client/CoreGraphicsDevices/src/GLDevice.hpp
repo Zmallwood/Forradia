@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Sets up the objects related to OpenGL.
-    class GLDevice
-    {
+    class GLDevice {
       public:
         /// Default destructor.
         ~GLDevice();

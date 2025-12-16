@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Represents a mouse button.
-    class MouseButton
-    {
+    class MouseButton {
       public:
         /// Resets the state of the button.
         void Reset();
@@ -57,8 +55,7 @@ namespace Forradia
         /// Returns the speed of the most recent click.
         ///
         /// @return The speed of the most recent click.
-        auto GetTicksClickSpeed() const
-        {
+        auto GetTicksClickSpeed() const {
             return m_ticksClickSpeed;
         }
 

@@ -11,14 +11,11 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    void Color2DRenderer::Cleanup()
-    {
-        for (auto &entry : m_operationsCache)
-        {
+namespace Forradia {
+    void Color2DRenderer::Cleanup() {
+        for (auto &entry : m_operationsCache) {
             // Delete the vertex array objects, index buffer objects and vertex buffer objects.
-    
+
             glDeleteBuffers(1, &entry.second.ibo);
             glDeleteBuffers(1, &entry.second.vbo);
             glDeleteVertexArrays(1, &entry.second.vao);
@@ -28,8 +25,7 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    void Color2DRenderer::SetupState() const
-    {
+    void Color2DRenderer::SetupState() const {
         // Get the canvas size in pixels.
         auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
@@ -45,8 +41,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void Color2DRenderer::RestoreState() const
-    {
+    void Color2DRenderer::RestoreState() const {
         // Unbind the vertex array object, index buffer object and vertex buffer object from the
         // current shader program.
 
@@ -58,8 +53,7 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    void Color2DRenderer::SetupAttributeLayout() const
-    {
+    void Color2DRenderer::SetupAttributeLayout() const {
         // Setup the attribute layout for the position.
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7,
@@ -75,8 +69,7 @@ namespace Forradia
         glEnableVertexAttribArray(1);
     }
 
-    bool Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const
-    {
+    bool Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const {
         // Check if the drawing operation is cached.
         return m_operationsCache.contains(uniqueRenderID);
     }

@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Get the number of ticks.
     ///
     /// @return The number of ticks.

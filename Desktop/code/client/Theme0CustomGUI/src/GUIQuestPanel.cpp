@@ -11,10 +11,8 @@
 #include "GUILabel.hpp"
 #include "Update/Quests/QuestSystem.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIQuestPanel::Initialize()
-    {
+namespace Forradia::Theme0 {
+    void GUIQuestPanel::Initialize() {
         m_questTitleTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f);
 
@@ -40,8 +38,7 @@ namespace Forradia::Theme0
         this->AddChildComponent(m_questStatusTextPanel);
     }
 
-    void GUIQuestPanel::UpdateDerived()
-    {
+    void GUIQuestPanel::UpdateDerived() {
         // Do the updating specific to the base class (GUIMovablePanel).
 
         GUIMovablePanel::UpdateDerived();

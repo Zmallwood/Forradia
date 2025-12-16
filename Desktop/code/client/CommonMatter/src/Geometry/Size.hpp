@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Size in 2D space, with the dimensions as int values.
-    class Size
-    {
+    class Size {
       public:
-        int width{0}; ///< Width.
+        int width{0};  ///< Width.
         int height{0}; ///< Height.
     };
 }

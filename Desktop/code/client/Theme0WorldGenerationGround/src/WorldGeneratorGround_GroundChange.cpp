@@ -11,10 +11,8 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorGround.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorGround::GenerateGrassBiomes() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorGround::GenerateGrassBiomes() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -30,8 +28,7 @@ namespace Forradia::Theme0
 
         auto numGrassBiomes{25 + GetRandomInt(15)};
 
-        for (auto i = 0; i < numGrassBiomes; i++)
-        {
+        for (auto i = 0; i < numGrassBiomes; i++) {
             // Generate random center coordinates for the grass biome.
 
             auto xCenter{GetRandomInt(worldAreaSize.width)};
@@ -42,8 +39,7 @@ namespace Forradia::Theme0
 
             auto tile{worldArea->GetTile(xCenter, yCenter)};
 
-            if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
-            {
+            if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater")) {
                 continue;
             }
 
@@ -62,26 +58,22 @@ namespace Forradia::Theme0
 
         // Also add grass in valleys and low-lying areas naturally.
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
-        {
-            for (auto x = 0; x < worldAreaSize.width; x++)
-            {
+        for (auto y = 0; y < worldAreaSize.height; y++) {
+            for (auto x = 0; x < worldAreaSize.width; x++) {
                 // Get the tile.
 
                 auto tile = worldArea->GetTile(x, y);
 
                 // Skip if the tile is not found.
 
-                if (!tile)
-                {
+                if (!tile) {
                     continue;
                 }
 
                 // Grass naturally grows in low-lying areas that aren't water.
 
                 if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
-                    tile->GetGround() != Hash("GroundRock"))
-                {
+                    tile->GetGround() != Hash("GroundRock")) {
                     // Do the ground change.
 
                     tile->SetGround("GroundGrass");
@@ -90,8 +82,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorGround::GenerateRockFormations() const
-    {
+    void WorldGeneratorGround::GenerateRockFormations() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -106,8 +97,7 @@ namespace Forradia::Theme0
 
         // Create rock formations.
 
-        for (auto i = 0; i < numRockFormations; i++)
-        {
+        for (auto i = 0; i < numRockFormations; i++) {
             // Generate random center coordinates for the rock formation.
 
             auto xCenter{GetRandomInt(worldAreaSize.width)};
@@ -120,8 +110,7 @@ namespace Forradia::Theme0
 
             // Skip if the tile is not found or the elevation is less than 80.
 
-            if (!tile || tile->GetElevation() < 80)
-            {
+            if (!tile || tile->GetElevation() < 80) {
                 continue;
             }
 
@@ -133,14 +122,11 @@ namespace Forradia::Theme0
 
             // Create the rock formation.
 
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-            {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-                {
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
                     // Skip if the coordinates are out of bounds.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
+                    if (!worldArea->IsValidCoordinate(x, y)) {
                         continue;
                     }
 
@@ -150,8 +136,7 @@ namespace Forradia::Theme0
 
                     // Skip if the distance is greater than the radius.
 
-                    if (distance > radius)
-                    {
+                    if (distance > radius) {
                         continue;
                     }
 
@@ -161,8 +146,7 @@ namespace Forradia::Theme0
 
                     // Skip if the tile is not found or the ground is water.
 
-                    if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
-                    {
+                    if (!rockTile || rockTile->GetGround() == Hash("GroundWater")) {
                         continue;
                     }
 
@@ -170,8 +154,7 @@ namespace Forradia::Theme0
 
                     auto elevation{rockTile->GetElevation()};
 
-                    if (elevation > 60)
-                    {
+                    if (elevation > 60) {
                         // Do the ground change.
 
                         rockTile->SetGround("GroundRock");
@@ -182,18 +165,14 @@ namespace Forradia::Theme0
     }
 
     void WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                                  StringView groundType) const
-    {
+                                                  StringView groundType) const {
         // Enumerate all tiles in the radius.
 
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
-        {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
-            {
+        for (auto y = centerY - radius; y <= centerY + radius; y++) {
+            for (auto x = centerX - radius; x <= centerX + radius; x++) {
                 // Skip if the tile is out of bounds.
 
-                if (!GetWorldArea()->IsValidCoordinate(x, y))
-                {
+                if (!GetWorldArea()->IsValidCoordinate(x, y)) {
                     continue;
                 }
 
@@ -203,8 +182,7 @@ namespace Forradia::Theme0
 
                 // Skip if the distance is greater than the radius.
 
-                if (distance > radius)
-                {
+                if (distance > radius) {
                     continue;
                 }
 
@@ -214,8 +192,7 @@ namespace Forradia::Theme0
 
                 // Set the ground type of the tile.
 
-                if (tile)
-                {
+                if (tile) {
                     tile->SetGround(groundType);
                 }
             }

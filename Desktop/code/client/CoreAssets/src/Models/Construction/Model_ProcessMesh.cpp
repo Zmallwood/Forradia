@@ -9,10 +9,9 @@
 
 #include "Model.hpp"
 
-namespace Forradia
-{
-    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const
-    {
+namespace Forradia {
+    GLMMesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene,
+                               aiMatrix4x4 transformation) const {
         // Get the mesh's vertices.
         auto vertices{this->GetVertices(mesh, transformation)};
 

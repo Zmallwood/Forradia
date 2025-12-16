@@ -9,18 +9,15 @@
 
 #include "FPSCounter.hpp"
 
-namespace Forradia
-{
-    void FPSCounter::Update()
-    {
+namespace Forradia {
+    void FPSCounter::Update() {
         // Get the current time in milliseconds.
 
         auto now{GetTicks()};
 
         // If it has been more than one second since the last update:
 
-        if (now > m_ticksLastUpdate + k_oneSecMillis)
-        {
+        if (now > m_ticksLastUpdate + k_oneSecMillis) {
             // Update the FPS value.
 
             m_fps = m_framesCount;

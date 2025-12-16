@@ -8,15 +8,12 @@
 
 #include "IScene.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUIComponent;
 }
 
-namespace Forradia::Theme0
-{
-    class IntroScene : public IScene
-    {
+namespace Forradia::Theme0 {
+    class IntroScene : public IScene {
       public:
         IntroScene();
 

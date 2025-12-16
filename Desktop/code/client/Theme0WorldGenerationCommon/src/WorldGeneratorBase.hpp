@@ -9,15 +9,13 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class WorldArea;
 
     ///
     /// Base class for world generators.
     ///
-    class WorldGeneratorBase
-    {
+    class WorldGeneratorBase {
       public:
         ///
         /// Prepare the world generator.
@@ -41,8 +39,7 @@ namespace Forradia::Theme0
         ///
         /// @return The default ground elevation.
         ///
-        auto GetDefaultGroundElevation() const
-        {
+        auto GetDefaultGroundElevation() const {
             return k_defaultGroundElevation;
         }
 
@@ -51,8 +48,7 @@ namespace Forradia::Theme0
         ///
         /// @return The world area.
         ///
-        auto GetWorldArea() const
-        {
+        auto GetWorldArea() const {
             return m_worldArea;
         }
 
@@ -61,8 +57,7 @@ namespace Forradia::Theme0
         ///
         /// @return The size of the world area.
         ///
-        auto GetWorldAreaSize() const
-        {
+        auto GetWorldAreaSize() const {
             return m_worldAreaSize;
         }
 
@@ -71,8 +66,7 @@ namespace Forradia::Theme0
         ///
         /// @return The scale factor of the world.
         ///
-        auto GetWorldScaling() const
-        {
+        auto GetWorldScaling() const {
             return m_worldScaling;
         }
 

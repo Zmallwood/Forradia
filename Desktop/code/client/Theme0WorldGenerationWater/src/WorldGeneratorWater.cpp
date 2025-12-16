@@ -8,15 +8,11 @@
 // TODO:
 
 #include "WorldGeneratorWater.hpp"
-
+#include "Tile.hpp"
 #include "WorldArea.hpp"
 
-#include "Tile.hpp"
-
-namespace Forradia::Theme0
-{
-    void WorldGeneratorWater::GenerateWater() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorWater::GenerateWater() const {
         // Do the steps to generate water.
 
         GenerateNaturalRivers();
@@ -206,8 +202,7 @@ namespace Forradia::Theme0
         // }
     }
 
-    void WorldGeneratorWater::GenerateNaturalRivers() const
-    {
+    void WorldGeneratorWater::GenerateNaturalRivers() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -220,8 +215,7 @@ namespace Forradia::Theme0
 
         // Generate the rivers.
 
-        for (auto i = 0; i < numRivers; i++)
-        {
+        for (auto i = 0; i < numRivers; i++) {
             // Initialize the number of attempts to find a starting point.
 
             auto attempts{0};
@@ -244,20 +238,15 @@ namespace Forradia::Theme0
 
             auto minElevation{0};
 
-            if (elevationType < 40)
-            {
+            if (elevationType < 40) {
                 // 40% start from high elevation.
 
                 minElevation = 50;
-            }
-            else if (elevationType < 70)
-            {
+            } else if (elevationType < 70) {
                 // 30% start from medium elevation.
 
                 minElevation = 20;
-            }
-            else
-            {
+            } else {
                 // 30% start from lower elevation.
 
                 minElevation = 5;
@@ -265,8 +254,7 @@ namespace Forradia::Theme0
 
             // Find a starting point.
 
-            while (attempts < 100 && !foundStart)
-            {
+            while (attempts < 100 && !foundStart) {
                 // Generate a random starting point.
 
                 startX = GetRandomInt(worldAreaSize.width);
@@ -280,8 +268,8 @@ namespace Forradia::Theme0
                 // If the tile is found and the elevation is greater than the minimum elevation,
                 // and the tile is a valid water placement location.
 
-                if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
-                {
+                if (tile && tile->GetElevation() > minElevation &&
+                    IsValidForWater(startX, startY)) {
                     // Set the flag to indicate that we found a starting point.
 
                     foundStart = true;
@@ -294,8 +282,7 @@ namespace Forradia::Theme0
 
             // If we didn't find a starting point.
 
-            if (!foundStart)
-            {
+            if (!foundStart) {
                 // Just continue to the next river.
 
                 continue;
@@ -315,16 +302,13 @@ namespace Forradia::Theme0
 
             // Check if the starting elevation is within certain ranges.
 
-            if (startElevation > 40)
-            {
+            if (startElevation > 40) {
                 // Increase the base length and the length variation.
 
                 baseLength = 60;
 
                 lengthVariation = 80;
-            }
-            else if (startElevation > 15)
-            {
+            } else if (startElevation > 15) {
                 // Increase the base length and the length variation.
 
                 baseLength = 50;
@@ -342,8 +326,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorWater::GenerateLakesInValleys() const
-    {
+    void WorldGeneratorWater::GenerateLakesInValleys() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -358,8 +341,7 @@ namespace Forradia::Theme0
 
         // Generate the lakes.
 
-        for (auto i = 0; i < numLakes; i++)
-        {
+        for (auto i = 0; i < numLakes; i++) {
             // Initialize the number of attempts to find a suitable valley location.
 
             auto attempts{0};
@@ -376,8 +358,7 @@ namespace Forradia::Theme0
 
             // Find a suitable valley location.
 
-            while (attempts < 50 && !foundLocation)
-            {
+            while (attempts < 50 && !foundLocation) {
                 // Generate a random center point.
 
                 centerX = GetRandomInt(worldAreaSize.width);
@@ -391,8 +372,8 @@ namespace Forradia::Theme0
                 // If the tile is found and the elevation is less than or equal to 32, and the
                 // tile is not a water tile.
 
-                if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
-                {
+                if (tile && tile->GetElevation() <= 32 &&
+                    tile->GetGround() != Hash("GroundWater")) {
                     // Set the flag to indicate that we found a suitable valley location.
 
                     foundLocation = true;
@@ -403,8 +384,7 @@ namespace Forradia::Theme0
 
             // If we didn't find a suitable valley location.
 
-            if (!foundLocation)
-            {
+            if (!foundLocation) {
                 // Just continue to the next lake.
 
                 continue;
@@ -420,14 +400,11 @@ namespace Forradia::Theme0
 
             // Generate the lake.
 
-            for (auto y = centerY - radius; y <= centerY + radius; y++)
-            {
-                for (auto x = centerX - radius; x <= centerX + radius; x++)
-                {
+            for (auto y = centerY - radius; y <= centerY + radius; y++) {
+                for (auto x = centerX - radius; x <= centerX + radius; x++) {
                     // Check if the coordinates are not valid.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
+                    if (!worldArea->IsValidCoordinate(x, y)) {
                         // Just continue to the next tile.
 
                         continue;
@@ -439,8 +416,7 @@ namespace Forradia::Theme0
 
                     // Skip if the tile is not found.
 
-                    if (!tile)
-                    {
+                    if (!tile) {
                         // Just continue to the next tile.
 
                         continue;
@@ -448,8 +424,7 @@ namespace Forradia::Theme0
 
                     // If not suitable for water.
 
-                    if (!IsValidForWater(x, y))
-                    {
+                    if (!IsValidForWater(x, y)) {
                         // Just continue to the next tile.
 
                         continue;
@@ -461,8 +436,7 @@ namespace Forradia::Theme0
 
                     // If the distance is less than or equal to the radius of the lake.
 
-                    if (distance * distance <= radius * radius)
-                    {
+                    if (distance * distance <= radius * radius) {
                         // Set the ground to water.
 
                         tile->SetGround("GroundWater");
@@ -488,12 +462,10 @@ namespace Forradia::Theme0
         }
     }
 
-    bool WorldGeneratorWater::IsValidForWater(int x, int y) const
-    {
+    bool WorldGeneratorWater::IsValidForWater(int x, int y) const {
         // Check if the coordinates are valid.
 
-        if (!GetWorldArea()->IsValidCoordinate(x, y))
-        {
+        if (!GetWorldArea()->IsValidCoordinate(x, y)) {
             // Return false if not valid.
 
             return false;
@@ -505,8 +477,7 @@ namespace Forradia::Theme0
 
         // Return false if the tile is not found.
 
-        if (!tile)
-        {
+        if (!tile) {
             // Return false if the tile is not found.
 
             return false;
@@ -516,8 +487,7 @@ namespace Forradia::Theme0
 
         return tile->GetElevation() < 80;
     }
-    void WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const
-    {
+    void WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const {
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.
 
@@ -532,8 +502,7 @@ namespace Forradia::Theme0
 
         // Visit each neighboring tile and update elevation when needed.
 
-        for (auto dir = 0; dir < 8; dir++)
-        {
+        for (auto dir = 0; dir < 8; dir++) {
             // Compute the coordinates of the adjacent tile relative to the water tile.
 
             auto adjacentX{x + directions[dir][0]};
@@ -542,8 +511,7 @@ namespace Forradia::Theme0
 
             // Skip if the adjacent tile is out of bounds.
 
-            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
-            {
+            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY)) {
                 continue;
             }
 
@@ -553,15 +521,13 @@ namespace Forradia::Theme0
 
             // Skip if the adjacent tile is not found.
 
-            if (!adjacentTile)
-            {
+            if (!adjacentTile) {
                 continue;
             }
 
             // Only set elevation to 0 for non-water tiles (shoreline).
 
-            if (adjacentTile->GetGround() != Hash("GroundWater"))
-            {
+            if (adjacentTile->GetGround() != Hash("GroundWater")) {
                 adjacentTile->SetElevation(0);
             }
         }

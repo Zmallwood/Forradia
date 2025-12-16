@@ -9,25 +9,21 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Holds information about a model, used by the ModelBank.
-    class Model
-    {
+    class Model {
       public:
         /// Constructor
         ///
         /// @param filePath The path to the model file.
-        Model(StringView filePath)
-        {
+        Model(StringView filePath) {
             this->Initialize(filePath);
         };
 
         /// Returns a reference to the model's meshes.
         ///
         /// @return A reference to the model's meshes.
-        auto &GetMeshesRef() const
-        {
+        auto &GetMeshesRef() const {
             return m_meshes;
         }
 

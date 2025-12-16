@@ -11,10 +11,8 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorGround.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorGround::GenerateElevationWithBiomes() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorGround::GenerateElevationWithBiomes() const {
         // Obtain required data.
 
         auto worldAreaSize{GetWorldAreaSize()};
@@ -25,8 +23,7 @@ namespace Forradia::Theme0
 
         auto numMajorHills{40 + GetRandomInt(20)};
 
-        for (auto i = 0; i < numMajorHills; i++)
-        {
+        for (auto i = 0; i < numMajorHills; i++) {
             // Generate random center coordinates for the hill.
 
             auto xCenter{GetRandomInt(worldAreaSize.width)};
@@ -47,8 +44,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorGround::GenerateMountainRanges() const
-    {
+    void WorldGeneratorGround::GenerateMountainRanges() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -61,8 +57,7 @@ namespace Forradia::Theme0
 
         auto numMountainRanges{3 + GetRandomInt(3)};
 
-        for (auto range = 0; range < numMountainRanges; range++)
-        {
+        for (auto range = 0; range < numMountainRanges; range++) {
             // Generate random start coordinates for the mountain range.
 
             auto startX{GetRandomInt(worldAreaSize.width)};
@@ -85,8 +80,7 @@ namespace Forradia::Theme0
 
             // Create the mountain range.
 
-            for (auto i = 0; i < length; i++)
-            {
+            for (auto i = 0; i < length; i++) {
                 // Get the current coordinates.
 
                 auto x{CInt(currentX)};
@@ -95,8 +89,7 @@ namespace Forradia::Theme0
 
                 // If the coordinates are valid, create a hill.
 
-                if (worldArea->IsValidCoordinate(x, y))
-                {
+                if (worldArea->IsValidCoordinate(x, y)) {
                     // Generate random radius for the hill.
 
                     auto radius{CInt(4 * worldScaling + GetRandomInt(6 * worldScaling))};
@@ -123,23 +116,20 @@ namespace Forradia::Theme0
 
                 // Occasionally change direction.
 
-                if (GetRandomInt(100) < 20)
-                {
+                if (GetRandomInt(100) < 20) {
                     // Change the direction of the mountain range.
 
                     direction += GetRandomInt(60) - 30;
 
                     // Make sure the direction is above 0.
 
-                    if (direction < 0)
-                    {
+                    if (direction < 0) {
                         direction += 360;
                     }
 
                     // Make sure the direction is below 360.
 
-                    if (direction >= 360)
-                    {
+                    if (direction >= 360) {
                         direction -= 360;
                     }
                 }
@@ -147,8 +137,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorGround::GenerateValleys() const
-    {
+    void WorldGeneratorGround::GenerateValleys() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -161,8 +150,7 @@ namespace Forradia::Theme0
 
         auto numValleys{15 + GetRandomInt(10)};
 
-        for (auto i = 0; i < numValleys; i++)
-        {
+        for (auto i = 0; i < numValleys; i++) {
             // Generate random center coordinates for the valley.
 
             auto xCenter{GetRandomInt(worldAreaSize.width)};
@@ -175,14 +163,11 @@ namespace Forradia::Theme0
 
             // Create the valley.
 
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-            {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-                {
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
                     // Skip if the coordinates are out of bounds.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
+                    if (!worldArea->IsValidCoordinate(x, y)) {
                         continue;
                     }
 
@@ -192,8 +177,7 @@ namespace Forradia::Theme0
 
                     // Skip if the distance is greater than the radius.
 
-                    if (distance > radius)
-                    {
+                    if (distance > radius) {
                         continue;
                     }
 
@@ -203,8 +187,7 @@ namespace Forradia::Theme0
 
                     // Skip if the tile is not found.
 
-                    if (!tile)
-                    {
+                    if (!tile) {
                         continue;
                     }
 
@@ -234,18 +217,14 @@ namespace Forradia::Theme0
     }
 
     void WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int radius,
-                                                   int maxElevation) const
-    {
+                                                   int maxElevation) const {
         // Traverse the candidate tiles within the bounding square of the hill footprint.
 
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
-        {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
-            {
+        for (auto y = centerY - radius; y <= centerY + radius; y++) {
+            for (auto x = centerX - radius; x <= centerX + radius; x++) {
                 // Skip if the tile is out of bounds.
 
-                if (!GetWorldArea()->IsValidCoordinate(x, y))
-                {
+                if (!GetWorldArea()->IsValidCoordinate(x, y)) {
                     continue;
                 }
 
@@ -255,8 +234,7 @@ namespace Forradia::Theme0
 
                 // Skip if the tile is outside of the circular hill radius.
 
-                if (distance > radius)
-                {
+                if (distance > radius) {
                     continue;
                 }
 
@@ -266,15 +244,13 @@ namespace Forradia::Theme0
 
                 // Skip if the tile is not found.
 
-                if (!tile)
-                {
+                if (!tile) {
                     continue;
                 }
 
                 // Skip water tiles.
 
-                if (tile->GetGround() == Hash("GroundWater"))
-                {
+                if (tile->GetGround() == Hash("GroundWater")) {
                     // Preserve water elevation to maintain coastlines.
 
                     continue;
@@ -288,8 +264,7 @@ namespace Forradia::Theme0
 
                 // Skip if already at maximum.
 
-                if (currentElevation >= maxElevation)
-                {
+                if (currentElevation >= maxElevation) {
                     // Prevent further elevation changes once the cap is reached.
 
                     continue;
@@ -318,8 +293,7 @@ namespace Forradia::Theme0
 
                 auto smoothScale{1.0f};
 
-                if (elevationRatio >= falloffStart)
-                {
+                if (elevationRatio >= falloffStart) {
                     // Smooth falloff using a smoothstep-like curve for very gradual transition.
                     // When at falloffStart (60%), scale is 1.0.
                     // When at 1.0 (100%), scale is 0.0.
@@ -342,8 +316,7 @@ namespace Forradia::Theme0
 
                 // Only add elevation if the scaled gain is meaningful.
 
-                if (elevationGain > 0)
-                {
+                if (elevationGain > 0) {
                     // Calculate the target elevation before applying slope limits.
 
                     auto desiredElevation{currentElevation + elevationGain};
@@ -356,8 +329,7 @@ namespace Forradia::Theme0
 
                     auto newElevation{desiredElevation};
 
-                    if (newElevation > maxAllowedElevation)
-                    {
+                    if (newElevation > maxAllowedElevation) {
                         // Respect the slope constraint when the desired elevation is too high.
 
                         newElevation = maxAllowedElevation;

@@ -9,10 +9,8 @@
 
 #include "Model.hpp"
 
-namespace Forradia
-{
-    void Model::Initialize(StringView filePath)
-    {
+namespace Forradia {
+    void Model::Initialize(StringView filePath) {
         // Create an Assimp importer.
         Assimp::Importer importer;
 
@@ -24,13 +22,10 @@ namespace Forradia
         const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
         // If the model could not be loaded.
-        if (nullptr == scene || nullptr == scene->mRootNode)
-        {
+        if (nullptr == scene || nullptr == scene->mRootNode) {
             // Print an error message.
             PrintLine("ERROR: ASSIMP could not load model: " + String(importer.GetErrorString()));
-        }
-        else
-        {
+        } else {
             // If the model could be loaded, process it.
             this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
         }

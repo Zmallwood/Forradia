@@ -9,10 +9,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
-    class Quest
-    {
+namespace Forradia::Theme0::GameplayCore {
+    class Quest {
       public:
         virtual void Update() = 0;
 

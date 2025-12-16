@@ -9,16 +9,13 @@
 
 #include "KeyboardInput.hpp"
 
-namespace Forradia
-{
-    bool KeyboardInput::KeyIsPressed(SDL_Keycode key) const
-    {
+namespace Forradia {
+    bool KeyboardInput::KeyIsPressed(SDL_Keycode key) const {
         // Check if the key is in the set of pressed keys.
         return m_pressed.contains(key);
     }
 
-    bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key)
-    {
+    bool KeyboardInput::KeyIsPressedPickResult(SDL_Keycode key) {
         // Check if the key is in the set of pressed keys and store as result.
         auto result{m_pressed.contains(key)};
 
@@ -29,8 +26,7 @@ namespace Forradia
         return result;
     }
 
-    bool KeyboardInput::AnyKeyIsPressedPickResult()
-    {
+    bool KeyboardInput::AnyKeyIsPressedPickResult() {
         // Check if any key is in the set of pressed keys and store as result.
         auto result{m_pressed.size() > 0};
 

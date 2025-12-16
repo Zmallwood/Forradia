@@ -11,13 +11,11 @@
 
 #include "CreatureIndexEntry.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     ///
     /// Class for managing creature properties.
     ///
-    class CreatureIndex
-    {
+    class CreatureIndex {
       public:
         ///
         /// Constructor.

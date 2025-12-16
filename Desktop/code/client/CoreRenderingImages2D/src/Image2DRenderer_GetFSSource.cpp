@@ -9,10 +9,8 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace Forradia
-{
-    String Image2DRenderer::GetFSSource() const
-    {
+namespace Forradia {
+    String Image2DRenderer::GetFSSource() const {
         // Return the fragment shader source.
 
         return R"(

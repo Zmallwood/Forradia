@@ -11,18 +11,14 @@
 
 #include "GUIMovablePanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUILabel;
 }
 
-namespace Forradia::Theme0
-{
-    class GUIQuestPanel : public GUIMovablePanel
-    {
+namespace Forradia::Theme0 {
+    class GUIQuestPanel : public GUIMovablePanel {
       public:
-        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f)
-        {
+        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f) {
             this->Initialize();
         }
 

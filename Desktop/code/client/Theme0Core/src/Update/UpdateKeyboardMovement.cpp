@@ -13,10 +13,8 @@
 #include "Player/PlayerCharacter.hpp"
 #include "Update/BattleSystem.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void UpdateKeyboardMovement()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void UpdateKeyboardMovement() {
         auto upPress{_<KeyboardInput>().KeyIsPressed(SDLK_UP)};
 
         auto rightPress{_<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
@@ -33,8 +31,8 @@ namespace Forradia::Theme0::GameplayCore
 
         auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
 
-        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)
-        {
+        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
+            dPress) {
             _<Theme0::GameplayCore::PlayerCharacter>().SetDestination({-1, -1});
 
             _<GameplayCore::BattleSystem>().SetTargetedRobot(nullptr);
@@ -48,25 +46,20 @@ namespace Forradia::Theme0::GameplayCore
                                          PlayerCharacter>()
                                        .GetMovementSpeed()) &&
             (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
-             dPress))
-        {
-            if (upPress || wPress)
-            {
+             dPress)) {
+            if (upPress || wPress) {
                 _<Theme0::GameplayCore::PlayerCharacter>().MoveNorth();
             }
 
-            if (rightPress || dPress)
-            {
+            if (rightPress || dPress) {
                 _<Theme0::GameplayCore::PlayerCharacter>().MoveEast();
             }
 
-            if (downPress || sPress)
-            {
+            if (downPress || sPress) {
                 _<Theme0::GameplayCore::PlayerCharacter>().MoveSouth();
             }
 
-            if (leftPress || aPress)
-            {
+            if (leftPress || aPress) {
                 _<Theme0::GameplayCore::PlayerCharacter>().MoveWest();
             }
 

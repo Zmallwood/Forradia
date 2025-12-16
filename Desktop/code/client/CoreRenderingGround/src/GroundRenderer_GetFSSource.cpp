@@ -9,10 +9,8 @@
 
 #include "GroundRenderer.hpp"
 
-namespace Forradia
-{
-    String GroundRenderer::GetFSSource() const
-    {
+namespace Forradia {
+    String GroundRenderer::GetFSSource() const {
         // Return the fragment shader source.
         return R"(
             #version 330 core

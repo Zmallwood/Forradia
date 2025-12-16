@@ -9,12 +9,10 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Available font sizes.
-    enum class FontSizes
-    {
+    enum class FontSizes {
         _20 = 20, ///< Size 20.
-        _26 = 26 ///< Size 26.
+        _26 = 26  ///< Size 26.
     };
 }

@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Randomize the seed.
     void Randomize();
 

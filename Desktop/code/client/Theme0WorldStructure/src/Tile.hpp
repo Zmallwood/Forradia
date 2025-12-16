@@ -11,8 +11,7 @@
 
 #include "Directions.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class ObjectsStack;
 
     class Creature;
@@ -20,12 +19,10 @@ namespace Forradia::Theme0
     class Robot;
 
     /// A tile in the game world.
-    class Tile
-    {
+    class Tile {
       public:
         /// Constructor.
-        Tile()
-        {
+        Tile() {
             // Initialize the tile by creating necessary components.
             this->Initialize();
         }
@@ -33,8 +30,7 @@ namespace Forradia::Theme0
         /// Gets the ground type of the tile, which is the hash of the ground type name.
         ///
         /// @return The ground type of the tile.
-        auto GetGround() const
-        {
+        auto GetGround() const {
             return m_ground;
         }
 
@@ -51,64 +47,56 @@ namespace Forradia::Theme0
         /// Gets the objects stack of the tile.
         ///
         /// @return The objects stack of the tile.
-        auto GetObjectsStack() const
-        {
+        auto GetObjectsStack() const {
             return m_objectsStack;
         }
 
         /// Gets the creature on the tile.
         ///
         /// @return The creature on the tile, or nullptr if no creature is on the tile.
-        auto GetCreature() const
-        {
+        auto GetCreature() const {
             return m_creature;
         }
 
         /// Sets the creature on the tile.
         ///
         /// @param value The creature on the tile.
-        void SetCreature(SharedPtr<Creature> value)
-        {
+        void SetCreature(SharedPtr<Creature> value) {
             m_creature = value;
         }
 
         /// Gets the robot on the tile.
         ///
         /// @return The robot on the tile, or nullptr if no robot is on the tile.
-        auto GetRobot() const
-        {
+        auto GetRobot() const {
             return m_robot;
         }
 
         /// Sets the robot on the tile.
         ///
         /// @param value The robot on the tile.
-        void SetRobot(SharedPtr<Robot> value)
-        {
+        void SetRobot(SharedPtr<Robot> value) {
             m_robot = value;
         }
 
         /// Gets the elevation of the tile.
         ///
         /// @return The elevation of the tile.
-        auto GetElevation() const
-        {
+        auto GetElevation() const {
             return m_elevation;
         }
 
         /// Sets the elevation of the tile.
         ///
         /// @param value The elevation of the tile.
-        void SetElevation(int value)
-        {
+        void SetElevation(int value) {
             m_elevation = value;
         }
 
         /// Gets the water depth of the tile. Is zero if there is no water on the tile.
         ///
         /// @return The water depth of the tile.
-        auto GetWaterDepth() const
-        {
+        auto GetWaterDepth() const {
             return m_waterDepth;
         }
 
@@ -116,38 +104,31 @@ namespace Forradia::Theme0
         /// tile.
         ///
         /// @param value The water depth of the tile.
-        void SetWaterDepth(int value)
-        {
+        void SetWaterDepth(int value) {
             m_waterDepth = value;
         }
 
-        auto GetRiverDirection1() const
-        {
+        auto GetRiverDirection1() const {
             return m_riverDirection1;
         }
 
-        void SetRiverDirection1(Directions value)
-        {
+        void SetRiverDirection1(Directions value) {
             m_riverDirection1 = value;
         }
 
-        auto GetRiverDirection2() const
-        {
+        auto GetRiverDirection2() const {
             return m_riverDirection2;
         }
 
-        void SetRiverDirection2(Directions value)
-        {
+        void SetRiverDirection2(Directions value) {
             m_riverDirection2 = value;
         }
 
-        auto GetForceRedraw() const
-        {
+        auto GetForceRedraw() const {
             return m_forceRedraw;
         }
 
-        void SetForceRedraw(bool value)
-        {
+        void SetForceRedraw(bool value) {
             m_forceRedraw = value;
         }
 

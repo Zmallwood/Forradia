@@ -13,16 +13,13 @@
 #include "Image2DRenderer.hpp"
 #include "SceneManager.hpp"
 
-namespace Forradia::Theme0
-{
-    MainMenuScene::MainMenuScene()
-    {
+namespace Forradia::Theme0 {
+    MainMenuScene::MainMenuScene() {
         this->SetInitializeDerived([this] { this->InitializeDerived(); });
         this->SetRenderDerived([this] { this->RenderDerived(); });
     }
 
-    void MainMenuScene::InitializeDerived()
-    {
+    void MainMenuScene::InitializeDerived() {
         auto panel{std::make_shared<GUIPanel>("MainMenuScenePanel", 0.4f, 0.32f, 0.2f, 0.2f)};
 
         GetGUI()->AddChildComponent(panel);
@@ -40,8 +37,7 @@ namespace Forradia::Theme0
         GetGUI()->AddChildComponent(__<GUIChatBox>());
     }
 
-    void MainMenuScene::RenderDerived()
-    {
+    void MainMenuScene::RenderDerived() {
         _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground",
                                              0.0f, 0.0f, 1.0f, 1.0f);
 

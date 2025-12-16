@@ -9,10 +9,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
-    class GameSaving
-    {
+namespace Forradia::Theme0 {
+    class GameSaving {
       public:
         void SaveGame();
 

@@ -11,13 +11,10 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia::Theme0
-{
-    class GUISystemMenu : public GUIComponent
-    {
+namespace Forradia::Theme0 {
+    class GUISystemMenu : public GUIComponent {
       public:
-        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
-        {
+        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {
             this->Initialize();
         }
 

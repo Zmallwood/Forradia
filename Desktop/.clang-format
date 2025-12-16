@@ -70,7 +70,7 @@ AllowShortBlocksOnASingleLine: Never
 AllowShortCaseExpressionOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortCompoundRequirementOnASingleLine: true
-AllowShortEnumsOnASingleLine: true
+AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: All
@@ -108,7 +108,7 @@ BreakAfterReturnType: None
 BreakArrays:     true
 BreakBeforeBinaryOperators: None
 BreakBeforeConceptDeclarations: Always
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Attach
 BreakBeforeInlineASMColon: OnlyMultiline
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon

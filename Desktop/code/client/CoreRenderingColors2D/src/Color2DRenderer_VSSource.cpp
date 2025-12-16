@@ -9,10 +9,8 @@
 
 #include "Color2DRenderer.hpp"
 
-namespace Forradia
-{
-    String Color2DRenderer::GetVSSource() const
-    {
+namespace Forradia {
+    String Color2DRenderer::GetVSSource() const {
         // Return the vertex shader source.
 
         return R"(

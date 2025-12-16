@@ -10,10 +10,8 @@
 #include "IScene.hpp"
 #include "GUI.hpp"
 
-namespace Forradia
-{
-    void IScene::Initialize()
-    {
+namespace Forradia {
+    void IScene::Initialize() {
         // Initialize the GUI.
 
         m_gui = std::make_shared<GUI>();
@@ -23,15 +21,13 @@ namespace Forradia
         m_initializeDerived();
     }
 
-    void IScene::OnEnter()
-    {
+    void IScene::OnEnter() {
         // Call the derived on enter function.
 
         m_onEnterDerived();
     }
 
-    void IScene::Update()
-    {
+    void IScene::Update() {
         // Update the GUI.
 
         m_gui->Update();
@@ -41,8 +37,7 @@ namespace Forradia
         m_updateDerived();
     }
 
-    void IScene::Render() const
-    {
+    void IScene::Render() const {
         // Call the derived render function.
 
         m_renderDerived();

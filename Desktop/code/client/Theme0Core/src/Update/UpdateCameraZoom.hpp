@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     ///
     /// Updates the camera zoom with the mouse wheel.
     ///

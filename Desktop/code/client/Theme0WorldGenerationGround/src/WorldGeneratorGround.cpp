@@ -11,10 +11,8 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorGround::GenerateGroundWithElevation() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorGround::GenerateGroundWithElevation() const {
         // Do all the steps to generate the ground with elevation.
 
         ClearWithDirt();
@@ -30,8 +28,7 @@ namespace Forradia::Theme0
         GenerateRockFormations();
     }
 
-    void WorldGeneratorGround::ClearWithDirt() const
-    {
+    void WorldGeneratorGround::ClearWithDirt() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -40,18 +37,15 @@ namespace Forradia::Theme0
 
         // Iterate over all tiles in the world area.
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
-        {
-            for (auto x = 0; x < worldAreaSize.width; x++)
-            {
+        for (auto y = 0; y < worldAreaSize.height; y++) {
+            for (auto x = 0; x < worldAreaSize.width; x++) {
                 // Get the tile.
 
                 auto tile{worldArea->GetTile(x, y)};
 
                 // Skip if the tile is not found.
 
-                if (!tile)
-                {
+                if (!tile) {
                     continue;
                 }
 
@@ -64,23 +58,20 @@ namespace Forradia::Theme0
         }
     }
 
-    int WorldGeneratorGround::GetMaxElevation() const
-    {
+    int WorldGeneratorGround::GetMaxElevation() const {
         // Maximum elevation cap to prevent excessive stacking.
 
         return 300;
     }
 
-    int WorldGeneratorGround::GetMaxSlopePerTile() const
-    {
+    int WorldGeneratorGround::GetMaxSlopePerTile() const {
         // Maximum elevation difference between adjacent tiles.
         // This prevents mountains from becoming too steep.
 
         return 8;
     }
 
-    int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const
-    {
+    int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
 
@@ -95,8 +86,7 @@ namespace Forradia::Theme0
 
         int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}};
 
-        for (auto dir = 0; dir < 8; dir++)
-        {
+        for (auto dir = 0; dir < 8; dir++) {
             // Get the adjacent tile coordinates.
 
             auto adjacentX{x + directions[dir][0]};
@@ -105,8 +95,7 @@ namespace Forradia::Theme0
 
             // Skip if the adjacent tile is out of bounds.
 
-            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
-            {
+            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY)) {
                 continue;
             }
 
@@ -116,15 +105,13 @@ namespace Forradia::Theme0
 
             // Skip if the adjacent tile is not found.
 
-            if (!adjacentTile)
-            {
+            if (!adjacentTile) {
                 continue;
             }
 
             // Skip water tiles - they have their own elevation rules (set to 0).
 
-            if (adjacentTile->GetGround() == Hash("GroundWater"))
-            {
+            if (adjacentTile->GetGround() == Hash("GroundWater")) {
                 continue;
             }
 
@@ -139,8 +126,7 @@ namespace Forradia::Theme0
 
             // Update the maximum allowed elevation if the adjacent tile elevation is lower.
 
-            if (maxFromAdjacent < maxAllowedElevation)
-            {
+            if (maxFromAdjacent < maxAllowedElevation) {
                 maxAllowedElevation = maxFromAdjacent;
             }
         }
@@ -148,23 +134,20 @@ namespace Forradia::Theme0
         return maxAllowedElevation;
     }
 
-    int WorldGeneratorGround::ClampElevation(int elevation) const
-    {
+    int WorldGeneratorGround::ClampElevation(int elevation) const {
         // Get the maximum elevation.
 
         auto maxElevation{GetMaxElevation()};
 
         // Clamp the elevation to the maximum elevation.
 
-        if (elevation > maxElevation)
-        {
+        if (elevation > maxElevation) {
             return maxElevation;
         }
 
         // Clamp the elevation to the minimum elevation.
 
-        if (elevation < GetDefaultGroundElevation())
-        {
+        if (elevation < GetDefaultGroundElevation()) {
             return GetDefaultGroundElevation();
         }
 

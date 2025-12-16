@@ -11,22 +11,18 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
 
-namespace Forradia
-{
-    void Engine::HandleEvents()
-    {
+namespace Forradia {
+    void Engine::HandleEvents() {
         // To hold polled events.
 
         SDL_Event event;
 
         // While there are events to poll.
 
-        while (SDL_PollEvent(&event))
-        {
+        while (SDL_PollEvent(&event)) {
             // Switch on event type.
 
-            switch (event.type)
-            {
+            switch (event.type) {
             case SDL_QUIT:
 
                 // Stop the engine.

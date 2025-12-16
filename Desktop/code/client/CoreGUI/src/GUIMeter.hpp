@@ -11,20 +11,17 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// A meter component for the GUI.
     ///
-    class GUIMeter : public GUIComponent
-    {
+    class GUIMeter : public GUIComponent {
       public:
         GUIMeter(StringView uniqueName, float x, float y, float width, float height,
                  Color filledColor)
             : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
               k_renderIDFilled(Hash(uniqueName.data() + String("Filled"))),
-              k_filledColor(filledColor)
-        {
+              k_filledColor(filledColor) {
         }
 
       protected:

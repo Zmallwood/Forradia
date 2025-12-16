@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Tile data structure for batched rendering.
-    class TileData
-    {
+    class TileData {
       public:
         int uniqueRenderID{0};                             ///< The unique render ID.
         int imageNameHash{0};                              ///< The image name hash.

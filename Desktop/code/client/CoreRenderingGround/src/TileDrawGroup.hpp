@@ -10,10 +10,8 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class TileDrawGroup
-    {
+namespace Forradia {
+    class TileDrawGroup {
       public:
         GLuint vao;               ///< Vertex array object.
         GLuint ibo;               ///< Index buffer object.

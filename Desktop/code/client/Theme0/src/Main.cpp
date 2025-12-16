@@ -14,8 +14,7 @@
 #include "Theme0Properties.hpp"
 #include "World.hpp"
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     // Use namespaces for readability.
 
     using namespace Forradia;

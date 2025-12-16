@@ -11,10 +11,8 @@
 #include "CanvasUtilities.hpp"
 #include "Functions.hpp"
 
-namespace Forradia
-{
-    PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window)
-    {
+namespace Forradia {
+    PointF GetNormallizedMousePosition(SharedPtr<SDL_Window> window) {
         // To hold the mouse position in pixels.
 
         int xPx;

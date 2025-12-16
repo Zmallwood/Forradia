@@ -10,13 +10,10 @@
 
 #include "SkyRenderer.hpp"
 
-namespace Forradia
-{
-    void SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation)
-    {
+namespace Forradia {
+    void SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) {
         // Generate the sky dome mesh if not already initialized.
-        if (!m_initialized)
-        {
+        if (!m_initialized) {
             this->GenerateSkyDome();
         }
 

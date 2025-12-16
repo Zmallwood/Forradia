@@ -11,8 +11,7 @@
 
 #include "Action.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     template <int N>
     Action GetAction();
 

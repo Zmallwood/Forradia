@@ -9,10 +9,8 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace Forradia
-{
-    String Image2DRenderer::GetVSSource() const
-    {
+namespace Forradia {
+    String Image2DRenderer::GetVSSource() const {
         // Return the vertex shader source.
 
         return R"(

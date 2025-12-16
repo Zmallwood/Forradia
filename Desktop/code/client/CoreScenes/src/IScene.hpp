@@ -11,15 +11,13 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUI;
 
     ///
     /// The base class for all scenes.
     ///
-    class IScene
-    {
+    class IScene {
       public:
         ///
         /// Initializes the scene.
@@ -46,8 +44,7 @@ namespace Forradia
         ///
         /// @param value The function to set.
         ///
-        void SetInitializeDerived(Function<void()> value)
-        {
+        void SetInitializeDerived(Function<void()> value) {
             m_initializeDerived = value;
         }
 
@@ -56,8 +53,7 @@ namespace Forradia
         ///
         /// @param value The function to set.
         ///
-        void SetOnEnterDerived(Function<void()> value)
-        {
+        void SetOnEnterDerived(Function<void()> value) {
             m_onEnterDerived = value;
         }
 
@@ -66,8 +62,7 @@ namespace Forradia
         ///
         /// @param value The function to set.
         ///
-        void SetUpdateDerived(Function<void()> value)
-        {
+        void SetUpdateDerived(Function<void()> value) {
             m_updateDerived = value;
         }
 
@@ -76,8 +71,7 @@ namespace Forradia
         ///
         /// @param value The function to set.
         ///
-        void SetRenderDerived(Function<void()> value)
-        {
+        void SetRenderDerived(Function<void()> value) {
             m_renderDerived = value;
         }
 
@@ -87,8 +81,7 @@ namespace Forradia
         ///
         /// @return The GUI.
         ///
-        auto GetGUI() const
-        {
+        auto GetGUI() const {
             return m_gui;
         }
 

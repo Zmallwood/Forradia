@@ -11,13 +11,11 @@
 
 #include "WorldGeneratorBase.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     ///
     /// World generator for water.
     ///
-    class WorldGeneratorWater : public WorldGeneratorBase
-    {
+    class WorldGeneratorWater : public WorldGeneratorBase {
       public:
         ///
         /// Generate water.

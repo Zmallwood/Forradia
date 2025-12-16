@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// Base class for all GUI components.
     ///
-    class GUIComponent : public std::enable_shared_from_this<GUIComponent>
-    {
+    class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
       public:
         ///
         /// Constructor.
@@ -25,8 +23,8 @@ namespace Forradia
         /// @param width The width of the component.
         /// @param height The height of the component.
         ///
-        GUIComponent(float x, float y, float width, float height) : m_bounds({x, y, width, height})
-        {
+        GUIComponent(float x, float y, float width, float height)
+            : m_bounds({x, y, width, height}) {
         }
 
         ///
@@ -78,8 +76,7 @@ namespace Forradia
         ///
         /// @return Whether the component is visible.
         ///
-        auto GetVisible() const
-        {
+        auto GetVisible() const {
             return m_visible;
         }
 
@@ -88,8 +85,7 @@ namespace Forradia
         ///
         /// @param value Whether the component should be visible.
         ///
-        void SetVisible(bool value)
-        {
+        void SetVisible(bool value) {
             m_visible = value;
         }
 
@@ -98,8 +94,7 @@ namespace Forradia
         ///
         /// @param value The parent component.
         ///
-        void SetParentComponent(GUIComponent *value)
-        {
+        void SetParentComponent(GUIComponent *value) {
             m_parentComponent = value;
         }
 
@@ -107,15 +102,13 @@ namespace Forradia
         ///
         /// Update tasks specific to the derived class, called by the Update method.
         ///
-        virtual void UpdateDerived()
-        {
+        virtual void UpdateDerived() {
         }
 
         ///
         /// Render tasks specific to the derived class, called by the Render method.
         ///
-        virtual void RenderDerived() const
-        {
+        virtual void RenderDerived() const {
         }
 
       private:

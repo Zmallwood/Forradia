@@ -11,13 +11,11 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// A panel component for the GUI.
     ///
-    class GUIPanel : public GUIComponent
-    {
+    class GUIPanel : public GUIComponent {
       public:
         ///
         /// Constructor.
@@ -32,8 +30,7 @@ namespace Forradia
         GUIPanel(StringView uniqueName, float x, float y, float width, float height,
                  StringView backgroundImage = k_defaultBackgroundImage)
             : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
-              m_backgroundImage(backgroundImage)
-        {
+              m_backgroundImage(backgroundImage) {
         }
 
       protected:
@@ -47,8 +44,7 @@ namespace Forradia
         ///
         /// @param value The new background image.
         ///
-        void SetBackgroundImage(StringView value)
-        {
+        void SetBackgroundImage(StringView value) {
             m_backgroundImage = value;
         }
 

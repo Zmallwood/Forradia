@@ -14,10 +14,8 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorEntities.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -34,8 +32,7 @@ namespace Forradia::Theme0
 
         // Generate white rabbits.
 
-        for (auto i = 0; i < numWhiteRabbits; i++)
-        {
+        for (auto i = 0; i < numWhiteRabbits; i++) {
             // Generate a random position.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -48,8 +45,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid, or already has a creature or is water.
 
-            if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
-            {
+            if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater")) {
                 // Skip this position.
 
                 continue;
@@ -62,25 +58,19 @@ namespace Forradia::Theme0
 
             // Rabbits prefer grass areas.
 
-            if (tile->GetGround() == Hash("GroundGrass"))
-            {
+            if (tile->GetGround() == Hash("GroundGrass")) {
                 // Check if there is water within 8 tiles of the rabbit.
 
-                if (IsNearWater(x, y, 8))
-                {
+                if (IsNearWater(x, y, 8)) {
                     // Higher chance if near water.
 
                     prefersLocation = GetRandomInt(100) < 40;
-                }
-                else
-                {
+                } else {
                     // Lower chance if not near water.
 
                     prefersLocation = GetRandomInt(100) < 20;
                 }
-            }
-            else if (tile->GetGround() == Hash("GroundDirt"))
-            {
+            } else if (tile->GetGround() == Hash("GroundDirt")) {
                 // Lower chance on dirt.
 
                 prefersLocation = GetRandomInt(100) < 5;
@@ -88,8 +78,7 @@ namespace Forradia::Theme0
 
             // If the rabbit should be placed at this position.
 
-            if (prefersLocation)
-            {
+            if (prefersLocation) {
                 // Create a new rabbit.
 
                 auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
@@ -112,8 +101,7 @@ namespace Forradia::Theme0
 
         // Generate the red birds.
 
-        for (auto i = 0; i < numRedBirds; i++)
-        {
+        for (auto i = 0; i < numRedBirds; i++) {
             // Generate a random position.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -126,8 +114,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid, or already has a creature or is water.
 
-            if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
-            {
+            if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater")) {
                 // Skip this position.
 
                 continue;
@@ -142,14 +129,11 @@ namespace Forradia::Theme0
 
             // Check for trees in the surrounding area.
 
-            for (auto checkY = y - 3; checkY <= y + 3; checkY++)
-            {
-                for (auto checkX = x - 3; checkX <= x + 3; checkX++)
-                {
+            for (auto checkY = y - 3; checkY <= y + 3; checkY++) {
+                for (auto checkX = x - 3; checkX <= x + 3; checkX++) {
                     // If the current tile is the same as the bird's tile.
 
-                    if (checkX == x && checkY == y)
-                    {
+                    if (checkX == x && checkY == y) {
                         // Skip the current tile.
 
                         continue;
@@ -157,8 +141,7 @@ namespace Forradia::Theme0
 
                     // If the current tile is out of bounds.
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
-                    {
+                    if (!worldArea->IsValidCoordinate(checkX, checkY)) {
                         // Skip the current tile.
 
                         continue;
@@ -170,23 +153,19 @@ namespace Forradia::Theme0
 
                     // If the tile is valid.
 
-                    if (nearbyTile)
-                    {
+                    if (nearbyTile) {
                         // Get the objects stack from the tile.
 
                         auto objectsStack{nearbyTile->GetObjectsStack()};
 
                         // If the objects stack is not empty.
 
-                        if (objectsStack->GetSize() > 0)
-                        {
-                            for (auto object : objectsStack->GetObjects())
-                            {
+                        if (objectsStack->GetSize() > 0) {
+                            for (auto object : objectsStack->GetObjects()) {
                                 auto objectType{object->GetType()};
 
                                 if (objectType == Hash("ObjectFirTree") ||
-                                    objectType == Hash("ObjectBirchTree"))
-                                {
+                                    objectType == Hash("ObjectBirchTree")) {
                                     nearbyTreesCount++;
 
                                     // Birds can perch on trees, so nearby trees increase
@@ -207,20 +186,15 @@ namespace Forradia::Theme0
 
             // Birds strongly prefer areas with trees (forests).
 
-            if (nearbyTreesCount >= 2)
-            {
+            if (nearbyTreesCount >= 2) {
                 // High probability in forest areas.
 
                 prefersLocation = GetRandomInt(100) < 50;
-            }
-            else if (nearbyTreesCount == 1)
-            {
+            } else if (nearbyTreesCount == 1) {
                 // Moderate probability near a single tree.
 
                 prefersLocation = GetRandomInt(100) < 25;
-            }
-            else if (tile->GetGround() == Hash("GroundGrass"))
-            {
+            } else if (tile->GetGround() == Hash("GroundGrass")) {
                 // Lower probability in open grass areas (birds can still be found there).
 
                 prefersLocation = GetRandomInt(100) < 8;
@@ -228,8 +202,7 @@ namespace Forradia::Theme0
 
             // If the bird should be placed at this position.
 
-            if (prefersLocation)
-            {
+            if (prefersLocation) {
                 // Create a new bird.
 
                 auto newCreature{std::make_shared<Theme0::Creature>("CreatureRedBird")};
@@ -250,8 +223,7 @@ namespace Forradia::Theme0
 
         // Generate the creature clusters near water sources.
 
-        for (auto source = 0; source < numWaterSources; source++)
-        {
+        for (auto source = 0; source < numWaterSources; source++) {
             // Generate a random position.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -280,8 +252,7 @@ namespace Forradia::Theme0
 
             // Find a water tile.
 
-            while (attempts < 30 && !foundWater)
-            {
+            while (attempts < 30 && !foundWater) {
                 // Generate a random position.
 
                 waterX = GetRandomInt(worldAreaSize.width);
@@ -294,8 +265,7 @@ namespace Forradia::Theme0
 
                 // If the tile is valid and is water.
 
-                if (tile && tile->GetGround() == Hash("GroundWater"))
-                {
+                if (tile && tile->GetGround() == Hash("GroundWater")) {
                     // Water tile has been found.
 
                     foundWater = true;
@@ -308,8 +278,7 @@ namespace Forradia::Theme0
 
             // If no water tile was found.
 
-            if (!foundWater)
-            {
+            if (!foundWater) {
                 // Skip this source.
 
                 continue;
@@ -327,8 +296,7 @@ namespace Forradia::Theme0
 
             // Generate the creatures in the ecosystem.
 
-            for (auto c = 0; c < creaturesInEcosystem; c++)
-            {
+            for (auto c = 0; c < creaturesInEcosystem; c++) {
                 // Generate a random angle.
 
                 auto angle{GetRandomInt(360) * M_PI / 180.0f};
@@ -345,8 +313,7 @@ namespace Forradia::Theme0
 
                 // If the coordinates are out of bounds.
 
-                if (!worldArea->IsValidCoordinate(creatureX, creatureY))
-                {
+                if (!worldArea->IsValidCoordinate(creatureX, creatureY)) {
                     // Skip this creature.
 
                     continue;
@@ -359,8 +326,7 @@ namespace Forradia::Theme0
                 // If the tile is invalid, or already has a creature or is water.
 
                 if (!creatureTile || creatureTile->GetCreature() ||
-                    creatureTile->GetGround() == Hash("GroundWater"))
-                {
+                    creatureTile->GetGround() == Hash("GroundWater")) {
                     // Skip this creature.
 
                     continue;
@@ -368,8 +334,7 @@ namespace Forradia::Theme0
 
                 // Prefer grass for the ecosystem.
 
-                if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)
-                {
+                if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60) {
                     // Create a new creature.
 
                     auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};

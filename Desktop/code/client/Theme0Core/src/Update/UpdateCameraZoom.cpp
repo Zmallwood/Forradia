@@ -11,10 +11,8 @@
 #include "3D/Camera.hpp"
 #include "Mouse/MouseInput.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void UpdateCameraZoom()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void UpdateCameraZoom() {
         // Obtain the mouse wheel delta.
 
         auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};

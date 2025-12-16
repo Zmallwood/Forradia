@@ -9,25 +9,20 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class Robot;
 }
 
-namespace Forradia::Theme0::GameplayCore
-{
-    class BattleSystem
-    {
+namespace Forradia::Theme0::GameplayCore {
+    class BattleSystem {
       public:
         void Update();
 
-        auto GetTargetedRobot() const
-        {
+        auto GetTargetedRobot() const {
             return m_targetedRobot;
         }
 
-        void SetTargetedRobot(SharedPtr<Robot> value)
-        {
+        void SetTargetedRobot(SharedPtr<Robot> value) {
             m_targetedRobot = value;
         }
 

@@ -11,13 +11,11 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// A button component for the GUI.
     ///
-    class GUIButton : public GUIPanel
-    {
+    class GUIButton : public GUIPanel {
       public:
         ///
         /// Constructor.
@@ -39,8 +37,7 @@ namespace Forradia
             : GUIPanel(uniqueName, x, y, width, height),
               k_renderIDText(Hash(uniqueName.data() + String("Text"))), m_text(text),
               m_action(action), m_backgroundImage(backgroundImage),
-              m_hoveredBackgroundImage(hoveredBackgroundImage)
-        {
+              m_hoveredBackgroundImage(hoveredBackgroundImage) {
         }
 
       protected:

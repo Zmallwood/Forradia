@@ -10,10 +10,8 @@
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIPanel::RenderDerived() const
-    {
+namespace Forradia {
+    void GUIPanel::RenderDerived() const {
         // Get the bounds of this panel.
 
         auto bounds{this->GetBounds()};

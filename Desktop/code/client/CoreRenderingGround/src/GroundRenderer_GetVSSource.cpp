@@ -9,10 +9,8 @@
 
 #include "GroundRenderer.hpp"
 
-namespace Forradia
-{
-    String GroundRenderer::GetVSSource() const
-    {
+namespace Forradia {
+    String GroundRenderer::GetVSSource() const {
         // Return the vertex shader source.
 
         return R"(

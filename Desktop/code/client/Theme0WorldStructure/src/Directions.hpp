@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     /// Compass directions in the game world.
-    enum class Directions
-    {
+    enum class Directions {
         None,      ///< No direction.
         North,     ///< North direction.
         East,      ///< East direction.

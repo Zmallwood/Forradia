@@ -11,13 +11,11 @@
 
 #include "WorldGeneratorBase.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     ///
     /// Generates entities for the world.
     ///
-    class WorldGeneratorEntities : public WorldGeneratorBase
-    {
+    class WorldGeneratorEntities : public WorldGeneratorBase {
       public:
         ///
         /// Generates entities for the world.

@@ -15,10 +15,8 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void BattleSystem::Update()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void BattleSystem::Update() {
         // if (m_targetedRobot == nullptr)
         // {
         //     return;

@@ -11,15 +11,13 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUIWindow;
 
     ///
     /// A title bar for a window.
     ///
-    class GUIWindowTitleBar : public GUIPanel
-    {
+    class GUIWindowTitleBar : public GUIPanel {
       public:
         ///
         /// Constructor.
@@ -31,8 +29,7 @@ namespace Forradia
         GUIWindowTitleBar(StringView uniqueName, GUIWindow &parentWindow, StringView windowTitle)
             : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
               k_renderIDWindowTitleText(Hash(uniqueName.data() + String("WindowTitleText"))),
-              GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground")
-        {
+              GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
             this->Initialize(uniqueName);
         }
 

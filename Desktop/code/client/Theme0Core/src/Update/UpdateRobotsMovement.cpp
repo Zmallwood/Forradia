@@ -14,24 +14,20 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void UpdateRobotsMovement()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void UpdateRobotsMovement() {
         auto worldArea{_<World>().GetCurrentWorldArea()};
 
         auto &robots{worldArea->GetRobotsMirrorRef()};
 
         auto now{GetTicks()};
 
-        for (auto it = robots.begin(); it != robots.end();)
-        {
+        for (auto it = robots.begin(); it != robots.end();) {
             auto robot{it->first};
 
             auto position{it->second};
 
-            if (now < robot->GetTicksLastMovement() + InvertSpeed(robot->GetMovementSpeed()))
-            {
+            if (now < robot->GetTicksLastMovement() + InvertSpeed(robot->GetMovementSpeed())) {
                 ++it;
 
                 continue;
@@ -41,8 +37,7 @@ namespace Forradia::Theme0::GameplayCore
 
             auto destination{robot->GetDestination()};
 
-            if (destination.x == -1 && destination.y == -1)
-            {
+            if (destination.x == -1 && destination.y == -1) {
                 auto newDestination{origin.x + GetRandomInt(9) - 4};
 
                 auto newDestinationY{origin.y + GetRandomInt(9) - 4};
@@ -68,15 +63,13 @@ namespace Forradia::Theme0::GameplayCore
 
             Point newPosition{newX, newY};
 
-            if (newPosition == robot->GetDestination())
-            {
+            if (newPosition == robot->GetDestination()) {
                 robot->SetDestination({-1, -1});
             }
 
             auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-            if (tile && !tile->GetRobot() && tile->GetGround() != Hash("GroundWater"))
-            {
+            if (tile && !tile->GetRobot() && tile->GetGround() != Hash("GroundWater")) {
                 auto oldPosition{robots.at(robot)};
 
                 robot->SetTicksLastMovement(now);
@@ -92,9 +85,7 @@ namespace Forradia::Theme0::GameplayCore
                 robots.erase(robot);
 
                 robots.insert({robot, {newPosition.x, newPosition.y}});
-            }
-            else
-            {
+            } else {
                 robot->SetDestination({-1, -1});
             }
 

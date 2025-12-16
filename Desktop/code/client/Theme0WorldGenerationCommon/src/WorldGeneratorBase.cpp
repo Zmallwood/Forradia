@@ -13,10 +13,8 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorBase::Prepare()
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorBase::Prepare() {
         // Get required world related properties.
 
         m_worldArea = _<Theme0::World>().GetCurrentWorldArea();
@@ -26,8 +24,7 @@ namespace Forradia::Theme0
         m_worldScaling = _<Theme0::Theme0Properties>().GetWorldScaling();
     }
 
-    float WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) const
-    {
+    float WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) const {
         // Calculate the distance between two points.
 
         auto dx{static_cast<float>(x2 - x1)};

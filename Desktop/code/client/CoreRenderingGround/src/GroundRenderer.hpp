@@ -14,15 +14,12 @@
 #include "RendererBase.hpp"
 #include "TileDrawGroup.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// A renderer for the ground tiles.
-    class GroundRenderer : public RendererBase
-    {
+    class GroundRenderer : public RendererBase {
       public:
         /// Destructor that cleans up the renderer.
-        ~GroundRenderer()
-        {
+        ~GroundRenderer() {
             // Cleanup the renderer.
             this->Cleanup();
         }

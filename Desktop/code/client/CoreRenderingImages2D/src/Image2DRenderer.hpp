@@ -12,15 +12,12 @@
 #include "Image2DRenderingOperation.hpp"
 #include "RendererBase.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// A renderer for drawing images to the canvas.
-    class Image2DRenderer : public RendererBase
-    {
+    class Image2DRenderer : public RendererBase {
       public:
         /// Destructor which cleans up the renderer.
-        ~Image2DRenderer()
-        {
+        ~Image2DRenderer() {
             // Clean up the renderer.
             this->Cleanup();
         }

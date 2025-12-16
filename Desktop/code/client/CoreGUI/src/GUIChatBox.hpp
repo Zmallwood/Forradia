@@ -11,20 +11,18 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// A chat box component for the GUI which displays a list of messages and allows the user
     /// to input a message.
     ///
-    class GUIChatBox : public GUIPanel
-    {
+    class GUIChatBox : public GUIPanel {
       public:
         ///
         /// Constructor.
         ///
-        GUIChatBox() : GUIPanel("ChatBox", 0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived)
-        {
+        GUIChatBox()
+            : GUIPanel("ChatBox", 0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived) {
             this->Initialize();
         }
 
@@ -60,8 +58,7 @@ namespace Forradia
         ///
         /// @return Whether the input is active.
         ///
-        auto GetInputActive() const
-        {
+        auto GetInputActive() const {
             return m_inputActive;
         }
 

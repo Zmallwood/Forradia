@@ -9,10 +9,8 @@
 
 #include "ModelRenderer.hpp"
 
-namespace Forradia
-{
-    String ModelRenderer::GetFSSource() const
-    {
+namespace Forradia {
+    String ModelRenderer::GetFSSource() const {
         // Return the fragment shader source.
         return R"(
             #version 330 core

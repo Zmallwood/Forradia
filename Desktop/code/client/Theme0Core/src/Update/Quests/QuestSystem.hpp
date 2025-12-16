@@ -9,15 +9,12 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     class Quest;
 
-    class QuestSystem
-    {
+    class QuestSystem {
       public:
-        QuestSystem()
-        {
+        QuestSystem() {
             this->Initialize();
         }
 

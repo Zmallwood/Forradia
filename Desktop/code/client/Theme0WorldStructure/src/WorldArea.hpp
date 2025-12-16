@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class Tile;
 
     class Creature;
@@ -20,8 +19,7 @@ namespace Forradia::Theme0
     ///
     /// A world area in the game.
     ///
-    class WorldArea
-    {
+    class WorldArea {
       public:
         ///
         /// Constructor.
@@ -29,8 +27,7 @@ namespace Forradia::Theme0
         /// @param worldAreaSize The size of the world area.
         /// @param worldScaling The scaling of the world area size.
         ///
-        WorldArea(Size worldAreaSize, float worldScaling)
-        {
+        WorldArea(Size worldAreaSize, float worldScaling) {
             // Initialize the world area.
 
             this->Initialize(worldAreaSize, worldScaling);
@@ -102,8 +99,7 @@ namespace Forradia::Theme0
         ///
         /// @return A reference to the creatures mirror.
         ///
-        auto &GetCreaturesMirrorRef()
-        {
+        auto &GetCreaturesMirrorRef() {
             return m_creaturesMirror;
         }
 
@@ -112,8 +108,7 @@ namespace Forradia::Theme0
         ///
         /// @return A reference to the robots mirror.
         ///
-        auto &GetRobotsMirrorRef()
-        {
+        auto &GetRobotsMirrorRef() {
             return m_robotsMirror;
         }
 

@@ -10,10 +10,8 @@
 #include "CanvasUtilities.hpp"
 #include "Functions.hpp"
 
-namespace Forradia
-{
-    Size GetCanvasSize(SharedPtr<SDL_Window> window)
-    {
+namespace Forradia {
+    Size GetCanvasSize(SharedPtr<SDL_Window> window) {
         Size canvasSize;
 
         // Get the size of the window.
@@ -22,8 +20,7 @@ namespace Forradia
         return canvasSize;
     }
 
-    float CalcAspectRatio(SharedPtr<SDL_Window> window)
-    {
+    float CalcAspectRatio(SharedPtr<SDL_Window> window) {
         auto canvasSize{GetCanvasSize(window)};
 
         // Calculate the aspect ratio.
@@ -32,14 +29,12 @@ namespace Forradia
         return aspectRatio;
     }
 
-    float ConvertWidthToHeight(float width, SharedPtr<SDL_Window> window)
-    {
+    float ConvertWidthToHeight(float width, SharedPtr<SDL_Window> window) {
         // Calculate the height based on the width and the aspect ratio.
         return width * CalcAspectRatio(window);
     }
 
-    float ConvertHeightToWidth(float height, SharedPtr<SDL_Window> window)
-    {
+    float ConvertHeightToWidth(float height, SharedPtr<SDL_Window> window) {
         // Calculate the width based on the height and the aspect ratio.
         return height / CalcAspectRatio(window);
     }

@@ -10,10 +10,8 @@
 #include "Color.hpp"
 #include "Functions.hpp"
 
-namespace Forradia
-{
-    SDL_Color Color::ToSDLColor() const
-    {
+namespace Forradia {
+    SDL_Color Color::ToSDLColor() const {
         // Calculate individual color components.
 
         auto rUint{CUint8(r * 255)};

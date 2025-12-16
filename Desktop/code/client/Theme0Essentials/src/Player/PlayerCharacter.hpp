@@ -14,21 +14,18 @@
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     class PlayerObjectsInventory;
 
     ///
     /// Represents the player character.
     ///
-    class PlayerCharacter
-    {
+    class PlayerCharacter {
       public:
         ///
         /// Constructor.
         ///
-        PlayerCharacter()
-        {
+        PlayerCharacter() {
             // Initialize the player character.
 
             this->Initialize();
@@ -64,13 +61,11 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The name of the player.
         ///
-        auto GetName() const
-        {
+        auto GetName() const {
             return m_name;
         }
 
-        void SetPosition(Point value)
-        {
+        void SetPosition(Point value) {
             m_position = value;
         }
 
@@ -79,8 +74,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The position of the player.
         ///
-        auto GetPosition() const
-        {
+        auto GetPosition() const {
             return m_position;
         }
 
@@ -89,8 +83,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The movement speed of the player.
         ///
-        auto GetMovementSpeed() const
-        {
+        auto GetMovementSpeed() const {
             return m_movementSpeed;
         }
 
@@ -99,8 +92,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The ticks since last movement.
         ///
-        auto GetTicksLastMovement() const
-        {
+        auto GetTicksLastMovement() const {
             return m_ticksLastMovement;
         }
 
@@ -109,8 +101,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @param value The value to set.
         ///
-        void SetTicksLastMovement(int value)
-        {
+        void SetTicksLastMovement(int value) {
             m_ticksLastMovement = value;
         }
 
@@ -119,8 +110,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The destination of the player.
         ///
-        auto GetDestination() const
-        {
+        auto GetDestination() const {
             return m_destination;
         }
 
@@ -129,8 +119,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @param value The value to set.
         ///
-        void SetDestination(Point value)
-        {
+        void SetDestination(Point value) {
             m_destination = value;
         }
 
@@ -139,8 +128,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The body of the player.
         ///
-        auto &GetBodyRef()
-        {
+        auto &GetBodyRef() {
             return m_playerBody;
         }
 
@@ -149,8 +137,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The objects inventory of the player.
         ///
-        auto &GetObjectsInventoryRef() const
-        {
+        auto &GetObjectsInventoryRef() const {
             return *m_playerObjectsInventory;
         }
 
@@ -159,53 +146,43 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// @return The experience of the player.
         ///
-        auto GetExperience() const
-        {
+        auto GetExperience() const {
             return m_experience;
         }
 
-        auto GetPlayerMode() const
-        {
+        auto GetPlayerMode() const {
             return m_playerMode;
         }
 
-        void SetPlayerMode(PlayerModes playerMode)
-        {
+        void SetPlayerMode(PlayerModes playerMode) {
             m_playerMode = playerMode;
         }
 
-        auto GetWellBeing() const
-        {
+        auto GetWellBeing() const {
             return m_wellBeing;
         }
 
-        auto GetMaxWellBeing() const
-        {
+        auto GetMaxWellBeing() const {
             return m_maxWellBeing;
         }
 
-        auto GetAttackSpeed() const
-        {
+        auto GetAttackSpeed() const {
             return m_attackSpeed;
         }
 
-        auto GetTicksLastHitAnother() const
-        {
+        auto GetTicksLastHitAnother() const {
             return m_ticksLastHitAnother;
         }
 
-        void SetTicksLastHitAnother(int value)
-        {
+        void SetTicksLastHitAnother(int value) {
             m_ticksLastHitAnother = value;
         }
 
-        auto &GetPlayerActionsRef() const
-        {
+        auto &GetPlayerActionsRef() const {
             return m_playerActions;
         }
 
-        auto &GetQuestCompletionPointsRef()
-        {
+        auto &GetQuestCompletionPointsRef() {
             return m_questCompletionPoints;
         }
 

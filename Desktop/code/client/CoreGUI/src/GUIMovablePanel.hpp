@@ -11,13 +11,11 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// A panel that can be moved by the mouse.
     ///
-    class GUIMovablePanel : public GUIPanel
-    {
+    class GUIMovablePanel : public GUIPanel {
       public:
         ///
         /// Constructor.
@@ -29,8 +27,7 @@ namespace Forradia
         /// @param height The height of the movable panel.
         ///
         GUIMovablePanel(StringView uniqueName, float x, float y, float width, float height)
-            : GUIPanel(uniqueName, x, y, width, height)
-        {
+            : GUIPanel(uniqueName, x, y, width, height) {
         }
 
       protected:
@@ -61,8 +58,7 @@ namespace Forradia
         ///
         /// @return Whether the movable panel is being moved.
         ///
-        auto GetIsBeingMoved() const
-        {
+        auto GetIsBeingMoved() const {
             return m_isBeingMoved;
         }
 
@@ -71,8 +67,7 @@ namespace Forradia
         ///
         /// @return The starting position of the move of the movable panel.
         ///
-        auto GetMoveStartingPosition() const
-        {
+        auto GetMoveStartingPosition() const {
             return m_moveStartingPosition;
         }
 
@@ -81,8 +76,7 @@ namespace Forradia
         ///
         /// @return The starting mouse position of the move of the movable panel.
         ///
-        auto GetMoveStartingMousePosition() const
-        {
+        auto GetMoveStartingMousePosition() const {
             return m_moveStartingMousePosition;
         }
 

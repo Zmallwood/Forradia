@@ -11,13 +11,11 @@
 
 #include "GUIWindow.hpp"
 
-namespace Forradia::Theme0
-{
-    class GUIInventoryWindow : public GUIWindow
-    {
+namespace Forradia::Theme0 {
+    class GUIInventoryWindow : public GUIWindow {
       public:
-        GUIInventoryWindow() : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Inventory")
-        {
+        GUIInventoryWindow()
+            : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {
             this->Initialize();
         }
 

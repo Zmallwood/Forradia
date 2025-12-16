@@ -9,11 +9,9 @@
 
 #include "GroundRenderer.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     Vector<float>
-    GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const
-    {
+    GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const {
         // Create a vector to store the vertices consisting of only floats.
         Vector<float> verticesFloatsVector;
 
@@ -24,34 +22,32 @@ namespace Forradia
         constexpr auto k_vertexStride{8};
 
         // Define a lambda function to add a vertex to the floats vector.
-        auto fnAddVertexToFloatsVector{
-            [&](int vertexIndex, int normalsIndex)
-            {
-                // Add the vertex coordinates to the floats vector.
+        auto fnAddVertexToFloatsVector{[&](int vertexIndex, int normalsIndex) {
+            // Add the vertex coordinates to the floats vector.
 
-                // Position.
+            // Position.
 
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 0]);
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 1]);
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 2]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 0]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 1]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 2]);
 
-                // Color.
+            // Color.
 
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 3]);
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 4]);
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 5]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 3]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 4]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 5]);
 
-                // Texture coordinates (UVs).
+            // Texture coordinates (UVs).
 
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 6]);
-                verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 7]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 6]);
+            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 7]);
 
-                // Normals.
+            // Normals.
 
-                verticesFloatsVector.push_back(normals.at(normalsIndex).x);
-                verticesFloatsVector.push_back(normals.at(normalsIndex).y);
-                verticesFloatsVector.push_back(normals.at(normalsIndex).z);
-            }};
+            verticesFloatsVector.push_back(normals.at(normalsIndex).x);
+            verticesFloatsVector.push_back(normals.at(normalsIndex).y);
+            verticesFloatsVector.push_back(normals.at(normalsIndex).z);
+        }};
 
         // Call the lambda function for the four vertices in the order of the indices.
 

@@ -11,19 +11,16 @@
 
 #include "CursorStyles.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// Class for the game cursor, which replaces the default system cursor.
     ///
-    class Cursor
-    {
+    class Cursor {
       public:
         ///
         /// Default constructor
         ///
-        Cursor()
-        {
+        Cursor() {
             this->Initialize();
         }
 
@@ -41,8 +38,7 @@ namespace Forradia
         /// @brief Sets the cursor style.
         /// @param value New cursor style.
         ///
-        void SetCursorStyle(CursorStyles value)
-        {
+        void SetCursorStyle(CursorStyles value) {
             m_cursorStyle = value;
         }
 

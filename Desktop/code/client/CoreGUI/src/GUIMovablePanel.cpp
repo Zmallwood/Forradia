@@ -12,10 +12,8 @@
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia
-{
-    void GUIMovablePanel::UpdateDerived()
-    {
+namespace Forradia {
+    void GUIMovablePanel::UpdateDerived() {
         // Get the normalized mouse position.
 
         auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
@@ -26,16 +24,14 @@ namespace Forradia
 
         // Check if the mouse is over the draggable area.
 
-        if (draggableArea.Contains(mousePosition))
-        {
+        if (draggableArea.Contains(mousePosition)) {
             // Set the cursor to the hovering clickable GUI cursor.
 
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
             // If the left mouse button has been fired.
 
-            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-            {
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
                 // Start moving the panel.
 
                 this->StartMove();
@@ -44,8 +40,7 @@ namespace Forradia
 
         // Check if the left mouse button has been released.
 
-        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
-        {
+        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
             // Stop moving the panel (can be called even if this panel is not being moved).
 
             this->StopMove();
@@ -57,12 +52,10 @@ namespace Forradia
 
         // Check if the mouse is over the bounds of this panel.
 
-        if (bounds.Contains(mousePosition))
-        {
+        if (bounds.Contains(mousePosition)) {
             // If the left mouse button has been fired.
 
-            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired())
-            {
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
                 // Reset the left mouse button. This is done to prevent any other mouse actions
                 // from being triggered when there has been a mouse click inside this panel.
 
@@ -72,8 +65,7 @@ namespace Forradia
 
         // If this panel is being moved.
 
-        if (GetIsBeingMoved())
-        {
+        if (GetIsBeingMoved()) {
             // Compute the new position of this panel.
 
             auto newPosition{GetMoveStartingPosition() + mousePosition -
@@ -85,8 +77,7 @@ namespace Forradia
         }
     }
 
-    void GUIMovablePanel::StartMove()
-    {
+    void GUIMovablePanel::StartMove() {
         // Set the flag that indicates that this panel is being moved.
 
         m_isBeingMoved = true;
@@ -100,15 +91,13 @@ namespace Forradia
         m_moveStartingMousePosition = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
     }
 
-    void GUIMovablePanel::StopMove()
-    {
+    void GUIMovablePanel::StopMove() {
         // Set the flag to indicatee that this panel is not being moved.
 
         m_isBeingMoved = false;
     }
 
-    RectF GUIMovablePanel::GetDraggableArea() const
-    {
+    RectF GUIMovablePanel::GetDraggableArea() const {
         // Set the draggable area to the bounds of this panel as default. This can be overridden
         // by derived classes.
 

@@ -12,11 +12,9 @@
 #include "Color2DRenderer.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     void Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
-                                              float width, float height, bool updateExisting)
-    {
+                                              float width, float height, bool updateExisting) {
         // Setup state.
         this->SetupState();
 
@@ -30,8 +28,7 @@ namespace Forradia
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->DrawingOperationIsCached(uniqueRenderID))
-        {
+        if (this->DrawingOperationIsCached(uniqueRenderID)) {
             // Get the cached operation.
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
@@ -46,9 +43,7 @@ namespace Forradia
             glBindVertexArray(vao);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        }
-        else
-        {
+        } else {
             // Generate the vertex array object, index buffer object and vertex buffer object.
 
             glGenVertexArrays(1, &vao);
@@ -81,8 +76,7 @@ namespace Forradia
         const auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
-        if (needFillBuffers || updateExisting)
-        {
+        if (needFillBuffers || updateExisting) {
             auto &c{color};
 
             // Define the vertices and indices.

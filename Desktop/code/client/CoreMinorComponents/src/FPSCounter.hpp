@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     ///  Class for the FPS counter.
     ///
-    class FPSCounter
-    {
+    class FPSCounter {
       public:
         ///
         /// Updates the FPS counter.
@@ -27,8 +25,7 @@ namespace Forradia
         ///
         /// @return The current FPS.
         ///
-        auto GetFPS() const
-        {
+        auto GetFPS() const {
             return m_fps;
         }
 

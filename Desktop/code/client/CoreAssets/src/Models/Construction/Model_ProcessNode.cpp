@@ -9,13 +9,10 @@
 
 #include "Model.hpp"
 
-namespace Forradia
-{
-    void Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
-    {
+namespace Forradia {
+    void Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) {
         // Iterate over all meshes in the node.
-        for (unsigned int i = 0; i < node->mNumMeshes; i++)
-        {
+        for (unsigned int i = 0; i < node->mNumMeshes; i++) {
             // Access the mesh.
             auto mesh{scene->mMeshes[node->mMeshes[i]]};
 
@@ -27,8 +24,7 @@ namespace Forradia
         }
 
         // Iterate over all child nodes.
-        for (unsigned int i = 0; i < node->mNumChildren; i++)
-        {
+        for (unsigned int i = 0; i < node->mNumChildren; i++) {
             // Process the child node (recursively).
             this->ProcessNode(node->mChildren[i], scene, transformation);
         }

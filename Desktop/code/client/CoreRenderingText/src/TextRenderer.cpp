@@ -9,10 +9,8 @@
 
 #include "TextRenderer.hpp"
 
-namespace Forradia
-{
-    void TextRenderer::Initialize()
-    {
+namespace Forradia {
+    void TextRenderer::Initialize() {
         // Initialize the SDL TTF library.
         TTF_Init();
 
@@ -20,8 +18,7 @@ namespace Forradia
         this->AddFonts();
     }
 
-    void TextRenderer::AddFonts()
-    {
+    void TextRenderer::AddFonts() {
         // Construct the absolute path to the font file.
         auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
 
@@ -29,8 +26,7 @@ namespace Forradia
         auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
         // Iterate over all available font sizes.
-        for (auto fontSize : {FontSizes::_20, FontSizes::_26})
-        {
+        for (auto fontSize : {FontSizes::_20, FontSizes::_26}) {
             // Convert the font size enum to an integer value.
             auto fontSizeN{CInt(fontSize)};
 
@@ -38,8 +34,7 @@ namespace Forradia
             auto newFont{SharedPtr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN),
                                              SDLDeleter())};
 
-            if (!newFont)
-            {
+            if (!newFont) {
                 // Continue loading other fonts even if one fails, and provide specific error
                 // information.
 
@@ -54,8 +49,7 @@ namespace Forradia
         }
     }
 
-    void TextRenderer::SetupState() const
-    {
+    void TextRenderer::SetupState() const {
         // Set pixel storage alignment for texture data.
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -69,8 +63,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void TextRenderer::RestoreState() const
-    {
+    void TextRenderer::RestoreState() const {
         // Disable alpha blending.
         glDisable(GL_BLEND);
 

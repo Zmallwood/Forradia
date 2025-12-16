@@ -9,19 +9,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class Object;
 }
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     ///
     /// Represents the inventory of objects for the player.
     /// TODO: Decide if should be used also for other entities.
     ///
-    class PlayerObjectsInventory
-    {
+    class PlayerObjectsInventory {
       public:
         ///
         /// Constructor.

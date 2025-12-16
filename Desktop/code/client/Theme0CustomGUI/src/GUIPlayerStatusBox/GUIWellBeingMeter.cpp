@@ -10,10 +10,8 @@
 #include "GUIWellBeingMeter.hpp"
 #include "Player/PlayerCharacter.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIWellBeingMeter::UpdateDerived()
-    {
+namespace Forradia::Theme0 {
+    void GUIWellBeingMeter::UpdateDerived() {
         GUIMeter::UpdateDerived();
 
         auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
@@ -27,8 +25,7 @@ namespace Forradia::Theme0
         m_filledPercentage = health / maxHealth;
     }
 
-    float GUIWellBeingMeter::GetFilledPercentage() const
-    {
+    float GUIWellBeingMeter::GetFilledPercentage() const {
         return m_filledPercentage;
     }
 }

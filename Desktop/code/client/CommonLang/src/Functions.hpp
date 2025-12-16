@@ -11,14 +11,12 @@
 
 typedef uint8_t Uint8;
 
-namespace Forradia
-{
+namespace Forradia {
     /// Can be used to cast any value to int.
     ///
     /// @param value Value to cast.
     /// @return Casted value.
-    constexpr int CInt(auto value)
-    {
+    constexpr int CInt(auto value) {
         return static_cast<int>(value);
     }
 
@@ -26,8 +24,7 @@ namespace Forradia
     ///
     /// @param value Value to cast.
     /// @return Casted value.
-    constexpr float CFloat(auto value)
-    {
+    constexpr float CFloat(auto value) {
         return static_cast<float>(value);
     }
 
@@ -35,8 +32,7 @@ namespace Forradia
     ///
     /// @param value Value to cast.
     /// @return Casted value.
-    constexpr Uint8 CUint8(auto value)
-    {
+    constexpr Uint8 CUint8(auto value) {
         return static_cast<Uint8>(value);
     }
 }

@@ -8,10 +8,8 @@
 
 #include "IScene.hpp"
 
-namespace Forradia::Theme0
-{
-    class MainMenuScene : public IScene
-    {
+namespace Forradia::Theme0 {
+    class MainMenuScene : public IScene {
       public:
         MainMenuScene();
 

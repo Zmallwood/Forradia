@@ -9,10 +9,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
-    class Theme0Properties
-    {
+namespace Forradia::Theme0 {
+    class Theme0Properties {
       public:
         ///
         /// Get the game window title.

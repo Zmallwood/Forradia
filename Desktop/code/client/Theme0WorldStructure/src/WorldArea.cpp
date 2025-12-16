@@ -11,10 +11,8 @@
 #include "ObjectsStack.hpp"
 #include "Tile.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldArea::Initialize(Size worldAreaSize, float worldScaling)
-    {
+namespace Forradia::Theme0 {
+    void WorldArea::Initialize(Size worldAreaSize, float worldScaling) {
         // Obtain the size of the world area.
 
         auto size{worldAreaSize};
@@ -25,16 +23,14 @@ namespace Forradia::Theme0
 
         // Create the tiles in the world area.
 
-        for (auto x = 0; x < size.width; x++)
-        {
+        for (auto x = 0; x < size.width; x++) {
             // Create a new row of tiles.
 
             m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
 
             // Create the tiles in the row.
 
-            for (auto y = 0; y < size.height; y++)
-            {
+            for (auto y = 0; y < size.height; y++) {
                 // Create a new tile.
 
                 m_tiles[x].push_back(std::make_shared<Tile>());
@@ -42,8 +38,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldArea::Reset()
-    {
+    void WorldArea::Reset() {
         // Clear the creatures mirror.
 
         m_creaturesMirror.clear();
@@ -58,10 +53,8 @@ namespace Forradia::Theme0
 
         // Iterate through the tiles in the world area.
 
-        for (auto y = 0; y < size.height; y++)
-        {
-            for (auto x = 0; x < size.width; x++)
-            {
+        for (auto y = 0; y < size.height; y++) {
+            for (auto x = 0; x < size.width; x++) {
                 // Obtain the tile.
 
                 auto tile{m_tiles[x][y]};
@@ -83,8 +76,7 @@ namespace Forradia::Theme0
         }
     }
 
-    Size WorldArea::GetSize() const
-    {
+    Size WorldArea::GetSize() const {
         // Obtain the width of the world area.
 
         auto width{CInt(m_tiles.size())};
@@ -93,8 +85,7 @@ namespace Forradia::Theme0
 
         auto height{0};
 
-        if (width)
-        {
+        if (width) {
             height = m_tiles.at(0).size();
         }
 
@@ -103,8 +94,7 @@ namespace Forradia::Theme0
         return {width, height};
     }
 
-    bool WorldArea::IsValidCoordinate(int x, int y) const
-    {
+    bool WorldArea::IsValidCoordinate(int x, int y) const {
         // Obtain the size of the world area.
 
         auto size{this->GetSize()};
@@ -114,19 +104,16 @@ namespace Forradia::Theme0
         return x >= 0 && y >= 0 && x < size.width && y < size.height;
     }
 
-    bool WorldArea::IsValidCoordinate(Point coordinate) const
-    {
+    bool WorldArea::IsValidCoordinate(Point coordinate) const {
         // Forward the call to other IsValidCoordinate method.
 
         return this->IsValidCoordinate(coordinate.x, coordinate.y);
     }
 
-    SharedPtr<Tile> WorldArea::GetTile(int x, int y) const
-    {
+    SharedPtr<Tile> WorldArea::GetTile(int x, int y) const {
         // If the coordinate is valid, return the tile.
 
-        if (this->IsValidCoordinate(x, y))
-        {
+        if (this->IsValidCoordinate(x, y)) {
             return m_tiles.at(x).at(y);
         }
 
@@ -135,22 +122,19 @@ namespace Forradia::Theme0
         return nullptr;
     }
 
-    SharedPtr<Tile> WorldArea::GetTile(Point coord) const
-    {
+    SharedPtr<Tile> WorldArea::GetTile(Point coord) const {
         // Forward the call to other GetTile method.
 
         return this->GetTile(coord.x, coord.y);
     }
 
-    void WorldArea::AddClaimedCoordinate(Point coordinate)
-    {
+    void WorldArea::AddClaimedCoordinate(Point coordinate) {
         // Add the coordinate to the claimed coordinates.
 
         m_claimedCoordinates.insert(coordinate);
     }
 
-    bool WorldArea::CoordinateIsClaimed(Point coordinate) const
-    {
+    bool WorldArea::CoordinateIsClaimed(Point coordinate) const {
         // Return true if the coordinate is claimed, false otherwise.
 
         return m_claimedCoordinates.contains(coordinate);

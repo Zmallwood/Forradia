@@ -11,13 +11,10 @@
 
 #include "Quest.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    class MoveQuest : public Quest
-    {
+namespace Forradia::Theme0::GameplayCore {
+    class MoveQuest : public Quest {
       public:
-        MoveQuest()
-        {
+        MoveQuest() {
             this->name = "Movement";
             this->description = "Try to walk somewhere, 3 times.";
         }
@@ -30,11 +27,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numStepsLeft{3};
     };
 
-    class ForageQuest : public Quest
-    {
+    class ForageQuest : public Quest {
       public:
-        ForageQuest()
-        {
+        ForageQuest() {
             this->name = "Forage";
             this->description = "Try to gather some resources, 3 times.";
         }
@@ -47,11 +42,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numForagingsLeft{3};
     };
 
-    class CraftStonePickaxeQuest : public Quest
-    {
+    class CraftStonePickaxeQuest : public Quest {
       public:
-        CraftStonePickaxeQuest()
-        {
+        CraftStonePickaxeQuest() {
             this->name = "First Crafting: Stone Pickaxe";
             this->description = "Craft a stone pickaxe.";
         }
@@ -66,11 +59,9 @@ namespace Forradia::Theme0::GameplayCore
         bool m_numStonePicked{false};
     };
 
-    class MineStoneFromBoulderQuest1 : public Quest
-    {
+    class MineStoneFromBoulderQuest1 : public Quest {
       public:
-        MineStoneFromBoulderQuest1()
-        {
+        MineStoneFromBoulderQuest1() {
             this->name = "Mine Stone";
             this->description = "Mine 10 stones from a boulder.";
         }
@@ -83,11 +74,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numMinedStonesLeft{10};
     };
 
-    class CraftStoneSlabsQuest : public Quest
-    {
+    class CraftStoneSlabsQuest : public Quest {
       public:
-        CraftStoneSlabsQuest()
-        {
+        CraftStoneSlabsQuest() {
             this->name = "Craft Stone Slabs";
             this->description = "Craft 10 stone slabs.";
         }
@@ -100,11 +89,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numCraftedSlabsLeft{10};
     };
 
-    class LayStoneSlabsQuest : public Quest
-    {
+    class LayStoneSlabsQuest : public Quest {
       public:
-        LayStoneSlabsQuest()
-        {
+        LayStoneSlabsQuest() {
             this->name = "Lay Stone Slabs";
             this->description = "Lay 10 stone slabs.";
         }
@@ -117,11 +104,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numLaidSlabsLeft{10};
     };
 
-    class MineStoneFromBoulderQuest2 : public Quest
-    {
+    class MineStoneFromBoulderQuest2 : public Quest {
       public:
-        MineStoneFromBoulderQuest2()
-        {
+        MineStoneFromBoulderQuest2() {
             this->name = "Mine Stone";
             this->description = "Mine 10 stones from a boulder.";
         }
@@ -134,11 +119,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numMinedStonesLeft{10};
     };
 
-    class CraftStoneBricksQuest : public Quest
-    {
+    class CraftStoneBricksQuest : public Quest {
       public:
-        CraftStoneBricksQuest()
-        {
+        CraftStoneBricksQuest() {
             this->name = "Craft Stone Bricks";
             this->description = "Craft 10 stone bricks.";
         }
@@ -151,11 +134,9 @@ namespace Forradia::Theme0::GameplayCore
         int m_numCraftedBricksLeft{10};
     };
 
-    class BuildStoneWallsQuest : public Quest
-    {
+    class BuildStoneWallsQuest : public Quest {
       public:
-        BuildStoneWallsQuest()
-        {
+        BuildStoneWallsQuest() {
             this->name = "Build Stone Wall";
             this->description = "Build stone walls (and a door) around the stone slabs floor.";
         }

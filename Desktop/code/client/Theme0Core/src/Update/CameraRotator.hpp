@@ -9,10 +9,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
-    class CameraRotator
-    {
+namespace Forradia::Theme0::GameplayCore {
+    class CameraRotator {
       public:
         void Update();
 

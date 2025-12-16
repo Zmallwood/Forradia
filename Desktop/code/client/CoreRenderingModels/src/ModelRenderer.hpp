@@ -12,15 +12,12 @@
 #include "ModelRenderingOperation.hpp"
 #include "RendererBase.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// Renders models from the model bank in 3D space.
-    class ModelRenderer : public RendererBase
-    {
+    class ModelRenderer : public RendererBase {
       public:
         /// Destructor that cleans up the renderer.
-        ~ModelRenderer()
-        {
+        ~ModelRenderer() {
             // Clean up the renderer.
             this->Cleanup();
         }

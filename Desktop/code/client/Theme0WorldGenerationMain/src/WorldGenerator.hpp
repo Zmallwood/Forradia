@@ -9,15 +9,13 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class WorldArea;
 
     ///
     /// The WorldGenerator class is responsible for generating a new world.
     ///
-    class WorldGenerator
-    {
+    class WorldGenerator {
       public:
         ///
         /// Generates a new world.

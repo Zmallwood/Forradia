@@ -10,10 +10,8 @@
 #include "GUIMeter.hpp"
 #include "Color2DRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIMeter::RenderDerived() const
-    {
+namespace Forradia {
+    void GUIMeter::RenderDerived() const {
         auto bounds{GetBounds()};
 
         // Render the background.

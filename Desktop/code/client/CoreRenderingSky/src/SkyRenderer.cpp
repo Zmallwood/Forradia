@@ -11,24 +11,19 @@
 #include "GUIChatBox.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    void SkyRenderer::Cleanup()
-    {
+namespace Forradia {
+    void SkyRenderer::Cleanup() {
         // Delete the vertex array object, index buffer object and vertex buffer object.
 
-        if (m_vao != 0)
-        {
+        if (m_vao != 0) {
             glDeleteVertexArrays(1, &m_vao);
         }
 
-        if (m_ibo != 0)
-        {
+        if (m_ibo != 0) {
             glDeleteBuffers(1, &m_ibo);
         }
 
-        if (m_vbo != 0)
-        {
+        if (m_vbo != 0) {
             glDeleteBuffers(1, &m_vbo);
         }
 
@@ -45,8 +40,7 @@ namespace Forradia
         m_initialized = false;
     }
 
-    void SkyRenderer::SetupState() const
-    {
+    void SkyRenderer::SetupState() const {
         // Get the canvas size and set the viewport.
 
         auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
@@ -71,8 +65,7 @@ namespace Forradia
         glDisable(GL_CULL_FACE);
     }
 
-    void SkyRenderer::RestoreState() const
-    {
+    void SkyRenderer::RestoreState() const {
         // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
@@ -86,8 +79,7 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    void SkyRenderer::SetupAttributeLayout() const
-    {
+    void SkyRenderer::SetupAttributeLayout() const {
         // Set up the attribute layout for the vertex shader.
         // Position (3 floats).
 
@@ -96,8 +88,7 @@ namespace Forradia
         glEnableVertexAttribArray(0);
     }
 
-    void SkyRenderer::InitializeDerived()
-    {
+    void SkyRenderer::InitializeDerived() {
         // Get the layout locations for the uniforms.
 
         m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
@@ -110,8 +101,7 @@ namespace Forradia
 
         // Check if uniform locations are valid (should not be -1).
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
-            m_layoutLocationSunElevation == -1)
-        {
+            m_layoutLocationSunElevation == -1) {
             // Let the player know that the shader might have compilation errors.
             _<GUIChatBox>().Print(
                 "Uniform locations not found - shader might have compilation errors.");

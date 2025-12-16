@@ -15,12 +15,9 @@
 #include "Player/PlayerObjectsInventory.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIInventoryWindow::Initialize()
-    {
-        for (auto i = 0; i < k_maxNumSlots; i++)
-        {
+namespace Forradia::Theme0 {
+    void GUIInventoryWindow::Initialize() {
+        for (auto i = 0; i < k_maxNumSlots; i++) {
             m_renderIDsSlotsBackground[i] =
                 Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
 
@@ -28,8 +25,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void GUIInventoryWindow::RenderDerived() const
-    {
+    void GUIInventoryWindow::RenderDerived() const {
         GUIWindow::RenderDerived();
 
         auto bounds{this->GetBounds()};
@@ -52,20 +48,15 @@ namespace Forradia::Theme0
 
         auto &objectsInventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-        for (auto y = 0; y < numRows; y++)
-        {
-            for (auto x = 0; x < numColumns; x++)
-            {
+        for (auto y = 0; y < numRows; y++) {
+            for (auto x = 0; x < numColumns; x++) {
                 auto index{x + y * numColumns};
 
                 int renderIDBackground{0};
 
-                if (m_renderIDsSlotsBackground.contains(index))
-                {
+                if (m_renderIDsSlotsBackground.contains(index)) {
                     renderIDBackground = m_renderIDsSlotsBackground.at(index);
-                }
-                else
-                {
+                } else {
                     PrintLine("GUIInventoryWindow: Render ID not "
                               "found for index: " +
                               std::to_string(index));
@@ -79,16 +70,12 @@ namespace Forradia::Theme0
 
                 auto inventoryObject{objectsInventory.GetObject(index)};
 
-                if (inventoryObject)
-                {
+                if (inventoryObject) {
                     int renderIDObject{0};
 
-                    if (m_renderIDsSlotsObject.contains(index))
-                    {
+                    if (m_renderIDsSlotsObject.contains(index)) {
                         renderIDObject = m_renderIDsSlotsObject.at(index);
-                    }
-                    else
-                    {
+                    } else {
                         PrintLine("GUIInventoryWindow: "
                                   "Render ID not "
                                   "found for index: " +

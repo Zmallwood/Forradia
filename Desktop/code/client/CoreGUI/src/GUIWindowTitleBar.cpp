@@ -13,10 +13,8 @@
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIWindowTitleBar::Initialize(StringView uniqueName)
-    {
+namespace Forradia {
+    void GUIWindowTitleBar::Initialize(StringView uniqueName) {
         // Get the bounds of the parent window.
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
@@ -30,8 +28,7 @@ namespace Forradia
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
-    void GUIWindowTitleBar::RenderDerived() const
-    {
+    void GUIWindowTitleBar::RenderDerived() const {
         // Call the class, GUIPanel, render derived method.
 
         GUIPanel::RenderDerived();
@@ -48,8 +45,7 @@ namespace Forradia
                                      Palette::GetColor<Hash("Yellow")>());
     }
 
-    RectF GUIWindowTitleBar::GetBounds() const
-    {
+    RectF GUIWindowTitleBar::GetBounds() const {
         // Get the bounds of the parent window.
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};

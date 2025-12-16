@@ -9,10 +9,8 @@
 
 #include "ObjectIndex.hpp"
 
-namespace Forradia::Theme0
-{
-    ObjectIndex::ObjectIndex()
-    {
+namespace Forradia::Theme0 {
+    ObjectIndex::ObjectIndex() {
         // Add objects here with their specific properties.
         // Note: Objects not added here will get default properties.
 
@@ -30,19 +28,16 @@ namespace Forradia::Theme0
     }
 
     void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
-                                     bool ignoreIndividualModelScaling)
-    {
+                                     bool ignoreIndividualModelScaling) {
         // Add an object entry to the index.
 
         m_entries.insert({Hash(objectName), {modelScaling, ignoreIndividualModelScaling}});
     }
 
-    float ObjectIndex::GetModelScaling(int objectHash) const
-    {
+    float ObjectIndex::GetModelScaling(int objectHash) const {
         // Return the model scaling for a given object hash.
 
-        if (m_entries.contains(objectHash))
-        {
+        if (m_entries.contains(objectHash)) {
             return m_entries.at(objectHash).modelScaling;
         }
 
@@ -51,19 +46,16 @@ namespace Forradia::Theme0
         return 1.0f;
     }
 
-    bool ObjectIndex::ObjectEntryExists(int objectHash) const
-    {
+    bool ObjectIndex::ObjectEntryExists(int objectHash) const {
         // Return true if an object entry exists for a given object hash.
 
         return m_entries.contains(objectHash);
     }
 
-    bool ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const
-    {
+    bool ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const {
         // Return true if the ignore individual model scaling flag is set for a given object hash.
 
-        if (m_entries.contains(objectHash))
-        {
+        if (m_entries.contains(objectHash)) {
             return m_entries.at(objectHash).ignoreIndividualModelScaling;
         }
 

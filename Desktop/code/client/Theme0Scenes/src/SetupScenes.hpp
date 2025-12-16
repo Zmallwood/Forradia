@@ -6,7 +6,6 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     void SetupScenes();
 }

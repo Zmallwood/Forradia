@@ -16,11 +16,9 @@
 #include "Textures/TextureBank.hpp"
 #include "Theme0Properties.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation,
-                                  float modelScaling)
-    {
+                                  float modelScaling) {
         // Setup state.
         this->SetupState();
 
@@ -37,8 +35,7 @@ namespace Forradia
         auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
-        if (this->DrawingOperationIsCached(modelNameHash))
-        {
+        if (this->DrawingOperationIsCached(modelNameHash)) {
             // Get the cached drawing operation.
             auto &entry{m_operationsCache.at(modelNameHash)};
 
@@ -53,9 +50,7 @@ namespace Forradia
             glBindVertexArray(vao);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        }
-        else
-        {
+        } else {
             // Generate the vertex array object, index buffer object and vertex buffer object.
 
             glGenVertexArrays(1, &vao);
@@ -88,27 +83,22 @@ namespace Forradia
             // To contain the total model scaling.
             float totalModelScaling{k_globalModelScaling};
 
-            if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
-            {
+            if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash)) {
                 totalModelScaling *= modelScaling;
             }
 
-            if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
-            {
+            if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash)) {
                 totalModelScaling *= _<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
             }
 
-            if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash))
-            {
+            if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash)) {
                 totalModelScaling *= _<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
             }
 
             // For each mesh.
-            for (auto &mesh : meshes)
-            {
+            for (auto &mesh : meshes) {
                 // For each vertex.
-                for (auto &vertex : mesh.vertices)
-                {
+                for (auto &vertex : mesh.vertices) {
                     // Add position.
 
                     verticesVector.push_back(vertex.position.x * totalModelScaling);
@@ -128,8 +118,7 @@ namespace Forradia
                 }
 
                 // For each index of the mesh.
-                for (auto &index : mesh.indices)
-                {
+                for (auto &index : mesh.indices) {
                     // Calculate the total index.
                     auto totalIndex{indexFirstVertexOfMesh + mesh.indices[index]};
 
@@ -180,8 +169,7 @@ namespace Forradia
         modelMatrix = glm::translate(
             modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
 
-        if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
-        {
+        if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash)) {
             // Scale the model.
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
         }

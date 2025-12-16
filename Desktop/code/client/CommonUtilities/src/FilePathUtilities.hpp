@@ -10,8 +10,7 @@
 #pragma once
 #include "Aliases.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// Get the file extension.
     ///
     /// @param path  Path to the file.

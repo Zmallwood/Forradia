@@ -12,18 +12,14 @@
 #include "GroundRenderer.hpp"
 #include "Textures/TextureBank.hpp"
 
-namespace Forradia
-{
-    void GroundRenderer::DrawTiles(const Vector<TileData> &tiles)
-    {
+namespace Forradia {
+    void GroundRenderer::DrawTiles(const Vector<TileData> &tiles) {
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
 
         bool forceUpdate{false};
 
-        for (auto &tile : tiles)
-        {
-            if (tile.forceUpdate)
-            {
+        for (auto &tile : tiles) {
+            if (tile.forceUpdate) {
                 forceUpdate = true;
                 break;
             }
@@ -37,16 +33,13 @@ namespace Forradia
 
         // If the tile is not cached or the force update flag is set.
 
-        if (false == tileIsCached || forceUpdate)
-        {
+        if (false == tileIsCached || forceUpdate) {
             std::map<int, Vector<TileData>> tileDataByTexture;
 
-            for (auto i = 0; i < tiles.size(); i++)
-            {
+            for (auto i = 0; i < tiles.size(); i++) {
                 auto textureNameHash = tiles.at(i).imageNameHash;
 
-                if (!tileDataByTexture.contains(textureNameHash))
-                {
+                if (!tileDataByTexture.contains(textureNameHash)) {
                     tileDataByTexture[textureNameHash] = Vector<TileData>();
                 }
 
@@ -55,8 +48,7 @@ namespace Forradia
 
             std::map<int, TileDrawGroup> tilesByTexture;
 
-            for (auto &entry : tileDataByTexture)
-            {
+            for (auto &entry : tileDataByTexture) {
                 TileDrawGroup group;
 
                 auto textureNameHash = entry.first;
@@ -81,8 +73,7 @@ namespace Forradia
                 Vector<float> combinedVertices;
                 Vector<unsigned short> combinedIndices;
 
-                for (auto tile : tileData)
-                {
+                for (auto tile : tileData) {
                     auto xCoordinate{tile.xCoordinate};
                     auto yCoordinate{tile.yCoordinate};
 
@@ -146,9 +137,7 @@ namespace Forradia
             groupOperation.tilesByTexture = tilesByTexture;
 
             m_groupOperationsCache[uniqueRenderID] = groupOperation;
-        }
-        else
-        {
+        } else {
             groupOperation = m_groupOperationsCache.at(uniqueRenderID);
         }
 
@@ -163,12 +152,10 @@ namespace Forradia
         // Upload the MVP matrix to the shader.
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-        for (auto &entry : groupOperation.tilesByTexture)
-        {
+        for (auto &entry : groupOperation.tilesByTexture) {
             auto imageNameHash = entry.first;
 
-            if (imageNameHash == 0)
-            {
+            if (imageNameHash == 0) {
                 continue;
             }
 

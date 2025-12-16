@@ -11,13 +11,10 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    void ModelRenderer::Cleanup()
-    {
+namespace Forradia {
+    void ModelRenderer::Cleanup() {
         // For each entry in the operations cache.
-        for (auto &entry : m_operationsCache)
-        {
+        for (auto &entry : m_operationsCache) {
             // Delete the buffer objects and vertex array objects.
 
             glDeleteBuffers(1, &entry.second.ibo);
@@ -28,8 +25,7 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    void ModelRenderer::SetupState() const
-    {
+    void ModelRenderer::SetupState() const {
         // Enable depth testing.
         glEnable(GL_DEPTH_TEST);
 
@@ -49,8 +45,7 @@ namespace Forradia
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
-    void ModelRenderer::RestoreState() const
-    {
+    void ModelRenderer::RestoreState() const {
         // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
@@ -61,8 +56,7 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    void ModelRenderer::SetupAttributeLayout() const
-    {
+    void ModelRenderer::SetupAttributeLayout() const {
         // Setup the attribute layout.
 
         // Position.
@@ -87,8 +81,7 @@ namespace Forradia
         glEnableVertexAttribArray(2);
     }
 
-    bool ModelRenderer::DrawingOperationIsCached(int modelNameHash) const
-    {
+    bool ModelRenderer::DrawingOperationIsCached(int modelNameHash) const {
         // Check if the drawing operation is cached.
         //
         // Note: For this renderer the modelNameHash can be used as a key since what changes
@@ -97,8 +90,7 @@ namespace Forradia
         return m_operationsCache.contains(modelNameHash);
     }
 
-    void ModelRenderer::InitializeDerived()
-    {
+    void ModelRenderer::InitializeDerived() {
         // Obtain the layout location for the uniform matrices.
 
         // Projection matrix.

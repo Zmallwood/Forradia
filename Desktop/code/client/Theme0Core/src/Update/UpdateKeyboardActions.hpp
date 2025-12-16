@@ -9,7 +9,6 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     void UpdateKeyboardActions();
 }

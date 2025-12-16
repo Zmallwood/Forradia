@@ -20,8 +20,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     static std::map<int, Function<void()>> s_timedActions;
 
     template <>
@@ -70,12 +69,8 @@ namespace Forradia::Theme0
     Action GetAction<Hash("ActionCraftStoneWallDoor")>();
 
     template <>
-    Action GetAction<Hash("ActionCraftStoneWallDoor")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
@@ -86,8 +81,7 @@ namespace Forradia::Theme0
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->GetObjectsStack()->AddObject("ObjectStoneWallDoor");
                     }
 
@@ -102,12 +96,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionCraftStoneWall")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionCraftStoneWall")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
@@ -118,8 +108,7 @@ namespace Forradia::Theme0
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->GetObjectsStack()->AddObject("ObjectStoneWall");
                     }
 
@@ -134,12 +123,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionCraftStoneBrick")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionCraftStoneBrick")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
@@ -156,12 +141,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionLayStoneSlab")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionLayStoneSlab")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneSlab");
@@ -172,8 +153,7 @@ namespace Forradia::Theme0
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->SetGround(Hash("GroundStoneSlab"));
                     }
 
@@ -187,12 +167,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionCraftStoneSlab")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionCraftStoneSlab")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
@@ -209,24 +185,18 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionCraftStonePickaxe")>()
-    {
+    Action GetAction<Hash("ActionCraftStonePickaxe")>() {
         return {
-            .groundMatches = {},
-            .objectMatches = {},
-            .action = []()
-            {
+            .groundMatches = {}, .objectMatches = {}, .action = []() {
                 auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
-                if (inventory.CountHasObject("ObjectBranch") < 1)
-                {
+                if (inventory.CountHasObject("ObjectBranch") < 1) {
                     _<GUIChatBox>().Print("You don't have any branches to craft a stone pickaxe.");
 
                     return;
                 }
 
-                if (inventory.CountHasObject("ObjectStone") < 1)
-                {
+                if (inventory.CountHasObject("ObjectStone") < 1) {
                     _<GUIChatBox>().Print("You don't have any stones to craft a stone pickaxe.");
 
                     return;
@@ -247,12 +217,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionChipStone")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {Hash("ObjectStoneBoulder")},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionChipStone")>() {
+        return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     // inventory.AddObject("ObjectSmallStones");
@@ -268,18 +234,13 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionLayCobbleStone")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionLayCobbleStone")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
 
-                    if (numSmallStonesInInventory <= 0)
-                    {
+                    if (numSmallStonesInInventory <= 0) {
                         _<GUIChatBox>().Print("You don't have any small stones to lay.");
 
                         return;
@@ -293,8 +254,7 @@ namespace Forradia::Theme0
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->SetGround(Hash("GroundCobbleStone"));
                     }
 
@@ -303,18 +263,13 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionLayMetalFloor")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionLayMetalFloor")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     auto numMetalScrapsInInventory{inventory.CountHasObject("ObjectMetalScrap")};
 
-                    if (numMetalScrapsInInventory <= 0)
-                    {
+                    if (numMetalScrapsInInventory <= 0) {
                         _<GUIChatBox>().Print("You don't have any metal scraps to lay.");
 
                         return;
@@ -326,8 +281,7 @@ namespace Forradia::Theme0
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->SetGround(Hash("GroundMetalFloor"));
 
                         inventory.RemoveObject("ObjectMetalScrap");
@@ -338,20 +292,15 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionPlowLand")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionPlowLand")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->SetGround(Hash("GroundPlowedLand"));
                     }
 
@@ -363,26 +312,20 @@ namespace Forradia::Theme0
     Action GetAction<Hash("Pick up")>();
 
     template <>
-    Action GetAction<Hash("Pick up")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("Pick up")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         auto objectsStack{tile->GetObjectsStack()};
 
                         auto object{objectsStack->PopObject()};
 
-                        if (object)
-                        {
+                        if (object) {
                             auto &inventory{
                                 _<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
@@ -393,27 +336,20 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionClaimLand")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionClaimLand")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
 
-                        for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
-                        {
+                        for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++) {
                             for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3;
-                                 x++)
-                            {
+                                 x++) {
                                 worldArea->AddClaimedCoordinate({x, y});
                             }
                         }
@@ -424,12 +360,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionStop")>()
-    {
-        return {.groundMatches = {Hash("GroundGrass")},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionStop")>() {
+        return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
                     s_timedActions.clear();
 
                     _<GUIChatBox>().Print("You stopped current action.");
@@ -437,12 +369,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionSitByComputer")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {Hash("ObjectComputer")},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionSitByComputer")>() {
+        return {.groundMatches = {}, .objectMatches = {Hash("ObjectComputer")}, .action = []() {
                     _<GUIChatBox>().Print("You sit by the computer.");
 
                     _<GUIChatBox>().EnableInput();
@@ -450,26 +378,18 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionChopTree")>()
-    {
-        return {.groundMatches = {Hash("GroundGrass")},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionChopTree")>() {
+        return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
-                        if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0)
-                        {
+                    if (tile) {
+                        if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0) {
                             tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectFirTree");
-                        }
-                        else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0)
-                        {
+                        } else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0) {
                             tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectBirchTree");
                         }
 
@@ -481,12 +401,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionForage")>()
-    {
-        return {.groundMatches = {Hash("GroundGrass")},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionForage")>() {
+        return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBlueberries");
@@ -502,12 +418,10 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionPickBranch")>()
-    {
+    Action GetAction<Hash("ActionPickBranch")>() {
         return {.groundMatches = {},
                 .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
-                .action = []()
-                {
+                .action = []() {
                     auto &inventory{_<GameplayCore::PlayerCharacter>().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBranch");
@@ -520,20 +434,15 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionPickStone")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {Hash("ObjectStone")},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionPickStone")>() {
+        return {.groundMatches = {}, .objectMatches = {Hash("ObjectStone")}, .action = []() {
                     auto worldArea{_<World>().GetCurrentWorldArea()};
 
                     auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
 
                     auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-                    if (tile)
-                    {
+                    if (tile) {
                         tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
                     }
 
@@ -549,12 +458,8 @@ namespace Forradia::Theme0
     }
 
     template <>
-    Action GetAction<Hash("ActionBuildSimpleShelter")>()
-    {
-        return {.groundMatches = {},
-                .objectMatches = {},
-                .action = []()
-                {
+    Action GetAction<Hash("ActionBuildSimpleShelter")>() {
+        return {.groundMatches = {}, .objectMatches = {}, .action = []() {
                     _<GUIChatBox>().Print("You start build a simple "
                                           "shelter.");
 
@@ -566,14 +471,11 @@ namespace Forradia::Theme0
 
                     auto lackingBranchesCount{requiredBranchesCount - hasBranchesCount};
 
-                    if (lackingBranchesCount <= 0)
-                    {
+                    if (lackingBranchesCount <= 0) {
                         _<GUIChatBox>().Print("You finished building a "
                                               "simple "
                                               "shelter.");
-                    }
-                    else
-                    {
+                    } else {
                         _<GUIChatBox>().Print("You need " + std::to_string(lackingBranchesCount) +
                                               " more branches to "
                                               "build a simple "
@@ -582,17 +484,12 @@ namespace Forradia::Theme0
                 }};
     }
 
-    void UpdateActions()
-    {
-        for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
-        {
-            if (GetTicks() > it->first)
-            {
+    void UpdateActions() {
+        for (auto it = s_timedActions.begin(); it != s_timedActions.end();) {
+            if (GetTicks() > it->first) {
                 it->second();
                 it = s_timedActions.erase(it);
-            }
-            else
-            {
+            } else {
                 ++it;
             }
         }

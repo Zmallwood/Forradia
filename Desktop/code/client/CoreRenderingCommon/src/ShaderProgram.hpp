@@ -9,32 +9,27 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Shader program which is used for each renderer.
-    class ShaderProgram
-    {
+    class ShaderProgram {
       public:
         /// Initialize the shader program.
         ///
         /// @param vertexShaderSource Vertex shader source.
         /// @param fragmentShaderSource Fragment shader source.
-        ShaderProgram(StringView vertexShaderSource, StringView fragmentShaderSource)
-        {
+        ShaderProgram(StringView vertexShaderSource, StringView fragmentShaderSource) {
             this->Initialize(vertexShaderSource, fragmentShaderSource);
         }
 
         /// Cleanup the shader program.
-        ~ShaderProgram()
-        {
+        ~ShaderProgram() {
             this->Cleanup();
         }
 
         /// Gets the program ID.
         ///
         /// @return The program ID.
-        auto GetProgramID() const
-        {
+        auto GetProgramID() const {
             return m_programID;
         }
 

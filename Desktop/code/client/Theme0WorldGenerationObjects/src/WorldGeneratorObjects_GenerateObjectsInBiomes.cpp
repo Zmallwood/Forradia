@@ -12,10 +12,8 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorObjects.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorObjects::GenerateObjectsInBiomes() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -35,8 +33,7 @@ namespace Forradia::Theme0
 
         // Create the scattered trees.
 
-        for (auto i = 0; i < numScatteredTrees; i++)
-        {
+        for (auto i = 0; i < numScatteredTrees; i++) {
             // Obtain a random position for the tree.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -49,8 +46,7 @@ namespace Forradia::Theme0
 
             // Do not continue if the tile is invalid or not valid for a tree.
 
-            if (!tile || !IsValidForFlora(x, y))
-            {
+            if (!tile || !IsValidForFlora(x, y)) {
                 continue;
             }
 
@@ -58,20 +54,16 @@ namespace Forradia::Theme0
 
             // Check if the tile has grass ground and if the random number is less than 8.
 
-            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
-            {
+            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8) {
                 // Clear the objects stack on the tile.
 
                 tile->GetObjectsStack()->ClearObjects();
 
                 // Add a tree with type of either fir or birch with a 50% chance.
 
-                if (GetRandomInt(100) < 50)
-                {
+                if (GetRandomInt(100) < 50) {
                     tile->GetObjectsStack()->AddObject("ObjectFirTree");
-                }
-                else
-                {
+                } else {
                     tile->GetObjectsStack()->AddObject("ObjectBirchTree");
                 }
             }
@@ -85,8 +77,7 @@ namespace Forradia::Theme0
 
         // Create the scattered bushes.
 
-        for (auto i = 0; i < numScatteredBushes; i++)
-        {
+        for (auto i = 0; i < numScatteredBushes; i++) {
             // Obtain a random position for the bush.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -99,27 +90,22 @@ namespace Forradia::Theme0
 
             // Do not continue if the tile is invalid or not valid for a bush.
 
-            if (!tile || !IsValidForFlora(x, y))
-            {
+            if (!tile || !IsValidForFlora(x, y)) {
                 continue;
             }
 
             // Check probability of adding a bush.
 
-            if (GetRandomInt(100) < 8)
-            {
+            if (GetRandomInt(100) < 8) {
                 // Make it so that the tile has no other objects on it.
 
                 tile->GetObjectsStack()->ClearObjects();
 
                 // Add a bush with type of either bush1 or bush2 with a 50% chance.
 
-                if (GetRandomInt(100) < 50)
-                {
+                if (GetRandomInt(100) < 50) {
                     tile->GetObjectsStack()->AddObject("ObjectBush1");
-                }
-                else
-                {
+                } else {
                     tile->GetObjectsStack()->AddObject("ObjectBush2");
                 }
             }
@@ -133,8 +119,7 @@ namespace Forradia::Theme0
 
         // Create the stone boulders.
 
-        for (auto i = 0; i < numBoulders; i++)
-        {
+        for (auto i = 0; i < numBoulders; i++) {
             // Obtain a random position for the boulder.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -148,8 +133,7 @@ namespace Forradia::Theme0
             // Do not continue if the tile is invalid or the water depth is greater than or
             // equal to 4.
 
-            if (!tile || tile->GetWaterDepth() >= 4)
-            {
+            if (!tile || tile->GetWaterDepth() >= 4) {
                 continue;
             }
 
@@ -175,8 +159,7 @@ namespace Forradia::Theme0
 
         // Create the brown mushrooms.
 
-        for (auto i = 0; i < numMushrooms; i++)
-        {
+        for (auto i = 0; i < numMushrooms; i++) {
             // Obtain a random position for the mushroom.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -189,8 +172,7 @@ namespace Forradia::Theme0
 
             // Do not continue if the tile is invalid or not valid for a mushroom.
 
-            if (!tile || !IsValidForFlora(x, y))
-            {
+            if (!tile || !IsValidForFlora(x, y)) {
                 continue;
             }
 
@@ -198,8 +180,7 @@ namespace Forradia::Theme0
 
             auto ground{tile->GetGround()};
 
-            if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
-            {
+            if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt")) {
                 continue;
             }
 
@@ -208,8 +189,7 @@ namespace Forradia::Theme0
 
             auto objectsStack{tile->GetObjectsStack()};
 
-            if (objectsStack->GetSize() > 0)
-            {
+            if (objectsStack->GetSize() > 0) {
                 // Skip if there's already a significant object (like a tree).
 
                 // TODO: But we might want to allow mushrooms with bushes.
@@ -222,14 +202,11 @@ namespace Forradia::Theme0
 
             auto nearbyObjectsCount{0};
 
-            for (auto checkY = y - 2; checkY <= y + 2; checkY++)
-            {
-                for (auto checkX = x - 2; checkX <= x + 2; checkX++)
-                {
+            for (auto checkY = y - 2; checkY <= y + 2; checkY++) {
+                for (auto checkX = x - 2; checkX <= x + 2; checkX++) {
                     // If the coordinates are the same as the current tile.
 
-                    if (checkX == x && checkY == y)
-                    {
+                    if (checkX == x && checkY == y) {
                         // Continue to the next tile.
 
                         continue;
@@ -237,8 +214,7 @@ namespace Forradia::Theme0
 
                     // If the coordinates are invalid.
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
-                    {
+                    if (!worldArea->IsValidCoordinate(checkX, checkY)) {
                         // Continue to the next tile.
 
                         continue;
@@ -250,8 +226,7 @@ namespace Forradia::Theme0
 
                     // If the tile is valid and has objects on it.
 
-                    if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
-                    {
+                    if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0) {
                         // Increment the number of nearby objects.
 
                         nearbyObjectsCount++;
@@ -276,15 +251,13 @@ namespace Forradia::Theme0
 
             // Cap probability at a reasonable maximum.
 
-            if (mushroomProbability > 25)
-            {
+            if (mushroomProbability > 25) {
                 mushroomProbability = 25;
             }
 
             // Check if a random number is less than the probability of adding a mushroom.
 
-            if (GetRandomInt(100) < mushroomProbability)
-            {
+            if (GetRandomInt(100) < mushroomProbability) {
                 // Make it so that the tile has no other objects on it.
 
                 tile->GetObjectsStack()->ClearObjects();
@@ -299,8 +272,7 @@ namespace Forradia::Theme0
 
         // Create the stones.
 
-        for (auto i = 0; i < numStones; i++)
-        {
+        for (auto i = 0; i < numStones; i++) {
             auto x{GetRandomInt(worldAreaSize.width)};
 
             auto y{GetRandomInt(worldAreaSize.height)};
@@ -309,15 +281,13 @@ namespace Forradia::Theme0
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
-            {
+            if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0) {
                 continue;
             }
 
             auto objectsStack{tile->GetObjectsStack()};
 
-            if (objectsStack->GetSize() > 0)
-            {
+            if (objectsStack->GetSize() > 0) {
                 continue;
             }
 

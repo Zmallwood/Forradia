@@ -9,10 +9,8 @@
 
 #include "SDLDevice.hpp"
 
-namespace Forradia
-{
-    void SDLDevice::SetupSDLWindow()
-    {
+namespace Forradia {
+    void SDLDevice::SetupSDLWindow() {
         // Get the screen size.
         auto screenSize{this->GetScreenSize()};
 
@@ -24,8 +22,7 @@ namespace Forradia
                                   SDLDeleter());
 
         // Check that the window was created successfully.
-        if (nullptr == m_window)
-        {
+        if (nullptr == m_window) {
             PrintLine("Window could not be created. "
                       "SDL Error: " +
                       String(SDL_GetError()));

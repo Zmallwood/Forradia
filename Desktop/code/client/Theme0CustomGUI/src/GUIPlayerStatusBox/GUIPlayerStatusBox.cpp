@@ -14,10 +14,8 @@
 #include "Player/PlayerCharacter.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIPlayerStatusBox::Initialize()
-    {
+namespace Forradia::Theme0 {
+    void GUIPlayerStatusBox::Initialize() {
         // Create the health meter.
 
         auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
@@ -33,8 +31,7 @@ namespace Forradia::Theme0
         this->AddChildComponent(m_wellBeingValueTextLabel);
     }
 
-    void GUIPlayerStatusBox::UpdateDerived()
-    {
+    void GUIPlayerStatusBox::UpdateDerived() {
         GUIPanel::UpdateDerived();
 
         auto wellBeing{_<Theme0::GameplayCore::PlayerCharacter>().GetWellBeing()};
@@ -44,8 +41,7 @@ namespace Forradia::Theme0
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
 
-    void GUIPlayerStatusBox::RenderDerived() const
-    {
+    void GUIPlayerStatusBox::RenderDerived() const {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};

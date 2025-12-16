@@ -10,8 +10,7 @@
 #pragma once
 #include "Coloring/Color.hpp"
 
-namespace Forradia::Palette
-{
+namespace Forradia::Palette {
     /// Get a color from the palette.
     ///
     /// @param N The hash of the name of the color to get.

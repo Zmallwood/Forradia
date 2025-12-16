@@ -9,10 +9,8 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const
-    {
+namespace Forradia {
+    GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const {
         // Create a new shader.
         auto shader{glCreateShader(shaderType)};
 
@@ -32,8 +30,7 @@ namespace Forradia
         glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
         // If the compile failed.
-        if (isCompiled == GL_FALSE)
-        {
+        if (isCompiled == GL_FALSE) {
             // Get the length of the info log.
 
             GLint maxLength{0};

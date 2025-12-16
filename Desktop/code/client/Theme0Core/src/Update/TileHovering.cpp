@@ -16,24 +16,20 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void TileHovering::Update()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void TileHovering::Update() {
         // Forward to the method that determines the hovered coordinate with raycasting.
 
         this->DetermineHoveredCoordinateWithRaycasting();
     }
 
-    void TileHovering::DetermineHoveredCoordinateWithRaycasting()
-    {
+    void TileHovering::DetermineHoveredCoordinateWithRaycasting() {
         // Forward to the method that iterates over the rendered tiles.
 
         this->IterateOverRenderedTiles();
     }
 
-    void TileHovering::IterateOverRenderedTiles()
-    {
+    void TileHovering::IterateOverRenderedTiles() {
         // Obtain required data.
 
         auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -46,10 +42,8 @@ namespace Forradia::Theme0::GameplayCore
 
         // Iterate over the rendered tiles.
 
-        for (auto y = 0; y < gridSize.height; y++)
-        {
-            for (auto x = 0; x < gridSize.width; x++)
-            {
+        for (auto y = 0; y < gridSize.height; y++) {
+            for (auto x = 0; x < gridSize.width; x++) {
                 // Calculate the x and y coordinates of the tile.
 
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
@@ -62,8 +56,7 @@ namespace Forradia::Theme0::GameplayCore
 
                 // If the tile is hovered
 
-                if (result)
-                {
+                if (result) {
                     // Set the hovered coordinate and return.
 
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
@@ -74,8 +67,7 @@ namespace Forradia::Theme0::GameplayCore
         }
     }
 
-    bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const
-    {
+    bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const {
         // Forward to the method that checks if the ray intersects the tile.
 
         auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
@@ -83,8 +75,7 @@ namespace Forradia::Theme0::GameplayCore
         return result;
     }
 
-    bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const
-    {
+    bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const {
         // Get mouse position in normalized screen coordinates.
 
         auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
@@ -115,13 +106,11 @@ namespace Forradia::Theme0::GameplayCore
 
         // Perspective divide.
 
-        if (std::abs(nearPoint.w) > 0.0001f)
-        {
+        if (std::abs(nearPoint.w) > 0.0001f) {
             nearPoint /= nearPoint.w;
         }
 
-        if (std::abs(farPoint.w) > 0.0001f)
-        {
+        if (std::abs(farPoint.w) > 0.0001f) {
             farPoint /= farPoint.w;
         }
 
@@ -150,8 +139,7 @@ namespace Forradia::Theme0::GameplayCore
         if (!worldArea->IsValidCoordinate(coordinateNW) ||
             !worldArea->IsValidCoordinate(coordinateNE) ||
             !worldArea->IsValidCoordinate(coordinateSW) ||
-            !worldArea->IsValidCoordinate(coordinateSE))
-        {
+            !worldArea->IsValidCoordinate(coordinateSE)) {
             // If not, return false.
 
             return false;

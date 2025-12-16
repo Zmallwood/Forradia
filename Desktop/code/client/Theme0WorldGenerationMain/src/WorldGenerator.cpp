@@ -13,10 +13,8 @@
 #include "WorldGeneratorObjects.hpp"
 #include "WorldGeneratorWater.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGenerator::GenerateNewWorld() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGenerator::GenerateNewWorld() const {
         // Prepare the world generator for generating a new world.
 
         this->Prepare();
@@ -38,8 +36,7 @@ namespace Forradia::Theme0
         _<WorldGeneratorEntities>().GenerateEntities();
     }
 
-    void WorldGenerator::Prepare() const
-    {
+    void WorldGenerator::Prepare() const {
         // Prepare all the generators for generating a new world.
 
         _<WorldGeneratorGround>().Prepare();

@@ -9,15 +9,13 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     class IScene;
 
     ///
     /// The manager for the scenes.
     ///
-    class SceneManager
-    {
+    class SceneManager {
       public:
         ///
         /// Adds a scene to the manager.

@@ -9,10 +9,8 @@
 
 #include "StringUtilities.hpp"
 
-namespace Forradia
-{
-    String Replace(StringView text, char replace, char replaceWith)
-    {
+namespace Forradia {
+    String Replace(StringView text, char replace, char replaceWith) {
         // Create a copy of the string.
         String result{text.data()};
 

@@ -14,10 +14,8 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorEntities::GenerateEntities() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorEntities::GenerateEntities() const {
         // Do the steps to generate entities.
 
         GenerateCreaturesInEcosystems();
@@ -25,8 +23,7 @@ namespace Forradia::Theme0
         GenerateRobotsInAreas();
     }
 
-    void WorldGeneratorEntities::GenerateRobotsInAreas() const
-    {
+    void WorldGeneratorEntities::GenerateRobotsInAreas() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -44,8 +41,7 @@ namespace Forradia::Theme0
 
         // Generate robots in clusters.
 
-        for (auto cluster = 0; cluster < numRobotClusters; cluster++)
-        {
+        for (auto cluster = 0; cluster < numRobotClusters; cluster++) {
             // Generate a random center point for the cluster.
 
             auto centerX{GetRandomInt(worldAreaSize.width)};
@@ -58,8 +54,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid or is water.
 
-            if (!centerTile || centerTile->GetGround() == Hash("GroundWater"))
-            {
+            if (!centerTile || centerTile->GetGround() == Hash("GroundWater")) {
                 continue;
             }
 
@@ -73,8 +68,7 @@ namespace Forradia::Theme0
 
             // Generate robots in the cluster.
 
-            for (auto r = 0; r < robotsInCluster; r++)
-            {
+            for (auto r = 0; r < robotsInCluster; r++) {
                 // Generate a random angle.
 
                 auto angle = GetRandomInt(360) * M_PI / 180.0f;
@@ -91,8 +85,7 @@ namespace Forradia::Theme0
 
                 // If the coordinates are out of bounds.
 
-                if (!worldArea->IsValidCoordinate(robotX, robotY))
-                {
+                if (!worldArea->IsValidCoordinate(robotX, robotY)) {
                     // Skip this robot.
 
                     continue;
@@ -105,8 +98,7 @@ namespace Forradia::Theme0
                 // If the tile is invalid, or already has a robot or is water.
 
                 if (!robotTile || robotTile->GetRobot() ||
-                    robotTile->GetGround() == Hash("GroundWater"))
-                {
+                    robotTile->GetGround() == Hash("GroundWater")) {
                     // Skip this robot.
 
                     continue;
@@ -134,8 +126,7 @@ namespace Forradia::Theme0
 
         // Generate scattered robots.
 
-        for (auto i = 0; i < numScatteredRobots; i++)
-        {
+        for (auto i = 0; i < numScatteredRobots; i++) {
             // Generate random coordinates.
 
             auto x{GetRandomInt(worldAreaSize.width)};
@@ -148,8 +139,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid, or already has a robot or is water.
 
-            if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater"))
-            {
+            if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater")) {
                 // Skip this robot.
 
                 continue;
@@ -159,8 +149,7 @@ namespace Forradia::Theme0
 
             // If a random number is less than 15.
 
-            if (GetRandomInt(100) < 15)
-            {
+            if (GetRandomInt(100) < 15) {
                 // Create a new robot.
 
                 auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", x, y)};
@@ -176,18 +165,14 @@ namespace Forradia::Theme0
         }
     }
 
-    bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const
-    {
+    bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const {
         // Check all tiles in the radius.
 
-        for (auto checkY = y - radius; checkY <= y + radius; checkY++)
-        {
-            for (auto checkX = x - radius; checkX <= x + radius; checkX++)
-            {
+        for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
+            for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
                 // If the coordinates are out of bounds.
 
-                if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
-                {
+                if (!GetWorldArea()->IsValidCoordinate(checkX, checkY)) {
                     // Skip this tile.
 
                     continue;
@@ -199,16 +184,14 @@ namespace Forradia::Theme0
 
                 // Check if the tile is water.
 
-                if (tile && tile->GetGround() == Hash("GroundWater"))
-                {
+                if (tile && tile->GetGround() == Hash("GroundWater")) {
                     // Calculate the distance between the tile and the given coordinates.
 
                     auto distance{GetDistance(x, y, checkX, checkY)};
 
                     // Return true if the distance is less than or equal to the radius.
 
-                    if (distance <= radius)
-                    {
+                    if (distance <= radius) {
                         return true;
                     }
                 }

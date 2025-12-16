@@ -10,11 +10,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Manages keyboard input from the player.
-    class KeyboardInput
-    {
+    class KeyboardInput {
       public:
         /// Resets the keyboard input.
         void Reset();
@@ -55,8 +53,7 @@ namespace Forradia
 
         void AddTextInput(StringView text);
 
-        auto GetTextInput() const
-        {
+        auto GetTextInput() const {
             return m_textInput;
         }
 

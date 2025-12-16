@@ -11,18 +11,14 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     class GUILabel;
 }
 
-namespace Forradia::Theme0
-{
-    class GUIPlayerStatusBox : public GUIPanel
-    {
+namespace Forradia::Theme0 {
+    class GUIPlayerStatusBox : public GUIPanel {
       public:
-        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
-        {
+        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f) {
             this->Initialize();
         }
 

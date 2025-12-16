@@ -14,24 +14,20 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIChatBox::Initialize()
-    {
+namespace Forradia {
+    void GUIChatBox::Initialize() {
         // Initialize the render IDs for the text lines.
 
         auto maxNumLines{this->GetMaxNumLines()};
 
-        for (auto i = 0; i < maxNumLines; i++)
-        {
+        for (auto i = 0; i < maxNumLines; i++) {
             // Create a render ID for the text line.
 
             m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
         }
     }
 
-    int GUIChatBox::GetMaxNumLines() const
-    {
+    int GUIChatBox::GetMaxNumLines() const {
         // Get the bounds of the chat box.
 
         auto bounds{this->GetBounds()};
@@ -41,15 +37,13 @@ namespace Forradia
         return CInt(bounds.height / k_lineHeight - 1);
     }
 
-    void GUIChatBox::UpdateDerived()
-    {
+    void GUIChatBox::UpdateDerived() {
         GUIPanel::UpdateDerived();
 
         m_input = _<KeyboardInput>().GetTextInput();
     }
 
-    void GUIChatBox::RenderDerived() const
-    {
+    void GUIChatBox::RenderDerived() const {
         // Call the base class specific render tasks as well as a standard procedure, even if
         // they do nothing in this case.
 
@@ -69,16 +63,14 @@ namespace Forradia
 
         // Loop through the text lines.
 
-        for (auto i = 0; i < maxNumLines; i++)
-        {
+        for (auto i = 0; i < maxNumLines; i++) {
             // Compute the index of the text line.
 
             auto index{m_lines.size() - maxNumLines + i};
 
             // Index out of bounds check.
 
-            if (index < 0 || index >= m_lines.size())
-            {
+            if (index < 0 || index >= m_lines.size()) {
                 continue;
             }
 
@@ -114,8 +106,7 @@ namespace Forradia
 
         // If the input is active.
 
-        if (m_inputActive)
-        {
+        if (m_inputActive) {
             // Get the cursor bounds.
 
             // TODO: Calculate the cursor x-coordinate based on the text input.
@@ -138,15 +129,13 @@ namespace Forradia
         }
     }
 
-    void GUIChatBox::Print(StringView text)
-    {
+    void GUIChatBox::Print(StringView text) {
         // Add the text to the lines.
 
         m_lines.push_back(text.data());
     }
 
-    void GUIChatBox::EnableInput()
-    {
+    void GUIChatBox::EnableInput() {
         _<KeyboardInput>().StartTextInput();
 
         // Set the input active flag to true.
@@ -154,12 +143,10 @@ namespace Forradia
         m_inputActive = true;
     }
 
-    void GUIChatBox::SubmitInput()
-    {
+    void GUIChatBox::SubmitInput() {
         // TODO: Act on the typed input.
 
-        if (m_input == "/quit")
-        {
+        if (m_input == "/quit") {
             _<Engine>().Stop();
         }
 

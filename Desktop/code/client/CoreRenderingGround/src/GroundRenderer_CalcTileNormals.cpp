@@ -9,10 +9,9 @@
 
 #include "GroundRenderer.hpp"
 
-namespace Forradia
-{
-    Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const
-    {
+namespace Forradia {
+    Vector<glm::vec3>
+    GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const {
         // Define constants.
 
         constexpr size_t k_vertexStride = 8;
@@ -20,8 +19,7 @@ namespace Forradia
         constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
 
         // Check if the vertex data is sufficient, cancel if not.
-        if (verticesNoNormals.size() < k_minArraySize)
-        {
+        if (verticesNoNormals.size() < k_minArraySize) {
             throw std::invalid_argument("Insufficient vertex data.");
         }
 
@@ -30,10 +28,8 @@ namespace Forradia
         std::map<int, std::map<int, glm::vec3>> v;
 
         // Loop through the vertices and store them in the map.
-        for (auto y = 0; y < 3; y++)
-        {
-            for (auto x = 0; x < 3; x++)
-            {
+        for (auto y = 0; y < 3; y++) {
+            for (auto x = 0; x < 3; x++) {
                 // Calculate the index of the vertex.
                 auto i{y * 3 + x};
 

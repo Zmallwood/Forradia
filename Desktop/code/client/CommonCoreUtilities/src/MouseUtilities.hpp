@@ -13,8 +13,7 @@
 
 struct SDL_Window;
 
-namespace Forradia
-{
+namespace Forradia {
     /// Obtain normalized mouse position.
     ///
     /// @param window Window to get the mouse position for.

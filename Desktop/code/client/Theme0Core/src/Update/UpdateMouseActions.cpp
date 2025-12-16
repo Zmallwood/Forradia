@@ -18,17 +18,13 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void UpdateMouseActions()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void UpdateMouseActions() {
         if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
-            _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200)
-        {
+            _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200) {
             auto currentPlayerMode{_<PlayerCharacter>().GetPlayerMode()};
 
-            switch (currentPlayerMode)
-            {
+            switch (currentPlayerMode) {
             case PlayerModes::Interaction:
 
                 _<GUIInteractionMenu>().BuildMenu();
@@ -45,12 +41,10 @@ namespace Forradia::Theme0::GameplayCore
                 auto hoveredTile{
                     currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
 
-                if (hoveredTile)
-                {
+                if (hoveredTile) {
                     auto robot{hoveredTile->GetRobot()};
 
-                    if (robot)
-                    {
+                    if (robot) {
                         _<GameplayCore::BattleSystem>().SetTargetedRobot(robot);
                     }
                 }

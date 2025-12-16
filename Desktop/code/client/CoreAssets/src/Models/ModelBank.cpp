@@ -10,16 +10,13 @@
 #include "ModelBank.hpp"
 #include "Construction/Model.hpp"
 
-namespace Forradia
-{
-    void ModelBank::Initialize()
-    {
+namespace Forradia {
+    void ModelBank::Initialize() {
         // Load models from the file system.
         this->LoadModels();
     }
 
-    void ModelBank::LoadModels()
-    {
+    void ModelBank::LoadModels() {
         // Take base path from SDL.
         auto basePath{String(SDL_GetBasePath())};
 
@@ -27,8 +24,7 @@ namespace Forradia
         auto imagesPath{basePath + k_relativeModelsPath.data()};
 
         // Ensure the path exists to continue.
-        if (false == std::filesystem::exists(imagesPath))
-        {
+        if (false == std::filesystem::exists(imagesPath)) {
             return;
         }
 
@@ -36,14 +32,12 @@ namespace Forradia
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         // Iterate through the directory using the rdi.
-        for (auto it : rdi)
-        {
+        for (auto it : rdi) {
             // Replace backslashes with forward slashes.
             auto filePath{Replace(it.path().string(), '\\', '/')};
 
             // If the file is an OBJ file.
-            if (GetFileExtension(filePath) == "obj")
-            {
+            if (GetFileExtension(filePath) == "obj") {
                 // Get the file name.
                 auto fileName{GetFileNameNoExtension(filePath)};
 
@@ -59,11 +53,9 @@ namespace Forradia
         }
     }
 
-    SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const
-    {
+    SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const {
         // If the model is in the map.
-        if (m_models.contains(modelNameHash))
-        {
+        if (m_models.contains(modelNameHash)) {
             // Return it.
             return m_models.at(modelNameHash);
         }
@@ -72,8 +64,7 @@ namespace Forradia
         return nullptr;
     }
 
-    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const
-    {
+    SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const {
         // Load the model from the file at the path.
         auto modelResult{std::make_shared<Model>(filePath)};
 

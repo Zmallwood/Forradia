@@ -10,10 +10,8 @@
 #include "RendererBase.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    void RendererBase::Initialize()
-    {
+namespace Forradia {
+    void RendererBase::Initialize() {
         // Get vertex shader source, implemented in deriving class.
         String vertexShaderSource{this->GetVSSource()};
 

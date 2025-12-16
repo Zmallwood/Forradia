@@ -11,13 +11,10 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    void GroundRenderer::Cleanup()
-    {
+namespace Forradia {
+    void GroundRenderer::Cleanup() {
         // Go through the operations cache.
-        for (auto &entry : m_operationsCache)
-        {
+        for (auto &entry : m_operationsCache) {
             // Delete the vertex array objects and buffer objects in the operations cache.
 
             glDeleteBuffers(1, &entry.second.ibo);
@@ -29,8 +26,7 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    void GroundRenderer::SetupState() const
-    {
+    void GroundRenderer::SetupState() const {
         // Set up the state for the renderer.
 
         glEnable(GL_DEPTH_TEST);
@@ -53,8 +49,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    void GroundRenderer::RestoreState() const
-    {
+    void GroundRenderer::RestoreState() const {
         // Unbind the vertex array object, vertex buffer object and index buffer object.
 
         glBindVertexArray(0);
@@ -68,14 +63,12 @@ namespace Forradia
         glDisable(GL_BLEND);
     }
 
-    void GroundRenderer::Reset()
-    {
+    void GroundRenderer::Reset() {
         // Clean up the renderer.
         this->Cleanup();
     }
 
-    void GroundRenderer::SetupAttributeLayout() const
-    {
+    void GroundRenderer::SetupAttributeLayout() const {
         // Set up the attribute layout for the vertex shader.
 
         // Position.
@@ -107,14 +100,12 @@ namespace Forradia
         glEnableVertexAttribArray(3);
     }
 
-    bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const
-    {
+    bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const {
         // Check if the unique render ID is in the operations cache.
         return m_operationsCache.contains(uniqueRenderID);
     }
 
-    void GroundRenderer::InitializeDerived()
-    {
+    void GroundRenderer::InitializeDerived() {
         // Get the layout location for the uniform MVP matrix.
         m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
     }

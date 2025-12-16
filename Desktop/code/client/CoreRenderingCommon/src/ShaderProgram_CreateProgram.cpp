@@ -9,10 +9,8 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia
-{
-    GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader)
-    {
+namespace Forradia {
+    GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) {
         // Create a new shader program.
         m_programID = glCreateProgram();
 
@@ -30,8 +28,7 @@ namespace Forradia
         glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
         // If the link failed.
-        if (isLinked == GL_FALSE)
-        {
+        if (isLinked == GL_FALSE) {
             // Get the length of the info log.
 
             GLint maxLength{0};

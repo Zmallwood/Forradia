@@ -14,18 +14,15 @@
 #include "Player/PlayerCharacter.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIPlayerBodyWindow::Initialize()
-    {
+namespace Forradia::Theme0 {
+    void GUIPlayerBodyWindow::Initialize() {
         auto imageWidth{0.07f};
 
         auto imageHeight{ConvertWidthToHeight(imageWidth, _<SDLDevice>().GetWindow())};
 
         auto overallBodyImageButton{std::make_shared<GUIButton>(
             "GUIButtonOverallBody", 0.1f - imageWidth / 2, 0.04f, imageWidth, imageHeight, "",
-            [this]
-            {
+            [this] {
                 this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody));
                 this->UpdateBodyPartInfoLabels();
             },
@@ -36,8 +33,7 @@ namespace Forradia::Theme0
         auto rightArmBodyImageButton{std::make_shared<GUIButton>(
             "GUIButtonRightArm", 0.1f - imageWidth / 2 - imageWidth, 0.04f, imageWidth, imageHeight,
             "",
-            [this]
-            {
+            [this] {
                 this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::RightArm));
                 this->UpdateBodyPartInfoLabels();
             },
@@ -48,8 +44,7 @@ namespace Forradia::Theme0
         auto leftArmBodyImageButton{std::make_shared<GUIButton>(
             "GUIButtonLeftArm", 0.1f - imageWidth / 2 + imageWidth, 0.04f, imageWidth, imageHeight,
             "",
-            [this]
-            {
+            [this] {
                 this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::LeftArm));
                 this->UpdateBodyPartInfoLabels();
             },
@@ -60,8 +55,7 @@ namespace Forradia::Theme0
         auto legsImageButton{std::make_shared<GUIButton>(
             "GUIButtonLegs", 0.1f - imageWidth / 2, 0.04f + imageHeight, imageWidth, imageHeight,
             "",
-            [this]
-            {
+            [this] {
                 this->SelectBodyPart(CInt(Theme0::GameplayCore::PlayerBodyPartTypes::Legs));
                 this->UpdateBodyPartInfoLabels();
             },
@@ -92,13 +86,11 @@ namespace Forradia::Theme0
         this->AddChildComponent(m_labelBodyPartTemperature);
     }
 
-    void GUIPlayerBodyWindow::SelectBodyPart(int type)
-    {
+    void GUIPlayerBodyWindow::SelectBodyPart(int type) {
         m_selectedBodyPart = type;
     }
 
-    void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels()
-    {
+    void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() {
         auto &playerBody{_<Theme0::GameplayCore::PlayerCharacter>().GetBodyRef()};
 
         constexpr auto overallBody{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::OverallBody)};
@@ -109,10 +101,8 @@ namespace Forradia::Theme0
 
         constexpr auto legs{CInt(Theme0::GameplayCore::PlayerBodyPartTypes::Legs)};
 
-        switch (m_selectedBodyPart)
-        {
-        case overallBody:
-        {
+        switch (m_selectedBodyPart) {
+        case overallBody: {
             m_labelBodyPartName->SetText("Body part: Overall body");
 
             auto strength{
@@ -140,8 +130,7 @@ namespace Forradia::Theme0
 
         break;
 
-        case rightArm:
-        {
+        case rightArm: {
             m_labelBodyPartName->SetText("Body part: Right arm");
 
             auto strength{
@@ -170,8 +159,7 @@ namespace Forradia::Theme0
 
         break;
 
-        case leftArm:
-        {
+        case leftArm: {
             m_labelBodyPartName->SetText("Body part: Left arm");
 
             auto strength{
@@ -200,8 +188,7 @@ namespace Forradia::Theme0
 
         break;
 
-        case legs:
-        {
+        case legs: {
             m_labelBodyPartName->SetText("Body part: Legs");
 
             auto strength{

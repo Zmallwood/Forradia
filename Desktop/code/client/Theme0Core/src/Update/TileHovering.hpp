@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     ///
     /// Determines and provides the tile hovered by the mouse.
     ///
-    class TileHovering
-    {
+    class TileHovering {
       public:
         ///
         /// Updates the tile hovering.
@@ -25,8 +23,7 @@ namespace Forradia::Theme0::GameplayCore
         ///
         /// Provides the hovered coordinate.
         ///
-        auto GetHoveredCoordinate() const
-        {
+        auto GetHoveredCoordinate() const {
             return m_hoveredCoordinate;
         }
 

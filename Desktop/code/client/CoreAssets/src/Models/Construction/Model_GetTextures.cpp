@@ -9,10 +9,8 @@
 
 #include "Model.hpp"
 
-namespace Forradia
-{
-    Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const
-    {
+namespace Forradia {
+    Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const {
         // To hold the resulting textures.
         Vector<Texture> textures;
 

@@ -10,10 +10,8 @@
 #include "GUILabel.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia
-{
-    void GUILabel::RenderDerived() const
-    {
+namespace Forradia {
+    void GUILabel::RenderDerived() const {
         // Get the bounds of this label.
 
         auto bounds{GetBounds()};
@@ -24,8 +22,7 @@ namespace Forradia
 
         // If the text should be centered, center the text.
 
-        if (m_centerAlign)
-        {
+        if (m_centerAlign) {
             bounds.x += bounds.width / 2;
 
             bounds.y += bounds.height / 2;

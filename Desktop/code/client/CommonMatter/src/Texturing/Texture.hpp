@@ -10,11 +10,9 @@
 #pragma once
 #include "Aliases.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// A texture, primarily used for models.
-    class Texture
-    {
+    class Texture {
       public:
         String path; ///< The path to the texture.
     };

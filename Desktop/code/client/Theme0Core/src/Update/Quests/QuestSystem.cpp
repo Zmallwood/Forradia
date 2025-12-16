@@ -11,10 +11,8 @@
 #include "Quest.hpp"
 #include "Quests.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
-    void QuestSystem::Initialize()
-    {
+namespace Forradia::Theme0::GameplayCore {
+    void QuestSystem::Initialize() {
         m_quests.push_back(std::make_shared<MoveQuest>());
         m_quests.push_back(std::make_shared<ForageQuest>());
         m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
@@ -26,12 +24,9 @@ namespace Forradia::Theme0::GameplayCore
         m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
     }
 
-    void QuestSystem::Update()
-    {
-        for (auto &quest : this->m_quests)
-        {
-            if (quest->isCompleted)
-            {
+    void QuestSystem::Update() {
+        for (auto &quest : this->m_quests) {
+            if (quest->isCompleted) {
                 continue;
             }
 
@@ -41,12 +36,9 @@ namespace Forradia::Theme0::GameplayCore
         }
     }
 
-    String QuestSystem::GetCurrentQuestName() const
-    {
-        for (auto &quest : this->m_quests)
-        {
-            if (quest->isCompleted)
-            {
+    String QuestSystem::GetCurrentQuestName() const {
+        for (auto &quest : this->m_quests) {
+            if (quest->isCompleted) {
                 continue;
             }
 
@@ -56,12 +48,9 @@ namespace Forradia::Theme0::GameplayCore
         return "No quest";
     }
 
-    String QuestSystem::GetCurrentQuestDescription() const
-    {
-        for (auto &quest : this->m_quests)
-        {
-            if (quest->isCompleted)
-            {
+    String QuestSystem::GetCurrentQuestDescription() const {
+        for (auto &quest : this->m_quests) {
+            if (quest->isCompleted) {
                 continue;
             }
 
@@ -70,12 +59,9 @@ namespace Forradia::Theme0::GameplayCore
         return "";
     }
 
-    String QuestSystem::GetCurrentQuestStatus() const
-    {
-        for (auto &quest : this->m_quests)
-        {
-            if (quest->isCompleted)
-            {
+    String QuestSystem::GetCurrentQuestStatus() const {
+        for (auto &quest : this->m_quests) {
+            if (quest->isCompleted) {
                 continue;
             }
 

@@ -9,13 +9,10 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
-    class WorldView
-    {
+namespace Forradia::Theme0::GameplayCore {
+    class WorldView {
       public:
-        WorldView()
-        {
+        WorldView() {
             this->Initiallize();
         }
 

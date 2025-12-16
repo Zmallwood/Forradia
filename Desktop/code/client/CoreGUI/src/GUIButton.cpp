@@ -13,10 +13,8 @@
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia
-{
-    void GUIButton::UpdateDerived()
-    {
+namespace Forradia {
+    void GUIButton::UpdateDerived() {
         // Call the base class specific update tasks as well as a standard procedure, even if
         // they do nothing in this case.
 
@@ -30,8 +28,7 @@ namespace Forradia
 
         auto hovered{GetBounds().Contains(mousePosition)};
 
-        if (hovered)
-        {
+        if (hovered) {
             // Show hovered background when pointer is over the button.
 
             this->SetBackgroundImage(m_hoveredBackgroundImage);
@@ -42,21 +39,17 @@ namespace Forradia
 
             // Trigger the assigned action on mouse left-button click.
 
-            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-            {
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
                 m_action();
             }
-        }
-        else
-        {
+        } else {
             // Revert to default background when not hovered.
 
             SetBackgroundImage(m_backgroundImage);
         }
     }
 
-    void GUIButton::RenderDerived() const
-    {
+    void GUIButton::RenderDerived() const {
         // Call the base class specific render tasks as well as a standard procedure, even if
         // they do nothing in this case.
 

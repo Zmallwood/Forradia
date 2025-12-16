@@ -9,7 +9,6 @@
 #include "GUI.hpp"
 #include "GUIButton.hpp"
 #include "GUIChatBox.hpp"
-#include "GUIEnergyStatisticsPanel.hpp"
 #include "GUIExperienceBar.hpp"
 #include "GUIFPSPanel.hpp"
 #include "GUIInteractionMenu/Actions.hpp"
@@ -32,18 +31,15 @@
 #include "Update/UpdateRobotsMovement.hpp"
 #include "WorldView.hpp"
 
-namespace Forradia::Theme0
-{
-    MainScene::MainScene()
-    {
+namespace Forradia::Theme0 {
+    MainScene::MainScene() {
         this->SetInitializeDerived([this] { this->InitializeDerived(); });
         this->SetOnEnterDerived([this] { this->OnEnterDerived(); });
         this->SetUpdateDerived([this] { this->UpdateDerived(); });
         this->SetRenderDerived([this] { this->RenderDerived(); });
     }
 
-    void MainScene::InitializeDerived()
-    {
+    void MainScene::InitializeDerived() {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
         GetGUI()->AddChildComponent(__<GUIChatBox>());
 
@@ -71,22 +67,19 @@ namespace Forradia::Theme0
         GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
         GetGUI()->AddChildComponent(__<GUISystemMenu>());
         GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
-        GetGUI()->AddChildComponent(std::make_shared<GUIEnergyStatisticsPanel>());
         GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
         GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
         GetGUI()->AddChildComponent(__<GUIExperienceBar>());
     }
 
-    void MainScene::OnEnterDerived()
-    {
+    void MainScene::OnEnterDerived() {
         auto chatBoxHeight{_<GUIChatBox>().GetBounds().height};
         auto experienceBarHeight{_<GUIExperienceBar>().GetBounds().height};
         _<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
         _<GUIChatBox>().Print("You have entered the world.");
     }
 
-    void MainScene::UpdateDerived()
-    {
+    void MainScene::UpdateDerived() {
         GameplayCore::UpdateKeyboardActions();
         GameplayCore::UpdateMouseActions();
         GameplayCore::UpdateCreaturesMovement();
@@ -100,8 +93,7 @@ namespace Forradia::Theme0
         _<GameplayCore::QuestSystem>().Update();
     }
 
-    void MainScene::RenderDerived()
-    {
+    void MainScene::RenderDerived() {
         _<GameplayCore::WorldView>().Render();
     }
 }

@@ -9,23 +9,18 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
-    class GUIInteractionMenuEntry
-    {
+namespace Forradia::Theme0 {
+    class GUIInteractionMenuEntry {
       public:
         GUIInteractionMenuEntry(StringView label, Function<void()> action)
-            : m_label(label), m_action(action)
-        {
+            : m_label(label), m_action(action) {
         }
 
-        auto GetLabel() const
-        {
+        auto GetLabel() const {
             return m_label;
         }
 
-        auto GetAction() const
-        {
+        auto GetAction() const {
             return m_action;
         }
 

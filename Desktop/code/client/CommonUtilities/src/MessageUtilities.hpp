@@ -10,8 +10,7 @@
 #pragma once
 #include "Aliases.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// Print out a string of text, without a following line break.
     ///
     /// @param text Text to print.

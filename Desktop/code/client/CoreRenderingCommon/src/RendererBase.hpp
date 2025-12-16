@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     class ShaderProgram;
 
     /// Base class for all renderers.
-    class RendererBase
-    {
+    class RendererBase {
       public:
         /// Initialize the renderer with its shader program.
         void Initialize();
@@ -34,8 +32,7 @@ namespace Forradia
         virtual String GetFSSource() const = 0;
 
         /// Can be used to do additional initialization implemented in deriving class.
-        virtual void InitializeDerived()
-        {
+        virtual void InitializeDerived() {
         }
 
         /// Sets up the attribute layout.
@@ -44,8 +41,7 @@ namespace Forradia
         /// Gets the shader program.
         ///
         /// @return
-        auto GetShaderProgram() const
-        {
+        auto GetShaderProgram() const {
             return m_shaderProgram;
         }
 

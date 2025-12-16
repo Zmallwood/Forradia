@@ -19,21 +19,17 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIInteractionMenu::Initialize()
-    {
+namespace Forradia::Theme0 {
+    void GUIInteractionMenu::Initialize() {
         this->SetVisible(false);
 
-        for (auto i = 0; i < k_maxNumMenuEntries; i++)
-        {
+        for (auto i = 0; i < k_maxNumMenuEntries; i++) {
             m_renderIDsMenuEntryStrings.push_back(
                 Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
         }
     }
 
-    void GUIInteractionMenu::BuildMenu()
-    {
+    void GUIInteractionMenu::BuildMenu() {
         m_entries.clear();
 
         auto hoveredCoordinate{_<GameplayCore::TileHovering>().GetHoveredCoordinate()};
@@ -83,8 +79,7 @@ namespace Forradia::Theme0
         auto actionForage{GetAction<Hash("ActionForage")>()};
 
         if (tile && !actionForage.groundMatches.empty() &&
-            tile->GetGround() == actionForage.groundMatches[0])
-        {
+            tile->GetGround() == actionForage.groundMatches[0]) {
             m_entries.push_back({"Forage", actionForage.action});
         };
 
@@ -114,16 +109,13 @@ namespace Forradia::Theme0
 
         auto objects{tile->GetObjectsStack()->GetObjects()};
 
-        for (auto &object : objects)
-        {
+        for (auto &object : objects) {
             auto type{object->GetType()};
 
             auto actionPickBranch{GetAction<Hash("ActionPickBranch")>()};
 
-            for (const auto &actionObjectTypes : actionPickBranch.objectMatches)
-            {
-                if (type == actionObjectTypes)
-                {
+            for (const auto &actionObjectTypes : actionPickBranch.objectMatches) {
+                if (type == actionObjectTypes) {
                     m_entries.push_back({"Pick branch", actionPickBranch.action});
 
                     break;
@@ -132,10 +124,8 @@ namespace Forradia::Theme0
 
             auto actionPickStone{GetAction<Hash("ActionPickStone")>()};
 
-            for (const auto &actionObjectTypes : actionPickStone.objectMatches)
-            {
-                if (type == actionObjectTypes)
-                {
+            for (const auto &actionObjectTypes : actionPickStone.objectMatches) {
+                if (type == actionObjectTypes) {
                     m_entries.push_back({"Pick stone", actionPickStone.action});
 
                     break;
@@ -144,10 +134,8 @@ namespace Forradia::Theme0
 
             auto actionChipStone{GetAction<Hash("ActionChipStone")>()};
 
-            for (const auto &actionObjectTypes : actionChipStone.objectMatches)
-            {
-                if (type == actionObjectTypes)
-                {
+            for (const auto &actionObjectTypes : actionChipStone.objectMatches) {
+                if (type == actionObjectTypes) {
                     m_entries.push_back({"Chip stone", actionChipStone.action});
 
                     break;
@@ -156,10 +144,8 @@ namespace Forradia::Theme0
 
             auto actionSitByComputer{GetAction<Hash("ActionSitByComputer")>()};
 
-            for (const auto &actionObjectTypes : actionSitByComputer.objectMatches)
-            {
-                if (type == actionObjectTypes)
-                {
+            for (const auto &actionObjectTypes : actionSitByComputer.objectMatches) {
+                if (type == actionObjectTypes) {
 
                     m_entries.push_back({"Sit by computer", actionSitByComputer.action});
 
@@ -169,8 +155,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void GUIInteractionMenu::UpdateDerived()
-    {
+    void GUIInteractionMenu::UpdateDerived() {
         GUIPanel::UpdateDerived();
 
         auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
@@ -183,16 +168,13 @@ namespace Forradia::Theme0
 
         auto i{0};
 
-        for (auto &entry : m_entries)
-        {
+        for (auto &entry : m_entries) {
             auto menuEntryRect{RectF{bounds.x + 0.01f + k_indentWidth,
                                      bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
                                      k_lineHeight}};
 
-            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired())
-            {
-                if (menuEntryRect.Contains(mousePosition))
-                {
+            if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+                if (menuEntryRect.Contains(mousePosition)) {
                     entry.GetAction()();
                 }
 
@@ -201,14 +183,12 @@ namespace Forradia::Theme0
 
             ++i;
         }
-        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-        {
+        if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
             this->SetVisible(false);
         }
     }
 
-    void GUIInteractionMenu::RenderDerived() const
-    {
+    void GUIInteractionMenu::RenderDerived() const {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};
@@ -219,8 +199,7 @@ namespace Forradia::Theme0
 
         auto i{0};
 
-        for (auto &entry : m_entries)
-        {
+        for (auto &entry : m_entries) {
             _<TextRenderer>().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);

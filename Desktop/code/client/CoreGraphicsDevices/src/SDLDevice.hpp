@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// Sets up the objects related to SDL.
-    class SDLDevice
-    {
+    class SDLDevice {
       public:
         /// Sets up SDL and OpenGL.
         ///
@@ -30,8 +28,7 @@ namespace Forradia
         /// Returns the SDL window object.
         ///
         /// @return The SDL window object.
-        auto GetWindow() const
-        {
+        auto GetWindow() const {
             return m_window;
         }
 

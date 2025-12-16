@@ -9,14 +9,12 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// The engine class is responsible for initializing, running and stopping
     /// the game.
     ///
-    class Engine
-    {
+    class Engine {
       public:
         ///
         /// Initializes the engine.

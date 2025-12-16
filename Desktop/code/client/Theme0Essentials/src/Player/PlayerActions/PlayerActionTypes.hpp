@@ -9,10 +9,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
-    enum class PlayerActionTypes
-    {
+namespace Forradia::Theme0::GameplayCore {
+    enum class PlayerActionTypes {
         None,
         MoveNorth,
         MoveEast,

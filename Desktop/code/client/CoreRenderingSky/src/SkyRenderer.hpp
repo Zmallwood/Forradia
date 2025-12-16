@@ -11,22 +11,18 @@
 
 #include "RendererBase.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// A renderer for procedurally rendering the sky.
-    class SkyRenderer : public RendererBase
-    {
+    class SkyRenderer : public RendererBase {
       public:
         /// Constructor.
-        SkyRenderer() : m_vao{0}, m_ibo{0}, m_vbo{0}, m_indexCount{0}, m_initialized{false}
-        {
+        SkyRenderer() : m_vao{0}, m_ibo{0}, m_vbo{0}, m_indexCount{0}, m_initialized{false} {
             // Initialize the renderer base class.
             this->Initialize();
         }
 
         /// Destructor that cleans up the renderer.
-        ~SkyRenderer()
-        {
+        ~SkyRenderer() {
             // Cleanup the renderer.
             this->Cleanup();
         }

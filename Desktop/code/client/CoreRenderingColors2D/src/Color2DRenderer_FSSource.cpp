@@ -9,10 +9,8 @@
 
 #include "Color2DRenderer.hpp"
 
-namespace Forradia
-{
-    String Color2DRenderer::GetFSSource() const
-    {
+namespace Forradia {
+    String Color2DRenderer::GetFSSource() const {
         // Return the fragment shader source.
 
         return R"(

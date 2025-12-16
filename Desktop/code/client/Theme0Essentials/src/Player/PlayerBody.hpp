@@ -11,21 +11,18 @@
 
 #include "PlayerBodyPartTypes.hpp"
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     class PlayerBodyPart;
 
     ///
     /// Represents the body of the player.
     ///
-    class PlayerBody
-    {
+    class PlayerBody {
       public:
         ///
         /// Constructor.
         ///
-        PlayerBody()
-        {
+        PlayerBody() {
             this->Initialize();
         }
 

@@ -9,11 +9,9 @@
 
 #pragma once
 
-namespace Forradia
-{
+namespace Forradia {
     /// A rendering operation for colors in 2D.
-    class Color2DRenderingOperation
-    {
+    class Color2DRenderingOperation {
       public:
         GLuint vao; ///< The vertex array object.
         GLuint ibo; ///< The index buffer object.

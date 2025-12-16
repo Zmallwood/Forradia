@@ -14,16 +14,12 @@
 #include "GameSaveFiles/GameSaving.hpp"
 #include "Mouse/MouseInput.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUISystemMenu::Initialize()
-    {
+namespace Forradia::Theme0 {
+    void GUISystemMenu::Initialize() {
         this->SetVisible(false);
 
         auto saveGameButton{std::make_shared<GUIButton>("GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f,
-                                                        0.08f, 0.05f, "Save game",
-                                                        [this]
-                                                        {
+                                                        0.08f, 0.05f, "Save game", [this] {
                                                             _<GUIChatBox>().Print("Saving game...");
                                                             _<GameSaving>().SaveGame();
                                                         })};
@@ -31,9 +27,7 @@ namespace Forradia::Theme0
         this->AddChildComponent(saveGameButton);
 
         auto loadGameButton{std::make_shared<GUIButton>(
-            "GUIButtonLoadGame", 0.5f - 0.08f / 2, 0.5f + 0.05f, 0.08f, 0.05f, "Load game",
-            [this]
-            {
+            "GUIButtonLoadGame", 0.5f - 0.08f / 2, 0.5f + 0.05f, 0.08f, 0.05f, "Load game", [this] {
                 _<GUIChatBox>().Print("Loading game...");
                 _<GameSaving>().LoadGame();
             })};
@@ -41,15 +35,13 @@ namespace Forradia::Theme0
         this->AddChildComponent(loadGameButton);
     }
 
-    void GUISystemMenu::UpdateDerived()
-    {
+    void GUISystemMenu::UpdateDerived() {
         GUIComponent::UpdateDerived();
 
         _<MouseInput>().GetLeftMouseButtonRef().Reset();
     }
 
-    void GUISystemMenu::RenderDerived() const
-    {
+    void GUISystemMenu::RenderDerived() const {
         GUIComponent::RenderDerived();
 
         _<Color2DRenderer>().DrawFilledRectangle(k_renderIDBackgroundColor,

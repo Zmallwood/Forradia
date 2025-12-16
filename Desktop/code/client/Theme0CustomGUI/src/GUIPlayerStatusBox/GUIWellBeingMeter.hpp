@@ -11,18 +11,14 @@
 
 #include "GUIMeter.hpp"
 
-namespace Forradia::Theme0
-{
-    class GUIWellBeingMeter : public GUIMeter
-    {
+namespace Forradia::Theme0 {
+    class GUIWellBeingMeter : public GUIMeter {
       public:
         GUIWellBeingMeter(float x, float y, float width, float height)
-            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor())
-        {
+            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor()) {
         }
 
-        auto GetHeight() const
-        {
+        auto GetHeight() const {
             return k_height;
         }
 
@@ -31,8 +27,7 @@ namespace Forradia::Theme0
 
         float GetFilledPercentage() const override;
 
-        Color GetFilledColor() const
-        {
+        Color GetFilledColor() const {
             return Palette::GetColor<Hash("Red")>();
         }
 

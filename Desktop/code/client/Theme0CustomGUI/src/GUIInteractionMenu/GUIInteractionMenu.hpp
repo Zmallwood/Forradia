@@ -12,32 +12,26 @@
 #include "GUIInteractionMenuEntry.hpp"
 #include "GUIPanel.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class Robot;
 
-    class GUIInteractionMenu : public GUIPanel
-    {
+    class GUIInteractionMenu : public GUIPanel {
       public:
-        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
-        {
+        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f) {
             this->Initialize();
         }
 
         void BuildMenu();
 
-        auto &GetTimedActionsRef()
-        {
+        auto &GetTimedActionsRef() {
             return m_timedActions;
         }
 
-        auto GetClickedRobot() const
-        {
+        auto GetClickedRobot() const {
             return m_clickedRobot;
         }
 
-        auto GetClickedCoordinate() const
-        {
+        auto GetClickedCoordinate() const {
             return m_clickedCoordinate;
         }
 

@@ -12,10 +12,8 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0
-{
-    void WorldGeneratorObjects::GenerateObjects() const
-    {
+namespace Forradia::Theme0 {
+    void WorldGeneratorObjects::GenerateObjects() const {
         // Do the steps to generate objects in the world.
 
         GenerateForests();
@@ -25,8 +23,7 @@ namespace Forradia::Theme0
         GenerateObjectsInBiomes();
     }
 
-    void WorldGeneratorObjects::GenerateForests() const
-    {
+    void WorldGeneratorObjects::GenerateForests() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -43,8 +40,7 @@ namespace Forradia::Theme0
 
         // Create the forests.
 
-        for (auto i = 0; i < numForests; i++)
-        {
+        for (auto i = 0; i < numForests; i++) {
             // Obtain a random position for the forest.
 
             auto centerX{GetRandomInt(size.width)};
@@ -57,8 +53,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid or not valid for a forest.
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
-            {
+            if (!tile || !IsValidForFlora(centerX, centerY)) {
                 // Continue to the next forest.
 
                 continue;
@@ -78,14 +73,11 @@ namespace Forradia::Theme0
 
             // Create the forest.
 
-            for (auto y = centerY - radius; y <= centerY + radius; y++)
-            {
-                for (auto x = centerX - radius; x <= centerX + radius; x++)
-                {
+            for (auto y = centerY - radius; y <= centerY + radius; y++) {
+                for (auto x = centerX - radius; x <= centerX + radius; x++) {
                     // If the coordinates are invalid.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
+                    if (!worldArea->IsValidCoordinate(x, y)) {
                         // Continue to the next tile.
 
                         continue;
@@ -93,8 +85,7 @@ namespace Forradia::Theme0
 
                     // If the tile is not valid for flora.
 
-                    if (!IsValidForFlora(x, y))
-                    {
+                    if (!IsValidForFlora(x, y)) {
                         // Continue to the next tile.
 
                         continue;
@@ -106,8 +97,7 @@ namespace Forradia::Theme0
 
                     // If the distance is greater than the radius.
 
-                    if (distance > radius)
-                    {
+                    if (distance > radius) {
                         // Continue to the next tile.
 
                         continue;
@@ -123,47 +113,36 @@ namespace Forradia::Theme0
 
                     // Check if a random number is less than the local density.
 
-                    if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
-                    {
+                    if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f)) {
                         // Obtain the tile at the coordinates.
 
                         auto forestTile{worldArea->GetTile(x, y)};
 
                         // If the tile is valid.
 
-                        if (forestTile)
-                        {
+                        if (forestTile) {
                             // Make it so that the tile has no other objects on it.
 
                             forestTile->GetObjectsStack()->ClearObjects();
 
                             // Check if the forest should use fir or birch trees.
 
-                            if (useFir)
-                            {
+                            if (useFir) {
                                 // Add a tree of fir type with a 70% chance, otherwise add a
                                 // tree of birch type.
 
-                                if (GetRandomInt(100) < 70)
-                                {
+                                if (GetRandomInt(100) < 70) {
                                     forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
-                                }
-                                else
-                                {
+                                } else {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 // Add a tree of birch type with a 70% chance, otherwise add a
                                 // tree of fir type.
 
-                                if (GetRandomInt(100) < 70)
-                                {
+                                if (GetRandomInt(100) < 70) {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
-                                }
-                                else
-                                {
+                                } else {
                                     forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
                                 }
                             }
@@ -172,18 +151,14 @@ namespace Forradia::Theme0
 
                             // If a random number between 0 and 100 is less than 25.
 
-                            if (GetRandomInt(100) < 25)
-                            {
+                            if (GetRandomInt(100) < 25) {
                                 // Check if a random number between 0 and 100 is less than 50.
 
-                                if (GetRandomInt(100) < 50)
-                                {
+                                if (GetRandomInt(100) < 50) {
                                     // Add a bush of type 1.
 
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush1");
-                                }
-                                else
-                                {
+                                } else {
                                     // Otherwise add a bush of type 2.
 
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush2");
@@ -196,8 +171,7 @@ namespace Forradia::Theme0
         }
     }
 
-    void WorldGeneratorObjects::GenerateMeadows() const
-    {
+    void WorldGeneratorObjects::GenerateMeadows() const {
         // Obtain required data.
 
         auto worldArea{GetWorldArea()};
@@ -214,8 +188,7 @@ namespace Forradia::Theme0
 
         // Create the meadows.
 
-        for (auto i = 0; i < numMeadows; i++)
-        {
+        for (auto i = 0; i < numMeadows; i++) {
             // Obtain a random position for the meadow.
 
             auto centerX{GetRandomInt(size.width)};
@@ -228,8 +201,7 @@ namespace Forradia::Theme0
 
             // If the tile is invalid or not valid for a meadow.
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
-            {
+            if (!tile || !IsValidForFlora(centerX, centerY)) {
                 // Continue to the next meadow.
 
                 continue;
@@ -237,8 +209,7 @@ namespace Forradia::Theme0
 
             // Meadows prefer grass ground.
 
-            if (tile->GetGround() != Hash("GroundGrass"))
-            {
+            if (tile->GetGround() != Hash("GroundGrass")) {
                 continue;
             }
 
@@ -256,14 +227,11 @@ namespace Forradia::Theme0
 
             // Create the meadow.
 
-            for (auto y = centerY - radius; y <= centerY + radius; y++)
-            {
-                for (auto x = centerX - radius; x <= centerX + radius; x++)
-                {
+            for (auto y = centerY - radius; y <= centerY + radius; y++) {
+                for (auto x = centerX - radius; x <= centerX + radius; x++) {
                     // If the coordinates are invalid.
 
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
+                    if (!worldArea->IsValidCoordinate(x, y)) {
                         // Continue to the next tile.
 
                         continue;
@@ -271,8 +239,7 @@ namespace Forradia::Theme0
 
                     // If the tile is not valid for flora.
 
-                    if (!IsValidForFlora(x, y))
-                    {
+                    if (!IsValidForFlora(x, y)) {
                         // Continue to the next tile.
 
                         continue;
@@ -284,8 +251,7 @@ namespace Forradia::Theme0
 
                     // If the tile is invalid or not valid for a meadow.
 
-                    if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
-                    {
+                    if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass")) {
                         // Continue to the next tile.
 
                         continue;
@@ -297,8 +263,7 @@ namespace Forradia::Theme0
 
                     // If the distance is greater than the radius.
 
-                    if (distance > radius)
-                    {
+                    if (distance > radius) {
                         // Continue to the next tile.
 
                         continue;
@@ -306,8 +271,7 @@ namespace Forradia::Theme0
 
                     // Add flowers.
 
-                    if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
-                    {
+                    if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f)) {
                         // Clear the objects on the tile.
 
                         meadowTile->GetObjectsStack()->ClearObjects();
@@ -315,9 +279,7 @@ namespace Forradia::Theme0
                         // Add a pink flower to the tile.
 
                         meadowTile->GetObjectsStack()->AddObject("ObjectPinkFlower");
-                    }
-                    else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
-                    {
+                    } else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f)) {
                         // Only add if we didn't just add a flower above.
                         // (This is handled by the else if, so we're good).
 
@@ -334,12 +296,10 @@ namespace Forradia::Theme0
         }
     }
 
-    bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const
-    {
+    bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const {
         // Check if the coordinates are valid.
 
-        if (!GetWorldArea()->IsValidCoordinate(x, y))
-        {
+        if (!GetWorldArea()->IsValidCoordinate(x, y)) {
             // Return false if not valid.
 
             return false;
@@ -351,8 +311,7 @@ namespace Forradia::Theme0
 
         // Return false if the tile is not found.
 
-        if (!tile)
-        {
+        if (!tile) {
             // Return false if the tile is not found.
 
             return false;

@@ -10,11 +10,9 @@
 #pragma once
 #include "MouseButton.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     /// Manages mouse input from the player.
-    class MouseInput
-    {
+    class MouseInput {
       public:
         /// Resets the state of the mouse input.
         void Reset();
@@ -49,16 +47,14 @@ namespace Forradia
         /// Returns a reference to the left mouse button.
         ///
         /// @return Reference to the left mouse button.
-        auto &GetLeftMouseButtonRef()
-        {
+        auto &GetLeftMouseButtonRef() {
             return m_leftMouseButton;
         }
 
         /// Returns a reference to the right mouse button.
         ///
         /// @return Reference to the right mouse button.
-        auto &GetRightMouseButtonRef()
-        {
+        auto &GetRightMouseButtonRef() {
             return m_rightMouseButton;
         }
 

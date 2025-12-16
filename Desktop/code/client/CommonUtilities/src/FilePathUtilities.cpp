@@ -9,18 +9,15 @@
 
 #include "FilePathUtilities.hpp"
 
-namespace Forradia
-{
-    String GetFileExtension(StringView path)
-    {
+namespace Forradia {
+    String GetFileExtension(StringView path) {
         // Get the file extension by finding the last dot in the path.
         String extension{path.substr(path.find_last_of('.') + 1).data()};
 
         return extension;
     }
 
-    String GetFileNameNoExtension(StringView path)
-    {
+    String GetFileNameNoExtension(StringView path) {
         // Get the file name, without the extension, by finding the last slash in the path and
         // then the last dot.
 

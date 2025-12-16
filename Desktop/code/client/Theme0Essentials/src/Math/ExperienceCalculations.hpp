@@ -9,8 +9,7 @@
 
 #pragma once
 
-namespace Forradia::Theme0::GameplayCore
-{
+namespace Forradia::Theme0::GameplayCore {
     int CalculateCurrentLevel(int experience);
 
     int CalculateExperienceForLevel(int level);

@@ -11,10 +11,8 @@
 #include "Math/ExperienceCalculations.hpp"
 #include "Player/PlayerCharacter.hpp"
 
-namespace Forradia::Theme0
-{
-    void GUIExperienceBar::UpdateDerived()
-    {
+namespace Forradia::Theme0 {
+    void GUIExperienceBar::UpdateDerived() {
         GUIMeter::UpdateDerived();
 
         auto &playerCharacter{_<Theme0::GameplayCore::PlayerCharacter>()};
@@ -26,8 +24,7 @@ namespace Forradia::Theme0
         m_filledPercentage = levelProgress;
     }
 
-    float GUIExperienceBar::GetFilledPercentage() const
-    {
+    float GUIExperienceBar::GetFilledPercentage() const {
         return m_filledPercentage;
     }
 }

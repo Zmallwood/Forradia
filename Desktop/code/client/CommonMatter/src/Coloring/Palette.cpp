@@ -10,31 +10,26 @@
 #include "Palette.hpp"
 #include "Hash.hpp"
 
-namespace Forradia::Palette
-{
+namespace Forradia::Palette {
     // Define a palette of colors for the game.
 
     template <>
-    Color GetColor<Hash("Black")>()
-    {
+    Color GetColor<Hash("Black")>() {
         return {0.0f, 0.0f, 0.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("White")>()
-    {
+    Color GetColor<Hash("White")>() {
         return {1.0f, 1.0f, 0.65f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("Wheat")>()
-    {
+    Color GetColor<Hash("Wheat")>() {
         return {1.0f, 1.0f, 0.65f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("WheatTransparent")>()
-    {
+    Color GetColor<Hash("WheatTransparent")>() {
         // Use existing wheat color and just change the alpha.
 
         auto color{GetColor<Hash("Wheat")>()};
@@ -44,14 +39,12 @@ namespace Forradia::Palette
     }
 
     template <>
-    Color GetColor<Hash("Yellow")>()
-    {
+    Color GetColor<Hash("Yellow")>() {
         return {1.0f, 1.0f, 0.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("YellowTransparent")>()
-    {
+    Color GetColor<Hash("YellowTransparent")>() {
         // Use existing yellow color and just change the alpha.
 
         auto color{GetColor<Hash("Yellow")>()};
@@ -61,38 +54,32 @@ namespace Forradia::Palette
     }
 
     template <>
-    Color GetColor<Hash("MildBlue")>()
-    {
+    Color GetColor<Hash("MildBlue")>() {
         return {0.0f, 0.4f, 0.9f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("LightBlue")>()
-    {
+    Color GetColor<Hash("LightBlue")>() {
         return {0.4f, 0.4f, 1.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("Red")>()
-    {
+    Color GetColor<Hash("Red")>() {
         return {1.0f, 0.0f, 0.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("Green")>()
-    {
+    Color GetColor<Hash("Green")>() {
         return {0.0f, 1.0f, 0.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("Brown")>()
-    {
+    Color GetColor<Hash("Brown")>() {
         return {0.5f, 0.25f, 0.0f, 1.0f};
     }
 
     template <>
-    Color GetColor<Hash("Gray")>()
-    {
+    Color GetColor<Hash("Gray")>() {
         return {0.5f, 0.5f, 0.5f, 1.0f};
     }
 }

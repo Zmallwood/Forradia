@@ -11,19 +11,16 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
-{
+namespace Forradia {
     ///
     /// The root GUI class which is created for every scene.
     ///
-    class GUI : public GUIComponent
-    {
+    class GUI : public GUIComponent {
       public:
         ///
         /// Constructor.
         ///
-        GUI() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
-        {
+        GUI() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {
         }
     };
 }

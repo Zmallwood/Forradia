@@ -9,10 +9,8 @@
 
 #include "MouseButton.hpp"
 
-namespace Forradia
-{
-    void MouseButton::Reset()
-    {
+namespace Forradia {
+    void MouseButton::Reset() {
         // Completely reset the state of the button.
 
         m_pressed = false;
@@ -20,8 +18,7 @@ namespace Forradia
         m_hasBeenReleased = false;
     }
 
-    void MouseButton::RegisterPress()
-    {
+    void MouseButton::RegisterPress() {
         // Register that the button has been pressed.
 
         m_pressed = true;
@@ -29,8 +26,7 @@ namespace Forradia
         m_ticksFired = GetTicks();
     }
 
-    void MouseButton::RegisterRelease()
-    {
+    void MouseButton::RegisterRelease() {
         // Register that the button has been released.
 
         m_pressed = false;
@@ -38,8 +34,7 @@ namespace Forradia
         m_ticksClickSpeed = GetTicks() - m_ticksFired;
     }
 
-    bool MouseButton::IsPressedPickResult()
-    {
+    bool MouseButton::IsPressedPickResult() {
         // Check if the button is currently pressed and store as result.
         auto result{m_pressed};
 

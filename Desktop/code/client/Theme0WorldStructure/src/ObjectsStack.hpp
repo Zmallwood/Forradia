@@ -9,13 +9,11 @@
 
 #pragma once
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     class Object;
 
     /// A stack of objects, primarily a component of a tile.
-    class ObjectsStack
-    {
+    class ObjectsStack {
       public:
         /// Delete all objects in the stack.
         void ClearObjects();
@@ -49,8 +47,7 @@ namespace Forradia::Theme0
         /// Gets the collection of objects in the stack.
         ///
         /// @return The collection of objects in the stack.
-        auto GetObjects() const
-        {
+        auto GetObjects() const {
             return m_objects;
         }
 

@@ -11,13 +11,11 @@
 
 #include "ObjectIndexEntry.hpp"
 
-namespace Forradia::Theme0
-{
+namespace Forradia::Theme0 {
     ///
     /// Class for managing object properties.
     ///
-    class ObjectIndex
-    {
+    class ObjectIndex {
       public:
         ///
         /// Constructor.

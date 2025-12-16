@@ -19,10 +19,8 @@
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
 
-namespace Forradia
-{
-    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const
-    {
+namespace Forradia {
+    void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const {
         // Initialize random number generator so that unique random numbers are generated on
         // each game run.
 
@@ -45,17 +43,14 @@ namespace Forradia
         _<ModelRenderer>().Initialize();
     }
 
-    void Engine::Run()
-    {
+    void Engine::Run() {
         // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
         // in the game.
 
-        try
-        {
+        try {
             // Main game loop.
 
-            while (m_running)
-            {
+            while (m_running) {
                 // Reset the mouse input and cursor before polling events.
 
                 _<MouseInput>().Reset();
@@ -84,17 +79,14 @@ namespace Forradia
 
                 _<SDLDevice>().PresentCanvas();
             }
-        }
-        catch (std::exception &e)
-        {
+        } catch (std::exception &e) {
             // Print error message on catched exception.
 
             PrintLine("An error occured: " + String(e.what()));
         }
     }
 
-    void Engine::Stop()
-    {
+    void Engine::Stop() {
         // Stop the engine.
 
         m_running = false;

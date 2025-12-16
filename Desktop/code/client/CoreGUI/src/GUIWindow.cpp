@@ -10,10 +10,8 @@
 #include "GUIWindow.hpp"
 #include "GUIWindowTitleBar.hpp"
 
-namespace Forradia
-{
-    void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle)
-    {
+namespace Forradia {
+    void GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) {
         // Hide the window initially.
 
         this->SetVisible(false);
@@ -27,15 +25,13 @@ namespace Forradia
         this->AddChildComponent(m_guiWindowTitleBar);
     }
 
-    void GUIWindow::RenderDerived() const
-    {
+    void GUIWindow::RenderDerived() const {
         // Call the GUIMovablePanel base class render derived method.
 
         GUIMovablePanel::RenderDerived();
     }
 
-    RectF GUIWindow::GetDraggableArea() const
-    {
+    RectF GUIWindow::GetDraggableArea() const {
         // Return the bounds of the window title bar as the draggable area.
 
         return m_guiWindowTitleBar->GetBounds();
