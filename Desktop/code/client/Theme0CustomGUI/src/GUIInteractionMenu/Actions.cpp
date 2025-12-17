@@ -73,9 +73,8 @@ Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->GetObjectsStack()->AddObject("ObjectStoneWallDoor");
-            }
 
             _<GUIChatBox>().Print("You craft a stone wall door.");
             _<Player>().AddExperience(10);
@@ -95,9 +94,8 @@ Action GetAction<Hash("ActionCraftStoneWall")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->GetObjectsStack()->AddObject("ObjectStoneWall");
-            }
 
             _<GUIChatBox>().Print("You craft a stone wall.");
             _<Player>().AddExperience(10);
@@ -131,9 +129,8 @@ Action GetAction<Hash("ActionLayStoneSlab")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->SetGround(Hash("GroundStoneSlab"));
-            }
 
             _<GUIChatBox>().Print("You lay a stone slab.");
             _<Player>().AddExperience(10);
@@ -211,9 +208,8 @@ Action GetAction<Hash("ActionLayCobbleStone")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->SetGround(Hash("GroundCobbleStone"));
-            }
 
             _<GUIChatBox>().Print("You lay some cobble stone.");
           }};
@@ -252,9 +248,8 @@ Action GetAction<Hash("ActionPlowLand")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->SetGround(Hash("GroundPlowedLand"));
-            }
 
             _<GUIChatBox>().Print("You plow the land.");
           }};
@@ -292,11 +287,9 @@ Action GetAction<Hash("ActionClaimLand")>() {
             if (tile) {
               tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
 
-              for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++) {
-                for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3; x++) {
+              for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
+                for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3; x++)
                   worldArea->AddClaimedCoordinate({x, y});
-                }
-              }
             }
 
             _<GUIChatBox>().Print("You claim land.");
@@ -329,11 +322,10 @@ Action GetAction<Hash("ActionChopTree")>() {
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
             if (tile) {
-              if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0) {
+              if (tile->GetObjectsStack()->CountHasObject("ObjectFirTree") > 0)
                 tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectFirTree");
-              } else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0) {
+              else if (tile->GetObjectsStack()->CountHasObject("ObjectBirchTree") > 0)
                 tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectBirchTree");
-              }
 
               tile->GetObjectsStack()->AddObject("ObjectFelledTree");
             }
@@ -377,9 +369,8 @@ Action GetAction<Hash("ActionPickStone")>() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-            if (tile) {
+            if (tile)
               tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
-            }
 
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -402,16 +393,15 @@ Action GetAction<Hash("ActionBuildSimpleShelter")>() {
             auto requiredBranchesCount{4};
             auto lackingBranchesCount{requiredBranchesCount - hasBranchesCount};
 
-            if (lackingBranchesCount <= 0) {
+            if (lackingBranchesCount <= 0)
               _<GUIChatBox>().Print("You finished building a "
                                     "simple "
                                     "shelter.");
-            } else {
+            else
               _<GUIChatBox>().Print("You need " + std::to_string(lackingBranchesCount) +
                                     " more branches to "
                                     "build a simple "
                                     "shelter.");
-            }
           }};
 }
 

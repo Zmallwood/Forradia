@@ -17,10 +17,9 @@ namespace Forradia::Theme0 {
 void GUIInteractionMenu::Initialize() {
   this->SetVisible(false);
 
-  for (auto i = 0; i < k_maxNumMenuEntries; i++) {
+  for (auto i = 0; i < k_maxNumMenuEntries; i++)
     m_renderIDsMenuEntryStrings.push_back(
         Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
-  }
 }
 
 void GUIInteractionMenu::BuildMenu() {
@@ -62,9 +61,8 @@ void GUIInteractionMenu::BuildMenu() {
   auto actionForage{GetAction<Hash("ActionForage")>()};
 
   if (tile && !actionForage.groundMatches.empty() &&
-      tile->GetGround() == actionForage.groundMatches[0]) {
+      tile->GetGround() == actionForage.groundMatches[0])
     m_entries.push_back({"Forage", actionForage.action});
-  };
 
   auto actionCraftStonePickaxe{GetAction<Hash("ActionCraftStonePickaxe")>()};
   m_entries.push_back({"Craft stone pickaxe", actionCraftStonePickaxe.action});
@@ -144,16 +142,14 @@ void GUIInteractionMenu::UpdateDerived() {
                              k_lineHeight}};
 
     if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-      if (menuEntryRect.Contains(mousePosition)) {
+      if (menuEntryRect.Contains(mousePosition))
         entry.GetAction()();
-      }
       this->SetVisible(false);
     }
     ++i;
   }
-  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
+  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
     this->SetVisible(false);
-  }
 }
 
 void GUIInteractionMenu::RenderDerived() const {

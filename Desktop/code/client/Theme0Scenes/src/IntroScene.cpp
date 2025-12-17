@@ -26,9 +26,8 @@ void IntroScene::UpdateDerived() {
   m_startText->SetVisible(GetTicks() % 800 < 400);
   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
   if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
-      _<MouseInput>().AnyMouseButtonIsPressedPickResult()) {
+      _<MouseInput>().AnyMouseButtonIsPressedPickResult())
     _<SceneManager>().GoToScene("MainMenuScene");
-  }
 }
 
 void IntroScene::RenderDerived() const {
