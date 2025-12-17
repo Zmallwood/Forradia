@@ -14,7 +14,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void GUIInteractionMenu::Initialize() {
+auto GUIInteractionMenu::Initialize() -> void {
   this->SetVisible(false);
 
   for (auto i = 0; i < k_maxNumMenuEntries; i++)
@@ -22,7 +22,7 @@ void GUIInteractionMenu::Initialize() {
         Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
 }
 
-void GUIInteractionMenu::BuildMenu() {
+auto GUIInteractionMenu::BuildMenu() -> void {
   m_entries.clear();
 
   auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
@@ -128,7 +128,7 @@ void GUIInteractionMenu::BuildMenu() {
   }
 }
 
-void GUIInteractionMenu::UpdateDerived() {
+auto GUIInteractionMenu::UpdateDerived() -> void {
   GUIPanel::UpdateDerived();
 
   auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
@@ -155,7 +155,7 @@ void GUIInteractionMenu::UpdateDerived() {
     this->SetVisible(false);
 }
 
-void GUIInteractionMenu::RenderDerived() const {
+auto GUIInteractionMenu::RenderDerived() const -> void {
   GUIPanel::RenderDerived();
 
   auto bounds{this->GetBounds()};

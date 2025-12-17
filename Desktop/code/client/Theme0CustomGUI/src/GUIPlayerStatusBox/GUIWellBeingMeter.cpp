@@ -5,7 +5,7 @@
 #include "Player/Player.hpp"
 
 namespace Forradia::Theme0 {
-void GUIWellBeingMeter::UpdateDerived() {
+auto GUIWellBeingMeter::UpdateDerived() -> void {
   GUIMeter::UpdateDerived();
 
   auto &player{_<Theme0::Player>()};
@@ -18,7 +18,7 @@ void GUIWellBeingMeter::UpdateDerived() {
   m_filledPercentage = health / maxHealth;
 }
 
-float GUIWellBeingMeter::GetFilledPercentage() const {
+auto GUIWellBeingMeter::GetFilledPercentage() const -> float {
   return m_filledPercentage;
 }
 }

@@ -15,46 +15,46 @@ class IScene {
   /**
    * Initializes the scene.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   /**
    * Called when the scene is entered.
    */
-  void OnEnter();
+  auto OnEnter() -> void;
 
   /**
    * Updates the scene.
    */
-  void Update();
+  auto Update() -> void;
 
   /**
    * Renders the scene.
    */
-  void Render() const;
+  auto Render() const -> void;
 
  protected:
   /**
    * Initializes the scene. Should be specific to the deriving class.
    */
-  virtual void InitializeDerived() {
+  virtual auto InitializeDerived() -> void {
   }
 
   /**
    * Called when the scene is entered. Should be specific to the deriving class.
    */
-  virtual void OnEnterDerived() {
+  virtual auto OnEnterDerived() -> void {
   }
 
   /**
    * Updates the scene. Should be specific to the deriving class.
    */
-  virtual void UpdateDerived() {
+  virtual auto UpdateDerived() -> void {
   }
 
   /**
    * Renders the scene. Should be specific to the deriving class.
    */
-  virtual void RenderDerived() const {
+  virtual auto RenderDerived() const -> void {
   }
 
   /**

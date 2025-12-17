@@ -31,21 +31,21 @@ class GUIExperienceBar : public GUIMeter {
   /**
    * Does update logic that is specific to the experience bar.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
   /**
    * Gets the filled percentage of the bar.
    *
    * @return The filled percentage of the bar.
    */
-  float GetFilledPercentage() const override;
+  auto GetFilledPercentage() const -> float override;
 
   /**
    * Gets the filled color of the bar.
    *
    * @return The filled color of the bar.
    */
-  Color GetFilledColor() const {
+  auto GetFilledColor() const -> Color {
     return Palette::GetColor<Hash("Yellow")>();
   }
 

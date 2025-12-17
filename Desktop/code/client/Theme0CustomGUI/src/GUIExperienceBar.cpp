@@ -6,7 +6,7 @@
 #include "Player/Player.hpp"
 
 namespace Forradia::Theme0 {
-void GUIExperienceBar::UpdateDerived() {
+auto GUIExperienceBar::UpdateDerived() -> void {
   GUIMeter::UpdateDerived();
 
   auto &player{_<Theme0::Player>()};
@@ -15,7 +15,7 @@ void GUIExperienceBar::UpdateDerived() {
   m_filledPercentage = levelProgress;
 }
 
-float GUIExperienceBar::GetFilledPercentage() const {
+auto GUIExperienceBar::GetFilledPercentage() const -> float {
   return m_filledPercentage;
 }
 }

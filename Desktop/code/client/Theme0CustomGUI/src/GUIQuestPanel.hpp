@@ -25,10 +25,10 @@ class GUIQuestPanel : public GUIMovablePanel {
   /**
    * Does update logic that is specific to the quest panel.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   SharedPtr<GUILabel> m_questTitleTextPanel;
   SharedPtr<GUILabel> m_questNameTextPanel;

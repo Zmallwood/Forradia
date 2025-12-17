@@ -25,17 +25,17 @@ class GUIPlayerStatusBox : public GUIPanel {
   /**
    * Initializes the player status box.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   /**
    * Does update logic that is specific to the player status box.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
   /**
    * Does render logic that is specific to the player status box.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
  private:
   const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};

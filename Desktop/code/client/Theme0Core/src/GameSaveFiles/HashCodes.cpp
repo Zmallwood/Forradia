@@ -5,76 +5,76 @@
 
 namespace Forradia::Theme0 {
 template <>
-String GetNameFromHash<Hash("GroundGrass")>() {
+auto GetNameFromHash<Hash("GroundGrass")>() -> String {
   return "GroundGrass";
 }
 
 template <>
-String GetNameFromHash<Hash("GroundWater")>() {
+auto GetNameFromHash<Hash("GroundWater")>() -> String {
   return "GroundWater";
 }
 
 template <>
-String GetNameFromHash<Hash("GroundRock")>() {
+auto GetNameFromHash<Hash("GroundRock")>() -> String {
   return "GroundRock";
 }
 
 template <>
-String GetNameFromHash<Hash("GroundDirt")>() {
+auto GetNameFromHash<Hash("GroundDirt")>() -> String {
   return "GroundDirt";
 }
 
 template <>
-String GetNameFromHash<Hash("GroundCobbleStone")>() {
+auto GetNameFromHash<Hash("GroundCobbleStone")>() -> String {
   return "GroundCobbleStone";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectFirTree")>() {
+auto GetNameFromHash<Hash("ObjectFirTree")>() -> String {
   return "ObjectFirTree";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectBirchTree")>() {
+auto GetNameFromHash<Hash("ObjectBirchTree")>() -> String {
   return "ObjectBirchTree";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectBush1")>() {
+auto GetNameFromHash<Hash("ObjectBush1")>() -> String {
   return "ObjectBush1";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectBush2")>() {
+auto GetNameFromHash<Hash("ObjectBush2")>() -> String {
   return "ObjectBush2";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectStoneBoulder")>() {
+auto GetNameFromHash<Hash("ObjectStoneBoulder")>() -> String {
   return "ObjectStoneBoulder";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectPinkFlower")>() {
+auto GetNameFromHash<Hash("ObjectPinkFlower")>() -> String {
   return "ObjectPinkFlower";
 }
 
 template <>
-String GetNameFromHash<Hash("ObjectTallGrass")>() {
+auto GetNameFromHash<Hash("ObjectTallGrass")>() -> String {
   return "ObjectTallGrass";
 }
 
 template <>
-String GetNameFromHash<Hash("CreatureWhiteRabbit")>() {
+auto GetNameFromHash<Hash("CreatureWhiteRabbit")>() -> String {
   return "CreatureWhiteRabbit";
 }
 
 template <>
-String GetNameFromHash<Hash("RobotMechWolf")>() {
+auto GetNameFromHash<Hash("RobotMechWolf")>() -> String {
   return "RobotMechWolf";
 }
 
-String GetNameFromAnyHash(int hash) {
+auto GetNameFromAnyHash(int hash) -> String {
   static constexpr std::array<StringView, 14> names{
       "GroundGrass",         "GroundWater",        "GroundRock",       "GroundDirt",
       "GroundCobbleStone",   "ObjectFirTree",      "ObjectBirchTree",  "ObjectBush1",

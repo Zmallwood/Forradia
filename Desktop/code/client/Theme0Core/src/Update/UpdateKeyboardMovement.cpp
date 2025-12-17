@@ -8,7 +8,7 @@
 #include "Update/BattleSystem.hpp"
 
 namespace Forradia::Theme0 {
-void UpdateKeyboardMovement() {
+auto UpdateKeyboardMovement() -> void {
   auto upPress{_<KeyboardInput>().KeyIsPressed(SDLK_UP)};
   auto rightPress{_<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
   auto downPress{_<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
@@ -36,7 +36,7 @@ void UpdateKeyboardMovement() {
       _<Theme0::Player>().MoveSouth();
     if (leftPress || aPress)
       _<Theme0::Player>().MoveWest();
-    
+
     _<Theme0::Player>().SetTicksLastMovement(now);
   }
 }

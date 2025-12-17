@@ -13,10 +13,10 @@ namespace Forradia::Theme0 {
  * @return The action for the given action type.
  */
 template <int N>
-Action GetAction();
+auto GetAction() -> Action;
 
 /**
  * Updates the actions which are timed actions.
  */
-void UpdateActions();
+auto UpdateActions() -> void;
 }

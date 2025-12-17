@@ -10,7 +10,7 @@ namespace Forradia::Theme0 {
  * @param experience The experience.
  * @return The current level.
  */
-int CalculateCurrentLevel(int experience);
+auto CalculateCurrentLevel(int experience) -> int;
 
 /**
  * Calculates the experience required for the given level.
@@ -18,7 +18,7 @@ int CalculateCurrentLevel(int experience);
  * @param level The level.
  * @return The experience required for the given level.
  */
-int CalculateExperienceForLevel(int level);
+auto CalculateExperienceForLevel(int level) -> int;
 
 /**
  * Calculates the experience difference to the next level.
@@ -26,7 +26,7 @@ int CalculateExperienceForLevel(int level);
  * @param experience The experience.
  * @return The experience difference to the next level.
  */
-int CalculateExperienceDifferenceToNextLevel(int experience);
+auto CalculateExperienceDifferenceToNextLevel(int experience) -> int;
 
 /**
  * Calculates the experience required for the current level start.
@@ -34,7 +34,7 @@ int CalculateExperienceDifferenceToNextLevel(int experience);
  * @param experience The experience.
  * @return The experience required for the current level start.
  */
-int CalculateExperienceRequiredForCurrentLevelStart(int experience);
+auto CalculateExperienceRequiredForCurrentLevelStart(int experience) -> int;
 
 /**
  * Calculates the experience gained since the level start.
@@ -42,7 +42,7 @@ int CalculateExperienceRequiredForCurrentLevelStart(int experience);
  * @param experience The experience.
  * @return The experience gained since the level start.
  */
-int CalculateExperienceGainedSinceLevelStart(int experience);
+auto CalculateExperienceGainedSinceLevelStart(int experience) -> int;
 
 /**
  * Calculates the fractional experience progress.
@@ -50,5 +50,5 @@ int CalculateExperienceGainedSinceLevelStart(int experience);
  * @param experience The experience.
  * @return The fractional experience progress.
  */
-float CalculateFractionalExperienceProgress(int experience);
+auto CalculateFractionalExperienceProgress(int experience) -> float;
 }

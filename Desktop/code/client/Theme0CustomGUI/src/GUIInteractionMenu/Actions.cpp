@@ -18,58 +18,58 @@ namespace Forradia::Theme0 {
 static std::map<int, Function<void()>> s_timedActions;
 
 template <>
-Action GetAction<Hash("ActionStop")>();
+auto GetAction<Hash("ActionStop")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionForage")>();
+auto GetAction<Hash("ActionForage")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionChopTree")>();
+auto GetAction<Hash("ActionChopTree")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionPickBranch")>();
+auto GetAction<Hash("ActionPickBranch")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionPickStone")>();
+auto GetAction<Hash("ActionPickStone")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionBuildSimpleShelter")>();
+auto GetAction<Hash("ActionBuildSimpleShelter")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionClaimLand")>();
+auto GetAction<Hash("ActionClaimLand")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionLayMetalFloor")>();
+auto GetAction<Hash("ActionLayMetalFloor")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionChipStone")>();
+auto GetAction<Hash("ActionChipStone")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStonePickaxe")>();
+auto GetAction<Hash("ActionCraftStonePickaxe")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneSlab")>();
+auto GetAction<Hash("ActionCraftStoneSlab")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionLayStoneSlab")>();
+auto GetAction<Hash("ActionLayStoneSlab")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneBrick")>();
+auto GetAction<Hash("ActionCraftStoneBrick")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneWall")>();
+auto GetAction<Hash("ActionCraftStoneWall")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneWallDoor")>();
+auto GetAction<Hash("ActionCraftStoneWallDoor")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneBowl")>();
+auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneBowl")>();
+auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action;
 
 template <>
-Action GetAction<Hash("ActionCraftStoneBowl")>() {
+auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -84,7 +84,7 @@ Action GetAction<Hash("ActionCraftStoneBowl")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
+auto GetAction<Hash("ActionCraftStoneWallDoor")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -105,7 +105,7 @@ Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionCraftStoneWall")>() {
+auto GetAction<Hash("ActionCraftStoneWall")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -126,7 +126,7 @@ Action GetAction<Hash("ActionCraftStoneWall")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionCraftStoneBrick")>() {
+auto GetAction<Hash("ActionCraftStoneBrick")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -140,7 +140,7 @@ Action GetAction<Hash("ActionCraftStoneBrick")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionLayStoneSlab")>() {
+auto GetAction<Hash("ActionLayStoneSlab")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -160,7 +160,7 @@ Action GetAction<Hash("ActionLayStoneSlab")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionCraftStoneSlab")>() {
+auto GetAction<Hash("ActionCraftStoneSlab")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -174,7 +174,7 @@ Action GetAction<Hash("ActionCraftStoneSlab")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionCraftStonePickaxe")>() {
+auto GetAction<Hash("ActionCraftStonePickaxe")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -199,7 +199,7 @@ Action GetAction<Hash("ActionCraftStonePickaxe")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionChipStone")>() {
+auto GetAction<Hash("ActionChipStone")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -212,7 +212,7 @@ Action GetAction<Hash("ActionChipStone")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionLayCobbleStone")>() {
+auto GetAction<Hash("ActionLayCobbleStone")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -237,7 +237,7 @@ Action GetAction<Hash("ActionLayCobbleStone")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionLayMetalFloor")>() {
+auto GetAction<Hash("ActionLayMetalFloor")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -263,7 +263,7 @@ Action GetAction<Hash("ActionLayMetalFloor")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionPlowLand")>() {
+auto GetAction<Hash("ActionPlowLand")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto worldArea{_<World>().GetCurrentWorldArea()};
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
@@ -277,10 +277,10 @@ Action GetAction<Hash("ActionPlowLand")>() {
 }
 
 template <>
-Action GetAction<Hash("Pick up")>();
+auto GetAction<Hash("Pick up")>() -> Action;
 
 template <>
-Action GetAction<Hash("Pick up")>() {
+auto GetAction<Hash("Pick up")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
             auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -299,7 +299,7 @@ Action GetAction<Hash("Pick up")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionClaimLand")>() {
+auto GetAction<Hash("ActionClaimLand")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto worldArea{_<World>().GetCurrentWorldArea()};
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
@@ -318,7 +318,7 @@ Action GetAction<Hash("ActionClaimLand")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionStop")>() {
+auto GetAction<Hash("ActionStop")>() -> Action {
   return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
             s_timedActions.clear();
 
@@ -327,7 +327,7 @@ Action GetAction<Hash("ActionStop")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionSitByComputer")>() {
+auto GetAction<Hash("ActionSitByComputer")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {Hash("ObjectComputer")}, .action = []() {
             _<GUIChatBox>().Print("You sit by the computer.");
 
@@ -336,7 +336,7 @@ Action GetAction<Hash("ActionSitByComputer")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionChopTree")>() {
+auto GetAction<Hash("ActionChopTree")>() -> Action {
   return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
             auto worldArea{_<World>().GetCurrentWorldArea()};
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
@@ -356,7 +356,7 @@ Action GetAction<Hash("ActionChopTree")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionForage")>() {
+auto GetAction<Hash("ActionForage")>() -> Action {
   return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -370,7 +370,7 @@ Action GetAction<Hash("ActionForage")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionPickBranch")>() {
+auto GetAction<Hash("ActionPickBranch")>() -> Action {
   return {.groundMatches = {},
           .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
           .action = []() {
@@ -384,7 +384,7 @@ Action GetAction<Hash("ActionPickBranch")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionPickStone")>() {
+auto GetAction<Hash("ActionPickStone")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {Hash("ObjectStone")}, .action = []() {
             auto worldArea{_<World>().GetCurrentWorldArea()};
             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
@@ -403,7 +403,7 @@ Action GetAction<Hash("ActionPickStone")>() {
 }
 
 template <>
-Action GetAction<Hash("ActionBuildSimpleShelter")>() {
+auto GetAction<Hash("ActionBuildSimpleShelter")>() -> Action {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             _<GUIChatBox>().Print("You start build a simple "
                                   "shelter.");
@@ -426,7 +426,7 @@ Action GetAction<Hash("ActionBuildSimpleShelter")>() {
           }};
 }
 
-void UpdateActions() {
+auto UpdateActions() -> void {
   for (auto it = s_timedActions.begin(); it != s_timedActions.end();) {
     if (GetTicks() > it->first) {
       it->second();

@@ -5,23 +5,23 @@
 #include "GUI.hpp"
 
 namespace Forradia {
-void IScene::Initialize() {
+auto IScene::Initialize() -> void {
   m_gui = std::make_shared<GUI>();
 
   this->InitializeDerived();
 }
 
-void IScene::OnEnter() {
+auto IScene::OnEnter() -> void {
   this->OnEnterDerived();
 }
 
-void IScene::Update() {
+auto IScene::Update() -> void {
   m_gui->Update();
 
   this->UpdateDerived();
 }
 
-void IScene::Render() const {
+auto IScene::Render() const -> void {
   this->RenderDerived();
 
   m_gui->Render();

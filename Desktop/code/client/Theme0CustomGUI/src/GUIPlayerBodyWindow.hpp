@@ -25,12 +25,12 @@ class GUIPlayerBodyWindow : public GUIWindow {
   /**
    * Initializes the player body window.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
  private:
-  void SelectBodyPart(int type);
+  auto SelectBodyPart(int type) -> void;
 
-  void UpdateBodyPartInfoLabels();
+  auto UpdateBodyPartInfoLabels() -> void;
 
   int m_selectedBodyPart{0};
   SharedPtr<GUILabel> m_labelBodyPartName;

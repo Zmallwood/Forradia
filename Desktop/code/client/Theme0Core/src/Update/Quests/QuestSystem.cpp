@@ -6,7 +6,7 @@
 #include "Quests.hpp"
 
 namespace Forradia::Theme0 {
-void QuestSystem::Initialize() {
+auto QuestSystem::Initialize() -> void {
   m_quests.push_back(std::make_shared<MoveQuest>());
   m_quests.push_back(std::make_shared<ForageQuest>());
   m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
@@ -19,7 +19,7 @@ void QuestSystem::Initialize() {
   m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
 }
 
-void QuestSystem::Update() {
+auto QuestSystem::Update() -> void {
   for (auto &quest : this->m_quests) {
     if (quest->isCompleted)
       continue;
@@ -30,7 +30,7 @@ void QuestSystem::Update() {
   }
 }
 
-String QuestSystem::GetCurrentQuestName() const {
+auto QuestSystem::GetCurrentQuestName() const -> String {
   for (auto &quest : this->m_quests) {
     if (quest->isCompleted)
       continue;
@@ -41,7 +41,7 @@ String QuestSystem::GetCurrentQuestName() const {
   return "No quest";
 }
 
-String QuestSystem::GetCurrentQuestDescription() const {
+auto QuestSystem::GetCurrentQuestDescription() const -> String {
   for (auto &quest : this->m_quests) {
     if (quest->isCompleted)
       continue;
@@ -51,7 +51,7 @@ String QuestSystem::GetCurrentQuestDescription() const {
   return "";
 }
 
-String QuestSystem::GetCurrentQuestStatus() const {
+auto QuestSystem::GetCurrentQuestStatus() const -> String {
   for (auto &quest : this->m_quests) {
     if (quest->isCompleted)
       continue;

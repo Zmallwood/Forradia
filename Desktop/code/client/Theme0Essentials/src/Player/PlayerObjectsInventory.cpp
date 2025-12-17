@@ -14,13 +14,13 @@ PlayerObjectsInventory::PlayerObjectsInventory() {
   AddObject("ObjectHammer");
 }
 
-SharedPtr<Object> PlayerObjectsInventory::GetObject(int index) {
+auto PlayerObjectsInventory::GetObject(int index) -> SharedPtr<Object> {
   if (index >= 0 && index < m_objects.size())
     return m_objects[index];
   return nullptr;
 }
 
-void PlayerObjectsInventory::AddObject(int objectType) {
+auto PlayerObjectsInventory::AddObject(int objectType) -> void {
   // Check if there is an empty slot.
   for (size_t i = 0; i < m_objects.size(); i++) {
     // Check if slot is empty.
@@ -36,11 +36,11 @@ void PlayerObjectsInventory::AddObject(int objectType) {
   m_objects.push_back(std::make_shared<Object>(objectType));
 }
 
-void PlayerObjectsInventory::AddObject(StringView objectName) {
+auto PlayerObjectsInventory::AddObject(StringView objectName) -> void {
   AddObject(Hash(objectName));
 }
 
-int PlayerObjectsInventory::CountHasObject(StringView objectName) {
+auto PlayerObjectsInventory::CountHasObject(StringView objectName) -> int {
   auto findCount{0};
 
   // Check each slot in the inventory.
@@ -57,7 +57,7 @@ int PlayerObjectsInventory::CountHasObject(StringView objectName) {
   return findCount;
 }
 
-void PlayerObjectsInventory::RemoveObject(StringView objectName, int count) {
+auto PlayerObjectsInventory::RemoveObject(StringView objectName, int count) -> void {
   // Check each slot in the inventory.
   for (size_t i = 0; i < m_objects.size() && count > 0; i++) {
     // Check if slot is not empty.

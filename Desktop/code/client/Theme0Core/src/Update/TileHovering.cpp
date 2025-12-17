@@ -11,15 +11,15 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void TileHovering::Update() {
+auto TileHovering::Update() -> void {
   this->DetermineHoveredCoordinateWithRaycasting();
 }
 
-void TileHovering::DetermineHoveredCoordinateWithRaycasting() {
+auto TileHovering::DetermineHoveredCoordinateWithRaycasting() -> void {
   this->IterateOverRenderedTiles();
 }
 
-void TileHovering::IterateOverRenderedTiles() {
+auto TileHovering::IterateOverRenderedTiles() -> void {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto playerPos{_<Player>().GetPosition()};
@@ -41,12 +41,12 @@ void TileHovering::IterateOverRenderedTiles() {
   }
 }
 
-bool TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const {
+auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool {
   auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
   return result;
 }
 
-bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const {
+auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool {
   auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
   // Get camera matrices.

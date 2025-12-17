@@ -12,9 +12,9 @@ class MoveQuest : public Quest {
     this->description = "Try to walk somewhere, 3 times.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numStepsLeft{3};
@@ -27,9 +27,9 @@ class ForageQuest : public Quest {
     this->description = "Try to gather some resources, 3 times.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numForagingsLeft{3};
@@ -42,9 +42,9 @@ class CraftStonePickaxeQuest : public Quest {
     this->description = "Craft a stone pickaxe.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   bool m_numBranchPicked{false};
@@ -59,9 +59,9 @@ class CraftStoneBowl : public Quest {
     this->description = "Craft a stone bowl.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   bool m_stonedMined{false};
@@ -74,9 +74,9 @@ class MineStoneFromBoulderQuest1 : public Quest {
     this->description = "Mine 10 stones from a boulder.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numMinedStonesLeft{10};
@@ -89,9 +89,9 @@ class CraftStoneSlabsQuest : public Quest {
     this->description = "Craft 10 stone slabs.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numCraftedSlabsLeft{10};
@@ -104,9 +104,9 @@ class LayStoneSlabsQuest : public Quest {
     this->description = "Lay 10 stone slabs.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numLaidSlabsLeft{10};
@@ -119,9 +119,9 @@ class MineStoneFromBoulderQuest2 : public Quest {
     this->description = "Mine 10 stones from a boulder.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numMinedStonesLeft{10};
@@ -134,9 +134,9 @@ class CraftStoneBricksQuest : public Quest {
     this->description = "Craft 10 stone bricks.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 
  private:
   int m_numCraftedBricksLeft{10};
@@ -149,8 +149,8 @@ class BuildStoneWallsQuest : public Quest {
     this->description = "Build stone walls (and a door) around the stone slabs floor.";
   }
 
-  void Update() override;
+  auto Update() -> void override;
 
-  String GetStatus() const override;
+  auto GetStatus() const -> String override;
 };
 }

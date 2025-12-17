@@ -8,13 +8,13 @@ class Robot;
 
 class BattleSystem {
  public:
-  void Update();
+  auto Update() -> void;
 
   auto GetTargetedRobot() const {
     return m_targetedRobot;
   }
 
-  void SetTargetedRobot(SharedPtr<Robot> value) {
+  auto SetTargetedRobot(SharedPtr<Robot> value) -> void {
     m_targetedRobot = value;
   }
 

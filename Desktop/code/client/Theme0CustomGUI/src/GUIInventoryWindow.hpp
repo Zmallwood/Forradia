@@ -21,12 +21,12 @@ class GUIInventoryWindow : public GUIWindow {
   /**
    * Initializes the inventory window.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   /**
    * Does render logic that is specific to the inventory window.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
  private:
   static constexpr float k_margin{0.005f};

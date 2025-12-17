@@ -7,5 +7,5 @@ namespace Forradia::Theme0 {
 /**
  * Updates the movement of the robots in the world.
  */
-void UpdateRobotsMovement();
+auto UpdateRobotsMovement() -> void;
 }

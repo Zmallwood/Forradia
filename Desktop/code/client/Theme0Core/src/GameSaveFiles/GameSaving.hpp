@@ -12,11 +12,11 @@ class GameSaving {
   /**
    * Saves the game to a file.
    */
-  void SaveGame();
+  auto SaveGame() -> void;
 
   /**
    * Loads the game from a file.
    */
-  void LoadGame();
+  auto LoadGame() -> void;
 };
 }

@@ -10,7 +10,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void BattleSystem::Update() {
+auto BattleSystem::Update() -> void {
   // if (m_targetedRobot == nullptr)
   //     return;
 

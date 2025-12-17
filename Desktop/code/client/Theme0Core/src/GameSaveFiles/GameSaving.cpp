@@ -13,7 +13,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void GameSaving::SaveGame() {
+auto GameSaving::SaveGame() -> void {
   auto worldArea{_<World>().GetCurrentWorldArea()};
 
   if (!worldArea)
@@ -90,7 +90,7 @@ void GameSaving::SaveGame() {
   }
 }
 
-void GameSaving::LoadGame() {
+auto GameSaving::LoadGame() -> void {
   _<GroundRenderer>().Reset();
 
   std::ifstream file("savegame.json");

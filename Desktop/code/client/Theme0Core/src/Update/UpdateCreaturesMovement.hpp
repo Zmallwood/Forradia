@@ -7,5 +7,5 @@ namespace Forradia::Theme0 {
 /**
  * Updates the movement of the creatures in the world.
  */
-void UpdateCreaturesMovement();
+auto UpdateCreaturesMovement() -> void;
 }

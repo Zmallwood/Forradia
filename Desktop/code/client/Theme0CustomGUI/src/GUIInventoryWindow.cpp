@@ -10,14 +10,14 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-void GUIInventoryWindow::Initialize() {
+auto GUIInventoryWindow::Initialize() -> void {
   for (auto i = 0; i < k_maxNumSlots; i++) {
     m_renderIDsSlotsBackground[i] = Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
     m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
   }
 }
 
-void GUIInventoryWindow::RenderDerived() const {
+auto GUIInventoryWindow::RenderDerived() const -> void {
   GUIWindow::RenderDerived();
 
   auto bounds{this->GetBounds()};

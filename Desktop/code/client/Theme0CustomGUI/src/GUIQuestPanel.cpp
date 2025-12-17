@@ -6,7 +6,7 @@
 #include "Update/Quests/QuestSystem.hpp"
 
 namespace Forradia::Theme0 {
-void GUIQuestPanel::Initialize() {
+auto GUIQuestPanel::Initialize() -> void {
   m_questTitleTextPanel =
       std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f);
   m_questTitleTextPanel->SetText("Current Quest:");
@@ -23,7 +23,7 @@ void GUIQuestPanel::Initialize() {
   this->AddChildComponent(m_questStatusTextPanel);
 }
 
-void GUIQuestPanel::UpdateDerived() {
+auto GUIQuestPanel::UpdateDerived() -> void {
   GUIMovablePanel::UpdateDerived();
 
   auto questName{_<QuestSystem>().GetCurrentQuestName()};

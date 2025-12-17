@@ -25,10 +25,10 @@ class PlayerBody {
    * @param bodyPartType The type of the body part.
    * @return A pointer to the body part.
    */
-  SharedPtr<PlayerBodyPart> GetBodyPartPtr(PlayerBodyPartTypes bodyPartType);
+  auto GetBodyPartPtr(PlayerBodyPartTypes bodyPartType) -> SharedPtr<PlayerBodyPart>;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts;
 };

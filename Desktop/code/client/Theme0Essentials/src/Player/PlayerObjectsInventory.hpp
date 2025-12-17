@@ -23,21 +23,21 @@ class PlayerObjectsInventory {
    * @param index The index of the object.
    * @return The object.
    */
-  SharedPtr<Object> GetObject(int index);
+  auto GetObject(int index) -> SharedPtr<Object>;
 
   /**
    * Adds an object to the inventory.
    *
    * @param objectType The type of the object as a hash.
    */
-  void AddObject(int objectType);
+  auto AddObject(int objectType) -> void;
 
   /**
    * Adds an object to the inventory.
    *
    * @param objectName The name of the object as a string.
    */
-  void AddObject(StringView objectName);
+  auto AddObject(StringView objectName) -> void;
 
   /**
    * Counts the number of objects in the inventory that have the given name.
@@ -45,7 +45,7 @@ class PlayerObjectsInventory {
    * @param objectName The name of the object as a string.
    * @return The number of objects in the inventory that have the given name.
    */
-  int CountHasObject(StringView objectName);
+  auto CountHasObject(StringView objectName) -> int;
 
   /**
    * Removes objects from the inventory with the specified name and count.
@@ -53,7 +53,7 @@ class PlayerObjectsInventory {
    * @param objectName The name of the object as a string.
    * @param count How many objects of the given type to remove.
    */
-  void RemoveObject(StringView objectName, int count = 1);
+  auto RemoveObject(StringView objectName, int count = 1) -> void;
 
  private:
   Vector<SharedPtr<Object>> m_objects;

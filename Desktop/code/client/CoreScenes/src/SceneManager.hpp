@@ -17,24 +17,24 @@ class SceneManager {
    * @param sceneName The name of the scene.
    * @param scene The scene to add.
    */
-  void AddScene(StringView sceneName, IScene &scene);
+  auto AddScene(StringView sceneName, IScene &scene) -> void;
 
   /**
    * Goes to a scene.
    *
    * @param sceneName The name of the scene to go to.
    */
-  void GoToScene(StringView sceneName);
+  auto GoToScene(StringView sceneName) -> void;
 
   /**
    * Updates the current scene.
    */
-  void UpdateCurrentScene();
+  auto UpdateCurrentScene() -> void;
 
   /**
    * Renders the current scene.
    */
-  void RenderCurrentScene() const;
+  auto RenderCurrentScene() const -> void;
 
  private:
   std::map<int, IScene &> m_scenes;

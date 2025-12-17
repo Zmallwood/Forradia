@@ -21,7 +21,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void WorldView::Initiallize() {
+auto WorldView::Initiallize() -> void {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
 
@@ -36,7 +36,7 @@ void WorldView::Initiallize() {
   }
 }
 
-void WorldView::Render() const {
+auto WorldView::Render() const -> void {
   // 45 degrees up in +Z
   glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f));
 

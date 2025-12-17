@@ -21,25 +21,25 @@ class QuestSystem {
   /**
    * Updates the quest system.
    */
-  void Update();
+  auto Update() -> void;
 
   /**
    * Gets the name of the current quest.
    */
-  String GetCurrentQuestName() const;
+  auto GetCurrentQuestName() const -> String;
 
   /**
    * Gets the description of the current quest.
    */
-  String GetCurrentQuestDescription() const;
+  auto GetCurrentQuestDescription() const -> String;
 
   /**
    * Gets the status of the current quest.
    */
-  String GetCurrentQuestStatus() const;
+  auto GetCurrentQuestStatus() const -> String;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   Vector<SharedPtr<Quest>> m_quests;
 };

@@ -9,7 +9,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void UpdateRobotsMovement() {
+auto UpdateRobotsMovement() -> void {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto &robots{worldArea->GetRobotsMirrorRef()};
 

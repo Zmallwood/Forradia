@@ -7,5 +7,5 @@ namespace Forradia::Theme0 {
 /**
  * Updates the keyboard actions.
  */
-void UpdateKeyboardActions();
+auto UpdateKeyboardActions() -> void;
 }

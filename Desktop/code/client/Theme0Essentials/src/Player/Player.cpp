@@ -9,12 +9,12 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void Player::Initialize() {
+auto Player::Initialize() -> void {
   m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
   this->MoveToSuitablePosition();
 }
 
-void Player::MoveToSuitablePosition() {
+auto Player::MoveToSuitablePosition() -> void {
   auto worldArea{_<World>().GetCurrentWorldArea()};
   auto size{worldArea->GetSize()};
 
@@ -24,7 +24,7 @@ void Player::MoveToSuitablePosition() {
     m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
 }
 
-void Player::MoveNorth() {
+auto Player::MoveNorth() -> void {
   auto newX{m_position.x};
   auto newY{m_position.y - 1};
   auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -34,7 +34,7 @@ void Player::MoveNorth() {
   }
 }
 
-void Player::MoveEast() {
+auto Player::MoveEast() -> void {
   auto newX{m_position.x + 1};
   auto newY{m_position.y};
   auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -44,7 +44,7 @@ void Player::MoveEast() {
   }
 }
 
-void Player::MoveSouth() {
+auto Player::MoveSouth() -> void {
   auto newX{m_position.x};
   auto newY{m_position.y + 1};
   auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -54,7 +54,7 @@ void Player::MoveSouth() {
   }
 }
 
-void Player::MoveWest() {
+auto Player::MoveWest() -> void {
   auto newX{m_position.x - 1};
   auto newY{m_position.y};
   auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -64,12 +64,12 @@ void Player::MoveWest() {
   }
 }
 
-void Player::AddExperience(int experience) {
+auto Player::AddExperience(int experience) -> void {
   m_experience += experience;
 }
 
-void Player::AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument,
-                             Point actionSecondArgument) {
+auto Player::AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument,
+                             Point actionSecondArgument) -> void {
   m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{
       playerAction, actionFirstArgument, actionSecondArgument});
 }

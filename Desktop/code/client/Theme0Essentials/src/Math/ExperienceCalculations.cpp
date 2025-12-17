@@ -4,17 +4,17 @@
 #include "ExperienceCalculations.hpp"
 
 namespace Forradia::Theme0 {
-int CalculateCurrentLevel(int experience) {
+auto CalculateCurrentLevel(int experience) -> int {
   auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
   return CInt(level);
 }
 
-int CalculateExperienceForLevel(int level) {
+auto CalculateExperienceForLevel(int level) -> int {
   auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0f)};
   return CInt(experience);
 }
 
-int CalculateExperienceDifferenceToNextLevel(int experience) {
+auto CalculateExperienceDifferenceToNextLevel(int experience) -> int {
   auto currentLevel{CalculateCurrentLevel(experience)};
   auto nextLevel{currentLevel + 1};
   auto totalExperienceForCurrentLevel{CalculateExperienceForLevel(currentLevel)};
@@ -22,16 +22,16 @@ int CalculateExperienceDifferenceToNextLevel(int experience) {
   return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
 }
 
-int CalculateExperienceRequiredForCurrentLevelStart(int experience) {
+auto CalculateExperienceRequiredForCurrentLevelStart(int experience) -> int {
   auto currentLevel{CalculateCurrentLevel(experience)};
   return CalculateExperienceForLevel(currentLevel);
 }
 
-int CalculateExperienceGainedSinceLevelStart(int experience) {
+auto CalculateExperienceGainedSinceLevelStart(int experience) -> int {
   return experience - CalculateExperienceRequiredForCurrentLevelStart(experience);
 }
 
-float CalculateFractionalExperienceProgress(int experience) {
+auto CalculateFractionalExperienceProgress(int experience) -> float {
   auto experienceGain{experience - CalculateExperienceRequiredForCurrentLevelStart(experience)};
   auto experienceDiff{CalculateExperienceDifferenceToNextLevel(experience)};
   return CFloat(experienceGain) / experienceDiff;

@@ -12,7 +12,7 @@ class TileHovering {
   /**
    * Updates the tile hovering.
    */
-  void Update();
+  auto Update() -> void;
 
   /**
    * Provides the hovered coordinate.
@@ -22,13 +22,13 @@ class TileHovering {
   }
 
  private:
-  void DetermineHoveredCoordinateWithRaycasting();
+  auto DetermineHoveredCoordinateWithRaycasting() -> void;
 
-  void IterateOverRenderedTiles();
+  auto IterateOverRenderedTiles() -> void;
 
-  bool DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const;
+  auto DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool;
 
-  bool CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const;
+  auto CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool;
 
   Point m_hoveredCoordinate{-1, -1};
 };

@@ -19,10 +19,10 @@ class WorldView {
   /**
    * Renders the world.
    */
-  void Render() const;
+  auto Render() const -> void;
 
  private:
-  void Initiallize();
+  auto Initiallize() -> void;
 
   const float k_groundRenderingDistanceMultiplier{1.5f};
   const int k_maxWaterDepthRendering{3};

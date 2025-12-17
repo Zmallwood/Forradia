@@ -9,7 +9,7 @@
 #include "Mouse/MouseInput.hpp"
 
 namespace Forradia::Theme0 {
-void GUISystemMenu::Initialize() {
+auto GUISystemMenu::Initialize() -> void {
   this->SetVisible(false);
 
   auto saveGameButton{std::make_shared<GUIButton>("GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f,
@@ -29,13 +29,13 @@ void GUISystemMenu::Initialize() {
   this->AddChildComponent(loadGameButton);
 }
 
-void GUISystemMenu::UpdateDerived() {
+auto GUISystemMenu::UpdateDerived() -> void {
   GUIComponent::UpdateDerived();
 
   _<MouseInput>().GetLeftMouseButtonRef().Reset();
 }
 
-void GUISystemMenu::RenderDerived() const {
+auto GUISystemMenu::RenderDerived() const -> void {
   GUIComponent::RenderDerived();
 
   _<Color2DRenderer>().DrawFilledRectangle(k_renderIDBackgroundColor, {1.0f, 0.0f, 0.7f, 0.5f},

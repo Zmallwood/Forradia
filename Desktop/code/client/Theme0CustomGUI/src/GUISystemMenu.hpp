@@ -21,17 +21,17 @@ class GUISystemMenu : public GUIComponent {
   /**
    * Initializes the system menu.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   /**
    * Does update logic that is specific to the system menu.
    */
-  virtual void UpdateDerived() override;
+  virtual auto UpdateDerived() -> void override;
 
   /**
    * Does render logic that is specific to the system menu.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
  private:
   const int k_renderIDBackgroundColor{Hash("GUISystemMenuBackgroundColor")};

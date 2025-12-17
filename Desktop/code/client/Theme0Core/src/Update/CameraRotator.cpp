@@ -7,7 +7,7 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-void CameraRotator::Update() {
+auto CameraRotator::Update() -> void {
   if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
     m_isRotating = true;
 

@@ -23,7 +23,7 @@ class GUIInteractionMenu : public GUIPanel {
   /**
    * Builds the menu.
    */
-  void BuildMenu();
+  auto BuildMenu() -> void;
 
   /**
    * Gets the timed actions.
@@ -56,17 +56,17 @@ class GUIInteractionMenu : public GUIPanel {
   /**
    * Initializes the interaction menu.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   /**
    * Does update logic that is specific to the interaction menu.
    */
-  virtual void UpdateDerived() override;
+  virtual auto UpdateDerived() -> void override;
 
   /**
    * Does render logic that is specific to the interaction menu.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
  private:
   static constexpr float k_indentWidth{0.01f};

@@ -12,7 +12,7 @@ class CameraRotator {
   /**
    * Updates the camera rotation.
    */
-  void Update();
+  auto Update() -> void;
 
  private:
   bool m_isRotating{false};

@@ -35,21 +35,21 @@ class GUIWellBeingMeter : public GUIMeter {
   /**
    * Does update logic that is specific to the well being meter.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
   /**
    * Gets the filled percentage of the meter.
    *
    * @return The filled percentage of the meter.
    */
-  float GetFilledPercentage() const override;
+  auto GetFilledPercentage() const -> float override;
 
   /**
    * Gets the filled color of the meter.
    *
    * @return The filled color of the meter.
    */
-  Color GetFilledColor() const {
+  auto GetFilledColor() const -> Color {
     return Palette::GetColor<Hash("Red")>();
   }
 

@@ -6,7 +6,7 @@
 #include "Mouse/MouseInput.hpp"
 
 namespace Forradia::Theme0 {
-void UpdateCameraZoom() {
+auto UpdateCameraZoom() -> void {
   auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
   _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
 }

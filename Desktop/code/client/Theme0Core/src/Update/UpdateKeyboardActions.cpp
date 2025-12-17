@@ -14,7 +14,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void UpdateKeyboardActions() {
+auto UpdateKeyboardActions() -> void {
   if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
     _<GUISystemMenu>().ToggleVisibility();
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {

@@ -12,12 +12,12 @@ class Quest {
   /**
    * Updates the quest.
    */
-  virtual void Update() = 0;
+  virtual auto Update() -> void = 0;
 
   /**
    * Gets the status of the quest.
    */
-  virtual String GetStatus() const = 0;
+  virtual auto GetStatus() const -> String = 0;
 
   /**
    * The name of the quest.

@@ -11,7 +11,7 @@ namespace Forradia::Theme0 {
  * @return The name from the hash code.
  */
 template <int N>
-String GetNameFromHash();
+auto GetNameFromHash() -> String;
 
 /**
  * Gets the name from a hash code, i.e. it reverses the Hash function.
@@ -19,5 +19,5 @@ String GetNameFromHash();
  * @param hash The hash code to get the name from.
  * @return The name from the hash code.
  */
-String GetNameFromAnyHash(int hash);
+auto GetNameFromAnyHash(int hash) -> String;
 }

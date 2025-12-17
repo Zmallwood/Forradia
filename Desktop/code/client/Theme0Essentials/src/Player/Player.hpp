@@ -25,29 +25,29 @@ class Player {
   /**
    * Moves the player north.
    */
-  void MoveNorth();
+  auto MoveNorth() -> void;
 
   /**
    * Moves the player east.
    */
-  void MoveEast();
+  auto MoveEast() -> void;
 
   /**
    * Moves the player south.
    */
-  void MoveSouth();
+  auto MoveSouth() -> void;
 
   /**
    * Moves the player west.
    */
-  void MoveWest();
+  auto MoveWest() -> void;
 
   /**
    * Adds experience to the player.
    *
    * @param experience The experience to add.
    */
-  void AddExperience(int experience);
+  auto AddExperience(int experience) -> void;
 
   /**
    * Adds a player action to the player.
@@ -56,8 +56,8 @@ class Player {
    * @param actionFirstArgument The first argument of the player action.
    * @param actionSecondArgument The second argument of the player action.
    */
-  void AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument = "",
-                       Point actionSecondArgument = {-1, -1});
+  auto AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument = "",
+                       Point actionSecondArgument = {-1, -1}) -> void;
 
   /**
    * Gets the name of the player.
@@ -73,7 +73,7 @@ class Player {
    *
    * @param value The value to set.
    */
-  void SetPosition(Point value) {
+  auto SetPosition(Point value) -> void {
     m_position = value;
   }
 
@@ -109,7 +109,7 @@ class Player {
    *
    * @param value The value to set.
    */
-  void SetTicksLastMovement(int value) {
+  auto SetTicksLastMovement(int value) -> void {
     m_ticksLastMovement = value;
   }
 
@@ -127,7 +127,7 @@ class Player {
    *
    * @param value The value to set.
    */
-  void SetDestination(Point value) {
+  auto SetDestination(Point value) -> void {
     m_destination = value;
   }
 
@@ -215,9 +215,9 @@ class Player {
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  void MoveToSuitablePosition();
+  auto MoveToSuitablePosition() -> void;
 
   String m_name{"Unnamed Player"};
   Point m_position{60, 50};

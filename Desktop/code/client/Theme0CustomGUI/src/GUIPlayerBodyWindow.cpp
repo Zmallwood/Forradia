@@ -9,7 +9,7 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-void GUIPlayerBodyWindow::Initialize() {
+auto GUIPlayerBodyWindow::Initialize() -> void {
   auto imageWidth{0.07f};
   auto imageHeight{ConvertWidthToHeight(imageWidth, _<SDLDevice>().GetWindow())};
 
@@ -69,11 +69,11 @@ void GUIPlayerBodyWindow::Initialize() {
   this->AddChildComponent(m_labelBodyPartTemperature);
 }
 
-void GUIPlayerBodyWindow::SelectBodyPart(int type) {
+auto GUIPlayerBodyWindow::SelectBodyPart(int type) -> void {
   m_selectedBodyPart = type;
 }
 
-void GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() {
+auto GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() -> void {
   auto &playerBody{_<Theme0::Player>().GetBodyRef()};
 
   constexpr auto overallBody{CInt(Theme0::PlayerBodyPartTypes::OverallBody)};

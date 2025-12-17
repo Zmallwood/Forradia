@@ -10,7 +10,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void MoveQuest::Update() {
+auto MoveQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numSteps{0};
@@ -34,11 +34,11 @@ void MoveQuest::Update() {
   return;
 }
 
-String MoveQuest::GetStatus() const {
+auto MoveQuest::GetStatus() const -> String {
   return "Movements left: " + std::to_string(m_numStepsLeft);
 }
 
-void ForageQuest::Update() {
+auto ForageQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numForagings{0};
@@ -61,11 +61,11 @@ void ForageQuest::Update() {
   }
 }
 
-String ForageQuest::GetStatus() const {
+auto ForageQuest::GetStatus() const -> String {
   return "Forages left: " + std::to_string(m_numForagingsLeft);
 }
 
-void CraftStonePickaxeQuest::Update() {
+auto CraftStonePickaxeQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   for (auto &entry : playerActions) {
@@ -86,7 +86,7 @@ void CraftStonePickaxeQuest::Update() {
   }
 }
 
-String CraftStonePickaxeQuest::GetStatus() const {
+auto CraftStonePickaxeQuest::GetStatus() const -> String {
   if (!m_numBranchPicked)
     return "Pick a branch.";
 
@@ -96,7 +96,7 @@ String CraftStonePickaxeQuest::GetStatus() const {
   return "Craft a stone pickaxe out of the branch and stone.";
 }
 
-void CraftStoneBowl::Update() {
+auto CraftStoneBowl::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto i{0};
@@ -118,14 +118,14 @@ void CraftStoneBowl::Update() {
   }
 }
 
-String CraftStoneBowl::GetStatus() const {
+auto CraftStoneBowl::GetStatus() const -> String {
   if (!m_stonedMined)
     return "Mine a stone.";
 
   return "Craft a stone bowl out of the stone.";
 }
 
-void MineStoneFromBoulderQuest1::Update() {
+auto MineStoneFromBoulderQuest1::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numMinedStones{0};
@@ -164,11 +164,11 @@ void MineStoneFromBoulderQuest1::Update() {
   }
 }
 
-String MineStoneFromBoulderQuest1::GetStatus() const {
+auto MineStoneFromBoulderQuest1::GetStatus() const -> String {
   return "Stones left: " + std::to_string(m_numMinedStonesLeft);
 }
 
-void CraftStoneSlabsQuest::Update() {
+auto CraftStoneSlabsQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numCraftedSlabs{0};
@@ -192,11 +192,11 @@ void CraftStoneSlabsQuest::Update() {
   }
 }
 
-String CraftStoneSlabsQuest::GetStatus() const {
+auto CraftStoneSlabsQuest::GetStatus() const -> String {
   return "Slabs left: " + std::to_string(m_numCraftedSlabsLeft);
 }
 
-void LayStoneSlabsQuest::Update() {
+auto LayStoneSlabsQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numLaidSlabs{0};
@@ -219,11 +219,11 @@ void LayStoneSlabsQuest::Update() {
   }
 }
 
-String LayStoneSlabsQuest::GetStatus() const {
+auto LayStoneSlabsQuest::GetStatus() const -> String {
   return "Slabs left: " + std::to_string(m_numLaidSlabsLeft);
 }
 
-void MineStoneFromBoulderQuest2::Update() {
+auto MineStoneFromBoulderQuest2::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numMinedStones{0};
@@ -256,11 +256,11 @@ void MineStoneFromBoulderQuest2::Update() {
   }
 }
 
-String MineStoneFromBoulderQuest2::GetStatus() const {
+auto MineStoneFromBoulderQuest2::GetStatus() const -> String {
   return "Stones left: " + std::to_string(m_numMinedStonesLeft);
 }
 
-void CraftStoneBricksQuest::Update() {
+auto CraftStoneBricksQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numCraftedBricks{0};
@@ -284,11 +284,11 @@ void CraftStoneBricksQuest::Update() {
   }
 }
 
-String CraftStoneBricksQuest::GetStatus() const {
+auto CraftStoneBricksQuest::GetStatus() const -> String {
   return "Bricks left: " + std::to_string(m_numCraftedBricksLeft);
 }
 
-void BuildStoneWallsQuest::Update() {
+auto BuildStoneWallsQuest::Update() -> void {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   std::set<Point> wallPositions;
@@ -361,7 +361,7 @@ void BuildStoneWallsQuest::Update() {
   }
 }
 
-String BuildStoneWallsQuest::GetStatus() const {
+auto BuildStoneWallsQuest::GetStatus() const -> String {
   return "You need to build more stone walls (and door).";
 }
 }
