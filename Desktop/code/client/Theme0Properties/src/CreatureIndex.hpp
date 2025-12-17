@@ -21,7 +21,7 @@ class CreatureIndex {
    * @param creatureHash The hash of the creature.
    * @return The model scaling for the given creature.
    */
-  float GetModelScaling(int creatureHash) const;
+  auto GetModelScaling(int creatureHash) const -> float;
 
   /**
    * Get the levitation height for a given creature hash.
@@ -29,7 +29,7 @@ class CreatureIndex {
    * @param creatureHash The hash of the creature.
    * @return The levitation height for the given creature.
    */
-  float GetLevitationHeight(int creatureHash) const;
+  auto GetLevitationHeight(int creatureHash) const -> float;
 
   /**
    * Check if a creature entry exists for a given creature hash.
@@ -37,10 +37,11 @@ class CreatureIndex {
    * @param creatureHash The hash of the creature.
    * @return True if a creature entry exists for the given creature hash, false otherwise.
    */
-  bool CreatureEntryExists(int creatureHash) const;
+  auto CreatureEntryExists(int creatureHash) const -> bool;
 
  private:
-  void AddCreatureEntry(StringView creatureName, float modelScaling, float levitationHeight);
+  auto AddCreatureEntry(StringView creatureName, float modelScaling, float levitationHeight)
+      -> void;
 
   std::map<int, CreatureIndexEntry> m_entries;
 };

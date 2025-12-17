@@ -36,14 +36,14 @@ class Tile {
    *
    * @param groundHash The hash of the ground type name.
    */
-  void SetGround(int groundHash);
+  auto SetGround(int groundHash) -> void;
 
   /**
    * Sets the ground type of the tile, which is the name of the ground type.
    *
    * @param groundName The name of the ground type.
    */
-  void SetGround(StringView groundName);
+  auto SetGround(StringView groundName) -> void;
 
   /**
    * Gets the objects stack of the tile.
@@ -68,7 +68,7 @@ class Tile {
    *
    * @param value The creature on the tile.
    */
-  void SetCreature(SharedPtr<Creature> value) {
+  auto SetCreature(SharedPtr<Creature> value) -> void {
     m_creature = value;
   }
 
@@ -86,7 +86,7 @@ class Tile {
    *
    * @param value The robot on the tile.
    */
-  void SetRobot(SharedPtr<Robot> value) {
+  auto SetRobot(SharedPtr<Robot> value) -> void {
     m_robot = value;
   }
 
@@ -104,7 +104,7 @@ class Tile {
    *
    * @param value The elevation of the tile.
    */
-  void SetElevation(int value) {
+  auto SetElevation(int value) -> void {
     m_elevation = value;
   }
 
@@ -122,7 +122,7 @@ class Tile {
    *
    * @param value The water depth of the tile.
    */
-  void SetWaterDepth(int value) {
+  auto SetWaterDepth(int value) -> void {
     m_waterDepth = value;
   }
 
@@ -140,12 +140,12 @@ class Tile {
    *
    * @param value Whether to force a redraw of the tile.
    */
-  void SetForceRedraw(bool value) {
+  auto SetForceRedraw(bool value) -> void {
     m_forceRedraw = value;
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   int m_ground{0};
   SharedPtr<ObjectsStack> m_objectsStack;

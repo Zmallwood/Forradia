@@ -6,7 +6,8 @@
 #include "WorldGeneratorWater.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const {
+auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const
+    -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
 

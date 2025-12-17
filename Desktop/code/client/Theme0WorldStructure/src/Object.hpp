@@ -48,7 +48,7 @@ class Object {
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   int m_type{0};
   float m_modelScaling{1.0f};

@@ -6,7 +6,7 @@
 #include "Tile.hpp"
 
 namespace Forradia::Theme0 {
-void WorldArea::Initialize(Size worldAreaSize, float worldScaling) {
+auto WorldArea::Initialize(Size worldAreaSize, float worldScaling) -> void {
   auto size{worldAreaSize};
   size.width *= worldScaling;
   size.height *= worldScaling;
@@ -18,7 +18,7 @@ void WorldArea::Initialize(Size worldAreaSize, float worldScaling) {
   }
 }
 
-void WorldArea::Reset() {
+auto WorldArea::Reset() -> void {
   m_creaturesMirror.clear();
   m_robotsMirror.clear();
 
@@ -39,7 +39,7 @@ void WorldArea::Reset() {
   }
 }
 
-Size WorldArea::GetSize() const {
+auto WorldArea::GetSize() const -> Size {
   auto width{CInt(m_tiles.size())};
   auto height{0};
   if (width)
@@ -47,30 +47,30 @@ Size WorldArea::GetSize() const {
   return {width, height};
 }
 
-bool WorldArea::IsValidCoordinate(int x, int y) const {
+auto WorldArea::IsValidCoordinate(int x, int y) const -> bool {
   auto size{this->GetSize()};
   return x >= 0 && y >= 0 && x < size.width && y < size.height;
 }
 
-bool WorldArea::IsValidCoordinate(Point coordinate) const {
+auto WorldArea::IsValidCoordinate(Point coordinate) const -> bool {
   return this->IsValidCoordinate(coordinate.x, coordinate.y);
 }
 
-SharedPtr<Tile> WorldArea::GetTile(int x, int y) const {
+auto WorldArea::GetTile(int x, int y) const -> SharedPtr<Tile> {
   if (this->IsValidCoordinate(x, y))
     return m_tiles.at(x).at(y);
   return nullptr;
 }
 
-SharedPtr<Tile> WorldArea::GetTile(Point coord) const {
+auto WorldArea::GetTile(Point coord) const -> SharedPtr<Tile> {
   return this->GetTile(coord.x, coord.y);
 }
 
-void WorldArea::AddClaimedCoordinate(Point coordinate) {
+auto WorldArea::AddClaimedCoordinate(Point coordinate) -> void {
   m_claimedCoordinates.insert(coordinate);
 }
 
-bool WorldArea::CoordinateIsClaimed(Point coordinate) const {
+auto WorldArea::CoordinateIsClaimed(Point coordinate) const -> bool {
   return m_claimedCoordinates.contains(coordinate);
 }
 }

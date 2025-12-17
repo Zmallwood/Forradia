@@ -13,15 +13,15 @@ class WorldGeneratorObjects : public WorldGeneratorBase {
   /**
    * Generate the objects in the world.
    */
-  void GenerateObjects() const;
+  auto GenerateObjects() const -> void;
 
  private:
-  void GenerateForests() const;
+  auto GenerateForests() const -> void;
 
-  void GenerateMeadows() const;
+  auto GenerateMeadows() const -> void;
 
-  void GenerateObjectsInBiomes() const;
+  auto GenerateObjectsInBiomes() const -> void;
 
-  bool IsValidForFlora(int x, int y) const;
+  auto IsValidForFlora(int x, int y) const -> bool;
 };
 }

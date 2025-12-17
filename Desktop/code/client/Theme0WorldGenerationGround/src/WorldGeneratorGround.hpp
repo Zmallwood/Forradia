@@ -13,31 +13,32 @@ class WorldGeneratorGround : public WorldGeneratorBase {
   /**
    * Do all the steps to generate the ground with elevation.
    */
-  void GenerateGroundWithElevation() const;
+  auto GenerateGroundWithElevation() const -> void;
 
  private:
-  void ClearWithDirt() const;
+  auto ClearWithDirt() const -> void;
 
-  void GenerateGrassBiomes() const;
+  auto GenerateGrassBiomes() const -> void;
 
-  void GenerateRockFormations() const;
+  auto GenerateRockFormations() const -> void;
 
-  void GenerateElevationWithBiomes() const;
+  auto GenerateElevationWithBiomes() const -> void;
 
-  void GenerateMountainRanges() const;
+  auto GenerateMountainRanges() const -> void;
 
-  void GenerateValleys() const;
+  auto GenerateValleys() const -> void;
 
-  void CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const;
+  auto CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const
+      -> void;
 
-  int GetMaxElevation() const;
+  auto GetMaxElevation() const -> int;
 
-  int GetMaxSlopePerTile() const;
+  auto GetMaxSlopePerTile() const -> int;
 
-  int GetMaxAllowedElevation(int x, int y, int currentElevation) const;
+  auto GetMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
 
-  int ClampElevation(int elevation) const;
+  auto ClampElevation(int elevation) const -> int;
 
-  void CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const;
+  auto CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const -> void;
 };
 }

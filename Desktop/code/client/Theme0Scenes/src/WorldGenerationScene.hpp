@@ -13,6 +13,6 @@ class WorldGenerationScene : public IScene {
   /**
    * Called when the world generation scene is entered.
    */
-  virtual void OnEnterDerived() override;
+  virtual auto OnEnterDerived() -> void override;
 };
 }

@@ -17,11 +17,11 @@ class PlayScene : public IScene {
   /**
    * Initializes the play scene.
    */
-  virtual void InitializeDerived() override;
+  virtual auto InitializeDerived() -> void override;
 
   /**
    * Called every frame to render the scene.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 };
 }

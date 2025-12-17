@@ -28,14 +28,14 @@ class WorldArea {
   /**
    * Resets the world area.
    */
-  void Reset();
+  auto Reset() -> void;
 
   /**
    * Gets the size of the world area.
    *
    * @return The size of the world area.
    */
-  Size GetSize() const;
+  auto GetSize() const -> Size;
 
   /**
    * Checks if a coordinate is valid in the world area.
@@ -44,7 +44,7 @@ class WorldArea {
    * @param y The y coordinate.
    * @return True if the coordinate is valid, false otherwise.
    */
-  bool IsValidCoordinate(int x, int y) const;
+  auto IsValidCoordinate(int x, int y) const -> bool;
 
   /**
    * Checks if a coordinate is valid in the world area.
@@ -52,7 +52,7 @@ class WorldArea {
    * @param coordinate The coordinate.
    * @return True if the coordinate is valid, false otherwise.
    */
-  bool IsValidCoordinate(Point coordinate) const;
+  auto IsValidCoordinate(Point coordinate) const -> bool;
 
   /**
    * Gets the tile at the given coordinate.
@@ -61,7 +61,7 @@ class WorldArea {
    * @param y The y coordinate.
    * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
    */
-  SharedPtr<Tile> GetTile(int x, int y) const;
+  auto GetTile(int x, int y) const -> SharedPtr<Tile>;
 
   /**
    * Gets the tile at the given coordinate.
@@ -69,14 +69,14 @@ class WorldArea {
    * @param coordinate The coordinate.
    * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
    */
-  SharedPtr<Tile> GetTile(Point coord) const;
+  auto GetTile(Point coord) const -> SharedPtr<Tile>;
 
   /**
    * Adds a claimed coordinate.
    *
    * @param coordinate The coordinate to add.
    */
-  void AddClaimedCoordinate(Point coordinate);
+  auto AddClaimedCoordinate(Point coordinate) -> void;
 
   /**
    * Checks if a coordinate is claimed.
@@ -84,7 +84,7 @@ class WorldArea {
    * @param coordinate The coordinate to check.
    * @return True if the coordinate is claimed, false otherwise.
    */
-  bool CoordinateIsClaimed(Point coordinate) const;
+  auto CoordinateIsClaimed(Point coordinate) const -> bool;
 
   /**
    * Gets a reference to the creatures mirror.
@@ -105,7 +105,7 @@ class WorldArea {
   }
 
  private:
-  void Initialize(Size worldAreaSize, float worldScaling);
+  auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
   Vector<Vector<SharedPtr<Tile>>> m_tiles;
   std::map<SharedPtr<Creature>, Point> m_creaturesMirror;

@@ -7,13 +7,13 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorObjects::GenerateObjects() const {
+auto WorldGeneratorObjects::GenerateObjects() const -> void {
   GenerateForests();
   GenerateMeadows();
   GenerateObjectsInBiomes();
 }
 
-void WorldGeneratorObjects::GenerateForests() const {
+auto WorldGeneratorObjects::GenerateForests() const -> void {
   auto worldArea{GetWorldArea()};
   auto size{worldArea->GetSize()};
   auto worldScaling{GetWorldScaling()};
@@ -86,7 +86,7 @@ void WorldGeneratorObjects::GenerateForests() const {
   }
 }
 
-void WorldGeneratorObjects::GenerateMeadows() const {
+auto WorldGeneratorObjects::GenerateMeadows() const -> void {
   auto worldArea{GetWorldArea()};
   auto size{worldArea->GetSize()};
   auto worldScaling{GetWorldScaling()};
@@ -144,7 +144,7 @@ void WorldGeneratorObjects::GenerateMeadows() const {
   }
 }
 
-bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const {
+auto WorldGeneratorObjects::IsValidForFlora(int x, int y) const -> bool {
   if (!GetWorldArea()->IsValidCoordinate(x, y))
     return false;
 

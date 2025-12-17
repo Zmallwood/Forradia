@@ -14,21 +14,21 @@ class Theme0Properties {
    *
    * @return The game window title.
    */
-  String GetGameWindowTitle() const;
+  auto GetGameWindowTitle() const -> String;
 
   /**
    * Get the clear color of the canvas.
    *
    * @return The clear color of the canvas.
    */
-  Color GetClearColor() const;
+  auto GetClearColor() const -> Color;
 
   /**
    * Get the size of the grid rendered by the WorldView.
    *
    * @return The size of the grid rendered by the WorldView.
    */
-  Size GetGridSize() const;
+  auto GetGridSize() const -> Size;
 
   /**
    * Get the base size of a single world area. This size is being scaled using
@@ -36,7 +36,7 @@ class Theme0Properties {
    *
    * @return The base size of a single world area.
    */
-  Size GetBaseWorldAreaSize() const;
+  auto GetBaseWorldAreaSize() const -> Size;
 
   /**
    * Get the world scaling factor which is applied to the world area size and world generation
@@ -44,20 +44,20 @@ class Theme0Properties {
    *
    * @return The world scaling factor.
    */
-  float GetWorldScaling() const;
+  auto GetWorldScaling() const -> float;
 
   /**
    * Get the size of a single tile in opengl space.
    *
    * @return The size of a single tile in opengl space.
    */
-  float GetTileSize() const;
+  auto GetTileSize() const -> float;
 
   /**
    * Get the height of one unit of elevation in opengl 3D space.
    *
    * @return The height of one unit of elevation.
    */
-  float GetElevationHeight() const;
+  auto GetElevationHeight() const -> float;
 };
 }

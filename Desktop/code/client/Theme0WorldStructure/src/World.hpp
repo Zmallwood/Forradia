@@ -17,7 +17,7 @@ class World {
    * @param worldAreaSize The size of the world area.
    * @param worldScaling The scaling of the world.
    */
-  void Initialize(Size worldAreaSize, float worldScaling);
+  auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
   /**
    * Gets the current world area.

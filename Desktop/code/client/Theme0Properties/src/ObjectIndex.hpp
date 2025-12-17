@@ -21,7 +21,7 @@ class ObjectIndex {
    * @param objectHash The hash of the object.
    * @return The model scaling for the given object.
    */
-  float GetModelScaling(int objectHash) const;
+  auto GetModelScaling(int objectHash) const -> float;
 
   /**
    * Check if an object entry exists for a given object hash.
@@ -29,12 +29,19 @@ class ObjectIndex {
    * @param objectHash The hash of the object.
    * @return True if an object entry exists for the given object hash, false otherwise.
    */
-  bool ObjectEntryExists(int objectHash) const;
+  auto ObjectEntryExists(int objectHash) const -> bool;
 
-  bool GetIgnoreIndividualModelScaling(int objectHash) const;
+  /**
+   * Gets wether the object type with the given hash should have individual model scaling ignored.
+   *
+   * @param objectHash The hash of the object.
+   * @return True if individual model scaling should be ignored, otherwise false.
+   */
+  auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
  private:
-  void AddObjectEntry(StringView objectName, float modelScaling, bool ignoreIndividualModelScaling);
+  auto AddObjectEntry(StringView objectName, float modelScaling, bool ignoreIndividualModelScaling)
+      -> void;
 
   std::map<int, ObjectIndexEntry> m_entries;
 };

@@ -4,31 +4,31 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia::Theme0 {
-String Theme0Properties::GetGameWindowTitle() const {
+auto Theme0Properties::GetGameWindowTitle() const -> String {
   return "Forradia";
 }
 
-Color Theme0Properties::GetClearColor() const {
+auto Theme0Properties::GetClearColor() const -> Color {
   return Palette::GetColor<Hash("MildBlue")>();
 }
 
-Size Theme0Properties::GetGridSize() const {
+auto Theme0Properties::GetGridSize() const -> Size {
   return {45, 45};
 }
 
-Size Theme0Properties::GetBaseWorldAreaSize() const {
+auto Theme0Properties::GetBaseWorldAreaSize() const -> Size {
   return {120, 100};
 }
 
-float Theme0Properties::GetWorldScaling() const {
+auto Theme0Properties::GetWorldScaling() const -> float {
   return 5.0f;
 }
 
-float Theme0Properties::GetTileSize() const {
+auto Theme0Properties::GetTileSize() const -> float {
   return 1.6f;
 }
 
-float Theme0Properties::GetElevationHeight() const {
+auto Theme0Properties::GetElevationHeight() const -> float {
   return 0.15f;
 }
 }

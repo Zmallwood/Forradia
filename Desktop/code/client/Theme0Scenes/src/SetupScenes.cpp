@@ -10,7 +10,7 @@
 #include "WorldGenerationScene.hpp"
 
 namespace Forradia::Theme0 {
-void SetupScenes() {
+auto SetupScenes() -> void {
   _<SceneManager>().AddScene("IntroScene", _<IntroScene>());
   _<SceneManager>().AddScene("MainMenuScene", _<MainMenuScene>());
   _<SceneManager>().AddScene("PlayScene", _<PlayScene>());

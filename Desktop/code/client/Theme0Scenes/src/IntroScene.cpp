@@ -12,17 +12,17 @@
 #include "SceneManager.hpp"
 
 namespace Forradia::Theme0 {
-void IntroScene::InitializeDerived() {
+auto IntroScene::InitializeDerived() -> void {
   auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
                                       "Press to start", true)};
   m_startText = GetGUI()->AddChildComponent(lbl);
 }
 
-void IntroScene::OnEnterDerived() {
+auto IntroScene::OnEnterDerived() -> void {
   _<GUIChatBox>().Print("Game started.");
 }
 
-void IntroScene::UpdateDerived() {
+auto IntroScene::UpdateDerived() -> void {
   m_startText->SetVisible(GetTicks() % 800 < 400);
   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
   if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
@@ -30,7 +30,7 @@ void IntroScene::UpdateDerived() {
     _<SceneManager>().GoToScene("MainMenuScene");
 }
 
-void IntroScene::RenderDerived() const {
+auto IntroScene::RenderDerived() const -> void {
   _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f,
                                        0.0f, 1.0f, 1.0f);
   _<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo", 0.25f, 0.2f,

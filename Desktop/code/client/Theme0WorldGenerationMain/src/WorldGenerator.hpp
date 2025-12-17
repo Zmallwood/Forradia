@@ -14,9 +14,9 @@ class WorldGenerator {
   /**
    * Generates a new world.
    */
-  void GenerateNewWorld() const;
+  auto GenerateNewWorld() const -> void;
 
  private:
-  void Prepare() const;
+  auto Prepare() const -> void;
 };
 }

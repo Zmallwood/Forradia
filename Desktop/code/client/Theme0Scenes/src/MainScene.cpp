@@ -29,7 +29,7 @@
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0 {
-void MainScene::InitializeDerived() {
+auto MainScene::InitializeDerived() -> void {
   GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
   GetGUI()->AddChildComponent(__<GUIChatBox>());
 
@@ -62,14 +62,14 @@ void MainScene::InitializeDerived() {
   GetGUI()->AddChildComponent(__<GUIExperienceBar>());
 }
 
-void MainScene::OnEnterDerived() {
+auto MainScene::OnEnterDerived() -> void {
   auto chatBoxHeight{_<GUIChatBox>().GetBounds().height};
   auto experienceBarHeight{_<GUIExperienceBar>().GetBounds().height};
   _<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
   _<GUIChatBox>().Print("You have entered the world.");
 }
 
-void MainScene::UpdateDerived() {
+auto MainScene::UpdateDerived() -> void {
   UpdateKeyboardActions();
   UpdateMouseActions();
   UpdateCreaturesMovement();
@@ -83,7 +83,7 @@ void MainScene::UpdateDerived() {
   _<QuestSystem>().Update();
 }
 
-void MainScene::RenderDerived() const {
+auto MainScene::RenderDerived() const -> void {
   _<WorldView>().Render();
 }
 }

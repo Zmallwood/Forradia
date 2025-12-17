@@ -5,7 +5,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void World::Initialize(Size worldAreaSize, float worldScaling) {
+auto World::Initialize(Size worldAreaSize, float worldScaling) -> void {
   m_currentWorldArea = std::make_shared<WorldArea>(worldAreaSize, worldScaling);
 }
 }

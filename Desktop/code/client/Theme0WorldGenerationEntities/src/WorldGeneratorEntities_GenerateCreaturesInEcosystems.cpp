@@ -9,7 +9,7 @@
 #include "WorldGeneratorEntities.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorEntities::GenerateCreaturesInEcosystems() const {
+auto WorldGeneratorEntities::GenerateCreaturesInEcosystems() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto worldScaling{GetWorldScaling()};

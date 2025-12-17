@@ -7,7 +7,7 @@
 #include "WorldGenerator.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGenerationScene::OnEnterDerived() {
+auto WorldGenerationScene::OnEnterDerived() -> void {
   _<GUIChatBox>().Print("Generating world...");
   _<WorldGenerator>().GenerateNewWorld();
   _<GUIChatBox>().Print("World generation complete.");

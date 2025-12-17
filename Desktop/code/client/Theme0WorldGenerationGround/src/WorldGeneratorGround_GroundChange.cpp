@@ -6,7 +6,7 @@
 #include "WorldGeneratorGround.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorGround::GenerateGrassBiomes() const {
+auto WorldGeneratorGround::GenerateGrassBiomes() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
@@ -48,7 +48,7 @@ void WorldGeneratorGround::GenerateGrassBiomes() const {
   }
 }
 
-void WorldGeneratorGround::GenerateRockFormations() const {
+auto WorldGeneratorGround::GenerateRockFormations() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
@@ -97,8 +97,8 @@ void WorldGeneratorGround::GenerateRockFormations() const {
   }
 }
 
-void WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                              StringView groundType) const {
+auto WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
+                                              StringView groundType) const -> void {
   // Enumerate all tiles in the radius.
   for (auto y = centerY - radius; y <= centerY + radius; y++) {
     for (auto x = centerX - radius; x <= centerX + radius; x++) {

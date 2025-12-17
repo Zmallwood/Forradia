@@ -8,24 +8,24 @@ CreatureIndex::CreatureIndex() {
   AddCreatureEntry("CreatureRedBird", 0.5f, 3.0f);
 }
 
-void CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
-                                     float levitationHeight) {
+auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
+                                     float levitationHeight) -> void {
   m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
 }
 
-float CreatureIndex::GetModelScaling(int creatureHash) const {
+auto CreatureIndex::GetModelScaling(int creatureHash) const -> float {
   if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).modelScaling;
   return 1.0f;
 }
 
-float CreatureIndex::GetLevitationHeight(int creatureHash) const {
+auto CreatureIndex::GetLevitationHeight(int creatureHash) const -> float {
   if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).levitationHeight;
   return 0.0f;
 }
 
-bool CreatureIndex::CreatureEntryExists(int creatureHash) const {
+auto CreatureIndex::CreatureEntryExists(int creatureHash) const -> bool {
   return m_entries.contains(creatureHash);
 }
 }

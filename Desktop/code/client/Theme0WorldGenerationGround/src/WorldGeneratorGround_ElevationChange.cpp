@@ -6,7 +6,7 @@
 #include "WorldGeneratorGround.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorGround::GenerateElevationWithBiomes() const {
+auto WorldGeneratorGround::GenerateElevationWithBiomes() const -> void {
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
 
@@ -21,7 +21,7 @@ void WorldGeneratorGround::GenerateElevationWithBiomes() const {
   }
 }
 
-void WorldGeneratorGround::GenerateMountainRanges() const {
+auto WorldGeneratorGround::GenerateMountainRanges() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
@@ -66,7 +66,7 @@ void WorldGeneratorGround::GenerateMountainRanges() const {
   }
 }
 
-void WorldGeneratorGround::GenerateValleys() const {
+auto WorldGeneratorGround::GenerateValleys() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
@@ -109,8 +109,8 @@ void WorldGeneratorGround::GenerateValleys() const {
   }
 }
 
-void WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int radius,
-                                               int maxElevation) const {
+auto WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int radius,
+                                               int maxElevation) const -> void {
   // Traverse the candidate tiles within the bounding square of the hill footprint.
   for (auto y = centerY - radius; y <= centerY + radius; y++) {
     for (auto x = centerX - radius; x <= centerX + radius; x++) {

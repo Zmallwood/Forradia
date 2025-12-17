@@ -13,17 +13,17 @@ class WorldGeneratorWater : public WorldGeneratorBase {
   /**
    * Generate water.
    */
-  void GenerateWater() const;
+  auto GenerateWater() const -> void;
 
  private:
-  void GenerateNaturalRivers() const;
+  auto GenerateNaturalRivers() const -> void;
 
-  void GenerateRiverFromSource(int startX, int startY, int length) const;
+  auto GenerateRiverFromSource(int startX, int startY, int length) const -> void;
 
-  void GenerateLakesInValleys() const;
+  auto GenerateLakesInValleys() const -> void;
 
-  bool IsValidForWater(int x, int y) const;
+  auto IsValidForWater(int x, int y) const -> bool;
 
-  void SetAdjacentTilesElevationToZero(int x, int y) const;
+  auto SetAdjacentTilesElevationToZero(int x, int y) const -> void;
 };
 }

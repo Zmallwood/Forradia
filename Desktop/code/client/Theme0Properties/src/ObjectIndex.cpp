@@ -13,22 +13,22 @@ ObjectIndex::ObjectIndex() {
   AddObjectEntry("ObjectStoneWallDoor", 0.8f, true);
 }
 
-void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
-                                 bool ignoreIndividualModelScaling) {
+auto ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
+                                 bool ignoreIndividualModelScaling) -> void {
   m_entries.insert({Hash(objectName), {modelScaling, ignoreIndividualModelScaling}});
 }
 
-float ObjectIndex::GetModelScaling(int objectHash) const {
+auto ObjectIndex::GetModelScaling(int objectHash) const -> float {
   if (m_entries.contains(objectHash))
     return m_entries.at(objectHash).modelScaling;
   return 1.0f;
 }
 
-bool ObjectIndex::ObjectEntryExists(int objectHash) const {
+auto ObjectIndex::ObjectEntryExists(int objectHash) const -> bool {
   return m_entries.contains(objectHash);
 }
 
-bool ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const {
+auto ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const -> bool {
   if (m_entries.contains(objectHash))
     return m_entries.at(objectHash).ignoreIndividualModelScaling;
   return false;

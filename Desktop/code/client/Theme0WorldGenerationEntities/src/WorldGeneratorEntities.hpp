@@ -13,13 +13,13 @@ class WorldGeneratorEntities : public WorldGeneratorBase {
   /**
    * Generates entities for the world.
    */
-  void GenerateEntities() const;
+  auto GenerateEntities() const -> void;
 
  private:
-  void GenerateCreaturesInEcosystems() const;
+  auto GenerateCreaturesInEcosystems() const -> void;
 
-  void GenerateRobotsInAreas() const;
+  auto GenerateRobotsInAreas() const -> void;
 
-  bool IsNearWater(int x, int y, int radius) const;
+  auto IsNearWater(int x, int y, int radius) const -> bool;
 };
 }

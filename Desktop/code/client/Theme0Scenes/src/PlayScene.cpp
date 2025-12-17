@@ -10,7 +10,7 @@
 #include "SceneManager.hpp"
 
 namespace Forradia::Theme0 {
-void PlayScene::InitializeDerived() {
+auto PlayScene::InitializeDerived() -> void {
   auto panel{std::make_shared<GUIPanel>("PlayScenePanel", 0.4f, 0.32f, 0.2f, 0.32f)};
   GetGUI()->AddChildComponent(panel);
 
@@ -30,7 +30,7 @@ void PlayScene::InitializeDerived() {
   GetGUI()->AddChildComponent(__<GUIChatBox>());
 }
 
-void PlayScene::RenderDerived() const {
+auto PlayScene::RenderDerived() const -> void {
   _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f,
                                        0.0f, 1.0f, 1.0f);
   _<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo", 0.35f, 0.1f,

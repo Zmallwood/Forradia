@@ -6,7 +6,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorGround::GenerateGroundWithElevation() const {
+auto WorldGeneratorGround::GenerateGroundWithElevation() const -> void {
   ClearWithDirt();
   GenerateElevationWithBiomes();
   GenerateMountainRanges();
@@ -15,7 +15,7 @@ void WorldGeneratorGround::GenerateGroundWithElevation() const {
   GenerateRockFormations();
 }
 
-void WorldGeneratorGround::ClearWithDirt() const {
+auto WorldGeneratorGround::ClearWithDirt() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
 
@@ -32,18 +32,18 @@ void WorldGeneratorGround::ClearWithDirt() const {
   }
 }
 
-int WorldGeneratorGround::GetMaxElevation() const {
+auto WorldGeneratorGround::GetMaxElevation() const -> int {
   // Maximum elevation cap to prevent excessive stacking.
   return 300;
 }
 
-int WorldGeneratorGround::GetMaxSlopePerTile() const {
+auto WorldGeneratorGround::GetMaxSlopePerTile() const -> int {
   // Maximum elevation difference between adjacent tiles.
   // This prevents mountains from becoming too steep.
   return 8;
 }
 
-int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const {
+auto WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const -> int {
   // Calculate the maximum elevation this tile can have based on adjacent tiles
   // to prevent steep slopes. This ensures mountains have gradual slopes.
 
@@ -88,7 +88,7 @@ int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevat
   return maxAllowedElevation;
 }
 
-int WorldGeneratorGround::ClampElevation(int elevation) const {
+auto WorldGeneratorGround::ClampElevation(int elevation) const -> int {
   auto maxElevation{GetMaxElevation()};
 
   if (elevation > maxElevation)

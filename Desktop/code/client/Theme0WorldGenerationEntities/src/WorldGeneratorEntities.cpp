@@ -9,12 +9,12 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorEntities::GenerateEntities() const {
+auto WorldGeneratorEntities::GenerateEntities() const -> void {
   GenerateCreaturesInEcosystems();
   GenerateRobotsInAreas();
 }
 
-void WorldGeneratorEntities::GenerateRobotsInAreas() const {
+auto WorldGeneratorEntities::GenerateRobotsInAreas() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto worldScaling{GetWorldScaling()};
@@ -88,7 +88,7 @@ void WorldGeneratorEntities::GenerateRobotsInAreas() const {
   }
 }
 
-bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const {
+auto WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const -> bool {
   for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
     for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
       if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))

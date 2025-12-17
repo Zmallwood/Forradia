@@ -18,22 +18,22 @@ class IntroScene : public IScene {
   /**
    * Initializes the intro scene.
    */
-  virtual void InitializeDerived() override;
+  virtual auto InitializeDerived() -> void override;
 
   /**
    * Called when the intro scene is entered.
    */
-  virtual void OnEnterDerived() override;
+  virtual auto OnEnterDerived() -> void override;
 
   /**
    * Called every frame.
    */
-  virtual void UpdateDerived() override;
+  virtual auto UpdateDerived() -> void override;
 
   /**
    * Called every frame to render the scene.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
  private:
   SharedPtr<GUIComponent> m_startText;

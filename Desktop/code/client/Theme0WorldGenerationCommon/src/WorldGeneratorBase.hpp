@@ -14,7 +14,7 @@ class WorldGeneratorBase {
   /**
    * Prepare the world generator.
    */
-  void Prepare();
+  auto Prepare() -> void;
 
  protected:
   /**
@@ -25,7 +25,7 @@ class WorldGeneratorBase {
    * @param y2 The y coordinate of the second point.
    * @return The distance between the two points.
    */
-  float GetDistance(int x1, int y1, int x2, int y2) const;
+  auto GetDistance(int x1, int y1, int x2, int y2) const -> float;
 
   /**
    * Get the default ground elevation.

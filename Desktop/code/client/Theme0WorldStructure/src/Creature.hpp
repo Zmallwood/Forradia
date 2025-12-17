@@ -53,7 +53,7 @@ class Creature {
    *
    * @param value The new ticks since the creature last moved.
    */
-  void SetTicksLastMovement(int value) {
+  auto SetTicksLastMovement(int value) -> void {
     m_ticksLastMovement = value;
   }
 
@@ -80,12 +80,12 @@ class Creature {
    *
    * @param value The new destination of the creature.
    */
-  void SetDestination(Point value) {
+  auto SetDestination(Point value) -> void {
     m_destination = value;
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
   int m_type{0};
   int m_ticksLastMovement{0};

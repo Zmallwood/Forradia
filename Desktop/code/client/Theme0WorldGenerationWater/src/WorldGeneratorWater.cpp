@@ -6,12 +6,12 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorWater::GenerateWater() const {
+auto WorldGeneratorWater::GenerateWater() const -> void {
   GenerateNaturalRivers();
   GenerateLakesInValleys();
 }
 
-void WorldGeneratorWater::GenerateNaturalRivers() const {
+auto WorldGeneratorWater::GenerateNaturalRivers() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
 
@@ -76,7 +76,7 @@ void WorldGeneratorWater::GenerateNaturalRivers() const {
   }
 }
 
-void WorldGeneratorWater::GenerateLakesInValleys() const {
+auto WorldGeneratorWater::GenerateLakesInValleys() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{GetWorldAreaSize()};
   auto worldScaling{GetWorldScaling()};
@@ -142,7 +142,7 @@ void WorldGeneratorWater::GenerateLakesInValleys() const {
   }
 }
 
-bool WorldGeneratorWater::IsValidForWater(int x, int y) const {
+auto WorldGeneratorWater::IsValidForWater(int x, int y) const -> bool {
   if (!GetWorldArea()->IsValidCoordinate(x, y))
     return false;
 
@@ -153,7 +153,7 @@ bool WorldGeneratorWater::IsValidForWater(int x, int y) const {
 
   return tile->GetElevation() < 80;
 }
-void WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const {
+auto WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const -> void {
   // Set elevation to 0 for all tiles adjacent to a water tile.
   // This creates a shoreline effect where land around water is at sea level.
 
