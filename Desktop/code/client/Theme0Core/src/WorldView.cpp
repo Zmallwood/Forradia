@@ -71,9 +71,8 @@ void WorldView::Render() const {
     auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
     auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
-    if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate)) {
+    if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
       return;
-    }
 
     auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
     auto objectsStack{tile->GetObjectsStack()};
@@ -96,10 +95,8 @@ void WorldView::Render() const {
 
     if (!worldArea->IsValidCoordinate(coordinateNW) ||
         !worldArea->IsValidCoordinate(coordinateNE) ||
-        !worldArea->IsValidCoordinate(coordinateSW) ||
-        !worldArea->IsValidCoordinate(coordinateSE)) {
+        !worldArea->IsValidCoordinate(coordinateSW) || !worldArea->IsValidCoordinate(coordinateSE))
       return;
-    }
 
     auto tileNWW{worldArea->GetTile(coordinateNWW)};
     auto tileNNW{worldArea->GetTile(coordinateNNW)};
@@ -265,18 +262,16 @@ void WorldView::Render() const {
     auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
     auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
-    if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate)) {
+    if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
       return;
-    }
 
     auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
     auto objectsStack{tile->GetObjectsStack()};
     auto objects{objectsStack->GetObjects()};
 
     if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
-        elevationsAll[xCoordinate].find(yCoordinate) == elevationsAll[xCoordinate].end()) {
+        elevationsAll[xCoordinate].find(yCoordinate) == elevationsAll[xCoordinate].end())
       return;
-    }
 
     Vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
 
@@ -347,16 +342,14 @@ void WorldView::Render() const {
                                      (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
       }
 
-      if (xCoordinate == playerPos.x && yCoordinate == playerPos.y) {
+      if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
         _<ModelRenderer>().DrawModel(Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
                                      (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-      }
     }
 
     if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y) {
-      for (auto &elevation : elevations) {
+      for (auto &elevation : elevations)
         elevation += 0.01f;
-      }
 
       _<GroundRenderer>().SetupState();
       _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile, Hash("HoveredTile"),
@@ -364,11 +357,10 @@ void WorldView::Render() const {
 
       // Only render ClaimedTile symbol within the normal grid size.
 
-      if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate})) {
+      if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
         _<GroundRenderer>().DrawTile(m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
                                      Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize,
                                      elevations);
-      }
 
       _<GroundRenderer>().RestoreState();
     }
@@ -381,9 +373,8 @@ void WorldView::Render() const {
       auto targetedRobotCoordinates{robots.at(targetedRobot)};
 
       if (targetedRobotCoordinates.x == xCoordinate && targetedRobotCoordinates.y == yCoordinate) {
-        for (auto &elevation : elevations) {
+        for (auto &elevation : elevations)
           elevation += 0.01f;
-        }
 
         _<GroundRenderer>().SetupState();
         _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot, Hash("TargetedRobot"),
@@ -403,28 +394,22 @@ void WorldView::Render() const {
       auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
       auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
-      if (xCoordinate % tilesGroupSize == 0 && yCoordinate % tilesGroupSize == 0) {
-        for (auto yy = 0; yy < tilesGroupSize; yy++) {
-          for (auto xx = 0; xx < tilesGroupSize; xx++) {
+      if (xCoordinate % tilesGroupSize == 0 && yCoordinate % tilesGroupSize == 0)
+        for (auto yy = 0; yy < tilesGroupSize; yy++)
+          for (auto xx = 0; xx < tilesGroupSize; xx++)
             fnIterationGround(x + xx, y + yy);
-          }
-        }
-      }
     }
   }
-  if (!tiles.empty()) {
+  if (!tiles.empty())
     _<GroundRenderer>().DrawTiles(tiles);
-  }
 
   tiles.clear();
 
   _<GroundRenderer>().SetupState();
 
   // Second pass: Render all except ground tiles.
-  for (auto y = 0; y < worldAreaSize.height; y++) {
-    for (auto x = 0; x < worldAreaSize.width; x++) {
+  for (auto y = 0; y < worldAreaSize.height; y++)
+    for (auto x = 0; x < worldAreaSize.width; x++)
       fnIterationAllExceptGround(x, y);
-    }
-  }
 }
 }

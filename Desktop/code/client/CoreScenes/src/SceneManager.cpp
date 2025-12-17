@@ -14,20 +14,17 @@ void SceneManager::AddScene(StringView sceneName, IScene &scene) {
 void SceneManager::GoToScene(StringView sceneName) {
   m_currentScene = Hash(sceneName);
 
-  if (m_scenes.contains(m_currentScene)) {
+  if (m_scenes.contains(m_currentScene))
     m_scenes.at(m_currentScene).OnEnter();
-  }
 }
 
 void SceneManager::UpdateCurrentScene() {
-  if (m_scenes.contains(m_currentScene)) {
+  if (m_scenes.contains(m_currentScene))
     m_scenes.at(m_currentScene).Update();
-  }
 }
 
 void SceneManager::RenderCurrentScene() const {
-  if (m_scenes.contains(m_currentScene)) {
+  if (m_scenes.contains(m_currentScene))
     m_scenes.at(m_currentScene).Render();
-  }
 }
 }

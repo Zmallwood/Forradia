@@ -20,9 +20,8 @@ void Player::MoveToSuitablePosition() {
 
   m_position = {size.width / 2, size.height / 2};
 
-  while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater")) {
+  while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
     m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
-  }
 }
 
 void Player::MoveNorth() {

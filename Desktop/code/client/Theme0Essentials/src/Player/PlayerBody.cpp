@@ -14,9 +14,8 @@ void PlayerBody::Initialize() {
 }
 
 SharedPtr<PlayerBodyPart> PlayerBody::GetBodyPartPtr(PlayerBodyPartTypes bodyPartType) {
-  if (!m_bodyParts.contains(bodyPartType)) {
+  if (!m_bodyParts.contains(bodyPartType))
     return nullptr;
-  }
   return m_bodyParts.at(bodyPartType);
 }
 }

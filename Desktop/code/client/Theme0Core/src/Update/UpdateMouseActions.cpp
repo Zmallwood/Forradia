@@ -29,9 +29,8 @@ void UpdateMouseActions() {
     //   auto hoveredTile{currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
     //   if (hoveredTile) {
     //     auto robot{hoveredTile->GetRobot()};
-    //     if (robot) {
+    //     if (robot)
     //       _<BattleSystem>().SetTargetedRobot(robot);
-    //     }
     //   }
     //   break;
     // }

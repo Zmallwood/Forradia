@@ -22,11 +22,10 @@ void UpdateKeyboardActions() {
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
     _<GUIInventoryWindow>().ToggleVisibility();
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN)) {
-    if (_<GUIChatBox>().GetInputActive()) {
+    if (_<GUIChatBox>().GetInputActive())
       _<GUIChatBox>().SubmitInput();
-    } else {
+    else
       _<GUIChatBox>().EnableInput();
-    }
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
     // auto currentMode{_<Player>().GetPlayerMode()};
 

@@ -15,9 +15,8 @@ void CameraRotator::Update() {
   }
 
   if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
-    if (m_isRotating) {
+    if (m_isRotating)
       _<MouseInput>().GetRightMouseButtonRef().Reset();
-    }
 
     m_isRotating = false;
   }

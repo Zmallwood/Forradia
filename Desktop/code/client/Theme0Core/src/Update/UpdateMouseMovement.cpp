@@ -19,9 +19,8 @@ void UpdateMouseMovement() {
   auto playerPosition{_<Player>().GetPosition()};
   auto destination{_<Player>().GetDestination()};
 
-  if (destination == Point{-1, -1}) {
+  if (destination == Point{-1, -1})
     return;
-  }
 
   auto now{GetTicks()};
 
@@ -29,21 +28,16 @@ void UpdateMouseMovement() {
     auto dX{destination.x - playerPosition.x};
     auto dY{destination.y - playerPosition.y};
 
-    if (dX < 0) {
+    if (dX < 0)
       _<Player>().MoveWest();
-    }
-    if (dY < 0) {
+    if (dY < 0)
       _<Player>().MoveNorth();
-    }
-    if (dX > 0) {
+    if (dX > 0)
       _<Player>().MoveEast();
-    }
-    if (dY > 0) {
+    if (dY > 0)
       _<Player>().MoveSouth();
-    }
-    if (destination == playerPosition) {
+    if (destination == playerPosition)
       _<Player>().SetDestination({-1, -1});
-    }
 
     _<Player>().SetTicksLastMovement(now);
   }

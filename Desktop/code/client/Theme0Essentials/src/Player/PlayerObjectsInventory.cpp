@@ -13,9 +13,8 @@ PlayerObjectsInventory::PlayerObjectsInventory() {
 }
 
 SharedPtr<Object> PlayerObjectsInventory::GetObject(int index) {
-  if (index >= 0 && index < m_objects.size()) {
+  if (index >= 0 && index < m_objects.size())
     return m_objects[index];
-  }
   return nullptr;
 }
 
@@ -47,10 +46,9 @@ int PlayerObjectsInventory::CountHasObject(StringView objectName) {
     // Check if slot is not empty.
     if (m_objects[i]) {
       // Check if object type matches.
-      if (m_objects[i]->GetType() == Hash(objectName)) {
+      if (m_objects[i]->GetType() == Hash(objectName))
         // Increment count if object type matches.
         ++findCount;
-      }
     }
   }
 

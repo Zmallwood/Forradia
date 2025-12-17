@@ -16,9 +16,8 @@ namespace Forradia::Theme0 {
 void GameSaving::SaveGame() {
   auto worldArea{_<World>().GetCurrentWorldArea()};
 
-  if (!worldArea) {
+  if (!worldArea)
     return;
-  }
 
   nlohmann::json jsonData;
 
@@ -34,9 +33,8 @@ void GameSaving::SaveGame() {
     for (auto x = 0; x < worldAreaSize.width; x++) {
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile) {
+      if (!tile)
         continue;
-      }
 
       nlohmann::json tileJson;
       tileJson["x"] = x;
@@ -96,9 +94,8 @@ void GameSaving::LoadGame() {
   _<GroundRenderer>().Reset();
 
   std::ifstream file("savegame.json");
-  if (!file.is_open()) {
+  if (!file.is_open())
     return;
-  }
 
   nlohmann::json jsonData;
   try {
@@ -110,9 +107,8 @@ void GameSaving::LoadGame() {
 
   auto worldArea{_<World>().GetCurrentWorldArea()};
 
-  if (!worldArea) {
+  if (!worldArea)
     return;
-  }
 
   worldArea->Reset();
 
@@ -127,22 +123,19 @@ void GameSaving::LoadGame() {
 
   if (jsonData.contains("tiles") && jsonData["tiles"].is_array()) {
     for (const auto &tileJson : jsonData["tiles"]) {
-      if (!tileJson.contains("x") || !tileJson.contains("y")) {
+      if (!tileJson.contains("x") || !tileJson.contains("y"))
         continue;
-      }
 
       auto x{tileJson["x"].get<int>()};
       auto y{tileJson["y"].get<int>()};
 
-      if (!worldArea->IsValidCoordinate(x, y)) {
+      if (!worldArea->IsValidCoordinate(x, y))
         continue;
-      }
 
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile) {
+      if (!tile)
         continue;
-      }
 
       if (tileJson.contains("elevation")) {
         auto elevation{tileJson["elevation"].get<float>()};

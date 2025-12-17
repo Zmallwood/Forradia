@@ -28,18 +28,15 @@ void UpdateKeyboardMovement() {
   if (now >= _<Theme0::Player>().GetTicksLastMovement() +
                  InvertSpeed(_<Theme0::Player>().GetMovementSpeed()) &&
       (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)) {
-    if (upPress || wPress) {
+    if (upPress || wPress)
       _<Theme0::Player>().MoveNorth();
-    }
-    if (rightPress || dPress) {
+    if (rightPress || dPress)
       _<Theme0::Player>().MoveEast();
-    }
-    if (downPress || sPress) {
+    if (downPress || sPress)
       _<Theme0::Player>().MoveSouth();
-    }
-    if (leftPress || aPress) {
+    if (leftPress || aPress)
       _<Theme0::Player>().MoveWest();
-    }
+    
     _<Theme0::Player>().SetTicksLastMovement(now);
   }
 }

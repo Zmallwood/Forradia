@@ -69,13 +69,11 @@ bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) co
 
   // Perspective divide.
 
-  if (std::abs(nearPoint.w) > 0.0001f) {
+  if (std::abs(nearPoint.w) > 0.0001f)
     nearPoint /= nearPoint.w;
-  }
 
-  if (std::abs(farPoint.w) > 0.0001f) {
+  if (std::abs(farPoint.w) > 0.0001f)
     farPoint /= farPoint.w;
-  }
 
   // Compute ray origin and direction.
   glm::vec3 rayOrigin{nearPoint.x, nearPoint.y, nearPoint.z};
@@ -92,9 +90,8 @@ bool TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) co
 
   // Check if coordinates are valid.
   if (!worldArea->IsValidCoordinate(coordinateNW) || !worldArea->IsValidCoordinate(coordinateNE) ||
-      !worldArea->IsValidCoordinate(coordinateSW) || !worldArea->IsValidCoordinate(coordinateSE)) {
+      !worldArea->IsValidCoordinate(coordinateSW) || !worldArea->IsValidCoordinate(coordinateSE))
     return false;
-  }
 
   // Get the tiles.
   auto tileNW{worldArea->GetTile(coordinateNW)};

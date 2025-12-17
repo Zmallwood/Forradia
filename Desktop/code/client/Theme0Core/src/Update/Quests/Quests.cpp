@@ -21,9 +21,8 @@ void MoveQuest::Update() {
     auto actionSecondArg{get<2>(entry)};
 
     if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
-        action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest) {
+        action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
       numSteps++;
-    }
   }
   m_numStepsLeft = 3 - numSteps;
   if (numSteps >= 3) {
@@ -49,9 +48,8 @@ void ForageQuest::Update() {
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};
 
-    if (action == PlayerActionTypes::Forage) {
+    if (action == PlayerActionTypes::Forage)
       numForagings++;
-    }
   }
 
   m_numForagingsLeft = 3 - numForagings;
@@ -76,29 +74,25 @@ void CraftStonePickaxeQuest::Update() {
     auto actionSecondArg{get<2>(entry)};
 
     if (action == PlayerActionTypes::Pick) {
-      if (actionFirstArg == "ObjectBranch") {
+      if (actionFirstArg == "ObjectBranch")
         m_numBranchPicked = true;
-      }
-      if (actionFirstArg == "ObjectStone") {
+      if (actionFirstArg == "ObjectStone")
         m_numStonePicked = true;
-      }
     }
     if (action == PlayerActionTypes::Craft) {
-      if (actionFirstArg == "ObjectStonePickaxe") {
+      if (actionFirstArg == "ObjectStonePickaxe")
         isCompleted = true;
-      }
     }
   }
 }
 
 String CraftStonePickaxeQuest::GetStatus() const {
-  if (!m_numBranchPicked) {
+  if (!m_numBranchPicked)
     return "Pick a branch.";
-  }
 
-  if (!m_numStonePicked) {
+  if (!m_numStonePicked)
     return "Branch picked. Now pick a stone.";
-  }
+
   return "Craft a stone pickaxe out of the branch and stone.";
 }
 
@@ -148,11 +142,9 @@ void CraftStoneSlabsQuest::Update() {
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};
 
-    if (action == PlayerActionTypes::Craft) {
-      if (actionFirstArg == "ObjectStoneSlab") {
+    if (action == PlayerActionTypes::Craft)
+      if (actionFirstArg == "ObjectStoneSlab")
         numCraftedSlabs++;
-      }
-    }
   }
 
   m_numCraftedSlabsLeft = 10 - numCraftedSlabs;
@@ -178,9 +170,8 @@ void LayStoneSlabsQuest::Update() {
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};
 
-    if (action == PlayerActionTypes::Lay) {
+    if (action == PlayerActionTypes::Lay)
       numLaidSlabs++;
-    }
   }
 
   m_numLaidSlabsLeft = 10 - numLaidSlabs;
@@ -214,9 +205,8 @@ void MineStoneFromBoulderQuest2::Update() {
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};
 
-    if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone") {
+    if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
       numMinedStones++;
-    }
 
     i++;
   }
@@ -244,11 +234,9 @@ void CraftStoneBricksQuest::Update() {
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};
 
-    if (action == PlayerActionTypes::Craft) {
-      if (actionFirstArg == "ObjectStoneBrick") {
+    if (action == PlayerActionTypes::Craft)
+      if (actionFirstArg == "ObjectStoneBrick")
         numCraftedBricks++;
-      }
-    }
   }
 
   m_numCraftedBricksLeft = 10 - numCraftedBricks;
@@ -276,9 +264,8 @@ void BuildStoneWallsQuest::Update() {
     auto actionSecondArg{get<2>(entry)};
 
     if (action == PlayerActionTypes::Craft &&
-        (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor")) {
+        (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
       wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
-    }
   }
 
   auto worldArea{_<World>().GetCurrentWorldArea()};
@@ -295,53 +282,40 @@ void BuildStoneWallsQuest::Update() {
 
     auto adjacentStoneSlabTiles{0};
 
-    if (tileNorth && tileNorth->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileNorth && tileNorth->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileSouth && tileSouth->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileSouth && tileSouth->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileWest && tileWest->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileWest && tileWest->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileEast && tileEast->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileEast && tileEast->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileNorthEast && tileNorthEast->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileNorthEast && tileNorthEast->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileSouthEast && tileSouthEast->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileSouthEast && tileSouthEast->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileSouthWest && tileSouthWest->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileSouthWest && tileSouthWest->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
-    if (tileNorthWest && tileNorthWest->GetGround() == Hash("GroundStoneSlab")) {
+    if (tileNorthWest && tileNorthWest->GetGround() == Hash("GroundStoneSlab"))
       adjacentStoneSlabTiles++;
-    }
 
     auto adjacentStoneWallOrDoorTiles{0};
 
     if (tileNorth && (tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                      tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0)) {
+                      tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
       adjacentStoneWallOrDoorTiles++;
-    }
     if (tileSouth && (tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                      tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0)) {
+                      tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
       adjacentStoneWallOrDoorTiles++;
-    }
     if (tileWest && (tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                     tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0)) {
+                     tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
       adjacentStoneWallOrDoorTiles++;
-    }
     if (tileEast && (tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                     tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0)) {
+                     tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
       adjacentStoneWallOrDoorTiles++;
-    }
 
-    if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2) {
+    if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
       numIncompleteWallTiles++;
-    }
   }
 
   if (wallPositions.size() > 0 && numIncompleteWallTiles == 0) {

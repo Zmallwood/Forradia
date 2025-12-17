@@ -48,9 +48,8 @@ void UpdateRobotsMovement() {
 
     Point newPosition{newX, newY};
 
-    if (newPosition == robot->GetDestination()) {
+    if (newPosition == robot->GetDestination())
       robot->SetDestination({-1, -1});
-    }
 
     auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 

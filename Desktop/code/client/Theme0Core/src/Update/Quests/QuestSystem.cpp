@@ -20,9 +20,8 @@ void QuestSystem::Initialize() {
 
 void QuestSystem::Update() {
   for (auto &quest : this->m_quests) {
-    if (quest->isCompleted) {
+    if (quest->isCompleted)
       continue;
-    }
 
     quest->Update();
 
@@ -32,9 +31,8 @@ void QuestSystem::Update() {
 
 String QuestSystem::GetCurrentQuestName() const {
   for (auto &quest : this->m_quests) {
-    if (quest->isCompleted) {
+    if (quest->isCompleted)
       continue;
-    }
 
     return quest->name;
   }
@@ -44,9 +42,8 @@ String QuestSystem::GetCurrentQuestName() const {
 
 String QuestSystem::GetCurrentQuestDescription() const {
   for (auto &quest : this->m_quests) {
-    if (quest->isCompleted) {
+    if (quest->isCompleted)
       continue;
-    }
 
     return quest->description;
   }
@@ -55,9 +52,8 @@ String QuestSystem::GetCurrentQuestDescription() const {
 
 String QuestSystem::GetCurrentQuestStatus() const {
   for (auto &quest : this->m_quests) {
-    if (quest->isCompleted) {
+    if (quest->isCompleted)
       continue;
-    }
 
     return quest->GetStatus();
   }

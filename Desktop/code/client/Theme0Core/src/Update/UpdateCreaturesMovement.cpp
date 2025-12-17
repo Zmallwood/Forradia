@@ -47,9 +47,8 @@ void UpdateCreaturesMovement() {
 
     Point newPosition{newX, newY};
 
-    if (newPosition == creature->GetDestination()) {
+    if (newPosition == creature->GetDestination())
       creature->SetDestination({-1, -1});
-    }
 
     auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
