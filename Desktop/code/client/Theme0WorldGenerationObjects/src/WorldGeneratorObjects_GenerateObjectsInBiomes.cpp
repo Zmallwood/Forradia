@@ -7,7 +7,7 @@
 #include "WorldGeneratorObjects.hpp"
 
 namespace Forradia::Theme0 {
-void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
+auto WorldGeneratorObjects::GenerateObjectsInBiomes() const -> void {
   auto worldArea{GetWorldArea()};
   auto worldAreaSize{worldArea->GetSize()};
   auto worldScaling{GetWorldScaling()};

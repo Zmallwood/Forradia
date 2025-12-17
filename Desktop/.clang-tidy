@@ -8,5 +8,5 @@ Checks: >
   -readability-braces-around-statements
 
 WarningsAsErrors: ''
-HeaderFilterRegex: 'code/client/CoreAssets/.*'  # Only show warnings from files in the code/ directory
+HeaderFilterRegex: '^/home/andreas/code/git/Forradia/Desktop/code/'  # Only show warnings from files in the code/ directory
 AnalyzeTemporaryDtors: false
