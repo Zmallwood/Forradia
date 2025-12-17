@@ -11,8 +11,8 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia {
-void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation,
-                              float modelScaling) {
+auto ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation,
+                              float modelScaling) -> void {
   this->SetupState();
 
   GLuint vao;

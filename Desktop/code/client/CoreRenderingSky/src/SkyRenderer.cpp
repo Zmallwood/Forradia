@@ -6,7 +6,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-void SkyRenderer::Cleanup() {
+auto SkyRenderer::Cleanup() -> void {
   if (m_vao != 0)
     glDeleteVertexArrays(1, &m_vao);
   if (m_ibo != 0)
@@ -23,7 +23,7 @@ void SkyRenderer::Cleanup() {
   m_initialized = false;
 }
 
-void SkyRenderer::SetupState() const {
+auto SkyRenderer::SetupState() const -> void {
   auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
   glViewport(0, 0, canvasSize.width, canvasSize.height);
@@ -43,7 +43,7 @@ void SkyRenderer::SetupState() const {
   glDisable(GL_CULL_FACE);
 }
 
-void SkyRenderer::RestoreState() const {
+auto SkyRenderer::RestoreState() const -> void {
   glBindVertexArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -53,13 +53,13 @@ void SkyRenderer::RestoreState() const {
   glDisable(GL_DEPTH_TEST);
 }
 
-void SkyRenderer::SetupAttributeLayout() const {
+auto SkyRenderer::SetupAttributeLayout() const -> void {
   // Position (3 floats).
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
   glEnableVertexAttribArray(0);
 }
 
-void SkyRenderer::InitializeDerived() {
+auto SkyRenderer::InitializeDerived() -> void {
   m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
   m_layoutLocationSunDirection =
       glGetUniformLocation(GetShaderProgram()->GetProgramID(), "sunDirection");

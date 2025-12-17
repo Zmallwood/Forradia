@@ -4,7 +4,7 @@
 #include "GroundRenderer.hpp"
 
 namespace Forradia {
-String GroundRenderer::GetFSSource() const {
+auto GroundRenderer::GetFSSource() const -> String {
   return R"(
         #version 330 core
         

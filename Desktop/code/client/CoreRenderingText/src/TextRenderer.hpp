@@ -30,21 +30,21 @@ class TextRenderer {
    * @param forceRerender If true, forces the text to be rerendered even if it already exists.
    * @param textColor The color to use for the text (default: WheatTransparent).
    */
-  void DrawString(int uniqueRenderID, StringView text, float x, float y,
+  auto DrawString(int uniqueRenderID, StringView text, float x, float y,
                   FontSizes fontSizes = FontSizes::_20, bool centerAlign = false,
                   bool forceRerender = false,
-                  Color textColor = Palette::GetColor<Hash("WheatTransparent")>()) const;
+                  Color textColor = Palette::GetColor<Hash("WheatTransparent")>()) const -> void;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  void AddFonts();
+  auto AddFonts() -> void;
 
-  void SetupState() const;
+  auto SetupState() const -> void;
 
-  void RestoreState() const;
+  auto RestoreState() const -> void;
 
-  void DefineTexture(SharedPtr<SDL_Surface> surface) const;
+  auto DefineTexture(SharedPtr<SDL_Surface> surface) const -> void;
 
   const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
   std::map<FontSizes, SharedPtr<TTF_Font>> m_fonts;

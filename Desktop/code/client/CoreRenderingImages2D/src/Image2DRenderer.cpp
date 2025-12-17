@@ -6,7 +6,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-void Image2DRenderer::Cleanup() {
+auto Image2DRenderer::Cleanup() -> void {
   for (auto &entry : m_operationsCache) {
     glDeleteBuffers(1, &entry.second.ibo);
     glDeleteBuffers(1, &entry.second.vbo);
@@ -14,7 +14,7 @@ void Image2DRenderer::Cleanup() {
   }
 }
 
-void Image2DRenderer::SetupState() const {
+auto Image2DRenderer::SetupState() const -> void {
   auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
   glViewport(0, 0, canvasSize.width, canvasSize.height);
@@ -23,14 +23,14 @@ void Image2DRenderer::SetupState() const {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Image2DRenderer::RestoreState() const {
+auto Image2DRenderer::RestoreState() const -> void {
   glBindVertexArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   glUseProgram(0);
 }
 
-void Image2DRenderer::SetupAttributeLayout() const {
+auto Image2DRenderer::SetupAttributeLayout() const -> void {
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void *)(sizeof(float) * 0));
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void *)(sizeof(float) * 3));
@@ -39,7 +39,7 @@ void Image2DRenderer::SetupAttributeLayout() const {
   glEnableVertexAttribArray(2);
 }
 
-bool Image2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const {
+auto Image2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool {
   return m_operationsCache.contains(uniqueRenderID);
 }
 }

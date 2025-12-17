@@ -30,8 +30,8 @@ class Image2DRenderer : public RendererBase {
    * @param height The height of the image.
    * @param updateExisting Whether to update the existing operation.
    */
-  void DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y, float width,
-                       float height, bool updateExisting = false);
+  auto DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y, float width,
+                       float height, bool updateExisting = false) -> void;
 
   /**
    * Draws an image by hash.
@@ -44,8 +44,8 @@ class Image2DRenderer : public RendererBase {
    * @param height The height of the image.
    * @param updateExisting Whether to update the existing operation.
    */
-  void DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y, float width,
-                       float height, bool updateExisting = false);
+  auto DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y, float width,
+                       float height, bool updateExisting = false) -> void;
 
   /**
    * Draws an image by texture ID.
@@ -58,8 +58,8 @@ class Image2DRenderer : public RendererBase {
    * @param height The height of the image.
    * @param updateExisting Whether to update the existing operation.
    */
-  void DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y, float width,
-                            float height, bool updateExisting = false);
+  auto DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y, float width,
+                            float height, bool updateExisting = false) -> void;
 
   /**
    * Draws an image by name with automatic height, meaning the height is calculated based
@@ -72,7 +72,8 @@ class Image2DRenderer : public RendererBase {
    * @param width The width of the image.
    * @param height The height of the image.
    */
-  void DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x, float y, float width);
+  auto DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x, float y, float width)
+      -> void;
 
  protected:
   /**
@@ -80,28 +81,28 @@ class Image2DRenderer : public RendererBase {
    *
    * @return The vertex shader source.
    */
-  String GetVSSource() const override;
+  auto GetVSSource() const -> String override;
 
   /**
    * Returns the fragment shader source.
    *
    * @return The fragment shader source.
    */
-  String GetFSSource() const override;
+  auto GetFSSource() const -> String override;
 
   /**
    * Sets up the attribute layout.
    */
-  void SetupAttributeLayout() const override;
+  auto SetupAttributeLayout() const -> void override;
 
  private:
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  void SetupState() const;
+  auto SetupState() const -> void;
 
-  void RestoreState() const;
+  auto RestoreState() const -> void;
 
-  bool DrawingOperationIsCached(int uniqueRenderID) const;
+  auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
   std::map<int, Image2DRenderingOperation> m_operationsCache;
 };

@@ -5,10 +5,9 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia {
-Vector<float> GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
-                                                        float tileSize,
-                                                        const Vector<float> &elevations,
-                                                        Vector<Color> colors) const {
+auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+                                               const Vector<float> &elevations,
+                                               Vector<Color> colors) const -> Vector<float> {
   auto x{xCoordinate * tileSize};
   auto y{yCoordinate * tileSize};
   auto width{tileSize};

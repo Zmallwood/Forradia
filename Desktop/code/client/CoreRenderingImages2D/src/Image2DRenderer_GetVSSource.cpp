@@ -4,7 +4,7 @@
 #include "Image2DRenderer.hpp"
 
 namespace Forradia {
-String Image2DRenderer::GetVSSource() const {
+auto Image2DRenderer::GetVSSource() const -> String {
   return R"(
         #version 330 core
         

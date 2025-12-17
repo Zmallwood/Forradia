@@ -6,7 +6,7 @@
 #include "SkyRenderer.hpp"
 
 namespace Forradia {
-void SkyRenderer::GenerateSkyDome() {
+auto SkyRenderer::GenerateSkyDome() -> void {
   // Generate a hemisphere (sky dome) mesh.
 
   // Number of horizontal segments (increased for better coverage).

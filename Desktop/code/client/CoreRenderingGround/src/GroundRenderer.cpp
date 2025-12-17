@@ -6,7 +6,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-void GroundRenderer::Cleanup() {
+auto GroundRenderer::Cleanup() -> void {
   for (auto &entry : m_operationsCache) {
     glDeleteBuffers(1, &entry.second.ibo);
     glDeleteBuffers(1, &entry.second.vbo);
@@ -15,7 +15,7 @@ void GroundRenderer::Cleanup() {
   m_operationsCache.clear();
 }
 
-void GroundRenderer::SetupState() const {
+auto GroundRenderer::SetupState() const -> void {
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK);
@@ -29,7 +29,7 @@ void GroundRenderer::SetupState() const {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void GroundRenderer::RestoreState() const {
+auto GroundRenderer::RestoreState() const -> void {
   glBindVertexArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -39,11 +39,11 @@ void GroundRenderer::RestoreState() const {
   glDisable(GL_BLEND);
 }
 
-void GroundRenderer::Reset() {
+auto GroundRenderer::Reset() -> void {
   this->Cleanup();
 }
 
-void GroundRenderer::SetupAttributeLayout() const {
+auto GroundRenderer::SetupAttributeLayout() const -> void {
   // Set up the attribute layout for the vertex shader.
 
   // Position.
@@ -63,11 +63,11 @@ void GroundRenderer::SetupAttributeLayout() const {
   glEnableVertexAttribArray(3);
 }
 
-bool GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const {
+auto GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool {
   return m_operationsCache.contains(uniqueRenderID);
 }
 
-void GroundRenderer::InitializeDerived() {
+auto GroundRenderer::InitializeDerived() -> void {
   m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
 }
 }

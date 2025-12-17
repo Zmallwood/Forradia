@@ -4,7 +4,7 @@
 #include "ModelRenderer.hpp"
 
 namespace Forradia {
-String ModelRenderer::GetVSSource() const {
+auto ModelRenderer::GetVSSource() const -> String {
   return R"(
         #version 330 core
         

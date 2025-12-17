@@ -6,19 +6,19 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-void Image2DRenderer::DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y,
-                                      float width, float height, bool updateExisting) {
+auto Image2DRenderer::DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y,
+                                      float width, float height, bool updateExisting) -> void {
   this->DrawImageByHash(uniqueRenderID, Hash(imageName), x, y, width, height, updateExisting);
 }
 
-void Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y,
-                                      float width, float height, bool updateExisting) {
+auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y,
+                                      float width, float height, bool updateExisting) -> void {
   auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
   this->DrawImageByTextureID(uniqueRenderID, textureID, x, y, width, height, updateExisting);
 }
 
-void Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x,
-                                          float y, float width) {
+auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x,
+                                          float y, float width) -> void {
   auto hash{Forradia::Hash(imageName)};
   auto imageDimensions{_<TextureBank>().GetTextureDimensions(hash)};
   if (imageDimensions.width <= 0 || imageDimensions.height <= 0)

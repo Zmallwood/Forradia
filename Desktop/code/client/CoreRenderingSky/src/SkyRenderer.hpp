@@ -35,7 +35,7 @@ class SkyRenderer : public RendererBase {
    * @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
    * zenith). Negative values indicate night time (darker sky).
    */
-  void Render(const glm::vec3 &sunDirection, float sunElevation);
+  auto Render(const glm::vec3 &sunDirection, float sunElevation) -> void;
 
  protected:
   /**
@@ -43,33 +43,33 @@ class SkyRenderer : public RendererBase {
    *
    * @return The vertex shader source.
    */
-  String GetVSSource() const override;
+  auto GetVSSource() const -> String override;
 
   /**
    * Returns the fragment shader source.
    *
    * @return The fragment shader source.
    */
-  String GetFSSource() const override;
+  auto GetFSSource() const -> String override;
 
   /**
    * Does initialization that is specific to this renderer.
    */
-  void InitializeDerived() override;
+  auto InitializeDerived() -> void override;
 
   /**
    * Sets up the attribute layout for the vertex shader.
    */
-  void SetupAttributeLayout() const override;
+  auto SetupAttributeLayout() const -> void override;
 
  private:
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  void SetupState() const;
+  auto SetupState() const -> void;
 
-  void RestoreState() const;
+  auto RestoreState() const -> void;
 
-  void GenerateSkyDome();
+  auto GenerateSkyDome() -> void;
 
   GLuint m_vao;
   GLuint m_ibo;

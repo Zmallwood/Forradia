@@ -4,12 +4,12 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-void TextRenderer::Initialize() {
+auto TextRenderer::Initialize() -> void {
   TTF_Init();
   this->AddFonts();
 }
 
-void TextRenderer::AddFonts() {
+auto TextRenderer::AddFonts() -> void {
   auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
   auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
@@ -31,14 +31,14 @@ void TextRenderer::AddFonts() {
   }
 }
 
-void TextRenderer::SetupState() const {
+auto TextRenderer::SetupState() const -> void {
   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
   glEnable(GL_TEXTURE_2D);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void TextRenderer::RestoreState() const {
+auto TextRenderer::RestoreState() const -> void {
   glDisable(GL_BLEND);
   glDisable(GL_TEXTURE_2D);
   glBindTexture(GL_TEXTURE_2D, 0);

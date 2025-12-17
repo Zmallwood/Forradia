@@ -8,8 +8,8 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y,
-                                           float width, float height, bool updateExisting) {
+auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y,
+                                           float width, float height, bool updateExisting) -> void {
   this->SetupState();
 
   GLuint vao;

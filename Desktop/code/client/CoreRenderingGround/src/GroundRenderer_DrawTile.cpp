@@ -6,9 +6,9 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-void GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
+auto GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
                               int yCoordinate, float tileSize, const Vector<float> &elevations,
-                              bool forceUpdate) {
+                              bool forceUpdate) -> void {
   GLuint vao{0};
   GLuint ibo{0};
   GLuint vbo{0};

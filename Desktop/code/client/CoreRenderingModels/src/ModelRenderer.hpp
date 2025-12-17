@@ -28,7 +28,8 @@ class ModelRenderer : public RendererBase {
    * @param elevations The elevations of the tile where the model is located.
    * @param modelScaling The scaling of the model.
    */
-  void DrawModel(int modelNameHash, float x, float y, float elevations, float modelScaling = 1.0f);
+  auto DrawModel(int modelNameHash, float x, float y, float elevations, float modelScaling = 1.0f)
+      -> void;
 
  protected:
   /**
@@ -36,33 +37,33 @@ class ModelRenderer : public RendererBase {
    *
    * @return The vertex shader source.
    */
-  String GetVSSource() const override;
+  auto GetVSSource() const -> String override;
 
   /**
    * Gets the fragment shader source.
    *
    * @return The fragment shader source.
    */
-  String GetFSSource() const override;
+  auto GetFSSource() const -> String override;
 
   /**
    * Additional initialization for this derived class.
    */
-  void InitializeDerived() override;
+  auto InitializeDerived() -> void override;
 
   /**
    * Sets up the attribute layout.
    */
-  void SetupAttributeLayout() const override;
+  auto SetupAttributeLayout() const -> void override;
 
  private:
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  void SetupState() const;
+  auto SetupState() const -> void;
 
-  void RestoreState() const;
+  auto RestoreState() const -> void;
 
-  bool DrawingOperationIsCached(int modelNameHash) const;
+  auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 
   static constexpr float k_globalModelScaling{0.5f};
   std::map<int, ModelRenderingOperation> m_operationsCache;

@@ -4,7 +4,8 @@
 #include "GroundRenderer.hpp"
 
 namespace Forradia {
-Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const {
+auto GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const
+    -> Vector<glm::vec3> {
   constexpr size_t k_vertexStride = 8;
   constexpr size_t k_requiredVertices = 9;
   constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;

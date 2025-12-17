@@ -6,7 +6,7 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-void GroundRenderer::DrawTiles(const Vector<TileData> &tiles) {
+auto GroundRenderer::DrawTiles(const Vector<TileData> &tiles) -> void {
   auto uniqueRenderID{tiles.at(0).uniqueRenderID};
   auto forceUpdate{false};
 

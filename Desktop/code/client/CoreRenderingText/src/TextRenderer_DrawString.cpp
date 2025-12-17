@@ -7,9 +7,9 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-void TextRenderer::DrawString(int uniqueRenderID, StringView text, float x, float y,
+auto TextRenderer::DrawString(int uniqueRenderID, StringView text, float x, float y,
                               FontSizes fontSize, bool centerAlign, bool forceRerender,
-                              Color textColor) const {
+                              Color textColor) const -> void {
   if (text.empty())
     return;
 
