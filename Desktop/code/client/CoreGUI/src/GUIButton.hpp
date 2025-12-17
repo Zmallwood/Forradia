@@ -5,24 +5,24 @@
 #include "GUIPanel.hpp"
 
 namespace Forradia {
-///
-/// A button component for the GUI.
-///
+/**
+ * A button component for the GUI.
+ */
 class GUIButton : public GUIPanel {
  public:
-  ///
-  /// Constructor.
-  ///
-  /// @param uniqueName An unique name for the button.
-  /// @param x The x-coordinate of the button.
-  /// @param y The y-coordinate of the button.
-  /// @param width The width of the button.
-  /// @param height The height of the button.
-  /// @param text The text to display on the button.
-  /// @param action The action to perform when the button is clicked.
-  /// @param backgroundImage The background image of the button.
-  /// @param hoveredBackgroundImage The background image of the button when hovered.
-  ///
+  /**
+   * Constructor.
+   *
+   * @param uniqueName An unique name for the button.
+   * @param x The x-coordinate of the button.
+   * @param y The y-coordinate of the button.
+   * @param width The width of the button.
+   * @param height The height of the button.
+   * @param text The text to display on the button.
+   * @param action The action to perform when the button is clicked.
+   * @param backgroundImage The background image of the button.
+   * @param hoveredBackgroundImage The background image of the button when hovered.
+   */
   GUIButton(StringView uniqueName, float x, float y, float width, float height, StringView text,
             Function<void()> action, StringView backgroundImage = k_defaultBackgroundImage,
             StringView hoveredBackgroundImage = k_defaultHoveredBackgroundImage)
@@ -32,29 +32,23 @@ class GUIButton : public GUIPanel {
   }
 
  protected:
-  ///
-  /// Update tasks specific to the button, called by the GUIComponent base class.
-  ///
+  /**
+   * Update tasks specific to the button, called by the GUIComponent base class.
+   */
   virtual void UpdateDerived() override;
 
-  ///
-  /// Render tasks specific to the button, called by the GUIComponent base class.
-  ///
+  /**
+   * Render tasks specific to the button, called by the GUIComponent base class.
+   */
   virtual void RenderDerived() const override;
 
  private:
-  inline static const String k_defaultBackgroundImage{
-      "GUIButtonBackground"}; ///< The default background image of the button when not
-                              ///< hovered.
-
-  inline static const String k_defaultHoveredBackgroundImage{
-      "GUIButtonHoveredBackground"}; ///< The default background image of the button when
-                                     ///< hovered.
-
-  const int k_renderIDText;        ///< The render ID of the text.
-  String m_text;                   ///< The text to display on the button.
-  Function<void()> m_action;       ///< The action to perform when the button is clicked.
-  String m_backgroundImage;        ///< The background image of the button when not hovered.
-  String m_hoveredBackgroundImage; ///< The background image of the button when hovered.
+  inline static const String k_defaultBackgroundImage{"GUIButtonBackground"};
+  inline static const String k_defaultHoveredBackgroundImage{"GUIButtonHoveredBackground"};
+  const int k_renderIDText;
+  String m_text;
+  Function<void()> m_action;
+  String m_backgroundImage;
+  String m_hoveredBackgroundImage;
 };
 }

@@ -4,12 +4,19 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-///
-/// Class for storing object properties.
-///
+/**
+ * Class for storing object properties.
+ */
 class ObjectIndexEntry {
  public:
-  float modelScaling{1.0f};                 ///< The scaling factor for the object model.
-  bool ignoreIndividualModelScaling{false}; ///< Whether to ignore the individual model scaling.
+  /**
+   * The scaling factor for the object model.
+   */
+  float modelScaling{1.0f};
+
+  /**
+   * Whether to ignore the individual model scaling.
+   */
+  bool ignoreIndividualModelScaling{false};
 };
 }
