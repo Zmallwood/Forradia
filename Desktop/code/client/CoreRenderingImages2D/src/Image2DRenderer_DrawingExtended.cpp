@@ -21,9 +21,8 @@ void Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, StringView imageNa
                                           float y, float width) {
   auto hash{Forradia::Hash(imageName)};
   auto imageDimensions{_<TextureBank>().GetTextureDimensions(hash)};
-  if (imageDimensions.width <= 0 || imageDimensions.height <= 0) {
+  if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
     return;
-  }
 
   auto canvasAspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
   auto imageAspectRatio{CFloat(imageDimensions.width) / imageDimensions.height};

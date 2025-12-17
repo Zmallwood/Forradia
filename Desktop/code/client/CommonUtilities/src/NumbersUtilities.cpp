@@ -6,19 +6,17 @@
 
 namespace Forradia {
 auto InvertSpeed(float speed) -> float {
-  if (speed) {
+  if (speed)
     return k_oneSecMillis / speed;
-  } else {
+  else
     return 0.0f;
-  }
 }
 
 auto Normalize(int value) -> int {
   auto absValue{std::abs(value)};
   auto normalized{0};
-  if (value) {
+  if (value)
     normalized = value / absValue;
-  }
   return normalized;
 }
 

@@ -12,10 +12,9 @@ void Model::Initialize(StringView filePath) {
   // Read the model file.
   const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
-  if (nullptr == scene || nullptr == scene->mRootNode) {
+  if (nullptr == scene || nullptr == scene->mRootNode)
     PrintLine("ERROR: ASSIMP could not load model: " + String(importer.GetErrorString()));
-  } else {
+  else
     this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
-  }
 }
 }

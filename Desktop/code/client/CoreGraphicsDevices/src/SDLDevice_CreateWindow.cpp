@@ -10,10 +10,9 @@ void SDLDevice::SetupSDLWindow() {
       SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                        screenSize.width, screenSize.height, k_windowFlags),
       SDLDeleter());
-  if (nullptr == m_window) {
+  if (nullptr == m_window)
     PrintLine("Window could not be created. "
               "SDL Error: " +
               String(SDL_GetError()));
-  }
 }
 }

@@ -28,9 +28,8 @@ void GroundRenderer::DrawTiles(const Vector<TileData> &tiles) {
     for (auto i = 0; i < tiles.size(); i++) {
       auto textureNameHash = tiles.at(i).imageNameHash;
 
-      if (!tileDataByTexture.contains(textureNameHash)) {
+      if (!tileDataByTexture.contains(textureNameHash))
         tileDataByTexture[textureNameHash] = Vector<TileData>();
-      }
 
       tileDataByTexture[textureNameHash].push_back(tiles.at(i));
     }
@@ -126,9 +125,8 @@ void GroundRenderer::DrawTiles(const Vector<TileData> &tiles) {
   for (auto &entry : groupOperation.tilesByTexture) {
     auto imageNameHash = entry.first;
 
-    if (imageNameHash == 0) {
+    if (imageNameHash == 0)
       continue;
-    }
 
     auto group = entry.second;
 

@@ -25,9 +25,8 @@ void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmen
   auto isLinked{this->CreateProgram(vertexShader, fragmentShader)};
 
   // If the link failed, dont continue.
-  if (GL_FALSE == isLinked) {
+  if (GL_FALSE == isLinked)
     return;
-  }
 
   glDetachShader(m_programID, vertexShader);
   glDetachShader(m_programID, fragmentShader);

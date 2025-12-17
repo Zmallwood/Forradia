@@ -10,9 +10,8 @@ Vector<glm::vec3> GroundRenderer::CalcTileNormals(const Vector<float> &verticesN
   constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
 
   // Check if the vertex data is sufficient, cancel if not.
-  if (verticesNoNormals.size() < k_minArraySize) {
+  if (verticesNoNormals.size() < k_minArraySize)
     throw std::invalid_argument("Insufficient vertex data.");
-  }
 
   // Create a map to store the vertices with positions only. This will be used to
   // calculate the normals.

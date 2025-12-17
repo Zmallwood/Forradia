@@ -8,9 +8,8 @@ void TextureBank::LoadTextures() {
   auto basePath{String(SDL_GetBasePath())};
   auto imagesPath{basePath + k_relativeImagesPath.data()};
 
-  if (false == std::filesystem::exists(imagesPath)) {
+  if (false == std::filesystem::exists(imagesPath))
     return;
-  }
 
   std::filesystem::recursive_directory_iterator rdi{imagesPath};
 

@@ -20,7 +20,6 @@ void MouseInput::RegisterMouseButtonUp(Uint8 button) {
   case SDL_BUTTON_LEFT:
     m_leftMouseButton.RegisterRelease();
     break;
-
   case SDL_BUTTON_RIGHT:
     m_rightMouseButton.RegisterRelease();
     break;

@@ -18,9 +18,8 @@ void Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transfor
   }
 
   // Iterate over all child nodes.
-  for (unsigned int i = 0; i < node->mNumChildren; i++) {
+  for (unsigned int i = 0; i < node->mNumChildren; i++)
     // Process the child node (recursively).
     this->ProcessNode(node->mChildren[i], scene, transformation);
-  }
 }
 }

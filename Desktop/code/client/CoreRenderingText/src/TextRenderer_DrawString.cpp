@@ -10,9 +10,8 @@ namespace Forradia {
 void TextRenderer::DrawString(int uniqueRenderID, StringView text, float x, float y,
                               FontSizes fontSize, bool centerAlign, bool forceRerender,
                               Color textColor) const {
-  if (text.empty()) {
+  if (text.empty())
     return;
-  }
 
   auto fontRaw{m_fonts.at(fontSize).get()};
 

@@ -13,9 +13,8 @@ void ModelBank::LoadModels() {
   auto basePath{String(SDL_GetBasePath())};
   auto imagesPath{basePath + k_relativeModelsPath.data()};
 
-  if (false == std::filesystem::exists(imagesPath)) {
+  if (false == std::filesystem::exists(imagesPath))
     return;
-  }
 
   std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
@@ -23,8 +22,7 @@ void ModelBank::LoadModels() {
   for (auto it : rdi) {
     auto filePath{Replace(it.path().string(), '\\', '/')};
 
-    if (GetFileExtension(filePath) == "obj"
-  || GetFileExtension(filePath) == "dae") {
+    if (GetFileExtension(filePath) == "obj" || GetFileExtension(filePath) == "dae") {
       auto fileName{GetFileNameNoExtension(filePath)};
       auto hash{Forradia::Hash(fileName)};
       auto model{this->LoadSingleModel(filePath)};
@@ -34,9 +32,8 @@ void ModelBank::LoadModels() {
 }
 
 SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const {
-  if (m_models.contains(modelNameHash)) {
+  if (m_models.contains(modelNameHash))
     return m_models.at(modelNameHash);
-  }
   return nullptr;
 }
 
