@@ -7,33 +7,29 @@
 namespace Forradia::Theme0 {
 class PlayerBodyPart;
 
-///
-/// Represents the body of the player.
-///
+/**
+ * Represents the body of the player.
+ */
 class PlayerBody {
  public:
-  ///
-  /// Constructor.
-  ///
+  /**
+   * Constructor.
+   */
   PlayerBody() {
     this->Initialize();
   }
 
-  ///
-  /// Gets a pointer to the body part.
-  ///
-  /// @param bodyPartType The type of the body part.
-  ///
-  /// @return A pointer to the body part.
-  ///
+  /**
+   * Gets a pointer to the body part.
+   *
+   * @param bodyPartType The type of the body part.
+   * @return A pointer to the body part.
+   */
   SharedPtr<PlayerBodyPart> GetBodyPartPtr(PlayerBodyPartTypes bodyPartType);
 
  private:
-  ///
-  /// Initializes the body.
-  ///
   void Initialize();
 
-  std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts; ///< The body parts.
+  std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts;
 };
 }

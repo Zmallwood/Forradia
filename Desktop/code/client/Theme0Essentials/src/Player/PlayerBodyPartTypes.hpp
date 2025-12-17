@@ -4,15 +4,15 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-///
-/// Types of body parts for the player.
-/// TODO: Decide if should be used also for other entities.
-///
+/**
+ * Types of body parts for the player.
+ * TODO: Decide if should keep this, and if so, if should also be used for other entities.
+ */
 enum class PlayerBodyPartTypes {
-  None,        ///< No body part.
-  OverallBody, ///< The overall body.
-  RightArm,    ///< The right arm.
-  LeftArm,     ///< The left arm.
-  Legs         ///< The legs.
+  None,
+  OverallBody,
+  RightArm,
+  LeftArm,
+  Legs
 };
 }
