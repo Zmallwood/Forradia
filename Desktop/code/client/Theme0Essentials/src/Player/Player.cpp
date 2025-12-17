@@ -26,23 +26,43 @@ void Player::MoveToSuitablePosition() {
 }
 
 void Player::MoveNorth() {
-  m_position.y -= 1;
-  m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+  auto newX{m_position.x};
+  auto newY{m_position.y - 1};
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+    m_position = {newX, newY};
+    m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+  }
 }
 
 void Player::MoveEast() {
-  m_position.x += 1;
-  m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
+  auto newX{m_position.x + 1};
+  auto newY{m_position.y};
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+    m_position = {newX, newY};
+    m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+  }
 }
 
 void Player::MoveSouth() {
-  m_position.y += 1;
-  m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
+  auto newX{m_position.x};
+  auto newY{m_position.y + 1};
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+    m_position = {newX, newY};
+    m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+  }
 }
 
 void Player::MoveWest() {
-  m_position.x -= 1;
-  m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
+  auto newX{m_position.x - 1};
+  auto newY{m_position.y};
+  auto worldArea{_<World>().GetCurrentWorldArea()};
+  if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+    m_position = {newX, newY};
+    m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+  }
 }
 
 void Player::AddExperience(int experience) {
