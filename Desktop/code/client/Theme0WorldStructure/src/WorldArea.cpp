@@ -13,9 +13,8 @@ void WorldArea::Initialize(Size worldAreaSize, float worldScaling) {
 
   for (auto x = 0; x < size.width; x++) {
     m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
-    for (auto y = 0; y < size.height; y++) {
+    for (auto y = 0; y < size.height; y++)
       m_tiles[x].push_back(std::make_shared<Tile>());
-    }
   }
 }
 
@@ -43,9 +42,8 @@ void WorldArea::Reset() {
 Size WorldArea::GetSize() const {
   auto width{CInt(m_tiles.size())};
   auto height{0};
-  if (width) {
+  if (width)
     height = m_tiles.at(0).size();
-  }
   return {width, height};
 }
 
@@ -59,9 +57,8 @@ bool WorldArea::IsValidCoordinate(Point coordinate) const {
 }
 
 SharedPtr<Tile> WorldArea::GetTile(int x, int y) const {
-  if (this->IsValidCoordinate(x, y)) {
+  if (this->IsValidCoordinate(x, y))
     return m_tiles.at(x).at(y);
-  }
   return nullptr;
 }
 

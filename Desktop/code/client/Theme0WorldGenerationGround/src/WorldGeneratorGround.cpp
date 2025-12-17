@@ -23,9 +23,8 @@ void WorldGeneratorGround::ClearWithDirt() const {
     for (auto x = 0; x < worldAreaSize.width; x++) {
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile) {
+      if (!tile)
         continue;
-      }
 
       tile->SetGround("GroundDirt");
       tile->SetElevation(GetDefaultGroundElevation());
@@ -62,20 +61,17 @@ int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevat
     auto adjacentX{x + directions[dir][0]};
     auto adjacentY{y + directions[dir][1]};
 
-    if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY)) {
+    if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
       continue;
-    }
 
     auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
 
-    if (!adjacentTile) {
+    if (!adjacentTile)
       continue;
-    }
 
     // Skip water tiles - they have their own elevation rules (set to 0).
-    if (adjacentTile->GetGround() == Hash("GroundWater")) {
+    if (adjacentTile->GetGround() == Hash("GroundWater"))
       continue;
-    }
 
     auto adjacentElevation{adjacentTile->GetElevation()};
 
@@ -85,9 +81,8 @@ int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevat
     auto maxFromAdjacent{adjacentElevation + maxSlope};
 
     // Update the maximum allowed elevation if the adjacent tile elevation is lower.
-    if (maxFromAdjacent < maxAllowedElevation) {
+    if (maxFromAdjacent < maxAllowedElevation)
       maxAllowedElevation = maxFromAdjacent;
-    }
   }
 
   return maxAllowedElevation;
@@ -96,13 +91,11 @@ int WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevat
 int WorldGeneratorGround::ClampElevation(int elevation) const {
   auto maxElevation{GetMaxElevation()};
 
-  if (elevation > maxElevation) {
+  if (elevation > maxElevation)
     return maxElevation;
-  }
 
-  if (elevation < GetDefaultGroundElevation()) {
+  if (elevation < GetDefaultGroundElevation())
     return GetDefaultGroundElevation();
-  }
 
   return elevation;
 }

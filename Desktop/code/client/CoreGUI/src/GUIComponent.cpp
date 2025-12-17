@@ -13,27 +13,23 @@ SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> 
 }
 
 void GUIComponent::Update() {
-  if (!m_visible || !m_enabled) {
+  if (!m_visible || !m_enabled)
     return;
-  }
 
-  for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it) {
+  for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it)
     (*it)->Update();
-  }
 
   this->UpdateDerived();
 }
 
 void GUIComponent::Render() const {
-  if (!m_visible) {
+  if (!m_visible)
     return;
-  }
 
   this->RenderDerived();
 
-  for (auto component : m_childComponents) {
+  for (auto component : m_childComponents)
     component->Render();
-  }
 }
 
 RectF GUIComponent::GetBounds() const {

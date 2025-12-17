@@ -25,9 +25,8 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto tile = worldArea->GetTile(x, y);
 
-    if (!tile || !IsValidForFlora(x, y)) {
+    if (!tile || !IsValidForFlora(x, y))
       continue;
-    }
 
     // Check if the tile has grass ground and if the random number is less than 8.
     if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8) {
@@ -35,11 +34,10 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
       // Add a tree with type of either fir or birch with a 50% chance.
 
-      if (GetRandomInt(100) < 50) {
+      if (GetRandomInt(100) < 50)
         tile->GetObjectsStack()->AddObject("ObjectFirTree");
-      } else {
+      else
         tile->GetObjectsStack()->AddObject("ObjectBirchTree");
-      }
     }
   }
 
@@ -52,19 +50,17 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto tile{worldArea->GetTile(x, y)};
 
-    if (!tile || !IsValidForFlora(x, y)) {
+    if (!tile || !IsValidForFlora(x, y))
       continue;
-    }
 
     if (GetRandomInt(100) < 8) {
       tile->GetObjectsStack()->ClearObjects();
 
       // Add a bush with type of either bush1 or bush2 with a 50% chance.
-      if (GetRandomInt(100) < 50) {
+      if (GetRandomInt(100) < 50)
         tile->GetObjectsStack()->AddObject("ObjectBush1");
-      } else {
+      else
         tile->GetObjectsStack()->AddObject("ObjectBush2");
-      }
     }
   }
 
@@ -77,9 +73,8 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto tile{worldArea->GetTile(x, y)};
 
-    if (!tile || tile->GetWaterDepth() >= 4) {
+    if (!tile || tile->GetWaterDepth() >= 4)
       continue;
-    }
 
     // Make it so that the tile has no other objects on it.
     tile->GetObjectsStack()->ClearObjects();
@@ -98,25 +93,22 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto tile{worldArea->GetTile(x, y)};
 
-    if (!tile || !IsValidForFlora(x, y)) {
+    if (!tile || !IsValidForFlora(x, y))
       continue;
-    }
 
     auto ground{tile->GetGround()};
 
     // Mushrooms prefer grass or dirt ground.
-    if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt")) {
+    if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
       continue;
-    }
 
     // Don't place mushrooms on tiles that already have trees or large objects.
     // (mushrooms are undergrowth, not replacement for trees).
 
     auto objectsStack{tile->GetObjectsStack()};
 
-    if (objectsStack->GetSize() > 0) {
+    if (objectsStack->GetSize() > 0)
       continue;
-    }
 
     // Check if there are objects (likely trees) nearby.
     // Mushrooms often grow near trees in forest environments.
@@ -125,19 +117,16 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     for (auto checkY = y - 2; checkY <= y + 2; checkY++) {
       for (auto checkX = x - 2; checkX <= x + 2; checkX++) {
-        if (checkX == x && checkY == y) {
+        if (checkX == x && checkY == y)
           continue;
-        }
 
-        if (!worldArea->IsValidCoordinate(checkX, checkY)) {
+        if (!worldArea->IsValidCoordinate(checkX, checkY))
           continue;
-        }
 
         auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
-        if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0) {
+        if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
           nearbyObjectsCount++;
-        }
       }
     }
 
@@ -152,9 +141,8 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto mushroomProbability{baseProbability + forestBonus};
 
-    if (mushroomProbability > 25) {
+    if (mushroomProbability > 25)
       mushroomProbability = 25;
-    }
 
     if (GetRandomInt(100) < mushroomProbability) {
       tile->GetObjectsStack()->ClearObjects();
@@ -170,15 +158,13 @@ void WorldGeneratorObjects::GenerateObjectsInBiomes() const {
 
     auto tile{worldArea->GetTile(x, y)};
 
-    if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0) {
+    if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
       continue;
-    }
 
     auto objectsStack{tile->GetObjectsStack()};
 
-    if (objectsStack->GetSize() > 0) {
+    if (objectsStack->GetSize() > 0)
       continue;
-    }
 
     objectsStack->ClearObjects();
     objectsStack->AddObject("ObjectStone");

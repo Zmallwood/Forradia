@@ -14,16 +14,14 @@ void CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling
 }
 
 float CreatureIndex::GetModelScaling(int creatureHash) const {
-  if (m_entries.contains(creatureHash)) {
+  if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).modelScaling;
-  }
   return 1.0f;
 }
 
 float CreatureIndex::GetLevitationHeight(int creatureHash) const {
-  if (m_entries.contains(creatureHash)) {
+  if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).levitationHeight;
-  }
   return 0.0f;
 }
 

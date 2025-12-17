@@ -19,9 +19,8 @@ void ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
 }
 
 float ObjectIndex::GetModelScaling(int objectHash) const {
-  if (m_entries.contains(objectHash)) {
+  if (m_entries.contains(objectHash))
     return m_entries.at(objectHash).modelScaling;
-  }
   return 1.0f;
 }
 
@@ -30,9 +29,8 @@ bool ObjectIndex::ObjectEntryExists(int objectHash) const {
 }
 
 bool ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const {
-  if (m_entries.contains(objectHash)) {
+  if (m_entries.contains(objectHash))
     return m_entries.at(objectHash).ignoreIndividualModelScaling;
-  }
   return false;
 }
 }

@@ -17,9 +17,8 @@ void GUIButton::UpdateDerived() {
   if (hovered) {
     this->SetBackgroundImage(m_hoveredBackgroundImage);
     _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
+    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
       m_action();
-    }
   } else {
     SetBackgroundImage(m_backgroundImage);
   }

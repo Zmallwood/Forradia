@@ -23,9 +23,8 @@ void WorldGeneratorGround::GenerateGrassBiomes() const {
     auto tile{worldArea->GetTile(xCenter, yCenter)};
 
     // Check if this area is suitable for grass (moderate elevation, not water).
-    if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater")) {
+    if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
       continue;
-    }
 
     auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
     auto density{0.7f + GetRandomInt(30) / 100.0f}; // 0.7 to 1.0.
@@ -38,15 +37,13 @@ void WorldGeneratorGround::GenerateGrassBiomes() const {
     for (auto x = 0; x < worldAreaSize.width; x++) {
       auto tile = worldArea->GetTile(x, y);
 
-      if (!tile) {
+      if (!tile)
         continue;
-      }
 
       // Grass naturally grows in low-lying areas that aren't water.
       if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
-          tile->GetGround() != Hash("GroundRock")) {
+          tile->GetGround() != Hash("GroundRock"))
         tile->SetGround("GroundGrass");
-      }
     }
   }
 }
@@ -64,9 +61,8 @@ void WorldGeneratorGround::GenerateRockFormations() const {
 
     auto tile{worldArea->GetTile(xCenter, yCenter)};
 
-    if (!tile || tile->GetElevation() < 80) {
+    if (!tile || tile->GetElevation() < 80)
       continue;
-    }
 
     // Create rock formations on high elevation.
 
@@ -74,32 +70,28 @@ void WorldGeneratorGround::GenerateRockFormations() const {
 
     for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
       for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
-        if (!worldArea->IsValidCoordinate(x, y)) {
+        if (!worldArea->IsValidCoordinate(x, y))
           continue;
-        }
 
         auto distance{GetDistance(x, y, xCenter, yCenter)};
 
-        if (distance > radius) {
+        if (distance > radius)
           continue;
-        }
 
         auto rockTile{worldArea->GetTile(x, y)};
 
         // Skip if the tile is not found or the ground is water.
 
-        if (!rockTile || rockTile->GetGround() == Hash("GroundWater")) {
+        if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
           continue;
-        }
 
         // Place rocks on mountain peaks and high elevation areas. Higher elevation =
         // more likely to be rock.
 
         auto elevation{rockTile->GetElevation()};
 
-        if (elevation > 60) {
+        if (elevation > 60)
           rockTile->SetGround("GroundRock");
-        }
       }
     }
   }
@@ -110,21 +102,18 @@ void WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radi
   // Enumerate all tiles in the radius.
   for (auto y = centerY - radius; y <= centerY + radius; y++) {
     for (auto x = centerX - radius; x <= centerX + radius; x++) {
-      if (!GetWorldArea()->IsValidCoordinate(x, y)) {
+      if (!GetWorldArea()->IsValidCoordinate(x, y))
         continue;
-      }
 
       auto distance{GetDistance(x, y, centerX, centerY)};
 
-      if (distance > radius) {
+      if (distance > radius)
         continue;
-      }
 
       auto tile{GetWorldArea()->GetTile(x, y)};
 
-      if (tile) {
+      if (tile)
         tile->SetGround(groundType);
-      }
     }
   }
 }

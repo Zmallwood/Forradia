@@ -14,14 +14,12 @@ void GUIMovablePanel::UpdateDerived() {
   if (draggableArea.Contains(mousePosition)) {
     _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
+    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
       this->StartMove();
-    }
   }
 
-  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
+  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
     this->StopMove();
-  }
 
   auto bounds{GetBounds()};
 

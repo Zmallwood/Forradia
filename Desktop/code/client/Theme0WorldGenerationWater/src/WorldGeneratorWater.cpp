@@ -28,16 +28,15 @@ void WorldGeneratorWater::GenerateNaturalRivers() const {
 
     auto minElevation{0};
 
-    if (elevationType < 40) {
+    if (elevationType < 40)
       // 40% start from high elevation.
       minElevation = 50;
-    } else if (elevationType < 70) {
+    else if (elevationType < 70)
       // 30% start from medium elevation.
       minElevation = 20;
-    } else {
+    else
       // 30% start from lower elevation.
       minElevation = 5;
-    }
 
     // Find a starting point.
     while (attempts < 100 && !foundStart) {
@@ -47,17 +46,15 @@ void WorldGeneratorWater::GenerateNaturalRivers() const {
 
       // If the tile is found and the elevation is greater than the minimum elevation,
       // and the tile is a valid water placement location.
-      if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY)) {
+      if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
         foundStart = true;
-      }
 
       attempts++;
     }
 
-    if (!foundStart) {
+    if (!foundStart)
       // Just continue to the next river.
       continue;
-    }
 
     auto startElevation{worldArea->GetTile(startX, startY)->GetElevation()};
     auto baseLength{40};
@@ -99,39 +96,34 @@ void WorldGeneratorWater::GenerateLakesInValleys() const {
 
       auto tile{worldArea->GetTile(centerX, centerY)};
 
-      if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater")) {
+      if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
         // Set the flag to indicate that we found a suitable valley location.
         foundLocation = true;
-      }
 
       attempts++;
     }
 
-    if (!foundLocation) {
+    if (!foundLocation)
       // Just continue to the next lake.
       continue;
-    }
 
     auto radius{CInt(3 * worldScaling + GetRandomInt(6 * worldScaling))};
     auto irregularity{0.3f + GetRandomInt(20) / 100.0f};
 
     for (auto y = centerY - radius; y <= centerY + radius; y++) {
       for (auto x = centerX - radius; x <= centerX + radius; x++) {
-        if (!worldArea->IsValidCoordinate(x, y)) {
+        if (!worldArea->IsValidCoordinate(x, y))
           continue;
-        }
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (!tile) {
+        if (!tile)
           // Just continue to the next tile.
           continue;
-        }
 
-        if (!IsValidForWater(x, y)) {
+        if (!IsValidForWater(x, y))
           // Just continue to the next tile.
           continue;
-        }
 
         auto distance{GetDistance(x, y, centerX, centerY)};
 
@@ -151,15 +143,13 @@ void WorldGeneratorWater::GenerateLakesInValleys() const {
 }
 
 bool WorldGeneratorWater::IsValidForWater(int x, int y) const {
-  if (!GetWorldArea()->IsValidCoordinate(x, y)) {
+  if (!GetWorldArea()->IsValidCoordinate(x, y))
     return false;
-  }
 
   auto tile{GetWorldArea()->GetTile(x, y)};
 
-  if (!tile) {
+  if (!tile)
     return false;
-  }
 
   return tile->GetElevation() < 80;
 }
@@ -179,19 +169,16 @@ void WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const {
     auto adjacentX{x + directions[dir][0]};
     auto adjacentY{y + directions[dir][1]};
 
-    if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY)) {
+    if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
       continue;
-    }
 
     auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
 
-    if (!adjacentTile) {
+    if (!adjacentTile)
       continue;
-    }
 
-    if (adjacentTile->GetGround() != Hash("GroundWater")) {
+    if (adjacentTile->GetGround() != Hash("GroundWater"))
       adjacentTile->SetElevation(0);
-    }
   }
 }
 }

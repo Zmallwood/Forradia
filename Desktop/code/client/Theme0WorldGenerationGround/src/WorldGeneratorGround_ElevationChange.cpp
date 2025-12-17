@@ -56,13 +56,11 @@ void WorldGeneratorGround::GenerateMountainRanges() const {
       if (GetRandomInt(100) < 20) {
         direction += GetRandomInt(60) - 30;
 
-        if (direction < 0) {
+        if (direction < 0)
           direction += 360;
-        }
 
-        if (direction >= 360) {
+        if (direction >= 360)
           direction -= 360;
-        }
       }
     }
   }
@@ -83,21 +81,18 @@ void WorldGeneratorGround::GenerateValleys() const {
 
     for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
       for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
-        if (!worldArea->IsValidCoordinate(x, y)) {
+        if (!worldArea->IsValidCoordinate(x, y))
           continue;
-        }
 
         auto distance{GetDistance(x, y, xCenter, yCenter)};
 
-        if (distance > radius) {
+        if (distance > radius)
           continue;
-        }
 
         auto tile = worldArea->GetTile(x, y);
 
-        if (!tile) {
+        if (!tile)
           continue;
-        }
 
         auto normalizedDistance{distance / radius};
 
@@ -119,32 +114,27 @@ void WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int rad
   // Traverse the candidate tiles within the bounding square of the hill footprint.
   for (auto y = centerY - radius; y <= centerY + radius; y++) {
     for (auto x = centerX - radius; x <= centerX + radius; x++) {
-      if (!GetWorldArea()->IsValidCoordinate(x, y)) {
+      if (!GetWorldArea()->IsValidCoordinate(x, y))
         continue;
-      }
 
       auto distance{GetDistance(x, y, centerX, centerY)};
 
-      if (distance > radius) {
+      if (distance > radius)
         continue;
-      }
 
       auto tile{GetWorldArea()->GetTile(x, y)};
 
-      if (!tile) {
+      if (!tile)
         continue;
-      }
 
-      if (tile->GetGround() == Hash("GroundWater")) {
+      if (tile->GetGround() == Hash("GroundWater"))
         continue;
-      }
 
       auto currentElevation{tile->GetElevation()};
       auto maxElevation{GetMaxElevation()};
 
-      if (currentElevation >= maxElevation) {
+      if (currentElevation >= maxElevation)
         continue;
-      }
 
       auto normalizedDistance{distance / radius};
 
@@ -194,10 +184,9 @@ void WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int rad
         // Use the minimum of desired elevation and max allowed elevation.
         auto newElevation{desiredElevation};
 
-        if (newElevation > maxAllowedElevation) {
+        if (newElevation > maxAllowedElevation)
           // Respect the slope constraint when the desired elevation is too high.
           newElevation = maxAllowedElevation;
-        }
 
         // Final safety clamp (elevation cap and minimum).
         tile->SetElevation(ClampElevation(newElevation));

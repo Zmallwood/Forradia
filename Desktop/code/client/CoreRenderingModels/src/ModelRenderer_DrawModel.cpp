@@ -55,17 +55,14 @@ void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevati
 
     float totalModelScaling{k_globalModelScaling};
 
-    if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash)) {
+    if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
       totalModelScaling *= modelScaling;
-    }
 
-    if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash)) {
+    if (_<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
       totalModelScaling *= _<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
-    }
 
-    if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash)) {
+    if (_<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash))
       totalModelScaling *= _<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
-    }
 
     // For each mesh.
     for (auto &mesh : meshes) {
@@ -128,9 +125,8 @@ void ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevati
   modelMatrix =
       glm::translate(modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
 
-  if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash)) {
+  if (!_<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
     modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
-  }
 
   auto viewMatrix{_<Camera>().GetViewMatrix()};
   auto projectionMatrix{_<Camera>().GetProjectionMatrix()};

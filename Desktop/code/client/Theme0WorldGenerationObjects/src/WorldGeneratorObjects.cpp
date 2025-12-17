@@ -27,9 +27,8 @@ void WorldGeneratorObjects::GenerateForests() const {
 
     auto tile{worldArea->GetTile(centerX, centerY)};
 
-    if (!tile || !IsValidForFlora(centerX, centerY)) {
+    if (!tile || !IsValidForFlora(centerX, centerY))
       continue;
-    }
 
     auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
     auto treeDensity{0.1f + GetRandomInt(20) / 100.0f};
@@ -38,19 +37,16 @@ void WorldGeneratorObjects::GenerateForests() const {
 
     for (auto y = centerY - radius; y <= centerY + radius; y++) {
       for (auto x = centerX - radius; x <= centerX + radius; x++) {
-        if (!worldArea->IsValidCoordinate(x, y)) {
+        if (!worldArea->IsValidCoordinate(x, y))
           continue;
-        }
 
-        if (!IsValidForFlora(x, y)) {
+        if (!IsValidForFlora(x, y))
           continue;
-        }
 
         auto distance{GetDistance(x, y, centerX, centerY)};
 
-        if (distance > radius) {
+        if (distance > radius)
           continue;
-        }
 
         auto normalizedDistance{distance / radius};
 
@@ -65,26 +61,23 @@ void WorldGeneratorObjects::GenerateForests() const {
 
             // Check if the forest should use fir or birch trees.
             if (useFir) {
-              if (GetRandomInt(100) < 70) {
+              if (GetRandomInt(100) < 70)
                 forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
-              } else {
+              else
                 forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
-              }
             } else {
-              if (GetRandomInt(100) < 70) {
+              if (GetRandomInt(100) < 70)
                 forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
-              } else {
+              else
                 forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
-              }
             }
 
             // Add undergrowth in forests.
             if (GetRandomInt(100) < 25) {
-              if (GetRandomInt(100) < 50) {
+              if (GetRandomInt(100) < 50)
                 forestTile->GetObjectsStack()->AddObject("ObjectBush1");
-              } else {
+              else
                 forestTile->GetObjectsStack()->AddObject("ObjectBush2");
-              }
             }
           }
         }
@@ -107,13 +100,11 @@ void WorldGeneratorObjects::GenerateMeadows() const {
 
     auto tile{worldArea->GetTile(centerX, centerY)};
 
-    if (!tile || !IsValidForFlora(centerX, centerY)) {
+    if (!tile || !IsValidForFlora(centerX, centerY))
       continue;
-    }
 
-    if (tile->GetGround() != Hash("GroundGrass")) {
+    if (tile->GetGround() != Hash("GroundGrass"))
       continue;
-    }
 
     auto radius{CInt(5 * worldScaling + GetRandomInt(8 * worldScaling))};
 
@@ -123,25 +114,21 @@ void WorldGeneratorObjects::GenerateMeadows() const {
 
     for (auto y = centerY - radius; y <= centerY + radius; y++) {
       for (auto x = centerX - radius; x <= centerX + radius; x++) {
-        if (!worldArea->IsValidCoordinate(x, y)) {
+        if (!worldArea->IsValidCoordinate(x, y))
           continue;
-        }
 
-        if (!IsValidForFlora(x, y)) {
+        if (!IsValidForFlora(x, y))
           continue;
-        }
 
         auto meadowTile{worldArea->GetTile(x, y)};
 
-        if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass")) {
+        if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
           continue;
-        }
 
         auto distance{GetDistance(x, y, centerX, centerY)};
 
-        if (distance > radius) {
+        if (distance > radius)
           continue;
-        }
 
         // Add flowers.
 
@@ -158,15 +145,13 @@ void WorldGeneratorObjects::GenerateMeadows() const {
 }
 
 bool WorldGeneratorObjects::IsValidForFlora(int x, int y) const {
-  if (!GetWorldArea()->IsValidCoordinate(x, y)) {
+  if (!GetWorldArea()->IsValidCoordinate(x, y))
     return false;
-  }
 
   auto tile = GetWorldArea()->GetTile(x, y);
 
-  if (!tile) {
+  if (!tile)
     return false;
-  }
 
   auto ground{tile->GetGround()};
 

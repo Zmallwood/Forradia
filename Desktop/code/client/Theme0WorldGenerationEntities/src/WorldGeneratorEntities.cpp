@@ -31,9 +31,8 @@ void WorldGeneratorEntities::GenerateRobotsInAreas() const {
 
     auto centerTile = worldArea->GetTile(centerX, centerY);
 
-    if (!centerTile || centerTile->GetGround() == Hash("GroundWater")) {
+    if (!centerTile || centerTile->GetGround() == Hash("GroundWater"))
       continue;
-    }
 
     auto clusterRadius{10 + GetRandomInt(15)};
     auto robotsInCluster{5 + GetRandomInt(10)};
@@ -49,15 +48,13 @@ void WorldGeneratorEntities::GenerateRobotsInAreas() const {
       auto robotX = centerX + CInt(std::cos(angle) * distance);
       auto robotY = centerY + CInt(std::sin(angle) * distance);
 
-      if (!worldArea->IsValidCoordinate(robotX, robotY)) {
+      if (!worldArea->IsValidCoordinate(robotX, robotY))
         continue;
-      }
 
       auto robotTile = worldArea->GetTile(robotX, robotY);
 
-      if (!robotTile || robotTile->GetRobot() || robotTile->GetGround() == Hash("GroundWater")) {
+      if (!robotTile || robotTile->GetRobot() || robotTile->GetGround() == Hash("GroundWater"))
         continue;
-      }
 
       auto newRobot{std::make_shared<Theme0::Robot>("RobotMechWolf", robotX, robotY)};
 
@@ -76,9 +73,8 @@ void WorldGeneratorEntities::GenerateRobotsInAreas() const {
 
     auto tile{worldArea->GetTile(x, y)};
 
-    if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater")) {
+    if (!tile || tile->GetRobot() || tile->GetGround() == Hash("GroundWater"))
       continue;
-    }
 
     // Robots can appear anywhere except water, with equal probability.
 
@@ -95,18 +91,16 @@ void WorldGeneratorEntities::GenerateRobotsInAreas() const {
 bool WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const {
   for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
     for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
-      if (!GetWorldArea()->IsValidCoordinate(checkX, checkY)) {
+      if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
         continue;
-      }
 
       auto tile{GetWorldArea()->GetTile(checkX, checkY)};
 
       if (tile && tile->GetGround() == Hash("GroundWater")) {
         auto distance{GetDistance(x, y, checkX, checkY)};
 
-        if (distance <= radius) {
+        if (distance <= radius)
           return true;
-        }
       }
     }
   }

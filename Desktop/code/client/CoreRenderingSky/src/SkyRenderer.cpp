@@ -7,15 +7,12 @@
 
 namespace Forradia {
 void SkyRenderer::Cleanup() {
-  if (m_vao != 0) {
+  if (m_vao != 0)
     glDeleteVertexArrays(1, &m_vao);
-  }
-  if (m_ibo != 0) {
+  if (m_ibo != 0)
     glDeleteBuffers(1, &m_ibo);
-  }
-  if (m_vbo != 0) {
+  if (m_vbo != 0)
     glDeleteBuffers(1, &m_vbo);
-  }
 
   m_vao = 0;
   m_ibo = 0;

@@ -12,9 +12,8 @@ namespace Forradia {
 void GUIChatBox::Initialize() {
   auto maxNumLines{this->GetMaxNumLines()};
 
-  for (auto i = 0; i < maxNumLines; i++) {
+  for (auto i = 0; i < maxNumLines; i++)
     m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
-  }
 }
 
 int GUIChatBox::GetMaxNumLines() const {
@@ -39,9 +38,8 @@ void GUIChatBox::RenderDerived() const {
   for (auto i = 0; i < maxNumLines; i++) {
     auto index{m_lines.size() - maxNumLines + i};
 
-    if (index < 0 || index >= m_lines.size()) {
+    if (index < 0 || index >= m_lines.size())
       continue;
-    }
 
     auto textLine = m_lines.at(index);
 
@@ -89,9 +87,8 @@ void GUIChatBox::EnableInput() {
 void GUIChatBox::SubmitInput() {
   // TODO: Act on the typed input.
 
-  if (m_input == "/quit") {
+  if (m_input == "/quit")
     _<Engine>().Stop();
-  }
 
   _<KeyboardInput>().StopTextInput();
 

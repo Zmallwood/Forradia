@@ -7,9 +7,8 @@
 
 namespace Forradia {
 void SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) {
-  if (!m_initialized) {
+  if (!m_initialized)
     this->GenerateSkyDome();
-  }
 
   this->SetupState();
 

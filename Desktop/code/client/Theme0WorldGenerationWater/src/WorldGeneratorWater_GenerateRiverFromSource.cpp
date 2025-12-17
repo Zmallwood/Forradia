@@ -22,21 +22,17 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
     auto x{CInt(currentX)};
     auto y{CInt(currentY)};
 
-    if (x < 0) {
+    if (x < 0)
       x = 0;
-    }
 
-    if (x >= worldAreaSize.width) {
+    if (x >= worldAreaSize.width)
       x = worldAreaSize.width - 1;
-    }
 
-    if (y < 0) {
+    if (y < 0)
       y = 0;
-    }
 
-    if (y >= worldAreaSize.height) {
+    if (y >= worldAreaSize.height)
       y = worldAreaSize.height - 1;
-    }
 
     if ((x == 0 || x == worldAreaSize.width - 1 || y == 0 || y == worldAreaSize.height - 1) &&
         tilesPlaced >= minRiverLength) {
@@ -56,9 +52,8 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
     auto tile{worldArea->GetTile(x, y)};
 
     if (!tile) {
-      if (tilesPlaced >= minRiverLength) {
+      if (tilesPlaced >= minRiverLength)
         break;
-      }
 
       // Continue in a random direction.
 
@@ -73,16 +68,14 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
 
     if (!canPlace && tilesPlaced < minRiverLength) {
       // Allow water in slightly higher elevation areas if we haven't reached minimum.
-      if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock")) {
+      if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock"))
         canPlace = true;
-      }
     }
 
     // If we can't place water, try to find an adjacent valid tile.
     if (!canPlace) {
-      if (tilesPlaced >= minRiverLength) {
+      if (tilesPlaced >= minRiverLength)
         break;
-      }
 
       bool foundAdjacent{false};
 
@@ -161,29 +154,25 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
         auto checkX{x + directions[dir][0]};
         auto checkY{y + directions[dir][1]};
 
-        if (!worldArea->IsValidCoordinate(checkX, checkY)) {
+        if (!worldArea->IsValidCoordinate(checkX, checkY))
           continue;
-        }
 
         auto checkTile{worldArea->GetTile(checkX, checkY)};
 
-        if (!checkTile) {
+        if (!checkTile)
           continue;
-        }
 
         auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
         // If the adjacent tile is not a valid water placement location, and we
         // haven't placed enough tiles, try to place water here.
         if (!canPlaceHere && tilesPlaced < minRiverLength) {
-          if (checkTile->GetElevation() < 90 && checkTile->GetGround() != Hash("GroundRock")) {
+          if (checkTile->GetElevation() < 90 && checkTile->GetGround() != Hash("GroundRock"))
             canPlaceHere = true;
-          }
         }
 
-        if (!canPlaceHere) {
+        if (!canPlaceHere)
           continue;
-        }
 
         auto checkElevation{checkTile->GetElevation()};
 
@@ -230,10 +219,8 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
               // If the tile is not a valid water placement location, and we
               // haven't placed enough tiles, try to place water here.
               if (!canPlaceHere && tilesPlaced < minRiverLength) {
-                if (checkTile->GetElevation() < 90 &&
-                    checkTile->GetGround() != Hash("GroundRock")) {
+                if (checkTile->GetElevation() < 90 && checkTile->GetGround() != Hash("GroundRock"))
                   canPlaceHere = true;
-                }
               }
 
               if (canPlaceHere) {
@@ -256,9 +243,8 @@ void WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
       }
 
       // Stop if we've placed enough tiles and reached very low elevation.
-      if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5) {
+      if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5)
         break;
-      }
     }
   }
 }

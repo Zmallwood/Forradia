@@ -33,9 +33,8 @@ int ObjectsStack::GetSize() const {
 }
 
 SharedPtr<Object> ObjectsStack::PopObject() {
-  if (m_objects.empty()) {
+  if (m_objects.empty())
     return nullptr;
-  }
 
   auto object{m_objects.back()};
   m_objects.pop_back();
