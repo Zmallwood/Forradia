@@ -15,9 +15,11 @@ namespace Forradia {
  */
 constexpr auto Hash(StringView text) -> int {
   // Use djb2 algorithm by Daniel J. Bernstein.
-  unsigned long hash{5381};
-  for (size_t i = 0; i < text.size(); ++i)
-    hash = 33 * hash + (unsigned char)text[i];
+  const unsigned long algorithmConstant{5381};
+  const unsigned long algorithmMultiplier{33};
+  unsigned long hash{algorithmConstant};
+  for (char chr : text)
+    hash = algorithmMultiplier * hash + (unsigned char)chr;
   return CInt(hash);
 }
 }

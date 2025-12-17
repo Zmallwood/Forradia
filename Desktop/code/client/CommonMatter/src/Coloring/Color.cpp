@@ -5,7 +5,7 @@
 #include "Functions.hpp"
 
 namespace Forradia {
-SDL_Color Color::ToSDLColor() const {
+auto Color::ToSDLColor() const -> SDL_Color {
   auto rUint{CUint8(r * 255)};
   auto gUint{CUint8(g * 255)};
   auto bUint{CUint8(b * 255)};

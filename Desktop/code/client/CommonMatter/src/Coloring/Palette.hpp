@@ -12,5 +12,5 @@ namespace Forradia::Palette {
  * @return The color.
  */
 template <int N>
-Color GetColor();
+auto GetColor() -> Color;
 }

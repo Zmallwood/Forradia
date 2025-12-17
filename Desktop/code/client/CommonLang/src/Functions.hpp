@@ -3,7 +3,7 @@
 
 #pragma once
 
-typedef uint8_t Uint8;
+using Uint8 = uint8_t;
 
 namespace Forradia {
 /**

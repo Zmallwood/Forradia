@@ -22,34 +22,34 @@ class SDLDeleter {
    *
    * @param window SDL window pointer to free resources for.
    */
-  void operator()(SDL_Window *window) const;
+  auto operator()(SDL_Window *window) const -> void;
 
   /**
    * Operator overloading for SDL_Renderer objects.
    *
    * @param renderer SDL renderer pointer to free resources for.
    */
-  void operator()(SDL_Renderer *renderer) const;
+  auto operator()(SDL_Renderer *renderer) const -> void;
 
   /**
    * Operator overloading for SDL_Surface objects.
    *
    * @param surface SDL surface pointer to free resources for.
    */
-  void operator()(SDL_Surface *surface) const;
+  auto operator()(SDL_Surface *surface) const -> void;
 
   /**
    * Operator overloading for SDL_Texture objects.
    *
    * @param texture SDL texture pointer to free resources for.
    */
-  void operator()(SDL_Texture *texture) const;
+  auto operator()(SDL_Texture *texture) const -> void;
 
   /**
    * Operator overloading for TTF_Font objects.
    *
    * @param font SDL font pointer to free resources for.
    */
-  void operator()(TTF_Font *font) const;
+  auto operator()(TTF_Font *font) const -> void;
 };
 }
