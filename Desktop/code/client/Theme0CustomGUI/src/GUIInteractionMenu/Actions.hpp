@@ -5,8 +5,18 @@
 #include "Action.hpp"
 
 namespace Forradia::Theme0 {
+/**
+ * Gets the action for the given action type. The action name hash is passed as a template
+ * parameter.
+ *
+ * @tparam N The action name hash.
+ * @return The action for the given action type.
+ */
 template <int N>
 Action GetAction();
 
+/**
+ * Updates the actions which are timed actions.
+ */
 void UpdateActions();
 }

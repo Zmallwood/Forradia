@@ -4,8 +4,14 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+/**
+ * Manages the rotation of the camera.
+ */
 class CameraRotator {
  public:
+  /**
+   * Updates the camera rotation.
+   */
   void Update();
 
  private:

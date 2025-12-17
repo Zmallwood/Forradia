@@ -6,18 +6,36 @@
 namespace Forradia::Theme0 {
 class Quest;
 
+/**
+ * Manages the quests in the game.
+ */
 class QuestSystem {
  public:
+  /**
+   * Constructor.
+   */
   QuestSystem() {
     this->Initialize();
   }
 
+  /**
+   * Updates the quest system.
+   */
   void Update();
 
+  /**
+   * Gets the name of the current quest.
+   */
   String GetCurrentQuestName() const;
 
+  /**
+   * Gets the description of the current quest.
+   */
   String GetCurrentQuestDescription() const;
 
+  /**
+   * Gets the status of the current quest.
+   */
   String GetCurrentQuestStatus() const;
 
  private:

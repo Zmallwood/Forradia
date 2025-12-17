@@ -4,12 +4,21 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+/**
+ * Renders the world.
+ */
 class WorldView {
  public:
+  /**
+   * Constructor.
+   */
   WorldView() {
     this->Initiallize();
   }
 
+  /**
+   * Renders the world.
+   */
   void Render() const;
 
  private:

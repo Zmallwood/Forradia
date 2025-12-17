@@ -9,13 +9,22 @@ class GUILabel;
 }
 
 namespace Forradia::Theme0 {
+/**
+ * Represents the player body window.
+ */
 class GUIPlayerBodyWindow : public GUIWindow {
  public:
+  /**
+   * Constructor.
+   */
   GUIPlayerBodyWindow() : GUIWindow("GUIPlayerBodyWindow", 0.2f, 0.2f, 0.2f, 0.5f, "Player body") {
     this->Initialize();
   }
 
  protected:
+  /**
+   * Initializes the player body window.
+   */
   void Initialize();
 
  private:

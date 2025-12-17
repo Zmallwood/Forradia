@@ -9,13 +9,22 @@ class GUILabel;
 }
 
 namespace Forradia::Theme0 {
+/**
+ * Represents the quest panel.
+ */
 class GUIQuestPanel : public GUIMovablePanel {
  public:
+  /**
+   * Constructor.
+   */
   GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f) {
     this->Initialize();
   }
 
  protected:
+  /**
+   * Does update logic that is specific to the quest panel.
+   */
   void UpdateDerived() override;
 
  private:

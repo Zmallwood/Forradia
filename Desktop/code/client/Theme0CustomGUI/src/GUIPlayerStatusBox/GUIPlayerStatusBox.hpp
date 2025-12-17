@@ -9,17 +9,32 @@ class GUILabel;
 }
 
 namespace Forradia::Theme0 {
+/**
+ * Represents the player status box.
+ */
 class GUIPlayerStatusBox : public GUIPanel {
  public:
+  /**
+   * Constructor.
+   */
   GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f) {
     this->Initialize();
   }
 
  protected:
+  /**
+   * Initializes the player status box.
+   */
   void Initialize();
 
+  /**
+   * Does update logic that is specific to the player status box.
+   */
   void UpdateDerived() override;
 
+  /**
+   * Does render logic that is specific to the player status box.
+   */
   void RenderDerived() const override;
 
  private:

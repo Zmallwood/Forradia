@@ -6,21 +6,45 @@
 #include "GUIMeter.hpp"
 
 namespace Forradia::Theme0 {
+/**
+ * Represents the experience bar.
+ */
 class GUIExperienceBar : public GUIMeter {
  public:
+  /**
+   * Constructor.
+   */
   GUIExperienceBar()
       : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, GetFilledColor()) {
   }
 
+  /**
+   * Gets the height of the bar.
+   *
+   * @return The height of the bar.
+   */
   auto GetHeight() const {
     return k_height;
   }
 
  protected:
+  /**
+   * Does update logic that is specific to the experience bar.
+   */
   void UpdateDerived() override;
 
+  /**
+   * Gets the filled percentage of the bar.
+   *
+   * @return The filled percentage of the bar.
+   */
   float GetFilledPercentage() const override;
 
+  /**
+   * Gets the filled color of the bar.
+   *
+   * @return The filled color of the bar.
+   */
   Color GetFilledColor() const {
     return Palette::GetColor<Hash("Yellow")>();
   }

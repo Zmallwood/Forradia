@@ -5,15 +5,27 @@
 #include "GUIWindow.hpp"
 
 namespace Forradia::Theme0 {
+/**
+ * Represents the inventory window.
+ */
 class GUIInventoryWindow : public GUIWindow {
  public:
+  /**
+   * Constructor.
+   */
   GUIInventoryWindow() : GUIWindow("GUIInventoryWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Inventory") {
     this->Initialize();
   }
 
  protected:
+  /**
+   * Initializes the inventory window.
+   */
   void Initialize();
 
+  /**
+   * Does render logic that is specific to the inventory window.
+   */
   void RenderDerived() const override;
 
  private:
