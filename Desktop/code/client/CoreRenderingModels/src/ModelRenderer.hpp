@@ -6,58 +6,68 @@
 #include "RendererBase.hpp"
 
 namespace Forradia {
-/// Renders models from the model bank in 3D space.
+/**
+ * This renderer is used to render models from the model bank in 3D space.
+ */
 class ModelRenderer : public RendererBase {
  public:
-  /// Destructor that cleans up the renderer.
+  /**
+   * Destructor that cleans up the renderer.
+   */
   ~ModelRenderer() {
     // Clean up the renderer.
     this->Cleanup();
   }
 
-  /// Draws a model in 3D space.
-  ///
-  /// @param modelNameHash The hash of the model to
-  /// draw.
-  /// @param x The x coordinate of the model.
-  /// @param y The y coordinate of the model.
-  /// @param elevations The elevations of the tile where the model is located.
+  /**
+   * Draws a model in 3D space.
+   *
+   * @param modelNameHash The hash of the model to draw.
+   * @param x The x coordinate of the model.
+   * @param y The y coordinate of the model.
+   * @param elevations The elevations of the tile where the model is located.
+   * @param modelScaling The scaling of the model.
+   */
   void DrawModel(int modelNameHash, float x, float y, float elevations, float modelScaling = 1.0f);
 
  protected:
-  /// Gets the vertex shader source.
+  /**
+   * Gets the vertex shader source.
+   *
+   * @return The vertex shader source.
+   */
   String GetVSSource() const override;
 
-  /// Gets the fragment shader source.
+  /**
+   * Gets the fragment shader source.
+   *
+   * @return The fragment shader source.
+   */
   String GetFSSource() const override;
 
-  /// Additional initialization for this derived class.
+  /**
+   * Additional initialization for this derived class.
+   */
   void InitializeDerived() override;
 
-  /// Sets up the attribute layout.
+  /**
+   * Sets up the attribute layout.
+   */
   void SetupAttributeLayout() const override;
 
  private:
-  /// Cleans up the renderer.
   void Cleanup();
 
-  /// Sets up the state for the renderer.
   void SetupState() const;
 
-  /// Restores the state for the renderer.
   void RestoreState() const;
 
-  /// Checks if the drawing operation is cached.
-  ///
-  /// @param modelNameHash The hash of the model to check.
-  /// @return True if the drawing operation is cached, false otherwise.
   bool DrawingOperationIsCached(int modelNameHash) const;
 
-  static constexpr float k_globalModelScaling{0.5f}; ///< Global scale factor for models.
-  std::map<int,
-           ModelRenderingOperation> m_operationsCache; ///< The operations cache.
-  GLint m_layoutLocationProjectionMatrix;              /// < The location of the projection matrix.
-  GLint m_layoutLocationViewMatrix;                    /// < The location of the view matrix.
-  GLint m_layoutLocationModelMatrix;                   /// < The location of the model matrix.
+  static constexpr float k_globalModelScaling{0.5f};
+  std::map<int, ModelRenderingOperation> m_operationsCache;
+  GLint m_layoutLocationProjectionMatrix;
+  GLint m_layoutLocationViewMatrix;
+  GLint m_layoutLocationModelMatrix;
 };
 }
