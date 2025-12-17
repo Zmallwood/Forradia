@@ -16,20 +16,20 @@ class Engine {
    * @param gameWindowTitle The title of the game window.
    * @param clearColor The color to clear the canvas with.
    */
-  void Initialize(StringView gameWindowTitle, Color clearColor) const;
+  auto Initialize(StringView gameWindowTitle, Color clearColor) const -> void;
 
   /**
    * Runs the engine.
    */
-  void Run();
+  auto Run() -> void;
 
   /**
    * Stops the engine.
    */
-  void Stop();
+  auto Stop() -> void;
 
  private:
-  void HandleEvents();
+  auto HandleEvents() -> void;
 
   bool m_running{true};
 };

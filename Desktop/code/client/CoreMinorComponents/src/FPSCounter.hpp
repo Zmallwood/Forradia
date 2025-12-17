@@ -12,7 +12,7 @@ class FPSCounter {
   /**
    * Updates the FPS counter.
    */
-  void Update();
+  auto Update() -> void;
 
   /**
    * Gets the current FPS.

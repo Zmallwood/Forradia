@@ -30,8 +30,8 @@ class Color2DRenderer : public RendererBase {
    * @param height The height of the rectangle.
    * @param updateExisting Whether to update the existing operation.
    */
-  void DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
-                           float height, bool updateExisting = false);
+  auto DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
+                           float height, bool updateExisting = false) -> void;
 
   /**
    * Draws a line between two points.
@@ -45,8 +45,8 @@ class Color2DRenderer : public RendererBase {
    * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
    * @param updateExisting Whether to update the existing operation.
    */
-  void DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                float lineWidth = 0.001f, bool updateExisting = false);
+  auto DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
+                float lineWidth = 0.001f, bool updateExisting = false) -> void;
 
  protected:
   /**
@@ -54,28 +54,28 @@ class Color2DRenderer : public RendererBase {
    *
    * @return The vertex shader source.
    */
-  String GetVSSource() const override;
+  auto GetVSSource() const -> String override;
 
   /**
    * Returns the fragment shader source.
    *
    * @return The fragment shader source.
    */
-  String GetFSSource() const override;
+  auto GetFSSource() const -> String override;
 
   /**
    * Sets up the attribute layout.
    */
-  void SetupAttributeLayout() const override;
+  auto SetupAttributeLayout() const -> void override;
 
  private:
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  void SetupState() const;
+  auto SetupState() const -> void;
 
-  void RestoreState() const;
+  auto RestoreState() const -> void;
 
-  bool DrawingOperationIsCached(int uniqueRenderID) const;
+  auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
   std::map<int, Color2DRenderingOperation> m_operationsCache;
 };

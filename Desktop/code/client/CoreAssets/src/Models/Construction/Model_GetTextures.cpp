@@ -4,7 +4,7 @@
 #include "Model.hpp"
 
 namespace Forradia {
-Vector<Texture> Model::GetTextures(aiMesh *mesh, const aiScene *scene) const {
+auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) const -> Vector<Texture> {
   Vector<Texture> textures;
   aiString textureFilePath;
 

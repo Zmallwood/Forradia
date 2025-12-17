@@ -20,25 +20,25 @@ class Cursor {
   /**
    * Resets the cursor style to normal.
    */
-  void ResetStyleToNormal();
+  auto ResetStyleToNormal() -> void;
 
   /**
    * Renders the cursor.
    */
-  void Render() const;
+  auto Render() const -> void;
 
   /**
    * Sets the cursor style.
    * @param value New cursor style.
    */
-  void SetCursorStyle(CursorStyles value) {
+  auto SetCursorStyle(CursorStyles value) -> void {
     m_cursorStyle = value;
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  void DisableSystemCursor() const;
+  auto DisableSystemCursor() const -> void;
 
   constexpr static float k_cursorSize{0.05f};
   const int k_renderID{Hash("RenderIDCursor")};

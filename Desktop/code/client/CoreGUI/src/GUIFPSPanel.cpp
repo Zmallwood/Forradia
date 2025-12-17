@@ -6,12 +6,12 @@
 #include "GUILabel.hpp"
 
 namespace Forradia {
-void GUIFPSPanel::Initialize() {
+auto GUIFPSPanel::Initialize() -> void {
   m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
   this->AddChildComponent(m_fpsTextPanel);
 }
 
-void GUIFPSPanel::UpdateDerived() {
+auto GUIFPSPanel::UpdateDerived() -> void {
   GUIMovablePanel::UpdateDerived();
 
   auto fps{_<FPSCounter>().GetFPS()};

@@ -13,21 +13,21 @@ class MouseInput {
   /**
    * Resets the state of the mouse input.
    */
-  void Reset();
+  auto Reset() -> void;
 
   /**
    * Registers a mouse button as being pressed.
    *
    * @param button Button to register.
    */
-  void RegisterMouseButtonDown(Uint8 button);
+  auto RegisterMouseButtonDown(Uint8 button) -> void;
 
   /**
    * Registers a mouse button as being released.
    *
    * @param button Button to register.
    */
-  void RegisterMouseButtonUp(Uint8 button);
+  auto RegisterMouseButtonUp(Uint8 button) -> void;
 
   /**
    * Checks if any mouse button is currently pressed, picking the result (I.e. the result
@@ -35,14 +35,14 @@ class MouseInput {
    *
    * @return True if any mouse button is pressed, otherwise false.
    */
-  bool AnyMouseButtonIsPressedPickResult();
+  auto AnyMouseButtonIsPressedPickResult() -> bool;
 
   /**
    * Adds a mouse wheel delta to the current mouse wheel delta.
    *
    * @param delta Mouse wheel delta to add.
    */
-  void AddMouseWheelDelta(int delta);
+  auto AddMouseWheelDelta(int delta) -> void;
 
   /**
    * Returns the current mouse wheel delta, picking the result (I.e. the result can only
@@ -50,7 +50,7 @@ class MouseInput {
    *
    * @return Current mouse wheel delta.
    */
-  int GetMouseWheelDeltaPickResult();
+  auto GetMouseWheelDeltaPickResult() -> int;
 
   /**
    * Returns a reference to the left mouse button.

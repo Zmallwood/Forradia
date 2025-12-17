@@ -16,40 +16,40 @@ class Camera {
    *
    * @return The view matrix.
    */
-  glm::mat4 GetViewMatrix() const;
+  auto GetViewMatrix() const -> glm::mat4;
 
   /**
    * Get the projection matrix.
    *
    * @return The projection matrix.
    */
-  glm::mat4 GetProjectionMatrix() const;
+  auto GetProjectionMatrix() const -> glm::mat4;
 
   /**
    * Add a delta to the current zoom amount.
    *
    * @param zoomAmountDelta The delta to add.
    */
-  void AddZoomAmountDelta(float zoomAmountDelta);
+  auto AddZoomAmountDelta(float zoomAmountDelta) -> void;
 
   /**
    * Add a delta to the current rotation amount, sideways.
    *
    * @param rotationDeltaSideways The delta to add.
    */
-  void AddRotationDeltaSideways(float rotationDeltaSideways);
+  auto AddRotationDeltaSideways(float rotationDeltaSideways) -> void;
 
   /**
    * Add a delta to the current rotation amount, vertical.
    *
    * @param rotationDeltaVertical The delta to add.
    */
-  void AddRotationDeltaVertical(float rotationDeltaVertical);
+  auto AddRotationDeltaVertical(float rotationDeltaVertical) -> void;
 
  private:
-  Point3F GetPosition() const;
+  auto GetPosition() const -> Point3F;
 
-  Point3F GetLookAt() const;
+  auto GetLookAt() const -> Point3F;
 
   const float k_minZoomAmount{2.0f};
   const float k_maxZoomAmount{30.0f};

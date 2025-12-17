@@ -4,7 +4,7 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component) {
+auto GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component) -> SharedPtr<GUIComponent> {
   component->SetParentComponent(this);
 
   m_childComponents.push_back(component);
@@ -12,7 +12,7 @@ SharedPtr<GUIComponent> GUIComponent::AddChildComponent(SharedPtr<GUIComponent> 
   return component;
 }
 
-void GUIComponent::Update() {
+auto GUIComponent::Update() -> void {
   if (!m_visible || !m_enabled)
     return;
 
@@ -22,7 +22,7 @@ void GUIComponent::Update() {
   this->UpdateDerived();
 }
 
-void GUIComponent::Render() const {
+auto GUIComponent::Render() const -> void {
   if (!m_visible)
     return;
 
@@ -32,7 +32,7 @@ void GUIComponent::Render() const {
     component->Render();
 }
 
-RectF GUIComponent::GetBounds() const {
+auto GUIComponent::GetBounds() const -> RectF {
   auto boundsResult{m_bounds};
 
   // If this component has a parent, offset bounds by parent's position.
@@ -44,16 +44,16 @@ RectF GUIComponent::GetBounds() const {
   return boundsResult;
 }
 
-void GUIComponent::ToggleVisibility() {
+auto GUIComponent::ToggleVisibility() -> void {
   m_visible = !m_visible;
 }
 
-void GUIComponent::SetPosition(PointF newPosition) {
+auto GUIComponent::SetPosition(PointF newPosition) -> void {
   m_bounds.x = newPosition.x;
   m_bounds.y = newPosition.y;
 }
 
-void GUIComponent::SetHeight(float newHeight) {
+auto GUIComponent::SetHeight(float newHeight) -> void {
   m_bounds.height = newHeight;
 }
 }

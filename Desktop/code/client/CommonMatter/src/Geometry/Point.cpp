@@ -4,11 +4,11 @@
 #include "Point.hpp"
 
 namespace Forradia {
-bool Point::operator==(const Point &other) const {
+auto Point::operator==(const Point &other) const -> bool {
   return other.x == this->x && other.y == this->y;
 }
 
-bool Point::operator<(const Point &other) const {
+auto Point::operator<(const Point &other) const -> bool {
   if (this->x != other.x)
     return this->x < other.x;
   return this->y < other.y;

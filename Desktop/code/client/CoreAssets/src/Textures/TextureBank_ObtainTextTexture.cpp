@@ -4,7 +4,7 @@
 #include "TextureBank.hpp"
 
 namespace Forradia {
-bool TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) {
+auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool {
   // Check if the text texture exists.
   if (m_textTextureIDs.contains(uniqueTextureID)) {
     textureID = m_textTextureIDs.at(uniqueTextureID);

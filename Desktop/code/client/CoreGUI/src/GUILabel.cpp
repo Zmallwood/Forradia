@@ -5,7 +5,7 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-void GUILabel::RenderDerived() const {
+auto GUILabel::RenderDerived() const -> void {
   auto bounds{GetBounds()};
 
   auto x{bounds.x};

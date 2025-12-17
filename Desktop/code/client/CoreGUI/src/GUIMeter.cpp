@@ -5,7 +5,7 @@
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-void GUIMeter::RenderDerived() const {
+auto GUIMeter::RenderDerived() const -> void {
   auto bounds{GetBounds()};
 
   _<Color2DRenderer>().DrawFilledRectangle(k_renderIDBackground, Palette::GetColor<Hash("Black")>(),

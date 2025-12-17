@@ -6,19 +6,19 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void Cursor::Initialize() {
+auto Cursor::Initialize() -> void {
   this->DisableSystemCursor();
 }
 
-void Cursor::DisableSystemCursor() const {
+auto Cursor::DisableSystemCursor() const -> void {
   SDL_ShowCursor(SDL_DISABLE);
 }
 
-void Cursor::ResetStyleToNormal() {
+auto Cursor::ResetStyleToNormal() -> void {
   m_cursorStyle = CursorStyles::Normal;
 }
 
-void Cursor::Render() const {
+auto Cursor::Render() const -> void {
   auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
   auto width{k_cursorSize};

@@ -12,17 +12,17 @@ class MouseButton {
   /**
    * Resets the state of the button.
    */
-  void Reset();
+  auto Reset() -> void;
 
   /**
    * Registers that the button has been pressed.
    */
-  void RegisterPress();
+  auto RegisterPress() -> void;
 
   /**
    * Registers that the button has been released.
    */
-  void RegisterRelease();
+  auto RegisterRelease() -> void;
 
   /**
    * Checks if the button is currently being pressed, picking the result (I.e. the result
@@ -30,7 +30,7 @@ class MouseButton {
    *
    * @return True if the button is pressed, otherwise false.
    */
-  bool IsPressedPickResult();
+  auto IsPressedPickResult() -> bool;
 
   /**
    * Checks if the button has been fired, picking the result (I.e. the result can only be
@@ -38,7 +38,7 @@ class MouseButton {
    *
    * @return True if the button has been fired, otherwise false.
    */
-  bool HasBeenFiredPickResult();
+  auto HasBeenFiredPickResult() -> bool;
 
   /**
    * Checks if the button has been fired, without picking the result (I.e. the result can
@@ -46,7 +46,7 @@ class MouseButton {
    *
    * @return True if the button has been fired, otherwise false.
    */
-  bool HasBeenFired() const;
+  auto HasBeenFired() const -> bool;
 
   /**
    * Checks if the button has been released, picking the result (I.e. the result can only
@@ -54,7 +54,7 @@ class MouseButton {
    *
    * @return True if the button has been released, otherwise false.
    */
-  bool HasBeenReleasedPickResult();
+  auto HasBeenReleasedPickResult() -> bool;
 
   /**
    * Checks if the button has been released, without picking the result (I.e. the result
@@ -62,7 +62,7 @@ class MouseButton {
    *
    * @return True if the button has been released, otherwise false.
    */
-  bool HasBeenReleased() const;
+  auto HasBeenReleased() const -> bool;
 
   /**
    * Returns the speed of the most recent click.

@@ -9,11 +9,11 @@ GLDevice::~GLDevice() {
   SDL_GL_DeleteContext(*m_context);
 }
 
-void GLDevice::Initialize() {
+auto GLDevice::Initialize() -> void {
   this->SetupGL();
 }
 
-void GLDevice::SetupGL() {
+auto GLDevice::SetupGL() -> void {
   auto window{_<SDLDevice>().GetWindow()};
   m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
   SDL_GL_MakeCurrent(window.get(), *m_context);

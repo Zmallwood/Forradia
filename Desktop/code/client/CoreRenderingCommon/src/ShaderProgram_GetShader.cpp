@@ -4,7 +4,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-GLuint ShaderProgram::GetShader(StringView shaderSource, int shaderType) const {
+auto ShaderProgram::GetShader(StringView shaderSource, int shaderType) const -> GLuint {
   auto shader{glCreateShader(shaderType)};
   const auto *source{(const GLchar *)shaderSource.data()};
 

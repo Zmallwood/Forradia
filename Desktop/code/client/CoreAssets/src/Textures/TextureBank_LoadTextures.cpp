@@ -4,7 +4,7 @@
 #include "TextureBank.hpp"
 
 namespace Forradia {
-void TextureBank::LoadTextures() {
+auto TextureBank::LoadTextures() -> void {
   auto basePath{String(SDL_GetBasePath())};
   auto imagesPath{basePath + k_relativeImagesPath.data()};
 

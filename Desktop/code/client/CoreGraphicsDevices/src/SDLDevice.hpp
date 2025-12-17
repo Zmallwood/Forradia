@@ -15,17 +15,17 @@ class SDLDevice {
    * @param gameWindowTitle The title of the game window.
    * @param clearColor The color to clear the canvas with.
    */
-  void Initialize(StringView gameWindowTitle, Color clearColor);
+  auto Initialize(StringView gameWindowTitle, Color clearColor) -> void;
 
   /**
    * Clears the canvas.
    */
-  void ClearCanvas() const;
+  auto ClearCanvas() const -> void;
 
   /**
    * Presents the canvas.
    */
-  void PresentCanvas() const;
+  auto PresentCanvas() const -> void;
 
   /**
    * Returns the SDL window object.
@@ -37,9 +37,9 @@ class SDLDevice {
   }
 
  private:
-  void SetupSDLWindow();
+  auto SetupSDLWindow() -> void;
 
-  Size GetScreenSize() const;
+  auto GetScreenSize() const -> Size;
 
   constexpr static Uint32 k_windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                                         SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |

@@ -4,11 +4,11 @@
 #include "TextureBank.hpp"
 
 namespace Forradia {
-void TextureBank::Initialize() {
+auto TextureBank::Initialize() -> void {
   this->LoadTextures();
 }
 
-void TextureBank::Cleanup() {
+auto TextureBank::Cleanup() -> void {
   for (auto entry : m_textureEntries)
     glDeleteTextures(1, &entry.second.textureID);
   for (auto entry : m_textTextureIDs)
@@ -17,13 +17,13 @@ void TextureBank::Cleanup() {
   m_textTextureIDs.clear();
 }
 
-GLuint TextureBank::GetTexture(int imageNameHash) const {
+auto TextureBank::GetTexture(int imageNameHash) const -> GLuint {
   if (m_textureEntries.contains(imageNameHash))
     return m_textureEntries.at(imageNameHash).textureID;
   return -1;
 }
 
-Size TextureBank::GetTextureDimensions(int imageNameHash) const {
+auto TextureBank::GetTextureDimensions(int imageNameHash) const -> Size {
   if (m_textureEntries.contains(imageNameHash))
     return m_textureEntries.at(imageNameHash).dimensions;
   return {-1, -1};

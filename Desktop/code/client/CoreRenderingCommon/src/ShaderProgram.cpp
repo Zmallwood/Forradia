@@ -4,7 +4,8 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource) {
+auto ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource)
+    -> void {
   auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
   // If the vertex shader failed.
@@ -34,7 +35,7 @@ void ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmen
   glDeleteShader(fragmentShader);
 }
 
-void ShaderProgram::Cleanup() {
+auto ShaderProgram::Cleanup() -> void {
   glDeleteProgram(m_programID);
   m_programID = 0;
 }

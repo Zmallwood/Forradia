@@ -32,7 +32,7 @@ class GUIWindow : public GUIMovablePanel {
   /**
    * Render tasks specific to the window, called by the GUIComponent base class.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
   /**
    * Gets the draggable area for the window. This is the area which the player can drag
@@ -40,7 +40,7 @@ class GUIWindow : public GUIMovablePanel {
    *
    * @return The draggable area of the window.
    */
-  RectF GetDraggableArea() const override;
+  auto GetDraggableArea() const -> RectF override;
 
   /**
    * Gets the window title bar of the window.
@@ -52,7 +52,7 @@ class GUIWindow : public GUIMovablePanel {
   }
 
  private:
-  void Initialize(StringView uniqueName, StringView windowTitle);
+  auto Initialize(StringView uniqueName, StringView windowTitle) -> void;
 
   SharedPtr<GUIWindowTitleBar> m_guiWindowTitleBar;
 };

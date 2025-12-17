@@ -28,17 +28,17 @@ class Model {
   }
 
  private:
-  void Initialize(StringView filePath);
+  auto Initialize(StringView filePath) -> void;
 
-  void ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform);
+  auto ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform) -> void;
 
-  GLMMesh ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const;
+  auto ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const -> GLMMesh;
 
-  Vector<GLMVertex> GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const;
+  auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const -> Vector<GLMVertex>;
 
-  Vector<unsigned int> GetIndices(aiMesh *mesh) const;
+  auto GetIndices(aiMesh *mesh) const -> Vector<unsigned int>;
 
-  Vector<Texture> GetTextures(aiMesh *mesh, const aiScene *scene) const;
+  auto GetTextures(aiMesh *mesh, const aiScene *scene) const -> Vector<Texture>;
 
   Vector<GLMMesh> m_meshes;
 };

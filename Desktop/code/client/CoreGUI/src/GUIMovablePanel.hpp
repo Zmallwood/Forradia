@@ -27,24 +27,24 @@ class GUIMovablePanel : public GUIPanel {
   /**
    * Update tasks specific to the movable panel, called by the GUIComponent base class.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
   /**
    * Starts the move of the movable panel.
    */
-  void StartMove();
+  auto StartMove() -> void;
 
   /**
    * Stops the move of the movable panel.
    */
-  void StopMove();
+  auto StopMove() -> void;
 
   /**
    * Gets the draggable area of the movable panel.
    *
    * @return The draggable area of the movable panel.
    */
-  virtual RectF GetDraggableArea() const;
+  virtual auto GetDraggableArea() const -> RectF;
 
   /**
    * Gets whether the movable panel is being moved.

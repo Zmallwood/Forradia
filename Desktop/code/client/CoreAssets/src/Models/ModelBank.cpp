@@ -5,11 +5,11 @@
 #include "Construction/Model.hpp"
 
 namespace Forradia {
-void ModelBank::Initialize() {
+auto ModelBank::Initialize() -> void {
   this->LoadModels();
 }
 
-void ModelBank::LoadModels() {
+auto ModelBank::LoadModels() -> void {
   auto basePath{String(SDL_GetBasePath())};
   auto imagesPath{basePath + k_relativeModelsPath.data()};
 
@@ -31,13 +31,13 @@ void ModelBank::LoadModels() {
   }
 }
 
-SharedPtr<Model> ModelBank::GetModel(int modelNameHash) const {
+auto ModelBank::GetModel(int modelNameHash) const -> SharedPtr<Model> {
   if (m_models.contains(modelNameHash))
     return m_models.at(modelNameHash);
   return nullptr;
 }
 
-SharedPtr<Model> ModelBank::LoadSingleModel(StringView filePath) const {
+auto ModelBank::LoadSingleModel(StringView filePath) const -> SharedPtr<Model> {
   // Load the model from the file at the path.
   auto modelResult{std::make_shared<Model>(filePath)};
   return modelResult;

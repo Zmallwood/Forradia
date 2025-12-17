@@ -4,7 +4,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-GLint ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) {
+auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint {
   m_programID = glCreateProgram();
   glAttachShader(m_programID, vertexShader);
   glAttachShader(m_programID, fragmentShader);

@@ -8,7 +8,7 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-void GUIWindowTitleBar::Initialize(StringView uniqueName) {
+auto GUIWindowTitleBar::Initialize(StringView uniqueName) -> void {
   auto parentWindowBounds{m_parentWindow.GetBounds()};
   AddChildComponent(std::make_shared<GUIButton>(
       uniqueName.data() + String("CloseButton"),
@@ -17,7 +17,7 @@ void GUIWindowTitleBar::Initialize(StringView uniqueName) {
       [this] { m_parentWindow.ToggleVisibility(); }));
 }
 
-void GUIWindowTitleBar::RenderDerived() const {
+auto GUIWindowTitleBar::RenderDerived() const -> void {
   GUIPanel::RenderDerived();
 
   auto parentWindowBounds{m_parentWindow.GetBounds()};
@@ -26,7 +26,7 @@ void GUIWindowTitleBar::RenderDerived() const {
                                FontSizes::_20, false, false, Palette::GetColor<Hash("Yellow")>());
 }
 
-RectF GUIWindowTitleBar::GetBounds() const {
+auto GUIWindowTitleBar::GetBounds() const -> RectF {
   auto parentWindowBounds{m_parentWindow.GetBounds()};
 
   RectF boundsResult;

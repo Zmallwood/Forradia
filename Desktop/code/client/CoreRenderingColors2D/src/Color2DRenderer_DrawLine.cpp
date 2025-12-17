@@ -7,8 +7,8 @@
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-void Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,
-                               float y2, float lineWidth, bool updateExisting) {
+auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,
+                               float y2, float lineWidth, bool updateExisting) -> void {
   this->SetupState();
 
   GLuint vao;

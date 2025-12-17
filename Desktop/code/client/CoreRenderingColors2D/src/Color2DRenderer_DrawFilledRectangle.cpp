@@ -8,8 +8,8 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
-                                          float width, float height, bool updateExisting) {
+auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
+                                          float width, float height, bool updateExisting) -> void {
   this->SetupState();
 
   GLuint vao;

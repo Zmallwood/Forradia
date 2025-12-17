@@ -15,7 +15,7 @@ class PointF {
    * @param other The other PointF to add to this point.
    * @return The resulting PointF with the dimensions added separately.
    */
-  PointF operator+(const PointF &other) const;
+  auto operator+(const PointF &other) const -> PointF;
 
   /**
    * Subtraction operator for the two points.
@@ -23,7 +23,7 @@ class PointF {
    * @param other The other PointF to subtract from this point.
    * @return The resulting PointF with the dimensions subtracted separetely.
    */
-  PointF operator-(const PointF &other) const;
+  auto operator-(const PointF &other) const -> PointF;
 
   /**
    * The x dimension.

@@ -35,12 +35,12 @@ class GUIButton : public GUIPanel {
   /**
    * Update tasks specific to the button, called by the GUIComponent base class.
    */
-  virtual void UpdateDerived() override;
+  virtual auto UpdateDerived() -> void override;
 
   /**
    * Render tasks specific to the button, called by the GUIComponent base class.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
  private:
   inline static const String k_defaultBackgroundImage{"GUIButtonBackground"};

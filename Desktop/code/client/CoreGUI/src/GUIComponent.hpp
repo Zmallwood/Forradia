@@ -26,43 +26,43 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
    * @param component The child component to add.
    * @return The added component.
    */
-  SharedPtr<GUIComponent> AddChildComponent(SharedPtr<GUIComponent> component);
+  auto AddChildComponent(SharedPtr<GUIComponent> component) -> SharedPtr<GUIComponent>;
 
   /**
    * Updates the component and all its children.
    */
-  void Update();
+  auto Update() -> void;
 
   /**
    * Renders the component and all its children.
    */
-  void Render() const;
+  auto Render() const -> void;
 
   /**
    * Gets the bounds of the component in screen coordinates.
    *
    * @return The bounds of the component in screen coordinates.
    */
-  virtual RectF GetBounds() const;
+  virtual auto GetBounds() const -> RectF;
 
   /**
    * Sets the position of the component.
    *
    * @param newPosition The new position of the component.
    */
-  void SetPosition(PointF newPosition);
+  auto SetPosition(PointF newPosition) -> void;
 
   /**
    * Sets the height of the component.
    *
    * @param newHeight The new height of the component.
    */
-  void SetHeight(float newHeight);
+  auto SetHeight(float newHeight) -> void;
 
   /**
    * Toggles the visibility of the component.
    */
-  void ToggleVisibility();
+  auto ToggleVisibility() -> void;
 
   /**
    * Gets whether the component is visible.
@@ -78,7 +78,7 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
    *
    * @param value Whether the component should be visible.
    */
-  void SetVisible(bool value) {
+  auto SetVisible(bool value) -> void {
     m_visible = value;
   }
 
@@ -87,7 +87,7 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
    *
    * @param value The parent component.
    */
-  void SetParentComponent(GUIComponent *value) {
+  auto SetParentComponent(GUIComponent *value) -> void {
     m_parentComponent = value;
   }
 
@@ -95,13 +95,13 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
   /**
    * Update tasks specific to the derived class, called by the Update method.
    */
-  virtual void UpdateDerived() {
+  virtual auto UpdateDerived() -> void {
   }
 
   /**
    * Render tasks specific to the derived class, called by the Render method.
    */
-  virtual void RenderDerived() const {
+  virtual auto RenderDerived() const -> void {
   }
 
  private:

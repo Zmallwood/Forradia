@@ -21,29 +21,29 @@ class GUIChatBox : public GUIPanel {
   /**
    * Update tasks specific to the chat box, called by the GUIComponent base class.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
   /**
    * Render tasks specific to the chat box, called by the GUIComponent base class.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
   /**
    * Prints a message to the chat box.
    *
    * @param text The message to print.
    */
-  void Print(StringView text);
+  auto Print(StringView text) -> void;
 
   /**
    * Enables input to the chat box.
    */
-  void EnableInput();
+  auto EnableInput() -> void;
 
   /**
    * Submits the input to the chat box.
    */
-  void SubmitInput();
+  auto SubmitInput() -> void;
 
   /**
    * Gets whether the input is active.
@@ -55,9 +55,9 @@ class GUIChatBox : public GUIPanel {
   }
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  int GetMaxNumLines() const;
+  auto GetMaxNumLines() const -> int;
 
   constexpr static StringView k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
   inline static const float k_lineHeight{0.028f};

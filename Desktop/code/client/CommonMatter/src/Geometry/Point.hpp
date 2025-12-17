@@ -15,7 +15,7 @@ class Point {
    * @param other Other Point to check equality against.
    * @return True if the two points are equal, otherwise false.
    */
-  bool operator==(const Point &other) const;
+  auto operator==(const Point &other) const -> bool;
 
   /**
    * Less than operator between two Points.
@@ -23,7 +23,7 @@ class Point {
    * @param other Other Point to check less than against.
    * @return True if the current point is less than the other point, otherwise false.
    */
-  bool operator<(const Point &other) const;
+  auto operator<(const Point &other) const -> bool;
 
   /**
    * The x dimension.

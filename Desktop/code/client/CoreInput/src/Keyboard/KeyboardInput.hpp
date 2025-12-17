@@ -12,21 +12,21 @@ class KeyboardInput {
   /**
    * Resets the keyboard input.
    */
-  void Reset();
+  auto Reset() -> void;
 
   /**
    * Registers a key as being pressed.
    *
    * @param key Key to register.
    */
-  void RegisterKeyPress(SDL_Keycode key);
+  auto RegisterKeyPress(SDL_Keycode key) -> void;
 
   /**
    * Registers a key as being released, by unregistering it as being pressed.
    *
    * @param key Key to unregister.
    */
-  void RegisterKeyRelease(SDL_Keycode key);
+  auto RegisterKeyRelease(SDL_Keycode key) -> void;
 
   /**
    * Checks if a key is currently being pressed, without picking the result (I.e. the
@@ -35,7 +35,7 @@ class KeyboardInput {
    * @param key Key to check.
    * @return True if the key is pressed, otherwise false.
    */
-  bool KeyIsPressed(SDL_Keycode key) const;
+  auto KeyIsPressed(SDL_Keycode key) const -> bool;
 
   /**
    * Checks if a key is currently being pressed, and picks the result (I.e. the result
@@ -44,7 +44,7 @@ class KeyboardInput {
    * @param key Key to check.
    * @return True if the key is pressed, otherwise false.
    */
-  bool KeyIsPressedPickResult(SDL_Keycode key);
+  auto KeyIsPressedPickResult(SDL_Keycode key) -> bool;
 
   /**
    * Checks if any key is currently being pressed, and picks the result (I.e. the result
@@ -52,24 +52,24 @@ class KeyboardInput {
    *
    * @return True if any key is pressed, otherwise false.
    */
-  bool AnyKeyIsPressedPickResult();
+  auto AnyKeyIsPressedPickResult() -> bool;
 
   /**
    * Starts text input.
    */
-  void StartTextInput();
+  auto StartTextInput() -> void;
 
   /**
    * Stops text input.
    */
-  void StopTextInput();
+  auto StopTextInput() -> void;
 
   /**
    * Adds text to the text input.
    *
    * @param text Text to add.
    */
-  void AddTextInput(StringView text);
+  auto AddTextInput(StringView text) -> void;
 
   /**
    * Returns the text input.

@@ -30,14 +30,14 @@ class GUIPanel : public GUIComponent {
   /**
    * Render tasks specific to the panel, called by the GUIComponent base class.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
   /**
    * Sets the background image of the panel.
    *
    * @param value The new background image.
    */
-  void SetBackgroundImage(StringView value) {
+  auto SetBackgroundImage(StringView value) -> void {
     m_backgroundImage = value;
   }
 

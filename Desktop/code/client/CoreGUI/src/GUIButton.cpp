@@ -8,7 +8,7 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-void GUIButton::UpdateDerived() {
+auto GUIButton::UpdateDerived() -> void {
   GUIPanel::UpdateDerived();
 
   auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
@@ -24,7 +24,7 @@ void GUIButton::UpdateDerived() {
   }
 }
 
-void GUIButton::RenderDerived() const {
+auto GUIButton::RenderDerived() const -> void {
   GUIPanel::RenderDerived();
 
   auto bounds{this->GetBounds()};

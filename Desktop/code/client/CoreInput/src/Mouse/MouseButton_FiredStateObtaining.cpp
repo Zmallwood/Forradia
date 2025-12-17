@@ -4,13 +4,13 @@
 #include "MouseButton.hpp"
 
 namespace Forradia {
-bool MouseButton::HasBeenFiredPickResult() {
+auto MouseButton::HasBeenFiredPickResult() -> bool {
   auto result{m_hasBeenFired};
   m_hasBeenFired = false;
   return result;
 }
 
-bool MouseButton::HasBeenFired() const {
+auto MouseButton::HasBeenFired() const -> bool {
   return m_hasBeenFired;
 }
 }

@@ -4,28 +4,28 @@
 #include "KeyboardInput.hpp"
 
 namespace Forradia {
-void KeyboardInput::Reset() {
+auto KeyboardInput::Reset() -> void {
   m_pressed.clear();
 }
 
-void KeyboardInput::RegisterKeyPress(SDL_Keycode key) {
+auto KeyboardInput::RegisterKeyPress(SDL_Keycode key) -> void {
   m_pressed.insert(key);
 }
 
-void KeyboardInput::RegisterKeyRelease(SDL_Keycode key) {
+auto KeyboardInput::RegisterKeyRelease(SDL_Keycode key) -> void {
   m_pressed.erase(key);
 }
 
-void KeyboardInput::StartTextInput() {
+auto KeyboardInput::StartTextInput() -> void {
   SDL_StartTextInput();
 }
 
-void KeyboardInput::StopTextInput() {
+auto KeyboardInput::StopTextInput() -> void {
   SDL_StopTextInput();
   m_textInput.clear();
 }
 
-void KeyboardInput::AddTextInput(StringView text) {
+auto KeyboardInput::AddTextInput(StringView text) -> void {
   m_textInput += text;
 }
 }

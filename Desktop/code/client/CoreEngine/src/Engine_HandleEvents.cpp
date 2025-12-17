@@ -6,7 +6,7 @@
 #include "Mouse/MouseInput.hpp"
 
 namespace Forradia {
-void Engine::HandleEvents() {
+auto Engine::HandleEvents() -> void {
   SDL_Event event;
 
   while (SDL_PollEvent(&event)) {

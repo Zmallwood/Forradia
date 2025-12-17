@@ -32,7 +32,7 @@ class TextureBank {
    * @param imageNameHash The hash of the image name.
    * @return The texture ID.
    */
-  GLuint GetTexture(int imageNameHash) const;
+  auto GetTexture(int imageNameHash) const -> GLuint;
 
   /**
    * Gets the dimensions of a texture with the given hash.
@@ -40,7 +40,7 @@ class TextureBank {
    * @param imageNameHash The hash of the image name.
    * @return The dimensions of the texture.
    */
-  Size GetTextureDimensions(int imageNameHash) const;
+  auto GetTextureDimensions(int imageNameHash) const -> Size;
 
   /**
    * Obtains a text texture ID for the given unique texture ID.
@@ -49,16 +49,16 @@ class TextureBank {
    * @param[out] textureID The texture ID (output parameter).
    * @return True if the texture was found, false otherwise.
    */
-  bool ObtainTextTexture(int uniqueTextureID, GLuint &textureID);
+  auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  void LoadTextures();
+  auto LoadTextures() -> void;
 
-  GLuint LoadSingleTexture(SharedPtr<SDL_Surface> surface) const;
+  auto LoadSingleTexture(SharedPtr<SDL_Surface> surface) const -> GLuint;
 
   inline static const String k_relativeImagesPath{"./Resources/Images/"};
   std::map<int, TextureEntry> m_textureEntries;

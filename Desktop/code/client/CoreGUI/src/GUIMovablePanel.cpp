@@ -7,7 +7,7 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void GUIMovablePanel::UpdateDerived() {
+auto GUIMovablePanel::UpdateDerived() -> void {
   auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
   auto draggableArea{this->GetDraggableArea()};
 
@@ -37,17 +37,17 @@ void GUIMovablePanel::UpdateDerived() {
   }
 }
 
-void GUIMovablePanel::StartMove() {
+auto GUIMovablePanel::StartMove() -> void {
   m_isBeingMoved = true;
   m_moveStartingPosition = this->GetBounds().GetPosition();
   m_moveStartingMousePosition = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
 }
 
-void GUIMovablePanel::StopMove() {
+auto GUIMovablePanel::StopMove() -> void {
   m_isBeingMoved = false;
 }
 
-RectF GUIMovablePanel::GetDraggableArea() const {
+auto GUIMovablePanel::GetDraggableArea() const -> RectF {
   // Set the draggable area to the bounds of this panel as default. This can be overridden
   // by derived classes.
   return this->GetBounds();

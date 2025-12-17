@@ -33,7 +33,7 @@ class GUILabel : public GUIComponent {
    *
    * @param value The new text.
    */
-  void SetText(StringView value) {
+  auto SetText(StringView value) -> void {
     m_text = value;
   }
 
@@ -41,7 +41,7 @@ class GUILabel : public GUIComponent {
   /**
    * Render tasks specific to the label, called by the GUIComponent base class.
    */
-  virtual void RenderDerived() const override;
+  virtual auto RenderDerived() const -> void override;
 
  private:
   const int k_renderIDText;

@@ -9,25 +9,25 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-void GUIChatBox::Initialize() {
+auto GUIChatBox::Initialize() -> void {
   auto maxNumLines{this->GetMaxNumLines()};
 
   for (auto i = 0; i < maxNumLines; i++)
     m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
 }
 
-int GUIChatBox::GetMaxNumLines() const {
+auto GUIChatBox::GetMaxNumLines() const -> int {
   auto bounds{this->GetBounds()};
   return CInt(bounds.height / k_lineHeight - 1);
 }
 
-void GUIChatBox::UpdateDerived() {
+auto GUIChatBox::UpdateDerived() -> void {
   GUIPanel::UpdateDerived();
 
   m_input = _<KeyboardInput>().GetTextInput();
 }
 
-void GUIChatBox::RenderDerived() const {
+auto GUIChatBox::RenderDerived() const -> void {
   GUIPanel::RenderDerived();
 
   auto bounds{this->GetBounds()};
@@ -74,17 +74,17 @@ void GUIChatBox::RenderDerived() const {
   }
 }
 
-void GUIChatBox::Print(StringView text) {
+auto GUIChatBox::Print(StringView text) -> void {
   m_lines.push_back(text.data());
 }
 
-void GUIChatBox::EnableInput() {
+auto GUIChatBox::EnableInput() -> void {
   _<KeyboardInput>().StartTextInput();
 
   m_inputActive = true;
 }
 
-void GUIChatBox::SubmitInput() {
+auto GUIChatBox::SubmitInput() -> void {
   // TODO: Act on the typed input.
 
   if (m_input == "/quit")

@@ -4,7 +4,7 @@
 #include "Model.hpp"
 
 namespace Forradia {
-Vector<unsigned int> Model::GetIndices(aiMesh *mesh) const {
+auto Model::GetIndices(aiMesh *mesh) const -> Vector<unsigned int> {
   Vector<unsigned int> indices;
 
   // Iterate over all faces.

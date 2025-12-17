@@ -10,7 +10,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia {
-glm::mat4 Camera::GetViewMatrix() const {
+auto Camera::GetViewMatrix() const -> glm::mat4 {
   auto cameraPosition{GetPosition()};
   auto cameraLookAt{GetLookAt()};
   return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
@@ -18,12 +18,12 @@ glm::mat4 Camera::GetViewMatrix() const {
                      glm::vec3(0.0f, 0.0f, -1.0f));
 }
 
-glm::mat4 Camera::GetProjectionMatrix() const {
+auto Camera::GetProjectionMatrix() const -> glm::mat4 {
   auto aspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
   return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
 }
 
-Point3F Camera::GetPosition() const {
+auto Camera::GetPosition() const -> Point3F {
   // Returns the camera position in world space. The position is derived from the look-at
   // point with an offset which is determined by the zoom amount and the rotation angle.
 
@@ -48,7 +48,7 @@ Point3F Camera::GetPosition() const {
   return point;
 }
 
-Point3F Camera::GetLookAt() const {
+auto Camera::GetLookAt() const -> Point3F {
   // Computes the point in world space the camera should look at. This targets the center
   // of the player's current tile and uses the tile's elevation to set Z.
 
@@ -65,18 +65,18 @@ Point3F Camera::GetLookAt() const {
   return lookAt;
 }
 
-void Camera::AddZoomAmountDelta(float zoomAmountDelta) {
+auto Camera::AddZoomAmountDelta(float zoomAmountDelta) -> void {
   // Add the delta to the current zoom amount and clamp it between the minimum and maximum
   // zoom amounts.
   m_zoomAmount += zoomAmountDelta;
   m_zoomAmount = std::max(std::min(m_zoomAmount, k_maxZoomAmount), k_minZoomAmount);
 }
 
-void Camera::AddRotationDeltaSideways(float rotationDeltaSideways) {
+auto Camera::AddRotationDeltaSideways(float rotationDeltaSideways) -> void {
   m_rotationAngleSideways += rotationDeltaSideways;
 }
 
-void Camera::AddRotationDeltaVertical(float rotationDeltaVertical) {
+auto Camera::AddRotationDeltaVertical(float rotationDeltaVertical) -> void {
   // Add the delta to the current vertical rotation amount and clamp it between the
   // minimum and maximum vertical rotation angles.
   m_rotationAngleVertical += rotationDeltaVertical;

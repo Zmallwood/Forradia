@@ -4,7 +4,7 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void SDLDevice::SetupSDLWindow() {
+auto SDLDevice::SetupSDLWindow() -> void {
   auto screenSize{this->GetScreenSize()};
   m_window = SharedPtr<SDL_Window>(
       SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,

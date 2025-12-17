@@ -4,7 +4,7 @@
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-String Color2DRenderer::GetVSSource() const {
+auto Color2DRenderer::GetVSSource() const -> String {
   return R"(
         #version 330 core
 

@@ -4,7 +4,7 @@
 #include "MouseInput.hpp"
 
 namespace Forradia {
-void MouseInput::RegisterMouseButtonDown(Uint8 button) {
+auto MouseInput::RegisterMouseButtonDown(Uint8 button) -> void {
   switch (button) {
   case SDL_BUTTON_LEFT:
     m_leftMouseButton.RegisterPress();
@@ -15,7 +15,7 @@ void MouseInput::RegisterMouseButtonDown(Uint8 button) {
   }
 }
 
-void MouseInput::RegisterMouseButtonUp(Uint8 button) {
+auto MouseInput::RegisterMouseButtonUp(Uint8 button) -> void {
   switch (button) {
   case SDL_BUTTON_LEFT:
     m_leftMouseButton.RegisterRelease();

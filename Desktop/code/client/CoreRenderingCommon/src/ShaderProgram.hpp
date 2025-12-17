@@ -36,13 +36,13 @@ class ShaderProgram {
   }
 
  private:
-  void Initialize(StringView vertexShaderSource, StringView fragmentShaderSource);
+  auto Initialize(StringView vertexShaderSource, StringView fragmentShaderSource) -> void;
 
-  void Cleanup();
+  auto Cleanup() -> void;
 
-  GLuint GetShader(StringView shaderSource, int shaderType) const;
+  auto GetShader(StringView shaderSource, int shaderType) const -> GLuint;
 
-  GLint CreateProgram(GLuint vertexShader, GLuint fragmentShader);
+  auto CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
 
   GLuint m_programID;
 };

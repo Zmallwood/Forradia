@@ -4,25 +4,25 @@
 #include "MouseButton.hpp"
 
 namespace Forradia {
-void MouseButton::Reset() {
+auto MouseButton::Reset() -> void {
   m_pressed = false;
   m_hasBeenFired = false;
   m_hasBeenReleased = false;
 }
 
-void MouseButton::RegisterPress() {
+auto MouseButton::RegisterPress() -> void {
   m_pressed = true;
   m_hasBeenFired = true;
   m_ticksFired = GetTicks();
 }
 
-void MouseButton::RegisterRelease() {
+auto MouseButton::RegisterRelease() -> void {
   m_pressed = false;
   m_hasBeenReleased = true;
   m_ticksClickSpeed = GetTicks() - m_ticksFired;
 }
 
-bool MouseButton::IsPressedPickResult() {
+auto MouseButton::IsPressedPickResult() -> bool {
   auto result{m_pressed};
   m_pressed = false;
   return result;

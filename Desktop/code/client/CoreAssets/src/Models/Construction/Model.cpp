@@ -4,7 +4,7 @@
 #include "Model.hpp"
 
 namespace Forradia {
-void Model::Initialize(StringView filePath) {
+auto Model::Initialize(StringView filePath) -> void {
   Assimp::Importer importer;
   unsigned int flags{aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
                      aiProcess_GenBoundingBoxes | aiProcess_FixInfacingNormals};

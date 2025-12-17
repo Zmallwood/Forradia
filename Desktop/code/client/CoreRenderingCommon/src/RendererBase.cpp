@@ -5,7 +5,7 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-void RendererBase::Initialize() {
+auto RendererBase::Initialize() -> void {
   String vertexShaderSource{this->GetVSSource()};
   String fragmentShaderSource{this->GetFSSource()};
   m_shaderProgram = std::make_shared<ShaderProgram>(vertexShaderSource, fragmentShaderSource);

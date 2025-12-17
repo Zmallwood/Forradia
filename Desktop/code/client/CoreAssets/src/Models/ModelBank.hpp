@@ -24,14 +24,14 @@ class ModelBank {
    * @param modelNameHash The hash of the model name.
    * @return The model.
    */
-  SharedPtr<Model> GetModel(int modelNameHash) const;
+  auto GetModel(int modelNameHash) const -> SharedPtr<Model>;
 
  private:
-  void Initialize();
+  auto Initialize() -> void;
 
-  void LoadModels();
+  auto LoadModels() -> void;
 
-  SharedPtr<Model> LoadSingleModel(StringView filePath) const;
+  auto LoadSingleModel(StringView filePath) const -> SharedPtr<Model>;
 
   inline static const String k_relativeModelsPath{"./Resources/Models/"};
   std::map<int, SharedPtr<Model>> m_models;

@@ -29,14 +29,14 @@ class GUIMeter : public GUIComponent {
   /**
    * Render tasks specific to the meter, called by the GUIComponent base class.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
   /**
    * Gets the filled percentage of the meter.
    *
    * @return The filled percentage of the meter.
    */
-  virtual float GetFilledPercentage() const = 0;
+  virtual auto GetFilledPercentage() const -> float = 0;
 
  private:
   const int k_renderIDBackground;

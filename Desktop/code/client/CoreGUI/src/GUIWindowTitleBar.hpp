@@ -29,17 +29,17 @@ class GUIWindowTitleBar : public GUIPanel {
   /**
    * Render tasks specific to the title bar, called by the GUIComponent base class.
    */
-  void RenderDerived() const override;
+  auto RenderDerived() const -> void override;
 
   /**
    * Gets the bounds of the title bar.
    *
    * @return The bounds of the title bar.
    */
-  RectF GetBounds() const override;
+  auto GetBounds() const -> RectF override;
 
  private:
-  void Initialize(StringView uniqueName);
+  auto Initialize(StringView uniqueName) -> void;
 
   inline static const float k_height{0.04f};
   const String k_windowTitle;

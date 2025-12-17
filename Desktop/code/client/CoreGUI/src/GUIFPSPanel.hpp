@@ -24,13 +24,13 @@ class GUIFPSPanel : public GUIMovablePanel {
   /**
    * Update tasks specific to the FPSPanel, called by the GUIComponent base class.
    */
-  void UpdateDerived() override;
+  auto UpdateDerived() -> void override;
 
  private:
   /**
    * Initializes this FPSPanel.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
   SharedPtr<GUILabel> m_fpsTextPanel;
 };

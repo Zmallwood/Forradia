@@ -14,7 +14,7 @@ class RendererBase {
   /**
    * Initialize the renderer with its shader program.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
  protected:
   /**
@@ -22,25 +22,25 @@ class RendererBase {
    *
    * @return The vertex shader source code.
    */
-  virtual String GetVSSource() const = 0;
+  virtual auto GetVSSource() const -> String = 0;
 
   /**
    * Get the fragment shader source code.
    *
    * @return The fragment shader source code.
    */
-  virtual String GetFSSource() const = 0;
+  virtual auto GetFSSource() const -> String = 0;
 
   /**
    * Can be used to do additional initialization implemented in deriving class.
    */
-  virtual void InitializeDerived() {
+  virtual auto InitializeDerived() -> void {
   }
 
   /**
    * Set up the attribute layout.
    */
-  virtual void SetupAttributeLayout() const = 0;
+  virtual auto SetupAttributeLayout() const -> void = 0;
 
   /**
    * Get the shader program.

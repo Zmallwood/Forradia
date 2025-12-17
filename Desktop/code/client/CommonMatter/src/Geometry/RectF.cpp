@@ -4,16 +4,16 @@
 #include "RectF.hpp"
 
 namespace Forradia {
-bool RectF::Contains(PointF point) const {
+auto RectF::Contains(PointF point) const -> bool {
   return point.x >= this->x && point.y >= this->y && point.x < this->x + this->width &&
          point.y < this->y + this->height;
 }
 
-PointF RectF::GetPosition() const {
+auto RectF::GetPosition() const -> PointF {
   return {this->x, this->y};
 }
 
-void RectF::Offset(PointF offset) {
+auto RectF::Offset(PointF offset) -> void {
   this->x += offset.x;
   this->y += offset.y;
 }

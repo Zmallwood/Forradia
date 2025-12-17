@@ -17,10 +17,10 @@ class GLDevice {
   /**
    * Initializes this device by setting up the GL functionality.
    */
-  void Initialize();
+  auto Initialize() -> void;
 
  private:
-  void SetupGL();
+  auto SetupGL() -> void;
 
   SharedPtr<SDL_GLContext> m_context;
 };

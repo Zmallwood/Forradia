@@ -4,24 +4,24 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-void SDLDevice::Initialize(StringView gameWindowTitle, Color clearColor) {
+auto SDLDevice::Initialize(StringView gameWindowTitle, Color clearColor) -> void {
   m_gameWindowTitle = gameWindowTitle;
   m_clearColor = clearColor;
   SDL_Init(SDL_INIT_EVERYTHING);
   this->SetupSDLWindow();
 }
 
-void SDLDevice::ClearCanvas() const {
+auto SDLDevice::ClearCanvas() const -> void {
   auto clearColor{m_clearColor};
   glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void SDLDevice::PresentCanvas() const {
+auto SDLDevice::PresentCanvas() const -> void {
   SDL_GL_SwapWindow(m_window.get());
 }
 
-Size SDLDevice::GetScreenSize() const {
+auto SDLDevice::GetScreenSize() const -> Size {
   SDL_DisplayMode displayMode;
   SDL_GetCurrentDisplayMode(0, &displayMode);
   auto width{displayMode.w};

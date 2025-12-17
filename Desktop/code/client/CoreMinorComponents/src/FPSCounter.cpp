@@ -4,7 +4,7 @@
 #include "FPSCounter.hpp"
 
 namespace Forradia {
-void FPSCounter::Update() {
+auto FPSCounter::Update() -> void {
   auto now{GetTicks()};
 
   if (now > m_ticksLastUpdate + k_oneSecMillis) {

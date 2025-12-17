@@ -14,7 +14,7 @@
 #include "SceneManager.hpp"
 
 namespace Forradia {
-void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const {
+auto Engine::Initialize(StringView gameWindowTitle, Color clearColor) const -> void {
   // Initialize random number generator so that unique random numbers are generated on
   // each game run.
   Randomize();
@@ -30,7 +30,7 @@ void Engine::Initialize(StringView gameWindowTitle, Color clearColor) const {
   _<ModelRenderer>().Initialize();
 }
 
-void Engine::Run() {
+auto Engine::Run() -> void {
   // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
   // in the game.
   try {
@@ -53,7 +53,7 @@ void Engine::Run() {
   }
 }
 
-void Engine::Stop() {
+auto Engine::Stop() -> void {
   m_running = false;
 }
 }
