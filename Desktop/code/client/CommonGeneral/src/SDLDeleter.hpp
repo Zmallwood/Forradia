@@ -8,7 +8,7 @@ struct SDL_Renderer;
 struct SDL_Texture;
 struct SDL_Surface;
 
-typedef struct _TTF_Font TTF_Font;
+using TTF_Font = struct _TTF_Font;
 
 namespace Forradia {
 /**
@@ -43,8 +43,6 @@ class SDLDeleter {
    *
    * @param texture SDL texture pointer to free resources for.
    */
-  ///
-  /// @param texture SDL texture pointer to free resources for.
   void operator()(SDL_Texture *texture) const;
 
   /**
