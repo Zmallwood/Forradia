@@ -28,26 +28,18 @@ void UpdateKeyboardActions() {
       _<GUIChatBox>().EnableInput();
     }
   } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
-    auto currentMode{_<Player>().GetPlayerMode()};
+    // auto currentMode{_<Player>().GetPlayerMode()};
 
-    switch (currentMode) {
-    case PlayerModes::Interaction:
-      _<Player>().SetPlayerMode(PlayerModes::Battle);
-      _<GUIChatBox>().Print("You are now in battle mode.");
-      break;
-    case PlayerModes::Battle:
-      _<Player>().SetPlayerMode(PlayerModes::Interaction);
-      _<GUIChatBox>().Print("You are now in interaction mode.");
-      break;
-    }
-  } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_1)) {
-    auto currentWorldArea{_<World>().GetCurrentWorldArea()};
-
-    auto hoveredTile{currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
-
-    if (hoveredTile) {
-      hoveredTile->SetGround(Hash("GroundWater"));
-    }
+    // switch (currentMode) {
+    // case PlayerModes::Interaction:
+    //   _<Player>().SetPlayerMode(PlayerModes::Battle);
+    //   _<GUIChatBox>().Print("You are now in battle mode.");
+    //   break;
+    // case PlayerModes::Battle:
+    //   _<Player>().SetPlayerMode(PlayerModes::Interaction);
+    //   _<GUIChatBox>().Print("You are now in interaction mode.");
+    //   break;
+    // }
   }
 }
 }
