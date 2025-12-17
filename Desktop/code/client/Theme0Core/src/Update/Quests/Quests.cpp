@@ -96,13 +96,49 @@ String CraftStonePickaxeQuest::GetStatus() const {
   return "Craft a stone pickaxe out of the branch and stone.";
 }
 
+void CraftStoneBowl::Update() {
+  auto &playerActions{_<Player>().GetPlayerActionsRef()};
+
+  auto i{0};
+
+  for (auto &entry : playerActions) {
+    auto action{get<0>(entry)};
+    auto actionFirstArg{get<1>(entry)};
+    auto actionSecondArg{get<2>(entry)};
+
+    if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone") {
+      m_stonedMined = true;
+      _<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] = i;
+    }
+    if (action == PlayerActionTypes::Craft)
+      if (actionFirstArg == "ObjectStoneBowl")
+        isCompleted = true;
+
+    i++;
+  }
+}
+
+String CraftStoneBowl::GetStatus() const {
+  if (!m_stonedMined)
+    return "Mine a stone.";
+
+  return "Craft a stone bowl out of the stone.";
+}
+
 void MineStoneFromBoulderQuest1::Update() {
   auto &playerActions{_<Player>().GetPlayerActionsRef()};
 
   auto numMinedStones{0};
   auto i{0};
+  auto previousMineQuestCompletionPoint{
+      _<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
 
   for (auto &entry : playerActions) {
+    if (i <= previousMineQuestCompletionPoint) {
+      i++;
+      continue;
+    }
+
     auto action{get<0>(entry)};
     auto actionFirstArg{get<1>(entry)};
     auto actionSecondArg{get<2>(entry)};

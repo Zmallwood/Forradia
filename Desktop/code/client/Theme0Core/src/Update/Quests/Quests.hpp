@@ -52,6 +52,21 @@ class CraftStonePickaxeQuest : public Quest {
   bool m_numStonePicked{false};
 };
 
+class CraftStoneBowl : public Quest {
+ public:
+  CraftStoneBowl() {
+    this->name = "Craft Stone Bowl";
+    this->description = "Craft a stone bowl.";
+  }
+
+  void Update() override;
+
+  String GetStatus() const override;
+
+ private:
+  bool m_stonedMined{false};
+};
+
 class MineStoneFromBoulderQuest1 : public Quest {
  public:
   MineStoneFromBoulderQuest1() {

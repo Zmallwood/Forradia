@@ -10,6 +10,7 @@ void QuestSystem::Initialize() {
   m_quests.push_back(std::make_shared<MoveQuest>());
   m_quests.push_back(std::make_shared<ForageQuest>());
   m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
+  m_quests.push_back(std::make_shared<CraftStoneBowl>());
   m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
   m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());
   m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());

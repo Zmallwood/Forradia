@@ -10,6 +10,8 @@ PlayerObjectsInventory::PlayerObjectsInventory() {
   AddObject("ObjectRedApple");
   AddObject("ObjectRedApple");
   AddObject("ObjectPlasticAxe");
+  AddObject("ObjectChisel");
+  AddObject("ObjectHammer");
 }
 
 SharedPtr<Object> PlayerObjectsInventory::GetObject(int index) {

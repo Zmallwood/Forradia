@@ -82,6 +82,9 @@ void GUIInteractionMenu::BuildMenu() {
   auto actionCraftStoneWallDoor{GetAction<Hash("ActionCraftStoneWallDoor")>()};
   m_entries.push_back({"Craft stone wall door", actionCraftStoneWallDoor.action});
 
+  auto actionCraftStoneBowl{GetAction<Hash("ActionCraftStoneBowl")>()};
+  m_entries.push_back({"Craft stone bowl", actionCraftStoneBowl.action});
+
   auto objects{tile->GetObjectsStack()->GetObjects()};
 
   for (auto &object : objects) {

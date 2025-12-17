@@ -63,6 +63,27 @@ template <>
 Action GetAction<Hash("ActionCraftStoneWallDoor")>();
 
 template <>
+Action GetAction<Hash("ActionCraftStoneBowl")>();
+
+template <>
+Action GetAction<Hash("ActionCraftStoneBowl")>();
+
+template <>
+Action GetAction<Hash("ActionCraftStoneBowl")>() {
+  return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+            auto &inventory{_<Player>().GetObjectsInventoryRef()};
+
+            inventory.RemoveObject("ObjectStone");
+
+            inventory.AddObject("ObjectStoneBowl");
+
+            _<GUIChatBox>().Print("You craft a stone bowl.");
+            _<Player>().AddExperience(10);
+            _<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
+          }};
+}
+
+template <>
 Action GetAction<Hash("ActionCraftStoneWallDoor")>() {
   return {.groundMatches = {}, .objectMatches = {}, .action = []() {
             auto &inventory{_<Player>().GetObjectsInventoryRef()};
