@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "RectF.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto RectF::Contains(PointF point) const -> bool {

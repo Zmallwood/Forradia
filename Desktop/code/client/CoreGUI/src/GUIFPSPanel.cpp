@@ -4,6 +4,7 @@
 #include "GUIFPSPanel.hpp"
 #include "FPSCounter.hpp"
 #include "GUILabel.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto GUIFPSPanel::Initialize() -> void {

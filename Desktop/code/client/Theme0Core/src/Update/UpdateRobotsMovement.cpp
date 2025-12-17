@@ -4,6 +4,7 @@
 #include "UpdateRobotsMovement.hpp"
 #include "NumbersUtilities.hpp"
 #include "Robot.hpp"
+#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

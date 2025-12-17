@@ -5,6 +5,7 @@
 // cache reaches a certain limit.
 
 #include "Color2DRenderer.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,

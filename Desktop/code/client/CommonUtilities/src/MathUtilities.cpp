@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "MathUtilities.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto ComputeNormal(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3) -> glm::vec3 {

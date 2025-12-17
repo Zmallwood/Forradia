@@ -4,6 +4,7 @@
 #include "UpdateCreaturesMovement.hpp"
 #include "Creature.hpp"
 #include "NumbersUtilities.hpp"
+#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

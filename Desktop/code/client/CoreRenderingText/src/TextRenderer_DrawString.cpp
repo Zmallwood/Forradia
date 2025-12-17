@@ -3,6 +3,7 @@
 
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 #include "Textures/TextureBank.hpp"
 

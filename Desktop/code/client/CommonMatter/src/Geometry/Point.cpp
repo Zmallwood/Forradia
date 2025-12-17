@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Point.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto Point::operator==(const Point &other) const -> bool {

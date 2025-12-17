@@ -10,6 +10,7 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "SceneManager.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto IntroScene::InitializeDerived() -> void {

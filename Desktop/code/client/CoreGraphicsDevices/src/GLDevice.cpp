@@ -3,6 +3,7 @@
 
 #include "GLDevice.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 GLDevice::~GLDevice() {

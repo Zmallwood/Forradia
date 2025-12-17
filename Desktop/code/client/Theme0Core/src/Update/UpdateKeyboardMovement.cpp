@@ -5,6 +5,7 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
+#include "StdAfx.hpp"
 #include "Update/BattleSystem.hpp"
 
 namespace Forradia::Theme0 {

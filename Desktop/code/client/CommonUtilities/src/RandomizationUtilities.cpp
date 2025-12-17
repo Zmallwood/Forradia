@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "RandomizationUtilities.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto Randomize() -> void {

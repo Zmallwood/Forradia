@@ -5,6 +5,7 @@
 #include "Cursor.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

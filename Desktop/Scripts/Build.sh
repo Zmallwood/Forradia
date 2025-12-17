@@ -3,5 +3,5 @@ cd ..
 mkdir -p ./build/
 cd ./build
 export CXX=clang++
-cmake ../code
+cmake -G Ninja ../code
 cmake --build . --parallel 8

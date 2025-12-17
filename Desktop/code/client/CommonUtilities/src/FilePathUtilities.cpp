@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "FilePathUtilities.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto GetFileExtension(StringView path) -> String {

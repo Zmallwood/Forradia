@@ -3,6 +3,7 @@
 
 #include "IScene.hpp"
 #include "GUI.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto IScene::Initialize() -> void {

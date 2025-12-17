@@ -3,6 +3,7 @@
 
 #include "ModelBank.hpp"
 #include "Construction/Model.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto ModelBank::Initialize() -> void {

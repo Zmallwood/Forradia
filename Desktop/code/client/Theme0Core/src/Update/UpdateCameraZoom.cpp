@@ -4,6 +4,7 @@
 #include "UpdateCameraZoom.hpp"
 #include "3D/Camera.hpp"
 #include "Mouse/MouseInput.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto UpdateCameraZoom() -> void {

@@ -3,6 +3,7 @@
 
 #include "GUIWellBeingMeter.hpp"
 #include "Player/Player.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto GUIWellBeingMeter::UpdateDerived() -> void {

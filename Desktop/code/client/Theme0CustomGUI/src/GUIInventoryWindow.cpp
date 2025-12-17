@@ -8,6 +8,7 @@
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto GUIInventoryWindow::Initialize() -> void {

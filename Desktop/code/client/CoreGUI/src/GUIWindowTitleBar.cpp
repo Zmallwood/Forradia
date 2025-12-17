@@ -5,6 +5,7 @@
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

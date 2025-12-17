@@ -11,7 +11,7 @@ add_library(ForradiaCommonGeneral ${SOURCES})
 target_include_directories(ForradiaCommonGeneral PUBLIC
     "./src"
 )
-target_link_libraries(ForradiaCommonGeneral PRIVATE
+target_link_libraries(ForradiaCommonGeneral PUBLIC
     ForradiaCommonLang
     ForradiaCommonMatter
     SDL2

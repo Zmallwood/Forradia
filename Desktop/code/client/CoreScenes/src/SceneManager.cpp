@@ -3,6 +3,7 @@
 
 #include "SceneManager.hpp"
 #include "IScene.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto SceneManager::AddScene(StringView sceneName, IScene &scene) -> void {

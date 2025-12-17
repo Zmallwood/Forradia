@@ -11,7 +11,7 @@ add_library(ForradiaCommonCoreUtilities ${SOURCES})
 target_include_directories(ForradiaCommonCoreUtilities PUBLIC
     "./src"
 )
-target_link_libraries(ForradiaCommonCoreUtilities PRIVATE
+target_link_libraries(ForradiaCommonCoreUtilities PUBLIC
     ForradiaCommonLang
     ForradiaCommonMatter
 )

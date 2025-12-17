@@ -7,6 +7,7 @@
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"

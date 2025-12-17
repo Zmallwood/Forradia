@@ -3,6 +3,7 @@
 
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
+#include "StdAfx.hpp"
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {

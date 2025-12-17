@@ -6,6 +6,7 @@
 #include "GUIWellBeingMeter.hpp"
 #include "Math/ExperienceCalculations.hpp"
 #include "Player/Player.hpp"
+#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia::Theme0 {

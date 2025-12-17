@@ -4,6 +4,7 @@
 #include "QuestSystem.hpp"
 #include "Quest.hpp"
 #include "Quests.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto QuestSystem::Initialize() -> void {

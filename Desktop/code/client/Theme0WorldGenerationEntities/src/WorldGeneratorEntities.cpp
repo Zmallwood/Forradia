@@ -5,6 +5,7 @@
 #include "Creature.hpp"
 #include "ObjectsStack.hpp"
 #include "Robot.hpp"
+#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 

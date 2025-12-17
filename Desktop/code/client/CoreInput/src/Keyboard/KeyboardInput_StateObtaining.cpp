@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "KeyboardInput.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto KeyboardInput::KeyIsPressed(SDL_Keycode key) const -> bool {

@@ -3,6 +3,7 @@
 
 #include "Robot.hpp"
 #include "GUIChatBox.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 auto Robot::Initialize() -> void {

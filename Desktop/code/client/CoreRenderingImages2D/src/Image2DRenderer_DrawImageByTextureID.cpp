@@ -6,6 +6,7 @@
 
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y,

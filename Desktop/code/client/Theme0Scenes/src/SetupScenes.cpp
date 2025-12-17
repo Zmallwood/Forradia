@@ -7,6 +7,7 @@
 #include "MainScene.hpp"
 #include "PlayScene.hpp"
 #include "SceneManager.hpp"
+#include "StdAfx.hpp"
 #include "WorldGenerationScene.hpp"
 
 namespace Forradia::Theme0 {

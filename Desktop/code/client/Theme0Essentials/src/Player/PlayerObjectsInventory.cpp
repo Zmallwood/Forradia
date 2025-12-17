@@ -3,6 +3,7 @@
 
 #include "PlayerObjectsInventory.hpp"
 #include "Object.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
 PlayerObjectsInventory::PlayerObjectsInventory() {

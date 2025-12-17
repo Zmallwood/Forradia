@@ -3,6 +3,7 @@
 
 #include "WorldGeneratorObjects.hpp"
 #include "ObjectsStack.hpp"
+#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 

@@ -3,6 +3,7 @@
 
 #include "GUIMeter.hpp"
 #include "Color2DRenderer.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto GUIMeter::RenderDerived() const -> void {

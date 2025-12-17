@@ -4,6 +4,7 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> void {

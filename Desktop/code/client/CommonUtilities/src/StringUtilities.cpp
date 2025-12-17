@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "StringUtilities.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto Replace(StringView text, char replace, char replaceWith) -> String {

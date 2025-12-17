@@ -6,6 +6,7 @@
 #include "Mouse/MouseInput.hpp"
 #include "Player/Player.hpp"
 #include "SDLDevice.hpp"
+#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "Update/BattleSystem.hpp"
 #include "Update/TileHovering.hpp"

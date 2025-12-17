@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "ShaderProgram.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto ShaderProgram::GetShader(StringView shaderSource, int shaderType) const -> GLuint {

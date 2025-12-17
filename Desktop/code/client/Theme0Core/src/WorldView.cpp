@@ -12,6 +12,7 @@
 #include "Player/Player.hpp"
 #include "Robot.hpp"
 #include "SkyRenderer.hpp"
+#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "TileData.hpp"

@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "WorldGenerator.hpp"
+#include "StdAfx.hpp"
 #include "WorldGeneratorEntities.hpp"
 #include "WorldGeneratorGround.hpp"
 #include "WorldGeneratorObjects.hpp"

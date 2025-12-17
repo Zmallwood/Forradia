@@ -4,6 +4,7 @@
 #include "GroundRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
+#include "StdAfx.hpp"
 
 namespace Forradia {
 auto GroundRenderer::Cleanup() -> void {
