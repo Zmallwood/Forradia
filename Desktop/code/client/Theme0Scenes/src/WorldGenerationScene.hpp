@@ -5,8 +5,14 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
+/**
+ * The world generation scene is the scene where the world is generated.
+ */
 class WorldGenerationScene : public IScene {
  protected:
+  /**
+   * Called when the world generation scene is entered.
+   */
   virtual void OnEnterDerived() override;
 };
 }
