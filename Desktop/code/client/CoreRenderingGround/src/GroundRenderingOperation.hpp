@@ -5,11 +5,24 @@
 #include "TileData.hpp"
 
 namespace Forradia {
-/// A rendering operation for a ground tile.
+/**
+ * A rendering operation for a ground tile.
+ */
 class GroundRenderingOperation {
  public:
-  GLuint vao; ///< Vertex array object.
-  GLuint ibo; ///< Index buffer object.
-  GLuint vbo; ///< Vertex buffer object.
+  /**
+   * The vertex array object.
+   */
+  GLuint vao;
+
+  /**
+   * The index buffer object.
+   */
+  GLuint ibo;
+
+  /**
+   * The vertex buffer object.
+   */
+  GLuint vbo;
 };
 }

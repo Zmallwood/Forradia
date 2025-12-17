@@ -22,17 +22,21 @@ auto GetCanvasSize(const SharedPtr<SDL_Window> &window) -> Size;
  */
 auto CalcAspectRatio(const SharedPtr<SDL_Window> &window) -> float;
 
-/// Convert a width to a height based on the width and the aspect ratio.
-///
-/// @param width Width to convert.
-/// @param window Window to calculate the aspect ratio for.
-/// @return The resulting height.
+/**
+ * Convert a width to a height based on the width and the aspect ratio.
+ *
+ * @param width Width to convert.
+ * @param window Window to calculate the aspect ratio for.
+ * @return The resulting height.
+ */
 auto ConvertWidthToHeight(float width, const SharedPtr<SDL_Window> &window) -> float;
 
-/// Convert a height to a width base on the height and the aspect ratio.
-///
-/// @param height Height to convert.
-/// @param window Window to calculate the aspect ratio for.
-/// @return The resulting width.
+/**
+ * Convert a height to a width base on the height and the aspect ratio.
+ *
+ * @param height Height to convert.
+ * @param window Window to calculate the aspect ratio for.
+ * @return The resulting width.
+ */
 auto ConvertHeightToWidth(float height, const SharedPtr<SDL_Window> &window) -> float;
 }

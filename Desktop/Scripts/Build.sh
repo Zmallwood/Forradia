@@ -4,4 +4,4 @@ mkdir -p ./build/
 cd ./build
 export CXX=clang++
 cmake ../code
-cmake --build . --parallel 4
+cmake --build . --parallel 8

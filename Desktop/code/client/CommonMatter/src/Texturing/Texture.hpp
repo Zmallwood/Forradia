@@ -5,12 +5,22 @@
 #include "Aliases.hpp"
 
 namespace Forradia {
-/// A texture, primarily used for models.
+/**
+ * A texture, primarily used for models.
+ */
 class Texture {
  public:
+  /**
+   * Constructor for the Texture class.
+   *
+   * @param path The path to the texture.
+   */
   Texture(StringView path) : path(path) {
   }
 
-  String path; ///< The path to the texture.
+  /**
+   * The path to the texture.
+   */
+  String path;
 };
 }
