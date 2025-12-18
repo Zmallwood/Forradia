@@ -19,7 +19,7 @@ class GLMMesh {
    * @param textures The textures of the mesh.
    */
   GLMMesh(Vector<GLMVertex> vertices, Vector<unsigned int> indices, Vector<Texture> textures)
-      : vertices(vertices), indices(indices), textures(textures) {
+      : vertices(std::move(vertices)), indices(std::move(indices)), textures(std::move(textures)) {
   }
 
   /**

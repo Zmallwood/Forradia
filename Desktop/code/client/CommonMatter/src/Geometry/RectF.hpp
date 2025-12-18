@@ -17,14 +17,14 @@ class RectF {
    * @param point Point to check if it is contained in this rectangle.
    * @return True if the Point is within this rectangle, otherwise false.
    */
-  auto Contains(PointF point) const -> bool;
+  [[nodiscard]] auto Contains(PointF point) const -> bool;
 
   /**
    * Returns only the position of this rectangle.
    *
    * @return The position.
    */
-  auto GetPosition() const -> PointF;
+  [[nodiscard]] auto GetPosition() const -> PointF;
 
   /**
    * Adds an offset to this rectangle, with the dimensions altered separately.

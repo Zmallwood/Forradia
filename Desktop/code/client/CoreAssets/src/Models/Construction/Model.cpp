@@ -3,6 +3,8 @@
 
 #include "Model.hpp"
 #include "StdAfx.hpp"
+#include "assimp/Importer.hpp"
+#include "assimp/postprocess.h"
 
 namespace Forradia {
 auto Model::Initialize(StringView filePath) -> void {

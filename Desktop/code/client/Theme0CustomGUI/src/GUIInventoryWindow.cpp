@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUIInventoryWindow.hpp"
+#include "GUIScrollableFrame.hpp"
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
 #include "Object.hpp"
@@ -12,20 +13,43 @@
 
 namespace Forradia::Theme0 {
 auto GUIInventoryWindow::Initialize() -> void {
+  auto windowFrame{std::make_shared<GUIInventoryWindowFrame>(this)};
+  this->AddChildComponent(windowFrame);
+}
+
+auto GUIInventoryWindowFrame::Initialize(GUIWindow *parentWindow) -> void {
+  auto panel{std::make_shared<GUIInventoryWindowPanel>(parentWindow)};
+  this->AddChildComponent(panel);
+}
+
+auto GUIInventoryWindowFrame::UpdateDerived() -> void {
+  GUIScrollableFrame::UpdateDerived();
+  // this->SetBounds(m_parentWindow->GetBounds());
+}
+
+auto GUIInventoryWindowFrame::GetBounds() const -> RectF {
+  auto bounds{m_parentWindow->GetBounds()};
+  bounds.height = bounds.height / 2.0f;
+  //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
+  return bounds;
+}
+
+auto GUIInventoryWindowPanel::Initialize() -> void {
   for (auto i = 0; i < k_maxNumSlots; i++) {
     m_renderIDsSlotsBackground[i] = Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
     m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
   }
+  // this->SetBounds({0.0f, 0.0f, 0.5f, 0.5f});
 }
 
-auto GUIInventoryWindow::RenderDerived() const -> void {
-  GUIWindow::RenderDerived();
+auto GUIInventoryWindowPanel::RenderDerived() const -> void {
+  GUIPanel::RenderDerived();
 
   auto bounds{this->GetBounds()};
   auto marginX{k_margin};
   auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
   auto xStart{bounds.x + marginX};
-  auto yStart{bounds.y + marginY + this->GetGUIWindowTitleBar()->GetBounds().height};
+  auto yStart{bounds.y + marginY + m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
   auto slotWidth{k_slotSize};
   auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};

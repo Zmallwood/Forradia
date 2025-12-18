@@ -28,6 +28,15 @@ class GUIWindow : public GUIMovablePanel {
     this->Initialize(uniqueName.data() + String("WindowTitleBar"), windowTitle);
   }
 
+  /**
+   * Gets the window title bar of the window.
+   *
+   * @return The window title bar of the window.
+   */
+  auto GetGUIWindowTitleBar() const {
+    return m_guiWindowTitleBar;
+  }
+
  protected:
   /**
    * Render tasks specific to the window, called by the GUIComponent base class.
@@ -41,15 +50,6 @@ class GUIWindow : public GUIMovablePanel {
    * @return The draggable area of the window.
    */
   auto GetDraggableArea() const -> RectF override;
-
-  /**
-   * Gets the window title bar of the window.
-   *
-   * @return The window title bar of the window.
-   */
-  auto GetGUIWindowTitleBar() const {
-    return m_guiWindowTitleBar;
-  }
 
  private:
   auto Initialize(StringView uniqueName, StringView windowTitle) -> void;

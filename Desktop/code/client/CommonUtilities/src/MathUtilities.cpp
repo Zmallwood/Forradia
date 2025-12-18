@@ -5,11 +5,12 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto ComputeNormal(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3) -> glm::vec3 {
-  // Uses p2 as a new origin for p1, p3.
-  auto a = p3 - p2;
-  auto b = p1 - p2;
-  // Compute the cross product a X b to get the face normal.
-  return glm::normalize(glm::cross(a, b));
+auto ComputeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
+    -> glm::vec3 {
+  // Uses vec2 as a new origin for vec1, vec3.
+  auto vecA = vec3 - vec2;
+  auto vecB = vec1 - vec2;
+  // Compute the cross product vecA X vecB to get the face normal.
+  return glm::normalize(glm::cross(vecA, vecB));
 }
 }

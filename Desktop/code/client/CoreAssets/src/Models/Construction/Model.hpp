@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Aliases.hpp"
 
 namespace Forradia {
 /**
@@ -23,7 +24,7 @@ class Model {
    *
    * @return A reference to the model's meshes.
    */
-  auto &GetMeshesRef() const {
+  [[nodiscard]] auto GetMeshesRef() const -> const Vector<GLMMesh> & {
     return m_meshes;
   }
 

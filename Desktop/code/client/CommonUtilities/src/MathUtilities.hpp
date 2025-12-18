@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include <glm/glm.hpp>
 
 namespace Forradia {
 /**
@@ -12,5 +13,6 @@ namespace Forradia {
  * @param p3 Third point.
  * @return Normal.
  */
-auto ComputeNormal(const glm::vec3 &p1, const glm::vec3 &p2, const glm::vec3 &p3) -> glm::vec3;
+auto ComputeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
+    -> glm::vec3;
 }

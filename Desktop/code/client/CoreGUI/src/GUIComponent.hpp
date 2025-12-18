@@ -31,12 +31,12 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
   /**
    * Updates the component and all its children.
    */
-  auto Update() -> void;
+  virtual auto Update() -> void;
 
   /**
    * Renders the component and all its children.
    */
-  auto Render() const -> void;
+  virtual auto Render() const -> void;
 
   /**
    * Gets the bounds of the component in screen coordinates.
@@ -44,6 +44,10 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
    * @return The bounds of the component in screen coordinates.
    */
   virtual auto GetBounds() const -> RectF;
+
+  auto SetBounds(RectF value) -> void {
+    m_bounds = value;
+  }
 
   /**
    * Sets the position of the component.
@@ -102,6 +106,10 @@ class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
    * Render tasks specific to the derived class, called by the Render method.
    */
   virtual auto RenderDerived() const -> void {
+  }
+
+  auto GetChildComponents() const -> Vector<SharedPtr<GUIComponent>> {
+    return m_childComponents;
   }
 
  private:

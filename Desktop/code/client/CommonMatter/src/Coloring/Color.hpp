@@ -16,7 +16,7 @@ class Color {
    *
    * @return Corresponding SDL_Color object.
    */
-  auto ToSDLColor() const -> SDL_Color;
+  [[nodiscard]] auto ToSDLColor() const -> SDL_Color;
 
   /**
    * Red component.

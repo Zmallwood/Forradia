@@ -7,22 +7,23 @@
 
 namespace Forradia {
 auto InvertSpeed(float speed) -> float {
-  if (speed)
-    return k_oneSecMillis / speed;
-  else
-    return 0.0f;
+  auto result{0.0F};
+  if (speed != 0.0F)
+    result = k_oneSecMillis / speed;
+  return result;
 }
 
 auto Normalize(int value) -> int {
   auto absValue{std::abs(value)};
   auto normalized{0};
-  if (value)
+  if (value != 0)
     normalized = value / absValue;
   return normalized;
 }
 
 auto Ceil(float number, float numDecimalPlaces) -> float {
-  auto p{std::pow(10.0, numDecimalPlaces)};
-  return std::ceil(number * p) / p;
+  const auto powBase{10.0F};
+  auto factor{std::pow(powBase, numDecimalPlaces)};
+  return std::ceil(number * factor) / factor;
 }
 }

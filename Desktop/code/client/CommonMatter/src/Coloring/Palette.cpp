@@ -8,65 +8,117 @@
 namespace Forradia::Palette {
 template <>
 auto GetColor<Hash("Black")>() -> Color {
-  return {0.0F, 0.0F, 0.0F, 1.0F};
+  const auto red{0.0F};
+  const auto green{0.0F};
+  const auto blue{0.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("White")>() -> Color {
-  return {1.0F, 1.0F, 0.65F, 1.0F};
+  const auto red{1.0F};
+  const auto green{1.0F};
+  const auto blue{1.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("Wheat")>() -> Color {
-  return {1.0F, 1.0F, 0.65F, 1.0F};
+  const auto red{1.0F};
+  const auto green{1.0F};
+  const auto blue{0.65F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("WheatTransparent")>() -> Color {
   auto color{GetColor<Hash("Wheat")>()};
-  color.a = 0.7F;
+  const auto alpha{0.7F};
+  color.a = alpha;
   return color;
 }
 
 template <>
 auto GetColor<Hash("Yellow")>() -> Color {
-  return {1.0F, 1.0F, 0.0F, 1.0F};
+  const auto red{1.0F};
+  const auto green{1.0F};
+  const auto blue{0.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("YellowTransparent")>() -> Color {
   auto color{GetColor<Hash("Yellow")>()};
-  color.a = 0.7F;
+  const auto alpha{0.7F};
+  color.a = alpha;
   return color;
 }
 
 template <>
 auto GetColor<Hash("MildBlue")>() -> Color {
-  return {0.0F, 0.4F, 0.9F, 1.0F};
+  const auto red{0.0F};
+  const auto green{0.4F};
+  const auto blue{1.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("LightBlue")>() -> Color {
-  return {0.4F, 0.4F, 1.0F, 1.0F};
+  const auto red{0.4F};
+  const auto green{0.4F};
+  const auto blue{1.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("Red")>() -> Color {
-  return {1.0F, 0.0F, 0.0F, 1.0F};
+  const auto red{1.0F};
+  const auto green{0.0F};
+  const auto blue{0.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("Green")>() -> Color {
-  return {0.0F, 1.0F, 0.0F, 1.0F};
+  const auto red{0.0F};
+  const auto green{1.0F};
+  const auto blue{0.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("Brown")>() -> Color {
-  return {0.5F, 0.25F, 0.0F, 1.0F};
+  const auto red{0.5F};
+  const auto green{0.25F};
+  const auto blue{0.0F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 
 template <>
 auto GetColor<Hash("Gray")>() -> Color {
-  return {0.5F, 0.5F, 0.5F, 1.0F};
+  const auto red{0.5F};
+  const auto green{0.5F};
+  const auto blue{0.5F};
+  const auto alpha{1.0F};
+
+  return {red, green, blue, alpha};
 }
 }
