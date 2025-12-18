@@ -5,68 +5,68 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-class GUI;
-
-/**
- * The base class for all scenes.
- */
-class IScene {
- public:
-  /**
-   * Initializes the scene.
-   */
-  auto Initialize() -> void;
+  class GUI;
 
   /**
-   * Called when the scene is entered.
+   * The base class for all scenes.
    */
-  auto OnEnter() -> void;
+  class IScene {
+   public:
+    /**
+     * Initializes the scene.
+     */
+    auto Initialize() -> void;
 
-  /**
-   * Updates the scene.
-   */
-  auto Update() -> void;
+    /**
+     * Called when the scene is entered.
+     */
+    auto OnEnter() -> void;
 
-  /**
-   * Renders the scene.
-   */
-  auto Render() const -> void;
+    /**
+     * Updates the scene.
+     */
+    auto Update() -> void;
 
- protected:
-  /**
-   * Initializes the scene. Should be specific to the deriving class.
-   */
-  virtual auto InitializeDerived() -> void {
-  }
+    /**
+     * Renders the scene.
+     */
+    auto Render() const -> void;
 
-  /**
-   * Called when the scene is entered. Should be specific to the deriving class.
-   */
-  virtual auto OnEnterDerived() -> void {
-  }
+   protected:
+    /**
+     * Initializes the scene. Should be specific to the deriving class.
+     */
+    virtual auto InitializeDerived() -> void {
+    }
 
-  /**
-   * Updates the scene. Should be specific to the deriving class.
-   */
-  virtual auto UpdateDerived() -> void {
-  }
+    /**
+     * Called when the scene is entered. Should be specific to the deriving class.
+     */
+    virtual auto OnEnterDerived() -> void {
+    }
 
-  /**
-   * Renders the scene. Should be specific to the deriving class.
-   */
-  virtual auto RenderDerived() const -> void {
-  }
+    /**
+     * Updates the scene. Should be specific to the deriving class.
+     */
+    virtual auto UpdateDerived() -> void {
+    }
 
-  /**
-   * Gets the GUI.
-   *
-   * @return The GUI.
-   */
-  auto GetGUI() const {
-    return m_gui;
-  }
+    /**
+     * Renders the scene. Should be specific to the deriving class.
+     */
+    virtual auto RenderDerived() const -> void {
+    }
 
- private:
-  SharedPtr<GUI> m_gui;
-};
+    /**
+     * Gets the GUI.
+     *
+     * @return The GUI.
+     */
+    auto GetGUI() const {
+      return m_gui;
+    }
+
+   private:
+    SharedPtr<GUI> m_gui;
+  };
 }

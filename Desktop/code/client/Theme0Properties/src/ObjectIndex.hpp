@@ -5,44 +5,44 @@
 #include "ObjectIndexEntry.hpp"
 
 namespace Forradia::Theme0 {
-/**
- * Class for managing object properties.
- */
-class ObjectIndex {
- public:
   /**
-   * Constructor.
+   * Class for managing object properties.
    */
-  ObjectIndex();
+  class ObjectIndex {
+   public:
+    /**
+     * Constructor.
+     */
+    ObjectIndex();
 
-  /**
-   * Get the model scaling for a given object hash.
-   *
-   * @param objectHash The hash of the object.
-   * @return The model scaling for the given object.
-   */
-  auto GetModelScaling(int objectHash) const -> float;
+    /**
+     * Get the model scaling for a given object hash.
+     *
+     * @param objectHash The hash of the object.
+     * @return The model scaling for the given object.
+     */
+    auto GetModelScaling(int objectHash) const -> float;
 
-  /**
-   * Check if an object entry exists for a given object hash.
-   *
-   * @param objectHash The hash of the object.
-   * @return True if an object entry exists for the given object hash, false otherwise.
-   */
-  auto ObjectEntryExists(int objectHash) const -> bool;
+    /**
+     * Check if an object entry exists for a given object hash.
+     *
+     * @param objectHash The hash of the object.
+     * @return True if an object entry exists for the given object hash, false otherwise.
+     */
+    auto ObjectEntryExists(int objectHash) const -> bool;
 
-  /**
-   * Gets wether the object type with the given hash should have individual model scaling ignored.
-   *
-   * @param objectHash The hash of the object.
-   * @return True if individual model scaling should be ignored, otherwise false.
-   */
-  auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
+    /**
+     * Gets wether the object type with the given hash should have individual model scaling ignored.
+     *
+     * @param objectHash The hash of the object.
+     * @return True if individual model scaling should be ignored, otherwise false.
+     */
+    auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
- private:
-  auto AddObjectEntry(StringView objectName, float modelScaling, bool ignoreIndividualModelScaling)
-      -> void;
+   private:
+    auto AddObjectEntry(StringView objectName, float modelScaling,
+                        bool ignoreIndividualModelScaling) -> void;
 
-  std::map<int, ObjectIndexEntry> m_entries;
-};
+    std::map<int, ObjectIndexEntry> m_entries;
+  };
 }

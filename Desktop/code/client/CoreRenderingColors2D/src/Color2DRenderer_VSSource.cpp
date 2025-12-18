@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Color2DRenderer::GetVSSource() const -> String {
-  return R"(
+  auto Color2DRenderer::GetVSSource() const -> String {
+    return R"(
         #version 330 core
 
         layout (location = 0) in vec3 aPos;
@@ -22,5 +22,5 @@ auto Color2DRenderer::GetVSSource() const -> String {
             ourColor = aColor;
         }
     )";
-}
+  }
 }

@@ -9,32 +9,32 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-auto GUIWindowTitleBar::Initialize(StringView uniqueName) -> void {
-  auto parentWindowBounds{m_parentWindow.GetBounds()};
-  AddChildComponent(std::make_shared<GUIButton>(
-      uniqueName.data() + String("CloseButton"),
-      parentWindowBounds.width - ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), 0.01F,
-      0.015F, ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), "X",
-      [this] { m_parentWindow.ToggleVisibility(); }));
-}
+  auto GUIWindowTitleBar::Initialize(StringView uniqueName) -> void {
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
+    AddChildComponent(std::make_shared<GUIButton>(
+        uniqueName.data() + String("CloseButton"),
+        parentWindowBounds.width - ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), 0.01F,
+        0.015F, ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), "X",
+        [this] { m_parentWindow.ToggleVisibility(); }));
+  }
 
-auto GUIWindowTitleBar::RenderDerived() const -> void {
-  GUIPanel::RenderDerived();
+  auto GUIWindowTitleBar::RenderDerived() const -> void {
+    GUIPanel::RenderDerived();
 
-  auto parentWindowBounds{m_parentWindow.GetBounds()};
-  _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
-                               parentWindowBounds.x + 0.01F, parentWindowBounds.y + 0.01F,
-                               FontSizes::_20, false, false, Palette::GetColor<Hash("Yellow")>());
-}
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
+    _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
+                                 parentWindowBounds.x + 0.01F, parentWindowBounds.y + 0.01F,
+                                 FontSizes::_20, false, false, Palette::GetColor<Hash("Yellow")>());
+  }
 
-auto GUIWindowTitleBar::GetBounds() const -> RectF {
-  auto parentWindowBounds{m_parentWindow.GetBounds()};
+  auto GUIWindowTitleBar::GetBounds() const -> RectF {
+    auto parentWindowBounds{m_parentWindow.GetBounds()};
 
-  RectF boundsResult;
-  boundsResult.x = parentWindowBounds.x;
-  boundsResult.y = parentWindowBounds.y;
-  boundsResult.width = parentWindowBounds.width;
-  boundsResult.height = k_height;
-  return boundsResult;
-}
+    RectF boundsResult;
+    boundsResult.x = parentWindowBounds.x;
+    boundsResult.y = parentWindowBounds.y;
+    boundsResult.width = parentWindowBounds.width;
+    boundsResult.height = k_height;
+    return boundsResult;
+  }
 }

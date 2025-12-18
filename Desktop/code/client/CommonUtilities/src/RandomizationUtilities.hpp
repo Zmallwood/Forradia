@@ -4,16 +4,16 @@
 #pragma once
 
 namespace Forradia {
-/**
- * Randomize the seed.
- */
-auto Randomize() -> void;
+  /**
+   * Randomize the seed.
+   */
+  auto Randomize() -> void;
 
-/**
- * Generate a random integer.
- *
- * @param upperLimit Upper limit.
- * @return Random integer.
- */
-auto GetRandomInt(int upperLimit) -> int;
+  /**
+   * Generate a random integer.
+   *
+   * @param upperLimit Upper limit.
+   * @return Random integer.
+   */
+  auto GetRandomInt(int upperLimit) -> int;
 }

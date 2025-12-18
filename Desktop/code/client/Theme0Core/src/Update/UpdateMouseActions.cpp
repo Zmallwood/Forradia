@@ -13,27 +13,27 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-auto UpdateMouseActions() -> void {
-  if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
-      _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200) {
-    // auto currentPlayerMode{_<Player>().GetPlayerMode()};
+  auto UpdateMouseActions() -> void {
+    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased() &&
+        _<MouseInput>().GetRightMouseButtonRef().GetTicksClickSpeed() < 200) {
+      // auto currentPlayerMode{_<Player>().GetPlayerMode()};
 
-    // switch (currentPlayerMode) {
-    // case PlayerModes::Interaction:
-    _<GUIInteractionMenu>().BuildMenu();
-    _<GUIInteractionMenu>().SetVisible(true);
-    _<GUIInteractionMenu>().SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
-    //   break;
-    // case PlayerModes::Battle:
-    //   auto currentWorldArea{_<World>().GetCurrentWorldArea()};
-    //   auto hoveredTile{currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
-    //   if (hoveredTile) {
-    //     auto robot{hoveredTile->GetRobot()};
-    //     if (robot)
-    //       _<BattleSystem>().SetTargetedRobot(robot);
-    //   }
-    //   break;
-    // }
+      // switch (currentPlayerMode) {
+      // case PlayerModes::Interaction:
+      _<GUIInteractionMenu>().BuildMenu();
+      _<GUIInteractionMenu>().SetVisible(true);
+      _<GUIInteractionMenu>().SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+      //   break;
+      // case PlayerModes::Battle:
+      //   auto currentWorldArea{_<World>().GetCurrentWorldArea()};
+      //   auto hoveredTile{currentWorldArea->GetTile(_<TileHovering>().GetHoveredCoordinate())};
+      //   if (hoveredTile) {
+      //     auto robot{hoveredTile->GetRobot()};
+      //     if (robot)
+      //       _<BattleSystem>().SetTargetedRobot(robot);
+      //   }
+      //   break;
+      // }
+    }
   }
-}
 }

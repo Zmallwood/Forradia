@@ -6,26 +6,26 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-GLDevice::~GLDevice() {
-  SDL_GL_DeleteContext(*m_context);
-}
-
-auto GLDevice::Initialize() -> void {
-  this->SetupGL();
-}
-
-auto GLDevice::SetupGL() -> void {
-  auto window{_<SDLDevice>().GetWindow()};
-  m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
-  SDL_GL_MakeCurrent(window.get(), *m_context);
-  GLenum status{glewInit()};
-  if (GLEW_OK != status) {
-    auto errorString{String(reinterpret_cast<const char *>(glewGetErrorString(status)))};
-    PrintLine("GLEW error: " + errorString);
+  GLDevice::~GLDevice() {
+    SDL_GL_DeleteContext(*m_context);
   }
-  // Turn of vertical sync.
-  SDL_GL_SetSwapInterval(0);
-  glEnable(GL_TEXTURE_2D);
-  glEnable(GL_BLEND);
-}
+
+  auto GLDevice::Initialize() -> void {
+    this->SetupGL();
+  }
+
+  auto GLDevice::SetupGL() -> void {
+    auto window{_<SDLDevice>().GetWindow()};
+    m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
+    SDL_GL_MakeCurrent(window.get(), *m_context);
+    GLenum status{glewInit()};
+    if (GLEW_OK != status) {
+      auto errorString{String(reinterpret_cast<const char *>(glewGetErrorString(status)))};
+      PrintLine("GLEW error: " + errorString);
+    }
+    // Turn of vertical sync.
+    SDL_GL_SetSwapInterval(0);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+  }
 }

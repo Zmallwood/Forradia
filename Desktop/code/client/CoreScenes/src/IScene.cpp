@@ -6,25 +6,25 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto IScene::Initialize() -> void {
-  m_gui = std::make_shared<GUI>();
+  auto IScene::Initialize() -> void {
+    m_gui = std::make_shared<GUI>();
 
-  this->InitializeDerived();
-}
+    this->InitializeDerived();
+  }
 
-auto IScene::OnEnter() -> void {
-  this->OnEnterDerived();
-}
+  auto IScene::OnEnter() -> void {
+    this->OnEnterDerived();
+  }
 
-auto IScene::Update() -> void {
-  m_gui->Update();
+  auto IScene::Update() -> void {
+    m_gui->Update();
 
-  this->UpdateDerived();
-}
+    this->UpdateDerived();
+  }
 
-auto IScene::Render() const -> void {
-  this->RenderDerived();
+  auto IScene::Render() const -> void {
+    this->RenderDerived();
 
-  m_gui->Render();
-}
+    m_gui->Render();
+  }
 }

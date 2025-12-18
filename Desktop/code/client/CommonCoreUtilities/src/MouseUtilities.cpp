@@ -7,11 +7,11 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GetNormallizedMousePosition(const SharedPtr<SDL_Window> &window) -> PointF {
-  int xPx;
-  int yPx;
-  SDL_GetMouseState(&xPx, &yPx);
-  auto canvasSize{GetCanvasSize(window)};
-  return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
-}
+  auto GetNormallizedMousePosition(const SharedPtr<SDL_Window> &window) -> PointF {
+    int xPx;
+    int yPx;
+    SDL_GetMouseState(&xPx, &yPx);
+    auto canvasSize{GetCanvasSize(window)};
+    return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
+  }
 }

@@ -4,43 +4,43 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-class Quest;
-
-/**
- * Manages the quests in the game.
- */
-class QuestSystem {
- public:
-  /**
-   * Constructor.
-   */
-  QuestSystem() {
-    this->Initialize();
-  }
+  class Quest;
 
   /**
-   * Updates the quest system.
+   * Manages the quests in the game.
    */
-  auto Update() -> void;
+  class QuestSystem {
+   public:
+    /**
+     * Constructor.
+     */
+    QuestSystem() {
+      this->Initialize();
+    }
 
-  /**
-   * Gets the name of the current quest.
-   */
-  auto GetCurrentQuestName() const -> String;
+    /**
+     * Updates the quest system.
+     */
+    auto Update() -> void;
 
-  /**
-   * Gets the description of the current quest.
-   */
-  auto GetCurrentQuestDescription() const -> String;
+    /**
+     * Gets the name of the current quest.
+     */
+    auto GetCurrentQuestName() const -> String;
 
-  /**
-   * Gets the status of the current quest.
-   */
-  auto GetCurrentQuestStatus() const -> String;
+    /**
+     * Gets the description of the current quest.
+     */
+    auto GetCurrentQuestDescription() const -> String;
 
- private:
-  auto Initialize() -> void;
+    /**
+     * Gets the status of the current quest.
+     */
+    auto GetCurrentQuestStatus() const -> String;
 
-  Vector<SharedPtr<Quest>> m_quests;
-};
+   private:
+    auto Initialize() -> void;
+
+    Vector<SharedPtr<Quest>> m_quests;
+  };
 }

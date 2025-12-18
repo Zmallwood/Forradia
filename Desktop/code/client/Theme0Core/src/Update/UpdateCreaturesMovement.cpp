@@ -10,66 +10,66 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-auto UpdateCreaturesMovement() -> void {
-  auto worldArea{_<World>().GetCurrentWorldArea()};
-  auto &creatures{worldArea->GetCreaturesMirrorRef()};
-
-  auto now{GetTicks()};
-
-  for (auto it = creatures.begin(); it != creatures.end();) {
-    auto creature{it->first};
-    auto position{it->second};
-
-    if (now < creature->GetTicksLastMovement() + InvertSpeed(creature->GetMovementSpeed())) {
-      ++it;
-      continue;
-    }
-
-    auto destination{creature->GetDestination()};
-
-    if (destination.x == -1 && destination.y == -1) {
-      auto newDestinationX{position.x + GetRandomInt(11) - 5};
-      auto newDestinationY{position.y + GetRandomInt(11) - 5};
-
-      creature->SetDestination({newDestinationX, newDestinationY});
-    }
-
+  auto UpdateCreaturesMovement() -> void {
     auto worldArea{_<World>().GetCurrentWorldArea()};
     auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
-    auto dX{creature->GetDestination().x - position.x};
-    auto dY{creature->GetDestination().y - position.y};
+    auto now{GetTicks()};
 
-    auto normalizedDX{Normalize(dX)};
-    auto normalizedDY{Normalize(dY)};
+    for (auto it = creatures.begin(); it != creatures.end();) {
+      auto creature{it->first};
+      auto position{it->second};
 
-    auto newX{position.x + normalizedDX};
-    auto newY{position.y + normalizedDY};
+      if (now < creature->GetTicksLastMovement() + InvertSpeed(creature->GetMovementSpeed())) {
+        ++it;
+        continue;
+      }
 
-    Point newPosition{newX, newY};
+      auto destination{creature->GetDestination()};
 
-    if (newPosition == creature->GetDestination())
-      creature->SetDestination({-1, -1});
+      if (destination.x == -1 && destination.y == -1) {
+        auto newDestinationX{position.x + GetRandomInt(11) - 5};
+        auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
-    auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
+        creature->SetDestination({newDestinationX, newDestinationY});
+      }
 
-    if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater")) {
-      auto oldPosition{creatures.at(creature)};
+      auto worldArea{_<World>().GetCurrentWorldArea()};
+      auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
-      creature->SetTicksLastMovement(now);
+      auto dX{creature->GetDestination().x - position.x};
+      auto dY{creature->GetDestination().y - position.y};
 
-      auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
-      auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
+      auto normalizedDX{Normalize(dX)};
+      auto normalizedDY{Normalize(dY)};
 
-      oldTile->SetCreature(nullptr);
-      newTile->SetCreature(creature);
+      auto newX{position.x + normalizedDX};
+      auto newY{position.y + normalizedDY};
 
-      creatures.erase(creature);
-      creatures.insert({creature, {newPosition.x, newPosition.y}});
-    } else {
-      creature->SetDestination({-1, -1});
+      Point newPosition{newX, newY};
+
+      if (newPosition == creature->GetDestination())
+        creature->SetDestination({-1, -1});
+
+      auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
+
+      if (tile && !tile->GetCreature() && tile->GetGround() != Hash("GroundWater")) {
+        auto oldPosition{creatures.at(creature)};
+
+        creature->SetTicksLastMovement(now);
+
+        auto oldTile{worldArea->GetTile(oldPosition.x, oldPosition.y)};
+        auto newTile{worldArea->GetTile(newPosition.x, newPosition.y)};
+
+        oldTile->SetCreature(nullptr);
+        newTile->SetCreature(creature);
+
+        creatures.erase(creature);
+        creatures.insert({creature, {newPosition.x, newPosition.y}});
+      } else {
+        creature->SetDestination({-1, -1});
+      }
+      ++it;
     }
-    ++it;
   }
-}
 }

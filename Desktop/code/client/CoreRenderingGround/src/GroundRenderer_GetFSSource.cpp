@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GroundRenderer::GetFSSource() const -> String {
-  return R"(
+  auto GroundRenderer::GetFSSource() const -> String {
+    return R"(
         #version 330 core
         
         out vec4 FragColor;
@@ -48,5 +48,5 @@ auto GroundRenderer::GetFSSource() const -> String {
             FragColor = vec4(result, objectColor.a);
         }
     )";
-}
+  }
 }

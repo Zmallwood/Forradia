@@ -4,36 +4,36 @@
 #pragma once
 
 namespace Forradia {
-class Model;
-
-/**
- * Loads, stores and provides models.
- */
-class ModelBank {
- public:
-  /**
-   * Constructor.
-   */
-  ModelBank() {
-    this->Initialize();
-  }
+  class Model;
 
   /**
-   * Get a model by name hash.
-   *
-   * @param modelNameHash The hash of the model name.
-   * @return The model.
+   * Loads, stores and provides models.
    */
-  auto GetModel(int modelNameHash) const -> SharedPtr<Model>;
+  class ModelBank {
+   public:
+    /**
+     * Constructor.
+     */
+    ModelBank() {
+      this->Initialize();
+    }
 
- private:
-  auto Initialize() -> void;
+    /**
+     * Get a model by name hash.
+     *
+     * @param modelNameHash The hash of the model name.
+     * @return The model.
+     */
+    auto GetModel(int modelNameHash) const -> SharedPtr<Model>;
 
-  auto LoadModels() -> void;
+   private:
+    auto Initialize() -> void;
 
-  auto LoadSingleModel(StringView filePath) const -> SharedPtr<Model>;
+    auto LoadModels() -> void;
 
-  inline static const String k_relativeModelsPath{"./Resources/Models/"};
-  std::map<int, SharedPtr<Model>> m_models;
-};
+    auto LoadSingleModel(StringView filePath) const -> SharedPtr<Model>;
+
+    inline static const String k_relativeModelsPath{"./Resources/Models/"};
+    std::map<int, SharedPtr<Model>> m_models;
+  };
 }

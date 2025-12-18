@@ -4,18 +4,18 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-/**
- * Compass directions in the game world.
- */
-enum class Directions {
-  None,
-  North,
-  East,
-  South,
-  West,
-  NorthEast,
-  SouthEast,
-  SouthWest,
-  NorthWest
-};
+  /**
+   * Compass directions in the game world.
+   */
+  enum class Directions {
+    None,
+    North,
+    East,
+    South,
+    West,
+    NorthEast,
+    SouthEast,
+    SouthWest,
+    NorthWest
+  };
 }

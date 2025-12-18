@@ -5,14 +5,14 @@
 #include "TileDrawGroup.hpp"
 
 namespace Forradia {
-/**
- * A rendering operation for a group of tiles.
- */
-class GroundRenderingGroupOperation {
- public:
   /**
-   * The tiles by texture.
+   * A rendering operation for a group of tiles.
    */
-  std::map<int, TileDrawGroup> tilesByTexture;
-};
+  class GroundRenderingGroupOperation {
+   public:
+    /**
+     * The tiles by texture.
+     */
+    std::map<int, TileDrawGroup> tilesByTexture;
+  };
 }

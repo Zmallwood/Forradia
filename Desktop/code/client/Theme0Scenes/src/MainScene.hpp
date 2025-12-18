@@ -5,28 +5,28 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
-/**
- * The main scene is the scene where the actual game is played.
- */
-class MainScene : public IScene {
   /**
-   * Initializes the main scene.
+   * The main scene is the scene where the actual game is played.
    */
-  virtual auto InitializeDerived() -> void override;
+  class MainScene : public IScene {
+    /**
+     * Initializes the main scene.
+     */
+    virtual auto InitializeDerived() -> void override;
 
-  /**
-   * Called when the main scene is entered.
-   */
-  virtual auto OnEnterDerived() -> void override;
+    /**
+     * Called when the main scene is entered.
+     */
+    virtual auto OnEnterDerived() -> void override;
 
-  /**
-   * Called every frame.
-   */
-  virtual auto UpdateDerived() -> void override;
+    /**
+     * Called every frame.
+     */
+    virtual auto UpdateDerived() -> void override;
 
-  /**
-   * Called every frame to render the scene.
-   */
-  virtual auto RenderDerived() const -> void override;
-};
+    /**
+     * Called every frame to render the scene.
+     */
+    virtual auto RenderDerived() const -> void override;
+  };
 }

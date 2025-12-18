@@ -4,64 +4,64 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-class Object;
-
-/**
- * A stack of objects, primarily a component of a tile.
- */
-class ObjectsStack {
- public:
-  /**
-   * Deletes all objects in the stack.
-   */
-  auto ClearObjects() -> void;
+  class Object;
 
   /**
-   * Adds a new object to the stack.
-   *
-   * @param objectName The object name.
+   * A stack of objects, primarily a component of a tile.
    */
-  auto AddObject(StringView objectName) -> void;
+  class ObjectsStack {
+   public:
+    /**
+     * Deletes all objects in the stack.
+     */
+    auto ClearObjects() -> void;
 
-  /**
-   * Removes one object of a specific type from the stack.
-   *
-   * @param objectTypeName The object type by name.
-   */
-  auto RemoveOneOfObjectOfType(StringView objectTypeName) -> void;
+    /**
+     * Adds a new object to the stack.
+     *
+     * @param objectName The object name.
+     */
+    auto AddObject(StringView objectName) -> void;
 
-  /**
-   * Gets the number of objects in the stack.
-   *
-   * @return The number of objects in the stack.
-   */
-  auto GetSize() const -> int;
+    /**
+     * Removes one object of a specific type from the stack.
+     *
+     * @param objectTypeName The object type by name.
+     */
+    auto RemoveOneOfObjectOfType(StringView objectTypeName) -> void;
 
-  /**
-   * Pops one object from the stack.
-   *
-   * @return The object popped from the stack.
-   */
-  auto PopObject() -> SharedPtr<Object>;
+    /**
+     * Gets the number of objects in the stack.
+     *
+     * @return The number of objects in the stack.
+     */
+    auto GetSize() const -> int;
 
-  /**
-   * Counts the number of objects of a specific type in the stack.
-   *
-   * @param objectTypeName The object type by name.
-   * @return The number of objects of the specified type in the stack.
-   */
-  auto CountHasObject(StringView objectTypeName) const -> int;
+    /**
+     * Pops one object from the stack.
+     *
+     * @return The object popped from the stack.
+     */
+    auto PopObject() -> SharedPtr<Object>;
 
-  /**
-   * Gets the collection of objects in the stack.
-   *
-   * @return The collection of objects in the stack.
-   */
-  auto GetObjects() const {
-    return m_objects;
-  }
+    /**
+     * Counts the number of objects of a specific type in the stack.
+     *
+     * @param objectTypeName The object type by name.
+     * @return The number of objects of the specified type in the stack.
+     */
+    auto CountHasObject(StringView objectTypeName) const -> int;
 
- private:
-  Vector<SharedPtr<Object>> m_objects;
-};
+    /**
+     * Gets the collection of objects in the stack.
+     *
+     * @return The collection of objects in the stack.
+     */
+    auto GetObjects() const {
+      return m_objects;
+    }
+
+   private:
+    Vector<SharedPtr<Object>> m_objects;
+  };
 }

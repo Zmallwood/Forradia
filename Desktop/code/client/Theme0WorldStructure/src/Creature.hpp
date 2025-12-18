@@ -5,92 +5,95 @@
 
 #pragma once
 
+#include "EntityTypes.hpp"
+
 namespace Forradia::Theme0 {
-/**
- * A creature in the game world.
- */
-// TODO: Rename to Entity and make is so that it can have a EntityCategory.
-class Creature {
- public:
   /**
-   * Constructor. Creates a creature of the given type.
-   *
-   * @param typeHash The creature type as a hash.
+   * A creature in the game world.
    */
-  Creature(int typeHash) : m_type(typeHash) {
-    // Initialize the creature.
-    this->Initialize();
-  }
+  // TODO: Rename to Entity and make is so that it can have a EntityCategory.
+  class Creature {
+   public:
+    /**
+     * Constructor. Creates a creature of the given type.
+     *
+     * @param typeHash The creature type as a hash.
+     */
+    Creature(int typeHash) : m_type(typeHash) {
+      // Initialize the creature.
+      this->Initialize();
+    }
 
-  /**
-   * Constructor. Creates a creature of the given type.
-   *
-   * @param typeName The creature type by name.
-   */
-  Creature(StringView typeName) : m_type{Hash(typeName)} {
-    this->Initialize();
-  }
+    /**
+     * Constructor. Creates a creature of the given type.
+     *
+     * @param typeName The creature type by name.
+     */
+    Creature(StringView typeName) : m_type{Hash(typeName)} {
+      this->Initialize();
+    }
 
-  /**
-   * Gets the creature type.
-   *
-   * @return The creature type.
-   */
-  auto GetType() const {
-    return m_type;
-  }
+    /**
+     * Gets the creature type.
+     *
+     * @return The creature type.
+     */
+    auto GetType() const {
+      return m_type;
+    }
 
-  /**
-   * Gets the ticks since the creature last moved.
-   *
-   * @return The ticks since the creature last moved.
-   */
-  auto GetTicksLastMovement() const {
-    return m_ticksLastMovement;
-  }
+    /**
+     * Gets the ticks since the creature last moved.
+     *
+     * @return The ticks since the creature last moved.
+     */
+    auto GetTicksLastMovement() const {
+      return m_ticksLastMovement;
+    }
 
-  /**
-   * Sets the ticks since the creature last moved.
-   *
-   * @param value The new ticks since the creature last moved.
-   */
-  auto SetTicksLastMovement(int value) -> void {
-    m_ticksLastMovement = value;
-  }
+    /**
+     * Sets the ticks since the creature last moved.
+     *
+     * @param value The new ticks since the creature last moved.
+     */
+    auto SetTicksLastMovement(int value) -> void {
+      m_ticksLastMovement = value;
+    }
 
-  /**
-   * Gets the movement speed of the creature.
-   *
-   * @return The movement speed of the creature.
-   */
-  auto GetMovementSpeed() const {
-    return m_movementSpeed;
-  }
+    /**
+     * Gets the movement speed of the creature.
+     *
+     * @return The movement speed of the creature.
+     */
+    auto GetMovementSpeed() const {
+      return m_movementSpeed;
+    }
 
-  /**
-   * Gets the destination of the creature.
-   *
-   * @return The destination of the creature.
-   */
-  auto GetDestination() const {
-    return m_destination;
-  }
+    /**
+     * Gets the destination of the creature.
+     *
+     * @return The destination of the creature.
+     */
+    auto GetDestination() const {
+      return m_destination;
+    }
 
-  /**
-   * Sets the destination of the creature.
-   *
-   * @param value The new destination of the creature.
-   */
-  auto SetDestination(Point value) -> void {
-    m_destination = value;
-  }
+    /**
+     * Sets the destination of the creature.
+     *
+     * @param value The new destination of the creature.
+     */
+    auto SetDestination(Point value) -> void {
+      m_destination = value;
+    }
 
- private:
-  auto Initialize() -> void;
+   private:
+    auto Initialize() -> void;
 
-  int m_type{0};
-  int m_ticksLastMovement{0};
-  float m_movementSpeed{2.0F};
-  Point m_destination{-1, -1};
-};
+    int m_type{0};
+    int m_ticksLastMovement{0};
+    float m_movementSpeed{2.0F};
+    Point m_destination{-1, -1};
+    EntityTypes m_entityType{EntityTypes::Creature};
+  };
 }

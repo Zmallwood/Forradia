@@ -4,19 +4,19 @@
 #pragma once
 
 namespace Forradia {
-/**
- * Holds information about a texture, used by the TextureBank.
- */
-class TextureEntry {
- public:
   /**
-   * The texture ID, used by opengl.
+   * Holds information about a texture, used by the TextureBank.
    */
-  GLuint textureID;
+  class TextureEntry {
+   public:
+    /**
+     * The texture ID, used by opengl.
+     */
+    GLuint textureID;
 
-  /**
-   * The texture width and height.
-   */
-  Size dimensions;
-};
+    /**
+     * The texture width and height.
+     */
+    Size dimensions;
+  };
 }

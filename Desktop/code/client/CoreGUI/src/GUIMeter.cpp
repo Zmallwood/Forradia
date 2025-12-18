@@ -6,14 +6,14 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GUIMeter::RenderDerived() const -> void {
-  auto bounds{GetBounds()};
+  auto GUIMeter::RenderDerived() const -> void {
+    auto bounds{GetBounds()};
 
-  _<Color2DRenderer>().DrawFilledRectangle(k_renderIDBackground, Palette::GetColor<Hash("Black")>(),
-                                           GetBounds().x, GetBounds().y, GetBounds().width,
-                                           GetBounds().height);
-  _<Color2DRenderer>().DrawFilledRectangle(k_renderIDFilled, k_filledColor, GetBounds().x,
-                                           GetBounds().y, GetBounds().width * GetFilledPercentage(),
-                                           GetBounds().height, true);
-}
+    _<Color2DRenderer>().DrawFilledRectangle(k_renderIDBackground,
+                                             Palette::GetColor<Hash("Black")>(), GetBounds().x,
+                                             GetBounds().y, GetBounds().width, GetBounds().height);
+    _<Color2DRenderer>().DrawFilledRectangle(
+        k_renderIDFilled, k_filledColor, GetBounds().x, GetBounds().y,
+        GetBounds().width * GetFilledPercentage(), GetBounds().height, true);
+  }
 }

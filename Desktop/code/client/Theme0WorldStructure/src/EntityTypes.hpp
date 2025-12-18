@@ -4,10 +4,8 @@
 #pragma once
 
 namespace Forradia {
-  /**
-   * Get the number of ticks.
-   *
-   * @return The number of ticks.
-   */
-  auto GetTicks() -> int;
+  enum class EntityTypes {
+    Creature,
+    Robot
+  };
 }

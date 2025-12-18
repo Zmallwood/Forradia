@@ -29,60 +29,60 @@
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0 {
-auto MainScene::InitializeDerived() -> void {
-  GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
-  GetGUI()->AddChildComponent(__<GUIChatBox>());
+  auto MainScene::InitializeDerived() -> void {
+    GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
+    GetGUI()->AddChildComponent(__<GUIChatBox>());
 
-  auto btnGUIPlayerBodyWindow{std::make_shared<GUIButton>(
-      "MainSceneButtonPlayerBodyWin", 0.78f, 0.9f, 0.05f,
-      ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-      [] { _<GUIPlayerBodyWindow>().ToggleVisibility(); }, "GUIButtonPlayerBodyBackground",
-      "GUIButtonPlayerBodyHoveredBackground")};
-  GetGUI()->AddChildComponent(btnGUIPlayerBodyWindow);
+    auto btnGUIPlayerBodyWindow{std::make_shared<GUIButton>(
+        "MainSceneButtonPlayerBodyWin", 0.78f, 0.9f, 0.05f,
+        ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
+        [] { _<GUIPlayerBodyWindow>().ToggleVisibility(); }, "GUIButtonPlayerBodyBackground",
+        "GUIButtonPlayerBodyHoveredBackground")};
+    GetGUI()->AddChildComponent(btnGUIPlayerBodyWindow);
 
-  auto btnInventoryWindow{std::make_shared<GUIButton>(
-      "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-      ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-      [] { _<GUIInventoryWindow>().ToggleVisibility(); }, "GUIButtonInventoryBackground",
-      "GUIButtonInventoryHoveredBackground")};
-  GetGUI()->AddChildComponent(btnInventoryWindow);
+    auto btnInventoryWindow{std::make_shared<GUIButton>(
+        "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
+        ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
+        [] { _<GUIInventoryWindow>().ToggleVisibility(); }, "GUIButtonInventoryBackground",
+        "GUIButtonInventoryHoveredBackground")};
+    GetGUI()->AddChildComponent(btnInventoryWindow);
 
-  auto btnSystemMenu{std::make_shared<GUIButton>(
-      "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-      ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-      [] { _<GUISystemMenu>().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
-      "GUIButtonSystemMenuHoveredBackground")};
-  GetGUI()->AddChildComponent(btnSystemMenu);
-  GetGUI()->AddChildComponent(__<GUIPlayerBodyWindow>());
-  GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
-  GetGUI()->AddChildComponent(__<GUISystemMenu>());
-  GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
-  GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
-  GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
-  GetGUI()->AddChildComponent(__<GUIExperienceBar>());
-}
+    auto btnSystemMenu{std::make_shared<GUIButton>(
+        "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
+        ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
+        [] { _<GUISystemMenu>().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
+        "GUIButtonSystemMenuHoveredBackground")};
+    GetGUI()->AddChildComponent(btnSystemMenu);
+    GetGUI()->AddChildComponent(__<GUIPlayerBodyWindow>());
+    GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
+    GetGUI()->AddChildComponent(__<GUISystemMenu>());
+    GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
+    GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
+    GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
+    GetGUI()->AddChildComponent(__<GUIExperienceBar>());
+  }
 
-auto MainScene::OnEnterDerived() -> void {
-  auto chatBoxHeight{_<GUIChatBox>().GetBounds().height};
-  auto experienceBarHeight{_<GUIExperienceBar>().GetBounds().height};
-  _<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
-  _<GUIChatBox>().Print("You have entered the world.");
-}
+  auto MainScene::OnEnterDerived() -> void {
+    auto chatBoxHeight{_<GUIChatBox>().GetBounds().height};
+    auto experienceBarHeight{_<GUIExperienceBar>().GetBounds().height};
+    _<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
+    _<GUIChatBox>().Print("You have entered the world.");
+  }
 
-auto MainScene::UpdateDerived() -> void {
-  UpdateKeyboardActions();
-  UpdateMouseActions();
-  UpdateCreaturesMovement();
-  UpdateCameraZoom();
-  UpdateMouseMovement();
-  UpdateKeyboardMovement();
-  _<TileHovering>().Update();
-  _<CameraRotator>().Update();
-  UpdateActions();
-  _<QuestSystem>().Update();
-}
+  auto MainScene::UpdateDerived() -> void {
+    UpdateKeyboardActions();
+    UpdateMouseActions();
+    UpdateCreaturesMovement();
+    UpdateCameraZoom();
+    UpdateMouseMovement();
+    UpdateKeyboardMovement();
+    _<TileHovering>().Update();
+    _<CameraRotator>().Update();
+    UpdateActions();
+    _<QuestSystem>().Update();
+  }
 
-auto MainScene::RenderDerived() const -> void {
-  _<WorldView>().Render();
-}
+  auto MainScene::RenderDerived() const -> void {
+    _<WorldView>().Render();
+  }
 }

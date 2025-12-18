@@ -6,18 +6,18 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) -> void {
-  this->SetVisible(false);
-  m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
-  this->AddChildComponent(m_guiWindowTitleBar);
-}
+  auto GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) -> void {
+    this->SetVisible(false);
+    m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
+    this->AddChildComponent(m_guiWindowTitleBar);
+  }
 
-auto GUIWindow::RenderDerived() const -> void {
-  GUIMovablePanel::RenderDerived();
-}
+  auto GUIWindow::RenderDerived() const -> void {
+    GUIMovablePanel::RenderDerived();
+  }
 
-auto GUIWindow::GetDraggableArea() const -> RectF {
-  // Return the bounds of the window title bar as the draggable area.
-  return m_guiWindowTitleBar->GetBounds();
-}
+  auto GUIWindow::GetDraggableArea() const -> RectF {
+    // Return the bounds of the window title bar as the draggable area.
+    return m_guiWindowTitleBar->GetBounds();
+  }
 }

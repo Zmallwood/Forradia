@@ -4,24 +4,24 @@
 #pragma once
 
 namespace Forradia {
-/**
- * A rendering operation for an image.
- */
-class Image2DRenderingOperation {
- public:
   /**
-   * The vertex array object.
+   * A rendering operation for an image.
    */
-  GLuint vao;
+  class Image2DRenderingOperation {
+   public:
+    /**
+     * The vertex array object.
+     */
+    GLuint vao;
 
-  /**
-   * The index buffer object.
-   */
-  GLuint ibo;
+    /**
+     * The index buffer object.
+     */
+    GLuint ibo;
 
-  /**
-   * The vertex buffer object.
-   */
-  GLuint vbo;
-};
+    /**
+     * The vertex buffer object.
+     */
+    GLuint vbo;
+  };
 }

@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto SkyRenderer::GetVSSource() const -> String {
-  return R"(
+  auto SkyRenderer::GetVSSource() const -> String {
+    return R"(
         #version 330 core
         
         layout (location = 0) in vec3 aPos;
@@ -37,5 +37,5 @@ auto SkyRenderer::GetVSSource() const -> String {
             viewDirection = normalize(aPos);
         }
     )";
-}
+  }
 }

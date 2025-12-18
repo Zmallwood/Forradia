@@ -4,8 +4,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-/**
- * Updates the keyboard movement.
- */
-auto UpdateKeyboardMovement() -> void;
+  /**
+   * Updates the keyboard movement.
+   */
+  auto UpdateKeyboardMovement() -> void;
 }

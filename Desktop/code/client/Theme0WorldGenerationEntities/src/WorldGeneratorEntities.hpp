@@ -5,19 +5,19 @@
 #include "WorldGeneratorBase.hpp"
 
 namespace Forradia::Theme0 {
-/**
- * Generates entities for the world.
- */
-class WorldGeneratorEntities : public WorldGeneratorBase {
- public:
   /**
    * Generates entities for the world.
    */
-  auto GenerateEntities() const -> void;
+  class WorldGeneratorEntities : public WorldGeneratorBase {
+   public:
+    /**
+     * Generates entities for the world.
+     */
+    auto GenerateEntities() const -> void;
 
- private:
-  auto GenerateCreaturesInEcosystems() const -> void;
+   private:
+    auto GenerateCreaturesInEcosystems() const -> void;
 
-  auto IsNearWater(int x, int y, int radius) const -> bool;
-};
+    auto IsNearWater(int x, int y, int radius) const -> bool;
+  };
 }

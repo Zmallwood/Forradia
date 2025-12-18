@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Image2DRenderer::GetFSSource() const -> String {
-  return R"(
+  auto Image2DRenderer::GetFSSource() const -> String {
+    return R"(
         #version 330 core
         
         out vec4 FragColor;
@@ -21,5 +21,5 @@ auto Image2DRenderer::GetFSSource() const -> String {
             FragColor = texture(ourTexture, TexCoord);
         }
     )";
-}
+  }
 }

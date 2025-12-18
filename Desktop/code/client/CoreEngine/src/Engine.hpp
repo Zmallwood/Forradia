@@ -4,33 +4,33 @@
 #pragma once
 
 namespace Forradia {
-/**
- * The engine class is responsible for initializing, running and stopping
- * the game.
- */
-class Engine {
- public:
   /**
-   * Initializes the engine.
-   *
-   * @param gameWindowTitle The title of the game window.
-   * @param clearColor The color to clear the canvas with.
+   * The engine class is responsible for initializing, running and stopping
+   * the game.
    */
-  auto Initialize(StringView gameWindowTitle, Color clearColor) const -> void;
+  class Engine {
+   public:
+    /**
+     * Initializes the engine.
+     *
+     * @param gameWindowTitle The title of the game window.
+     * @param clearColor The color to clear the canvas with.
+     */
+    auto Initialize(StringView gameWindowTitle, Color clearColor) const -> void;
 
-  /**
-   * Runs the engine.
-   */
-  auto Run() -> void;
+    /**
+     * Runs the engine.
+     */
+    auto Run() -> void;
 
-  /**
-   * Stops the engine.
-   */
-  auto Stop() -> void;
+    /**
+     * Stops the engine.
+     */
+    auto Stop() -> void;
 
- private:
-  auto HandleEvents() -> void;
+   private:
+    auto HandleEvents() -> void;
 
-  bool m_running{true};
-};
+    bool m_running{true};
+  };
 }

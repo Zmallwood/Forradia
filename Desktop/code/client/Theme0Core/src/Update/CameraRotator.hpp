@@ -4,18 +4,18 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-/**
- * Manages the rotation of the camera.
- */
-class CameraRotator {
- public:
   /**
-   * Updates the camera rotation.
+   * Manages the rotation of the camera.
    */
-  auto Update() -> void;
+  class CameraRotator {
+   public:
+    /**
+     * Updates the camera rotation.
+     */
+    auto Update() -> void;
 
- private:
-  bool m_isRotating{false};
-  PointF m_mousePositionLastUpdate{-1.0F, -1.0F};
-};
+   private:
+    bool m_isRotating{false};
+    PointF m_mousePositionLastUpdate{-1.0F, -1.0F};
+  };
 }

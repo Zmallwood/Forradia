@@ -5,7 +5,7 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GetTicks() -> int {
-  return SDL_GetTicks();
-}
+  auto GetTicks() -> int {
+    return SDL_GetTicks();
+  }
 }

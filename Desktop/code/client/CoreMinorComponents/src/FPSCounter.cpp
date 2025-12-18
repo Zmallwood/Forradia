@@ -5,14 +5,14 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto FPSCounter::Update() -> void {
-  auto now{GetTicks()};
+  auto FPSCounter::Update() -> void {
+    auto now{GetTicks()};
 
-  if (now > m_ticksLastUpdate + k_oneSecMillis) {
-    m_fps = m_framesCount;
-    m_framesCount = 0;
-    m_ticksLastUpdate = now;
+    if (now > m_ticksLastUpdate + k_oneSecMillis) {
+      m_fps = m_framesCount;
+      m_framesCount = 0;
+      m_ticksLastUpdate = now;
+    }
+    ++m_framesCount;
   }
-  ++m_framesCount;
-}
 }

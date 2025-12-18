@@ -13,28 +13,28 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto IntroScene::InitializeDerived() -> void {
-  auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
-                                      "Press to start", true)};
-  m_startText = GetGUI()->AddChildComponent(lbl);
-}
+  auto IntroScene::InitializeDerived() -> void {
+    auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
+                                        "Press to start", true)};
+    m_startText = GetGUI()->AddChildComponent(lbl);
+  }
 
-auto IntroScene::OnEnterDerived() -> void {
-  _<GUIChatBox>().Print("Game started.");
-}
+  auto IntroScene::OnEnterDerived() -> void {
+    _<GUIChatBox>().Print("Game started.");
+  }
 
-auto IntroScene::UpdateDerived() -> void {
-  m_startText->SetVisible(GetTicks() % 800 < 400);
-  _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-  if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
-      _<MouseInput>().AnyMouseButtonIsPressedPickResult())
-    _<SceneManager>().GoToScene("MainMenuScene");
-}
+  auto IntroScene::UpdateDerived() -> void {
+    m_startText->SetVisible(GetTicks() % 800 < 400);
+    _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
+        _<MouseInput>().AnyMouseButtonIsPressedPickResult())
+      _<SceneManager>().GoToScene("MainMenuScene");
+  }
 
-auto IntroScene::RenderDerived() const -> void {
-  _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f,
-                                       0.0f, 1.0f, 1.0f);
-  _<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo", 0.25f, 0.2f,
-                                           0.5f);
-}
+  auto IntroScene::RenderDerived() const -> void {
+    _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground",
+                                         0.0f, 0.0f, 1.0f, 1.0f);
+    _<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo", 0.25f, 0.2f,
+                                             0.5f);
+  }
 }

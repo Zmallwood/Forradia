@@ -11,13 +11,13 @@
 #include "WorldGenerationScene.hpp"
 
 namespace Forradia::Theme0 {
-auto SetupScenes() -> void {
-  _<SceneManager>().AddScene("IntroScene", _<IntroScene>());
-  _<SceneManager>().AddScene("MainMenuScene", _<MainMenuScene>());
-  _<SceneManager>().AddScene("PlayScene", _<PlayScene>());
-  _<SceneManager>().AddScene("WorldGenerationScene", _<WorldGenerationScene>());
-  _<SceneManager>().AddScene("MainScene", _<MainScene>());
+  auto SetupScenes() -> void {
+    _<SceneManager>().AddScene("IntroScene", _<IntroScene>());
+    _<SceneManager>().AddScene("MainMenuScene", _<MainMenuScene>());
+    _<SceneManager>().AddScene("PlayScene", _<PlayScene>());
+    _<SceneManager>().AddScene("WorldGenerationScene", _<WorldGenerationScene>());
+    _<SceneManager>().AddScene("MainScene", _<MainScene>());
 
-  _<SceneManager>().GoToScene("IntroScene");
-}
+    _<SceneManager>().GoToScene("IntroScene");
+  }
 }

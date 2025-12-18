@@ -12,89 +12,89 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto GUIInventoryWindow::Initialize() -> void {
-  auto windowFrame{std::make_shared<GUIInventoryWindowFrame>(this)};
-  this->AddChildComponent(windowFrame);
-}
-
-auto GUIInventoryWindowFrame::Initialize(GUIWindow *parentWindow) -> void {
-  auto panel{std::make_shared<GUIInventoryWindowPanel>(parentWindow)};
-  this->AddChildComponent(panel);
-}
-
-auto GUIInventoryWindowFrame::UpdateDerived() -> void {
-  GUIScrollableFrame::UpdateDerived();
-}
-
-auto GUIInventoryWindowFrame::GetBounds() const -> RectF {
-  auto bounds{m_parentWindow->GetBounds()};
-  bounds.height = bounds.height / 2.0f;
-  //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
-  return bounds;
-}
-
-auto GUIInventoryWindowPanel::Initialize() -> void {
-  for (auto i = 0; i < k_maxNumSlots; i++) {
-    m_renderIDsSlotsBackground[i] = Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
-    m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
+  auto GUIInventoryWindow::Initialize() -> void {
+    auto windowFrame{std::make_shared<GUIInventoryWindowFrame>(this)};
+    this->AddChildComponent(windowFrame);
   }
-}
 
-auto GUIInventoryWindowPanel::RenderDerived() const -> void {
-  GUIPanel::RenderDerived();
+  auto GUIInventoryWindowFrame::Initialize(GUIWindow *parentWindow) -> void {
+    auto panel{std::make_shared<GUIInventoryWindowPanel>(parentWindow)};
+    this->AddChildComponent(panel);
+  }
 
-  auto bounds{this->GetBounds()};
-  auto marginX{k_margin};
-  auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
-  auto xStart{bounds.x + marginX};
-  auto yStart{bounds.y + marginY + m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
+  auto GUIInventoryWindowFrame::UpdateDerived() -> void {
+    GUIScrollableFrame::UpdateDerived();
+  }
 
-  auto slotWidth{k_slotSize};
-  auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
+  auto GUIInventoryWindowFrame::GetBounds() const -> RectF {
+    auto bounds{m_parentWindow->GetBounds()};
+    bounds.height = bounds.height / 2.0f;
+    //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
+    return bounds;
+  }
 
-  auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-  auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
+  auto GUIInventoryWindowPanel::Initialize() -> void {
+    for (auto i = 0; i < k_maxNumSlots; i++) {
+      m_renderIDsSlotsBackground[i] = Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
+      m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
+    }
+  }
 
-  auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
+  auto GUIInventoryWindowPanel::RenderDerived() const -> void {
+    GUIPanel::RenderDerived();
 
-  for (auto y = 0; y < numRows; y++) {
-    for (auto x = 0; x < numColumns; x++) {
-      auto index{x + y * numColumns};
-      int renderIDBackground{0};
+    auto bounds{this->GetBounds()};
+    auto marginX{k_margin};
+    auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
+    auto xStart{bounds.x + marginX};
+    auto yStart{bounds.y + marginY + m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
-      if (m_renderIDsSlotsBackground.contains(index)) {
-        renderIDBackground = m_renderIDsSlotsBackground.at(index);
-      } else {
-        PrintLine("GUIInventoryWindow: Render ID not "
-                  "found for index: " +
-                  std::to_string(index));
-        return;
-      }
+    auto slotWidth{k_slotSize};
+    auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
-      _<Image2DRenderer>().DrawImageByName(
-          renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
-          yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
+    auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
+    auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-      auto inventoryObject{objectsInventory.GetObject(index)};
+    auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
 
-      if (inventoryObject) {
-        int renderIDObject{0};
+    for (auto y = 0; y < numRows; y++) {
+      for (auto x = 0; x < numColumns; x++) {
+        auto index{x + y * numColumns};
+        int renderIDBackground{0};
 
-        if (m_renderIDsSlotsObject.contains(index)) {
-          renderIDObject = m_renderIDsSlotsObject.at(index);
+        if (m_renderIDsSlotsBackground.contains(index)) {
+          renderIDBackground = m_renderIDsSlotsBackground.at(index);
         } else {
-          PrintLine("GUIInventoryWindow: "
-                    "Render ID not "
+          PrintLine("GUIInventoryWindow: Render ID not "
                     "found for index: " +
                     std::to_string(index));
           return;
         }
 
-        _<Image2DRenderer>().DrawImageByHash(
-            renderIDObject, inventoryObject->GetType(), xStart + x * (slotWidth + marginX),
+        _<Image2DRenderer>().DrawImageByName(
+            renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
             yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
+
+        auto inventoryObject{objectsInventory.GetObject(index)};
+
+        if (inventoryObject) {
+          int renderIDObject{0};
+
+          if (m_renderIDsSlotsObject.contains(index)) {
+            renderIDObject = m_renderIDsSlotsObject.at(index);
+          } else {
+            PrintLine("GUIInventoryWindow: "
+                      "Render ID not "
+                      "found for index: " +
+                      std::to_string(index));
+            return;
+          }
+
+          _<Image2DRenderer>().DrawImageByHash(
+              renderIDObject, inventoryObject->GetType(), xStart + x * (slotWidth + marginX),
+              yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
+        }
       }
     }
   }
-}
 }

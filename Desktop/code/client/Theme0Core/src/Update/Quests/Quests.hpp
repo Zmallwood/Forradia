@@ -5,152 +5,152 @@
 #include "Quest.hpp"
 
 namespace Forradia::Theme0 {
-class MoveQuest : public Quest {
- public:
-  MoveQuest() {
-    this->name = "Movement";
-    this->description = "Try to walk somewhere, 3 times.";
-  }
+  class MoveQuest : public Quest {
+   public:
+    MoveQuest() {
+      this->name = "Movement";
+      this->description = "Try to walk somewhere, 3 times.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numStepsLeft{3};
-};
+   private:
+    int m_numStepsLeft{3};
+  };
 
-class ForageQuest : public Quest {
- public:
-  ForageQuest() {
-    this->name = "Forage";
-    this->description = "Try to gather some resources, 3 times.";
-  }
+  class ForageQuest : public Quest {
+   public:
+    ForageQuest() {
+      this->name = "Forage";
+      this->description = "Try to gather some resources, 3 times.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numForagingsLeft{3};
-};
+   private:
+    int m_numForagingsLeft{3};
+  };
 
-class CraftStonePickaxeQuest : public Quest {
- public:
-  CraftStonePickaxeQuest() {
-    this->name = "First Crafting: Stone Pickaxe";
-    this->description = "Craft a stone pickaxe.";
-  }
+  class CraftStonePickaxeQuest : public Quest {
+   public:
+    CraftStonePickaxeQuest() {
+      this->name = "First Crafting: Stone Pickaxe";
+      this->description = "Craft a stone pickaxe.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  bool m_numBranchPicked{false};
+   private:
+    bool m_numBranchPicked{false};
 
-  bool m_numStonePicked{false};
-};
+    bool m_numStonePicked{false};
+  };
 
-class CraftStoneBowl : public Quest {
- public:
-  CraftStoneBowl() {
-    this->name = "Craft Stone Bowl";
-    this->description = "Craft a stone bowl.";
-  }
+  class CraftStoneBowl : public Quest {
+   public:
+    CraftStoneBowl() {
+      this->name = "Craft Stone Bowl";
+      this->description = "Craft a stone bowl.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  bool m_stonedMined{false};
-};
+   private:
+    bool m_stonedMined{false};
+  };
 
-class MineStoneFromBoulderQuest1 : public Quest {
- public:
-  MineStoneFromBoulderQuest1() {
-    this->name = "Mine Stone";
-    this->description = "Mine 10 stones from a boulder.";
-  }
+  class MineStoneFromBoulderQuest1 : public Quest {
+   public:
+    MineStoneFromBoulderQuest1() {
+      this->name = "Mine Stone";
+      this->description = "Mine 10 stones from a boulder.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numMinedStonesLeft{10};
-};
+   private:
+    int m_numMinedStonesLeft{10};
+  };
 
-class CraftStoneSlabsQuest : public Quest {
- public:
-  CraftStoneSlabsQuest() {
-    this->name = "Craft Stone Slabs";
-    this->description = "Craft 10 stone slabs.";
-  }
+  class CraftStoneSlabsQuest : public Quest {
+   public:
+    CraftStoneSlabsQuest() {
+      this->name = "Craft Stone Slabs";
+      this->description = "Craft 10 stone slabs.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numCraftedSlabsLeft{10};
-};
+   private:
+    int m_numCraftedSlabsLeft{10};
+  };
 
-class LayStoneSlabsQuest : public Quest {
- public:
-  LayStoneSlabsQuest() {
-    this->name = "Lay Stone Slabs";
-    this->description = "Lay 10 stone slabs.";
-  }
+  class LayStoneSlabsQuest : public Quest {
+   public:
+    LayStoneSlabsQuest() {
+      this->name = "Lay Stone Slabs";
+      this->description = "Lay 10 stone slabs.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numLaidSlabsLeft{10};
-};
+   private:
+    int m_numLaidSlabsLeft{10};
+  };
 
-class MineStoneFromBoulderQuest2 : public Quest {
- public:
-  MineStoneFromBoulderQuest2() {
-    this->name = "Mine Stone";
-    this->description = "Mine 10 stones from a boulder.";
-  }
+  class MineStoneFromBoulderQuest2 : public Quest {
+   public:
+    MineStoneFromBoulderQuest2() {
+      this->name = "Mine Stone";
+      this->description = "Mine 10 stones from a boulder.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numMinedStonesLeft{10};
-};
+   private:
+    int m_numMinedStonesLeft{10};
+  };
 
-class CraftStoneBricksQuest : public Quest {
- public:
-  CraftStoneBricksQuest() {
-    this->name = "Craft Stone Bricks";
-    this->description = "Craft 10 stone bricks.";
-  }
+  class CraftStoneBricksQuest : public Quest {
+   public:
+    CraftStoneBricksQuest() {
+      this->name = "Craft Stone Bricks";
+      this->description = "Craft 10 stone bricks.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
+    auto GetStatus() const -> String override;
 
- private:
-  int m_numCraftedBricksLeft{10};
-};
+   private:
+    int m_numCraftedBricksLeft{10};
+  };
 
-class BuildStoneWallsQuest : public Quest {
- public:
-  BuildStoneWallsQuest() {
-    this->name = "Build Stone Wall";
-    this->description = "Build stone walls (and a door) around the stone slabs floor.";
-  }
+  class BuildStoneWallsQuest : public Quest {
+   public:
+    BuildStoneWallsQuest() {
+      this->name = "Build Stone Wall";
+      this->description = "Build stone walls (and a door) around the stone slabs floor.";
+    }
 
-  auto Update() -> void override;
+    auto Update() -> void override;
 
-  auto GetStatus() const -> String override;
-};
+    auto GetStatus() const -> String override;
+  };
 }

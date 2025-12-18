@@ -5,52 +5,52 @@
 #include "PointF.hpp"
 
 namespace Forradia {
-/**
- * A rectangle in 2D space using dimensions of float type.
- */
-/// type.
-class RectF {
- public:
   /**
-   * Check if this rectangle contains a certian point.
-   *
-   * @param point Point to check if it is contained in this rectangle.
-   * @return True if the Point is within this rectangle, otherwise false.
+   * A rectangle in 2D space using dimensions of float type.
    */
-  [[nodiscard]] auto Contains(PointF point) const -> bool;
+  /// type.
+  class RectF {
+   public:
+    /**
+     * Check if this rectangle contains a certian point.
+     *
+     * @param point Point to check if it is contained in this rectangle.
+     * @return True if the Point is within this rectangle, otherwise false.
+     */
+    [[nodiscard]] auto Contains(PointF point) const -> bool;
 
-  /**
-   * Returns only the position of this rectangle.
-   *
-   * @return The position.
-   */
-  [[nodiscard]] auto GetPosition() const -> PointF;
+    /**
+     * Returns only the position of this rectangle.
+     *
+     * @return The position.
+     */
+    [[nodiscard]] auto GetPosition() const -> PointF;
 
-  /**
-   * Adds an offset to this rectangle, with the dimensions altered separately.
-   *
-   * @param offset The offset to add.
-   */
-  auto Offset(PointF offset) -> void;
+    /**
+     * Adds an offset to this rectangle, with the dimensions altered separately.
+     *
+     * @param offset The offset to add.
+     */
+    auto Offset(PointF offset) -> void;
 
-  /**
-   * The x coordinate.
-   */
-  float x{0.0F};
+    /**
+     * The x coordinate.
+     */
+    float x{0.0F};
 
-  /**
-   * The y coordinate.
-   */
-  float y{0.0F};
+    /**
+     * The y coordinate.
+     */
+    float y{0.0F};
 
-  /**
-   * The width, in the x dimension.
-   */
-  float width{0.0F};
+    /**
+     * The width, in the x dimension.
+     */
+    float width{0.0F};
 
-  /**
-   * The height, in the y dimension.
-   */
-  float height{0.0F};
-};
+    /**
+     * The height, in the y dimension.
+     */
+    float height{0.0F};
+  };
 }

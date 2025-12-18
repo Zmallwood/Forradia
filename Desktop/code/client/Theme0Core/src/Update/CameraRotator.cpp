@@ -8,30 +8,30 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto CameraRotator::Update() -> void {
-  if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
-    m_isRotating = true;
+  auto CameraRotator::Update() -> void {
+    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
+      m_isRotating = true;
 
-    m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
+      m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
+    }
+
+    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
+      if (m_isRotating)
+        _<MouseInput>().GetRightMouseButtonRef().Reset();
+
+      m_isRotating = false;
+    }
+
+    if (m_isRotating) {
+      auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+
+      auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
+
+      _<Camera>().AddRotationDeltaSideways(dX);
+
+      auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
+
+      _<Camera>().AddRotationDeltaVertical(dY);
+    }
   }
-
-  if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
-    if (m_isRotating)
-      _<MouseInput>().GetRightMouseButtonRef().Reset();
-
-    m_isRotating = false;
-  }
-
-  if (m_isRotating) {
-    auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-
-    auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
-
-    _<Camera>().AddRotationDeltaSideways(dX);
-
-    auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
-
-    _<Camera>().AddRotationDeltaVertical(dY);
-  }
-}
 }

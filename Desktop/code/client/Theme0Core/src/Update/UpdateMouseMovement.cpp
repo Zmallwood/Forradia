@@ -9,37 +9,37 @@
 #include "TileHovering.hpp"
 
 namespace Forradia::Theme0 {
-auto UpdateMouseMovement() -> void {
-  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
-    auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
-    _<Theme0::Player>().SetDestination(newDestination);
-    //_<BattleSystem>().SetTargetedRobot(nullptr);
+  auto UpdateMouseMovement() -> void {
+    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
+      auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
+      _<Theme0::Player>().SetDestination(newDestination);
+      //_<BattleSystem>().SetTargetedRobot(nullptr);
+    }
+
+    auto playerPosition{_<Player>().GetPosition()};
+    auto destination{_<Player>().GetDestination()};
+
+    if (destination == Point{-1, -1})
+      return;
+
+    auto now{GetTicks()};
+
+    if (now >= _<Player>().GetTicksLastMovement() + InvertSpeed(_<Player>().GetMovementSpeed())) {
+      auto dX{destination.x - playerPosition.x};
+      auto dY{destination.y - playerPosition.y};
+
+      if (dX < 0)
+        _<Player>().MoveWest();
+      if (dY < 0)
+        _<Player>().MoveNorth();
+      if (dX > 0)
+        _<Player>().MoveEast();
+      if (dY > 0)
+        _<Player>().MoveSouth();
+      if (destination == playerPosition)
+        _<Player>().SetDestination({-1, -1});
+
+      _<Player>().SetTicksLastMovement(now);
+    }
   }
-
-  auto playerPosition{_<Player>().GetPosition()};
-  auto destination{_<Player>().GetDestination()};
-
-  if (destination == Point{-1, -1})
-    return;
-
-  auto now{GetTicks()};
-
-  if (now >= _<Player>().GetTicksLastMovement() + InvertSpeed(_<Player>().GetMovementSpeed())) {
-    auto dX{destination.x - playerPosition.x};
-    auto dY{destination.y - playerPosition.y};
-
-    if (dX < 0)
-      _<Player>().MoveWest();
-    if (dY < 0)
-      _<Player>().MoveNorth();
-    if (dX > 0)
-      _<Player>().MoveEast();
-    if (dY > 0)
-      _<Player>().MoveSouth();
-    if (destination == playerPosition)
-      _<Player>().SetDestination({-1, -1});
-
-    _<Player>().SetTicksLastMovement(now);
-  }
-}
 }

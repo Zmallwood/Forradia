@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GroundRenderer::GetVSSource() const -> String {
-  return R"(
+  auto GroundRenderer::GetVSSource() const -> String {
+    return R"(
         #version 330 core
         
         layout (location = 0) in vec3 aPos;
@@ -30,5 +30,5 @@ auto GroundRenderer::GetVSSource() const -> String {
             Normal = aNormal;
         }
     )";
-}
+  }
 }

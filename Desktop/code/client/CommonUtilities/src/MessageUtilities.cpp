@@ -5,11 +5,11 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Print(StringView text) -> void {
-  std::cout << text;
-}
+  auto Print(StringView text) -> void {
+    std::cout << text;
+  }
 
-auto PrintLine(StringView text) -> void {
-  std::cout << text << std::endl;
-}
+  auto PrintLine(StringView text) -> void {
+    std::cout << text << std::endl;
+  }
 }

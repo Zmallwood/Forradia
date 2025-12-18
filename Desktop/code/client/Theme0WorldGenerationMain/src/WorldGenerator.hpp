@@ -4,19 +4,19 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-class WorldArea;
+  class WorldArea;
 
-/**
- * The WorldGenerator class is responsible for generating a new world.
- */
-class WorldGenerator {
- public:
   /**
-   * Generates a new world.
+   * The WorldGenerator class is responsible for generating a new world.
    */
-  auto GenerateNewWorld() const -> void;
+  class WorldGenerator {
+   public:
+    /**
+     * Generates a new world.
+     */
+    auto GenerateNewWorld() const -> void;
 
- private:
-  auto Prepare() const -> void;
-};
+   private:
+    auto Prepare() const -> void;
+  };
 }

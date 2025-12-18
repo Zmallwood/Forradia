@@ -4,54 +4,54 @@
 #pragma once
 
 namespace Forradia {
-class ShaderProgram;
-
-/**
- * Base class for all renderers.
- */
-class RendererBase {
- public:
-  /**
-   * Initialize the renderer with its shader program.
-   */
-  auto Initialize() -> void;
-
- protected:
-  /**
-   * Get the vertex shader source code.
-   *
-   * @return The vertex shader source code.
-   */
-  virtual auto GetVSSource() const -> String = 0;
+  class ShaderProgram;
 
   /**
-   * Get the fragment shader source code.
-   *
-   * @return The fragment shader source code.
+   * Base class for all renderers.
    */
-  virtual auto GetFSSource() const -> String = 0;
+  class RendererBase {
+   public:
+    /**
+     * Initialize the renderer with its shader program.
+     */
+    auto Initialize() -> void;
 
-  /**
-   * Can be used to do additional initialization implemented in deriving class.
-   */
-  virtual auto InitializeDerived() -> void {
-  }
+   protected:
+    /**
+     * Get the vertex shader source code.
+     *
+     * @return The vertex shader source code.
+     */
+    virtual auto GetVSSource() const -> String = 0;
 
-  /**
-   * Set up the attribute layout.
-   */
-  virtual auto SetupAttributeLayout() const -> void = 0;
+    /**
+     * Get the fragment shader source code.
+     *
+     * @return The fragment shader source code.
+     */
+    virtual auto GetFSSource() const -> String = 0;
 
-  /**
-   * Get the shader program.
-   *
-   * @return The shader program.
-   */
-  auto GetShaderProgram() const {
-    return m_shaderProgram;
-  }
+    /**
+     * Can be used to do additional initialization implemented in deriving class.
+     */
+    virtual auto InitializeDerived() -> void {
+    }
 
- private:
-  SharedPtr<ShaderProgram> m_shaderProgram;
-};
+    /**
+     * Set up the attribute layout.
+     */
+    virtual auto SetupAttributeLayout() const -> void = 0;
+
+    /**
+     * Get the shader program.
+     *
+     * @return The shader program.
+     */
+    auto GetShaderProgram() const {
+      return m_shaderProgram;
+    }
+
+   private:
+    SharedPtr<ShaderProgram> m_shaderProgram;
+  };
 }

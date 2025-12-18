@@ -5,9 +5,9 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Replace(StringView text, char replace, char replaceWith) -> String {
-  String result{text.data()};
-  std::replace(result.begin(), result.end(), replace, replaceWith);
-  return result;
-}
+  auto Replace(StringView text, char replace, char replaceWith) -> String {
+    String result{text.data()};
+    std::replace(result.begin(), result.end(), replace, replaceWith);
+    return result;
+  }
 }

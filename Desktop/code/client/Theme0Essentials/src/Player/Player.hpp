@@ -7,232 +7,232 @@
 #include "PlayerModes.hpp"
 
 namespace Forradia::Theme0 {
-class PlayerObjectsInventory;
-
-/**
- * Represents the player character.
- */
-class Player {
- public:
-  /**
-   * Constructor.
-   */
-  Player() {
-    // Initialize the player character.
-    this->Initialize();
-  }
+  class PlayerObjectsInventory;
 
   /**
-   * Moves the player north.
+   * Represents the player character.
    */
-  auto MoveNorth() -> void;
+  class Player {
+   public:
+    /**
+     * Constructor.
+     */
+    Player() {
+      // Initialize the player character.
+      this->Initialize();
+    }
 
-  /**
-   * Moves the player east.
-   */
-  auto MoveEast() -> void;
+    /**
+     * Moves the player north.
+     */
+    auto MoveNorth() -> void;
 
-  /**
-   * Moves the player south.
-   */
-  auto MoveSouth() -> void;
+    /**
+     * Moves the player east.
+     */
+    auto MoveEast() -> void;
 
-  /**
-   * Moves the player west.
-   */
-  auto MoveWest() -> void;
+    /**
+     * Moves the player south.
+     */
+    auto MoveSouth() -> void;
 
-  /**
-   * Adds experience to the player.
-   *
-   * @param experience The experience to add.
-   */
-  auto AddExperience(int experience) -> void;
+    /**
+     * Moves the player west.
+     */
+    auto MoveWest() -> void;
 
-  /**
-   * Adds a player action to the player.
-   *
-   * @param playerAction The type of the player action.
-   * @param actionFirstArgument The first argument of the player action.
-   * @param actionSecondArgument The second argument of the player action.
-   */
-  auto AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument = "",
-                       Point actionSecondArgument = {-1, -1}) -> void;
+    /**
+     * Adds experience to the player.
+     *
+     * @param experience The experience to add.
+     */
+    auto AddExperience(int experience) -> void;
 
-  /**
-   * Gets the name of the player.
-   *
-   * @return The name of the player.
-   */
-  auto GetName() const {
-    return m_name;
-  }
+    /**
+     * Adds a player action to the player.
+     *
+     * @param playerAction The type of the player action.
+     * @param actionFirstArgument The first argument of the player action.
+     * @param actionSecondArgument The second argument of the player action.
+     */
+    auto AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument = "",
+                         Point actionSecondArgument = {-1, -1}) -> void;
 
-  /**
-   * Sets the position of the player.
-   *
-   * @param value The value to set.
-   */
-  auto SetPosition(Point value) -> void {
-    m_position = value;
-  }
+    /**
+     * Gets the name of the player.
+     *
+     * @return The name of the player.
+     */
+    auto GetName() const {
+      return m_name;
+    }
 
-  /**
-   * Gets the position of the player.
-   *
-   * @return The position of the player.
-   */
-  auto GetPosition() const {
-    return m_position;
-  }
+    /**
+     * Sets the position of the player.
+     *
+     * @param value The value to set.
+     */
+    auto SetPosition(Point value) -> void {
+      m_position = value;
+    }
 
-  /**
-   * Gets the movement speed of the player.
-   *
-   * @return The movement speed of the player.
-   */
-  auto GetMovementSpeed() const {
-    return m_movementSpeed;
-  }
+    /**
+     * Gets the position of the player.
+     *
+     * @return The position of the player.
+     */
+    auto GetPosition() const {
+      return m_position;
+    }
 
-  /**
-   * Gets the ticks since last movement.
-   *
-   * @return The ticks since last movement.
-   */
-  auto GetTicksLastMovement() const {
-    return m_ticksLastMovement;
-  }
+    /**
+     * Gets the movement speed of the player.
+     *
+     * @return The movement speed of the player.
+     */
+    auto GetMovementSpeed() const {
+      return m_movementSpeed;
+    }
 
-  /**
-   * Sets the ticks since last movement.
-   *
-   * @param value The value to set.
-   */
-  auto SetTicksLastMovement(int value) -> void {
-    m_ticksLastMovement = value;
-  }
+    /**
+     * Gets the ticks since last movement.
+     *
+     * @return The ticks since last movement.
+     */
+    auto GetTicksLastMovement() const {
+      return m_ticksLastMovement;
+    }
 
-  /**
-   * Gets the destination of the player.
-   *
-   * @return The destination of the player.
-   */
-  auto GetDestination() const {
-    return m_destination;
-  }
+    /**
+     * Sets the ticks since last movement.
+     *
+     * @param value The value to set.
+     */
+    auto SetTicksLastMovement(int value) -> void {
+      m_ticksLastMovement = value;
+    }
 
-  /**
-   * Sets the destination of the player.
-   *
-   * @param value The value to set.
-   */
-  auto SetDestination(Point value) -> void {
-    m_destination = value;
-  }
+    /**
+     * Gets the destination of the player.
+     *
+     * @return The destination of the player.
+     */
+    auto GetDestination() const {
+      return m_destination;
+    }
 
-  /**
-   * Gets the body of the player.
-   *
-   * @return The body of the player.
-   */
-  auto &GetBodyRef() {
-    return m_playerBody;
-  }
+    /**
+     * Sets the destination of the player.
+     *
+     * @param value The value to set.
+     */
+    auto SetDestination(Point value) -> void {
+      m_destination = value;
+    }
 
-  /**
-   * Gets the objects inventory of the player.
-   *
-   * @return The objects inventory of the player.
-   */
-  auto &GetObjectsInventoryRef() const {
-    return *m_playerObjectsInventory;
-  }
+    /**
+     * Gets the body of the player.
+     *
+     * @return The body of the player.
+     */
+    auto &GetBodyRef() {
+      return m_playerBody;
+    }
 
-  /**
-   * Gets the experience of the player.
-   *
-   * @return The experience of the player.
-   */
-  auto GetExperience() const {
-    return m_experience;
-  }
+    /**
+     * Gets the objects inventory of the player.
+     *
+     * @return The objects inventory of the player.
+     */
+    auto &GetObjectsInventoryRef() const {
+      return *m_playerObjectsInventory;
+    }
 
-  // auto GetPlayerMode() const {
-  //   return m_playerMode;
-  // }
+    /**
+     * Gets the experience of the player.
+     *
+     * @return The experience of the player.
+     */
+    auto GetExperience() const {
+      return m_experience;
+    }
 
-  // void SetPlayerMode(PlayerModes playerMode) {
-  //   m_playerMode = playerMode;
-  // }
+    // auto GetPlayerMode() const {
+    //   return m_playerMode;
+    // }
 
-  /**
-   * Gets the well being of the player.
-   *
-   * @return The well being of the player.
-   */
-  auto GetWellBeing() const {
-    return m_wellBeing;
-  }
+    // void SetPlayerMode(PlayerModes playerMode) {
+    //   m_playerMode = playerMode;
+    // }
 
-  /**
-   * Gets the max well being of the player.
-   *
-   * @return The max well being of the player.
-   */
-  auto GetMaxWellBeing() const {
-    return m_maxWellBeing;
-  }
+    /**
+     * Gets the well being of the player.
+     *
+     * @return The well being of the player.
+     */
+    auto GetWellBeing() const {
+      return m_wellBeing;
+    }
 
-  // auto GetAttackSpeed() const {
-  //   return m_attackSpeed;
-  // }
+    /**
+     * Gets the max well being of the player.
+     *
+     * @return The max well being of the player.
+     */
+    auto GetMaxWellBeing() const {
+      return m_maxWellBeing;
+    }
 
-  // auto GetTicksLastHitAnother() const {
-  //   return m_ticksLastHitAnother;
-  // }
+    // auto GetAttackSpeed() const {
+    //   return m_attackSpeed;
+    // }
 
-  // void SetTicksLastHitAnother(int value) {
-  //   m_ticksLastHitAnother = value;
-  // }
+    // auto GetTicksLastHitAnother() const {
+    //   return m_ticksLastHitAnother;
+    // }
 
-  /**
-   * Gets the player actions of the player.
-   *
-   * @return The player actions of the player.
-   */
-  auto &GetPlayerActionsRef() const {
-    return m_playerActions;
-  }
+    // void SetTicksLastHitAnother(int value) {
+    //   m_ticksLastHitAnother = value;
+    // }
 
-  /**
-   * Gets the quest completion points of the player.
-   *
-   * @return The quest completion points of the player.
-   */
-  auto &GetQuestCompletionPointsRef() {
-    return m_questCompletionPoints;
-  }
+    /**
+     * Gets the player actions of the player.
+     *
+     * @return The player actions of the player.
+     */
+    auto &GetPlayerActionsRef() const {
+      return m_playerActions;
+    }
 
- private:
-  auto Initialize() -> void;
+    /**
+     * Gets the quest completion points of the player.
+     *
+     * @return The quest completion points of the player.
+     */
+    auto &GetQuestCompletionPointsRef() {
+      return m_questCompletionPoints;
+    }
 
-  auto MoveToSuitablePosition() -> void;
+   private:
+    auto Initialize() -> void;
 
-  String m_name{"Unnamed Player"};
-  Point m_position{60, 50};
-  float m_movementSpeed{5.0F};
-  int m_ticksLastMovement{0};
-  Point m_destination{-1, -1};
-  PlayerBody m_playerBody;
-  SharedPtr<PlayerObjectsInventory> m_playerObjectsInventory;
-  int m_experience{0};
-  // PlayerModes m_playerMode{PlayerModes::Interaction};
-  float m_wellBeing{10.0F};
-  float m_maxWellBeing{10.0F};
-  // float m_attackSpeed{3.0f};
-  // int m_ticksLastHitAnother{0};
-  Vector<std::tuple<PlayerActionTypes, String, Point>> m_playerActions;
-  std::map<String, int> m_questCompletionPoints;
-};
+    auto MoveToSuitablePosition() -> void;
+
+    String m_name{"Unnamed Player"};
+    Point m_position{60, 50};
+    float m_movementSpeed{5.0F};
+    int m_ticksLastMovement{0};
+    Point m_destination{-1, -1};
+    PlayerBody m_playerBody;
+    SharedPtr<PlayerObjectsInventory> m_playerObjectsInventory;
+    int m_experience{0};
+    // PlayerModes m_playerMode{PlayerModes::Interaction};
+    float m_wellBeing{10.0F};
+    float m_maxWellBeing{10.0F};
+    // float m_attackSpeed{3.0f};
+    // int m_ticksLastHitAnother{0};
+    Vector<std::tuple<PlayerActionTypes, String, Point>> m_playerActions;
+    std::map<String, int> m_questCompletionPoints;
+  };
 }

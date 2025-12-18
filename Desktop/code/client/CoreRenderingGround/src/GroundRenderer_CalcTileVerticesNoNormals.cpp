@@ -6,18 +6,18 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia {
-auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                               const Vector<float> &elevations,
-                                               Vector<Color> colors) const -> Vector<float> {
-  auto x{xCoordinate * tileSize};
-  auto y{yCoordinate * tileSize};
-  auto width{tileSize};
-  auto height{tileSize};
+  auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+                                                 const Vector<float> &elevations,
+                                                 Vector<Color> colors) const -> Vector<float> {
+    auto x{xCoordinate * tileSize};
+    auto y{yCoordinate * tileSize};
+    auto width{tileSize};
+    auto height{tileSize};
 
-  auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
+    auto elevationHeight{_<Theme0::Theme0Properties>().GetElevationHeight()};
 
-  // Return the nine vertices.
-  // clang-format off
+    // Return the nine vertices.
+    // clang-format off
         return {x, y, elevations.at(0) * elevationHeight,
                 colors.at(0).r, colors.at(0).g, colors.at(0).b, 0.0F, 0.0F,
                 x + width, y, elevations.at(1) * elevationHeight,
@@ -36,6 +36,6 @@ auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
                 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
                 x + width + width, y + height + height, elevations.at(8) * elevationHeight,
                 1.0F, 1.0F, 1.0F, 1.0F, 1.0F};
-  // clang-format on
-}
+    // clang-format on
+  }
 }

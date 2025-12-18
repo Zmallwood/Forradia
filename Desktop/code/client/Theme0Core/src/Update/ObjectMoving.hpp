@@ -4,5 +4,5 @@
 #pragma once
 
 namespace Forradia {
-class ObjectMoving {};
+  class ObjectMoving {};
 }

@@ -5,48 +5,49 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-/**
- * A label component for the GUI.
- */
-class GUILabel : public GUIComponent {
- public:
   /**
-   * Constructor.
-   *
-   * @param uniqueName An unique name for the label.
-   * @param x The x-coordinate of the label.
-   * @param y The y-coordinate of the label.
-   * @param width The width of the label.
-   * @param height The height of the label.
-   * @param text The text to display on the label.
-   * @param centerAlign Whether to center the text.
-   * @param color The color of the text.
+   * A label component for the GUI.
    */
-  GUILabel(StringView uniqueName, float x, float y, float width, float height, StringView text = "",
-           bool centerAlign = false, Color color = Palette::GetColor<Hash("WheatTransparent")>())
-      : GUIComponent(x, y, width, height), k_renderIDText(Hash(uniqueName)), m_text(text),
-        m_centerAlign(centerAlign), m_color(color) {
-  }
+  class GUILabel : public GUIComponent {
+   public:
+    /**
+     * Constructor.
+     *
+     * @param uniqueName An unique name for the label.
+     * @param x The x-coordinate of the label.
+     * @param y The y-coordinate of the label.
+     * @param width The width of the label.
+     * @param height The height of the label.
+     * @param text The text to display on the label.
+     * @param centerAlign Whether to center the text.
+     * @param color The color of the text.
+     */
+    GUILabel(StringView uniqueName, float x, float y, float width, float height,
+             StringView text = "", bool centerAlign = false,
+             Color color = Palette::GetColor<Hash("WheatTransparent")>())
+        : GUIComponent(x, y, width, height), k_renderIDText(Hash(uniqueName)), m_text(text),
+          m_centerAlign(centerAlign), m_color(color) {
+    }
 
-  /**
-   * Sets the text of the label.
-   *
-   * @param value The new text.
-   */
-  auto SetText(StringView value) -> void {
-    m_text = value;
-  }
+    /**
+     * Sets the text of the label.
+     *
+     * @param value The new text.
+     */
+    auto SetText(StringView value) -> void {
+      m_text = value;
+    }
 
- protected:
-  /**
-   * Render tasks specific to the label, called by the GUIComponent base class.
-   */
-  virtual auto RenderDerived() const -> void override;
+   protected:
+    /**
+     * Render tasks specific to the label, called by the GUIComponent base class.
+     */
+    virtual auto RenderDerived() const -> void override;
 
- private:
-  const int k_renderIDText;
-  String m_text;
-  bool m_centerAlign{false};
-  Color m_color;
-};
+   private:
+    const int k_renderIDText;
+    String m_text;
+    bool m_centerAlign{false};
+    Color m_color;
+  };
 }

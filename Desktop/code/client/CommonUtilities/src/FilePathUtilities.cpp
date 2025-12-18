@@ -5,13 +5,13 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GetFileExtension(StringView path) -> String {
-  String extension{path.substr(path.find_last_of('.') + 1).data()};
-  return extension;
-}
+  auto GetFileExtension(StringView path) -> String {
+    String extension{path.substr(path.find_last_of('.') + 1).data()};
+    return extension;
+  }
 
-auto GetFileNameNoExtension(StringView path) -> String {
-  auto nameWithExtension{String(path.substr(path.find_last_of('/') + 1))};
-  return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
-}
+  auto GetFileNameNoExtension(StringView path) -> String {
+    auto nameWithExtension{String(path.substr(path.find_last_of('/') + 1))};
+    return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
+  }
 }

@@ -6,18 +6,18 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-auto GUILabel::RenderDerived() const -> void {
-  auto bounds{GetBounds()};
+  auto GUILabel::RenderDerived() const -> void {
+    auto bounds{GetBounds()};
 
-  auto x{bounds.x};
-  auto y{bounds.y};
+    auto x{bounds.x};
+    auto y{bounds.y};
 
-  if (m_centerAlign) {
-    bounds.x += bounds.width / 2;
-    bounds.y += bounds.height / 2;
+    if (m_centerAlign) {
+      bounds.x += bounds.width / 2;
+      bounds.y += bounds.height / 2;
+    }
+
+    _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x, bounds.y, FontSizes::_20,
+                                 m_centerAlign, true, m_color);
   }
-
-  _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x, bounds.y, FontSizes::_20,
-                               m_centerAlign, true, m_color);
-}
 }

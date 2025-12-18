@@ -7,82 +7,82 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-auto GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
-                              int yCoordinate, float tileSize, const Vector<float> &elevations,
-                              bool forceUpdate) -> void {
-  GLuint vao{0};
-  GLuint ibo{0};
-  GLuint vbo{0};
+  auto GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
+                                int yCoordinate, float tileSize, const Vector<float> &elevations,
+                                bool forceUpdate) -> void {
+    GLuint vao{0};
+    GLuint ibo{0};
+    GLuint vbo{0};
 
-  bool tileIsCached{this->DrawingOperationIsCached(uniqueRenderID)};
+    bool tileIsCached{this->DrawingOperationIsCached(uniqueRenderID)};
 
-  // If the tile is cached.
-  if (tileIsCached) {
-    auto &entry{m_operationsCache.at(uniqueRenderID)};
+    // If the tile is cached.
+    if (tileIsCached) {
+      auto &entry{m_operationsCache.at(uniqueRenderID)};
 
-    vao = entry.vao;
-    ibo = entry.ibo;
-    vbo = entry.vbo;
+      vao = entry.vao;
+      ibo = entry.ibo;
+      vbo = entry.vbo;
 
-    glBindVertexArray(entry.vao);
-    glBindBuffer(GL_ARRAY_BUFFER, entry.vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry.ibo);
-  } else {
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ibo);
+      glBindVertexArray(entry.vao);
+      glBindBuffer(GL_ARRAY_BUFFER, entry.vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry.ibo);
+    } else {
+      glGenVertexArrays(1, &vao);
+      glGenBuffers(1, &vbo);
+      glGenBuffers(1, &ibo);
 
-    glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+      glBindVertexArray(vao);
+      glBindBuffer(GL_ARRAY_BUFFER, vbo);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-    GroundRenderingOperation entry;
-    entry.vao = vao;
-    entry.ibo = ibo;
-    entry.vbo = vbo;
+      GroundRenderingOperation entry;
+      entry.vao = vao;
+      entry.ibo = ibo;
+      entry.vbo = vbo;
 
-    m_operationsCache[uniqueRenderID] = entry;
+      m_operationsCache[uniqueRenderID] = entry;
+    }
+
+    if (false == tileIsCached || forceUpdate) {
+      Vector<Color> colors{Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
+                           Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
+
+      // Calculate the vertices without normals.
+      auto verticesNoNormals{
+          this->CalcTileVerticesNoNormals(xCoordinate, yCoordinate, tileSize, elevations, colors)};
+
+      auto verticesCount{4};
+      auto indicesCount{4};
+
+      // Calculate the vertices with normals.
+      auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
+
+      // Get the vertices as a float array.
+      auto vertices{verticesVector.data()};
+
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount, k_indices,
+                   GL_STATIC_DRAW);
+      glBindBuffer(GL_ARRAY_BUFFER, vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount, vertices,
+                   GL_STATIC_DRAW);
+
+      this->SetupAttributeLayout();
+    }
+
+    // Calculate the MVP matrix.
+    auto modelMatrix{glm::mat4(1.0f)};
+    auto viewMatrix{_<Camera>().GetViewMatrix()};
+    auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
+    auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
+
+    // Upload the MVP matrix to the shader.
+    glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
+
+    auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);
   }
-
-  if (false == tileIsCached || forceUpdate) {
-    Vector<Color> colors{Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
-                         Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
-
-    // Calculate the vertices without normals.
-    auto verticesNoNormals{
-        this->CalcTileVerticesNoNormals(xCoordinate, yCoordinate, tileSize, elevations, colors)};
-
-    auto verticesCount{4};
-    auto indicesCount{4};
-
-    // Calculate the vertices with normals.
-    auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
-
-    // Get the vertices as a float array.
-    auto vertices{verticesVector.data()};
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount, k_indices,
-                 GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount, vertices,
-                 GL_STATIC_DRAW);
-
-    this->SetupAttributeLayout();
-  }
-
-  // Calculate the MVP matrix.
-  auto modelMatrix{glm::mat4(1.0f)};
-  auto viewMatrix{_<Camera>().GetViewMatrix()};
-  auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
-  auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
-
-  // Upload the MVP matrix to the shader.
-  glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
-
-  auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
-  glBindTexture(GL_TEXTURE_2D, textureID);
-
-  glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);
-}
 }

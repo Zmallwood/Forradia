@@ -15,31 +15,31 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-auto UpdateKeyboardActions() -> void {
-  if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
-    _<GUISystemMenu>().ToggleVisibility();
-  } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {
-    _<GUIPlayerBodyWindow>().ToggleVisibility();
-  } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
-    _<GUIInventoryWindow>().ToggleVisibility();
-  } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN)) {
-    if (_<GUIChatBox>().GetInputActive())
-      _<GUIChatBox>().SubmitInput();
-    else
-      _<GUIChatBox>().EnableInput();
-  } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
-    // auto currentMode{_<Player>().GetPlayerMode()};
+  auto UpdateKeyboardActions() -> void {
+    if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
+      _<GUISystemMenu>().ToggleVisibility();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {
+      _<GUIPlayerBodyWindow>().ToggleVisibility();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
+      _<GUIInventoryWindow>().ToggleVisibility();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN)) {
+      if (_<GUIChatBox>().GetInputActive())
+        _<GUIChatBox>().SubmitInput();
+      else
+        _<GUIChatBox>().EnableInput();
+    } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
+      // auto currentMode{_<Player>().GetPlayerMode()};
 
-    // switch (currentMode) {
-    // case PlayerModes::Interaction:
-    //   _<Player>().SetPlayerMode(PlayerModes::Battle);
-    //   _<GUIChatBox>().Print("You are now in battle mode.");
-    //   break;
-    // case PlayerModes::Battle:
-    //   _<Player>().SetPlayerMode(PlayerModes::Interaction);
-    //   _<GUIChatBox>().Print("You are now in interaction mode.");
-    //   break;
-    // }
+      // switch (currentMode) {
+      // case PlayerModes::Interaction:
+      //   _<Player>().SetPlayerMode(PlayerModes::Battle);
+      //   _<GUIChatBox>().Print("You are now in battle mode.");
+      //   break;
+      // case PlayerModes::Battle:
+      //   _<Player>().SetPlayerMode(PlayerModes::Interaction);
+      //   _<GUIChatBox>().Print("You are now in interaction mode.");
+      //   break;
+      // }
+    }
   }
-}
 }

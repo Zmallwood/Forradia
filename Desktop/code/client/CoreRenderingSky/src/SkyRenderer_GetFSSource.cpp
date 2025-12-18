@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto SkyRenderer::GetFSSource() const -> String {
-  return R"(
+  auto SkyRenderer::GetFSSource() const -> String {
+    return R"(
         #version 330 core
         
         #define PI 3.14159265359
@@ -89,5 +89,5 @@ auto SkyRenderer::GetFSSource() const -> String {
             FragColor = vec4(skyColor, 1.0);
         }
     )";
-}
+  }
 }

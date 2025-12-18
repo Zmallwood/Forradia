@@ -7,16 +7,16 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto GUIExperienceBar::UpdateDerived() -> void {
-  GUIMeter::UpdateDerived();
+  auto GUIExperienceBar::UpdateDerived() -> void {
+    GUIMeter::UpdateDerived();
 
-  auto &player{_<Theme0::Player>()};
-  auto experience{player.GetExperience()};
-  auto levelProgress{CalculateFractionalExperienceProgress(experience)};
-  m_filledPercentage = levelProgress;
-}
+    auto &player{_<Theme0::Player>()};
+    auto experience{player.GetExperience()};
+    auto levelProgress{CalculateFractionalExperienceProgress(experience)};
+    m_filledPercentage = levelProgress;
+  }
 
-auto GUIExperienceBar::GetFilledPercentage() const -> float {
-  return m_filledPercentage;
-}
+  auto GUIExperienceBar::GetFilledPercentage() const -> float {
+    return m_filledPercentage;
+  }
 }

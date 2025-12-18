@@ -5,25 +5,25 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto MouseInput::RegisterMouseButtonDown(Uint8 button) -> void {
-  switch (button) {
-  case SDL_BUTTON_LEFT:
-    m_leftMouseButton.RegisterPress();
-    break;
-  case SDL_BUTTON_RIGHT:
-    m_rightMouseButton.RegisterPress();
-    break;
+  auto MouseInput::RegisterMouseButtonDown(Uint8 button) -> void {
+    switch (button) {
+    case SDL_BUTTON_LEFT:
+      m_leftMouseButton.RegisterPress();
+      break;
+    case SDL_BUTTON_RIGHT:
+      m_rightMouseButton.RegisterPress();
+      break;
+    }
   }
-}
 
-auto MouseInput::RegisterMouseButtonUp(Uint8 button) -> void {
-  switch (button) {
-  case SDL_BUTTON_LEFT:
-    m_leftMouseButton.RegisterRelease();
-    break;
-  case SDL_BUTTON_RIGHT:
-    m_rightMouseButton.RegisterRelease();
-    break;
+  auto MouseInput::RegisterMouseButtonUp(Uint8 button) -> void {
+    switch (button) {
+    case SDL_BUTTON_LEFT:
+      m_leftMouseButton.RegisterRelease();
+      break;
+    case SDL_BUTTON_RIGHT:
+      m_rightMouseButton.RegisterRelease();
+      break;
+    }
   }
-}
 }

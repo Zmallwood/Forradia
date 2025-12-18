@@ -4,68 +4,68 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-class WorldArea;
-
-/**
- * Base class for world generators.
- */
-class WorldGeneratorBase {
- public:
-  /**
-   * Prepare the world generator.
-   */
-  auto Prepare() -> void;
-
- protected:
-  /**
-   * Get the distance between two points.
-   * @param x1 The x coordinate of the first point.
-   * @param y1 The y coordinate of the first point.
-   * @param x2 The x coordinate of the second point.
-   * @param y2 The y coordinate of the second point.
-   * @return The distance between the two points.
-   */
-  auto GetDistance(int x1, int y1, int x2, int y2) const -> float;
+  class WorldArea;
 
   /**
-   * Get the default ground elevation.
-   * @return The default ground elevation.
+   * Base class for world generators.
    */
-  auto GetDefaultGroundElevation() const {
-    return k_defaultGroundElevation;
-  }
+  class WorldGeneratorBase {
+   public:
+    /**
+     * Prepare the world generator.
+     */
+    auto Prepare() -> void;
 
-  /**
-   * Get the world area.
-   *
-   * @return The world area.
-   */
-  auto GetWorldArea() const {
-    return m_worldArea;
-  }
+   protected:
+    /**
+     * Get the distance between two points.
+     * @param x1 The x coordinate of the first point.
+     * @param y1 The y coordinate of the first point.
+     * @param x2 The x coordinate of the second point.
+     * @param y2 The y coordinate of the second point.
+     * @return The distance between the two points.
+     */
+    auto GetDistance(int x1, int y1, int x2, int y2) const -> float;
 
-  /**
-   * Get the size of the world area.
-   *
-   * @return The size of the world area.
-   */
-  auto GetWorldAreaSize() const {
-    return m_worldAreaSize;
-  }
+    /**
+     * Get the default ground elevation.
+     * @return The default ground elevation.
+     */
+    auto GetDefaultGroundElevation() const {
+      return k_defaultGroundElevation;
+    }
 
-  /**
-   * Get the scale factor of the world.
-   *
-   * @return The scale factor of the world.
-   */
-  auto GetWorldScaling() const {
-    return m_worldScaling;
-  }
+    /**
+     * Get the world area.
+     *
+     * @return The world area.
+     */
+    auto GetWorldArea() const {
+      return m_worldArea;
+    }
 
- private:
-  const int k_defaultGroundElevation{10};
-  SharedPtr<WorldArea> m_worldArea;
-  Size m_worldAreaSize;
-  float m_worldScaling;
-};
+    /**
+     * Get the size of the world area.
+     *
+     * @return The size of the world area.
+     */
+    auto GetWorldAreaSize() const {
+      return m_worldAreaSize;
+    }
+
+    /**
+     * Get the scale factor of the world.
+     *
+     * @return The scale factor of the world.
+     */
+    auto GetWorldScaling() const {
+      return m_worldScaling;
+    }
+
+   private:
+    const int k_defaultGroundElevation{10};
+    SharedPtr<WorldArea> m_worldArea;
+    Size m_worldAreaSize;
+    float m_worldScaling;
+  };
 }

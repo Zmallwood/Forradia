@@ -7,15 +7,15 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto GUIFPSPanel::Initialize() -> void {
-  m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01F, 0.01F, 0.1F, 0.05F);
-  this->AddChildComponent(m_fpsTextPanel);
-}
+  auto GUIFPSPanel::Initialize() -> void {
+    m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01F, 0.01F, 0.1F, 0.05F);
+    this->AddChildComponent(m_fpsTextPanel);
+  }
 
-auto GUIFPSPanel::UpdateDerived() -> void {
-  GUIMovablePanel::UpdateDerived();
+  auto GUIFPSPanel::UpdateDerived() -> void {
+    GUIMovablePanel::UpdateDerived();
 
-  auto fps{_<FPSCounter>().GetFPS()};
-  m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
-}
+    auto fps{_<FPSCounter>().GetFPS()};
+    m_fpsTextPanel->SetText(fmt::format("FPS: {}", fps));
+  }
 }

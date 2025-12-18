@@ -5,28 +5,28 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-CreatureIndex::CreatureIndex() {
-  AddCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
-}
+  CreatureIndex::CreatureIndex() {
+    AddCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
+  }
 
-auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
-                                     float levitationHeight) -> void {
-  m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
-}
+  auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
+                                       float levitationHeight) -> void {
+    m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
+  }
 
-auto CreatureIndex::GetModelScaling(int creatureHash) const -> float {
-  if (m_entries.contains(creatureHash))
-    return m_entries.at(creatureHash).modelScaling;
-  return 1.0F;
-}
+  auto CreatureIndex::GetModelScaling(int creatureHash) const -> float {
+    if (m_entries.contains(creatureHash))
+      return m_entries.at(creatureHash).modelScaling;
+    return 1.0F;
+  }
 
-auto CreatureIndex::GetLevitationHeight(int creatureHash) const -> float {
-  if (m_entries.contains(creatureHash))
-    return m_entries.at(creatureHash).levitationHeight;
-  return 0.0F;
-}
+  auto CreatureIndex::GetLevitationHeight(int creatureHash) const -> float {
+    if (m_entries.contains(creatureHash))
+      return m_entries.at(creatureHash).levitationHeight;
+    return 0.0F;
+  }
 
-auto CreatureIndex::CreatureEntryExists(int creatureHash) const -> bool {
-  return m_entries.contains(creatureHash);
-}
+  auto CreatureIndex::CreatureEntryExists(int creatureHash) const -> bool {
+    return m_entries.contains(creatureHash);
+  }
 }

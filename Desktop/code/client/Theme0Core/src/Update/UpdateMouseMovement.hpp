@@ -4,8 +4,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
-/**
- * Updates the mouse movement.
- */
-auto UpdateMouseMovement() -> void;
+  /**
+   * Updates the mouse movement.
+   */
+  auto UpdateMouseMovement() -> void;
 }

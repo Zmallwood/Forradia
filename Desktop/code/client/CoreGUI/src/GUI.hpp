@@ -5,15 +5,15 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-/**
- * The root GUI class which is created for every scene.
- */
-class GUI : public GUIComponent {
- public:
   /**
-   * Constructor.
+   * The root GUI class which is created for every scene.
    */
-  GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F) {
-  }
-};
+  class GUI : public GUIComponent {
+   public:
+    /**
+     * Constructor.
+     */
+    GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F) {
+    }
+  };
 }

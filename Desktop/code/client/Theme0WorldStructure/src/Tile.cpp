@@ -6,16 +6,16 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto Tile::Initialize() -> void {
-  m_objectsStack = std::make_shared<Forradia::Theme0::ObjectsStack>();
-}
+  auto Tile::Initialize() -> void {
+    m_objectsStack = std::make_shared<Forradia::Theme0::ObjectsStack>();
+  }
 
-auto Tile::SetGround(int groundHash) -> void {
-  m_ground = groundHash;
-  this->SetForceRedraw(true);
-}
+  auto Tile::SetGround(int groundHash) -> void {
+    m_ground = groundHash;
+    this->SetForceRedraw(true);
+  }
 
-auto Tile::SetGround(StringView groundName) -> void {
-  this->SetGround(Hash(groundName));
-}
+  auto Tile::SetGround(StringView groundName) -> void {
+    this->SetGround(Hash(groundName));
+  }
 }

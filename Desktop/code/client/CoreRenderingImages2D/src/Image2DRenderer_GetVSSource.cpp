@@ -5,8 +5,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Image2DRenderer::GetVSSource() const -> String {
-  return R"(
+  auto Image2DRenderer::GetVSSource() const -> String {
+    return R"(
         #version 330 core
         
         layout (location = 0) in vec3 aPos;
@@ -25,5 +25,5 @@ auto Image2DRenderer::GetVSSource() const -> String {
             TexCoord = aTexCoord;
         }
     )";
-}
+  }
 }

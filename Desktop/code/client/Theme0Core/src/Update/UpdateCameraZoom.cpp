@@ -7,8 +7,8 @@
 #include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
-auto UpdateCameraZoom() -> void {
-  auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
-  _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
-}
+  auto UpdateCameraZoom() -> void {
+    auto mouseWheelDelta{_<MouseInput>().GetMouseWheelDeltaPickResult()};
+    _<Camera>().AddZoomAmountDelta(mouseWheelDelta);
+  }
 }

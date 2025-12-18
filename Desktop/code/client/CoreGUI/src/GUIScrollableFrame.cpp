@@ -7,28 +7,28 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-auto GUIScrollableFrame::Render() const -> void {
-  if (!this->GetVisible())
-    return;
+  auto GUIScrollableFrame::Render() const -> void {
+    if (!this->GetVisible())
+      return;
 
-  auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
-  glEnable(GL_SCISSOR_TEST);
-  auto bounds{GetBounds()};
+    auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
+    glEnable(GL_SCISSOR_TEST);
+    auto bounds{GetBounds()};
 
-  // Note: origin is bottom-left
-  auto x{bounds.x * canvasSize.width};
-  auto y{bounds.y * canvasSize.height};
-  auto width{bounds.width * canvasSize.width};
-  auto height{bounds.height * canvasSize.height};
-  glScissor(x, canvasSize.height - y - height, width, height);
+    // Note: origin is bottom-left
+    auto x{bounds.x * canvasSize.width};
+    auto y{bounds.y * canvasSize.height};
+    auto width{bounds.width * canvasSize.width};
+    auto height{bounds.height * canvasSize.height};
+    glScissor(x, canvasSize.height - y - height, width, height);
 
-  this->RenderDerived();
+    this->RenderDerived();
 
-  auto childComponents{this->GetChildComponents()};
+    auto childComponents{this->GetChildComponents()};
 
-  for (auto component : childComponents)
-    component->Render();
+    for (auto component : childComponents)
+      component->Render();
 
-  glDisable(GL_SCISSOR_TEST);
-}
+    glDisable(GL_SCISSOR_TEST);
+  }
 }

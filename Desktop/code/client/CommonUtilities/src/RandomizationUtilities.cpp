@@ -5,11 +5,11 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto Randomize() -> void {
-  srand(time(nullptr));
-}
+  auto Randomize() -> void {
+    srand(time(nullptr));
+  }
 
-auto GetRandomInt(int upperLimit) -> int {
-  return rand() % upperLimit;
-}
+  auto GetRandomInt(int upperLimit) -> int {
+    return rand() % upperLimit;
+  }
 }

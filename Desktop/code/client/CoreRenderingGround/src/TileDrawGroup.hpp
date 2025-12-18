@@ -4,29 +4,29 @@
 #pragma once
 
 namespace Forradia {
-/**
- * A draw group for a tile.
- */
-class TileDrawGroup {
- public:
   /**
-   * The vertex array object.
+   * A draw group for a tile.
    */
-  GLuint vao;
+  class TileDrawGroup {
+   public:
+    /**
+     * The vertex array object.
+     */
+    GLuint vao;
 
-  /**
-   * The index buffer object.
-   */
-  GLuint ibo;
+    /**
+     * The index buffer object.
+     */
+    GLuint ibo;
 
-  /**
-   * The vertex buffer object.
-   */
-  GLuint vbo;
+    /**
+     * The vertex buffer object.
+     */
+    GLuint vbo;
 
-  /**
-   * The combined indices count.
-   */
-  int combinedIndicesCount{0};
-};
+    /**
+     * The combined indices count.
+     */
+    int combinedIndicesCount{0};
+  };
 }

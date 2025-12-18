@@ -5,43 +5,43 @@
 #include "CursorStyles.hpp"
 
 namespace Forradia {
-/**
- * Class for the game cursor, which replaces the default system cursor.
- */
-class Cursor {
- public:
   /**
-   * Default constructor
+   * Class for the game cursor, which replaces the default system cursor.
    */
-  Cursor() {
-    this->Initialize();
-  }
+  class Cursor {
+   public:
+    /**
+     * Default constructor
+     */
+    Cursor() {
+      this->Initialize();
+    }
 
-  /**
-   * Resets the cursor style to normal.
-   */
-  auto ResetStyleToNormal() -> void;
+    /**
+     * Resets the cursor style to normal.
+     */
+    auto ResetStyleToNormal() -> void;
 
-  /**
-   * Renders the cursor.
-   */
-  auto Render() const -> void;
+    /**
+     * Renders the cursor.
+     */
+    auto Render() const -> void;
 
-  /**
-   * Sets the cursor style.
-   * @param value New cursor style.
-   */
-  auto SetCursorStyle(CursorStyles value) -> void {
-    m_cursorStyle = value;
-  }
+    /**
+     * Sets the cursor style.
+     * @param value New cursor style.
+     */
+    auto SetCursorStyle(CursorStyles value) -> void {
+      m_cursorStyle = value;
+    }
 
- private:
-  auto Initialize() -> void;
+   private:
+    auto Initialize() -> void;
 
-  auto DisableSystemCursor() const -> void;
+    auto DisableSystemCursor() const -> void;
 
-  constexpr static float k_cursorSize{0.05F};
-  const int k_renderID{Hash("RenderIDCursor")};
-  CursorStyles m_cursorStyle{CursorStyles::Normal};
-};
+    constexpr static float k_cursorSize{0.05F};
+    const int k_renderID{Hash("RenderIDCursor")};
+    CursorStyles m_cursorStyle{CursorStyles::Normal};
+  };
 }

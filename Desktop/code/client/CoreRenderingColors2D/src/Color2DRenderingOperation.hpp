@@ -4,24 +4,24 @@
 #pragma once
 
 namespace Forradia {
-/**
- * A rendering operation for colors in 2D.
- */
-class Color2DRenderingOperation {
- public:
   /**
-   * The vertex array object.
+   * A rendering operation for colors in 2D.
    */
-  GLuint vao;
+  class Color2DRenderingOperation {
+   public:
+    /**
+     * The vertex array object.
+     */
+    GLuint vao;
 
-  /**
-   * The index buffer object.
-   */
-  GLuint ibo;
+    /**
+     * The index buffer object.
+     */
+    GLuint ibo;
 
-  /**
-   * The vertex buffer object.
-   */
-  GLuint vbo;
-};
+    /**
+     * The vertex buffer object.
+     */
+    GLuint vbo;
+  };
 }

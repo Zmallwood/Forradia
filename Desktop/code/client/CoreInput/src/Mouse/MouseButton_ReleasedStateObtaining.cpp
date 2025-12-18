@@ -5,13 +5,13 @@
 #include "StdAfx.hpp"
 
 namespace Forradia {
-auto MouseButton::HasBeenReleasedPickResult() -> bool {
-  auto result{m_hasBeenReleased};
-  m_hasBeenReleased = false;
-  return result;
-}
+  auto MouseButton::HasBeenReleasedPickResult() -> bool {
+    auto result{m_hasBeenReleased};
+    m_hasBeenReleased = false;
+    return result;
+  }
 
-auto MouseButton::HasBeenReleased() const -> bool {
-  return m_hasBeenReleased;
-}
+  auto MouseButton::HasBeenReleased() const -> bool {
+    return m_hasBeenReleased;
+  }
 }
