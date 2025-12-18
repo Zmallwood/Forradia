@@ -15,7 +15,7 @@ auto GUIScrollableFrame::Render() const -> void {
   glEnable(GL_SCISSOR_TEST);
   auto bounds{GetBounds()};
 
-  // Note: origo is bottom-left
+  // Note: origin is bottom-left
   auto x{bounds.x * canvasSize.width};
   auto y{bounds.y * canvasSize.height};
   auto width{bounds.width * canvasSize.width};

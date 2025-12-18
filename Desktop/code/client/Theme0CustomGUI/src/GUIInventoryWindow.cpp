@@ -24,7 +24,6 @@ auto GUIInventoryWindowFrame::Initialize(GUIWindow *parentWindow) -> void {
 
 auto GUIInventoryWindowFrame::UpdateDerived() -> void {
   GUIScrollableFrame::UpdateDerived();
-  // this->SetBounds(m_parentWindow->GetBounds());
 }
 
 auto GUIInventoryWindowFrame::GetBounds() const -> RectF {
@@ -39,7 +38,6 @@ auto GUIInventoryWindowPanel::Initialize() -> void {
     m_renderIDsSlotsBackground[i] = Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
     m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
   }
-  // this->SetBounds({0.0f, 0.0f, 0.5f, 0.5f});
 }
 
 auto GUIInventoryWindowPanel::RenderDerived() const -> void {
