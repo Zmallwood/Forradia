@@ -16,6 +16,6 @@ class CameraRotator {
 
  private:
   bool m_isRotating{false};
-  PointF m_mousePositionLastUpdate{-1.0f, -1.0f};
+  PointF m_mousePositionLastUpdate{-1.0F, -1.0F};
 };
 }

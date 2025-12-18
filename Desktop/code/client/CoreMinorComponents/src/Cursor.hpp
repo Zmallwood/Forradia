@@ -40,7 +40,7 @@ class Cursor {
 
   auto DisableSystemCursor() const -> void;
 
-  constexpr static float k_cursorSize{0.05f};
+  constexpr static float k_cursorSize{0.05F};
   const int k_renderID{Hash("RenderIDCursor")};
   CursorStyles m_cursorStyle{CursorStyles::Normal};
 };

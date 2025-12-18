@@ -59,9 +59,9 @@ auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
 
       // Continue in a random direction.
 
-      auto angle{GetRandomInt(360) * M_PI / 180.0f};
-      currentX += std::cos(angle) * 1.0f;
-      currentY += std::sin(angle) * 1.0f;
+      auto angle{GetRandomInt(360) * M_PI / 180.0F};
+      currentX += std::cos(angle) * 1.0F;
+      currentY += std::sin(angle) * 1.0F;
 
       continue;
     }
@@ -107,9 +107,9 @@ auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
       if (!foundAdjacent) {
         // Continue in a random direction.
 
-        auto angle{GetRandomInt(360) * M_PI / 180.0f};
-        currentX += std::cos(angle) * 1.0f;
-        currentY += std::sin(angle) * 1.0f;
+        auto angle{GetRandomInt(360) * M_PI / 180.0F};
+        currentX += std::cos(angle) * 1.0F;
+        currentY += std::sin(angle) * 1.0F;
 
         continue;
       }
@@ -146,8 +146,8 @@ auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
       // Prefer downhill but allow other directions (rivers can flow in any
       // direction).
 
-      auto bestDX{0.0f};
-      auto bestDY{0.0f};
+      auto bestDX{0.0F};
+      auto bestDY{0.0F};
       auto bestElevation{tile->GetElevation()};
       auto foundDownhill{false};
 
@@ -238,9 +238,9 @@ auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int le
 
         if (!foundDirection) {
           // Just move in a random direction.
-          auto angle{GetRandomInt(360) * M_PI / 180.0f};
-          currentX += std::cos(angle) * 1.0f;
-          currentY += std::sin(angle) * 1.0f;
+          auto angle{GetRandomInt(360) * M_PI / 180.0F};
+          currentX += std::cos(angle) * 1.0F;
+          currentY += std::sin(angle) * 1.0F;
         }
       }
 

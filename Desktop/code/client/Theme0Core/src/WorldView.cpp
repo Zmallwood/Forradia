@@ -29,18 +29,16 @@ auto WorldView::Initiallize() -> void {
       m_renderIDsGround[x][y] = Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
       m_renderIDsClaimedTiles[x][y] =
           Hash("ClaimedTile_" + std::to_string(x) + "_" + std::to_string(y));
-      m_renderIDsRivers1[x][y] = Hash("River1_" + std::to_string(x) + "_" + std::to_string(y));
-      m_renderIDsRivers2[x][y] = Hash("River2_" + std::to_string(x) + "_" + std::to_string(y));
     }
   }
 }
 
 auto WorldView::Render() const -> void {
   // 45 degrees up in +Z
-  glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7f, 0.0f, 0.7f));
+  glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7F, 0.0F, 0.7F));
 
   // 45 degrees
-  float sunElevation = M_PI / 4.0f;
+  float sunElevation = M_PI / 4.0F;
 
   _<SkyRenderer>().Render(sunDirection, sunElevation);
 
@@ -114,15 +112,15 @@ auto WorldView::Render() const -> void {
 
     Vector<float> elevations;
 
-    auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
-    auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-    auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
-    auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-    auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0f};
-    auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0f};
-    auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0f};
-    auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0f};
-    auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0f};
+    auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
+    auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
+    auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0F};
+    auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0F};
+    auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0F};
+    auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0F};
+    auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0F};
+    auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0F};
+    auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0F};
 
     elevations.push_back(elevationNW);
     elevations.push_back(elevationNE);
@@ -337,7 +335,7 @@ auto WorldView::Render() const -> void {
 
     if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y) {
       for (auto &elevation : elevations)
-        elevation += 0.01f;
+        elevation += 0.01F;
 
       _<GroundRenderer>().SetupState();
       _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile, Hash("HoveredTile"),

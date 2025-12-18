@@ -15,7 +15,7 @@ class GUIFPSPanel : public GUIMovablePanel {
   /**
    * Constructor.
    */
-  GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92f, 0.02f, 0.07f, 0.04f) {
+  GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92F, 0.02F, 0.07F, 0.04F) {
     // Initialize this FPSPanel.
     this->Initialize();
   }

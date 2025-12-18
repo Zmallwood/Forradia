@@ -8,7 +8,7 @@
 
 namespace Forradia {
 auto GUIFPSPanel::Initialize() -> void {
-  m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01f, 0.01f, 0.1f, 0.05f);
+  m_fpsTextPanel = std::make_shared<GUILabel>("GUILabelFPSPanel", 0.01F, 0.01F, 0.1F, 0.05F);
   this->AddChildComponent(m_fpsTextPanel);
 }
 

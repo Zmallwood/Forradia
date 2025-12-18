@@ -47,9 +47,9 @@ class PlayerBodyPart {
   }
 
  private:
-  float m_strength{0.1f};
-  float m_currentEnergy{1.0f};
-  float m_maxEnergy{1.0f};
-  float m_temperature{37.0f};
+  float m_strength{0.1F};
+  float m_currentEnergy{1.0F};
+  float m_maxEnergy{1.0F};
+  float m_temperature{37.0F};
 };
 }

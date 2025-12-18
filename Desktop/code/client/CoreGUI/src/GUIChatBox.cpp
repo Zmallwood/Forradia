@@ -64,7 +64,7 @@ auto GUIChatBox::RenderDerived() const -> void {
 
     auto cursorX{bounds.x};
     auto cursorY{bounds.y + bounds.height - k_lineHeight};
-    auto cursorWidth{0.01f};
+    auto cursorWidth{0.01F};
     auto cursorHeight{k_lineHeight};
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX, cursorY,

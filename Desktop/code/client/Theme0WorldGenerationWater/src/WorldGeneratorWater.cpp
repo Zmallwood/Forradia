@@ -109,7 +109,7 @@ auto WorldGeneratorWater::GenerateLakesInValleys() const -> void {
       continue;
 
     auto radius{CInt(3 * worldScaling + GetRandomInt(6 * worldScaling))};
-    auto irregularity{0.3f + GetRandomInt(20) / 100.0f};
+    auto irregularity{0.3F + GetRandomInt(20) / 100.0F};
 
     for (auto y = centerY - radius; y <= centerY + radius; y++) {
       for (auto x = centerX - radius; x <= centerX + radius; x++) {
@@ -131,7 +131,7 @@ auto WorldGeneratorWater::GenerateLakesInValleys() const -> void {
         if (distance * distance <= radius * radius) {
           tile->SetGround("GroundWater");
 
-          auto depth{static_cast<int>((1.0f - distance / radius) * 4.0f) + 1};
+          auto depth{static_cast<int>((1.0F - distance / radius) * 4.0F) + 1};
 
           tile->SetWaterDepth(depth);
           tile->SetElevation(0);

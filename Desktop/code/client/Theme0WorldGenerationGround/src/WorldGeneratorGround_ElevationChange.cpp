@@ -48,7 +48,7 @@ auto WorldGeneratorGround::GenerateMountainRanges() const -> void {
       }
 
       // Move along the mountain range with some variation.
-      auto angleRadians{static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0f)};
+      auto angleRadians{static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0F)};
 
       currentX += std::cos(angleRadians) * (2.0f + GetRandomInt(3));
       currentY += std::sin(angleRadians) * (2.0f + GetRandomInt(3));
@@ -98,7 +98,7 @@ auto WorldGeneratorGround::GenerateValleys() const -> void {
         auto normalizedDistance{distance / radius};
 
         // Calculate the elevation reduction based on the normalized distance.
-        auto elevationReduction{static_cast<int>((1.0f - normalizedDistance) * 40.0f)};
+        auto elevationReduction{static_cast<int>((1.0F - normalizedDistance) * 40.0F)};
 
         auto currentElevation{tile->GetElevation()};
         auto newElevation{currentElevation - elevationReduction};
@@ -140,7 +140,7 @@ auto WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int rad
       auto normalizedDistance{distance / radius};
 
       auto baseElevationGain{
-          static_cast<float>((1.0f - normalizedDistance * normalizedDistance) * maxElevation)};
+          static_cast<float>((1.0F - normalizedDistance * normalizedDistance) * maxElevation)};
 
       // Adjust the elevation gain to avoid abrupt height increases near the peak.
 
@@ -152,16 +152,16 @@ auto WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int rad
       auto elevationRatio{static_cast<float>(currentElevation) / static_cast<float>(maxElevation)};
 
       // Start falloff at 60 % of max elevation.
-      auto falloffStart{0.6f};
+      auto falloffStart{0.6F};
 
-      auto smoothScale{1.0f};
+      auto smoothScale{1.0F};
 
       if (elevationRatio >= falloffStart) {
         // Smooth falloff using a smoothstep-like curve for very gradual transition.
         // When at falloffStart (60%), scale is 1.0.
         // When at 1.0 (100%), scale is 0.0.
 
-        auto falloffRange{1.0f - falloffStart};
+        auto falloffRange{1.0F - falloffStart};
 
         // t goes from 0 to 1.
         auto t{(elevationRatio - falloffStart) / falloffRange};
@@ -169,7 +169,7 @@ auto WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int rad
         // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
         // This gives a smoother, more natural falloff.
 
-        smoothScale = 1.0f - (t * t * (3.0f - 2.0f * t));
+        smoothScale = 1.0F - (t * t * (3.0F - 2.0F * t));
       }
 
       // Apply smooth scaling to elevation gain.

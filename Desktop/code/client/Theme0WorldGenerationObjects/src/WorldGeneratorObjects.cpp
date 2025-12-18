@@ -32,7 +32,7 @@ auto WorldGeneratorObjects::GenerateForests() const -> void {
       continue;
 
     auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
-    auto treeDensity{0.1f + GetRandomInt(20) / 100.0f};
+    auto treeDensity{0.1F + GetRandomInt(20) / 100.0F};
 
     auto useFir{GetRandomInt(100) < 60};
 
@@ -52,7 +52,7 @@ auto WorldGeneratorObjects::GenerateForests() const -> void {
         auto normalizedDistance{distance / radius};
 
         // Calculate the local density. Higher density in center, lower at edges.
-        auto localDensity{treeDensity * (1.0f - normalizedDistance * 0.5f)};
+        auto localDensity{treeDensity * (1.0F - normalizedDistance * 0.5F)};
 
         if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f)) {
           auto forestTile{worldArea->GetTile(x, y)};

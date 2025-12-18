@@ -28,7 +28,7 @@ auto WorldGeneratorGround::GenerateGrassBiomes() const -> void {
       continue;
 
     auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
-    auto density{0.7f + GetRandomInt(30) / 100.0f}; // 0.7 to 1.0.
+    auto density{0.7F + GetRandomInt(30) / 100.0F}; // 0.7 to 1.0.
     CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
   }
 

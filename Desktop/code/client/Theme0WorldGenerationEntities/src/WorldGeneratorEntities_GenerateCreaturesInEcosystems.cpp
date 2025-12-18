@@ -187,7 +187,7 @@ auto WorldGeneratorEntities::GenerateCreaturesInEcosystems() const -> void {
     // Generate the creatures in the ecosystem.
     for (auto c = 0; c < creaturesInEcosystem; c++) {
       // Generate a random angle.
-      auto angle{GetRandomInt(360) * M_PI / 180.0f};
+      auto angle{GetRandomInt(360) * M_PI / 180.0F};
 
       // Generate a random distance.
       auto distance{2 + GetRandomInt(ecosystemRadius)};

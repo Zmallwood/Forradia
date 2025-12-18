@@ -61,8 +61,8 @@ auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) co
   // range
   // [-1, 1]).
 
-  glm::vec4 nearPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, -1.0f, 1.0f};
-  glm::vec4 farPoint{mousePos.x * 2.0f - 1.0f, mousePos.y * 2.0f - 1.0f, 1.0f, 1.0f};
+  glm::vec4 nearPoint{mousePos.x * 2.0F - 1.0F, mousePos.y * 2.0F - 1.0F, -1.0F, 1.0F};
+  glm::vec4 farPoint{mousePos.x * 2.0F - 1.0F, mousePos.y * 2.0F - 1.0F, 1.0F, 1.0F};
 
   // Unproject to world space.
   nearPoint = inverseViewProjection * nearPoint;
@@ -70,10 +70,10 @@ auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) co
 
   // Perspective divide.
 
-  if (std::abs(nearPoint.w) > 0.0001f)
+  if (std::abs(nearPoint.w) > 0.0001F)
     nearPoint /= nearPoint.w;
 
-  if (std::abs(farPoint.w) > 0.0001f)
+  if (std::abs(farPoint.w) > 0.0001F)
     farPoint /= farPoint.w;
 
   // Compute ray origin and direction.

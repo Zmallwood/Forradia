@@ -221,15 +221,15 @@ class Player {
 
   String m_name{"Unnamed Player"};
   Point m_position{60, 50};
-  float m_movementSpeed{5.0f};
+  float m_movementSpeed{5.0F};
   int m_ticksLastMovement{0};
   Point m_destination{-1, -1};
   PlayerBody m_playerBody;
   SharedPtr<PlayerObjectsInventory> m_playerObjectsInventory;
   int m_experience{0};
   // PlayerModes m_playerMode{PlayerModes::Interaction};
-  float m_wellBeing{10.0f};
-  float m_maxWellBeing{10.0f};
+  float m_wellBeing{10.0F};
+  float m_maxWellBeing{10.0F};
   // float m_attackSpeed{3.0f};
   // int m_ticksLastHitAnother{0};
   Vector<std::tuple<PlayerActionTypes, String, Point>> m_playerActions;

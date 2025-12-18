@@ -14,7 +14,7 @@ class GUIChatBox : public GUIPanel {
   /**
    * Constructor.
    */
-  GUIChatBox() : GUIPanel("ChatBox", 0.0f, 0.8f, 0.4f, 0.2f, k_defaultBackgroundImageDerived) {
+  GUIChatBox() : GUIPanel("ChatBox", 0.0F, 0.8F, 0.4F, 0.2F, k_defaultBackgroundImageDerived) {
     this->Initialize();
   }
 
@@ -60,8 +60,8 @@ class GUIChatBox : public GUIPanel {
   auto GetMaxNumLines() const -> int;
 
   constexpr static StringView k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
-  inline static const float k_lineHeight{0.028f};
-  inline static const float k_separatorHeight{0.003f};
+  inline static const float k_lineHeight{0.028F};
+  inline static const float k_separatorHeight{0.003F};
   inline static const float k_margin{0.008f};
   const int k_renderIDSeparator{Hash("RenderIDSeparator")};
   const int k_renderIDInputCursor{Hash("RenderIDInputCursor")};

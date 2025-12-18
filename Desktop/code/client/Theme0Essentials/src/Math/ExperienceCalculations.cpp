@@ -11,7 +11,7 @@ auto CalculateCurrentLevel(int experience) -> int {
 }
 
 auto CalculateExperienceForLevel(int level) -> int {
-  auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0f)};
+  auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
   return CInt(experience);
 }
 
