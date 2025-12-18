@@ -28,7 +28,7 @@ class ModelRenderer : public RendererBase {
    * @param elevations The elevations of the tile where the model is located.
    * @param modelScaling The scaling of the model.
    */
-  auto DrawModel(int modelNameHash, float x, float y, float elevations, float modelScaling = 1.0f)
+  auto DrawModel(int modelNameHash, float x, float y, float elevations, float modelScaling = 1.0F)
       -> void;
 
  protected:
@@ -65,7 +65,7 @@ class ModelRenderer : public RendererBase {
 
   auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 
-  static constexpr float k_globalModelScaling{0.5f};
+  static constexpr float k_globalModelScaling{0.5F};
   std::map<int, ModelRenderingOperation> m_operationsCache;
   GLint m_layoutLocationProjectionMatrix;
   GLint m_layoutLocationViewMatrix;

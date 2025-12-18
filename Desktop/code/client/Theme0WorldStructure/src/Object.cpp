@@ -7,6 +7,6 @@
 namespace Forradia::Theme0 {
 auto Object::Initialize() -> void {
   // Randomize the model scaling between 0.25f and 2.0f using integer steps.
-  m_modelScaling = 0.5f + static_cast<float>(GetRandomInt(100)) / 100.0f;
+  m_modelScaling = 0.5F + static_cast<float>(GetRandomInt(100)) / 100.0F;
 }
 }

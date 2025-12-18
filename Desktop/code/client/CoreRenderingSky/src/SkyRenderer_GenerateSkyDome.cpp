@@ -22,14 +22,14 @@ auto SkyRenderer::GenerateSkyDome() -> void {
   // Generate vertices.
   for (int ring = 0; ring <= rings; ++ring) {
     // Elevation angle (0 to PI/2).
-    auto theta{ring * static_cast<float>(M_PI) / (2.0f * rings)};
+    auto theta{ring * static_cast<float>(M_PI) / (2.0F * rings)};
 
     auto sinTheta{std::sin(theta)};
     auto cosTheta{std::cos(theta)};
 
     for (int segment = 0; segment <= segments; ++segment) {
       // Azimuth angle (0 to 2*PI).
-      auto phi{segment * 2.0f * static_cast<float>(M_PI) / segments};
+      auto phi{segment * 2.0F * static_cast<float>(M_PI) / segments};
 
       auto sinPhi{std::sin(phi)};
       auto cosPhi{std::cos(phi)};

@@ -89,7 +89,7 @@ class Creature {
 
   int m_type{0};
   int m_ticksLastMovement{0};
-  float m_movementSpeed{2.0f};
+  float m_movementSpeed{2.0F};
   Point m_destination{-1, -1};
 };
 }

@@ -51,13 +51,13 @@ class Camera {
 
   auto GetLookAt() const -> Point3F;
 
-  const float k_minZoomAmount{2.0f};
-  const float k_maxZoomAmount{30.0f};
-  const float k_minRotationAngleVertical{-M_PI * 3.0f / 8.0f};
-  const float k_maxRotationAngleVertical{-M_PI / 8.0f};
-  const float k_defaultFOV{55.0f};
-  float m_zoomAmount{6.0f};
-  float m_rotationAngleSideways{0.0f};
-  float m_rotationAngleVertical{-M_PI / 4.0f};
+  const float k_minZoomAmount{2.0F};
+  const float k_maxZoomAmount{30.0F};
+  const float k_minRotationAngleVertical{-M_PI * 3.0F / 8.0F};
+  const float k_maxRotationAngleVertical{-M_PI / 8.0F};
+  const float k_defaultFOV{55.0F};
+  float m_zoomAmount{6.0F};
+  float m_rotationAngleSideways{0.0F};
+  float m_rotationAngleVertical{-M_PI / 4.0F};
 };
 }

@@ -18,7 +18,7 @@ auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> v
   // Calculate the MVP matrix.
   // The sky should always be centered on the camera and scaled to be far away.
 
-  auto modelMatrix{glm::mat4(1.0f)};
+  auto modelMatrix{glm::mat4(1.0F)};
 
   // Scale the sky dome to be within the camera's far plane but still large enough.
   // Camera far plane is 100.0, so we use a radius slightly less than that.
@@ -27,7 +27,7 @@ auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> v
 
   // Within the far plane of 100.0
 
-  auto skyRadius{90.0f};
+  auto skyRadius{90.0F};
 
   modelMatrix = glm::scale(modelMatrix, glm::vec3(skyRadius, skyRadius, skyRadius));
 
@@ -37,9 +37,9 @@ auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> v
   // Negative Z moves it down (since +Z is up in this coordinate system).
 
   // Adjust this value to control how much to lower the sky
-  auto skyOffsetZ{-0.5f};
+  auto skyOffsetZ{-0.5F};
 
-  modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, skyOffsetZ));
+  modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0F, 0.0F, skyOffsetZ));
 
   auto viewMatrix{_<Camera>().GetViewMatrix()};
 
@@ -49,18 +49,18 @@ auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> v
 
   // Create identity matrix and copy rotation elements.
 
-  glm::mat4 viewMatrixRotationOnly{1.0f};
+  glm::mat4 viewMatrixRotationOnly{1.0F};
 
   // Copy rotation part (upper-left 3x3) from view matrix.
   // In GLM: matrix[column][row], so we copy columns 0-2, rows 0-2.
 
-  viewMatrixRotationOnly[0] = glm::vec4(viewMatrix[0].x, viewMatrix[0].y, viewMatrix[0].z, 0.0f);
+  viewMatrixRotationOnly[0] = glm::vec4(viewMatrix[0].x, viewMatrix[0].y, viewMatrix[0].z, 0.0F);
 
-  viewMatrixRotationOnly[1] = glm::vec4(viewMatrix[1].x, viewMatrix[1].y, viewMatrix[1].z, 0.0f);
+  viewMatrixRotationOnly[1] = glm::vec4(viewMatrix[1].x, viewMatrix[1].y, viewMatrix[1].z, 0.0F);
 
-  viewMatrixRotationOnly[2] = glm::vec4(viewMatrix[2].x, viewMatrix[2].y, viewMatrix[2].z, 0.0f);
+  viewMatrixRotationOnly[2] = glm::vec4(viewMatrix[2].x, viewMatrix[2].y, viewMatrix[2].z, 0.0F);
 
-  viewMatrixRotationOnly[3] = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+  viewMatrixRotationOnly[3] = glm::vec4(0.0F, 0.0F, 0.0F, 1.0F);
 
   auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
 

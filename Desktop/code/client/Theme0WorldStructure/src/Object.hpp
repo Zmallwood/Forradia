@@ -51,6 +51,6 @@ class Object {
   auto Initialize() -> void;
 
   int m_type{0};
-  float m_modelScaling{1.0f};
+  float m_modelScaling{1.0F};
 };
 }

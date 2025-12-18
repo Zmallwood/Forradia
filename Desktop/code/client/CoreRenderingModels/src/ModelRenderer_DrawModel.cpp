@@ -120,7 +120,7 @@ auto ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevati
 
   // Calculate the model matrix. This matrix differs between different rendering
   // operations, even though they use the same model.
-  auto modelMatrix{glm::mat4(1.0f)};
+  auto modelMatrix{glm::mat4(1.0F)};
 
   // Translate the model to the position.
   modelMatrix =

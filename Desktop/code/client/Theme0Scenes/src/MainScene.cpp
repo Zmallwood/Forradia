@@ -26,7 +26,6 @@
 #include "Update/UpdateKeyboardMovement.hpp"
 #include "Update/UpdateMouseActions.hpp"
 #include "Update/UpdateMouseMovement.hpp"
-#include "Update/UpdateRobotsMovement.hpp"
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0 {
@@ -74,7 +73,6 @@ auto MainScene::UpdateDerived() -> void {
   UpdateKeyboardActions();
   UpdateMouseActions();
   UpdateCreaturesMovement();
-  UpdateRobotsMovement();
   UpdateCameraZoom();
   UpdateMouseMovement();
   UpdateKeyboardMovement();

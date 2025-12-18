@@ -59,10 +59,10 @@ auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float 
     auto width{x2 - x1};
     auto height{lineWidth};
 
-    float vertices[] = {x,         y,          0.0f, c.r, c.g, c.b, c.a,
-                        x + width, y,          0.0f, c.r, c.g, c.b, c.a,
-                        x + width, y + height, 0.0f, c.r, c.g, c.b, c.a,
-                        x,         y + height, 0.0f, c.r, c.g, c.b, c.a};
+    float vertices[] = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
+                        x + width, y,          0.0F, c.r, c.g, c.b, c.a,
+                        x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
+                        x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
 
     unsigned short indices[]{0, 1, 2, 3};
 

@@ -60,10 +60,10 @@ auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID,
 
   // If the buffers need to be filled or the operation is being updated, fill the buffers.
   if (needFillBuffers || updateExisting) {
-    float vertices[] = {x,         y,          0.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0,
-                        x + width, y,          0.0f, 1.0f, 1.0f, 1.0f, 1.0, 0.0,
-                        x + width, y + height, 0.0f, 1.0f, 1.0f, 1.0f, 1.0, 1.0,
-                        x,         y + height, 0.0f, 1.0f, 1.0f, 1.0f, 0.0, 1.0};
+    float vertices[] = {x,         y,          0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F,
+                        x + width, y,          0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F,
+                        x + width, y + height, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
+                        x,         y + height, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 1.0F};
 
     unsigned short indices[]{0, 1, 2, 3};
 

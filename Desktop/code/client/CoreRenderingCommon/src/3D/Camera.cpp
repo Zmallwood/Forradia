@@ -16,12 +16,12 @@ auto Camera::GetViewMatrix() const -> glm::mat4 {
   auto cameraLookAt{GetLookAt()};
   return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
                      glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
-                     glm::vec3(0.0f, 0.0f, -1.0f));
+                     glm::vec3(0.0F, 0.0F, -1.0F));
 }
 
 auto Camera::GetProjectionMatrix() const -> glm::mat4 {
   auto aspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
-  return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1f, 100.0f);
+  return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1F, 100.0F);
 }
 
 auto Camera::GetPosition() const -> Point3F {

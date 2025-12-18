@@ -46,7 +46,7 @@ class Color2DRenderer : public RendererBase {
    * @param updateExisting Whether to update the existing operation.
    */
   auto DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                float lineWidth = 0.001f, bool updateExisting = false) -> void;
+                float lineWidth = 0.001F, bool updateExisting = false) -> void;
 
  protected:
   /**
