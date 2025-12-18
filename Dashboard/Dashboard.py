@@ -8,6 +8,7 @@ import os
 import subprocess
 from PIL import Image
 
+opening_app = "neovide"
 
 # Set up the dashboard window
 class Dashboard(ctk.CTk):
@@ -82,8 +83,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "Repository",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Forradia.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia",
             "icons/DefaultButton.png",
             0,
             0,
@@ -94,8 +95,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "CMake",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CMake.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code",
             "icons/DefaultButton.png",
             1,
             0,
@@ -133,8 +134,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "A1. Common Lang",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CommonLang.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonLang",
             "icons/DefaultButton.png",
             0,
             0,
@@ -145,8 +146,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "A2. Common General",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CommonGeneral.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonGeneral",
             "icons/DefaultButton.png",
             1,
             0,
@@ -157,8 +158,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "A3. Common Matter",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CommonMatter.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonMatter",
             "icons/DefaultButton.png",
             2,
             0,
@@ -193,8 +194,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "B1. Common Utilities",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CommonUtilities.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonUtilities",
             "icons/DefaultButton.png",
             0,
             0,
@@ -205,8 +206,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "B2. Common Core Utilities",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CommonCoreUtilities.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonCoreUtilities",
             "icons/DefaultButton.png",
             1,
             0,
@@ -241,8 +242,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "C1. Core Graphics Devices",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreGraphicsDevices.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreGraphicsDevices",
             "icons/DefaultButton.png",
             0,
             0,
@@ -253,8 +254,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "C2. Core Assets",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreAssets.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreAssets",
             "icons/DefaultButton.png",
             1,
             0,
@@ -265,8 +266,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "C3. Core Input",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreInput.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreInput",
             "icons/DefaultButton.png",
             2,
             0,
@@ -277,8 +278,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "C4. Core Rendering Common",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingCommon.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingCommon",
             "icons/DefaultButton.png",
             3,
             0,
@@ -313,8 +314,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D1. Core Rendering Colors 2D",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingColors2D.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingColors2D",
             "icons/DefaultButton.png",
             0,
             0,
@@ -325,8 +326,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D2. Core Rendering Images 2D",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingImages2D.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingImages2D",
             "icons/DefaultButton.png",
             1,
             0,
@@ -337,8 +338,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D3. Core Rendering Text",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingText.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingText",
             "icons/DefaultButton.png",
             2,
             0,
@@ -349,8 +350,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D4. Core Rendering Ground",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingGround.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingGround",
             "icons/DefaultButton.png",
             3,
             0,
@@ -361,8 +362,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D5. Core Rendering Models",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingModels.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingModels",
             "icons/DefaultButton.png",
             4,
             0,
@@ -373,8 +374,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D5. Core Rendering Sky",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreRenderingSky.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingSky",
             "icons/DefaultButton.png",
             5,
             0,
@@ -385,8 +386,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D6. Theme 0 World Structure",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldStructure.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldStructure",
             "icons/DefaultButton.png",
             0,
             1,
@@ -396,8 +397,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "D7. Theme 0 Properties",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Properties.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0Properties",
             "icons/DefaultButton.png",
             1,
             1,
@@ -431,8 +432,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E1. Core GUI",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreGUI.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreGUI",
             "icons/DefaultButton.png",
             0,
             0,
@@ -443,8 +444,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Common",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationCommon.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationCommon",
             "icons/DefaultButton.png",
             0,
             1,
@@ -454,8 +455,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Ground",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationGround.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationGround",
             "icons/DefaultButton.png",
             1,
             1,
@@ -465,8 +466,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Water",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationWater.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationWater",
             "icons/DefaultButton.png",
             2,
             1,
@@ -476,8 +477,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Objects",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationObjects.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationObjects",
             "icons/DefaultButton.png",
             3,
             1,
@@ -487,8 +488,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Entities",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationEntities.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationEntities",
             "icons/DefaultButton.png",
             4,
             1,
@@ -498,8 +499,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E2. Theme 0 World Generation Main",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0WorldGenerationMain.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0WorldGenerationMain",
             "icons/DefaultButton.png",
             0,
             2,
@@ -509,8 +510,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E3. Theme 0 Essentials",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Essentials.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0Essentials",
             "icons/DefaultButton.png",
             0,
             3,
@@ -520,8 +521,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "E4. Core Minor Components",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreMinorComponents.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreMinorComponents",
             "icons/DefaultButton.png",
             1,
             3,
@@ -556,8 +557,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "F1. Core Scenes",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreScenes.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreScenes",
             "icons/DefaultButton.png",
             0,
             0,
@@ -592,8 +593,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "G1. Core Engine",
-            "cursor",
-            "/home/andreas/code/git/Forradia/CoreEngine.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreEngine",
             "icons/DefaultButton.png",
             0,
             0,
@@ -628,8 +629,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "H1. Theme 0 Core",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Core.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0Core",
             "icons/DefaultButton.png",
             0,
             0,
@@ -639,8 +640,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "H2. Theme 0 Custom GUI",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0CustomGUI.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0CustomGUI",
             "icons/DefaultButton.png",
             1,
             0,
@@ -650,8 +651,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "H3. Theme 0 Scenes",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0Scenes.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0Scenes",
             "icons/DefaultButton.png",
             2,
             0,
@@ -661,8 +662,8 @@ class Dashboard(ctk.CTk):
         create_app_button(
             app_frame,
             "H4. Theme 0",
-            "cursor",
-            "/home/andreas/code/git/Forradia/Theme0.code-workspace",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop/code/client/Theme0",
             "icons/DefaultButton.png",
             3,
             0,
@@ -674,7 +675,8 @@ def create_app_button(
     parent, app_name, command, path, icon_path, column, row, script_dir, color="#0055DD"
 ):
     def open_app():
-        subprocess.run([command, path, "-r"])
+        #subprocess.run([command, path, "-r"])
+        subprocess.run("neovide", cwd=path)
 
     # Use absolute path for the icon
     full_icon_path = os.path.join(script_dir, icon_path)

@@ -8,4 +8,5 @@ namespace Forradia {
  *  Number of milliseconds in one second.
  */
 static constexpr int k_oneSecMillis{1000};
+static constexpr int k_maxColorComponentValue{255};
 }
