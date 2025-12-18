@@ -39,7 +39,7 @@ class Dashboard(ctk.CTk):
         self.grid_rowconfigure(0, weight=1)
 
         # Main area frame
-        self.main_frame = ctk.CTkScrollableFrame(self, fg_color="#002255")
+        self.main_frame = ctk.CTkScrollableFrame(self, fg_color="#223344")
         self.main_frame.grid(row=0, column=1, sticky="nsew")
         self.main_frame.grid_columnconfigure(0, weight=1)
         self.main_frame.grid_rowconfigure(1, weight=1)
@@ -66,7 +66,7 @@ class Dashboard(ctk.CTk):
             corner_radius=10,
             border_width=2,
             border_color="gray30",
-            fg_color="#004477",
+            fg_color="#334455",
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -115,7 +115,7 @@ class Dashboard(ctk.CTk):
             corner_radius=10,
             border_width=2,
             border_color="gray30",
-            fg_color="#004477",
+            fg_color="#334455",
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -175,7 +175,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -223,7 +223,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -295,7 +295,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -413,7 +413,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -538,7 +538,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -574,7 +574,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
@@ -610,7 +610,7 @@ class Dashboard(ctk.CTk):
 
         quick_launch_frame = ctk.CTkFrame(
             center_frame, corner_radius=10, border_width=2, border_color="gray30",
-            fg_color="#004477"
+            fg_color="#334455"
         )
         quick_launch_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         quick_launch_frame.grid_rowconfigure(0, weight=1)
