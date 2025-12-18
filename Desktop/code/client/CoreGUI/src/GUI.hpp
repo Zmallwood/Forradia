@@ -13,7 +13,7 @@ class GUI : public GUIComponent {
   /**
    * Constructor.
    */
-  GUI() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {
+  GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F) {
   }
 };
 }

@@ -7,7 +7,7 @@
 namespace Forradia::Theme0 {
 class ObjectsStack;
 class Creature;
-class Robot;
+// class Robot;
 
 /**
  * A tile in the game world.
@@ -72,23 +72,23 @@ class Tile {
     m_creature = value;
   }
 
-  /**
-   * Gets the robot on the tile.
-   *
-   * @return The robot on the tile, or nullptr if no robot is on the tile.
-   */
-  auto GetRobot() const {
-    return m_robot;
-  }
-
-  /**
-   * Sets the robot on the tile.
-   *
-   * @param value The robot on the tile.
-   */
-  auto SetRobot(SharedPtr<Robot> value) -> void {
-    m_robot = value;
-  }
+  //  /**
+  //   * Gets the robot on the tile.
+  //   *
+  //   * @return The robot on the tile, or nullptr if no robot is on the tile.
+  //   */
+  //  auto GetRobot() const {
+  //    return m_robot;
+  //  }
+  //
+  //  /**
+  //   * Sets the robot on the tile.
+  //   *
+  //   * @param value The robot on the tile.
+  //   */
+  //  auto SetRobot(SharedPtr<Robot> value) -> void {
+  //    m_robot = value;
+  //  }
 
   /**
    * Gets the elevation of the tile.
@@ -150,7 +150,7 @@ class Tile {
   int m_ground{0};
   SharedPtr<ObjectsStack> m_objectsStack;
   SharedPtr<Creature> m_creature;
-  SharedPtr<Robot> m_robot;
+  // SharedPtr<Robot> m_robot;
   int m_elevation{0};
   int m_waterDepth{0};
   bool m_forceRedraw{false};

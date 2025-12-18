@@ -32,8 +32,8 @@ auto WorldArea::Reset() -> void {
       // Set the tile to its default state.
       tile->SetGround(Hash("GroundGrass"));
       tile->SetCreature(nullptr);
-      tile->SetRobot(nullptr);
-      tile->SetElevation(0.0f);
+      // tile->SetRobot(nullptr);
+      tile->SetElevation(0.0F);
       tile->SetWaterDepth(0);
       tile->GetObjectsStack()->ClearObjects();
     }

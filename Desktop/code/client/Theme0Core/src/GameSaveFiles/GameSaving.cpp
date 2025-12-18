@@ -7,7 +7,6 @@
 #include "HashCodes.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
-#include "Robot.hpp"
 #include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
@@ -66,19 +65,6 @@ auto GameSaving::SaveGame() -> void {
         tileJson["creature"] = creatureJson;
       }
 
-      // Serialize robot on this tile
-      auto robot{tile->GetRobot()};
-      if (robot) {
-        nlohmann::json robotJson;
-        robotJson["type"] = GetNameFromAnyHash(robot->GetType());
-        robotJson["position"]["x"] = x;
-        robotJson["position"]["y"] = y;
-        auto origin{robot->GetOrigin()};
-        robotJson["origin"]["x"] = origin.x;
-        robotJson["origin"]["y"] = origin.y;
-        tileJson["robot"] = robotJson;
-      }
-
       jsonData["tiles"].push_back(tileJson);
     }
   }
@@ -113,7 +99,6 @@ auto GameSaving::LoadGame() -> void {
 
   worldArea->Reset();
 
-  auto &robots{worldArea->GetRobotsMirrorRef()};
   auto &creatures{worldArea->GetCreaturesMirrorRef()};
 
   if (jsonData.contains("size")) {
@@ -171,19 +156,6 @@ auto GameSaving::LoadGame() -> void {
         tile->SetCreature(creature);
 
         creatures.insert({creature, {x, y}});
-      }
-
-      if (tileJson.contains("robot")) {
-        auto robotType{Hash(tileJson["robot"]["type"].get<String>())};
-
-        auto originX{tileJson["robot"]["origin"]["x"].get<int>()};
-        auto originY{tileJson["robot"]["origin"]["y"].get<int>()};
-
-        auto robot{std::make_shared<Robot>(robotType, originX, originY)};
-
-        tile->SetRobot(robot);
-
-        robots.insert({robot, {x, y}});
       }
     }
   }

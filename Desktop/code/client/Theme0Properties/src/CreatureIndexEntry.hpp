@@ -12,11 +12,11 @@ class CreatureIndexEntry {
   /**
    * The scaling factor for the creature model.
    */
-  float modelScaling{1.0f};
+  float modelScaling{1.0F};
 
   /**
    * The height at which the creature levitates.
    */
-  float levitationHeight{0.0f};
+  float levitationHeight{0.0F};
 };
 }

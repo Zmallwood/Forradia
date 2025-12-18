@@ -6,7 +6,7 @@
 
 namespace Forradia::Theme0 {
 CreatureIndex::CreatureIndex() {
-  AddCreatureEntry("CreatureRedBird", 0.5f, 3.0f);
+  AddCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
 }
 
 auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
@@ -17,13 +17,13 @@ auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling
 auto CreatureIndex::GetModelScaling(int creatureHash) const -> float {
   if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).modelScaling;
-  return 1.0f;
+  return 1.0F;
 }
 
 auto CreatureIndex::GetLevitationHeight(int creatureHash) const -> float {
   if (m_entries.contains(creatureHash))
     return m_entries.at(creatureHash).levitationHeight;
-  return 0.0f;
+  return 0.0F;
 }
 
 auto CreatureIndex::CreatureEntryExists(int creatureHash) const -> bool {

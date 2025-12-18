@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "UpdateMouseMovement.hpp"
-#include "BattleSystem.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
@@ -14,7 +13,7 @@ auto UpdateMouseMovement() -> void {
   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
     auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
     _<Theme0::Player>().SetDestination(newDestination);
-    _<BattleSystem>().SetTargetedRobot(nullptr);
+    //_<BattleSystem>().SetTargetedRobot(nullptr);
   }
 
   auto playerPosition{_<Player>().GetPosition()};

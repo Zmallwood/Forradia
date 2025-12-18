@@ -39,9 +39,9 @@ class GUIInteractionMenu : public GUIPanel {
    *
    * @return The clicked robot.
    */
-  auto GetClickedRobot() const {
-    return m_clickedRobot;
-  }
+  // auto GetClickedRobot() const {
+  //   return m_clickedRobot;
+  // }
 
   /**
    * Gets the clicked coordinate.
@@ -76,7 +76,7 @@ class GUIInteractionMenu : public GUIPanel {
   Vector<int> m_renderIDsMenuEntryStrings;
   Vector<GUIInteractionMenuEntry> m_entries;
   Point m_clickedCoordinate{-1, -1};
-  SharedPtr<Robot> m_clickedRobot;
+  // SharedPtr<Robot> m_clickedRobot;
   std::map<int, int> m_timedActions;
 };
 }

@@ -6,7 +6,6 @@
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
 #include "StdAfx.hpp"
-#include "Update/BattleSystem.hpp"
 
 namespace Forradia::Theme0 {
 auto UpdateKeyboardMovement() -> void {
@@ -21,7 +20,7 @@ auto UpdateKeyboardMovement() -> void {
 
   if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress) {
     _<Theme0::Player>().SetDestination({-1, -1});
-    _<BattleSystem>().SetTargetedRobot(nullptr);
+    //_<BattleSystem>().SetTargetedRobot(nullptr);
   }
 
   auto now{GetTicks()};

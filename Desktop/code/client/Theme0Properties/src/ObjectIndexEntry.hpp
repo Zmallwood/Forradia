@@ -12,7 +12,7 @@ class ObjectIndexEntry {
   /**
    * The scaling factor for the object model.
    */
-  float modelScaling{1.0f};
+  float modelScaling{1.0F};
 
   /**
    * Whether to ignore the individual model scaling.

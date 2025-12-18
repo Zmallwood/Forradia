@@ -8,7 +8,6 @@
 #include "SDLDevice.hpp"
 #include "StdAfx.hpp"
 #include "Tile.hpp"
-#include "Update/BattleSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

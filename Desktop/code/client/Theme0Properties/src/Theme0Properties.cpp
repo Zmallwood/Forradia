@@ -22,14 +22,14 @@ auto Theme0Properties::GetBaseWorldAreaSize() const -> Size {
 }
 
 auto Theme0Properties::GetWorldScaling() const -> float {
-  return 5.0f;
+  return 5.0F;
 }
 
 auto Theme0Properties::GetTileSize() const -> float {
-  return 1.6f;
+  return 1.6F;
 }
 
 auto Theme0Properties::GetElevationHeight() const -> float {
-  return 0.15f;
+  return 0.15F;
 }
 }

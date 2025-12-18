@@ -9,6 +9,7 @@ namespace Forradia::Theme0 {
 /**
  * A creature in the game world.
  */
+// TODO: Rename to Entity and make is so that it can have a EntityCategory.
 class Creature {
  public:
   /**

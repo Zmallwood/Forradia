@@ -10,13 +10,11 @@
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
-#include "Robot.hpp"
 #include "SkyRenderer.hpp"
 #include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "TileData.hpp"
-#include "Update/BattleSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
@@ -313,7 +311,7 @@ auto WorldView::Render() const -> void {
                             y >= (groundGridSize.height - gridSize.height) / 2 &&
                             y < (groundGridSize.height + gridSize.height) / 2};
 
-    // Only render objects, creatures, and robots within the normal grid size.
+    // Only render objects, and creatures within the normal grid size.
     if (isWithinNormalGrid) {
       for (auto object : objects) {
         auto objectType{object->GetType()};
@@ -329,17 +327,6 @@ auto WorldView::Render() const -> void {
         auto creatureType{creature->GetType()};
 
         _<ModelRenderer>().DrawModel(creatureType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                                     (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-      }
-
-      auto robot{tile->GetRobot()};
-
-      if (robot) {
-        auto robotType{robot->GetType()};
-
-        robotType = Hash("RobotMechWolf");
-
-        _<ModelRenderer>().DrawModel(robotType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                                      (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
       }
 
@@ -366,23 +353,24 @@ auto WorldView::Render() const -> void {
       _<GroundRenderer>().RestoreState();
     }
 
-    auto targetedRobot{_<BattleSystem>().GetTargetedRobot()};
+    // auto targetedRobot{_<BattleSystem>().GetTargetedRobot()};
 
-    if (targetedRobot) {
-      auto &robots{worldArea->GetRobotsMirrorRef()};
+    // if (targetedRobot) {
+    //   auto &robots{worldArea->GetRobotsMirrorRef()};
 
-      auto targetedRobotCoordinates{robots.at(targetedRobot)};
+    //  auto targetedRobotCoordinates{robots.at(targetedRobot)};
 
-      if (targetedRobotCoordinates.x == xCoordinate && targetedRobotCoordinates.y == yCoordinate) {
-        for (auto &elevation : elevations)
-          elevation += 0.01f;
+    //  if (targetedRobotCoordinates.x == xCoordinate && targetedRobotCoordinates.y == yCoordinate)
+    //  {
+    //    for (auto &elevation : elevations)
+    //      elevation += 0.01f;
 
-        _<GroundRenderer>().SetupState();
-        _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot, Hash("TargetedRobot"),
-                                     xCoordinate, yCoordinate, rendTileSize, elevations, true);
-        _<GroundRenderer>().RestoreState();
-      }
-    }
+    //    _<GroundRenderer>().SetupState();
+    //    _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot, Hash("TargetedRobot"),
+    //                                 xCoordinate, yCoordinate, rendTileSize, elevations, true);
+    //    _<GroundRenderer>().RestoreState();
+    //  }
+    //}
   }};
 
   _<GroundRenderer>().SetupState();

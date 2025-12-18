@@ -31,7 +31,7 @@ auto GUIInteractionMenu::BuildMenu() -> void {
   auto worldAreaSize{worldArea->GetSize()};
 
   m_clickedCoordinate = hoveredCoordinate;
-  m_clickedRobot = worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)->GetRobot();
+  // m_clickedRobot = worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)->GetRobot();
 
   auto tile{worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
