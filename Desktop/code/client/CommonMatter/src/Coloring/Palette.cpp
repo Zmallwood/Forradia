@@ -8,65 +8,65 @@
 namespace Forradia::Palette {
 template <>
 auto GetColor<Hash("Black")>() -> Color {
-  return {0.0f, 0.0f, 0.0f, 1.0f};
+  return {0.0F, 0.0F, 0.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("White")>() -> Color {
-  return {1.0f, 1.0f, 0.65f, 1.0f};
+  return {1.0F, 1.0F, 0.65F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("Wheat")>() -> Color {
-  return {1.0f, 1.0f, 0.65f, 1.0f};
+  return {1.0F, 1.0F, 0.65F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("WheatTransparent")>() -> Color {
   auto color{GetColor<Hash("Wheat")>()};
-  color.a = 0.7f;
+  color.a = 0.7F;
   return color;
 }
 
 template <>
 auto GetColor<Hash("Yellow")>() -> Color {
-  return {1.0f, 1.0f, 0.0f, 1.0f};
+  return {1.0F, 1.0F, 0.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("YellowTransparent")>() -> Color {
   auto color{GetColor<Hash("Yellow")>()};
-  color.a = 0.7f;
+  color.a = 0.7F;
   return color;
 }
 
 template <>
 auto GetColor<Hash("MildBlue")>() -> Color {
-  return {0.0f, 0.4f, 0.9f, 1.0f};
+  return {0.0F, 0.4F, 0.9F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("LightBlue")>() -> Color {
-  return {0.4f, 0.4f, 1.0f, 1.0f};
+  return {0.4F, 0.4F, 1.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("Red")>() -> Color {
-  return {1.0f, 0.0f, 0.0f, 1.0f};
+  return {1.0F, 0.0F, 0.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("Green")>() -> Color {
-  return {0.0f, 1.0f, 0.0f, 1.0f};
+  return {0.0F, 1.0F, 0.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("Brown")>() -> Color {
-  return {0.5f, 0.25f, 0.0f, 1.0f};
+  return {0.5F, 0.25F, 0.0F, 1.0F};
 }
 
 template <>
 auto GetColor<Hash("Gray")>() -> Color {
-  return {0.5f, 0.5f, 0.5f, 1.0f};
+  return {0.5F, 0.5F, 0.5F, 1.0F};
 }
 }

@@ -21,21 +21,21 @@ class Color {
   /**
    * Red component.
    */
-  float r{0.0f};
+  float r{0.0F};
 
   /**
    * Green component.
    */
-  float g{0.0f};
+  float g{0.0F};
 
   /**
    * Blue component.
    */
-  float b{0.0f};
+  float b{0.0F};
 
   /**
    * Alpha component.
    */
-  float a{0.0f};
+  float a{0.0F};
 };
 }

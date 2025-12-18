@@ -12,11 +12,11 @@ class SizeF {
   /**
    * The width.
    */
-  float width{0.0f};
+  float width{0.0F};
 
   /**
    * The height.
    */
-  float height{0.0f};
+  float height{0.0F};
 };
 }

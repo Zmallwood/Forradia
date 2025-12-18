@@ -28,11 +28,11 @@ class PointF {
   /**
    * The x dimension.
    */
-  float x{0.0f};
+  float x{0.0F};
 
   /**
    * The y dimension.
    */
-  float y{0.0f};
+  float y{0.0F};
 };
 }

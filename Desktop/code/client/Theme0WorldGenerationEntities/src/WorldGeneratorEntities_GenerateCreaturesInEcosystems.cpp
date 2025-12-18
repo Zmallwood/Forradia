@@ -47,6 +47,37 @@ auto WorldGeneratorEntities::GenerateCreaturesInEcosystems() const -> void {
     }
   }
 
+  auto numWolves{180 * worldScaling + GetRandomInt(40 * worldScaling)};
+
+  for (auto i = 0; i < numWolves; i++) {
+    auto x{GetRandomInt(worldAreaSize.width)};
+    auto y{GetRandomInt(worldAreaSize.height)};
+
+    auto tile{worldArea->GetTile(x, y)};
+
+    if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
+      continue;
+
+    auto prefersLocation{false};
+
+    if (tile->GetGround() == Hash("GroundGrass")) {
+      if (IsNearWater(x, y, 8))
+        prefersLocation = GetRandomInt(100) < 40;
+      else
+        prefersLocation = GetRandomInt(100) < 20;
+    } else if (tile->GetGround() == Hash("GroundDirt")) {
+      prefersLocation = GetRandomInt(100) < 5;
+    }
+
+    if (prefersLocation) {
+      auto newCreature{std::make_shared<Theme0::Creature>("CreatureWolf")};
+
+      tile->SetCreature(newCreature);
+
+      worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+    }
+  }
+
   // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
   auto numRedBirds{120 * worldScaling + GetRandomInt(30 * worldScaling)};
 

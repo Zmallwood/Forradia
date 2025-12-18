@@ -36,21 +36,21 @@ class RectF {
   /**
    * The x coordinate.
    */
-  float x{0.0f};
+  float x{0.0F};
 
   /**
    * The y coordinate.
    */
-  float y{0.0f};
+  float y{0.0F};
 
   /**
    * The width, in the x dimension.
    */
-  float width{0.0f};
+  float width{0.0F};
 
   /**
    * The height, in the y dimension.
    */
-  float height{0.0f};
+  float height{0.0F};
 };
 }

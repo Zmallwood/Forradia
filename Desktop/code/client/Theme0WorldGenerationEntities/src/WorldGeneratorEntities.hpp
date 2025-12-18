@@ -18,8 +18,6 @@ class WorldGeneratorEntities : public WorldGeneratorBase {
  private:
   auto GenerateCreaturesInEcosystems() const -> void;
 
-  auto GenerateRobotsInAreas() const -> void;
-
   auto IsNearWater(int x, int y, int radius) const -> bool;
 };
 }
