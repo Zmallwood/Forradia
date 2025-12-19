@@ -15,7 +15,7 @@ namespace Forradia {
      * @param gameWindowTitle The title of the game window.
      * @param clearColor The color to clear the canvas with.
      */
-    auto Initialize(StringView gameWindowTitle, Color clearColor) -> void;
+    auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
     /**
      * Clears the canvas.
@@ -44,8 +44,8 @@ namespace Forradia {
     constexpr static Uint32 k_windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                                           SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |
                                           SDL_WINDOW_OPENGL};
-    SharedPtr<SDL_Window> m_window;
-    String m_gameWindowTitle;
+    std::shared_ptr<SDL_Window> m_window;
+    std::string m_gameWindowTitle;
     Color m_clearColor;
   };
 }

@@ -28,7 +28,7 @@ namespace Forradia::Theme0 {
 
     auto GenerateValleys() const -> void;
 
-    auto CreateBiomeCluster(int centerX, int centerY, int radius, StringView groundType) const
+    auto CreateBiomeCluster(int centerX, int centerY, int radius, std::string_view groundType) const
         -> void;
 
     auto GetMaxElevation() const -> int;

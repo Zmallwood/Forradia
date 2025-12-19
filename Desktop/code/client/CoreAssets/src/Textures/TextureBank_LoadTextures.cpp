@@ -5,7 +5,7 @@
 
 namespace Forradia {
   auto TextureBank::LoadTextures() -> void {
-    auto basePath{String(SDL_GetBasePath())};
+    auto basePath{std::string(SDL_GetBasePath())};
     auto imagesPath{basePath + k_relativeImagesPath.data()};
 
     if (false == std::filesystem::exists(imagesPath))
@@ -20,7 +20,7 @@ namespace Forradia {
       if (GetFileExtension(filePath) == "png") {
         auto fileName{GetFileNameNoExtension(filePath)};
         auto hash{Forradia::Hash(fileName)};
-        auto surface{SharedPtr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
+        auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
         auto textureID{this->LoadSingleTexture(surface)};
         auto imageSize{Size{surface->w, surface->h}};
         TextureEntry newTextureEntry;

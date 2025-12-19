@@ -8,10 +8,10 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-  auto GUIWindowTitleBar::Initialize(StringView uniqueName) -> void {
+  auto GUIWindowTitleBar::Initialize(std::string_view uniqueName) -> void {
     auto parentWindowBounds{m_parentWindow.GetBounds()};
     AddChildComponent(std::make_shared<GUIButton>(
-        uniqueName.data() + String("CloseButton"),
+        uniqueName.data() + std::string("CloseButton"),
         parentWindowBounds.width - ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), 0.01F,
         0.015F, ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), "X",
         [this] { m_parentWindow.ToggleVisibility(); }));

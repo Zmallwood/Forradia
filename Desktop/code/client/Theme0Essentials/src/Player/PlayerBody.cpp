@@ -13,7 +13,8 @@ namespace Forradia::Theme0 {
     m_bodyParts.insert({PlayerBodyPartTypes::Legs, std::make_shared<PlayerBodyPart>()});
   }
 
-  auto PlayerBody::GetBodyPartPtr(PlayerBodyPartTypes bodyPartType) -> SharedPtr<PlayerBodyPart> {
+  auto PlayerBody::GetBodyPartPtr(PlayerBodyPartTypes bodyPartType)
+      -> std::shared_ptr<PlayerBodyPart> {
     if (!m_bodyParts.contains(bodyPartType))
       return nullptr;
     return m_bodyParts.at(bodyPartType);

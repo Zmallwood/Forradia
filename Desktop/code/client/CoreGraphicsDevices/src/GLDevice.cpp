@@ -19,7 +19,7 @@ namespace Forradia {
     SDL_GL_MakeCurrent(window.get(), *m_context);
     GLenum status{glewInit()};
     if (GLEW_OK != status) {
-      auto errorString{String(reinterpret_cast<const char *>(glewGetErrorString(status)))};
+      auto errorString{std::string(reinterpret_cast<const char *>(glewGetErrorString(status)))};
       PrintLine("GLEW error: " + errorString);
     }
     // Turn of vertical sync.

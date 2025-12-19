@@ -4,8 +4,8 @@
 #include "Model.hpp"
 
 namespace Forradia {
-  auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> Vector<GLMVertex> {
-    Vector<GLMVertex> vertices;
+  auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex> {
+    std::vector<GLMVertex> vertices;
 
     // Iterate over all vertices.
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {

@@ -15,8 +15,8 @@ namespace Forradia {
     // Number of vertical rings (increased for smoother dome).
     const auto rings{32};
 
-    Vector<float> vertices;
-    Vector<unsigned short> indices;
+    std::vector<float> vertices;
+    std::vector<unsigned short> indices;
 
     // Generate vertices.
     for (int ring = 0; ring <= rings; ++ring) {

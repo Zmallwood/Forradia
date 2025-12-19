@@ -7,10 +7,10 @@
 namespace Forradia {
   class GUIScrollableFrame : public GUIComponent {
    public:
-    GUIScrollableFrame(StringView uniqueName, float x, float y, float width, float height)
+    GUIScrollableFrame(std::string_view uniqueName, float x, float y, float width, float height)
         : GUIComponent(x, y, width, height),
-          k_renderIDUpArrow(Hash(uniqueName.data() + String("_UpArrow"))),
-          k_renderIDDownArrow(Hash(uniqueName.data() + String("_DownArrow"))) {
+          k_renderIDUpArrow(Hash(uniqueName.data() + std::string("_UpArrow"))),
+          k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))) {
     }
 
    protected:

@@ -32,6 +32,6 @@ namespace Forradia {
      */
     auto Initialize() -> void;
 
-    SharedPtr<GUILabel> m_fpsTextPanel;
+    std::shared_ptr<GUILabel> m_fpsTextPanel;
   };
 }

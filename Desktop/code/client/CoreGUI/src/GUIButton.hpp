@@ -23,12 +23,14 @@ namespace Forradia {
      * @param backgroundImage The background image of the button.
      * @param hoveredBackgroundImage The background image of the button when hovered.
      */
-    GUIButton(StringView uniqueName, float x, float y, float width, float height, StringView text,
-              Function<void()> action, StringView backgroundImage = k_defaultBackgroundImage,
-              StringView hoveredBackgroundImage = k_defaultHoveredBackgroundImage)
+    GUIButton(std::string_view uniqueName, float x, float y, float width, float height,
+              std::string_view text, std::function<void()> action,
+              std::string_view backgroundImage = k_defaultBackgroundImage,
+              std::string_view hoveredBackgroundImage = k_defaultHoveredBackgroundImage)
         : GUIPanel(uniqueName, x, y, width, height),
-          k_renderIDText(Hash(uniqueName.data() + String("Text"))), m_text(text), m_action(action),
-          m_backgroundImage(backgroundImage), m_hoveredBackgroundImage(hoveredBackgroundImage) {
+          k_renderIDText(Hash(uniqueName.data() + std::string("Text"))), m_text(text),
+          m_action(action), m_backgroundImage(backgroundImage),
+          m_hoveredBackgroundImage(hoveredBackgroundImage) {
     }
 
    protected:
@@ -43,12 +45,12 @@ namespace Forradia {
     virtual auto RenderDerived() const -> void override;
 
    private:
-    inline static const String k_defaultBackgroundImage{"GUIButtonBackground"};
-    inline static const String k_defaultHoveredBackgroundImage{"GUIButtonHoveredBackground"};
+    inline static const std::string k_defaultBackgroundImage{"GUIButtonBackground"};
+    inline static const std::string k_defaultHoveredBackgroundImage{"GUIButtonHoveredBackground"};
     const int k_renderIDText;
-    String m_text;
-    Function<void()> m_action;
-    String m_backgroundImage;
-    String m_hoveredBackgroundImage;
+    std::string m_text;
+    std::function<void()> m_action;
+    std::string m_backgroundImage;
+    std::string m_hoveredBackgroundImage;
   };
 }

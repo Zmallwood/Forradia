@@ -68,9 +68,9 @@ namespace Forradia::Theme0 {
     m_experience += experience;
   }
 
-  auto Player::AddPlayerAction(PlayerActionTypes playerAction, StringView actionFirstArgument,
+  auto Player::AddPlayerAction(PlayerActionTypes playerAction, std::string_view actionFirstArgument,
                                Point actionSecondArgument) -> void {
-    m_playerActions.push_back(std::tuple<PlayerActionTypes, String, Point>{
+    m_playerActions.push_back(std::tuple<PlayerActionTypes, std::string, Point>{
         playerAction, actionFirstArgument, actionSecondArgument});
   }
 }

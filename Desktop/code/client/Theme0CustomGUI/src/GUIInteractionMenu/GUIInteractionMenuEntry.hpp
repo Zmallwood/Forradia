@@ -15,7 +15,7 @@ namespace Forradia::Theme0 {
      * @param label The label of the entry.
      * @param action The action to perform when the entry is clicked.
      */
-    GUIInteractionMenuEntry(StringView label, Function<void()> action)
+    GUIInteractionMenuEntry(std::string_view label, std::function<void()> action)
         : m_label(label), m_action(action) {
     }
 
@@ -38,7 +38,7 @@ namespace Forradia::Theme0 {
     }
 
    private:
-    String m_label;
-    Function<void()> m_action;
+    std::string m_label;
+    std::function<void()> m_action;
   };
 }

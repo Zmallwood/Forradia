@@ -23,7 +23,7 @@ namespace Forradia::Theme0 {
      * @param index The index of the object.
      * @return The object.
      */
-    auto GetObject(int index) -> SharedPtr<Object>;
+    auto GetObject(int index) -> std::shared_ptr<Object>;
 
     /**
      * Adds an object to the inventory.
@@ -37,7 +37,7 @@ namespace Forradia::Theme0 {
      *
      * @param objectName The name of the object as a string.
      */
-    auto AddObject(StringView objectName) -> void;
+    auto AddObject(std::string_view objectName) -> void;
 
     /**
      * Counts the number of objects in the inventory that have the given name.
@@ -45,7 +45,7 @@ namespace Forradia::Theme0 {
      * @param objectName The name of the object as a string.
      * @return The number of objects in the inventory that have the given name.
      */
-    auto CountHasObject(StringView objectName) -> int;
+    auto CountHasObject(std::string_view objectName) -> int;
 
     /**
      * Removes objects from the inventory with the specified name and count.
@@ -53,9 +53,9 @@ namespace Forradia::Theme0 {
      * @param objectName The name of the object as a string.
      * @param count How many objects of the given type to remove.
      */
-    auto RemoveObject(StringView objectName, int count = 1) -> void;
+    auto RemoveObject(std::string_view objectName, int count = 1) -> void;
 
    private:
-    Vector<SharedPtr<Object>> m_objects;
+    std::vector<std::shared_ptr<Object>> m_objects;
   };
 }

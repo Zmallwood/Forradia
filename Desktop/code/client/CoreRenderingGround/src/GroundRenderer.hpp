@@ -31,7 +31,7 @@ namespace Forradia {
      * @param forceUpdate Whether to force update the tile.
      */
     auto DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate, int yCoordinate,
-                  float tileSize, const Vector<float> &elevations, bool forceUpdate = false)
+                  float tileSize, const std::vector<float> &elevations, bool forceUpdate = false)
         -> void;
 
     /**
@@ -40,7 +40,7 @@ namespace Forradia {
      *
      * @param tiles The vector of tiles to draw.
      */
-    auto DrawTiles(const Vector<TileData> &tiles) -> void;
+    auto DrawTiles(const std::vector<TileData> &tiles) -> void;
 
     /**
      * Resets the renderer with regards to the operations cache. Called for instance when a
@@ -67,12 +67,12 @@ namespace Forradia {
     /**
      * Returns the vertex shader source.
      */
-    auto GetVSSource() const -> String override;
+    auto GetVSSource() const -> std::string override;
 
     /**
      * Returns the fragment shader source.
      */
-    auto GetFSSource() const -> String override;
+    auto GetFSSource() const -> std::string override;
 
     /**
      * Does initialization that is specific to this renderer.
@@ -88,12 +88,14 @@ namespace Forradia {
     auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
     auto CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                   const Vector<float> &elevations, Vector<Color> colors) const
-        -> Vector<float>;
+                                   const std::vector<float> &elevations,
+                                   std::vector<Color> colors) const -> std::vector<float>;
 
-    auto CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const -> Vector<float>;
+    auto CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
+        -> std::vector<float>;
 
-    auto CalcTileNormals(const Vector<float> &verticesNoNormals) const -> Vector<glm::vec3>;
+    auto CalcTileNormals(const std::vector<float> &verticesNoNormals) const
+        -> std::vector<glm::vec3>;
 
     static constexpr unsigned short k_indices[] = {0, 1, 2, 3};
     std::map<int, GroundRenderingOperation> m_operationsCache;

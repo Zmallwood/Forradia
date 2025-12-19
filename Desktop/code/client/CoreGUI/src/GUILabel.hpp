@@ -22,8 +22,8 @@ namespace Forradia {
      * @param centerAlign Whether to center the text.
      * @param color The color of the text.
      */
-    GUILabel(StringView uniqueName, float x, float y, float width, float height,
-             StringView text = "", bool centerAlign = false,
+    GUILabel(std::string_view uniqueName, float x, float y, float width, float height,
+             std::string_view text = "", bool centerAlign = false,
              Color color = Palette::GetColor<Hash("WheatTransparent")>())
         : GUIComponent(x, y, width, height), k_renderIDText(Hash(uniqueName)), m_text(text),
           m_centerAlign(centerAlign), m_color(color) {
@@ -34,7 +34,7 @@ namespace Forradia {
      *
      * @param value The new text.
      */
-    auto SetText(StringView value) -> void {
+    auto SetText(std::string_view value) -> void {
       m_text = value;
     }
 
@@ -46,7 +46,7 @@ namespace Forradia {
 
    private:
     const int k_renderIDText;
-    String m_text;
+    std::string m_text;
     bool m_centerAlign{false};
     Color m_color;
   };

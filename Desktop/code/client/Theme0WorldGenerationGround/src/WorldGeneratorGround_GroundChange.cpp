@@ -98,7 +98,7 @@ namespace Forradia::Theme0 {
   }
 
   auto WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                                StringView groundType) const -> void {
+                                                std::string_view groundType) const -> void {
     // Enumerate all tiles in the radius.
     for (auto y = centerY - radius; y <= centerY + radius; y++) {
       for (auto x = centerX - radius; x <= centerX + radius; x++) {

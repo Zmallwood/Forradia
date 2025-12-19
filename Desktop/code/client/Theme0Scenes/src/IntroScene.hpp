@@ -36,6 +36,6 @@ namespace Forradia::Theme0 {
     virtual auto RenderDerived() const -> void override;
 
    private:
-    SharedPtr<GUIComponent> m_startText;
+    std::shared_ptr<GUIComponent> m_startText;
   };
 }

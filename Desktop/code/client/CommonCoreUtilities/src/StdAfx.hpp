@@ -3,4 +3,6 @@
 
 #pragma once
 
+#include <memory>
+
 #include <SDL2/SDL.h>

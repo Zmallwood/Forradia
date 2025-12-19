@@ -34,7 +34,7 @@ namespace Forradia::Theme0 {
     return;
   }
 
-  auto MoveQuest::GetStatus() const -> String {
+  auto MoveQuest::GetStatus() const -> std::string {
     return "Movements left: " + std::to_string(m_numStepsLeft);
   }
 
@@ -61,7 +61,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto ForageQuest::GetStatus() const -> String {
+  auto ForageQuest::GetStatus() const -> std::string {
     return "Forages left: " + std::to_string(m_numForagingsLeft);
   }
 
@@ -86,7 +86,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto CraftStonePickaxeQuest::GetStatus() const -> String {
+  auto CraftStonePickaxeQuest::GetStatus() const -> std::string {
     if (!m_numBranchPicked)
       return "Pick a branch.";
 
@@ -118,7 +118,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto CraftStoneBowl::GetStatus() const -> String {
+  auto CraftStoneBowl::GetStatus() const -> std::string {
     if (!m_stonedMined)
       return "Mine a stone.";
 
@@ -164,7 +164,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto MineStoneFromBoulderQuest1::GetStatus() const -> String {
+  auto MineStoneFromBoulderQuest1::GetStatus() const -> std::string {
     return "Stones left: " + std::to_string(m_numMinedStonesLeft);
   }
 
@@ -192,7 +192,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto CraftStoneSlabsQuest::GetStatus() const -> String {
+  auto CraftStoneSlabsQuest::GetStatus() const -> std::string {
     return "Slabs left: " + std::to_string(m_numCraftedSlabsLeft);
   }
 
@@ -219,7 +219,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto LayStoneSlabsQuest::GetStatus() const -> String {
+  auto LayStoneSlabsQuest::GetStatus() const -> std::string {
     return "Slabs left: " + std::to_string(m_numLaidSlabsLeft);
   }
 
@@ -256,7 +256,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto MineStoneFromBoulderQuest2::GetStatus() const -> String {
+  auto MineStoneFromBoulderQuest2::GetStatus() const -> std::string {
     return "Stones left: " + std::to_string(m_numMinedStonesLeft);
   }
 
@@ -284,7 +284,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto CraftStoneBricksQuest::GetStatus() const -> String {
+  auto CraftStoneBricksQuest::GetStatus() const -> std::string {
     return "Bricks left: " + std::to_string(m_numCraftedBricksLeft);
   }
 
@@ -361,7 +361,7 @@ namespace Forradia::Theme0 {
     }
   }
 
-  auto BuildStoneWallsQuest::GetStatus() const -> String {
+  auto BuildStoneWallsQuest::GetStatus() const -> std::string {
     return "You need to build more stone walls (and door).";
   }
 }

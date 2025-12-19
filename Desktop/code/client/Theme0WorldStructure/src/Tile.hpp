@@ -43,7 +43,7 @@ namespace Forradia::Theme0 {
      *
      * @param groundName The name of the ground type.
      */
-    auto SetGround(StringView groundName) -> void;
+    auto SetGround(std::string_view groundName) -> void;
 
     /**
      * Gets the objects stack of the tile.
@@ -68,7 +68,7 @@ namespace Forradia::Theme0 {
      *
      * @param value The creature on the tile.
      */
-    auto SetCreature(SharedPtr<Creature> value) -> void {
+    auto SetCreature(std::shared_ptr<Creature> value) -> void {
       m_creature = value;
     }
 
@@ -148,8 +148,8 @@ namespace Forradia::Theme0 {
     auto Initialize() -> void;
 
     int m_ground{0};
-    SharedPtr<ObjectsStack> m_objectsStack;
-    SharedPtr<Creature> m_creature;
+    std::shared_ptr<ObjectsStack> m_objectsStack;
+    std::shared_ptr<Creature> m_creature;
     // SharedPtr<Robot> m_robot;
     int m_elevation{0};
     int m_waterDepth{0};

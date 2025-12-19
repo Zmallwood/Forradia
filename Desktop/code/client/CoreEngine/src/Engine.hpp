@@ -16,7 +16,7 @@ namespace Forradia {
      * @param gameWindowTitle The title of the game window.
      * @param clearColor The color to clear the canvas with.
      */
-    auto Initialize(StringView gameWindowTitle, Color clearColor) const -> void;
+    auto Initialize(std::string_view gameWindowTitle, Color clearColor) const -> void;
 
     /**
      * Runs the engine.

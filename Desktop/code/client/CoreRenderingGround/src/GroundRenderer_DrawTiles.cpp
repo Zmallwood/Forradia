@@ -6,7 +6,7 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-  auto GroundRenderer::DrawTiles(const Vector<TileData> &tiles) -> void {
+  auto GroundRenderer::DrawTiles(const std::vector<TileData> &tiles) -> void {
     auto uniqueRenderID{tiles.at(0).uniqueRenderID};
     auto forceUpdate{false};
 
@@ -23,13 +23,13 @@ namespace Forradia {
 
     // If the tile is not cached or the force update flag is set.
     if (false == tileIsCached || forceUpdate) {
-      std::map<int, Vector<TileData>> tileDataByTexture;
+      std::map<int, std::vector<TileData>> tileDataByTexture;
 
       for (auto i = 0; i < tiles.size(); i++) {
         auto textureNameHash = tiles.at(i).imageNameHash;
 
         if (!tileDataByTexture.contains(textureNameHash))
-          tileDataByTexture[textureNameHash] = Vector<TileData>();
+          tileDataByTexture[textureNameHash] = std::vector<TileData>();
 
         tileDataByTexture[textureNameHash].push_back(tiles.at(i));
       }
@@ -52,8 +52,8 @@ namespace Forradia {
 
         unsigned short vertexOffset{0};
 
-        Vector<float> combinedVertices;
-        Vector<unsigned short> combinedIndices;
+        std::vector<float> combinedVertices;
+        std::vector<unsigned short> combinedIndices;
 
         for (auto tile : tileData) {
           auto xCoordinate{tile.xCoordinate};

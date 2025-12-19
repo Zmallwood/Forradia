@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 #include "Geometry/GLMTypes/GLMMesh.hpp"
 #include "assimp/scene.h"
 
@@ -17,7 +16,7 @@ namespace Forradia {
      *
      * @param filePath The path to the model file.
      */
-    Model(StringView filePath) {
+    Model(std::string_view filePath) {
       this->Initialize(filePath);
     };
 
@@ -26,24 +25,24 @@ namespace Forradia {
      *
      * @return A reference to the model's meshes.
      */
-    [[nodiscard]] auto GetMeshesRef() const -> const Vector<GLMMesh> & {
+    [[nodiscard]] auto GetMeshesRef() const -> const std::vector<GLMMesh> & {
       return m_meshes;
     }
 
    private:
-    auto Initialize(StringView filePath) -> void;
+    auto Initialize(std::string_view filePath) -> void;
 
     auto ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform) -> void;
 
     static auto ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh;
 
-    static auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> Vector<GLMVertex>;
+    static auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>;
 
-    static auto GetIndices(aiMesh *mesh) -> Vector<unsigned int>;
+    static auto GetIndices(aiMesh *mesh) -> std::vector<unsigned int>;
 
-    static auto GetTextures(aiMesh *mesh, const aiScene *scene) -> Vector<Texture>;
+    static auto GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>;
 
-    Vector<GLMMesh> m_meshes;
+    std::vector<GLMMesh> m_meshes;
   };
 }

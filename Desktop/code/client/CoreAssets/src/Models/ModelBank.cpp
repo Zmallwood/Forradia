@@ -15,7 +15,7 @@ namespace Forradia {
   }
 
   auto ModelBank::LoadModels() -> void {
-    auto basePath{String(SDL_GetBasePath())};
+    auto basePath{std::string(SDL_GetBasePath())};
     auto imagesPath{basePath + k_relativeModelsPath};
 
     if (false == std::filesystem::exists(imagesPath))
@@ -36,13 +36,13 @@ namespace Forradia {
     }
   }
 
-  auto ModelBank::GetModel(int modelNameHash) -> SharedPtr<Model> {
+  auto ModelBank::GetModel(int modelNameHash) -> std::shared_ptr<Model> {
     if (m_models.contains(modelNameHash))
       return m_models.at(modelNameHash);
     return nullptr;
   }
 
-  auto ModelBank::LoadSingleModel(StringView filePath) -> SharedPtr<Model> {
+  auto ModelBank::LoadSingleModel(std::string_view filePath) -> std::shared_ptr<Model> {
     // Load the model from the file at the path.
     auto modelResult{std::make_shared<Model>(filePath)};
     return modelResult;

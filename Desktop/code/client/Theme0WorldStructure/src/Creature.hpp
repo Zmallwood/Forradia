@@ -29,7 +29,7 @@ namespace Forradia::Theme0 {
      *
      * @param typeName The creature type by name.
      */
-    Creature(StringView typeName) : m_type{Hash(typeName)} {
+    Creature(std::string_view typeName) : m_type{Hash(typeName)} {
       this->Initialize();
     }
 

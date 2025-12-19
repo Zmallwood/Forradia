@@ -6,7 +6,7 @@
 #include "Functions.hpp"
 
 namespace Forradia {
-  auto GetNormallizedMousePosition(const SharedPtr<SDL_Window> &window) -> PointF {
+  auto GetNormallizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF {
     int xPx;
     int yPx;
     SDL_GetMouseState(&xPx, &yPx);

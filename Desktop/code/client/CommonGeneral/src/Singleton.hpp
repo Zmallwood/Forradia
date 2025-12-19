@@ -12,8 +12,8 @@ namespace Forradia {
    * @return The singleton object as a SharedPtr.
    */
   template <class T>
-  auto __() -> SharedPtr<T> {
-    static SharedPtr<T> instance{std::make_shared<T>()};
+  auto __() -> std::shared_ptr<T> {
+    static std::shared_ptr<T> instance{std::make_shared<T>()};
     return instance;
   }
 

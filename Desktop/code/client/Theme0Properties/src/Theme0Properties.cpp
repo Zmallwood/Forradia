@@ -4,7 +4,7 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia::Theme0 {
-  auto Theme0Properties::GetGameWindowTitle() const -> String {
+  auto Theme0Properties::GetGameWindowTitle() const -> std::string {
     return "Forradia";
   }
 

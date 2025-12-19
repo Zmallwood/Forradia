@@ -4,8 +4,8 @@
 #include "ShaderProgram.hpp"
 
 namespace Forradia {
-  auto ShaderProgram::Initialize(StringView vertexShaderSource, StringView fragmentShaderSource)
-      -> void {
+  auto ShaderProgram::Initialize(std::string_view vertexShaderSource,
+                                 std::string_view fragmentShaderSource) -> void {
     auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
     // If the vertex shader failed.

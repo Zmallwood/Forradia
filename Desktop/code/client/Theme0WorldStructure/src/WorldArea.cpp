@@ -12,7 +12,7 @@ namespace Forradia::Theme0 {
     size.height *= worldScaling;
 
     for (auto x = 0; x < size.width; x++) {
-      m_tiles.push_back(Vector<std::shared_ptr<Tile>>());
+      m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
       for (auto y = 0; y < size.height; y++)
         m_tiles[x].push_back(std::make_shared<Tile>());
     }
@@ -56,13 +56,13 @@ namespace Forradia::Theme0 {
     return this->IsValidCoordinate(coordinate.x, coordinate.y);
   }
 
-  auto WorldArea::GetTile(int x, int y) const -> SharedPtr<Tile> {
+  auto WorldArea::GetTile(int x, int y) const -> std::shared_ptr<Tile> {
     if (this->IsValidCoordinate(x, y))
       return m_tiles.at(x).at(y);
     return nullptr;
   }
 
-  auto WorldArea::GetTile(Point coord) const -> SharedPtr<Tile> {
+  auto WorldArea::GetTile(Point coord) const -> std::shared_ptr<Tile> {
     return this->GetTile(coord.x, coord.y);
   }
 

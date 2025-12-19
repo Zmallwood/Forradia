@@ -22,6 +22,6 @@ namespace Forradia {
    private:
     auto SetupGL() -> void;
 
-    SharedPtr<SDL_GLContext> m_context;
+    std::shared_ptr<SDL_GLContext> m_context;
   };
 }

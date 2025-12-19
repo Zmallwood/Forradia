@@ -40,7 +40,7 @@ namespace Forradia::Theme0 {
     auto CreatureEntryExists(int creatureHash) const -> bool;
 
    private:
-    auto AddCreatureEntry(StringView creatureName, float modelScaling, float levitationHeight)
+    auto AddCreatureEntry(std::string_view creatureName, float modelScaling, float levitationHeight)
         -> void;
 
     std::map<int, CreatureIndexEntry> m_entries;

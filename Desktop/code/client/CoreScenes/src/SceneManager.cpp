@@ -5,13 +5,13 @@
 #include "IScene.hpp"
 
 namespace Forradia {
-  auto SceneManager::AddScene(StringView sceneName, IScene &scene) -> void {
+  auto SceneManager::AddScene(std::string_view sceneName, IScene &scene) -> void {
     scene.Initialize();
 
     m_scenes.insert({Hash(sceneName), scene});
   }
 
-  auto SceneManager::GoToScene(StringView sceneName) -> void {
+  auto SceneManager::GoToScene(std::string_view sceneName) -> void {
     m_currentScene = Hash(sceneName);
 
     if (m_scenes.contains(m_currentScene))

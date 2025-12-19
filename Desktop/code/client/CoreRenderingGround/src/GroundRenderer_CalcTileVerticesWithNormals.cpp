@@ -4,10 +4,11 @@
 #include "GroundRenderer.hpp"
 
 namespace Forradia {
-  auto GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const
-      -> Vector<float> {
+  auto
+  GroundRenderer::CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
+      -> std::vector<float> {
     // Create a vector to store the vertices consisting of only floats.
-    Vector<float> verticesFloatsVector;
+    std::vector<float> verticesFloatsVector;
 
     auto normals{this->CalcTileNormals(verticesNoNormals)};
 

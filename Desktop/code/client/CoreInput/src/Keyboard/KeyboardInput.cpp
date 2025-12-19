@@ -25,7 +25,7 @@ namespace Forradia {
     m_textInput.clear();
   }
 
-  auto KeyboardInput::AddTextInput(StringView text) -> void {
+  auto KeyboardInput::AddTextInput(std::string_view text) -> void {
     m_textInput += text;
   }
 }

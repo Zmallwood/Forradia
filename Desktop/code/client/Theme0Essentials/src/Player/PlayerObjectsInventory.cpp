@@ -14,7 +14,7 @@ namespace Forradia::Theme0 {
     AddObject("ObjectHammer");
   }
 
-  auto PlayerObjectsInventory::GetObject(int index) -> SharedPtr<Object> {
+  auto PlayerObjectsInventory::GetObject(int index) -> std::shared_ptr<Object> {
     if (index >= 0 && index < m_objects.size())
       return m_objects[index];
     return nullptr;
@@ -36,11 +36,11 @@ namespace Forradia::Theme0 {
     m_objects.push_back(std::make_shared<Object>(objectType));
   }
 
-  auto PlayerObjectsInventory::AddObject(StringView objectName) -> void {
+  auto PlayerObjectsInventory::AddObject(std::string_view objectName) -> void {
     AddObject(Hash(objectName));
   }
 
-  auto PlayerObjectsInventory::CountHasObject(StringView objectName) -> int {
+  auto PlayerObjectsInventory::CountHasObject(std::string_view objectName) -> int {
     auto findCount{0};
 
     // Check each slot in the inventory.
@@ -57,7 +57,7 @@ namespace Forradia::Theme0 {
     return findCount;
   }
 
-  auto PlayerObjectsInventory::RemoveObject(StringView objectName, int count) -> void {
+  auto PlayerObjectsInventory::RemoveObject(std::string_view objectName, int count) -> void {
     // Check each slot in the inventory.
     for (size_t i = 0; i < m_objects.size() && count > 0; i++) {
       // Check if slot is not empty.

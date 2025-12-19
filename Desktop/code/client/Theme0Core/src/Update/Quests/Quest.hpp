@@ -17,17 +17,17 @@ namespace Forradia::Theme0 {
     /**
      * Gets the status of the quest.
      */
-    virtual auto GetStatus() const -> String = 0;
+    virtual auto GetStatus() const -> std::string = 0;
 
     /**
      * The name of the quest.
      */
-    String name;
+    std::string name;
 
     /**
      * The description of the quest.
      */
-    String description;
+    std::string description;
 
     /**
      * Whether the quest is completed.

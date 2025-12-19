@@ -37,7 +37,7 @@ namespace Forradia {
     /**
      * The elevations.
      */
-    Vector<float> elevations;
+    std::vector<float> elevations;
 
     /**
      * Whether to force update the tile.

@@ -30,7 +30,7 @@ namespace Forradia {
      * @param forceRerender If true, forces the text to be rerendered even if it already exists.
      * @param textColor The color to use for the text (default: WheatTransparent).
      */
-    auto DrawString(int uniqueRenderID, StringView text, float x, float y,
+    auto DrawString(int uniqueRenderID, std::string_view text, float x, float y,
                     FontSizes fontSizes = FontSizes::_20, bool centerAlign = false,
                     bool forceRerender = false,
                     Color textColor = Palette::GetColor<Hash("WheatTransparent")>()) const -> void;
@@ -44,9 +44,9 @@ namespace Forradia {
 
     auto RestoreState() const -> void;
 
-    auto DefineTexture(SharedPtr<SDL_Surface> surface) const -> void;
+    auto DefineTexture(std::shared_ptr<SDL_Surface> surface) const -> void;
 
-    const String k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
-    std::map<FontSizes, SharedPtr<TTF_Font>> m_fonts;
+    const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
+    std::map<FontSizes, std::shared_ptr<TTF_Font>> m_fonts;
   };
 }

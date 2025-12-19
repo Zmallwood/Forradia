@@ -4,6 +4,7 @@
 #pragma once
 #include "GLMVertex.hpp"
 #include "Texturing/Texture.hpp"
+#include <vector>
 
 namespace Forradia {
   /**
@@ -18,7 +19,8 @@ namespace Forradia {
      * @param indices The indices of the mesh.
      * @param textures The textures of the mesh.
      */
-    GLMMesh(Vector<GLMVertex> vertices, Vector<unsigned int> indices, Vector<Texture> textures)
+    GLMMesh(std::vector<GLMVertex> vertices, std::vector<unsigned int> indices,
+            std::vector<Texture> textures)
         : vertices(std::move(vertices)), indices(std::move(indices)),
           textures(std::move(textures)) {
     }
@@ -26,16 +28,16 @@ namespace Forradia {
     /**
      * The vertices.
      */
-    Vector<GLMVertex> vertices;
+    std::vector<GLMVertex> vertices;
 
     /**
      * The indices.
      */
-    Vector<unsigned int> indices;
+    std::vector<unsigned int> indices;
 
     /**
      * The textures.
      */
-    Vector<Texture> textures;
+    std::vector<Texture> textures;
   };
 }

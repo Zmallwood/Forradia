@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 
 namespace Forradia {
   /**
@@ -15,12 +14,12 @@ namespace Forradia {
      *
      * @param path The path to the texture.
      */
-    Texture(StringView path) : path(path) {
+    Texture(std::string_view path) : path(path) {
     }
 
     /**
      * The path to the texture.
      */
-    String path;
+    std::string path;
   };
 }

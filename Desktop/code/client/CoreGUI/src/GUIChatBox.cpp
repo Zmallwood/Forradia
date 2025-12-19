@@ -74,7 +74,7 @@ namespace Forradia {
     }
   }
 
-  auto GUIChatBox::Print(StringView text) -> void {
+  auto GUIChatBox::Print(std::string_view text) -> void {
     m_lines.push_back(text.data());
   }
 

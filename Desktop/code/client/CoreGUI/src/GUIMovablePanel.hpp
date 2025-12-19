@@ -19,7 +19,7 @@ namespace Forradia {
      * @param width The width of the movable panel.
      * @param height The height of the movable panel.
      */
-    GUIMovablePanel(StringView uniqueName, float x, float y, float width, float height)
+    GUIMovablePanel(std::string_view uniqueName, float x, float y, float width, float height)
         : GUIPanel(uniqueName, x, y, width, height) {
     }
 

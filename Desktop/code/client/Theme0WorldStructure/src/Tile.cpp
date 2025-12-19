@@ -14,7 +14,7 @@ namespace Forradia::Theme0 {
     this->SetForceRedraw(true);
   }
 
-  auto Tile::SetGround(StringView groundName) -> void {
+  auto Tile::SetGround(std::string_view groundName) -> void {
     this->SetGround(Hash(groundName));
   }
 }

@@ -14,7 +14,7 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-  static std::map<int, Function<void()>> s_timedActions;
+  static std::map<int, std::function<void()>> s_timedActions;
 
   template <>
   auto GetAction<Hash("ActionStop")>() -> Action;

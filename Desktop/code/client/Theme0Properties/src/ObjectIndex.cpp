@@ -13,7 +13,7 @@ namespace Forradia::Theme0 {
     AddObjectEntry("ObjectStoneWallDoor", 0.8F, true);
   }
 
-  auto ObjectIndex::AddObjectEntry(StringView objectName, float modelScaling,
+  auto ObjectIndex::AddObjectEntry(std::string_view objectName, float modelScaling,
                                    bool ignoreIndividualModelScaling) -> void {
     m_entries.insert({Hash(objectName), {modelScaling, ignoreIndividualModelScaling}});
   }

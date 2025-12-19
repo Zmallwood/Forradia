@@ -17,14 +17,14 @@ namespace Forradia {
      * @param sceneName The name of the scene.
      * @param scene The scene to add.
      */
-    auto AddScene(StringView sceneName, IScene &scene) -> void;
+    auto AddScene(std::string_view sceneName, IScene &scene) -> void;
 
     /**
      * Goes to a scene.
      *
      * @param sceneName The name of the scene to go to.
      */
-    auto GoToScene(StringView sceneName) -> void;
+    auto GoToScene(std::string_view sceneName) -> void;
 
     /**
      * Updates the current scene.

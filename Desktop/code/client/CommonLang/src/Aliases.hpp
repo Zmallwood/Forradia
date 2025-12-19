@@ -8,15 +8,15 @@
 #include <vector>
 
 namespace Forradia {
-  using String = std::string;
-  using StringView = std::string_view;
-
-  template <class T>
-  using SharedPtr = std::shared_ptr<T>;
-
-  template <class T>
-  using Vector = std::vector<T>;
-
-  template <class T>
-  using Function = std::function<T>;
+  //  using String = std::string;
+  //  using StringView = std::string_view;
+  //
+  //  template <class T>
+  //  using SharedPtr = std::shared_ptr<T>;
+  //
+  //  template <class T>
+  //  using Vector = std::vector<T>;
+  //
+  //  template <class T>
+  //  using Function = std::function<T>;
 }

@@ -14,7 +14,7 @@
 #include "SceneManager.hpp"
 
 namespace Forradia {
-  auto Engine::Initialize(StringView gameWindowTitle, Color clearColor) const -> void {
+  auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) const -> void {
     // Initialize random number generator so that unique random numbers are generated on
     // each game run.
     Randomize();
@@ -49,7 +49,7 @@ namespace Forradia {
         _<SDLDevice>().PresentCanvas();
       }
     } catch (std::exception &e) {
-      PrintLine("An error occured: " + String(e.what()));
+      PrintLine("An error occured: " + std::string(e.what()));
     }
   }
 

@@ -5,8 +5,8 @@
 #include "assimp/scene.h"
 
 namespace Forradia {
-  auto Model::GetIndices(aiMesh *mesh) -> Vector<unsigned int> {
-    Vector<unsigned int> indices;
+  auto Model::GetIndices(aiMesh *mesh) -> std::vector<unsigned int> {
+    std::vector<unsigned int> indices;
 
     // Iterate over all faces.
     for (unsigned int i = 0; i < mesh->mNumFaces; i++) {

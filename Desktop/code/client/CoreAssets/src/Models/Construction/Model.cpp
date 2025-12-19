@@ -8,7 +8,7 @@
 #include "assimp/scene.h"
 
 namespace Forradia {
-  auto Model::Initialize(StringView filePath) -> void {
+  auto Model::Initialize(std::string_view filePath) -> void {
     Assimp::Importer importer;
     unsigned int flags{aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
                        aiProcess_GenBoundingBoxes | aiProcess_FixInfacingNormals};
@@ -17,7 +17,7 @@ namespace Forradia {
     const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
     if (nullptr == scene || nullptr == scene->mRootNode)
-      PrintLine("ERROR: ASSIMP could not load model: " + String(importer.GetErrorString()));
+      PrintLine("ERROR: ASSIMP could not load model: " + std::string(importer.GetErrorString()));
     else
       this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
   }

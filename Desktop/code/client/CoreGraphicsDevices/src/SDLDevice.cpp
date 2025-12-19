@@ -4,7 +4,7 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-  auto SDLDevice::Initialize(StringView gameWindowTitle, Color clearColor) -> void {
+  auto SDLDevice::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {
     m_gameWindowTitle = gameWindowTitle;
     m_clearColor = clearColor;
     SDL_Init(SDL_INIT_EVERYTHING);

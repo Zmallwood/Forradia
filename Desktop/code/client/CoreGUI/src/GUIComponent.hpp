@@ -26,7 +26,8 @@ namespace Forradia {
      * @param component The child component to add.
      * @return The added component.
      */
-    auto AddChildComponent(SharedPtr<GUIComponent> component) -> SharedPtr<GUIComponent>;
+    auto AddChildComponent(std::shared_ptr<GUIComponent> component)
+        -> std::shared_ptr<GUIComponent>;
 
     /**
      * Updates the component and all its children.
@@ -108,13 +109,13 @@ namespace Forradia {
     virtual auto RenderDerived() const -> void {
     }
 
-    auto GetChildComponents() const -> Vector<SharedPtr<GUIComponent>> {
+    auto GetChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>> {
       return m_childComponents;
     }
 
    private:
     RectF m_bounds;
-    Vector<SharedPtr<GUIComponent>> m_childComponents;
+    std::vector<std::shared_ptr<GUIComponent>> m_childComponents;
     bool m_visible{true};
     bool m_enabled{true};
     GUIComponent *m_parentComponent{nullptr};

@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 
 namespace Forradia {
   /**
@@ -13,5 +12,5 @@ namespace Forradia {
    * @param replaceWith Character to replace with.
    * @return Replaced string.
    */
-  auto Replace(StringView text, char replace, char replaceWith) -> String;
+  auto Replace(std::string_view text, char replace, char replaceWith) -> std::string;
 }

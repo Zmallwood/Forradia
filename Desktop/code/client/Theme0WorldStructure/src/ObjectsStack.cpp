@@ -9,11 +9,11 @@ namespace Forradia::Theme0 {
     m_objects.clear();
   }
 
-  auto ObjectsStack::AddObject(StringView objectName) -> void {
+  auto ObjectsStack::AddObject(std::string_view objectName) -> void {
     m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
   }
 
-  auto ObjectsStack::RemoveOneOfObjectOfType(StringView objectTypeName) -> void {
+  auto ObjectsStack::RemoveOneOfObjectOfType(std::string_view objectTypeName) -> void {
     for (auto it = m_objects.begin(); it != m_objects.end();) {
       // If the object type matches.
       if ((*it)->GetType() == Hash(objectTypeName)) {
@@ -32,7 +32,7 @@ namespace Forradia::Theme0 {
     return m_objects.size();
   }
 
-  auto ObjectsStack::PopObject() -> SharedPtr<Object> {
+  auto ObjectsStack::PopObject() -> std::shared_ptr<Object> {
     if (m_objects.empty())
       return nullptr;
 
@@ -41,10 +41,11 @@ namespace Forradia::Theme0 {
     return object;
   }
 
-  auto ObjectsStack::CountHasObject(StringView objectTypeName) const -> int {
+  auto ObjectsStack::CountHasObject(std::string_view objectTypeName) const -> int {
     // Return the number of objects of the specified type in the stack.
-    return std::count_if(m_objects.begin(), m_objects.end(), [&](const SharedPtr<Object> &object) {
-      return object->GetType() == Hash(objectTypeName);
-    });
+    return std::count_if(m_objects.begin(), m_objects.end(),
+                         [&](const std::shared_ptr<Object> &object) {
+                           return object->GetType() == Hash(objectTypeName);
+                         });
   }
 }

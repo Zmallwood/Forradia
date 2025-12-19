@@ -58,7 +58,7 @@ namespace Forradia::Theme0 {
 
     static constexpr float k_margin{0.005f};
     static constexpr float k_slotSize{0.04f};
-    inline static const String k_slotImageName{"GUIInventoryWindowSlotBackground"};
+    inline static const std::string k_slotImageName{"GUIInventoryWindowSlotBackground"};
     const int k_maxNumSlots{60};
     std::map<int, int> m_renderIDsSlotsBackground;
     std::map<int, int> m_renderIDsSlotsObject;

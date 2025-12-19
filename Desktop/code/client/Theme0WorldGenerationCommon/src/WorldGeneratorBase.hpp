@@ -64,7 +64,7 @@ namespace Forradia::Theme0 {
 
    private:
     const int k_defaultGroundElevation{10};
-    SharedPtr<WorldArea> m_worldArea;
+    std::shared_ptr<WorldArea> m_worldArea;
     Size m_worldAreaSize;
     float m_worldScaling;
   };

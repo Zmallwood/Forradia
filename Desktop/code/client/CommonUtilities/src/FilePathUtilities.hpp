@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 
 namespace Forradia {
   /**
@@ -11,7 +10,7 @@ namespace Forradia {
    * @param path Path to the file.
    * @return File extension.
    */
-  auto GetFileExtension(StringView path) -> String;
+  auto GetFileExtension(std::string_view path) -> std::string;
 
   /**
    * Get the file name without the extension.
@@ -19,5 +18,5 @@ namespace Forradia {
    * @param path Path to the file.
    * @return File name without the extension.
    */
-  auto GetFileNameNoExtension(StringView path) -> String;
+  auto GetFileNameNoExtension(std::string_view path) -> std::string;
 }

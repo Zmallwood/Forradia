@@ -58,9 +58,9 @@ namespace Forradia {
 
     auto LoadTextures() -> void;
 
-    auto LoadSingleTexture(SharedPtr<SDL_Surface> surface) const -> GLuint;
+    auto LoadSingleTexture(std::shared_ptr<SDL_Surface> surface) const -> GLuint;
 
-    inline static const String k_relativeImagesPath{"./Resources/Images/"};
+    inline static const std::string k_relativeImagesPath{"./Resources/Images/"};
     std::map<int, TextureEntry> m_textureEntries;
     std::map<int, GLuint> m_textTextureIDs;
   };

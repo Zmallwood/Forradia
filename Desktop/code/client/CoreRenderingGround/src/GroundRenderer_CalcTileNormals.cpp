@@ -4,8 +4,8 @@
 #include "GroundRenderer.hpp"
 
 namespace Forradia {
-  auto GroundRenderer::CalcTileNormals(const Vector<float> &verticesNoNormals) const
-      -> Vector<glm::vec3> {
+  auto GroundRenderer::CalcTileNormals(const std::vector<float> &verticesNoNormals) const
+      -> std::vector<glm::vec3> {
     constexpr size_t k_vertexStride = 8;
     constexpr size_t k_requiredVertices = 9;
     constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
@@ -47,7 +47,7 @@ namespace Forradia {
     normal01.z *= -1.0f;
 
     // Group the normals and return them.
-    auto normals{Vector<glm::vec3>{normal00, normal10, normal11, normal01}};
+    auto normals{std::vector<glm::vec3>{normal00, normal10, normal11, normal01}};
     return normals;
   }
 }

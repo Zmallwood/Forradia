@@ -4,7 +4,7 @@
 #include "TextureBank.hpp"
 
 namespace Forradia {
-  auto TextureBank::LoadSingleTexture(SharedPtr<SDL_Surface> surface) const -> GLuint {
+  auto TextureBank::LoadSingleTexture(std::shared_ptr<SDL_Surface> surface) const -> GLuint {
     GLuint textureID;
     glGenTextures(1, &textureID);
 

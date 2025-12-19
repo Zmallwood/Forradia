@@ -69,7 +69,7 @@ namespace Forradia {
      *
      * @param text Text to add.
      */
-    auto AddTextInput(StringView text) -> void;
+    auto AddTextInput(std::string_view text) -> void;
 
     /**
      * Returns the text input.
@@ -82,6 +82,6 @@ namespace Forradia {
 
    private:
     std::set<SDL_Keycode> m_pressed;
-    String m_textInput;
+    std::string m_textInput;
   };
 }

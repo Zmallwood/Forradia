@@ -7,7 +7,7 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-  auto TextRenderer::DrawString(int uniqueRenderID, StringView text, float x, float y,
+  auto TextRenderer::DrawString(int uniqueRenderID, std::string_view text, float x, float y,
                                 FontSizes fontSize, bool centerAlign, bool forceRerender,
                                 Color textColor) const -> void {
     if (text.empty())
@@ -32,11 +32,11 @@ namespace Forradia {
       auto sdlColor{textColor.ToSDLColor()};
 
       // Render the text to an SDL surface using the font and color.
-      auto surface{SharedPtr<SDL_Surface>(TTF_RenderText_Solid(fontRaw, text.data(), sdlColor),
-                                          SDLDeleter())};
+      auto surface{std::shared_ptr<SDL_Surface>(
+          TTF_RenderText_Solid(fontRaw, text.data(), sdlColor), SDLDeleter())};
 
       if (nullptr == surface) {
-        PrintLine(String("Error rendering text: ") + text.data());
+        PrintLine(std::string("Error rendering text: ") + text.data());
         return;
       }
 

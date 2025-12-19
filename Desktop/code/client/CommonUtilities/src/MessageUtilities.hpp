@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 
 namespace Forradia {
   /**
@@ -10,12 +9,12 @@ namespace Forradia {
    *
    * @param text Text to print.
    */
-  auto Print(StringView text) -> void;
+  auto Print(std::string_view text) -> void;
 
   /**
    * Print out a string of text, with an added line break at the end.
    *
    * @param text Text to print.
    */
-  auto PrintLine(StringView text) -> void;
+  auto PrintLine(std::string_view text) -> void;
 }

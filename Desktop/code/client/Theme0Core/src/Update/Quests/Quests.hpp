@@ -14,7 +14,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numStepsLeft{3};
@@ -29,7 +29,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numForagingsLeft{3};
@@ -44,7 +44,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     bool m_numBranchPicked{false};
@@ -61,7 +61,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     bool m_stonedMined{false};
@@ -76,7 +76,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numMinedStonesLeft{10};
@@ -91,7 +91,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numCraftedSlabsLeft{10};
@@ -106,7 +106,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numLaidSlabsLeft{10};
@@ -121,7 +121,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numMinedStonesLeft{10};
@@ -136,7 +136,7 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
 
    private:
     int m_numCraftedBricksLeft{10};
@@ -151,6 +151,6 @@ namespace Forradia::Theme0 {
 
     auto Update() -> void override;
 
-    auto GetStatus() const -> String override;
+    auto GetStatus() const -> std::string override;
   };
 }

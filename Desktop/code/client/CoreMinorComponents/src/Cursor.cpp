@@ -24,7 +24,7 @@ namespace Forradia {
     auto width{k_cursorSize};
     auto height{ConvertWidthToHeight(k_cursorSize, _<SDLDevice>().GetWindow())};
 
-    String cursorImage;
+    std::string cursorImage;
 
     switch (m_cursorStyle) {
     case CursorStyles::Normal:

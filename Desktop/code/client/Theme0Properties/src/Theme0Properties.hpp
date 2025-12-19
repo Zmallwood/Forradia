@@ -14,7 +14,7 @@ namespace Forradia::Theme0 {
      *
      * @return The game window title.
      */
-    auto GetGameWindowTitle() const -> String;
+    auto GetGameWindowTitle() const -> std::string;
 
     /**
      * Get the clear color of the canvas.

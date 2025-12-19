@@ -7,8 +7,8 @@
 
 namespace Forradia {
   auto GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
-                                int yCoordinate, float tileSize, const Vector<float> &elevations,
-                                bool forceUpdate) -> void {
+                                int yCoordinate, float tileSize,
+                                const std::vector<float> &elevations, bool forceUpdate) -> void {
     GLuint vao{0};
     GLuint ibo{0};
     GLuint vbo{0};
@@ -44,8 +44,9 @@ namespace Forradia {
     }
 
     if (false == tileIsCached || forceUpdate) {
-      Vector<Color> colors{Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
-                           Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
+      std::vector<Color> colors{
+          Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
+          Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
 
       // Calculate the vertices without normals.
       auto verticesNoNormals{

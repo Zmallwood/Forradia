@@ -47,8 +47,8 @@ namespace Forradia {
       entry.ibo = ibo;
       entry.vbo = vbo;
 
-      Vector<unsigned short> indicesVector;
-      Vector<float> verticesVector;
+      std::vector<unsigned short> indicesVector;
+      std::vector<float> verticesVector;
 
       // To contain the index of the first vertex of the next mesh.
       auto indexFirstVertexOfMesh{0};

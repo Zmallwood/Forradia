@@ -19,9 +19,10 @@ namespace Forradia {
      * @param parentWindow The parent window of the title bar.
      * @param windowTitle The title of the window.
      */
-    GUIWindowTitleBar(StringView uniqueName, GUIWindow &parentWindow, StringView windowTitle)
+    GUIWindowTitleBar(std::string_view uniqueName, GUIWindow &parentWindow,
+                      std::string_view windowTitle)
         : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
-          k_renderIDWindowTitleText(Hash(uniqueName.data() + String("WindowTitleText"))),
+          k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
           GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
       this->Initialize(uniqueName);
     }
@@ -39,10 +40,10 @@ namespace Forradia {
     auto GetBounds() const -> RectF override;
 
    private:
-    auto Initialize(StringView uniqueName) -> void;
+    auto Initialize(std::string_view uniqueName) -> void;
 
     inline static const float k_height{0.04f};
-    const String k_windowTitle;
+    const std::string k_windowTitle;
     const int k_renderIDWindowTitleText;
     GUIWindow &m_parentWindow;
   };

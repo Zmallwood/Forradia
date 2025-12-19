@@ -59,9 +59,9 @@ namespace Forradia::Theme0 {
 
     auto rendTileSize{_<Theme0Properties>().GetTileSize()};
 
-    Vector<TileData> tiles;
+    std::vector<TileData> tiles;
 
-    std::map<int, std::map<int, Vector<float>>> elevationsAll;
+    std::map<int, std::map<int, std::vector<float>>> elevationsAll;
 
     auto fnIterationGround{[&](int x, int y) {
       auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
@@ -110,7 +110,7 @@ namespace Forradia::Theme0 {
       auto tileSES{worldArea->GetTile(coordinateSES)};
       auto tileSS{worldArea->GetTile(coordinateSS)};
 
-      Vector<float> elevations;
+      std::vector<float> elevations;
 
       auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
       auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
@@ -232,7 +232,7 @@ namespace Forradia::Theme0 {
         auto waterDepth{tile->GetWaterDepth()};
         waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
-        String waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+        std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
 
         auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 
@@ -270,7 +270,7 @@ namespace Forradia::Theme0 {
           elevationsAll[xCoordinate].find(yCoordinate) == elevationsAll[xCoordinate].end())
         return;
 
-      Vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
+      std::vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
 
       auto &elevationNW = elevations[0];
       auto &elevationNE = elevations[1];
@@ -293,7 +293,7 @@ namespace Forradia::Theme0 {
         auto waterDepth{tile->GetWaterDepth()};
         waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
-        String waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+        std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
 
         auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 

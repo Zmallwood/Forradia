@@ -25,11 +25,11 @@ namespace Forradia::Theme0 {
      * @param bodyPartType The type of the body part.
      * @return A pointer to the body part.
      */
-    auto GetBodyPartPtr(PlayerBodyPartTypes bodyPartType) -> SharedPtr<PlayerBodyPart>;
+    auto GetBodyPartPtr(PlayerBodyPartTypes bodyPartType) -> std::shared_ptr<PlayerBodyPart>;
 
    private:
     auto Initialize() -> void;
 
-    std::map<PlayerBodyPartTypes, SharedPtr<PlayerBodyPart>> m_bodyParts;
+    std::map<PlayerBodyPartTypes, std::shared_ptr<PlayerBodyPart>> m_bodyParts;
   };
 }

@@ -26,21 +26,21 @@ namespace Forradia::Theme0 {
     /**
      * Gets the name of the current quest.
      */
-    auto GetCurrentQuestName() const -> String;
+    auto GetCurrentQuestName() const -> std::string;
 
     /**
      * Gets the description of the current quest.
      */
-    auto GetCurrentQuestDescription() const -> String;
+    auto GetCurrentQuestDescription() const -> std::string;
 
     /**
      * Gets the status of the current quest.
      */
-    auto GetCurrentQuestStatus() const -> String;
+    auto GetCurrentQuestStatus() const -> std::string;
 
    private:
     auto Initialize() -> void;
 
-    Vector<SharedPtr<Quest>> m_quests;
+    std::vector<std::shared_ptr<Quest>> m_quests;
   };
 }

@@ -128,7 +128,7 @@ namespace Forradia::Theme0 {
         }
 
         if (tileJson.contains("ground")) {
-          auto groundHash{Hash(tileJson["ground"].get<String>())};
+          auto groundHash{Hash(tileJson["ground"].get<std::string>())};
           tile->SetGround(groundHash);
         }
 
@@ -139,7 +139,7 @@ namespace Forradia::Theme0 {
 
             for (const auto &objectJson : tileJson["objects"]) {
               if (objectJson.contains("type")) {
-                auto objectType{objectJson["type"].get<String>()};
+                auto objectType{objectJson["type"].get<std::string>()};
 
                 objectsStack->AddObject(objectType);
               }
@@ -148,7 +148,7 @@ namespace Forradia::Theme0 {
         }
 
         if (tileJson.contains("creature")) {
-          auto creatureType{Hash(tileJson["creature"]["type"].get<String>())};
+          auto creatureType{Hash(tileJson["creature"]["type"].get<std::string>())};
 
           auto creature{std::make_shared<Creature>(creatureType)};
 

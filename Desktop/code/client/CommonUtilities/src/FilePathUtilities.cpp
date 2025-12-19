@@ -4,13 +4,13 @@
 #include "FilePathUtilities.hpp"
 
 namespace Forradia {
-  auto GetFileExtension(StringView path) -> String {
-    String extension{path.substr(path.find_last_of('.') + 1).data()};
+  auto GetFileExtension(std::string_view path) -> std::string {
+    std::string extension{path.substr(path.find_last_of('.') + 1).data()};
     return extension;
   }
 
-  auto GetFileNameNoExtension(StringView path) -> String {
-    auto nameWithExtension{String(path.substr(path.find_last_of('/') + 1))};
+  auto GetFileNameNoExtension(std::string_view path) -> std::string {
+    auto nameWithExtension{std::string(path.substr(path.find_last_of('/') + 1))};
     return nameWithExtension.substr(0, nameWithExtension.find_last_of('.'));
   }
 }

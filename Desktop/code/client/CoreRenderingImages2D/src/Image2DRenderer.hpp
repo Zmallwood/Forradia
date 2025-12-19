@@ -30,8 +30,8 @@ namespace Forradia {
      * @param height The height of the image.
      * @param updateExisting Whether to update the existing operation.
      */
-    auto DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y, float width,
-                         float height, bool updateExisting = false) -> void;
+    auto DrawImageByName(int uniqueRenderID, std::string_view imageName, float x, float y,
+                         float width, float height, bool updateExisting = false) -> void;
 
     /**
      * Draws an image by hash.
@@ -72,7 +72,7 @@ namespace Forradia {
      * @param width The width of the image.
      * @param height The height of the image.
      */
-    auto DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x, float y,
+    auto DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float x, float y,
                              float width) -> void;
 
    protected:
@@ -81,14 +81,14 @@ namespace Forradia {
      *
      * @return The vertex shader source.
      */
-    auto GetVSSource() const -> String override;
+    auto GetVSSource() const -> std::string override;
 
     /**
      * Returns the fragment shader source.
      *
      * @return The fragment shader source.
      */
-    auto GetFSSource() const -> String override;
+    auto GetFSSource() const -> std::string override;
 
     /**
      * Sets up the attribute layout.

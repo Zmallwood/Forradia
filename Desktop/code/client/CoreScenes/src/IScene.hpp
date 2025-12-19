@@ -67,6 +67,6 @@ namespace Forradia {
     }
 
    private:
-    SharedPtr<GUI> m_gui;
+    std::shared_ptr<GUI> m_gui;
   };
 }

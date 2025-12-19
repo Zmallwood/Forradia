@@ -4,12 +4,12 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-  auto TextRenderer::DefineTexture(SharedPtr<SDL_Surface> surface) const -> void {
+  auto TextRenderer::DefineTexture(std::shared_ptr<SDL_Surface> surface) const -> void {
     // Create an intermediary surface with RGBA format for OpenGL compatibility.
     auto intermediary{
-        SharedPtr<SDL_Surface>(SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0x000000ff,
-                                                    0x0000ff00, 0x00ff0000, 0xff000000),
-                               SDLDeleter())};
+        std::shared_ptr<SDL_Surface>(SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0x000000ff,
+                                                          0x0000ff00, 0x00ff0000, 0xff000000),
+                                     SDLDeleter())};
     // Copy the source surface data to the intermediary surface.
     SDL_BlitSurface(surface.get(), 0, intermediary.get(), 0);
     // Upload the surface pixel data to the OpenGL texture.

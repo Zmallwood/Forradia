@@ -24,7 +24,7 @@ namespace Forradia::Theme0 {
      *
      * @param objectTypeName The object type by name.
      */
-    Object(StringView objectTypeName) : m_type(Hash(objectTypeName)) {
+    Object(std::string_view objectTypeName) : m_type(Hash(objectTypeName)) {
       // Initialize the object.
       this->Initialize();
     }

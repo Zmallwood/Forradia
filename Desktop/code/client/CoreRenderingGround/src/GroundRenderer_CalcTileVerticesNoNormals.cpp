@@ -6,8 +6,9 @@
 
 namespace Forradia {
   auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                                 const Vector<float> &elevations,
-                                                 Vector<Color> colors) const -> Vector<float> {
+                                                 const std::vector<float> &elevations,
+                                                 std::vector<Color> colors) const
+      -> std::vector<float> {
     auto x{xCoordinate * tileSize};
     auto y{yCoordinate * tileSize};
     auto width{tileSize};

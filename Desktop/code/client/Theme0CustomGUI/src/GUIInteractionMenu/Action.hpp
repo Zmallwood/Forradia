@@ -12,16 +12,16 @@ namespace Forradia::Theme0 {
     /**
      * The types of ground that the action can be performed on.
      */
-    Vector<int> groundMatches;
+    std::vector<int> groundMatches;
 
     /**
      * The types of objects that the action can be performed on.
      */
-    Vector<int> objectMatches;
+    std::vector<int> objectMatches;
 
     /**
      * The function that performs the action.
      */
-    Function<void()> action;
+    std::function<void()> action;
   };
 }

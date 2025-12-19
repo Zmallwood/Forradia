@@ -40,7 +40,7 @@ namespace Forradia::Theme0 {
     auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
    private:
-    auto AddObjectEntry(StringView objectName, float modelScaling,
+    auto AddObjectEntry(std::string_view objectName, float modelScaling,
                         bool ignoreIndividualModelScaling) -> void;
 
     std::map<int, ObjectIndexEntry> m_entries;

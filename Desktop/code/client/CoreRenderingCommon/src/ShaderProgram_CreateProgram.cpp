@@ -16,7 +16,7 @@ namespace Forradia {
     if (isLinked == GL_FALSE) {
       GLint maxLength{0};
       glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
-      Vector<GLchar> infoLog(maxLength);
+      std::vector<GLchar> infoLog(maxLength);
       glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
       glDeleteProgram(m_programID);
       glDeleteShader(vertexShader);

@@ -33,7 +33,7 @@ namespace Forradia {
      *
      * @param text The message to print.
      */
-    auto Print(StringView text) -> void;
+    auto Print(std::string_view text) -> void;
 
     /**
      * Enables input to the chat box.
@@ -59,16 +59,16 @@ namespace Forradia {
 
     auto GetMaxNumLines() const -> int;
 
-    constexpr static StringView k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
+    constexpr static std::string_view k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
     inline static const float k_lineHeight{0.028F};
     inline static const float k_separatorHeight{0.003F};
     inline static const float k_margin{0.008f};
     const int k_renderIDSeparator{Hash("RenderIDSeparator")};
     const int k_renderIDInputCursor{Hash("RenderIDInputCursor")};
     const int k_renderIDInputText{Hash("RenderIDInputText")};
-    Vector<int> m_renderIDsTextLines;
-    Vector<String> m_lines;
-    String m_input;
+    std::vector<int> m_renderIDsTextLines;
+    std::vector<std::string> m_lines;
+    std::string m_input;
     bool m_inputActive{false};
   };
 }

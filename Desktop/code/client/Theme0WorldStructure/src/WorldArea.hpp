@@ -61,7 +61,7 @@ namespace Forradia::Theme0 {
      * @param y The y coordinate.
      * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
      */
-    auto GetTile(int x, int y) const -> SharedPtr<Tile>;
+    auto GetTile(int x, int y) const -> std::shared_ptr<Tile>;
 
     /**
      * Gets the tile at the given coordinate.
@@ -69,7 +69,7 @@ namespace Forradia::Theme0 {
      * @param coordinate The coordinate.
      * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
      */
-    auto GetTile(Point coord) const -> SharedPtr<Tile>;
+    auto GetTile(Point coord) const -> std::shared_ptr<Tile>;
 
     /**
      * Adds a claimed coordinate.
@@ -107,9 +107,9 @@ namespace Forradia::Theme0 {
    private:
     auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
-    Vector<Vector<SharedPtr<Tile>>> m_tiles;
-    std::map<SharedPtr<Creature>, Point> m_creaturesMirror;
-    std::map<SharedPtr<Robot>, Point> m_robotsMirror;
+    std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
+    std::map<std::shared_ptr<Creature>, Point> m_creaturesMirror;
+    std::map<std::shared_ptr<Robot>, Point> m_robotsMirror;
     std::set<Point> m_claimedCoordinates;
   };
 }

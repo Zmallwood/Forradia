@@ -6,8 +6,9 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-  auto Image2DRenderer::DrawImageByName(int uniqueRenderID, StringView imageName, float x, float y,
-                                        float width, float height, bool updateExisting) -> void {
+  auto Image2DRenderer::DrawImageByName(int uniqueRenderID, std::string_view imageName, float x,
+                                        float y, float width, float height, bool updateExisting)
+      -> void {
     this->DrawImageByHash(uniqueRenderID, Hash(imageName), x, y, width, height, updateExisting);
   }
 
@@ -17,7 +18,7 @@ namespace Forradia {
     this->DrawImageByTextureID(uniqueRenderID, textureID, x, y, width, height, updateExisting);
   }
 
-  auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, StringView imageName, float x,
+  auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float x,
                                             float y, float width) -> void {
     auto hash{Forradia::Hash(imageName)};
     auto imageDimensions{_<TextureBank>().GetTextureDimensions(hash)};

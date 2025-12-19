@@ -20,8 +20,8 @@ namespace Forradia {
      * @param height The height of the panel.
      * @param backgroundImage The background image of the panel.
      */
-    GUIPanel(StringView uniqueName, float x, float y, float width, float height,
-             StringView backgroundImage = k_defaultBackgroundImage)
+    GUIPanel(std::string_view uniqueName, float x, float y, float width, float height,
+             std::string_view backgroundImage = k_defaultBackgroundImage)
         : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
           m_backgroundImage(backgroundImage) {
     }
@@ -37,13 +37,13 @@ namespace Forradia {
      *
      * @param value The new background image.
      */
-    auto SetBackgroundImage(StringView value) -> void {
+    auto SetBackgroundImage(std::string_view value) -> void {
       m_backgroundImage = value;
     }
 
    private:
-    inline static const String k_defaultBackgroundImage{"GUIPanelBackground"};
+    inline static const std::string k_defaultBackgroundImage{"GUIPanelBackground"};
     const int k_renderIDBackground;
-    String m_backgroundImage;
+    std::string m_backgroundImage;
   };
 }

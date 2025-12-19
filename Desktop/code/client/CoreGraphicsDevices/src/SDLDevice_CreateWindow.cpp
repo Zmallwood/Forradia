@@ -6,13 +6,13 @@
 namespace Forradia {
   auto SDLDevice::SetupSDLWindow() -> void {
     auto screenSize{this->GetScreenSize()};
-    m_window = SharedPtr<SDL_Window>(
+    m_window = std::shared_ptr<SDL_Window>(
         SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                          screenSize.width, screenSize.height, k_windowFlags),
         SDLDeleter());
     if (nullptr == m_window)
       PrintLine("Window could not be created. "
                 "SDL Error: " +
-                String(SDL_GetError()));
+                std::string(SDL_GetError()));
   }
 }

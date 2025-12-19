@@ -10,7 +10,7 @@ namespace Forradia {
   }
 
   auto TextRenderer::AddFonts() -> void {
-    auto absFontPath{String(SDL_GetBasePath()) + k_defaultFontPath.data()};
+    auto absFontPath{std::string(SDL_GetBasePath()) + k_defaultFontPath.data()};
     auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
     // Iterate over all available font sizes.
@@ -18,8 +18,8 @@ namespace Forradia {
       auto fontSizeN{CInt(fontSize)};
 
       // Open the font file with the specified size.
-      auto newFont{
-          SharedPtr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN), SDLDeleter())};
+      auto newFont{std::shared_ptr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN),
+                                             SDLDeleter())};
 
       if (!newFont) {
         PrintLine("Error loading font size " + std::to_string(fontSizeN) +

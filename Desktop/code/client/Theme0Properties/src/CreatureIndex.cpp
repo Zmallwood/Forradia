@@ -8,7 +8,7 @@ namespace Forradia::Theme0 {
     AddCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
   }
 
-  auto CreatureIndex::AddCreatureEntry(StringView creatureName, float modelScaling,
+  auto CreatureIndex::AddCreatureEntry(std::string_view creatureName, float modelScaling,
                                        float levitationHeight) -> void {
     m_entries.insert({Hash(creatureName), {modelScaling, levitationHeight}});
   }

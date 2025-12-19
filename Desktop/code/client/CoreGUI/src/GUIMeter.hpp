@@ -20,9 +20,11 @@ namespace Forradia {
      * @param height The height of the meter.
      * @param filledColor The color of the filled part of the meter.
      */
-    GUIMeter(StringView uniqueName, float x, float y, float width, float height, Color filledColor)
+    GUIMeter(std::string_view uniqueName, float x, float y, float width, float height,
+             Color filledColor)
         : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
-          k_renderIDFilled(Hash(uniqueName.data() + String("Filled"))), k_filledColor(filledColor) {
+          k_renderIDFilled(Hash(uniqueName.data() + std::string("Filled"))),
+          k_filledColor(filledColor) {
     }
 
    protected:

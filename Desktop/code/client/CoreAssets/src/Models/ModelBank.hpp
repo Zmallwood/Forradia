@@ -27,16 +27,16 @@ namespace Forradia {
      * @param modelNameHash The hash of the model name.
      * @return The model.
      */
-    static auto GetModel(int modelNameHash) -> SharedPtr<Model>;
+    static auto GetModel(int modelNameHash) -> std::shared_ptr<Model>;
 
    private:
     static auto Initialize() -> void;
 
     static auto LoadModels() -> void;
 
-    static auto LoadSingleModel(StringView filePath) -> SharedPtr<Model>;
+    static auto LoadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>;
 
-    inline static const String k_relativeModelsPath{"./Resources/Models/"};
-    inline static std::map<int, SharedPtr<Model>> m_models;
+    inline static const std::string k_relativeModelsPath{"./Resources/Models/"};
+    inline static std::map<int, std::shared_ptr<Model>> m_models;
   };
 }

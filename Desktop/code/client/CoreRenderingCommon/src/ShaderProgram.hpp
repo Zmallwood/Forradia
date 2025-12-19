@@ -15,7 +15,7 @@ namespace Forradia {
      * @param vertexShaderSource Vertex shader source.
      * @param fragmentShaderSource Fragment shader source.
      */
-    ShaderProgram(StringView vertexShaderSource, StringView fragmentShaderSource) {
+    ShaderProgram(std::string_view vertexShaderSource, std::string_view fragmentShaderSource) {
       this->Initialize(vertexShaderSource, fragmentShaderSource);
     }
 
@@ -36,11 +36,12 @@ namespace Forradia {
     }
 
    private:
-    auto Initialize(StringView vertexShaderSource, StringView fragmentShaderSource) -> void;
+    auto Initialize(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
+        -> void;
 
     auto Cleanup() -> void;
 
-    auto GetShader(StringView shaderSource, int shaderType) const -> GLuint;
+    auto GetShader(std::string_view shaderSource, int shaderType) const -> GLuint;
 
     auto CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
 

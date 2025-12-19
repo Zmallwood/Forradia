@@ -5,11 +5,11 @@
 #include <iostream>
 
 namespace Forradia {
-  auto Print(StringView text) -> void {
+  auto Print(std::string_view text) -> void {
     std::cout << text;
   }
 
-  auto PrintLine(StringView text) -> void {
+  auto PrintLine(std::string_view text) -> void {
     std::cout << text << std::endl;
   }
 }

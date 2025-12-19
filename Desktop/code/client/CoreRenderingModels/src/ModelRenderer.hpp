@@ -37,14 +37,14 @@ namespace Forradia {
      *
      * @return The vertex shader source.
      */
-    auto GetVSSource() const -> String override;
+    auto GetVSSource() const -> std::string override;
 
     /**
      * Gets the fragment shader source.
      *
      * @return The fragment shader source.
      */
-    auto GetFSSource() const -> String override;
+    auto GetFSSource() const -> std::string override;
 
     /**
      * Additional initialization for this derived class.

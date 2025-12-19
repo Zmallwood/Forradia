@@ -22,10 +22,10 @@ namespace Forradia {
      * @param height The height of the window.
      * @param windowTitle The title of the window.
      */
-    GUIWindow(StringView uniqueName, float x, float y, float width, float height,
-              StringView windowTitle)
+    GUIWindow(std::string_view uniqueName, float x, float y, float width, float height,
+              std::string_view windowTitle)
         : GUIMovablePanel(uniqueName, x, y, width, height) {
-      this->Initialize(uniqueName.data() + String("WindowTitleBar"), windowTitle);
+      this->Initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
     }
 
     /**
@@ -52,8 +52,8 @@ namespace Forradia {
     auto GetDraggableArea() const -> RectF override;
 
    private:
-    auto Initialize(StringView uniqueName, StringView windowTitle) -> void;
+    auto Initialize(std::string_view uniqueName, std::string_view windowTitle) -> void;
 
-    SharedPtr<GUIWindowTitleBar> m_guiWindowTitleBar;
+    std::shared_ptr<GUIWindowTitleBar> m_guiWindowTitleBar;
   };
 }
