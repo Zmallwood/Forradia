@@ -49,6 +49,8 @@ namespace Forradia::Theme0 {
      */
     auto CountHasObject(std::string_view objectName) -> int;
 
+    auto CountHasObject(int objectHash) -> int;
+
     /**
      * Removes objects from the inventory with the specified name and count.
      *

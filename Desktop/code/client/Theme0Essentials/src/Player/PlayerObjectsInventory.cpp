@@ -47,6 +47,10 @@ namespace Forradia::Theme0 {
   }
 
   auto PlayerObjectsInventory::CountHasObject(std::string_view objectName) -> int {
+    return CountHasObject(Hash(objectName));
+  }
+
+  auto PlayerObjectsInventory::CountHasObject(int objectHash) -> int {
     auto findCount{0};
 
     // Check each slot in the inventory.
@@ -54,7 +58,7 @@ namespace Forradia::Theme0 {
       // Check if slot is not empty.
       if (m_objects[i]) {
         // Check if object type matches.
-        if (m_objects[i]->GetType() == Hash(objectName))
+        if (m_objects[i]->GetType() == objectHash)
           // Increment count if object type matches.
           ++findCount;
       }

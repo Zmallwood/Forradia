@@ -18,7 +18,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone bowl",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStone")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStone");
@@ -33,7 +37,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStoneWallDoor")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone wall door",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStoneBrick")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStoneBrick");
@@ -54,7 +62,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStoneWall")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone wall",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStoneBrick")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStoneBrick");
@@ -75,7 +87,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStoneBrick")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone brick",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStone")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStone");
@@ -89,7 +105,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionLayStoneSlab")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Lay stone slab",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStoneSlab")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStoneSlab");
@@ -109,7 +129,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStoneSlab")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone slab",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectStone")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.RemoveObject("ObjectStone");
@@ -123,7 +147,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionCraftStonePickaxe")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Craft stone pickaxe",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectBranch"), Hash("ObjectStone")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               if (inventory.CountHasObject("ObjectBranch") < 1) {
@@ -148,7 +176,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionChipStone")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {Hash("ObjectStoneBoulder")}, .action = []() {
+    return {.label = "Chip stone",
+            .groundMatches = {},
+            .objectMatches = {Hash("ObjectStoneBoulder")},
+            .objectsInInventory = {Hash("ObjectStonePickaxe")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.AddObject("ObjectStone");
@@ -161,7 +193,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionLayCobbleStone")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Lay cobble stone",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectSmallStones")},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
@@ -186,7 +222,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionPlowLand")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
+    return {.label = "Plow land",
+            .groundMatches = {},
+            .objectMatches = {},
+            .objectsInInventory = {Hash("ObjectPlow")},
+            .action = []() {
               auto worldArea{_<World>().GetCurrentWorldArea()};
               auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
               auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
@@ -197,51 +237,52 @@ namespace Forradia::Theme0 {
               _<GUIChatBox>().Print("You plow the land.");
             }};
   }
+  //
+  //  template <>
+  //  auto GetAction<Hash("Pick up")>() -> Action {
+  //    return {.groundMatches = {}, .objectMatches = {}, .objectsInInventory = {}, .action = []() {
+  //              auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+  //              auto worldArea{_<World>().GetCurrentWorldArea()};
+  //              auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+  //
+  //              if (tile) {
+  //                auto objectsStack{tile->GetObjectsStack()};
+  //                auto object{objectsStack->PopObject()};
+  //
+  //                if (object) {
+  //                  auto &inventory{_<Player>().GetObjectsInventoryRef()};
+  //                  inventory.AddObject(object->GetType());
+  //                }
+  //              }
+  //            }};
+  //  }
 
-  template <>
-  auto GetAction<Hash("Pick up")>() -> Action;
+  // template <>
+  // auto GetAction<Hash("ActionClaimLand")>() -> Action {
+  //   return {.groundMatches = {}, .objectMatches = {}, .objectsInInventory = {}, .action = []() {
+  //             auto worldArea{_<World>().GetCurrentWorldArea()};
+  //             auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
+  //             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
 
-  template <>
-  auto GetAction<Hash("Pick up")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-              auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-              auto worldArea{_<World>().GetCurrentWorldArea()};
-              auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
+  //            if (tile) {
+  //              tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
 
-              if (tile) {
-                auto objectsStack{tile->GetObjectsStack()};
-                auto object{objectsStack->PopObject()};
+  //              for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
+  //                for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3; x++)
+  //                  worldArea->AddClaimedCoordinate({x, y});
+  //            }
 
-                if (object) {
-                  auto &inventory{_<Player>().GetObjectsInventoryRef()};
-                  inventory.AddObject(object->GetType());
-                }
-              }
-            }};
-  }
-
-  template <>
-  auto GetAction<Hash("ActionClaimLand")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {}, .action = []() {
-              auto worldArea{_<World>().GetCurrentWorldArea()};
-              auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
-              auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
-
-              if (tile) {
-                tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
-
-                for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
-                  for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3; x++)
-                    worldArea->AddClaimedCoordinate({x, y});
-              }
-
-              _<GUIChatBox>().Print("You claim land.");
-            }};
-  }
+  //            _<GUIChatBox>().Print("You claim land.");
+  //          }};
+  //}
 
   template <>
   auto GetAction<Hash("ActionStop")>() -> Action {
-    return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
+    return {.label = "Stop",
+            .groundMatches = {Hash("GroundGrass")},
+            .objectMatches = {},
+            .objectsInInventory = {},
+            .action = []() {
               s_timedActions.clear();
 
               _<GUIChatBox>().Print("You stopped current action.");
@@ -249,17 +290,12 @@ namespace Forradia::Theme0 {
   }
 
   template <>
-  auto GetAction<Hash("ActionSitByComputer")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {Hash("ObjectComputer")}, .action = []() {
-              _<GUIChatBox>().Print("You sit by the computer.");
-
-              _<GUIChatBox>().EnableInput();
-            }};
-  }
-
-  template <>
   auto GetAction<Hash("ActionForage")>() -> Action {
-    return {.groundMatches = {Hash("GroundGrass")}, .objectMatches = {}, .action = []() {
+    return {.label = "Forage",
+            .groundMatches = {Hash("GroundGrass")},
+            .objectMatches = {},
+            .objectsInInventory = {},
+            .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
               inventory.AddObject("ObjectBlueberries");
@@ -273,8 +309,10 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionPickBranch")>() -> Action {
-    return {.groundMatches = {},
+    return {.label = "Pick branch",
+            .groundMatches = {},
             .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
+            .objectsInInventory = {},
             .action = []() {
               auto &inventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -287,7 +325,11 @@ namespace Forradia::Theme0 {
 
   template <>
   auto GetAction<Hash("ActionPickStone")>() -> Action {
-    return {.groundMatches = {}, .objectMatches = {Hash("ObjectStone")}, .action = []() {
+    return {.label = "Pick stone",
+            .groundMatches = {},
+            .objectMatches = {Hash("ObjectStone")},
+            .objectsInInventory = {},
+            .action = []() {
               auto worldArea{_<World>().GetCurrentWorldArea()};
               auto clickedCoordinate{_<GUIInteractionMenu>().GetClickedCoordinate()};
               auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};

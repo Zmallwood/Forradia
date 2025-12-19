@@ -9,6 +9,7 @@ namespace Forradia::Theme0 {
    */
   class Action {
    public:
+    std::string label;
     /**
      * The types of ground that the action can be performed on.
      */
@@ -18,6 +19,8 @@ namespace Forradia::Theme0 {
      * The types of objects that the action can be performed on.
      */
     std::vector<int> objectMatches;
+
+    std::vector<int> objectsInInventory;
 
     /**
      * The function that performs the action.

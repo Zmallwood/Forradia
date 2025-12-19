@@ -24,11 +24,12 @@ namespace Forradia {
     auto bounds{GetBounds()};
 
     if (bounds.Contains(mousePosition)) {
+      // Reset the mouse buttons. This is done to prevent any other mouse actions
+      // from being triggered when there has been a mouse click inside this panel.
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        // Reset the left mouse button. This is done to prevent any other mouse actions
-        // from being triggered when there has been a mouse click inside this panel.
         _<MouseInput>().GetLeftMouseButtonRef().Reset();
       }
+      _<MouseInput>().GetRightMouseButtonRef().Reset();
     }
 
     if (GetIsBeingMoved()) {

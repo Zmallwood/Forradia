@@ -6,8 +6,6 @@
 #include "GUIPanel.hpp"
 
 namespace Forradia::Theme0 {
-  class Robot;
-
   /**
    * Represents the interaction menu.
    */
@@ -25,6 +23,8 @@ namespace Forradia::Theme0 {
      */
     auto BuildMenu() -> void;
 
+    auto ShowMenuForTileAndObjects(int groundHash, std::vector<int> objectHashes) -> void;
+
     /**
      * Gets the timed actions.
      *
@@ -33,15 +33,6 @@ namespace Forradia::Theme0 {
     auto &GetTimedActionsRef() {
       return m_timedActions;
     }
-
-    /**
-     * Gets the clicked robot.
-     *
-     * @return The clicked robot.
-     */
-    // auto GetClickedRobot() const {
-    //   return m_clickedRobot;
-    // }
 
     /**
      * Gets the clicked coordinate.
@@ -76,7 +67,6 @@ namespace Forradia::Theme0 {
     std::vector<int> m_renderIDsMenuEntryStrings;
     std::vector<GUIInteractionMenuEntry> m_entries;
     Point m_clickedCoordinate{-1, -1};
-    // SharedPtr<Robot> m_clickedRobot;
     std::unordered_map<int, int> m_timedActions;
   };
 }
