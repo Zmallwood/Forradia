@@ -207,8 +207,12 @@ namespace Forradia::Theme0 {
                                k_lineHeight}};
 
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        if (menuEntryRect.Contains(mousePosition))
-          entry.GetAction()();
+        if (menuEntryRect.Contains(mousePosition)) {
+          auto worldArea{_<World>().GetCurrentWorldArea()};
+          auto tile{worldArea->GetTile(m_clickedCoordinate)};
+          std::vector<std::shared_ptr<Object> *> objects;
+          entry.GetAction()(tile, objects);
+        }
         this->SetVisible(false);
       }
       ++i;

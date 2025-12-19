@@ -4,6 +4,9 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+  class Tile;
+  class Object;
+
   /**
    * Represents an action that can be performed by the player.
    */
@@ -25,6 +28,6 @@ namespace Forradia::Theme0 {
     /**
      * The function that performs the action.
      */
-    std::function<void()> action;
+    std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> action;
   };
 }

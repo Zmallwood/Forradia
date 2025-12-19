@@ -4,6 +4,9 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+  class Tile;
+  class Object;
+
   /**
    * Represents an entry in the interaction menu.
    */
@@ -15,7 +18,9 @@ namespace Forradia::Theme0 {
      * @param label The label of the entry.
      * @param action The action to perform when the entry is clicked.
      */
-    GUIInteractionMenuEntry(std::string_view label, std::function<void()> action)
+    GUIInteractionMenuEntry(
+        std::string_view label,
+        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> action)
         : m_label(label), m_action(action) {
     }
 
@@ -39,6 +44,6 @@ namespace Forradia::Theme0 {
 
    private:
     std::string m_label;
-    std::function<void()> m_action;
+    std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> m_action;
   };
 }
