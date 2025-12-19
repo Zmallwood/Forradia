@@ -7,5 +7,4 @@
 
 #include <SDL2/SDL.h>
 
-#include "Aliases.hpp"
 #include "TimeUtilities.hpp"

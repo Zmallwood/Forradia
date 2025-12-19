@@ -2,8 +2,8 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
-#include "Aliases.hpp"
 #include "Functions.hpp"
+#include <string_view>
 
 namespace Forradia {
   /**

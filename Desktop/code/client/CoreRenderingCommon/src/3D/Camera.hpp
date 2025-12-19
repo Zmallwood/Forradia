@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "Geometry/Point3F.hpp"
+
 namespace Forradia {
   /**
    * Camera representing a viewpoint in 3D space.

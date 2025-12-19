@@ -3,9 +3,8 @@
 
 #pragma once
 
-#include "Geometry/Size.hpp"
 #include "Coloring/Color.hpp"
-#include "Aliases.hpp"
-#include "Singleton.hpp"
-#include "SDLDeleter.hpp"
+#include "Geometry/Size.hpp"
 #include "MessageUtilities.hpp"
+#include "SDLDeleter.hpp"
+#include "Singleton.hpp"

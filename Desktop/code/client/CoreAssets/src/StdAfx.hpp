@@ -3,23 +3,24 @@
 
 #pragma once
 
+#include <filesystem>
 #include <iostream>
 #include <map>
-#include <filesystem>
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <GL/glew.h>
-#include <GL/gl.h>
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
-#include "Aliases.hpp"
-#include "Geometry/Size.hpp"
-#include "StringUtilities.hpp"
 #include "FilePathUtilities.hpp"
+#include "Geometry/GLMTypes/GLMMesh.hpp"
+#include "Geometry/Size.hpp"
 #include "Hash.hpp"
 #include "MessageUtilities.hpp"
 #include "SDLDeleter.hpp"
-#include "Geometry/GLMTypes/GLMMesh.hpp"
+#include "StringUtilities.hpp"

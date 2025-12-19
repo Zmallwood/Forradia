@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <string_view>
+
 namespace Forradia {
   /**
    * Print out a string of text, without a following line break.

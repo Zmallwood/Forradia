@@ -8,11 +8,10 @@
 
 #include <SDL2/SDL.h>
 
-#include "Aliases.hpp"
 #include "Coloring/Color.hpp"
-#include "Geometry/Size.hpp"
 #include "Geometry/Point3F.hpp"
-#include "RandomizationUtilities.hpp"
-#include "MessageUtilities.hpp"
-#include "Singleton.hpp"
+#include "Geometry/Size.hpp"
 #include "Hash.hpp"
+#include "MessageUtilities.hpp"
+#include "RandomizationUtilities.hpp"
+#include "Singleton.hpp"

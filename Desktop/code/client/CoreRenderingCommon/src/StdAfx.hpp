@@ -12,7 +12,6 @@
 // clang-format on
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "Aliases.hpp"
 #include "CanvasUtilities.hpp"
 #include "Coloring/Color.hpp"
 #include "Geometry/Point.hpp"

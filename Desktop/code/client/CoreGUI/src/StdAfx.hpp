@@ -9,13 +9,12 @@
 #include <SDL2/SDL_ttf.h>
 #include <fmt/format.h>
 
-#include "Aliases.hpp"
+#include "CanvasUtilities.hpp"
+#include "Coloring/Color.hpp"
+#include "Coloring/Palette.hpp"
 #include "Functions.hpp"
 #include "Geometry/RectF.hpp"
 #include "Geometry/Size.hpp"
-#include "Coloring/Color.hpp"
-#include "Coloring/Palette.hpp"
-#include "Singleton.hpp"
-#include "MouseUtilities.hpp"
-#include "CanvasUtilities.hpp"
 #include "Hash.hpp"
+#include "MouseUtilities.hpp"
+#include "Singleton.hpp"

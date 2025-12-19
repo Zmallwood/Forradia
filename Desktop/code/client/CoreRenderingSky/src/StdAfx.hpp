@@ -3,19 +3,20 @@
 
 #pragma once
 
-#include <map>
 #include <cmath>
+#include <map>
 
-#include <SDL2/SDL.h>
+// clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
+// clang-format on
+#include <SDL2/SDL.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/vec3.hpp>
 
-#include "Aliases.hpp"
-#include "Singleton.hpp"
-#include "Geometry/Point3F.hpp"
-#include "Coloring/Color.hpp"
-#include "CanvasUtilities.hpp"
 #include "3D/Camera.hpp"
+#include "CanvasUtilities.hpp"
+#include "Coloring/Color.hpp"
+#include "Geometry/Point3F.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"

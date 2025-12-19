@@ -14,13 +14,13 @@
 #include <string>
 #include <vector>
 
-#include <fmt/core.h>
+// clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
-#include <glm/glm.hpp>
+// clang-format on
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_ttf.h>
-
-#include "Aliases.hpp"
+#include <fmt/core.h>
+#include <glm/glm.hpp>

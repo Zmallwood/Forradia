@@ -5,16 +5,17 @@
 
 #include <map>
 
-#include <SDL2/SDL.h>
+// clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
+// clang-format on
+#include <SDL2/SDL.h>
 
-#include "Aliases.hpp"
-#include "Coloring/Color.hpp"
-#include "Geometry/Size.hpp"
-#include "Singleton.hpp"
-#include "MouseUtilities.hpp"
 #include "CanvasUtilities.hpp"
-#include "TimeUtilities.hpp"
+#include "Coloring/Color.hpp"
 #include "Constants.hpp"
+#include "Geometry/Size.hpp"
 #include "Hash.hpp"
+#include "MouseUtilities.hpp"
+#include "Singleton.hpp"
+#include "TimeUtilities.hpp"
