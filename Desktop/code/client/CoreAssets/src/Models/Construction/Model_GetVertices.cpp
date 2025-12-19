@@ -4,7 +4,7 @@
 #include "Model.hpp"
 
 namespace Forradia {
-  auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const -> Vector<GLMVertex> {
+  auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> Vector<GLMVertex> {
     Vector<GLMVertex> vertices;
 
     // Iterate over all vertices.
@@ -13,17 +13,17 @@ namespace Forradia {
       glm::vec3 position;
 
       // Get the transformed vertex position.
-      auto v{transformation * mesh->mVertices[i]};
+      auto verts{transformation * mesh->mVertices[i]};
 
       // Set the position coordinates.
-      position.x = v.x;
-      position.y = v.y;
-      position.z = v.z;
+      position.x = verts.x;
+      position.y = verts.y;
+      position.z = verts.z;
 
       vertex.position = position;
 
       // If there are normals.
-      if (mesh->mNormals) {
+      if (mesh->mNormals != nullptr) {
         glm::vec3 normal;
 
         // Set the normal coordinates.
@@ -35,14 +35,14 @@ namespace Forradia {
       }
 
       // If there are texture coordinates.
-      if (mesh->mTextureCoords[0]) {
-        glm::vec2 uv;
+      if (mesh->mTextureCoords[0] != nullptr) {
+        glm::vec2 texCoords;
 
         // Set the texture coordinates.
-        uv.x = mesh->mTextureCoords[0][i].x;
-        uv.y = mesh->mTextureCoords[0][i].y;
+        texCoords.x = mesh->mTextureCoords[0][i].x;
+        texCoords.y = mesh->mTextureCoords[0][i].y;
 
-        vertex.uv = uv;
+        vertex.uv = texCoords;
       } else {
         // In case there are no texture coordinates, set them to zero.
         vertex.uv = glm::vec2(0, 0);

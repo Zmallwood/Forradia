@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "MessageUtilities.hpp"
+#include <iostream>
 
 namespace Forradia {
   auto Print(StringView text) -> void {

@@ -3,6 +3,8 @@
 
 #pragma once
 #include "Aliases.hpp"
+#include "Geometry/GLMTypes/GLMMesh.hpp"
+#include "assimp/scene.h"
 
 namespace Forradia {
   /**
@@ -33,14 +35,14 @@ namespace Forradia {
 
     auto ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform) -> void;
 
-    auto ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const
+    static auto ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh;
 
-    auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const -> Vector<GLMVertex>;
+    static auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> Vector<GLMVertex>;
 
-    auto GetIndices(aiMesh *mesh) const -> Vector<unsigned int>;
+    static auto GetIndices(aiMesh *mesh) -> Vector<unsigned int>;
 
-    auto GetTextures(aiMesh *mesh, const aiScene *scene) const -> Vector<Texture>;
+    static auto GetTextures(aiMesh *mesh, const aiScene *scene) -> Vector<Texture>;
 
     Vector<GLMMesh> m_meshes;
   };

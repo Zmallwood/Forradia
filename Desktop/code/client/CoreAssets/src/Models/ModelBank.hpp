@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include "Aliases.hpp"
+#include <map>
+
 namespace Forradia {
   class Model;
 
@@ -15,7 +18,7 @@ namespace Forradia {
      * Constructor.
      */
     ModelBank() {
-      this->Initialize();
+      ModelBank::Initialize();
     }
 
     /**
@@ -24,16 +27,16 @@ namespace Forradia {
      * @param modelNameHash The hash of the model name.
      * @return The model.
      */
-    auto GetModel(int modelNameHash) const -> SharedPtr<Model>;
+    static auto GetModel(int modelNameHash) -> SharedPtr<Model>;
 
    private:
-    auto Initialize() -> void;
+    static auto Initialize() -> void;
 
-    auto LoadModels() -> void;
+    static auto LoadModels() -> void;
 
-    auto LoadSingleModel(StringView filePath) const -> SharedPtr<Model>;
+    static auto LoadSingleModel(StringView filePath) -> SharedPtr<Model>;
 
     inline static const String k_relativeModelsPath{"./Resources/Models/"};
-    std::map<int, SharedPtr<Model>> m_models;
+    inline static std::map<int, SharedPtr<Model>> m_models;
   };
 }

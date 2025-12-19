@@ -2,9 +2,10 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Model.hpp"
+#include "assimp/scene.h"
 
 namespace Forradia {
-  auto Model::GetIndices(aiMesh *mesh) const -> Vector<unsigned int> {
+  auto Model::GetIndices(aiMesh *mesh) -> Vector<unsigned int> {
     Vector<unsigned int> indices;
 
     // Iterate over all faces.

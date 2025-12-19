@@ -1,10 +1,11 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
+#include "FilePathUtilities.hpp"
 #include "Model.hpp"
 
 namespace Forradia {
-  auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) const -> Vector<Texture> {
+  auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> Vector<Texture> {
     Vector<Texture> textures;
     aiString textureFilePath;
 

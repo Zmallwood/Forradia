@@ -3,15 +3,20 @@
 
 #include "ModelBank.hpp"
 #include "Construction/Model.hpp"
+#include "FilePathUtilities.hpp"
+#include "Hash.hpp"
+#include "StringUtilities.hpp"
+#include <SDL2/SDL.h>
+#include <filesystem>
 
 namespace Forradia {
   auto ModelBank::Initialize() -> void {
-    this->LoadModels();
+    ModelBank::LoadModels();
   }
 
   auto ModelBank::LoadModels() -> void {
     auto basePath{String(SDL_GetBasePath())};
-    auto imagesPath{basePath + k_relativeModelsPath.data()};
+    auto imagesPath{basePath + k_relativeModelsPath};
 
     if (false == std::filesystem::exists(imagesPath))
       return;
@@ -19,25 +24,25 @@ namespace Forradia {
     std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
     // Iterate through the directory using the rdi.
-    for (auto it : rdi) {
-      auto filePath{Replace(it.path().string(), '\\', '/')};
+    for (const auto &file : rdi) {
+      auto filePath{Replace(file.path().string(), '\\', '/')};
 
       if (GetFileExtension(filePath) == "obj" || GetFileExtension(filePath) == "dae") {
         auto fileName{GetFileNameNoExtension(filePath)};
         auto hash{Forradia::Hash(fileName)};
-        auto model{this->LoadSingleModel(filePath)};
+        auto model{ModelBank::LoadSingleModel(filePath)};
         m_models.insert({hash, model});
       }
     }
   }
 
-  auto ModelBank::GetModel(int modelNameHash) const -> SharedPtr<Model> {
+  auto ModelBank::GetModel(int modelNameHash) -> SharedPtr<Model> {
     if (m_models.contains(modelNameHash))
       return m_models.at(modelNameHash);
     return nullptr;
   }
 
-  auto ModelBank::LoadSingleModel(StringView filePath) const -> SharedPtr<Model> {
+  auto ModelBank::LoadSingleModel(StringView filePath) -> SharedPtr<Model> {
     // Load the model from the file at the path.
     auto modelResult{std::make_shared<Model>(filePath)};
     return modelResult;

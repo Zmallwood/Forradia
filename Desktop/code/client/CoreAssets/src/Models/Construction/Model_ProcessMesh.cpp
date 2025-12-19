@@ -4,11 +4,11 @@
 #include "Model.hpp"
 
 namespace Forradia {
-  auto Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation) const
+  auto Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
       -> GLMMesh {
-    auto vertices{this->GetVertices(mesh, transformation)};
-    auto indices{this->GetIndices(mesh)};
-    auto textures{this->GetTextures(mesh, scene)};
-    return GLMMesh(vertices, indices, textures);
+    auto vertices{Model::GetVertices(mesh, transformation)};
+    auto indices{Model::GetIndices(mesh)};
+    auto textures{Model::GetTextures(mesh, scene)};
+    return {vertices, indices, textures};
   }
 }

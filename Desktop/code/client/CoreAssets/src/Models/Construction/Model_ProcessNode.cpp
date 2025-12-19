@@ -8,7 +8,7 @@ namespace Forradia {
     // Iterate over all meshes in the node.
     for (unsigned int i = 0; i < node->mNumMeshes; i++) {
       // Access the mesh.
-      auto mesh{scene->mMeshes[node->mMeshes[i]]};
+      auto *mesh{scene->mMeshes[node->mMeshes[i]]};
 
       // Multiply the transformation with the node's transformation.
       transformation *= node->mTransformation;

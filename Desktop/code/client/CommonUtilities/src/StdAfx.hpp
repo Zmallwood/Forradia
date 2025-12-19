@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 #include <SDL2/SDL.h>
