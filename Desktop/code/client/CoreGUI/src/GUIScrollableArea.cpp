@@ -21,6 +21,8 @@ namespace Forradia {
     auto downArrowBounds{this->GetDownArrowBounds()};
     auto sliderBounds{this->GetSliderBounds()};
 
+    auto bounds{GUIComponent::GetBounds()};
+
     if (upArrowBounds.Contains(mousePos)) {
       _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
@@ -33,7 +35,7 @@ namespace Forradia {
       }
     } else if (sliderBounds.Contains(mousePos)) {
       _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired() && !m_movingSlider) {
         m_movingSlider = true;
         m_sliderStartMoveYPos = m_scrollPosition;
         m_sliderStartMoveMouseYPos = mousePos.y;
@@ -44,8 +46,9 @@ namespace Forradia {
     }
 
     if (m_movingSlider) {
-      auto delta{(mousePos.y - m_sliderStartMoveMouseYPos) / GUIComponent::GetBounds().height};
-      m_scrollPosition = m_sliderStartMoveYPos + delta;
+      auto delta{(mousePos.y - m_sliderStartMoveMouseYPos)};
+      m_scrollPosition =
+          m_sliderStartMoveYPos + delta / (bounds.height - k_sliderHeight - 2 * k_scrollbarWidth);
     }
     m_scrollPosition = std::max(0.0F, m_scrollPosition);
     m_scrollPosition = std::min(1.0F, m_scrollPosition);
@@ -118,7 +121,7 @@ namespace Forradia {
     auto bounds{GUIComponent::GetBounds()};
     auto sliderX{bounds.x + bounds.width - k_scrollbarWidth};
     auto sliderWidth{k_scrollbarWidth};
-    auto sliderHeight{0.08F};
+    auto sliderHeight{k_sliderHeight};
 
     auto sliderY{bounds.y + k_scrollbarWidth +
                  (bounds.height - sliderHeight - 2 * k_scrollbarWidth) * m_scrollPosition};
