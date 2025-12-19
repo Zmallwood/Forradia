@@ -39,6 +39,10 @@ namespace Forradia {
      */
     auto GetBounds() const -> RectF override;
 
+    auto GetHeight() const -> float {
+      return k_height;
+    }
+
    private:
     auto Initialize(std::string_view uniqueName) -> void;
 

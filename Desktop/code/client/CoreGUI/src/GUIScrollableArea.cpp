@@ -1,13 +1,14 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
-#include "GUIScrollableFrame.hpp"
+#include "GUIScrollableArea.hpp"
 #include "CanvasUtilities.hpp"
 #include "GUI.hpp"
+#include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-  auto GUIScrollableFrame::Render() const -> void {
+  auto GUIScrollableArea::Render() const -> void {
     if (!this->GetVisible())
       return;
 
@@ -30,5 +31,14 @@ namespace Forradia {
       component->Render();
 
     glDisable(GL_SCISSOR_TEST);
+
+    auto scrollbarWidth{0.02F};
+
+    auto upArrowBounds{
+        RectF{bounds.x + bounds.width - scrollbarWidth, bounds.y, scrollbarWidth, scrollbarWidth}};
+
+    _<Image2DRenderer>().DrawImageByName(k_renderIDUpArrow, "GUIScrollbarUpArrow", upArrowBounds.x,
+                                         upArrowBounds.y, upArrowBounds.width, upArrowBounds.height,
+                                         true);
   }
 }

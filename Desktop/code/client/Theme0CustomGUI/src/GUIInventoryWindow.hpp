@@ -3,7 +3,7 @@
 
 #pragma once
 #include "GUIPanel.hpp"
-#include "GUIScrollableFrame.hpp"
+#include "GUIScrollableArea.hpp"
 #include "GUIWindow.hpp"
 
 namespace Forradia::Theme0 {
@@ -23,10 +23,10 @@ namespace Forradia::Theme0 {
     auto Initialize() -> void;
   };
 
-  class GUIInventoryWindowFrame : public GUIScrollableFrame {
+  class GUIInventoryWindowArea : public GUIScrollableArea {
    public:
-    GUIInventoryWindowFrame(GUIWindow *parentWindow)
-        : GUIScrollableFrame("GUIInventoryWindowFrame", 0.0F, 0.0F, 0.2F, 0.3F),
+    GUIInventoryWindowArea(GUIWindow *parentWindow)
+        : GUIScrollableArea("GUIInventoryWindowArea", 0.0F, 0.0F, 0.2F, 0.3F),
           m_parentWindow(parentWindow) {
       this->Initialize(parentWindow);
     }

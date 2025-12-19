@@ -2,7 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUIInventoryWindow.hpp"
-#include "GUIScrollableFrame.hpp"
+#include "GUIScrollableArea.hpp"
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
 #include "Object.hpp"
@@ -12,20 +12,20 @@
 
 namespace Forradia::Theme0 {
   auto GUIInventoryWindow::Initialize() -> void {
-    auto windowFrame{std::make_shared<GUIInventoryWindowFrame>(this)};
-    this->AddChildComponent(windowFrame);
+    auto scrollableArea{std::make_shared<GUIInventoryWindowArea>(this)};
+    this->AddChildComponent(scrollableArea);
   }
 
-  auto GUIInventoryWindowFrame::Initialize(GUIWindow *parentWindow) -> void {
+  auto GUIInventoryWindowArea::Initialize(GUIWindow *parentWindow) -> void {
     auto panel{std::make_shared<GUIInventoryWindowPanel>(parentWindow)};
     this->AddChildComponent(panel);
   }
 
-  auto GUIInventoryWindowFrame::UpdateDerived() -> void {
-    GUIScrollableFrame::UpdateDerived();
+  auto GUIInventoryWindowArea::UpdateDerived() -> void {
+    GUIScrollableArea::UpdateDerived();
   }
 
-  auto GUIInventoryWindowFrame::GetBounds() const -> RectF {
+  auto GUIInventoryWindowArea::GetBounds() const -> RectF {
     auto bounds{m_parentWindow->GetBounds()};
     bounds.height = bounds.height / 2.0f;
     //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};

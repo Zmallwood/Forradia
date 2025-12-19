@@ -31,7 +31,7 @@ namespace Forradia {
 
     RectF boundsResult;
     boundsResult.x = parentWindowBounds.x;
-    boundsResult.y = parentWindowBounds.y;
+    boundsResult.y = parentWindowBounds.y - k_height;
     boundsResult.width = parentWindowBounds.width;
     boundsResult.height = k_height;
     return boundsResult;

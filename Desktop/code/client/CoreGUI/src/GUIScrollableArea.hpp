@@ -5,12 +5,13 @@
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-  class GUIScrollableFrame : public GUIComponent {
+  class GUIScrollableArea : public GUIComponent {
    public:
-    GUIScrollableFrame(std::string_view uniqueName, float x, float y, float width, float height)
+    GUIScrollableArea(std::string_view uniqueName, float x, float y, float width, float height)
         : GUIComponent(x, y, width, height),
           k_renderIDUpArrow(Hash(uniqueName.data() + std::string("_UpArrow"))),
-          k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))) {
+          k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))),
+          k_renderIDSlider(Hash(uniqueName.data() + std::string("_Slider"))) {
     }
 
    protected:
@@ -19,6 +20,7 @@ namespace Forradia {
    private:
     const int k_renderIDUpArrow;
     const int k_renderIDDownArrow;
+    const int k_renderIDSlider;
     float m_scrollPosition{0.0F};
   };
 }
