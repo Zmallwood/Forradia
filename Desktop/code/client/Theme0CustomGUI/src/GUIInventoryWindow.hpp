@@ -26,7 +26,7 @@ namespace Forradia::Theme0 {
   class GUIInventoryWindowArea : public GUIScrollableArea {
    public:
     GUIInventoryWindowArea(GUIWindow *parentWindow)
-        : GUIScrollableArea("GUIInventoryWindowArea", 0.0F, 0.0F, 0.2F, 0.3F),
+        : GUIScrollableArea("GUIInventoryWindowArea", 0.0F, 0.0F, 0.2F, 0.45F),
           m_parentWindow(parentWindow) {
       this->Initialize(parentWindow);
     }
@@ -45,7 +45,7 @@ namespace Forradia::Theme0 {
   class GUIInventoryWindowPanel : public GUIPanel {
    public:
     GUIInventoryWindowPanel(GUIWindow *parentWindow)
-        : GUIPanel("GUIInventoryWindowPanel", 0.0F, 0.0F, 0.2F, 0.5F),
+        : GUIPanel("GUIInventoryWindowPanel", 0.0F, 0.0F, 0.2F, 1.0F),
           m_parentWindow(parentWindow) {
       this->Initialize();
     }
