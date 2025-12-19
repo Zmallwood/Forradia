@@ -55,13 +55,30 @@ namespace Forradia {
 
       auto x{x1};
       auto y{y1};
-      auto width{x2 - x1};
-      auto height{lineWidth};
+      float width;
+      float height;
+      if (x2 - x1 > y2 - y1) {
+        width = x2 - x1;
+        height = lineWidth;
+        y -= height / 2.0f;
+      } else {
+        width = lineWidth;
+        height = y2 - y1;
+        x -= width / 2.0f;
+      }
 
-      float vertices[] = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
-                          x + width, y,          0.0F, c.r, c.g, c.b, c.a,
-                          x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
-                          x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
+      std::vector<float> verticesVec;
+
+      verticesVec = {x,   y,   0.0F,       c.r,  c.g,       c.b,        c.a,  x + width, y,   0.0F,
+                     c.r, c.g, c.b,        c.a,  x + width, y + height, 0.0F, c.r,       c.g, c.b,
+                     c.a, x,   y + height, 0.0F, c.r,       c.g,        c.b,  c.a};
+
+      auto vertices = verticesVec.data();
+
+      //  float vertices[] = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
+      //                      x + width, y,          0.0F, c.r, c.g, c.b, c.a,
+      //                      x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
+      //                      x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
 
       unsigned short indices[]{0, 1, 2, 3};
 

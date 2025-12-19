@@ -43,20 +43,11 @@ namespace Forradia::Theme0 {
     auto actionLayCobbleStone{GetAction<Hash("ActionLayCobbleStone")>()};
     m_entries.push_back({"Lay cobble stone", actionLayCobbleStone.action});
 
-    auto actionLayMetalFloor{GetAction<Hash("ActionLayMetalFloor")>()};
-    m_entries.push_back({"Lay metal floor", actionLayMetalFloor.action});
-
     auto actionClaimLand{GetAction<Hash("ActionClaimLand")>()};
     m_entries.push_back({"Claim land", actionClaimLand.action});
 
     auto actionPlowLand{GetAction<Hash("ActionPlowLand")>()};
     m_entries.push_back({"Plow land", actionPlowLand.action});
-
-    auto actionChopTree{GetAction<Hash("ActionChopTree")>()};
-    m_entries.push_back({"Chop tree", actionChopTree.action});
-
-    auto actionSimpleShelter{GetAction<Hash("ActionBuildSimpleShelter")>()};
-    m_entries.push_back({"Build simple shelter", actionSimpleShelter.action});
 
     auto actionForage{GetAction<Hash("ActionForage")>()};
 

@@ -24,6 +24,10 @@ namespace Forradia {
              Color filledColor)
         : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
           k_renderIDFilled(Hash(uniqueName.data() + std::string("Filled"))),
+          k_renderIDLineTop(Hash(uniqueName.data() + std::string("TopBorder"))),
+          k_renderIDLineBottom(Hash(uniqueName.data() + std::string("BottomBorder"))),
+          k_renderIDLineRight(Hash(uniqueName.data() + std::string("RightBorder"))),
+          k_renderIDLineLeft(Hash(uniqueName.data() + std::string("LeftBorder"))),
           k_filledColor(filledColor) {
     }
 
@@ -43,6 +47,10 @@ namespace Forradia {
    private:
     const int k_renderIDBackground;
     const int k_renderIDFilled;
+    const int k_renderIDLineTop;
+    const int k_renderIDLineBottom;
+    const int k_renderIDLineRight;
+    const int k_renderIDLineLeft;
     const Color k_filledColor;
   };
 }

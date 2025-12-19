@@ -130,4 +130,14 @@ namespace Forradia::Palette {
 
     return {red, green, blue, alpha};
   }
+
+  template <>
+  auto GetColor<Hash("DarkGray")>() -> Color {
+    const auto red{0.3F};
+    const auto green{0.3F};
+    const auto blue{0.3F};
+    const auto alpha{1.0F};
+
+    return {red, green, blue, alpha};
+  }
 }
