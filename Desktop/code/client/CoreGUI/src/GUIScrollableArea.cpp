@@ -45,5 +45,15 @@ namespace Forradia {
                                          upArrowBounds.x,
                                          upArrowBounds.y + bounds.height - upArrowBounds.width,
                                          upArrowBounds.width, upArrowBounds.height, true);
+
+    auto sliderX{bounds.x + bounds.width - scrollbarWidth};
+    auto sliderWidth{scrollbarWidth};
+    auto sliderHeight{0.1F};
+
+    auto sliderY{bounds.y + upArrowBounds.height +
+                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition};
+
+    _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderX, sliderY,
+                                         sliderWidth, sliderHeight, true);
   }
 }
