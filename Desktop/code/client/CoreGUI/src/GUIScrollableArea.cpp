@@ -3,6 +3,8 @@
 
 #include "GUIScrollableArea.hpp"
 #include "CanvasUtilities.hpp"
+#include "Cursor.hpp"
+#include "CursorStyles.hpp"
 #include "GUI.hpp"
 #include "Image2DRenderer.hpp"
 #include "Mouse/MouseInput.hpp"
@@ -15,20 +17,38 @@ namespace Forradia {
 
     auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
-    auto upArrowBounds{GetUpArrowBounds()};
-    auto downArrowBounds{GetDownArrowBounds()};
+    auto upArrowBounds{this->GetUpArrowBounds()};
+    auto downArrowBounds{this->GetDownArrowBounds()};
+    auto sliderBounds{this->GetSliderBounds()};
 
     if (upArrowBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
         m_scrollPosition -= 0.05F;
-        m_scrollPosition = std::max(0.0F, m_scrollPosition);
       }
     } else if (downArrowBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
         m_scrollPosition += 0.05F;
-        m_scrollPosition = std::min(1.0F, m_scrollPosition);
+      }
+    } else if (sliderBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+        m_movingSlider = true;
+        m_sliderStartMoveYPos = m_scrollPosition;
+        m_sliderStartMoveMouseYPos = mousePos.y;
       }
     }
+    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
+      m_movingSlider = false;
+    }
+
+    if (m_movingSlider) {
+      auto delta{(mousePos.y - m_sliderStartMoveMouseYPos) / GUIComponent::GetBounds().height};
+      m_scrollPosition = m_sliderStartMoveYPos + delta;
+    }
+    m_scrollPosition = std::max(0.0F, m_scrollPosition);
+    m_scrollPosition = std::min(1.0F, m_scrollPosition);
   }
 
   auto GUIScrollableArea::Render() const -> void {
@@ -66,15 +86,11 @@ namespace Forradia {
                                          downArrowBounds.x, downArrowBounds.y,
                                          downArrowBounds.width, downArrowBounds.height, true);
 
-    auto sliderX{bounds.x + bounds.width - k_scrollbarWidth};
-    auto sliderWidth{k_scrollbarWidth};
-    auto sliderHeight{0.08F};
+    auto sliderBounds{this->GetSliderBounds()};
 
-    auto sliderY{bounds.y + upArrowBounds.height +
-                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition};
-
-    _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderX, sliderY,
-                                         sliderWidth, sliderHeight, true);
+    _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderBounds.x,
+                                         sliderBounds.y, sliderBounds.width, sliderBounds.height,
+                                         true);
   }
 
   auto GUIScrollableArea::GetBounds() const -> RectF {
@@ -96,5 +112,16 @@ namespace Forradia {
                                bounds.y + bounds.height - k_scrollbarWidth, k_scrollbarWidth,
                                k_scrollbarWidth}};
     return downArrowBounds;
+  }
+
+  auto GUIScrollableArea::GetSliderBounds() const -> RectF {
+    auto bounds{GUIComponent::GetBounds()};
+    auto sliderX{bounds.x + bounds.width - k_scrollbarWidth};
+    auto sliderWidth{k_scrollbarWidth};
+    auto sliderHeight{0.08F};
+
+    auto sliderY{bounds.y + k_scrollbarWidth +
+                 (bounds.height - sliderHeight - 2 * k_scrollbarWidth) * m_scrollPosition};
+    return {sliderX, sliderY, sliderWidth, sliderHeight};
   }
 }
