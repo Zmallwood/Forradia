@@ -5,7 +5,7 @@
 
 namespace Forradia::Theme0 {
   class Tile;
-  class Creature;
+  class Entity;
   class Robot;
 
   /**
@@ -87,29 +87,19 @@ namespace Forradia::Theme0 {
     auto CoordinateIsClaimed(Point coordinate) const -> bool;
 
     /**
-     * Gets a reference to the creatures mirror.
+     * Gets a reference to the entities mirror.
      *
-     * @return A reference to the creatures mirror.
+     * @return A reference to the entities mirror.
      */
-    auto &GetCreaturesMirrorRef() {
-      return m_creaturesMirror;
-    }
-
-    /**
-     * Gets a reference to the robots mirror.
-     *
-     * @return A reference to the robots mirror.
-     */
-    auto &GetRobotsMirrorRef() {
-      return m_robotsMirror;
+    auto &GetEntitiesMirrorRef() {
+      return m_entitiesMirror;
     }
 
    private:
     auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
     std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
-    std::map<std::shared_ptr<Creature>, Point> m_creaturesMirror;
-    std::map<std::shared_ptr<Robot>, Point> m_robotsMirror;
+    std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror;
     std::set<Point> m_claimedCoordinates;
   };
 }

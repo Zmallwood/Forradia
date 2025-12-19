@@ -1,7 +1,7 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
-#include "Creature.hpp"
+#include "Entity.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Tile.hpp"
@@ -9,7 +9,7 @@
 #include "WorldGeneratorEntities.hpp"
 
 namespace Forradia::Theme0 {
-  auto WorldGeneratorEntities::GenerateCreaturesInEcosystems() const -> void {
+  auto WorldGeneratorEntities::GenerateEntitiesInEcosystems() const -> void {
     auto worldArea{GetWorldArea()};
     auto worldAreaSize{worldArea->GetSize()};
     auto worldScaling{GetWorldScaling()};
@@ -23,7 +23,7 @@ namespace Forradia::Theme0 {
 
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
+      if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
         continue;
 
       auto prefersLocation{false};
@@ -38,11 +38,11 @@ namespace Forradia::Theme0 {
       }
 
       if (prefersLocation) {
-        auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
+        auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
-        tile->SetCreature(newCreature);
+        tile->SetEntity(newEntity);
 
-        worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+        worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
       }
     }
 
@@ -54,7 +54,7 @@ namespace Forradia::Theme0 {
 
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
+      if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
         continue;
 
       auto prefersLocation{false};
@@ -69,11 +69,11 @@ namespace Forradia::Theme0 {
       }
 
       if (prefersLocation) {
-        auto newCreature{std::make_shared<Theme0::Creature>("CreatureWolf")};
+        auto newEntity{std::make_shared<Theme0::Entity>("CreatureWolf")};
 
-        tile->SetCreature(newCreature);
+        tile->SetEntity(newEntity);
 
-        worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+        worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
       }
     }
 
@@ -86,7 +86,7 @@ namespace Forradia::Theme0 {
 
       auto tile{worldArea->GetTile(x, y)};
 
-      if (!tile || tile->GetCreature() || tile->GetGround() == Hash("GroundWater"))
+      if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
         continue;
 
       // Birds prefer areas with trees nearby (forests).
@@ -137,11 +137,11 @@ namespace Forradia::Theme0 {
         prefersLocation = GetRandomInt(100) < 8;
 
       if (prefersLocation) {
-        auto newCreature{std::make_shared<Theme0::Creature>("CreatureRedBird")};
+        auto newEntity{std::make_shared<Theme0::Entity>("CreatureRedBird")};
 
-        tile->SetCreature(newCreature);
+        tile->SetEntity(newEntity);
 
-        worldArea->GetCreaturesMirrorRef().insert({tile->GetCreature(), {x, y}});
+        worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
       }
     }
 
@@ -200,18 +200,18 @@ namespace Forradia::Theme0 {
 
         auto creatureTile{worldArea->GetTile(creatureX, creatureY)};
 
-        if (!creatureTile || creatureTile->GetCreature() ||
+        if (!creatureTile || creatureTile->GetEntity() ||
             creatureTile->GetGround() == Hash("GroundWater"))
           continue;
 
         // Prefer grass for the ecosystem.
         if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60) {
-          auto newCreature{std::make_shared<Theme0::Creature>("CreatureWhiteRabbit")};
+          auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
-          creatureTile->SetCreature(newCreature);
+          creatureTile->SetEntity(newEntity);
 
-          worldArea->GetCreaturesMirrorRef().insert(
-              {creatureTile->GetCreature(), {creatureX, creatureY}});
+          worldArea->GetEntitiesMirrorRef().insert(
+              {creatureTile->GetEntity(), {creatureX, creatureY}});
         }
       }
     }

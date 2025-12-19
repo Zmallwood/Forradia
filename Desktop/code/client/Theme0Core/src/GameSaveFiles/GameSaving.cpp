@@ -2,7 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GameSaving.hpp"
-#include "Creature.hpp"
+#include "Entity.hpp"
 #include "GroundRenderer.hpp"
 #include "HashCodes.hpp"
 #include "Object.hpp"
@@ -56,12 +56,12 @@ namespace Forradia::Theme0 {
           }
         }
 
-        // Serialize creature on this tile
-        auto creature{tile->GetCreature()};
-        if (creature) {
-          nlohmann::json creatureJson;
-          creatureJson["type"] = GetNameFromAnyHash(creature->GetType());
-          tileJson["creature"] = creatureJson;
+        // Serialize entity on this tile
+        auto entity{tile->GetEntity()};
+        if (entity) {
+          nlohmann::json entityJson;
+          entityJson["type"] = GetNameFromAnyHash(entity->GetType());
+          tileJson["entity"] = entityJson;
         }
 
         jsonData["tiles"].push_back(tileJson);
@@ -98,7 +98,7 @@ namespace Forradia::Theme0 {
 
     worldArea->Reset();
 
-    auto &creatures{worldArea->GetCreaturesMirrorRef()};
+    auto &entities{worldArea->GetEntitiesMirrorRef()};
 
     if (jsonData.contains("size")) {
       auto savedWidth{jsonData["size"]["width"].get<int>()};
@@ -147,14 +147,14 @@ namespace Forradia::Theme0 {
           }
         }
 
-        if (tileJson.contains("creature")) {
-          auto creatureType{Hash(tileJson["creature"]["type"].get<std::string>())};
+        if (tileJson.contains("entity")) {
+          auto entityType{Hash(tileJson["entity"]["type"].get<std::string>())};
 
-          auto creature{std::make_shared<Creature>(creatureType)};
+          auto entity{std::make_shared<Entity>(entityType)};
 
-          tile->SetCreature(creature);
+          tile->SetEntity(entity);
 
-          creatures.insert({creature, {x, y}});
+          entities.insert({entity, {x, y}});
         }
       }
     }

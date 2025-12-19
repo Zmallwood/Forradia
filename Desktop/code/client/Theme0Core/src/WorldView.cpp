@@ -3,8 +3,8 @@
 
 #include "WorldView.hpp"
 #include "Coloring/Palette.hpp"
-#include "Creature.hpp"
 #include "Directions.hpp"
+#include "Entity.hpp"
 #include "GroundRenderer.hpp"
 #include "ModelRenderer.hpp"
 #include "Object.hpp"
@@ -243,7 +243,7 @@ namespace Forradia::Theme0 {
         tile->SetForceRedraw(true);
       }
 
-      // Check if this tile is within the normal grid size for object/creature
+      // Check if this tile is within the normal grid size for object/entity
       // rendering.
       auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                               x < (groundGridSize.width + gridSize.width) / 2 &&
@@ -302,14 +302,14 @@ namespace Forradia::Theme0 {
         ground = Hash(waterImageString);
       }
 
-      // Check if this tile is within the normal grid size for object/creature
+      // Check if this tile is within the normal grid size for object/entity
       // rendering.
       auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
                               x < (groundGridSize.width + gridSize.width) / 2 &&
                               y >= (groundGridSize.height - gridSize.height) / 2 &&
                               y < (groundGridSize.height + gridSize.height) / 2};
 
-      // Only render objects, and creatures within the normal grid size.
+      // Only render objects, and entities within the normal grid size.
       if (isWithinNormalGrid) {
         for (auto object : objects) {
           auto objectType{object->GetType()};
@@ -319,12 +319,12 @@ namespace Forradia::Theme0 {
                                        object->GetModelScaling());
         }
 
-        auto creature{tile->GetCreature()};
+        auto entity{tile->GetEntity()};
 
-        if (creature) {
-          auto creatureType{creature->GetType()};
+        if (entity) {
+          auto entityType{entity->GetType()};
 
-          _<ModelRenderer>().DrawModel(creatureType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+          _<ModelRenderer>().DrawModel(entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
         }
 

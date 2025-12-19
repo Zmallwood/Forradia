@@ -6,7 +6,7 @@
 
 namespace Forradia::Theme0 {
   class ObjectsStack;
-  class Creature;
+  class Entity;
   // class Robot;
 
   /**
@@ -55,21 +55,21 @@ namespace Forradia::Theme0 {
     }
 
     /**
-     * Gets the creature on the tile.
+     * Gets the entity on the tile.
      *
-     * @return The creature on the tile, or nullptr if no creature is on the tile.
+     * @return The entity on the tile, or nullptr if no entity is on the tile.
      */
-    auto GetCreature() const {
-      return m_creature;
+    auto GetEntity() const {
+      return m_entity;
     }
 
     /**
-     * Sets the creature on the tile.
+     * Sets the entity on the tile.
      *
-     * @param value The creature on the tile.
+     * @param value The entity on the tile.
      */
-    auto SetCreature(std::shared_ptr<Creature> value) -> void {
-      m_creature = value;
+    auto SetEntity(std::shared_ptr<Entity> value) -> void {
+      m_entity = value;
     }
 
     //  /**
@@ -149,7 +149,7 @@ namespace Forradia::Theme0 {
 
     int m_ground{0};
     std::shared_ptr<ObjectsStack> m_objectsStack;
-    std::shared_ptr<Creature> m_creature;
+    std::shared_ptr<Entity> m_entity;
     // SharedPtr<Robot> m_robot;
     int m_elevation{0};
     int m_waterDepth{0};

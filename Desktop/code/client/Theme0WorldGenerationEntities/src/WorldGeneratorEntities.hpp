@@ -16,7 +16,7 @@ namespace Forradia::Theme0 {
     auto GenerateEntities() const -> void;
 
    private:
-    auto GenerateCreaturesInEcosystems() const -> void;
+    auto GenerateEntitiesInEcosystems() const -> void;
 
     auto IsNearWater(int x, int y, int radius) const -> bool;
   };

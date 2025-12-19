@@ -20,7 +20,7 @@
 #include "Update/Quests/QuestSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "Update/UpdateCameraZoom.hpp"
-#include "Update/UpdateCreaturesMovement.hpp"
+#include "Update/UpdateEntitiesMovement.hpp"
 #include "Update/UpdateKeyboardActions.hpp"
 #include "Update/UpdateKeyboardMovement.hpp"
 #include "Update/UpdateMouseActions.hpp"
@@ -71,7 +71,7 @@ namespace Forradia::Theme0 {
   auto MainScene::UpdateDerived() -> void {
     UpdateKeyboardActions();
     UpdateMouseActions();
-    UpdateCreaturesMovement();
+    UpdateEntitiesMovement();
     UpdateCameraZoom();
     UpdateMouseMovement();
     UpdateKeyboardMovement();

@@ -2,14 +2,14 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "WorldGeneratorEntities.hpp"
-#include "Creature.hpp"
+#include "Entity.hpp"
 #include "ObjectsStack.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
   auto WorldGeneratorEntities::GenerateEntities() const -> void {
-    GenerateCreaturesInEcosystems();
+    GenerateEntitiesInEcosystems();
   }
 
   auto WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const -> bool {

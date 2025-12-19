@@ -19,8 +19,7 @@ namespace Forradia::Theme0 {
   }
 
   auto WorldArea::Reset() -> void {
-    m_creaturesMirror.clear();
-    m_robotsMirror.clear();
+    m_entitiesMirror.clear();
 
     auto size{this->GetSize()};
 
@@ -30,7 +29,7 @@ namespace Forradia::Theme0 {
 
         // Set the tile to its default state.
         tile->SetGround(Hash("GroundGrass"));
-        tile->SetCreature(nullptr);
+        tile->SetEntity(nullptr);
         // tile->SetRobot(nullptr);
         tile->SetElevation(0.0F);
         tile->SetWaterDepth(0);
