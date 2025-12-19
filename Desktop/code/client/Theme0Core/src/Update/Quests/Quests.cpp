@@ -5,7 +5,6 @@
 #include "GUIChatBox.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

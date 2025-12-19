@@ -6,7 +6,6 @@
 #include "Engine.hpp"
 #include "Image2DRenderer.hpp"
 #include "Keyboard/KeyboardInput.hpp"
-#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

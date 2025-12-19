@@ -5,7 +5,6 @@
 #include "Cursor.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GUIMovablePanel::UpdateDerived() -> void {

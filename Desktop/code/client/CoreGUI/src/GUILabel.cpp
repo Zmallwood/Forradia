@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUILabel.hpp"
-#include "StdAfx.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

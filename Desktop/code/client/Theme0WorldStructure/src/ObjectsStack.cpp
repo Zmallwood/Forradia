@@ -3,7 +3,6 @@
 
 #include "ObjectsStack.hpp"
 #include "Object.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto ObjectsStack::ClearObjects() -> void {

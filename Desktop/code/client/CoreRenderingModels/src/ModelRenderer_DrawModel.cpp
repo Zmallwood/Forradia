@@ -7,7 +7,6 @@
 #include "ModelRenderer.hpp"
 #include "Models/ModelBank.hpp"
 #include "ObjectIndex.hpp"
-#include "StdAfx.hpp"
 #include "Textures/TextureBank.hpp"
 #include "Theme0Properties.hpp"
 

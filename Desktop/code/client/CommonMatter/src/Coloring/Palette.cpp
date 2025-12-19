@@ -3,7 +3,6 @@
 
 #include "Palette.hpp"
 #include "Hash.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Palette {
   template <>

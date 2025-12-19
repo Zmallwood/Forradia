@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "WorldGeneratorBase.hpp"
-#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "World.hpp"

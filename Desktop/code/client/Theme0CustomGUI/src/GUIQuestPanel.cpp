@@ -3,7 +3,6 @@
 
 #include "GUIQuestPanel.hpp"
 #include "GUILabel.hpp"
-#include "StdAfx.hpp"
 #include "Update/Quests/QuestSystem.hpp"
 
 namespace Forradia::Theme0 {

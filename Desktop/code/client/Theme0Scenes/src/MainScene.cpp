@@ -16,7 +16,6 @@
 #include "GUIQuestPanel.hpp"
 #include "GUISystemMenu.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 #include "Update/CameraRotator.hpp"
 #include "Update/Quests/QuestSystem.hpp"
 #include "Update/TileHovering.hpp"

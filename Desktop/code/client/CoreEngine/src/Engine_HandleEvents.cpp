@@ -4,7 +4,6 @@
 #include "Engine.hpp"
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Engine::HandleEvents() -> void {

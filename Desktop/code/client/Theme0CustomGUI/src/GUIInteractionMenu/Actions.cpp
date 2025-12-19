@@ -9,7 +9,6 @@
 #include "Player/Player.hpp"
 #include "Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

@@ -5,7 +5,6 @@
 #include "3D/Camera.hpp"
 #include "Player/Player.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "World.hpp"

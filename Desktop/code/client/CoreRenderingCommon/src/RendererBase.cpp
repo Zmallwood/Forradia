@@ -3,7 +3,6 @@
 
 #include "RendererBase.hpp"
 #include "ShaderProgram.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto RendererBase::Initialize() -> void {

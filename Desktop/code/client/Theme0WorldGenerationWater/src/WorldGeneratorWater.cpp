@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "WorldGeneratorWater.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 

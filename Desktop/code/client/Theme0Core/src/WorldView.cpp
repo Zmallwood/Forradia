@@ -11,7 +11,6 @@
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "SkyRenderer.hpp"
-#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "TileData.hpp"

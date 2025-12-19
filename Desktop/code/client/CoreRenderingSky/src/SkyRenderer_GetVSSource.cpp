@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "SkyRenderer.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto SkyRenderer::GetVSSource() const -> String {

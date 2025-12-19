@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "SDLDeleter.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto SDLDeleter::operator()(SDL_Window *window) const -> void {

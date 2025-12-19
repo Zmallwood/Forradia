@@ -5,7 +5,6 @@
 #include "GUIChatBox.hpp"
 #include "GUIExperienceBar.hpp"
 #include "SetupScenes.hpp"
-#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"
 

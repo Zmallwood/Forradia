@@ -4,7 +4,6 @@
 #include "Color.hpp"
 #include "Constants.hpp"
 #include "Functions.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Color::ToSDLColor() const -> SDL_Color {

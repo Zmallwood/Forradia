@@ -9,7 +9,6 @@
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
 #include "SceneManager.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto MainMenuScene::InitializeDerived() -> void {

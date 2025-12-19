@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Image2DRenderer.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Image2DRenderer::GetFSSource() const -> String {

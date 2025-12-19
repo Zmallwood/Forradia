@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "MouseInput.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto MouseInput::Reset() -> void {

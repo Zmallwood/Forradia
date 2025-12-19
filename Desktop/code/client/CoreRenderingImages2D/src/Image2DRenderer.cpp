@@ -4,7 +4,6 @@
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Image2DRenderer::Cleanup() -> void {

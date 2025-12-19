@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUIComponent.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GUIComponent::AddChildComponent(SharedPtr<GUIComponent> component)

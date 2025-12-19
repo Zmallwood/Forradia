@@ -3,7 +3,6 @@
 
 #include "WorldArea.hpp"
 #include "ObjectsStack.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 
 namespace Forradia::Theme0 {

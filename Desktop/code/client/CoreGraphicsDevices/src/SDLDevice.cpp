@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto SDLDevice::Initialize(StringView gameWindowTitle, Color clearColor) -> void {

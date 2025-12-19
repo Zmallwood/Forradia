@@ -4,7 +4,6 @@
 #include "SkyRenderer.hpp"
 #include "GUIChatBox.hpp"
 #include "ShaderProgram.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto SkyRenderer::Cleanup() -> void {

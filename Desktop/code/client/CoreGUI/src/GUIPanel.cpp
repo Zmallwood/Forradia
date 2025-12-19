@@ -3,7 +3,6 @@
 
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GUIPanel::RenderDerived() const -> void {

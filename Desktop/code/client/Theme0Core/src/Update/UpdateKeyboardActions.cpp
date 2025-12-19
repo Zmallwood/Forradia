@@ -8,7 +8,6 @@
 #include "GUISystemMenu.hpp"
 #include "Keyboard/KeyboardInput.hpp"
 #include "Player/Player.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"

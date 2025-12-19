@@ -6,7 +6,6 @@
 
 #include "Color2DRenderer.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,

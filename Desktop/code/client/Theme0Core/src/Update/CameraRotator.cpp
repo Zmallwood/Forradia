@@ -5,7 +5,6 @@
 #include "3D/Camera.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto CameraRotator::Update() -> void {

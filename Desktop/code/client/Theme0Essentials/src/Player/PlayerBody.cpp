@@ -3,7 +3,6 @@
 
 #include "PlayerBody.hpp"
 #include "PlayerBodyPart.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto PlayerBody::Initialize() -> void {

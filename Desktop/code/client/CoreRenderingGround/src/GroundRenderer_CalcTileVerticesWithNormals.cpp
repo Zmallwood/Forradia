@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GroundRenderer.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GroundRenderer::CalcTileVerticesWithNormals(const Vector<float> &verticesNoNormals) const

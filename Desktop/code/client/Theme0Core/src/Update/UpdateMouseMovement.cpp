@@ -5,7 +5,6 @@
 #include "Mouse/MouseInput.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
-#include "StdAfx.hpp"
 #include "TileHovering.hpp"
 
 namespace Forradia::Theme0 {

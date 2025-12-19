@@ -3,7 +3,6 @@
 
 #include "Tile.hpp"
 #include "ObjectsStack.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto Tile::Initialize() -> void {

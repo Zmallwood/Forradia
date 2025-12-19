@@ -4,7 +4,6 @@
 #include "Cursor.hpp"
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Cursor::Initialize() -> void {

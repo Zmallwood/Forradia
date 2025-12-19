@@ -12,7 +12,6 @@
 #include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Engine::Initialize(StringView gameWindowTitle, Color clearColor) const -> void {

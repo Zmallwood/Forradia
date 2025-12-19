@@ -7,7 +7,6 @@
 #include "GUIChatBox.hpp"
 #include "GameSaveFiles/GameSaving.hpp"
 #include "Mouse/MouseInput.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto GUISystemMenu::Initialize() -> void {

@@ -3,7 +3,6 @@
 
 #include "CanvasUtilities.hpp"
 #include "Functions.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GetCanvasSize(const SharedPtr<SDL_Window> &window) -> Size {

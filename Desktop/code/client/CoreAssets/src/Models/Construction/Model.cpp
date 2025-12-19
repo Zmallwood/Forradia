@@ -2,9 +2,10 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Model.hpp"
-#include "StdAfx.hpp"
+#include "MessageUtilities.hpp"
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
+#include "assimp/scene.h"
 
 namespace Forradia {
   auto Model::Initialize(StringView filePath) -> void {

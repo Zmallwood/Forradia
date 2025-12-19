@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Model.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) const -> Vector<GLMVertex> {

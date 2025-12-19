@@ -3,7 +3,6 @@
 
 #include "GUIWindow.hpp"
 #include "GUIWindowTitleBar.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto GUIWindow::Initialize(StringView uniqueName, StringView windowTitle) -> void {

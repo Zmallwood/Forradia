@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Color2DRenderer.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Color2DRenderer::GetVSSource() const -> String {

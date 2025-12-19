@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "World.hpp"
-#include "StdAfx.hpp"
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {

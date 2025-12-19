@@ -4,7 +4,6 @@
 #include "Player.hpp"
 #include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GroundRenderer.hpp"
-#include "StdAfx.hpp"
 #include "Theme0Properties.hpp"
 
 namespace Forradia {

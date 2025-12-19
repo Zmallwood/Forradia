@@ -3,7 +3,6 @@
 
 #include "NumbersUtilities.hpp"
 #include "Constants.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto InvertSpeed(float speed) -> float {

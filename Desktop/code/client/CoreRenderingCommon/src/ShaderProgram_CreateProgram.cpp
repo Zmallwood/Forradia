@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "ShaderProgram.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint {

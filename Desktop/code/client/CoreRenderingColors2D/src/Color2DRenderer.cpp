@@ -4,7 +4,6 @@
 #include "Color2DRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto Color2DRenderer::Cleanup() -> void {

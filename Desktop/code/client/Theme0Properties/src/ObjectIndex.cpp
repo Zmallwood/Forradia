@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "ObjectIndex.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   ObjectIndex::ObjectIndex() {

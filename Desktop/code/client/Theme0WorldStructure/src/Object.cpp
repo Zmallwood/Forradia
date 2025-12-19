@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "Object.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto Object::Initialize() -> void {

@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "FPSCounter.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia {
   auto FPSCounter::Update() -> void {

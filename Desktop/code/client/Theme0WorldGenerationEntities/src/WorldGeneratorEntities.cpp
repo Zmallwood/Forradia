@@ -4,7 +4,6 @@
 #include "WorldGeneratorEntities.hpp"
 #include "Creature.hpp"
 #include "ObjectsStack.hpp"
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 

@@ -5,7 +5,6 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
-#include "StdAfx.hpp"
 
 namespace Forradia::Theme0 {
   auto UpdateKeyboardMovement() -> void {

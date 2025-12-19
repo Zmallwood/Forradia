@@ -1,7 +1,6 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
-#include "StdAfx.hpp"
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 #include "WorldGeneratorWater.hpp"
