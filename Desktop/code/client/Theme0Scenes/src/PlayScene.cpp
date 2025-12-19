@@ -32,9 +32,9 @@ namespace Forradia::Theme0 {
   }
 
   auto PlayScene::RenderDerived() const -> void {
-    _<Image2DRenderer>().DrawImageByName(Hash("IntroSceneBackground"), "DefaultSceneBackground",
+    _<Image2DRenderer>().DrawImageByName(Hash("PlaySceneBackground"), "DefaultSceneBackground",
                                          0.0f, 0.0f, 1.0f, 1.0f);
-    _<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo", 0.35f, 0.1f,
+    _<Image2DRenderer>().DrawImageAutoHeight(Hash("PlaySceneLogo"), "ForradiaLogo", 0.35f, 0.1f,
                                              0.3f);
   }
 }
