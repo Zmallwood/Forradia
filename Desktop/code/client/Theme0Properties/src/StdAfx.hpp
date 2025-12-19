@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "Coloring/Color.hpp"
 #include "Coloring/Palette.hpp"

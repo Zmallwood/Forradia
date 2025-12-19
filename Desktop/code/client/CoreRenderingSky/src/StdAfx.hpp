@@ -4,7 +4,6 @@
 #pragma once
 
 #include <cmath>
-#include <map>
 
 // clang-format off
 #include <GL/glew.h>

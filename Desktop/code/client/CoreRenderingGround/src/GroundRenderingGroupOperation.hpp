@@ -13,6 +13,6 @@ namespace Forradia {
     /**
      * The tiles by texture.
      */
-    std::map<int, TileDrawGroup> tilesByTexture;
+    std::unordered_map<int, TileDrawGroup> tilesByTexture;
   };
 }

@@ -16,7 +16,7 @@ namespace Forradia {
 
     // Create a map to store the vertices with positions only. This will be used to
     // calculate the normals.
-    std::map<int, std::map<int, glm::vec3>> v;
+    std::unordered_map<int, std::unordered_map<int, glm::vec3>> v;
 
     // Loop through the vertices and store them in the map.
     for (auto y = 0; y < 3; y++) {

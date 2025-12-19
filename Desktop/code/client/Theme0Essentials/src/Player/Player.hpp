@@ -233,6 +233,6 @@ namespace Forradia::Theme0 {
     // float m_attackSpeed{3.0f};
     // int m_ticksLastHitAnother{0};
     std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions;
-    std::map<std::string, int> m_questCompletionPoints;
+    std::unordered_map<std::string, int> m_questCompletionPoints;
   };
 }

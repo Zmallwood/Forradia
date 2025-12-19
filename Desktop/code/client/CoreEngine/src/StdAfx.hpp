@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include <map>
 #include <set>
 
 #include <SDL2/SDL.h>

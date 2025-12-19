@@ -60,8 +60,8 @@ namespace Forradia::Theme0 {
     static constexpr float k_slotSize{0.04f};
     inline static const std::string k_slotImageName{"GUIInventoryWindowSlotBackground"};
     const int k_maxNumSlots{60};
-    std::map<int, int> m_renderIDsSlotsBackground;
-    std::map<int, int> m_renderIDsSlotsObject;
+    std::unordered_map<int, int> m_renderIDsSlotsBackground;
+    std::unordered_map<int, int> m_renderIDsSlotsObject;
     GUIWindow *m_parentWindow{nullptr};
   };
 }

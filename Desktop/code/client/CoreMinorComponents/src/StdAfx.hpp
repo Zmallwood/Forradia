@@ -3,8 +3,6 @@
 
 #pragma once
 
-#include <map>
-
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>

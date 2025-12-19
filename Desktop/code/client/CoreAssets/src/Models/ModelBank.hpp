@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 namespace Forradia {
   class Model;
@@ -36,6 +36,6 @@ namespace Forradia {
     static auto LoadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>;
 
     inline static const std::string k_relativeModelsPath{"./Resources/Models/"};
-    inline static std::map<int, std::shared_ptr<Model>> m_models;
+    inline static std::unordered_map<int, std::shared_ptr<Model>> m_models;
   };
 }

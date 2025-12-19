@@ -37,7 +37,7 @@ namespace Forradia {
     auto RenderCurrentScene() const -> void;
 
    private:
-    std::map<int, IScene &> m_scenes;
+    std::unordered_map<int, IScene &> m_scenes;
     int m_currentScene{0};
   };
 }

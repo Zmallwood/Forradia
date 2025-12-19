@@ -98,8 +98,8 @@ namespace Forradia {
         -> std::vector<glm::vec3>;
 
     static constexpr unsigned short k_indices[] = {0, 1, 2, 3};
-    std::map<int, GroundRenderingOperation> m_operationsCache;
+    std::unordered_map<int, GroundRenderingOperation> m_operationsCache;
     GLint m_layoutLocationMVP;
-    std::map<int, GroundRenderingGroupOperation> m_groupOperationsCache;
+    std::unordered_map<int, GroundRenderingGroupOperation> m_groupOperationsCache;
   };
 }

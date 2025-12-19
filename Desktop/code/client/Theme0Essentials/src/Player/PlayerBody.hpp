@@ -30,6 +30,6 @@ namespace Forradia::Theme0 {
    private:
     auto Initialize() -> void;
 
-    std::map<PlayerBodyPartTypes, std::shared_ptr<PlayerBodyPart>> m_bodyParts;
+    std::unordered_map<PlayerBodyPartTypes, std::shared_ptr<PlayerBodyPart>> m_bodyParts;
   };
 }

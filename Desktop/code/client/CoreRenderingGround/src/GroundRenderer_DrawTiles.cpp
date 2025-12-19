@@ -23,7 +23,7 @@ namespace Forradia {
 
     // If the tile is not cached or the force update flag is set.
     if (false == tileIsCached || forceUpdate) {
-      std::map<int, std::vector<TileData>> tileDataByTexture;
+      std::unordered_map<int, std::vector<TileData>> tileDataByTexture;
 
       for (auto i = 0; i < tiles.size(); i++) {
         auto textureNameHash = tiles.at(i).imageNameHash;
@@ -34,7 +34,7 @@ namespace Forradia {
         tileDataByTexture[textureNameHash].push_back(tiles.at(i));
       }
 
-      std::map<int, TileDrawGroup> tilesByTexture;
+      std::unordered_map<int, TileDrawGroup> tilesByTexture;
 
       for (auto &entry : tileDataByTexture) {
         TileDrawGroup group;

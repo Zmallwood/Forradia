@@ -43,6 +43,6 @@ namespace Forradia::Theme0 {
     auto AddObjectEntry(std::string_view objectName, float modelScaling,
                         bool ignoreIndividualModelScaling) -> void;
 
-    std::map<int, ObjectIndexEntry> m_entries;
+    std::unordered_map<int, ObjectIndexEntry> m_entries;
   };
 }

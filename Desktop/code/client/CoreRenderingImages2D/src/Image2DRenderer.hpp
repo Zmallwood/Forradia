@@ -104,6 +104,6 @@ namespace Forradia {
 
     auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
-    std::map<int, Image2DRenderingOperation> m_operationsCache;
+    std::unordered_map<int, Image2DRenderingOperation> m_operationsCache;
   };
 }
