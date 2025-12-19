@@ -20,11 +20,13 @@ namespace Forradia {
 
     if (upArrowBounds.Contains(mousePos)) {
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        m_scrollPosition -= 0.02F;
+        m_scrollPosition -= 0.05F;
+        m_scrollPosition = std::max(0.0F, m_scrollPosition);
       }
     } else if (downArrowBounds.Contains(mousePos)) {
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        m_scrollPosition += 0.02F;
+        m_scrollPosition += 0.05F;
+        m_scrollPosition = std::min(1.0F, m_scrollPosition);
       }
     }
   }
@@ -35,11 +37,11 @@ namespace Forradia {
 
     auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
     glEnable(GL_SCISSOR_TEST);
-    auto bounds{GetBounds()};
+    auto bounds{GUIComponent::GetBounds()};
 
     // Note: origin is bottom-left
     auto x{bounds.x * canvasSize.width};
-    auto y{bounds.y * canvasSize.height + m_scrollPosition * bounds.height * canvasSize.height};
+    auto y{bounds.y * canvasSize.height};
     auto width{bounds.width * canvasSize.width};
     auto height{bounds.height * canvasSize.height};
     glScissor(x, canvasSize.height - y - height, width, height);
@@ -66,11 +68,10 @@ namespace Forradia {
 
     auto sliderX{bounds.x + bounds.width - k_scrollbarWidth};
     auto sliderWidth{k_scrollbarWidth};
-    auto sliderHeight{0.1F};
+    auto sliderHeight{0.08F};
 
     auto sliderY{bounds.y + upArrowBounds.height +
-                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition +
-                 m_scrollPosition * bounds.height};
+                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition};
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderX, sliderY,
                                          sliderWidth, sliderHeight, true);
@@ -83,19 +84,17 @@ namespace Forradia {
   }
 
   auto GUIScrollableArea::GetUpArrowBounds() const -> RectF {
-    auto bounds{GetBounds()};
-    auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
-                             bounds.y + m_scrollPosition * bounds.height, k_scrollbarWidth,
+    auto bounds{GUIComponent::GetBounds()};
+    auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth, bounds.y, k_scrollbarWidth,
                              k_scrollbarWidth}};
     return upArrowBounds;
   }
 
   auto GUIScrollableArea::GetDownArrowBounds() const -> RectF {
-    auto bounds{GetBounds()};
-    auto downArrowBounds{
-        RectF{bounds.x + bounds.width - k_scrollbarWidth,
-              bounds.y + bounds.height - k_scrollbarWidth + m_scrollPosition * bounds.height,
-              k_scrollbarWidth, k_scrollbarWidth}};
+    auto bounds{GUIComponent::GetBounds()};
+    auto downArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
+                               bounds.y + bounds.height - k_scrollbarWidth, k_scrollbarWidth,
+                               k_scrollbarWidth}};
     return downArrowBounds;
   }
 }

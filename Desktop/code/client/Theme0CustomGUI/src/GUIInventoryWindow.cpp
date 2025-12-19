@@ -29,6 +29,8 @@ namespace Forradia::Theme0 {
     auto baseBounds{GUIScrollableArea::GetBounds()};
     auto bounds{m_parentWindow->GetBounds()};
     baseBounds.height = bounds.height / 2.0f;
+    // baseBounds.y += m_parentWindow->GetGUIWindowTitleBar()->GetHeight();
+    // baseBounds.height -= m_parentWindow->GetGUIWindowTitleBar()->GetHeight();
     //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
     return baseBounds;
   }
