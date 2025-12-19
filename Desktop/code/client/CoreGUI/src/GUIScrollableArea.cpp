@@ -40,5 +40,10 @@ namespace Forradia {
     _<Image2DRenderer>().DrawImageByName(k_renderIDUpArrow, "GUIScrollbarUpArrow", upArrowBounds.x,
                                          upArrowBounds.y, upArrowBounds.width, upArrowBounds.height,
                                          true);
+
+    _<Image2DRenderer>().DrawImageByName(k_renderIDDownArrow, "GUIScrollbarDownArrow",
+                                         upArrowBounds.x,
+                                         upArrowBounds.y + bounds.height - upArrowBounds.width,
+                                         upArrowBounds.width, upArrowBounds.height, true);
   }
 }
