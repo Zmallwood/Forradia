@@ -20,6 +20,12 @@ namespace Forradia::Theme0 {
     return nullptr;
   }
 
+  auto PlayerObjectsInventory::GetObjectPtrPtr(int index) -> std::shared_ptr<Object> * {
+    if (index >= 0 && index < m_objects.size())
+      return &m_objects[index];
+    return nullptr;
+  }
+
   auto PlayerObjectsInventory::AddObject(int objectType) -> void {
     // Check if there is an empty slot.
     for (size_t i = 0; i < m_objects.size(); i++) {

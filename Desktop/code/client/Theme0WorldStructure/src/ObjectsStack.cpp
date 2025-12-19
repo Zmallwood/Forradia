@@ -41,6 +41,12 @@ namespace Forradia::Theme0 {
     return object;
   }
 
+  auto ObjectsStack::GetTopObjectPtrPtr() -> std::shared_ptr<Object> * {
+    if (m_objects.empty())
+      return nullptr;
+    return &m_objects.back();
+  }
+
   auto ObjectsStack::CountHasObject(std::string_view objectTypeName) const -> int {
     // Return the number of objects of the specified type in the stack.
     return std::count_if(m_objects.begin(), m_objects.end(),

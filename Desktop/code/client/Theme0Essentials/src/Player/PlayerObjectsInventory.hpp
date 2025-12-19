@@ -25,6 +25,8 @@ namespace Forradia::Theme0 {
      */
     auto GetObject(int index) -> std::shared_ptr<Object>;
 
+    auto GetObjectPtrPtr(int index) -> std::shared_ptr<Object> *;
+
     /**
      * Adds an object to the inventory.
      *

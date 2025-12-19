@@ -44,6 +44,8 @@ namespace Forradia::Theme0 {
      */
     auto PopObject() -> std::shared_ptr<Object>;
 
+    auto GetTopObjectPtrPtr() -> std::shared_ptr<Object> *;
+
     /**
      * Counts the number of objects of a specific type in the stack.
      *

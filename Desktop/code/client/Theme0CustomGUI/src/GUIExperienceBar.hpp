@@ -46,11 +46,11 @@ namespace Forradia::Theme0 {
      * @return The filled color of the bar.
      */
     auto GetFilledColor() const -> Color {
-      return Palette::GetColor<Hash("Yellow")>();
+      return Palette::GetColor<Hash("Gold")>();
     }
 
    private:
-    constexpr static float k_height{0.018f};
+    constexpr static float k_height{0.012f};
     float m_filledPercentage{0.0f};
   };
 }
