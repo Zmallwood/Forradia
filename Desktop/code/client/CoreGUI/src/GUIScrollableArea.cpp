@@ -5,9 +5,30 @@
 #include "CanvasUtilities.hpp"
 #include "GUI.hpp"
 #include "Image2DRenderer.hpp"
+#include "Mouse/MouseInput.hpp"
+#include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia {
+  auto GUIScrollableArea::UpdateDerived() -> void {
+    GUIComponent::UpdateDerived();
+
+    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+
+    auto upArrowBounds{GetUpArrowBounds()};
+    auto downArrowBounds{GetDownArrowBounds()};
+
+    if (upArrowBounds.Contains(mousePos)) {
+      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+        m_scrollPosition -= 0.02F;
+      }
+    } else if (downArrowBounds.Contains(mousePos)) {
+      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+        m_scrollPosition += 0.02F;
+      }
+    }
+  }
+
   auto GUIScrollableArea::Render() const -> void {
     if (!this->GetVisible())
       return;
@@ -32,22 +53,19 @@ namespace Forradia {
 
     glDisable(GL_SCISSOR_TEST);
 
-    auto scrollbarWidth{0.02F};
-
-    auto upArrowBounds{
-        RectF{bounds.x + bounds.width - scrollbarWidth, bounds.y, scrollbarWidth, scrollbarWidth}};
+    auto upArrowBounds{this->GetUpArrowBounds()};
+    auto downArrowBounds{this->GetDownArrowBounds()};
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDUpArrow, "GUIScrollbarUpArrow", upArrowBounds.x,
                                          upArrowBounds.y, upArrowBounds.width, upArrowBounds.height,
                                          true);
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDDownArrow, "GUIScrollbarDownArrow",
-                                         upArrowBounds.x,
-                                         upArrowBounds.y + bounds.height - upArrowBounds.width,
-                                         upArrowBounds.width, upArrowBounds.height, true);
+                                         downArrowBounds.x, downArrowBounds.y,
+                                         downArrowBounds.width, downArrowBounds.height, true);
 
-    auto sliderX{bounds.x + bounds.width - scrollbarWidth};
-    auto sliderWidth{scrollbarWidth};
+    auto sliderX{bounds.x + bounds.width - k_scrollbarWidth};
+    auto sliderWidth{k_scrollbarWidth};
     auto sliderHeight{0.1F};
 
     auto sliderY{bounds.y + upArrowBounds.height +
@@ -55,5 +73,20 @@ namespace Forradia {
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderX, sliderY,
                                          sliderWidth, sliderHeight, true);
+  }
+
+  auto GUIScrollableArea::GetUpArrowBounds() const -> RectF {
+    auto bounds{GetBounds()};
+    auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth, bounds.y, k_scrollbarWidth,
+                             k_scrollbarWidth}};
+    return upArrowBounds;
+  }
+
+  auto GUIScrollableArea::GetDownArrowBounds() const -> RectF {
+    auto bounds{GetBounds()};
+    auto downArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
+                               bounds.y + bounds.height - k_scrollbarWidth, k_scrollbarWidth,
+                               k_scrollbarWidth}};
+    return downArrowBounds;
   }
 }

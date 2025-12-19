@@ -15,12 +15,19 @@ namespace Forradia {
     }
 
    protected:
+    virtual auto UpdateDerived() -> void override;
+
     virtual auto Render() const -> void override;
 
    private:
+    auto GetUpArrowBounds() const -> RectF;
+
+    auto GetDownArrowBounds() const -> RectF;
+
     const int k_renderIDUpArrow;
     const int k_renderIDDownArrow;
     const int k_renderIDSlider;
+    const float k_scrollbarWidth{0.02F};
     float m_scrollPosition{0.0F};
   };
 }
