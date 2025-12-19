@@ -26,10 +26,11 @@ namespace Forradia::Theme0 {
   }
 
   auto GUIInventoryWindowArea::GetBounds() const -> RectF {
+    auto baseBounds{GUIScrollableArea::GetBounds()};
     auto bounds{m_parentWindow->GetBounds()};
-    bounds.height = bounds.height / 2.0f;
+    baseBounds.height = bounds.height / 2.0f;
     //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
-    return bounds;
+    return baseBounds;
   }
 
   auto GUIInventoryWindowPanel::Initialize() -> void {

@@ -39,7 +39,7 @@ namespace Forradia {
 
     // Note: origin is bottom-left
     auto x{bounds.x * canvasSize.width};
-    auto y{bounds.y * canvasSize.height};
+    auto y{bounds.y * canvasSize.height + m_scrollPosition * bounds.height * canvasSize.height};
     auto width{bounds.width * canvasSize.width};
     auto height{bounds.height * canvasSize.height};
     glScissor(x, canvasSize.height - y - height, width, height);
@@ -69,24 +69,33 @@ namespace Forradia {
     auto sliderHeight{0.1F};
 
     auto sliderY{bounds.y + upArrowBounds.height +
-                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition};
+                 (bounds.height - sliderHeight - 2 * upArrowBounds.height) * m_scrollPosition +
+                 m_scrollPosition * bounds.height};
 
     _<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider", sliderX, sliderY,
                                          sliderWidth, sliderHeight, true);
   }
 
+  auto GUIScrollableArea::GetBounds() const -> RectF {
+    auto bounds{GUIComponent::GetBounds()};
+    bounds.y -= m_scrollPosition * bounds.height;
+    return bounds;
+  }
+
   auto GUIScrollableArea::GetUpArrowBounds() const -> RectF {
     auto bounds{GetBounds()};
-    auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth, bounds.y, k_scrollbarWidth,
+    auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
+                             bounds.y + m_scrollPosition * bounds.height, k_scrollbarWidth,
                              k_scrollbarWidth}};
     return upArrowBounds;
   }
 
   auto GUIScrollableArea::GetDownArrowBounds() const -> RectF {
     auto bounds{GetBounds()};
-    auto downArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
-                               bounds.y + bounds.height - k_scrollbarWidth, k_scrollbarWidth,
-                               k_scrollbarWidth}};
+    auto downArrowBounds{
+        RectF{bounds.x + bounds.width - k_scrollbarWidth,
+              bounds.y + bounds.height - k_scrollbarWidth + m_scrollPosition * bounds.height,
+              k_scrollbarWidth, k_scrollbarWidth}};
     return downArrowBounds;
   }
 }

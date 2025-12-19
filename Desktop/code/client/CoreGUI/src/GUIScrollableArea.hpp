@@ -19,6 +19,8 @@ namespace Forradia {
 
     virtual auto Render() const -> void override;
 
+    auto GetBounds() const -> RectF override;
+
    private:
     auto GetUpArrowBounds() const -> RectF;
 
