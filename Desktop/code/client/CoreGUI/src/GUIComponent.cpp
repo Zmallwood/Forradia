@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUIComponent.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 

@@ -4,7 +4,6 @@
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
 #include "GUIInventoryWindow.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"

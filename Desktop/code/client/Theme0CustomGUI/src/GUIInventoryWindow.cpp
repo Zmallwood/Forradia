@@ -5,7 +5,6 @@
 #include "GUIScrollableArea.hpp"
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "Player/Player.hpp"

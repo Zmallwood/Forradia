@@ -3,7 +3,6 @@
 
 #include "UpdateMouseActions.hpp"
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Tile.hpp"

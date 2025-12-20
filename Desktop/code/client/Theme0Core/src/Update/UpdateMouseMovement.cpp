@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "UpdateMouseMovement.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
 #include "TileHovering.hpp"

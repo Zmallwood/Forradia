@@ -3,7 +3,6 @@
 
 #include "GUIButton.hpp"
 #include "Cursor.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"

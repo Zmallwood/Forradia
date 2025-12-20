@@ -3,7 +3,6 @@
 
 #include "GUIMovablePanel.hpp"
 #include "Cursor.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia {

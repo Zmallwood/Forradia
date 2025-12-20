@@ -7,7 +7,6 @@
 #include "CursorStyles.hpp"
 #include "GUI.hpp"
 #include "Image2DRenderer.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 

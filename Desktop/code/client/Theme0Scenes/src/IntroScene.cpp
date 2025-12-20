@@ -8,7 +8,6 @@
 #include "GUILabel.hpp"
 #include "Image2DRenderer.hpp"
 #include "Keyboard/KeyboardInput.hpp"
-#include "Mouse/MouseInput.hpp"
 #include "SceneManager.hpp"
 
 namespace Forradia::Theme0 {
