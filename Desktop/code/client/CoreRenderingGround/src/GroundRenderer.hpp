@@ -6,6 +6,7 @@
 #include "GroundRenderingOperation.hpp"
 #include "RendererBase.hpp"
 #include "TileDrawGroup.hpp"
+#include <vector>
 
 namespace Forradia {
   /**

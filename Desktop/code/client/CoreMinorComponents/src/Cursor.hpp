@@ -3,6 +3,7 @@
 
 #pragma once
 #include "CursorStyles.hpp"
+#include "Hash.hpp"
 
 namespace Forradia {
   /**

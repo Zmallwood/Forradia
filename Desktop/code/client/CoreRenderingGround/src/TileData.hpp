@@ -2,6 +2,8 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Coloring/Palette.hpp"
+#include <vector>
 
 namespace Forradia {
   /**

@@ -2,6 +2,9 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include <SDL2/SDL.h>
+#include <set>
+#include <string>
 
 namespace Forradia {
   /**

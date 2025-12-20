@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
 #include "MessageUtilities.hpp"

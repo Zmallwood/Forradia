@@ -2,6 +2,9 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include <memory>
+
+using SDL_GLContext = void *;
 
 namespace Forradia {
   /**
