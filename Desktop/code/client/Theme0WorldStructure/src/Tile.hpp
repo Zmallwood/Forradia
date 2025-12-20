@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Directions.hpp"
 
 namespace Forradia::Theme0 {

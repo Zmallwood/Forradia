@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Image2DRenderingOperation.hpp"
 #include "RendererBase.hpp"
 

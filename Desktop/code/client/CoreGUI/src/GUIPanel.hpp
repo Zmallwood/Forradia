@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIComponent.hpp"
 #include "Hash.hpp"
 

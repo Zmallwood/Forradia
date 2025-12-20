@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIPanel.hpp"
 #include "Hash.hpp"
 #include <vector>

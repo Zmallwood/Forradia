@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "ModelRenderingOperation.hpp"
 #include "RendererBase.hpp"
 

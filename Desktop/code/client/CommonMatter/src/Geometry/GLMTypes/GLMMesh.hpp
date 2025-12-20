@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GLMVertex.hpp"
 #include "Texturing/Texture.hpp"
 #include <vector>

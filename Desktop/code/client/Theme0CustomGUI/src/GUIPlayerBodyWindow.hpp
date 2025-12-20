@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIWindow.hpp"
 
 namespace Forradia {

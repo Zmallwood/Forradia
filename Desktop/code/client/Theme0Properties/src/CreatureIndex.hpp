@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "CreatureIndexEntry.hpp"
 
 namespace Forradia::Theme0 {

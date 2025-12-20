@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIInteractionMenuEntry.hpp"
 #include "GUIPanel.hpp"
 

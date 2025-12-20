@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "RendererBase.hpp"
 
 namespace Forradia {

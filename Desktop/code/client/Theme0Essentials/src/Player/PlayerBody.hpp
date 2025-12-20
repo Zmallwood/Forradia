@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "PlayerBodyPartTypes.hpp"
 
 namespace Forradia::Theme0 {

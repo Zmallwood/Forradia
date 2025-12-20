@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIMovablePanel.hpp"
 
 namespace Forradia {

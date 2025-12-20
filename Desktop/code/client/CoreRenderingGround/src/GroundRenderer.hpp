@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GroundRenderingGroupOperation.hpp"
 #include "GroundRenderingOperation.hpp"
 #include "RendererBase.hpp"

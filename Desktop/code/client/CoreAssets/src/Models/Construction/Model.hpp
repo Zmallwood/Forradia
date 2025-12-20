@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Geometry/GLMTypes/GLMMesh.hpp"
 #include "assimp/scene.h"
 

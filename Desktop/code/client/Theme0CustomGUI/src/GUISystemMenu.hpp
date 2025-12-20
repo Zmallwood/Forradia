@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIComponent.hpp"
 
 namespace Forradia::Theme0 {

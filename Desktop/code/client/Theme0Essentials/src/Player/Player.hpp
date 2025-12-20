@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"

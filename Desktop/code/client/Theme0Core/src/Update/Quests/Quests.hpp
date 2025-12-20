@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Quest.hpp"
 
 namespace Forradia::Theme0 {

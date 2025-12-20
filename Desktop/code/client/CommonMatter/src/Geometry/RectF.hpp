@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "PointF.hpp"
 
 namespace Forradia {

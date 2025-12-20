@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include <memory>
 
 using SDL_GLContext = void *;

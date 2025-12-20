@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Geometry/PointF.hpp"
 #include <memory>
 

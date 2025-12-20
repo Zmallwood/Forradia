@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Action.hpp"
 
 namespace Forradia::Theme0 {

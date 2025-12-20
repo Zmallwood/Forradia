@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Coloring/Color.hpp"
 #include "Coloring/Palette.hpp"
 #include "GUIComponent.hpp"

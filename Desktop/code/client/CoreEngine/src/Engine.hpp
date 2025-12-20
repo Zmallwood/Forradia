@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Coloring/Color.hpp"
 #include <string_view>
 

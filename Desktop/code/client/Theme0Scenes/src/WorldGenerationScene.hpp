@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {

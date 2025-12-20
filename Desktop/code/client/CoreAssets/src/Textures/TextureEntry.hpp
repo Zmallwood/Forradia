@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Geometry/Size.hpp"
 #include <GL/gl.h>
 

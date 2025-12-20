@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "TileDrawGroup.hpp"
 
 namespace Forradia {

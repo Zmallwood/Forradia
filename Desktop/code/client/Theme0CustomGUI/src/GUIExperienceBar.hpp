@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "Coloring/Palette.hpp"
 #include "GUIMeter.hpp"
 

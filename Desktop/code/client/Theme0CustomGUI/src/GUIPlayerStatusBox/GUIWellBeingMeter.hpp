@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #pragma once
+
 #include "GUIMeter.hpp"
 
 namespace Forradia::Theme0 {
