@@ -5,8 +5,10 @@
 
 #pragma once
 
+#include <algorithm>
 #include <functional>
 #include <memory>
+#include <ranges>
 #include <vector>
 
 #include <SDL2/SDL.h>

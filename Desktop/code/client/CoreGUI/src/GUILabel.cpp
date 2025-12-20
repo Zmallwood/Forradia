@@ -4,14 +4,12 @@
  *********************************************************************/
 
 #include "GUILabel.hpp"
+#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {
     auto GUILabel::RenderDerived() const -> void {
-        auto bounds{GetBounds()};
-
-        auto x{bounds.x};
-        auto y{bounds.y};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
 
         if (m_centerAlign) {
             bounds.x += bounds.width / 2;

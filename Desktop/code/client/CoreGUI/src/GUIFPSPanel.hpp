@@ -17,7 +17,9 @@ namespace Forradia {
         /**
          * Constructor.
          */
-        GUIFPSPanel() : GUIMovablePanel("FPSPanel", 0.92F, 0.02F, 0.07F, 0.04F) {
+        GUIFPSPanel()
+            : GUIMovablePanel("FPSPanel", k_defaultBounds.x, k_defaultBounds.y,
+                              k_defaultBounds.width, k_defaultBounds.height) {
             // Initialize this FPSPanel.
             this->Initialize();
         }
@@ -34,6 +36,8 @@ namespace Forradia {
          */
         auto Initialize() -> void;
 
-        std::shared_ptr<GUILabel> m_fpsTextPanel;
+        constexpr static RectF k_defaultBounds{0.92F, 0.02F, 0.07F, 0.04F};
+        const RectF k_labelBounds{0.01F, 0.01F, 0.1F, 0.05F};
+        std::shared_ptr<GUILabel> m_fpsTextLabel;
     };
 }

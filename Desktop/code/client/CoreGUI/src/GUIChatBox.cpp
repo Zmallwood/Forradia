@@ -80,7 +80,7 @@ namespace Forradia {
     }
 
     auto GUIChatBox::Print(std::string_view text) -> void {
-        m_lines.push_back(text.data());
+        m_lines.emplace_back(text.data());
     }
 
     auto GUIChatBox::EnableInput() -> void {
