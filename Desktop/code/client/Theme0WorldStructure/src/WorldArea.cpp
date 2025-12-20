@@ -39,7 +39,7 @@ namespace Forradia::Theme0 {
   }
 
   auto WorldArea::GetSize() const -> Size {
-    auto width{CInt(m_tiles.size())};
+    auto width{static_cast<int>(m_tiles.size())};
     auto height{0};
     if (width)
       height = m_tiles.at(0).size();

@@ -20,8 +20,8 @@ namespace Forradia::Theme0 {
     auto tilesPlaced{0};
 
     for (auto step = 0; step < length && tilesPlaced < length; step++) {
-      auto x{CInt(currentX)};
-      auto y{CInt(currentY)};
+      auto x{static_cast<int>(currentX)};
+      auto y{static_cast<int>(currentY)};
 
       if (x < 0)
         x = 0;

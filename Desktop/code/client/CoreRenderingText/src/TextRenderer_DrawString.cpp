@@ -46,8 +46,8 @@ namespace Forradia {
 
     auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
 
-    auto width{CFloat(textureDimensions.width) / canvasSize.width};
-    auto height{CFloat(textureDimensions.height) / canvasSize.height};
+    auto width{static_cast<float>(textureDimensions.width) / canvasSize.width};
+    auto height{static_cast<float>(textureDimensions.height) / canvasSize.height};
 
     if (centerAlign) {
       x -= width / 2;

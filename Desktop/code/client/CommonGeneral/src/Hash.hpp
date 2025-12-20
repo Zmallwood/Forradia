@@ -20,6 +20,6 @@ namespace Forradia {
     unsigned long hash{algorithmConstant};
     for (char chr : text)
       hash = algorithmFactor * hash + (unsigned char)chr;
-    return CInt(hash);
+    return static_cast<int>(hash);
   }
 }

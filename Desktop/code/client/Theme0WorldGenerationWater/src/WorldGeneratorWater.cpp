@@ -107,7 +107,7 @@ namespace Forradia::Theme0 {
         // Just continue to the next lake.
         continue;
 
-      auto radius{CInt(3 * worldScaling + GetRandomInt(6 * worldScaling))};
+      auto radius{static_cast<int>(3 * worldScaling + GetRandomInt(6 * worldScaling))};
       auto irregularity{0.3F + GetRandomInt(20) / 100.0F};
 
       for (auto y = centerY - radius; y <= centerY + radius; y++) {

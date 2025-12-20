@@ -26,7 +26,7 @@ namespace Forradia::Theme0 {
       if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
         continue;
 
-      auto radius{CInt(6 * worldScaling + GetRandomInt(10 * worldScaling))};
+      auto radius{static_cast<int>(6 * worldScaling + GetRandomInt(10 * worldScaling))};
       auto density{0.7F + GetRandomInt(30) / 100.0F}; // 0.7 to 1.0.
       CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
     }
@@ -66,7 +66,7 @@ namespace Forradia::Theme0 {
 
       // Create rock formations on high elevation.
 
-      auto radius{CInt(2 * worldScaling + GetRandomInt(5 * worldScaling))};
+      auto radius{static_cast<int>(2 * worldScaling + GetRandomInt(5 * worldScaling))};
 
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {

@@ -15,7 +15,7 @@ namespace Forradia::Theme0 {
     for (auto i = 0; i < numMajorHills; i++) {
       auto xCenter{GetRandomInt(worldAreaSize.width)};
       auto yCenter{GetRandomInt(worldAreaSize.height)};
-      auto radius{CInt(8 * worldScaling + GetRandomInt(12 * worldScaling))};
+      auto radius{static_cast<int>(8 * worldScaling + GetRandomInt(12 * worldScaling))};
       auto maxElevation{30 + GetRandomInt(20)};
       CreateElevationHill(xCenter, yCenter, radius, maxElevation);
     }
@@ -37,11 +37,11 @@ namespace Forradia::Theme0 {
       auto currentY{static_cast<float>(startY)};
 
       for (auto i = 0; i < length; i++) {
-        auto x{CInt(currentX)};
-        auto y{CInt(currentY)};
+        auto x{static_cast<int>(currentX)};
+        auto y{static_cast<int>(currentY)};
 
         if (worldArea->IsValidCoordinate(x, y)) {
-          auto radius{CInt(4 * worldScaling + GetRandomInt(6 * worldScaling))};
+          auto radius{static_cast<int>(4 * worldScaling + GetRandomInt(6 * worldScaling))};
           auto elevation{120 + GetRandomInt(160)};
           CreateElevationHill(x, y, radius, elevation);
         }
@@ -77,7 +77,7 @@ namespace Forradia::Theme0 {
     for (auto i = 0; i < numValleys; i++) {
       auto xCenter{GetRandomInt(worldAreaSize.width)};
       auto yCenter{GetRandomInt(worldAreaSize.height)};
-      auto radius{CInt(10 * worldScaling + GetRandomInt(15 * worldScaling))};
+      auto radius{static_cast<int>(10 * worldScaling + GetRandomInt(15 * worldScaling))};
 
       for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
         for (auto x = xCenter - radius; x <= xCenter + radius; x++) {

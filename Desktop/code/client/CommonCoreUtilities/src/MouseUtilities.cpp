@@ -11,6 +11,7 @@ namespace Forradia {
     int yPx;
     SDL_GetMouseState(&xPx, &yPx);
     auto canvasSize{GetCanvasSize(window)};
-    return {CFloat(xPx) / canvasSize.width, CFloat(yPx) / canvasSize.height};
+    return {static_cast<float>(xPx) / canvasSize.width,
+            static_cast<float>(yPx) / canvasSize.height};
   }
 }

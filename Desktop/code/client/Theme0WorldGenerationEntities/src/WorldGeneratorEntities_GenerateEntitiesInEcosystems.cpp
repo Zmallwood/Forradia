@@ -191,8 +191,8 @@ namespace Forradia::Theme0 {
         // Generate a random distance.
         auto distance{2 + GetRandomInt(ecosystemRadius)};
 
-        auto creatureX{waterX + CInt(std::cos(angle) * distance)};
-        auto creatureY{waterY + CInt(std::sin(angle) * distance)};
+        auto creatureX{waterX + static_cast<int>(std::cos(angle) * distance)};
+        auto creatureY{waterY + static_cast<int>(std::sin(angle) * distance)};
 
         // If the coordinates are out of bounds.
         if (!worldArea->IsValidCoordinate(creatureX, creatureY))

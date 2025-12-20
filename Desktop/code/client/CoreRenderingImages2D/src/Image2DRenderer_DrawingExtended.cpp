@@ -26,7 +26,7 @@ namespace Forradia {
       return;
 
     auto canvasAspectRatio{CalcAspectRatio(_<SDLDevice>().GetWindow())};
-    auto imageAspectRatio{CFloat(imageDimensions.width) / imageDimensions.height};
+    auto imageAspectRatio{static_cast<float>(imageDimensions.width) / imageDimensions.height};
 
     // Calculate the height of the image using the width and the two aspect ratios.
     auto height{width / imageAspectRatio * canvasAspectRatio};

@@ -13,7 +13,7 @@ namespace Forradia {
 
   auto CalcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float {
     auto canvasSize{GetCanvasSize(window)};
-    auto aspectRatio{CFloat(canvasSize.width) / canvasSize.height};
+    auto aspectRatio{static_cast<float>(canvasSize.width) / canvasSize.height};
     return aspectRatio;
   }
 

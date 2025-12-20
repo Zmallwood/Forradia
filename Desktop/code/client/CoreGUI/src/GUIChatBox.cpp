@@ -20,7 +20,7 @@ namespace Forradia {
 
   auto GUIChatBox::GetMaxNumLines() const -> int {
     auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
-    return CInt(bounds.height / k_lineHeight - 1);
+    return static_cast<int>(bounds.height / k_lineHeight - 1);
   }
 
   auto GUIChatBox::UpdateDerived() -> void {

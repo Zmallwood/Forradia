@@ -42,8 +42,9 @@ namespace Forradia::Theme0 {
     // auto slotWidth{k_slotSize};
     // auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
-    // auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-    // auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
+    // auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
+    // auto numRows{static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) /
+    // slotHeight)};
 
     // auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
 
@@ -117,8 +118,9 @@ namespace Forradia::Theme0 {
     auto slotWidth{k_slotSize};
     auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
-    auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-    auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
+    auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
+    auto numRows{
+        static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
     auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
@@ -159,8 +161,9 @@ namespace Forradia::Theme0 {
     auto slotWidth{k_slotSize};
     auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
 
-    auto numColumns{CInt((bounds.width - 2 * marginX) / slotWidth)};
-    auto numRows{CInt((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
+    auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
+    auto numRows{
+        static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
     auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
 

@@ -15,7 +15,7 @@ namespace Forradia {
 
     // Iterate over all available font sizes.
     for (auto fontSize : {FontSizes::_20, FontSizes::_26}) {
-      auto fontSizeN{CInt(fontSize)};
+      auto fontSizeN{static_cast<int>(fontSize)};
 
       // Open the font file with the specified size.
       auto newFont{std::shared_ptr<TTF_Font>(TTF_OpenFont(fontPathUnixStyle.c_str(), fontSizeN),
