@@ -1,12 +1,19 @@
 /* Copyright 2025 Andreas Åkerberg
  * This code is licensed under MIT license (see LICENSE for details) */
 
+#include "FilePathUtilities.hpp"
+#include "Hash.hpp"
+#include "SDLDeleter.hpp"
+#include "StringUtilities.hpp"
 #include "TextureBank.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <filesystem>
 
 namespace Forradia {
   auto TextureBank::LoadTextures() -> void {
     auto basePath{std::string(SDL_GetBasePath())};
-    auto imagesPath{basePath + k_relativeImagesPath.data()};
+    auto imagesPath{basePath + k_relativeImagesPath};
 
     if (false == std::filesystem::exists(imagesPath))
       return;
@@ -14,8 +21,8 @@ namespace Forradia {
     std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
     // Iterate through the directory using the rdi.
-    for (auto it : rdi) {
-      auto filePath{Replace(it.path().string(), '\\', '/')};
+    for (const auto &file : rdi) {
+      auto filePath{Replace(file.path().string(), '\\', '/')};
 
       if (GetFileExtension(filePath) == "png") {
         auto fileName{GetFileNameNoExtension(filePath)};

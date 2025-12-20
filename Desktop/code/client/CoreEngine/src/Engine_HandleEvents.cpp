@@ -5,6 +5,7 @@
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
 #include "SceneManager.hpp"
+#include <SDL2/SDL.h>
 
 namespace Forradia {
   auto Engine::HandleEvents() -> void {

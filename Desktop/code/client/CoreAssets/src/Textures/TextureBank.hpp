@@ -20,7 +20,7 @@ namespace Forradia {
      * Constructor.
      */
     TextureBank() {
-      this->Initialize();
+      TextureBank::Initialize();
     }
 
     /**
@@ -53,10 +53,10 @@ namespace Forradia {
      * @param[out] textureID The texture ID (output parameter).
      * @return True if the texture was found, false otherwise.
      */
-    auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool;
+    static auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool;
 
    private:
-    auto Initialize() -> void;
+    static auto Initialize() -> void;
 
     static auto Cleanup() -> void;
 

@@ -2,6 +2,8 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Geometry/Size.hpp"
+#include <GL/gl.h>
 
 namespace Forradia {
   /**

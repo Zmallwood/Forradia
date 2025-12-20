@@ -2,6 +2,8 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Coloring/Color.hpp"
+#include <string_view>
 
 namespace Forradia {
   /**
@@ -16,7 +18,7 @@ namespace Forradia {
      * @param gameWindowTitle The title of the game window.
      * @param clearColor The color to clear the canvas with.
      */
-    auto Initialize(std::string_view gameWindowTitle, Color clearColor) const -> void;
+    static auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
     /**
      * Runs the engine.

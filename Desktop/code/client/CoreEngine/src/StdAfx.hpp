@@ -4,6 +4,7 @@
 #pragma once
 
 #include <set>
+#include <string_view>
 
 #include <SDL2/SDL.h>
 

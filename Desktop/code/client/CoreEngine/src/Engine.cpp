@@ -14,7 +14,7 @@
 #include "SceneManager.hpp"
 
 namespace Forradia {
-  auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) const -> void {
+  auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {
     // Initialize random number generator so that unique random numbers are generated on
     // each game run.
     Randomize();
