@@ -4,6 +4,7 @@
 #pragma once
 #include "GUIPanel.hpp"
 #include "Hash.hpp"
+#include <vector>
 
 namespace Forradia {
   /**
@@ -70,6 +71,7 @@ namespace Forradia {
     const int k_renderIDSeparator{Hash("RenderIDSeparator")};
     const int k_renderIDInputCursor{Hash("RenderIDInputCursor")};
     const int k_renderIDInputText{Hash("RenderIDInputText")};
+    const float k_cursorWidth{0.01F};
     std::vector<int> m_renderIDsTextLines;
     std::vector<std::string> m_lines;
     std::string m_input;

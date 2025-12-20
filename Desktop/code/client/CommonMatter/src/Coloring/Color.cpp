@@ -3,6 +3,7 @@
 
 #include "Color.hpp"
 #include "Constants.hpp"
+#include <SDL2/SDL.h>
 
 namespace Forradia {
   auto Color::ToSDLColor() const -> SDL_Color {

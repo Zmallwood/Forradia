@@ -5,6 +5,7 @@
 
 #include <functional>
 #include <memory>
+#include <vector>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>

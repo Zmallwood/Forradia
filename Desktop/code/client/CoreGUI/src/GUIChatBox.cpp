@@ -3,6 +3,7 @@
 
 #include "GUIChatBox.hpp"
 #include "Color2DRenderer.hpp"
+#include "Coloring/Palette.hpp"
 #include "Engine.hpp"
 #include "Image2DRenderer.hpp"
 #include "Keyboard/KeyboardInput.hpp"
@@ -34,7 +35,7 @@ namespace Forradia {
 
     auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
     auto maxNumLines{this->GetMaxNumLines()};
-    auto y{bounds.y + k_margin};
+    auto yPos{bounds.y + k_margin};
 
     // Loop through the text lines.
     for (auto i = 0; i < maxNumLines; i++) {
@@ -45,10 +46,10 @@ namespace Forradia {
 
       auto textLine = m_lines.at(index);
 
-      _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin, y,
+      _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin, yPos,
                                    FontSizes::_20, false, true);
 
-      y += k_lineHeight;
+      yPos += k_lineHeight;
     }
 
     auto separatorX{bounds.x + k_margin};
@@ -65,7 +66,7 @@ namespace Forradia {
 
       auto cursorX{bounds.x};
       auto cursorY{bounds.y + bounds.height - k_lineHeight};
-      auto cursorWidth{0.01F};
+      auto cursorWidth{k_cursorWidth};
       auto cursorHeight{k_lineHeight};
 
       _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX,

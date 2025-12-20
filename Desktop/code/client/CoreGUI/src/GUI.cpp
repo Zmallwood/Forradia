@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GUI.hpp"
+#include <ranges>
 
 namespace Forradia {
   auto GUI::MouseHoveringGUI() const -> bool {
@@ -12,8 +13,9 @@ namespace Forradia {
 
     auto childComponents{this->GetChildComponents()};
 
-    for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
-      result |= (*it)->MouseHoveringGUI();
+    // for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+    for (auto childComponent : childComponents | std::views::reverse)
+      result |= childComponent->MouseHoveringGUI();
 
     return result;
   }

@@ -6,6 +6,7 @@
 #include "Geometry/RectF.hpp"
 #include <SDL2/SDL.h>
 #include <memory>
+#include <vector>
 
 namespace Forradia {
   /**

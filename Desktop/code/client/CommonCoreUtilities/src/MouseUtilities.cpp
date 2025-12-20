@@ -3,6 +3,7 @@
 
 #include "MouseUtilities.hpp"
 #include "CanvasUtilities.hpp"
+#include <SDL2/SDL.h>
 
 namespace Forradia {
   auto GetNormallizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF {
