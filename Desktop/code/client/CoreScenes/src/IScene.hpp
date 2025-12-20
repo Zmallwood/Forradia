@@ -26,6 +26,8 @@ namespace Forradia {
 
     virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
 
+    virtual auto OnMouseWheel(int delta) -> void;
+
     /**
      * Updates the scene.
      */

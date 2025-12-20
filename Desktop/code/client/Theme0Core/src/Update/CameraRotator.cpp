@@ -19,19 +19,11 @@ namespace Forradia::Theme0 {
   auto CameraRotator::OnMouseUp(Uint8 mouseButton) -> void {
     if (mouseButton == SDL_BUTTON_RIGHT) {
       if (m_isRotating)
-        _<MouseInput>().GetRightMouseButtonRef().Reset();
-
-      m_isRotating = false;
+        m_isRotating = false;
     }
   }
 
   auto CameraRotator::Update() -> void {
-    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
-    }
-
-    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
-    }
-
     if (m_isRotating) {
       auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 

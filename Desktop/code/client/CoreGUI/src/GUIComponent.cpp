@@ -27,6 +27,28 @@ namespace Forradia {
     return false;
   }
 
+  auto GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+    if (!m_visible || !m_enabled)
+      return false;
+
+    for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it)
+      if ((*it)->OnMouseUp(mouseButton, clickSpeed))
+        return true;
+
+    return false;
+  }
+
+  auto GUIComponent::OnMouseWheel(int delta) -> bool {
+    if (!m_visible || !m_enabled)
+      return false;
+
+    for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it)
+      if ((*it)->OnMouseWheel(delta))
+        return true;
+
+    return false;
+  }
+
   auto GUIComponent::MouseHoveringGUI() const -> bool {
     if (!m_visible || !m_enabled)
       return false;
@@ -39,17 +61,6 @@ namespace Forradia {
       result |= (*it)->MouseHoveringGUI();
 
     return result;
-  }
-
-  auto GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
-    if (!m_visible || !m_enabled)
-      return false;
-
-    for (auto it = m_childComponents.rbegin(); it != m_childComponents.rend(); ++it)
-      if ((*it)->OnMouseUp(mouseButton, clickSpeed))
-        return true;
-
-    return false;
   }
 
   auto GUIComponent::Update() -> void {

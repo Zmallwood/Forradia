@@ -12,6 +12,46 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
+  auto GUIScrollableArea::OnMouseDown(Uint8 mouseButton) -> bool {
+    if (!this->GetVisible())
+      return false;
+
+    auto upArrowBounds{this->GetUpArrowBounds()};
+    auto downArrowBounds{this->GetDownArrowBounds()};
+    auto sliderBounds{this->GetSliderBounds()};
+
+    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+
+    if (upArrowBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+      m_scrollPosition -= 0.05F;
+    } else if (downArrowBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+      m_scrollPosition += 0.05F;
+    } else if (sliderBounds.Contains(mousePos)) {
+      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+      m_movingSlider = true;
+      m_sliderStartMoveYPos = m_scrollPosition;
+      m_sliderStartMoveMouseYPos = mousePos.y;
+    }
+
+    return false;
+  }
+
+  auto GUIScrollableArea::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+    if (!this->GetVisible())
+      return false;
+
+    m_movingSlider = false;
+
+    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+    if (GetBounds().Contains(mousePos)) {
+      return true;
+    }
+
+    return false;
+  }
+
   auto GUIScrollableArea::UpdateDerived() -> void {
     GUIComponent::UpdateDerived();
 
@@ -23,27 +63,27 @@ namespace Forradia {
 
     auto bounds{GUIComponent::GetBounds()};
 
-    if (upArrowBounds.Contains(mousePos)) {
-      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        m_scrollPosition -= 0.05F;
-      }
-    } else if (downArrowBounds.Contains(mousePos)) {
-      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        m_scrollPosition += 0.05F;
-      }
-    } else if (sliderBounds.Contains(mousePos)) {
-      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired() && !m_movingSlider) {
-        m_movingSlider = true;
-        m_sliderStartMoveYPos = m_scrollPosition;
-        m_sliderStartMoveMouseYPos = mousePos.y;
-      }
-    }
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
-      m_movingSlider = false;
-    }
+    // if (upArrowBounds.Contains(mousePos)) {
+    //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+    //     m_scrollPosition -= 0.05F;
+    //   }
+    // } else if (downArrowBounds.Contains(mousePos)) {
+    //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+    //     m_scrollPosition += 0.05F;
+    //   }
+    // } else if (sliderBounds.Contains(mousePos)) {
+    //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired() && !m_movingSlider) {
+    //     m_movingSlider = true;
+    //     m_sliderStartMoveYPos = m_scrollPosition;
+    //     m_sliderStartMoveMouseYPos = mousePos.y;
+    //   }
+    // }
+    // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
+    //  m_movingSlider = false;
+    //}
 
     if (m_movingSlider) {
       auto delta{(mousePos.y - m_sliderStartMoveMouseYPos)};

@@ -25,6 +25,8 @@ namespace Forradia::Theme0 {
      */
     virtual auto OnEnterDerived() -> void override;
 
+    virtual auto OnMouseDown(Uint8 mouseButton) -> void override;
+
     /**
      * Called every frame.
      */

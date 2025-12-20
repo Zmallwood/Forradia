@@ -32,7 +32,7 @@ namespace Forradia::Theme0 {
   }
 
   auto GUIInventoryWindowArea::UpdateDerived() -> void {
-    auto rightClick{_<MouseInput>().GetRightMouseButtonRef().HasBeenFired()};
+    // auto rightClick{_<MouseInput>().GetRightMouseButtonRef().HasBeenFired()};
 
     // auto bounds{this->GetBounds()};
     // auto marginX{k_margin};

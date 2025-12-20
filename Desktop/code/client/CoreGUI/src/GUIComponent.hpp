@@ -33,6 +33,8 @@ namespace Forradia {
 
     virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
 
+    virtual auto OnMouseWheel(int delta) -> bool;
+
     /**
      * Updates the component and all its children.
      */

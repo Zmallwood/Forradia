@@ -15,6 +15,10 @@ namespace Forradia {
     }
 
    protected:
+    virtual auto OnMouseDown(Uint8 mouseButton) -> bool override;
+
+    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+
     virtual auto UpdateDerived() -> void override;
 
     virtual auto Render() const -> void override;

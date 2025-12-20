@@ -55,7 +55,7 @@ namespace Forradia::Theme0 {
 
     // First check if clicked in inventory (or other GUI windows)
     auto rightClickedInInventoryWindow{_<GUIInventoryWindow>().GetBounds().Contains(mousePos)};
-    _<MouseInput>().GetRightMouseButtonRef().Reset();
+    //_<MouseInput>().GetRightMouseButtonRef().Reset();
 
     if (_<GUIInventoryWindow>().GetVisible() && rightClickedInInventoryWindow) {
       std::vector<int> objectHashes;
@@ -243,8 +243,8 @@ namespace Forradia::Theme0 {
       this->SetVisible(false);
       ++i;
     }
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-      this->SetVisible(false);
+    // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
+    this->SetVisible(false);
   }
 
   auto GUIInteractionMenu::RenderDerived() const -> void {

@@ -35,7 +35,7 @@ namespace Forradia {
     // in the game.
     try {
       while (m_running) {
-        _<MouseInput>().Reset();
+        //_<MouseInput>().Reset();
         _<Cursor>().ResetStyleToNormal();
 
         this->HandleEvents();

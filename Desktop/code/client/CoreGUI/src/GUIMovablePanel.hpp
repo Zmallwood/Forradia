@@ -23,6 +23,10 @@ namespace Forradia {
         : GUIPanel(uniqueName, x, y, width, height) {
     }
 
+    virtual auto OnMouseDown(Uint8 mouseButton) -> bool override;
+
+    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+
    protected:
     /**
      * Update tasks specific to the movable panel, called by the GUIComponent base class.

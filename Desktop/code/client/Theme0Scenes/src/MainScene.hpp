@@ -7,6 +7,7 @@
 namespace Forradia::Theme0 {
   class GUIInteractionMenu;
   class GUIInventoryWindow;
+  class GUIPlayerBodyWindow;
 
   /**
    * The main scene is the scene where the actual game is played.
@@ -26,6 +27,8 @@ namespace Forradia::Theme0 {
 
     virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
 
+    virtual auto OnMouseWheel(int delta) -> void override;
+
     // virtual auto Update() -> void override;
 
     virtual auto Render() const -> void override;
@@ -43,5 +46,6 @@ namespace Forradia::Theme0 {
    private:
     std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu;
     std::shared_ptr<GUIInventoryWindow> m_guiInventoryWindow;
+    std::shared_ptr<GUIPlayerBodyWindow> m_guiPlayerBodyWindow;
   };
 }

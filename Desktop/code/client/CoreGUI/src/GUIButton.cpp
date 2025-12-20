@@ -4,10 +4,24 @@
 #include "GUIButton.hpp"
 #include "Cursor.hpp"
 #include "Mouse/MouseInput.hpp"
+#include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {
+  auto GUIButton::OnMouseDown(Uint8 mouseButton) -> bool {
+    if (!this->GetVisible())
+      return false;
+
+    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+    if (GetBounds().Contains(mousePos)) {
+      m_action();
+      return true;
+    }
+
+    return false;
+  }
+
   auto GUIButton::UpdateDerived() -> void {
     GUIPanel::UpdateDerived();
 
@@ -17,8 +31,8 @@ namespace Forradia {
     if (hovered) {
       this->SetBackgroundImage(m_hoveredBackgroundImage);
       _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-        m_action();
+      //      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
+      //        m_action();
     } else {
       SetBackgroundImage(m_backgroundImage);
     }

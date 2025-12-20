@@ -28,7 +28,7 @@ namespace Forradia {
         _<KeyboardInput>().AddTextInput(event.text.text);
         break;
       case SDL_MOUSEBUTTONDOWN: {
-        _<MouseInput>().RegisterMouseButtonDown(event.button.button);
+        //_<MouseInput>().RegisterMouseButtonDown(event.button.button);
         switch (event.button.button) {
         case SDL_BUTTON_LEFT:
           m_ticksLeftMouseButtonFired = GetTicks();
@@ -41,7 +41,7 @@ namespace Forradia {
         break;
       }
       case SDL_MOUSEBUTTONUP: {
-        _<MouseInput>().RegisterMouseButtonUp(event.button.button);
+        //_<MouseInput>().RegisterMouseButtonUp(event.button.button);
         int clickSpeed{0};
         switch (event.button.button) {
         case SDL_BUTTON_LEFT:
@@ -55,7 +55,8 @@ namespace Forradia {
         break;
       }
       case SDL_MOUSEWHEEL:
-        _<MouseInput>().AddMouseWheelDelta(event.wheel.y);
+        //_<MouseInput>().AddMouseWheelDelta(event.wheel.y);
+        _<SceneManager>().OnMouseWheelCurrentScene(event.wheel.y);
         break;
       }
     }

@@ -28,6 +28,11 @@ namespace Forradia {
       m_scenes.at(m_currentScene).OnMouseUp(mouseButton, clickSpeed);
   }
 
+  auto SceneManager::OnMouseWheelCurrentScene(int delta) -> void {
+    if (m_scenes.contains(m_currentScene))
+      m_scenes.at(m_currentScene).OnMouseWheel(delta);
+  }
+
   auto SceneManager::UpdateCurrentScene() -> void {
     if (m_scenes.contains(m_currentScene))
       m_scenes.at(m_currentScene).Update();

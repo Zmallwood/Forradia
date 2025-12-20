@@ -7,29 +7,69 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
+  auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
+    if (!this->GetVisible())
+      return false;
+
+    auto childComponents{this->GetChildComponents()};
+
+    for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+      if ((*it)->OnMouseDown(mouseButton))
+        return true;
+
+    auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+    auto draggableArea{this->GetDraggableArea()};
+    if (draggableArea.Contains(mousePosition)) {
+      this->StartMove();
+      return true;
+    }
+
+    return false;
+  }
+
+  auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+    if (!this->GetVisible())
+      return false;
+
+    auto childComponents{this->GetChildComponents()};
+
+    for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+      if ((*it)->OnMouseUp(mouseButton, clickSpeed))
+        return true;
+
+    this->StopMove();
+
+    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+    if (GetBounds().Contains(mousePos)) {
+      return true;
+    }
+
+    return false;
+  }
+
   auto GUIMovablePanel::UpdateDerived() -> void {
     auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
     auto draggableArea{this->GetDraggableArea()};
 
-    if (draggableArea.Contains(mousePosition)) {
-      _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+    // if (draggableArea.Contains(mousePosition)) {
+    //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-        this->StartMove();
-    }
+    //  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
+    //    this->StartMove();
+    //}
 
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
-      this->StopMove();
+    // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
+    //   this->StopMove();
 
-    auto bounds{GetBounds()};
+    // auto bounds{GetBounds()};
 
-    if (bounds.Contains(mousePosition)) {
-      // Reset the mouse buttons. This is done to prevent any other mouse actions
-      // from being triggered when there has been a mouse click inside this panel.
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        _<MouseInput>().GetLeftMouseButtonRef().Reset();
-      }
-    }
+    // if (bounds.Contains(mousePosition)) {
+    //   // Reset the mouse buttons. This is done to prevent any other mouse actions
+    //   // from being triggered when there has been a mouse click inside this panel.
+    //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+    //     _<MouseInput>().GetLeftMouseButtonRef().Reset();
+    //   }
+    // }
 
     if (GetIsBeingMoved()) {
       auto newPosition{GetMoveStartingPosition() + mousePosition - GetMoveStartingMousePosition()};

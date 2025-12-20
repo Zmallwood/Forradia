@@ -23,6 +23,10 @@ namespace Forradia {
     m_gui->OnMouseUp(mouseButton, clickSpeed);
   }
 
+  auto IScene::OnMouseWheel(int delta) -> void {
+    m_gui->OnMouseWheel(delta);
+  }
+
   auto IScene::Update() -> void {
     m_gui->Update();
 

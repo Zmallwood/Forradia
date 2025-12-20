@@ -22,11 +22,14 @@ namespace Forradia::Theme0 {
     _<GUIChatBox>().Print("Game started.");
   }
 
+  auto IntroScene::OnMouseDown(Uint8 mouseButton) -> void {
+    _<SceneManager>().GoToScene("MainMenuScene");
+  }
+
   auto IntroScene::UpdateDerived() -> void {
     m_startText->SetVisible(GetTicks() % 800 < 400);
     _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-    if (_<KeyboardInput>().AnyKeyIsPressedPickResult() ||
-        _<MouseInput>().AnyMouseButtonIsPressedPickResult())
+    if (_<KeyboardInput>().AnyKeyIsPressedPickResult())
       _<SceneManager>().GoToScene("MainMenuScene");
   }
 

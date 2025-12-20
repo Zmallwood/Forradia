@@ -30,6 +30,8 @@ namespace Forradia {
 
     auto OnMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void;
 
+    auto OnMouseWheelCurrentScene(int delta) -> void;
+
     /**
      * Updates the current scene.
      */

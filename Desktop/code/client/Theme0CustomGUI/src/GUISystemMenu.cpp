@@ -32,7 +32,7 @@ namespace Forradia::Theme0 {
   auto GUISystemMenu::UpdateDerived() -> void {
     GUIComponent::UpdateDerived();
 
-    _<MouseInput>().GetLeftMouseButtonRef().Reset();
+    //_<MouseInput>().GetLeftMouseButtonRef().Reset();
   }
 
   auto GUISystemMenu::RenderDerived() const -> void {
