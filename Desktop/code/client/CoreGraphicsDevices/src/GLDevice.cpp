@@ -3,6 +3,12 @@
 
 #include "GLDevice.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
+#include <SDL2/SDL.h>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia {
   GLDevice::~GLDevice() {

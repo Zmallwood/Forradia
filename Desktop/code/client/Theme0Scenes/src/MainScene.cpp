@@ -79,6 +79,8 @@ namespace Forradia::Theme0 {
       return;
     if (m_guiPlayerBodyWindow->OnMouseDown(mouseButton))
       return;
+    if (m_guiInventoryWindow->OnMouseDown(mouseButton))
+      return;
     if (!m_guiInventoryWindow->MouseHoveringGUI())
       _<CameraRotator>().OnMouseDown(mouseButton);
   }
@@ -92,6 +94,8 @@ namespace Forradia::Theme0 {
     if (clickSpeed < 200)
       if (m_guiInteractionMenu->OnMouseUp(mouseButton, clickSpeed))
         return;
+    if (m_guiInventoryWindow->OnMouseUp(mouseButton, clickSpeed))
+      return;
     if (!m_guiInventoryWindow->MouseHoveringGUI() && !m_guiPlayerBodyWindow->MouseHoveringGUI() &&
         mouseButton == SDL_BUTTON_LEFT)
       UpdateSetPlayerDestination();

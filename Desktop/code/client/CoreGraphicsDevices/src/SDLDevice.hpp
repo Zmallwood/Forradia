@@ -33,7 +33,7 @@ namespace Forradia {
      *
      * @return The SDL window object.
      */
-    auto GetWindow() const {
+    auto GetWindow() const -> std::shared_ptr<SDL_Window> {
       return m_window;
     }
 

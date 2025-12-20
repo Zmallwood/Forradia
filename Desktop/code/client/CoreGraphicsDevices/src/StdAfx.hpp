@@ -5,6 +5,12 @@
 
 #include <memory>
 
+#include <SDL2/SDL.h>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
+
 #include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
 #include "MessageUtilities.hpp"

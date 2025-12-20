@@ -5,6 +5,7 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 
 #include "CanvasUtilities.hpp"
