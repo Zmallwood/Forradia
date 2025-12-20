@@ -9,6 +9,10 @@ namespace Forradia::Theme0 {
    */
   class CameraRotator {
    public:
+    auto OnMouseDown(Uint8 mouseButton) -> void;
+
+    auto OnMouseUp(Uint8 mouseButton) -> void;
+
     /**
      * Updates the camera rotation.
      */

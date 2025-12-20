@@ -7,18 +7,29 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-  auto CameraRotator::Update() -> void {
-    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
+
+  auto CameraRotator::OnMouseDown(Uint8 mouseButton) -> void {
+    if (mouseButton == SDL_BUTTON_RIGHT) {
       m_isRotating = true;
 
       m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
     }
+  }
 
-    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
+  auto CameraRotator::OnMouseUp(Uint8 mouseButton) -> void {
+    if (mouseButton == SDL_BUTTON_RIGHT) {
       if (m_isRotating)
         _<MouseInput>().GetRightMouseButtonRef().Reset();
 
       m_isRotating = false;
+    }
+  }
+
+  auto CameraRotator::Update() -> void {
+    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenFiredPickResult()) {
+    }
+
+    if (_<MouseInput>().GetRightMouseButtonRef().HasBeenReleased()) {
     }
 
     if (m_isRotating) {

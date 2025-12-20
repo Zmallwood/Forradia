@@ -73,9 +73,14 @@ namespace Forradia::Theme0 {
   }
 
   auto MainScene::OnMouseDown(Uint8 mouseButton) -> void {
+    if (GetGUI()->MouseHoveringGUI())
+      return;
+    if (!m_guiInventoryWindow->MouseHoveringGUI())
+      _<CameraRotator>().OnMouseDown(mouseButton);
   }
 
   auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
+    _<CameraRotator>().OnMouseUp(mouseButton);
     if (GetGUI()->MouseHoveringGUI())
       return;
     if (clickSpeed < 200)
