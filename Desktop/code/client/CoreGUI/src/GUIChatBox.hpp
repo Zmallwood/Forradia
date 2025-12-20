@@ -14,7 +14,9 @@ namespace Forradia {
     /**
      * Constructor.
      */
-    GUIChatBox() : GUIPanel("ChatBox", 0.0F, 0.8F, 0.4F, 0.2F, k_defaultBackgroundImageDerived) {
+    GUIChatBox()
+        : GUIPanel("ChatBox", k_defaultBounds.x, k_defaultBounds.y, k_defaultBounds.width,
+                   k_defaultBounds.height, k_defaultBackgroundImageDerived) {
       this->Initialize();
     }
 
@@ -50,19 +52,20 @@ namespace Forradia {
      *
      * @return Whether the input is active.
      */
-    auto GetInputActive() const {
+    [[nodiscard]] auto GetInputActive() const {
       return m_inputActive;
     }
 
    private:
     auto Initialize() -> void;
 
-    auto GetMaxNumLines() const -> int;
+    [[nodiscard]] auto GetMaxNumLines() const -> int;
 
     constexpr static std::string_view k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
+    constexpr static RectF k_defaultBounds{0.0F, 0.8F, 0.4F, 0.2F};
     inline static const float k_lineHeight{0.028F};
     inline static const float k_separatorHeight{0.003F};
-    inline static const float k_margin{0.008f};
+    inline static const float k_margin{0.008F};
     const int k_renderIDSeparator{Hash("RenderIDSeparator")};
     const int k_renderIDInputCursor{Hash("RenderIDInputCursor")};
     const int k_renderIDInputText{Hash("RenderIDInputText")};

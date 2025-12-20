@@ -15,6 +15,7 @@ namespace Forradia {
     return component;
   }
 
+  // NOLINTNEXTLINE(readability-make-member-function-const)
   auto GUIComponent::OnMouseDown(Uint8 mouseButton) -> bool {
     if (!m_visible || !m_enabled)
       return false;
@@ -26,6 +27,7 @@ namespace Forradia {
     return false;
   }
 
+  // NOLINTNEXTLINE(readability-make-member-function-const)
   auto GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
     if (!m_visible || !m_enabled)
       return false;

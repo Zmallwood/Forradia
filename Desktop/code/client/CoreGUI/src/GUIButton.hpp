@@ -23,28 +23,28 @@ namespace Forradia {
      * @param backgroundImage The background image of the button.
      * @param hoveredBackgroundImage The background image of the button when hovered.
      */
-    GUIButton(std::string_view uniqueName, float x, float y, float width, float height,
+    GUIButton(std::string_view uniqueName, float xPos, float yPos, float width, float height,
               std::string_view text, std::function<void()> action,
               std::string_view backgroundImage = k_defaultBackgroundImage,
               std::string_view hoveredBackgroundImage = k_defaultHoveredBackgroundImage)
-        : GUIPanel(uniqueName, x, y, width, height),
+        : GUIPanel(uniqueName, xPos, yPos, width, height),
           k_renderIDText(Hash(uniqueName.data() + std::string("Text"))), m_text(text),
           m_action(action), m_backgroundImage(backgroundImage),
           m_hoveredBackgroundImage(hoveredBackgroundImage) {
     }
 
    protected:
-    virtual auto OnMouseDown(Uint8 mouseButton) -> bool override;
+    auto OnMouseDown(Uint8 mouseButton) -> bool override;
 
     /**
      * Update tasks specific to the button, called by the GUIComponent base class.
      */
-    virtual auto UpdateDerived() -> void override;
+    auto UpdateDerived() -> void override;
 
     /**
      * Render tasks specific to the button, called by the GUIComponent base class.
      */
-    virtual auto RenderDerived() const -> void override;
+    auto RenderDerived() const -> void override;
 
    private:
     inline static const std::string k_defaultBackgroundImage{"GUIButtonBackground"};

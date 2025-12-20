@@ -4,6 +4,7 @@
 #pragma once
 #include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
+#include <SDL2/SDL.h>
 #include <memory>
 #include <string>
 

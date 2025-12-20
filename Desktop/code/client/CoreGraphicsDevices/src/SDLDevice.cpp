@@ -3,7 +3,6 @@
 
 #include "SDLDevice.hpp"
 #include <GL/gl.h>
-#include <SDL2/SDL.h>
 
 namespace Forradia {
   auto SDLDevice::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {
