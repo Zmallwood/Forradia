@@ -1,94 +1,97 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #include "GUIMovablePanel.hpp"
 #include "Cursor.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-  auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
-    if (!this->GetVisible())
-      return false;
+    auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
+        if (!this->GetVisible())
+            return false;
 
-    auto childComponents{this->GetChildComponents()};
+        auto childComponents{this->GetChildComponents()};
 
-    for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
-      if ((*it)->OnMouseDown(mouseButton))
-        return true;
+        for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+            if ((*it)->OnMouseDown(mouseButton))
+                return true;
 
-    auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-    auto draggableArea{this->GetDraggableArea()};
-    if (draggableArea.Contains(mousePosition)) {
-      this->StartMove();
-      return true;
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        auto draggableArea{this->GetDraggableArea()};
+        if (draggableArea.Contains(mousePosition)) {
+            this->StartMove();
+            return true;
+        }
+
+        return false;
     }
 
-    return false;
-  }
+    auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+        if (!this->GetVisible())
+            return false;
 
-  auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
-    if (!this->GetVisible())
-      return false;
+        auto childComponents{this->GetChildComponents()};
 
-    auto childComponents{this->GetChildComponents()};
+        for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+            if ((*it)->OnMouseUp(mouseButton, clickSpeed))
+                return true;
 
-    for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
-      if ((*it)->OnMouseUp(mouseButton, clickSpeed))
-        return true;
+        this->StopMove();
 
-    this->StopMove();
+        auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        if (GetBounds().Contains(mousePos)) {
+            return true;
+        }
 
-    auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-    if (GetBounds().Contains(mousePos)) {
-      return true;
+        return false;
     }
 
-    return false;
-  }
+    auto GUIMovablePanel::UpdateDerived() -> void {
+        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        auto draggableArea{this->GetDraggableArea()};
 
-  auto GUIMovablePanel::UpdateDerived() -> void {
-    auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-    auto draggableArea{this->GetDraggableArea()};
+        // if (draggableArea.Contains(mousePosition)) {
+        //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-    // if (draggableArea.Contains(mousePosition)) {
-    //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+        //  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
+        //    this->StartMove();
+        //}
 
-    //  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-    //    this->StartMove();
-    //}
+        // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
+        //   this->StopMove();
 
-    // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
-    //   this->StopMove();
+        // auto bounds{GetBounds()};
 
-    // auto bounds{GetBounds()};
+        // if (bounds.Contains(mousePosition)) {
+        //   // Reset the mouse buttons. This is done to prevent any other mouse actions
+        //   // from being triggered when there has been a mouse click inside this panel.
+        //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+        //     _<MouseInput>().GetLeftMouseButtonRef().Reset();
+        //   }
+        // }
 
-    // if (bounds.Contains(mousePosition)) {
-    //   // Reset the mouse buttons. This is done to prevent any other mouse actions
-    //   // from being triggered when there has been a mouse click inside this panel.
-    //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-    //     _<MouseInput>().GetLeftMouseButtonRef().Reset();
-    //   }
-    // }
-
-    if (GetIsBeingMoved()) {
-      auto newPosition{GetMoveStartingPosition() + mousePosition - GetMoveStartingMousePosition()};
-      this->SetPosition(newPosition);
+        if (GetIsBeingMoved()) {
+            auto newPosition{GetMoveStartingPosition() + mousePosition -
+                             GetMoveStartingMousePosition()};
+            this->SetPosition(newPosition);
+        }
     }
-  }
 
-  auto GUIMovablePanel::StartMove() -> void {
-    m_isBeingMoved = true;
-    m_moveStartingPosition = this->GetBounds().GetPosition();
-    m_moveStartingMousePosition = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
-  }
+    auto GUIMovablePanel::StartMove() -> void {
+        m_isBeingMoved = true;
+        m_moveStartingPosition = this->GetBounds().GetPosition();
+        m_moveStartingMousePosition = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
+    }
 
-  auto GUIMovablePanel::StopMove() -> void {
-    m_isBeingMoved = false;
-  }
+    auto GUIMovablePanel::StopMove() -> void {
+        m_isBeingMoved = false;
+    }
 
-  auto GUIMovablePanel::GetDraggableArea() const -> RectF {
-    // Set the draggable area to the bounds of this panel as default. This can be overridden
-    // by derived classes.
-    return this->GetBounds();
-  }
+    auto GUIMovablePanel::GetDraggableArea() const -> RectF {
+        // Set the draggable area to the bounds of this panel as default. This can be overridden
+        // by derived classes.
+        return this->GetBounds();
+    }
 }

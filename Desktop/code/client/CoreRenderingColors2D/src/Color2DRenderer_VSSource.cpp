@@ -1,11 +1,13 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-  auto Color2DRenderer::GetVSSource() const -> std::string {
-    return R"(
+    auto Color2DRenderer::GetVSSource() const -> std::string {
+        return R"(
         #version 330 core
 
         layout (location = 0) in vec3 aPos;
@@ -21,5 +23,5 @@ namespace Forradia {
             ourColor = aColor;
         }
     )";
-  }
+    }
 }

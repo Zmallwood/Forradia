@@ -1,34 +1,36 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia::Theme0 {
-  class WorldArea;
-
-  /**
-   * The world in the game.
-   */
-  class World {
-   public:
-    /**
-     * Initializes the world.
-     *
-     * @param worldAreaSize The size of the world area.
-     * @param worldScaling The scaling of the world.
-     */
-    auto Initialize(Size worldAreaSize, float worldScaling) -> void;
+    class WorldArea;
 
     /**
-     * Gets the current world area.
-     *
-     * @return The current world area.
+     * The world in the game.
      */
-    auto GetCurrentWorldArea() const {
-      return m_currentWorldArea;
-    }
+    class World {
+      public:
+        /**
+         * Initializes the world.
+         *
+         * @param worldAreaSize The size of the world area.
+         * @param worldScaling The scaling of the world.
+         */
+        auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
-   private:
-    std::shared_ptr<WorldArea> m_currentWorldArea;
-  };
+        /**
+         * Gets the current world area.
+         *
+         * @return The current world area.
+         */
+        auto GetCurrentWorldArea() const {
+            return m_currentWorldArea;
+        }
+
+      private:
+        std::shared_ptr<WorldArea> m_currentWorldArea;
+    };
 }

@@ -1,11 +1,13 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #include "Image2DRenderer.hpp"
 
 namespace Forradia {
-  auto Image2DRenderer::GetVSSource() const -> std::string {
-    return R"(
+    auto Image2DRenderer::GetVSSource() const -> std::string {
+        return R"(
         #version 330 core
         
         layout (location = 0) in vec3 aPos;
@@ -24,5 +26,5 @@ namespace Forradia {
             TexCoord = aTexCoord;
         }
     )";
-  }
+    }
 }

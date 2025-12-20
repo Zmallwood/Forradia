@@ -1,26 +1,28 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include <string>
 
 namespace Forradia {
-  /**
-   * A texture, primarily used for models.
-   */
-  class Texture {
-   public:
     /**
-     * Constructor for the Texture class.
-     *
-     * @param path The path to the texture.
+     * A texture, primarily used for models.
      */
-    Texture(std::string_view path) : path(path) {
-    }
+    class Texture {
+      public:
+        /**
+         * Constructor for the Texture class.
+         *
+         * @param path The path to the texture.
+         */
+        Texture(std::string_view path) : path(path) {
+        }
 
-    /**
-     * The path to the texture.
-     */
-    std::string path;
-  };
+        /**
+         * The path to the texture.
+         */
+        std::string path;
+    };
 }

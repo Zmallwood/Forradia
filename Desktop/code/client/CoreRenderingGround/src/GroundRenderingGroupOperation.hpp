@@ -1,18 +1,20 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "TileDrawGroup.hpp"
 
 namespace Forradia {
-  /**
-   * A rendering operation for a group of tiles.
-   */
-  class GroundRenderingGroupOperation {
-   public:
     /**
-     * The tiles by texture.
+     * A rendering operation for a group of tiles.
      */
-    std::unordered_map<int, TileDrawGroup> tilesByTexture;
-  };
+    class GroundRenderingGroupOperation {
+      public:
+        /**
+         * The tiles by texture.
+         */
+        std::unordered_map<int, TileDrawGroup> tilesByTexture;
+    };
 }

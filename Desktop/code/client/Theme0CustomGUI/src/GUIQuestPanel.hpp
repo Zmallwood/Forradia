@@ -1,38 +1,40 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "GUIMovablePanel.hpp"
 
 namespace Forradia {
-  class GUILabel;
+    class GUILabel;
 }
 
 namespace Forradia::Theme0 {
-  /**
-   * Represents the quest panel.
-   */
-  class GUIQuestPanel : public GUIMovablePanel {
-   public:
     /**
-     * Constructor.
+     * Represents the quest panel.
      */
-    GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f) {
-      this->Initialize();
-    }
+    class GUIQuestPanel : public GUIMovablePanel {
+      public:
+        /**
+         * Constructor.
+         */
+        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f) {
+            this->Initialize();
+        }
 
-   protected:
-    /**
-     * Does update logic that is specific to the quest panel.
-     */
-    auto UpdateDerived() -> void override;
+      protected:
+        /**
+         * Does update logic that is specific to the quest panel.
+         */
+        auto UpdateDerived() -> void override;
 
-   private:
-    auto Initialize() -> void;
+      private:
+        auto Initialize() -> void;
 
-    std::shared_ptr<GUILabel> m_questTitleTextPanel;
-    std::shared_ptr<GUILabel> m_questNameTextPanel;
-    std::shared_ptr<GUILabel> m_questDescriptionTextPanel;
-    std::shared_ptr<GUILabel> m_questStatusTextPanel;
-  };
+        std::shared_ptr<GUILabel> m_questTitleTextPanel;
+        std::shared_ptr<GUILabel> m_questNameTextPanel;
+        std::shared_ptr<GUILabel> m_questDescriptionTextPanel;
+        std::shared_ptr<GUILabel> m_questStatusTextPanel;
+    };
 }

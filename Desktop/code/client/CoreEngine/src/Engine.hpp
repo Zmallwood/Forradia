@@ -1,40 +1,42 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "Coloring/Color.hpp"
 #include <string_view>
 
 namespace Forradia {
-  /**
-   * The engine class is responsible for initializing, running and stopping
-   * the game.
-   */
-  class Engine {
-   public:
     /**
-     * Initializes the engine.
-     *
-     * @param gameWindowTitle The title of the game window.
-     * @param clearColor The color to clear the canvas with.
+     * The engine class is responsible for initializing, running and stopping
+     * the game.
      */
-    static auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
+    class Engine {
+      public:
+        /**
+         * Initializes the engine.
+         *
+         * @param gameWindowTitle The title of the game window.
+         * @param clearColor The color to clear the canvas with.
+         */
+        static auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
-    /**
-     * Runs the engine.
-     */
-    auto Run() -> void;
+        /**
+         * Runs the engine.
+         */
+        auto Run() -> void;
 
-    /**
-     * Stops the engine.
-     */
-    auto Stop() -> void;
+        /**
+         * Stops the engine.
+         */
+        auto Stop() -> void;
 
-   private:
-    auto HandleEvents() -> void;
+      private:
+        auto HandleEvents() -> void;
 
-    bool m_running{true};
-    int m_ticksLeftMouseButtonFired{0};
-    int m_ticksRightMouseButtonFired{0};
-  };
+        bool m_running{true};
+        int m_ticksLeftMouseButtonFired{0};
+        int m_ticksRightMouseButtonFired{0};
+    };
 }

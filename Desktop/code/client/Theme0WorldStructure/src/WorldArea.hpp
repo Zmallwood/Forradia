@@ -1,105 +1,107 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia::Theme0 {
-  class Tile;
-  class Entity;
-  class Robot;
-
-  /**
-   * A world area in the game.
-   */
-  class WorldArea {
-   public:
-    /**
-     * Constructor.
-     *
-     * @param worldAreaSize The size of the world area.
-     * @param worldScaling The scaling of the world area size.
-     */
-    WorldArea(Size worldAreaSize, float worldScaling) {
-      // Initialize the world area.
-
-      this->Initialize(worldAreaSize, worldScaling);
-    }
+    class Tile;
+    class Entity;
+    class Robot;
 
     /**
-     * Resets the world area.
+     * A world area in the game.
      */
-    auto Reset() -> void;
+    class WorldArea {
+      public:
+        /**
+         * Constructor.
+         *
+         * @param worldAreaSize The size of the world area.
+         * @param worldScaling The scaling of the world area size.
+         */
+        WorldArea(Size worldAreaSize, float worldScaling) {
+            // Initialize the world area.
 
-    /**
-     * Gets the size of the world area.
-     *
-     * @return The size of the world area.
-     */
-    auto GetSize() const -> Size;
+            this->Initialize(worldAreaSize, worldScaling);
+        }
 
-    /**
-     * Checks if a coordinate is valid in the world area.
-     *
-     * @param x The x coordinate.
-     * @param y The y coordinate.
-     * @return True if the coordinate is valid, false otherwise.
-     */
-    auto IsValidCoordinate(int x, int y) const -> bool;
+        /**
+         * Resets the world area.
+         */
+        auto Reset() -> void;
 
-    /**
-     * Checks if a coordinate is valid in the world area.
-     *
-     * @param coordinate The coordinate.
-     * @return True if the coordinate is valid, false otherwise.
-     */
-    auto IsValidCoordinate(Point coordinate) const -> bool;
+        /**
+         * Gets the size of the world area.
+         *
+         * @return The size of the world area.
+         */
+        auto GetSize() const -> Size;
 
-    /**
-     * Gets the tile at the given coordinate.
-     *
-     * @param x The x coordinate.
-     * @param y The y coordinate.
-     * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
-     */
-    auto GetTile(int x, int y) const -> std::shared_ptr<Tile>;
+        /**
+         * Checks if a coordinate is valid in the world area.
+         *
+         * @param x The x coordinate.
+         * @param y The y coordinate.
+         * @return True if the coordinate is valid, false otherwise.
+         */
+        auto IsValidCoordinate(int x, int y) const -> bool;
 
-    /**
-     * Gets the tile at the given coordinate.
-     *
-     * @param coordinate The coordinate.
-     * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
-     */
-    auto GetTile(Point coord) const -> std::shared_ptr<Tile>;
+        /**
+         * Checks if a coordinate is valid in the world area.
+         *
+         * @param coordinate The coordinate.
+         * @return True if the coordinate is valid, false otherwise.
+         */
+        auto IsValidCoordinate(Point coordinate) const -> bool;
 
-    /**
-     * Adds a claimed coordinate.
-     *
-     * @param coordinate The coordinate to add.
-     */
-    auto AddClaimedCoordinate(Point coordinate) -> void;
+        /**
+         * Gets the tile at the given coordinate.
+         *
+         * @param x The x coordinate.
+         * @param y The y coordinate.
+         * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
+         */
+        auto GetTile(int x, int y) const -> std::shared_ptr<Tile>;
 
-    /**
-     * Checks if a coordinate is claimed.
-     *
-     * @param coordinate The coordinate to check.
-     * @return True if the coordinate is claimed, false otherwise.
-     */
-    auto CoordinateIsClaimed(Point coordinate) const -> bool;
+        /**
+         * Gets the tile at the given coordinate.
+         *
+         * @param coordinate The coordinate.
+         * @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
+         */
+        auto GetTile(Point coord) const -> std::shared_ptr<Tile>;
 
-    /**
-     * Gets a reference to the entities mirror.
-     *
-     * @return A reference to the entities mirror.
-     */
-    auto &GetEntitiesMirrorRef() {
-      return m_entitiesMirror;
-    }
+        /**
+         * Adds a claimed coordinate.
+         *
+         * @param coordinate The coordinate to add.
+         */
+        auto AddClaimedCoordinate(Point coordinate) -> void;
 
-   private:
-    auto Initialize(Size worldAreaSize, float worldScaling) -> void;
+        /**
+         * Checks if a coordinate is claimed.
+         *
+         * @param coordinate The coordinate to check.
+         * @return True if the coordinate is claimed, false otherwise.
+         */
+        auto CoordinateIsClaimed(Point coordinate) const -> bool;
 
-    std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
-    std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror;
-    std::set<Point> m_claimedCoordinates;
-  };
+        /**
+         * Gets a reference to the entities mirror.
+         *
+         * @return A reference to the entities mirror.
+         */
+        auto &GetEntitiesMirrorRef() {
+            return m_entitiesMirror;
+        }
+
+      private:
+        auto Initialize(Size worldAreaSize, float worldScaling) -> void;
+
+        std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
+        std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror;
+        std::set<Point> m_claimedCoordinates;
+    };
 }

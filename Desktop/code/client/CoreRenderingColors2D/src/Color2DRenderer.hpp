@@ -1,5 +1,7 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "Color2DRenderingOperation.hpp"
@@ -7,77 +9,77 @@
 #include <unordered_map>
 
 namespace Forradia {
-  /**
-   * A renderer for drawing colors to the canvas.
-   */
-  class Color2DRenderer : public RendererBase {
-   public:
     /**
-     * Destructor which cleans up the renderer.
+     * A renderer for drawing colors to the canvas.
      */
-    ~Color2DRenderer() {
-      // Cleanup the renderer.
-      this->Cleanup();
-    }
+    class Color2DRenderer : public RendererBase {
+      public:
+        /**
+         * Destructor which cleans up the renderer.
+         */
+        ~Color2DRenderer() {
+            // Cleanup the renderer.
+            this->Cleanup();
+        }
 
-    /**
-     * Draws a filled rectangle.
-     *
-     * @param uniqueRenderID The unique render ID.
-     * @param color The color of the rectangle.
-     * @param x The x coordinate of the rectangle.
-     * @param y The y coordinate of the rectangle.
-     * @param width The width of the rectangle.
-     * @param height The height of the rectangle.
-     * @param updateExisting Whether to update the existing operation.
-     */
-    auto DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
-                             float height, bool updateExisting = false) -> void;
+        /**
+         * Draws a filled rectangle.
+         *
+         * @param uniqueRenderID The unique render ID.
+         * @param color The color of the rectangle.
+         * @param x The x coordinate of the rectangle.
+         * @param y The y coordinate of the rectangle.
+         * @param width The width of the rectangle.
+         * @param height The height of the rectangle.
+         * @param updateExisting Whether to update the existing operation.
+         */
+        auto DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
+                                 float height, bool updateExisting = false) -> void;
 
-    /**
-     * Draws a line between two points.
-     *
-     * @param uniqueRenderID The unique render ID.
-     * @param color The color of the line.
-     * @param x1 The x coordinate of the first point.
-     * @param y1 The y coordinate of the first point.
-     * @param x2 The x coordinate of the second point.
-     * @param y2 The y coordinate of the second point.
-     * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
-     * @param updateExisting Whether to update the existing operation.
-     */
-    auto DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                  float lineWidth = 0.001F, bool updateExisting = false) -> void;
+        /**
+         * Draws a line between two points.
+         *
+         * @param uniqueRenderID The unique render ID.
+         * @param color The color of the line.
+         * @param x1 The x coordinate of the first point.
+         * @param y1 The y coordinate of the first point.
+         * @param x2 The x coordinate of the second point.
+         * @param y2 The y coordinate of the second point.
+         * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
+         * @param updateExisting Whether to update the existing operation.
+         */
+        auto DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
+                      float lineWidth = 0.001F, bool updateExisting = false) -> void;
 
-   protected:
-    /**
-     * Returns the vertex shader source.
-     *
-     * @return The vertex shader source.
-     */
-    auto GetVSSource() const -> std::string override;
+      protected:
+        /**
+         * Returns the vertex shader source.
+         *
+         * @return The vertex shader source.
+         */
+        auto GetVSSource() const -> std::string override;
 
-    /**
-     * Returns the fragment shader source.
-     *
-     * @return The fragment shader source.
-     */
-    auto GetFSSource() const -> std::string override;
+        /**
+         * Returns the fragment shader source.
+         *
+         * @return The fragment shader source.
+         */
+        auto GetFSSource() const -> std::string override;
 
-    /**
-     * Sets up the attribute layout.
-     */
-    auto SetupAttributeLayout() const -> void override;
+        /**
+         * Sets up the attribute layout.
+         */
+        auto SetupAttributeLayout() const -> void override;
 
-   private:
-    auto Cleanup() -> void;
+      private:
+        auto Cleanup() -> void;
 
-    auto SetupState() const -> void;
+        auto SetupState() const -> void;
 
-    auto RestoreState() const -> void;
+        auto RestoreState() const -> void;
 
-    auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
+        auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
-    std::unordered_map<int, Color2DRenderingOperation> m_operationsCache;
-  };
+        std::unordered_map<int, Color2DRenderingOperation> m_operationsCache;
+    };
 }

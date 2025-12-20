@@ -1,11 +1,13 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #include "SkyRenderer.hpp"
 
 namespace Forradia {
-  auto SkyRenderer::GetFSSource() const -> std::string {
-    return R"(
+    auto SkyRenderer::GetFSSource() const -> std::string {
+        return R"(
         #version 330 core
         
         #define PI 3.14159265359
@@ -88,5 +90,5 @@ namespace Forradia {
             FragColor = vec4(skyColor, 1.0);
         }
     )";
-  }
+    }
 }

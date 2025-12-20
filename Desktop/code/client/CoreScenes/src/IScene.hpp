@@ -1,78 +1,80 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "GUIComponent.hpp"
 
 namespace Forradia {
-  class GUI;
-
-  /**
-   * The base class for all scenes.
-   */
-  class IScene {
-   public:
-    /**
-     * Initializes the scene.
-     */
-    auto Initialize() -> void;
+    class GUI;
 
     /**
-     * Called when the scene is entered.
+     * The base class for all scenes.
      */
-    auto OnEnter() -> void;
+    class IScene {
+      public:
+        /**
+         * Initializes the scene.
+         */
+        auto Initialize() -> void;
 
-    virtual auto OnMouseDown(Uint8 mouseButton) -> void;
+        /**
+         * Called when the scene is entered.
+         */
+        auto OnEnter() -> void;
 
-    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
+        virtual auto OnMouseDown(Uint8 mouseButton) -> void;
 
-    virtual auto OnMouseWheel(int delta) -> void;
+        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
 
-    /**
-     * Updates the scene.
-     */
-    virtual auto Update() -> void;
+        virtual auto OnMouseWheel(int delta) -> void;
 
-    /**
-     * Renders the scene.
-     */
-    virtual auto Render() const -> void;
+        /**
+         * Updates the scene.
+         */
+        virtual auto Update() -> void;
 
-   protected:
-    /**
-     * Initializes the scene. Should be specific to the deriving class.
-     */
-    virtual auto InitializeDerived() -> void {
-    }
+        /**
+         * Renders the scene.
+         */
+        virtual auto Render() const -> void;
 
-    /**
-     * Called when the scene is entered. Should be specific to the deriving class.
-     */
-    virtual auto OnEnterDerived() -> void {
-    }
+      protected:
+        /**
+         * Initializes the scene. Should be specific to the deriving class.
+         */
+        virtual auto InitializeDerived() -> void {
+        }
 
-    /**
-     * Updates the scene. Should be specific to the deriving class.
-     */
-    virtual auto UpdateDerived() -> void {
-    }
+        /**
+         * Called when the scene is entered. Should be specific to the deriving class.
+         */
+        virtual auto OnEnterDerived() -> void {
+        }
 
-    /**
-     * Renders the scene. Should be specific to the deriving class.
-     */
-    virtual auto RenderDerived() const -> void {
-    }
+        /**
+         * Updates the scene. Should be specific to the deriving class.
+         */
+        virtual auto UpdateDerived() -> void {
+        }
 
-    /**
-     * Gets the GUI.
-     *
-     * @return The GUI.
-     */
-    auto GetGUI() const -> std::shared_ptr<GUI> {
-      return m_gui;
-    }
+        /**
+         * Renders the scene. Should be specific to the deriving class.
+         */
+        virtual auto RenderDerived() const -> void {
+        }
 
-   private:
-    std::shared_ptr<GUI> m_gui;
-  };
+        /**
+         * Gets the GUI.
+         *
+         * @return The GUI.
+         */
+        auto GetGUI() const -> std::shared_ptr<GUI> {
+            return m_gui;
+        }
+
+      private:
+        std::shared_ptr<GUI> m_gui;
+    };
 }

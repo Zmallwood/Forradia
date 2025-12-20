@@ -1,46 +1,48 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia::Theme0 {
-  class Quest;
-
-  /**
-   * Manages the quests in the game.
-   */
-  class QuestSystem {
-   public:
-    /**
-     * Constructor.
-     */
-    QuestSystem() {
-      this->Initialize();
-    }
+    class Quest;
 
     /**
-     * Updates the quest system.
+     * Manages the quests in the game.
      */
-    auto Update() -> void;
+    class QuestSystem {
+      public:
+        /**
+         * Constructor.
+         */
+        QuestSystem() {
+            this->Initialize();
+        }
 
-    /**
-     * Gets the name of the current quest.
-     */
-    auto GetCurrentQuestName() const -> std::string;
+        /**
+         * Updates the quest system.
+         */
+        auto Update() -> void;
 
-    /**
-     * Gets the description of the current quest.
-     */
-    auto GetCurrentQuestDescription() const -> std::string;
+        /**
+         * Gets the name of the current quest.
+         */
+        auto GetCurrentQuestName() const -> std::string;
 
-    /**
-     * Gets the status of the current quest.
-     */
-    auto GetCurrentQuestStatus() const -> std::string;
+        /**
+         * Gets the description of the current quest.
+         */
+        auto GetCurrentQuestDescription() const -> std::string;
 
-   private:
-    auto Initialize() -> void;
+        /**
+         * Gets the status of the current quest.
+         */
+        auto GetCurrentQuestStatus() const -> std::string;
 
-    std::vector<std::shared_ptr<Quest>> m_quests;
-  };
+      private:
+        auto Initialize() -> void;
+
+        std::vector<std::shared_ptr<Quest>> m_quests;
+    };
 }

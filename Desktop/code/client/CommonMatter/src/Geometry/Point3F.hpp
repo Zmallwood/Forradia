@@ -1,27 +1,29 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia {
-  /**
-   * Point in 3D space using dimensions of float type.
-   */
-  class Point3F {
-   public:
     /**
-     * The x dimension.
+     * Point in 3D space using dimensions of float type.
      */
-    float x{0.0F};
+    class Point3F {
+      public:
+        /**
+         * The x dimension.
+         */
+        float x{0.0F};
 
-    /**
-     * The y dimension.
-     */
-    float y{0.0F};
+        /**
+         * The y dimension.
+         */
+        float y{0.0F};
 
-    /**
-     * The z dimension.
-     */
-    float z{0.0F};
-  };
+        /**
+         * The z dimension.
+         */
+        float z{0.0F};
+    };
 }

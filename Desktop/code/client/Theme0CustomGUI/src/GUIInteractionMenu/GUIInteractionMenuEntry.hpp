@@ -1,49 +1,52 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia::Theme0 {
-  class Tile;
-  class Object;
-
-  /**
-   * Represents an entry in the interaction menu.
-   */
-  class GUIInteractionMenuEntry {
-   public:
-    /**
-     * Constructor.
-     *
-     * @param label The label of the entry.
-     * @param action The action to perform when the entry is clicked.
-     */
-    GUIInteractionMenuEntry(
-        std::string_view label,
-        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> action)
-        : m_label(label), m_action(action) {
-    }
+    class Tile;
+    class Object;
 
     /**
-     * Gets the label of the entry.
-     *
-     * @return The label of the entry.
+     * Represents an entry in the interaction menu.
      */
-    auto GetLabel() const {
-      return m_label;
-    }
+    class GUIInteractionMenuEntry {
+      public:
+        /**
+         * Constructor.
+         *
+         * @param label The label of the entry.
+         * @param action The action to perform when the entry is clicked.
+         */
+        GUIInteractionMenuEntry(
+            std::string_view label,
+            std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)>
+                action)
+            : m_label(label), m_action(action) {
+        }
 
-    /**
-     * Gets the action of the entry.
-     *
-     * @return The action of the entry.
-     */
-    auto GetAction() const {
-      return m_action;
-    }
+        /**
+         * Gets the label of the entry.
+         *
+         * @return The label of the entry.
+         */
+        auto GetLabel() const {
+            return m_label;
+        }
 
-   private:
-    std::string m_label;
-    std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> m_action;
-  };
+        /**
+         * Gets the action of the entry.
+         *
+         * @return The action of the entry.
+         */
+        auto GetAction() const {
+            return m_action;
+        }
+
+      private:
+        std::string m_label;
+        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> m_action;
+    };
 }

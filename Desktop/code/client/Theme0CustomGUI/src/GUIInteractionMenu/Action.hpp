@@ -1,33 +1,35 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 
 namespace Forradia::Theme0 {
-  class Tile;
-  class Object;
-
-  /**
-   * Represents an action that can be performed by the player.
-   */
-  class Action {
-   public:
-    std::string label;
-    /**
-     * The types of ground that the action can be performed on.
-     */
-    std::vector<int> groundMatches;
+    class Tile;
+    class Object;
 
     /**
-     * The types of objects that the action can be performed on.
+     * Represents an action that can be performed by the player.
      */
-    std::vector<int> objectMatches;
+    class Action {
+      public:
+        std::string label;
+        /**
+         * The types of ground that the action can be performed on.
+         */
+        std::vector<int> groundMatches;
 
-    std::vector<int> objectsInInventory;
+        /**
+         * The types of objects that the action can be performed on.
+         */
+        std::vector<int> objectMatches;
 
-    /**
-     * The function that performs the action.
-     */
-    std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> action;
-  };
+        std::vector<int> objectsInInventory;
+
+        /**
+         * The function that performs the action.
+         */
+        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> action;
+    };
 }

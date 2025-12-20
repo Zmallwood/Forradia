@@ -1,11 +1,13 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #include "GroundRenderer.hpp"
 
 namespace Forradia {
-  auto GroundRenderer::GetFSSource() const -> std::string {
-    return R"(
+    auto GroundRenderer::GetFSSource() const -> std::string {
+        return R"(
         #version 330 core
         
         out vec4 FragColor;
@@ -47,5 +49,5 @@ namespace Forradia {
             FragColor = vec4(result, objectColor.a);
         }
     )";
-  }
+    }
 }

@@ -1,54 +1,56 @@
-/* Copyright 2025 Andreas Åkerberg
- * This code is licensed under MIT license (see LICENSE for details) */
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
 
 #pragma once
 #include "GUIPanel.hpp"
 
 namespace Forradia {
-  class GUIWindow;
-
-  /**
-   * A title bar for a window.
-   */
-  class GUIWindowTitleBar : public GUIPanel {
-   public:
-    /**
-     * Constructor.
-     *
-     * @param uniqueName An unique name for the title bar.
-     * @param parentWindow The parent window of the title bar.
-     * @param windowTitle The title of the window.
-     */
-    GUIWindowTitleBar(std::string_view uniqueName, GUIWindow &parentWindow,
-                      std::string_view windowTitle)
-        : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
-          k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
-          GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
-      this->Initialize(uniqueName);
-    }
+    class GUIWindow;
 
     /**
-     * Render tasks specific to the title bar, called by the GUIComponent base class.
+     * A title bar for a window.
      */
-    auto RenderDerived() const -> void override;
+    class GUIWindowTitleBar : public GUIPanel {
+      public:
+        /**
+         * Constructor.
+         *
+         * @param uniqueName An unique name for the title bar.
+         * @param parentWindow The parent window of the title bar.
+         * @param windowTitle The title of the window.
+         */
+        GUIWindowTitleBar(std::string_view uniqueName, GUIWindow &parentWindow,
+                          std::string_view windowTitle)
+            : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
+              k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
+              GUIPanel(uniqueName, 0.0f, 0.0f, 0.0f, 0.0f, "GUIWindowTitleBarBackground") {
+            this->Initialize(uniqueName);
+        }
 
-    /**
-     * Gets the bounds of the title bar.
-     *
-     * @return The bounds of the title bar.
-     */
-    auto GetBounds() const -> RectF override;
+        /**
+         * Render tasks specific to the title bar, called by the GUIComponent base class.
+         */
+        auto RenderDerived() const -> void override;
 
-    auto GetHeight() const -> float {
-      return k_height;
-    }
+        /**
+         * Gets the bounds of the title bar.
+         *
+         * @return The bounds of the title bar.
+         */
+        auto GetBounds() const -> RectF override;
 
-   private:
-    auto Initialize(std::string_view uniqueName) -> void;
+        auto GetHeight() const -> float {
+            return k_height;
+        }
 
-    inline static const float k_height{0.04f};
-    const std::string k_windowTitle;
-    const int k_renderIDWindowTitleText;
-    GUIWindow &m_parentWindow;
-  };
+      private:
+        auto Initialize(std::string_view uniqueName) -> void;
+
+        inline static const float k_height{0.04f};
+        const std::string k_windowTitle;
+        const int k_renderIDWindowTitleText;
+        GUIWindow &m_parentWindow;
+    };
 }
