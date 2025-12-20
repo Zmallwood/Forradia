@@ -13,7 +13,6 @@
 #include "CanvasUtilities.hpp"
 #include "Coloring/Color.hpp"
 #include "Coloring/Palette.hpp"
-#include "Functions.hpp"
 #include "Geometry/RectF.hpp"
 #include "Geometry/Size.hpp"
 #include "Hash.hpp"

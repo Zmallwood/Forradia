@@ -8,7 +8,6 @@
 #include <SDL2/SDL.h>
 
 #include "Constants.hpp"
-#include "Functions.hpp"
 #include "Geometry/Point.hpp"
 #include "Geometry/PointF.hpp"
 #include "Geometry/Size.hpp"

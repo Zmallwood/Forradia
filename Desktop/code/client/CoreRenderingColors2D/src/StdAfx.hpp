@@ -6,7 +6,6 @@
 #include <unordered_map>
 
 #include "CanvasUtilities.hpp"
-#include "Functions.hpp"
 
 // clang-format off
 #include <GL/glew.h>

@@ -2,7 +2,6 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "CanvasUtilities.hpp"
-#include "Functions.hpp"
 
 namespace Forradia {
   auto GetCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size {
