@@ -6,7 +6,9 @@
 #include "Engine.hpp"
 #include "Image2DRenderer.hpp"
 #include "Keyboard/KeyboardInput.hpp"
+#include "Singleton.hpp"
 #include "TextRenderer.hpp"
+#include <fmt/format.h>
 
 namespace Forradia {
   auto GUIChatBox::Initialize() -> void {
@@ -17,20 +19,20 @@ namespace Forradia {
   }
 
   auto GUIChatBox::GetMaxNumLines() const -> int {
-    auto bounds{this->GetBounds()};
+    auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
     return CInt(bounds.height / k_lineHeight - 1);
   }
 
   auto GUIChatBox::UpdateDerived() -> void {
-    GUIPanel::UpdateDerived();
+    dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
 
     m_input = _<KeyboardInput>().GetTextInput();
   }
 
   auto GUIChatBox::RenderDerived() const -> void {
-    GUIPanel::RenderDerived();
+    dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
 
-    auto bounds{this->GetBounds()};
+    auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
     auto maxNumLines{this->GetMaxNumLines()};
     auto y{bounds.y + k_margin};
 

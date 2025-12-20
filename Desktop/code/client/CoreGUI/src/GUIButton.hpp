@@ -3,6 +3,7 @@
 
 #pragma once
 #include "GUIPanel.hpp"
+#include "Hash.hpp"
 #include <functional>
 
 namespace Forradia {
@@ -30,7 +31,7 @@ namespace Forradia {
               std::string_view hoveredBackgroundImage = k_defaultHoveredBackgroundImage)
         : GUIPanel(uniqueName, xPos, yPos, width, height),
           k_renderIDText(Hash(uniqueName.data() + std::string("Text"))), m_text(text),
-          m_action(action), m_backgroundImage(backgroundImage),
+          m_action(std::move(action)), m_backgroundImage(backgroundImage),
           m_hoveredBackgroundImage(hoveredBackgroundImage) {
     }
 
