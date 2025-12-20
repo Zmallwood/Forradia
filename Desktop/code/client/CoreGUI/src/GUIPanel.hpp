@@ -5,6 +5,7 @@
 
 #pragma once
 #include "GUIComponent.hpp"
+#include "Hash.hpp"
 
 namespace Forradia {
     /**
@@ -22,16 +23,16 @@ namespace Forradia {
          * @param height The height of the panel.
          * @param backgroundImage The background image of the panel.
          */
-        GUIPanel(std::string_view uniqueName, float x, float y, float width, float height,
+        GUIPanel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view backgroundImage = k_defaultBackgroundImage)
-            : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
+            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(Hash(uniqueName)),
               m_backgroundImage(backgroundImage) {
         }
 
         /**
          * Render tasks specific to the panel, called by the GUIComponent base class.
          */
-        virtual auto RenderDerived() const -> void override;
+        auto RenderDerived() const -> void override;
 
         /**
          * Sets the background image of the panel.

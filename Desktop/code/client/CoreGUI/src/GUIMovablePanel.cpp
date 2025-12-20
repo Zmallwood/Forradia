@@ -6,6 +6,7 @@
 #include "GUIMovablePanel.hpp"
 #include "Cursor.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
 
 namespace Forradia {
     auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
@@ -14,8 +15,9 @@ namespace Forradia {
 
         auto childComponents{this->GetChildComponents()};
 
-        for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
-            if ((*it)->OnMouseDown(mouseButton))
+        // for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+        for (auto &childComponent : std::ranges::reverse_view(childComponents))
+            if (childComponent->OnMouseDown(mouseButton))
                 return true;
 
         auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
@@ -34,8 +36,9 @@ namespace Forradia {
 
         auto childComponents{this->GetChildComponents()};
 
-        for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
-            if ((*it)->OnMouseUp(mouseButton, clickSpeed))
+        // for (auto it = childComponents.rbegin(); it != childComponents.rend(); ++it)
+        for (auto &childComponent : std::ranges::reverse_view(childComponents))
+            if (childComponent->OnMouseUp(mouseButton, clickSpeed))
                 return true;
 
         this->StopMove();

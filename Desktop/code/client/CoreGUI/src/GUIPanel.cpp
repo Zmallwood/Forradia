@@ -5,6 +5,7 @@
 
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
+#include "Singleton.hpp"
 
 namespace Forradia {
     auto GUIPanel::RenderDerived() const -> void {

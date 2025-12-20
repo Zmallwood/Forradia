@@ -21,13 +21,14 @@ namespace Forradia {
          * @param width The width of the movable panel.
          * @param height The height of the movable panel.
          */
-        GUIMovablePanel(std::string_view uniqueName, float x, float y, float width, float height)
-            : GUIPanel(uniqueName, x, y, width, height) {
+        GUIMovablePanel(std::string_view uniqueName, float xPos, float yPos, float width,
+                        float height)
+            : GUIPanel(uniqueName, xPos, yPos, width, height) {
         }
 
-        virtual auto OnMouseDown(Uint8 mouseButton) -> bool override;
+        auto OnMouseDown(Uint8 mouseButton) -> bool override;
 
-        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
       protected:
         /**
