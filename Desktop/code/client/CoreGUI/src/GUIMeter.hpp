@@ -4,7 +4,9 @@
  *********************************************************************/
 
 #pragma once
+#include "Coloring/Color.hpp"
 #include "GUIComponent.hpp"
+#include "Hash.hpp"
 
 namespace Forradia {
     /**
@@ -22,9 +24,9 @@ namespace Forradia {
          * @param height The height of the meter.
          * @param filledColor The color of the filled part of the meter.
          */
-        GUIMeter(std::string_view uniqueName, float x, float y, float width, float height,
+        GUIMeter(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  Color filledColor)
-            : GUIComponent(x, y, width, height), k_renderIDBackground(Hash(uniqueName)),
+            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(Hash(uniqueName)),
               k_renderIDFilled(Hash(uniqueName.data() + std::string("Filled"))),
               k_renderIDLineTop(Hash(uniqueName.data() + std::string("TopBorder"))),
               k_renderIDLineBottom(Hash(uniqueName.data() + std::string("BottomBorder"))),
@@ -47,6 +49,7 @@ namespace Forradia {
         virtual auto GetFilledPercentage() const -> float = 0;
 
       private:
+        const float k_borderWidth{0.002F};
         const int k_renderIDBackground;
         const int k_renderIDFilled;
         const int k_renderIDLineTop;

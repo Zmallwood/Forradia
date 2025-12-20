@@ -5,7 +5,9 @@
 
 #pragma once
 #include "Coloring/Color.hpp"
+#include "Coloring/Palette.hpp"
 #include "GUIComponent.hpp"
+#include "Hash.hpp"
 
 namespace Forradia {
     /**
@@ -45,7 +47,7 @@ namespace Forradia {
         /**
          * Render tasks specific to the label, called by the GUIComponent base class.
          */
-        virtual auto RenderDerived() const -> void override;
+        auto RenderDerived() const -> void override;
 
       private:
         const int k_renderIDText;
