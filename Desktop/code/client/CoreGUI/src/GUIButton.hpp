@@ -3,6 +3,7 @@
 
 #pragma once
 #include "GUIPanel.hpp"
+#include <functional>
 
 namespace Forradia {
   /**

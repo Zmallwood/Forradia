@@ -26,7 +26,6 @@ namespace Forradia {
           m_backgroundImage(backgroundImage) {
     }
 
-   protected:
     /**
      * Render tasks specific to the panel, called by the GUIComponent base class.
      */
@@ -41,6 +40,7 @@ namespace Forradia {
       m_backgroundImage = value;
     }
 
+   protected:
    private:
     inline static const std::string k_defaultBackgroundImage{"GUIPanelBackground"};
     const int k_renderIDBackground;

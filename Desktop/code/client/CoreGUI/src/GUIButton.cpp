@@ -14,7 +14,7 @@ namespace Forradia {
       return false;
 
     auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-    if (GetBounds().Contains(mousePos)) {
+    if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos)) {
       m_action();
       return true;
     }
@@ -26,22 +26,22 @@ namespace Forradia {
     dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
 
     auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-    auto hovered{GetBounds().Contains(mousePosition)};
+    auto hovered{dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition)};
 
     if (hovered) {
-      this->SetBackgroundImage(m_hoveredBackgroundImage);
+      dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_hoveredBackgroundImage);
       _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
       //      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
       //        m_action();
     } else {
-      SetBackgroundImage(m_backgroundImage);
+      dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_backgroundImage);
     }
   }
 
   auto GUIButton::RenderDerived() const -> void {
-    GUIPanel::RenderDerived();
+    dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
 
-    auto bounds{this->GetBounds()};
+    auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
     _<TextRenderer>().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
                                  bounds.y + bounds.height / 2, FontSizes::_20, true);
   }
