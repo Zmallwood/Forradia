@@ -2,6 +2,10 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Geometry/PointF.hpp"
+#include "Geometry/RectF.hpp"
+#include <SDL2/SDL.h>
+#include <memory>
 
 namespace Forradia {
   /**
@@ -17,7 +21,8 @@ namespace Forradia {
      * @param width The width of the component.
      * @param height The height of the component.
      */
-    GUIComponent(float x, float y, float width, float height) : m_bounds({x, y, width, height}) {
+    GUIComponent(float xPos, float yPos, float width, float height)
+        : m_bounds({xPos, yPos, width, height}) {
     }
 
     /**
@@ -50,7 +55,7 @@ namespace Forradia {
      *
      * @return The bounds of the component in screen coordinates.
      */
-    virtual auto GetBounds() const -> RectF;
+    [[nodiscard]] virtual auto GetBounds() const -> RectF;
 
     virtual auto MouseHoveringGUI() const -> bool;
 
@@ -82,7 +87,7 @@ namespace Forradia {
      *
      * @return Whether the component is visible.
      */
-    auto GetVisible() const {
+    auto GetVisible() const -> bool {
       return m_visible;
     }
 
@@ -104,7 +109,6 @@ namespace Forradia {
       m_parentComponent = value;
     }
 
-   protected:
     /**
      * Update tasks specific to the derived class, called by the Update method.
      */
@@ -117,6 +121,7 @@ namespace Forradia {
     virtual auto RenderDerived() const -> void {
     }
 
+   protected:
     auto GetChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>> {
       return m_childComponents;
     }

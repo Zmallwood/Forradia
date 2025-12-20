@@ -5,7 +5,7 @@
 
 namespace Forradia {
   auto GUI::MouseHoveringGUI() const -> bool {
-    if (!GetVisible())
+    if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
       return false;
 
     auto result{false};

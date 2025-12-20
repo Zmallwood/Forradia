@@ -88,7 +88,7 @@ namespace Forradia {
     auto boundsResult{m_bounds};
 
     // If this component has a parent, offset bounds by parent's position.
-    if (m_parentComponent) {
+    if (m_parentComponent != nullptr) {
       auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
       boundsResult.Offset(parentPosition);
     }

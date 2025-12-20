@@ -5,11 +5,12 @@
 #include "Cursor.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {
   auto GUIButton::OnMouseDown(Uint8 mouseButton) -> bool {
-    if (!this->GetVisible())
+    if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
       return false;
 
     auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
@@ -22,7 +23,7 @@ namespace Forradia {
   }
 
   auto GUIButton::UpdateDerived() -> void {
-    GUIPanel::UpdateDerived();
+    dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
 
     auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
     auto hovered{GetBounds().Contains(mousePosition)};
