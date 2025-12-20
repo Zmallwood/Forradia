@@ -2,7 +2,11 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Geometry/Size.hpp"
 #include "TextureEntry.hpp"
+#include <GL/gl.h>
+#include <memory>
+#include <unordered_map>
 
 struct SDL_Surface;
 
@@ -23,7 +27,7 @@ namespace Forradia {
      * Destructor.
      */
     ~TextureBank() {
-      this->Cleanup();
+      TextureBank::Cleanup();
     }
 
     /**
@@ -32,7 +36,7 @@ namespace Forradia {
      * @param imageNameHash The hash of the image name.
      * @return The texture ID.
      */
-    auto GetTexture(int imageNameHash) const -> GLuint;
+    [[nodiscard]] static auto GetTexture(int imageNameHash) -> GLuint;
 
     /**
      * Gets the dimensions of a texture with the given hash.
@@ -40,7 +44,7 @@ namespace Forradia {
      * @param imageNameHash The hash of the image name.
      * @return The dimensions of the texture.
      */
-    auto GetTextureDimensions(int imageNameHash) const -> Size;
+    [[nodiscard]] static auto GetTextureDimensions(int imageNameHash) -> Size;
 
     /**
      * Obtains a text texture ID for the given unique texture ID.
@@ -54,14 +58,15 @@ namespace Forradia {
    private:
     auto Initialize() -> void;
 
-    auto Cleanup() -> void;
+    static auto Cleanup() -> void;
 
-    auto LoadTextures() -> void;
+    static auto LoadTextures() -> void;
 
-    auto LoadSingleTexture(std::shared_ptr<SDL_Surface> surface) const -> GLuint;
+    [[nodiscard]] static auto LoadSingleTexture(const std::shared_ptr<SDL_Surface> &surface)
+        -> GLuint;
 
     inline static const std::string k_relativeImagesPath{"./Resources/Images/"};
-    std::unordered_map<int, TextureEntry> m_textureEntries;
-    std::unordered_map<int, GLuint> m_textTextureIDs;
+    inline static std::unordered_map<int, TextureEntry> m_textureEntries;
+    inline static std::unordered_map<int, GLuint> m_textTextureIDs;
   };
 }

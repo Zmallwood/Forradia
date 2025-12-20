@@ -21,7 +21,7 @@ namespace Forradia {
         auto fileName{GetFileNameNoExtension(filePath)};
         auto hash{Forradia::Hash(fileName)};
         auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
-        auto textureID{this->LoadSingleTexture(surface)};
+        auto textureID{TextureBank::LoadSingleTexture(surface)};
         auto imageSize{Size{surface->w, surface->h}};
         TextureEntry newTextureEntry;
         newTextureEntry.textureID = textureID;

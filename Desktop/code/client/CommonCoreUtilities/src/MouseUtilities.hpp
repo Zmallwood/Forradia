@@ -3,6 +3,7 @@
 
 #pragma once
 #include "Geometry/PointF.hpp"
+#include <memory>
 
 struct SDL_Window;
 

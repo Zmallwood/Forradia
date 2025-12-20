@@ -5,7 +5,7 @@
 
 namespace Forradia {
   auto TextureBank::Initialize() -> void {
-    this->LoadTextures();
+    TextureBank::LoadTextures();
   }
 
   auto TextureBank::Cleanup() -> void {
@@ -17,13 +17,13 @@ namespace Forradia {
     m_textTextureIDs.clear();
   }
 
-  auto TextureBank::GetTexture(int imageNameHash) const -> GLuint {
+  auto TextureBank::GetTexture(int imageNameHash) -> GLuint {
     if (m_textureEntries.contains(imageNameHash))
       return m_textureEntries.at(imageNameHash).textureID;
     return -1;
   }
 
-  auto TextureBank::GetTextureDimensions(int imageNameHash) const -> Size {
+  auto TextureBank::GetTextureDimensions(int imageNameHash) -> Size {
     if (m_textureEntries.contains(imageNameHash))
       return m_textureEntries.at(imageNameHash).dimensions;
     return {-1, -1};

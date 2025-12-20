@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "StringUtilities.hpp"
+#include <algorithm>
 
 namespace Forradia {
   auto Replace(std::string_view text, char replace, char replaceWith) -> std::string {

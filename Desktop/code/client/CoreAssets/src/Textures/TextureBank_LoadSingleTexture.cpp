@@ -2,9 +2,10 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "TextureBank.hpp"
+#include <SDL2/SDL_image.h>
 
 namespace Forradia {
-  auto TextureBank::LoadSingleTexture(std::shared_ptr<SDL_Surface> surface) const -> GLuint {
+  auto TextureBank::LoadSingleTexture(const std::shared_ptr<SDL_Surface> &surface) -> GLuint {
     GLuint textureID;
     glGenTextures(1, &textureID);
 

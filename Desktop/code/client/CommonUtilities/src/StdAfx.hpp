@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <string>
 
 #include <SDL2/SDL.h>
 #include <glm/glm.hpp>
