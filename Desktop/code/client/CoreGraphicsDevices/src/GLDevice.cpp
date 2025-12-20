@@ -2,6 +2,7 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "GLDevice.hpp"
+#include "MessageUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "Singleton.hpp"
 #include <SDL2/SDL.h>

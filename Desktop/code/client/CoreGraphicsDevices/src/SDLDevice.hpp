@@ -2,7 +2,13 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #pragma once
+#include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
+#include <memory>
+#include <string>
+
+struct SDL_Window;
+using Uint32 = uint32_t;
 
 namespace Forradia {
   /**
@@ -33,14 +39,14 @@ namespace Forradia {
      *
      * @return The SDL window object.
      */
-    auto GetWindow() const -> std::shared_ptr<SDL_Window> {
+    [[nodiscard]] auto GetWindow() const -> std::shared_ptr<SDL_Window> {
       return m_window;
     }
 
    private:
     auto SetupSDLWindow() -> void;
 
-    auto GetScreenSize() const -> Size;
+    [[nodiscard]] static auto GetScreenSize() -> Size;
 
     constexpr static Uint32 k_windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                                           SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |

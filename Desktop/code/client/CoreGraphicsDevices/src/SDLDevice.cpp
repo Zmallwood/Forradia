@@ -2,6 +2,8 @@
  * This code is licensed under MIT license (see LICENSE for details) */
 
 #include "SDLDevice.hpp"
+#include <GL/gl.h>
+#include <SDL2/SDL.h>
 
 namespace Forradia {
   auto SDLDevice::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {
@@ -21,7 +23,7 @@ namespace Forradia {
     SDL_GL_SwapWindow(m_window.get());
   }
 
-  auto SDLDevice::GetScreenSize() const -> Size {
+  auto SDLDevice::GetScreenSize() -> Size {
     SDL_DisplayMode displayMode;
     SDL_GetCurrentDisplayMode(0, &displayMode);
     auto width{displayMode.w};
