@@ -5,6 +5,9 @@
 #include "IScene.hpp"
 
 namespace Forradia::Theme0 {
+  class GUIInteractionMenu;
+  class GUIInventoryWindow;
+
   /**
    * The main scene is the scene where the actual game is played.
    */
@@ -19,6 +22,14 @@ namespace Forradia::Theme0 {
      */
     virtual auto OnEnterDerived() -> void override;
 
+    virtual auto OnMouseDown(Uint8 mouseButton) -> void override;
+
+    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
+
+    // virtual auto Update() -> void override;
+
+    virtual auto Render() const -> void override;
+
     /**
      * Called every frame.
      */
@@ -28,5 +39,9 @@ namespace Forradia::Theme0 {
      * Called every frame to render the scene.
      */
     virtual auto RenderDerived() const -> void override;
+
+   private:
+    std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu;
+    std::shared_ptr<GUIInventoryWindow> m_guiInventoryWindow;
   };
 }

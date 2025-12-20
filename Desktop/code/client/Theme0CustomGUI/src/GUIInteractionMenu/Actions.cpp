@@ -17,6 +17,24 @@ namespace Forradia::Theme0 {
   static std::unordered_map<int, std::function<void()>> s_timedActions;
 
   template <>
+  auto GetAction<Hash("ActionEatRedApple")>() -> Action {
+    return {
+        .label = "Eat",
+        .groundMatches = {},
+        .objectMatches = {Hash("ObjectRedApple")},
+        .objectsInInventory = {},
+        .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects) {
+          for (auto objPtr : objects) {
+            if ((*objPtr)->GetType() == Hash("ObjectRedApple")) {
+            }
+          }
+          _<GUIChatBox>().Print("You eat a red apple.");
+          //_<Player>().AddExperience(10);
+          //_<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
+        }};
+  }
+
+  template <>
   auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action {
     return {
         .label = "Craft stone bowl",

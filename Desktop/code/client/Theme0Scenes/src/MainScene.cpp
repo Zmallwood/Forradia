@@ -25,6 +25,7 @@
 #include "Update/UpdateKeyboardMovement.hpp"
 #include "Update/UpdateMouseActions.hpp"
 #include "Update/UpdateMouseMovement.hpp"
+#include "Update/UpdateSetPlayerDestination.hpp"
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0 {
@@ -53,12 +54,15 @@ namespace Forradia::Theme0 {
         "GUIButtonSystemMenuHoveredBackground")};
     GetGUI()->AddChildComponent(btnSystemMenu);
     GetGUI()->AddChildComponent(__<GUIPlayerBodyWindow>());
-    GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
+    // GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
     GetGUI()->AddChildComponent(__<GUISystemMenu>());
     GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
     GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
-    GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
+    // GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
     GetGUI()->AddChildComponent(__<GUIExperienceBar>());
+
+    m_guiInventoryWindow = __<GUIInventoryWindow>();
+    m_guiInteractionMenu = __<GUIInteractionMenu>();
   }
 
   auto MainScene::OnEnterDerived() -> void {
@@ -68,17 +72,39 @@ namespace Forradia::Theme0 {
     _<GUIChatBox>().Print("You have entered the world.");
   }
 
+  auto MainScene::OnMouseDown(Uint8 mouseButton) -> void {
+  }
+
+  auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
+    if (GetGUI()->MouseHoveringGUI())
+      return;
+    if (clickSpeed < 200)
+      if (m_guiInteractionMenu->OnMouseUp(mouseButton, clickSpeed))
+        return;
+    if (!m_guiInventoryWindow->MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
+      UpdateSetPlayerDestination();
+  }
+
   auto MainScene::UpdateDerived() -> void {
+    m_guiInteractionMenu->Update();
+    m_guiInventoryWindow->Update();
+    UpdateMouseMovement();
     UpdateKeyboardActions();
-    UpdateMouseActions();
     UpdateEntitiesMovement();
     UpdateCameraZoom();
-    UpdateMouseMovement();
     UpdateKeyboardMovement();
     _<TileHovering>().Update();
     _<CameraRotator>().Update();
     UpdateActions();
     _<QuestSystem>().Update();
+  }
+
+  auto MainScene::Render() const -> void {
+    this->RenderDerived();
+
+    GetGUI()->Render();
+    m_guiInventoryWindow->Render();
+    m_guiInteractionMenu->Render();
   }
 
   auto MainScene::RenderDerived() const -> void {

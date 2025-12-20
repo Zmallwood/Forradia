@@ -22,15 +22,19 @@ namespace Forradia {
      */
     auto OnEnter() -> void;
 
+    virtual auto OnMouseDown(Uint8 mouseButton) -> void;
+
+    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
+
     /**
      * Updates the scene.
      */
-    auto Update() -> void;
+    virtual auto Update() -> void;
 
     /**
      * Renders the scene.
      */
-    auto Render() const -> void;
+    virtual auto Render() const -> void;
 
    protected:
     /**

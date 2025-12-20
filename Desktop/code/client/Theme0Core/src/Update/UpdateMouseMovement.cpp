@@ -9,12 +9,6 @@
 
 namespace Forradia::Theme0 {
   auto UpdateMouseMovement() -> void {
-    if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult()) {
-      auto newDestination{_<TileHovering>().GetHoveredCoordinate()};
-      _<Theme0::Player>().SetDestination(newDestination);
-      //_<BattleSystem>().SetTargetedRobot(nullptr);
-    }
-
     auto playerPosition{_<Player>().GetPosition()};
     auto destination{_<Player>().GetDestination()};
 

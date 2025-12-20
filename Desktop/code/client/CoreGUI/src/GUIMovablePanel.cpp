@@ -29,7 +29,6 @@ namespace Forradia {
       if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
         _<MouseInput>().GetLeftMouseButtonRef().Reset();
       }
-      _<MouseInput>().GetRightMouseButtonRef().Reset();
     }
 
     if (GetIsBeingMoved()) {

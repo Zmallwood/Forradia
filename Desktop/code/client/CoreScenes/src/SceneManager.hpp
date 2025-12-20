@@ -26,6 +26,10 @@ namespace Forradia {
      */
     auto GoToScene(std::string_view sceneName) -> void;
 
+    auto OnMouseDownCurrentScene(Uint8 mouseButton) -> void;
+
+    auto OnMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void;
+
     /**
      * Updates the current scene.
      */

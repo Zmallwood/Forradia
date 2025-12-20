@@ -4,6 +4,7 @@
 #include "Engine.hpp"
 #include "Keyboard/KeyboardInput.hpp"
 #include "Mouse/MouseInput.hpp"
+#include "SceneManager.hpp"
 
 namespace Forradia {
   auto Engine::HandleEvents() -> void {
@@ -23,12 +24,33 @@ namespace Forradia {
       case SDL_TEXTINPUT:
         _<KeyboardInput>().AddTextInput(event.text.text);
         break;
-      case SDL_MOUSEBUTTONDOWN:
+      case SDL_MOUSEBUTTONDOWN: {
         _<MouseInput>().RegisterMouseButtonDown(event.button.button);
+        switch (event.button.button) {
+        case SDL_BUTTON_LEFT:
+          m_ticksLeftMouseButtonFired = GetTicks();
+          break;
+        case SDL_BUTTON_RIGHT:
+          m_ticksRightMouseButtonFired = GetTicks();
+          break;
+        }
+        _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
         break;
-      case SDL_MOUSEBUTTONUP:
+      }
+      case SDL_MOUSEBUTTONUP: {
         _<MouseInput>().RegisterMouseButtonUp(event.button.button);
+        int clickSpeed{0};
+        switch (event.button.button) {
+        case SDL_BUTTON_LEFT:
+          clickSpeed = GetTicks() - m_ticksLeftMouseButtonFired;
+          break;
+        case SDL_BUTTON_RIGHT:
+          clickSpeed = GetTicks() - m_ticksRightMouseButtonFired;
+          break;
+        }
+        _<SceneManager>().OnMouseUpCurrentScene(event.button.button, clickSpeed);
         break;
+      }
       case SDL_MOUSEWHEEL:
         _<MouseInput>().AddMouseWheelDelta(event.wheel.y);
         break;

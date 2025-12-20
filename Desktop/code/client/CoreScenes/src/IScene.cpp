@@ -15,6 +15,14 @@ namespace Forradia {
     this->OnEnterDerived();
   }
 
+  auto IScene::OnMouseDown(Uint8 mouseButton) -> void {
+    m_gui->OnMouseDown(mouseButton);
+  }
+
+  auto IScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
+    m_gui->OnMouseUp(mouseButton, clickSpeed);
+  }
+
   auto IScene::Update() -> void {
     m_gui->Update();
 

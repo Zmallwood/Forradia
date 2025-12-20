@@ -15,5 +15,7 @@ namespace Forradia {
      */
     GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F) {
     }
+
+    auto MouseHoveringGUI() const -> bool override;
   };
 }

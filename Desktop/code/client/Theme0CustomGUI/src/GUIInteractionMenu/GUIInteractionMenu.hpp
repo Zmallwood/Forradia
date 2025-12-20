@@ -18,10 +18,14 @@ namespace Forradia::Theme0 {
       this->Initialize();
     }
 
+    auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+
     /**
      * Builds the menu.
      */
     auto BuildMenu() -> void;
+
+    auto HandleClick() -> void;
 
     auto ShowMenuForTileAndObjects(int groundHash, std::vector<int> objectHashes) -> void;
 
@@ -48,11 +52,6 @@ namespace Forradia::Theme0 {
      * Initializes the interaction menu.
      */
     auto Initialize() -> void;
-
-    /**
-     * Does update logic that is specific to the interaction menu.
-     */
-    virtual auto UpdateDerived() -> void override;
 
     /**
      * Does render logic that is specific to the interaction menu.

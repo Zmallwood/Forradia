@@ -7,6 +7,10 @@
 #include "GUIWindow.hpp"
 
 namespace Forradia::Theme0 {
+  class Object;
+  class GUIInventoryWindowArea;
+  class GUIInventoryWindowPanel;
+
   /**
    * Represents the inventory window.
    */
@@ -19,8 +23,12 @@ namespace Forradia::Theme0 {
       this->Initialize();
     }
 
+    std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
+
    private:
     auto Initialize() -> void;
+
+    std::shared_ptr<GUIInventoryWindowArea> m_guiInventoryWindowArea;
   };
 
   class GUIInventoryWindowArea : public GUIScrollableArea {
@@ -31,6 +39,8 @@ namespace Forradia::Theme0 {
       this->Initialize(parentWindow);
     }
 
+    std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
+
    protected:
     auto UpdateDerived() -> void override;
 
@@ -40,6 +50,7 @@ namespace Forradia::Theme0 {
     auto Initialize(GUIWindow *parentWindow) -> void;
 
     GUIWindow *m_parentWindow{nullptr};
+    std::shared_ptr<GUIInventoryWindowPanel> m_panel;
   };
 
   class GUIInventoryWindowPanel : public GUIPanel {
@@ -49,6 +60,8 @@ namespace Forradia::Theme0 {
           m_parentWindow(parentWindow) {
       this->Initialize();
     }
+
+    std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
 
    protected:
     auto RenderDerived() const -> void override;

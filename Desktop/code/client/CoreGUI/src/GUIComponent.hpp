@@ -29,6 +29,10 @@ namespace Forradia {
     auto AddChildComponent(std::shared_ptr<GUIComponent> component)
         -> std::shared_ptr<GUIComponent>;
 
+    virtual auto OnMouseDown(Uint8 mouseButton) -> bool;
+
+    virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
+
     /**
      * Updates the component and all its children.
      */
@@ -45,6 +49,8 @@ namespace Forradia {
      * @return The bounds of the component in screen coordinates.
      */
     virtual auto GetBounds() const -> RectF;
+
+    virtual auto MouseHoveringGUI() const -> bool;
 
     auto SetBounds(RectF value) -> void {
       m_bounds = value;

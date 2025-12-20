@@ -32,5 +32,7 @@ namespace Forradia {
     auto HandleEvents() -> void;
 
     bool m_running{true};
+    int m_ticksLeftMouseButtonFired{0};
+    int m_ticksRightMouseButtonFired{0};
   };
 }

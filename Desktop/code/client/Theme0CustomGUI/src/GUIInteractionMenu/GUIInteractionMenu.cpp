@@ -5,6 +5,7 @@
 #include "Actions.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "Mouse/MouseInput.hpp"
+#include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
@@ -25,17 +26,46 @@ namespace Forradia::Theme0 {
           Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
   }
 
+  auto GUIInteractionMenu::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+    switch (mouseButton) {
+    case SDL_BUTTON_LEFT: {
+      if (this->GetVisible()) {
+        this->HandleClick();
+        this->SetVisible(false);
+        return true;
+      }
+    } break;
+    case SDL_BUTTON_RIGHT: {
+      if (this->GetVisible() == false) {
+        this->SetVisible(true);
+        this->SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+        this->BuildMenu();
+        return true;
+      }
+    } break;
+    }
+    return false;
+  }
+
   auto GUIInteractionMenu::BuildMenu() -> void {
+    // this->SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
     m_entries.clear();
 
     auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
     // First check if clicked in inventory (or other GUI windows)
     auto rightClickedInInventoryWindow{_<GUIInventoryWindow>().GetBounds().Contains(mousePos)};
+    _<MouseInput>().GetRightMouseButtonRef().Reset();
 
-    if (rightClickedInInventoryWindow)
-      std::cout << "asd\n";
-
+    if (_<GUIInventoryWindow>().GetVisible() && rightClickedInInventoryWindow) {
+      std::vector<int> objectHashes;
+      auto object{_<GUIInventoryWindow>().GetObjectPtrPtr(mousePos)};
+      if (object) {
+        objectHashes.push_back((*object)->GetType());
+        this->ShowMenuForTileAndObjects(0, objectHashes);
+        return;
+      }
+    }
     // If not clicked in inventory, check if clicked tile
 
     auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
@@ -80,7 +110,8 @@ namespace Forradia::Theme0 {
                                 GetAction<Hash("ActionCraftStoneBowl")>(),
                                 GetAction<Hash("ActionPickBranch")>(),
                                 GetAction<Hash("ActionPickStone")>(),
-                                GetAction<Hash("ActionChipStone")>()};
+                                GetAction<Hash("ActionChipStone")>(),
+                                GetAction<Hash("ActionEatRedApple")>()};
 
     auto &inventory{_<Player>().GetObjectsInventoryRef()};
     for (auto &action : actions) {
@@ -90,9 +121,8 @@ namespace Forradia::Theme0 {
           goOn = true;
         }
       }
-      if (action.groundMatches.size() == 0) {
+      if (action.groundMatches.size() == 0 || groundHash == 0)
         goOn = true;
-      }
       if (!goOn)
         continue;
       goOn = false;
@@ -118,6 +148,9 @@ namespace Forradia::Theme0 {
       if (goOn)
         m_entries.push_back({action.label, action.action});
     }
+
+    auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
+    this->SetHeight(newHeight);
 
     //    auto actionStop{GetAction<Hash("ActionStop")>()};
     //    m_entries.push_back({"Stop current action", actionStop.action});
@@ -190,12 +223,7 @@ namespace Forradia::Theme0 {
     //    }
   }
 
-  auto GUIInteractionMenu::UpdateDerived() -> void {
-    GUIPanel::UpdateDerived();
-
-    auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
-    this->SetHeight(newHeight);
-
+  auto GUIInteractionMenu::HandleClick() -> void {
     auto bounds{this->GetBounds()};
     auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
 
@@ -206,15 +234,13 @@ namespace Forradia::Theme0 {
                                bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
                                k_lineHeight}};
 
-      if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        if (menuEntryRect.Contains(mousePosition)) {
-          auto worldArea{_<World>().GetCurrentWorldArea()};
-          auto tile{worldArea->GetTile(m_clickedCoordinate)};
-          std::vector<std::shared_ptr<Object> *> objects;
-          entry.GetAction()(tile, objects);
-        }
-        this->SetVisible(false);
+      if (menuEntryRect.Contains(mousePosition)) {
+        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto tile{worldArea->GetTile(m_clickedCoordinate)};
+        std::vector<std::shared_ptr<Object> *> objects;
+        entry.GetAction()(tile, objects);
       }
+      this->SetVisible(false);
       ++i;
     }
     if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
