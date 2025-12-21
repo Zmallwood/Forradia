@@ -7,6 +7,7 @@
 
 #include "Image2DRenderingOperation.hpp"
 #include "RendererBase.hpp"
+#include <GL/gl.h>
 
 namespace Forradia {
     /**
