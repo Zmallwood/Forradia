@@ -10,7 +10,10 @@
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
 #include "PlayerMoveDirections.hpp"
+#include <memory>
 #include <string>
+#include <unordered_map>
+#include <vector>
 
 namespace Forradia::Theme0 {
     class PlayerObjectsInventory;
@@ -218,7 +221,7 @@ namespace Forradia::Theme0 {
          *
          * @return The quest completion points of the player.
          */
-        auto &GetQuestCompletionPointsRef() {
+        auto GetQuestCompletionPointsRef() -> std::unordered_map<std::string, int> & {
             return m_questCompletionPoints;
         }
 
@@ -238,8 +241,6 @@ namespace Forradia::Theme0 {
         // PlayerModes m_playerMode{PlayerModes::Interaction};
         float m_wellBeing{10.0F};
         float m_maxWellBeing{10.0F};
-        // float m_attackSpeed{3.0f};
-        // int m_ticksLastHitAnother{0};
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions;
         std::unordered_map<std::string, int> m_questCompletionPoints;
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
