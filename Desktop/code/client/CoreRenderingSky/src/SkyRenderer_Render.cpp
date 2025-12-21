@@ -42,7 +42,7 @@ namespace Forradia {
 
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0F, 0.0F, skyOffsetZ));
 
-        auto viewMatrix{_<Camera>().GetViewMatrix()};
+        auto viewMatrix{Singleton<Camera>().GetViewMatrix()};
 
         // For sky rendering, extract only the rotation part of the view matrix.
         // The view matrix from glm::lookAt has translation in the 4th column.
@@ -66,7 +66,7 @@ namespace Forradia {
 
         viewMatrixRotationOnly[3] = glm::vec4(0.0F, 0.0F, 0.0F, 1.0F);
 
-        auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
+        auto projectionMatrix{Singleton<Camera>().GetProjectionMatrix()};
 
         auto mvpMatrix{projectionMatrix * viewMatrixRotationOnly * modelMatrix};
 

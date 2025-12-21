@@ -19,13 +19,13 @@ namespace Forradia {
                 this->Stop();
                 break;
             case SDL_KEYDOWN:
-                _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
+                Singleton<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_KEYUP:
-                _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
+                Singleton<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_TEXTINPUT:
-                _<SceneManager>().OnTextInputCurrentScene(event.text.text);
+                Singleton<SceneManager>().OnTextInputCurrentScene(event.text.text);
                 break;
             case SDL_MOUSEBUTTONDOWN: {
                 switch (event.button.button) {
@@ -36,7 +36,7 @@ namespace Forradia {
                     m_ticksRightMouseButtonFired = GetTicks();
                     break;
                 }
-                _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
+                Singleton<SceneManager>().OnMouseDownCurrentScene(event.button.button);
                 break;
             }
             case SDL_MOUSEBUTTONUP: {
@@ -49,11 +49,11 @@ namespace Forradia {
                     clickSpeed = GetTicks() - m_ticksRightMouseButtonFired;
                     break;
                 }
-                _<SceneManager>().OnMouseUpCurrentScene(event.button.button, clickSpeed);
+                Singleton<SceneManager>().OnMouseUpCurrentScene(event.button.button, clickSpeed);
                 break;
             }
             case SDL_MOUSEWHEEL:
-                _<SceneManager>().OnMouseWheelCurrentScene(event.wheel.y);
+                Singleton<SceneManager>().OnMouseWheelCurrentScene(event.wheel.y);
                 break;
             }
         }

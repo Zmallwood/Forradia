@@ -13,7 +13,7 @@
 namespace Forradia::Theme0 {
     auto GUIPlayerBodyWindow::Initialize() -> void {
         auto imageWidth{0.07f};
-        auto imageHeight{ConvertWidthToHeight(imageWidth, _<SDLDevice>().GetWindow())};
+        auto imageHeight{ConvertWidthToHeight(imageWidth, Singleton<SDLDevice>().GetWindow())};
 
         auto overallBodyImageButton{std::make_shared<GUIButton>(
             "GUIButtonOverallBody", 0.1f - imageWidth / 2, 0.04f, imageWidth, imageHeight, "",
@@ -80,7 +80,7 @@ namespace Forradia::Theme0 {
     }
 
     auto GUIPlayerBodyWindow::UpdateBodyPartInfoLabels() -> void {
-        auto &playerBody{_<Theme0::Player>().GetBodyRef()};
+        auto &playerBody{Singleton<Theme0::Player>().GetBodyRef()};
 
         constexpr auto overallBody{static_cast<int>(Theme0::PlayerBodyPartTypes::OverallBody)};
         constexpr auto rightArm{static_cast<int>(Theme0::PlayerBodyPartTypes::RightArm)};

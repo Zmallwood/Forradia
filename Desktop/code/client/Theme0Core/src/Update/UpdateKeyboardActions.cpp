@@ -17,29 +17,16 @@
 namespace Forradia::Theme0 {
     auto UpdateKeyboardActions(SDL_Keycode key) -> void {
         if (key == SDLK_ESCAPE) {
-            _<GUISystemMenu>().ToggleVisibility();
+            Singleton<GUISystemMenu>().ToggleVisibility();
         } else if (key == SDLK_c) {
-            _<GUIPlayerBodyWindow>().ToggleVisibility();
+            Singleton<GUIPlayerBodyWindow>().ToggleVisibility();
         } else if (key == SDLK_b) {
-            _<GUIInventoryWindow>().ToggleVisibility();
+            Singleton<GUIInventoryWindow>().ToggleVisibility();
         } else if (key == SDLK_RETURN) {
-            if (_<GUIChatBox>().GetInputActive())
-                _<GUIChatBox>().SubmitInput();
+            if (Singleton<GUIChatBox>().GetInputActive())
+                Singleton<GUIChatBox>().SubmitInput();
             else
-                _<GUIChatBox>().EnableInput();
-        } else if (key == SDLK_TAB) {
-            // auto currentMode{_<Player>().GetPlayerMode()};
-
-            // switch (currentMode) {
-            // case PlayerModes::Interaction:
-            //   _<Player>().SetPlayerMode(PlayerModes::Battle);
-            //   _<GUIChatBox>().Print("You are now in battle mode.");
-            //   break;
-            // case PlayerModes::Battle:
-            //   _<Player>().SetPlayerMode(PlayerModes::Interaction);
-            //   _<GUIChatBox>().Print("You are now in interaction mode.");
-            //   break;
-            // }
+                Singleton<GUIChatBox>().EnableInput();
         }
     }
 }

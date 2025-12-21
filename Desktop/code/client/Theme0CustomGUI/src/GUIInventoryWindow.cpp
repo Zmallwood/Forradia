@@ -33,76 +33,8 @@ namespace Forradia::Theme0 {
     }
 
     auto GUIInventoryWindowArea::UpdateDerived() -> void {
-        // auto rightClick{_<MouseInput>().GetRightMouseButtonRef().HasBeenFired()};
-
-        // auto bounds{this->GetBounds()};
-        // auto marginX{k_margin};
-        // auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
-        // auto xStart{bounds.x + marginX};
-        // auto yStart{bounds.y + marginY +
-        // m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
-
-        // auto slotWidth{k_slotSize};
-        // auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
-
-        // auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
-        // auto numRows{static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) /
-        // slotHeight)};
-
-        // auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
-
-        // for (auto y = 0; y < numRows; y++) {
-        //   for (auto x = 0; x < numColumns; x++) {
-        //     auto index{x + y * numColumns};
-        //     int renderIDBackground{0};
-
-        //    if (m_renderIDsSlotsBackground.contains(index)) {
-        //      renderIDBackground = m_renderIDsSlotsBackground.at(index);
-        //    } else {
-        //      PrintLine("GUIInventoryWindow: Render ID not "
-        //                "found for index: " +
-        //                std::to_string(index));
-        //      return;
-        //    }
-
-        //    _<Image2DRenderer>().DrawImageByName(
-        //        renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
-        //        yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
-
-        //    auto inventoryObject{objectsInventory.GetObject(index)};
-
-        //    if (inventoryObject) {
-        //      int renderIDObject{0};
-
-        //      if (m_renderIDsSlotsObject.contains(index)) {
-        //        renderIDObject = m_renderIDsSlotsObject.at(index);
-        //      } else {
-        //        PrintLine("GUIInventoryWindow: "
-        //                  "Render ID not "
-        //                  "found for index: " +
-        //                  std::to_string(index));
-        //        return;
-        //      }
-
-        //      _<Image2DRenderer>().DrawImageByHash(
-        //          renderIDObject, inventoryObject->GetType(), xStart + x * (slotWidth + marginX),
-        //          yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
-        //    }
-        //  }
-        //}
-
         GUIScrollableArea::UpdateDerived();
     }
-
-    // auto GUIInventoryWindowArea::GetBounds() const -> RectF {
-    //     auto baseBounds{GUIScrollableArea::GetBounds()};
-    //     auto bounds{m_parentWindow->GetBounds()};
-    //     baseBounds.height = bounds.height / 2.0f;
-    //     // baseBounds.y += m_parentWindow->GetGUIWindowTitleBar()->GetHeight();
-    //     // baseBounds.height -= m_parentWindow->GetGUIWindowTitleBar()->GetHeight();
-    //     //  bounds = {0.0f, 0.0f, 1.0f, 1.0f};
-    //     return baseBounds;
-    // }
 
     auto GUIInventoryWindowPanel::Initialize() -> void {
         for (auto i = 0; i < k_maxNumSlots; i++) {
@@ -115,21 +47,21 @@ namespace Forradia::Theme0 {
     std::shared_ptr<Object> *GUIInventoryWindowPanel::GetObjectPtrPtr(PointF position) {
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
+        auto marginY{ConvertWidthToHeight(k_margin, Singleton<SDLDevice>().GetWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
                     m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(k_slotSize, Singleton<SDLDevice>().GetWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
-        auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
+        auto &objectsInventory{Singleton<Player>().GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
@@ -145,7 +77,7 @@ namespace Forradia::Theme0 {
                     auto inventoryObject{objectsInventory.GetObject(index)};
 
                     if (inventoryObject) {
-                        return _<Player>().GetObjectsInventoryRef().GetObjectPtrPtr(index);
+                        return Singleton<Player>().GetObjectsInventoryRef().GetObjectPtrPtr(index);
                     }
                 }
             }
@@ -159,19 +91,19 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, _<SDLDevice>().GetWindow())};
+        auto marginY{ConvertWidthToHeight(k_margin, Singleton<SDLDevice>().GetWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
                     m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, _<SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(k_slotSize, Singleton<SDLDevice>().GetWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto &objectsInventory{_<Player>().GetObjectsInventoryRef()};
+        auto &objectsInventory{Singleton<Player>().GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
@@ -187,7 +119,7 @@ namespace Forradia::Theme0 {
                     return;
                 }
 
-                _<Image2DRenderer>().DrawImageByName(
+                Singleton<Image2DRenderer>().DrawImageByName(
                     renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
 
@@ -206,10 +138,10 @@ namespace Forradia::Theme0 {
                         return;
                     }
 
-                    _<Image2DRenderer>().DrawImageByHash(renderIDObject, inventoryObject->GetType(),
-                                                         xStart + x * (slotWidth + marginX),
-                                                         yStart + y * (slotHeight + marginY),
-                                                         slotWidth, slotHeight, true);
+                    Singleton<Image2DRenderer>().DrawImageByHash(
+                        renderIDObject, inventoryObject->GetType(),
+                        xStart + x * (slotWidth + marginX), yStart + y * (slotHeight + marginY),
+                        slotWidth, slotHeight, true);
                 }
             }
         }

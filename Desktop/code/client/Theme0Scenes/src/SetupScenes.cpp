@@ -13,12 +13,13 @@
 
 namespace Forradia::Theme0 {
     auto SetupScenes() -> void {
-        _<SceneManager>().AddScene("IntroScene", _<IntroScene>());
-        _<SceneManager>().AddScene("MainMenuScene", _<MainMenuScene>());
-        _<SceneManager>().AddScene("PlayScene", _<PlayScene>());
-        _<SceneManager>().AddScene("WorldGenerationScene", _<WorldGenerationScene>());
-        _<SceneManager>().AddScene("MainScene", _<MainScene>());
+        Singleton<SceneManager>().AddScene("IntroScene", Singleton<IntroScene>());
+        Singleton<SceneManager>().AddScene("MainMenuScene", Singleton<MainMenuScene>());
+        Singleton<SceneManager>().AddScene("PlayScene", Singleton<PlayScene>());
+        Singleton<SceneManager>().AddScene("WorldGenerationScene",
+                                           Singleton<WorldGenerationScene>());
+        Singleton<SceneManager>().AddScene("MainScene", Singleton<MainScene>());
 
-        _<SceneManager>().GoToScene("IntroScene");
+        Singleton<SceneManager>().GoToScene("IntroScene");
     }
 }

@@ -23,7 +23,8 @@ namespace Forradia {
         auto uniqueTextureID{uniqueRenderID};
 
         GLuint textureID;
-        auto textureAlreadyExists{_<TextureBank>().ObtainTextTexture(uniqueTextureID, textureID)};
+        auto textureAlreadyExists{
+            Singleton<TextureBank>().ObtainTextTexture(uniqueTextureID, textureID)};
 
         this->SetupState();
 
@@ -46,7 +47,7 @@ namespace Forradia {
             this->DefineTexture(surface);
         }
 
-        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
 
         auto width{static_cast<float>(textureDimensions.width) / canvasSize.width};
         auto height{static_cast<float>(textureDimensions.height) / canvasSize.height};
@@ -56,8 +57,8 @@ namespace Forradia {
             y -= height / 2;
         }
 
-        _<Image2DRenderer>().DrawImageByTextureID(uniqueRenderID, textureID, x, y, width, height,
-                                                  true);
+        Singleton<Image2DRenderer>().DrawImageByTextureID(uniqueRenderID, textureID, x, y, width,
+                                                          height, true);
 
         this->RestoreState();
     }

@@ -39,7 +39,7 @@ namespace Forradia::Theme0 {
         case SDL_BUTTON_RIGHT: {
             if (this->GetVisible() == false) {
                 this->SetVisible(true);
-                this->SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+                this->SetPosition(GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow()));
                 this->BuildMenu();
                 return true;
             }
@@ -49,18 +49,18 @@ namespace Forradia::Theme0 {
     }
 
     auto GUIInteractionMenu::BuildMenu() -> void {
-        // this->SetPosition(GetNormallizedMousePosition(_<SDLDevice>().GetWindow()));
+        // this->SetPosition(GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow()));
         m_entries.clear();
 
-        auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
         // First check if clicked in inventory (or other GUI windows)
-        auto rightClickedInInventoryWindow{_<GUIInventoryWindow>().GetBounds().Contains(mousePos)};
-        //_<MouseInput>().GetRightMouseButtonRef().Reset();
+        auto rightClickedInInventoryWindow{
+            Singleton<GUIInventoryWindow>().GetBounds().Contains(mousePos)};
 
-        if (_<GUIInventoryWindow>().GetVisible() && rightClickedInInventoryWindow) {
+        if (Singleton<GUIInventoryWindow>().GetVisible() && rightClickedInInventoryWindow) {
             std::vector<int> objectHashes;
-            auto object{_<GUIInventoryWindow>().GetObjectPtrPtr(mousePos)};
+            auto object{Singleton<GUIInventoryWindow>().GetObjectPtrPtr(mousePos)};
             if (object) {
                 objectHashes.push_back((*object)->GetType());
                 this->ShowMenuForTileAndObjects(0, objectHashes);
@@ -69,8 +69,8 @@ namespace Forradia::Theme0 {
         }
         // If not clicked in inventory, check if clicked tile
 
-        auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto hoveredCoordinate{Singleton<TileHovering>().GetHoveredCoordinate()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
         m_clickedCoordinate = hoveredCoordinate;
@@ -114,7 +114,7 @@ namespace Forradia::Theme0 {
                                     GetAction<Hash("ActionChipStone")>(),
                                     GetAction<Hash("ActionEatRedApple")>()};
 
-        auto &inventory{_<Player>().GetObjectsInventoryRef()};
+        auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
         for (auto &action : actions) {
             bool goOn{false};
             for (auto groundMatch : action.groundMatches) {
@@ -227,7 +227,7 @@ namespace Forradia::Theme0 {
 
     auto GUIInteractionMenu::HandleClick() -> void {
         auto bounds{this->GetBounds()};
-        auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
         auto i{0};
 
@@ -237,7 +237,7 @@ namespace Forradia::Theme0 {
                                      k_lineHeight}};
 
             if (menuEntryRect.Contains(mousePosition)) {
-                auto worldArea{_<World>().GetCurrentWorldArea()};
+                auto worldArea{Singleton<World>().GetCurrentWorldArea()};
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
                 std::vector<std::shared_ptr<Object> *> objects;
                 entry.GetAction()(tile, objects);
@@ -245,7 +245,6 @@ namespace Forradia::Theme0 {
             this->SetVisible(false);
             ++i;
         }
-        // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
         this->SetVisible(false);
     }
 
@@ -254,12 +253,12 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
 
-        _<TextRenderer>().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
-                                     bounds.y + 0.01f, FontSizes::_20, false, true,
-                                     Palette::GetColor<Hash("YellowTransparent")>());
+        Singleton<TextRenderer>().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
+                                             bounds.y + 0.01f, FontSizes::_20, false, true,
+                                             Palette::GetColor<Hash("YellowTransparent")>());
         auto i{0};
         for (auto &entry : m_entries) {
-            _<TextRenderer>().DrawString(
+            Singleton<TextRenderer>().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
             ++i;

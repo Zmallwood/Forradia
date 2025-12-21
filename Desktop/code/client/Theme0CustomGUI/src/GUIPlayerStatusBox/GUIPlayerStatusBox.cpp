@@ -25,8 +25,8 @@ namespace Forradia::Theme0 {
     auto GUIPlayerStatusBox::UpdateDerived() -> void {
         GUIPanel::UpdateDerived();
 
-        auto wellBeing{_<Theme0::Player>().GetWellBeing()};
-        auto maxWellBeing{_<Theme0::Player>().GetMaxWellBeing()};
+        auto wellBeing{Singleton<Theme0::Player>().GetWellBeing()};
+        auto maxWellBeing{Singleton<Theme0::Player>().GetMaxWellBeing()};
 
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
@@ -36,16 +36,17 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
 
-        _<TextRenderer>().DrawString(k_renderIDNameString, _<Theme0::Player>().GetName(),
-                                     bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+        Singleton<TextRenderer>().DrawString(k_renderIDNameString,
+                                             Singleton<Theme0::Player>().GetName(),
+                                             bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-        auto experience{_<Theme0::Player>().GetExperience()};
+        auto experience{Singleton<Theme0::Player>().GetExperience()};
         auto level{CalculateCurrentLevel(experience)};
 
-        _<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                     bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26, false,
-                                     true);
-        _<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                     bounds.y + 0.095f, FontSizes::_20);
+        Singleton<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
+                                             bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
+                                             false, true);
+        Singleton<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
+                                             bounds.y + 0.095f, FontSizes::_20);
     }
 }

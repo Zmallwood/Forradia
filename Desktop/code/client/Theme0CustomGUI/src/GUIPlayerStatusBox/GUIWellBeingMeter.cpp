@@ -10,7 +10,7 @@ namespace Forradia::Theme0 {
     auto GUIWellBeingMeter::UpdateDerived() -> void {
         GUIMeter::UpdateDerived();
 
-        auto &player{_<Theme0::Player>()};
+        auto &player{Singleton<Theme0::Player>()};
 
         auto health{player.GetWellBeing()};
         auto maxHealth{player.GetMaxWellBeing()};

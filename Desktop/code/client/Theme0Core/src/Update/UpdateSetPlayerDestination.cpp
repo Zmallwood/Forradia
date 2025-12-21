@@ -9,8 +9,7 @@
 
 namespace Forradia {
     auto UpdateSetPlayerDestination() -> void {
-        auto newDestination{_<Theme0::TileHovering>().GetHoveredCoordinate()};
-        _<Theme0::Player>().SetDestination(newDestination);
-        //_<BattleSystem>().SetTargetedRobot(nullptr);
+        auto newDestination{Singleton<Theme0::TileHovering>().GetHoveredCoordinate()};
+        Singleton<Theme0::Player>().SetDestination(newDestination);
     }
 }

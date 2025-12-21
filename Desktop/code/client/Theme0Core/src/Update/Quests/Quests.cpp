@@ -13,7 +13,7 @@
 
 namespace Forradia::Theme0 {
     auto MoveQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numSteps{0};
 
@@ -29,8 +29,8 @@ namespace Forradia::Theme0 {
         m_numStepsLeft = 3 - numSteps;
         if (numSteps >= 3) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Movement. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Movement. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
 
         return;
@@ -41,7 +41,7 @@ namespace Forradia::Theme0 {
     }
 
     auto ForageQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numForagings{0};
 
@@ -58,8 +58,8 @@ namespace Forradia::Theme0 {
 
         if (numForagings >= 3) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Forage. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -68,7 +68,7 @@ namespace Forradia::Theme0 {
     }
 
     auto CraftStonePickaxeQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         for (auto &entry : playerActions) {
             auto action{get<0>(entry)};
@@ -99,7 +99,7 @@ namespace Forradia::Theme0 {
     }
 
     auto CraftStoneBowl::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto i{0};
 
@@ -110,7 +110,8 @@ namespace Forradia::Theme0 {
 
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone") {
                 m_stonedMined = true;
-                _<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] = i;
+                Singleton<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] =
+                    i;
             }
             if (action == PlayerActionTypes::Craft)
                 if (actionFirstArg == "ObjectStoneBowl")
@@ -128,12 +129,12 @@ namespace Forradia::Theme0 {
     }
 
     auto MineStoneFromBoulderQuest1::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
         auto i{0};
         auto previousMineQuestCompletionPoint{
-            _<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
+            Singleton<Player>().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
 
         for (auto &entry : playerActions) {
             if (i <= previousMineQuestCompletionPoint) {
@@ -149,7 +150,8 @@ namespace Forradia::Theme0 {
                 numMinedStones++;
 
                 if (numMinedStones == 10) {
-                    _<Player>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] = i;
+                    Singleton<Player>()
+                        .GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] = i;
                     break;
                 }
             }
@@ -161,8 +163,8 @@ namespace Forradia::Theme0 {
 
         if (numMinedStones >= 10) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -171,7 +173,7 @@ namespace Forradia::Theme0 {
     }
 
     auto CraftStoneSlabsQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numCraftedSlabs{0};
 
@@ -189,8 +191,8 @@ namespace Forradia::Theme0 {
 
         if (numCraftedSlabs >= 10) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -199,7 +201,7 @@ namespace Forradia::Theme0 {
     }
 
     auto LayStoneSlabsQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numLaidSlabs{0};
 
@@ -216,8 +218,8 @@ namespace Forradia::Theme0 {
 
         if (numLaidSlabs >= 10) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -226,12 +228,12 @@ namespace Forradia::Theme0 {
     }
 
     auto MineStoneFromBoulderQuest2::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
         auto i{0};
         auto previousMineQuestCompletionPoint{
-            _<Player>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
+            Singleton<Player>().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
 
         for (auto &entry : playerActions) {
             if (i <= previousMineQuestCompletionPoint) {
@@ -253,8 +255,8 @@ namespace Forradia::Theme0 {
 
         if (numMinedStones >= 10) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -263,7 +265,7 @@ namespace Forradia::Theme0 {
     }
 
     auto CraftStoneBricksQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         auto numCraftedBricks{0};
 
@@ -281,8 +283,8 @@ namespace Forradia::Theme0 {
 
         if (numCraftedBricks >= 10) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 
@@ -291,7 +293,7 @@ namespace Forradia::Theme0 {
     }
 
     auto BuildStoneWallsQuest::Update() -> void {
-        auto &playerActions{_<Player>().GetPlayerActionsRef()};
+        auto &playerActions{Singleton<Player>().GetPlayerActionsRef()};
 
         std::set<Point> wallPositions;
         auto numIncompleteWallTiles{0};
@@ -306,7 +308,7 @@ namespace Forradia::Theme0 {
                 wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
         }
 
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
 
         for (auto &position : wallPositions) {
             auto tileNorth{worldArea->GetTile(position.x, position.y - 1)};
@@ -362,8 +364,8 @@ namespace Forradia::Theme0 {
 
         if (wallPositions.size() > 0 && numIncompleteWallTiles == 0) {
             isCompleted = true;
-            _<GUIChatBox>().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
-            _<Player>().AddExperience(50);
+            Singleton<GUIChatBox>().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
+            Singleton<Player>().AddExperience(50);
         }
     }
 

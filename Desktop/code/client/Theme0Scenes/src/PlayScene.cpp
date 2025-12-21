@@ -18,25 +18,25 @@ namespace Forradia::Theme0 {
 
         auto btnNewGame{std::make_shared<GUIButton>(
             "PlaySceneButtonNewGame", 0.45, 0.36, 0.1, 0.04, "New game",
-            [] { _<SceneManager>().GoToScene("WorldGenerationScene"); })};
+            [] { Singleton<SceneManager>().GoToScene("WorldGenerationScene"); })};
         GetGUI()->AddChildComponent(btnNewGame);
 
         auto btnLoadGame{std::make_shared<GUIButton>("PlaySceneButtonLoadGame", 0.45f, 0.44f, 0.1f,
                                                      0.04f, "Load game", [] {})};
         GetGUI()->AddChildComponent(btnLoadGame);
 
-        auto btnBack{
-            std::make_shared<GUIButton>("PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "Back",
-                                        [] { _<SceneManager>().GoToScene("MainMenuScene"); })};
+        auto btnBack{std::make_shared<GUIButton>(
+            "PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "Back",
+            [] { Singleton<SceneManager>().GoToScene("MainMenuScene"); })};
         GetGUI()->AddChildComponent(btnBack);
 
-        GetGUI()->AddChildComponent(__<GUIChatBox>());
+        GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
     }
 
     auto PlayScene::RenderDerived() const -> void {
-        _<Image2DRenderer>().DrawImageByName(Hash("PlaySceneBackground"), "DefaultSceneBackground",
-                                             0.0f, 0.0f, 1.0f, 1.0f);
-        _<Image2DRenderer>().DrawImageAutoHeight(Hash("PlaySceneLogo"), "ForradiaLogo", 0.35f, 0.1f,
-                                                 0.3f);
+        Singleton<Image2DRenderer>().DrawImageByName(
+            Hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        Singleton<Image2DRenderer>().DrawImageAutoHeight(Hash("PlaySceneLogo"), "ForradiaLogo",
+                                                         0.35f, 0.1f, 0.3f);
     }
 }

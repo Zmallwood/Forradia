@@ -12,7 +12,7 @@
 
 namespace Forradia::Theme0 {
     auto UpdateEntitiesMovement() -> void {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
         auto &entities{worldArea->GetEntitiesMirrorRef()};
 
         auto now{GetTicks()};
@@ -35,7 +35,7 @@ namespace Forradia::Theme0 {
                 entity->SetDestination({newDestinationX, newDestinationY});
             }
 
-            auto worldArea{_<World>().GetCurrentWorldArea()};
+            auto worldArea{Singleton<World>().GetCurrentWorldArea()};
             auto &entities{worldArea->GetEntitiesMirrorRef()};
 
             auto dX{entity->GetDestination().x - position.x};

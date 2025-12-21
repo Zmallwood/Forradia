@@ -22,7 +22,7 @@
 
 namespace Forradia::Theme0 {
     auto WorldView::Initiallize() -> void {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
         for (auto y = 0; y < worldAreaSize.height; y++) {
@@ -42,9 +42,9 @@ namespace Forradia::Theme0 {
         // 45 degrees
         float sunElevation = M_PI / 4.0F;
 
-        _<SkyRenderer>().Render(sunDirection, sunElevation);
+        Singleton<SkyRenderer>().Render(sunDirection, sunElevation);
 
-        auto gridSize{_<Theme0Properties>().GetGridSize()};
+        auto gridSize{Singleton<Theme0Properties>().GetGridSize()};
 
         // Calculate extended ground rendering size
         auto groundGridSize{
@@ -53,15 +53,15 @@ namespace Forradia::Theme0 {
                                static_cast<decltype(gridSize.height)>(
                                    gridSize.height * k_groundRenderingDistanceMultiplier)}};
 
-        auto playerPos{_<Player>().GetPosition()};
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto playerPos{Singleton<Player>().GetPosition()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
-        auto hoveredCoordinate{_<TileHovering>().GetHoveredCoordinate()};
-        auto elevHeight{_<Theme0Properties>().GetElevationHeight()};
+        auto hoveredCoordinate{Singleton<TileHovering>().GetHoveredCoordinate()};
+        auto elevHeight{Singleton<Theme0Properties>().GetElevationHeight()};
 
         auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
-        auto rendTileSize{_<Theme0Properties>().GetTileSize()};
+        auto rendTileSize{Singleton<Theme0Properties>().GetTileSize()};
 
         std::vector<TileData> tiles;
 
@@ -318,10 +318,10 @@ namespace Forradia::Theme0 {
                 for (auto object : objects) {
                     auto objectType{object->GetType()};
 
-                    _<ModelRenderer>().DrawModel(objectType,
-                                                 (xCoordinate)*rendTileSize + rendTileSize / 2,
-                                                 (yCoordinate)*rendTileSize + rendTileSize / 2,
-                                                 elevationMax, object->GetModelScaling());
+                    Singleton<ModelRenderer>().DrawModel(
+                        objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax,
+                        object->GetModelScaling());
                 }
 
                 auto entity{tile->GetEntity()};
@@ -329,13 +329,13 @@ namespace Forradia::Theme0 {
                 if (entity) {
                     auto entityType{entity->GetType()};
 
-                    _<ModelRenderer>().DrawModel(
+                    Singleton<ModelRenderer>().DrawModel(
                         entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                         (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                 }
 
                 if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
-                    _<ModelRenderer>().DrawModel(
+                    Singleton<ModelRenderer>().DrawModel(
                         Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
                         (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
             }
@@ -344,45 +344,23 @@ namespace Forradia::Theme0 {
                 for (auto &elevation : elevations)
                     elevation += 0.01F;
 
-                _<GroundRenderer>().SetupState();
-                _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile, Hash("HoveredTile"),
-                                             xCoordinate, yCoordinate, rendTileSize, elevations,
-                                             true);
+                Singleton<GroundRenderer>().SetupState();
+                Singleton<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile,
+                                                     Hash("HoveredTile"), xCoordinate, yCoordinate,
+                                                     rendTileSize, elevations, true);
 
                 // Only render ClaimedTile symbol within the normal grid size.
 
                 if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
-                    _<GroundRenderer>().DrawTile(
+                    Singleton<GroundRenderer>().DrawTile(
                         m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
                         Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize, elevations);
 
-                _<GroundRenderer>().RestoreState();
+                Singleton<GroundRenderer>().RestoreState();
             }
-
-            // auto targetedRobot{_<BattleSystem>().GetTargetedRobot()};
-
-            // if (targetedRobot) {
-            //   auto &robots{worldArea->GetRobotsMirrorRef()};
-
-            //  auto targetedRobotCoordinates{robots.at(targetedRobot)};
-
-            //  if (targetedRobotCoordinates.x == xCoordinate && targetedRobotCoordinates.y ==
-            //  yCoordinate)
-            //  {
-            //    for (auto &elevation : elevations)
-            //      elevation += 0.01f;
-
-            //    _<GroundRenderer>().SetupState();
-            //    _<GroundRenderer>().DrawTile(k_renderIDGroundSymbolTargetedRobot,
-            //    Hash("TargetedRobot"),
-            //                                 xCoordinate, yCoordinate, rendTileSize, elevations,
-            //                                 true);
-            //    _<GroundRenderer>().RestoreState();
-            //  }
-            //}
         }};
 
-        _<GroundRenderer>().SetupState();
+        Singleton<GroundRenderer>().SetupState();
 
         auto tilesGroupSize{20};
 
@@ -399,11 +377,11 @@ namespace Forradia::Theme0 {
             }
         }
         if (!tiles.empty())
-            _<GroundRenderer>().DrawTiles(tiles);
+            Singleton<GroundRenderer>().DrawTiles(tiles);
 
         tiles.clear();
 
-        _<GroundRenderer>().SetupState();
+        Singleton<GroundRenderer>().SetupState();
 
         // Second pass: Render all except ground tiles.
         for (auto y = 0; y < worldAreaSize.height; y++)

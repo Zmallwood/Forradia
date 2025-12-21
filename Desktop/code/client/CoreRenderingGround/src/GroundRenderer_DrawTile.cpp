@@ -75,14 +75,14 @@ namespace Forradia {
 
         // Calculate the MVP matrix.
         auto modelMatrix{glm::mat4(1.0f)};
-        auto viewMatrix{_<Camera>().GetViewMatrix()};
-        auto projectionMatrix{_<Camera>().GetProjectionMatrix()};
+        auto viewMatrix{Singleton<Camera>().GetViewMatrix()};
+        auto projectionMatrix{Singleton<Camera>().GetProjectionMatrix()};
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-        auto textureID{_<TextureBank>().GetTexture(imageNameHash)};
+        auto textureID{Singleton<TextureBank>().GetTexture(imageNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);

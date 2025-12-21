@@ -23,7 +23,7 @@ namespace Forradia {
     }
 
     auto GLDevice::SetupGL() -> void {
-        auto window{_<SDLDevice>().GetWindow()};
+        auto window{Singleton<SDLDevice>().GetWindow()};
         m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
         SDL_GL_MakeCurrent(window.get(), *m_context);
         GLenum status{glewInit()};

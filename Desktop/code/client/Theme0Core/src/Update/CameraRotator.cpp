@@ -13,7 +13,8 @@ namespace Forradia::Theme0 {
         if (mouseButton == SDL_BUTTON_RIGHT) {
             m_isRotating = true;
 
-            m_mousePositionLastUpdate = GetNormallizedMousePosition(_<SDLDevice>().GetWindow());
+            m_mousePositionLastUpdate =
+                GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow());
         }
     }
 
@@ -26,15 +27,15 @@ namespace Forradia::Theme0 {
 
     auto CameraRotator::Update() -> void {
         if (m_isRotating) {
-            auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
+            auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
             auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-            _<Camera>().AddRotationDeltaSideways(dX);
+            Singleton<Camera>().AddRotationDeltaSideways(dX);
 
             auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
 
-            _<Camera>().AddRotationDeltaVertical(dY);
+            Singleton<Camera>().AddRotationDeltaVertical(dY);
         }
     }
 }

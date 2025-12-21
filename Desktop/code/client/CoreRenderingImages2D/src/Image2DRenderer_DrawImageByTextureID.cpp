@@ -20,7 +20,7 @@ namespace Forradia {
         GLuint vbo;
 
         auto needFillBuffers{false};
-        auto canvasSize{GetCanvasSize(_<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
 
         auto xPx{static_cast<int>(x * canvasSize.width)};
         auto yPx{static_cast<int>(y * canvasSize.height)};

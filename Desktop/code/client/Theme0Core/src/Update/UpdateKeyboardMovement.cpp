@@ -17,41 +17,25 @@ namespace Forradia::Theme0 {
         auto aPress{key == SDLK_a};
         auto sPress{key == SDLK_s};
         auto dPress{key == SDLK_d};
-        // auto upPress{_<KeyboardInput>().KeyIsPressed(SDLK_UP)};
-        // auto rightPress{_<KeyboardInput>().KeyIsPressed(SDLK_RIGHT)};
-        // auto downPress{_<KeyboardInput>().KeyIsPressed(SDLK_DOWN)};
-        // auto leftPress{_<KeyboardInput>().KeyIsPressed(SDLK_LEFT)};
-        // auto wPress{_<KeyboardInput>().KeyIsPressed(SDLK_w)};
-        // auto aPress{_<KeyboardInput>().KeyIsPressed(SDLK_a)};
-        // auto sPress{_<KeyboardInput>().KeyIsPressed(SDLK_s)};
-        // auto dPress{_<KeyboardInput>().KeyIsPressed(SDLK_d)};
 
         if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
             dPress) {
-            _<Theme0::Player>().SetDestination({-1, -1});
-            //_<BattleSystem>().SetTargetedRobot(nullptr);
+            Singleton<Theme0::Player>().SetDestination({-1, -1});
         }
 
         auto now{GetTicks()};
 
-        // if (now >= _<Theme0::Player>().GetTicksLastMovement() +
-        //                InvertSpeed(_<Theme0::Player>().GetMovementSpeed()) &&
-        //     (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
-        //      dPress)) {
         if (upPress || wPress)
-            _<Theme0::Player>().StartMovingNorth();
+            Singleton<Theme0::Player>().StartMovingNorth();
         if (rightPress || dPress)
-            _<Theme0::Player>().StartMovingEast();
+            Singleton<Theme0::Player>().StartMovingEast();
         if (downPress || sPress)
-            _<Theme0::Player>().StartMovingSouth();
+            Singleton<Theme0::Player>().StartMovingSouth();
         if (leftPress || aPress)
-            _<Theme0::Player>().StartMovingWest();
-
-        //_<Theme0::Player>().SetTicksLastMovement(now);
-        //}
+            Singleton<Theme0::Player>().StartMovingWest();
     }
 
     auto UpdateKeyboardMovementStop() -> void {
-        _<Theme0::Player>().StopMoving();
+        Singleton<Theme0::Player>().StopMoving();
     }
 }

@@ -19,7 +19,7 @@ namespace Forradia {
             uniqueName.data() + std::string("CloseButton"),
             parentWindowBounds.width - k_closeButtonRightMargin, k_closeButtonTopMargin,
             k_closeButtonWidth,
-            ConvertWidthToHeight(k_closeButtonWidth, _<SDLDevice>().GetWindow()), "X",
+            ConvertWidthToHeight(k_closeButtonWidth, Singleton<SDLDevice>().GetWindow()), "X",
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
@@ -27,7 +27,7 @@ namespace Forradia {
         GUIPanel::RenderDerived();
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
-        _<TextRenderer>().DrawString(
+        Singleton<TextRenderer>().DrawString(
             k_renderIDWindowTitleText, k_windowTitle, parentWindowBounds.x + k_titleLeftMargin,
             parentWindowBounds.y + k_titleTopMargin - k_height, FontSizes::_20, false, false,
             Palette::GetColor<Hash("Yellow")>());

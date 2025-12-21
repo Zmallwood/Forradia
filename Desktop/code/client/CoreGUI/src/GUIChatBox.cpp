@@ -27,8 +27,6 @@ namespace Forradia {
 
     auto GUIChatBox::UpdateDerived() -> void {
         dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
-
-        // m_input = _<KeyboardInput>().GetTextInput();
     }
 
     auto GUIChatBox::RenderDerived() const -> void {
@@ -47,8 +45,9 @@ namespace Forradia {
 
             auto textLine = m_lines.at(index);
 
-            _<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine, bounds.x + k_margin,
-                                         yPos, FontSizes::_20, false, true);
+            Singleton<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine,
+                                                 bounds.x + k_margin, yPos, FontSizes::_20, false,
+                                                 true);
 
             yPos += k_lineHeight;
         }
@@ -58,9 +57,9 @@ namespace Forradia {
         auto separatorWidth{bounds.width - 2 * k_margin};
         auto sepratorHeight{k_separatorHeight};
 
-        _<Color2DRenderer>().DrawLine(k_renderIDSeparator, Palette::GetColor<Hash("Black")>(),
-                                      separatorX, separatorY, separatorX + separatorWidth,
-                                      separatorY, sepratorHeight, true);
+        Singleton<Color2DRenderer>().DrawLine(
+            k_renderIDSeparator, Palette::GetColor<Hash("Black")>(), separatorX, separatorY,
+            separatorX + separatorWidth, separatorY, sepratorHeight, true);
 
         if (m_inputActive) {
             // TODO: Calculate the cursor x-coordinate based on the text input.
@@ -70,11 +69,12 @@ namespace Forradia {
             auto cursorWidth{k_cursorWidth};
             auto cursorHeight{k_lineHeight};
 
-            _<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor", cursorX,
-                                                 cursorY, cursorWidth, cursorHeight);
+            Singleton<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor",
+                                                         cursorX, cursorY, cursorWidth,
+                                                         cursorHeight);
 
-            _<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
-                                         FontSizes::_20, false, true);
+            Singleton<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
+                                                 FontSizes::_20, false, true);
         }
     }
 
@@ -96,7 +96,7 @@ namespace Forradia {
         // TODO: Act on the typed input.
 
         if (m_input == "/quit")
-            _<Engine>().Stop();
+            Singleton<Engine>().Stop();
 
         SDL_StopTextInput();
 

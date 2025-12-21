@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "MainScene.hpp"
+#include "3D/Camera.hpp"
 #include "CanvasUtilities.hpp"
 #include "GUI.hpp"
 #include "GUIButton.hpp"
@@ -17,17 +18,14 @@
 #include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "GUIQuestPanel.hpp"
 #include "GUISystemMenu.hpp"
+#include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Update/CameraRotator.hpp"
 #include "Update/Quests/QuestSystem.hpp"
 #include "Update/TileHovering.hpp"
-// #include "Update/UpdateCameraZoom.hpp"
 #include "Update/UpdateEntitiesMovement.hpp"
 #include "Update/UpdateKeyboardActions.hpp"
 #include "Update/UpdateKeyboardMovement.hpp"
-// #include "Update/UpdateMouseActions.hpp"
-#include "3D/Camera.hpp"
-#include "Player/Player.hpp"
 #include "Update/UpdateMouseMovement.hpp"
 #include "Update/UpdateSetPlayerDestination.hpp"
 #include "WorldView.hpp"
@@ -35,46 +33,46 @@
 namespace Forradia::Theme0 {
     auto MainScene::InitializeDerived() -> void {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
-        GetGUI()->AddChildComponent(__<GUIChatBox>());
+        GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
 
         auto btnGUIPlayerBodyWindow{std::make_shared<GUIButton>(
             "MainSceneButtonPlayerBodyWin", 0.78f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-            [] { _<GUIPlayerBodyWindow>().ToggleVisibility(); }, "GUIButtonPlayerBodyBackground",
-            "GUIButtonPlayerBodyHoveredBackground")};
+            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
+            [] { Singleton<GUIPlayerBodyWindow>().ToggleVisibility(); },
+            "GUIButtonPlayerBodyBackground", "GUIButtonPlayerBodyHoveredBackground")};
         GetGUI()->AddChildComponent(btnGUIPlayerBodyWindow);
 
         auto btnInventoryWindow{std::make_shared<GUIButton>(
             "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-            [] { _<GUIInventoryWindow>().ToggleVisibility(); }, "GUIButtonInventoryBackground",
-            "GUIButtonInventoryHoveredBackground")};
+            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
+            [] { Singleton<GUIInventoryWindow>().ToggleVisibility(); },
+            "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
         GetGUI()->AddChildComponent(btnInventoryWindow);
 
         auto btnSystemMenu{std::make_shared<GUIButton>(
             "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, _<SDLDevice>().GetWindow()), "",
-            [] { _<GUISystemMenu>().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
+            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
+            [] { Singleton<GUISystemMenu>().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
             "GUIButtonSystemMenuHoveredBackground")};
         GetGUI()->AddChildComponent(btnSystemMenu);
-        // GetGUI()->AddChildComponent(__<GUIPlayerBodyWindow>());
-        //  GetGUI()->AddChildComponent(__<GUIInventoryWindow>());
-        GetGUI()->AddChildComponent(__<GUISystemMenu>());
+        // GetGUI()->AddChildComponent(SingletonPtr<GUIPlayerBodyWindow>());
+        //  GetGUI()->AddChildComponent(SingletonPtr<GUIInventoryWindow>());
+        GetGUI()->AddChildComponent(SingletonPtr<GUISystemMenu>());
         GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
         GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
-        // GetGUI()->AddChildComponent(__<GUIInteractionMenu>());
-        GetGUI()->AddChildComponent(__<GUIExperienceBar>());
+        // GetGUI()->AddChildComponent(SingletonPtr<GUIInteractionMenu>());
+        GetGUI()->AddChildComponent(SingletonPtr<GUIExperienceBar>());
 
-        m_guiInventoryWindow = __<GUIInventoryWindow>();
-        m_guiInteractionMenu = __<GUIInteractionMenu>();
-        m_guiPlayerBodyWindow = __<GUIPlayerBodyWindow>();
+        m_guiInventoryWindow = SingletonPtr<GUIInventoryWindow>();
+        m_guiInteractionMenu = SingletonPtr<GUIInteractionMenu>();
+        m_guiPlayerBodyWindow = SingletonPtr<GUIPlayerBodyWindow>();
     }
 
     auto MainScene::OnEnterDerived() -> void {
-        auto chatBoxHeight{_<GUIChatBox>().GetBounds().height};
-        auto experienceBarHeight{_<GUIExperienceBar>().GetBounds().height};
-        _<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
-        _<GUIChatBox>().Print("You have entered the world.");
+        auto chatBoxHeight{Singleton<GUIChatBox>().GetBounds().height};
+        auto experienceBarHeight{Singleton<GUIExperienceBar>().GetBounds().height};
+        Singleton<GUIChatBox>().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
+        Singleton<GUIChatBox>().Print("You have entered the world.");
     }
 
     auto MainScene::OnMouseDown(Uint8 mouseButton) -> void {
@@ -86,11 +84,11 @@ namespace Forradia::Theme0 {
         if (m_guiInventoryWindow->OnMouseDown(mouseButton))
             return;
         if (!m_guiInventoryWindow->MouseHoveringGUI())
-            _<CameraRotator>().OnMouseDown(mouseButton);
+            Singleton<CameraRotator>().OnMouseDown(mouseButton);
     }
 
     auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
-        _<CameraRotator>().OnMouseUp(mouseButton);
+        Singleton<CameraRotator>().OnMouseUp(mouseButton);
         GetGUI()->OnMouseUp(mouseButton, clickSpeed);
         if (GetGUI()->MouseHoveringGUI())
             return;
@@ -107,7 +105,7 @@ namespace Forradia::Theme0 {
     }
 
     auto MainScene::OnMouseWheel(int delta) -> void {
-        _<Camera>().AddZoomAmountDelta(delta);
+        Singleton<Camera>().AddZoomAmountDelta(delta);
     }
 
     auto MainScene::OnKeyDown(SDL_Keycode key) -> void {
@@ -122,8 +120,8 @@ namespace Forradia::Theme0 {
     }
 
     auto MainScene::OnTextInput(std::string_view text) -> void {
-        if (_<GUIChatBox>().GetInputActive())
-            _<GUIChatBox>().AddTextInput(text);
+        if (Singleton<GUIChatBox>().GetInputActive())
+            Singleton<GUIChatBox>().AddTextInput(text);
     }
 
     auto MainScene::UpdateDerived() -> void {
@@ -134,11 +132,11 @@ namespace Forradia::Theme0 {
         UpdateEntitiesMovement();
         // UpdateCameraZoom();
         // UpdateKeyboardMovement();
-        _<TileHovering>().Update();
-        _<Player>().Update();
-        _<CameraRotator>().Update();
+        Singleton<TileHovering>().Update();
+        Singleton<Player>().Update();
+        Singleton<CameraRotator>().Update();
         UpdateActions();
-        _<QuestSystem>().Update();
+        Singleton<QuestSystem>().Update();
     }
 
     auto MainScene::Render() const -> void {
@@ -151,6 +149,6 @@ namespace Forradia::Theme0 {
     }
 
     auto MainScene::RenderDerived() const -> void {
-        _<WorldView>().Render();
+        Singleton<WorldView>().Render();
     }
 }

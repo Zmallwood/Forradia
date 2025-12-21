@@ -14,11 +14,11 @@ auto main(int argc, char **argv) -> int {
     using namespace Forradia;
     using namespace Theme0;
 
-    _<Engine>().Initialize(_<Theme0Properties>().GetGameWindowTitle(),
-                           _<Theme0Properties>().GetClearColor());
+    Singleton<Engine>().Initialize(Singleton<Theme0Properties>().GetGameWindowTitle(),
+                                   Singleton<Theme0Properties>().GetClearColor());
     SetupScenes();
-    _<World>().Initialize(_<Theme0Properties>().GetBaseWorldAreaSize(),
-                          _<Theme0Properties>().GetWorldScaling());
-    _<Engine>().Run();
+    Singleton<World>().Initialize(Singleton<Theme0Properties>().GetBaseWorldAreaSize(),
+                                  Singleton<Theme0Properties>().GetWorldScaling());
+    Singleton<Engine>().Run();
     return 0;
 }

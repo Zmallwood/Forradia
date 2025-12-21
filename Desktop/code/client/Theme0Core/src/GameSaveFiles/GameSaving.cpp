@@ -15,7 +15,7 @@
 
 namespace Forradia::Theme0 {
     auto GameSaving::SaveGame() -> void {
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
 
         if (!worldArea)
             return;
@@ -79,7 +79,7 @@ namespace Forradia::Theme0 {
     }
 
     auto GameSaving::LoadGame() -> void {
-        _<GroundRenderer>().Reset();
+        Singleton<GroundRenderer>().Reset();
 
         std::ifstream file("savegame.json");
         if (!file.is_open())
@@ -93,7 +93,7 @@ namespace Forradia::Theme0 {
             return;
         }
 
-        auto worldArea{_<World>().GetCurrentWorldArea()};
+        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
 
         if (!worldArea)
             return;
