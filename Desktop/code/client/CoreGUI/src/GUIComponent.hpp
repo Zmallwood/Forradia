@@ -44,6 +44,12 @@ namespace Forradia {
 
         virtual auto OnMouseWheel(int delta) -> bool;
 
+        virtual auto OnKeyDown(SDL_Keycode key) -> bool;
+
+        virtual auto OnKeyUp(SDL_Keycode key) -> bool;
+
+        virtual auto OnTextInput(std::string_view text) -> bool;
+
         /**
          * Updates the component and all its children.
          */

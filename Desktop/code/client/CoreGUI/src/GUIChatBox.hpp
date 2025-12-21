@@ -42,6 +42,8 @@ namespace Forradia {
          */
         auto Print(std::string_view text) -> void;
 
+        auto AddTextInput(std::string_view text) -> void;
+
         /**
          * Enables input to the chat box.
          */

@@ -32,6 +32,12 @@ namespace Forradia::Theme0 {
 
         virtual auto OnMouseWheel(int delta) -> void override;
 
+        virtual auto OnKeyDown(SDL_Keycode key) -> void override;
+
+        virtual auto OnKeyUp(SDL_Keycode key) -> void override;
+
+        virtual auto OnTextInput(std::string_view text) -> void override;
+
         // virtual auto Update() -> void override;
 
         virtual auto Render() const -> void override;

@@ -69,6 +69,42 @@ namespace Forradia {
         return false;
     }
 
+    auto GUIComponent::OnKeyDown(SDL_Keycode key) -> bool {
+        if (!m_visible || !m_enabled)
+            return false;
+
+        if (std::any_of(
+                m_childComponents.rbegin(), m_childComponents.rend(),
+                [=](const std::shared_ptr<GUIComponent> &comp) { return comp->OnKeyDown(key); }))
+            return true;
+
+        return false;
+    }
+
+    auto GUIComponent::OnKeyUp(SDL_Keycode key) -> bool {
+        if (!m_visible || !m_enabled)
+            return false;
+
+        if (std::any_of(
+                m_childComponents.rbegin(), m_childComponents.rend(),
+                [=](const std::shared_ptr<GUIComponent> &comp) { return comp->OnKeyUp(key); }))
+            return true;
+
+        return false;
+    }
+
+    auto GUIComponent::OnTextInput(std::string_view text) -> bool {
+        if (!m_visible || !m_enabled)
+            return false;
+
+        if (std::any_of(
+                m_childComponents.rbegin(), m_childComponents.rend(),
+                [=](const std::shared_ptr<GUIComponent> &comp) { return comp->OnTextInput(text); }))
+            return true;
+
+        return false;
+    }
+
     auto GUIComponent::MouseHoveringGUI() const -> bool {
         if (!m_visible || !m_enabled)
             return false;

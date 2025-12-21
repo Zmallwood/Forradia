@@ -8,7 +8,6 @@
 #include "Coloring/Palette.hpp"
 #include "Engine.hpp"
 #include "Image2DRenderer.hpp"
-#include "Keyboard/KeyboardInput.hpp"
 #include "Singleton.hpp"
 #include "TextRenderer.hpp"
 #include <fmt/format.h>
@@ -29,7 +28,7 @@ namespace Forradia {
     auto GUIChatBox::UpdateDerived() -> void {
         dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
 
-        m_input = _<KeyboardInput>().GetTextInput();
+        // m_input = _<KeyboardInput>().GetTextInput();
     }
 
     auto GUIChatBox::RenderDerived() const -> void {
@@ -83,8 +82,12 @@ namespace Forradia {
         m_lines.emplace_back(text.data());
     }
 
+    auto GUIChatBox::AddTextInput(std::string_view text) -> void {
+        m_input += text;
+    }
+
     auto GUIChatBox::EnableInput() -> void {
-        _<KeyboardInput>().StartTextInput();
+        SDL_StartTextInput();
 
         m_inputActive = true;
     }
@@ -95,7 +98,7 @@ namespace Forradia {
         if (m_input == "/quit")
             _<Engine>().Stop();
 
-        _<KeyboardInput>().StopTextInput();
+        SDL_StopTextInput();
 
         m_inputActive = false;
         m_input = "";

@@ -36,6 +36,12 @@ namespace Forradia {
 
         auto OnMouseWheelCurrentScene(int delta) -> void;
 
+        auto OnKeyDownCurrentScene(SDL_Keycode key) -> void;
+
+        auto OnKeyUpCurrentScene(SDL_Keycode key) -> void;
+
+        auto OnTextInputCurrentScene(std::string_view text) -> void;
+
         /**
          * Updates the current scene.
          */

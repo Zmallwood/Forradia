@@ -35,6 +35,21 @@ namespace Forradia {
             m_scenes.at(m_currentScene).OnMouseWheel(delta);
     }
 
+    auto SceneManager::OnKeyDownCurrentScene(SDL_Keycode key) -> void {
+        if (m_scenes.contains(m_currentScene))
+            m_scenes.at(m_currentScene).OnKeyDown(key);
+    }
+
+    auto SceneManager::OnKeyUpCurrentScene(SDL_Keycode key) -> void {
+        if (m_scenes.contains(m_currentScene))
+            m_scenes.at(m_currentScene).OnKeyUp(key);
+    }
+
+    auto SceneManager::OnTextInputCurrentScene(std::string_view text) -> void {
+        if (m_scenes.contains(m_currentScene))
+            m_scenes.at(m_currentScene).OnTextInput(text);
+    }
+
     auto SceneManager::UpdateCurrentScene() -> void {
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).Update();

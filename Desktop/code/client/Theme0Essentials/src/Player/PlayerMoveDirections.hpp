@@ -5,9 +5,12 @@
 
 #pragma once
 
-#include <set>
-#include <string>
-
-#include <SDL2/SDL.h>
-
-#include "TimeUtilities.hpp"
+namespace Forradia::Theme0 {
+    enum class PlayerMoveDirections {
+        None,
+        North,
+        East,
+        South,
+        West
+    };
+}

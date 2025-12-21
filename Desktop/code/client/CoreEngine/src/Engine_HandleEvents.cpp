@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "Keyboard/KeyboardInput.hpp"
 #include "SceneManager.hpp"
 #include "Singleton.hpp"
 #include "TimeUtilities.hpp"
@@ -20,16 +19,15 @@ namespace Forradia {
                 this->Stop();
                 break;
             case SDL_KEYDOWN:
-                _<KeyboardInput>().RegisterKeyPress(event.key.keysym.sym);
+                _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_KEYUP:
-                _<KeyboardInput>().RegisterKeyRelease(event.key.keysym.sym);
+                _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_TEXTINPUT:
-                _<KeyboardInput>().AddTextInput(event.text.text);
+                _<SceneManager>().OnTextInputCurrentScene(event.text.text);
                 break;
             case SDL_MOUSEBUTTONDOWN: {
-                //_<MouseInput>().RegisterMouseButtonDown(event.button.button);
                 switch (event.button.button) {
                 case SDL_BUTTON_LEFT:
                     m_ticksLeftMouseButtonFired = GetTicks();
@@ -42,7 +40,6 @@ namespace Forradia {
                 break;
             }
             case SDL_MOUSEBUTTONUP: {
-                //_<MouseInput>().RegisterMouseButtonUp(event.button.button);
                 int clickSpeed{0};
                 switch (event.button.button) {
                 case SDL_BUTTON_LEFT:
@@ -56,7 +53,6 @@ namespace Forradia {
                 break;
             }
             case SDL_MOUSEWHEEL:
-                //_<MouseInput>().AddMouseWheelDelta(event.wheel.y);
                 _<SceneManager>().OnMouseWheelCurrentScene(event.wheel.y);
                 break;
             }

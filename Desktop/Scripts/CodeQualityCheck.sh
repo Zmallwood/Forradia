@@ -11,7 +11,6 @@ clang-tidy code/client/CoreAssets/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --st
 clang-tidy code/client/CoreEngine/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
 clang-tidy code/client/CoreGraphicsDevices/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
 clang-tidy code/client/CoreGUI/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
-clang-tidy code/client/CoreInput/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
 clang-tidy code/client/CoreMinorComponents/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
 clang-tidy code/client/CoreRenderingColors2D/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
 clang-tidy code/client/CoreRenderingCommon/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20

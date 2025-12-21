@@ -12,7 +12,6 @@ target_include_directories(ForradiaCoreEngine PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreEngine PRIVATE
-    ForradiaCoreInput
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingImages2D
     ForradiaCoreRenderingGround

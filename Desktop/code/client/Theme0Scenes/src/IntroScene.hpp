@@ -30,6 +30,8 @@ namespace Forradia::Theme0 {
 
         virtual auto OnMouseDown(Uint8 mouseButton) -> void override;
 
+        virtual auto OnKeyDown(SDL_Keycode key) -> void override;
+
         /**
          * Called every frame.
          */

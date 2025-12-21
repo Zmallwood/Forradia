@@ -265,23 +265,11 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "C3. Core Input",
-            opening_app,
-            "/home/andreas/code/git/Forradia/Desktop/code/client/CoreInput",
-            "icons/DefaultButton.png",
-            2,
-            0,
-            self.script_dir,
-            "#990000",
-        )
-
-        create_app_button(
-            app_frame,
             "C4. Core Rendering Common",
             opening_app,
             "/home/andreas/code/git/Forradia/Desktop/code/client/CoreRenderingCommon",
             "icons/DefaultButton.png",
-            3,
+            2,
             0,
             self.script_dir,
             "#990000",

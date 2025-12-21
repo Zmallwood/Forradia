@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "Player.hpp"
+#include "NumbersUtilities.hpp"
 #include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
@@ -24,6 +25,50 @@ namespace Forradia::Theme0 {
 
         while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
             m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
+    }
+
+    auto Player::Update() -> void {
+        auto now{GetTicks()};
+
+        if (now >= m_ticksLastMovement + InvertSpeed(m_movementSpeed)) {
+            switch (m_playerMoveDirection) {
+            case PlayerMoveDirections::North:
+                this->MoveNorth();
+                break;
+            case PlayerMoveDirections::East:
+                this->MoveEast();
+                break;
+            case PlayerMoveDirections::South:
+                this->MoveSouth();
+                break;
+            case PlayerMoveDirections::West:
+                this->MoveWest();
+                break;
+            case PlayerMoveDirections::None:
+            }
+
+            m_ticksLastMovement = now;
+        }
+    }
+
+    auto Player::StartMovingNorth() -> void {
+        m_playerMoveDirection = PlayerMoveDirections::North;
+    }
+
+    auto Player::StartMovingEast() -> void {
+        m_playerMoveDirection = PlayerMoveDirections::East;
+    }
+
+    auto Player::StartMovingSouth() -> void {
+        m_playerMoveDirection = PlayerMoveDirections::South;
+    }
+
+    auto Player::StartMovingWest() -> void {
+        m_playerMoveDirection = PlayerMoveDirections::West;
+    }
+
+    auto Player::StopMoving() -> void {
+        m_playerMoveDirection = PlayerMoveDirections::None;
     }
 
     auto Player::MoveNorth() -> void {

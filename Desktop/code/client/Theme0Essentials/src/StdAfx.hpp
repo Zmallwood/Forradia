@@ -10,4 +10,5 @@
 #include "assimp/scene.h"
 
 #include "Geometry/SizeF.hpp"
+#include "NumbersUtilities.hpp"
 #include "Singleton.hpp"

@@ -8,6 +8,7 @@
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
+#include "PlayerMoveDirections.hpp"
 
 namespace Forradia::Theme0 {
     class PlayerObjectsInventory;
@@ -24,6 +25,18 @@ namespace Forradia::Theme0 {
             // Initialize the player character.
             this->Initialize();
         }
+
+        auto Update() -> void;
+
+        auto StartMovingNorth() -> void;
+
+        auto StartMovingEast() -> void;
+
+        auto StartMovingSouth() -> void;
+
+        auto StartMovingWest() -> void;
+
+        auto StopMoving() -> void;
 
         /**
          * Moves the player north.
@@ -238,5 +251,6 @@ namespace Forradia::Theme0 {
         // int m_ticksLastHitAnother{0};
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions;
         std::unordered_map<std::string, int> m_questCompletionPoints;
+        PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
     };
 }

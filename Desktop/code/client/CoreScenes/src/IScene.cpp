@@ -29,6 +29,18 @@ namespace Forradia {
         m_gui->OnMouseWheel(delta);
     }
 
+    auto IScene::OnKeyDown(SDL_Keycode key) -> void {
+        m_gui->OnKeyDown(key);
+    }
+
+    auto IScene::OnKeyUp(SDL_Keycode key) -> void {
+        m_gui->OnKeyUp(key);
+    }
+
+    auto IScene::OnTextInput(std::string_view text) -> void {
+        m_gui->OnTextInput(text);
+    }
+
     auto IScene::Update() -> void {
         m_gui->Update();
 

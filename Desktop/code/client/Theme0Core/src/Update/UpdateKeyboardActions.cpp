@@ -8,7 +8,6 @@
 #include "GUIInventoryWindow.hpp"
 #include "GUIPlayerBodyWindow.hpp"
 #include "GUISystemMenu.hpp"
-#include "Keyboard/KeyboardInput.hpp"
 #include "Player/Player.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"
@@ -16,19 +15,19 @@
 #include "WorldArea.hpp"
 
 namespace Forradia::Theme0 {
-    auto UpdateKeyboardActions() -> void {
-        if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_ESCAPE)) {
+    auto UpdateKeyboardActions(SDL_Keycode key) -> void {
+        if (key == SDLK_ESCAPE) {
             _<GUISystemMenu>().ToggleVisibility();
-        } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_c)) {
+        } else if (key == SDLK_c) {
             _<GUIPlayerBodyWindow>().ToggleVisibility();
-        } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_b)) {
+        } else if (key == SDLK_b) {
             _<GUIInventoryWindow>().ToggleVisibility();
-        } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_RETURN)) {
+        } else if (key == SDLK_RETURN) {
             if (_<GUIChatBox>().GetInputActive())
                 _<GUIChatBox>().SubmitInput();
             else
                 _<GUIChatBox>().EnableInput();
-        } else if (_<KeyboardInput>().KeyIsPressedPickResult(SDLK_TAB)) {
+        } else if (key == SDLK_TAB) {
             // auto currentMode{_<Player>().GetPlayerMode()};
 
             // switch (currentMode) {

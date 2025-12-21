@@ -9,7 +9,6 @@
 #include "GUIChatBox.hpp"
 #include "GUILabel.hpp"
 #include "Image2DRenderer.hpp"
-#include "Keyboard/KeyboardInput.hpp"
 #include "SceneManager.hpp"
 
 namespace Forradia::Theme0 {
@@ -27,11 +26,13 @@ namespace Forradia::Theme0 {
         _<SceneManager>().GoToScene("MainMenuScene");
     }
 
+    auto IntroScene::OnKeyDown(SDL_Keycode key) -> void {
+        _<SceneManager>().GoToScene("MainMenuScene");
+    }
+
     auto IntroScene::UpdateDerived() -> void {
         m_startText->SetVisible(GetTicks() % 800 < 400);
         _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-        if (_<KeyboardInput>().AnyKeyIsPressedPickResult())
-            _<SceneManager>().GoToScene("MainMenuScene");
     }
 
     auto IntroScene::RenderDerived() const -> void {

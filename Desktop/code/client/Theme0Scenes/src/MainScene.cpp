@@ -27,6 +27,7 @@
 #include "Update/UpdateKeyboardMovement.hpp"
 // #include "Update/UpdateMouseActions.hpp"
 #include "3D/Camera.hpp"
+#include "Player/Player.hpp"
 #include "Update/UpdateMouseMovement.hpp"
 #include "Update/UpdateSetPlayerDestination.hpp"
 #include "WorldView.hpp"
@@ -109,16 +110,32 @@ namespace Forradia::Theme0 {
         _<Camera>().AddZoomAmountDelta(delta);
     }
 
+    auto MainScene::OnKeyDown(SDL_Keycode key) -> void {
+        GetGUI()->OnKeyDown(key);
+        UpdateKeyboardMovementStart(key);
+        UpdateKeyboardActions(key);
+    }
+
+    auto MainScene::OnKeyUp(SDL_Keycode key) -> void {
+        GetGUI()->OnKeyUp(key);
+        UpdateKeyboardMovementStop();
+    }
+
+    auto MainScene::OnTextInput(std::string_view text) -> void {
+        if (_<GUIChatBox>().GetInputActive())
+            _<GUIChatBox>().AddTextInput(text);
+    }
+
     auto MainScene::UpdateDerived() -> void {
         m_guiInteractionMenu->Update();
         m_guiInventoryWindow->Update();
         m_guiPlayerBodyWindow->Update();
         UpdateMouseMovement();
-        UpdateKeyboardActions();
         UpdateEntitiesMovement();
         // UpdateCameraZoom();
-        UpdateKeyboardMovement();
+        // UpdateKeyboardMovement();
         _<TileHovering>().Update();
+        _<Player>().Update();
         _<CameraRotator>().Update();
         UpdateActions();
         _<QuestSystem>().Update();
