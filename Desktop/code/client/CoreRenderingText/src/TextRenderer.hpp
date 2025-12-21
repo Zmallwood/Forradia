@@ -9,6 +9,8 @@
 #include "FontSizes.hpp"
 #include <unordered_map>
 
+using TTF_Font = struct _TTF_Font;
+
 namespace Forradia {
     /**
      * Renders text strings to the screen using SDL_ttf and OpenGL.

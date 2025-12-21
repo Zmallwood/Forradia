@@ -7,5 +7,7 @@
 
 #include <unordered_map>
 
+#include <SDL2/SDL.h>
+
 #include "Geometry/RectF.hpp"
 #include "Hash.hpp"

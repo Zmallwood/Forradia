@@ -5,6 +5,7 @@
 
 #include "SceneManager.hpp"
 #include "IScene.hpp"
+#include <SDL2/SDL.h>
 
 namespace Forradia {
     auto SceneManager::AddScene(std::string_view sceneName, IScene &scene) -> void {
