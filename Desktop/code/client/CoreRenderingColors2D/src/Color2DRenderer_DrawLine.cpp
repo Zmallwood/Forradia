@@ -7,6 +7,8 @@
 // cache reaches a certain limit.
 
 #include "Color2DRenderer.hpp"
+#include <array>
+#include <vector>
 
 namespace Forradia {
     auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1,
@@ -54,28 +56,30 @@ namespace Forradia {
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting) {
-            auto &c{color};
+            auto xPos{xPos1};
+            auto yPos{yPos1};
 
-            auto x{xPos1};
-            auto y{yPos1};
             float width;
             float height;
+
             if (xPos2 - xPos1 > yPos2 - yPos1) {
                 width = xPos2 - xPos1;
                 height = lineWidth;
-                y -= height / 2.0f;
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                yPos -= height / 2.0F;
             } else {
                 width = lineWidth;
                 height = yPos2 - yPos1;
-                x -= width / 2.0f;
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                xPos -= width / 2.0F;
             }
 
             std::vector<float> verticesVec;
 
-            verticesVec = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
-                           x + width, y,          0.0F, c.r, c.g, c.b, c.a,
-                           x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
-                           x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
+            verticesVec = {xPos,         yPos,          0.0F, color.r, color.g, color.b, color.a,
+                           xPos + width, yPos,          0.0F, color.r, color.g, color.b, color.a,
+                           xPos + width, yPos + height, 0.0F, color.r, color.g, color.b, color.a,
+                           xPos,         yPos + height, 0.0F, color.r, color.g, color.b, color.a};
 
             auto vertices = verticesVec.data();
 
@@ -84,12 +88,14 @@ namespace Forradia {
             //                      x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
             //                      x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
 
-            unsigned short indices[]{0, 1, 2, 3};
+            std::array<unsigned short, 4> indices{0, 1, 2, 3};
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
-                         GL_DYNAMIC_DRAW);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 7 * k_verticesCount, vertices,
-                         GL_DYNAMIC_DRAW);
+            constexpr int k_floatsPerVertex = 7;
+
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount,
+                         indices.data(), GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
+                         vertices, GL_DYNAMIC_DRAW);
 
             this->SetupAttributeLayout();
         }
@@ -100,6 +106,6 @@ namespace Forradia {
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->RestoreState();
+        Color2DRenderer::RestoreState();
     }
 }

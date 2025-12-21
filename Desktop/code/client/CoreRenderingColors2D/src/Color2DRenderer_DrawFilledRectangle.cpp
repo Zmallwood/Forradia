@@ -8,6 +8,7 @@
 
 #include "Color2DRenderer.hpp"
 #include "SDLDevice.hpp"
+#include <array>
 
 namespace Forradia {
     auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float xPos,
@@ -56,25 +57,29 @@ namespace Forradia {
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting) {
 
+            constexpr int k_numFloats{28};
+
             // clang-format off
-            float vertices[] = {
-                xPos,          yPos,              0.0f,
-                color.r,        color.g,            color.b,    color.a,
-                xPos + width,  yPos,              0.0f,
-                color.r,        color.g,            color.b,    color.a,
-                xPos + width,  yPos + height,     0.0f,
-                color.r,        color.g,            color.b,    color.a,
-                xPos,          yPos + height,     0.0f,
-                color.r,        color.g,            color.b,    color.a
+            std::array<float, k_numFloats> vertices = {
+                xPos,          yPos,              0.0F,
+                color.r,       color.g,           color.b,    color.a,
+                xPos + width,  yPos,              0.0F,
+                color.r,       color.g,           color.b,    color.a,
+                xPos + width,  yPos + height,     0.0F,
+                color.r,       color.g,           color.b,    color.a,
+                xPos,          yPos + height,     0.0F,
+                color.r,       color.g,           color.b,    color.a
             };
             // clang-format on
 
-            unsigned short indices[]{0, 1, 2, 3};
+            std::array<unsigned short, 4> indices = {0, 1, 2, 3};
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
-                         GL_DYNAMIC_DRAW);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 7 * k_verticesCount, vertices,
-                         GL_DYNAMIC_DRAW);
+            constexpr int k_floatsPerVertex = 7;
+
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount,
+                         indices.data(), GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
+                         vertices.data(), GL_DYNAMIC_DRAW);
 
             this->SetupAttributeLayout();
         }

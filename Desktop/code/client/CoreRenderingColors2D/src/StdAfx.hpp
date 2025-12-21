@@ -5,7 +5,9 @@
 
 #pragma once
 
+#include <array>
 #include <unordered_map>
+#include <vector>
 
 #include "CanvasUtilities.hpp"
 
