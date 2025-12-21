@@ -20,6 +20,15 @@ namespace Forradia {
          */
         auto Initialize() -> void;
 
+        /**
+         * Get the shader program.
+         *
+         * @return The shader program.
+         */
+        [[nodiscard]] auto GetShaderProgram() const {
+            return m_shaderProgram;
+        }
+
       protected:
         /**
          * Get the vertex shader source code.
@@ -45,15 +54,6 @@ namespace Forradia {
          * Set up the attribute layout.
          */
         virtual auto SetupAttributeLayout() const -> void = 0;
-
-        /**
-         * Get the shader program.
-         *
-         * @return The shader program.
-         */
-        [[nodiscard]] auto GetShaderProgram() const {
-            return m_shaderProgram;
-        }
 
       private:
         std::shared_ptr<ShaderProgram> m_shaderProgram;

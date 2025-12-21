@@ -14,3 +14,4 @@
 #include "Coloring/Palette.hpp"
 #include "Geometry/Point3F.hpp"
 #include "MathUtilities.hpp"
+#include "Singleton.hpp"

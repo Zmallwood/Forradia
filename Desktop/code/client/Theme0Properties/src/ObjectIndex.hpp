@@ -43,9 +43,11 @@ namespace Forradia::Theme0 {
          */
         auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
+        auto GetNumContainerSlots(int objectHash) const -> int;
+
       private:
         auto AddObjectEntry(std::string_view objectName, float modelScaling,
-                            bool ignoreIndividualModelScaling) -> void;
+                            bool ignoreIndividualModelScaling, int numContainerSlots) -> void;
 
         std::unordered_map<int, ObjectIndexEntry> m_entries;
     };

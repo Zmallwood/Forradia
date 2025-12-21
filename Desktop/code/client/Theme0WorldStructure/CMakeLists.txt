@@ -18,5 +18,6 @@ target_link_libraries(ForradiaTheme0WorldStructure PRIVATE
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
     ForradiaCoreGUI
+    ForradiaTheme0Properties
 )
 target_precompile_headers(ForradiaTheme0WorldStructure PUBLIC ./src/StdAfx.hpp)

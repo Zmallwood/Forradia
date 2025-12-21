@@ -6,6 +6,7 @@
 #include "GroundRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
+#include "Singleton.hpp"
 
 namespace Forradia {
     auto GroundRenderer::Cleanup() -> void {
@@ -26,12 +27,12 @@ namespace Forradia {
         auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(GetShaderProgram()->GetProgramID());
+        glUseProgram(dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID());
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto GroundRenderer::RestoreState() const -> void {
+    auto GroundRenderer::RestoreState() -> void {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -48,23 +49,25 @@ namespace Forradia {
     auto GroundRenderer::SetupAttributeLayout() const -> void {
         // Set up the attribute layout for the vertex shader.
 
+        constexpr int k_stride{11};
+
         // Position.
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 0));
         glEnableVertexAttribArray(0);
 
         // Color.
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 3));
         glEnableVertexAttribArray(1);
 
         // Texture coordinates.
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 6));
         glEnableVertexAttribArray(2);
 
         // Normals.
-        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 11,
+        glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 8));
         glEnableVertexAttribArray(3);
     }

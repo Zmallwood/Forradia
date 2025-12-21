@@ -8,5 +8,10 @@
 namespace Forradia::Theme0 {
     class ContainedObjects {
       public:
+        ContainedObjects(int numSlots) : m_numSlots(numSlots) {
+        }
+
+      private:
+        int m_numSlots{0};
     };
 }

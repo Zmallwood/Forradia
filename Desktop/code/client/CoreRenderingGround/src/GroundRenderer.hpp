@@ -66,7 +66,7 @@ namespace Forradia {
         /**
          * Restores the state for the renderer.
          */
-        auto RestoreState() const -> void;
+        static auto RestoreState() -> void;
 
       protected:
         /**
