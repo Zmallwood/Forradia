@@ -4,8 +4,10 @@
  *********************************************************************/
 
 #include "Color2DRenderer.hpp"
+#include "CanvasUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
+#include "Singleton.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -40,12 +42,12 @@ namespace Forradia {
     auto Color2DRenderer::SetupAttributeLayout() const -> void {
         const int k_stride{7};
 
-        // NOLINTNEXTLINE(performance-no-int-to-ptr)
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
                               (void *)(sizeof(float) * 0));
         glEnableVertexAttribArray(0);
-        // NOLINTNEXTLINE(performance-no-int-to-ptr)
         glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
                               (void *)(sizeof(float) * 3));
         glEnableVertexAttribArray(1);
     }

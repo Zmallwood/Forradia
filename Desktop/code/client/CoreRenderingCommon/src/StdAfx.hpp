@@ -12,6 +12,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 // clang-format on
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "CanvasUtilities.hpp"

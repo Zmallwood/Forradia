@@ -9,8 +9,9 @@
 #include "Color2DRenderer.hpp"
 
 namespace Forradia {
-    auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2,
-                                   float y2, float lineWidth, bool updateExisting) -> void {
+    auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1,
+                                   float xPos2, float yPos2, float lineWidth, bool updateExisting)
+        -> void {
         this->SetupState();
 
         GLuint vao;
@@ -55,17 +56,17 @@ namespace Forradia {
         if (needFillBuffers || updateExisting) {
             auto &c{color};
 
-            auto x{x1};
-            auto y{y1};
+            auto x{xPos1};
+            auto y{yPos1};
             float width;
             float height;
-            if (x2 - x1 > y2 - y1) {
-                width = x2 - x1;
+            if (xPos2 - xPos1 > yPos2 - yPos1) {
+                width = xPos2 - xPos1;
                 height = lineWidth;
                 y -= height / 2.0f;
             } else {
                 width = lineWidth;
-                height = y2 - y1;
+                height = yPos2 - yPos1;
                 x -= width / 2.0f;
             }
 

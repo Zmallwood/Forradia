@@ -35,8 +35,8 @@ namespace Forradia {
          * @param height The height of the rectangle.
          * @param updateExisting Whether to update the existing operation.
          */
-        auto DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y, float width,
-                                 float height, bool updateExisting = false) -> void;
+        auto DrawFilledRectangle(int uniqueRenderID, Color color, float xPos, float yPos,
+                                 float width, float height, bool updateExisting = false) -> void;
 
         /**
          * Draws a line between two points.
@@ -50,8 +50,9 @@ namespace Forradia {
          * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
          * @param updateExisting Whether to update the existing operation.
          */
-        auto DrawLine(int uniqueRenderID, Color color, float x1, float y1, float x2, float y2,
-                      float lineWidth = 0.001F, bool updateExisting = false) -> void;
+        auto DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1, float xPos2,
+                      float yPos2, float lineWidth = k_defaultLineWidth,
+                      bool updateExisting = false) -> void;
 
       protected:
         /**
@@ -82,6 +83,7 @@ namespace Forradia {
 
         auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
+        constexpr static float k_defaultLineWidth{0.001F};
         std::unordered_map<int, Color2DRenderingOperation> m_operationsCache;
     };
 }

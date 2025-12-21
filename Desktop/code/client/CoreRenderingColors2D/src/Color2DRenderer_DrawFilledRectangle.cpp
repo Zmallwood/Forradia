@@ -10,9 +10,9 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-    auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float x, float y,
-                                              float width, float height, bool updateExisting)
-        -> void {
+    auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float xPos,
+                                              float yPos, float width, float height,
+                                              bool updateExisting) -> void {
         this->SetupState();
 
         GLuint vao;
@@ -55,18 +55,17 @@ namespace Forradia {
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting) {
-            auto &c{color};
 
             // clang-format off
             float vertices[] = {
-                x,          y,              0.0f,
-                c.r,        c.g,            c.b,    c.a,
-                x + width,  y,              0.0f,
-                c.r,        c.g,            c.b,    c.a,
-                x + width,  y + height,     0.0f,
-                c.r,        c.g,            c.b,    c.a,
-                x,          y + height,     0.0f,
-                c.r,        c.g,            c.b,    c.a
+                xPos,          yPos,              0.0f,
+                color.r,        color.g,            color.b,    color.a,
+                xPos + width,  yPos,              0.0f,
+                color.r,        color.g,            color.b,    color.a,
+                xPos + width,  yPos + height,     0.0f,
+                color.r,        color.g,            color.b,    color.a,
+                xPos,          yPos + height,     0.0f,
+                color.r,        color.g,            color.b,    color.a
             };
             // clang-format on
 

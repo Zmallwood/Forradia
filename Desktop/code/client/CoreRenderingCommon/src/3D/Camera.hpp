@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Geometry/Point3F.hpp"
+#include <glm/glm.hpp>
 
 namespace Forradia {
     /**
@@ -20,7 +21,7 @@ namespace Forradia {
          *
          * @return The view matrix.
          */
-        auto GetViewMatrix() const -> glm::mat4;
+        [[nodiscard]] auto GetViewMatrix() const -> glm::mat4;
 
         /**
          * Get the projection matrix.
