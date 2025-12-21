@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIInventoryWindow.hpp"
+#include "GUIContainerWindow.hpp"
 #include "ContainedObjects.hpp"
 #include "GUIScrollableArea.hpp"
 #include "GUIWindowTitleBar.hpp"
@@ -15,38 +15,38 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-    auto GUIInventoryWindow::Initialize(ContainedObjects &containedObjects) -> void {
-        m_guiInventoryWindowArea = std::make_shared<GUIInventoryWindowArea>(this, containedObjects);
-        this->AddChildComponent(m_guiInventoryWindowArea);
+    auto GUIContainerWindow::Initialize(ContainedObjects &containedObjects) -> void {
+        m_guiContainerWindowArea = std::make_shared<GUIContainerWindowArea>(this, containedObjects);
+        this->AddChildComponent(m_guiContainerWindowArea);
     }
 
-    std::shared_ptr<Object> *GUIInventoryWindow::GetObjectPtrPtr(PointF position) {
-        return m_guiInventoryWindowArea->GetObjectPtrPtr(position);
+    std::shared_ptr<Object> *GUIContainerWindow::GetObjectPtrPtr(PointF position) {
+        return m_guiContainerWindowArea->GetObjectPtrPtr(position);
     }
 
-    auto GUIInventoryWindowArea::Initialize(GUIWindow *parentWindow,
+    auto GUIContainerWindowArea::Initialize(GUIWindow *parentWindow,
                                             ContainedObjects &containedObjects) -> void {
-        m_panel = std::make_shared<GUIInventoryWindowPanel>(parentWindow, containedObjects);
+        m_panel = std::make_shared<GUIContainerWindowPanel>(parentWindow, containedObjects);
         this->AddChildComponent(m_panel);
     }
 
-    std::shared_ptr<Object> *GUIInventoryWindowArea::GetObjectPtrPtr(PointF position) {
+    std::shared_ptr<Object> *GUIContainerWindowArea::GetObjectPtrPtr(PointF position) {
         return m_panel->GetObjectPtrPtr(position);
     }
 
-    auto GUIInventoryWindowArea::UpdateDerived() -> void {
+    auto GUIContainerWindowArea::UpdateDerived() -> void {
         GUIScrollableArea::UpdateDerived();
     }
 
-    auto GUIInventoryWindowPanel::Initialize() -> void {
+    auto GUIContainerWindowPanel::Initialize() -> void {
         for (auto i = 0; i < k_maxNumSlots; i++) {
             m_renderIDsSlotsBackground[i] =
-                Hash("GUIInventoryWindowSlotBackground" + std::to_string(i));
-            m_renderIDsSlotsObject[i] = Hash("GUIInventoryWindowSlotobject" + std::to_string(i));
+                Hash("GUIContainerWindowSlotBackground" + std::to_string(i));
+            m_renderIDsSlotsObject[i] = Hash("GUIContainerWindowSlotobject" + std::to_string(i));
         }
     }
 
-    std::shared_ptr<Object> *GUIInventoryWindowPanel::GetObjectPtrPtr(PointF position) {
+    std::shared_ptr<Object> *GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) {
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
         auto marginY{ConvertWidthToHeight(k_margin, Singleton<SDLDevice>().GetWindow())};
@@ -63,7 +63,7 @@ namespace Forradia::Theme0 {
 
         auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
-        auto &objectsInventory{Singleton<Player>().GetObjectsInventoryRef()};
+        auto &objectsContainer{Singleton<Player>().GetObjectsInventoryRef()};
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
@@ -76,7 +76,7 @@ namespace Forradia::Theme0 {
 
                 if (slotArea.Contains(mousePos)) {
 
-                    auto inventoryObject{objectsInventory.GetObject(index)};
+                    auto inventoryObject{objectsContainer.GetObject(index)};
 
                     if (inventoryObject) {
                         return Singleton<Player>().GetObjectsInventoryRef().GetObjectPtrPtr(index);
@@ -88,7 +88,7 @@ namespace Forradia::Theme0 {
         return nullptr;
     }
 
-    auto GUIInventoryWindowPanel::RenderDerived() const -> void {
+    auto GUIContainerWindowPanel::RenderDerived() const -> void {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};
@@ -105,7 +105,7 @@ namespace Forradia::Theme0 {
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto &objectsInventory{Singleton<Player>().GetObjectsInventoryRef()};
+        auto &objectsContainer{Singleton<Player>().GetObjectsInventoryRef()};
 
         auto i{0};
 
@@ -122,7 +122,7 @@ namespace Forradia::Theme0 {
                 if (m_renderIDsSlotsBackground.contains(index)) {
                     renderIDBackground = m_renderIDsSlotsBackground.at(index);
                 } else {
-                    PrintLine("GUIInventoryWindow: Render ID not "
+                    PrintLine("GUIContainerWindow: Render ID not "
                               "found for index: " +
                               std::to_string(index));
                     return;
@@ -132,7 +132,7 @@ namespace Forradia::Theme0 {
                     renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
 
-                auto inventoryObject{objectsInventory.GetObject(index)};
+                auto inventoryObject{objectsContainer.GetObject(index)};
 
                 if (inventoryObject) {
                     int renderIDObject{0};
@@ -140,7 +140,7 @@ namespace Forradia::Theme0 {
                     if (m_renderIDsSlotsObject.contains(index)) {
                         renderIDObject = m_renderIDsSlotsObject.at(index);
                     } else {
-                        PrintLine("GUIInventoryWindow: "
+                        PrintLine("GUIContainerWindow: "
                                   "Render ID not "
                                   "found for index: " +
                                   std::to_string(index));
