@@ -6,6 +6,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+    class ContainedObjects;
+
     /**
      * An object, either in the game world, a container or inventory.
      */
@@ -54,5 +56,6 @@ namespace Forradia::Theme0 {
 
         int m_type{0};
         float m_modelScaling{1.0F};
+        std::shared_ptr<ContainedObjects> m_containedObjects;
     };
 }
