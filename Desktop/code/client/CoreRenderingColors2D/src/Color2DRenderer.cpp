@@ -40,9 +40,11 @@ namespace Forradia {
     auto Color2DRenderer::SetupAttributeLayout() const -> void {
         const int k_stride{7};
 
+        // NOLINTNEXTLINE(performance-no-int-to-ptr)
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 0));
         glEnableVertexAttribArray(0);
+        // NOLINTNEXTLINE(performance-no-int-to-ptr)
         glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               (void *)(sizeof(float) * 3));
         glEnableVertexAttribArray(1);

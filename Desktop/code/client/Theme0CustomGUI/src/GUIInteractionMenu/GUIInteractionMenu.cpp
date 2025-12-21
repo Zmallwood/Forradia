@@ -112,7 +112,8 @@ namespace Forradia::Theme0 {
                                     GetAction<Hash("ActionPickBranch")>(),
                                     GetAction<Hash("ActionPickStone")>(),
                                     GetAction<Hash("ActionChipStone")>(),
-                                    GetAction<Hash("ActionEatRedApple")>()};
+                                    GetAction<Hash("ActionEatRedApple")>(),
+                                    GetAction<Hash("ActionOpenStoneBowl")>()};
 
         auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
         for (auto &action : actions) {
