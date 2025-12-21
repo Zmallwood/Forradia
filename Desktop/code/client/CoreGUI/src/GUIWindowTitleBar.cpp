@@ -4,9 +4,12 @@
  *********************************************************************/
 
 #include "GUIWindowTitleBar.hpp"
+#include "CanvasUtilities.hpp"
+#include "Coloring/Palette.hpp"
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {
@@ -14,8 +17,9 @@ namespace Forradia {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
         AddChildComponent(std::make_shared<GUIButton>(
             uniqueName.data() + std::string("CloseButton"),
-            parentWindowBounds.width - ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()),
-            0.01F, 0.015F, ConvertWidthToHeight(0.015F, _<SDLDevice>().GetWindow()), "X",
+            parentWindowBounds.width - k_closeButtonRightMargin, k_closeButtonTopMargin,
+            k_closeButtonWidth,
+            ConvertWidthToHeight(k_closeButtonWidth, _<SDLDevice>().GetWindow()), "X",
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
@@ -23,10 +27,10 @@ namespace Forradia {
         GUIPanel::RenderDerived();
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
-        _<TextRenderer>().DrawString(k_renderIDWindowTitleText, k_windowTitle,
-                                     parentWindowBounds.x + 0.01F,
-                                     parentWindowBounds.y + 0.01F - k_height, FontSizes::_20, false,
-                                     false, Palette::GetColor<Hash("Yellow")>());
+        _<TextRenderer>().DrawString(
+            k_renderIDWindowTitleText, k_windowTitle, parentWindowBounds.x + k_titleLeftMargin,
+            parentWindowBounds.y + k_titleTopMargin - k_height, FontSizes::_20, false, false,
+            Palette::GetColor<Hash("Yellow")>());
     }
 
     auto GUIWindowTitleBar::GetBounds() const -> RectF {

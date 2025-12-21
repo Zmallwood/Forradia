@@ -25,9 +25,9 @@ namespace Forradia {
          * @param height The height of the window.
          * @param windowTitle The title of the window.
          */
-        GUIWindow(std::string_view uniqueName, float x, float y, float width, float height,
+        GUIWindow(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                   std::string_view windowTitle)
-            : GUIMovablePanel(uniqueName, x, y, width, height) {
+            : GUIMovablePanel(uniqueName, xPos, yPos, width, height) {
             this->Initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
         }
 

@@ -6,25 +6,27 @@
 #pragma once
 
 #include "GUIComponent.hpp"
+#include "Hash.hpp"
 
 namespace Forradia {
     class GUIScrollableArea : public GUIComponent {
       public:
-        GUIScrollableArea(std::string_view uniqueName, float x, float y, float width, float height)
-            : GUIComponent(x, y, width, height),
+        GUIScrollableArea(std::string_view uniqueName, float xPos, float yPos, float width,
+                          float height)
+            : GUIComponent(xPos, yPos, width, height),
               k_renderIDUpArrow(Hash(uniqueName.data() + std::string("_UpArrow"))),
               k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))),
               k_renderIDSlider(Hash(uniqueName.data() + std::string("_Slider"))) {
         }
 
       protected:
-        virtual auto OnMouseDown(Uint8 mouseButton) -> bool override;
+        auto OnMouseDown(Uint8 mouseButton) -> bool override;
 
-        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
-        virtual auto UpdateDerived() -> void override;
+        auto UpdateDerived() -> void override;
 
-        virtual auto Render() const -> void override;
+        auto Render() const -> void override;
 
         auto GetBounds() const -> RectF override;
 
@@ -43,7 +45,7 @@ namespace Forradia {
         const float k_sliderHeight{0.08F};
         float m_scrollPosition{0.0F};
         bool m_movingSlider{false};
-        float m_sliderStartMoveYPos{-1.0f};
-        float m_sliderStartMoveMouseYPos{-1.0f};
+        float m_sliderStartMoveYPos{-1.0F};
+        float m_sliderStartMoveMouseYPos{-1.0F};
     };
 }
