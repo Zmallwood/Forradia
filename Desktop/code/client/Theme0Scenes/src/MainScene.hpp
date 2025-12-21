@@ -10,8 +10,6 @@
 namespace Forradia::Theme0 {
     class GUIInteractionMenu;
     class GUIInventoryWindow;
-    class GUIPlayerBodyWindow;
-    class GUIEquipmentWindow;
 
     /**
      * The main scene is the scene where the actual game is played.
@@ -56,7 +54,5 @@ namespace Forradia::Theme0 {
       private:
         std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu;
         std::shared_ptr<GUIInventoryWindow> m_guiInventoryWindow;
-        std::shared_ptr<GUIPlayerBodyWindow> m_guiPlayerBodyWindow;
-        std::shared_ptr<GUIEquipmentWindow> m_guiEquipmentWindow;
     };
 }

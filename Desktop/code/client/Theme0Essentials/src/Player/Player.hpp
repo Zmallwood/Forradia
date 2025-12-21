@@ -7,7 +7,6 @@
 
 #include "Geometry/Point.hpp"
 #include "PlayerActions/PlayerActionTypes.hpp"
-#include "PlayerBody.hpp"
 #include "PlayerMoveDirections.hpp"
 #include <memory>
 #include <string>
@@ -153,15 +152,6 @@ namespace Forradia::Theme0 {
         }
 
         /**
-         * Gets the body of the player.
-         *
-         * @return The body of the player.
-         */
-        auto &GetBodyRef() {
-            return m_playerBody;
-        }
-
-        /**
          * Gets the objects inventory of the player.
          *
          * @return The objects inventory of the player.
@@ -234,7 +224,6 @@ namespace Forradia::Theme0 {
         float m_movementSpeed{5.0F};
         int m_ticksLastMovement{0};
         Point m_destination{-1, -1};
-        PlayerBody m_playerBody;
         std::shared_ptr<PlayerObjectsInventory> m_playerObjectsInventory;
         int m_experience{0};
         float m_wellBeing{10.0F};

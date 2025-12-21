@@ -6,7 +6,6 @@
 #include "UpdateKeyboardActions.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
-#include "GUIPlayerBodyWindow.hpp"
 #include "GUISystemMenu.hpp"
 #include "Player/Player.hpp"
 #include "Tile.hpp"
@@ -18,8 +17,6 @@ namespace Forradia::Theme0 {
     auto UpdateKeyboardActions(SDL_Keycode key) -> void {
         if (key == SDLK_ESCAPE) {
             Singleton<GUISystemMenu>().ToggleVisibility();
-        } else if (key == SDLK_c) {
-            Singleton<GUIPlayerBodyWindow>().ToggleVisibility();
         } else if (key == SDLK_b) {
             Singleton<GUIInventoryWindow>().ToggleVisibility();
         } else if (key == SDLK_RETURN) {
