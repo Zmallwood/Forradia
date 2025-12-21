@@ -18,7 +18,7 @@ namespace Forradia::Theme0 {
         if (key == SDLK_ESCAPE) {
             Singleton<GUISystemMenu>().ToggleVisibility();
         } else if (key == SDLK_b) {
-            Singleton<GUIInventoryWindow>().ToggleVisibility();
+            GUIInventoryWindow::Instance().ToggleVisibility();
         } else if (key == SDLK_RETURN) {
             if (Singleton<GUIChatBox>().GetInputActive())
                 Singleton<GUIChatBox>().SubmitInput();

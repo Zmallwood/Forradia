@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "GUIInventoryWindow.hpp"
+#include "ContainedObjects.hpp"
 #include "GUIScrollableArea.hpp"
 #include "GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
@@ -14,8 +15,8 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0 {
-    auto GUIInventoryWindow::Initialize() -> void {
-        m_guiInventoryWindowArea = std::make_shared<GUIInventoryWindowArea>(this);
+    auto GUIInventoryWindow::Initialize(ContainedObjects &containedObjects) -> void {
+        m_guiInventoryWindowArea = std::make_shared<GUIInventoryWindowArea>(this, containedObjects);
         this->AddChildComponent(m_guiInventoryWindowArea);
     }
 
@@ -23,8 +24,9 @@ namespace Forradia::Theme0 {
         return m_guiInventoryWindowArea->GetObjectPtrPtr(position);
     }
 
-    auto GUIInventoryWindowArea::Initialize(GUIWindow *parentWindow) -> void {
-        m_panel = std::make_shared<GUIInventoryWindowPanel>(parentWindow);
+    auto GUIInventoryWindowArea::Initialize(GUIWindow *parentWindow,
+                                            ContainedObjects &containedObjects) -> void {
+        m_panel = std::make_shared<GUIInventoryWindowPanel>(parentWindow, containedObjects);
         this->AddChildComponent(m_panel);
     }
 
@@ -105,8 +107,15 @@ namespace Forradia::Theme0 {
 
         auto &objectsInventory{Singleton<Player>().GetObjectsInventoryRef()};
 
+        auto i{0};
+
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
+
+                if (i >= m_containedObjects.Size())
+                    continue;
+                ++i;
+
                 auto index{x + y * numColumns};
                 int renderIDBackground{0};
 

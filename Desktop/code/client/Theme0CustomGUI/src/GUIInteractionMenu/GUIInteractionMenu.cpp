@@ -56,11 +56,11 @@ namespace Forradia::Theme0 {
 
         // First check if clicked in inventory (or other GUI windows)
         auto rightClickedInInventoryWindow{
-            Singleton<GUIInventoryWindow>().GetBounds().Contains(mousePos)};
+            GUIInventoryWindow::Instance().GetBounds().Contains(mousePos)};
 
-        if (Singleton<GUIInventoryWindow>().GetVisible() && rightClickedInInventoryWindow) {
+        if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow) {
             std::vector<int> objectHashes;
-            auto object{Singleton<GUIInventoryWindow>().GetObjectPtrPtr(mousePos)};
+            auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
             if (object) {
                 objectHashes.push_back((*object)->GetType());
                 this->ShowMenuForTileAndObjects(0, objectHashes);
