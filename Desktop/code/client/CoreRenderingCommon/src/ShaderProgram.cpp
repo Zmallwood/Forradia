@@ -8,7 +8,7 @@
 namespace Forradia {
     auto ShaderProgram::Initialize(std::string_view vertexShaderSource,
                                    std::string_view fragmentShaderSource) -> void {
-        auto vertexShader{this->GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
+        auto vertexShader{ShaderProgram::GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
         // If the vertex shader failed.
         if (0 == vertexShader) {
@@ -16,7 +16,7 @@ namespace Forradia {
             return;
         }
 
-        auto fragmentShader{this->GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
+        auto fragmentShader{ShaderProgram::GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
         // If the fragment shader failed.
         if (0 == fragmentShader) {

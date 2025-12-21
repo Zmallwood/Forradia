@@ -5,6 +5,12 @@
 
 #pragma once
 
+#include <string_view>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
+
 namespace Forradia {
     /**
      * Shader program which is used for each renderer.
@@ -33,7 +39,7 @@ namespace Forradia {
          *
          * @return The program ID.
          */
-        auto GetProgramID() const {
+        [[nodiscard]] auto GetProgramID() const {
             return m_programID;
         }
 
@@ -43,7 +49,8 @@ namespace Forradia {
 
         auto Cleanup() -> void;
 
-        auto GetShader(std::string_view shaderSource, int shaderType) const -> GLuint;
+        [[nodiscard]] static auto GetShader(std::string_view shaderSource, int shaderType)
+            -> GLuint;
 
         auto CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
 

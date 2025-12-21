@@ -5,10 +5,12 @@
 
 #pragma once
 
+#include "Geometry/Point.hpp"
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
 #include "PlayerModes.hpp"
 #include "PlayerMoveDirections.hpp"
+#include <string>
 
 namespace Forradia::Theme0 {
     class PlayerObjectsInventory;
@@ -162,7 +164,7 @@ namespace Forradia::Theme0 {
          *
          * @return The objects inventory of the player.
          */
-        auto &GetObjectsInventoryRef() const {
+        auto GetObjectsInventoryRef() const -> PlayerObjectsInventory & {
             return *m_playerObjectsInventory;
         }
 
@@ -201,24 +203,13 @@ namespace Forradia::Theme0 {
             return m_maxWellBeing;
         }
 
-        // auto GetAttackSpeed() const {
-        //   return m_attackSpeed;
-        // }
-
-        // auto GetTicksLastHitAnother() const {
-        //   return m_ticksLastHitAnother;
-        // }
-
-        // void SetTicksLastHitAnother(int value) {
-        //   m_ticksLastHitAnother = value;
-        // }
-
         /**
          * Gets the player actions of the player.
          *
          * @return The player actions of the player.
          */
-        auto &GetPlayerActionsRef() const {
+        auto GetPlayerActionsRef() const
+            -> const std::vector<std::tuple<PlayerActionTypes, std::string, Point>> & {
             return m_playerActions;
         }
 

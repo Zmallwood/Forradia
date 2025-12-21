@@ -7,10 +7,13 @@
 
 #include <cmath>
 #include <memory>
+#include <string_view>
+#include <vector>
 
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
+#include <GL/glext.h>
 // clang-format on
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

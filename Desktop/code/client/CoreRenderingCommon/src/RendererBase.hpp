@@ -51,7 +51,7 @@ namespace Forradia {
          *
          * @return The shader program.
          */
-        auto GetShaderProgram() const {
+        [[nodiscard]] auto GetShaderProgram() const {
             return m_shaderProgram;
         }
 

@@ -4,6 +4,8 @@
  *********************************************************************/
 
 #include "ShaderProgram.hpp"
+#include <GL/glext.h>
+#include <vector>
 
 namespace Forradia {
     auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint {
@@ -19,7 +21,7 @@ namespace Forradia {
             GLint maxLength{0};
             glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
             std::vector<GLchar> infoLog(maxLength);
-            glGetProgramInfoLog(m_programID, maxLength, &maxLength, &infoLog[0]);
+            glGetProgramInfoLog(m_programID, maxLength, &maxLength, infoLog.data());
             glDeleteProgram(m_programID);
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);

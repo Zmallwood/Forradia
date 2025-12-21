@@ -74,14 +74,12 @@ namespace Forradia {
                 xPos -= width / 2.0F;
             }
 
-            std::vector<float> verticesVec;
+            std::vector<float> vertices;
 
-            verticesVec = {xPos,         yPos,          0.0F, color.r, color.g, color.b, color.a,
-                           xPos + width, yPos,          0.0F, color.r, color.g, color.b, color.a,
-                           xPos + width, yPos + height, 0.0F, color.r, color.g, color.b, color.a,
-                           xPos,         yPos + height, 0.0F, color.r, color.g, color.b, color.a};
-
-            auto vertices = verticesVec.data();
+            vertices = {xPos,         yPos,          0.0F, color.r, color.g, color.b, color.a,
+                        xPos + width, yPos,          0.0F, color.r, color.g, color.b, color.a,
+                        xPos + width, yPos + height, 0.0F, color.r, color.g, color.b, color.a,
+                        xPos,         yPos + height, 0.0F, color.r, color.g, color.b, color.a};
 
             //  float vertices[] = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
             //                      x + width, y,          0.0F, c.r, c.g, c.b, c.a,
@@ -95,7 +93,7 @@ namespace Forradia {
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount,
                          indices.data(), GL_DYNAMIC_DRAW);
             glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
-                         vertices, GL_DYNAMIC_DRAW);
+                         vertices.data(), GL_DYNAMIC_DRAW);
 
             this->SetupAttributeLayout();
         }
