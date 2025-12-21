@@ -6,13 +6,14 @@
 #include "Cursor.hpp"
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
 
 namespace Forradia {
     auto Cursor::Initialize() -> void {
-        this->DisableSystemCursor();
+        Cursor::DisableSystemCursor();
     }
 
-    auto Cursor::DisableSystemCursor() const -> void {
+    auto Cursor::DisableSystemCursor() -> void {
         SDL_ShowCursor(SDL_DISABLE);
     }
 

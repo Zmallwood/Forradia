@@ -42,7 +42,7 @@ namespace Forradia {
       private:
         auto Initialize() -> void;
 
-        auto DisableSystemCursor() const -> void;
+        static auto DisableSystemCursor() -> void;
 
         constexpr static float k_cursorSize{0.05F};
         const int k_renderID{Hash("RenderIDCursor")};

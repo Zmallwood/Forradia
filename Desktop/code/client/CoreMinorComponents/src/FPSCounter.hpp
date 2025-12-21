@@ -20,7 +20,7 @@ namespace Forradia {
          * Gets the current FPS.
          * @return The current FPS.
          */
-        auto GetFPS() const {
+        [[nodiscard]] auto GetFPS() const {
             return m_fps;
         }
 

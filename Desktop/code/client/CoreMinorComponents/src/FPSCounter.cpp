@@ -4,6 +4,8 @@
  *********************************************************************/
 
 #include "FPSCounter.hpp"
+#include "Constants.hpp"
+#include "TimeUtilities.hpp"
 
 namespace Forradia {
     auto FPSCounter::Update() -> void {
