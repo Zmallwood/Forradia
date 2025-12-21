@@ -72,12 +72,12 @@ namespace Forradia {
         /**
          * Returns the vertex shader source.
          */
-        auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto GetVSSource() const -> std::string override;
 
         /**
          * Returns the fragment shader source.
          */
-        auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto GetFSSource() const -> std::string override;
 
         /**
          * Does initialization that is specific to this renderer.
@@ -90,13 +90,16 @@ namespace Forradia {
         auto SetupAttributeLayout() const -> void override;
 
       private:
-        auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
+        [[nodiscard]] auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
-        auto CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
-                                       const std::vector<float> &elevations,
-                                       std::vector<Color> colors) const -> std::vector<float>;
+        [[nodiscard]] auto CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
+                                                     float tileSize,
+                                                     const std::vector<float> &elevations,
+                                                     std::vector<Color> colors) const
+            -> std::vector<float>;
 
-        auto CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
+        [[nodiscard]] auto
+        CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
             -> std::vector<float>;
 
         auto CalcTileNormals(const std::vector<float> &verticesNoNormals) const

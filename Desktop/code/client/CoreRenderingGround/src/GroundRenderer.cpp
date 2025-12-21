@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
+#include "CanvasUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 #include "Singleton.hpp"
@@ -50,25 +51,33 @@ namespace Forradia {
         // Set up the attribute layout for the vertex shader.
 
         constexpr int k_stride{11};
+        constexpr int k_positionPosition{0};
+        constexpr int k_positionColor{3};
+        constexpr int k_positionUVs{6};
+        constexpr int k_positionNormals{8};
 
         // Position.
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
-                              (void *)(sizeof(float) * 0));
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                              (void *)(sizeof(float) * k_positionPosition));
         glEnableVertexAttribArray(0);
 
         // Color.
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
-                              (void *)(sizeof(float) * 3));
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                              (void *)(sizeof(float) * k_positionColor));
         glEnableVertexAttribArray(1);
 
         // Texture coordinates.
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
-                              (void *)(sizeof(float) * 6));
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                              (void *)(sizeof(float) * k_positionUVs));
         glEnableVertexAttribArray(2);
 
         // Normals.
         glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
-                              (void *)(sizeof(float) * 8));
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                              (void *)(sizeof(float) * k_positionNormals));
         glEnableVertexAttribArray(3);
     }
 
@@ -77,6 +86,7 @@ namespace Forradia {
     }
 
     auto GroundRenderer::InitializeDerived() -> void {
-        m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
+        m_layoutLocationMVP = glGetUniformLocation(
+            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "MVP");
     }
 }
