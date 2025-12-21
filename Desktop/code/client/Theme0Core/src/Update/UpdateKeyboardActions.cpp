@@ -5,7 +5,7 @@
 
 #include "UpdateKeyboardActions.hpp"
 #include "GUIChatBox.hpp"
-#include "GUIContainerWindow.hpp"
+#include "GUIInventoryWindow.hpp"
 #include "GUISystemMenu.hpp"
 #include "Player/Player.hpp"
 #include "Tile.hpp"
@@ -18,7 +18,7 @@ namespace Forradia::Theme0 {
         if (key == SDLK_ESCAPE) {
             Singleton<GUISystemMenu>().ToggleVisibility();
         } else if (key == SDLK_b) {
-            GUIContainerWindow::Instance().ToggleVisibility();
+            GUIInventoryWindow::Instance().ToggleVisibility();
         } else if (key == SDLK_RETURN) {
             if (Singleton<GUIChatBox>().GetInputActive())
                 Singleton<GUIChatBox>().SubmitInput();

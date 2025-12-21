@@ -5,7 +5,7 @@
 
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
-#include "GUIContainerWindow.hpp"
+#include "GUIInventoryWindow.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
@@ -56,13 +56,13 @@ namespace Forradia::Theme0 {
 
         // First check if clicked in inventory (or other GUI windows)
         auto rightClickedInInventoryWindow{
-            GUIContainerWindow::Instance().GetBounds().Contains(mousePos)};
+            GUIInventoryWindow::Instance().GetBounds().Contains(mousePos)};
 
-        if (GUIContainerWindow::Instance().GetVisible() && rightClickedInInventoryWindow) {
+        if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow) {
             std::vector<int> objectHashes;
             m_clickedCoordinate = {-1, -1};
             m_clickedObjects.clear();
-            auto object{GUIContainerWindow::Instance().GetObjectPtrPtr(mousePos)};
+            auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
             if (object) {
                 objectHashes.push_back((*object)->GetType());
                 m_clickedObjects.push_back(object);

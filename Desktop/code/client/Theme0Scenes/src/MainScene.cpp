@@ -9,11 +9,11 @@
 #include "GUI.hpp"
 #include "GUIButton.hpp"
 #include "GUIChatBox.hpp"
-#include "GUIContainerWindow.hpp"
 #include "GUIExperienceBar.hpp"
 #include "GUIFPSPanel.hpp"
 #include "GUIInteractionMenu/Actions.hpp"
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
+#include "GUIInventoryWindow.hpp"
 #include "GUIPanel.hpp"
 #include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "GUIQuestPanel.hpp"
@@ -39,7 +39,7 @@ namespace Forradia::Theme0 {
         auto btnInventoryWindow{std::make_shared<GUIButton>(
             "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
             ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
-            [] { GUIContainerWindow::Instance().ToggleVisibility(); },
+            [] { GUIInventoryWindow::Instance().ToggleVisibility(); },
             "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
         GetGUI()->AddChildComponent(btnInventoryWindow);
 
@@ -86,9 +86,9 @@ namespace Forradia::Theme0 {
         GetGUI()->OnMouseDown(mouseButton);
         if (GetGUI()->MouseHoveringGUI())
             return;
-        if (GUIContainerWindow::Instance().OnMouseDown(mouseButton))
+        if (GUIInventoryWindow::Instance().OnMouseDown(mouseButton))
             return;
-        if (!GUIContainerWindow::Instance().MouseHoveringGUI())
+        if (!GUIInventoryWindow::Instance().MouseHoveringGUI())
             Singleton<CameraRotator>().OnMouseDown(mouseButton);
     }
 
@@ -100,9 +100,9 @@ namespace Forradia::Theme0 {
         if (clickSpeed < 200)
             if (m_guiInteractionMenu->OnMouseUp(mouseButton, clickSpeed))
                 return;
-        if (GUIContainerWindow::Instance().OnMouseUp(mouseButton, clickSpeed))
+        if (GUIInventoryWindow::Instance().OnMouseUp(mouseButton, clickSpeed))
             return;
-        if (!GUIContainerWindow::Instance().MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
+        if (!GUIInventoryWindow::Instance().MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
             UpdateSetPlayerDestination();
     }
 
@@ -128,7 +128,7 @@ namespace Forradia::Theme0 {
 
     auto MainScene::UpdateDerived() -> void {
         m_guiInteractionMenu->Update();
-        GUIContainerWindow::Instance().Update();
+        GUIInventoryWindow::Instance().Update();
         UpdateMouseMovement();
         UpdateEntitiesMovement();
         // UpdateCameraZoom();
@@ -144,7 +144,7 @@ namespace Forradia::Theme0 {
         this->RenderDerived();
 
         GetGUI()->Render();
-        GUIContainerWindow::Instance().Render();
+        GUIInventoryWindow::Instance().Render();
         m_guiInteractionMenu->Render();
     }
 

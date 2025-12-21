@@ -8,8 +8,6 @@
 #include "GUIPanel.hpp"
 #include "GUIScrollableArea.hpp"
 #include "GUIWindow.hpp"
-#include "Player/Player.hpp"
-#include "Player/PlayerObjectsInventory.hpp"
 
 namespace Forradia::Theme0 {
     class Object;
@@ -22,14 +20,6 @@ namespace Forradia::Theme0 {
      */
     class GUIContainerWindow : public GUIWindow {
       public:
-        static GUIContainerWindow &Instance() {
-            static GUIContainerWindow instance(Singleton<Player>().GetObjectsInventoryRef());
-            return instance;
-        }
-        // Delete copy/move
-        GUIContainerWindow(const GUIContainerWindow &) = delete;
-        GUIContainerWindow &operator=(const GUIContainerWindow &) = delete;
-
         /**
          * Constructor.
          */
