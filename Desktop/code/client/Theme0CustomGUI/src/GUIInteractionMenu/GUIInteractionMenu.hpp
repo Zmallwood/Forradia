@@ -70,5 +70,6 @@ namespace Forradia::Theme0 {
         std::vector<GUIInteractionMenuEntry> m_entries;
         Point m_clickedCoordinate{-1, -1};
         std::unordered_map<int, int> m_timedActions;
+        std::vector<std::shared_ptr<Object> *> m_clickedObjects;
     };
 }

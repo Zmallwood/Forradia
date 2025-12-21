@@ -63,7 +63,7 @@ namespace Forradia::Theme0 {
 
         auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
 
-        auto &objectsContainer{Singleton<Player>().GetObjectsInventoryRef()};
+        auto &objectsContainer{m_containedObjects};
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numColumns; x++) {
@@ -79,7 +79,7 @@ namespace Forradia::Theme0 {
                     auto inventoryObject{objectsContainer.GetObject(index)};
 
                     if (inventoryObject) {
-                        return Singleton<Player>().GetObjectsInventoryRef().GetObjectPtrPtr(index);
+                        return m_containedObjects.GetObjectPtrPtr(index);
                     }
                 }
             }
@@ -105,7 +105,7 @@ namespace Forradia::Theme0 {
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto &objectsContainer{Singleton<Player>().GetObjectsInventoryRef()};
+        auto &objectsContainer{m_containedObjects};
 
         auto i{0};
 

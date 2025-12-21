@@ -59,4 +59,11 @@ namespace Forradia {
         if (m_scenes.contains(m_currentScene))
             m_scenes.at(m_currentScene).Render();
     }
+
+    auto SceneManager::GetScene(std::string_view sceneName) -> IScene * {
+        auto sceneHash{Hash(sceneName)};
+        if (m_scenes.contains(sceneHash))
+            return &m_scenes.at(sceneHash);
+        return nullptr;
+    }
 }

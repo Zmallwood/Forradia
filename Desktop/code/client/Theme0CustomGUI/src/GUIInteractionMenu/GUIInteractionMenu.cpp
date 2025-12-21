@@ -60,9 +60,12 @@ namespace Forradia::Theme0 {
 
         if (GUIContainerWindow::Instance().GetVisible() && rightClickedInInventoryWindow) {
             std::vector<int> objectHashes;
+            m_clickedCoordinate = {-1, -1};
+            m_clickedObjects.clear();
             auto object{GUIContainerWindow::Instance().GetObjectPtrPtr(mousePos)};
             if (object) {
                 objectHashes.push_back((*object)->GetType());
+                m_clickedObjects.push_back(object);
                 this->ShowMenuForTileAndObjects(0, objectHashes);
                 return;
             }
@@ -240,8 +243,12 @@ namespace Forradia::Theme0 {
             if (menuEntryRect.Contains(mousePosition)) {
                 auto worldArea{Singleton<World>().GetCurrentWorldArea()};
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
-                std::vector<std::shared_ptr<Object> *> objects;
-                entry.GetAction()(tile, objects);
+                if (tile) {
+                    m_clickedObjects.clear();
+                    for (auto obj : tile->GetObjectsStack()->GetObjects())
+                        m_clickedObjects.push_back(&obj);
+                }
+                entry.GetAction()(tile, m_clickedObjects);
             }
             this->SetVisible(false);
             ++i;

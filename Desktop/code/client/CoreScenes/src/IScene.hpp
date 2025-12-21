@@ -47,6 +47,15 @@ namespace Forradia {
          */
         virtual auto Render() const -> void;
 
+        /**
+         * Gets the GUI.
+         *
+         * @return The GUI.
+         */
+        auto GetGUI() const -> std::shared_ptr<GUI> {
+            return m_gui;
+        }
+
       protected:
         /**
          * Initializes the scene. Should be specific to the deriving class.
@@ -70,15 +79,6 @@ namespace Forradia {
          * Renders the scene. Should be specific to the deriving class.
          */
         virtual auto RenderDerived() const -> void {
-        }
-
-        /**
-         * Gets the GUI.
-         *
-         * @return The GUI.
-         */
-        auto GetGUI() const -> std::shared_ptr<GUI> {
-            return m_gui;
         }
 
       private:

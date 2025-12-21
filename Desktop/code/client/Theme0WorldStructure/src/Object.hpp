@@ -51,6 +51,10 @@ namespace Forradia::Theme0 {
             return m_modelScaling;
         }
 
+        auto GetContainedObjects() const -> std::shared_ptr<ContainedObjects> {
+            return m_containedObjects;
+        }
+
       private:
         auto Initialize() -> void;
 

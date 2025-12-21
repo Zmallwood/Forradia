@@ -4,13 +4,17 @@
  *********************************************************************/
 
 #include "Actions.hpp"
+#include "GUI.hpp"
 #include "GUIChatBox.hpp"
+#include "GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
+#include "IScene.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
+#include "SceneManager.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
@@ -26,7 +30,18 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    Singleton<GUIChatBox>().Print("You open the stone bowl.");
+                    for (auto &object : objects) {
+                        if ((*object)->GetType() == Hash("ObjectStoneBowl")) {
+                            auto mainScene{Singleton<SceneManager>().GetScene("MainScene")};
+                            auto gui{mainScene->GetGUI()};
+                            auto containerWindow{std::make_shared<GUIContainerWindow>(
+                                *(*object)->GetContainedObjects())};
+                            containerWindow->SetVisible(true);
+                            gui->AddChildComponent(containerWindow);
+                            Singleton<GUIChatBox>().Print("You open the stone bowl.");
+                            break;
+                        }
+                    }
                 }};
     }
 

@@ -53,6 +53,8 @@ namespace Forradia {
          */
         auto RenderCurrentScene() const -> void;
 
+        auto GetScene(std::string_view sceneName) -> IScene *;
+
       private:
         std::unordered_map<int, IScene &> m_scenes;
         int m_currentScene{0};
