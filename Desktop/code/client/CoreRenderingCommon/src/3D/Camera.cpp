@@ -60,7 +60,6 @@ namespace Forradia {
         // of the player's current tile and uses the tile's elevation to set Z.
 
         auto worldArea{Singleton<Theme0::World>().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
         auto rendTileSize{Singleton<Theme0::Theme0Properties>().GetTileSize()};
         auto playerPos{Singleton<Theme0::Player>().GetPosition()};
         auto elevHeight{Singleton<Theme0::Theme0Properties>().GetElevationHeight()};

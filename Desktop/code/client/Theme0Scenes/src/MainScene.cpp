@@ -14,6 +14,7 @@
 #include "GUIInteractionMenu/Actions.hpp"
 #include "GUIInteractionMenu/GUIInteractionMenu.hpp"
 #include "GUIInventoryWindow.hpp"
+#include "GUIPanel.hpp"
 #include "GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "GUIQuestPanel.hpp"
 #include "GUISystemMenu.hpp"
@@ -54,6 +55,19 @@ namespace Forradia::Theme0 {
         GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
         // GetGUI()->AddChildComponent(SingletonPtr<GUIInteractionMenu>());
         GetGUI()->AddChildComponent(SingletonPtr<GUIExperienceBar>());
+
+        auto rightHandSlotPanel{std::make_shared<GUIPanel>(
+            "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
+            ConvertWidthToHeight(0.05F, Singleton<SDLDevice>().GetWindow()),
+            "GUIRightHandSlotBackground")};
+
+        auto leftHandSlotPanel{std::make_shared<GUIPanel>(
+            "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
+            ConvertWidthToHeight(0.05F, Singleton<SDLDevice>().GetWindow()),
+            "GUILeftHandSlotBackground")};
+
+        GetGUI()->AddChildComponent(rightHandSlotPanel);
+        GetGUI()->AddChildComponent(leftHandSlotPanel);
 
         m_guiInventoryWindow = SingletonPtr<GUIInventoryWindow>();
         m_guiInteractionMenu = SingletonPtr<GUIInteractionMenu>();
