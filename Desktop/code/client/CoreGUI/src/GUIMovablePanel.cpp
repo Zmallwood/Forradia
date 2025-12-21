@@ -55,14 +55,14 @@ namespace Forradia {
 
     auto GUIMovablePanel::UpdateDerived() -> void {
         auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-        // auto draggableArea{this->GetDraggableArea()};
+        auto draggableArea{this->GetDraggableArea()};
 
-        // if (draggableArea.Contains(mousePosition)) {
-        //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+        if (draggableArea.Contains(mousePosition)) {
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
 
-        //  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-        //    this->StartMove();
-        //}
+            //  if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
+            //    this->StartMove();
+        }
 
         // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased())
         //   this->StopMove();
