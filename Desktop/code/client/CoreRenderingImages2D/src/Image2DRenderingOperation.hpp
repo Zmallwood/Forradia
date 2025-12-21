@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <GL/gl.h>
+
 namespace Forradia {
     /**
      * A rendering operation for an image.

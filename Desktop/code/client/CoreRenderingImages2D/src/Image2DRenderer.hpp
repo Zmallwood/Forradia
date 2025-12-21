@@ -8,6 +8,7 @@
 #include "Image2DRenderingOperation.hpp"
 #include "RendererBase.hpp"
 #include <GL/gl.h>
+#include <unordered_map>
 
 namespace Forradia {
     /**

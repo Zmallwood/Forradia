@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <unordered_map>
+
 #include "CanvasUtilities.hpp"
 #include "Coloring/Palette.hpp"
 #include "Hash.hpp"

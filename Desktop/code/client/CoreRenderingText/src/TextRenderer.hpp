@@ -5,7 +5,9 @@
 
 #pragma once
 
+#include "Coloring/Palette.hpp"
 #include "FontSizes.hpp"
+#include <unordered_map>
 
 namespace Forradia {
     /**

@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <unordered_map>
+
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
