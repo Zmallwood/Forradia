@@ -66,27 +66,27 @@ namespace Forradia {
 
         auto bounds{GUIComponent::GetBounds()};
 
-        // if (upArrowBounds.Contains(mousePos)) {
-        //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-        //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        //     m_scrollPosition -= 0.05F;
-        //   }
-        // } else if (downArrowBounds.Contains(mousePos)) {
-        //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-        //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
-        //     m_scrollPosition += 0.05F;
-        //   }
-        // } else if (sliderBounds.Contains(mousePos)) {
-        //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-        //   if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired() && !m_movingSlider) {
-        //     m_movingSlider = true;
-        //     m_sliderStartMoveYPos = m_scrollPosition;
-        //     m_sliderStartMoveMouseYPos = mousePos.y;
-        //   }
-        // }
+        if (upArrowBounds.Contains(mousePos)) {
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+            //     m_scrollPosition -= 0.05F;
+            // }
+        } else if (downArrowBounds.Contains(mousePos)) {
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired()) {
+            //     m_scrollPosition += 0.05F;
+            // }
+        } else if (sliderBounds.Contains(mousePos)) {
+            _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenFired() && !m_movingSlider) {
+            //     m_movingSlider = true;
+            //     m_sliderStartMoveYPos = m_scrollPosition;
+            //     m_sliderStartMoveMouseYPos = mousePos.y;
+            // }
+        }
         // if (_<MouseInput>().GetLeftMouseButtonRef().HasBeenReleased()) {
-        //  m_movingSlider = false;
-        //}
+        //     m_movingSlider = false;
+        // }
 
         if (m_movingSlider) {
             auto delta{(mousePos.y - m_sliderStartMoveMouseYPos)};

@@ -48,7 +48,7 @@ namespace Forradia::Theme0 {
       protected:
         auto UpdateDerived() -> void override;
 
-        auto GetBounds() const -> RectF override;
+        // auto GetBounds() const -> RectF override;
 
       private:
         auto Initialize(GUIWindow *parentWindow) -> void;
