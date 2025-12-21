@@ -11,6 +11,10 @@
 #include <ranges>
 #include <vector>
 
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <fmt/format.h>

@@ -38,6 +38,7 @@ namespace Forradia {
         const int k_renderIDUpArrow;
         const int k_renderIDDownArrow;
         const int k_renderIDSlider;
+        const float k_scrollbarMoveStepSize{0.05F};
         const float k_scrollbarWidth{0.02F};
         const float k_sliderHeight{0.08F};
         float m_scrollPosition{0.0F};

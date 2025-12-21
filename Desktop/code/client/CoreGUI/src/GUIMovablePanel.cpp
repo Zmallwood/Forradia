@@ -5,8 +5,10 @@
 
 #include "GUIMovablePanel.hpp"
 #include "Cursor.hpp"
+#include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "Singleton.hpp"
+#include <ranges>
 
 namespace Forradia {
     auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
@@ -53,7 +55,7 @@ namespace Forradia {
 
     auto GUIMovablePanel::UpdateDerived() -> void {
         auto mousePosition{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
-        auto draggableArea{this->GetDraggableArea()};
+        // auto draggableArea{this->GetDraggableArea()};
 
         // if (draggableArea.Contains(mousePosition)) {
         //   _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);

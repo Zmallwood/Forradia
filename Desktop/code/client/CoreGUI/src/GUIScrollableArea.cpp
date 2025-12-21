@@ -11,6 +11,8 @@
 #include "Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
+#include "Singleton.hpp"
+#include <GL/gl.h>
 
 namespace Forradia {
     auto GUIScrollableArea::OnMouseDown(Uint8 mouseButton) -> bool {
@@ -25,10 +27,10 @@ namespace Forradia {
 
         if (upArrowBounds.Contains(mousePos)) {
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-            m_scrollPosition -= 0.05F;
+            m_scrollPosition -= k_scrollbarMoveStepSize;
         } else if (downArrowBounds.Contains(mousePos)) {
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-            m_scrollPosition += 0.05F;
+            m_scrollPosition += k_scrollbarMoveStepSize;
         } else if (sliderBounds.Contains(mousePos)) {
             _<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
             m_movingSlider = true;
@@ -104,17 +106,17 @@ namespace Forradia {
         auto bounds{GUIComponent::GetBounds()};
 
         // Note: origin is bottom-left
-        auto x{bounds.x * canvasSize.width};
-        auto y{bounds.y * canvasSize.height};
+        auto xPos{bounds.x * canvasSize.width};
+        auto yPos{bounds.y * canvasSize.height};
         auto width{bounds.width * canvasSize.width};
         auto height{bounds.height * canvasSize.height};
-        glScissor(x, canvasSize.height - y - height, width, height);
+        glScissor(xPos, canvasSize.height - yPos - height, width, height);
 
         this->RenderDerived();
 
         auto childComponents{this->GetChildComponents()};
 
-        for (auto component : childComponents)
+        for (const auto &component : childComponents)
             component->Render();
 
         glDisable(GL_SCISSOR_TEST);
