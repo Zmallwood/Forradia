@@ -18,7 +18,7 @@ namespace Forradia {
          * Default constructor
          */
         Cursor() {
-            this->Initialize();
+            Cursor::Initialize();
         }
 
         /**
@@ -40,7 +40,7 @@ namespace Forradia {
         }
 
       private:
-        auto Initialize() -> void;
+        static auto Initialize() -> void;
 
         static auto DisableSystemCursor() -> void;
 

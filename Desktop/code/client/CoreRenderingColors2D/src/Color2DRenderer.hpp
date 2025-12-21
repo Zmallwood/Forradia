@@ -78,7 +78,7 @@ namespace Forradia {
 
         auto SetupState() const -> void;
 
-        auto RestoreState() const -> void;
+        static auto RestoreState() -> void;
 
         auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 

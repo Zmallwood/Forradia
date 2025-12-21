@@ -86,6 +86,6 @@ namespace Forradia {
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->RestoreState();
+        Color2DRenderer::RestoreState();
     }
 }

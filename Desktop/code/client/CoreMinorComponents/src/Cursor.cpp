@@ -4,7 +4,9 @@
  *********************************************************************/
 
 #include "Cursor.hpp"
+#include "CanvasUtilities.hpp"
 #include "Image2DRenderer.hpp"
+#include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "Singleton.hpp"
 
