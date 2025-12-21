@@ -6,6 +6,8 @@
 #pragma once
 
 #include <map>
+#include <memory>
+#include <set>
 
 #include <SDL2/SDL.h>
 

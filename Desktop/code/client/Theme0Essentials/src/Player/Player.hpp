@@ -8,7 +8,6 @@
 #include "Geometry/Point.hpp"
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerBody.hpp"
-#include "PlayerModes.hpp"
 #include "PlayerMoveDirections.hpp"
 #include <memory>
 #include <string>
@@ -238,7 +237,6 @@ namespace Forradia::Theme0 {
         PlayerBody m_playerBody;
         std::shared_ptr<PlayerObjectsInventory> m_playerObjectsInventory;
         int m_experience{0};
-        // PlayerModes m_playerMode{PlayerModes::Interaction};
         float m_wellBeing{10.0F};
         float m_maxWellBeing{10.0F};
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions;

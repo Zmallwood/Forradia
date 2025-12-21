@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "Camera.hpp"
+#include "CanvasUtilities.hpp"
 #include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "StdAfx.hpp"
@@ -11,6 +12,7 @@
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Forradia {
     auto Camera::GetViewMatrix() const -> glm::mat4 {
@@ -23,7 +25,9 @@ namespace Forradia {
 
     auto Camera::GetProjectionMatrix() -> glm::mat4 {
         auto aspectRatio{CalcAspectRatio(Singleton<SDLDevice>().GetWindow())};
-        return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, 0.1F, 100.0F);
+        constexpr float k_near{0.1F};
+        constexpr float k_far{100.0F};
+        return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, k_near, k_far);
     }
 
     auto Camera::GetPosition() const -> Point3F {

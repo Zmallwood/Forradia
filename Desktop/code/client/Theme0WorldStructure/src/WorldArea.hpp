@@ -5,6 +5,11 @@
 
 #pragma once
 
+#include "Geometry/Point.hpp"
+#include <map>
+#include <memory>
+#include <set>
+
 namespace Forradia::Theme0 {
     class Tile;
     class Entity;

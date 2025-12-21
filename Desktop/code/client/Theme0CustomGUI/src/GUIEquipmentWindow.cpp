@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#pragma once
+#include "GUIEquipmentWindow.hpp"
 
 namespace Forradia::Theme0 {
-    // enum class PlayerModes {
-    //   Interaction,
-    //   Battle
-    // };
+    auto GUIEquipmentWindow::Initialize() -> void {
+    }
 }

@@ -9,6 +9,7 @@
 #include "GUI.hpp"
 #include "GUIButton.hpp"
 #include "GUIChatBox.hpp"
+#include "GUIEquipmentWindow.hpp"
 #include "GUIExperienceBar.hpp"
 #include "GUIFPSPanel.hpp"
 #include "GUIInteractionMenu/Actions.hpp"
@@ -35,10 +36,16 @@ namespace Forradia::Theme0 {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
         GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
 
+        auto btnGUIPlayerEquipmentWindow{std::make_shared<GUIButton>(
+            "MainSceneButtonEquipmentWin", 0.71f, 0.9f, 0.05f,
+            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
+            [] { Singleton<GUIEquipmentWindow>().ToggleVisibility(); },
+            "GUIButtonEquipmentBackground", "GUIButtonEquipmentHoveredBackground")};
+        GetGUI()->AddChildComponent(btnGUIPlayerEquipmentWindow);
+
         auto btnGUIPlayerBodyWindow{std::make_shared<GUIButton>(
             "MainSceneButtonPlayerBodyWin", 0.78f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "",
-            [] { Singleton<GUIPlayerBodyWindow>().ToggleVisibility(); },
+            ConvertWidthToHeight(0.05f, Singleton<SDLDevice>().GetWindow()), "", [] {},
             "GUIButtonPlayerBodyBackground", "GUIButtonPlayerBodyHoveredBackground")};
         GetGUI()->AddChildComponent(btnGUIPlayerBodyWindow);
 
@@ -66,6 +73,7 @@ namespace Forradia::Theme0 {
         m_guiInventoryWindow = SingletonPtr<GUIInventoryWindow>();
         m_guiInteractionMenu = SingletonPtr<GUIInteractionMenu>();
         m_guiPlayerBodyWindow = SingletonPtr<GUIPlayerBodyWindow>();
+        m_guiEquipmentWindow = SingletonPtr<GUIEquipmentWindow>();
     }
 
     auto MainScene::OnEnterDerived() -> void {
@@ -83,6 +91,8 @@ namespace Forradia::Theme0 {
             return;
         if (m_guiInventoryWindow->OnMouseDown(mouseButton))
             return;
+        if (m_guiEquipmentWindow->OnMouseDown(mouseButton))
+            return;
         if (!m_guiInventoryWindow->MouseHoveringGUI())
             Singleton<CameraRotator>().OnMouseDown(mouseButton);
     }
@@ -99,8 +109,11 @@ namespace Forradia::Theme0 {
                 return;
         if (m_guiInventoryWindow->OnMouseUp(mouseButton, clickSpeed))
             return;
+        if (m_guiEquipmentWindow->OnMouseUp(mouseButton, clickSpeed))
+            return;
         if (!m_guiInventoryWindow->MouseHoveringGUI() &&
-            !m_guiPlayerBodyWindow->MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
+            !m_guiPlayerBodyWindow->MouseHoveringGUI() &&
+            !m_guiEquipmentWindow->MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
             UpdateSetPlayerDestination();
     }
 
@@ -128,6 +141,7 @@ namespace Forradia::Theme0 {
         m_guiInteractionMenu->Update();
         m_guiInventoryWindow->Update();
         m_guiPlayerBodyWindow->Update();
+        m_guiEquipmentWindow->Update();
         UpdateMouseMovement();
         UpdateEntitiesMovement();
         // UpdateCameraZoom();
@@ -146,6 +160,7 @@ namespace Forradia::Theme0 {
         m_guiInventoryWindow->Render();
         m_guiInteractionMenu->Render();
         m_guiPlayerBodyWindow->Render();
+        m_guiEquipmentWindow->Render();
     }
 
     auto MainScene::RenderDerived() const -> void {

@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia ::Theme0 {
+namespace Forradia::Theme0 {
     /**
      * Represents a body part of the player.
      * TODO: Decide if should keep this, and if so, if should also be used for other entities.
