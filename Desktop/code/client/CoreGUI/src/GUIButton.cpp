@@ -11,7 +11,7 @@
 #include "TextRenderer.hpp"
 
 namespace Forradia {
-    auto GUIButton::OnMouseDown(Uint8 mouseButton) -> bool {
+    auto GUIButton::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
         if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
             return false;
 

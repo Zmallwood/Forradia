@@ -33,6 +33,8 @@ namespace Forradia {
     }
 
     auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+        this->StopMove();
+
         if (!this->GetVisible())
             return false;
 
@@ -42,8 +44,6 @@ namespace Forradia {
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
             if (childComponent->OnMouseUp(mouseButton, clickSpeed))
                 return true;
-
-        this->StopMove();
 
         auto mousePos{GetNormallizedMousePosition(_<SDLDevice>().GetWindow())};
         if (GetBounds().Contains(mousePos)) {

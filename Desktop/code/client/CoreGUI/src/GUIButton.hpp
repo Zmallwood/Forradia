@@ -39,7 +39,7 @@ namespace Forradia {
         }
 
       protected:
-        auto OnMouseDown(Uint8 mouseButton) -> bool override;
+        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         /**
          * Update tasks specific to the button, called by the GUIComponent base class.
