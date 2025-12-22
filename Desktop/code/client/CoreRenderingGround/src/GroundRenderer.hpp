@@ -24,7 +24,7 @@ namespace Forradia {
      */
     class GroundRenderer : public RendererBase {
       public:
-        static GroundRenderer &Instance() {
+        static auto Instance() -> GroundRenderer & {
             static GroundRenderer instance;
             return instance;
         }
@@ -32,7 +32,7 @@ namespace Forradia {
         // Delete copy/move
         GroundRenderer(const GroundRenderer &) = delete;
 
-        GroundRenderer &operator=(const GroundRenderer &) = delete;
+        auto operator=(const GroundRenderer &) -> GroundRenderer & = delete;
 
         GroundRenderer() = default;
 
