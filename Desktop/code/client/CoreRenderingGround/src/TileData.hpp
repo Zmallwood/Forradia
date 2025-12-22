@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Coloring/Palette.hpp"
+#include "Hash.hpp"
 #include <vector>
 
 namespace Forradia {
@@ -37,7 +38,7 @@ namespace Forradia {
         /**
          * The tile size.
          */
-        float tileSize{0.0f};
+        float tileSize{0.0F};
 
         /**
          * The elevations.

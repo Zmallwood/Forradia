@@ -23,6 +23,7 @@ namespace Forradia {
 
         // Delete copy/move
         Image2DRenderer(const Image2DRenderer &) = delete;
+
         Image2DRenderer &operator=(const Image2DRenderer &) = delete;
 
         Image2DRenderer() = default;
@@ -116,7 +117,7 @@ namespace Forradia {
 
         auto SetupState() const -> void;
 
-        auto RestoreState() const -> void;
+        auto static RestoreState() -> void;
 
         auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 

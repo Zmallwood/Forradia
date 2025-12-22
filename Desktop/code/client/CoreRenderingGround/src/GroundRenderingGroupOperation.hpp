@@ -6,6 +6,7 @@
 #pragma once
 
 #include "TileDrawGroup.hpp"
+#include <unordered_map>
 
 namespace Forradia {
     /**

@@ -6,6 +6,10 @@
 #pragma once
 
 #include "TileData.hpp"
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia {
     /**

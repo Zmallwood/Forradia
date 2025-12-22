@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Geometry/Size.hpp"
+
 namespace Forradia::Theme0 {
     /**
      * Class for storing theme 0 properties.

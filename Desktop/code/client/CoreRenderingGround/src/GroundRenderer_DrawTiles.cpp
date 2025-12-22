@@ -27,13 +27,13 @@ namespace Forradia {
         if (false == tileIsCached || forceUpdate) {
             std::unordered_map<int, std::vector<TileData>> tileDataByTexture;
 
-            for (auto i = 0; i < tiles.size(); i++) {
-                auto textureNameHash = tiles.at(i).imageNameHash;
+            for (const auto &tile : tiles) {
+                auto textureNameHash = tile.imageNameHash;
 
                 if (!tileDataByTexture.contains(textureNameHash))
                     tileDataByTexture[textureNameHash] = std::vector<TileData>();
 
-                tileDataByTexture[textureNameHash].push_back(tiles.at(i));
+                tileDataByTexture[textureNameHash].push_back(tile);
             }
 
             std::unordered_map<int, TileDrawGroup> tilesByTexture;
@@ -57,7 +57,7 @@ namespace Forradia {
                 std::vector<float> combinedVertices;
                 std::vector<unsigned short> combinedIndices;
 
-                for (auto tile : tileData) {
+                for (const auto &tile : tileData) {
                     auto xCoordinate{tile.xCoordinate};
                     auto yCoordinate{tile.yCoordinate};
 
@@ -66,15 +66,13 @@ namespace Forradia {
                     auto elevations{tile.elevations};
 
                     // Calculate the vertices without normals.
-                    auto verticesNoNormals{this->CalcTileVerticesNoNormals(
+                    auto verticesNoNormals{GroundRenderer::CalcTileVerticesNoNormals(
                         xCoordinate, yCoordinate, tileSize, elevations,
                         {tile.color00, tile.color10, tile.color11, tile.color01})};
 
-                    auto verticesCount{4};
-                    auto indicesCount{6};
-
                     // Calculate the vertices with normals.
-                    auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
+                    auto verticesVector{
+                        GroundRenderer::CalcTileVerticesWithNormals(verticesNoNormals)};
 
                     // Add vertices to the combined buffer.
                     combinedVertices.insert(combinedVertices.end(), verticesVector.begin(),
@@ -113,13 +111,14 @@ namespace Forradia {
 
             m_groupOperationsCache[uniqueRenderID] = groupOperation;
         } else {
-            groupOperation = m_groupOperationsCache.at(uniqueRenderID);
+            groupOperation.tilesByTexture =
+                m_groupOperationsCache.at(uniqueRenderID).tilesByTexture;
         }
 
         // Calculate the MVP matrix.
-        auto modelMatrix{glm::mat4(1.0f)};
+        auto modelMatrix{glm::mat4(1.0F)};
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
+        auto projectionMatrix{Camera::GetProjectionMatrix()};
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
@@ -133,7 +132,7 @@ namespace Forradia {
 
             auto group = entry.second;
 
-            auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
+            auto textureID{TextureBank::GetTexture(imageNameHash)};
             glBindTexture(GL_TEXTURE_2D, textureID);
 
             glBindVertexArray(group.vao);

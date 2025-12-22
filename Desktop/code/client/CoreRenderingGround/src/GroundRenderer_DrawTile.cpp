@@ -59,7 +59,7 @@ namespace Forradia {
             auto indicesCount{4};
 
             // Calculate the vertices with normals.
-            auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
+            auto verticesVector{GroundRenderer::CalcTileVerticesWithNormals(verticesNoNormals)};
 
             constexpr int k_numFlotsPerVertex{11};
 
