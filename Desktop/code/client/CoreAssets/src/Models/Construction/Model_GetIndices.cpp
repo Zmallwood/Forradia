@@ -10,8 +10,7 @@
 namespace Forradia {
     auto Model::GetIndices(aiMesh *mesh) -> std::vector<unsigned int> {
         if (mesh == nullptr) {
-            PrintError("mesh is null");
-            return {};
+            ThrowError("mesh is null");
         }
 
         std::vector<unsigned int> indices;

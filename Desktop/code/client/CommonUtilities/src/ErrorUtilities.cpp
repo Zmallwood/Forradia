@@ -8,9 +8,9 @@
 namespace Forradia {
     void ThrowError(std::string_view message, std::source_location loc) {
         auto filePath{std::string(loc.file_name())};
-        auto onlyName{std::string(path.substr(path.find_last_of('/') + 1))};
-        std::cerr << "Error at " << onlyName + ", line " << loc.line() << ":\n"
-                  << message << std::endl;
-        throw std::runtime_error(std::string(message));
+        auto onlyName{std::string(filePath.substr(filePath.find_last_of('/') + 1))};
+        auto fullMessage{std::string("Error occurred at ") + onlyName + ", line " +
+                         std::to_string(loc.line()) + ":\n\"" + message.data() + "\""};
+        throw std::runtime_error(fullMessage);
     }
 }

@@ -28,8 +28,6 @@ namespace Forradia {
               textures(std::move(textures)) {
         }
 
-        GLMMesh() = default;
-
         std::vector<GLMVertex> vertices{};   ///< The vertices.
         std::vector<unsigned int> indices{}; ///< The indices.
         std::vector<Texture> textures{};     ///< The textures.

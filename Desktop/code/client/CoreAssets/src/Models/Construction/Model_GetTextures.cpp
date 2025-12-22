@@ -10,12 +10,12 @@
 namespace Forradia {
     auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture> {
         if (mesh == nullptr) {
-            PrintError("mesh is nullptr");
+            ThrowError("mesh is nullptr");
             return {};
         }
 
         if (scene == nullptr) {
-            PrintError("scene is nullptr");
+            ThrowError("scene is nullptr");
             return {};
         }
 

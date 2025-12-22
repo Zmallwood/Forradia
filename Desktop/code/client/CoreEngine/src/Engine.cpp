@@ -51,7 +51,7 @@ namespace Forradia {
                 SDLDevice::Instance().PresentCanvas();
             }
         } catch (std::exception &e) {
-            PrintLine("An error occured: " + std::string(e.what()));
+            PrintLine("Caught exception: " + std::string(e.what()));
         }
     }
 

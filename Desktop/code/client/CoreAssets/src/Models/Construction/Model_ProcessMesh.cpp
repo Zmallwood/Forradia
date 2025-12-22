@@ -10,13 +10,11 @@ namespace Forradia {
     auto Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh {
         if (mesh == nullptr) {
-            PrintError("mesh is nullptr");
-            return {};
+            ThrowError("mesh is nullptr");
         }
 
         if (scene == nullptr) {
-            PrintError("scene is nullptr");
-            return {};
+            ThrowError("scene is nullptr");
         }
 
         auto vertices{Model::GetVertices(mesh, transformation)};
