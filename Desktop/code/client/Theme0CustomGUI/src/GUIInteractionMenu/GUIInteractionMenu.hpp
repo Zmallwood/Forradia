@@ -77,6 +77,8 @@ namespace Forradia::Theme0
          */
         auto Initialize() -> void;
 
+        virtual auto UpdateDerived() -> void override;
+
         /**
          * Does render logic that is specific to the interaction menu.
          */

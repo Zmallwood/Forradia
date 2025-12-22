@@ -99,6 +99,18 @@ namespace Forradia::Palette
     }
 
     template <>
+    auto GetColor<Hash("MildBlueTransparent")>() -> Color
+    {
+        auto color{GetColor<Hash("MildBlue")>()};
+
+        const auto alpha{0.3F};
+
+        color.a = alpha;
+
+        return color;
+    }
+
+    template <>
     auto GetColor<Hash("LightBlue")>() -> Color
     {
         const auto red{0.4F};

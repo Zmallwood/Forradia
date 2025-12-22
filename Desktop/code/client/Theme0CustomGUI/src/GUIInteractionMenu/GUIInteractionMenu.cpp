@@ -6,6 +6,7 @@
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
 #include "Color2DRenderer.hpp"
+#include "Cursor.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "MouseUtilities.hpp"
@@ -278,6 +279,24 @@ namespace Forradia::Theme0
         this->SetVisible(false);
     }
 
+    auto GUIInteractionMenu::UpdateDerived() -> void
+    {
+        GUIPanel::UpdateDerived();
+
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
+        auto bounds{this->GetBounds()};
+
+        bounds.y += k_lineHeight + 0.01F;
+
+        bounds.height -= k_lineHeight + 2 * 0.01F;
+
+        if (bounds.Contains(mousePos))
+        {
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+        }
+    }
+
     auto GUIInteractionMenu::RenderDerived() const -> void
     {
         GUIPanel::RenderDerived();
@@ -300,8 +319,8 @@ namespace Forradia::Theme0
             if (rowBounds.Contains(mousePos))
             {
                 Color2DRenderer::Instance().DrawFilledRectangle(
-                    k_renderIDHoveredRow, Palette::GetColor<Hash("MildBlue")>(), rowBounds.x,
-                    rowBounds.y, rowBounds.width, rowBounds.height);
+                    k_renderIDHoveredRow, Palette::GetColor<Hash("MildBlueTransparent")>(),
+                    rowBounds.x, rowBounds.y, rowBounds.width, rowBounds.height, true);
             }
 
             TextRenderer::Instance().DrawString(
