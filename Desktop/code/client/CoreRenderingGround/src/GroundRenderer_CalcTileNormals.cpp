@@ -21,18 +21,18 @@ namespace Forradia {
         std::unordered_map<int, std::unordered_map<int, glm::vec3>> v;
 
         // Loop through the vertices and store them in the map.
-        for (auto y = 0; y < 3; y++) {
-            for (auto x = 0; x < 3; x++) {
+        for (auto yIdx = 0; yIdx < 3; yIdx++) {
+            for (auto xIdx = 0; xIdx < 3; xIdx++) {
                 // Calculate the index of the vertex.
-                auto i{y * 3 + x};
+                auto idx{yIdx * 3 + xIdx};
 
                 // Get the vertex coordinates.
-                auto vX{verticesNoNormals[i * k_vertexStride + 0]};
-                auto vY{verticesNoNormals[i * k_vertexStride + 1]};
-                auto vZ{verticesNoNormals[i * k_vertexStride + 2]};
+                auto vertX{verticesNoNormals[idx * k_vertexStride + 0]};
+                auto vertY{verticesNoNormals[idx * k_vertexStride + 1]};
+                auto vertZ{verticesNoNormals[idx * k_vertexStride + 2]};
 
                 // Store the vertex coordinates in the map.
-                v[x][y] = glm::vec3{vX, vY, vZ};
+                v[xIdx][yIdx] = glm::vec3{vertX, vertY, vertZ};
             }
         }
 
@@ -43,10 +43,10 @@ namespace Forradia {
         auto normal01{ComputeNormal(v[1][1], v[0][1], v[0][2])};
 
         // Invert the z-component of the normals.
-        normal00.z *= -1.0f;
-        normal10.z *= -1.0f;
-        normal11.z *= -1.0f;
-        normal01.z *= -1.0f;
+        normal00.z *= -1.0F;
+        normal10.z *= -1.0F;
+        normal11.z *= -1.0F;
+        normal01.z *= -1.0F;
 
         // Group the normals and return them.
         auto normals{std::vector<glm::vec3>{normal00, normal10, normal11, normal01}};

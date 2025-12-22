@@ -10,6 +10,7 @@
 #include "RendererBase.hpp"
 #include "TileDrawGroup.hpp"
 #include <glm/glm.hpp>
+#include <unordered_map>
 #include <vector>
 
 namespace Forradia {
@@ -102,10 +103,10 @@ namespace Forradia {
         CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
             -> std::vector<float>;
 
-        auto CalcTileNormals(const std::vector<float> &verticesNoNormals) const
+        [[nodiscard]] auto CalcTileNormals(const std::vector<float> &verticesNoNormals) const
             -> std::vector<glm::vec3>;
 
-        static constexpr unsigned short k_indices[] = {0, 1, 2, 3};
+        static constexpr std::array<unsigned short, 4> k_indices = {0, 1, 2, 3};
         std::unordered_map<int, GroundRenderingOperation> m_operationsCache;
         GLint m_layoutLocationMVP;
         std::unordered_map<int, GroundRenderingGroupOperation> m_groupOperationsCache;

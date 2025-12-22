@@ -64,8 +64,8 @@ namespace Forradia {
             auto vertices{verticesVector.data()};
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount, k_indices,
-                         GL_STATIC_DRAW);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount,
+                         k_indices.data(), GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount, vertices,
                          GL_STATIC_DRAW);
