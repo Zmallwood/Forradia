@@ -227,8 +227,8 @@ namespace Forradia::Theme0 {
     }
 
     template <>
-    auto GetAction<Hash("ActionChipStone")>() -> Action {
-        return {.label = "Chip stone",
+    auto GetAction<Hash("ActionMineStone")>() -> Action {
+        return {.label = "Mine stone",
                 .groundMatches = {},
                 .objectMatches = {Hash("ObjectStoneBoulder")},
                 .objectsInInventory = {Hash("ObjectStonePickaxe")},
@@ -238,7 +238,7 @@ namespace Forradia::Theme0 {
 
                     inventory.AddObject("ObjectStone");
 
-                    GUIChatBox::Instance().Print("You chip some stone.");
+                    GUIChatBox::Instance().Print("You mine some stone.");
                     Player::Instance().AddExperience(10);
                     Player::Instance().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
                 }};

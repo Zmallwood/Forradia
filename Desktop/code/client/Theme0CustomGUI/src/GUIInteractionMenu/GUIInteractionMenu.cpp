@@ -113,7 +113,7 @@ namespace Forradia::Theme0 {
                                     GetAction<Hash("ActionCraftStoneBowl")>(),
                                     GetAction<Hash("ActionPickBranch")>(),
                                     GetAction<Hash("ActionPickStone")>(),
-                                    GetAction<Hash("ActionChipStone")>(),
+                                    GetAction<Hash("ActionMineStone")>(),
                                     GetAction<Hash("ActionEatRedApple")>(),
                                     GetAction<Hash("ActionOpenStoneBowl")>()};
 

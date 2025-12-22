@@ -55,9 +55,9 @@ namespace Forradia::Theme0 {
         bool m_numStonePicked{false};
     };
 
-    class CraftStoneBowl : public Quest {
+    class CraftStoneBowlQuest : public Quest {
       public:
-        CraftStoneBowl() {
+        CraftStoneBowlQuest() {
             this->name = "Craft Stone Bowl";
             this->description = "Craft a stone bowl.";
         }

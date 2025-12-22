@@ -98,7 +98,7 @@ namespace Forradia::Theme0 {
         return "Craft a stone pickaxe out of the branch and stone.";
     }
 
-    auto CraftStoneBowl::Update() -> void {
+    auto CraftStoneBowlQuest::Update() -> void {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto i{0};
@@ -120,7 +120,7 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto CraftStoneBowl::GetStatus() const -> std::string {
+    auto CraftStoneBowlQuest::GetStatus() const -> std::string {
         if (!m_stonedMined)
             return "Mine a stone.";
 
