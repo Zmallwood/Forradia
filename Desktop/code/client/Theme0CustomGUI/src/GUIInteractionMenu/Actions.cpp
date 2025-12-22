@@ -58,7 +58,6 @@ namespace Forradia::Theme0 {
                         }
                     }
                     Singleton<GUIChatBox>().Print("You eat a red apple.");
-                    // Singleton<Player>().AddExperience(10);
                     // Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
                     // "ObjectStoneBowl");
                 }};
@@ -291,26 +290,6 @@ namespace Forradia::Theme0 {
                     Singleton<GUIChatBox>().Print("You plow the land.");
                 }};
     }
-    //
-    //  template <>
-    //  auto GetAction<Hash("Pick up")>() -> Action {
-    //    return {.groundMatches = {}, .objectMatches = {}, .objectsInInventory = {}, .action = []()
-    //    {
-    //              auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
-    //              auto worldArea{Singleton<World>().GetCurrentWorldArea()};
-    //              auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
-    //
-    //              if (tile) {
-    //                auto objectsStack{tile->GetObjectsStack()};
-    //                auto object{objectsStack->PopObject()};
-    //
-    //                if (object) {
-    //                  auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
-    //                  inventory.AddObject(object->GetType());
-    //                }
-    //              }
-    //            }};
-    //  }
 
     // template <>
     // auto GetAction<Hash("ActionClaimLand")>() -> Action {
