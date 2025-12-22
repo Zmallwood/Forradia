@@ -11,6 +11,7 @@
 #include "ObjectIndex.hpp"
 #include "Textures/TextureBank.hpp"
 #include "Theme0Properties.hpp"
+#include <glm/gtx/transform.hpp>
 
 namespace Forradia {
     auto ModelRenderer::DrawModel(int modelNameHash, float xPos, float yPos, float elevation,
@@ -22,7 +23,7 @@ namespace Forradia {
         GLuint vbo;
 
         auto model{ModelBank::Instance().GetModel(modelNameHash)};
-        auto &meshes{model->GetMeshesRef()};
+        const auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
         if (this->DrawingOperationIsCached(modelNameHash)) {
@@ -68,9 +69,9 @@ namespace Forradia {
                     Theme0::CreatureIndex::Instance().GetModelScaling(modelNameHash);
 
             // For each mesh.
-            for (auto &mesh : meshes) {
+            for (const auto &mesh : meshes) {
                 // For each vertex.
-                for (auto &vertex : mesh.vertices) {
+                for (const auto &vertex : mesh.vertices) {
                     // Add position.
                     verticesVector.push_back(vertex.position.x * totalModelScaling);
                     verticesVector.push_back(vertex.position.y * totalModelScaling);
@@ -87,7 +88,7 @@ namespace Forradia {
                 }
 
                 // For each index of the mesh.
-                for (auto &index : mesh.indices) {
+                for (const auto &index : mesh.indices) {
                     // Calculate the total index.
                     auto totalIndex{indexFirstVertexOfMesh + mesh.indices[index]};
 
@@ -104,9 +105,10 @@ namespace Forradia {
             auto verticesCount{verticesVector.size() / k_floatsPerVertex};
             auto indicesCount{indicesVector.size()};
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesVector.data()[0]) * indicesCount,
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesVector[0]) * indicesCount,
                          indicesVector.data(), GL_STATIC_DRAW);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(verticesVector.data()[0]) * 8 * verticesCount,
+            glBufferData(GL_ARRAY_BUFFER,
+                         sizeof(verticesVector[0]) * k_floatsPerVertex * verticesCount,
                          verticesVector.data(), GL_STATIC_DRAW);
 
             this->SetupAttributeLayout();

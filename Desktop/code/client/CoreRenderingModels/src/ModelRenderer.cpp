@@ -42,23 +42,26 @@ namespace Forradia {
         // Setup the attribute layout.
 
         constexpr int k_stride{8};
+        constexpr int k_posPos{0};
+        constexpr int k_normalPos{3};
+        constexpr int k_uvPos{6};
 
         // Position.
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * 0));
+                              (void *)(sizeof(float) * k_posPos));
         glEnableVertexAttribArray(0);
 
         // Normal.
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * 3));
+                              (void *)(sizeof(float) * k_normalPos));
         glEnableVertexAttribArray(1);
 
         // Texture coordinates (UV coordinates).
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * 6));
+                              (void *)(sizeof(float) * k_uvPos));
         glEnableVertexAttribArray(2);
     }
 

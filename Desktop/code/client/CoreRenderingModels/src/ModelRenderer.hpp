@@ -7,6 +7,11 @@
 
 #include "ModelRenderingOperation.hpp"
 #include "RendererBase.hpp"
+#include <unordered_map>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia {
     /**
@@ -78,7 +83,7 @@ namespace Forradia {
 
         static auto RestoreState() -> void;
 
-        auto DrawingOperationIsCached(int modelNameHash) const -> bool;
+        [[nodiscard]] auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 
         static constexpr float k_globalModelScaling{0.5F};
         std::unordered_map<int, ModelRenderingOperation> m_operationsCache;

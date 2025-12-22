@@ -39,7 +39,8 @@ namespace Forradia {
          * @param modelNameHash The hash of the model name.
          * @return The model.
          */
-        auto GetModel(int modelNameHash) const -> std::shared_ptr<Model>;
+        // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
+        [[nodiscard]] auto GetModel(int modelNameHash) const -> std::shared_ptr<Model>;
 
       private:
         static auto Initialize() -> void;

@@ -26,12 +26,6 @@ namespace Forradia {
         GLuint vbo;
 
         auto needFillBuffers{false};
-        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
-
-        auto xPx{static_cast<int>(xPos * canvasSize.width)};
-        auto yPx{static_cast<int>(yPos * canvasSize.height)};
-        auto widthPx{static_cast<int>(width * canvasSize.width)};
-        auto heightPx{static_cast<int>(height * canvasSize.height)};
 
         // If the operation is cached, use the cached operation.
         if (this->DrawingOperationIsCached(uniqueRenderID)) {
