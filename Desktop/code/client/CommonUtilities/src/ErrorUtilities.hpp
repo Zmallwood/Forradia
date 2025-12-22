@@ -5,16 +5,9 @@
 
 #pragma once
 
-#include <glm/glm.hpp>
+#include <source_location>
 
 namespace Forradia {
-    /**
-     * A vertex used for models using GLM types.
-     */
-    class GLMVertex {
-      public:
-        glm::vec3 position{}; //< The position.
-        glm::vec3 normal{};   ///< The normal.
-        glm::vec2 uv{};       ///< The texture coordinates.
-    };
+    void PrintError(std::string_view message,
+                    std::source_location loc = std::source_location::current());
 }

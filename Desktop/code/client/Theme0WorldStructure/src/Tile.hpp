@@ -133,8 +133,8 @@ namespace Forradia::Theme0 {
         auto Initialize() -> void;
 
         int m_ground{0};
-        std::shared_ptr<ObjectsStack> m_objectsStack;
-        std::shared_ptr<Entity> m_entity;
+        std::shared_ptr<ObjectsStack> m_objectsStack{};
+        std::shared_ptr<Entity> m_entity{};
         // SharedPtr<Robot> m_robot;
         int m_elevation{0};
         int m_waterDepth{0};

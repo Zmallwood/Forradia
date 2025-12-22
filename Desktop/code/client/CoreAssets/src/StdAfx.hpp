@@ -20,6 +20,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "ErrorUtilities.hpp"
 #include "FilePathUtilities.hpp"
 #include "Geometry/GLMTypes/GLMMesh.hpp"
 #include "Geometry/Size.hpp"

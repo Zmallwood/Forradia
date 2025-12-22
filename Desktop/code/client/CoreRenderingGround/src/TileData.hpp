@@ -20,7 +20,7 @@ namespace Forradia {
         int xCoordinate{0};                                ///< The x coordiate.
         int yCoordinate{0};                                ///< The y coordinate.
         float tileSize{0.0F};                              ///< The tile size.
-        std::vector<float> elevations;                     ///< The elevations.
+        std::vector<float> elevations{};                   ///< The elevations.
         bool forceUpdate{false};                           ///< Whether to force update the tile.
         Color color00{Palette::GetColor<Hash("White")>()}; ///< The 00 color.
         Color color10{Palette::GetColor<Hash("White")>()}; ///< The 10 color.

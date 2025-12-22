@@ -84,13 +84,13 @@ namespace Forradia {
 
         auto GenerateSkyDome() -> void;
 
-        GLuint m_vao;
-        GLuint m_ibo;
-        GLuint m_vbo;
-        int m_indexCount;
-        GLint m_layoutLocationMVP;
-        GLint m_layoutLocationSunDirection;
-        GLint m_layoutLocationSunElevation;
-        bool m_initialized;
+        GLuint m_vao{};
+        GLuint m_ibo{};
+        GLuint m_vbo{};
+        int m_indexCount{};
+        GLint m_layoutLocationMVP{};
+        GLint m_layoutLocationSunDirection{};
+        GLint m_layoutLocationSunElevation{};
+        bool m_initialized{};
     };
 }

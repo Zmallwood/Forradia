@@ -21,8 +21,8 @@ namespace Forradia::Theme0 {
          */
         virtual auto GetStatus() const -> std::string = 0;
 
-        std::string name;        ///< The name of the quest.
-        std::string description; ///< The description of the quest.
-        bool isCompleted{false}; ///< Whether the quest is completed.
+        std::string name{};        ///< The name of the quest.
+        std::string description{}; ///< The description of the quest.
+        bool isCompleted{false};   ///< Whether the quest is completed.
     };
 }

@@ -56,6 +56,6 @@ namespace Forradia {
         virtual auto SetupAttributeLayout() const -> void = 0;
 
       private:
-        std::shared_ptr<ShaderProgram> m_shaderProgram;
+        std::shared_ptr<ShaderProgram> m_shaderProgram{};
     };
 }

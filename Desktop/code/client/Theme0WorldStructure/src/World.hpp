@@ -41,6 +41,6 @@ namespace Forradia::Theme0 {
         }
 
       private:
-        std::shared_ptr<WorldArea> m_currentWorldArea;
+        std::shared_ptr<WorldArea> m_currentWorldArea{};
     };
 }

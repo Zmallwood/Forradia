@@ -29,8 +29,6 @@ namespace Forradia::Theme0 {
             for (auto x = 0; x < worldAreaSize.width; x++) {
                 m_renderIDsGround[x][y] =
                     Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
-                m_renderIDsClaimedTiles[x][y] =
-                    Hash("ClaimedTile_" + std::to_string(x) + "_" + std::to_string(y));
             }
         }
     }
@@ -348,13 +346,6 @@ namespace Forradia::Theme0 {
                 GroundRenderer::Instance().DrawTile(k_renderIDGroundSymbolHoveredTile,
                                                     Hash("HoveredTile"), xCoordinate, yCoordinate,
                                                     rendTileSize, elevations, true);
-
-                // Only render ClaimedTile symbol within the normal grid size.
-
-                if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
-                    GroundRenderer::Instance().DrawTile(
-                        m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
-                        Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize, elevations);
 
                 GroundRenderer::Instance().RestoreState();
             }

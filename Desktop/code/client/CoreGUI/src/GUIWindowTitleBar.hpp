@@ -50,13 +50,13 @@ namespace Forradia {
         auto Initialize(std::string_view uniqueName) -> void;
 
         inline static const float k_height{0.04F};
-        const std::string k_windowTitle;
+        const std::string k_windowTitle{};
         const float k_closeButtonTopMargin{0.01F};
         const float k_closeButtonRightMargin{0.02F};
         const float k_closeButtonWidth{0.015F};
         const float k_titleTopMargin{0.01F};
         const float k_titleLeftMargin{0.01F};
-        const int k_renderIDWindowTitleText;
+        const int k_renderIDWindowTitleText{};
         GUIWindow &m_parentWindow;
     };
 }

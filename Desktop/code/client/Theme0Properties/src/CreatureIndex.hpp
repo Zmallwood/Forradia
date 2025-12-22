@@ -57,6 +57,6 @@ namespace Forradia::Theme0 {
         auto AddCreatureEntry(std::string_view creatureName, float modelScaling,
                               float levitationHeight) -> void;
 
-        std::unordered_map<int, CreatureIndexEntry> m_entries;
+        std::unordered_map<int, CreatureIndexEntry> m_entries{};
     };
 }

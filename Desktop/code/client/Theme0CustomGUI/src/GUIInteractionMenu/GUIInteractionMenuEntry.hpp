@@ -46,7 +46,8 @@ namespace Forradia::Theme0 {
         }
 
       private:
-        std::string m_label;
-        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)> m_action;
+        std::string m_label{};
+        std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)>
+            m_action{};
     };
 }

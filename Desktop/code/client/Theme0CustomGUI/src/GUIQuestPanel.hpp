@@ -33,9 +33,9 @@ namespace Forradia::Theme0 {
       private:
         auto Initialize() -> void;
 
-        std::shared_ptr<GUILabel> m_questTitleTextPanel;
-        std::shared_ptr<GUILabel> m_questNameTextPanel;
-        std::shared_ptr<GUILabel> m_questDescriptionTextPanel;
-        std::shared_ptr<GUILabel> m_questStatusTextPanel;
+        std::shared_ptr<GUILabel> m_questTitleTextPanel{};
+        std::shared_ptr<GUILabel> m_questNameTextPanel{};
+        std::shared_ptr<GUILabel> m_questDescriptionTextPanel{};
+        std::shared_ptr<GUILabel> m_questStatusTextPanel{};
     };
 }

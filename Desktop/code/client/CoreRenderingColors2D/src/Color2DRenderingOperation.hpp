@@ -16,8 +16,8 @@ namespace Forradia {
      */
     class Color2DRenderingOperation {
       public:
-        GLuint vao; ///< The vertex array object.
-        GLuint ibo; ///< The index buffer object.
-        GLuint vbo; ///< The vertex buffer object.
+        GLuint vao{}; ///< The vertex array object.
+        GLuint ibo{}; ///< The index buffer object.
+        GLuint vbo{}; ///< The vertex buffer object.
     };
 }

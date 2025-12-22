@@ -63,7 +63,6 @@ namespace Forradia::Theme0 {
         virtual auto RenderDerived() const -> void override;
 
       private:
-        std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu;
-        // std::shared_ptr<GUIInventoryWindow> m_guiInventoryWindow;
+        std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu{};
     };
 }

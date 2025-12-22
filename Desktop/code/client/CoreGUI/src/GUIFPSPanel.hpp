@@ -39,6 +39,6 @@ namespace Forradia {
 
         constexpr static RectF k_defaultBounds{0.92F, 0.02F, 0.07F, 0.04F};
         const RectF k_labelBounds{0.01F, 0.01F, 0.1F, 0.05F};
-        std::shared_ptr<GUILabel> m_fpsTextLabel;
+        std::shared_ptr<GUILabel> m_fpsTextLabel{};
     };
 }

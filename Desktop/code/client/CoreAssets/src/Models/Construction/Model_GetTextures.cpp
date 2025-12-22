@@ -3,11 +3,22 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "ErrorUtilities.hpp"
 #include "FilePathUtilities.hpp"
 #include "Model.hpp"
 
 namespace Forradia {
     auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture> {
+        if (mesh == nullptr) {
+            PrintError("mesh is nullptr");
+            return {};
+        }
+
+        if (scene == nullptr) {
+            PrintError("scene is nullptr");
+            return {};
+        }
+
         std::vector<Texture> textures;
         aiString textureFilePath;
 

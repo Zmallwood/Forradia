@@ -3,18 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#pragma once
-
-#include <glm/glm.hpp>
+#include "ErrorUtilities.hpp"
 
 namespace Forradia {
-    /**
-     * A vertex used for models using GLM types.
-     */
-    class GLMVertex {
-      public:
-        glm::vec3 position{}; //< The position.
-        glm::vec3 normal{};   ///< The normal.
-        glm::vec2 uv{};       ///< The texture coordinates.
-    };
+    void PrintError(std::string_view message, std::source_location loc) {
+        std::cerr << "Error at " << std::string(loc.file_name()) + ", line " << loc.line() << ":\n"
+                  << message << std::endl;
+    }
 }

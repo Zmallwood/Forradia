@@ -51,9 +51,9 @@ namespace Forradia {
         auto RenderDerived() const -> void override;
 
       private:
-        const int k_renderIDText;
-        std::string m_text;
+        const int k_renderIDText{};
+        std::string m_text{};
         bool m_centerAlign{false};
-        Color m_color;
+        Color m_color{};
     };
 }

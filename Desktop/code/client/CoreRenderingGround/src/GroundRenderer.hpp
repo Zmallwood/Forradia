@@ -121,9 +121,9 @@ namespace Forradia {
         [[nodiscard]] static auto CalcTileNormals(const std::vector<float> &verticesNoNormals)
             -> std::vector<glm::vec3>;
 
-        static constexpr std::array<unsigned short, 4> k_indices = {0, 1, 2, 3};
-        std::unordered_map<int, GroundRenderingOperation> m_operationsCache;
-        GLint m_layoutLocationMVP;
-        std::unordered_map<int, GroundRenderingGroupOperation> m_groupOperationsCache;
+        static constexpr std::array<unsigned short, 4> k_indices{0, 1, 2, 3};
+        std::unordered_map<int, GroundRenderingOperation> m_operationsCache{};
+        GLint m_layoutLocationMVP{};
+        std::unordered_map<int, GroundRenderingGroupOperation> m_groupOperationsCache{};
     };
 }

@@ -80,10 +80,10 @@ namespace Forradia::Theme0 {
         static constexpr float k_lineHeight{0.025f};
         const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
-        std::vector<int> m_renderIDsMenuEntryStrings;
-        std::vector<GUIInteractionMenuEntry> m_entries;
+        std::vector<int> m_renderIDsMenuEntryStrings{};
+        std::vector<GUIInteractionMenuEntry> m_entries{};
         Point m_clickedCoordinate{-1, -1};
-        std::unordered_map<int, int> m_timedActions;
-        std::vector<std::shared_ptr<Object> *> m_clickedObjects;
+        std::unordered_map<int, int> m_timedActions{};
+        std::vector<std::shared_ptr<Object> *> m_clickedObjects{};
     };
 }

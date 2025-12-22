@@ -96,6 +96,6 @@ namespace Forradia {
         auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
         constexpr static float k_defaultLineWidth{0.001F};
-        std::unordered_map<int, Color2DRenderingOperation> m_operationsCache;
+        std::unordered_map<int, Color2DRenderingOperation> m_operationsCache{};
     };
 }

@@ -53,6 +53,6 @@ namespace Forradia::Theme0 {
       private:
         auto Initialize() -> void;
 
-        std::vector<std::shared_ptr<Quest>> m_quests;
+        std::vector<std::shared_ptr<Quest>> m_quests{};
     };
 }

@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "Model.hpp"
+#include "ErrorUtilities.hpp"
 #include "MessageUtilities.hpp"
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
@@ -19,8 +20,7 @@ namespace Forradia {
         const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
         if (nullptr == scene || nullptr == scene->mRootNode)
-            PrintLine("ERROR: ASSIMP could not load model: " +
-                      std::string(importer.GetErrorString()));
+            PrintError("Assimp could not load model: " + std::string(importer.GetErrorString()));
         else
             this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
     }

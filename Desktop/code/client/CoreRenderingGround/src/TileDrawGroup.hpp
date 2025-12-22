@@ -16,9 +16,9 @@ namespace Forradia {
      */
     class TileDrawGroup {
       public:
-        GLuint vao;                  ///< The vertex array object.
-        GLuint ibo;                  ///< The index buffer object.
-        GLuint vbo;                  ///< The vertex buffer object.
+        GLuint vao{};                ///< The vertex array object.
+        GLuint ibo{};                ///< The index buffer object.
+        GLuint vbo{};                ///< The vertex buffer object.
         int combinedIndicesCount{0}; ///< The combined indices count.
     };
 }

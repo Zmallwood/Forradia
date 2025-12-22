@@ -77,7 +77,7 @@ namespace Forradia {
             -> GLuint;
 
         inline static const std::string k_relativeImagesPath{"./Resources/Images/"};
-        inline static std::unordered_map<int, TextureEntry> m_textureEntries;
-        inline static std::unordered_map<int, GLuint> m_textTextureIDs;
+        inline static std::unordered_map<int, TextureEntry> m_textureEntries{};
+        inline static std::unordered_map<int, GLuint> m_textTextureIDs{};
     };
 }

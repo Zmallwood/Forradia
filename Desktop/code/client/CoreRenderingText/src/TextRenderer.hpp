@@ -65,6 +65,6 @@ namespace Forradia {
         auto DefineTexture(std::shared_ptr<SDL_Surface> surface) const -> void;
 
         const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
-        std::unordered_map<FontSizes, std::shared_ptr<TTF_Font>> m_fonts;
+        std::unordered_map<FontSizes, std::shared_ptr<TTF_Font>> m_fonts{};
     };
 }

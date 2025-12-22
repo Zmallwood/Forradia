@@ -86,9 +86,9 @@ namespace Forradia {
         [[nodiscard]] auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 
         static constexpr float k_globalModelScaling{0.5F};
-        std::unordered_map<int, ModelRenderingOperation> m_operationsCache;
-        GLint m_layoutLocationProjectionMatrix;
-        GLint m_layoutLocationViewMatrix;
-        GLint m_layoutLocationModelMatrix;
+        std::unordered_map<int, ModelRenderingOperation> m_operationsCache{};
+        GLint m_layoutLocationProjectionMatrix{};
+        GLint m_layoutLocationViewMatrix{};
+        GLint m_layoutLocationModelMatrix{};
     };
 }

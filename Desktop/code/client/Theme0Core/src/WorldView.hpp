@@ -40,7 +40,6 @@ namespace Forradia::Theme0 {
         const int k_maxWaterDepthRendering{3};
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
         const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
-        std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround;
-        std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsClaimedTiles;
+        std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
     };
 }

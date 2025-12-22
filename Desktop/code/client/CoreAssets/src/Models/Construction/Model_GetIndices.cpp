@@ -3,11 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "ErrorUtilities.hpp"
 #include "Model.hpp"
 #include "assimp/scene.h"
 
 namespace Forradia {
     auto Model::GetIndices(aiMesh *mesh) -> std::vector<unsigned int> {
+        if (mesh == nullptr) {
+            PrintError("mesh is null");
+            return {};
+        }
+
         std::vector<unsigned int> indices;
 
         // Iterate over all faces.

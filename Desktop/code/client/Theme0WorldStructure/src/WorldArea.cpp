@@ -66,12 +66,4 @@ namespace Forradia::Theme0 {
     auto WorldArea::GetTile(Point coord) const -> std::shared_ptr<Tile> {
         return this->GetTile(coord.x, coord.y);
     }
-
-    auto WorldArea::AddClaimedCoordinate(Point coordinate) -> void {
-        m_claimedCoordinates.insert(coordinate);
-    }
-
-    auto WorldArea::CoordinateIsClaimed(Point coordinate) const -> bool {
-        return m_claimedCoordinates.contains(coordinate);
-    }
 }

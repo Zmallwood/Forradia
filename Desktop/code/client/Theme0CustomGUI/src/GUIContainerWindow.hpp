@@ -33,7 +33,7 @@ namespace Forradia::Theme0 {
       private:
         auto Initialize(ContainedObjects &containedObjects) -> void;
 
-        std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea;
+        std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea{};
     };
 
     class GUIContainerWindowArea : public GUIScrollableArea {
@@ -53,7 +53,7 @@ namespace Forradia::Theme0 {
         auto Initialize(GUIWindow *parentWindow, ContainedObjects &containedObjects) -> void;
 
         GUIWindow *m_parentWindow{nullptr};
-        std::shared_ptr<GUIContainerWindowPanel> m_panel;
+        std::shared_ptr<GUIContainerWindowPanel> m_panel{};
     };
 
     class GUIContainerWindowPanel : public GUIPanel {
@@ -76,8 +76,8 @@ namespace Forradia::Theme0 {
         static constexpr float k_slotSize{0.04f};
         inline static const std::string k_slotImageName{"GUIContainerWindowSlotBackground"};
         const int k_maxNumSlots{60};
-        std::unordered_map<int, int> m_renderIDsSlotsBackground;
-        std::unordered_map<int, int> m_renderIDsSlotsObject;
+        std::unordered_map<int, int> m_renderIDsSlotsBackground{};
+        std::unordered_map<int, int> m_renderIDsSlotsObject{};
         GUIWindow *m_parentWindow{nullptr};
         ContainedObjects &m_containedObjects;
     };

@@ -55,10 +55,10 @@ namespace Forradia {
         inline static const std::string k_defaultBackgroundImage{"GUIButtonBackground"};
         inline static const std::string k_defaultHoveredBackgroundImage{
             "GUIButtonHoveredBackground"};
-        const int k_renderIDText;
-        std::string m_text;
-        std::function<void()> m_action;
-        std::string m_backgroundImage;
-        std::string m_hoveredBackgroundImage;
+        const int k_renderIDText{};
+        std::string m_text{};
+        std::function<void()> m_action{};
+        std::string m_backgroundImage{};
+        std::string m_hoveredBackgroundImage{};
     };
 }

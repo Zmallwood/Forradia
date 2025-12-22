@@ -21,6 +21,6 @@ namespace Forradia {
         Texture(std::string_view path) : path(path) {
         }
 
-        std::string path; ///< The path to the texture.
+        std::string path{}; ///< The path to the texture.
     };
 }

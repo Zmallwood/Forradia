@@ -14,6 +14,6 @@ namespace Forradia {
      */
     class GroundRenderingGroupOperation {
       public:
-        std::unordered_map<int, TileDrawGroup> tilesByTexture; ///< The tiles by texture.
+        std::unordered_map<int, TileDrawGroup> tilesByTexture{}; ///< The tiles by texture.
     };
 }

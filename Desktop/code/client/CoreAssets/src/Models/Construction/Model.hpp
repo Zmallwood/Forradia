@@ -46,6 +46,6 @@ namespace Forradia {
 
         static auto GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>;
 
-        std::vector<GLMMesh> m_meshes;
+        std::vector<GLMMesh> m_meshes{};
     };
 }

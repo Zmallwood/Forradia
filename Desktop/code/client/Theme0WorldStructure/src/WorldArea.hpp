@@ -79,21 +79,6 @@ namespace Forradia::Theme0 {
         auto GetTile(Point coord) const -> std::shared_ptr<Tile>;
 
         /**
-         * Adds a claimed coordinate.
-         *
-         * @param coordinate The coordinate to add.
-         */
-        auto AddClaimedCoordinate(Point coordinate) -> void;
-
-        /**
-         * Checks if a coordinate is claimed.
-         *
-         * @param coordinate The coordinate to check.
-         * @return True if the coordinate is claimed, false otherwise.
-         */
-        auto CoordinateIsClaimed(Point coordinate) const -> bool;
-
-        /**
          * Gets a reference to the entities mirror.
          *
          * @return A reference to the entities mirror.
@@ -105,8 +90,7 @@ namespace Forradia::Theme0 {
       private:
         auto Initialize(Size worldAreaSize, float worldScaling) -> void;
 
-        std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles;
-        std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror;
-        std::set<Point> m_claimedCoordinates;
+        std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles{};
+        std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror{};
     };
 }

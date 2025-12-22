@@ -17,7 +17,7 @@ namespace Forradia {
      */
     class TextureEntry {
       public:
-        GLuint textureID; ///< The texture ID, used by opengl.
-        Size dimensions;  ///< The texture width and height.
+        GLuint textureID{}; ///< The texture ID, used by opengl.
+        Size dimensions{};  ///< The texture width and height.
     };
 }

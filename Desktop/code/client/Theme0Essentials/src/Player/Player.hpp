@@ -226,12 +226,12 @@ namespace Forradia::Theme0 {
         float m_movementSpeed{5.0F};
         int m_ticksLastMovement{0};
         Point m_destination{-1, -1};
-        std::shared_ptr<PlayerObjectsInventory> m_playerObjectsInventory;
+        std::shared_ptr<PlayerObjectsInventory> m_playerObjectsInventory{};
         int m_experience{0};
         float m_wellBeing{10.0F};
         float m_maxWellBeing{10.0F};
-        std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions;
-        std::unordered_map<std::string, int> m_questCompletionPoints;
+        std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions{};
+        std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
     };
 }

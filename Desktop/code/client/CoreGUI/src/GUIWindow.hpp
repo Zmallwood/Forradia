@@ -60,6 +60,6 @@ namespace Forradia {
 
         constexpr static float k_positionOffsetChange{0.05F};
         inline static float s_positionOffset{0.0F};
-        std::shared_ptr<GUIWindowTitleBar> m_guiWindowTitleBar;
+        std::shared_ptr<GUIWindowTitleBar> m_guiWindowTitleBar{};
     };
 }

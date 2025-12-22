@@ -8,3 +8,5 @@
 #include <memory>
 
 #include <SDL2/SDL.h>
+
+#include "ErrorUtilities.hpp"

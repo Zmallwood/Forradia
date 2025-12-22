@@ -51,12 +51,12 @@ namespace Forradia {
 
       private:
         const float k_borderWidth{0.002F};
-        const int k_renderIDBackground;
-        const int k_renderIDFilled;
-        const int k_renderIDLineTop;
-        const int k_renderIDLineBottom;
-        const int k_renderIDLineRight;
-        const int k_renderIDLineLeft;
-        const Color k_filledColor;
+        const int k_renderIDBackground{};
+        const int k_renderIDFilled{};
+        const int k_renderIDLineTop{};
+        const int k_renderIDLineBottom{};
+        const int k_renderIDLineRight{};
+        const int k_renderIDLineLeft{};
+        const Color k_filledColor{};
     };
 }

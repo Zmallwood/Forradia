@@ -16,9 +16,11 @@ namespace Forradia::Theme0 {
         if (!m_objectInAir && GUIInventoryWindow::Instance().GetVisible() &&
             inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
             auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
-            m_objectInAir = *objectPtrPtr;
-            *objectPtrPtr = nullptr;
-            return true;
+            if (objectPtrPtr) {
+                m_objectInAir = *objectPtrPtr;
+                *objectPtrPtr = nullptr;
+                return true;
+            }
         }
         return false;
     }
@@ -30,10 +32,11 @@ namespace Forradia::Theme0 {
             if (GUIInventoryWindow::Instance().GetVisible() &&
                 inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
                 auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
-                if (objectPtrPtr)
+                if (objectPtrPtr) {
                     *objectPtrPtr = m_objectInAir;
-                m_objectInAir = nullptr;
-                return true;
+                    m_objectInAir = nullptr;
+                    return true;
+                }
             }
         }
         return false;

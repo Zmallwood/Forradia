@@ -16,9 +16,9 @@ namespace Forradia {
      */
     class ModelRenderingOperation {
       public:
-        int verticesCount; ///< The number of vertices in the model.
-        GLuint vao;        ///< The vertex array object.
-        GLuint ibo;        ///< The index buffer object.
-        GLuint vbo;        ///< The vertex buffer object.
+        int verticesCount{}; ///< The number of vertices in the model.
+        GLuint vao{};        ///< The vertex array object.
+        GLuint ibo{};        ///< The index buffer object.
+        GLuint vbo{};        ///< The vertex buffer object.
     };
 }

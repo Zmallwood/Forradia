@@ -3,10 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "ErrorUtilities.hpp"
 #include "Model.hpp"
 
 namespace Forradia {
     auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex> {
+        if (mesh == nullptr) {
+            PrintError("mesh is nullptr");
+            return {};
+        }
+
         std::vector<GLMVertex> vertices;
 
         // Iterate over all vertices.

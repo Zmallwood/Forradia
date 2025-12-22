@@ -54,6 +54,6 @@ namespace Forradia {
 
         auto CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
 
-        GLuint m_programID;
+        GLuint m_programID{};
     };
 }
