@@ -115,9 +115,8 @@ namespace Forradia {
                                   const std::vector<float> &elevations, std::vector<Color> colors)
             -> std::vector<float>;
 
-        [[nodiscard]] auto
-        CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
-            -> std::vector<float>;
+        [[nodiscard]] auto static CalcTileVerticesWithNormals(
+            const std::vector<float> &verticesNoNormals) -> std::vector<float>;
 
         [[nodiscard]] static auto CalcTileNormals(const std::vector<float> &verticesNoNormals)
             -> std::vector<glm::vec3>;

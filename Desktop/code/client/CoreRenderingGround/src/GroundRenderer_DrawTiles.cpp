@@ -12,7 +12,7 @@ namespace Forradia {
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
         auto forceUpdate{false};
 
-        for (auto &tile : tiles) {
+        for (const auto &tile : tiles) {
             if (tile.forceUpdate) {
                 forceUpdate = true;
                 break;

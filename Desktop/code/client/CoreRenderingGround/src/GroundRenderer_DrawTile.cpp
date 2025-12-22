@@ -61,26 +61,29 @@ namespace Forradia {
             // Calculate the vertices with normals.
             auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
 
+            constexpr int k_numFlotsPerVertex{11};
+
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount,
                          k_indices.data(), GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(verticesVector[0]) * 11 * verticesCount,
+            glBufferData(GL_ARRAY_BUFFER,
+                         sizeof(verticesVector[0]) * k_numFlotsPerVertex * verticesCount,
                          verticesVector.data(), GL_STATIC_DRAW);
 
             this->SetupAttributeLayout();
         }
 
         // Calculate the MVP matrix.
-        auto modelMatrix{glm::mat4(1.0f)};
+        auto modelMatrix{glm::mat4(1.0F)};
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
+        auto projectionMatrix{Camera::GetProjectionMatrix()};
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-        auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
+        auto textureID{TextureBank::GetTexture(imageNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);
