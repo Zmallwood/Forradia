@@ -16,7 +16,7 @@ namespace Forradia {
      */
     class Image2DRenderer : public RendererBase {
       public:
-        static Image2DRenderer &Instance() {
+        static auto Instance() -> Image2DRenderer & {
             static Image2DRenderer instance;
             return instance;
         }
@@ -24,7 +24,7 @@ namespace Forradia {
         // Delete copy/move
         Image2DRenderer(const Image2DRenderer &) = delete;
 
-        Image2DRenderer &operator=(const Image2DRenderer &) = delete;
+        auto operator=(const Image2DRenderer &) -> Image2DRenderer & = delete;
 
         Image2DRenderer() = default;
 
@@ -41,13 +41,13 @@ namespace Forradia {
          *
          * @param uniqueRenderID The unique render ID.
          * @param imageName The name of the image.
-         * @param x The x coordinate of the image.
-         * @param y The y coordinate of the image.
+         * @param xPos The x coordinate of the image.
+         * @param yPos The y coordinate of the image.
          * @param width The width of the image.
          * @param height The height of the image.
          * @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByName(int uniqueRenderID, std::string_view imageName, float x, float y,
+        auto DrawImageByName(int uniqueRenderID, std::string_view imageName, float xPos, float yPos,
                              float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -55,27 +55,27 @@ namespace Forradia {
          *
          * @param uniqueRenderID The unique render ID.
          * @param imageNameHash The hash of the image name.
-         * @param x The x coordinate of the image.
-         * @param y The y coordinate of the image.
+         * @param xPos The x coordinate of the image.
+         * @param yPos The y coordinate of the image.
          * @param width The width of the image.
          * @param height The height of the image.
          * @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y, float width,
-                             float height, bool updateExisting = false) -> void;
+        auto DrawImageByHash(int uniqueRenderID, int imageNameHash, float xPos, float yPos,
+                             float width, float height, bool updateExisting = false) -> void;
 
         /**
          * Draws an image by texture ID.
          *
          * @param uniqueRenderID The unique render ID.
          * @param textureID The texture ID.
-         * @param x The x coordinate of the image.
-         * @param y The y coordinate of the image.
+         * @param xPos The x coordinate of the image.
+         * @param yPos The y coordinate of the image.
          * @param width The width of the image.
          * @param height The height of the image.
          * @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x, float y,
+        auto DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos, float yPos,
                                   float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -84,13 +84,13 @@ namespace Forradia {
          *
          * @param uniqueRenderID The unique render ID.
          * @param imageName The name of the image.
-         * @param x The x coordinate of the image.
-         * @param y The y coordinate of the image.
+         * @param xPos The x coordinate of the image.
+         * @param yPos The y coordinate of the image.
          * @param width The width of the image.
          * @param height The height of the image.
          */
-        auto DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float x, float y,
-                                 float width) -> void;
+        auto DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float xPos,
+                                 float yPos, float width) -> void;
 
       protected:
         /**

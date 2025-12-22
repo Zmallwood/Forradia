@@ -10,8 +10,8 @@
 #include "SDLDevice.hpp"
 
 namespace Forradia {
-    auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float x,
-                                               float y, float width, float height,
+    auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
+                                               float yPos, float width, float height,
                                                bool updateExisting) -> void {
         this->SetupState();
 
@@ -22,8 +22,8 @@ namespace Forradia {
         auto needFillBuffers{false};
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
-        auto xPx{static_cast<int>(x * canvasSize.width)};
-        auto yPx{static_cast<int>(y * canvasSize.height)};
+        auto xPx{static_cast<int>(xPos * canvasSize.width)};
+        auto yPx{static_cast<int>(yPos * canvasSize.height)};
         auto widthPx{static_cast<int>(width * canvasSize.width)};
         auto heightPx{static_cast<int>(height * canvasSize.height)};
 
@@ -62,10 +62,10 @@ namespace Forradia {
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting) {
-            float vertices[] = {x,         y,          0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F,
-                                x + width, y,          0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F,
-                                x + width, y + height, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
-                                x,         y + height, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 1.0F};
+            float vertices[] = {xPos,         yPos,          0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F,
+                                xPos + width, yPos,          0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F,
+                                xPos + width, yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
+                                xPos,         yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 1.0F};
 
             unsigned short indices[]{0, 1, 2, 3};
 

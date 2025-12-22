@@ -8,20 +8,23 @@
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
-    auto Image2DRenderer::DrawImageByName(int uniqueRenderID, std::string_view imageName, float x,
-                                          float y, float width, float height, bool updateExisting)
-        -> void {
-        this->DrawImageByHash(uniqueRenderID, Hash(imageName), x, y, width, height, updateExisting);
+    auto Image2DRenderer::DrawImageByName(int uniqueRenderID, std::string_view imageName,
+                                          float xPos, float yPos, float width, float height,
+                                          bool updateExisting) -> void {
+        this->DrawImageByHash(uniqueRenderID, Hash(imageName), xPos, yPos, width, height,
+                              updateExisting);
     }
 
-    auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y,
-                                          float width, float height, bool updateExisting) -> void {
+    auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float xPos,
+                                          float yPos, float width, float height,
+                                          bool updateExisting) -> void {
         auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
-        this->DrawImageByTextureID(uniqueRenderID, textureID, x, y, width, height, updateExisting);
+        this->DrawImageByTextureID(uniqueRenderID, textureID, xPos, yPos, width, height,
+                                   updateExisting);
     }
 
     auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName,
-                                              float x, float y, float width) -> void {
+                                              float xPos, float yPos, float width) -> void {
         auto hash{Forradia::Hash(imageName)};
         auto imageDimensions{TextureBank::Instance().GetTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
@@ -33,6 +36,6 @@ namespace Forradia {
         // Calculate the height of the image using the width and the two aspect ratios.
         auto height{width / imageAspectRatio * canvasAspectRatio};
 
-        this->DrawImageByHash(uniqueRenderID, hash, x, y, width, height);
+        this->DrawImageByHash(uniqueRenderID, hash, xPos, yPos, width, height);
     }
 }
