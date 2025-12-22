@@ -18,7 +18,7 @@ namespace Forradia {
     auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float xPos,
                                           float yPos, float width, float height,
                                           bool updateExisting) -> void {
-        auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
+        auto textureID{TextureBank::GetTexture(imageNameHash)};
         this->DrawImageByTextureID(uniqueRenderID, textureID, xPos, yPos, width, height,
                                    updateExisting);
     }
@@ -26,7 +26,7 @@ namespace Forradia {
     auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName,
                                               float xPos, float yPos, float width) -> void {
         auto hash{Forradia::Hash(imageName)};
-        auto imageDimensions{TextureBank::Instance().GetTextureDimensions(hash)};
+        auto imageDimensions{TextureBank::GetTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
             return;
 

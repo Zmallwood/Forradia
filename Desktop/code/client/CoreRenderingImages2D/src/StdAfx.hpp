@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <array>
 #include <unordered_map>
 
 // clang-format off

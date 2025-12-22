@@ -38,7 +38,7 @@ namespace Forradia {
         }
     }
 
-    auto ModelBank::GetModel(int modelNameHash) -> std::shared_ptr<Model> {
+    auto ModelBank::GetModel(int modelNameHash) const -> std::shared_ptr<Model> {
         if (m_models.contains(modelNameHash))
             return m_models.at(modelNameHash);
         return nullptr;

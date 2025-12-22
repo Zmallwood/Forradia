@@ -13,7 +13,7 @@
 #include "Theme0Properties.hpp"
 
 namespace Forradia {
-    auto ModelRenderer::DrawModel(int modelNameHash, float x, float y, float elevation,
+    auto ModelRenderer::DrawModel(int modelNameHash, float xPos, float yPos, float elevation,
                                   float modelScaling) -> void {
         this->SetupState();
 
@@ -126,7 +126,7 @@ namespace Forradia {
 
         // Translate the model to the position.
         modelMatrix = glm::translate(
-            modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
+            modelMatrix, glm::vec3(xPos, yPos, elevation * elevationHeight + levitationHeight));
 
         if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));

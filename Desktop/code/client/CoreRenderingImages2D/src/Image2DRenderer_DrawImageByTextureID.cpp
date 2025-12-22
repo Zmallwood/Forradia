@@ -6,8 +6,14 @@
 // - Consider implementing LRU eviction of operations memory, which is used when the operations
 // cache reaches a certain limit.
 
+#include "CanvasUtilities.hpp"
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
+#include <array>
 
 namespace Forradia {
     auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
@@ -62,17 +68,22 @@ namespace Forradia {
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting) {
-            float vertices[] = {xPos,         yPos,          0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F,
-                                xPos + width, yPos,          0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F,
-                                xPos + width, yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
-                                xPos,         yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 1.0F};
+            constexpr int k_numFloatsForVerticesData{32};
 
-            unsigned short indices[]{0, 1, 2, 3};
+            std::array<float, k_numFloatsForVerticesData> vertices = {
+                xPos,         yPos,          0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 0.0F,
+                xPos + width, yPos,          0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.0F,
+                xPos + width, yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F,
+                xPos,         yPos + height, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, 1.0F};
 
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount, indices,
-                         GL_DYNAMIC_DRAW);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 8 * k_verticesCount, vertices,
-                         GL_DYNAMIC_DRAW);
+            std::array<unsigned short, 4> indices{0, 1, 2, 3};
+
+            constexpr int k_floatsPerVertex{8};
+
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices[0]) * k_indicesCount,
+                         indices.data(), GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
+                         vertices.data(), GL_DYNAMIC_DRAW);
 
             this->SetupAttributeLayout();
         }
@@ -85,6 +96,6 @@ namespace Forradia {
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->RestoreState();
+        Image2DRenderer::RestoreState();
     }
 }

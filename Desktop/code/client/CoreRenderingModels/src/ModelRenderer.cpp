@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "ModelRenderer.hpp"
+#include "CanvasUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
@@ -23,13 +24,13 @@ namespace Forradia {
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(GetShaderProgram()->GetProgramID());
+        glUseProgram(dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID());
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
-    auto ModelRenderer::RestoreState() const -> void {
+    auto ModelRenderer::RestoreState() -> void {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -40,18 +41,23 @@ namespace Forradia {
     auto ModelRenderer::SetupAttributeLayout() const -> void {
         // Setup the attribute layout.
 
+        constexpr int k_stride{8};
+
         // Position.
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8,
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
                               (void *)(sizeof(float) * 0));
         glEnableVertexAttribArray(0);
 
         // Normal.
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8,
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
                               (void *)(sizeof(float) * 3));
         glEnableVertexAttribArray(1);
 
         // Texture coordinates (UV coordinates).
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8,
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
+                              // NOLINTNEXTLINE(performance-no-int-to-ptr)
                               (void *)(sizeof(float) * 6));
         glEnableVertexAttribArray(2);
     }
@@ -68,11 +74,12 @@ namespace Forradia {
     auto ModelRenderer::InitializeDerived() -> void {
         // Obtain the layout location for the uniform matrices.
 
-        m_layoutLocationProjectionMatrix =
-            glGetUniformLocation(GetShaderProgram()->GetProgramID(), "projection");
-        m_layoutLocationViewMatrix =
-            glGetUniformLocation(GetShaderProgram()->GetProgramID(), "view");
-        m_layoutLocationModelMatrix =
-            glGetUniformLocation(GetShaderProgram()->GetProgramID(), "model");
+        m_layoutLocationProjectionMatrix = glGetUniformLocation(
+            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(),
+            "projection");
+        m_layoutLocationViewMatrix = glGetUniformLocation(
+            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "view");
+        m_layoutLocationModelMatrix = glGetUniformLocation(
+            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "model");
     }
 }

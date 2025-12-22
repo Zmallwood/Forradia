@@ -14,7 +14,7 @@ namespace Forradia {
      */
     class ModelRenderer : public RendererBase {
       public:
-        static ModelRenderer &Instance() {
+        static auto Instance() -> ModelRenderer & {
             static ModelRenderer instance;
             return instance;
         }
@@ -22,7 +22,7 @@ namespace Forradia {
         // Delete copy/move
         ModelRenderer(const ModelRenderer &) = delete;
 
-        ModelRenderer &operator=(const ModelRenderer &) = delete;
+        auto operator=(const ModelRenderer &) -> ModelRenderer & = delete;
 
         ModelRenderer() = default;
 
@@ -38,12 +38,12 @@ namespace Forradia {
          * Draws a model in 3D space.
          *
          * @param modelNameHash The hash of the model to draw.
-         * @param x The x coordinate of the model.
-         * @param y The y coordinate of the model.
+         * @param xPos The x coordinate of the model.
+         * @param yPos The y coordinate of the model.
          * @param elevations The elevations of the tile where the model is located.
          * @param modelScaling The scaling of the model.
          */
-        auto DrawModel(int modelNameHash, float x, float y, float elevations,
+        auto DrawModel(int modelNameHash, float xPos, float yPos, float elevations,
                        float modelScaling = 1.0F) -> void;
 
       protected:
@@ -52,14 +52,14 @@ namespace Forradia {
          *
          * @return The vertex shader source.
          */
-        auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto GetVSSource() const -> std::string override;
 
         /**
          * Gets the fragment shader source.
          *
          * @return The fragment shader source.
          */
-        auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto GetFSSource() const -> std::string override;
 
         /**
          * Additional initialization for this derived class.
@@ -76,7 +76,7 @@ namespace Forradia {
 
         auto SetupState() const -> void;
 
-        auto RestoreState() const -> void;
+        static auto RestoreState() -> void;
 
         auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 

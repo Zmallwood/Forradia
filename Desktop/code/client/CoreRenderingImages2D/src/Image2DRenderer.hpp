@@ -7,7 +7,10 @@
 
 #include "Image2DRenderingOperation.hpp"
 #include "RendererBase.hpp"
+// clang-format off
+#include <GL/glew.h>
 #include <GL/gl.h>
+// clang-format on
 #include <unordered_map>
 
 namespace Forradia {
