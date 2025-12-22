@@ -23,6 +23,29 @@ namespace Forradia::Theme0 {
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 
     template <>
+    auto GetAction<Hash("ActionOpenUnlitCampfire")>() -> Action {
+        return {.label = "Open campfire",
+                .groundMatches = {},
+                .objectMatches = {Hash("ObjectUnlitCampfire")},
+                .objectsInInventory = {},
+                .action = [](std::shared_ptr<Tile> tile,
+                             std::vector<std::shared_ptr<Object> *> objects) {
+                    for (auto &object : objects) {
+                        if ((*object)->GetType() == Hash("ObjectUnlitCampfire")) {
+                            auto mainScene{SceneManager::Instance().GetScene("MainScene")};
+                            auto gui{mainScene->GetGUI()};
+                            auto containerWindow{std::make_shared<GUIContainerWindow>(
+                                *(*object)->GetContainedObjects())};
+                            containerWindow->SetVisible(true);
+                            gui->AddChildComponent(containerWindow);
+                            GUIChatBox::Instance().Print("You open the campfire.");
+                            break;
+                        }
+                    }
+                }};
+    }
+
+    template <>
     auto GetAction<Hash("ActionCraftUnlitCampfire")>() -> Action {
         return {.label = "Craft campfire",
                 .groundMatches = {},
@@ -48,7 +71,7 @@ namespace Forradia::Theme0 {
 
     template <>
     auto GetAction<Hash("ActionOpenStoneBowl")>() -> Action {
-        return {.label = "Open",
+        return {.label = "Open stone bowl",
                 .groundMatches = {},
                 .objectMatches = {Hash("ObjectStoneBowl")},
                 .objectsInInventory = {},
