@@ -23,8 +23,8 @@ namespace Forradia::Theme0 {
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 
     template <>
-    auto GetAction<Hash("ActionOpenUnlitCampfire")>() -> Action {
-        return {.label = "Open campfire",
+    auto GetAction<Hash("ActionLightUnlitCampfire")>() -> Action {
+        return {.label = "Light campfire",
                 .groundMatches = {},
                 .objectMatches = {Hash("ObjectUnlitCampfire")},
                 .objectsInInventory = {},
@@ -32,6 +32,25 @@ namespace Forradia::Theme0 {
                              std::vector<std::shared_ptr<Object> *> objects) {
                     for (auto &object : objects) {
                         if ((*object)->GetType() == Hash("ObjectUnlitCampfire")) {
+                            (*object)->SetType(Hash("ObjectLitCampfire"));
+                            GUIChatBox::Instance().Print("You light the campfire.");
+                            break;
+                        }
+                    }
+                }};
+    }
+
+    template <>
+    auto GetAction<Hash("ActionOpenCampfire")>() -> Action {
+        return {.label = "Open campfire",
+                .groundMatches = {},
+                .objectMatches = {Hash("ObjectUnlitCampfire"), Hash("ObjectLitCampfire")},
+                .objectsInInventory = {},
+                .action = [](std::shared_ptr<Tile> tile,
+                             std::vector<std::shared_ptr<Object> *> objects) {
+                    for (auto &object : objects) {
+                        if ((*object)->GetType() == Hash("ObjectUnlitCampfire") ||
+                            (*object)->GetType() == Hash("ObjectLitCampfire")) {
                             auto mainScene{SceneManager::Instance().GetScene("MainScene")};
                             auto gui{mainScene->GetGUI()};
                             auto containerWindow{std::make_shared<GUIContainerWindow>(

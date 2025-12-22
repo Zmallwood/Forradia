@@ -42,6 +42,10 @@ namespace Forradia::Theme0 {
             return m_type;
         }
 
+        auto SetType(int value) -> void {
+            m_type = value;
+        }
+
         /**
          * Gets the model scaling of the object.
          *

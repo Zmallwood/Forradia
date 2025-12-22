@@ -15,6 +15,7 @@ namespace Forradia::Theme0 {
         AddObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0);
         AddObjectEntry("ObjectStoneBowl", 1.0F, true, 4);
         AddObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8);
+        AddObjectEntry("ObjectLitCampfire", 1.3F, true, 8);
     }
 
     auto ObjectIndex::AddObjectEntry(std::string_view objectName, float modelScaling,
