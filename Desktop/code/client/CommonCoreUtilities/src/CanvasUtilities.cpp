@@ -11,13 +11,9 @@ namespace Forradia
 {
     auto GetCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size
     {
-        if (window == nullptr)
-        {
-            ThrowError("window is null");
-        }
+        ThrowOnFalse(window != nullptr, "window is null");
 
         Size canvasSize;
-
         SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
 
         return canvasSize;
@@ -25,13 +21,9 @@ namespace Forradia
 
     auto CalcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float
     {
-        if (window == nullptr)
-        {
-            ThrowError("window is null");
-        }
+        ThrowOnFalse(window != nullptr, "window is null");
 
         auto canvasSize{GetCanvasSize(window)};
-
         auto aspectRatio{static_cast<float>(canvasSize.width) / canvasSize.height};
 
         return aspectRatio;
@@ -39,20 +31,14 @@ namespace Forradia
 
     auto ConvertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float
     {
-        if (window == nullptr)
-        {
-            ThrowError("window is null");
-        }
+        ThrowOnFalse(window != nullptr, "window is null");
 
         return width * CalcAspectRatio(window);
     }
 
     auto ConvertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float
     {
-        if (window == nullptr)
-        {
-            ThrowError("window is null");
-        }
+        ThrowOnFalse(window != nullptr, "window is null");
 
         return height / CalcAspectRatio(window);
     }

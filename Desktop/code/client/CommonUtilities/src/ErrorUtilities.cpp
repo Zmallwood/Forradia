@@ -19,4 +19,12 @@ namespace Forradia
 
         throw std::runtime_error(fullMessage);
     }
+
+    void ThrowOnFalse(bool condition, std::string_view message, std::source_location loc)
+    {
+        if (condition == false)
+        {
+            ThrowError(message, loc);
+        }
+    }
 }
