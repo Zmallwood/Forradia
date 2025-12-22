@@ -5,6 +5,7 @@
 
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
+#include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
@@ -175,6 +176,15 @@ namespace Forradia::Theme0 {
                 auto worldArea{World::Instance().GetCurrentWorldArea()};
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
                 if (tile) {
+                    auto playerPos{Player::Instance().GetPosition()};
+                    auto absDx{std::abs(m_clickedCoordinate.x - playerPos.x)};
+                    auto absDy{std::abs(m_clickedCoordinate.y - playerPos.y)};
+                    if (absDx > 1 || absDy > 1) {
+                        GUIChatBox::Instance().Print("You are too far away to do the action.");
+                        this->SetVisible(false);
+                        return;
+                    }
+
                     m_clickedObjects.clear();
                     for (auto obj : tile->GetObjectsStack()->GetObjects())
                         m_clickedObjects.push_back(&obj);
