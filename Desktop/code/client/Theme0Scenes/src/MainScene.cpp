@@ -102,6 +102,8 @@ namespace Forradia::Theme0 {
         if (clickSpeed < 200)
             if (m_guiInteractionMenu->OnMouseUp(mouseButton, clickSpeed))
                 return;
+        if (ObjectMoving::Instance().OnMouseUp(mouseButton, clickSpeed))
+            return;
         if (GUIInventoryWindow::Instance().OnMouseUp(mouseButton, clickSpeed))
             return;
         if (!GUIInventoryWindow::Instance().MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)

@@ -20,7 +20,7 @@ namespace Forradia::Theme0 {
         this->AddChildComponent(m_guiContainerWindowArea);
     }
 
-    std::shared_ptr<Object> *GUIContainerWindow::GetObjectPtrPtr(PointF position) {
+    std::shared_ptr<std::shared_ptr<Object>> GUIContainerWindow::GetObjectPtrPtr(PointF position) {
         return m_guiContainerWindowArea->GetObjectPtrPtr(position);
     }
 
@@ -30,7 +30,8 @@ namespace Forradia::Theme0 {
         this->AddChildComponent(m_panel);
     }
 
-    std::shared_ptr<Object> *GUIContainerWindowArea::GetObjectPtrPtr(PointF position) {
+    std::shared_ptr<std::shared_ptr<Object>>
+    GUIContainerWindowArea::GetObjectPtrPtr(PointF position) {
         return m_panel->GetObjectPtrPtr(position);
     }
 
@@ -46,7 +47,8 @@ namespace Forradia::Theme0 {
         }
     }
 
-    std::shared_ptr<Object> *GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) {
+    std::shared_ptr<std::shared_ptr<Object>>
+    GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) {
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
         auto marginY{ConvertWidthToHeight(k_margin, SDLDevice::Instance().GetWindow())};
@@ -78,9 +80,9 @@ namespace Forradia::Theme0 {
 
                     auto inventoryObject{objectsContainer.GetObject(index)};
 
-                    if (inventoryObject) {
-                        return m_containedObjects.GetObjectPtrPtr(index);
-                    }
+                    // if (inventoryObject) {
+                    return m_containedObjects.GetObjectPtrPtr(index);
+                    //}
                 }
             }
         }

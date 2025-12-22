@@ -28,7 +28,7 @@ namespace Forradia::Theme0 {
             this->Initialize(containedObjects);
         }
 
-        std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
+        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position);
 
       private:
         auto Initialize(ContainedObjects &containedObjects) -> void;
@@ -44,7 +44,7 @@ namespace Forradia::Theme0 {
             this->Initialize(parentWindow, containedObjects);
         }
 
-        std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
+        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position);
 
       protected:
         auto UpdateDerived() -> void override;
@@ -66,7 +66,7 @@ namespace Forradia::Theme0 {
             this->Initialize();
         }
 
-        std::shared_ptr<Object> *GetObjectPtrPtr(PointF position);
+        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position);
 
       protected:
         auto RenderDerived() const -> void override;

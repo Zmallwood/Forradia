@@ -13,11 +13,28 @@ namespace Forradia::Theme0 {
     auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool {
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
-        if (inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
+        if (!m_objectInAir && GUIInventoryWindow::Instance().GetVisible() &&
+            inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
             auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
             m_objectInAir = *objectPtrPtr;
             *objectPtrPtr = nullptr;
             return true;
+        }
+        return false;
+    }
+
+    auto ObjectMoving::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+        if (m_objectInAir) {
+            auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+            if (GUIInventoryWindow::Instance().GetVisible() &&
+                inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
+                auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+                if (objectPtrPtr)
+                    *objectPtrPtr = m_objectInAir;
+                m_objectInAir = nullptr;
+                return true;
+            }
         }
         return false;
     }

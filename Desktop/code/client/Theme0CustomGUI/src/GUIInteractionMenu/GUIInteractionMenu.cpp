@@ -65,7 +65,7 @@ namespace Forradia::Theme0 {
             auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
             if (object) {
                 objectHashes.push_back((*object)->GetType());
-                m_clickedObjects.push_back(object);
+                m_clickedObjects.push_back(object.get());
                 this->ShowMenuForTileAndObjects(0, objectHashes);
                 return;
             }

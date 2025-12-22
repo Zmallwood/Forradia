@@ -22,7 +22,7 @@ namespace Forradia::Theme0 {
          */
         auto GetObject(int index) -> std::shared_ptr<Object>;
 
-        auto GetObjectPtrPtr(int index) -> std::shared_ptr<Object> *;
+        auto GetObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>;
 
         /**
          * Adds an object to the inventory.
@@ -61,6 +61,6 @@ namespace Forradia::Theme0 {
       private:
         auto Initialize(int numSlots) -> void;
 
-        std::vector<std::shared_ptr<Object>> m_objects;
+        std::vector<std::shared_ptr<std::shared_ptr<Object>>> m_objects;
     };
 }

@@ -24,6 +24,8 @@ namespace Forradia::Theme0 {
 
         auto OnMouseDown(Uint8 mouseButton) -> bool;
 
+        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
+
         auto Render() const -> void;
 
       private:
