@@ -70,14 +70,17 @@ namespace Forradia::Theme0 {
     auto CraftStonePickaxeQuest::Update() -> void {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
+        auto i{0};
         for (auto &entry : playerActions) {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Pick) {
-                if (actionFirstArg == "ObjectBranch")
+                if (actionFirstArg == "ObjectBranch") {
                     m_numBranchPicked = true;
+                    Player::Instance().GetQuestCompletionPointsRef()["CraftStonePickaxeQuest"] = i;
+                }
                 if (actionFirstArg == "ObjectStone")
                     m_numStonePicked = true;
             }
@@ -85,6 +88,8 @@ namespace Forradia::Theme0 {
                 if (actionFirstArg == "ObjectStonePickaxe")
                     isCompleted = true;
             }
+
+            i++;
         }
     }
 
@@ -125,6 +130,45 @@ namespace Forradia::Theme0 {
             return "Mine a stone.";
 
         return "Craft a stone bowl out of the stone.";
+    }
+
+    auto CraftCampfireQuest::Update() -> void {
+        auto &playerActions{Player::Instance().GetPlayerActionsRef()};
+
+        auto i{0};
+
+        auto previousBranchPickQuestCompletionPoint{
+            Player::Instance().GetQuestCompletionPointsRef()["CraftStonePickaxeQuest"]};
+
+        auto numPickedBranches{0};
+
+        for (auto &entry : playerActions) {
+            if (i <= previousBranchPickQuestCompletionPoint) {
+                i++;
+                continue;
+            }
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            auto actionSecondArg{get<2>(entry)};
+
+            if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch") {
+                ++numPickedBranches;
+            }
+            if (action == PlayerActionTypes::Craft)
+                if (actionFirstArg == "ObjectUnlitCampfire")
+                    isCompleted = true;
+
+            i++;
+        }
+
+        m_numBranchesLeft = 8 - numPickedBranches;
+    }
+
+    auto CraftCampfireQuest::GetStatus() const -> std::string {
+        if (m_numBranchesLeft)
+            return "Branches left: " + std::to_string(m_numBranchesLeft);
+
+        return "Craft the campfire.";
     }
 
     auto MineStoneFromBoulderQuest1::Update() -> void {

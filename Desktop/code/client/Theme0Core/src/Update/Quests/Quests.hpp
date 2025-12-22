@@ -70,6 +70,21 @@ namespace Forradia::Theme0 {
         bool m_stonedMined{false};
     };
 
+    class CraftCampfireQuest : public Quest {
+      public:
+        CraftCampfireQuest() {
+            this->name = "Craft Campfire";
+            this->description = "Craft a campfire.";
+        }
+
+        auto Update() -> void override;
+
+        auto GetStatus() const -> std::string override;
+
+      private:
+        int m_numBranchesLeft{8};
+    };
+
     class MineStoneFromBoulderQuest1 : public Quest {
       public:
         MineStoneFromBoulderQuest1() {
