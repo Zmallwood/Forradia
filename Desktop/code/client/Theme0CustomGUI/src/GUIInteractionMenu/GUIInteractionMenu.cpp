@@ -5,6 +5,7 @@
 
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
+#include "Color2DRenderer.hpp"
 #include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "MouseUtilities.hpp"
@@ -289,8 +290,20 @@ namespace Forradia::Theme0
 
         auto i{0};
 
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
         for (auto &entry : m_entries)
         {
+            auto rowBounds{
+                RectF{bounds.x, bounds.y + (i + 1) * k_lineHeight, bounds.width, k_lineHeight}};
+
+            if (rowBounds.Contains(mousePos))
+            {
+                Color2DRenderer::Instance().DrawFilledRectangle(
+                    k_renderIDHoveredRow, Palette::GetColor<Hash("MildBlue")>(), rowBounds.x,
+                    rowBounds.y, rowBounds.width, rowBounds.height);
+            }
+
             TextRenderer::Instance().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);

@@ -87,6 +87,7 @@ namespace Forradia::Theme0
         static constexpr float k_lineHeight{0.035f};
         const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
+        constexpr static int k_renderIDHoveredRow{Hash("GUIInteractionMenuHoveredRow")};
         std::vector<int> m_renderIDsMenuEntryStrings{};
         std::vector<GUIInteractionMenuEntry> m_entries{};
         Point m_clickedCoordinate{-1, -1};
