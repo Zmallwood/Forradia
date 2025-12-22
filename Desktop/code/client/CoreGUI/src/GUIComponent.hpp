@@ -150,7 +150,6 @@ namespace Forradia
         RectF m_bounds{};
         std::vector<std::shared_ptr<GUIComponent>> m_childComponents{};
         bool m_visible{true};
-        bool m_enabled{true};
         GUIComponent *m_parentComponent{nullptr};
     };
 }

@@ -15,6 +15,7 @@ namespace Forradia
         glAttachShader(m_programID, vertexShader);
         glAttachShader(m_programID, fragmentShader);
         glLinkProgram(m_programID);
+
         GLint isLinked{0};
         glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
@@ -25,6 +26,7 @@ namespace Forradia
             glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
             std::vector<GLchar> infoLog(maxLength);
             glGetProgramInfoLog(m_programID, maxLength, &maxLength, infoLog.data());
+
             glDeleteProgram(m_programID);
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);

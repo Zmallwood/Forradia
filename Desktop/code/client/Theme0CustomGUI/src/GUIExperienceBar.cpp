@@ -14,8 +14,11 @@ namespace Forradia::Theme0
         GUIMeter::UpdateDerived();
 
         auto &player{Player::Instance()};
+
         auto experience{player.GetExperience()};
+
         auto levelProgress{CalculateFractionalExperienceProgress(experience)};
+
         m_filledPercentage = levelProgress;
     }
 

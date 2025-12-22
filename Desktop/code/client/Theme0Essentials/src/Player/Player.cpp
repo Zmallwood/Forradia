@@ -16,6 +16,7 @@ namespace Forradia::Theme0
     auto Player::Initialize() -> void
     {
         m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
+
         this->MoveToSuitablePosition();
     }
 
@@ -27,7 +28,9 @@ namespace Forradia::Theme0
         m_position = {size.width / 2, size.height / 2};
 
         while (worldArea->GetTile(m_position)->GetGround() == Hash("GroundWater"))
+        {
             m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
+        }
     }
 
     auto Player::Update() -> void
@@ -41,15 +44,19 @@ namespace Forradia::Theme0
             case PlayerMoveDirections::North:
                 this->MoveNorth();
                 break;
+
             case PlayerMoveDirections::East:
                 this->MoveEast();
                 break;
+
             case PlayerMoveDirections::South:
                 this->MoveSouth();
                 break;
+
             case PlayerMoveDirections::West:
                 this->MoveWest();
                 break;
+
             case PlayerMoveDirections::None:
             }
 
@@ -86,7 +93,9 @@ namespace Forradia::Theme0
     {
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
+
         auto worldArea{World::Instance().GetCurrentWorldArea()};
+
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
@@ -98,7 +107,9 @@ namespace Forradia::Theme0
     {
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
+
         auto worldArea{World::Instance().GetCurrentWorldArea()};
+
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
@@ -110,7 +121,9 @@ namespace Forradia::Theme0
     {
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
+
         auto worldArea{World::Instance().GetCurrentWorldArea()};
+
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
@@ -122,7 +135,9 @@ namespace Forradia::Theme0
     {
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
+
         auto worldArea{World::Instance().GetCurrentWorldArea()};
+
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};

@@ -21,9 +21,14 @@ namespace Forradia
         // Use djb2 algorithm by Daniel J. Bernstein.
         const unsigned long algorithmConstant{5381};
         const unsigned long algorithmFactor{33};
+
         unsigned long hash{algorithmConstant};
+
         for (char chr : text)
+        {
             hash = algorithmFactor * hash + (unsigned char)chr;
+        }
+
         return static_cast<int>(hash);
     }
 }

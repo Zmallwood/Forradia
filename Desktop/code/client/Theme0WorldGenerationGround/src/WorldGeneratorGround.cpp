@@ -31,7 +31,9 @@ namespace Forradia::Theme0
                 auto tile{worldArea->GetTile(x, y)};
 
                 if (!tile)
+                {
                     continue;
+                }
 
                 tile->SetGround("GroundDirt");
                 tile->SetElevation(GetDefaultGroundElevation());
@@ -74,16 +76,22 @@ namespace Forradia::Theme0
             auto adjacentY{y + directions[dir][1]};
 
             if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
+            {
                 continue;
+            }
 
             auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
 
             if (!adjacentTile)
+            {
                 continue;
+            }
 
             // Skip water tiles - they have their own elevation rules (set to 0).
             if (adjacentTile->GetGround() == Hash("GroundWater"))
+            {
                 continue;
+            }
 
             auto adjacentElevation{adjacentTile->GetElevation()};
 
@@ -94,7 +102,9 @@ namespace Forradia::Theme0
 
             // Update the maximum allowed elevation if the adjacent tile elevation is lower.
             if (maxFromAdjacent < maxAllowedElevation)
+            {
                 maxAllowedElevation = maxFromAdjacent;
+            }
         }
 
         return maxAllowedElevation;
@@ -105,10 +115,14 @@ namespace Forradia::Theme0
         auto maxElevation{GetMaxElevation()};
 
         if (elevation > maxElevation)
+        {
             return maxElevation;
+        }
 
         if (elevation < GetDefaultGroundElevation())
+        {
             return GetDefaultGroundElevation();
+        }
 
         return elevation;
     }

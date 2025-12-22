@@ -20,6 +20,7 @@ namespace Forradia
     {
         auto cameraPosition{GetPosition()};
         auto cameraLookAt{GetLookAt()};
+
         return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
                            glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
                            glm::vec3(0.0F, 0.0F, -1.0F));
@@ -28,8 +29,10 @@ namespace Forradia
     auto Camera::GetProjectionMatrix() -> glm::mat4
     {
         auto aspectRatio{CalcAspectRatio(SDLDevice::Instance().GetWindow())};
+
         constexpr float k_near{0.1F};
         constexpr float k_far{100.0F};
+
         return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, k_near, k_far);
     }
 
@@ -56,6 +59,7 @@ namespace Forradia
         point.x += cosRotation * horizontalDistance;
         point.y += sinRotation * horizontalDistance;
         point.z += sinVertical * m_zoomAmount;
+
         return point;
     }
 
@@ -73,6 +77,7 @@ namespace Forradia
         // Construct the resulting look-at point in world space.
         Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
                        playerPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
+
         return lookAt;
     }
 
@@ -94,6 +99,7 @@ namespace Forradia
         // Add the delta to the current vertical rotation amount and clamp it between the
         // minimum and maximum vertical rotation angles.
         m_rotationAngleVertical += rotationDeltaVertical;
+
         m_rotationAngleVertical =
             std::max(std::min(m_rotationAngleVertical, k_maxRotationAngleVertical),
                      k_minRotationAngleVertical);

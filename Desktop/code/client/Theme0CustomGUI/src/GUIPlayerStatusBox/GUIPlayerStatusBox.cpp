@@ -15,6 +15,7 @@ namespace Forradia::Theme0
     auto GUIPlayerStatusBox::Initialize() -> void
     {
         auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+
         this->AddChildComponent(wellBeingMeter);
 
         m_wellBeingValueTextLabel =

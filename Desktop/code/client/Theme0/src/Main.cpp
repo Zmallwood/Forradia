@@ -18,8 +18,10 @@ auto main(int argc, char **argv) -> int
     Engine::Instance().Initialize(Theme0Properties::Instance().GetGameWindowTitle(),
                                   Theme0Properties::Instance().GetClearColor());
     SetupScenes();
+
     World::Instance().Initialize(Theme0Properties::Instance().GetBaseWorldAreaSize(),
                                  Theme0Properties::Instance().GetWorldScaling());
     Engine::Instance().Run();
+
     return 0;
 }

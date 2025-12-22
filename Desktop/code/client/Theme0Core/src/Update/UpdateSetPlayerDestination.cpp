@@ -12,6 +12,7 @@ namespace Forradia::Theme0
     auto UpdateSetPlayerDestination() -> void
     {
         auto newDestination{TileHovering::Instance().GetHoveredCoordinate()};
+
         Player::Instance().SetDestination(newDestination);
     }
 }

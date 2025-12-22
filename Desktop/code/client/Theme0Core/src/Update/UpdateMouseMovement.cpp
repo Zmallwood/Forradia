@@ -16,7 +16,9 @@ namespace Forradia::Theme0
         auto destination{Player::Instance().GetDestination()};
 
         if (destination == Point{-1, -1})
+        {
             return;
+        }
 
         auto now{GetTicks()};
 
@@ -27,15 +29,29 @@ namespace Forradia::Theme0
             auto dY{destination.y - playerPosition.y};
 
             if (dX < 0)
+            {
                 Player::Instance().MoveWest();
+            }
+
             if (dY < 0)
+            {
                 Player::Instance().MoveNorth();
+            }
+
             if (dX > 0)
+            {
                 Player::Instance().MoveEast();
+            }
+
             if (dY > 0)
+            {
                 Player::Instance().MoveSouth();
+            }
+
             if (destination == playerPosition)
+            {
                 Player::Instance().SetDestination({-1, -1});
+            }
 
             Player::Instance().SetTicksLastMovement(now);
         }

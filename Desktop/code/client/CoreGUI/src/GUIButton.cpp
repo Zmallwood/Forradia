@@ -14,12 +14,16 @@ namespace Forradia
     auto GUIButton::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
         if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
+        {
             return false;
+        }
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
         if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos))
         {
             m_action();
+
             return true;
         }
 
@@ -49,6 +53,7 @@ namespace Forradia
         dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
 
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
+
         TextRenderer::Instance().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
                                             bounds.y + bounds.height / 2, FontSizes::_20, true);
     }

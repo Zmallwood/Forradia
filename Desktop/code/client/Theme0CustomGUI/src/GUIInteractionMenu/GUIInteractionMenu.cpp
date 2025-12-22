@@ -26,8 +26,10 @@ namespace Forradia::Theme0
         this->SetVisible(false);
 
         for (auto i = 0; i < k_maxNumMenuEntries; i++)
+        {
             m_renderIDsMenuEntryStrings.push_back(
                 Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
+        }
     }
 
     auto GUIInteractionMenu::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
@@ -40,10 +42,12 @@ namespace Forradia::Theme0
             {
                 this->HandleClick();
                 this->SetVisible(false);
+
                 return true;
             }
         }
         break;
+
         case SDL_BUTTON_RIGHT:
         {
             if (this->GetVisible() == false)
@@ -51,11 +55,13 @@ namespace Forradia::Theme0
                 this->SetVisible(true);
                 this->SetPosition(GetNormallizedMousePosition(SDLDevice::Instance().GetWindow()));
                 this->BuildMenu();
+
                 return true;
             }
         }
         break;
         }
+
         return false;
     }
 
@@ -72,14 +78,21 @@ namespace Forradia::Theme0
         if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow)
         {
             std::vector<int> objectHashes;
+
             m_clickedCoordinate = {-1, -1};
+
             m_clickedObjects.clear();
+
             auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+
             if (object)
             {
                 objectHashes.push_back((*object)->GetType());
+
                 m_clickedObjects.push_back(object.get());
+
                 this->ShowMenuForTileAndObjects(0, objectHashes);
+
                 return;
             }
         }
@@ -110,13 +123,13 @@ namespace Forradia::Theme0
 
             objectHashes.push_back(type);
         }
+
         this->ShowMenuForTileAndObjects(ground, objectHashes);
     }
 
     auto GUIInteractionMenu::ShowMenuForTileAndObjects(int groundHash,
                                                        std::vector<int> objectHashes) -> void
     {
-
         std::vector<Action> actions{GetAction<Hash("ActionStop")>(),
                                     GetAction<Hash("ActionLayCobbleStone")>(),
                                     GetAction<Hash("ActionPlowLand")>(),
@@ -138,9 +151,11 @@ namespace Forradia::Theme0
                                     GetAction<Hash("ActionLightUnlitCampfire")>()};
 
         auto &inventory{Player::Instance().GetObjectsInventoryRef()};
+
         for (auto &action : actions)
         {
             bool goOn{false};
+
             for (auto groundMatch : action.groundMatches)
             {
                 if (groundMatch == groundHash)
@@ -148,24 +163,41 @@ namespace Forradia::Theme0
                     goOn = true;
                 }
             }
+
             if (action.groundMatches.size() == 0 || groundHash == 0)
+            {
                 goOn = true;
+            }
+
             if (!goOn)
+            {
                 continue;
+            }
+
             goOn = false;
+
             for (auto objectMatch : action.objectMatches)
             {
                 for (auto objectHash : objectHashes)
                 {
                     if (objectMatch == objectHash)
+                    {
                         goOn = true;
+                    }
                 }
             }
             if (action.objectMatches.size() == 0)
+            {
                 goOn = true;
+            }
+
             if (!goOn)
+            {
                 continue;
+            }
+
             goOn = false;
+
             for (auto invObjectMatch : action.objectsInInventory)
             {
                 if (inventory.CountHasObject(invObjectMatch))
@@ -173,20 +205,27 @@ namespace Forradia::Theme0
                     goOn = true;
                 }
             }
+
             if (action.objectsInInventory.size() == 0)
+            {
                 goOn = true;
+            }
 
             if (goOn)
+            {
                 m_entries.push_back({action.label, action.action});
+            }
         }
 
         auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
+
         this->SetHeight(newHeight);
     }
 
     auto GUIInteractionMenu::HandleClick() -> void
     {
         auto bounds{this->GetBounds()};
+
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto i{0};
@@ -200,28 +239,41 @@ namespace Forradia::Theme0
             if (menuEntryRect.Contains(mousePosition))
             {
                 auto worldArea{World::Instance().GetCurrentWorldArea()};
+
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
+
                 if (tile)
                 {
                     auto playerPos{Player::Instance().GetPosition()};
+
                     auto absDx{std::abs(m_clickedCoordinate.x - playerPos.x)};
                     auto absDy{std::abs(m_clickedCoordinate.y - playerPos.y)};
+
                     if (absDx > 1 || absDy > 1)
                     {
                         GUIChatBox::Instance().Print("You are too far away to do the action.");
+
                         this->SetVisible(false);
+
                         return;
                     }
 
                     m_clickedObjects.clear();
+
                     for (auto obj : tile->GetObjectsStack()->GetObjects())
+                    {
                         m_clickedObjects.push_back(&obj);
+                    }
                 }
+
                 entry.GetAction()(tile, m_clickedObjects);
             }
+
             this->SetVisible(false);
+
             ++i;
         }
+
         this->SetVisible(false);
     }
 
@@ -234,12 +286,15 @@ namespace Forradia::Theme0
         TextRenderer::Instance().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
                                             bounds.y + 0.01f, FontSizes::_20, false, true,
                                             Palette::GetColor<Hash("YellowTransparent")>());
+
         auto i{0};
+
         for (auto &entry : m_entries)
         {
             TextRenderer::Instance().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
+
             ++i;
         }
     }

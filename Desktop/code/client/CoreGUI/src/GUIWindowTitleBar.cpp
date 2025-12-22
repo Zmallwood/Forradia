@@ -16,6 +16,7 @@ namespace Forradia
     auto GUIWindowTitleBar::Initialize(std::string_view uniqueName) -> void
     {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
+
         AddChildComponent(std::make_shared<GUIButton>(
             uniqueName.data() + std::string("CloseButton"),
             parentWindowBounds.width - k_closeButtonRightMargin, k_closeButtonTopMargin,
@@ -29,6 +30,7 @@ namespace Forradia
         GUIPanel::RenderDerived();
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
+
         TextRenderer::Instance().DrawString(
             k_renderIDWindowTitleText, k_windowTitle, parentWindowBounds.x + k_titleLeftMargin,
             parentWindowBounds.y + k_titleTopMargin - k_height, FontSizes::_20, false, false,
@@ -44,6 +46,7 @@ namespace Forradia
         boundsResult.y = parentWindowBounds.y - k_height;
         boundsResult.width = parentWindowBounds.width;
         boundsResult.height = k_height;
+
         return boundsResult;
     }
 }

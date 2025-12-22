@@ -28,9 +28,13 @@ namespace Forradia::Theme0
         else if (key == SDLK_RETURN)
         {
             if (GUIChatBox::Instance().GetInputActive())
+            {
                 GUIChatBox::Instance().SubmitInput();
+            }
             else
+            {
                 GUIChatBox::Instance().EnableInput();
+            }
         }
     }
 }

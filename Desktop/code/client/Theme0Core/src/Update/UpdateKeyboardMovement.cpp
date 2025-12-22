@@ -28,13 +28,21 @@ namespace Forradia::Theme0
         auto now{GetTicks()};
 
         if (upPress || wPress)
+        {
             Player::Instance().StartMovingNorth();
+        }
         if (rightPress || dPress)
+        {
             Player::Instance().StartMovingEast();
+        }
         if (downPress || sPress)
+        {
             Player::Instance().StartMovingSouth();
+        }
         if (leftPress || aPress)
+        {
             Player::Instance().StartMovingWest();
+        }
     }
 
     auto UpdateKeyboardMovementStop() -> void

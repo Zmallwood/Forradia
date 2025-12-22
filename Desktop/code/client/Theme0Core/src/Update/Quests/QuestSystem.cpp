@@ -29,7 +29,9 @@ namespace Forradia::Theme0
         for (auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
+            {
                 continue;
+            }
 
             quest->Update();
 
@@ -42,7 +44,9 @@ namespace Forradia::Theme0
         for (auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
+            {
                 continue;
+            }
 
             return quest->name;
         }
@@ -55,7 +59,9 @@ namespace Forradia::Theme0
         for (auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
+            {
                 continue;
+            }
 
             return quest->description;
         }
@@ -67,7 +73,9 @@ namespace Forradia::Theme0
         for (auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
+            {
                 continue;
+            }
 
             return quest->GetStatus();
         }

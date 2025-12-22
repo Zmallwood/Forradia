@@ -25,7 +25,9 @@ namespace Forradia::Theme0
         if (mouseButton == SDL_BUTTON_RIGHT)
         {
             if (m_isRotating)
+            {
                 m_isRotating = false;
+            }
         }
     }
 

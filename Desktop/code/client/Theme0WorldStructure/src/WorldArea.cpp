@@ -18,8 +18,11 @@ namespace Forradia::Theme0
         for (auto x = 0; x < size.width; x++)
         {
             m_tiles.push_back(std::vector<std::shared_ptr<Tile>>());
+
             for (auto y = 0; y < size.height; y++)
+            {
                 m_tiles[x].push_back(std::make_shared<Tile>());
+            }
         }
     }
 
@@ -38,7 +41,6 @@ namespace Forradia::Theme0
                 // Set the tile to its default state.
                 tile->SetGround(Hash("GroundGrass"));
                 tile->SetEntity(nullptr);
-                // tile->SetRobot(nullptr);
                 tile->SetElevation(0.0F);
                 tile->SetWaterDepth(0);
                 tile->GetObjectsStack()->ClearObjects();
@@ -50,14 +52,19 @@ namespace Forradia::Theme0
     {
         auto width{static_cast<int>(m_tiles.size())};
         auto height{0};
+
         if (width)
+        {
             height = m_tiles.at(0).size();
+        }
+
         return {width, height};
     }
 
     auto WorldArea::IsValidCoordinate(int x, int y) const -> bool
     {
         auto size{this->GetSize()};
+
         return x >= 0 && y >= 0 && x < size.width && y < size.height;
     }
 
@@ -69,7 +76,10 @@ namespace Forradia::Theme0
     auto WorldArea::GetTile(int x, int y) const -> std::shared_ptr<Tile>
     {
         if (this->IsValidCoordinate(x, y))
+        {
             return m_tiles.at(x).at(y);
+        }
+
         return nullptr;
     }
 

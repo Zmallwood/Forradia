@@ -14,12 +14,15 @@ namespace Forradia
         if (window == nullptr)
         {
             ThrowError("window is null");
-            return {0.0F, 0.0F};
         }
+
         int xPx;
         int yPx;
+
         SDL_GetMouseState(&xPx, &yPx);
+
         auto canvasSize{GetCanvasSize(window)};
+
         return {static_cast<float>(xPx) / canvasSize.width,
                 static_cast<float>(yPx) / canvasSize.height};
     }

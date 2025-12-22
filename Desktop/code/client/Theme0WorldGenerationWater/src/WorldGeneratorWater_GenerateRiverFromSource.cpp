@@ -30,16 +30,24 @@ namespace Forradia::Theme0
             auto y{static_cast<int>(currentY)};
 
             if (x < 0)
+            {
                 x = 0;
+            }
 
             if (x >= worldAreaSize.width)
+            {
                 x = worldAreaSize.width - 1;
+            }
 
             if (y < 0)
+            {
                 y = 0;
+            }
 
             if (y >= worldAreaSize.height)
+            {
                 y = worldAreaSize.height - 1;
+            }
 
             if ((x == 0 || x == worldAreaSize.width - 1 || y == 0 ||
                  y == worldAreaSize.height - 1) &&
@@ -64,11 +72,14 @@ namespace Forradia::Theme0
             if (!tile)
             {
                 if (tilesPlaced >= minRiverLength)
+                {
                     break;
+                }
 
                 // Continue in a random direction.
 
                 auto angle{GetRandomInt(360) * M_PI / 180.0F};
+
                 currentX += std::cos(angle) * 1.0F;
                 currentY += std::sin(angle) * 1.0F;
 
@@ -81,14 +92,18 @@ namespace Forradia::Theme0
             {
                 // Allow water in slightly higher elevation areas if we haven't reached minimum.
                 if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock"))
+                {
                     canPlace = true;
+                }
             }
 
             // If we can't place water, try to find an adjacent valid tile.
             if (!canPlace)
             {
                 if (tilesPlaced >= minRiverLength)
+                {
                     break;
+                }
 
                 bool foundAdjacent{false};
 
@@ -106,6 +121,7 @@ namespace Forradia::Theme0
                         {
                             x = adjacentX;
                             y = adjacentY;
+
                             tile = adjacentTile;
 
                             currentX = static_cast<float>(x);
@@ -123,6 +139,7 @@ namespace Forradia::Theme0
                     // Continue in a random direction.
 
                     auto angle{GetRandomInt(360) * M_PI / 180.0F};
+
                     currentX += std::cos(angle) * 1.0F;
                     currentY += std::sin(angle) * 1.0F;
 
@@ -177,12 +194,16 @@ namespace Forradia::Theme0
                     auto checkY{y + directions[dir][1]};
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    {
                         continue;
+                    }
 
                     auto checkTile{worldArea->GetTile(checkX, checkY)};
 
                     if (!checkTile)
+                    {
                         continue;
+                    }
 
                     auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
@@ -192,11 +213,15 @@ namespace Forradia::Theme0
                     {
                         if (checkTile->GetElevation() < 90 &&
                             checkTile->GetGround() != Hash("GroundRock"))
+                        {
                             canPlaceHere = true;
+                        }
                     }
 
                     if (!canPlaceHere)
+                    {
                         continue;
+                    }
 
                     auto checkElevation{checkTile->GetElevation()};
 
@@ -253,13 +278,16 @@ namespace Forradia::Theme0
                                 {
                                     if (checkTile->GetElevation() < 90 &&
                                         checkTile->GetGround() != Hash("GroundRock"))
+                                    {
                                         canPlaceHere = true;
+                                    }
                                 }
 
                                 if (canPlaceHere)
                                 {
                                     currentX = static_cast<float>(checkX);
                                     currentY = static_cast<float>(checkY);
+
                                     foundDirection = true;
                                 }
                             }
@@ -272,6 +300,7 @@ namespace Forradia::Theme0
                     {
                         // Just move in a random direction.
                         auto angle{GetRandomInt(360) * M_PI / 180.0F};
+
                         currentX += std::cos(angle) * 1.0F;
                         currentY += std::sin(angle) * 1.0F;
                     }
@@ -279,7 +308,9 @@ namespace Forradia::Theme0
 
                 // Stop if we've placed enough tiles and reached very low elevation.
                 if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5)
+                {
                     break;
+                }
             }
         }
     }

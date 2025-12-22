@@ -29,16 +29,22 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            {
                 continue;
+            }
 
             auto prefersLocation{false};
 
             if (tile->GetGround() == Hash("GroundGrass"))
             {
                 if (IsNearWater(x, y, 8))
+                {
                     prefersLocation = GetRandomInt(100) < 40;
+                }
                 else
+                {
                     prefersLocation = GetRandomInt(100) < 20;
+                }
             }
             else if (tile->GetGround() == Hash("GroundDirt"))
             {
@@ -65,16 +71,22 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            {
                 continue;
+            }
 
             auto prefersLocation{false};
 
             if (tile->GetGround() == Hash("GroundGrass"))
             {
                 if (IsNearWater(x, y, 8))
+                {
                     prefersLocation = GetRandomInt(100) < 40;
+                }
                 else
+                {
                     prefersLocation = GetRandomInt(100) < 20;
+                }
             }
             else if (tile->GetGround() == Hash("GroundDirt"))
             {
@@ -102,7 +114,9 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            {
                 continue;
+            }
 
             // Birds prefer areas with trees nearby (forests).
             // Check for trees in surrounding area.
@@ -115,10 +129,14 @@ namespace Forradia::Theme0
                 for (auto checkX = x - 3; checkX <= x + 3; checkX++)
                 {
                     if (checkX == x && checkY == y)
+                    {
                         continue;
+                    }
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    {
                         continue;
+                    }
 
                     auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
@@ -149,14 +167,20 @@ namespace Forradia::Theme0
             auto prefersLocation{false};
 
             if (nearbyTreesCount >= 2)
+            {
                 // High probability in forest areas.
                 prefersLocation = GetRandomInt(100) < 50;
+            }
             else if (nearbyTreesCount == 1)
+            {
                 // Moderate probability near a single tree.
                 prefersLocation = GetRandomInt(100) < 25;
+            }
             else if (tile->GetGround() == Hash("GroundGrass"))
+            {
                 // Lower probability in open grass areas (birds can still be found there).
                 prefersLocation = GetRandomInt(100) < 8;
+            }
 
             if (prefersLocation)
             {
@@ -194,7 +218,9 @@ namespace Forradia::Theme0
                 auto tile{worldArea->GetTile(waterX, waterY)};
 
                 if (tile && tile->GetGround() == Hash("GroundWater"))
+                {
                     foundWater = true;
+                }
 
                 attempts++;
             }
@@ -222,13 +248,17 @@ namespace Forradia::Theme0
 
                 // If the coordinates are out of bounds.
                 if (!worldArea->IsValidCoordinate(creatureX, creatureY))
+                {
                     continue;
+                }
 
                 auto creatureTile{worldArea->GetTile(creatureX, creatureY)};
 
                 if (!creatureTile || creatureTile->GetEntity() ||
                     creatureTile->GetGround() == Hash("GroundWater"))
+                {
                     continue;
+                }
 
                 // Prefer grass for the ecosystem.
                 if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)

@@ -77,7 +77,9 @@ namespace Forradia::Theme0
                 auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+                {
                     return;
+                }
 
                 auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
                 auto objectsStack{tile->GetObjectsStack()};
@@ -102,7 +104,9 @@ namespace Forradia::Theme0
                     !worldArea->IsValidCoordinate(coordinateNE) ||
                     !worldArea->IsValidCoordinate(coordinateSW) ||
                     !worldArea->IsValidCoordinate(coordinateSE))
+                {
                     return;
+                }
 
                 auto tileNWW{worldArea->GetTile(coordinateNWW)};
                 auto tileNNW{worldArea->GetTile(coordinateNNW)};
@@ -160,15 +164,19 @@ namespace Forradia::Theme0
                 case Hash("GroundGrass"):
                     color00 = Palette::GetColor<Hash("Green")>();
                     break;
+
                 case Hash("GroundWater"):
                     color00 = Palette::GetColor<Hash("LightBlue")>();
                     break;
+
                 case Hash("GroundDirt"):
                     color00 = Palette::GetColor<Hash("Brown")>();
                     break;
+
                 case Hash("GroundRock"):
                     color00 = Palette::GetColor<Hash("Gray")>();
                     break;
+
                 case Hash("GroundStoneSlab"):
                     color00 = Palette::GetColor<Hash("White")>();
                     break;
@@ -181,15 +189,19 @@ namespace Forradia::Theme0
                     case Hash("GroundGrass"):
                         color10 = Palette::GetColor<Hash("Green")>();
                         break;
+
                     case Hash("GroundWater"):
                         color10 = Palette::GetColor<Hash("LightBlue")>();
                         break;
+
                     case Hash("GroundDirt"):
                         color10 = Palette::GetColor<Hash("Brown")>();
                         break;
+
                     case Hash("GroundRock"):
                         color10 = Palette::GetColor<Hash("Gray")>();
                         break;
+
                     case Hash("GroundStoneSlab"):
                         color10 = Palette::GetColor<Hash("White")>();
                         break;
@@ -203,15 +215,19 @@ namespace Forradia::Theme0
                     case Hash("GroundGrass"):
                         color11 = Palette::GetColor<Hash("Green")>();
                         break;
+
                     case Hash("GroundWater"):
                         color11 = Palette::GetColor<Hash("LightBlue")>();
                         break;
+
                     case Hash("GroundDirt"):
                         color11 = Palette::GetColor<Hash("Brown")>();
                         break;
+
                     case Hash("GroundRock"):
                         color11 = Palette::GetColor<Hash("Gray")>();
                         break;
+
                     case Hash("GroundStoneSlab"):
                         color11 = Palette::GetColor<Hash("White")>();
                         break;
@@ -225,15 +241,19 @@ namespace Forradia::Theme0
                     case Hash("GroundGrass"):
                         color01 = Palette::GetColor<Hash("Green")>();
                         break;
+
                     case Hash("GroundWater"):
                         color01 = Palette::GetColor<Hash("LightBlue")>();
                         break;
+
                     case Hash("GroundDirt"):
                         color01 = Palette::GetColor<Hash("Brown")>();
                         break;
+
                     case Hash("GroundRock"):
                         color01 = Palette::GetColor<Hash("Gray")>();
                         break;
+
                     case Hash("GroundStoneSlab"):
                         color01 = Palette::GetColor<Hash("White")>();
                         break;
@@ -247,6 +267,7 @@ namespace Forradia::Theme0
                 if (ground == Hash("GroundWater"))
                 {
                     auto waterDepth{tile->GetWaterDepth()};
+
                     waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
                     std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
@@ -280,7 +301,9 @@ namespace Forradia::Theme0
                 auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
                 if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+                {
                     return;
+                }
 
                 auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
                 auto objectsStack{tile->GetObjectsStack()};
@@ -289,7 +312,9 @@ namespace Forradia::Theme0
                 if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
                     elevationsAll[xCoordinate].find(yCoordinate) ==
                         elevationsAll[xCoordinate].end())
+                {
                     return;
+                }
 
                 std::vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
 
@@ -365,7 +390,9 @@ namespace Forradia::Theme0
                 if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
                 {
                     for (auto &elevation : elevations)
+                    {
                         elevation += 0.01F;
+                    }
 
                     GroundRenderer::Instance().SetupState();
                     GroundRenderer::Instance().DrawTile(
@@ -389,13 +416,22 @@ namespace Forradia::Theme0
                 auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
                 if (xCoordinate % tilesGroupSize == 0 && yCoordinate % tilesGroupSize == 0)
+                {
                     for (auto yy = 0; yy < tilesGroupSize; yy++)
+                    {
                         for (auto xx = 0; xx < tilesGroupSize; xx++)
+                        {
                             fnIterationGround(x + xx, y + yy);
+                        }
+                    }
+                }
             }
         }
+
         if (!tiles.empty())
+        {
             GroundRenderer::Instance().DrawTiles(tiles);
+        }
 
         tiles.clear();
 
@@ -403,7 +439,11 @@ namespace Forradia::Theme0
 
         // Second pass: Render all except ground tiles.
         for (auto y = 0; y < worldAreaSize.height; y++)
+        {
             for (auto x = 0; x < worldAreaSize.width; x++)
+            {
                 fnIterationAllExceptGround(x, y);
+            }
+        }
     }
 }

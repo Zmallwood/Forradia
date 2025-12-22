@@ -14,13 +14,11 @@ namespace Forradia
         if (mesh == nullptr)
         {
             ThrowError("mesh is nullptr");
-            return {};
         }
 
         if (scene == nullptr)
         {
             ThrowError("scene is nullptr");
-            return {};
         }
 
         std::vector<Texture> textures;
@@ -31,6 +29,7 @@ namespace Forradia
                                                             &textureFilePath);
         // Add the texture to the results.
         textures.emplace_back(GetFileNameNoExtension(textureFilePath.C_Str()));
+
         return textures;
     }
 }

@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "SkyRenderer.hpp"
+#include "ErrorUtilities.hpp"
 #include "GUIChatBox.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
@@ -13,11 +14,19 @@ namespace Forradia
     auto SkyRenderer::Cleanup() -> void
     {
         if (m_vao != 0)
+        {
             glDeleteVertexArrays(1, &m_vao);
+        }
+
         if (m_ibo != 0)
+        {
             glDeleteBuffers(1, &m_ibo);
+        }
+
         if (m_vbo != 0)
+        {
             glDeleteBuffers(1, &m_vbo);
+        }
 
         m_vao = 0;
         m_ibo = 0;
@@ -79,8 +88,7 @@ namespace Forradia
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
             m_layoutLocationSunElevation == -1)
         {
-            GUIChatBox::Instance().Print(
-                "Uniform locations not found - shader might have compilation errors.");
+            ThrowError("Uniform locations not found - shader might have compilation errors.");
         }
     }
 }

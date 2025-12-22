@@ -18,7 +18,9 @@ namespace Forradia
     auto GUIScrollableArea::OnMouseDown(Uint8 mouseButton) -> bool
     {
         if (!this->GetVisible())
+        {
             return false;
+        }
 
         auto upArrowBounds{this->GetUpArrowBounds()};
         auto downArrowBounds{this->GetDownArrowBounds()};
@@ -29,16 +31,19 @@ namespace Forradia
         if (upArrowBounds.Contains(mousePos))
         {
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+
             m_scrollPosition -= k_scrollbarMoveStepSize;
         }
         else if (downArrowBounds.Contains(mousePos))
         {
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+
             m_scrollPosition += k_scrollbarMoveStepSize;
         }
         else if (sliderBounds.Contains(mousePos))
         {
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+
             m_movingSlider = true;
             m_sliderStartMoveYPos = m_scrollPosition;
             m_sliderStartMoveMouseYPos = mousePos.y;
@@ -50,11 +55,14 @@ namespace Forradia
     auto GUIScrollableArea::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
         if (!this->GetVisible())
+        {
             return false;
+        }
 
         m_movingSlider = false;
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
         if (GetBounds().Contains(mousePos))
         {
             return true;
@@ -91,9 +99,11 @@ namespace Forradia
         if (m_movingSlider)
         {
             auto delta{(mousePos.y - m_sliderStartMoveMouseYPos)};
+
             m_scrollPosition = m_sliderStartMoveYPos +
                                delta / (bounds.height - k_sliderHeight - 2 * k_scrollbarWidth);
         }
+
         m_scrollPosition = std::max(0.0F, m_scrollPosition);
         m_scrollPosition = std::min(1.0F, m_scrollPosition);
     }
@@ -101,7 +111,9 @@ namespace Forradia
     auto GUIScrollableArea::Render() const -> void
     {
         if (!this->GetVisible())
+        {
             return;
+        }
 
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
         glEnable(GL_SCISSOR_TEST);
@@ -145,6 +157,7 @@ namespace Forradia
     {
         auto bounds{GUIComponent::GetBounds()};
         bounds.y -= m_scrollPosition * bounds.height;
+
         return bounds;
     }
 
@@ -153,6 +166,7 @@ namespace Forradia
         auto bounds{GUIComponent::GetBounds()};
         auto upArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth, bounds.y,
                                  k_scrollbarWidth, k_scrollbarWidth}};
+
         return upArrowBounds;
     }
 
@@ -162,6 +176,7 @@ namespace Forradia
         auto downArrowBounds{RectF{bounds.x + bounds.width - k_scrollbarWidth,
                                    bounds.y + bounds.height - k_scrollbarWidth, k_scrollbarWidth,
                                    k_scrollbarWidth}};
+
         return downArrowBounds;
     }
 
@@ -174,6 +189,7 @@ namespace Forradia
 
         auto sliderY{bounds.y + k_scrollbarWidth +
                      (bounds.height - sliderHeight - 2 * k_scrollbarWidth) * m_scrollPosition};
+
         return {sliderX, sliderY, sliderWidth, sliderHeight};
     }
 }

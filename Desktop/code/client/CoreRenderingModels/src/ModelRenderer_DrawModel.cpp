@@ -65,14 +65,20 @@ namespace Forradia
             float totalModelScaling{k_globalModelScaling};
 
             if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
+            {
                 totalModelScaling *= modelScaling;
+            }
 
             if (Theme0::ObjectIndex::Instance().ObjectEntryExists(modelNameHash))
+            {
                 totalModelScaling *= Theme0::ObjectIndex::Instance().GetModelScaling(modelNameHash);
+            }
 
             if (Theme0::CreatureIndex::Instance().CreatureEntryExists(modelNameHash))
+            {
                 totalModelScaling *=
                     Theme0::CreatureIndex::Instance().GetModelScaling(modelNameHash);
+            }
 
             // For each mesh.
             for (const auto &mesh : meshes)
@@ -140,7 +146,9 @@ namespace Forradia
             modelMatrix, glm::vec3(xPos, yPos, elevation * elevationHeight + levitationHeight));
 
         if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
+        {
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
+        }
 
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
         auto projectionMatrix{Camera::GetProjectionMatrix()};

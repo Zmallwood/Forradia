@@ -46,17 +46,23 @@ namespace Forradia::Theme0
     auto ObjectsStack::PopObject() -> std::shared_ptr<Object>
     {
         if (m_objects.empty())
+        {
             return nullptr;
+        }
 
         auto object{m_objects.back()};
         m_objects.pop_back();
+
         return object;
     }
 
     auto ObjectsStack::GetTopObjectPtrPtr() -> std::shared_ptr<Object> *
     {
         if (m_objects.empty())
+        {
             return nullptr;
+        }
+
         return &m_objects.back();
     }
 

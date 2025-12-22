@@ -22,6 +22,7 @@ namespace Forradia::Theme0
             auto yCenter{GetRandomInt(worldAreaSize.height)};
             auto radius{static_cast<int>(8 * worldScaling + GetRandomInt(12 * worldScaling))};
             auto maxElevation{30 + GetRandomInt(20)};
+
             CreateElevationHill(xCenter, yCenter, radius, maxElevation);
         }
     }
@@ -52,7 +53,9 @@ namespace Forradia::Theme0
                 {
                     auto radius{
                         static_cast<int>(4 * worldScaling + GetRandomInt(6 * worldScaling))};
+
                     auto elevation{120 + GetRandomInt(160)};
+
                     CreateElevationHill(x, y, radius, elevation);
                 }
 
@@ -69,10 +72,14 @@ namespace Forradia::Theme0
                     direction += GetRandomInt(60) - 30;
 
                     if (direction < 0)
+                    {
                         direction += 360;
+                    }
 
                     if (direction >= 360)
+                    {
                         direction -= 360;
+                    }
                 }
             }
         }
@@ -98,17 +105,23 @@ namespace Forradia::Theme0
                 for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
+                    {
                         continue;
+                    }
 
                     auto distance{GetDistance(x, y, xCenter, yCenter)};
 
                     if (distance > radius)
+                    {
                         continue;
+                    }
 
                     auto tile = worldArea->GetTile(x, y);
 
                     if (!tile)
+                    {
                         continue;
+                    }
 
                     auto normalizedDistance{distance / radius};
 
@@ -134,26 +147,36 @@ namespace Forradia::Theme0
             for (auto x = centerX - radius; x <= centerX + radius; x++)
             {
                 if (!GetWorldArea()->IsValidCoordinate(x, y))
+                {
                     continue;
+                }
 
                 auto distance{GetDistance(x, y, centerX, centerY)};
 
                 if (distance > radius)
+                {
                     continue;
+                }
 
                 auto tile{GetWorldArea()->GetTile(x, y)};
 
                 if (!tile)
+                {
                     continue;
+                }
 
                 if (tile->GetGround() == Hash("GroundWater"))
+                {
                     continue;
+                }
 
                 auto currentElevation{tile->GetElevation()};
                 auto maxElevation{GetMaxElevation()};
 
                 if (currentElevation >= maxElevation)
+                {
                     continue;
+                }
 
                 auto normalizedDistance{distance / radius};
 
@@ -207,8 +230,10 @@ namespace Forradia::Theme0
                     auto newElevation{desiredElevation};
 
                     if (newElevation > maxAllowedElevation)
+                    {
                         // Respect the slope constraint when the desired elevation is too high.
                         newElevation = maxAllowedElevation;
+                    }
 
                     // Final safety clamp (elevation cap and minimum).
                     tile->SetElevation(ClampElevation(newElevation));

@@ -14,18 +14,24 @@ namespace Forradia::Theme0
     auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool
     {
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
         auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+
         if (!m_objectInAir && GUIInventoryWindow::Instance().GetVisible() &&
             inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
         {
             auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+
             if (objectPtrPtr)
             {
                 m_objectInAir = *objectPtrPtr;
+
                 *objectPtrPtr = nullptr;
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -34,15 +40,20 @@ namespace Forradia::Theme0
         if (m_objectInAir)
         {
             auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
             auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+
             if (GUIInventoryWindow::Instance().GetVisible() &&
                 inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
             {
                 auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+
                 if (objectPtrPtr)
                 {
                     *objectPtrPtr = m_objectInAir;
+
                     m_objectInAir = nullptr;
+
                     return true;
                 }
             }

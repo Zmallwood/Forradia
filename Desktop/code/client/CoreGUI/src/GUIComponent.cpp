@@ -24,13 +24,17 @@ namespace Forradia
     // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIComponent::OnMouseDown(Uint8 mouseButton) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnMouseDown(mouseButton); }))
+        {
             return true;
+        }
 
         return false;
     }
@@ -38,91 +42,119 @@ namespace Forradia
     // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnMouseUp(mouseButton, clickSpeed); }))
+        {
             return true;
+        }
 
         return false;
     }
 
     auto GUIComponent::OnMouseWheel(int delta) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnMouseWheel(delta); }))
+        {
             return true;
+        }
 
         return false;
     }
 
     auto GUIComponent::OnKeyDown(SDL_Keycode key) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnKeyDown(key); }))
+        {
             return true;
+        }
 
         return false;
     }
 
     auto GUIComponent::OnKeyUp(SDL_Keycode key) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnKeyUp(key); }))
+        {
             return true;
+        }
 
         return false;
     }
 
     auto GUIComponent::OnTextInput(std::string_view text) -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp)
                         { return comp->OnTextInput(text); }))
+        {
             return true;
+        }
 
         return false;
     }
 
     auto GUIComponent::MouseHoveringGUI() const -> bool
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return false;
+        }
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto result{GetBounds().Contains(mousePos)};
 
         for (const auto &childComponent : std::ranges::reverse_view(m_childComponents))
+        {
             result |= childComponent->MouseHoveringGUI();
+        }
 
         return result;
     }
 
     auto GUIComponent::Update() -> void
     {
-        if (!m_visible || !m_enabled)
+        if (!m_visible)
+        {
             return;
+        }
 
         for (auto &childComponent : std::ranges::reverse_view(m_childComponents))
+        {
             childComponent->Update();
+        }
 
         this->UpdateDerived();
     }
@@ -130,12 +162,16 @@ namespace Forradia
     auto GUIComponent::Render() const -> void
     {
         if (!m_visible)
+        {
             return;
+        }
 
         this->RenderDerived();
 
         for (const auto &component : m_childComponents)
+        {
             component->Render();
+        }
     }
 
     auto GUIComponent::GetBounds() const -> RectF
@@ -146,6 +182,7 @@ namespace Forradia
         if (m_parentComponent != nullptr)
         {
             auto parentPosition{m_parentComponent->GetBounds().GetPosition()};
+
             boundsResult.Offset(parentPosition);
         }
 

@@ -22,6 +22,7 @@ namespace Forradia::Theme0
     {
         auto dx{static_cast<float>(x2 - x1)};
         auto dy{static_cast<float>(y2 - y1)};
+
         return std::sqrt(dx * dx + dy * dy);
     }
 }

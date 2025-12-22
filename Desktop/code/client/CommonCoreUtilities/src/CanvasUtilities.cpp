@@ -15,8 +15,11 @@ namespace Forradia
         {
             ThrowError("window is null");
         }
+
         Size canvasSize;
+
         SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
+
         return canvasSize;
     }
 
@@ -25,10 +28,12 @@ namespace Forradia
         if (window == nullptr)
         {
             ThrowError("window is null");
-            return 0.0F;
         }
+
         auto canvasSize{GetCanvasSize(window)};
+
         auto aspectRatio{static_cast<float>(canvasSize.width) / canvasSize.height};
+
         return aspectRatio;
     }
 
@@ -37,8 +42,8 @@ namespace Forradia
         if (window == nullptr)
         {
             ThrowError("window is null");
-            return 0.0F;
         }
+
         return width * CalcAspectRatio(window);
     }
 
@@ -47,8 +52,8 @@ namespace Forradia
         if (window == nullptr)
         {
             ThrowError("window is null");
-            return 0.0F;
         }
+
         return height / CalcAspectRatio(window);
     }
 }

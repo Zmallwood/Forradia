@@ -13,11 +13,15 @@ namespace Forradia::Theme0
     {
         m_questTitleTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f);
+
         m_questTitleTextPanel->SetText("Current Quest:");
+
         m_questNameTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestNamePanel", 0.01f, 0.025f, 0.1f, 0.05f);
+
         m_questDescriptionTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestDescriptionPanel", 0.01f, 0.04f, 0.1f, 0.05f);
+
         m_questStatusTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestStatusPanel", 0.01f, 0.055f, 0.1f, 0.05f);
 

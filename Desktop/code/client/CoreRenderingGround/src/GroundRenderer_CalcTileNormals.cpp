@@ -55,6 +55,7 @@ namespace Forradia
 
         // Group the normals and return them.
         auto normals{std::vector<glm::vec3>{normal00, normal10, normal11, normal01}};
+
         return normals;
     }
 }

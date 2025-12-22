@@ -24,6 +24,7 @@ namespace Forradia
         auto vertices{Model::GetVertices(mesh, transformation)};
         auto indices{Model::GetIndices(mesh)};
         auto textures{Model::GetTextures(mesh, scene)};
+
         return {vertices, indices, textures};
     }
 }

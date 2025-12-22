@@ -18,6 +18,7 @@ namespace Forradia
             glDeleteBuffers(1, &entry.second.vbo);
             glDeleteVertexArrays(1, &entry.second.vao);
         }
+
         m_operationsCache.clear();
     }
 

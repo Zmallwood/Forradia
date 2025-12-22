@@ -19,14 +19,20 @@ namespace Forradia
         auto childComponents{this->GetChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
+        {
             if (childComponent->OnMouseDown(mouseButton))
+            {
                 return true;
+            }
+        }
 
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
+
         if (draggableArea.Contains(mousePosition))
         {
             this->StartMove();
+
             return true;
         }
 
@@ -38,15 +44,22 @@ namespace Forradia
         this->StopMove();
 
         if (!this->GetVisible())
+        {
             return false;
+        }
 
         auto childComponents{this->GetChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
+        {
             if (childComponent->OnMouseUp(mouseButton, clickSpeed))
+            {
                 return true;
+            }
+        }
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
         if (GetBounds().Contains(mousePos))
         {
             return true;

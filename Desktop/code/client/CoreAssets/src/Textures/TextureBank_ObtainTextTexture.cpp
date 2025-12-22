@@ -13,12 +13,14 @@ namespace Forradia
         if (m_textTextureIDs.contains(uniqueTextureID))
         {
             textureID = m_textTextureIDs.at(uniqueTextureID);
+
             return true;
         }
 
         // If it doesn't, create it.
         glGenTextures(1, &textureID);
         m_textTextureIDs[uniqueTextureID] = textureID;
+
         return false;
     }
 }

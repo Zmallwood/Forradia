@@ -21,14 +21,20 @@ namespace Forradia::Theme0
     auto CreatureIndex::GetModelScaling(int creatureHash) const -> float
     {
         if (m_entries.contains(creatureHash))
+        {
             return m_entries.at(creatureHash).modelScaling;
+        }
+
         return 1.0F;
     }
 
     auto CreatureIndex::GetLevitationHeight(int creatureHash) const -> float
     {
         if (m_entries.contains(creatureHash))
+        {
             return m_entries.at(creatureHash).levitationHeight;
+        }
+
         return 0.0F;
     }
 

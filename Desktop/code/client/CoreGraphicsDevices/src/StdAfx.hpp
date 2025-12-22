@@ -15,6 +15,7 @@
 // clang-format on
 
 #include "Coloring/Color.hpp"
+#include "ErrorUtilities.hpp"
 #include "Geometry/Size.hpp"
 #include "MessageUtilities.hpp"
 #include "SDLDeleter.hpp"

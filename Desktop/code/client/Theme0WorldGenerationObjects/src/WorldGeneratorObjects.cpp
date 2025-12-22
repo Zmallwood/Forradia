@@ -34,7 +34,9 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(centerX, centerY)};
 
             if (!tile || !IsValidForFlora(centerX, centerY))
+            {
                 continue;
+            }
 
             auto radius{static_cast<int>(8 * worldScaling + GetRandomInt(12 * worldScaling))};
             auto treeDensity{0.1F + GetRandomInt(20) / 100.0F};
@@ -46,15 +48,21 @@ namespace Forradia::Theme0
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
+                    {
                         continue;
+                    }
 
                     if (!IsValidForFlora(x, y))
+                    {
                         continue;
+                    }
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
                     if (distance > radius)
+                    {
                         continue;
+                    }
 
                     auto normalizedDistance{distance / radius};
 
@@ -73,25 +81,37 @@ namespace Forradia::Theme0
                             if (useFir)
                             {
                                 if (GetRandomInt(100) < 70)
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                }
                                 else
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                }
                             }
                             else
                             {
                                 if (GetRandomInt(100) < 70)
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                }
                                 else
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                }
                             }
 
                             // Add undergrowth in forests.
                             if (GetRandomInt(100) < 25)
                             {
                                 if (GetRandomInt(100) < 50)
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush1");
+                                }
                                 else
+                                {
                                     forestTile->GetObjectsStack()->AddObject("ObjectBush2");
+                                }
                             }
                         }
                     }
@@ -117,10 +137,14 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(centerX, centerY)};
 
             if (!tile || !IsValidForFlora(centerX, centerY))
+            {
                 continue;
+            }
 
             if (tile->GetGround() != Hash("GroundGrass"))
+            {
                 continue;
+            }
 
             auto radius{static_cast<int>(5 * worldScaling + GetRandomInt(8 * worldScaling))};
 
@@ -133,20 +157,28 @@ namespace Forradia::Theme0
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
+                    {
                         continue;
+                    }
 
                     if (!IsValidForFlora(x, y))
+                    {
                         continue;
+                    }
 
                     auto meadowTile{worldArea->GetTile(x, y)};
 
                     if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
+                    {
                         continue;
+                    }
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
                     if (distance > radius)
+                    {
                         continue;
+                    }
 
                     // Add flowers.
 
@@ -168,12 +200,16 @@ namespace Forradia::Theme0
     auto WorldGeneratorObjects::IsValidForFlora(int x, int y) const -> bool
     {
         if (!GetWorldArea()->IsValidCoordinate(x, y))
+        {
             return false;
+        }
 
         auto tile = GetWorldArea()->GetTile(x, y);
 
         if (!tile)
+        {
             return false;
+        }
 
         auto ground{tile->GetGround()};
 

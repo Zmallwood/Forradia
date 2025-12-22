@@ -31,7 +31,10 @@ namespace Forradia::Theme0
     auto ObjectIndex::GetModelScaling(int objectHash) const -> float
     {
         if (m_entries.contains(objectHash))
+        {
             return m_entries.at(objectHash).modelScaling;
+        }
+
         return 1.0F;
     }
 
@@ -43,14 +46,20 @@ namespace Forradia::Theme0
     auto ObjectIndex::GetIgnoreIndividualModelScaling(int objectHash) const -> bool
     {
         if (m_entries.contains(objectHash))
+        {
             return m_entries.at(objectHash).ignoreIndividualModelScaling;
+        }
+
         return false;
     }
 
     auto ObjectIndex::GetNumContainerSlots(int objectHash) const -> int
     {
         if (m_entries.contains(objectHash))
+        {
             return m_entries.at(objectHash).numContainerSlots;
+        }
+
         return 0;
     }
 }

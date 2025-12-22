@@ -31,7 +31,9 @@ namespace Forradia::Theme0
             auto tile = worldArea->GetTile(x, y);
 
             if (!tile || !IsValidForFlora(x, y))
+            {
                 continue;
+            }
 
             // Check if the tile has grass ground and if the random number is less than 8.
             if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
@@ -41,9 +43,13 @@ namespace Forradia::Theme0
                 // Add a tree with type of either fir or birch with a 50% chance.
 
                 if (GetRandomInt(100) < 50)
+                {
                     tile->GetObjectsStack()->AddObject("ObjectFirTree");
+                }
                 else
+                {
                     tile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                }
             }
         }
 
@@ -58,7 +64,9 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || !IsValidForFlora(x, y))
+            {
                 continue;
+            }
 
             if (GetRandomInt(100) < 8)
             {
@@ -66,9 +74,13 @@ namespace Forradia::Theme0
 
                 // Add a bush with type of either bush1 or bush2 with a 50% chance.
                 if (GetRandomInt(100) < 50)
+                {
                     tile->GetObjectsStack()->AddObject("ObjectBush1");
+                }
                 else
+                {
                     tile->GetObjectsStack()->AddObject("ObjectBush2");
+                }
             }
         }
 
@@ -83,7 +95,9 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetWaterDepth() >= 4)
+            {
                 continue;
+            }
 
             // Make it so that the tile has no other objects on it.
             tile->GetObjectsStack()->ClearObjects();
@@ -104,13 +118,17 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || !IsValidForFlora(x, y))
+            {
                 continue;
+            }
 
             auto ground{tile->GetGround()};
 
             // Mushrooms prefer grass or dirt ground.
             if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
+            {
                 continue;
+            }
 
             // Don't place mushrooms on tiles that already have trees or large objects.
             // (mushrooms are undergrowth, not replacement for trees).
@@ -118,7 +136,9 @@ namespace Forradia::Theme0
             auto objectsStack{tile->GetObjectsStack()};
 
             if (objectsStack->GetSize() > 0)
+            {
                 continue;
+            }
 
             // Check if there are objects (likely trees) nearby.
             // Mushrooms often grow near trees in forest environments.
@@ -130,15 +150,21 @@ namespace Forradia::Theme0
                 for (auto checkX = x - 2; checkX <= x + 2; checkX++)
                 {
                     if (checkX == x && checkY == y)
+                    {
                         continue;
+                    }
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    {
                         continue;
+                    }
 
                     auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
                     if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
+                    {
                         nearbyObjectsCount++;
+                    }
                 }
             }
 
@@ -154,7 +180,9 @@ namespace Forradia::Theme0
             auto mushroomProbability{baseProbability + forestBonus};
 
             if (mushroomProbability > 25)
+            {
                 mushroomProbability = 25;
+            }
 
             if (GetRandomInt(100) < mushroomProbability)
             {
@@ -173,12 +201,16 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(x, y)};
 
             if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
+            {
                 continue;
+            }
 
             auto objectsStack{tile->GetObjectsStack()};
 
             if (objectsStack->GetSize() > 0)
+            {
                 continue;
+            }
 
             objectsStack->ClearObjects();
             objectsStack->AddObject("ObjectStone");

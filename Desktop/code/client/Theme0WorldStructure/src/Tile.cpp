@@ -16,6 +16,7 @@ namespace Forradia::Theme0
     auto Tile::SetGround(int groundHash) -> void
     {
         m_ground = groundHash;
+
         this->SetForceRedraw(true);
     }
 

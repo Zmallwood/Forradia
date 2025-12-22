@@ -23,7 +23,9 @@ namespace Forradia::Theme0
             for (auto checkX = x - radius; checkX <= x + radius; checkX++)
             {
                 if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
+                {
                     continue;
+                }
 
                 auto tile{GetWorldArea()->GetTile(checkX, checkY)};
 
@@ -32,7 +34,9 @@ namespace Forradia::Theme0
                     auto distance{GetDistance(x, y, checkX, checkY)};
 
                     if (distance <= radius)
+                    {
                         return true;
+                    }
                 }
             }
         }

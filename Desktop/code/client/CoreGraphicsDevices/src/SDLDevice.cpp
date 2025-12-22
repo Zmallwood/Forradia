@@ -12,7 +12,9 @@ namespace Forradia
     {
         m_gameWindowTitle = gameWindowTitle;
         m_clearColor = clearColor;
+
         SDL_Init(SDL_INIT_EVERYTHING);
+
         this->SetupSDLWindow();
     }
 
@@ -20,6 +22,7 @@ namespace Forradia
     {
         auto clearColor{m_clearColor};
         glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
@@ -32,8 +35,10 @@ namespace Forradia
     {
         SDL_DisplayMode displayMode;
         SDL_GetCurrentDisplayMode(0, &displayMode);
+
         auto width{displayMode.w};
         auto height{displayMode.h};
+
         return {width, height};
     }
 }

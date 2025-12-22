@@ -13,8 +13,11 @@ namespace Forradia::Theme0
     auto WorldGenerationScene::OnEnterDerived() -> void
     {
         GUIChatBox::Instance().Print("Generating world...");
+
         WorldGenerator::Instance().GenerateNewWorld();
+
         GUIChatBox::Instance().Print("World generation complete.");
+
         SceneManager::Instance().GoToScene("MainScene");
     }
 }

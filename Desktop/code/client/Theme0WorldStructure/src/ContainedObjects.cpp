@@ -11,35 +11,28 @@ namespace Forradia::Theme0
     auto ContainedObjects::Initialize(int numSlots) -> void
     {
         for (auto i = 0; i < numSlots; ++i)
+        {
             m_objects.push_back(std::make_shared<std::shared_ptr<Object>>());
-        // std::cout << "numSlots: " << numSlots << std::endl;
+        }
     }
 
     auto ContainedObjects::GetObject(int index) -> std::shared_ptr<Object>
     {
         if (index >= 0 && index < m_objects.size())
+        {
             return *m_objects[index];
-        // if (index >= m_objects.size()) {
-        //     for (auto i = 0; i <= index; i++) {
-        //         if (i >= m_objects.size())
-        //             m_objects.push_back(nullptr);
-        //     }
-        //     return &m_objects[index];
-        // }
+        }
+
         return nullptr;
     }
 
     auto ContainedObjects::GetObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>
     {
         if (index >= 0 && index < m_objects.size())
+        {
             return m_objects[index];
-        // if (index >= m_objects.size()) {
-        //     for (auto i = 0; i <= index; i++) {
-        //         if (i >= m_objects.size())
-        //             m_objects.push_back(nullptr);
-        //     }
-        //     return &m_objects[index];
-        // }
+        }
+
         return nullptr;
     }
 
@@ -53,13 +46,11 @@ namespace Forradia::Theme0
             {
                 // Add object to slot.
                 *m_objects[i] = std::make_shared<Object>(objectType);
+
                 // Dont continue as the object has been added.
                 return;
             }
         }
-
-        // If no empty slot is found, add object to the end of the inventory.
-        // m_objects.push_back(std::make_shared<Object>(objectType));
     }
 
     auto ContainedObjects::AddObject(std::string_view objectName) -> void
@@ -84,8 +75,10 @@ namespace Forradia::Theme0
             {
                 // Check if object type matches.
                 if ((*m_objects[i])->GetType() == objectHash)
+                {
                     // Increment count if object type matches.
                     ++findCount;
+                }
             }
         }
 
@@ -105,6 +98,7 @@ namespace Forradia::Theme0
                 {
                     // Remove object from slot.
                     *m_objects[i] = nullptr;
+
                     // Decrement count.
                     count--;
                 }

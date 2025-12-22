@@ -32,9 +32,12 @@ namespace Forradia
                                               float xPos, float yPos, float width) -> void
     {
         auto hash{Forradia::Hash(imageName)};
+
         auto imageDimensions{TextureBank::GetTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
+        {
             return;
+        }
 
         auto canvasAspectRatio{CalcAspectRatio(SDLDevice::Instance().GetWindow())};
         auto imageAspectRatio{static_cast<float>(imageDimensions.width) / imageDimensions.height};

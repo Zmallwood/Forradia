@@ -20,12 +20,15 @@ namespace Forradia::Theme0
         auto worldArea{World::Instance().GetCurrentWorldArea()};
 
         if (!worldArea)
+        {
             return;
+        }
 
         nlohmann::json jsonData;
 
         // Get world area size
         auto worldAreaSize{worldArea->GetSize()};
+
         jsonData["size"]["width"] = worldAreaSize.width;
         jsonData["size"]["height"] = worldAreaSize.height;
 
@@ -39,9 +42,12 @@ namespace Forradia::Theme0
                 auto tile{worldArea->GetTile(x, y)};
 
                 if (!tile)
+                {
                     continue;
+                }
 
                 nlohmann::json tileJson;
+
                 tileJson["x"] = x;
                 tileJson["y"] = y;
                 tileJson["elevation"] = tile->GetElevation();
@@ -49,6 +55,7 @@ namespace Forradia::Theme0
 
                 // Serialize objects on this tile
                 auto objectsStack{tile->GetObjectsStack()};
+
                 if (objectsStack)
                 {
                     auto objects{objectsStack->GetObjects()};
@@ -59,6 +66,7 @@ namespace Forradia::Theme0
                         if (object)
                         {
                             nlohmann::json objectJson;
+
                             objectJson["type"] = GetNameFromAnyHash(object->GetType());
                             tileJson["objects"].push_back(objectJson);
                         }
@@ -67,9 +75,11 @@ namespace Forradia::Theme0
 
                 // Serialize entity on this tile
                 auto entity{tile->GetEntity()};
+
                 if (entity)
                 {
                     nlohmann::json entityJson;
+
                     entityJson["type"] = GetNameFromAnyHash(entity->GetType());
                     tileJson["entity"] = entityJson;
                 }
@@ -80,6 +90,7 @@ namespace Forradia::Theme0
 
         // Write to file
         std::ofstream file("savegame.json");
+
         if (file.is_open())
         {
             file << jsonData.dump(4); // Pretty print with 4-space indent
@@ -92,10 +103,14 @@ namespace Forradia::Theme0
         GroundRenderer::Instance().Reset();
 
         std::ifstream file("savegame.json");
+
         if (!file.is_open())
+        {
             return;
+        }
 
         nlohmann::json jsonData;
+
         try
         {
             file >> jsonData;
@@ -109,7 +124,9 @@ namespace Forradia::Theme0
         auto worldArea{World::Instance().GetCurrentWorldArea()};
 
         if (!worldArea)
+        {
             return;
+        }
 
         worldArea->Reset();
 
@@ -127,18 +144,24 @@ namespace Forradia::Theme0
             for (const auto &tileJson : jsonData["tiles"])
             {
                 if (!tileJson.contains("x") || !tileJson.contains("y"))
+                {
                     continue;
+                }
 
                 auto x{tileJson["x"].get<int>()};
                 auto y{tileJson["y"].get<int>()};
 
                 if (!worldArea->IsValidCoordinate(x, y))
+                {
                     continue;
+                }
 
                 auto tile{worldArea->GetTile(x, y)};
 
                 if (!tile)
+                {
                     continue;
+                }
 
                 if (tileJson.contains("elevation"))
                 {

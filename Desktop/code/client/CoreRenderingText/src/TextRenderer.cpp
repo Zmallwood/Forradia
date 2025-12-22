@@ -4,12 +4,14 @@
  *********************************************************************/
 
 #include "TextRenderer.hpp"
+#include "ErrorUtilities.hpp"
 
 namespace Forradia
 {
     auto TextRenderer::Initialize() -> void
     {
         TTF_Init();
+
         this->AddFonts();
     }
 
@@ -29,9 +31,8 @@ namespace Forradia
 
             if (!newFont)
             {
-                PrintLine("Error loading font size " + std::to_string(fontSizeN) +
-                          " from: " + fontPathUnixStyle);
-                continue;
+                ThrowError("Error loading font size " + std::to_string(fontSizeN) +
+                           " from: " + fontPathUnixStyle);
             }
 
             m_fonts.insert({fontSize, newFont});

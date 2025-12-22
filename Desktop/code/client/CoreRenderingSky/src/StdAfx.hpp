@@ -18,5 +18,6 @@
 #include "3D/Camera.hpp"
 #include "CanvasUtilities.hpp"
 #include "Coloring/Color.hpp"
+#include "ErrorUtilities.hpp"
 #include "Geometry/Point3F.hpp"
 #include "SDLDevice.hpp"

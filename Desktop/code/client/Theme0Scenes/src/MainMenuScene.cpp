@@ -20,12 +20,15 @@ namespace Forradia::Theme0
         GetGUI()->AddChildComponent(panel);
 
         auto btnPlay{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "Play",
-            [] { SceneManager::Instance().GoToScene("PlayScene"); })};
+            "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "",
+            [] { SceneManager::Instance().GoToScene("PlayScene"); }, "GUIButtonPlayBackground",
+            "GUIButtonPlayHoveredBackground")};
         GetGUI()->AddChildComponent(btnPlay);
 
-        auto btnQuit{std::make_shared<GUIButton>("MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f,
-                                                 0.04f, "Quit", [] { Engine::Instance().Stop(); })};
+        auto btnQuit{std::make_shared<GUIButton>(
+            "MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f, 0.04f, "",
+            [] { Engine::Instance().Stop(); }, "GUIButtonQuitBackground",
+            "GUIButtonQuitHoveredBackground")};
         GetGUI()->AddChildComponent(btnQuit);
 
         GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
@@ -35,6 +38,7 @@ namespace Forradia::Theme0
     {
         Image2DRenderer::Instance().DrawImageByName(
             Hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+
         Image2DRenderer::Instance().DrawImageAutoHeight(Hash("MainMenuSceneLogo"), "ForradiaLogo",
                                                         0.35f, 0.1f, 0.3f);
     }

@@ -45,8 +45,11 @@ namespace Forradia::Palette
     auto GetColor<Hash("WheatTransparent")>() -> Color
     {
         auto color{GetColor<Hash("Wheat")>()};
+
         const auto alpha{0.7F};
+
         color.a = alpha;
+
         return color;
     }
 
@@ -76,8 +79,11 @@ namespace Forradia::Palette
     auto GetColor<Hash("YellowTransparent")>() -> Color
     {
         auto color{GetColor<Hash("Yellow")>()};
+
         const auto alpha{0.7F};
+
         color.a = alpha;
+
         return color;
     }
 

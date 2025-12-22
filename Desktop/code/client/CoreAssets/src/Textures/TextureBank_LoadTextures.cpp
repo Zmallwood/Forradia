@@ -19,8 +19,10 @@ namespace Forradia
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeImagesPath};
 
-        if (false == std::filesystem::exists(imagesPath))
+        if (std::filesystem::exists(imagesPath) == false)
+        {
             return;
+        }
 
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
@@ -36,9 +38,11 @@ namespace Forradia
                 auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
                 auto textureID{TextureBank::LoadSingleTexture(surface)};
                 auto imageSize{Size{surface->w, surface->h}};
+
                 TextureEntry newTextureEntry;
                 newTextureEntry.textureID = textureID;
                 newTextureEntry.dimensions = imageSize;
+
                 m_textureEntries[hash] = newTextureEntry;
             }
         }

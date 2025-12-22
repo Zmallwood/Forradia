@@ -27,6 +27,7 @@ namespace Forradia::Theme0
             if (now < entity->GetTicksLastMovement() + InvertSpeed(entity->GetMovementSpeed()))
             {
                 ++it;
+
                 continue;
             }
 
@@ -55,7 +56,9 @@ namespace Forradia::Theme0
             Point newPosition{newX, newY};
 
             if (newPosition == entity->GetDestination())
+            {
                 entity->SetDestination({-1, -1});
+            }
 
             auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
@@ -78,6 +81,7 @@ namespace Forradia::Theme0
             {
                 entity->SetDestination({-1, -1});
             }
+
             ++it;
         }
     }

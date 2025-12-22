@@ -24,7 +24,9 @@ namespace Forradia
         auto imagesPath{basePath + k_relativeModelsPath};
 
         if (false == std::filesystem::exists(imagesPath))
+        {
             return;
+        }
 
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
@@ -38,6 +40,7 @@ namespace Forradia
                 auto fileName{GetFileNameNoExtension(filePath)};
                 auto hash{Forradia::Hash(fileName)};
                 auto model{ModelBank::LoadSingleModel(filePath)};
+
                 m_models.insert({hash, model});
             }
         }
@@ -47,7 +50,10 @@ namespace Forradia
     auto ModelBank::GetModel(int modelNameHash) const -> std::shared_ptr<Model>
     {
         if (m_models.contains(modelNameHash))
+        {
             return m_models.at(modelNameHash);
+        }
+
         return nullptr;
     }
 
@@ -55,6 +61,7 @@ namespace Forradia
     {
         // Load the model from the file at the path.
         auto modelResult{std::make_shared<Model>(filePath)};
+
         return modelResult;
     }
 }

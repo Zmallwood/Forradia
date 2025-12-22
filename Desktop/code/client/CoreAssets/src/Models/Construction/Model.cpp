@@ -15,6 +15,7 @@ namespace Forradia
     auto Model::Initialize(std::string_view filePath) -> void
     {
         Assimp::Importer importer;
+
         unsigned int flags{aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
                            aiProcess_GenBoundingBoxes | aiProcess_FixInfacingNormals};
 
@@ -22,8 +23,12 @@ namespace Forradia
         const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
         if (nullptr == scene || nullptr == scene->mRootNode)
+        {
             ThrowError("Assimp could not load model: " + std::string(importer.GetErrorString()));
+        }
         else
+        {
             this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
+        }
     }
 }

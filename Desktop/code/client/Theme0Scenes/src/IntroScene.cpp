@@ -17,6 +17,7 @@ namespace Forradia::Theme0
     {
         auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
                                             "Press to start", true)};
+
         m_startText = GetGUI()->AddChildComponent(lbl);
     }
 
@@ -45,6 +46,7 @@ namespace Forradia::Theme0
     {
         Image2DRenderer::Instance().DrawImageByName(
             Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+
         Image2DRenderer::Instance().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo",
                                                         0.25f, 0.2f, 0.5f);
     }

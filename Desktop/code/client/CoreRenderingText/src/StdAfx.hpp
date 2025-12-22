@@ -9,6 +9,7 @@
 
 #include "CanvasUtilities.hpp"
 #include "Coloring/Palette.hpp"
+#include "ErrorUtilities.hpp"
 #include "Hash.hpp"
 #include "MessageUtilities.hpp"
 #include "SDLDeleter.hpp"

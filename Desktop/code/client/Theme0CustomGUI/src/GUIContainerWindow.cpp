@@ -19,6 +19,7 @@ namespace Forradia::Theme0
     auto GUIContainerWindow::Initialize(ContainedObjects &containedObjects) -> void
     {
         m_guiContainerWindowArea = std::make_shared<GUIContainerWindowArea>(this, containedObjects);
+
         this->AddChildComponent(m_guiContainerWindowArea);
     }
 
@@ -31,6 +32,7 @@ namespace Forradia::Theme0
                                             ContainedObjects &containedObjects) -> void
     {
         m_panel = std::make_shared<GUIContainerWindowPanel>(parentWindow, containedObjects);
+
         this->AddChildComponent(m_panel);
     }
 
@@ -51,6 +53,7 @@ namespace Forradia::Theme0
         {
             m_renderIDsSlotsBackground[i] =
                 Hash("GUIContainerWindowSlotBackground" + std::to_string(i));
+
             m_renderIDsSlotsObject[i] = Hash("GUIContainerWindowSlotobject" + std::to_string(i));
         }
     }
@@ -89,12 +92,9 @@ namespace Forradia::Theme0
 
                 if (slotArea.Contains(mousePos))
                 {
-
                     auto inventoryObject{objectsContainer.GetObject(index)};
 
-                    // if (inventoryObject) {
                     return m_containedObjects.GetObjectPtrPtr(index);
-                    //}
                 }
             }
         }
@@ -130,10 +130,14 @@ namespace Forradia::Theme0
             {
 
                 if (i >= m_containedObjects.Size())
+                {
                     continue;
+                }
+
                 ++i;
 
                 auto index{x + y * numColumns};
+
                 int renderIDBackground{0};
 
                 if (m_renderIDsSlotsBackground.contains(index))

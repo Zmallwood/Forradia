@@ -35,33 +35,44 @@ namespace Forradia::Theme0
             auto minElevation{0};
 
             if (elevationType < 40)
+            {
                 // 40% start from high elevation.
                 minElevation = 50;
+            }
             else if (elevationType < 70)
+            {
                 // 30% start from medium elevation.
                 minElevation = 20;
+            }
             else
+            {
                 // 30% start from lower elevation.
                 minElevation = 5;
+            }
 
             // Find a starting point.
             while (attempts < 100 && !foundStart)
             {
                 startX = GetRandomInt(worldAreaSize.width);
                 startY = GetRandomInt(worldAreaSize.height);
+
                 auto tile{worldArea->GetTile(startX, startY)};
 
                 // If the tile is found and the elevation is greater than the minimum elevation,
                 // and the tile is a valid water placement location.
                 if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
+                {
                     foundStart = true;
+                }
 
                 attempts++;
             }
 
             if (!foundStart)
+            {
                 // Just continue to the next river.
                 continue;
+            }
 
             auto startElevation{worldArea->GetTile(startX, startY)->GetElevation()};
             auto baseLength{40};
@@ -110,15 +121,19 @@ namespace Forradia::Theme0
                 auto tile{worldArea->GetTile(centerX, centerY)};
 
                 if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
+                {
                     // Set the flag to indicate that we found a suitable valley location.
                     foundLocation = true;
+                }
 
                 attempts++;
             }
 
             if (!foundLocation)
+            {
                 // Just continue to the next lake.
                 continue;
+            }
 
             auto radius{static_cast<int>(3 * worldScaling + GetRandomInt(6 * worldScaling))};
             auto irregularity{0.3F + GetRandomInt(20) / 100.0F};
@@ -128,17 +143,23 @@ namespace Forradia::Theme0
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
+                    {
                         continue;
+                    }
 
                     auto tile{worldArea->GetTile(x, y)};
 
                     if (!tile)
+                    {
                         // Just continue to the next tile.
                         continue;
+                    }
 
                     if (!IsValidForWater(x, y))
+                    {
                         // Just continue to the next tile.
                         continue;
+                    }
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
@@ -161,12 +182,16 @@ namespace Forradia::Theme0
     auto WorldGeneratorWater::IsValidForWater(int x, int y) const -> bool
     {
         if (!GetWorldArea()->IsValidCoordinate(x, y))
+        {
             return false;
+        }
 
         auto tile{GetWorldArea()->GetTile(x, y)};
 
         if (!tile)
+        {
             return false;
+        }
 
         return tile->GetElevation() < 80;
     }
@@ -189,15 +214,21 @@ namespace Forradia::Theme0
             auto adjacentY{y + directions[dir][1]};
 
             if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
+            {
                 continue;
+            }
 
             auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
 
             if (!adjacentTile)
+            {
                 continue;
+            }
 
             if (adjacentTile->GetGround() != Hash("GroundWater"))
+            {
                 adjacentTile->SetElevation(0);
+            }
         }
     }
 }

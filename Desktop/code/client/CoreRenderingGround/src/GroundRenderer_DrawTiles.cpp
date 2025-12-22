@@ -19,6 +19,7 @@ namespace Forradia
             if (tile.forceUpdate)
             {
                 forceUpdate = true;
+
                 break;
             }
         }
@@ -139,7 +140,9 @@ namespace Forradia
             auto imageNameHash = entry.first;
 
             if (imageNameHash == 0)
+            {
                 continue;
+            }
 
             auto group = entry.second;
 

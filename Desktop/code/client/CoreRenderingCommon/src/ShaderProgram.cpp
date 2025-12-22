@@ -16,6 +16,7 @@ namespace Forradia
         if (0 == vertexShader)
         {
             glDeleteShader(vertexShader);
+
             return;
         }
 
@@ -26,6 +27,7 @@ namespace Forradia
         {
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);
+
             return;
         }
 
@@ -33,7 +35,9 @@ namespace Forradia
 
         // If the link failed, dont continue.
         if (GL_FALSE == isLinked)
+        {
             return;
+        }
 
         glDetachShader(m_programID, vertexShader);
         glDetachShader(m_programID, fragmentShader);

@@ -13,6 +13,7 @@ namespace Forradia
         // Uses vec2 as a new origin for vec1, vec3.
         auto vecA = vec3 - vec2;
         auto vecB = vec1 - vec2;
+        //
         // Compute the cross product vecA X vecB to get the face normal.
         return glm::normalize(glm::cross(vecA, vecB));
     }

@@ -21,15 +21,19 @@ namespace Forradia
             case SDL_QUIT:
                 this->Stop();
                 break;
+
             case SDL_KEYDOWN:
                 SceneManager::Instance().OnKeyDownCurrentScene(event.key.keysym.sym);
                 break;
+
             case SDL_KEYUP:
                 SceneManager::Instance().OnKeyUpCurrentScene(event.key.keysym.sym);
                 break;
+
             case SDL_TEXTINPUT:
                 SceneManager::Instance().OnTextInputCurrentScene(event.text.text);
                 break;
+
             case SDL_MOUSEBUTTONDOWN:
             {
                 switch (event.button.button)

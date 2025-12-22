@@ -13,7 +13,6 @@ namespace Forradia
         if (mesh == nullptr)
         {
             ThrowError("mesh is nullptr");
-            return {};
         }
 
         std::vector<GLMVertex> vertices;

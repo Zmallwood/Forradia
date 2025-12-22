@@ -16,6 +16,7 @@ namespace Forradia
 
         glShaderSource(shader, 1, &source, nullptr);
         glCompileShader(shader);
+
         GLint isCompiled{0};
         glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
@@ -26,6 +27,7 @@ namespace Forradia
             glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
             std::vector<GLchar> infoLog(maxLength);
             glGetShaderInfoLog(shader, maxLength, &maxLength, infoLog.data());
+
             return 0;
         }
 

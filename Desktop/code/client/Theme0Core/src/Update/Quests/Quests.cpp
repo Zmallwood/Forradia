@@ -27,13 +27,19 @@ namespace Forradia::Theme0
 
             if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
                 action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
+            {
                 numSteps++;
+            }
         }
+
         m_numStepsLeft = 3 - numSteps;
+
         if (numSteps >= 3)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Movement. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
 
@@ -58,7 +64,9 @@ namespace Forradia::Theme0
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Forage)
+            {
                 numForagings++;
+            }
         }
 
         m_numForagingsLeft = 3 - numForagings;
@@ -66,7 +74,9 @@ namespace Forradia::Theme0
         if (numForagings >= 3)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Forage. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -81,6 +91,7 @@ namespace Forradia::Theme0
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto i{0};
+
         for (auto &entry : playerActions)
         {
             auto action{get<0>(entry)};
@@ -94,13 +105,19 @@ namespace Forradia::Theme0
                     m_numBranchPicked = true;
                     Player::Instance().GetQuestCompletionPointsRef()["CraftStonePickaxeQuest"] = i;
                 }
+
                 if (actionFirstArg == "ObjectStone")
+                {
                     m_numStonePicked = true;
+                }
             }
+
             if (action == PlayerActionTypes::Craft)
             {
                 if (actionFirstArg == "ObjectStonePickaxe")
+                {
                     isCompleted = true;
+                }
             }
 
             i++;
@@ -110,10 +127,14 @@ namespace Forradia::Theme0
     auto CraftStonePickaxeQuest::GetStatus() const -> std::string
     {
         if (!m_numBranchPicked)
+        {
             return "Pick a branch.";
+        }
 
         if (!m_numStonePicked)
+        {
             return "Branch picked. Now pick a stone.";
+        }
 
         return "Craft a stone pickaxe out of the branch and stone.";
     }
@@ -133,11 +154,17 @@ namespace Forradia::Theme0
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
                 m_stonedMined = true;
+
                 Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] = i;
             }
+
             if (action == PlayerActionTypes::Craft)
+            {
                 if (actionFirstArg == "ObjectStoneBowl")
+                {
                     isCompleted = true;
+                }
+            }
 
             i++;
         }
@@ -146,7 +173,9 @@ namespace Forradia::Theme0
     auto CraftStoneBowlQuest::GetStatus() const -> std::string
     {
         if (!m_stonedMined)
+        {
             return "Mine a stone.";
+        }
 
         return "Craft a stone bowl out of the stone.";
     }
@@ -167,8 +196,10 @@ namespace Forradia::Theme0
             if (i <= previousBranchPickQuestCompletionPoint)
             {
                 i++;
+
                 continue;
             }
+
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -177,9 +208,14 @@ namespace Forradia::Theme0
             {
                 ++numPickedBranches;
             }
+
             if (action == PlayerActionTypes::Craft)
+            {
                 if (actionFirstArg == "ObjectUnlitCampfire")
+                {
                     isCompleted = true;
+                }
+            }
 
             i++;
         }
@@ -190,7 +226,9 @@ namespace Forradia::Theme0
     auto CraftCampfireQuest::GetStatus() const -> std::string
     {
         if (m_numBranchesLeft)
+        {
             return "Branches left: " + std::to_string(m_numBranchesLeft);
+        }
 
         return "Craft the campfire.";
     }
@@ -200,7 +238,9 @@ namespace Forradia::Theme0
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
+
         auto i{0};
+
         auto previousMineQuestCompletionPoint{
             Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
 
@@ -209,6 +249,7 @@ namespace Forradia::Theme0
             if (i <= previousMineQuestCompletionPoint)
             {
                 i++;
+
                 continue;
             }
 
@@ -224,6 +265,7 @@ namespace Forradia::Theme0
                 {
                     Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] =
                         i;
+
                     break;
                 }
             }
@@ -236,7 +278,9 @@ namespace Forradia::Theme0
         if (numMinedStones >= 10)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -259,8 +303,12 @@ namespace Forradia::Theme0
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
+            {
                 if (actionFirstArg == "ObjectStoneSlab")
+                {
                     numCraftedSlabs++;
+                }
+            }
         }
 
         m_numCraftedSlabsLeft = 10 - numCraftedSlabs;
@@ -268,7 +316,9 @@ namespace Forradia::Theme0
         if (numCraftedSlabs >= 10)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -291,7 +341,9 @@ namespace Forradia::Theme0
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Lay)
+            {
                 numLaidSlabs++;
+            }
         }
 
         m_numLaidSlabsLeft = 10 - numLaidSlabs;
@@ -299,7 +351,9 @@ namespace Forradia::Theme0
         if (numLaidSlabs >= 10)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -314,7 +368,9 @@ namespace Forradia::Theme0
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
+
         auto i{0};
+
         auto previousMineQuestCompletionPoint{
             Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
 
@@ -331,7 +387,9 @@ namespace Forradia::Theme0
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            {
                 numMinedStones++;
+            }
 
             i++;
         }
@@ -341,7 +399,9 @@ namespace Forradia::Theme0
         if (numMinedStones >= 10)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Mine Stone. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -364,8 +424,12 @@ namespace Forradia::Theme0
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
+            {
                 if (actionFirstArg == "ObjectStoneBrick")
+                {
                     numCraftedBricks++;
+                }
+            }
         }
 
         m_numCraftedBricksLeft = 10 - numCraftedBricks;
@@ -373,7 +437,9 @@ namespace Forradia::Theme0
         if (numCraftedBricks >= 10)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }
@@ -388,6 +454,7 @@ namespace Forradia::Theme0
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         std::set<Point> wallPositions;
+
         auto numIncompleteWallTiles{0};
 
         for (auto &entry : playerActions)
@@ -398,7 +465,9 @@ namespace Forradia::Theme0
 
             if (action == PlayerActionTypes::Craft &&
                 (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
+            {
                 wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
+            }
         }
 
         auto worldArea{World::Instance().GetCurrentWorldArea()};
@@ -417,49 +486,87 @@ namespace Forradia::Theme0
             auto adjacentStoneSlabTiles{0};
 
             if (tileNorth && tileNorth->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileSouth && tileSouth->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileWest && tileWest->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileEast && tileEast->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileNorthEast && tileNorthEast->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileSouthEast && tileSouthEast->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileSouthWest && tileSouthWest->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
+
             if (tileNorthWest && tileNorthWest->GetGround() == Hash("GroundStoneSlab"))
+            {
                 adjacentStoneSlabTiles++;
+            }
 
             auto adjacentStoneWallOrDoorTiles{0};
 
             if (tileNorth &&
                 (tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
                  tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
                 adjacentStoneWallOrDoorTiles++;
+            }
+
             if (tileSouth &&
                 (tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
                  tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
                 adjacentStoneWallOrDoorTiles++;
+            }
+
             if (tileWest &&
                 (tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
                  tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
                 adjacentStoneWallOrDoorTiles++;
+            }
+
             if (tileEast &&
                 (tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
                  tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            {
                 adjacentStoneWallOrDoorTiles++;
+            }
 
             if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
+            {
                 numIncompleteWallTiles++;
+            }
         }
 
         if (wallPositions.size() > 0 && numIncompleteWallTiles == 0)
         {
             isCompleted = true;
+
             GUIChatBox::Instance().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
+
             Player::Instance().AddExperience(50);
         }
     }

@@ -29,10 +29,13 @@ namespace Forradia::Theme0
 
             // Check if this area is suitable for grass (moderate elevation, not water).
             if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
+            {
                 continue;
+            }
 
             auto radius{static_cast<int>(6 * worldScaling + GetRandomInt(10 * worldScaling))};
             auto density{0.7F + GetRandomInt(30) / 100.0F}; // 0.7 to 1.0.
+                                                            //
             CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
         }
 
@@ -45,12 +48,16 @@ namespace Forradia::Theme0
                 auto tile = worldArea->GetTile(x, y);
 
                 if (!tile)
+                {
                     continue;
+                }
 
                 // Grass naturally grows in low-lying areas that aren't water.
                 if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
                     tile->GetGround() != Hash("GroundRock"))
+                {
                     tile->SetGround("GroundGrass");
+                }
             }
         }
     }
@@ -71,7 +78,9 @@ namespace Forradia::Theme0
             auto tile{worldArea->GetTile(xCenter, yCenter)};
 
             if (!tile || tile->GetElevation() < 80)
+            {
                 continue;
+            }
 
             // Create rock formations on high elevation.
 
@@ -82,19 +91,25 @@ namespace Forradia::Theme0
                 for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
+                    {
                         continue;
+                    }
 
                     auto distance{GetDistance(x, y, xCenter, yCenter)};
 
                     if (distance > radius)
+                    {
                         continue;
+                    }
 
                     auto rockTile{worldArea->GetTile(x, y)};
 
                     // Skip if the tile is not found or the ground is water.
 
                     if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
+                    {
                         continue;
+                    }
 
                     // Place rocks on mountain peaks and high elevation areas. Higher elevation =
                     // more likely to be rock.
@@ -102,7 +117,9 @@ namespace Forradia::Theme0
                     auto elevation{rockTile->GetElevation()};
 
                     if (elevation > 60)
+                    {
                         rockTile->SetGround("GroundRock");
+                    }
                 }
             }
         }
@@ -117,17 +134,23 @@ namespace Forradia::Theme0
             for (auto x = centerX - radius; x <= centerX + radius; x++)
             {
                 if (!GetWorldArea()->IsValidCoordinate(x, y))
+                {
                     continue;
+                }
 
                 auto distance{GetDistance(x, y, centerX, centerY)};
 
                 if (distance > radius)
+                {
                     continue;
+                }
 
                 auto tile{GetWorldArea()->GetTile(x, y)};
 
                 if (tile)
+                {
                     tile->SetGround(groundType);
+                }
             }
         }
     }

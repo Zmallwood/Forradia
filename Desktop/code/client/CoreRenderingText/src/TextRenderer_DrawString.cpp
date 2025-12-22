@@ -3,6 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "ErrorUtilities.hpp"
 #include "Image2DRenderer.hpp"
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
@@ -15,7 +16,9 @@ namespace Forradia
                                   Color textColor) const -> void
     {
         if (text.empty())
+        {
             return;
+        }
 
         auto fontRaw{m_fonts.at(fontSize).get()};
 
@@ -41,10 +44,9 @@ namespace Forradia
             auto surface{std::shared_ptr<SDL_Surface>(
                 TTF_RenderText_Solid(fontRaw, text.data(), sdlColor), SDLDeleter())};
 
-            if (nullptr == surface)
+            if (surface == nullptr)
             {
-                PrintLine(std::string("Error rendering text: ") + text.data());
-                return;
+                ThrowError(std::string("Error rendering text: ") + text.data());
             }
 
             // Upload the surface data to the OpenGL texture.

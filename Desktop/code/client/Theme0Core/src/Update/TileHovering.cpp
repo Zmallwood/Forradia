@@ -44,6 +44,7 @@ namespace Forradia::Theme0
                 if (result)
                 {
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
+
                     return;
                 }
             }
@@ -53,6 +54,7 @@ namespace Forradia::Theme0
     auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool
     {
         auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
+
         return result;
     }
 
@@ -81,10 +83,14 @@ namespace Forradia::Theme0
         // Perspective divide.
 
         if (std::abs(nearPoint.w) > 0.0001F)
+        {
             nearPoint /= nearPoint.w;
+        }
 
         if (std::abs(farPoint.w) > 0.0001F)
+        {
             farPoint /= farPoint.w;
+        }
 
         // Compute ray origin and direction.
         glm::vec3 rayOrigin{nearPoint.x, nearPoint.y, nearPoint.z};
@@ -104,7 +110,9 @@ namespace Forradia::Theme0
             !worldArea->IsValidCoordinate(coordinateNE) ||
             !worldArea->IsValidCoordinate(coordinateSW) ||
             !worldArea->IsValidCoordinate(coordinateSE))
+        {
             return false;
+        }
 
         // Get the tiles.
         auto tileNW{worldArea->GetTile(coordinateNW)};

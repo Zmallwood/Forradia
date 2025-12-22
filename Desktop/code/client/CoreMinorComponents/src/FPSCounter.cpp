@@ -19,6 +19,7 @@ namespace Forradia
             m_framesCount = 0;
             m_ticksLastUpdate = now;
         }
+
         ++m_framesCount;
     }
 }

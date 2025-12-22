@@ -38,7 +38,9 @@ namespace Forradia::Theme0
                     if ((*object)->GetType() == Hash("ObjectUnlitCampfire"))
                     {
                         (*object)->SetType(Hash("ObjectLitCampfire"));
+
                         GUIChatBox::Instance().Print("You light the campfire.");
+
                         break;
                     }
                 }
@@ -61,12 +63,18 @@ namespace Forradia::Theme0
                         (*object)->GetType() == Hash("ObjectLitCampfire"))
                     {
                         auto mainScene{SceneManager::Instance().GetScene("MainScene")};
+
                         auto gui{mainScene->GetGUI()};
+
                         auto containerWindow{std::make_shared<GUIContainerWindow>(
                             *(*object)->GetContainedObjects())};
+
                         containerWindow->SetVisible(true);
+
                         gui->AddChildComponent(containerWindow);
+
                         GUIChatBox::Instance().Print("You open the campfire.");
+
                         break;
                     }
                 }
@@ -84,7 +92,9 @@ namespace Forradia::Theme0
             .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
+
                 auto numBranchesInInventory{inventory.CountHasObject("ObjectBranch")};
+
                 if (numBranchesInInventory < 8)
                 {
                     GUIChatBox::Instance().Print("You need 8 branches to craft a campfire.");
@@ -94,7 +104,9 @@ namespace Forradia::Theme0
                     tile->GetObjectsStack()->AddObject("ObjectUnlitCampfire");
 
                     inventory.RemoveObject("ObjectBranch", 8);
+
                     GUIChatBox::Instance().Print("You craft a campfire.");
+
                     Player::Instance().AddExperience(10);
                     Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
                                                        "ObjectUnlitCampfire");
@@ -117,12 +129,18 @@ namespace Forradia::Theme0
                     if ((*object)->GetType() == Hash("ObjectStoneBowl"))
                     {
                         auto mainScene{SceneManager::Instance().GetScene("MainScene")};
+
                         auto gui{mainScene->GetGUI()};
+
                         auto containerWindow{std::make_shared<GUIContainerWindow>(
                             *(*object)->GetContainedObjects())};
+
                         containerWindow->SetVisible(true);
+
                         gui->AddChildComponent(containerWindow);
+
                         GUIChatBox::Instance().Print("You open the stone bowl.");
+
                         break;
                     }
                 }
@@ -146,8 +164,6 @@ namespace Forradia::Theme0
                     }
                 }
                 GUIChatBox::Instance().Print("You eat a red apple.");
-                // Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
-                // "ObjectStoneBowl");
             }};
     }
 
@@ -168,6 +184,7 @@ namespace Forradia::Theme0
                 inventory.AddObject("ObjectStoneBowl");
 
                 GUIChatBox::Instance().Print("You craft a stone bowl.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
             }};
@@ -190,9 +207,12 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->GetObjectsStack()->AddObject("ObjectStoneWallDoor");
+                }
 
                 GUIChatBox::Instance().Print("You craft a stone wall door.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWallDoor",
                                                    clickedCoordinate);
@@ -216,9 +236,12 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->GetObjectsStack()->AddObject("ObjectStoneWall");
+                }
 
                 GUIChatBox::Instance().Print("You craft a stone wall.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
                                                    clickedCoordinate);
@@ -242,6 +265,7 @@ namespace Forradia::Theme0
 
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBrick");
+
                 GUIChatBox::Instance().Print("You craft a stone brick.");
             }};
     }
@@ -263,9 +287,12 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->SetGround(Hash("GroundStoneSlab"));
+                }
 
                 GUIChatBox::Instance().Print("You lay a stone slab.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
             }};
@@ -287,6 +314,7 @@ namespace Forradia::Theme0
                 inventory.AddObject("ObjectStoneSlab");
 
                 GUIChatBox::Instance().Print("You craft a stone slab.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
             }};
@@ -308,6 +336,7 @@ namespace Forradia::Theme0
                 {
                     GUIChatBox::Instance().Print(
                         "You don't have any branches to craft a stone pickaxe.");
+
                     return;
                 }
 
@@ -315,6 +344,7 @@ namespace Forradia::Theme0
                 {
                     GUIChatBox::Instance().Print(
                         "You don't have any stones to craft a stone pickaxe.");
+
                     return;
                 }
 
@@ -323,6 +353,7 @@ namespace Forradia::Theme0
                 inventory.AddObject("ObjectStonePickaxe");
 
                 GUIChatBox::Instance().Print("You craft a stone pickaxe.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStonePickaxe");
             }};
@@ -343,6 +374,7 @@ namespace Forradia::Theme0
                 inventory.AddObject("ObjectStone");
 
                 GUIChatBox::Instance().Print("You mine some stone.");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
             }};
@@ -365,6 +397,7 @@ namespace Forradia::Theme0
                 if (numSmallStonesInInventory <= 0)
                 {
                     GUIChatBox::Instance().Print("You don't have any small stones to lay.");
+
                     return;
                 }
 
@@ -373,7 +406,9 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->SetGround(Hash("GroundCobbleStone"));
+                }
 
                 GUIChatBox::Instance().Print("You lay some cobble stone.");
             }};
@@ -392,7 +427,9 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->SetGround(Hash("GroundPlowedLand"));
+                }
 
                 GUIChatBox::Instance().Print("You plow the land.");
             }};
@@ -430,6 +467,7 @@ namespace Forradia::Theme0
 
                 GUIChatBox::Instance().Print("Foraging... You found some "
                                              "blueberries!");
+
                 Player::Instance().AddExperience(10);
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Forage);
             }};
@@ -450,6 +488,7 @@ namespace Forradia::Theme0
                 inventory.AddObject("ObjectBranch");
 
                 GUIChatBox::Instance().Print("You picked a branch!");
+
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
             }};
     }
@@ -467,13 +506,16 @@ namespace Forradia::Theme0
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
+                {
                     tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
+                }
 
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                 inventory.AddObject("ObjectStone");
 
                 GUIChatBox::Instance().Print("You picked a stone!");
+
                 Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
             }};
     }

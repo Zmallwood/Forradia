@@ -15,6 +15,7 @@ namespace Forradia
         auto gUint{static_cast<Uint8>(g * k_maxColorComponentValue)};
         auto bUint{static_cast<Uint8>(b * k_maxColorComponentValue)};
         auto aUint{static_cast<Uint8>(a * k_maxColorComponentValue)};
+
         return {rUint, gUint, bUint, aUint};
     }
 }
