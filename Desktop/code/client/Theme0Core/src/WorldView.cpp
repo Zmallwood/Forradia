@@ -162,7 +162,7 @@ namespace Forradia::Theme0
                 switch (ground)
                 {
                 case Hash("GroundGrass"):
-                    color00 = Palette::GetColor<Hash("Green")>();
+                    color00 = Palette::GetColor<Hash("DarkGreen")>();
                     break;
 
                 case Hash("GroundWater"):
@@ -187,7 +187,7 @@ namespace Forradia::Theme0
                     switch (tileNE->GetGround())
                     {
                     case Hash("GroundGrass"):
-                        color10 = Palette::GetColor<Hash("Green")>();
+                        color10 = Palette::GetColor<Hash("DarkGreen")>();
                         break;
 
                     case Hash("GroundWater"):
@@ -213,7 +213,7 @@ namespace Forradia::Theme0
                     switch (tileSE->GetGround())
                     {
                     case Hash("GroundGrass"):
-                        color11 = Palette::GetColor<Hash("Green")>();
+                        color11 = Palette::GetColor<Hash("DarkGreen")>();
                         break;
 
                     case Hash("GroundWater"):
@@ -239,7 +239,7 @@ namespace Forradia::Theme0
                     switch (tileSW->GetGround())
                     {
                     case Hash("GroundGrass"):
-                        color01 = Palette::GetColor<Hash("Green")>();
+                        color01 = Palette::GetColor<Hash("DarkGreen")>();
                         break;
 
                     case Hash("GroundWater"):
