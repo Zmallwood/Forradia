@@ -5,12 +5,15 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Object;
 
-    class ContainedObjects {
+    class ContainedObjects
+    {
       public:
-        ContainedObjects(int numSlots) {
+        ContainedObjects(int numSlots)
+        {
             this->Initialize(numSlots);
         }
 

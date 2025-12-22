@@ -6,35 +6,45 @@
 #include "ObjectsStack.hpp"
 #include "Object.hpp"
 
-namespace Forradia::Theme0 {
-    auto ObjectsStack::ClearObjects() -> void {
+namespace Forradia::Theme0
+{
+    auto ObjectsStack::ClearObjects() -> void
+    {
         m_objects.clear();
     }
 
-    auto ObjectsStack::AddObject(std::string_view objectName) -> void {
+    auto ObjectsStack::AddObject(std::string_view objectName) -> void
+    {
         m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
     }
 
-    auto ObjectsStack::RemoveOneOfObjectOfType(std::string_view objectTypeName) -> void {
-        for (auto it = m_objects.begin(); it != m_objects.end();) {
+    auto ObjectsStack::RemoveOneOfObjectOfType(std::string_view objectTypeName) -> void
+    {
+        for (auto it = m_objects.begin(); it != m_objects.end();)
+        {
             // If the object type matches.
-            if ((*it)->GetType() == Hash(objectTypeName)) {
+            if ((*it)->GetType() == Hash(objectTypeName))
+            {
                 // Delete the object.
                 m_objects.erase(it);
 
                 // Stop iterating since only one object should be removed.
                 return;
-            } else {
+            }
+            else
+            {
                 ++it;
             }
         }
     }
 
-    auto ObjectsStack::GetSize() const -> int {
+    auto ObjectsStack::GetSize() const -> int
+    {
         return m_objects.size();
     }
 
-    auto ObjectsStack::PopObject() -> std::shared_ptr<Object> {
+    auto ObjectsStack::PopObject() -> std::shared_ptr<Object>
+    {
         if (m_objects.empty())
             return nullptr;
 
@@ -43,17 +53,18 @@ namespace Forradia::Theme0 {
         return object;
     }
 
-    auto ObjectsStack::GetTopObjectPtrPtr() -> std::shared_ptr<Object> * {
+    auto ObjectsStack::GetTopObjectPtrPtr() -> std::shared_ptr<Object> *
+    {
         if (m_objects.empty())
             return nullptr;
         return &m_objects.back();
     }
 
-    auto ObjectsStack::CountHasObject(std::string_view objectTypeName) const -> int {
+    auto ObjectsStack::CountHasObject(std::string_view objectTypeName) const -> int
+    {
         // Return the number of objects of the specified type in the stack.
         return std::count_if(m_objects.begin(), m_objects.end(),
-                             [&](const std::shared_ptr<Object> &object) {
-                                 return object->GetType() == Hash(objectTypeName);
-                             });
+                             [&](const std::shared_ptr<Object> &object)
+                             { return object->GetType() == Hash(objectTypeName); });
     }
 }

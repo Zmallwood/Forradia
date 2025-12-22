@@ -8,12 +8,16 @@
 #include "TimeUtilities.hpp"
 #include <SDL2/SDL.h>
 
-namespace Forradia {
-    auto Engine::HandleEvents() -> void {
+namespace Forradia
+{
+    auto Engine::HandleEvents() -> void
+    {
         SDL_Event event;
 
-        while (SDL_PollEvent(&event) != 0) {
-            switch (event.type) {
+        while (SDL_PollEvent(&event) != 0)
+        {
+            switch (event.type)
+            {
             case SDL_QUIT:
                 this->Stop();
                 break;
@@ -26,8 +30,10 @@ namespace Forradia {
             case SDL_TEXTINPUT:
                 SceneManager::Instance().OnTextInputCurrentScene(event.text.text);
                 break;
-            case SDL_MOUSEBUTTONDOWN: {
-                switch (event.button.button) {
+            case SDL_MOUSEBUTTONDOWN:
+            {
+                switch (event.button.button)
+                {
                 case SDL_BUTTON_LEFT:
                     m_ticksLeftMouseButtonFired = GetTicks();
                     break;
@@ -38,9 +44,11 @@ namespace Forradia {
                 SceneManager::Instance().OnMouseDownCurrentScene(event.button.button);
                 break;
             }
-            case SDL_MOUSEBUTTONUP: {
+            case SDL_MOUSEBUTTONUP:
+            {
                 int clickSpeed{0};
-                switch (event.button.button) {
+                switch (event.button.button)
+                {
                 case SDL_BUTTON_LEFT:
                     clickSpeed = GetTicks() - m_ticksLeftMouseButtonFired;
                     break;

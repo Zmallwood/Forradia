@@ -20,20 +20,25 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldView::Initiallize() -> void {
+namespace Forradia::Theme0
+{
+    auto WorldView::Initiallize() -> void
+    {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++) {
-            for (auto x = 0; x < worldAreaSize.width; x++) {
+        for (auto y = 0; y < worldAreaSize.height; y++)
+        {
+            for (auto x = 0; x < worldAreaSize.width; x++)
+            {
                 m_renderIDsGround[x][y] =
                     Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
             }
         }
     }
 
-    auto WorldView::Render() const -> void {
+    auto WorldView::Render() const -> void
+    {
         // 45 degrees up in +Z
         glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7F, 0.0F, 0.7F));
 
@@ -65,299 +70,321 @@ namespace Forradia::Theme0 {
 
         std::unordered_map<int, std::unordered_map<int, std::vector<float>>> elevationsAll;
 
-        auto fnIterationGround{[&](int x, int y) {
-            auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-            auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
+        auto fnIterationGround{
+            [&](int x, int y)
+            {
+                auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
+                auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 
-            if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
-                return;
+                if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+                    return;
 
-            auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
-            auto objectsStack{tile->GetObjectsStack()};
-            auto objects{objectsStack->GetObjects()};
+                auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
+                auto objectsStack{tile->GetObjectsStack()};
+                auto objects{objectsStack->GetObjects()};
 
-            auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
-            auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
-            auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
-            auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
-            auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
-            auto coordinateNW{Point{xCoordinate, yCoordinate}};
-            auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
-            auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
-            auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
-            auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
-            auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
-            auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
-            auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
-            auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
+                auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
+                auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
+                auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
+                auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
+                auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
+                auto coordinateNW{Point{xCoordinate, yCoordinate}};
+                auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+                auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+                auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+                auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
+                auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
+                auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
+                auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
+                auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
-            if (!worldArea->IsValidCoordinate(coordinateNW) ||
-                !worldArea->IsValidCoordinate(coordinateNE) ||
-                !worldArea->IsValidCoordinate(coordinateSW) ||
-                !worldArea->IsValidCoordinate(coordinateSE))
-                return;
+                if (!worldArea->IsValidCoordinate(coordinateNW) ||
+                    !worldArea->IsValidCoordinate(coordinateNE) ||
+                    !worldArea->IsValidCoordinate(coordinateSW) ||
+                    !worldArea->IsValidCoordinate(coordinateSE))
+                    return;
 
-            auto tileNWW{worldArea->GetTile(coordinateNWW)};
-            auto tileNNW{worldArea->GetTile(coordinateNNW)};
-            auto tileNNWW{worldArea->GetTile(coordinateNNWW)};
-            auto tileNNE{worldArea->GetTile(coordinateNNE)};
-            auto tileSWW{worldArea->GetTile(coordinateSWW)};
-            auto tileNW{worldArea->GetTile(coordinateNW)};
-            auto tileNE{worldArea->GetTile(coordinateNE)};
-            auto tileSW{worldArea->GetTile(coordinateSW)};
-            auto tileSE{worldArea->GetTile(coordinateSE)};
-            auto tileNEE{worldArea->GetTile(coordinateNEE)};
-            auto tileSEE{worldArea->GetTile(coordinateSEE)};
-            auto tileSESE{worldArea->GetTile(coordinateSESE)};
-            auto tileSES{worldArea->GetTile(coordinateSES)};
-            auto tileSS{worldArea->GetTile(coordinateSS)};
+                auto tileNWW{worldArea->GetTile(coordinateNWW)};
+                auto tileNNW{worldArea->GetTile(coordinateNNW)};
+                auto tileNNWW{worldArea->GetTile(coordinateNNWW)};
+                auto tileNNE{worldArea->GetTile(coordinateNNE)};
+                auto tileSWW{worldArea->GetTile(coordinateSWW)};
+                auto tileNW{worldArea->GetTile(coordinateNW)};
+                auto tileNE{worldArea->GetTile(coordinateNE)};
+                auto tileSW{worldArea->GetTile(coordinateSW)};
+                auto tileSE{worldArea->GetTile(coordinateSE)};
+                auto tileNEE{worldArea->GetTile(coordinateNEE)};
+                auto tileSEE{worldArea->GetTile(coordinateSEE)};
+                auto tileSESE{worldArea->GetTile(coordinateSESE)};
+                auto tileSES{worldArea->GetTile(coordinateSES)};
+                auto tileSS{worldArea->GetTile(coordinateSS)};
 
-            std::vector<float> elevations;
+                std::vector<float> elevations;
 
-            auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
-            auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
-            auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0F};
-            auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0F};
-            auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0F};
-            auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0F};
-            auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0F};
-            auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0F};
-            auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0F};
+                auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
+                auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
+                auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0F};
+                auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0F};
+                auto elevationNEE{tileNEE ? tileNEE->GetElevation() : 0.0F};
+                auto elevationSEE{tileSEE ? tileSEE->GetElevation() : 0.0F};
+                auto elevationSESE{tileSESE ? tileSESE->GetElevation() : 0.0F};
+                auto elevationSES{tileSES ? tileSES->GetElevation() : 0.0F};
+                auto elevationSS{tileSS ? tileSS->GetElevation() : 0.0F};
 
-            elevations.push_back(elevationNW);
-            elevations.push_back(elevationNE);
-            elevations.push_back(elevationNEE);
-            elevations.push_back(elevationSW);
-            elevations.push_back(elevationSE);
-            elevations.push_back(elevationSEE);
-            elevations.push_back(elevationSS);
-            elevations.push_back(elevationSES);
-            elevations.push_back(elevationSESE);
+                elevations.push_back(elevationNW);
+                elevations.push_back(elevationNE);
+                elevations.push_back(elevationNEE);
+                elevations.push_back(elevationSW);
+                elevations.push_back(elevationSE);
+                elevations.push_back(elevationSEE);
+                elevations.push_back(elevationSS);
+                elevations.push_back(elevationSES);
+                elevations.push_back(elevationSESE);
 
-            elevationsAll[xCoordinate][yCoordinate] = elevations;
+                elevationsAll[xCoordinate][yCoordinate] = elevations;
 
-            auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
+                auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
 
-            auto elevationMax{
-                std::max(elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
+                auto elevationMax{std::max(
+                    elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
 
-            auto ground{tile->GetGround()};
+                auto ground{tile->GetGround()};
 
-            auto color00{Palette::GetColor<Hash("White")>()};
-            auto color10{Palette::GetColor<Hash("White")>()};
-            auto color11{Palette::GetColor<Hash("White")>()};
-            auto color01{Palette::GetColor<Hash("White")>()};
+                auto color00{Palette::GetColor<Hash("White")>()};
+                auto color10{Palette::GetColor<Hash("White")>()};
+                auto color11{Palette::GetColor<Hash("White")>()};
+                auto color01{Palette::GetColor<Hash("White")>()};
 
-            switch (ground) {
-            case Hash("GroundGrass"):
-                color00 = Palette::GetColor<Hash("Green")>();
-                break;
-            case Hash("GroundWater"):
-                color00 = Palette::GetColor<Hash("LightBlue")>();
-                break;
-            case Hash("GroundDirt"):
-                color00 = Palette::GetColor<Hash("Brown")>();
-                break;
-            case Hash("GroundRock"):
-                color00 = Palette::GetColor<Hash("Gray")>();
-                break;
-            case Hash("GroundStoneSlab"):
-                color00 = Palette::GetColor<Hash("White")>();
-                break;
-            }
-
-            if (tileNE) {
-                switch (tileNE->GetGround()) {
+                switch (ground)
+                {
                 case Hash("GroundGrass"):
-                    color10 = Palette::GetColor<Hash("Green")>();
+                    color00 = Palette::GetColor<Hash("Green")>();
                     break;
                 case Hash("GroundWater"):
-                    color10 = Palette::GetColor<Hash("LightBlue")>();
+                    color00 = Palette::GetColor<Hash("LightBlue")>();
                     break;
                 case Hash("GroundDirt"):
-                    color10 = Palette::GetColor<Hash("Brown")>();
+                    color00 = Palette::GetColor<Hash("Brown")>();
                     break;
                 case Hash("GroundRock"):
-                    color10 = Palette::GetColor<Hash("Gray")>();
+                    color00 = Palette::GetColor<Hash("Gray")>();
                     break;
                 case Hash("GroundStoneSlab"):
-                    color10 = Palette::GetColor<Hash("White")>();
+                    color00 = Palette::GetColor<Hash("White")>();
                     break;
                 }
-            }
 
-            if (tileSE) {
-                switch (tileSE->GetGround()) {
-                case Hash("GroundGrass"):
-                    color11 = Palette::GetColor<Hash("Green")>();
-                    break;
-                case Hash("GroundWater"):
-                    color11 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-                case Hash("GroundDirt"):
-                    color11 = Palette::GetColor<Hash("Brown")>();
-                    break;
-                case Hash("GroundRock"):
-                    color11 = Palette::GetColor<Hash("Gray")>();
-                    break;
-                case Hash("GroundStoneSlab"):
-                    color11 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
-            }
-
-            if (tileSW) {
-                switch (tileSW->GetGround()) {
-                case Hash("GroundGrass"):
-                    color01 = Palette::GetColor<Hash("Green")>();
-                    break;
-                case Hash("GroundWater"):
-                    color01 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-                case Hash("GroundDirt"):
-                    color01 = Palette::GetColor<Hash("Brown")>();
-                    break;
-                case Hash("GroundRock"):
-                    color01 = Palette::GetColor<Hash("Gray")>();
-                    break;
-                case Hash("GroundStoneSlab"):
-                    color01 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
-            }
-
-            auto forceRedraw{tile->GetForceRedraw()};
-
-            tile->SetForceRedraw(false);
-
-            if (ground == Hash("GroundWater")) {
-                auto waterDepth{tile->GetWaterDepth()};
-                waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
-
-                std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
-
-                auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-
-                waterImageString += "_" + std::to_string(animationIndex);
-
-                ground = Hash(waterImageString);
-
-                tile->SetForceRedraw(true);
-            }
-
-            // Check if this tile is within the normal grid size for object/entity
-            // rendering.
-            auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
-                                    x < (groundGridSize.width + gridSize.width) / 2 &&
-                                    y >= (groundGridSize.height - gridSize.height) / 2 &&
-                                    y < (groundGridSize.height + gridSize.height) / 2};
-
-            tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
-                             yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
-                             color11, color01});
-        }};
-
-        auto fnIterationAllExceptGround{[&](int x, int y) {
-            auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-            auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
-
-            if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
-                return;
-
-            auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
-            auto objectsStack{tile->GetObjectsStack()};
-            auto objects{objectsStack->GetObjects()};
-
-            if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
-                elevationsAll[xCoordinate].find(yCoordinate) == elevationsAll[xCoordinate].end())
-                return;
-
-            std::vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
-
-            auto &elevationNW = elevations[0];
-            auto &elevationNE = elevations[1];
-            auto &elevationNEE = elevations[2];
-            auto &elevationSW = elevations[3];
-            auto &elevationSE = elevations[4];
-            auto &elevationSEE = elevations[5];
-            auto &elevationSS = elevations[6];
-            auto &elevationSES = elevations[7];
-            auto &elevationSESE = elevations[8];
-
-            auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
-
-            auto elevationMax{
-                std::max(elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
-
-            auto ground{tile->GetGround()};
-
-            if (ground == Hash("GroundWater")) {
-                auto waterDepth{tile->GetWaterDepth()};
-                waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
-
-                std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
-
-                auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-
-                waterImageString += "_" + std::to_string(animationIndex);
-
-                ground = Hash(waterImageString);
-            }
-
-            // Check if this tile is within the normal grid size for object/entity
-            // rendering.
-            auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
-                                    x < (groundGridSize.width + gridSize.width) / 2 &&
-                                    y >= (groundGridSize.height - gridSize.height) / 2 &&
-                                    y < (groundGridSize.height + gridSize.height) / 2};
-
-            // Only render objects, and entities within the normal grid size.
-            if (isWithinNormalGrid) {
-                for (auto object : objects) {
-                    auto objectType{object->GetType()};
-
-                    ModelRenderer::Instance().DrawModel(
-                        objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax,
-                        object->GetModelScaling());
+                if (tileNE)
+                {
+                    switch (tileNE->GetGround())
+                    {
+                    case Hash("GroundGrass"):
+                        color10 = Palette::GetColor<Hash("Green")>();
+                        break;
+                    case Hash("GroundWater"):
+                        color10 = Palette::GetColor<Hash("LightBlue")>();
+                        break;
+                    case Hash("GroundDirt"):
+                        color10 = Palette::GetColor<Hash("Brown")>();
+                        break;
+                    case Hash("GroundRock"):
+                        color10 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    case Hash("GroundStoneSlab"):
+                        color10 = Palette::GetColor<Hash("White")>();
+                        break;
+                    }
                 }
 
-                auto entity{tile->GetEntity()};
-
-                if (entity) {
-                    auto entityType{entity->GetType()};
-
-                    ModelRenderer::Instance().DrawModel(
-                        entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                if (tileSE)
+                {
+                    switch (tileSE->GetGround())
+                    {
+                    case Hash("GroundGrass"):
+                        color11 = Palette::GetColor<Hash("Green")>();
+                        break;
+                    case Hash("GroundWater"):
+                        color11 = Palette::GetColor<Hash("LightBlue")>();
+                        break;
+                    case Hash("GroundDirt"):
+                        color11 = Palette::GetColor<Hash("Brown")>();
+                        break;
+                    case Hash("GroundRock"):
+                        color11 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    case Hash("GroundStoneSlab"):
+                        color11 = Palette::GetColor<Hash("White")>();
+                        break;
+                    }
                 }
 
-                if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
-                    ModelRenderer::Instance().DrawModel(
-                        Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
-                        (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
-            }
+                if (tileSW)
+                {
+                    switch (tileSW->GetGround())
+                    {
+                    case Hash("GroundGrass"):
+                        color01 = Palette::GetColor<Hash("Green")>();
+                        break;
+                    case Hash("GroundWater"):
+                        color01 = Palette::GetColor<Hash("LightBlue")>();
+                        break;
+                    case Hash("GroundDirt"):
+                        color01 = Palette::GetColor<Hash("Brown")>();
+                        break;
+                    case Hash("GroundRock"):
+                        color01 = Palette::GetColor<Hash("Gray")>();
+                        break;
+                    case Hash("GroundStoneSlab"):
+                        color01 = Palette::GetColor<Hash("White")>();
+                        break;
+                    }
+                }
 
-            if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y) {
-                for (auto &elevation : elevations)
-                    elevation += 0.01F;
+                auto forceRedraw{tile->GetForceRedraw()};
 
-                GroundRenderer::Instance().SetupState();
-                GroundRenderer::Instance().DrawTile(k_renderIDGroundSymbolHoveredTile,
-                                                    Hash("HoveredTile"), xCoordinate, yCoordinate,
-                                                    rendTileSize, elevations, true);
+                tile->SetForceRedraw(false);
 
-                GroundRenderer::Instance().RestoreState();
-            }
-        }};
+                if (ground == Hash("GroundWater"))
+                {
+                    auto waterDepth{tile->GetWaterDepth()};
+                    waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
+
+                    std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+
+                    auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 %
+                                        3};
+
+                    waterImageString += "_" + std::to_string(animationIndex);
+
+                    ground = Hash(waterImageString);
+
+                    tile->SetForceRedraw(true);
+                }
+
+                // Check if this tile is within the normal grid size for object/entity
+                // rendering.
+                auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
+                                        x < (groundGridSize.width + gridSize.width) / 2 &&
+                                        y >= (groundGridSize.height - gridSize.height) / 2 &&
+                                        y < (groundGridSize.height + gridSize.height) / 2};
+
+                tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground,
+                                 xCoordinate, yCoordinate, rendTileSize, elevations, forceRedraw,
+                                 color00, color10, color11, color01});
+            }};
+
+        auto fnIterationAllExceptGround{
+            [&](int x, int y)
+            {
+                auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
+                auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
+
+                if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+                    return;
+
+                auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
+                auto objectsStack{tile->GetObjectsStack()};
+                auto objects{objectsStack->GetObjects()};
+
+                if (elevationsAll.find(xCoordinate) == elevationsAll.end() ||
+                    elevationsAll[xCoordinate].find(yCoordinate) ==
+                        elevationsAll[xCoordinate].end())
+                    return;
+
+                std::vector<float> &elevations = elevationsAll[xCoordinate][yCoordinate];
+
+                auto &elevationNW = elevations[0];
+                auto &elevationNE = elevations[1];
+                auto &elevationNEE = elevations[2];
+                auto &elevationSW = elevations[3];
+                auto &elevationSE = elevations[4];
+                auto &elevationSEE = elevations[5];
+                auto &elevationSS = elevations[6];
+                auto &elevationSES = elevations[7];
+                auto &elevationSESE = elevations[8];
+
+                auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
+
+                auto elevationMax{std::max(
+                    elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
+
+                auto ground{tile->GetGround()};
+
+                if (ground == Hash("GroundWater"))
+                {
+                    auto waterDepth{tile->GetWaterDepth()};
+                    waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
+
+                    std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+
+                    auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 %
+                                        3};
+
+                    waterImageString += "_" + std::to_string(animationIndex);
+
+                    ground = Hash(waterImageString);
+                }
+
+                // Check if this tile is within the normal grid size for object/entity
+                // rendering.
+                auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
+                                        x < (groundGridSize.width + gridSize.width) / 2 &&
+                                        y >= (groundGridSize.height - gridSize.height) / 2 &&
+                                        y < (groundGridSize.height + gridSize.height) / 2};
+
+                // Only render objects, and entities within the normal grid size.
+                if (isWithinNormalGrid)
+                {
+                    for (auto object : objects)
+                    {
+                        auto objectType{object->GetType()};
+
+                        ModelRenderer::Instance().DrawModel(
+                            objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax,
+                            object->GetModelScaling());
+                    }
+
+                    auto entity{tile->GetEntity()};
+
+                    if (entity)
+                    {
+                        auto entityType{entity->GetType()};
+
+                        ModelRenderer::Instance().DrawModel(
+                            entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    }
+
+                    if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
+                        ModelRenderer::Instance().DrawModel(
+                            Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
+                            (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                }
+
+                if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
+                {
+                    for (auto &elevation : elevations)
+                        elevation += 0.01F;
+
+                    GroundRenderer::Instance().SetupState();
+                    GroundRenderer::Instance().DrawTile(
+                        k_renderIDGroundSymbolHoveredTile, Hash("HoveredTile"), xCoordinate,
+                        yCoordinate, rendTileSize, elevations, true);
+
+                    GroundRenderer::Instance().RestoreState();
+                }
+            }};
 
         GroundRenderer::Instance().SetupState();
 
         auto tilesGroupSize{20};
 
         // First pass: Render ground tiles at extended distance.
-        for (auto y = 0; y < groundGridSize.height; y++) {
-            for (auto x = 0; x < groundGridSize.width; x++) {
+        for (auto y = 0; y < groundGridSize.height; y++)
+        {
+            for (auto x = 0; x < groundGridSize.width; x++)
+            {
                 auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
                 auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
 

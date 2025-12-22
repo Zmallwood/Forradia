@@ -7,13 +7,15 @@
 
 #include <memory>
 
-namespace Forradia {
+namespace Forradia
+{
     class ShaderProgram;
 
     /**
      * Base class for all renderers.
      */
-    class RendererBase {
+    class RendererBase
+    {
       public:
         /**
          * Initialize the renderer with its shader program.
@@ -25,7 +27,8 @@ namespace Forradia {
          *
          * @return The shader program.
          */
-        [[nodiscard]] auto GetShaderProgram() const {
+        [[nodiscard]] auto GetShaderProgram() const
+        {
             return m_shaderProgram;
         }
 
@@ -47,7 +50,8 @@ namespace Forradia {
         /**
          * Can be used to do additional initialization implemented in deriving class.
          */
-        virtual auto InitializeDerived() -> void {
+        virtual auto InitializeDerived() -> void
+        {
         }
 
         /**

@@ -6,8 +6,10 @@
 #include "TimeUtilities.hpp"
 #include <SDL2/SDL.h>
 
-namespace Forradia {
-    auto GetTicks() -> int {
+namespace Forradia
+{
+    auto GetTicks() -> int
+    {
         return SDL_GetTicks();
     }
 }

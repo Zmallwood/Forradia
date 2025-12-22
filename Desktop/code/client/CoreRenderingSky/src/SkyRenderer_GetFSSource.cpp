@@ -5,8 +5,10 @@
 
 #include "SkyRenderer.hpp"
 
-namespace Forradia {
-    auto SkyRenderer::GetFSSource() const -> std::string {
+namespace Forradia
+{
+    auto SkyRenderer::GetFSSource() const -> std::string
+    {
         return R"(
             #version 330 core
             

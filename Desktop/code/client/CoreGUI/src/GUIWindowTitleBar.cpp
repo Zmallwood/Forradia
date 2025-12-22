@@ -11,8 +11,10 @@
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia {
-    auto GUIWindowTitleBar::Initialize(std::string_view uniqueName) -> void {
+namespace Forradia
+{
+    auto GUIWindowTitleBar::Initialize(std::string_view uniqueName) -> void
+    {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
         AddChildComponent(std::make_shared<GUIButton>(
             uniqueName.data() + std::string("CloseButton"),
@@ -22,7 +24,8 @@ namespace Forradia {
             [this] { m_parentWindow.ToggleVisibility(); }));
     }
 
-    auto GUIWindowTitleBar::RenderDerived() const -> void {
+    auto GUIWindowTitleBar::RenderDerived() const -> void
+    {
         GUIPanel::RenderDerived();
 
         auto parentWindowBounds{m_parentWindow.GetBounds()};
@@ -32,7 +35,8 @@ namespace Forradia {
             Palette::GetColor<Hash("Yellow")>());
     }
 
-    auto GUIWindowTitleBar::GetBounds() const -> RectF {
+    auto GUIWindowTitleBar::GetBounds() const -> RectF
+    {
         auto parentWindowBounds{m_parentWindow.GetBounds()};
 
         RectF boundsResult;

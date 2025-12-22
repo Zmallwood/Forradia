@@ -7,7 +7,8 @@
 
 #include <string>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Replace all instances of a character in a string with another character.
      *

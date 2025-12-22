@@ -7,14 +7,18 @@
 #include "FilePathUtilities.hpp"
 #include "Model.hpp"
 
-namespace Forradia {
-    auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture> {
-        if (mesh == nullptr) {
+namespace Forradia
+{
+    auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>
+    {
+        if (mesh == nullptr)
+        {
             ThrowError("mesh is nullptr");
             return {};
         }
 
-        if (scene == nullptr) {
+        if (scene == nullptr)
+        {
             ThrowError("scene is nullptr");
             return {};
         }

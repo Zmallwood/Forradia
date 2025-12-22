@@ -8,15 +8,18 @@
 #include "GUIComponent.hpp"
 #include "Hash.hpp"
 
-namespace Forradia {
-    class GUIScrollableArea : public GUIComponent {
+namespace Forradia
+{
+    class GUIScrollableArea : public GUIComponent
+    {
       public:
         GUIScrollableArea(std::string_view uniqueName, float xPos, float yPos, float width,
                           float height)
             : GUIComponent(xPos, yPos, width, height),
               k_renderIDUpArrow(Hash(uniqueName.data() + std::string("_UpArrow"))),
               k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))),
-              k_renderIDSlider(Hash(uniqueName.data() + std::string("_Slider"))) {
+              k_renderIDSlider(Hash(uniqueName.data() + std::string("_Slider")))
+        {
         }
 
       protected:

@@ -18,13 +18,16 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A renderer for the ground tiles.
      */
-    class GroundRenderer : public RendererBase {
+    class GroundRenderer : public RendererBase
+    {
       public:
-        static auto Instance() -> GroundRenderer & {
+        static auto Instance() -> GroundRenderer &
+        {
             static GroundRenderer instance;
             return instance;
         }
@@ -39,7 +42,8 @@ namespace Forradia {
         /**
          * Destructor that cleans up the renderer.
          */
-        ~GroundRenderer() {
+        ~GroundRenderer()
+        {
             this->Cleanup();
         }
         /**

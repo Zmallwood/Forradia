@@ -9,8 +9,10 @@
 #include "SDLDevice.hpp"
 #include <ranges>
 
-namespace Forradia {
-    auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool {
+namespace Forradia
+{
+    auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool
+    {
         if (!this->GetVisible())
             return false;
 
@@ -22,7 +24,8 @@ namespace Forradia {
 
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
-        if (draggableArea.Contains(mousePosition)) {
+        if (draggableArea.Contains(mousePosition))
+        {
             this->StartMove();
             return true;
         }
@@ -30,7 +33,8 @@ namespace Forradia {
         return false;
     }
 
-    auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+    auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    {
         this->StopMove();
 
         if (!this->GetVisible())
@@ -43,40 +47,47 @@ namespace Forradia {
                 return true;
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
-        if (GetBounds().Contains(mousePos)) {
+        if (GetBounds().Contains(mousePos))
+        {
             return true;
         }
 
         return false;
     }
 
-    auto GUIMovablePanel::UpdateDerived() -> void {
+    auto GUIMovablePanel::UpdateDerived() -> void
+    {
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
 
-        if (draggableArea.Contains(mousePosition)) {
+        if (draggableArea.Contains(mousePosition))
+        {
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
-        if (GetIsBeingMoved()) {
+        if (GetIsBeingMoved())
+        {
             auto newPosition{GetMoveStartingPosition() + mousePosition -
                              GetMoveStartingMousePosition()};
             this->SetPosition(newPosition);
         }
     }
 
-    auto GUIMovablePanel::StartMove() -> void {
+    auto GUIMovablePanel::StartMove() -> void
+    {
         m_isBeingMoved = true;
         m_moveStartingPosition = this->GetBounds().GetPosition();
         m_moveStartingMousePosition =
             GetNormallizedMousePosition(SDLDevice::Instance().GetWindow());
     }
 
-    auto GUIMovablePanel::StopMove() -> void {
+    auto GUIMovablePanel::StopMove() -> void
+    {
         m_isBeingMoved = false;
     }
 
-    auto GUIMovablePanel::GetDraggableArea() const -> RectF {
+    auto GUIMovablePanel::GetDraggableArea() const -> RectF
+    {
         // Set the draggable area to the bounds of this panel as default. This can be overridden
         // by derived classes.
         return this->GetBounds();

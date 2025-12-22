@@ -10,8 +10,10 @@
 #include "Player/Player.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia::Theme0 {
-    auto GUIPlayerStatusBox::Initialize() -> void {
+namespace Forradia::Theme0
+{
+    auto GUIPlayerStatusBox::Initialize() -> void
+    {
         auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
         this->AddChildComponent(wellBeingMeter);
 
@@ -22,7 +24,8 @@ namespace Forradia::Theme0 {
         this->AddChildComponent(m_wellBeingValueTextLabel);
     }
 
-    auto GUIPlayerStatusBox::UpdateDerived() -> void {
+    auto GUIPlayerStatusBox::UpdateDerived() -> void
+    {
         GUIPanel::UpdateDerived();
 
         auto wellBeing{Player::Instance().GetWellBeing()};
@@ -31,7 +34,8 @@ namespace Forradia::Theme0 {
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
 
-    auto GUIPlayerStatusBox::RenderDerived() const -> void {
+    auto GUIPlayerStatusBox::RenderDerived() const -> void
+    {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};

@@ -7,8 +7,10 @@
 
 #include "SkyRenderer.hpp"
 
-namespace Forradia {
-    auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> void {
+namespace Forradia
+{
+    auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> void
+    {
         if (!m_initialized)
             this->GenerateSkyDome();
 

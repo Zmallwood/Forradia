@@ -5,13 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Determines and provides the tile hovered by the mouse.
      */
-    class TileHovering {
+    class TileHovering
+    {
       public:
-        static TileHovering &Instance() {
+        static TileHovering &Instance()
+        {
             static TileHovering instance;
             return instance;
         }
@@ -31,7 +34,8 @@ namespace Forradia::Theme0 {
         /**
          * Provides the hovered coordinate.
          */
-        auto GetHoveredCoordinate() const {
+        auto GetHoveredCoordinate() const
+        {
             return m_hoveredCoordinate;
         }
 

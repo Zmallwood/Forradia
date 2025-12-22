@@ -32,8 +32,10 @@
 #include "Update/UpdateSetPlayerDestination.hpp"
 #include "WorldView.hpp"
 
-namespace Forradia::Theme0 {
-    auto MainScene::InitializeDerived() -> void {
+namespace Forradia::Theme0
+{
+    auto MainScene::InitializeDerived() -> void
+    {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
         GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
 
@@ -75,14 +77,16 @@ namespace Forradia::Theme0 {
         m_guiInteractionMenu = GUIInteractionMenu::InstancePtr();
     }
 
-    auto MainScene::OnEnterDerived() -> void {
+    auto MainScene::OnEnterDerived() -> void
+    {
         auto chatBoxHeight{GUIChatBox::Instance().GetBounds().height};
         auto experienceBarHeight{GUIExperienceBar::Instance().GetBounds().height};
         GUIChatBox::Instance().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
         GUIChatBox::Instance().Print("You have entered the world.");
     }
 
-    auto MainScene::OnMouseDown(Uint8 mouseButton) -> void {
+    auto MainScene::OnMouseDown(Uint8 mouseButton) -> void
+    {
         GetGUI()->OnMouseDown(mouseButton);
         if (GetGUI()->MouseHoveringGUI())
             return;
@@ -94,7 +98,8 @@ namespace Forradia::Theme0 {
             CameraRotator::Instance().OnMouseDown(mouseButton);
     }
 
-    auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
+    auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void
+    {
         CameraRotator::Instance().OnMouseUp(mouseButton);
         GetGUI()->OnMouseUp(mouseButton, clickSpeed);
         if (GetGUI()->MouseHoveringGUI())
@@ -110,27 +115,32 @@ namespace Forradia::Theme0 {
             UpdateSetPlayerDestination();
     }
 
-    auto MainScene::OnMouseWheel(int delta) -> void {
+    auto MainScene::OnMouseWheel(int delta) -> void
+    {
         Camera::Instance().AddZoomAmountDelta(delta);
     }
 
-    auto MainScene::OnKeyDown(SDL_Keycode key) -> void {
+    auto MainScene::OnKeyDown(SDL_Keycode key) -> void
+    {
         GetGUI()->OnKeyDown(key);
         UpdateKeyboardMovementStart(key);
         UpdateKeyboardActions(key);
     }
 
-    auto MainScene::OnKeyUp(SDL_Keycode key) -> void {
+    auto MainScene::OnKeyUp(SDL_Keycode key) -> void
+    {
         GetGUI()->OnKeyUp(key);
         UpdateKeyboardMovementStop();
     }
 
-    auto MainScene::OnTextInput(std::string_view text) -> void {
+    auto MainScene::OnTextInput(std::string_view text) -> void
+    {
         if (GUIChatBox::Instance().GetInputActive())
             GUIChatBox::Instance().AddTextInput(text);
     }
 
-    auto MainScene::UpdateDerived() -> void {
+    auto MainScene::UpdateDerived() -> void
+    {
         m_guiInteractionMenu->Update();
         GUIInventoryWindow::Instance().Update();
         UpdateMouseMovement();
@@ -142,7 +152,8 @@ namespace Forradia::Theme0 {
         QuestSystem::Instance().Update();
     }
 
-    auto MainScene::Render() const -> void {
+    auto MainScene::Render() const -> void
+    {
         this->RenderDerived();
 
         GetGUI()->Render();
@@ -151,7 +162,8 @@ namespace Forradia::Theme0 {
         m_guiInteractionMenu->Render();
     }
 
-    auto MainScene::RenderDerived() const -> void {
+    auto MainScene::RenderDerived() const -> void
+    {
         WorldView::Instance().Render();
     }
 }

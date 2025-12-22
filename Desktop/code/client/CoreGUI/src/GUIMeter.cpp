@@ -7,8 +7,10 @@
 #include "Color2DRenderer.hpp"
 #include "Coloring/Palette.hpp"
 
-namespace Forradia {
-    auto GUIMeter::RenderDerived() const -> void {
+namespace Forradia
+{
+    auto GUIMeter::RenderDerived() const -> void
+    {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
 
         Color2DRenderer::Instance().DrawFilledRectangle(

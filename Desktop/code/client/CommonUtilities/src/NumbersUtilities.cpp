@@ -7,15 +7,18 @@
 #include "Constants.hpp"
 #include <cmath>
 
-namespace Forradia {
-    auto InvertSpeed(float speed) -> float {
+namespace Forradia
+{
+    auto InvertSpeed(float speed) -> float
+    {
         auto result{0.0F};
         if (speed != 0.0F)
             result = k_oneSecMillis / speed;
         return result;
     }
 
-    auto Normalize(int value) -> int {
+    auto Normalize(int value) -> int
+    {
         auto absValue{std::abs(value)};
         auto normalized{0};
         if (value != 0)
@@ -23,7 +26,8 @@ namespace Forradia {
         return normalized;
     }
 
-    auto Ceil(float number, float numDecimalPlaces) -> float {
+    auto Ceil(float number, float numDecimalPlaces) -> float
+    {
         const auto powBase{10.0F};
         auto factor{std::pow(powBase, numDecimalPlaces)};
         return std::ceil(number * factor) / factor;

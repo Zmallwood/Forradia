@@ -7,18 +7,21 @@
 
 #include "EntityTypes.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * A creature in the game world.
      */
-    class Entity {
+    class Entity
+    {
       public:
         /**
          * Constructor. Creates a creature of the given type.
          *
          * @param typeHash The entity type as a hash.
          */
-        Entity(int typeHash) : m_type(typeHash) {
+        Entity(int typeHash) : m_type(typeHash)
+        {
             // Initialize the entity.
             this->Initialize();
         }
@@ -28,7 +31,8 @@ namespace Forradia::Theme0 {
          *
          * @param typeName The entity type by name.
          */
-        Entity(std::string_view typeName) : m_type{Hash(typeName)} {
+        Entity(std::string_view typeName) : m_type{Hash(typeName)}
+        {
             this->Initialize();
         }
 
@@ -37,7 +41,8 @@ namespace Forradia::Theme0 {
          *
          * @return The entity type.
          */
-        auto GetType() const {
+        auto GetType() const
+        {
             return m_type;
         }
 
@@ -46,7 +51,8 @@ namespace Forradia::Theme0 {
          *
          * @return The ticks since the entity last moved.
          */
-        auto GetTicksLastMovement() const {
+        auto GetTicksLastMovement() const
+        {
             return m_ticksLastMovement;
         }
 
@@ -55,7 +61,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The new ticks since the entity last moved.
          */
-        auto SetTicksLastMovement(int value) -> void {
+        auto SetTicksLastMovement(int value) -> void
+        {
             m_ticksLastMovement = value;
         }
 
@@ -64,7 +71,8 @@ namespace Forradia::Theme0 {
          *
          * @return The movement speed of the entity.
          */
-        auto GetMovementSpeed() const {
+        auto GetMovementSpeed() const
+        {
             return m_movementSpeed;
         }
 
@@ -73,7 +81,8 @@ namespace Forradia::Theme0 {
          *
          * @return The destination of the entity.
          */
-        auto GetDestination() const {
+        auto GetDestination() const
+        {
             return m_destination;
         }
 
@@ -82,7 +91,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The new destination of the entity.
          */
-        auto SetDestination(Point value) -> void {
+        auto SetDestination(Point value) -> void
+        {
             m_destination = value;
         }
 

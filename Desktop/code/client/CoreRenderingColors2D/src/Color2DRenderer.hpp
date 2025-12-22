@@ -10,13 +10,16 @@
 #include "RendererBase.hpp"
 #include <unordered_map>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A renderer for drawing colors to the canvas.
      */
-    class Color2DRenderer : public RendererBase {
+    class Color2DRenderer : public RendererBase
+    {
       public:
-        static auto Instance() -> Color2DRenderer & {
+        static auto Instance() -> Color2DRenderer &
+        {
             static Color2DRenderer instance;
             return instance;
         }
@@ -31,7 +34,8 @@ namespace Forradia {
         /**
          * Destructor which cleans up the renderer.
          */
-        ~Color2DRenderer() {
+        ~Color2DRenderer()
+        {
             // Cleanup the renderer.
             this->Cleanup();
         }

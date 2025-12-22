@@ -7,20 +7,24 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUILabel;
 }
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the player status box.
      */
-    class GUIPlayerStatusBox : public GUIPanel {
+    class GUIPlayerStatusBox : public GUIPanel
+    {
       public:
         /**
          * Constructor.
          */
-        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f) {
+        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
+        {
             this->Initialize();
         }
 

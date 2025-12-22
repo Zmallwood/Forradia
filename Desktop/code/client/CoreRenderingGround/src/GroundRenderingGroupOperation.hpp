@@ -8,11 +8,13 @@
 #include "TileDrawGroup.hpp"
 #include <unordered_map>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A rendering operation for a group of tiles.
      */
-    class GroundRenderingGroupOperation {
+    class GroundRenderingGroupOperation
+    {
       public:
         std::unordered_map<int, TileDrawGroup> tilesByTexture{}; ///< The tiles by texture.
     };

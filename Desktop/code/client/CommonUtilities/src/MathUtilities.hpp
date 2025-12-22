@@ -7,7 +7,8 @@
 
 #include <glm/glm.hpp>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Compute the normal of a triangle.
      *

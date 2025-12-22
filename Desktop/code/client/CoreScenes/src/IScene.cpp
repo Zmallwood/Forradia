@@ -6,48 +6,59 @@
 #include "IScene.hpp"
 #include "GUI.hpp"
 
-namespace Forradia {
-    auto IScene::Initialize() -> void {
+namespace Forradia
+{
+    auto IScene::Initialize() -> void
+    {
         m_gui = std::make_shared<GUI>();
 
         this->InitializeDerived();
     }
 
-    auto IScene::OnEnter() -> void {
+    auto IScene::OnEnter() -> void
+    {
         this->OnEnterDerived();
     }
 
-    auto IScene::OnMouseDown(Uint8 mouseButton) -> void {
+    auto IScene::OnMouseDown(Uint8 mouseButton) -> void
+    {
         m_gui->OnMouseDown(mouseButton);
     }
 
-    auto IScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void {
+    auto IScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void
+    {
         m_gui->OnMouseUp(mouseButton, clickSpeed);
     }
 
-    auto IScene::OnMouseWheel(int delta) -> void {
+    auto IScene::OnMouseWheel(int delta) -> void
+    {
         m_gui->OnMouseWheel(delta);
     }
 
-    auto IScene::OnKeyDown(SDL_Keycode key) -> void {
+    auto IScene::OnKeyDown(SDL_Keycode key) -> void
+    {
         m_gui->OnKeyDown(key);
     }
 
-    auto IScene::OnKeyUp(SDL_Keycode key) -> void {
+    auto IScene::OnKeyUp(SDL_Keycode key) -> void
+    {
         m_gui->OnKeyUp(key);
     }
 
-    auto IScene::OnTextInput(std::string_view text) -> void {
+    auto IScene::OnTextInput(std::string_view text) -> void
+    {
         m_gui->OnTextInput(text);
     }
 
-    auto IScene::Update() -> void {
+    auto IScene::Update() -> void
+    {
         m_gui->Update();
 
         this->UpdateDerived();
     }
 
-    auto IScene::Render() const -> void {
+    auto IScene::Render() const -> void
+    {
         this->RenderDerived();
 
         m_gui->Render();

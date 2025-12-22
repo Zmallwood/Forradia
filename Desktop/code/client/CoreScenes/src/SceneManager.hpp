@@ -8,15 +8,18 @@
 #include <SDL2/SDL.h>
 #include <unordered_map>
 
-namespace Forradia {
+namespace Forradia
+{
     class IScene;
 
     /**
      * The manager for the scenes.
      */
-    class SceneManager {
+    class SceneManager
+    {
       public:
-        static SceneManager &Instance() {
+        static SceneManager &Instance()
+        {
             static SceneManager instance;
             return instance;
         }

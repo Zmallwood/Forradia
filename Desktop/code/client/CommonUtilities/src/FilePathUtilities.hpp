@@ -7,7 +7,8 @@
 
 #include <string>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Get the file extension from a given path.
      *

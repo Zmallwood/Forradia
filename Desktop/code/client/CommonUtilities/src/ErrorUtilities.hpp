@@ -7,7 +7,8 @@
 
 #include <source_location>
 
-namespace Forradia {
+namespace Forradia
+{
     [[noreturn]] void ThrowError(std::string_view message,
                                  std::source_location loc = std::source_location::current());
 }

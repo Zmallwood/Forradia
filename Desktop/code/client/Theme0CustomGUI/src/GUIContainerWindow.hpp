@@ -9,7 +9,8 @@
 #include "GUIScrollableArea.hpp"
 #include "GUIWindow.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Object;
     class GUIContainerWindowArea;
     class GUIContainerWindowPanel;
@@ -18,13 +19,15 @@ namespace Forradia::Theme0 {
     /**
      * Represents the inventory window.
      */
-    class GUIContainerWindow : public GUIWindow {
+    class GUIContainerWindow : public GUIWindow
+    {
       public:
         /**
          * Constructor.
          */
         GUIContainerWindow(ContainedObjects &containedObjects)
-            : GUIWindow("GUIContainerWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Container") {
+            : GUIWindow("GUIContainerWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Container")
+        {
             this->Initialize(containedObjects);
         }
 
@@ -36,11 +39,13 @@ namespace Forradia::Theme0 {
         std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea{};
     };
 
-    class GUIContainerWindowArea : public GUIScrollableArea {
+    class GUIContainerWindowArea : public GUIScrollableArea
+    {
       public:
         GUIContainerWindowArea(GUIWindow *parentWindow, ContainedObjects &containedObjects)
             : GUIScrollableArea("GUIContainerWindowArea", 0.0F, 0.0F, 0.2F, 0.45F),
-              m_parentWindow(parentWindow) {
+              m_parentWindow(parentWindow)
+        {
             this->Initialize(parentWindow, containedObjects);
         }
 
@@ -56,11 +61,13 @@ namespace Forradia::Theme0 {
         std::shared_ptr<GUIContainerWindowPanel> m_panel{};
     };
 
-    class GUIContainerWindowPanel : public GUIPanel {
+    class GUIContainerWindowPanel : public GUIPanel
+    {
       public:
         GUIContainerWindowPanel(GUIWindow *parentWindow, ContainedObjects &containedObjects)
             : GUIPanel("GUIContainerWindowPanel", 0.0F, 0.0F, 0.2F, 1.0F),
-              m_parentWindow(parentWindow), m_containedObjects(containedObjects) {
+              m_parentWindow(parentWindow), m_containedObjects(containedObjects)
+        {
             this->Initialize();
         }
 

@@ -7,14 +7,17 @@
 
 #include "IScene.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * The main menu scene is the second scene that is displayed when the game is started.
      * It displays the title of the game and the main menu.
      */
-    class MainMenuScene : public IScene {
+    class MainMenuScene : public IScene
+    {
       public:
-        static MainMenuScene &Instance() {
+        static MainMenuScene &Instance()
+        {
             static MainMenuScene instance;
             return instance;
         }

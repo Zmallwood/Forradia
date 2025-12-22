@@ -5,8 +5,10 @@
 
 #include "Image2DRenderer.hpp"
 
-namespace Forradia {
-    auto Image2DRenderer::GetFSSource() const -> std::string {
+namespace Forradia
+{
+    auto Image2DRenderer::GetFSSource() const -> std::string
+    {
         return R"(
         #version 330 core
         

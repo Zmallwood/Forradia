@@ -19,8 +19,10 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto GUIInteractionMenu::Initialize() -> void {
+namespace Forradia::Theme0
+{
+    auto GUIInteractionMenu::Initialize() -> void
+    {
         this->SetVisible(false);
 
         for (auto i = 0; i < k_maxNumMenuEntries; i++)
@@ -28,28 +30,37 @@ namespace Forradia::Theme0 {
                 Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
     }
 
-    auto GUIInteractionMenu::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
-        switch (mouseButton) {
-        case SDL_BUTTON_LEFT: {
-            if (this->GetVisible()) {
+    auto GUIInteractionMenu::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    {
+        switch (mouseButton)
+        {
+        case SDL_BUTTON_LEFT:
+        {
+            if (this->GetVisible())
+            {
                 this->HandleClick();
                 this->SetVisible(false);
                 return true;
             }
-        } break;
-        case SDL_BUTTON_RIGHT: {
-            if (this->GetVisible() == false) {
+        }
+        break;
+        case SDL_BUTTON_RIGHT:
+        {
+            if (this->GetVisible() == false)
+            {
                 this->SetVisible(true);
                 this->SetPosition(GetNormallizedMousePosition(SDLDevice::Instance().GetWindow()));
                 this->BuildMenu();
                 return true;
             }
-        } break;
+        }
+        break;
         }
         return false;
     }
 
-    auto GUIInteractionMenu::BuildMenu() -> void {
+    auto GUIInteractionMenu::BuildMenu() -> void
+    {
         m_entries.clear();
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
@@ -58,12 +69,14 @@ namespace Forradia::Theme0 {
         auto rightClickedInInventoryWindow{
             GUIInventoryWindow::Instance().GetBounds().Contains(mousePos)};
 
-        if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow) {
+        if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow)
+        {
             std::vector<int> objectHashes;
             m_clickedCoordinate = {-1, -1};
             m_clickedObjects.clear();
             auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
-            if (object) {
+            if (object)
+            {
                 objectHashes.push_back((*object)->GetType());
                 m_clickedObjects.push_back(object.get());
                 this->ShowMenuForTileAndObjects(0, objectHashes);
@@ -84,13 +97,15 @@ namespace Forradia::Theme0 {
 
         auto ground{0};
 
-        if (tile) {
+        if (tile)
+        {
             ground = tile->GetGround();
         }
 
         std::vector<int> objectHashes;
 
-        for (auto &object : objects) {
+        for (auto &object : objects)
+        {
             auto type{object->GetType()};
 
             objectHashes.push_back(type);
@@ -99,7 +114,8 @@ namespace Forradia::Theme0 {
     }
 
     auto GUIInteractionMenu::ShowMenuForTileAndObjects(int groundHash,
-                                                       std::vector<int> objectHashes) -> void {
+                                                       std::vector<int> objectHashes) -> void
+    {
 
         std::vector<Action> actions{GetAction<Hash("ActionStop")>(),
                                     GetAction<Hash("ActionLayCobbleStone")>(),
@@ -122,10 +138,13 @@ namespace Forradia::Theme0 {
                                     GetAction<Hash("ActionLightUnlitCampfire")>()};
 
         auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-        for (auto &action : actions) {
+        for (auto &action : actions)
+        {
             bool goOn{false};
-            for (auto groundMatch : action.groundMatches) {
-                if (groundMatch == groundHash) {
+            for (auto groundMatch : action.groundMatches)
+            {
+                if (groundMatch == groundHash)
+                {
                     goOn = true;
                 }
             }
@@ -134,8 +153,10 @@ namespace Forradia::Theme0 {
             if (!goOn)
                 continue;
             goOn = false;
-            for (auto objectMatch : action.objectMatches) {
-                for (auto objectHash : objectHashes) {
+            for (auto objectMatch : action.objectMatches)
+            {
+                for (auto objectHash : objectHashes)
+                {
                     if (objectMatch == objectHash)
                         goOn = true;
                 }
@@ -145,8 +166,10 @@ namespace Forradia::Theme0 {
             if (!goOn)
                 continue;
             goOn = false;
-            for (auto invObjectMatch : action.objectsInInventory) {
-                if (inventory.CountHasObject(invObjectMatch)) {
+            for (auto invObjectMatch : action.objectsInInventory)
+            {
+                if (inventory.CountHasObject(invObjectMatch))
+                {
                     goOn = true;
                 }
             }
@@ -161,25 +184,30 @@ namespace Forradia::Theme0 {
         this->SetHeight(newHeight);
     }
 
-    auto GUIInteractionMenu::HandleClick() -> void {
+    auto GUIInteractionMenu::HandleClick() -> void
+    {
         auto bounds{this->GetBounds()};
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto i{0};
 
-        for (auto &entry : m_entries) {
+        for (auto &entry : m_entries)
+        {
             auto menuEntryRect{RectF{bounds.x + 0.01f + k_indentWidth,
                                      bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
                                      k_lineHeight}};
 
-            if (menuEntryRect.Contains(mousePosition)) {
+            if (menuEntryRect.Contains(mousePosition))
+            {
                 auto worldArea{World::Instance().GetCurrentWorldArea()};
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
-                if (tile) {
+                if (tile)
+                {
                     auto playerPos{Player::Instance().GetPosition()};
                     auto absDx{std::abs(m_clickedCoordinate.x - playerPos.x)};
                     auto absDy{std::abs(m_clickedCoordinate.y - playerPos.y)};
-                    if (absDx > 1 || absDy > 1) {
+                    if (absDx > 1 || absDy > 1)
+                    {
                         GUIChatBox::Instance().Print("You are too far away to do the action.");
                         this->SetVisible(false);
                         return;
@@ -197,7 +225,8 @@ namespace Forradia::Theme0 {
         this->SetVisible(false);
     }
 
-    auto GUIInteractionMenu::RenderDerived() const -> void {
+    auto GUIInteractionMenu::RenderDerived() const -> void
+    {
         GUIPanel::RenderDerived();
 
         auto bounds{this->GetBounds()};
@@ -206,7 +235,8 @@ namespace Forradia::Theme0 {
                                             bounds.y + 0.01f, FontSizes::_20, false, true,
                                             Palette::GetColor<Hash("YellowTransparent")>());
         auto i{0};
-        for (auto &entry : m_entries) {
+        for (auto &entry : m_entries)
+        {
             TextRenderer::Instance().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);

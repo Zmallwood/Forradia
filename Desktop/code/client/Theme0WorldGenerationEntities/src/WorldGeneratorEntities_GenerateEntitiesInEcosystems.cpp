@@ -10,8 +10,10 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorEntities.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorEntities::GenerateEntitiesInEcosystems() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorEntities::GenerateEntitiesInEcosystems() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
         auto worldScaling{GetWorldScaling()};
@@ -19,7 +21,8 @@ namespace Forradia::Theme0 {
         // Generate white rabbits - prefer areas near water and in meadows/grass.
         auto numWhiteRabbits{180 * worldScaling + GetRandomInt(40 * worldScaling)};
 
-        for (auto i = 0; i < numWhiteRabbits; i++) {
+        for (auto i = 0; i < numWhiteRabbits; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -30,16 +33,20 @@ namespace Forradia::Theme0 {
 
             auto prefersLocation{false};
 
-            if (tile->GetGround() == Hash("GroundGrass")) {
+            if (tile->GetGround() == Hash("GroundGrass"))
+            {
                 if (IsNearWater(x, y, 8))
                     prefersLocation = GetRandomInt(100) < 40;
                 else
                     prefersLocation = GetRandomInt(100) < 20;
-            } else if (tile->GetGround() == Hash("GroundDirt")) {
+            }
+            else if (tile->GetGround() == Hash("GroundDirt"))
+            {
                 prefersLocation = GetRandomInt(100) < 5;
             }
 
-            if (prefersLocation) {
+            if (prefersLocation)
+            {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
                 tile->SetEntity(newEntity);
@@ -50,7 +57,8 @@ namespace Forradia::Theme0 {
 
         auto numWolves{180 * worldScaling + GetRandomInt(40 * worldScaling)};
 
-        for (auto i = 0; i < numWolves; i++) {
+        for (auto i = 0; i < numWolves; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -61,16 +69,20 @@ namespace Forradia::Theme0 {
 
             auto prefersLocation{false};
 
-            if (tile->GetGround() == Hash("GroundGrass")) {
+            if (tile->GetGround() == Hash("GroundGrass"))
+            {
                 if (IsNearWater(x, y, 8))
                     prefersLocation = GetRandomInt(100) < 40;
                 else
                     prefersLocation = GetRandomInt(100) < 20;
-            } else if (tile->GetGround() == Hash("GroundDirt")) {
+            }
+            else if (tile->GetGround() == Hash("GroundDirt"))
+            {
                 prefersLocation = GetRandomInt(100) < 5;
             }
 
-            if (prefersLocation) {
+            if (prefersLocation)
+            {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureWolf")};
 
                 tile->SetEntity(newEntity);
@@ -82,7 +94,8 @@ namespace Forradia::Theme0 {
         // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
         auto numRedBirds{120 * worldScaling + GetRandomInt(30 * worldScaling)};
 
-        for (auto i = 0; i < numRedBirds; i++) {
+        for (auto i = 0; i < numRedBirds; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -97,8 +110,10 @@ namespace Forradia::Theme0 {
             auto nearbyTreesCount{0};
 
             // Check for trees in the surrounding area.
-            for (auto checkY = y - 3; checkY <= y + 3; checkY++) {
-                for (auto checkX = x - 3; checkX <= x + 3; checkX++) {
+            for (auto checkY = y - 3; checkY <= y + 3; checkY++)
+            {
+                for (auto checkX = x - 3; checkX <= x + 3; checkX++)
+                {
                     if (checkX == x && checkY == y)
                         continue;
 
@@ -107,15 +122,19 @@ namespace Forradia::Theme0 {
 
                     auto nearbyTile{worldArea->GetTile(checkX, checkY)};
 
-                    if (nearbyTile) {
+                    if (nearbyTile)
+                    {
                         auto objectsStack{nearbyTile->GetObjectsStack()};
 
-                        if (objectsStack->GetSize() > 0) {
-                            for (auto object : objectsStack->GetObjects()) {
+                        if (objectsStack->GetSize() > 0)
+                        {
+                            for (auto object : objectsStack->GetObjects())
+                            {
                                 auto objectType{object->GetType()};
 
                                 if (objectType == Hash("ObjectFirTree") ||
-                                    objectType == Hash("ObjectBirchTree")) {
+                                    objectType == Hash("ObjectBirchTree"))
+                                {
                                     nearbyTreesCount++;
                                     // Birds can perch on trees, so nearby trees increase
                                     // probability.
@@ -139,7 +158,8 @@ namespace Forradia::Theme0 {
                 // Lower probability in open grass areas (birds can still be found there).
                 prefersLocation = GetRandomInt(100) < 8;
 
-            if (prefersLocation) {
+            if (prefersLocation)
+            {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureRedBird")};
 
                 tile->SetEntity(newEntity);
@@ -151,7 +171,8 @@ namespace Forradia::Theme0 {
         // Create creature clusters near water sources (more realistic ecosystems).
         auto numWaterSources{15 + GetRandomInt(10)};
 
-        for (auto source = 0; source < numWaterSources; source++) {
+        for (auto source = 0; source < numWaterSources; source++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -165,7 +186,8 @@ namespace Forradia::Theme0 {
             auto foundWater{false};
 
             // Find a water tile.
-            while (attempts < 30 && !foundWater) {
+            while (attempts < 30 && !foundWater)
+            {
                 waterX = GetRandomInt(worldAreaSize.width);
                 waterY = GetRandomInt(worldAreaSize.height);
 
@@ -187,7 +209,8 @@ namespace Forradia::Theme0 {
             auto creaturesInEcosystem{3 + GetRandomInt(5)};
 
             // Generate the creatures in the ecosystem.
-            for (auto c = 0; c < creaturesInEcosystem; c++) {
+            for (auto c = 0; c < creaturesInEcosystem; c++)
+            {
                 // Generate a random angle.
                 auto angle{GetRandomInt(360) * M_PI / 180.0F};
 
@@ -208,7 +231,8 @@ namespace Forradia::Theme0 {
                     continue;
 
                 // Prefer grass for the ecosystem.
-                if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60) {
+                if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)
+                {
                     auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
                     creatureTile->SetEntity(newEntity);

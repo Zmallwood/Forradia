@@ -6,8 +6,10 @@
 #include "TextureBank.hpp"
 #include <SDL2/SDL_image.h>
 
-namespace Forradia {
-    auto TextureBank::LoadSingleTexture(const std::shared_ptr<SDL_Surface> &surface) -> GLuint {
+namespace Forradia
+{
+    auto TextureBank::LoadSingleTexture(const std::shared_ptr<SDL_Surface> &surface) -> GLuint
+    {
         GLuint textureID;
         glGenTextures(1, &textureID);
 

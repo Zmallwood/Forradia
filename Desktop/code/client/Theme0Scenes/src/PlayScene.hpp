@@ -7,14 +7,17 @@
 
 #include "IScene.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * The play scene is the scene where the player can choose to play a new game or continue a
      * saved game.
      */
-    class PlayScene : public IScene {
+    class PlayScene : public IScene
+    {
       public:
-        static PlayScene &Instance() {
+        static PlayScene &Instance()
+        {
             static PlayScene instance;
             return instance;
         }

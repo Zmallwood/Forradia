@@ -9,20 +9,25 @@
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 
-namespace Forradia {
-    auto Cursor::Initialize() -> void {
+namespace Forradia
+{
+    auto Cursor::Initialize() -> void
+    {
         Cursor::DisableSystemCursor();
     }
 
-    auto Cursor::DisableSystemCursor() -> void {
+    auto Cursor::DisableSystemCursor() -> void
+    {
         SDL_ShowCursor(SDL_DISABLE);
     }
 
-    auto Cursor::ResetStyleToNormal() -> void {
+    auto Cursor::ResetStyleToNormal() -> void
+    {
         m_cursorStyle = CursorStyles::Normal;
     }
 
-    auto Cursor::Render() const -> void {
+    auto Cursor::Render() const -> void
+    {
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto width{k_cursorSize};
@@ -30,7 +35,8 @@ namespace Forradia {
 
         std::string cursorImage;
 
-        switch (m_cursorStyle) {
+        switch (m_cursorStyle)
+        {
         case CursorStyles::Normal:
             cursorImage = "CursorNormal";
             break;

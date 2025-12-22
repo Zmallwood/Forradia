@@ -10,7 +10,8 @@
 #include "Theme0Properties.hpp"
 #include "World.hpp"
 
-auto main(int argc, char **argv) -> int {
+auto main(int argc, char **argv) -> int
+{
     using namespace Forradia;
     using namespace Theme0;
 

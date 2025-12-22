@@ -8,19 +8,23 @@
 #include "GUIInteractionMenuEntry.hpp"
 #include "GUIPanel.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the interaction menu.
      */
-    class GUIInteractionMenu : public GUIPanel {
+    class GUIInteractionMenu : public GUIPanel
+    {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUIInteractionMenu> {
+        static auto InstancePtr() -> std::shared_ptr<GUIInteractionMenu>
+        {
             static std::shared_ptr<GUIInteractionMenu> instancePtr =
                 std::make_shared<GUIInteractionMenu>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUIInteractionMenu & {
+        static auto Instance() -> GUIInteractionMenu &
+        {
             return *InstancePtr();
         }
 
@@ -31,7 +35,8 @@ namespace Forradia::Theme0 {
         /**
          * Constructor.
          */
-        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f) {
+        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
+        {
             this->Initialize();
         }
 
@@ -51,7 +56,8 @@ namespace Forradia::Theme0 {
          *
          * @return The timed actions.
          */
-        auto &GetTimedActionsRef() {
+        auto &GetTimedActionsRef()
+        {
             return m_timedActions;
         }
 
@@ -60,7 +66,8 @@ namespace Forradia::Theme0 {
          *
          * @return The clicked coordinate.
          */
-        auto GetClickedCoordinate() const {
+        auto GetClickedCoordinate() const
+        {
             return m_clickedCoordinate;
         }
 

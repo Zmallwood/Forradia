@@ -7,7 +7,8 @@
 
 #include "Directions.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class ObjectsStack;
     class Entity;
     // class Robot;
@@ -15,12 +16,14 @@ namespace Forradia::Theme0 {
     /**
      * A tile in the game world.
      */
-    class Tile {
+    class Tile
+    {
       public:
         /**
          * Constructor.
          */
-        Tile() {
+        Tile()
+        {
             // Initialize the tile by creating necessary components.
             this->Initialize();
         }
@@ -30,7 +33,8 @@ namespace Forradia::Theme0 {
          *
          * @return The ground type of the tile.
          */
-        auto GetGround() const {
+        auto GetGround() const
+        {
             return m_ground;
         }
 
@@ -53,7 +57,8 @@ namespace Forradia::Theme0 {
          *
          * @return The objects stack of the tile.
          */
-        auto GetObjectsStack() const {
+        auto GetObjectsStack() const
+        {
             return m_objectsStack;
         }
 
@@ -62,7 +67,8 @@ namespace Forradia::Theme0 {
          *
          * @return The entity on the tile, or nullptr if no entity is on the tile.
          */
-        auto GetEntity() const {
+        auto GetEntity() const
+        {
             return m_entity;
         }
 
@@ -71,7 +77,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The entity on the tile.
          */
-        auto SetEntity(std::shared_ptr<Entity> value) -> void {
+        auto SetEntity(std::shared_ptr<Entity> value) -> void
+        {
             m_entity = value;
         }
 
@@ -80,7 +87,8 @@ namespace Forradia::Theme0 {
          *
          * @return The elevation of the tile.
          */
-        auto GetElevation() const {
+        auto GetElevation() const
+        {
             return m_elevation;
         }
 
@@ -89,7 +97,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The elevation of the tile.
          */
-        auto SetElevation(int value) -> void {
+        auto SetElevation(int value) -> void
+        {
             m_elevation = value;
         }
 
@@ -98,7 +107,8 @@ namespace Forradia::Theme0 {
          *
          * @return The water depth of the tile.
          */
-        auto GetWaterDepth() const {
+        auto GetWaterDepth() const
+        {
             return m_waterDepth;
         }
 
@@ -107,7 +117,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The water depth of the tile.
          */
-        auto SetWaterDepth(int value) -> void {
+        auto SetWaterDepth(int value) -> void
+        {
             m_waterDepth = value;
         }
 
@@ -116,7 +127,8 @@ namespace Forradia::Theme0 {
          *
          * @return Whether to force a redraw of the tile.
          */
-        auto GetForceRedraw() const {
+        auto GetForceRedraw() const
+        {
             return m_forceRedraw;
         }
 
@@ -125,7 +137,8 @@ namespace Forradia::Theme0 {
          *
          * @param value Whether to force a redraw of the tile.
          */
-        auto SetForceRedraw(bool value) -> void {
+        auto SetForceRedraw(bool value) -> void
+        {
             m_forceRedraw = value;
         }
 

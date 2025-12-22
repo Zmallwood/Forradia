@@ -9,20 +9,26 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorEntities::GenerateEntities() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorEntities::GenerateEntities() const -> void
+    {
         GenerateEntitiesInEcosystems();
     }
 
-    auto WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const -> bool {
-        for (auto checkY = y - radius; checkY <= y + radius; checkY++) {
-            for (auto checkX = x - radius; checkX <= x + radius; checkX++) {
+    auto WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const -> bool
+    {
+        for (auto checkY = y - radius; checkY <= y + radius; checkY++)
+        {
+            for (auto checkX = x - radius; checkX <= x + radius; checkX++)
+            {
                 if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
                     continue;
 
                 auto tile{GetWorldArea()->GetTile(checkX, checkY)};
 
-                if (tile && tile->GetGround() == Hash("GroundWater")) {
+                if (tile && tile->GetGround() == Hash("GroundWater"))
+                {
                     auto distance{GetDistance(x, y, checkX, checkY)};
 
                     if (distance <= radius)

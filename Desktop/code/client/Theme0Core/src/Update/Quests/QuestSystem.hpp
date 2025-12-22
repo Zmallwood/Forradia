@@ -5,15 +5,18 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Quest;
 
     /**
      * Manages the quests in the game.
      */
-    class QuestSystem {
+    class QuestSystem
+    {
       public:
-        static QuestSystem &Instance() {
+        static QuestSystem &Instance()
+        {
             static QuestSystem instance;
             return instance;
         }
@@ -26,7 +29,8 @@ namespace Forradia::Theme0 {
         /**
          * Constructor.
          */
-        QuestSystem() {
+        QuestSystem()
+        {
             this->Initialize();
         }
 

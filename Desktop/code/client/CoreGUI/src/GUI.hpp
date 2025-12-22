@@ -7,16 +7,19 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * The root GUI class which is created for every scene.
      */
-    class GUI : public GUIComponent {
+    class GUI : public GUIComponent
+    {
       public:
         /**
          * Constructor.
          */
-        GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F) {
+        GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F)
+        {
         }
 
         [[nodiscard]] auto MouseHoveringGUI() const -> bool override;

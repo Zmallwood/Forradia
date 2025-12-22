@@ -7,13 +7,15 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUIWindow;
 
     /**
      * A title bar for a window.
      */
-    class GUIWindowTitleBar : public GUIPanel {
+    class GUIWindowTitleBar : public GUIPanel
+    {
       public:
         /**
          * Constructor.
@@ -26,7 +28,8 @@ namespace Forradia {
                           std::string_view windowTitle)
             : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
               k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
-              GUIPanel(uniqueName, 0.0F, 0.0F, 0.0F, 0.0F, "GUIWindowTitleBarBackground") {
+              GUIPanel(uniqueName, 0.0F, 0.0F, 0.0F, 0.0F, "GUIWindowTitleBarBackground")
+        {
             this->Initialize(uniqueName);
         }
 
@@ -42,7 +45,8 @@ namespace Forradia {
          */
         auto GetBounds() const -> RectF override;
 
-        static auto GetHeight() -> float {
+        static auto GetHeight() -> float
+        {
             return k_height;
         }
 

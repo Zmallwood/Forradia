@@ -11,11 +11,13 @@
 #include <memory>
 #include <vector>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Base class for all GUI components.
      */
-    class GUIComponent : public std::enable_shared_from_this<GUIComponent> {
+    class GUIComponent : public std::enable_shared_from_this<GUIComponent>
+    {
       public:
         /**
          * Constructor.
@@ -26,7 +28,8 @@ namespace Forradia {
          * @param height The height of the component.
          */
         GUIComponent(float xPos, float yPos, float width, float height)
-            : m_bounds({xPos, yPos, width, height}) {
+            : m_bounds({xPos, yPos, width, height})
+        {
         }
 
         /**
@@ -69,7 +72,8 @@ namespace Forradia {
 
         virtual auto MouseHoveringGUI() const -> bool;
 
-        auto SetBounds(RectF value) -> void {
+        auto SetBounds(RectF value) -> void
+        {
             m_bounds = value;
         }
 
@@ -97,7 +101,8 @@ namespace Forradia {
          *
          * @return Whether the component is visible.
          */
-        auto GetVisible() const -> bool {
+        auto GetVisible() const -> bool
+        {
             return m_visible;
         }
 
@@ -106,7 +111,8 @@ namespace Forradia {
          *
          * @param value Whether the component should be visible.
          */
-        auto SetVisible(bool value) -> void {
+        auto SetVisible(bool value) -> void
+        {
             m_visible = value;
         }
 
@@ -115,24 +121,28 @@ namespace Forradia {
          *
          * @param value The parent component.
          */
-        auto SetParentComponent(GUIComponent *value) -> void {
+        auto SetParentComponent(GUIComponent *value) -> void
+        {
             m_parentComponent = value;
         }
 
         /**
          * Update tasks specific to the derived class, called by the Update method.
          */
-        virtual auto UpdateDerived() -> void {
+        virtual auto UpdateDerived() -> void
+        {
         }
 
         /**
          * Render tasks specific to the derived class, called by the Render method.
          */
-        virtual auto RenderDerived() const -> void {
+        virtual auto RenderDerived() const -> void
+        {
         }
 
       protected:
-        auto GetChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>> {
+        auto GetChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>>
+        {
             return m_childComponents;
         }
 

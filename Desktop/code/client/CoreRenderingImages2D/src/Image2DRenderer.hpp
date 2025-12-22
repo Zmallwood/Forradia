@@ -13,13 +13,16 @@
 // clang-format on
 #include <unordered_map>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A renderer for drawing images to the canvas.
      */
-    class Image2DRenderer : public RendererBase {
+    class Image2DRenderer : public RendererBase
+    {
       public:
-        static auto Instance() -> Image2DRenderer & {
+        static auto Instance() -> Image2DRenderer &
+        {
             static Image2DRenderer instance;
             return instance;
         }
@@ -34,7 +37,8 @@ namespace Forradia {
         /**
          * Destructor which cleans up the renderer.
          */
-        ~Image2DRenderer() {
+        ~Image2DRenderer()
+        {
             // Clean up the renderer.
             this->Cleanup();
         }

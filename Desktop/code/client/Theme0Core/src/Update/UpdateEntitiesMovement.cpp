@@ -10,25 +10,30 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto UpdateEntitiesMovement() -> void {
+namespace Forradia::Theme0
+{
+    auto UpdateEntitiesMovement() -> void
+    {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto &entities{worldArea->GetEntitiesMirrorRef()};
 
         auto now{GetTicks()};
 
-        for (auto it = entities.begin(); it != entities.end();) {
+        for (auto it = entities.begin(); it != entities.end();)
+        {
             auto entity{it->first};
             auto position{it->second};
 
-            if (now < entity->GetTicksLastMovement() + InvertSpeed(entity->GetMovementSpeed())) {
+            if (now < entity->GetTicksLastMovement() + InvertSpeed(entity->GetMovementSpeed()))
+            {
                 ++it;
                 continue;
             }
 
             auto destination{entity->GetDestination()};
 
-            if (destination.x == -1 && destination.y == -1) {
+            if (destination.x == -1 && destination.y == -1)
+            {
                 auto newDestinationX{position.x + GetRandomInt(11) - 5};
                 auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
@@ -54,7 +59,8 @@ namespace Forradia::Theme0 {
 
             auto tile{worldArea->GetTile(newPosition.x, newPosition.y)};
 
-            if (tile && !tile->GetEntity() && tile->GetGround() != Hash("GroundWater")) {
+            if (tile && !tile->GetEntity() && tile->GetGround() != Hash("GroundWater"))
+            {
                 auto oldPosition{entities.at(entity)};
 
                 entity->SetTicksLastMovement(now);
@@ -67,7 +73,9 @@ namespace Forradia::Theme0 {
 
                 entities.erase(entity);
                 entities.insert({entity, {newPosition.x, newPosition.y}});
-            } else {
+            }
+            else
+            {
                 entity->SetDestination({-1, -1});
             }
             ++it;

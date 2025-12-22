@@ -8,8 +8,10 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia {
-    auto SkyRenderer::Cleanup() -> void {
+namespace Forradia
+{
+    auto SkyRenderer::Cleanup() -> void
+    {
         if (m_vao != 0)
             glDeleteVertexArrays(1, &m_vao);
         if (m_ibo != 0)
@@ -26,7 +28,8 @@ namespace Forradia {
         m_initialized = false;
     }
 
-    auto SkyRenderer::SetupState() const -> void {
+    auto SkyRenderer::SetupState() const -> void
+    {
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
@@ -46,7 +49,8 @@ namespace Forradia {
         glDisable(GL_CULL_FACE);
     }
 
-    auto SkyRenderer::RestoreState() const -> void {
+    auto SkyRenderer::RestoreState() const -> void
+    {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -56,13 +60,15 @@ namespace Forradia {
         glDisable(GL_DEPTH_TEST);
     }
 
-    auto SkyRenderer::SetupAttributeLayout() const -> void {
+    auto SkyRenderer::SetupAttributeLayout() const -> void
+    {
         // Position (3 floats).
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
         glEnableVertexAttribArray(0);
     }
 
-    auto SkyRenderer::InitializeDerived() -> void {
+    auto SkyRenderer::InitializeDerived() -> void
+    {
         m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
         m_layoutLocationSunDirection =
             glGetUniformLocation(GetShaderProgram()->GetProgramID(), "sunDirection");
@@ -71,7 +77,8 @@ namespace Forradia {
 
         // Check if uniform locations are valid (should not be -1).
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
-            m_layoutLocationSunElevation == -1) {
+            m_layoutLocationSunElevation == -1)
+        {
             GUIChatBox::Instance().Print(
                 "Uniform locations not found - shader might have compilation errors.");
         }

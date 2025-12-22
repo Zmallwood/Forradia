@@ -11,11 +11,13 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Shader program which is used for each renderer.
      */
-    class ShaderProgram {
+    class ShaderProgram
+    {
       public:
         /**
          * Initialize the shader program.
@@ -23,14 +25,16 @@ namespace Forradia {
          * @param vertexShaderSource Vertex shader source.
          * @param fragmentShaderSource Fragment shader source.
          */
-        ShaderProgram(std::string_view vertexShaderSource, std::string_view fragmentShaderSource) {
+        ShaderProgram(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
+        {
             this->Initialize(vertexShaderSource, fragmentShaderSource);
         }
 
         /**
          * Cleanup the shader program.
          */
-        ~ShaderProgram() {
+        ~ShaderProgram()
+        {
             this->Cleanup();
         }
 
@@ -39,7 +43,8 @@ namespace Forradia {
          *
          * @return The program ID.
          */
-        [[nodiscard]] auto GetProgramID() const {
+        [[nodiscard]] auto GetProgramID() const
+        {
             return m_programID;
         }
 

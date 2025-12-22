@@ -16,8 +16,10 @@
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
 
-namespace Forradia {
-    auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {
+namespace Forradia
+{
+    auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void
+    {
         // Initialize random number generator so that unique random numbers are generated on
         // each game run.
         Randomize();
@@ -33,11 +35,14 @@ namespace Forradia {
         ModelRenderer::Instance().Initialize();
     }
 
-    auto Engine::Run() -> void {
+    auto Engine::Run() -> void
+    {
         // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
         // in the game.
-        try {
-            while (m_running) {
+        try
+        {
+            while (m_running)
+            {
                 Cursor::Instance().ResetStyleToNormal();
 
                 this->HandleEvents();
@@ -50,12 +55,15 @@ namespace Forradia {
                 Cursor::Instance().Render();
                 SDLDevice::Instance().PresentCanvas();
             }
-        } catch (std::exception &e) {
+        }
+        catch (std::exception &e)
+        {
             PrintLine("Caught exception: " + std::string(e.what()));
         }
     }
 
-    auto Engine::Stop() -> void {
+    auto Engine::Stop() -> void
+    {
         m_running = false;
     }
 }

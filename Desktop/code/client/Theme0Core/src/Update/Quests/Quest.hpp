@@ -5,11 +5,13 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * A quest is a task that the player can complete to progress the game.
      */
-    class Quest {
+    class Quest
+    {
       public:
         /**
          * Updates the quest.

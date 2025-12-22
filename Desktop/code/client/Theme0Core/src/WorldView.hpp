@@ -5,13 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Renders the world.
      */
-    class WorldView {
+    class WorldView
+    {
       public:
-        static WorldView &Instance() {
+        static WorldView &Instance()
+        {
             static WorldView instance;
             return instance;
         }
@@ -24,7 +27,8 @@ namespace Forradia::Theme0 {
         /**
          * Constructor.
          */
-        WorldView() {
+        WorldView()
+        {
             this->Initiallize();
         }
 

@@ -15,10 +15,12 @@
 // clang-format on
 #include <array>
 
-namespace Forradia {
+namespace Forradia
+{
     auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
                                                float yPos, float width, float height,
-                                               bool updateExisting) -> void {
+                                               bool updateExisting) -> void
+    {
         this->SetupState();
 
         GLuint vao;
@@ -28,7 +30,8 @@ namespace Forradia {
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->DrawingOperationIsCached(uniqueRenderID)) {
+        if (this->DrawingOperationIsCached(uniqueRenderID))
+        {
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
             vao = entry.vao;
@@ -38,7 +41,9 @@ namespace Forradia {
             glBindVertexArray(vao);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        } else {
+        }
+        else
+        {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
             glGenBuffers(1, &ibo);
@@ -61,7 +66,8 @@ namespace Forradia {
         const auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
-        if (needFillBuffers || updateExisting) {
+        if (needFillBuffers || updateExisting)
+        {
             constexpr int k_numFloatsForVerticesData{32};
 
             std::array<float, k_numFloatsForVerticesData> vertices = {

@@ -9,13 +9,16 @@
 
 using SDL_GLContext = void *;
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Sets up the OpenGL context and the OpenGL functions.
      */
-    class GLDevice {
+    class GLDevice
+    {
       public:
-        static auto Instance() -> GLDevice & {
+        static auto Instance() -> GLDevice &
+        {
             static GLDevice instance;
             return instance;
         }

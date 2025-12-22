@@ -7,8 +7,10 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorGround::GenerateGroundWithElevation() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorGround::GenerateGroundWithElevation() const -> void
+    {
         ClearWithDirt();
         GenerateElevationWithBiomes();
         GenerateMountainRanges();
@@ -17,12 +19,15 @@ namespace Forradia::Theme0 {
         GenerateRockFormations();
     }
 
-    auto WorldGeneratorGround::ClearWithDirt() const -> void {
+    auto WorldGeneratorGround::ClearWithDirt() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++) {
-            for (auto x = 0; x < worldAreaSize.width; x++) {
+        for (auto y = 0; y < worldAreaSize.height; y++)
+        {
+            for (auto x = 0; x < worldAreaSize.width; x++)
+            {
                 auto tile{worldArea->GetTile(x, y)};
 
                 if (!tile)
@@ -34,19 +39,22 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto WorldGeneratorGround::GetMaxElevation() const -> int {
+    auto WorldGeneratorGround::GetMaxElevation() const -> int
+    {
         // Maximum elevation cap to prevent excessive stacking.
         return 300;
     }
 
-    auto WorldGeneratorGround::GetMaxSlopePerTile() const -> int {
+    auto WorldGeneratorGround::GetMaxSlopePerTile() const -> int
+    {
         // Maximum elevation difference between adjacent tiles.
         // This prevents mountains from becoming too steep.
         return 8;
     }
 
     auto WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const
-        -> int {
+        -> int
+    {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
 
@@ -60,7 +68,8 @@ namespace Forradia::Theme0 {
 
         int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}};
 
-        for (auto dir = 0; dir < 8; dir++) {
+        for (auto dir = 0; dir < 8; dir++)
+        {
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 
@@ -91,7 +100,8 @@ namespace Forradia::Theme0 {
         return maxAllowedElevation;
     }
 
-    auto WorldGeneratorGround::ClampElevation(int elevation) const -> int {
+    auto WorldGeneratorGround::ClampElevation(int elevation) const -> int
+    {
         auto maxElevation{GetMaxElevation()};
 
         if (elevation > maxElevation)

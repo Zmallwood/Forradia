@@ -5,7 +5,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Gets the name from a hash code as a template function, i.e. it reverses the Hash function.
      *

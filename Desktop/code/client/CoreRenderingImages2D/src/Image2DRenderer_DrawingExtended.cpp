@@ -9,24 +9,28 @@
 #include "SDLDevice.hpp"
 #include "Textures/TextureBank.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     auto Image2DRenderer::DrawImageByName(int uniqueRenderID, std::string_view imageName,
                                           float xPos, float yPos, float width, float height,
-                                          bool updateExisting) -> void {
+                                          bool updateExisting) -> void
+    {
         this->DrawImageByHash(uniqueRenderID, Hash(imageName), xPos, yPos, width, height,
                               updateExisting);
     }
 
     auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float xPos,
                                           float yPos, float width, float height,
-                                          bool updateExisting) -> void {
+                                          bool updateExisting) -> void
+    {
         auto textureID{TextureBank::GetTexture(imageNameHash)};
         this->DrawImageByTextureID(uniqueRenderID, textureID, xPos, yPos, width, height,
                                    updateExisting);
     }
 
     auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName,
-                                              float xPos, float yPos, float width) -> void {
+                                              float xPos, float yPos, float width) -> void
+    {
         auto hash{Forradia::Hash(imageName)};
         auto imageDimensions{TextureBank::GetTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)

@@ -7,13 +7,15 @@
 
 #include "GUIMovablePanel.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUIWindowTitleBar;
 
     /**
      * A window component for the GUI that can be moved by the mouse.
      */
-    class GUIWindow : public GUIMovablePanel {
+    class GUIWindow : public GUIMovablePanel
+    {
       public:
         /**
          * Constructor.
@@ -28,7 +30,8 @@ namespace Forradia {
         GUIWindow(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                   std::string_view windowTitle)
             : GUIMovablePanel(uniqueName, xPos + s_positionOffset, yPos + s_positionOffset, width,
-                              height) {
+                              height)
+        {
             this->Initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
         }
 
@@ -37,7 +40,8 @@ namespace Forradia {
          *
          * @return The window title bar of the window.
          */
-        auto GetGUIWindowTitleBar() const {
+        auto GetGUIWindowTitleBar() const
+        {
             return m_guiWindowTitleBar;
         }
 

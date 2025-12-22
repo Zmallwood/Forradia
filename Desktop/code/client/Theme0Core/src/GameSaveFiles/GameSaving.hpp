@@ -5,13 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Manages the saving and loading of the game.
      */
-    class GameSaving {
+    class GameSaving
+    {
       public:
-        static GameSaving &Instance() {
+        static GameSaving &Instance()
+        {
             static GameSaving instance;
             return instance;
         }

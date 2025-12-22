@@ -6,9 +6,11 @@
 #include "GroundRenderer.hpp"
 #include "MathUtilities.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     auto GroundRenderer::CalcTileNormals(const std::vector<float> &verticesNoNormals)
-        -> std::vector<glm::vec3> {
+        -> std::vector<glm::vec3>
+    {
         constexpr size_t k_vertexStride = 8;
         constexpr size_t k_requiredVertices = 9;
         constexpr size_t k_minArraySize = k_requiredVertices * k_vertexStride;
@@ -22,8 +24,10 @@ namespace Forradia {
         std::unordered_map<int, std::unordered_map<int, glm::vec3>> coords;
 
         // Loop through the vertices and store them in the map.
-        for (auto yIdx = 0; yIdx < 3; yIdx++) {
-            for (auto xIdx = 0; xIdx < 3; xIdx++) {
+        for (auto yIdx = 0; yIdx < 3; yIdx++)
+        {
+            for (auto xIdx = 0; xIdx < 3; xIdx++)
+            {
                 // Calculate the index of the vertex.
                 auto idx{yIdx * 3 + xIdx};
 

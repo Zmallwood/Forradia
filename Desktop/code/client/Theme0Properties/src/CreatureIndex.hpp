@@ -8,13 +8,16 @@
 #include "CreatureIndexEntry.hpp"
 #include <unordered_map>
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Class for managing creature properties.
      */
-    class CreatureIndex {
+    class CreatureIndex
+    {
       public:
-        static CreatureIndex &Instance() {
+        static CreatureIndex &Instance()
+        {
             static CreatureIndex instance;
             return instance;
         }

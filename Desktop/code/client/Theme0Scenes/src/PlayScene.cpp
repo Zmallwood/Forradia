@@ -11,8 +11,10 @@
 #include "Image2DRenderer.hpp"
 #include "SceneManager.hpp"
 
-namespace Forradia::Theme0 {
-    auto PlayScene::InitializeDerived() -> void {
+namespace Forradia::Theme0
+{
+    auto PlayScene::InitializeDerived() -> void
+    {
         auto panel{std::make_shared<GUIPanel>("PlayScenePanel", 0.4f, 0.32f, 0.2f, 0.32f)};
         GetGUI()->AddChildComponent(panel);
 
@@ -25,15 +27,16 @@ namespace Forradia::Theme0 {
                                                      0.04f, "Load game", [] {})};
         GetGUI()->AddChildComponent(btnLoadGame);
 
-        auto btnBack{std::make_shared<GUIButton>(
-            "PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "Back",
-            [] { SceneManager::Instance().GoToScene("MainMenuScene"); })};
+        auto btnBack{
+            std::make_shared<GUIButton>("PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "Back", []
+                                        { SceneManager::Instance().GoToScene("MainMenuScene"); })};
         GetGUI()->AddChildComponent(btnBack);
 
         GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
     }
 
-    auto PlayScene::RenderDerived() const -> void {
+    auto PlayScene::RenderDerived() const -> void
+    {
         Image2DRenderer::Instance().DrawImageByName(
             Hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
         Image2DRenderer::Instance().DrawImageAutoHeight(Hash("PlaySceneLogo"), "ForradiaLogo",

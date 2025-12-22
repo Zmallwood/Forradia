@@ -7,11 +7,13 @@
 
 #include "GUIMeter.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the well being meter.
      */
-    class GUIWellBeingMeter : public GUIMeter {
+    class GUIWellBeingMeter : public GUIMeter
+    {
       public:
         /**
          * Constructor.
@@ -22,7 +24,8 @@ namespace Forradia::Theme0 {
          * @param height The height of the meter.
          */
         GUIWellBeingMeter(float x, float y, float width, float height)
-            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor()) {
+            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor())
+        {
         }
 
         /**
@@ -30,7 +33,8 @@ namespace Forradia::Theme0 {
          *
          * @return The height of the meter.
          */
-        auto GetHeight() const {
+        auto GetHeight() const
+        {
             return k_height;
         }
 
@@ -52,7 +56,8 @@ namespace Forradia::Theme0 {
          *
          * @return The filled color of the meter.
          */
-        auto GetFilledColor() const -> Color {
+        auto GetFilledColor() const -> Color
+        {
             return Palette::GetColor<Hash("Red")>();
         }
 

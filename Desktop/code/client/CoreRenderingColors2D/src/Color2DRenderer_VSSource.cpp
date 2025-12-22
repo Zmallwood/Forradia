@@ -5,8 +5,10 @@
 
 #include "Color2DRenderer.hpp"
 
-namespace Forradia {
-    auto Color2DRenderer::GetVSSource() const -> std::string {
+namespace Forradia
+{
+    auto Color2DRenderer::GetVSSource() const -> std::string
+    {
         return R"(
             #version 330 core
 

@@ -11,13 +11,16 @@
 
 using TTF_Font = struct _TTF_Font;
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Renders text strings to the screen using SDL_ttf and OpenGL.
      */
-    class TextRenderer {
+    class TextRenderer
+    {
       public:
-        static TextRenderer &Instance() {
+        static TextRenderer &Instance()
+        {
             static TextRenderer instance;
             return instance;
         }
@@ -30,7 +33,8 @@ namespace Forradia {
         /**
          * Constructs a TextRenderer and initializes the rendering system.
          */
-        TextRenderer() {
+        TextRenderer()
+        {
             // Initialize SDL TTF and load fonts.
             this->Initialize();
         }

@@ -13,13 +13,16 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * This renderer is used to render models from the model bank in 3D space.
      */
-    class ModelRenderer : public RendererBase {
+    class ModelRenderer : public RendererBase
+    {
       public:
-        static auto Instance() -> ModelRenderer & {
+        static auto Instance() -> ModelRenderer &
+        {
             static ModelRenderer instance;
             return instance;
         }
@@ -34,7 +37,8 @@ namespace Forradia {
         /**
          * Destructor that cleans up the renderer.
          */
-        ~ModelRenderer() {
+        ~ModelRenderer()
+        {
             // Clean up the renderer.
             this->Cleanup();
         }

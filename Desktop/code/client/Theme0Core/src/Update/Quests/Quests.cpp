@@ -11,13 +11,16 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto MoveQuest::Update() -> void {
+namespace Forradia::Theme0
+{
+    auto MoveQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numSteps{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -27,7 +30,8 @@ namespace Forradia::Theme0 {
                 numSteps++;
         }
         m_numStepsLeft = 3 - numSteps;
-        if (numSteps >= 3) {
+        if (numSteps >= 3)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Movement. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
@@ -36,16 +40,19 @@ namespace Forradia::Theme0 {
         return;
     }
 
-    auto MoveQuest::GetStatus() const -> std::string {
+    auto MoveQuest::GetStatus() const -> std::string
+    {
         return "Movements left: " + std::to_string(m_numStepsLeft);
     }
 
-    auto ForageQuest::Update() -> void {
+    auto ForageQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numForagings{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -56,35 +63,42 @@ namespace Forradia::Theme0 {
 
         m_numForagingsLeft = 3 - numForagings;
 
-        if (numForagings >= 3) {
+        if (numForagings >= 3)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Forage. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto ForageQuest::GetStatus() const -> std::string {
+    auto ForageQuest::GetStatus() const -> std::string
+    {
         return "Forages left: " + std::to_string(m_numForagingsLeft);
     }
 
-    auto CraftStonePickaxeQuest::Update() -> void {
+    auto CraftStonePickaxeQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto i{0};
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Pick) {
-                if (actionFirstArg == "ObjectBranch") {
+            if (action == PlayerActionTypes::Pick)
+            {
+                if (actionFirstArg == "ObjectBranch")
+                {
                     m_numBranchPicked = true;
                     Player::Instance().GetQuestCompletionPointsRef()["CraftStonePickaxeQuest"] = i;
                 }
                 if (actionFirstArg == "ObjectStone")
                     m_numStonePicked = true;
             }
-            if (action == PlayerActionTypes::Craft) {
+            if (action == PlayerActionTypes::Craft)
+            {
                 if (actionFirstArg == "ObjectStonePickaxe")
                     isCompleted = true;
             }
@@ -93,7 +107,8 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto CraftStonePickaxeQuest::GetStatus() const -> std::string {
+    auto CraftStonePickaxeQuest::GetStatus() const -> std::string
+    {
         if (!m_numBranchPicked)
             return "Pick a branch.";
 
@@ -103,17 +118,20 @@ namespace Forradia::Theme0 {
         return "Craft a stone pickaxe out of the branch and stone.";
     }
 
-    auto CraftStoneBowlQuest::Update() -> void {
+    auto CraftStoneBowlQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto i{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone") {
+            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            {
                 m_stonedMined = true;
                 Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] = i;
             }
@@ -125,14 +143,16 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto CraftStoneBowlQuest::GetStatus() const -> std::string {
+    auto CraftStoneBowlQuest::GetStatus() const -> std::string
+    {
         if (!m_stonedMined)
             return "Mine a stone.";
 
         return "Craft a stone bowl out of the stone.";
     }
 
-    auto CraftCampfireQuest::Update() -> void {
+    auto CraftCampfireQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto i{0};
@@ -142,8 +162,10 @@ namespace Forradia::Theme0 {
 
         auto numPickedBranches{0};
 
-        for (auto &entry : playerActions) {
-            if (i <= previousBranchPickQuestCompletionPoint) {
+        for (auto &entry : playerActions)
+        {
+            if (i <= previousBranchPickQuestCompletionPoint)
+            {
                 i++;
                 continue;
             }
@@ -151,7 +173,8 @@ namespace Forradia::Theme0 {
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch") {
+            if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch")
+            {
                 ++numPickedBranches;
             }
             if (action == PlayerActionTypes::Craft)
@@ -164,14 +187,16 @@ namespace Forradia::Theme0 {
         m_numBranchesLeft = 8 - numPickedBranches;
     }
 
-    auto CraftCampfireQuest::GetStatus() const -> std::string {
+    auto CraftCampfireQuest::GetStatus() const -> std::string
+    {
         if (m_numBranchesLeft)
             return "Branches left: " + std::to_string(m_numBranchesLeft);
 
         return "Craft the campfire.";
     }
 
-    auto MineStoneFromBoulderQuest1::Update() -> void {
+    auto MineStoneFromBoulderQuest1::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
@@ -179,8 +204,10 @@ namespace Forradia::Theme0 {
         auto previousMineQuestCompletionPoint{
             Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
 
-        for (auto &entry : playerActions) {
-            if (i <= previousMineQuestCompletionPoint) {
+        for (auto &entry : playerActions)
+        {
+            if (i <= previousMineQuestCompletionPoint)
+            {
                 i++;
                 continue;
             }
@@ -189,10 +216,12 @@ namespace Forradia::Theme0 {
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone") {
+            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            {
                 numMinedStones++;
 
-                if (numMinedStones == 10) {
+                if (numMinedStones == 10)
+                {
                     Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] =
                         i;
                     break;
@@ -204,23 +233,27 @@ namespace Forradia::Theme0 {
 
         m_numMinedStonesLeft = 10 - numMinedStones;
 
-        if (numMinedStones >= 10) {
+        if (numMinedStones >= 10)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Mine Stone. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto MineStoneFromBoulderQuest1::GetStatus() const -> std::string {
+    auto MineStoneFromBoulderQuest1::GetStatus() const -> std::string
+    {
         return "Stones left: " + std::to_string(m_numMinedStonesLeft);
     }
 
-    auto CraftStoneSlabsQuest::Update() -> void {
+    auto CraftStoneSlabsQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numCraftedSlabs{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -232,23 +265,27 @@ namespace Forradia::Theme0 {
 
         m_numCraftedSlabsLeft = 10 - numCraftedSlabs;
 
-        if (numCraftedSlabs >= 10) {
+        if (numCraftedSlabs >= 10)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto CraftStoneSlabsQuest::GetStatus() const -> std::string {
+    auto CraftStoneSlabsQuest::GetStatus() const -> std::string
+    {
         return "Slabs left: " + std::to_string(m_numCraftedSlabsLeft);
     }
 
-    auto LayStoneSlabsQuest::Update() -> void {
+    auto LayStoneSlabsQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numLaidSlabs{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -259,18 +296,21 @@ namespace Forradia::Theme0 {
 
         m_numLaidSlabsLeft = 10 - numLaidSlabs;
 
-        if (numLaidSlabs >= 10) {
+        if (numLaidSlabs >= 10)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto LayStoneSlabsQuest::GetStatus() const -> std::string {
+    auto LayStoneSlabsQuest::GetStatus() const -> std::string
+    {
         return "Slabs left: " + std::to_string(m_numLaidSlabsLeft);
     }
 
-    auto MineStoneFromBoulderQuest2::Update() -> void {
+    auto MineStoneFromBoulderQuest2::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numMinedStones{0};
@@ -278,8 +318,10 @@ namespace Forradia::Theme0 {
         auto previousMineQuestCompletionPoint{
             Player::Instance().GetQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
 
-        for (auto &entry : playerActions) {
-            if (i <= previousMineQuestCompletionPoint) {
+        for (auto &entry : playerActions)
+        {
+            if (i <= previousMineQuestCompletionPoint)
+            {
                 i++;
                 continue;
             }
@@ -296,23 +338,27 @@ namespace Forradia::Theme0 {
 
         m_numMinedStonesLeft = 10 - numMinedStones;
 
-        if (numMinedStones >= 10) {
+        if (numMinedStones >= 10)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Mine Stone. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto MineStoneFromBoulderQuest2::GetStatus() const -> std::string {
+    auto MineStoneFromBoulderQuest2::GetStatus() const -> std::string
+    {
         return "Stones left: " + std::to_string(m_numMinedStonesLeft);
     }
 
-    auto CraftStoneBricksQuest::Update() -> void {
+    auto CraftStoneBricksQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         auto numCraftedBricks{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -324,24 +370,28 @@ namespace Forradia::Theme0 {
 
         m_numCraftedBricksLeft = 10 - numCraftedBricks;
 
-        if (numCraftedBricks >= 10) {
+        if (numCraftedBricks >= 10)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto CraftStoneBricksQuest::GetStatus() const -> std::string {
+    auto CraftStoneBricksQuest::GetStatus() const -> std::string
+    {
         return "Bricks left: " + std::to_string(m_numCraftedBricksLeft);
     }
 
-    auto BuildStoneWallsQuest::Update() -> void {
+    auto BuildStoneWallsQuest::Update() -> void
+    {
         auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         std::set<Point> wallPositions;
         auto numIncompleteWallTiles{0};
 
-        for (auto &entry : playerActions) {
+        for (auto &entry : playerActions)
+        {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
@@ -353,7 +403,8 @@ namespace Forradia::Theme0 {
 
         auto worldArea{World::Instance().GetCurrentWorldArea()};
 
-        for (auto &position : wallPositions) {
+        for (auto &position : wallPositions)
+        {
             auto tileNorth{worldArea->GetTile(position.x, position.y - 1)};
             auto tileSouth{worldArea->GetTile(position.x, position.y + 1)};
             auto tileWest{worldArea->GetTile(position.x - 1, position.y)};
@@ -405,14 +456,16 @@ namespace Forradia::Theme0 {
                 numIncompleteWallTiles++;
         }
 
-        if (wallPositions.size() > 0 && numIncompleteWallTiles == 0) {
+        if (wallPositions.size() > 0 && numIncompleteWallTiles == 0)
+        {
             isCompleted = true;
             GUIChatBox::Instance().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
             Player::Instance().AddExperience(50);
         }
     }
 
-    auto BuildStoneWallsQuest::GetStatus() const -> std::string {
+    auto BuildStoneWallsQuest::GetStatus() const -> std::string
+    {
         return "You need to build more stone walls (and door).";
     }
 }

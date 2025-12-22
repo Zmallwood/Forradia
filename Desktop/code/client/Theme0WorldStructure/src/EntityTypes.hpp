@@ -5,8 +5,10 @@
 
 #pragma once
 
-namespace Forradia {
-    enum class EntityTypes {
+namespace Forradia
+{
+    enum class EntityTypes
+    {
         Creature,
         Robot
     };

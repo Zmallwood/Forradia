@@ -5,20 +5,23 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class ContainedObjects;
 
     /**
      * An object, either in the game world, a container or inventory.
      */
-    class Object {
+    class Object
+    {
       public:
         /**
          * Constructor.
          *
          * @param objectNameHash The object name as a hash.
          */
-        Object(int objectNameHash) : m_type(objectNameHash) {
+        Object(int objectNameHash) : m_type(objectNameHash)
+        {
             // Initialize the object.
             this->Initialize();
         }
@@ -28,7 +31,8 @@ namespace Forradia::Theme0 {
          *
          * @param objectTypeName The object type by name.
          */
-        Object(std::string_view objectTypeName) : m_type(Hash(objectTypeName)) {
+        Object(std::string_view objectTypeName) : m_type(Hash(objectTypeName))
+        {
             // Initialize the object.
             this->Initialize();
         }
@@ -38,11 +42,13 @@ namespace Forradia::Theme0 {
          *
          * @return The object type as a hash.
          */
-        auto GetType() const {
+        auto GetType() const
+        {
             return m_type;
         }
 
-        auto SetType(int value) -> void {
+        auto SetType(int value) -> void
+        {
             m_type = value;
         }
 
@@ -51,11 +57,13 @@ namespace Forradia::Theme0 {
          *
          * @return The model scaling of the object.
          */
-        auto GetModelScaling() const {
+        auto GetModelScaling() const
+        {
             return m_modelScaling;
         }
 
-        auto GetContainedObjects() const -> std::shared_ptr<ContainedObjects> {
+        auto GetContainedObjects() const -> std::shared_ptr<ContainedObjects>
+        {
             return m_containedObjects;
         }
 

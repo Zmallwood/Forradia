@@ -12,30 +12,37 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto TileHovering::Update() -> void {
+namespace Forradia::Theme0
+{
+    auto TileHovering::Update() -> void
+    {
         this->DetermineHoveredCoordinateWithRaycasting();
     }
 
-    auto TileHovering::DetermineHoveredCoordinateWithRaycasting() -> void {
+    auto TileHovering::DetermineHoveredCoordinateWithRaycasting() -> void
+    {
         this->IterateOverRenderedTiles();
     }
 
-    auto TileHovering::IterateOverRenderedTiles() -> void {
+    auto TileHovering::IterateOverRenderedTiles() -> void
+    {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
         auto playerPos{Player::Instance().GetPosition()};
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
 
         // Iterate over the rendered tiles.
-        for (auto y = 0; y < gridSize.height; y++) {
-            for (auto x = 0; x < gridSize.width; x++) {
+        for (auto y = 0; y < gridSize.height; y++)
+        {
+            for (auto x = 0; x < gridSize.width; x++)
+            {
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
                 auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + y};
 
                 auto result{this->DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
 
-                if (result) {
+                if (result)
+                {
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
                     return;
                 }
@@ -43,12 +50,14 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool {
+    auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool
+    {
         auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
         return result;
     }
 
-    auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool {
+    auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool
+    {
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // Get camera matrices.

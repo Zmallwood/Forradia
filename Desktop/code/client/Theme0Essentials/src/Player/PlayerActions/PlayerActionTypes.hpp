@@ -5,11 +5,13 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Types of player actions.
      */
-    enum class PlayerActionTypes {
+    enum class PlayerActionTypes
+    {
         None,
         MoveNorth,
         MoveEast,

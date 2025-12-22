@@ -7,12 +7,15 @@
 #include <cstdlib>
 #include <ctime>
 
-namespace Forradia {
-    auto Randomize() -> void {
+namespace Forradia
+{
+    auto Randomize() -> void
+    {
         srand(time(nullptr));
     }
 
-    auto GetRandomInt(int upperLimit) -> int {
+    auto GetRandomInt(int upperLimit) -> int
+    {
         return rand() % upperLimit;
     }
 }

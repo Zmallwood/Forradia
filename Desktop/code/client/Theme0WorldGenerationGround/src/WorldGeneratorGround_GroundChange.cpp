@@ -7,8 +7,10 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorGround.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorGround::GenerateGrassBiomes() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorGround::GenerateGrassBiomes() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
         auto worldScaling{GetWorldScaling()};
@@ -18,7 +20,8 @@ namespace Forradia::Theme0 {
 
         auto numGrassBiomes{25 + GetRandomInt(15)};
 
-        for (auto i = 0; i < numGrassBiomes; i++) {
+        for (auto i = 0; i < numGrassBiomes; i++)
+        {
             auto xCenter{GetRandomInt(worldAreaSize.width)};
             auto yCenter{GetRandomInt(worldAreaSize.height)};
 
@@ -35,8 +38,10 @@ namespace Forradia::Theme0 {
 
         // Also add grass in valleys and low-lying areas naturally.
 
-        for (auto y = 0; y < worldAreaSize.height; y++) {
-            for (auto x = 0; x < worldAreaSize.width; x++) {
+        for (auto y = 0; y < worldAreaSize.height; y++)
+        {
+            for (auto x = 0; x < worldAreaSize.width; x++)
+            {
                 auto tile = worldArea->GetTile(x, y);
 
                 if (!tile)
@@ -50,14 +55,16 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto WorldGeneratorGround::GenerateRockFormations() const -> void {
+    auto WorldGeneratorGround::GenerateRockFormations() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
         auto worldScaling{GetWorldScaling()};
 
         auto numRockFormations{20 + GetRandomInt(15)};
 
-        for (auto i = 0; i < numRockFormations; i++) {
+        for (auto i = 0; i < numRockFormations; i++)
+        {
             auto xCenter{GetRandomInt(worldAreaSize.width)};
             auto yCenter{GetRandomInt(worldAreaSize.height)};
 
@@ -70,8 +77,10 @@ namespace Forradia::Theme0 {
 
             auto radius{static_cast<int>(2 * worldScaling + GetRandomInt(5 * worldScaling))};
 
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++) {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++) {
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            {
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                {
                     if (!worldArea->IsValidCoordinate(x, y))
                         continue;
 
@@ -100,10 +109,13 @@ namespace Forradia::Theme0 {
     }
 
     auto WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
-                                                  std::string_view groundType) const -> void {
+                                                  std::string_view groundType) const -> void
+    {
         // Enumerate all tiles in the radius.
-        for (auto y = centerY - radius; y <= centerY + radius; y++) {
-            for (auto x = centerX - radius; x <= centerX + radius; x++) {
+        for (auto y = centerY - radius; y <= centerY + radius; y++)
+        {
+            for (auto x = centerX - radius; x <= centerX + radius; x++)
+            {
                 if (!GetWorldArea()->IsValidCoordinate(x, y))
                     continue;
 

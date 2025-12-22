@@ -8,9 +8,12 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia {
-    auto GroundRenderer::Cleanup() -> void {
-        for (auto &entry : m_operationsCache) {
+namespace Forradia
+{
+    auto GroundRenderer::Cleanup() -> void
+    {
+        for (auto &entry : m_operationsCache)
+        {
             glDeleteBuffers(1, &entry.second.ibo);
             glDeleteBuffers(1, &entry.second.vbo);
             glDeleteVertexArrays(1, &entry.second.vao);
@@ -18,7 +21,8 @@ namespace Forradia {
         m_operationsCache.clear();
     }
 
-    auto GroundRenderer::SetupState() const -> void {
+    auto GroundRenderer::SetupState() const -> void
+    {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
@@ -32,7 +36,8 @@ namespace Forradia {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto GroundRenderer::RestoreState() -> void {
+    auto GroundRenderer::RestoreState() -> void
+    {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -42,11 +47,13 @@ namespace Forradia {
         glDisable(GL_BLEND);
     }
 
-    auto GroundRenderer::Reset() -> void {
+    auto GroundRenderer::Reset() -> void
+    {
         this->Cleanup();
     }
 
-    auto GroundRenderer::SetupAttributeLayout() const -> void {
+    auto GroundRenderer::SetupAttributeLayout() const -> void
+    {
         // Set up the attribute layout for the vertex shader.
 
         constexpr int k_stride{11};
@@ -80,11 +87,13 @@ namespace Forradia {
         glEnableVertexAttribArray(3);
     }
 
-    auto GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool {
+    auto GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool
+    {
         return m_operationsCache.contains(uniqueRenderID);
     }
 
-    auto GroundRenderer::InitializeDerived() -> void {
+    auto GroundRenderer::InitializeDerived() -> void
+    {
         m_layoutLocationMVP = glGetUniformLocation(
             dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "MVP");
     }

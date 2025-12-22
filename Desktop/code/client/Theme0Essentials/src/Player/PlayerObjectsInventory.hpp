@@ -7,17 +7,20 @@
 
 #include "ContainedObjects.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the inventory of objects for the player.
      * TODO: Decide if should be used also for other entities.
      */
-    class PlayerObjectsInventory : public ContainedObjects {
+    class PlayerObjectsInventory : public ContainedObjects
+    {
       public:
         /**
          * Constructor.
          */
-        PlayerObjectsInventory() : ContainedObjects(30) {
+        PlayerObjectsInventory() : ContainedObjects(30)
+        {
             this->Initialize();
         }
 

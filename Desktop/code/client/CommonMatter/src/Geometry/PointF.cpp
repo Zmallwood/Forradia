@@ -5,12 +5,15 @@
 
 #include "PointF.hpp"
 
-namespace Forradia {
-    auto PointF::operator+(const PointF &other) const -> PointF {
+namespace Forradia
+{
+    auto PointF::operator+(const PointF &other) const -> PointF
+    {
         return {this->x + other.x, this->y + other.y};
     }
 
-    auto PointF::operator-(const PointF &other) const -> PointF {
+    auto PointF::operator-(const PointF &other) const -> PointF
+    {
         return {this->x - other.x, this->y - other.y};
     }
 }

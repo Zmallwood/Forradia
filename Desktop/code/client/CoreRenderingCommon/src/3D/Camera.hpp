@@ -8,15 +8,18 @@
 #include "Geometry/Point3F.hpp"
 #include <glm/glm.hpp>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Camera representing a viewpoint in 3D space.
      *
      * Provides accessors for the camera's world-space position and the point it is looking at.
      */
-    class Camera {
+    class Camera
+    {
       public:
-        static auto Instance() -> Camera & {
+        static auto Instance() -> Camera &
+        {
             static Camera instance;
             return instance;
         }

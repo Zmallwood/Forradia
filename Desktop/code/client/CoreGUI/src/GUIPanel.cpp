@@ -6,8 +6,10 @@
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
 
-namespace Forradia {
-    auto GUIPanel::RenderDerived() const -> void {
+namespace Forradia
+{
+    auto GUIPanel::RenderDerived() const -> void
+    {
         auto bounds{this->GetBounds()};
         Image2DRenderer::Instance().DrawImageByName(k_renderIDBackground, m_backgroundImage,
                                                     bounds.x, bounds.y, bounds.width, bounds.height,

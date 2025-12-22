@@ -7,7 +7,8 @@
 
 #include "Action.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Gets the action for the given action type. The action name hash is passed as a template
      * parameter.

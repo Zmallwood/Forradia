@@ -5,7 +5,8 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Updates the mouse movement.
      */

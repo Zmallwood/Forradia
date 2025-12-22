@@ -12,9 +12,12 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
-    auto Color2DRenderer::Cleanup() -> void {
-        for (auto &entry : m_operationsCache) {
+namespace Forradia
+{
+    auto Color2DRenderer::Cleanup() -> void
+    {
+        for (auto &entry : m_operationsCache)
+        {
             glDeleteBuffers(1, &entry.second.ibo);
             glDeleteBuffers(1, &entry.second.vbo);
             glDeleteVertexArrays(1, &entry.second.vao);
@@ -22,7 +25,8 @@ namespace Forradia {
         m_operationsCache.clear();
     }
 
-    auto Color2DRenderer::SetupState() const -> void {
+    auto Color2DRenderer::SetupState() const -> void
+    {
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
@@ -31,14 +35,16 @@ namespace Forradia {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto Color2DRenderer::RestoreState() -> void {
+    auto Color2DRenderer::RestoreState() -> void
+    {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         glUseProgram(0);
     }
 
-    auto Color2DRenderer::SetupAttributeLayout() const -> void {
+    auto Color2DRenderer::SetupAttributeLayout() const -> void
+    {
         const int k_stride{7};
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
@@ -51,7 +57,8 @@ namespace Forradia {
         glEnableVertexAttribArray(1);
     }
 
-    auto Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool {
+    auto Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool
+    {
         return m_operationsCache.contains(uniqueRenderID);
     }
 }

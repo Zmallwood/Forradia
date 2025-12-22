@@ -6,11 +6,14 @@
 #include "GUILabel.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia {
-    auto GUILabel::RenderDerived() const -> void {
+namespace Forradia
+{
+    auto GUILabel::RenderDerived() const -> void
+    {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
 
-        if (m_centerAlign) {
+        if (m_centerAlign)
+        {
             bounds.x += bounds.width / 2;
             bounds.y += bounds.height / 2;
         }

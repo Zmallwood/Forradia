@@ -5,14 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Tile;
     class Object;
 
     /**
      * Represents an entry in the interaction menu.
      */
-    class GUIInteractionMenuEntry {
+    class GUIInteractionMenuEntry
+    {
       public:
         /**
          * Constructor.
@@ -24,7 +26,8 @@ namespace Forradia::Theme0 {
             std::string_view label,
             std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)>
                 action)
-            : m_label(label), m_action(action) {
+            : m_label(label), m_action(action)
+        {
         }
 
         /**
@@ -32,7 +35,8 @@ namespace Forradia::Theme0 {
          *
          * @return The label of the entry.
          */
-        auto GetLabel() const {
+        auto GetLabel() const
+        {
             return m_label;
         }
 
@@ -41,7 +45,8 @@ namespace Forradia::Theme0 {
          *
          * @return The action of the entry.
          */
-        auto GetAction() const {
+        auto GetAction() const
+        {
             return m_action;
         }
 

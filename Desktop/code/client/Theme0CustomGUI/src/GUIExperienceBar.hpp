@@ -8,19 +8,23 @@
 #include "Coloring/Palette.hpp"
 #include "GUIMeter.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the experience bar.
      */
-    class GUIExperienceBar : public GUIMeter {
+    class GUIExperienceBar : public GUIMeter
+    {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUIExperienceBar> {
+        static auto InstancePtr() -> std::shared_ptr<GUIExperienceBar>
+        {
             static std::shared_ptr<GUIExperienceBar> instancePtr =
                 std::make_shared<GUIExperienceBar>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUIExperienceBar & {
+        static auto Instance() -> GUIExperienceBar &
+        {
             return *InstancePtr();
         }
 
@@ -33,8 +37,8 @@ namespace Forradia::Theme0 {
          * Constructor.
          */
         GUIExperienceBar()
-            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height,
-                       GetFilledColor()) {
+            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, GetFilledColor())
+        {
         }
 
         /**
@@ -42,7 +46,8 @@ namespace Forradia::Theme0 {
          *
          * @return The height of the bar.
          */
-        auto GetHeight() const {
+        auto GetHeight() const
+        {
             return k_height;
         }
 
@@ -64,7 +69,8 @@ namespace Forradia::Theme0 {
          *
          * @return The filled color of the bar.
          */
-        auto GetFilledColor() const -> Color {
+        auto GetFilledColor() const -> Color
+        {
             return Palette::GetColor<Hash("Gold")>();
         }
 

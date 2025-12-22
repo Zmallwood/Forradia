@@ -7,18 +7,22 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Represents the system menu.
      */
-    class GUISystemMenu : public GUIComponent {
+    class GUISystemMenu : public GUIComponent
+    {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUISystemMenu> {
+        static auto InstancePtr() -> std::shared_ptr<GUISystemMenu>
+        {
             static std::shared_ptr<GUISystemMenu> instancePtr = std::make_shared<GUISystemMenu>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUISystemMenu & {
+        static auto Instance() -> GUISystemMenu &
+        {
             return *InstancePtr();
         }
 
@@ -29,7 +33,8 @@ namespace Forradia::Theme0 {
         /**
          * Constructor.
          */
-        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f) {
+        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        {
             this->Initialize();
         }
 

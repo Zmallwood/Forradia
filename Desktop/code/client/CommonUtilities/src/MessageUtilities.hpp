@@ -7,7 +7,8 @@
 
 #include <string_view>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Print out a string of text, without a following line break.
      *

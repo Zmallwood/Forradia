@@ -8,9 +8,12 @@
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
-namespace Forradia {
-    auto ModelRenderer::Cleanup() -> void {
-        for (auto &entry : m_operationsCache) {
+namespace Forradia
+{
+    auto ModelRenderer::Cleanup() -> void
+    {
+        for (auto &entry : m_operationsCache)
+        {
             glDeleteBuffers(1, &entry.second.ibo);
             glDeleteBuffers(1, &entry.second.vbo);
             glDeleteVertexArrays(1, &entry.second.vao);
@@ -18,7 +21,8 @@ namespace Forradia {
         m_operationsCache.clear();
     }
 
-    auto ModelRenderer::SetupState() const -> void {
+    auto ModelRenderer::SetupState() const -> void
+    {
         glEnable(GL_DEPTH_TEST);
 
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
@@ -30,7 +34,8 @@ namespace Forradia {
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
-    auto ModelRenderer::RestoreState() -> void {
+    auto ModelRenderer::RestoreState() -> void
+    {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -38,7 +43,8 @@ namespace Forradia {
         glDisable(GL_DEPTH_TEST);
     }
 
-    auto ModelRenderer::SetupAttributeLayout() const -> void {
+    auto ModelRenderer::SetupAttributeLayout() const -> void
+    {
         // Setup the attribute layout.
 
         constexpr int k_stride{8};
@@ -65,7 +71,8 @@ namespace Forradia {
         glEnableVertexAttribArray(2);
     }
 
-    auto ModelRenderer::DrawingOperationIsCached(int modelNameHash) const -> bool {
+    auto ModelRenderer::DrawingOperationIsCached(int modelNameHash) const -> bool
+    {
         // Check if the drawing operation is cached.
         //
         // Note: For this renderer the modelNameHash can be used as a key since what changes
@@ -74,7 +81,8 @@ namespace Forradia {
         return m_operationsCache.contains(modelNameHash);
     }
 
-    auto ModelRenderer::InitializeDerived() -> void {
+    auto ModelRenderer::InitializeDerived() -> void
+    {
         // Obtain the layout location for the uniform matrices.
 
         m_layoutLocationProjectionMatrix = glGetUniformLocation(

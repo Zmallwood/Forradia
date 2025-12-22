@@ -13,8 +13,10 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto GameSaving::SaveGame() -> void {
+namespace Forradia::Theme0
+{
+    auto GameSaving::SaveGame() -> void
+    {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
 
         if (!worldArea)
@@ -30,8 +32,10 @@ namespace Forradia::Theme0 {
         // Serialize tiles
         jsonData["tiles"] = nlohmann::json::array();
 
-        for (auto y = 0; y < worldAreaSize.height; y++) {
-            for (auto x = 0; x < worldAreaSize.width; x++) {
+        for (auto y = 0; y < worldAreaSize.height; y++)
+        {
+            for (auto x = 0; x < worldAreaSize.width; x++)
+            {
                 auto tile{worldArea->GetTile(x, y)};
 
                 if (!tile)
@@ -45,12 +49,15 @@ namespace Forradia::Theme0 {
 
                 // Serialize objects on this tile
                 auto objectsStack{tile->GetObjectsStack()};
-                if (objectsStack) {
+                if (objectsStack)
+                {
                     auto objects{objectsStack->GetObjects()};
                     tileJson["objects"] = nlohmann::json::array();
 
-                    for (auto &object : objects) {
-                        if (object) {
+                    for (auto &object : objects)
+                    {
+                        if (object)
+                        {
                             nlohmann::json objectJson;
                             objectJson["type"] = GetNameFromAnyHash(object->GetType());
                             tileJson["objects"].push_back(objectJson);
@@ -60,7 +67,8 @@ namespace Forradia::Theme0 {
 
                 // Serialize entity on this tile
                 auto entity{tile->GetEntity()};
-                if (entity) {
+                if (entity)
+                {
                     nlohmann::json entityJson;
                     entityJson["type"] = GetNameFromAnyHash(entity->GetType());
                     tileJson["entity"] = entityJson;
@@ -72,13 +80,15 @@ namespace Forradia::Theme0 {
 
         // Write to file
         std::ofstream file("savegame.json");
-        if (file.is_open()) {
+        if (file.is_open())
+        {
             file << jsonData.dump(4); // Pretty print with 4-space indent
             file.close();
         }
     }
 
-    auto GameSaving::LoadGame() -> void {
+    auto GameSaving::LoadGame() -> void
+    {
         GroundRenderer::Instance().Reset();
 
         std::ifstream file("savegame.json");
@@ -86,10 +96,13 @@ namespace Forradia::Theme0 {
             return;
 
         nlohmann::json jsonData;
-        try {
+        try
+        {
             file >> jsonData;
             file.close();
-        } catch (const std::exception &) {
+        }
+        catch (const std::exception &)
+        {
             return;
         }
 
@@ -102,14 +115,17 @@ namespace Forradia::Theme0 {
 
         auto &entities{worldArea->GetEntitiesMirrorRef()};
 
-        if (jsonData.contains("size")) {
+        if (jsonData.contains("size"))
+        {
             auto savedWidth{jsonData["size"]["width"].get<int>()};
             auto savedHeight{jsonData["size"]["height"].get<int>()};
             auto currentSize{worldArea->GetSize()};
         }
 
-        if (jsonData.contains("tiles") && jsonData["tiles"].is_array()) {
-            for (const auto &tileJson : jsonData["tiles"]) {
+        if (jsonData.contains("tiles") && jsonData["tiles"].is_array())
+        {
+            for (const auto &tileJson : jsonData["tiles"])
+            {
                 if (!tileJson.contains("x") || !tileJson.contains("y"))
                     continue;
 
@@ -124,23 +140,29 @@ namespace Forradia::Theme0 {
                 if (!tile)
                     continue;
 
-                if (tileJson.contains("elevation")) {
+                if (tileJson.contains("elevation"))
+                {
                     auto elevation{tileJson["elevation"].get<float>()};
                     tile->SetElevation(elevation);
                 }
 
-                if (tileJson.contains("ground")) {
+                if (tileJson.contains("ground"))
+                {
                     auto groundHash{Hash(tileJson["ground"].get<std::string>())};
                     tile->SetGround(groundHash);
                 }
 
-                if (tileJson.contains("objects") && tileJson["objects"].is_array()) {
+                if (tileJson.contains("objects") && tileJson["objects"].is_array())
+                {
                     auto objectsStack{tile->GetObjectsStack()};
-                    if (objectsStack) {
+                    if (objectsStack)
+                    {
                         objectsStack->ClearObjects();
 
-                        for (const auto &objectJson : tileJson["objects"]) {
-                            if (objectJson.contains("type")) {
+                        for (const auto &objectJson : tileJson["objects"])
+                        {
+                            if (objectJson.contains("type"))
+                            {
                                 auto objectType{objectJson["type"].get<std::string>()};
 
                                 objectsStack->AddObject(objectType);
@@ -149,7 +171,8 @@ namespace Forradia::Theme0 {
                     }
                 }
 
-                if (tileJson.contains("entity")) {
+                if (tileJson.contains("entity"))
+                {
                     auto entityType{Hash(tileJson["entity"]["type"].get<std::string>())};
 
                     auto entity{std::make_shared<Entity>(entityType)};

@@ -9,8 +9,10 @@
 #include "WorldGeneratorObjects.hpp"
 #include "WorldGeneratorWater.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGenerator::GenerateNewWorld() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGenerator::GenerateNewWorld() const -> void
+    {
         this->Prepare();
 
         WorldGeneratorGround::Instance().GenerateGroundWithElevation();
@@ -19,7 +21,8 @@ namespace Forradia::Theme0 {
         WorldGeneratorEntities::Instance().GenerateEntities();
     }
 
-    auto WorldGenerator::Prepare() const -> void {
+    auto WorldGenerator::Prepare() const -> void
+    {
         WorldGeneratorGround::Instance().Prepare();
         WorldGeneratorWater::Instance().Prepare();
         WorldGeneratorObjects::Instance().Prepare();

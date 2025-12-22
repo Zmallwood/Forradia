@@ -11,13 +11,16 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto Player::Initialize() -> void {
+namespace Forradia::Theme0
+{
+    auto Player::Initialize() -> void
+    {
         m_playerObjectsInventory = std::make_shared<PlayerObjectsInventory>();
         this->MoveToSuitablePosition();
     }
 
-    auto Player::MoveToSuitablePosition() -> void {
+    auto Player::MoveToSuitablePosition() -> void
+    {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto size{worldArea->GetSize()};
 
@@ -27,11 +30,14 @@ namespace Forradia::Theme0 {
             m_position = {GetRandomInt(size.width), GetRandomInt(size.height)};
     }
 
-    auto Player::Update() -> void {
+    auto Player::Update() -> void
+    {
         auto now{GetTicks()};
 
-        if (now >= m_ticksLastMovement + InvertSpeed(m_movementSpeed)) {
-            switch (m_playerMoveDirection) {
+        if (now >= m_ticksLastMovement + InvertSpeed(m_movementSpeed))
+        {
+            switch (m_playerMoveDirection)
+            {
             case PlayerMoveDirections::North:
                 this->MoveNorth();
                 break;
@@ -51,73 +57,88 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto Player::StartMovingNorth() -> void {
+    auto Player::StartMovingNorth() -> void
+    {
         m_playerMoveDirection = PlayerMoveDirections::North;
     }
 
-    auto Player::StartMovingEast() -> void {
+    auto Player::StartMovingEast() -> void
+    {
         m_playerMoveDirection = PlayerMoveDirections::East;
     }
 
-    auto Player::StartMovingSouth() -> void {
+    auto Player::StartMovingSouth() -> void
+    {
         m_playerMoveDirection = PlayerMoveDirections::South;
     }
 
-    auto Player::StartMovingWest() -> void {
+    auto Player::StartMovingWest() -> void
+    {
         m_playerMoveDirection = PlayerMoveDirections::West;
     }
 
-    auto Player::StopMoving() -> void {
+    auto Player::StopMoving() -> void
+    {
         m_playerMoveDirection = PlayerMoveDirections::None;
     }
 
-    auto Player::MoveNorth() -> void {
+    auto Player::MoveNorth() -> void
+    {
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
         }
     }
 
-    auto Player::MoveEast() -> void {
+    auto Player::MoveEast() -> void
+    {
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
         }
     }
 
-    auto Player::MoveSouth() -> void {
+    auto Player::MoveSouth() -> void
+    {
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
         }
     }
 
-    auto Player::MoveWest() -> void {
+    auto Player::MoveWest() -> void
+    {
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
         }
     }
 
-    auto Player::AddExperience(int experience) -> void {
+    auto Player::AddExperience(int experience) -> void
+    {
         m_experience += experience;
     }
 
     auto Player::AddPlayerAction(PlayerActionTypes playerAction,
                                  std::string_view actionFirstArgument, Point actionSecondArgument)
-        -> void {
+        -> void
+    {
         m_playerActions.push_back(std::tuple<PlayerActionTypes, std::string, Point>{
             playerAction, actionFirstArgument, actionSecondArgument});
     }

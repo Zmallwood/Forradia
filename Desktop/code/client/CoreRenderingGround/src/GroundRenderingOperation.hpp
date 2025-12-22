@@ -11,11 +11,13 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A rendering operation for a ground tile.
      */
-    class GroundRenderingOperation {
+    class GroundRenderingOperation
+    {
       public:
         GLuint vao{}; ///< The vertex array object.
         GLuint ibo{}; ///< The index buffer object.

@@ -5,11 +5,13 @@
 
 #include "Model.hpp"
 
-namespace Forradia {
-    auto Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation)
-        -> void {
+namespace Forradia
+{
+    auto Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) -> void
+    {
         // Iterate over all meshes in the node.
-        for (unsigned int i = 0; i < node->mNumMeshes; i++) {
+        for (unsigned int i = 0; i < node->mNumMeshes; i++)
+        {
             // Access the mesh.
             auto *mesh{scene->mMeshes[node->mMeshes[i]]};
 

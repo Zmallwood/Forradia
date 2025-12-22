@@ -10,11 +10,13 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A draw group for a tile.
      */
-    class TileDrawGroup {
+    class TileDrawGroup
+    {
       public:
         GLuint vao{};                ///< The vertex array object.
         GLuint ibo{};                ///< The index buffer object.

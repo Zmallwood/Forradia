@@ -8,10 +8,12 @@
 #include "Hash.hpp"
 #include "Textures/TextureBank.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     auto GroundRenderer::DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
                                   int yCoordinate, float tileSize,
-                                  const std::vector<float> &elevations, bool forceUpdate) -> void {
+                                  const std::vector<float> &elevations, bool forceUpdate) -> void
+    {
         GLuint vao{0};
         GLuint ibo{0};
         GLuint vbo{0};
@@ -19,7 +21,8 @@ namespace Forradia {
         bool tileIsCached{this->DrawingOperationIsCached(uniqueRenderID)};
 
         // If the tile is cached.
-        if (tileIsCached) {
+        if (tileIsCached)
+        {
             auto &entry{m_operationsCache.at(uniqueRenderID)};
 
             vao = entry.vao;
@@ -29,7 +32,9 @@ namespace Forradia {
             glBindVertexArray(entry.vao);
             glBindBuffer(GL_ARRAY_BUFFER, entry.vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry.ibo);
-        } else {
+        }
+        else
+        {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
             glGenBuffers(1, &ibo);
@@ -46,7 +51,8 @@ namespace Forradia {
             m_operationsCache[uniqueRenderID] = entry;
         }
 
-        if (false == tileIsCached || forceUpdate) {
+        if (false == tileIsCached || forceUpdate)
+        {
             std::vector<Color> colors{
                 Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>(),
                 Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};

@@ -7,20 +7,23 @@
 
 #include "GUIMovablePanel.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUILabel;
 
     /**
      * A panel that displays the FPS.
      */
-    class GUIFPSPanel : public GUIMovablePanel {
+    class GUIFPSPanel : public GUIMovablePanel
+    {
       public:
         /**
          * Constructor.
          */
         GUIFPSPanel()
             : GUIMovablePanel("FPSPanel", k_defaultBounds.x, k_defaultBounds.y,
-                              k_defaultBounds.width, k_defaultBounds.height) {
+                              k_defaultBounds.width, k_defaultBounds.height)
+        {
             // Initialize this FPSPanel.
             this->Initialize();
         }

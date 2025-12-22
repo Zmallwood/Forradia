@@ -9,11 +9,13 @@
 #include "GUIComponent.hpp"
 #include "Hash.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A meter component for the GUI.
      */
-    class GUIMeter : public GUIComponent {
+    class GUIMeter : public GUIComponent
+    {
       public:
         /**
          * Constructor.
@@ -33,7 +35,8 @@ namespace Forradia {
               k_renderIDLineBottom(Hash(uniqueName.data() + std::string("BottomBorder"))),
               k_renderIDLineRight(Hash(uniqueName.data() + std::string("RightBorder"))),
               k_renderIDLineLeft(Hash(uniqueName.data() + std::string("LeftBorder"))),
-              k_filledColor(filledColor) {
+              k_filledColor(filledColor)
+        {
         }
 
       protected:

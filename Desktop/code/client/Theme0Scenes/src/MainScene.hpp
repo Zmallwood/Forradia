@@ -7,15 +7,18 @@
 
 #include "IScene.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class GUIInteractionMenu;
 
     /**
      * The main scene is the scene where the actual game is played.
      */
-    class MainScene : public IScene {
+    class MainScene : public IScene
+    {
       public:
-        static MainScene &Instance() {
+        static MainScene &Instance()
+        {
             static MainScene instance;
             return instance;
         }

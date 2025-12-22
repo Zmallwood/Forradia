@@ -5,13 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Manages the rotation of the camera.
      */
-    class CameraRotator {
+    class CameraRotator
+    {
       public:
-        static CameraRotator &Instance() {
+        static CameraRotator &Instance()
+        {
             static CameraRotator instance;
             return instance;
         }

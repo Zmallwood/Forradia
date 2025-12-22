@@ -10,11 +10,13 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A model rendering operation.
      */
-    class ModelRenderingOperation {
+    class ModelRenderingOperation
+    {
       public:
         int verticesCount{}; ///< The number of vertices in the model.
         GLuint vao{};        ///< The vertex array object.

@@ -7,12 +7,13 @@
 
 #include "PointF.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A rectangle in 2D space using dimensions of float type.
      */
-    /// type.
-    class RectF {
+    class RectF
+    {
       public:
         /**
          * Check if this rectangle contains a certian point.

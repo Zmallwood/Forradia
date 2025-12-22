@@ -5,11 +5,13 @@
 
 #pragma once
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Enum for the available cursor styles.
      */
-    enum class CursorStyles {
+    enum class CursorStyles
+    {
         Normal,
         HoveringClickableGUI,
         HoveringCreature

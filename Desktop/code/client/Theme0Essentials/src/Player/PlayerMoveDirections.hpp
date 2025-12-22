@@ -5,8 +5,10 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
-    enum class PlayerMoveDirections {
+namespace Forradia::Theme0
+{
+    enum class PlayerMoveDirections
+    {
         None,
         North,
         East,

@@ -5,14 +5,16 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Tile;
     class Object;
 
     /**
      * Represents an action that can be performed by the player.
      */
-    class Action {
+    class Action
+    {
       public:
         std::string label{}; ///< The label for the action shown in the interaction menu.
         std::vector<int>

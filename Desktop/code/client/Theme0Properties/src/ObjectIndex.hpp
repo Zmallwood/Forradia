@@ -8,13 +8,16 @@
 #include "ObjectIndexEntry.hpp"
 #include <unordered_map>
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Class for managing object properties.
      */
-    class ObjectIndex {
+    class ObjectIndex
+    {
       public:
-        static ObjectIndex &Instance() {
+        static ObjectIndex &Instance()
+        {
             static ObjectIndex instance;
             return instance;
         }

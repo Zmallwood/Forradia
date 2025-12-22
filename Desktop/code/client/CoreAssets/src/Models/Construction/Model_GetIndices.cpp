@@ -7,16 +7,20 @@
 #include "Model.hpp"
 #include "assimp/scene.h"
 
-namespace Forradia {
-    auto Model::GetIndices(aiMesh *mesh) -> std::vector<unsigned int> {
-        if (mesh == nullptr) {
+namespace Forradia
+{
+    auto Model::GetIndices(aiMesh *mesh) -> std::vector<unsigned int>
+    {
+        if (mesh == nullptr)
+        {
             ThrowError("mesh is null");
         }
 
         std::vector<unsigned int> indices;
 
         // Iterate over all faces.
-        for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+        for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+        {
             // Access the face.
             auto face{mesh->mFaces[i]};
 

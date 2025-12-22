@@ -8,8 +8,10 @@
 #include "Player/Player.hpp"
 #include "TileHovering.hpp"
 
-namespace Forradia::Theme0 {
-    auto UpdateMouseMovement() -> void {
+namespace Forradia::Theme0
+{
+    auto UpdateMouseMovement() -> void
+    {
         auto playerPosition{Player::Instance().GetPosition()};
         auto destination{Player::Instance().GetDestination()};
 
@@ -19,7 +21,8 @@ namespace Forradia::Theme0 {
         auto now{GetTicks()};
 
         if (now >= Player::Instance().GetTicksLastMovement() +
-                       InvertSpeed(Player::Instance().GetMovementSpeed())) {
+                       InvertSpeed(Player::Instance().GetMovementSpeed()))
+        {
             auto dX{destination.x - playerPosition.x};
             auto dY{destination.y - playerPosition.y};
 

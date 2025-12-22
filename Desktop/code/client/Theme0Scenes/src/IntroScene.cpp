@@ -11,31 +11,38 @@
 #include "Image2DRenderer.hpp"
 #include "SceneManager.hpp"
 
-namespace Forradia::Theme0 {
-    auto IntroScene::InitializeDerived() -> void {
+namespace Forradia::Theme0
+{
+    auto IntroScene::InitializeDerived() -> void
+    {
         auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
                                             "Press to start", true)};
         m_startText = GetGUI()->AddChildComponent(lbl);
     }
 
-    auto IntroScene::OnEnterDerived() -> void {
+    auto IntroScene::OnEnterDerived() -> void
+    {
         GUIChatBox::Instance().Print("Game started.");
     }
 
-    auto IntroScene::OnMouseDown(Uint8 mouseButton) -> void {
+    auto IntroScene::OnMouseDown(Uint8 mouseButton) -> void
+    {
         SceneManager::Instance().GoToScene("MainMenuScene");
     }
 
-    auto IntroScene::OnKeyDown(SDL_Keycode key) -> void {
+    auto IntroScene::OnKeyDown(SDL_Keycode key) -> void
+    {
         SceneManager::Instance().GoToScene("MainMenuScene");
     }
 
-    auto IntroScene::UpdateDerived() -> void {
+    auto IntroScene::UpdateDerived() -> void
+    {
         m_startText->SetVisible(GetTicks() % 800 < 400);
         Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
     }
 
-    auto IntroScene::RenderDerived() const -> void {
+    auto IntroScene::RenderDerived() const -> void
+    {
         Image2DRenderer::Instance().DrawImageByName(
             Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
         Image2DRenderer::Instance().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo",

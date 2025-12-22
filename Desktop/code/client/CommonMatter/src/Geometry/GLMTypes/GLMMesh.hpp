@@ -9,11 +9,13 @@
 #include "Texturing/Texture.hpp"
 #include <vector>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A mesh used primarily for models, using GLM types.
      */
-    class GLMMesh {
+    class GLMMesh
+    {
       public:
         /**
          * Constructor for the GLMMesh class.
@@ -25,7 +27,8 @@ namespace Forradia {
         GLMMesh(std::vector<GLMVertex> vertices, std::vector<unsigned int> indices,
                 std::vector<Texture> textures)
             : vertices(std::move(vertices)), indices(std::move(indices)),
-              textures(std::move(textures)) {
+              textures(std::move(textures))
+        {
         }
 
         std::vector<GLMVertex> vertices{};   ///< The vertices.

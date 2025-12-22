@@ -7,13 +7,16 @@
 
 #include "WorldGeneratorBase.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * The world generator for the ground with elevation.
      */
-    class WorldGeneratorGround : public WorldGeneratorBase {
+    class WorldGeneratorGround : public WorldGeneratorBase
+    {
       public:
-        static WorldGeneratorGround &Instance() {
+        static WorldGeneratorGround &Instance()
+        {
             static WorldGeneratorGround instance;
             return instance;
         }

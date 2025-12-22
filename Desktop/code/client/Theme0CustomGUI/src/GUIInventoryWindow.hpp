@@ -9,10 +9,13 @@
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 
-namespace Forradia::Theme0 {
-    class GUIInventoryWindow : public GUIContainerWindow {
+namespace Forradia::Theme0
+{
+    class GUIInventoryWindow : public GUIContainerWindow
+    {
       public:
-        static GUIInventoryWindow &Instance() {
+        static GUIInventoryWindow &Instance()
+        {
             static GUIInventoryWindow instance(Player::Instance().GetObjectsInventoryRef());
             return instance;
         }

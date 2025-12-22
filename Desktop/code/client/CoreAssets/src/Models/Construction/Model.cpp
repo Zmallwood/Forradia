@@ -10,8 +10,10 @@
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
 
-namespace Forradia {
-    auto Model::Initialize(std::string_view filePath) -> void {
+namespace Forradia
+{
+    auto Model::Initialize(std::string_view filePath) -> void
+    {
         Assimp::Importer importer;
         unsigned int flags{aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace |
                            aiProcess_GenBoundingBoxes | aiProcess_FixInfacingNormals};

@@ -8,11 +8,13 @@
 #include "GUIComponent.hpp"
 #include "Hash.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A panel component for the GUI.
      */
-    class GUIPanel : public GUIComponent {
+    class GUIPanel : public GUIComponent
+    {
       public:
         /**
          * Constructor.
@@ -27,7 +29,8 @@ namespace Forradia {
         GUIPanel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view backgroundImage = k_defaultBackgroundImage)
             : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(Hash(uniqueName)),
-              m_backgroundImage(backgroundImage) {
+              m_backgroundImage(backgroundImage)
+        {
         }
 
         /**
@@ -40,7 +43,8 @@ namespace Forradia {
          *
          * @param value The new background image.
          */
-        auto SetBackgroundImage(std::string_view value) -> void {
+        auto SetBackgroundImage(std::string_view value) -> void
+        {
             m_backgroundImage = value;
         }
 

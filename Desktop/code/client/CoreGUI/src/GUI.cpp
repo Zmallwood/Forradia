@@ -6,8 +6,10 @@
 #include "GUI.hpp"
 #include <ranges>
 
-namespace Forradia {
-    auto GUI::MouseHoveringGUI() const -> bool {
+namespace Forradia
+{
+    auto GUI::MouseHoveringGUI() const -> bool
+    {
         if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
             return false;
 

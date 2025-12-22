@@ -12,21 +12,26 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
-    GLDevice::~GLDevice() {
+namespace Forradia
+{
+    GLDevice::~GLDevice()
+    {
         SDL_GL_DeleteContext(*m_context);
     }
 
-    auto GLDevice::Initialize() -> void {
+    auto GLDevice::Initialize() -> void
+    {
         this->SetupGL();
     }
 
-    auto GLDevice::SetupGL() -> void {
+    auto GLDevice::SetupGL() -> void
+    {
         auto window{SDLDevice::Instance().GetWindow()};
         m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
         SDL_GL_MakeCurrent(window.get(), *m_context);
         GLenum status{glewInit()};
-        if (GLEW_OK != status) {
+        if (GLEW_OK != status)
+        {
             auto errorString{
                 std::string(reinterpret_cast<const char *>(glewGetErrorString(status)))};
             PrintLine("GLEW error: " + errorString);

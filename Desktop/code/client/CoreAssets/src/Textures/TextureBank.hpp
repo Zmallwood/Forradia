@@ -13,13 +13,16 @@
 
 struct SDL_Surface;
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Manages loading and providing of textures which are being used in opengl rendering.
      */
-    class TextureBank {
+    class TextureBank
+    {
       public:
-        static auto Instance() -> TextureBank & {
+        static auto Instance() -> TextureBank &
+        {
             static TextureBank instance;
             return instance;
         }
@@ -30,14 +33,16 @@ namespace Forradia {
         /**
          * Constructor.
          */
-        TextureBank() {
+        TextureBank()
+        {
             TextureBank::Initialize();
         }
 
         /**
          * Destructor.
          */
-        ~TextureBank() {
+        ~TextureBank()
+        {
             TextureBank::Cleanup();
         }
 

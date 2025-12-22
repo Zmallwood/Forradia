@@ -8,13 +8,16 @@
 #include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Class for storing theme 0 properties.
      */
-    class Theme0Properties {
+    class Theme0Properties
+    {
       public:
-        static Theme0Properties &Instance() {
+        static Theme0Properties &Instance()
+        {
             static Theme0Properties instance;
             return instance;
         }

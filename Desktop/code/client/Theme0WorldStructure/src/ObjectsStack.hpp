@@ -5,13 +5,15 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Object;
 
     /**
      * A stack of objects, primarily a component of a tile.
      */
-    class ObjectsStack {
+    class ObjectsStack
+    {
       public:
         /**
          * Deletes all objects in the stack.
@@ -61,7 +63,8 @@ namespace Forradia::Theme0 {
          *
          * @return The collection of objects in the stack.
          */
-        auto GetObjects() const {
+        auto GetObjects() const
+        {
             return m_objects;
         }
 

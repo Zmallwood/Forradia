@@ -7,8 +7,10 @@
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
 
-namespace Forradia::Theme0 {
-    auto UpdateKeyboardMovementStart(SDL_Keycode key) -> void {
+namespace Forradia::Theme0
+{
+    auto UpdateKeyboardMovementStart(SDL_Keycode key) -> void
+    {
         auto upPress{key == SDLK_UP};
         auto rightPress{key == SDLK_RIGHT};
         auto downPress{key == SDLK_DOWN};
@@ -18,8 +20,8 @@ namespace Forradia::Theme0 {
         auto sPress{key == SDLK_s};
         auto dPress{key == SDLK_d};
 
-        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
-            dPress) {
+        if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress || dPress)
+        {
             Player::Instance().SetDestination({-1, -1});
         }
 
@@ -35,7 +37,8 @@ namespace Forradia::Theme0 {
             Player::Instance().StartMovingWest();
     }
 
-    auto UpdateKeyboardMovementStop() -> void {
+    auto UpdateKeyboardMovementStop() -> void
+    {
         Player::Instance().StopMoving();
     }
 }

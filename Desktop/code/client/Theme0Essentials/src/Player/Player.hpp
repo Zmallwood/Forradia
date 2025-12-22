@@ -13,15 +13,18 @@
 #include <unordered_map>
 #include <vector>
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class PlayerObjectsInventory;
 
     /**
      * Represents the player character.
      */
-    class Player {
+    class Player
+    {
       public:
-        static Player &Instance() {
+        static Player &Instance()
+        {
             static Player instance;
             return instance;
         }
@@ -34,7 +37,8 @@ namespace Forradia::Theme0 {
         /**
          * Constructor.
          */
-        Player() {
+        Player()
+        {
             // Initialize the player character.
             this->Initialize();
         }
@@ -94,7 +98,8 @@ namespace Forradia::Theme0 {
          *
          * @return The name of the player.
          */
-        auto GetName() const {
+        auto GetName() const
+        {
             return m_name;
         }
 
@@ -103,7 +108,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The value to set.
          */
-        auto SetPosition(Point value) -> void {
+        auto SetPosition(Point value) -> void
+        {
             m_position = value;
         }
 
@@ -112,7 +118,8 @@ namespace Forradia::Theme0 {
          *
          * @return The position of the player.
          */
-        auto GetPosition() const {
+        auto GetPosition() const
+        {
             return m_position;
         }
 
@@ -121,7 +128,8 @@ namespace Forradia::Theme0 {
          *
          * @return The movement speed of the player.
          */
-        auto GetMovementSpeed() const {
+        auto GetMovementSpeed() const
+        {
             return m_movementSpeed;
         }
 
@@ -130,7 +138,8 @@ namespace Forradia::Theme0 {
          *
          * @return The ticks since last movement.
          */
-        auto GetTicksLastMovement() const {
+        auto GetTicksLastMovement() const
+        {
             return m_ticksLastMovement;
         }
 
@@ -139,7 +148,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The value to set.
          */
-        auto SetTicksLastMovement(int value) -> void {
+        auto SetTicksLastMovement(int value) -> void
+        {
             m_ticksLastMovement = value;
         }
 
@@ -148,7 +158,8 @@ namespace Forradia::Theme0 {
          *
          * @return The destination of the player.
          */
-        auto GetDestination() const {
+        auto GetDestination() const
+        {
             return m_destination;
         }
 
@@ -157,7 +168,8 @@ namespace Forradia::Theme0 {
          *
          * @param value The value to set.
          */
-        auto SetDestination(Point value) -> void {
+        auto SetDestination(Point value) -> void
+        {
             m_destination = value;
         }
 
@@ -166,7 +178,8 @@ namespace Forradia::Theme0 {
          *
          * @return The objects inventory of the player.
          */
-        auto GetObjectsInventoryRef() const -> PlayerObjectsInventory & {
+        auto GetObjectsInventoryRef() const -> PlayerObjectsInventory &
+        {
             return *m_playerObjectsInventory;
         }
 
@@ -175,7 +188,8 @@ namespace Forradia::Theme0 {
          *
          * @return The experience of the player.
          */
-        auto GetExperience() const {
+        auto GetExperience() const
+        {
             return m_experience;
         }
 
@@ -184,7 +198,8 @@ namespace Forradia::Theme0 {
          *
          * @return The well being of the player.
          */
-        auto GetWellBeing() const {
+        auto GetWellBeing() const
+        {
             return m_wellBeing;
         }
 
@@ -193,7 +208,8 @@ namespace Forradia::Theme0 {
          *
          * @return The max well being of the player.
          */
-        auto GetMaxWellBeing() const {
+        auto GetMaxWellBeing() const
+        {
             return m_maxWellBeing;
         }
 
@@ -203,7 +219,8 @@ namespace Forradia::Theme0 {
          * @return The player actions of the player.
          */
         auto GetPlayerActionsRef() const
-            -> const std::vector<std::tuple<PlayerActionTypes, std::string, Point>> & {
+            -> const std::vector<std::tuple<PlayerActionTypes, std::string, Point>> &
+        {
             return m_playerActions;
         }
 
@@ -212,7 +229,8 @@ namespace Forradia::Theme0 {
          *
          * @return The quest completion points of the player.
          */
-        auto GetQuestCompletionPointsRef() -> std::unordered_map<std::string, int> & {
+        auto GetQuestCompletionPointsRef() -> std::unordered_map<std::string, int> &
+        {
             return m_questCompletionPoints;
         }
 

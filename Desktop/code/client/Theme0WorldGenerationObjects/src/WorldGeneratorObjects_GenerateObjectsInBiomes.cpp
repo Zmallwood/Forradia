@@ -8,8 +8,10 @@
 #include "WorldArea.hpp"
 #include "WorldGeneratorObjects.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorObjects::GenerateObjectsInBiomes() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorObjects::GenerateObjectsInBiomes() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
         auto worldScaling{GetWorldScaling()};
@@ -21,7 +23,8 @@ namespace Forradia::Theme0 {
 
         auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
 
-        for (auto i = 0; i < numScatteredTrees; i++) {
+        for (auto i = 0; i < numScatteredTrees; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -31,7 +34,8 @@ namespace Forradia::Theme0 {
                 continue;
 
             // Check if the tile has grass ground and if the random number is less than 8.
-            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8) {
+            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
+            {
                 tile->GetObjectsStack()->ClearObjects();
 
                 // Add a tree with type of either fir or birch with a 50% chance.
@@ -46,7 +50,8 @@ namespace Forradia::Theme0 {
         // Scattered bushes.
         auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
 
-        for (auto i = 0; i < numScatteredBushes; i++) {
+        for (auto i = 0; i < numScatteredBushes; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -55,7 +60,8 @@ namespace Forradia::Theme0 {
             if (!tile || !IsValidForFlora(x, y))
                 continue;
 
-            if (GetRandomInt(100) < 8) {
+            if (GetRandomInt(100) < 8)
+            {
                 tile->GetObjectsStack()->ClearObjects();
 
                 // Add a bush with type of either bush1 or bush2 with a 50% chance.
@@ -69,7 +75,8 @@ namespace Forradia::Theme0 {
         // Stone boulders - prefer higher elevation areas.
         auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
 
-        for (auto i = 0; i < numBoulders; i++) {
+        for (auto i = 0; i < numBoulders; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -89,7 +96,8 @@ namespace Forradia::Theme0 {
         // Mushrooms grow on forest floors, often near trees.
         auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
 
-        for (auto i = 0; i < numMushrooms; i++) {
+        for (auto i = 0; i < numMushrooms; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 
@@ -117,8 +125,10 @@ namespace Forradia::Theme0 {
 
             auto nearbyObjectsCount{0};
 
-            for (auto checkY = y - 2; checkY <= y + 2; checkY++) {
-                for (auto checkX = x - 2; checkX <= x + 2; checkX++) {
+            for (auto checkY = y - 2; checkY <= y + 2; checkY++)
+            {
+                for (auto checkX = x - 2; checkX <= x + 2; checkX++)
+                {
                     if (checkX == x && checkY == y)
                         continue;
 
@@ -146,7 +156,8 @@ namespace Forradia::Theme0 {
             if (mushroomProbability > 25)
                 mushroomProbability = 25;
 
-            if (GetRandomInt(100) < mushroomProbability) {
+            if (GetRandomInt(100) < mushroomProbability)
+            {
                 tile->GetObjectsStack()->ClearObjects();
                 tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
             }
@@ -154,7 +165,8 @@ namespace Forradia::Theme0 {
 
         auto numStones{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
 
-        for (auto i = 0; i < numStones; i++) {
+        for (auto i = 0; i < numStones; i++)
+        {
             auto x{GetRandomInt(worldAreaSize.width)};
             auto y{GetRandomInt(worldAreaSize.height)};
 

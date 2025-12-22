@@ -10,7 +10,8 @@
 #include <memory>
 #include <set>
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Tile;
     class Entity;
     class Robot;
@@ -18,7 +19,8 @@ namespace Forradia::Theme0 {
     /**
      * A world area in the game.
      */
-    class WorldArea {
+    class WorldArea
+    {
       public:
         /**
          * Constructor.
@@ -26,7 +28,8 @@ namespace Forradia::Theme0 {
          * @param worldAreaSize The size of the world area.
          * @param worldScaling The scaling of the world area size.
          */
-        WorldArea(Size worldAreaSize, float worldScaling) {
+        WorldArea(Size worldAreaSize, float worldScaling)
+        {
             // Initialize the world area.
 
             this->Initialize(worldAreaSize, worldScaling);
@@ -83,7 +86,8 @@ namespace Forradia::Theme0 {
          *
          * @return A reference to the entities mirror.
          */
-        auto &GetEntitiesMirrorRef() {
+        auto &GetEntitiesMirrorRef()
+        {
             return m_entitiesMirror;
         }
 

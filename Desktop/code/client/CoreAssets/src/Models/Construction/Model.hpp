@@ -8,18 +8,21 @@
 #include "Geometry/GLMTypes/GLMMesh.hpp"
 #include "assimp/scene.h"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Holds information about a model, used by the ModelBank.
      */
-    class Model {
+    class Model
+    {
       public:
         /**
          * Constructor.
          *
          * @param filePath The path to the model file.
          */
-        Model(std::string_view filePath) {
+        Model(std::string_view filePath)
+        {
             this->Initialize(filePath);
         };
 
@@ -28,7 +31,8 @@ namespace Forradia {
          *
          * @return A reference to the model's meshes.
          */
-        [[nodiscard]] auto GetMeshesRef() const -> const std::vector<GLMMesh> & {
+        [[nodiscard]] auto GetMeshesRef() const -> const std::vector<GLMMesh> &
+        {
             return m_meshes;
         }
 

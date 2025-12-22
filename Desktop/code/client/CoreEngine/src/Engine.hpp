@@ -8,14 +8,17 @@
 #include "Coloring/Color.hpp"
 #include <string_view>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * The engine class is responsible for initializing, running and stopping
      * the game.
      */
-    class Engine {
+    class Engine
+    {
       public:
-        static auto Instance() -> Engine & {
+        static auto Instance() -> Engine &
+        {
             static Engine instance;
             return instance;
         }

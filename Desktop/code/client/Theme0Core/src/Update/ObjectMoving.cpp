@@ -9,14 +9,18 @@
 #include "Image2DRenderer.hpp"
 #include "Object.hpp"
 
-namespace Forradia::Theme0 {
-    auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool {
+namespace Forradia::Theme0
+{
+    auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool
+    {
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
         if (!m_objectInAir && GUIInventoryWindow::Instance().GetVisible() &&
-            inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
+            inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+        {
             auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
-            if (objectPtrPtr) {
+            if (objectPtrPtr)
+            {
                 m_objectInAir = *objectPtrPtr;
                 *objectPtrPtr = nullptr;
                 return true;
@@ -25,14 +29,18 @@ namespace Forradia::Theme0 {
         return false;
     }
 
-    auto ObjectMoving::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
-        if (m_objectInAir) {
+    auto ObjectMoving::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    {
+        if (m_objectInAir)
+        {
             auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
             auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
             if (GUIInventoryWindow::Instance().GetVisible() &&
-                inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
+                inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+            {
                 auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
-                if (objectPtrPtr) {
+                if (objectPtrPtr)
+                {
                     *objectPtrPtr = m_objectInAir;
                     m_objectInAir = nullptr;
                     return true;
@@ -42,8 +50,10 @@ namespace Forradia::Theme0 {
         return false;
     }
 
-    auto ObjectMoving::Render() const -> void {
-        if (m_objectInAir) {
+    auto ObjectMoving::Render() const -> void
+    {
+        if (m_objectInAir)
+        {
             auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
             Image2DRenderer::Instance().DrawImageByHash(

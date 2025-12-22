@@ -8,13 +8,16 @@
 #include "CursorStyles.hpp"
 #include "Hash.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Class for the game cursor, which replaces the default system cursor.
      */
-    class Cursor {
+    class Cursor
+    {
       public:
-        static auto Instance() -> Cursor & {
+        static auto Instance() -> Cursor &
+        {
             static Cursor instance;
             return instance;
         }
@@ -27,7 +30,8 @@ namespace Forradia {
         /**
          * Default constructor
          */
-        Cursor() {
+        Cursor()
+        {
             Cursor::Initialize();
         }
 
@@ -45,7 +49,8 @@ namespace Forradia {
          * Sets the cursor style.
          * @param value New cursor style.
          */
-        auto SetCursorStyle(CursorStyles value) -> void {
+        auto SetCursorStyle(CursorStyles value) -> void
+        {
             m_cursorStyle = value;
         }
 

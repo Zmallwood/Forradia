@@ -9,11 +9,13 @@
 #include "Hash.hpp"
 #include <functional>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A button component for the GUI.
      */
-    class GUIButton : public GUIPanel {
+    class GUIButton : public GUIPanel
+    {
       public:
         /**
          * Constructor.
@@ -35,7 +37,8 @@ namespace Forradia {
             : GUIPanel(uniqueName, xPos, yPos, width, height),
               k_renderIDText(Hash(uniqueName.data() + std::string("Text"))), m_text(text),
               m_action(std::move(action)), m_backgroundImage(backgroundImage),
-              m_hoveredBackgroundImage(hoveredBackgroundImage) {
+              m_hoveredBackgroundImage(hoveredBackgroundImage)
+        {
         }
 
       protected:

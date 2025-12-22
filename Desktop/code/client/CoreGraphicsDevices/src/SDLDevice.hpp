@@ -14,13 +14,16 @@
 struct SDL_Window;
 using Uint32 = uint32_t;
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Sets up the objects related to SDL.
      */
-    class SDLDevice {
+    class SDLDevice
+    {
       public:
-        static auto Instance() -> SDLDevice & {
+        static auto Instance() -> SDLDevice &
+        {
             static SDLDevice instance;
             return instance;
         }
@@ -55,7 +58,8 @@ namespace Forradia {
          *
          * @return The SDL window object.
          */
-        [[nodiscard]] auto GetWindow() const -> std::shared_ptr<SDL_Window> {
+        [[nodiscard]] auto GetWindow() const -> std::shared_ptr<SDL_Window>
+        {
             return m_window;
         }
 

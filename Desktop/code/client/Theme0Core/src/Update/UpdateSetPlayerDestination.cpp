@@ -7,8 +7,10 @@
 #include "Player/Player.hpp"
 #include "TileHovering.hpp"
 
-namespace Forradia::Theme0 {
-    auto UpdateSetPlayerDestination() -> void {
+namespace Forradia::Theme0
+{
+    auto UpdateSetPlayerDestination() -> void
+    {
         auto newDestination{TileHovering::Instance().GetHoveredCoordinate()};
         Player::Instance().SetDestination(newDestination);
     }

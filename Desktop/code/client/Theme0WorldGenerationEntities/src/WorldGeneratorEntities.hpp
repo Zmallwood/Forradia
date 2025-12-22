@@ -7,13 +7,16 @@
 
 #include "WorldGeneratorBase.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * Generates entities for the world.
      */
-    class WorldGeneratorEntities : public WorldGeneratorBase {
+    class WorldGeneratorEntities : public WorldGeneratorBase
+    {
       public:
-        static WorldGeneratorEntities &Instance() {
+        static WorldGeneratorEntities &Instance()
+        {
             static WorldGeneratorEntities instance;
             return instance;
         }

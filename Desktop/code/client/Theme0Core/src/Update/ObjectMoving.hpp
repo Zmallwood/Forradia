@@ -5,12 +5,15 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class Object;
 
-    class ObjectMoving {
+    class ObjectMoving
+    {
       public:
-        static ObjectMoving &Instance() {
+        static ObjectMoving &Instance()
+        {
             static ObjectMoving instance;
             return instance;
         }

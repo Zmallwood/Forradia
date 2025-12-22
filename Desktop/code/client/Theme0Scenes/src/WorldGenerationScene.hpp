@@ -7,13 +7,16 @@
 
 #include "IScene.hpp"
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * The world generation scene is the scene where the world is generated.
      */
-    class WorldGenerationScene : public IScene {
+    class WorldGenerationScene : public IScene
+    {
       public:
-        static WorldGenerationScene &Instance() {
+        static WorldGenerationScene &Instance()
+        {
             static WorldGenerationScene instance;
             return instance;
         }

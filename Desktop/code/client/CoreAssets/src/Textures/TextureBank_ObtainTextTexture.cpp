@@ -5,10 +5,13 @@
 
 #include "TextureBank.hpp"
 
-namespace Forradia {
-    auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool {
+namespace Forradia
+{
+    auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool
+    {
         // Check if the text texture exists.
-        if (m_textTextureIDs.contains(uniqueTextureID)) {
+        if (m_textTextureIDs.contains(uniqueTextureID))
+        {
             textureID = m_textTextureIDs.at(uniqueTextureID);
             return true;
         }

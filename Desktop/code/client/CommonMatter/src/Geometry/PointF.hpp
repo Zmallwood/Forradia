@@ -5,11 +5,13 @@
 
 #pragma once
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Point in 2D space using dimensions of float type.
      */
-    class PointF {
+    class PointF
+    {
       public:
         /**
          * Summing operator for the two points.

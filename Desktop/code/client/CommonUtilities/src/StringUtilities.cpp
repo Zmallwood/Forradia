@@ -6,8 +6,10 @@
 #include "StringUtilities.hpp"
 #include <algorithm>
 
-namespace Forradia {
-    auto Replace(std::string_view text, char replace, char replaceWith) -> std::string {
+namespace Forradia
+{
+    auto Replace(std::string_view text, char replace, char replaceWith) -> std::string
+    {
         std::string result{text.data()};
         std::replace(result.begin(), result.end(), replace, replaceWith);
         return result;

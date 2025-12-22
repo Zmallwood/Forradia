@@ -14,9 +14,11 @@
 #include "Theme0Properties.hpp"
 #include <glm/gtx/transform.hpp>
 
-namespace Forradia {
+namespace Forradia
+{
     auto ModelRenderer::DrawModel(int modelNameHash, float xPos, float yPos, float elevation,
-                                  float modelScaling) -> void {
+                                  float modelScaling) -> void
+    {
         this->SetupState();
 
         GLuint vao;
@@ -27,7 +29,8 @@ namespace Forradia {
         const auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
-        if (this->DrawingOperationIsCached(modelNameHash)) {
+        if (this->DrawingOperationIsCached(modelNameHash))
+        {
             auto &entry{m_operationsCache.at(modelNameHash)};
 
             vao = entry.vao;
@@ -37,7 +40,9 @@ namespace Forradia {
             glBindVertexArray(vao);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        } else {
+        }
+        else
+        {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
             glGenBuffers(1, &ibo);
@@ -70,9 +75,11 @@ namespace Forradia {
                     Theme0::CreatureIndex::Instance().GetModelScaling(modelNameHash);
 
             // For each mesh.
-            for (const auto &mesh : meshes) {
+            for (const auto &mesh : meshes)
+            {
                 // For each vertex.
-                for (const auto &vertex : mesh.vertices) {
+                for (const auto &vertex : mesh.vertices)
+                {
                     // Add position.
                     verticesVector.push_back(vertex.position.x * totalModelScaling);
                     verticesVector.push_back(vertex.position.y * totalModelScaling);
@@ -89,7 +96,8 @@ namespace Forradia {
                 }
 
                 // For each index of the mesh.
-                for (const auto &index : mesh.indices) {
+                for (const auto &index : mesh.indices)
+                {
                     // Calculate the total index.
                     auto totalIndex{indexFirstVertexOfMesh + mesh.indices[index]};
 

@@ -6,9 +6,12 @@
 #include "ErrorUtilities.hpp"
 #include "Model.hpp"
 
-namespace Forradia {
-    auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex> {
-        if (mesh == nullptr) {
+namespace Forradia
+{
+    auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>
+    {
+        if (mesh == nullptr)
+        {
             ThrowError("mesh is nullptr");
             return {};
         }
@@ -16,7 +19,8 @@ namespace Forradia {
         std::vector<GLMVertex> vertices;
 
         // Iterate over all vertices.
-        for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+        {
             GLMVertex vertex;
             glm::vec3 position;
 
@@ -31,7 +35,8 @@ namespace Forradia {
             vertex.position = position;
 
             // If there are normals.
-            if (mesh->mNormals != nullptr) {
+            if (mesh->mNormals != nullptr)
+            {
                 glm::vec3 normal;
 
                 // Set the normal coordinates.
@@ -43,7 +48,8 @@ namespace Forradia {
             }
 
             // If there are texture coordinates.
-            if (mesh->mTextureCoords[0] != nullptr) {
+            if (mesh->mTextureCoords[0] != nullptr)
+            {
                 glm::vec2 texCoords;
 
                 // Set the texture coordinates.
@@ -51,7 +57,9 @@ namespace Forradia {
                 texCoords.y = mesh->mTextureCoords[0][i].y;
 
                 vertex.uv = texCoords;
-            } else {
+            }
+            else
+            {
                 // In case there are no texture coordinates, set them to zero.
                 vertex.uv = glm::vec2(0, 0);
             }

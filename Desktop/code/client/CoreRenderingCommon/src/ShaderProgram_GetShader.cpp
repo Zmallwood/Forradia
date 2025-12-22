@@ -7,8 +7,10 @@
 #include <GL/glext.h>
 #include <vector>
 
-namespace Forradia {
-    auto ShaderProgram::GetShader(std::string_view shaderSource, int shaderType) -> GLuint {
+namespace Forradia
+{
+    auto ShaderProgram::GetShader(std::string_view shaderSource, int shaderType) -> GLuint
+    {
         auto shader{glCreateShader(shaderType)};
         const auto *source{(const GLchar *)shaderSource.data()};
 
@@ -18,7 +20,8 @@ namespace Forradia {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
         // If the compile failed.
-        if (isCompiled == GL_FALSE) {
+        if (isCompiled == GL_FALSE)
+        {
             GLint maxLength{0};
             glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
             std::vector<GLchar> infoLog(maxLength);

@@ -7,9 +7,12 @@
 #include "CanvasUtilities.hpp"
 #include <SDL2/SDL.h>
 
-namespace Forradia {
-    auto GetNormallizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF {
-        if (window == nullptr) {
+namespace Forradia
+{
+    auto GetNormallizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
+    {
+        if (window == nullptr)
+        {
             ThrowError("window is null");
             return {0.0F, 0.0F};
         }

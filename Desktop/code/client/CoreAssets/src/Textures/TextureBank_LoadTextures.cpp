@@ -12,8 +12,10 @@
 #include <SDL2/SDL_image.h>
 #include <filesystem>
 
-namespace Forradia {
-    auto TextureBank::LoadTextures() -> void {
+namespace Forradia
+{
+    auto TextureBank::LoadTextures() -> void
+    {
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeImagesPath};
 
@@ -23,10 +25,12 @@ namespace Forradia {
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         // Iterate through the directory using the rdi.
-        for (const auto &file : rdi) {
+        for (const auto &file : rdi)
+        {
             auto filePath{Replace(file.path().string(), '\\', '/')};
 
-            if (GetFileExtension(filePath) == "png") {
+            if (GetFileExtension(filePath) == "png")
+            {
                 auto fileName{GetFileNameNoExtension(filePath)};
                 auto hash{Forradia::Hash(fileName)};
                 auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};

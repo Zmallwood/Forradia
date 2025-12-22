@@ -10,10 +10,12 @@
 #include <array>
 #include <vector>
 
-namespace Forradia {
+namespace Forradia
+{
     auto Color2DRenderer::DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1,
                                    float xPos2, float yPos2, float lineWidth, bool updateExisting)
-        -> void {
+        -> void
+    {
         this->SetupState();
 
         GLuint vao;
@@ -23,7 +25,8 @@ namespace Forradia {
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->DrawingOperationIsCached(uniqueRenderID)) {
+        if (this->DrawingOperationIsCached(uniqueRenderID))
+        {
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
             vao = entry.vao;
@@ -33,7 +36,9 @@ namespace Forradia {
             glBindVertexArray(vao);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-        } else {
+        }
+        else
+        {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
             glGenBuffers(1, &ibo);
@@ -55,19 +60,23 @@ namespace Forradia {
         const auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
-        if (needFillBuffers || updateExisting) {
+        if (needFillBuffers || updateExisting)
+        {
             auto xPos{xPos1};
             auto yPos{yPos1};
 
             float width;
             float height;
 
-            if (xPos2 - xPos1 > yPos2 - yPos1) {
+            if (xPos2 - xPos1 > yPos2 - yPos1)
+            {
                 width = xPos2 - xPos1;
                 height = lineWidth;
                 // NOLINTNEXTLINE(readability-magic-numbers)
                 yPos -= height / 2.0F;
-            } else {
+            }
+            else
+            {
                 width = lineWidth;
                 height = yPos2 - yPos1;
                 // NOLINTNEXTLINE(readability-magic-numbers)

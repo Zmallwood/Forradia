@@ -11,24 +11,29 @@
 #include "TextRenderer.hpp"
 #include <fmt/format.h>
 
-namespace Forradia {
-    auto GUIChatBox::Initialize() -> void {
+namespace Forradia
+{
+    auto GUIChatBox::Initialize() -> void
+    {
         auto maxNumLines{this->GetMaxNumLines()};
 
         for (auto i = 0; i < maxNumLines; i++)
             m_renderIDsTextLines.push_back(Hash(fmt::format("RenderIDTextLine{}", i)));
     }
 
-    auto GUIChatBox::GetMaxNumLines() const -> int {
+    auto GUIChatBox::GetMaxNumLines() const -> int
+    {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
         return static_cast<int>(bounds.height / k_lineHeight - 1);
     }
 
-    auto GUIChatBox::UpdateDerived() -> void {
+    auto GUIChatBox::UpdateDerived() -> void
+    {
         dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
     }
 
-    auto GUIChatBox::RenderDerived() const -> void {
+    auto GUIChatBox::RenderDerived() const -> void
+    {
         dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
 
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
@@ -36,7 +41,8 @@ namespace Forradia {
         auto yPos{bounds.y + k_margin};
 
         // Loop through the text lines.
-        for (auto i = 0; i < maxNumLines; i++) {
+        for (auto i = 0; i < maxNumLines; i++)
+        {
             auto index{m_lines.size() - maxNumLines + i};
 
             if (index < 0 || index >= m_lines.size())
@@ -60,7 +66,8 @@ namespace Forradia {
             k_renderIDSeparator, Palette::GetColor<Hash("Black")>(), separatorX, separatorY,
             separatorX + separatorWidth, separatorY, sepratorHeight, true);
 
-        if (m_inputActive) {
+        if (m_inputActive)
+        {
             // TODO: Calculate the cursor x-coordinate based on the text input.
 
             auto cursorX{bounds.x};
@@ -77,21 +84,25 @@ namespace Forradia {
         }
     }
 
-    auto GUIChatBox::Print(std::string_view text) -> void {
+    auto GUIChatBox::Print(std::string_view text) -> void
+    {
         m_lines.emplace_back(text.data());
     }
 
-    auto GUIChatBox::AddTextInput(std::string_view text) -> void {
+    auto GUIChatBox::AddTextInput(std::string_view text) -> void
+    {
         m_input += text;
     }
 
-    auto GUIChatBox::EnableInput() -> void {
+    auto GUIChatBox::EnableInput() -> void
+    {
         SDL_StartTextInput();
 
         m_inputActive = true;
     }
 
-    auto GUIChatBox::SubmitInput() -> void {
+    auto GUIChatBox::SubmitInput() -> void
+    {
         // TODO: Act on the typed input.
 
         if (m_input == "/quit")

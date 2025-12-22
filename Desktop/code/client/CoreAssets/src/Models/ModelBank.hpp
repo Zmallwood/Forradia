@@ -8,15 +8,18 @@
 #include <memory>
 #include <unordered_map>
 
-namespace Forradia {
+namespace Forradia
+{
     class Model;
 
     /**
      * Loads, stores and provides models.
      */
-    class ModelBank {
+    class ModelBank
+    {
       public:
-        static auto Instance() -> ModelBank & {
+        static auto Instance() -> ModelBank &
+        {
             static ModelBank instance;
             return instance;
         }
@@ -29,7 +32,8 @@ namespace Forradia {
         /**
          * Constructor.
          */
-        ModelBank() {
+        ModelBank()
+        {
             ModelBank::Initialize();
         }
 

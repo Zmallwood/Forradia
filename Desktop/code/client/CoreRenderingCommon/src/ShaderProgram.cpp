@@ -5,13 +5,16 @@
 
 #include "ShaderProgram.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     auto ShaderProgram::Initialize(std::string_view vertexShaderSource,
-                                   std::string_view fragmentShaderSource) -> void {
+                                   std::string_view fragmentShaderSource) -> void
+    {
         auto vertexShader{ShaderProgram::GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
         // If the vertex shader failed.
-        if (0 == vertexShader) {
+        if (0 == vertexShader)
+        {
             glDeleteShader(vertexShader);
             return;
         }
@@ -19,7 +22,8 @@ namespace Forradia {
         auto fragmentShader{ShaderProgram::GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
         // If the fragment shader failed.
-        if (0 == fragmentShader) {
+        if (0 == fragmentShader)
+        {
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);
             return;
@@ -37,7 +41,8 @@ namespace Forradia {
         glDeleteShader(fragmentShader);
     }
 
-    auto ShaderProgram::Cleanup() -> void {
+    auto ShaderProgram::Cleanup() -> void
+    {
         glDeleteProgram(m_programID);
         m_programID = 0;
     }

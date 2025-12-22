@@ -7,19 +7,23 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto WorldGeneratorWater::GenerateWater() const -> void {
+namespace Forradia::Theme0
+{
+    auto WorldGeneratorWater::GenerateWater() const -> void
+    {
         GenerateNaturalRivers();
         GenerateLakesInValleys();
     }
 
-    auto WorldGeneratorWater::GenerateNaturalRivers() const -> void {
+    auto WorldGeneratorWater::GenerateNaturalRivers() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
 
         auto numRivers{150 + GetRandomInt(100)};
 
-        for (auto i = 0; i < numRivers; i++) {
+        for (auto i = 0; i < numRivers; i++)
+        {
             auto attempts{0};
             auto startX{0};
             auto startY{0};
@@ -41,7 +45,8 @@ namespace Forradia::Theme0 {
                 minElevation = 5;
 
             // Find a starting point.
-            while (attempts < 100 && !foundStart) {
+            while (attempts < 100 && !foundStart)
+            {
                 startX = GetRandomInt(worldAreaSize.width);
                 startY = GetRandomInt(worldAreaSize.height);
                 auto tile{worldArea->GetTile(startX, startY)};
@@ -62,11 +67,14 @@ namespace Forradia::Theme0 {
             auto baseLength{40};
             auto lengthVariation{60};
 
-            if (startElevation > 40) {
+            if (startElevation > 40)
+            {
                 // Increase the base length and the length variation.
                 baseLength = 60;
                 lengthVariation = 80;
-            } else if (startElevation > 15) {
+            }
+            else if (startElevation > 15)
+            {
                 // Increase the base length and the length variation.
                 baseLength = 50;
                 lengthVariation = 70;
@@ -78,13 +86,15 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto WorldGeneratorWater::GenerateLakesInValleys() const -> void {
+    auto WorldGeneratorWater::GenerateLakesInValleys() const -> void
+    {
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
         auto worldScaling{GetWorldScaling()};
         auto numLakes{12 + GetRandomInt(8)};
 
-        for (auto i = 0; i < numLakes; i++) {
+        for (auto i = 0; i < numLakes; i++)
+        {
             auto attempts{0};
             auto centerX{0};
             auto centerY{0};
@@ -92,7 +102,8 @@ namespace Forradia::Theme0 {
             auto foundLocation{false};
 
             // Find a suitable valley location.
-            while (attempts < 50 && !foundLocation) {
+            while (attempts < 50 && !foundLocation)
+            {
                 centerX = GetRandomInt(worldAreaSize.width);
                 centerY = GetRandomInt(worldAreaSize.height);
 
@@ -112,8 +123,10 @@ namespace Forradia::Theme0 {
             auto radius{static_cast<int>(3 * worldScaling + GetRandomInt(6 * worldScaling))};
             auto irregularity{0.3F + GetRandomInt(20) / 100.0F};
 
-            for (auto y = centerY - radius; y <= centerY + radius; y++) {
-                for (auto x = centerX - radius; x <= centerX + radius; x++) {
+            for (auto y = centerY - radius; y <= centerY + radius; y++)
+            {
+                for (auto x = centerX - radius; x <= centerX + radius; x++)
+                {
                     if (!worldArea->IsValidCoordinate(x, y))
                         continue;
 
@@ -129,7 +142,8 @@ namespace Forradia::Theme0 {
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
-                    if (distance * distance <= radius * radius) {
+                    if (distance * distance <= radius * radius)
+                    {
                         tile->SetGround("GroundWater");
 
                         auto depth{static_cast<int>((1.0F - distance / radius) * 4.0F) + 1};
@@ -144,7 +158,8 @@ namespace Forradia::Theme0 {
         }
     }
 
-    auto WorldGeneratorWater::IsValidForWater(int x, int y) const -> bool {
+    auto WorldGeneratorWater::IsValidForWater(int x, int y) const -> bool
+    {
         if (!GetWorldArea()->IsValidCoordinate(x, y))
             return false;
 
@@ -155,7 +170,8 @@ namespace Forradia::Theme0 {
 
         return tile->GetElevation() < 80;
     }
-    auto WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const -> void {
+    auto WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const -> void
+    {
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.
 
@@ -167,7 +183,8 @@ namespace Forradia::Theme0 {
         // clang-format on
 
         // Visit each neighboring tile and update elevation when needed.
-        for (auto dir = 0; dir < 8; dir++) {
+        for (auto dir = 0; dir < 8; dir++)
+        {
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 

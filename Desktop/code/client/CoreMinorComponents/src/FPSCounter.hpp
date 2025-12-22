@@ -5,13 +5,16 @@
 
 #pragma once
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Class for the FPS counter.
      */
-    class FPSCounter {
+    class FPSCounter
+    {
       public:
-        static auto Instance() -> FPSCounter & {
+        static auto Instance() -> FPSCounter &
+        {
             static FPSCounter instance;
             return instance;
         }
@@ -32,7 +35,8 @@ namespace Forradia {
          * Gets the current FPS.
          * @return The current FPS.
          */
-        [[nodiscard]] auto GetFPS() const {
+        [[nodiscard]] auto GetFPS() const
+        {
             return m_fps;
         }
 

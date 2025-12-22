@@ -7,18 +7,22 @@
 
 #include "IScene.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUIComponent;
 }
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     /**
      * The intro scene is the first scene that is displayed when the game is started.
      * It displays the title of the game and the main menu.
      */
-    class IntroScene : public IScene {
+    class IntroScene : public IScene
+    {
       public:
-        static IntroScene &Instance() {
+        static IntroScene &Instance()
+        {
             static IntroScene instance;
             return instance;
         }

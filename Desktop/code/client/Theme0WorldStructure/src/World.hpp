@@ -5,15 +5,18 @@
 
 #pragma once
 
-namespace Forradia::Theme0 {
+namespace Forradia::Theme0
+{
     class WorldArea;
 
     /**
      * The world in the game.
      */
-    class World {
+    class World
+    {
       public:
-        static World &Instance() {
+        static World &Instance()
+        {
             static World instance;
             return instance;
         }
@@ -36,7 +39,8 @@ namespace Forradia::Theme0 {
          *
          * @return The current world area.
          */
-        auto GetCurrentWorldArea() const {
+        auto GetCurrentWorldArea() const
+        {
             return m_currentWorldArea;
         }
 

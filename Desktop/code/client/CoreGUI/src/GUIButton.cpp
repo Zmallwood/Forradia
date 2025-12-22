@@ -9,13 +9,16 @@
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
-namespace Forradia {
-    auto GUIButton::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool {
+namespace Forradia
+{
+    auto GUIButton::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    {
         if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
             return false;
 
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
-        if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos)) {
+        if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos))
+        {
             m_action();
             return true;
         }
@@ -23,21 +26,26 @@ namespace Forradia {
         return false;
     }
 
-    auto GUIButton::UpdateDerived() -> void {
+    auto GUIButton::UpdateDerived() -> void
+    {
         dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
 
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto hovered{dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition)};
 
-        if (hovered) {
+        if (hovered)
+        {
             dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_hoveredBackgroundImage);
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-        } else {
+        }
+        else
+        {
             dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_backgroundImage);
         }
     }
 
-    auto GUIButton::RenderDerived() const -> void {
+    auto GUIButton::RenderDerived() const -> void
+    {
         dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
 
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};

@@ -11,11 +11,13 @@
 #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * Holds information about a texture, used by the TextureBank.
      */
-    class TextureEntry {
+    class TextureEntry
+    {
       public:
         GLuint textureID{}; ///< The texture ID, used by opengl.
         Size dimensions{};  ///< The texture width and height.

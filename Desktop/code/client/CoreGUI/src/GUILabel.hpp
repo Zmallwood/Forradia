@@ -10,11 +10,13 @@
 #include "GUIComponent.hpp"
 #include "Hash.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A label component for the GUI.
      */
-    class GUILabel : public GUIComponent {
+    class GUILabel : public GUIComponent
+    {
       public:
         /**
          * Constructor.
@@ -32,7 +34,8 @@ namespace Forradia {
                  std::string_view text = "", bool centerAlign = false,
                  Color color = Palette::GetColor<Hash("WheatTransparent")>())
             : GUIComponent(xPos, yPos, width, height), k_renderIDText(Hash(uniqueName)),
-              m_text(text), m_centerAlign(centerAlign), m_color(color) {
+              m_text(text), m_centerAlign(centerAlign), m_color(color)
+        {
         }
 
         /**
@@ -40,7 +43,8 @@ namespace Forradia {
          *
          * @param value The new text.
          */
-        auto SetText(std::string_view value) -> void {
+        auto SetText(std::string_view value) -> void
+        {
             m_text = value;
         }
 

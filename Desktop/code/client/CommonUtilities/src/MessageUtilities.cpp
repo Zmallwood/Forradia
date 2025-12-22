@@ -6,12 +6,15 @@
 #include "MessageUtilities.hpp"
 #include <iostream>
 
-namespace Forradia {
-    auto Print(std::string_view text) -> void {
+namespace Forradia
+{
+    auto Print(std::string_view text) -> void
+    {
         std::cout << text;
     }
 
-    auto PrintLine(std::string_view text) -> void {
+    auto PrintLine(std::string_view text) -> void
+    {
         std::cout << text << std::endl;
     }
 }

@@ -7,13 +7,15 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     class GUI;
 
     /**
      * The base class for all scenes.
      */
-    class IScene {
+    class IScene
+    {
       public:
         /**
          * Initializes the scene.
@@ -52,7 +54,8 @@ namespace Forradia {
          *
          * @return The GUI.
          */
-        auto GetGUI() const -> std::shared_ptr<GUI> {
+        auto GetGUI() const -> std::shared_ptr<GUI>
+        {
             return m_gui;
         }
 
@@ -60,25 +63,29 @@ namespace Forradia {
         /**
          * Initializes the scene. Should be specific to the deriving class.
          */
-        virtual auto InitializeDerived() -> void {
+        virtual auto InitializeDerived() -> void
+        {
         }
 
         /**
          * Called when the scene is entered. Should be specific to the deriving class.
          */
-        virtual auto OnEnterDerived() -> void {
+        virtual auto OnEnterDerived() -> void
+        {
         }
 
         /**
          * Updates the scene. Should be specific to the deriving class.
          */
-        virtual auto UpdateDerived() -> void {
+        virtual auto UpdateDerived() -> void
+        {
         }
 
         /**
          * Renders the scene. Should be specific to the deriving class.
          */
-        virtual auto RenderDerived() const -> void {
+        virtual auto RenderDerived() const -> void
+        {
         }
 
       private:

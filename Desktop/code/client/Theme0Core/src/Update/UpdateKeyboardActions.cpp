@@ -13,13 +13,20 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 
-namespace Forradia::Theme0 {
-    auto UpdateKeyboardActions(SDL_Keycode key) -> void {
-        if (key == SDLK_ESCAPE) {
+namespace Forradia::Theme0
+{
+    auto UpdateKeyboardActions(SDL_Keycode key) -> void
+    {
+        if (key == SDLK_ESCAPE)
+        {
             GUISystemMenu::Instance().ToggleVisibility();
-        } else if (key == SDLK_b) {
+        }
+        else if (key == SDLK_b)
+        {
             GUIInventoryWindow::Instance().ToggleVisibility();
-        } else if (key == SDLK_RETURN) {
+        }
+        else if (key == SDLK_RETURN)
+        {
             if (GUIChatBox::Instance().GetInputActive())
                 GUIChatBox::Instance().SubmitInput();
             else

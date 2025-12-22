@@ -7,18 +7,21 @@
 
 #include <string>
 
-namespace Forradia {
+namespace Forradia
+{
     /**
      * A texture, primarily used for models.
      */
-    class Texture {
+    class Texture
+    {
       public:
         /**
          * Constructor for the Texture class.
          *
          * @param path The path to the texture.
          */
-        Texture(std::string_view path) : path(path) {
+        Texture(std::string_view path) : path(path)
+        {
         }
 
         std::string path{}; ///< The path to the texture.

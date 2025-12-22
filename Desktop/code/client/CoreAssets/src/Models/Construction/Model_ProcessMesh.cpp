@@ -6,14 +6,18 @@
 #include "ErrorUtilities.hpp"
 #include "Model.hpp"
 
-namespace Forradia {
+namespace Forradia
+{
     auto Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
-        -> GLMMesh {
-        if (mesh == nullptr) {
+        -> GLMMesh
+    {
+        if (mesh == nullptr)
+        {
             ThrowError("mesh is nullptr");
         }
 
-        if (scene == nullptr) {
+        if (scene == nullptr)
+        {
             ThrowError("scene is nullptr");
         }
 

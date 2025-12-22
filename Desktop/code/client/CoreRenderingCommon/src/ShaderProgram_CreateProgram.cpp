@@ -7,8 +7,10 @@
 #include <GL/glext.h>
 #include <vector>
 
-namespace Forradia {
-    auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint {
+namespace Forradia
+{
+    auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint
+    {
         m_programID = glCreateProgram();
         glAttachShader(m_programID, vertexShader);
         glAttachShader(m_programID, fragmentShader);
@@ -17,7 +19,8 @@ namespace Forradia {
         glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
 
         // If the link failed.
-        if (isLinked == GL_FALSE) {
+        if (isLinked == GL_FALSE)
+        {
             GLint maxLength{0};
             glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);
             std::vector<GLchar> infoLog(maxLength);
