@@ -15,7 +15,6 @@
 #include "RandomizationUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "SceneManager.hpp"
-#include "Singleton.hpp"
 
 namespace Forradia {
     auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void {

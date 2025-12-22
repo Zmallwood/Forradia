@@ -26,4 +26,3 @@
 #include "Geometry/Size.hpp"
 #include "Hash.hpp"
 #include "MouseUtilities.hpp"
-#include "Singleton.hpp"

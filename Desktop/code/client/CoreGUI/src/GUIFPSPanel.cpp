@@ -6,7 +6,6 @@
 #include "GUIFPSPanel.hpp"
 #include "FPSCounter.hpp"
 #include "GUILabel.hpp"
-#include "Singleton.hpp"
 #include <fmt/format.h>
 
 namespace Forradia {

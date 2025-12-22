@@ -7,7 +7,6 @@
 #include "CanvasUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
-#include "Singleton.hpp"
 
 namespace Forradia {
     auto GroundRenderer::Cleanup() -> void {

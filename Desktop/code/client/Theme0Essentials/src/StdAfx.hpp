@@ -16,4 +16,3 @@
 
 #include "Geometry/SizeF.hpp"
 #include "NumbersUtilities.hpp"
-#include "Singleton.hpp"

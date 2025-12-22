@@ -16,5 +16,4 @@
 #include "Hash.hpp"
 #include "MessageUtilities.hpp"
 #include "RandomizationUtilities.hpp"
-#include "Singleton.hpp"
 #include "TimeUtilities.hpp"

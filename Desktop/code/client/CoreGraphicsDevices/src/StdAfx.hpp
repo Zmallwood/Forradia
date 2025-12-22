@@ -18,4 +18,3 @@
 #include "Geometry/Size.hpp"
 #include "MessageUtilities.hpp"
 #include "SDLDeleter.hpp"
-#include "Singleton.hpp"

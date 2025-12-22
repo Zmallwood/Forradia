@@ -6,7 +6,6 @@
 #include "GLDevice.hpp"
 #include "MessageUtilities.hpp"
 #include "SDLDevice.hpp"
-#include "Singleton.hpp"
 #include <SDL2/SDL.h>
 // clang-format off
 #include <GL/glew.h>

@@ -6,7 +6,6 @@
 #include "GUIComponent.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
-#include "Singleton.hpp"
 #include <algorithm>
 #include <ranges>
 

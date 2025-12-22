@@ -7,7 +7,6 @@
 #include "CanvasUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
-#include "Singleton.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>

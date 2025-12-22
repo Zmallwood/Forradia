@@ -6,7 +6,6 @@
 #include "GUIMeter.hpp"
 #include "Color2DRenderer.hpp"
 #include "Coloring/Palette.hpp"
-#include "Singleton.hpp"
 
 namespace Forradia {
     auto GUIMeter::RenderDerived() const -> void {

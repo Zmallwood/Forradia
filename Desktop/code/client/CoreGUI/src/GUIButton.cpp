@@ -7,7 +7,6 @@
 #include "Cursor.hpp"
 #include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
-#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

@@ -8,7 +8,6 @@
 #include "Coloring/Palette.hpp"
 #include "Engine.hpp"
 #include "Image2DRenderer.hpp"
-#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 #include <fmt/format.h>
 

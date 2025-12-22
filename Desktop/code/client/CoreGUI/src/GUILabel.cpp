@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUILabel.hpp"
-#include "Singleton.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia {

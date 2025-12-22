@@ -23,4 +23,3 @@
 #include "Geometry/Point.hpp"
 #include "Geometry/Point3F.hpp"
 #include "Geometry/Size.hpp"
-#include "Singleton.hpp"
