@@ -25,10 +25,6 @@ namespace Forradia {
         if (!m_visible || !m_enabled)
             return false;
 
-        //        for (auto &childComponent : std::ranges::reverse_view(m_childComponents))
-        //            if (childComponent->OnMouseDown(mouseButton))
-        //                return true;
-
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp) {
                             return comp->OnMouseDown(mouseButton);
@@ -55,10 +51,6 @@ namespace Forradia {
     auto GUIComponent::OnMouseWheel(int delta) -> bool {
         if (!m_visible || !m_enabled)
             return false;
-
-        //        for (auto &childComponent : std::ranges::reverse_view(m_childComponents))
-        //            if (childComponent->OnMouseWheel(delta))
-        //                return true;
 
         if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
                         [=](const std::shared_ptr<GUIComponent> &comp) {

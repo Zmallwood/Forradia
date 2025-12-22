@@ -33,8 +33,6 @@ namespace Forradia {
         if (hovered) {
             dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_hoveredBackgroundImage);
             Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
-            //      if (Singleton<MouseInput>().GetLeftMouseButtonRef().HasBeenFiredPickResult())
-            //        m_action();
         } else {
             dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_backgroundImage);
         }

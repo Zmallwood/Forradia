@@ -8,16 +8,16 @@
 namespace Forradia {
     auto Color2DRenderer::GetFSSource() const -> std::string {
         return R"(
-      #version 330 core
-      
-      out vec4 FragColor;
+          #version 330 core
           
-      in vec4 ourColor;
+          out vec4 FragColor;
+              
+          in vec4 ourColor;
 
-      void main()
-      {
-          FragColor = ourColor;
-      }
-    )";
+          void main()
+          {
+              FragColor = ourColor;
+          }
+        )";
     }
 }

@@ -81,11 +81,6 @@ namespace Forradia {
                         xPos + width, yPos + height, 0.0F, color.r, color.g, color.b, color.a,
                         xPos,         yPos + height, 0.0F, color.r, color.g, color.b, color.a};
 
-            //  float vertices[] = {x,         y,          0.0F, c.r, c.g, c.b, c.a,
-            //                      x + width, y,          0.0F, c.r, c.g, c.b, c.a,
-            //                      x + width, y + height, 0.0F, c.r, c.g, c.b, c.a,
-            //                      x,         y + height, 0.0F, c.r, c.g, c.b, c.a};
-
             std::array<unsigned short, 4> indices{0, 1, 2, 3};
 
             constexpr int k_floatsPerVertex = 7;

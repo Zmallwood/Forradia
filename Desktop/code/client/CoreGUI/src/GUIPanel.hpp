@@ -44,7 +44,6 @@ namespace Forradia {
             m_backgroundImage = value;
         }
 
-      protected:
       private:
         inline static const std::string k_defaultBackgroundImage{"GUIPanelBackground"};
         const int k_renderIDBackground;

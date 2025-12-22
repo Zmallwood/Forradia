@@ -75,24 +75,6 @@ namespace Forradia::Theme0 {
             m_entity = value;
         }
 
-        //  /**
-        //   * Gets the robot on the tile.
-        //   *
-        //   * @return The robot on the tile, or nullptr if no robot is on the tile.
-        //   */
-        //  auto GetRobot() const {
-        //    return m_robot;
-        //  }
-        //
-        //  /**
-        //   * Sets the robot on the tile.
-        //   *
-        //   * @param value The robot on the tile.
-        //   */
-        //  auto SetRobot(SharedPtr<Robot> value) -> void {
-        //    m_robot = value;
-        //  }
-
         /**
          * Gets the elevation of the tile.
          *

@@ -169,14 +169,6 @@ namespace Forradia::Theme0 {
             return m_experience;
         }
 
-        // auto GetPlayerMode() const {
-        //   return m_playerMode;
-        // }
-
-        // void SetPlayerMode(PlayerModes playerMode) {
-        //   m_playerMode = playerMode;
-        // }
-
         /**
          * Gets the well being of the player.
          *
