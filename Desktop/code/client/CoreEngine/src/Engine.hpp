@@ -15,7 +15,7 @@ namespace Forradia {
      */
     class Engine {
       public:
-        static Engine &Instance() {
+        static auto Instance() -> Engine & {
             static Engine instance;
             return instance;
         }
@@ -23,7 +23,7 @@ namespace Forradia {
         // Delete copy/move
         Engine(const Engine &) = delete;
 
-        Engine &operator=(const Engine &) = delete;
+        auto operator=(const Engine &) -> Engine & = delete;
 
         Engine() = default;
 

@@ -20,7 +20,7 @@ namespace Forradia {
      */
     class SDLDevice {
       public:
-        static SDLDevice &Instance() {
+        static auto Instance() -> SDLDevice & {
             static SDLDevice instance;
             return instance;
         }
@@ -28,7 +28,7 @@ namespace Forradia {
         // Delete copy/move
         SDLDevice(const SDLDevice &) = delete;
 
-        SDLDevice &operator=(const SDLDevice &) = delete;
+        auto operator=(const SDLDevice &) -> SDLDevice & = delete;
 
         SDLDevice() = default;
 

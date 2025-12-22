@@ -16,14 +16,14 @@ namespace Forradia {
      */
     class Camera {
       public:
-        static Camera &Instance() {
+        static auto Instance() -> Camera & {
             static Camera instance;
             return instance;
         }
 
         // Delete copy/move
         Camera(const Camera &) = delete;
-        Camera &operator=(const Camera &) = delete;
+        auto operator=(const Camera &) -> Camera & = delete;
 
         Camera() = default;
 

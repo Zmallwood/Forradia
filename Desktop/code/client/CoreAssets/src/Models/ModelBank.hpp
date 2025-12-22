@@ -16,7 +16,7 @@ namespace Forradia {
      */
     class ModelBank {
       public:
-        static ModelBank &Instance() {
+        static auto Instance() -> ModelBank & {
             static ModelBank instance;
             return instance;
         }
@@ -24,7 +24,7 @@ namespace Forradia {
         // Delete copy/move
         ModelBank(const ModelBank &) = delete;
 
-        ModelBank &operator=(const ModelBank &) = delete;
+        auto operator=(const ModelBank &) -> ModelBank & = delete;
 
         /**
          * Constructor.

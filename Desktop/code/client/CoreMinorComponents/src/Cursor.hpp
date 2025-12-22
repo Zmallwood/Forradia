@@ -14,7 +14,7 @@ namespace Forradia {
      */
     class Cursor {
       public:
-        static Cursor &Instance() {
+        static auto Instance() -> Cursor & {
             static Cursor instance;
             return instance;
         }
@@ -22,7 +22,7 @@ namespace Forradia {
         // Delete copy/move
         Cursor(const Cursor &) = delete;
 
-        Cursor &operator=(const Cursor &) = delete;
+        auto operator=(const Cursor &) -> Cursor & = delete;
 
         /**
          * Default constructor

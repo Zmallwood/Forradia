@@ -11,7 +11,7 @@ namespace Forradia {
      */
     class FPSCounter {
       public:
-        static FPSCounter &Instance() {
+        static auto Instance() -> FPSCounter & {
             static FPSCounter instance;
             return instance;
         }
@@ -19,7 +19,7 @@ namespace Forradia {
         // Delete copy/move
         FPSCounter(const FPSCounter &) = delete;
 
-        FPSCounter &operator=(const FPSCounter &) = delete;
+        auto operator=(const FPSCounter &) -> FPSCounter & = delete;
 
         FPSCounter() = default;
 

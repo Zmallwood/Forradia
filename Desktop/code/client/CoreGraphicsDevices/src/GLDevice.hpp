@@ -15,7 +15,7 @@ namespace Forradia {
      */
     class GLDevice {
       public:
-        static GLDevice &Instance() {
+        static auto Instance() -> GLDevice & {
             static GLDevice instance;
             return instance;
         }
@@ -23,7 +23,7 @@ namespace Forradia {
         // Delete copy/move
         GLDevice(const GLDevice &) = delete;
 
-        GLDevice &operator=(const GLDevice &) = delete;
+        auto operator=(const GLDevice &) -> GLDevice & = delete;
 
         GLDevice() = default;
 
