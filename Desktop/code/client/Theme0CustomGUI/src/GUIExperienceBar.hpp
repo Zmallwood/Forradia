@@ -14,6 +14,20 @@ namespace Forradia::Theme0 {
      */
     class GUIExperienceBar : public GUIMeter {
       public:
+        static auto InstancePtr() -> std::shared_ptr<GUIExperienceBar> {
+            static std::shared_ptr<GUIExperienceBar> instancePtr =
+                std::make_shared<GUIExperienceBar>();
+            return instancePtr;
+        }
+
+        static auto Instance() -> GUIExperienceBar & {
+            return *InstancePtr();
+        }
+
+        // Delete copy/move
+        GUIExperienceBar(const GUIExperienceBar &) = delete;
+        GUIExperienceBar &operator=(const GUIExperienceBar &) = delete;
+
         /**
          * Constructor.
          */

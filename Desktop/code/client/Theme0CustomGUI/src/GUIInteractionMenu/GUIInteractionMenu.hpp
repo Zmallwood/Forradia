@@ -14,6 +14,20 @@ namespace Forradia::Theme0 {
      */
     class GUIInteractionMenu : public GUIPanel {
       public:
+        static auto InstancePtr() -> std::shared_ptr<GUIInteractionMenu> {
+            static std::shared_ptr<GUIInteractionMenu> instancePtr =
+                std::make_shared<GUIInteractionMenu>();
+            return instancePtr;
+        }
+
+        static auto Instance() -> GUIInteractionMenu & {
+            return *InstancePtr();
+        }
+
+        // Delete copy/move
+        GUIInteractionMenu(const GUIInteractionMenu &) = delete;
+        GUIInteractionMenu &operator=(const GUIInteractionMenu &) = delete;
+
         /**
          * Constructor.
          */

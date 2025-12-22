@@ -16,6 +16,19 @@ namespace Forradia {
      */
     class GUIChatBox : public GUIPanel {
       public:
+        static auto InstancePtr() -> std::shared_ptr<GUIChatBox> {
+            static std::shared_ptr<GUIChatBox> instancePtr = std::make_shared<GUIChatBox>();
+            return instancePtr;
+        }
+
+        static auto Instance() -> GUIChatBox & {
+            return *InstancePtr();
+        }
+
+        // Delete copy/move
+        GUIChatBox(const GUIChatBox &) = delete;
+        GUIChatBox &operator=(const GUIChatBox &) = delete;
+
         /**
          * Constructor.
          */

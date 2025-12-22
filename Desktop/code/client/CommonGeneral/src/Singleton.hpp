@@ -14,11 +14,11 @@ namespace Forradia {
      * @tparam T Type to get singleton for.
      * @return The singleton object as a SharedPtr.
      */
-    template <class T>
-    auto SingletonPtr() -> std::shared_ptr<T> {
-        static std::shared_ptr<T> instance{std::make_shared<T>()};
-        return instance;
-    }
+    // template <class T>
+    // auto SingletonPtr() -> std::shared_ptr<T> {
+    //     static std::shared_ptr<T> instance{std::make_shared<T>()};
+    //     return instance;
+    // }
 
     /**
      * Returns a singleton of an object of type T, in the form of a reference.
@@ -28,6 +28,8 @@ namespace Forradia {
      */
     template <class T>
     auto Singleton() -> T & {
-        return *SingletonPtr<T>();
+        static T instance;
+        return instance;
+        // return *SingletonPtr<T>();
     }
 }

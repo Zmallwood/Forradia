@@ -34,7 +34,7 @@
 namespace Forradia::Theme0 {
     auto MainScene::InitializeDerived() -> void {
         GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
-        GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
+        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
 
         auto btnInventoryWindow{std::make_shared<GUIButton>(
             "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
@@ -50,11 +50,11 @@ namespace Forradia::Theme0 {
             "GUIButtonSystemMenuHoveredBackground")};
         GetGUI()->AddChildComponent(btnSystemMenu);
         //  GetGUI()->AddChildComponent(SingletonPtr<GUIInventoryWindow>());
-        GetGUI()->AddChildComponent(SingletonPtr<GUISystemMenu>());
+        GetGUI()->AddChildComponent(GUISystemMenu::InstancePtr());
         GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
         GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
         // GetGUI()->AddChildComponent(SingletonPtr<GUIInteractionMenu>());
-        GetGUI()->AddChildComponent(SingletonPtr<GUIExperienceBar>());
+        GetGUI()->AddChildComponent(GUIExperienceBar::InstancePtr());
 
         auto rightHandSlotPanel{std::make_shared<GUIPanel>(
             "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
@@ -71,7 +71,7 @@ namespace Forradia::Theme0 {
 
         // m_guiInventoryWindow =
         //     std::make_shared<GUIInventoryWindow>(Singleton<Player>().GetObjectsInventoryRef());
-        m_guiInteractionMenu = SingletonPtr<GUIInteractionMenu>();
+        m_guiInteractionMenu = GUIInteractionMenu::InstancePtr();
     }
 
     auto MainScene::OnEnterDerived() -> void {

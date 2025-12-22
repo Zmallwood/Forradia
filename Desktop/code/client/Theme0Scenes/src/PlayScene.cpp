@@ -30,7 +30,7 @@ namespace Forradia::Theme0 {
             [] { Singleton<SceneManager>().GoToScene("MainMenuScene"); })};
         GetGUI()->AddChildComponent(btnBack);
 
-        GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
+        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
     }
 
     auto PlayScene::RenderDerived() const -> void {

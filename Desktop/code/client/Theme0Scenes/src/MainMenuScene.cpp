@@ -27,7 +27,7 @@ namespace Forradia::Theme0 {
                                                  [] { Singleton<Engine>().Stop(); })};
         GetGUI()->AddChildComponent(btnQuit);
 
-        GetGUI()->AddChildComponent(SingletonPtr<GUIChatBox>());
+        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
     }
 
     auto MainMenuScene::RenderDerived() const -> void {

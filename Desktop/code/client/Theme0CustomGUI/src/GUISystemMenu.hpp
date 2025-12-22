@@ -13,6 +13,19 @@ namespace Forradia::Theme0 {
      */
     class GUISystemMenu : public GUIComponent {
       public:
+        static auto InstancePtr() -> std::shared_ptr<GUISystemMenu> {
+            static std::shared_ptr<GUISystemMenu> instancePtr = std::make_shared<GUISystemMenu>();
+            return instancePtr;
+        }
+
+        static auto Instance() -> GUISystemMenu & {
+            return *InstancePtr();
+        }
+
+        // Delete copy/move
+        GUISystemMenu(const GUISystemMenu &) = delete;
+        GUISystemMenu &operator=(const GUISystemMenu &) = delete;
+
         /**
          * Constructor.
          */
