@@ -9,9 +9,14 @@
 #include "GroundRenderingOperation.hpp"
 #include "RendererBase.hpp"
 #include "TileDrawGroup.hpp"
+#include <array>
 #include <glm/glm.hpp>
 #include <unordered_map>
 #include <vector>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia {
     /**
@@ -93,17 +98,16 @@ namespace Forradia {
       private:
         [[nodiscard]] auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
 
-        [[nodiscard]] auto CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate,
-                                                     float tileSize,
-                                                     const std::vector<float> &elevations,
-                                                     std::vector<Color> colors) const
+        [[nodiscard]] static auto
+        CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+                                  const std::vector<float> &elevations, std::vector<Color> colors)
             -> std::vector<float>;
 
         [[nodiscard]] auto
         CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals) const
             -> std::vector<float>;
 
-        [[nodiscard]] auto CalcTileNormals(const std::vector<float> &verticesNoNormals) const
+        [[nodiscard]] static auto CalcTileNormals(const std::vector<float> &verticesNoNormals)
             -> std::vector<glm::vec3>;
 
         static constexpr std::array<unsigned short, 4> k_indices = {0, 1, 2, 3};

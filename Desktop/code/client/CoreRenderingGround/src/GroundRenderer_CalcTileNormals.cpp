@@ -4,9 +4,10 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
+#include "MathUtilities.hpp"
 
 namespace Forradia {
-    auto GroundRenderer::CalcTileNormals(const std::vector<float> &verticesNoNormals) const
+    auto GroundRenderer::CalcTileNormals(const std::vector<float> &verticesNoNormals)
         -> std::vector<glm::vec3> {
         constexpr size_t k_vertexStride = 8;
         constexpr size_t k_requiredVertices = 9;
@@ -18,7 +19,7 @@ namespace Forradia {
 
         // Create a map to store the vertices with positions only. This will be used to
         // calculate the normals.
-        std::unordered_map<int, std::unordered_map<int, glm::vec3>> v;
+        std::unordered_map<int, std::unordered_map<int, glm::vec3>> coords;
 
         // Loop through the vertices and store them in the map.
         for (auto yIdx = 0; yIdx < 3; yIdx++) {
@@ -32,15 +33,15 @@ namespace Forradia {
                 auto vertZ{verticesNoNormals[idx * k_vertexStride + 2]};
 
                 // Store the vertex coordinates in the map.
-                v[xIdx][yIdx] = glm::vec3{vertX, vertY, vertZ};
+                coords[xIdx][yIdx] = glm::vec3{vertX, vertY, vertZ};
             }
         }
 
         // Calculate the normals.
-        auto normal00{ComputeNormal(v[1][0], v[0][0], v[0][1])};
-        auto normal10{ComputeNormal(v[2][0], v[1][0], v[1][1])};
-        auto normal11{ComputeNormal(v[2][1], v[1][1], v[1][2])};
-        auto normal01{ComputeNormal(v[1][1], v[0][1], v[0][2])};
+        auto normal00{ComputeNormal(coords[1][0], coords[0][0], coords[0][1])};
+        auto normal10{ComputeNormal(coords[2][0], coords[1][0], coords[1][1])};
+        auto normal11{ComputeNormal(coords[2][1], coords[1][1], coords[1][2])};
+        auto normal01{ComputeNormal(coords[1][1], coords[0][1], coords[0][2])};
 
         // Invert the z-component of the normals.
         normal00.z *= -1.0F;
