@@ -13,6 +13,16 @@ namespace Forradia {
      */
     class SkyRenderer : public RendererBase {
       public:
+        static SkyRenderer &Instance() {
+            static SkyRenderer instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        SkyRenderer(const SkyRenderer &) = delete;
+
+        SkyRenderer &operator=(const SkyRenderer &) = delete;
+
         /**
          * Constructor.
          */

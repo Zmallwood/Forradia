@@ -16,6 +16,18 @@ namespace Forradia {
      */
     class SceneManager {
       public:
+        static SceneManager &Instance() {
+            static SceneManager instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        SceneManager(const SceneManager &) = delete;
+
+        SceneManager &operator=(const SceneManager &) = delete;
+
+        SceneManager() = default;
+
         /**
          * Adds a scene to the manager.
          *

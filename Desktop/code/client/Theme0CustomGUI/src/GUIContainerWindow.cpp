@@ -49,19 +49,19 @@ namespace Forradia::Theme0 {
     std::shared_ptr<Object> *GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) {
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, Singleton<SDLDevice>().GetWindow())};
+        auto marginY{ConvertWidthToHeight(k_margin, SDLDevice::Instance().GetWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
                     m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, Singleton<SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(k_slotSize, SDLDevice::Instance().GetWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto &objectsContainer{m_containedObjects};
 
@@ -93,13 +93,13 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, Singleton<SDLDevice>().GetWindow())};
+        auto marginY{ConvertWidthToHeight(k_margin, SDLDevice::Instance().GetWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
                     m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, Singleton<SDLDevice>().GetWindow())};
+        auto slotHeight{ConvertWidthToHeight(k_slotSize, SDLDevice::Instance().GetWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
@@ -128,7 +128,7 @@ namespace Forradia::Theme0 {
                     return;
                 }
 
-                Singleton<Image2DRenderer>().DrawImageByName(
+                Image2DRenderer::Instance().DrawImageByName(
                     renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
                     yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
 
@@ -147,7 +147,7 @@ namespace Forradia::Theme0 {
                         return;
                     }
 
-                    Singleton<Image2DRenderer>().DrawImageByHash(
+                    Image2DRenderer::Instance().DrawImageByHash(
                         renderIDObject, inventoryObject->GetType(),
                         xStart + x * (slotWidth + marginX), yStart + y * (slotHeight + marginY),
                         slotWidth, slotHeight, true);

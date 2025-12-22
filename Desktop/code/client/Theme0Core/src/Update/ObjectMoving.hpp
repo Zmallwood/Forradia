@@ -5,6 +5,6 @@
 
 #pragma once
 
-namespace Forradia {
+namespace Forradia::Theme0 {
     class ObjectMoving {};
 }

@@ -21,7 +21,7 @@ namespace Forradia {
         GLuint ibo;
         GLuint vbo;
 
-        auto model{Singleton<ModelBank>().GetModel(modelNameHash)};
+        auto model{ModelBank::Instance().GetModel(modelNameHash)};
         auto &meshes{model->GetMeshesRef()};
 
         // If the drawing operation is cached.
@@ -57,16 +57,15 @@ namespace Forradia {
 
             float totalModelScaling{k_globalModelScaling};
 
-            if (!Singleton<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
+            if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
                 totalModelScaling *= modelScaling;
 
-            if (Singleton<Theme0::ObjectIndex>().ObjectEntryExists(modelNameHash))
-                totalModelScaling *=
-                    Singleton<Theme0::ObjectIndex>().GetModelScaling(modelNameHash);
+            if (Theme0::ObjectIndex::Instance().ObjectEntryExists(modelNameHash))
+                totalModelScaling *= Theme0::ObjectIndex::Instance().GetModelScaling(modelNameHash);
 
-            if (Singleton<Theme0::CreatureIndex>().CreatureEntryExists(modelNameHash))
+            if (Theme0::CreatureIndex::Instance().CreatureEntryExists(modelNameHash))
                 totalModelScaling *=
-                    Singleton<Theme0::CreatureIndex>().GetModelScaling(modelNameHash);
+                    Theme0::CreatureIndex::Instance().GetModelScaling(modelNameHash);
 
             // For each mesh.
             for (auto &mesh : meshes) {
@@ -117,10 +116,9 @@ namespace Forradia {
             m_operationsCache[modelNameHash] = entry;
         }
 
-        auto elevationHeight{Singleton<Theme0::Theme0Properties>().GetElevationHeight()};
+        auto elevationHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
 
-        auto levitationHeight{
-            Singleton<Theme0::CreatureIndex>().GetLevitationHeight(modelNameHash)};
+        auto levitationHeight{Theme0::CreatureIndex::Instance().GetLevitationHeight(modelNameHash)};
 
         // Calculate the model matrix. This matrix differs between different rendering
         // operations, even though they use the same model.
@@ -130,11 +128,11 @@ namespace Forradia {
         modelMatrix = glm::translate(
             modelMatrix, glm::vec3(x, y, elevation * elevationHeight + levitationHeight));
 
-        if (!Singleton<Theme0::ObjectIndex>().GetIgnoreIndividualModelScaling(modelNameHash))
+        if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
-        auto viewMatrix{Singleton<Camera>().GetViewMatrix()};
-        auto projectionMatrix{Singleton<Camera>().GetProjectionMatrix()};
+        auto viewMatrix{Camera::Instance().GetViewMatrix()};
+        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
 
         glUniformMatrix4fv(m_layoutLocationProjectionMatrix, 1, GL_FALSE, &projectionMatrix[0][0]);
         glUniformMatrix4fv(m_layoutLocationModelMatrix, 1, GL_FALSE, &modelMatrix[0][0]);
@@ -143,7 +141,7 @@ namespace Forradia {
         auto textureName{meshes.at(0).textures.at(0).path};
         auto textureNameHash{Hash(textureName)};
 
-        auto textureID{Singleton<TextureBank>().GetTexture(textureNameHash)};
+        auto textureID{TextureBank::Instance().GetTexture(textureNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         auto &entry{m_operationsCache.at(modelNameHash)};

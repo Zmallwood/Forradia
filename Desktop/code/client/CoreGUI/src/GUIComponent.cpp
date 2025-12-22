@@ -101,7 +101,7 @@ namespace Forradia {
         if (!m_visible || !m_enabled)
             return false;
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto result{GetBounds().Contains(mousePos)};
 

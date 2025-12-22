@@ -13,6 +13,18 @@ namespace Forradia::Theme0 {
      */
     class WorldGeneratorGround : public WorldGeneratorBase {
       public:
+        static WorldGeneratorGround &Instance() {
+            static WorldGeneratorGround instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldGeneratorGround(const WorldGeneratorGround &) = delete;
+
+        WorldGeneratorGround &operator=(const WorldGeneratorGround &) = delete;
+
+        WorldGeneratorGround() = default;
+
         /**
          * Do all the steps to generate the ground with elevation.
          */

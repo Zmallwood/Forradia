@@ -24,14 +24,14 @@ namespace Forradia {
         Randomize();
 
         // Initialize graphics devices.
-        Singleton<SDLDevice>().Initialize(gameWindowTitle, clearColor);
-        Singleton<GLDevice>().Initialize();
+        SDLDevice::Instance().Initialize(gameWindowTitle, clearColor);
+        GLDevice::Instance().Initialize();
 
         // Initialize renderers.
-        Singleton<Color2DRenderer>().Initialize();
-        Singleton<Image2DRenderer>().Initialize();
-        Singleton<GroundRenderer>().Initialize();
-        Singleton<ModelRenderer>().Initialize();
+        Color2DRenderer::Instance().Initialize();
+        Image2DRenderer::Instance().Initialize();
+        GroundRenderer::Instance().Initialize();
+        ModelRenderer::Instance().Initialize();
     }
 
     auto Engine::Run() -> void {
@@ -39,17 +39,17 @@ namespace Forradia {
         // in the game.
         try {
             while (m_running) {
-                Singleton<Cursor>().ResetStyleToNormal();
+                Cursor::Instance().ResetStyleToNormal();
 
                 this->HandleEvents();
 
-                Singleton<SceneManager>().UpdateCurrentScene();
-                Singleton<FPSCounter>().Update();
+                SceneManager::Instance().UpdateCurrentScene();
+                FPSCounter::Instance().Update();
 
-                Singleton<SDLDevice>().ClearCanvas();
-                Singleton<SceneManager>().RenderCurrentScene();
-                Singleton<Cursor>().Render();
-                Singleton<SDLDevice>().PresentCanvas();
+                SDLDevice::Instance().ClearCanvas();
+                SceneManager::Instance().RenderCurrentScene();
+                Cursor::Instance().Render();
+                SDLDevice::Instance().PresentCanvas();
             }
         } catch (std::exception &e) {
             PrintLine("An error occured: " + std::string(e.what()));

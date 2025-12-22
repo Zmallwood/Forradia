@@ -14,6 +14,16 @@ namespace Forradia {
      */
     class Cursor {
       public:
+        static Cursor &Instance() {
+            static Cursor instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        Cursor(const Cursor &) = delete;
+
+        Cursor &operator=(const Cursor &) = delete;
+
         /**
          * Default constructor
          */

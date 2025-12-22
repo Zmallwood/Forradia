@@ -13,6 +13,20 @@ namespace Forradia::Theme0 {
      * It displays the title of the game and the main menu.
      */
     class MainMenuScene : public IScene {
+      public:
+        static MainMenuScene &Instance() {
+            static MainMenuScene instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        MainMenuScene(const MainMenuScene &) = delete;
+
+        MainMenuScene &operator=(const MainMenuScene &) = delete;
+
+        MainMenuScene() = default;
+
+      protected:
         /**
          * Initializes the main menu scene.
          */

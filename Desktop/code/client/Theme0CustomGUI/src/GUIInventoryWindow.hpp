@@ -13,11 +13,13 @@ namespace Forradia::Theme0 {
     class GUIInventoryWindow : public GUIContainerWindow {
       public:
         static GUIInventoryWindow &Instance() {
-            static GUIInventoryWindow instance(Singleton<Player>().GetObjectsInventoryRef());
+            static GUIInventoryWindow instance(Player::Instance().GetObjectsInventoryRef());
             return instance;
         }
+
         // Delete copy/move
         GUIInventoryWindow(const GUIInventoryWindow &) = delete;
+
         GUIInventoryWindow &operator=(const GUIInventoryWindow &) = delete;
 
         using GUIContainerWindow::GUIContainerWindow;

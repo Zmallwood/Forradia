@@ -11,6 +11,17 @@ namespace Forradia::Theme0 {
      */
     class Theme0Properties {
       public:
+        static Theme0Properties &Instance() {
+            static Theme0Properties instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        Theme0Properties(const Theme0Properties &) = delete;
+        Theme0Properties &operator=(const Theme0Properties &) = delete;
+
+        Theme0Properties() = default;
+
         /**
          * Get the game window title.
          *

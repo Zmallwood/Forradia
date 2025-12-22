@@ -14,6 +14,18 @@ namespace Forradia {
      */
     class ModelRenderer : public RendererBase {
       public:
+        static ModelRenderer &Instance() {
+            static ModelRenderer instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        ModelRenderer(const ModelRenderer &) = delete;
+
+        ModelRenderer &operator=(const ModelRenderer &) = delete;
+
+        ModelRenderer() = default;
+
         /**
          * Destructor that cleans up the renderer.
          */

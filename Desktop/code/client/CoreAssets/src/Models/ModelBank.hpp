@@ -16,6 +16,16 @@ namespace Forradia {
      */
     class ModelBank {
       public:
+        static ModelBank &Instance() {
+            static ModelBank instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        ModelBank(const ModelBank &) = delete;
+
+        ModelBank &operator=(const ModelBank &) = delete;
+
         /**
          * Constructor.
          */

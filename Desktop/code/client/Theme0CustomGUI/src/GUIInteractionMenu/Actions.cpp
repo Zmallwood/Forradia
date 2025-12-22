@@ -32,13 +32,13 @@ namespace Forradia::Theme0 {
                              std::vector<std::shared_ptr<Object> *> objects) {
                     for (auto &object : objects) {
                         if ((*object)->GetType() == Hash("ObjectStoneBowl")) {
-                            auto mainScene{Singleton<SceneManager>().GetScene("MainScene")};
+                            auto mainScene{SceneManager::Instance().GetScene("MainScene")};
                             auto gui{mainScene->GetGUI()};
                             auto containerWindow{std::make_shared<GUIContainerWindow>(
                                 *(*object)->GetContainedObjects())};
                             containerWindow->SetVisible(true);
                             gui->AddChildComponent(containerWindow);
-                            Singleton<GUIChatBox>().Print("You open the stone bowl.");
+                            GUIChatBox::Instance().Print("You open the stone bowl.");
                             break;
                         }
                     }
@@ -57,8 +57,8 @@ namespace Forradia::Theme0 {
                         if ((*objPtr)->GetType() == Hash("ObjectRedApple")) {
                         }
                     }
-                    Singleton<GUIChatBox>().Print("You eat a red apple.");
-                    // Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
+                    GUIChatBox::Instance().Print("You eat a red apple.");
+                    // Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
                     // "ObjectStoneBowl");
                 }};
     }
@@ -71,16 +71,15 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStone")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
 
                     inventory.AddObject("ObjectStoneBowl");
 
-                    Singleton<GUIChatBox>().Print("You craft a stone bowl.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
-                                                        "ObjectStoneBowl");
+                    GUIChatBox::Instance().Print("You craft a stone bowl.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
                 }};
     }
 
@@ -92,19 +91,19 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStoneBrick")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
 
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->GetObjectsStack()->AddObject("ObjectStoneWallDoor");
 
-                    Singleton<GUIChatBox>().Print("You craft a stone wall door.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
-                                                        "ObjectStoneWallDoor", clickedCoordinate);
+                    GUIChatBox::Instance().Print("You craft a stone wall door.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStoneWallDoor", clickedCoordinate);
                 }};
     }
 
@@ -116,19 +115,19 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStoneBrick")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneBrick");
 
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->GetObjectsStack()->AddObject("ObjectStoneWall");
 
-                    Singleton<GUIChatBox>().Print("You craft a stone wall.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
-                                                        clickedCoordinate);
+                    GUIChatBox::Instance().Print("You craft a stone wall.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
+                                                       clickedCoordinate);
                 }};
     }
 
@@ -140,15 +139,15 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStone")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
                     inventory.AddObject("ObjectStoneBrick");
 
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
-                                                        "ObjectStoneBrick");
-                    Singleton<GUIChatBox>().Print("You craft a stone brick.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStoneBrick");
+                    GUIChatBox::Instance().Print("You craft a stone brick.");
                 }};
     }
 
@@ -160,18 +159,18 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStoneSlab")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStoneSlab");
 
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->SetGround(Hash("GroundStoneSlab"));
 
-                    Singleton<GUIChatBox>().Print("You lay a stone slab.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
+                    GUIChatBox::Instance().Print("You lay a stone slab.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
                 }};
     }
 
@@ -183,15 +182,14 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStone")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.RemoveObject("ObjectStone");
                     inventory.AddObject("ObjectStoneSlab");
 
-                    Singleton<GUIChatBox>().Print("You craft a stone slab.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
-                                                        "ObjectStoneSlab");
+                    GUIChatBox::Instance().Print("You craft a stone slab.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
                 }};
     }
 
@@ -203,16 +201,16 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectBranch"), Hash("ObjectStone")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     if (inventory.CountHasObject("ObjectBranch") < 1) {
-                        Singleton<GUIChatBox>().Print(
+                        GUIChatBox::Instance().Print(
                             "You don't have any branches to craft a stone pickaxe.");
                         return;
                     }
 
                     if (inventory.CountHasObject("ObjectStone") < 1) {
-                        Singleton<GUIChatBox>().Print(
+                        GUIChatBox::Instance().Print(
                             "You don't have any stones to craft a stone pickaxe.");
                         return;
                     }
@@ -221,10 +219,10 @@ namespace Forradia::Theme0 {
                     inventory.RemoveObject("ObjectStone");
                     inventory.AddObject("ObjectStonePickaxe");
 
-                    Singleton<GUIChatBox>().Print("You craft a stone pickaxe.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Craft,
-                                                        "ObjectStonePickaxe");
+                    GUIChatBox::Instance().Print("You craft a stone pickaxe.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStonePickaxe");
                 }};
     }
 
@@ -236,13 +234,13 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectStonePickaxe")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectStone");
 
-                    Singleton<GUIChatBox>().Print("You chip some stone.");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+                    GUIChatBox::Instance().Print("You chip some stone.");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
                 }};
     }
 
@@ -254,23 +252,23 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectSmallStones")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
 
                     if (numSmallStonesInInventory <= 0) {
-                        Singleton<GUIChatBox>().Print("You don't have any small stones to lay.");
+                        GUIChatBox::Instance().Print("You don't have any small stones to lay.");
                         return;
                     }
 
                     inventory.RemoveObject("ObjectSmallStones");
 
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->SetGround(Hash("GroundCobbleStone"));
 
-                    Singleton<GUIChatBox>().Print("You lay some cobble stone.");
+                    GUIChatBox::Instance().Print("You lay some cobble stone.");
                 }};
     }
 
@@ -282,34 +280,14 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {Hash("ObjectPlow")},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->SetGround(Hash("GroundPlowedLand"));
 
-                    Singleton<GUIChatBox>().Print("You plow the land.");
+                    GUIChatBox::Instance().Print("You plow the land.");
                 }};
     }
-
-    // template <>
-    // auto GetAction<Hash("ActionClaimLand")>() -> Action {
-    //   return {.groundMatches = {}, .objectMatches = {}, .objectsInInventory = {}, .action = []()
-    //   {
-    //             auto worldArea{Singleton<World>().GetCurrentWorldArea()};
-    //             auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
-    //             auto tile{worldArea->GetTile(clickedCoordinate.x, clickedCoordinate.y)};
-
-    //            if (tile) {
-    //              tile->GetObjectsStack()->AddObject("ObjectLandClaimBanner");
-
-    //              for (auto y = clickedCoordinate.y - 3; y <= clickedCoordinate.y + 3; y++)
-    //                for (auto x = clickedCoordinate.x - 3; x <= clickedCoordinate.x + 3; x++)
-    //                  worldArea->AddClaimedCoordinate({x, y});
-    //            }
-
-    //            Singleton<GUIChatBox>().Print("You claim land.");
-    //          }};
-    //}
 
     template <>
     auto GetAction<Hash("ActionStop")>() -> Action {
@@ -321,7 +299,7 @@ namespace Forradia::Theme0 {
                              std::vector<std::shared_ptr<Object> *> objects) {
                     s_timedActions.clear();
 
-                    Singleton<GUIChatBox>().Print("You stopped current action.");
+                    GUIChatBox::Instance().Print("You stopped current action.");
                 }};
     }
 
@@ -333,14 +311,14 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBlueberries");
 
-                    Singleton<GUIChatBox>().Print("Foraging... You found some "
-                                                  "blueberries!");
-                    Singleton<Player>().AddExperience(10);
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Forage);
+                    GUIChatBox::Instance().Print("Foraging... You found some "
+                                                 "blueberries!");
+                    Player::Instance().AddExperience(10);
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Forage);
                 }};
     }
 
@@ -352,12 +330,12 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectBranch");
 
-                    Singleton<GUIChatBox>().Print("You picked a branch!");
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+                    GUIChatBox::Instance().Print("You picked a branch!");
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
                 }};
     }
 
@@ -369,17 +347,17 @@ namespace Forradia::Theme0 {
                 .objectsInInventory = {},
                 .action = [](std::shared_ptr<Tile> tile,
                              std::vector<std::shared_ptr<Object> *> objects) {
-                    auto clickedCoordinate{Singleton<GUIInteractionMenu>().GetClickedCoordinate()};
+                    auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                     if (tile)
                         tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
 
-                    auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                     inventory.AddObject("ObjectStone");
 
-                    Singleton<GUIChatBox>().Print("You picked a stone!");
-                    Singleton<Player>().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
+                    GUIChatBox::Instance().Print("You picked a stone!");
+                    Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
                 }};
     }
 

@@ -18,7 +18,7 @@ namespace Forradia::Theme0 {
     }
 
     auto Player::MoveToSuitablePosition() -> void {
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto size{worldArea->GetSize()};
 
         m_position = {size.width / 2, size.height / 2};
@@ -74,7 +74,7 @@ namespace Forradia::Theme0 {
     auto Player::MoveNorth() -> void {
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
@@ -84,7 +84,7 @@ namespace Forradia::Theme0 {
     auto Player::MoveEast() -> void {
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
@@ -94,7 +94,7 @@ namespace Forradia::Theme0 {
     auto Player::MoveSouth() -> void {
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
@@ -104,7 +104,7 @@ namespace Forradia::Theme0 {
     auto Player::MoveWest() -> void {
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater")) {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});

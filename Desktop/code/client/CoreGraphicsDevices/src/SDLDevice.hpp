@@ -20,6 +20,18 @@ namespace Forradia {
      */
     class SDLDevice {
       public:
+        static SDLDevice &Instance() {
+            static SDLDevice instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        SDLDevice(const SDLDevice &) = delete;
+
+        SDLDevice &operator=(const SDLDevice &) = delete;
+
+        SDLDevice() = default;
+
         /**
          * Sets up SDL and OpenGL.
          *

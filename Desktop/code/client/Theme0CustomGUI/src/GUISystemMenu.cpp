@@ -15,16 +15,16 @@ namespace Forradia::Theme0 {
 
         auto saveGameButton{std::make_shared<GUIButton>(
             "GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f, 0.08f, 0.05f, "Save game", [this] {
-                Singleton<GUIChatBox>().Print("Saving game...");
-                Singleton<GameSaving>().SaveGame();
+                GUIChatBox::Instance().Print("Saving game...");
+                GameSaving::Instance().SaveGame();
             })};
 
         this->AddChildComponent(saveGameButton);
 
         auto loadGameButton{std::make_shared<GUIButton>(
             "GUIButtonLoadGame", 0.5f - 0.08f / 2, 0.5f + 0.05f, 0.08f, 0.05f, "Load game", [this] {
-                Singleton<GUIChatBox>().Print("Loading game...");
-                Singleton<GameSaving>().LoadGame();
+                GUIChatBox::Instance().Print("Loading game...");
+                GameSaving::Instance().LoadGame();
             })};
 
         this->AddChildComponent(loadGameButton);
@@ -37,7 +37,7 @@ namespace Forradia::Theme0 {
     auto GUISystemMenu::RenderDerived() const -> void {
         GUIComponent::RenderDerived();
 
-        Singleton<Color2DRenderer>().DrawFilledRectangle(
+        Color2DRenderer::Instance().DrawFilledRectangle(
             k_renderIDBackgroundColor, {1.0f, 0.0f, 0.7f, 0.5f}, 0.0f, 0.0f, 1.0f, 1.0f);
     }
 }

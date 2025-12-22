@@ -27,6 +27,7 @@ namespace Forradia {
 
         // Delete copy/move
         GUIChatBox(const GUIChatBox &) = delete;
+
         GUIChatBox &operator=(const GUIChatBox &) = delete;
 
         /**

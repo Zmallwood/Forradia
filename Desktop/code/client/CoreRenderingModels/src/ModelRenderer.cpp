@@ -20,7 +20,7 @@ namespace Forradia {
     auto ModelRenderer::SetupState() const -> void {
         glEnable(GL_DEPTH_TEST);
 
-        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
         glUseProgram(GetShaderProgram()->GetProgramID());

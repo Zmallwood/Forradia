@@ -13,6 +13,16 @@ namespace Forradia::Theme0 {
      */
     class World {
       public:
+        static World &Instance() {
+            static World instance;
+            return instance;
+        }
+        // Delete copy/move
+        World(const World &) = delete;
+        World &operator=(const World &) = delete;
+
+        World() = default;
+
         /**
          * Initializes the world.
          *

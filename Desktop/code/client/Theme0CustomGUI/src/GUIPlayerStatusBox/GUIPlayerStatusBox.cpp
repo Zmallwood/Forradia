@@ -25,8 +25,8 @@ namespace Forradia::Theme0 {
     auto GUIPlayerStatusBox::UpdateDerived() -> void {
         GUIPanel::UpdateDerived();
 
-        auto wellBeing{Singleton<Theme0::Player>().GetWellBeing()};
-        auto maxWellBeing{Singleton<Theme0::Player>().GetMaxWellBeing()};
+        auto wellBeing{Player::Instance().GetWellBeing()};
+        auto maxWellBeing{Player::Instance().GetMaxWellBeing()};
 
         m_wellBeingValueTextLabel->SetText(fmt::format("{} / {}", wellBeing, maxWellBeing));
     }
@@ -36,17 +36,16 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
 
-        Singleton<TextRenderer>().DrawString(k_renderIDNameString,
-                                             Singleton<Theme0::Player>().GetName(),
-                                             bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+        TextRenderer::Instance().DrawString(k_renderIDNameString, Player::Instance().GetName(),
+                                            bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
 
-        auto experience{Singleton<Theme0::Player>().GetExperience()};
+        auto experience{Player::Instance().GetExperience()};
         auto level{CalculateCurrentLevel(experience)};
 
-        Singleton<TextRenderer>().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                             bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
-                                             false, true);
-        Singleton<TextRenderer>().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                             bounds.y + 0.095f, FontSizes::_20);
+        TextRenderer::Instance().DrawString(k_renderLevelString, fmt::format("Level: {}", level),
+                                            bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
+                                            false, true);
+        TextRenderer::Instance().DrawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
+                                            bounds.y + 0.095f, FontSizes::_20);
     }
 }

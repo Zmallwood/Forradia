@@ -17,7 +17,7 @@ namespace Forradia {
     }
 
     auto Image2DRenderer::SetupState() const -> void {
-        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
         glUseProgram(GetShaderProgram()->GetProgramID());

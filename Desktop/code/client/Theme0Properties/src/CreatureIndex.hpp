@@ -13,6 +13,16 @@ namespace Forradia::Theme0 {
      */
     class CreatureIndex {
       public:
+        static CreatureIndex &Instance() {
+            static CreatureIndex instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        CreatureIndex(const CreatureIndex &) = delete;
+
+        CreatureIndex &operator=(const CreatureIndex &) = delete;
+
         /**
          * Constructor.
          */

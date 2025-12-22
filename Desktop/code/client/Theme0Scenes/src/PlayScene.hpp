@@ -13,9 +13,19 @@ namespace Forradia::Theme0 {
      * saved game.
      */
     class PlayScene : public IScene {
-        /**
-         * Initializes the play scene.
-         */
+      public:
+        static PlayScene &Instance() {
+            static PlayScene instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        PlayScene(const PlayScene &) = delete;
+
+        PlayScene &operator=(const PlayScene &) = delete;
+
+        PlayScene() = default;
+
       protected:
         /**
          * Initializes the play scene.

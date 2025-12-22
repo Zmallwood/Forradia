@@ -17,6 +17,16 @@ namespace Forradia {
      */
     class TextRenderer {
       public:
+        static TextRenderer &Instance() {
+            static TextRenderer instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        TextRenderer(const TextRenderer &) = delete;
+
+        TextRenderer &operator=(const TextRenderer &) = delete;
+
         /**
          * Constructs a TextRenderer and initializes the rendering system.
          */

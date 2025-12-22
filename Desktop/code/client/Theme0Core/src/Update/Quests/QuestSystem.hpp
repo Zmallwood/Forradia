@@ -13,6 +13,16 @@ namespace Forradia::Theme0 {
      */
     class QuestSystem {
       public:
+        static QuestSystem &Instance() {
+            static QuestSystem instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        QuestSystem(const QuestSystem &) = delete;
+
+        QuestSystem &operator=(const QuestSystem &) = delete;
+
         /**
          * Constructor.
          */

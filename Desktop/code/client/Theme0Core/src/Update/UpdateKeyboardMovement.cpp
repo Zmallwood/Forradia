@@ -20,22 +20,22 @@ namespace Forradia::Theme0 {
 
         if (upPress || rightPress || downPress || leftPress || wPress || aPress || sPress ||
             dPress) {
-            Singleton<Theme0::Player>().SetDestination({-1, -1});
+            Player::Instance().SetDestination({-1, -1});
         }
 
         auto now{GetTicks()};
 
         if (upPress || wPress)
-            Singleton<Theme0::Player>().StartMovingNorth();
+            Player::Instance().StartMovingNorth();
         if (rightPress || dPress)
-            Singleton<Theme0::Player>().StartMovingEast();
+            Player::Instance().StartMovingEast();
         if (downPress || sPress)
-            Singleton<Theme0::Player>().StartMovingSouth();
+            Player::Instance().StartMovingSouth();
         if (leftPress || aPress)
-            Singleton<Theme0::Player>().StartMovingWest();
+            Player::Instance().StartMovingWest();
     }
 
     auto UpdateKeyboardMovementStop() -> void {
-        Singleton<Theme0::Player>().StopMoving();
+        Player::Instance().StopMoving();
     }
 }

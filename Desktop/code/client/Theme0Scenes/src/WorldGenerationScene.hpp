@@ -12,6 +12,19 @@ namespace Forradia::Theme0 {
      * The world generation scene is the scene where the world is generated.
      */
     class WorldGenerationScene : public IScene {
+      public:
+        static WorldGenerationScene &Instance() {
+            static WorldGenerationScene instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldGenerationScene(const WorldGenerationScene &) = delete;
+
+        WorldGenerationScene &operator=(const WorldGenerationScene &) = delete;
+
+        WorldGenerationScene() = default;
+
       protected:
         /**
          * Called when the world generation scene is entered.

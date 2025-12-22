@@ -39,7 +39,7 @@ namespace Forradia::Theme0 {
         case SDL_BUTTON_RIGHT: {
             if (this->GetVisible() == false) {
                 this->SetVisible(true);
-                this->SetPosition(GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow()));
+                this->SetPosition(GetNormallizedMousePosition(SDLDevice::Instance().GetWindow()));
                 this->BuildMenu();
                 return true;
             }
@@ -49,10 +49,9 @@ namespace Forradia::Theme0 {
     }
 
     auto GUIInteractionMenu::BuildMenu() -> void {
-        // this->SetPosition(GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow()));
         m_entries.clear();
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // First check if clicked in inventory (or other GUI windows)
         auto rightClickedInInventoryWindow{
@@ -72,8 +71,8 @@ namespace Forradia::Theme0 {
         }
         // If not clicked in inventory, check if clicked tile
 
-        auto hoveredCoordinate{Singleton<TileHovering>().GetHoveredCoordinate()};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
         m_clickedCoordinate = hoveredCoordinate;
@@ -118,7 +117,7 @@ namespace Forradia::Theme0 {
                                     GetAction<Hash("ActionEatRedApple")>(),
                                     GetAction<Hash("ActionOpenStoneBowl")>()};
 
-        auto &inventory{Singleton<Player>().GetObjectsInventoryRef()};
+        auto &inventory{Player::Instance().GetObjectsInventoryRef()};
         for (auto &action : actions) {
             bool goOn{false};
             for (auto groundMatch : action.groundMatches) {
@@ -160,7 +159,7 @@ namespace Forradia::Theme0 {
 
     auto GUIInteractionMenu::HandleClick() -> void {
         auto bounds{this->GetBounds()};
-        auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto i{0};
 
@@ -170,7 +169,7 @@ namespace Forradia::Theme0 {
                                      k_lineHeight}};
 
             if (menuEntryRect.Contains(mousePosition)) {
-                auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+                auto worldArea{World::Instance().GetCurrentWorldArea()};
                 auto tile{worldArea->GetTile(m_clickedCoordinate)};
                 if (tile) {
                     m_clickedObjects.clear();
@@ -190,12 +189,12 @@ namespace Forradia::Theme0 {
 
         auto bounds{this->GetBounds()};
 
-        Singleton<TextRenderer>().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
-                                             bounds.y + 0.01f, FontSizes::_20, false, true,
-                                             Palette::GetColor<Hash("YellowTransparent")>());
+        TextRenderer::Instance().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
+                                            bounds.y + 0.01f, FontSizes::_20, false, true,
+                                            Palette::GetColor<Hash("YellowTransparent")>());
         auto i{0};
         for (auto &entry : m_entries) {
-            Singleton<TextRenderer>().DrawString(
+            TextRenderer::Instance().DrawString(
                 m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
             ++i;

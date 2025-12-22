@@ -26,7 +26,7 @@ namespace Forradia {
     }
 
     auto SkyRenderer::SetupState() const -> void {
-        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
         glUseProgram(GetShaderProgram()->GetProgramID());
@@ -71,7 +71,7 @@ namespace Forradia {
         // Check if uniform locations are valid (should not be -1).
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
             m_layoutLocationSunElevation == -1) {
-            Singleton<GUIChatBox>().Print(
+            GUIChatBox::Instance().Print(
                 "Uniform locations not found - shader might have compilation errors.");
         }
     }

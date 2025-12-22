@@ -23,16 +23,16 @@ namespace Forradia {
         auto downArrowBounds{this->GetDownArrowBounds()};
         auto sliderBounds{this->GetSliderBounds()};
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         if (upArrowBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
             m_scrollPosition -= k_scrollbarMoveStepSize;
         } else if (downArrowBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
             m_scrollPosition += k_scrollbarMoveStepSize;
         } else if (sliderBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
             m_movingSlider = true;
             m_sliderStartMoveYPos = m_scrollPosition;
             m_sliderStartMoveMouseYPos = mousePos.y;
@@ -47,7 +47,7 @@ namespace Forradia {
 
         m_movingSlider = false;
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         if (GetBounds().Contains(mousePos)) {
             return true;
         }
@@ -58,7 +58,7 @@ namespace Forradia {
     auto GUIScrollableArea::UpdateDerived() -> void {
         GUIComponent::UpdateDerived();
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto upArrowBounds{this->GetUpArrowBounds()};
         auto downArrowBounds{this->GetDownArrowBounds()};
@@ -67,11 +67,11 @@ namespace Forradia {
         auto bounds{GUIComponent::GetBounds()};
 
         if (upArrowBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
         } else if (downArrowBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
         } else if (sliderBounds.Contains(mousePos)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
         if (m_movingSlider) {
@@ -87,7 +87,7 @@ namespace Forradia {
         if (!this->GetVisible())
             return;
 
-        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
         glEnable(GL_SCISSOR_TEST);
         auto bounds{GUIComponent::GetBounds()};
 
@@ -110,19 +110,19 @@ namespace Forradia {
         auto upArrowBounds{this->GetUpArrowBounds()};
         auto downArrowBounds{this->GetDownArrowBounds()};
 
-        Singleton<Image2DRenderer>().DrawImageByName(
+        Image2DRenderer::Instance().DrawImageByName(
             k_renderIDUpArrow, "GUIScrollbarUpArrow", upArrowBounds.x, upArrowBounds.y,
             upArrowBounds.width, upArrowBounds.height, true);
 
-        Singleton<Image2DRenderer>().DrawImageByName(
+        Image2DRenderer::Instance().DrawImageByName(
             k_renderIDDownArrow, "GUIScrollbarDownArrow", downArrowBounds.x, downArrowBounds.y,
             downArrowBounds.width, downArrowBounds.height, true);
 
         auto sliderBounds{this->GetSliderBounds()};
 
-        Singleton<Image2DRenderer>().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider",
-                                                     sliderBounds.x, sliderBounds.y,
-                                                     sliderBounds.width, sliderBounds.height, true);
+        Image2DRenderer::Instance().DrawImageByName(k_renderIDSlider, "GUIScrollbarSlider",
+                                                    sliderBounds.x, sliderBounds.y,
+                                                    sliderBounds.width, sliderBounds.height, true);
     }
 
     auto GUIScrollableArea::GetBounds() const -> RectF {

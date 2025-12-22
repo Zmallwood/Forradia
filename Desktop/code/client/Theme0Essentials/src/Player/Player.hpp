@@ -21,6 +21,16 @@ namespace Forradia::Theme0 {
      */
     class Player {
       public:
+        static Player &Instance() {
+            static Player instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        Player(const Player &) = delete;
+
+        Player &operator=(const Player &) = delete;
+
         /**
          * Constructor.
          */

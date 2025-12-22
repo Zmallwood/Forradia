@@ -24,10 +24,10 @@ namespace Forradia {
     }
 
     auto Cursor::Render() const -> void {
-        auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto width{k_cursorSize};
-        auto height{ConvertWidthToHeight(k_cursorSize, Singleton<SDLDevice>().GetWindow())};
+        auto height{ConvertWidthToHeight(k_cursorSize, SDLDevice::Instance().GetWindow())};
 
         std::string cursorImage;
 
@@ -44,7 +44,7 @@ namespace Forradia {
             break;
         }
 
-        Singleton<Image2DRenderer>().DrawImageByName(
+        Image2DRenderer::Instance().DrawImageByName(
             k_renderID, cursorImage, mousePosition.x - width / 2, mousePosition.y - height / 2,
             width, height, true);
     }

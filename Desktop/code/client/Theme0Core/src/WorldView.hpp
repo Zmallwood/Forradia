@@ -11,6 +11,16 @@ namespace Forradia::Theme0 {
      */
     class WorldView {
       public:
+        static WorldView &Instance() {
+            static WorldView instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldView(const WorldView &) = delete;
+
+        WorldView &operator=(const WorldView &) = delete;
+
         /**
          * Constructor.
          */

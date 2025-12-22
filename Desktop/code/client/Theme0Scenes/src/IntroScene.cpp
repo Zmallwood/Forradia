@@ -19,26 +19,26 @@ namespace Forradia::Theme0 {
     }
 
     auto IntroScene::OnEnterDerived() -> void {
-        Singleton<GUIChatBox>().Print("Game started.");
+        GUIChatBox::Instance().Print("Game started.");
     }
 
     auto IntroScene::OnMouseDown(Uint8 mouseButton) -> void {
-        Singleton<SceneManager>().GoToScene("MainMenuScene");
+        SceneManager::Instance().GoToScene("MainMenuScene");
     }
 
     auto IntroScene::OnKeyDown(SDL_Keycode key) -> void {
-        Singleton<SceneManager>().GoToScene("MainMenuScene");
+        SceneManager::Instance().GoToScene("MainMenuScene");
     }
 
     auto IntroScene::UpdateDerived() -> void {
         m_startText->SetVisible(GetTicks() % 800 < 400);
-        Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+        Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
     }
 
     auto IntroScene::RenderDerived() const -> void {
-        Singleton<Image2DRenderer>().DrawImageByName(
+        Image2DRenderer::Instance().DrawImageByName(
             Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-        Singleton<Image2DRenderer>().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo",
-                                                         0.25f, 0.2f, 0.5f);
+        Image2DRenderer::Instance().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo",
+                                                        0.25f, 0.2f, 0.5f);
     }
 }

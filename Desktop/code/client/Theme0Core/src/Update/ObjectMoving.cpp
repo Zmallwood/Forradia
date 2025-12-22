@@ -5,4 +5,4 @@
 
 #include "ObjectMoving.hpp"
 
-namespace Forradia {}
+namespace Forradia::Theme0 {}

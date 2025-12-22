@@ -11,6 +11,18 @@ namespace Forradia::Theme0 {
      */
     class TileHovering {
       public:
+        static TileHovering &Instance() {
+            static TileHovering instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        TileHovering(const TileHovering &) = delete;
+
+        TileHovering &operator=(const TileHovering &) = delete;
+
+        TileHovering() = default;
+
         /**
          * Updates the tile hovering.
          */

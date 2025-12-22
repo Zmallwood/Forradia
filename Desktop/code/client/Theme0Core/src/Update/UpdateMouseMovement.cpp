@@ -10,31 +10,31 @@
 
 namespace Forradia::Theme0 {
     auto UpdateMouseMovement() -> void {
-        auto playerPosition{Singleton<Player>().GetPosition()};
-        auto destination{Singleton<Player>().GetDestination()};
+        auto playerPosition{Player::Instance().GetPosition()};
+        auto destination{Player::Instance().GetDestination()};
 
         if (destination == Point{-1, -1})
             return;
 
         auto now{GetTicks()};
 
-        if (now >= Singleton<Player>().GetTicksLastMovement() +
-                       InvertSpeed(Singleton<Player>().GetMovementSpeed())) {
+        if (now >= Player::Instance().GetTicksLastMovement() +
+                       InvertSpeed(Player::Instance().GetMovementSpeed())) {
             auto dX{destination.x - playerPosition.x};
             auto dY{destination.y - playerPosition.y};
 
             if (dX < 0)
-                Singleton<Player>().MoveWest();
+                Player::Instance().MoveWest();
             if (dY < 0)
-                Singleton<Player>().MoveNorth();
+                Player::Instance().MoveNorth();
             if (dX > 0)
-                Singleton<Player>().MoveEast();
+                Player::Instance().MoveEast();
             if (dY > 0)
-                Singleton<Player>().MoveSouth();
+                Player::Instance().MoveSouth();
             if (destination == playerPosition)
-                Singleton<Player>().SetDestination({-1, -1});
+                Player::Instance().SetDestination({-1, -1});
 
-            Singleton<Player>().SetTicksLastMovement(now);
+            Player::Instance().SetTicksLastMovement(now);
         }
     }
 }

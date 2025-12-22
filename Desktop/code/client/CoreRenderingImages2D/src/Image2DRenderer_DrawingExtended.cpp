@@ -16,18 +16,18 @@ namespace Forradia {
 
     auto Image2DRenderer::DrawImageByHash(int uniqueRenderID, int imageNameHash, float x, float y,
                                           float width, float height, bool updateExisting) -> void {
-        auto textureID{Singleton<TextureBank>().GetTexture(imageNameHash)};
+        auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
         this->DrawImageByTextureID(uniqueRenderID, textureID, x, y, width, height, updateExisting);
     }
 
     auto Image2DRenderer::DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName,
                                               float x, float y, float width) -> void {
         auto hash{Forradia::Hash(imageName)};
-        auto imageDimensions{Singleton<TextureBank>().GetTextureDimensions(hash)};
+        auto imageDimensions{TextureBank::Instance().GetTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
             return;
 
-        auto canvasAspectRatio{CalcAspectRatio(Singleton<SDLDevice>().GetWindow())};
+        auto canvasAspectRatio{CalcAspectRatio(SDLDevice::Instance().GetWindow())};
         auto imageAspectRatio{static_cast<float>(imageDimensions.width) / imageDimensions.height};
 
         // Calculate the height of the image using the width and the two aspect ratios.

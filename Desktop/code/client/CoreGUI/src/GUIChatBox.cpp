@@ -45,9 +45,9 @@ namespace Forradia {
 
             auto textLine = m_lines.at(index);
 
-            Singleton<TextRenderer>().DrawString(m_renderIDsTextLines.at(i), textLine,
-                                                 bounds.x + k_margin, yPos, FontSizes::_20, false,
-                                                 true);
+            TextRenderer::Instance().DrawString(m_renderIDsTextLines.at(i), textLine,
+                                                bounds.x + k_margin, yPos, FontSizes::_20, false,
+                                                true);
 
             yPos += k_lineHeight;
         }
@@ -57,7 +57,7 @@ namespace Forradia {
         auto separatorWidth{bounds.width - 2 * k_margin};
         auto sepratorHeight{k_separatorHeight};
 
-        Singleton<Color2DRenderer>().DrawLine(
+        Color2DRenderer::Instance().DrawLine(
             k_renderIDSeparator, Palette::GetColor<Hash("Black")>(), separatorX, separatorY,
             separatorX + separatorWidth, separatorY, sepratorHeight, true);
 
@@ -69,12 +69,12 @@ namespace Forradia {
             auto cursorWidth{k_cursorWidth};
             auto cursorHeight{k_lineHeight};
 
-            Singleton<Image2DRenderer>().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor",
-                                                         cursorX, cursorY, cursorWidth,
-                                                         cursorHeight);
+            Image2DRenderer::Instance().DrawImageByName(k_renderIDInputCursor, "GUIInputCursor",
+                                                        cursorX, cursorY, cursorWidth,
+                                                        cursorHeight);
 
-            Singleton<TextRenderer>().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
-                                                 FontSizes::_20, false, true);
+            TextRenderer::Instance().DrawString(k_renderIDInputText, m_input, cursorX, cursorY,
+                                                FontSizes::_20, false, true);
         }
     }
 
@@ -96,7 +96,7 @@ namespace Forradia {
         // TODO: Act on the typed input.
 
         if (m_input == "/quit")
-            Singleton<Engine>().Stop();
+            Engine::Instance().Stop();
 
         SDL_StopTextInput();
 

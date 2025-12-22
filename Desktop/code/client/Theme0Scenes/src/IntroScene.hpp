@@ -17,6 +17,19 @@ namespace Forradia::Theme0 {
      * It displays the title of the game and the main menu.
      */
     class IntroScene : public IScene {
+      public:
+        static IntroScene &Instance() {
+            static IntroScene instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        IntroScene(const IntroScene &) = delete;
+
+        IntroScene &operator=(const IntroScene &) = delete;
+
+        IntroScene() = default;
+
       protected:
         /**
          * Initializes the intro scene.

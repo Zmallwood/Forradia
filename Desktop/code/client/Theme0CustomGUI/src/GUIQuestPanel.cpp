@@ -28,13 +28,13 @@ namespace Forradia::Theme0 {
     auto GUIQuestPanel::UpdateDerived() -> void {
         GUIMovablePanel::UpdateDerived();
 
-        auto questName{Singleton<QuestSystem>().GetCurrentQuestName()};
+        auto questName{QuestSystem::Instance().GetCurrentQuestName()};
         m_questNameTextPanel->SetText(questName);
 
-        auto questDescription{Singleton<QuestSystem>().GetCurrentQuestDescription()};
+        auto questDescription{QuestSystem::Instance().GetCurrentQuestDescription()};
         m_questDescriptionTextPanel->SetText(questDescription);
 
-        auto questStatus{Singleton<QuestSystem>().GetCurrentQuestStatus()};
+        auto questStatus{QuestSystem::Instance().GetCurrentQuestStatus()};
         m_questStatusTextPanel->SetText(questStatus);
     }
 }

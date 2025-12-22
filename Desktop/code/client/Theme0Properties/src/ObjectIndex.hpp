@@ -13,6 +13,16 @@ namespace Forradia::Theme0 {
      */
     class ObjectIndex {
       public:
+        static ObjectIndex &Instance() {
+            static ObjectIndex instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        ObjectIndex(const ObjectIndex &) = delete;
+
+        ObjectIndex &operator=(const ObjectIndex &) = delete;
+
         /**
          * Constructor.
          */

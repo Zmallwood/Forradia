@@ -16,7 +16,7 @@ namespace Forradia {
         auto width{tileSize};
         auto height{tileSize};
 
-        auto elevationHeight{Singleton<Theme0::Theme0Properties>().GetElevationHeight()};
+        auto elevationHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
 
         // Return the nine vertices.
         // clang-format off

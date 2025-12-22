@@ -13,6 +13,18 @@ namespace Forradia::Theme0 {
      */
     class WorldGeneratorEntities : public WorldGeneratorBase {
       public:
+        static WorldGeneratorEntities &Instance() {
+            static WorldGeneratorEntities instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldGeneratorEntities(const WorldGeneratorEntities &) = delete;
+
+        WorldGeneratorEntities &operator=(const WorldGeneratorEntities &) = delete;
+
+        WorldGeneratorEntities() = default;
+
         /**
          * Generates entities for the world.
          */

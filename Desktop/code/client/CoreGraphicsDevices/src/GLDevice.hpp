@@ -15,6 +15,18 @@ namespace Forradia {
      */
     class GLDevice {
       public:
+        static GLDevice &Instance() {
+            static GLDevice instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        GLDevice(const GLDevice &) = delete;
+
+        GLDevice &operator=(const GLDevice &) = delete;
+
+        GLDevice() = default;
+
         /**
          * Default destructor.
          */

@@ -24,7 +24,7 @@ namespace Forradia {
     }
 
     auto Camera::GetProjectionMatrix() -> glm::mat4 {
-        auto aspectRatio{CalcAspectRatio(Singleton<SDLDevice>().GetWindow())};
+        auto aspectRatio{CalcAspectRatio(SDLDevice::Instance().GetWindow())};
         constexpr float k_near{0.1F};
         constexpr float k_far{100.0F};
         return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, k_near, k_far);
@@ -59,10 +59,10 @@ namespace Forradia {
         // Computes the point in world space the camera should look at. This targets the center
         // of the player's current tile and uses the tile's elevation to set Z.
 
-        auto worldArea{Singleton<Theme0::World>().GetCurrentWorldArea()};
-        auto rendTileSize{Singleton<Theme0::Theme0Properties>().GetTileSize()};
-        auto playerPos{Singleton<Theme0::Player>().GetPosition()};
-        auto elevHeight{Singleton<Theme0::Theme0Properties>().GetElevationHeight()};
+        auto worldArea{Theme0::World::Instance().GetCurrentWorldArea()};
+        auto rendTileSize{Theme0::Theme0Properties::Instance().GetTileSize()};
+        auto playerPos{Theme0::Player::Instance().GetPosition()};
+        auto elevHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
         auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
         // Construct the resulting look-at point in world space.

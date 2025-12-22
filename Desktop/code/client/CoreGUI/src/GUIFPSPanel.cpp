@@ -20,7 +20,7 @@ namespace Forradia {
     auto GUIFPSPanel::UpdateDerived() -> void {
         GUIMovablePanel::UpdateDerived();
 
-        auto fps{Singleton<FPSCounter>().GetFPS()};
+        auto fps{FPSCounter::Instance().GetFPS()};
         m_fpsTextLabel->SetText(fmt::format("FPS: {}", fps));
     }
 }

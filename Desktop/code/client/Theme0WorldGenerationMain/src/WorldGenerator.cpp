@@ -13,16 +13,16 @@ namespace Forradia::Theme0 {
     auto WorldGenerator::GenerateNewWorld() const -> void {
         this->Prepare();
 
-        Singleton<WorldGeneratorGround>().GenerateGroundWithElevation();
-        Singleton<WorldGeneratorWater>().GenerateWater();
-        Singleton<WorldGeneratorObjects>().GenerateObjects();
-        Singleton<WorldGeneratorEntities>().GenerateEntities();
+        WorldGeneratorGround::Instance().GenerateGroundWithElevation();
+        WorldGeneratorWater::Instance().GenerateWater();
+        WorldGeneratorObjects::Instance().GenerateObjects();
+        WorldGeneratorEntities::Instance().GenerateEntities();
     }
 
     auto WorldGenerator::Prepare() const -> void {
-        Singleton<WorldGeneratorGround>().Prepare();
-        Singleton<WorldGeneratorWater>().Prepare();
-        Singleton<WorldGeneratorObjects>().Prepare();
-        Singleton<WorldGeneratorEntities>().Prepare();
+        WorldGeneratorGround::Instance().Prepare();
+        WorldGeneratorWater::Instance().Prepare();
+        WorldGeneratorObjects::Instance().Prepare();
+        WorldGeneratorEntities::Instance().Prepare();
     }
 }

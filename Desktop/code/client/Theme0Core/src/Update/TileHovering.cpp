@@ -22,10 +22,10 @@ namespace Forradia::Theme0 {
     }
 
     auto TileHovering::IterateOverRenderedTiles() -> void {
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
-        auto playerPos{Singleton<Player>().GetPosition()};
-        auto gridSize{Singleton<Theme0Properties>().GetGridSize()};
+        auto playerPos{Player::Instance().GetPosition()};
+        auto gridSize{Theme0Properties::Instance().GetGridSize()};
 
         // Iterate over the rendered tiles.
         for (auto y = 0; y < gridSize.height; y++) {
@@ -49,11 +49,11 @@ namespace Forradia::Theme0 {
     }
 
     auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool {
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // Get camera matrices.
-        auto viewMatrix{Singleton<Camera>().GetViewMatrix()};
-        auto projectionMatrix{Singleton<Camera>().GetProjectionMatrix()};
+        auto viewMatrix{Camera::Instance().GetViewMatrix()};
+        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
 
         // Get inverse view-projection matrix for unprojecting.
         auto inverseViewProjection{glm::inverse(projectionMatrix * viewMatrix)};
@@ -82,7 +82,7 @@ namespace Forradia::Theme0 {
         glm::vec3 rayDir{glm::normalize(glm::vec3(farPoint.x, farPoint.y, farPoint.z) - rayOrigin)};
 
         // Get the world area.
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
 
         // Get the tile coordinates.
         auto coordinateNW{Point{xCoordinate, yCoordinate}};
@@ -110,8 +110,8 @@ namespace Forradia::Theme0 {
         auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
 
         // Get tile size and elevation height.
-        auto tileSize{Singleton<Theme0Properties>().GetTileSize()};
-        auto elevationHeight{Singleton<Theme0Properties>().GetElevationHeight()};
+        auto tileSize{Theme0Properties::Instance().GetTileSize()};
+        auto elevationHeight{Theme0Properties::Instance().GetElevationHeight()};
 
         // Convert tile coordinates to world space positions.
         auto worldXNW{xCoordinate * tileSize - tileSize / 2};

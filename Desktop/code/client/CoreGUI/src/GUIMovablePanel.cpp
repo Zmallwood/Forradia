@@ -21,7 +21,7 @@ namespace Forradia {
             if (childComponent->OnMouseDown(mouseButton))
                 return true;
 
-        auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
         if (draggableArea.Contains(mousePosition)) {
             this->StartMove();
@@ -43,7 +43,7 @@ namespace Forradia {
             if (childComponent->OnMouseUp(mouseButton, clickSpeed))
                 return true;
 
-        auto mousePos{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         if (GetBounds().Contains(mousePos)) {
             return true;
         }
@@ -52,11 +52,11 @@ namespace Forradia {
     }
 
     auto GUIMovablePanel::UpdateDerived() -> void {
-        auto mousePosition{GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow())};
+        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
 
         if (draggableArea.Contains(mousePosition)) {
-            Singleton<Cursor>().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
         if (GetIsBeingMoved()) {
@@ -70,7 +70,7 @@ namespace Forradia {
         m_isBeingMoved = true;
         m_moveStartingPosition = this->GetBounds().GetPosition();
         m_moveStartingMousePosition =
-            GetNormallizedMousePosition(Singleton<SDLDevice>().GetWindow());
+            GetNormallizedMousePosition(SDLDevice::Instance().GetWindow());
     }
 
     auto GUIMovablePanel::StopMove() -> void {

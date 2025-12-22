@@ -14,6 +14,20 @@ namespace Forradia::Theme0 {
      * The main scene is the scene where the actual game is played.
      */
     class MainScene : public IScene {
+      public:
+        static MainScene &Instance() {
+            static MainScene instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        MainScene(const MainScene &) = delete;
+
+        MainScene &operator=(const MainScene &) = delete;
+
+        MainScene() = default;
+
+      protected:
         /**
          * Initializes the main scene.
          */

@@ -11,7 +11,7 @@ namespace Forradia::Theme0 {
     auto GUIExperienceBar::UpdateDerived() -> void {
         GUIMeter::UpdateDerived();
 
-        auto &player{Singleton<Theme0::Player>()};
+        auto &player{Player::Instance()};
         auto experience{player.GetExperience()};
         auto levelProgress{CalculateFractionalExperienceProgress(experience)};
         m_filledPercentage = levelProgress;

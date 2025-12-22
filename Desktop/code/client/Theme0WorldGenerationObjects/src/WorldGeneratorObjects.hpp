@@ -13,6 +13,18 @@ namespace Forradia::Theme0 {
      */
     class WorldGeneratorObjects : public WorldGeneratorBase {
       public:
+        static WorldGeneratorObjects &Instance() {
+            static WorldGeneratorObjects instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldGeneratorObjects(const WorldGeneratorObjects &) = delete;
+
+        WorldGeneratorObjects &operator=(const WorldGeneratorObjects &) = delete;
+
+        WorldGeneratorObjects() = default;
+
         /**
          * Generate the objects in the world.
          */

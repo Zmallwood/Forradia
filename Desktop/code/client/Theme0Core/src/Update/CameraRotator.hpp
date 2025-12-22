@@ -11,6 +11,18 @@ namespace Forradia::Theme0 {
      */
     class CameraRotator {
       public:
+        static CameraRotator &Instance() {
+            static CameraRotator instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        CameraRotator(const CameraRotator &) = delete;
+
+        CameraRotator &operator=(const CameraRotator &) = delete;
+
+        CameraRotator() = default;
+
         auto OnMouseDown(Uint8 mouseButton) -> void;
 
         auto OnMouseUp(Uint8 mouseButton) -> void;

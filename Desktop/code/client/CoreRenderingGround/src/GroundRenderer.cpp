@@ -25,7 +25,7 @@ namespace Forradia {
         glCullFace(GL_BACK);
         glFrontFace(GL_CW);
 
-        auto canvasSize{GetCanvasSize(Singleton<SDLDevice>().GetWindow())};
+        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
         glUseProgram(dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID());

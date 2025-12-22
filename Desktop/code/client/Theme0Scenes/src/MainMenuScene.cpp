@@ -19,21 +19,20 @@ namespace Forradia::Theme0 {
 
         auto btnPlay{std::make_shared<GUIButton>(
             "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "Play",
-            [] { Singleton<SceneManager>().GoToScene("PlayScene"); })};
+            [] { SceneManager::Instance().GoToScene("PlayScene"); })};
         GetGUI()->AddChildComponent(btnPlay);
 
         auto btnQuit{std::make_shared<GUIButton>("MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f,
-                                                 0.04f, "Quit",
-                                                 [] { Singleton<Engine>().Stop(); })};
+                                                 0.04f, "Quit", [] { Engine::Instance().Stop(); })};
         GetGUI()->AddChildComponent(btnQuit);
 
         GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
     }
 
     auto MainMenuScene::RenderDerived() const -> void {
-        Singleton<Image2DRenderer>().DrawImageByName(
+        Image2DRenderer::Instance().DrawImageByName(
             Hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
-        Singleton<Image2DRenderer>().DrawImageAutoHeight(Hash("MainMenuSceneLogo"), "ForradiaLogo",
-                                                         0.35f, 0.1f, 0.3f);
+        Image2DRenderer::Instance().DrawImageAutoHeight(Hash("MainMenuSceneLogo"), "ForradiaLogo",
+                                                        0.35f, 0.1f, 0.3f);
     }
 }

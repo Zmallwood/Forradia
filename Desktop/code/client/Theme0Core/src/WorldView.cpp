@@ -22,7 +22,7 @@
 
 namespace Forradia::Theme0 {
     auto WorldView::Initiallize() -> void {
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
         for (auto y = 0; y < worldAreaSize.height; y++) {
@@ -42,9 +42,9 @@ namespace Forradia::Theme0 {
         // 45 degrees
         float sunElevation = M_PI / 4.0F;
 
-        Singleton<SkyRenderer>().Render(sunDirection, sunElevation);
+        SkyRenderer::Instance().Render(sunDirection, sunElevation);
 
-        auto gridSize{Singleton<Theme0Properties>().GetGridSize()};
+        auto gridSize{Theme0Properties::Instance().GetGridSize()};
 
         // Calculate extended ground rendering size
         auto groundGridSize{
@@ -53,15 +53,15 @@ namespace Forradia::Theme0 {
                                static_cast<decltype(gridSize.height)>(
                                    gridSize.height * k_groundRenderingDistanceMultiplier)}};
 
-        auto playerPos{Singleton<Player>().GetPosition()};
-        auto worldArea{Singleton<World>().GetCurrentWorldArea()};
+        auto playerPos{Player::Instance().GetPosition()};
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
-        auto hoveredCoordinate{Singleton<TileHovering>().GetHoveredCoordinate()};
-        auto elevHeight{Singleton<Theme0Properties>().GetElevationHeight()};
+        auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
+        auto elevHeight{Theme0Properties::Instance().GetElevationHeight()};
 
         auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
 
-        auto rendTileSize{Singleton<Theme0Properties>().GetTileSize()};
+        auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
 
         std::vector<TileData> tiles;
 
@@ -318,7 +318,7 @@ namespace Forradia::Theme0 {
                 for (auto object : objects) {
                     auto objectType{object->GetType()};
 
-                    Singleton<ModelRenderer>().DrawModel(
+                    ModelRenderer::Instance().DrawModel(
                         objectType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                         (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax,
                         object->GetModelScaling());
@@ -329,13 +329,13 @@ namespace Forradia::Theme0 {
                 if (entity) {
                     auto entityType{entity->GetType()};
 
-                    Singleton<ModelRenderer>().DrawModel(
+                    ModelRenderer::Instance().DrawModel(
                         entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
                         (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
                 }
 
                 if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
-                    Singleton<ModelRenderer>().DrawModel(
+                    ModelRenderer::Instance().DrawModel(
                         Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
                         (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
             }
@@ -344,23 +344,23 @@ namespace Forradia::Theme0 {
                 for (auto &elevation : elevations)
                     elevation += 0.01F;
 
-                Singleton<GroundRenderer>().SetupState();
-                Singleton<GroundRenderer>().DrawTile(k_renderIDGroundSymbolHoveredTile,
-                                                     Hash("HoveredTile"), xCoordinate, yCoordinate,
-                                                     rendTileSize, elevations, true);
+                GroundRenderer::Instance().SetupState();
+                GroundRenderer::Instance().DrawTile(k_renderIDGroundSymbolHoveredTile,
+                                                    Hash("HoveredTile"), xCoordinate, yCoordinate,
+                                                    rendTileSize, elevations, true);
 
                 // Only render ClaimedTile symbol within the normal grid size.
 
                 if (worldArea->CoordinateIsClaimed({xCoordinate, yCoordinate}))
-                    Singleton<GroundRenderer>().DrawTile(
+                    GroundRenderer::Instance().DrawTile(
                         m_renderIDsClaimedTiles.at(xCoordinate).at(yCoordinate),
                         Hash("ClaimedTile"), xCoordinate, yCoordinate, rendTileSize, elevations);
 
-                Singleton<GroundRenderer>().RestoreState();
+                GroundRenderer::Instance().RestoreState();
             }
         }};
 
-        Singleton<GroundRenderer>().SetupState();
+        GroundRenderer::Instance().SetupState();
 
         auto tilesGroupSize{20};
 
@@ -377,11 +377,11 @@ namespace Forradia::Theme0 {
             }
         }
         if (!tiles.empty())
-            Singleton<GroundRenderer>().DrawTiles(tiles);
+            GroundRenderer::Instance().DrawTiles(tiles);
 
         tiles.clear();
 
-        Singleton<GroundRenderer>().SetupState();
+        GroundRenderer::Instance().SetupState();
 
         // Second pass: Render all except ground tiles.
         for (auto y = 0; y < worldAreaSize.height; y++)

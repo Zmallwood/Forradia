@@ -13,6 +13,18 @@ namespace Forradia::Theme0 {
      */
     class WorldGeneratorWater : public WorldGeneratorBase {
       public:
+        static WorldGeneratorWater &Instance() {
+            static WorldGeneratorWater instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        WorldGeneratorWater(const WorldGeneratorWater &) = delete;
+
+        WorldGeneratorWater &operator=(const WorldGeneratorWater &) = delete;
+
+        WorldGeneratorWater() = default;
+
         /**
          * Generate water.
          */

@@ -16,14 +16,14 @@
 namespace Forradia::Theme0 {
     auto UpdateKeyboardActions(SDL_Keycode key) -> void {
         if (key == SDLK_ESCAPE) {
-            Singleton<GUISystemMenu>().ToggleVisibility();
+            GUISystemMenu::Instance().ToggleVisibility();
         } else if (key == SDLK_b) {
             GUIInventoryWindow::Instance().ToggleVisibility();
         } else if (key == SDLK_RETURN) {
-            if (Singleton<GUIChatBox>().GetInputActive())
-                Singleton<GUIChatBox>().SubmitInput();
+            if (GUIChatBox::Instance().GetInputActive())
+                GUIChatBox::Instance().SubmitInput();
             else
-                Singleton<GUIChatBox>().EnableInput();
+                GUIChatBox::Instance().EnableInput();
         }
     }
 }

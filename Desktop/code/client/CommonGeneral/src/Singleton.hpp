@@ -26,10 +26,10 @@ namespace Forradia {
      * @tparam T Type to get singleton for.
      * @return The singleton object as a reference.
      */
-    template <class T>
-    auto Singleton() -> T & {
-        static T instance;
-        return instance;
-        // return *SingletonPtr<T>();
-    }
+    // template <class T>
+    // auto Singleton() -> T & {
+    //     static T instance;
+    //     return instance;
+    //     // return *SingletonPtr<T>();
+    // }
 }

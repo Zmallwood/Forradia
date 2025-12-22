@@ -16,6 +16,17 @@ namespace Forradia {
      */
     class Image2DRenderer : public RendererBase {
       public:
+        static Image2DRenderer &Instance() {
+            static Image2DRenderer instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        Image2DRenderer(const Image2DRenderer &) = delete;
+        Image2DRenderer &operator=(const Image2DRenderer &) = delete;
+
+        Image2DRenderer() = default;
+
         /**
          * Destructor which cleans up the renderer.
          */

@@ -19,6 +19,14 @@ namespace Forradia {
      */
     class TextureBank {
       public:
+        static TextureBank &Instance() {
+            static TextureBank instance;
+            return instance;
+        }
+        // Delete copy/move
+        TextureBank(const TextureBank &) = delete;
+        TextureBank &operator=(const TextureBank &) = delete;
+
         /**
          * Constructor.
          */

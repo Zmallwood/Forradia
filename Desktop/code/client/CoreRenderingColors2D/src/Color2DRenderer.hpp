@@ -16,6 +16,18 @@ namespace Forradia {
      */
     class Color2DRenderer : public RendererBase {
       public:
+        static Color2DRenderer &Instance() {
+            static Color2DRenderer instance;
+            return instance;
+        }
+
+        // Delete copy/move
+        Color2DRenderer(const Color2DRenderer &) = delete;
+
+        Color2DRenderer &operator=(const Color2DRenderer &) = delete;
+
+        Color2DRenderer() = default;
+
         /**
          * Destructor which cleans up the renderer.
          */
