@@ -49,7 +49,6 @@ namespace Forradia::Theme0 {
             [] { Singleton<GUISystemMenu>().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
             "GUIButtonSystemMenuHoveredBackground")};
         GetGUI()->AddChildComponent(btnSystemMenu);
-        // GetGUI()->AddChildComponent(SingletonPtr<GUIPlayerBodyWindow>());
         //  GetGUI()->AddChildComponent(SingletonPtr<GUIInventoryWindow>());
         GetGUI()->AddChildComponent(SingletonPtr<GUISystemMenu>());
         GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
@@ -131,8 +130,6 @@ namespace Forradia::Theme0 {
         GUIInventoryWindow::Instance().Update();
         UpdateMouseMovement();
         UpdateEntitiesMovement();
-        // UpdateCameraZoom();
-        // UpdateKeyboardMovement();
         Singleton<TileHovering>().Update();
         Singleton<Player>().Update();
         Singleton<CameraRotator>().Update();
