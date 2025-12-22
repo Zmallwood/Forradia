@@ -13,4 +13,5 @@
 #include <glm/gtx/projection.hpp>
 #include <nlohmann/json.hpp>
 
+#include "CanvasUtilities.hpp"
 #include "NumbersUtilities.hpp"

@@ -4,8 +4,32 @@
  *********************************************************************/
 
 #include "ObjectMoving.hpp"
+#include "CanvasUtilities.hpp"
+#include "GUIInventoryWindow.hpp"
+#include "Image2DRenderer.hpp"
+#include "Object.hpp"
 
 namespace Forradia::Theme0 {
-    auto ObjectMoving::Update() -> void {
+    auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool {
+        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+        if (inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT) {
+            auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+            m_objectInAir = *objectPtrPtr;
+            *objectPtrPtr = nullptr;
+            return true;
+        }
+        return false;
+    }
+
+    auto ObjectMoving::Render() const -> void {
+        if (m_objectInAir) {
+            auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+
+            Image2DRenderer::Instance().DrawImageByHash(
+                k_renderIDImage, m_objectInAir->GetType(), mousePos.x, mousePos.y,
+                k_objectImageWidth,
+                ConvertWidthToHeight(k_objectImageWidth, SDLDevice::Instance().GetWindow()), true);
+        }
     }
 }

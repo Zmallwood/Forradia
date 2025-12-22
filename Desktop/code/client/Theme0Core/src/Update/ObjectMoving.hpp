@@ -6,6 +6,8 @@
 #pragma once
 
 namespace Forradia::Theme0 {
+    class Object;
+
     class ObjectMoving {
       public:
         static ObjectMoving &Instance() {
@@ -20,6 +22,14 @@ namespace Forradia::Theme0 {
 
         ObjectMoving() = default;
 
-        auto Update() -> void;
+        auto OnMouseDown(Uint8 mouseButton) -> bool;
+
+        auto Render() const -> void;
+
+      private:
+        constexpr static float k_objectImageWidth{0.05F};
+        constexpr static int k_renderIDImage{Hash("ObjectInAir")};
+
+        std::shared_ptr<Object> m_objectInAir;
     };
 }

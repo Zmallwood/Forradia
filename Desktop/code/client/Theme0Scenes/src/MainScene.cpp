@@ -86,6 +86,8 @@ namespace Forradia::Theme0 {
         GetGUI()->OnMouseDown(mouseButton);
         if (GetGUI()->MouseHoveringGUI())
             return;
+        if (ObjectMoving::Instance().OnMouseDown(mouseButton))
+            return;
         if (GUIInventoryWindow::Instance().OnMouseDown(mouseButton))
             return;
         if (!GUIInventoryWindow::Instance().MouseHoveringGUI())
@@ -136,7 +138,6 @@ namespace Forradia::Theme0 {
         CameraRotator::Instance().Update();
         UpdateActions();
         QuestSystem::Instance().Update();
-        ObjectMoving::Instance().Update();
     }
 
     auto MainScene::Render() const -> void {
@@ -144,6 +145,7 @@ namespace Forradia::Theme0 {
 
         GetGUI()->Render();
         GUIInventoryWindow::Instance().Render();
+        ObjectMoving::Instance().Render();
         m_guiInteractionMenu->Render();
     }
 
