@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreRenderingSky PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreRenderingSky
-    ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCommonUtilities

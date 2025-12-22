@@ -12,6 +12,6 @@ target_include_directories(ForradiaCommonUtilities PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCommonUtilities
-    ForradiaCommonLang
+    ForradiaCommonGeneral
 )
 target_precompile_headers(ForradiaCommonUtilities PUBLIC ./src/StdAfx.hpp)

@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreRenderingGround PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreRenderingGround
-    ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCoreGraphicsDevices

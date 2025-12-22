@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreRenderingModels PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreRenderingModels
-    ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCoreGraphicsDevices

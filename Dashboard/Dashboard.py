@@ -133,23 +133,11 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
-            "A1. Common Lang",
-            opening_app,
-            "/home/andreas/code/git/Forradia/Desktop/code/client/CommonLang",
-            "icons/DefaultButton.png",
-            0,
-            0,
-            self.script_dir,
-            "#007700",
-        )
-
-        create_app_button(
-            app_frame,
             "A2. Common General",
             opening_app,
             "/home/andreas/code/git/Forradia/Desktop/code/client/CommonGeneral",
             "icons/DefaultButton.png",
-            1,
+            0,
             0,
             self.script_dir,
             "#007700",
@@ -161,7 +149,7 @@ class Dashboard(ctk.CTk):
             opening_app,
             "/home/andreas/code/git/Forradia/Desktop/code/client/CommonMatter",
             "icons/DefaultButton.png",
-            2,
+            1,
             0,
             self.script_dir,
             "#007700",

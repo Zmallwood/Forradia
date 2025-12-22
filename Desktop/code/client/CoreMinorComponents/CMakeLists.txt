@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreMinorComponents PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreMinorComponents PRIVATE
-    ForradiaCommonLang
     ForradiaCommonMatter
     ForradiaCommonGeneral
     ForradiaCommonUtilities

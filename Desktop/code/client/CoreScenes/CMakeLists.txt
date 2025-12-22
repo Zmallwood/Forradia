@@ -12,7 +12,6 @@ target_include_directories(ForradiaCoreScenes PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreScenes PRIVATE
-    ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCoreRenderingImages2D

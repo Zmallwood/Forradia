@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreRenderingColors2D PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCoreRenderingColors2D
-    ForradiaCommonLang
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCoreGraphicsDevices

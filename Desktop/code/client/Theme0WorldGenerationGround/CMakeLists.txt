@@ -12,7 +12,6 @@ target_include_directories(ForradiaTheme0WorldGenerationGround PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0WorldGenerationGround PRIVATE
-    ForradiaCommonLang
     ForradiaCommonMatter
     ForradiaCommonGeneral
     ForradiaCommonUtilities
