@@ -421,7 +421,7 @@ namespace Forradia::Theme0
             .label = "Plow land",
             .groundMatches = {},
             .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectPlow")},
+            .objectsInInventory = {},
             .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
             {
                 auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
