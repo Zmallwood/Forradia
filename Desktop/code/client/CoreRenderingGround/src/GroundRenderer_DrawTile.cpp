@@ -5,6 +5,7 @@
 
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
+#include "Hash.hpp"
 #include "Textures/TextureBank.hpp"
 
 namespace Forradia {
@@ -51,8 +52,8 @@ namespace Forradia {
                 Palette::GetColor<Hash("White")>(), Palette::GetColor<Hash("White")>()};
 
             // Calculate the vertices without normals.
-            auto verticesNoNormals{this->CalcTileVerticesNoNormals(xCoordinate, yCoordinate,
-                                                                   tileSize, elevations, colors)};
+            auto verticesNoNormals{GroundRenderer::CalcTileVerticesNoNormals(
+                xCoordinate, yCoordinate, tileSize, elevations, colors)};
 
             auto verticesCount{4};
             auto indicesCount{4};
@@ -60,15 +61,12 @@ namespace Forradia {
             // Calculate the vertices with normals.
             auto verticesVector{this->CalcTileVerticesWithNormals(verticesNoNormals)};
 
-            // Get the vertices as a float array.
-            auto vertices{verticesVector.data()};
-
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount,
                          k_indices.data(), GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * 11 * verticesCount, vertices,
-                         GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(verticesVector[0]) * 11 * verticesCount,
+                         verticesVector.data(), GL_STATIC_DRAW);
 
             this->SetupAttributeLayout();
         }

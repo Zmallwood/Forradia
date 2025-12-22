@@ -12,7 +12,7 @@ namespace Forradia {
         // Create a vector to store the vertices consisting of only floats.
         std::vector<float> verticesFloatsVector;
 
-        auto normals{this->CalcTileNormals(verticesNoNormals)};
+        auto normals{GroundRenderer::CalcTileNormals(verticesNoNormals)};
 
         constexpr auto k_vertexStride{8};
 
@@ -20,19 +20,36 @@ namespace Forradia {
         auto fnAddVertexToFloatsVector{[&](int vertexIndex, int normalsIndex) {
             // Add the vertex coordinates to the floats vector.
 
+            constexpr int k_xPos{0};
+            constexpr int k_yPos{1};
+            constexpr int k_zPos{2};
+            constexpr int k_redPos{3};
+            constexpr int k_greenPos{4};
+            constexpr int k_bluePos{5};
+            constexpr int k_uPos{6};
+            constexpr int k_vPos{7};
+
             // Position.
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 0]);
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 1]);
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 2]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_xPos]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_yPos]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_zPos]);
 
             // Color.
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 3]);
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 4]);
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 5]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_redPos]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_greenPos]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_bluePos]);
 
             // Texture coordinates (UVs).
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 6]);
-            verticesFloatsVector.push_back(verticesNoNormals[vertexIndex * k_vertexStride + 7]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_uPos]);
+            verticesFloatsVector.push_back(
+                verticesNoNormals[vertexIndex * k_vertexStride + k_vPos]);
 
             // Normals.
             verticesFloatsVector.push_back(normals.at(normalsIndex).x);

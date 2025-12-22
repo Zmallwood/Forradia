@@ -19,4 +19,5 @@
 #include "CanvasUtilities.hpp"
 #include "Coloring/Palette.hpp"
 #include "Geometry/Point3F.hpp"
+#include "Hash.hpp"
 #include "MathUtilities.hpp"
