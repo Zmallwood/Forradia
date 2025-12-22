@@ -16,19 +16,8 @@ namespace Forradia {
      */
     class Image2DRenderingOperation {
       public:
-        /**
-         * The vertex array object.
-         */
-        GLuint vao;
-
-        /**
-         * The index buffer object.
-         */
-        GLuint ibo;
-
-        /**
-         * The vertex buffer object.
-         */
-        GLuint vbo;
+        GLuint vao; ///< The vertex array object.
+        GLuint ibo; ///< The index buffer object.
+        GLuint vbo; ///< The vertex buffer object.
     };
 }

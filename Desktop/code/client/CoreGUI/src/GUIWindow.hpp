@@ -58,10 +58,7 @@ namespace Forradia {
       private:
         auto Initialize(std::string_view uniqueName, std::string_view windowTitle) -> void;
 
-        inline static float s_positionOffset{
-            0.0F,
-        };
-
+        inline static float s_positionOffset{0.0F};
         std::shared_ptr<GUIWindowTitleBar> m_guiWindowTitleBar;
     };
 }

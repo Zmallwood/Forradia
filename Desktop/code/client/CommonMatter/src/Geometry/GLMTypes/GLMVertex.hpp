@@ -13,19 +13,8 @@ namespace Forradia {
      */
     class GLMVertex {
       public:
-        /**
-         * The position.
-         */
-        glm::vec3 position;
-
-        /**
-         * The normal.
-         */
-        glm::vec3 normal;
-
-        /**
-         * The texture coordinates.
-         */
-        glm::vec2 uv;
+        glm::vec3 position; //< The position.
+        glm::vec3 normal;   ///< The normal.
+        glm::vec2 uv;       ///< The texture coordinates.
     };
 }

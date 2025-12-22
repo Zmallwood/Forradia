@@ -11,14 +11,7 @@ namespace Forradia {
      */
     class SizeF {
       public:
-        /**
-         * The width.
-         */
-        float width{0.0F};
-
-        /**
-         * The height.
-         */
-        float height{0.0F};
+        float width{0.0F};  ///< The width.
+        float height{0.0F}; ///< The height.
     };
 }

@@ -26,6 +26,7 @@ namespace Forradia::Theme0 {
 
         // Delete copy/move
         GUIExperienceBar(const GUIExperienceBar &) = delete;
+
         GUIExperienceBar &operator=(const GUIExperienceBar &) = delete;
 
         /**

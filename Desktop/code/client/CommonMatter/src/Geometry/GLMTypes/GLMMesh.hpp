@@ -28,19 +28,8 @@ namespace Forradia {
               textures(std::move(textures)) {
         }
 
-        /**
-         * The vertices.
-         */
-        std::vector<GLMVertex> vertices;
-
-        /**
-         * The indices.
-         */
-        std::vector<unsigned int> indices;
-
-        /**
-         * The textures.
-         */
-        std::vector<Texture> textures;
+        std::vector<GLMVertex> vertices;   ///< The vertices.
+        std::vector<unsigned int> indices; ///< The indices.
+        std::vector<Texture> textures;     ///< The textures.
     };
 }

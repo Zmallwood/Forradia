@@ -27,14 +27,7 @@ namespace Forradia {
          */
         auto operator<(const Point &other) const -> bool;
 
-        /**
-         * The x dimension.
-         */
-        int x{0};
-
-        /**
-         * The y dimension.
-         */
-        int y{0};
+        int x{0}; ///< The x dimension.
+        int y{0}; ///< The y dimension.
     };
 }

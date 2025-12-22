@@ -51,7 +51,6 @@ namespace Forradia::Theme0 {
 
       private:
         bool m_numBranchPicked{false};
-
         bool m_numStonePicked{false};
     };
 
