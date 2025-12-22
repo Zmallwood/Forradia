@@ -23,7 +23,7 @@ namespace Forradia::Theme0
         /**
          * Constructor.
          */
-        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.8f, 0.2f, 0.2f, 0.14f)
+        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79f, 0.2f, 0.2f, 0.14f)
         {
             this->Initialize();
         }

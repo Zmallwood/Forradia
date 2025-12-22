@@ -84,7 +84,7 @@ namespace Forradia::Theme0
 
       private:
         static constexpr float k_indentWidth{0.01f};
-        static constexpr float k_lineHeight{0.025f};
+        static constexpr float k_lineHeight{0.035f};
         const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
         std::vector<int> m_renderIDsMenuEntryStrings{};

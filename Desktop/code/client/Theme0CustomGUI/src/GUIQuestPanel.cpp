@@ -12,18 +12,17 @@ namespace Forradia::Theme0
     auto GUIQuestPanel::Initialize() -> void
     {
         m_questTitleTextPanel =
-            std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f);
-
-        m_questTitleTextPanel->SetText("Current Quest:");
+            std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f,
+                                       "Current Quest", false, Palette::GetColor<Hash("Yellow")>());
 
         m_questNameTextPanel =
-            std::make_shared<GUILabel>("GUILabelQuestNamePanel", 0.01f, 0.025f, 0.1f, 0.05f);
+            std::make_shared<GUILabel>("GUILabelQuestNamePanel", 0.01f, 0.041f, 0.1f, 0.05f);
 
         m_questDescriptionTextPanel =
-            std::make_shared<GUILabel>("GUILabelQuestDescriptionPanel", 0.01f, 0.04f, 0.1f, 0.05f);
+            std::make_shared<GUILabel>("GUILabelQuestDescriptionPanel", 0.01f, 0.069f, 0.1f, 0.05f);
 
         m_questStatusTextPanel =
-            std::make_shared<GUILabel>("GUILabelQuestStatusPanel", 0.01f, 0.055f, 0.1f, 0.05f);
+            std::make_shared<GUILabel>("GUILabelQuestStatusPanel", 0.01f, 0.097f, 0.1f, 0.05f);
 
         this->AddChildComponent(m_questTitleTextPanel);
         this->AddChildComponent(m_questNameTextPanel);
