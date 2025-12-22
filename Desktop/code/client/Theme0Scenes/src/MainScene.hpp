@@ -9,7 +9,6 @@
 
 namespace Forradia::Theme0 {
     class GUIInteractionMenu;
-    // class GUIInventoryWindow;
 
     /**
      * The main scene is the scene where the actual game is played.
@@ -36,8 +35,6 @@ namespace Forradia::Theme0 {
         virtual auto OnKeyUp(SDL_Keycode key) -> void override;
 
         virtual auto OnTextInput(std::string_view text) -> void override;
-
-        // virtual auto Update() -> void override;
 
         virtual auto Render() const -> void override;
 
