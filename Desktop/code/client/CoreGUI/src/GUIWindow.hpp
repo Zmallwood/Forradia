@@ -27,7 +27,8 @@ namespace Forradia {
          */
         GUIWindow(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                   std::string_view windowTitle)
-            : GUIMovablePanel(uniqueName, xPos, yPos, width, height) {
+            : GUIMovablePanel(uniqueName, xPos + s_positionOffset, yPos + s_positionOffset, width,
+                              height) {
             this->Initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
         }
 
@@ -56,6 +57,10 @@ namespace Forradia {
 
       private:
         auto Initialize(std::string_view uniqueName, std::string_view windowTitle) -> void;
+
+        inline static float s_positionOffset{
+            0.0F,
+        };
 
         std::shared_ptr<GUIWindowTitleBar> m_guiWindowTitleBar;
     };

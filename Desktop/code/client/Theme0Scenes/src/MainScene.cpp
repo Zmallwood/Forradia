@@ -22,6 +22,7 @@
 #include "Player/PlayerObjectsInventory.hpp"
 #include "SDLDevice.hpp"
 #include "Update/CameraRotator.hpp"
+#include "Update/ObjectMoving.hpp"
 #include "Update/Quests/QuestSystem.hpp"
 #include "Update/TileHovering.hpp"
 #include "Update/UpdateEntitiesMovement.hpp"
@@ -135,6 +136,7 @@ namespace Forradia::Theme0 {
         CameraRotator::Instance().Update();
         UpdateActions();
         QuestSystem::Instance().Update();
+        ObjectMoving::Instance().Update();
     }
 
     auto MainScene::Render() const -> void {

@@ -5,4 +5,7 @@
 
 #include "ObjectMoving.hpp"
 
-namespace Forradia::Theme0 {}
+namespace Forradia::Theme0 {
+    auto ObjectMoving::Update() -> void {
+    }
+}
