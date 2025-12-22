@@ -23,6 +23,30 @@ namespace Forradia::Theme0 {
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 
     template <>
+    auto GetAction<Hash("ActionCraftUnlitCampfire")>() -> Action {
+        return {.label = "Craft campfire",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {Hash("ObjectBranch")},
+                .action = [](std::shared_ptr<Tile> tile,
+                             std::vector<std::shared_ptr<Object> *> objects) {
+                    auto &inventory{Player::Instance().GetObjectsInventoryRef()};
+                    auto numBranchesInInventory{inventory.CountHasObject("ObjectBranch")};
+                    if (numBranchesInInventory < 8) {
+                        GUIChatBox::Instance().Print("You need 8 branches to craft a campfire.");
+                    } else {
+                        tile->GetObjectsStack()->AddObject("ObjectUnlitCampfire");
+
+                        inventory.RemoveObject("ObjectBranch", 8);
+                        GUIChatBox::Instance().Print("You craft a campfire.");
+                        Player::Instance().AddExperience(10);
+                        Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
+                                                           "ObjectUnlitCampfire");
+                    }
+                }};
+    }
+
+    template <>
     auto GetAction<Hash("ActionOpenStoneBowl")>() -> Action {
         return {.label = "Open",
                 .groundMatches = {},

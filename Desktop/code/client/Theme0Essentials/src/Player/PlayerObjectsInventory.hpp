@@ -23,7 +23,5 @@ namespace Forradia::Theme0 {
 
       private:
         auto Initialize() -> void;
-
-        std::shared_ptr<ContainedObjects> m_containedObjects;
     };
 }
