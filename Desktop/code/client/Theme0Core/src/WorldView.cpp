@@ -159,104 +159,107 @@ namespace Forradia::Theme0
                 auto color11{Palette::GetColor<Hash("White")>()};
                 auto color01{Palette::GetColor<Hash("White")>()};
 
-                switch (ground)
+                if (ground != Hash("GroundStoneSlab"))
                 {
-                case Hash("GroundGrass"):
-                    color00 = Palette::GetColor<Hash("DarkGreen")>();
-                    break;
-
-                case Hash("GroundWater"):
-                    color00 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-
-                case Hash("GroundDirt"):
-                    color00 = Palette::GetColor<Hash("Brown")>();
-                    break;
-
-                case Hash("GroundRock"):
-                    color00 = Palette::GetColor<Hash("Gray")>();
-                    break;
-
-                case Hash("GroundStoneSlab"):
-                    color00 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
-
-                if (tileNE)
-                {
-                    switch (tileNE->GetGround())
+                    switch (ground)
                     {
                     case Hash("GroundGrass"):
-                        color10 = Palette::GetColor<Hash("DarkGreen")>();
+                        color00 = Palette::GetColor<Hash("DarkGreen")>();
                         break;
 
                     case Hash("GroundWater"):
-                        color10 = Palette::GetColor<Hash("LightBlue")>();
+                        color00 = Palette::GetColor<Hash("LightBlue")>();
                         break;
 
                     case Hash("GroundDirt"):
-                        color10 = Palette::GetColor<Hash("Brown")>();
+                        color00 = Palette::GetColor<Hash("Brown")>();
                         break;
 
                     case Hash("GroundRock"):
-                        color10 = Palette::GetColor<Hash("Gray")>();
+                        color00 = Palette::GetColor<Hash("Gray")>();
                         break;
 
                     case Hash("GroundStoneSlab"):
-                        color10 = Palette::GetColor<Hash("White")>();
+                        color00 = Palette::GetColor<Hash("White")>();
                         break;
                     }
-                }
 
-                if (tileSE)
-                {
-                    switch (tileSE->GetGround())
+                    if (tileNE)
                     {
-                    case Hash("GroundGrass"):
-                        color11 = Palette::GetColor<Hash("DarkGreen")>();
-                        break;
+                        switch (tileNE->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color10 = Palette::GetColor<Hash("DarkGreen")>();
+                            break;
 
-                    case Hash("GroundWater"):
-                        color11 = Palette::GetColor<Hash("LightBlue")>();
-                        break;
+                        case Hash("GroundWater"):
+                            color10 = Palette::GetColor<Hash("LightBlue")>();
+                            break;
 
-                    case Hash("GroundDirt"):
-                        color11 = Palette::GetColor<Hash("Brown")>();
-                        break;
+                        case Hash("GroundDirt"):
+                            color10 = Palette::GetColor<Hash("Brown")>();
+                            break;
 
-                    case Hash("GroundRock"):
-                        color11 = Palette::GetColor<Hash("Gray")>();
-                        break;
+                        case Hash("GroundRock"):
+                            color10 = Palette::GetColor<Hash("Gray")>();
+                            break;
 
-                    case Hash("GroundStoneSlab"):
-                        color11 = Palette::GetColor<Hash("White")>();
-                        break;
+                        case Hash("GroundStoneSlab"):
+                            color10 = Palette::GetColor<Hash("White")>();
+                            break;
+                        }
                     }
-                }
 
-                if (tileSW)
-                {
-                    switch (tileSW->GetGround())
+                    if (tileSE)
                     {
-                    case Hash("GroundGrass"):
-                        color01 = Palette::GetColor<Hash("DarkGreen")>();
-                        break;
+                        switch (tileSE->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color11 = Palette::GetColor<Hash("DarkGreen")>();
+                            break;
 
-                    case Hash("GroundWater"):
-                        color01 = Palette::GetColor<Hash("LightBlue")>();
-                        break;
+                        case Hash("GroundWater"):
+                            color11 = Palette::GetColor<Hash("LightBlue")>();
+                            break;
 
-                    case Hash("GroundDirt"):
-                        color01 = Palette::GetColor<Hash("Brown")>();
-                        break;
+                        case Hash("GroundDirt"):
+                            color11 = Palette::GetColor<Hash("Brown")>();
+                            break;
 
-                    case Hash("GroundRock"):
-                        color01 = Palette::GetColor<Hash("Gray")>();
-                        break;
+                        case Hash("GroundRock"):
+                            color11 = Palette::GetColor<Hash("Gray")>();
+                            break;
 
-                    case Hash("GroundStoneSlab"):
-                        color01 = Palette::GetColor<Hash("White")>();
-                        break;
+                        case Hash("GroundStoneSlab"):
+                            color11 = Palette::GetColor<Hash("White")>();
+                            break;
+                        }
+                    }
+
+                    if (tileSW)
+                    {
+                        switch (tileSW->GetGround())
+                        {
+                        case Hash("GroundGrass"):
+                            color01 = Palette::GetColor<Hash("DarkGreen")>();
+                            break;
+
+                        case Hash("GroundWater"):
+                            color01 = Palette::GetColor<Hash("LightBlue")>();
+                            break;
+
+                        case Hash("GroundDirt"):
+                            color01 = Palette::GetColor<Hash("Brown")>();
+                            break;
+
+                        case Hash("GroundRock"):
+                            color01 = Palette::GetColor<Hash("Gray")>();
+                            break;
+
+                        case Hash("GroundStoneSlab"):
+                            color01 = Palette::GetColor<Hash("White")>();
+                            break;
+                        }
                     }
                 }
 
