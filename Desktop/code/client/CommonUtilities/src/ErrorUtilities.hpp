@@ -8,6 +8,6 @@
 #include <source_location>
 
 namespace Forradia {
-    void PrintError(std::string_view message,
-                    std::source_location loc = std::source_location::current());
+    [[noreturn]] void ThrowError(std::string_view message,
+                                 std::source_location loc = std::source_location::current());
 }
