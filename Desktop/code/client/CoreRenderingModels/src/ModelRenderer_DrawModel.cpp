@@ -6,6 +6,7 @@
 #include "Models/Construction/Model.hpp"
 #include "3D/Camera.hpp"
 #include "CreatureIndex.hpp"
+#include "Hash.hpp"
 #include "ModelRenderer.hpp"
 #include "Models/ModelBank.hpp"
 #include "ObjectIndex.hpp"
@@ -134,7 +135,7 @@ namespace Forradia {
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
+        auto projectionMatrix{Camera::GetProjectionMatrix()};
 
         glUniformMatrix4fv(m_layoutLocationProjectionMatrix, 1, GL_FALSE, &projectionMatrix[0][0]);
         glUniformMatrix4fv(m_layoutLocationModelMatrix, 1, GL_FALSE, &modelMatrix[0][0]);
@@ -143,13 +144,13 @@ namespace Forradia {
         auto textureName{meshes.at(0).textures.at(0).path};
         auto textureNameHash{Hash(textureName)};
 
-        auto textureID{TextureBank::Instance().GetTexture(textureNameHash)};
+        auto textureID{TextureBank::GetTexture(textureNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         auto &entry{m_operationsCache.at(modelNameHash)};
 
         glDrawElements(GL_TRIANGLES, entry.verticesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->RestoreState();
+        ModelRenderer::RestoreState();
     }
 }

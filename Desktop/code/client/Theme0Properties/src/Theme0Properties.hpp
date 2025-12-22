@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Coloring/Color.hpp"
 #include "Geometry/Size.hpp"
 
 namespace Forradia::Theme0 {

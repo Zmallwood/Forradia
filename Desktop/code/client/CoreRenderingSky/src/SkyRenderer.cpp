@@ -5,6 +5,7 @@
 
 #include "SkyRenderer.hpp"
 #include "GUIChatBox.hpp"
+#include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
 namespace Forradia {

@@ -6,6 +6,7 @@
 #pragma once
 
 #include "ObjectIndexEntry.hpp"
+#include <unordered_map>
 
 namespace Forradia::Theme0 {
     /**

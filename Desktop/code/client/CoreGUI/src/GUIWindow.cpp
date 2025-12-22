@@ -11,7 +11,7 @@ namespace Forradia {
         this->SetVisible(false);
         m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
         this->AddChildComponent(m_guiWindowTitleBar);
-        s_positionOffset += 0.05F;
+        s_positionOffset += k_positionOffsetChange;
     }
 
     auto GUIWindow::RenderDerived() const -> void {
