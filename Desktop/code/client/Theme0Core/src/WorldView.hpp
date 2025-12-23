@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Hash.hpp"
+#include "TileData.hpp"
 #include <unordered_map>
 
 namespace Forradia::Theme0
@@ -38,15 +39,21 @@ namespace Forradia::Theme0
         /**
          * Renders the world.
          */
-        auto Render() const -> void;
+        auto Render() -> void;
 
       private:
         auto Initiallize() -> void;
+
+        auto IterationGround(int x, int y) -> void;
+
+        auto IterationAllExceptGround(int x, int y) -> void;
 
         const float k_groundRenderingDistanceMultiplier{1.5F};
         const int k_maxWaterDepthRendering{3};
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
         const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
         std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
+        std::unordered_map<int, std::unordered_map<int, std::vector<float>>> m_elevationsAll;
+        std::vector<TileData> m_tiles;
     };
 }

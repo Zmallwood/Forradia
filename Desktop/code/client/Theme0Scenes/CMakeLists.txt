@@ -20,5 +20,6 @@ target_link_libraries(ForradiaTheme0Scenes PRIVATE
     ForradiaTheme0WorldGenerationMain
     ForradiaTheme0CustomGUI
     ForradiaTheme0Core
+    ForradiaCoreRenderingGround
 )
 target_precompile_headers(ForradiaTheme0Scenes PUBLIC ./src/StdAfx.hpp)
