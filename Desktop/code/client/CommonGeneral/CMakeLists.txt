@@ -12,6 +12,7 @@ target_include_directories(ForradiaCommonGeneral PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaCommonGeneral PUBLIC
+    ForradiaCommonUtilities 
     ForradiaCommonMatter
     SDL2
     SDL2_image

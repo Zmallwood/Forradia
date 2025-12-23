@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "ErrorUtilities.hpp"
 #include <string_view>
 
 namespace Forradia
