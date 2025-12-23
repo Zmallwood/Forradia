@@ -13,6 +13,7 @@
 #include <source_location>
 #include <string>
 #include <string_view>
+#include <stdexcept>
 
 #include <SDL2/SDL.h>
 #include <glm/glm.hpp>

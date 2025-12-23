@@ -6,6 +6,8 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
+#include <vector>
+#include <cmath>
 
 namespace Forradia
 {

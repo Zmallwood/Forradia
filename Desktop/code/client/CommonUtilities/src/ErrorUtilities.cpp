@@ -5,6 +5,7 @@
 
 #include "ErrorUtilities.hpp"
 #include <string>
+#include <stdexcept>
 
 namespace Forradia
 {

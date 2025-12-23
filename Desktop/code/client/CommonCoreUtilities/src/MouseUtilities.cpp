@@ -5,6 +5,7 @@
 
 #include "MouseUtilities.hpp"
 #include "CanvasUtilities.hpp"
+#include "ErrorUtilities.hpp"
 #include <SDL2/SDL.h>
 
 namespace Forradia
