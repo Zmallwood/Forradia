@@ -12,11 +12,15 @@ namespace Forradia
 {
     auto getNormalizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
     {
-        throwOnFalse(window != nullptr, "window is null");
+        { // Validation
+            throwOnFalse(window != nullptr, "window is null");
+        }
 
         int xPx;
         int yPx;
+
         SDL_GetMouseState(&xPx, &yPx);
+        
         auto canvasSize{getCanvasSize(window)};
 
         return {static_cast<float>(xPx) / canvasSize.width,
