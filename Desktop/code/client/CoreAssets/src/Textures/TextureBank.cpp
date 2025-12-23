@@ -28,7 +28,7 @@ namespace Forradia
         m_textTextureIDs.clear();
     }
 
-    auto TextureBank::GetTexture(int imageNameHash) -> GLuint
+    auto TextureBank::GetTexture(int imageNameHash) const -> GLuint
     {
         if (m_textureEntries.contains(imageNameHash))
         {

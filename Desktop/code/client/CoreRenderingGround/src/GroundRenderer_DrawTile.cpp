@@ -89,7 +89,7 @@ namespace Forradia
         // Upload the MVP matrix to the shader.
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-        auto textureID{TextureBank::GetTexture(imageNameHash)};
+        auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_SHORT, nullptr);

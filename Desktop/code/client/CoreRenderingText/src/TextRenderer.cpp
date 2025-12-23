@@ -5,7 +5,13 @@
 
 #include "TextRenderer.hpp"
 #include "ErrorUtilities.hpp"
-
+#include "StringUtilities.hpp"
+#include "SDLDeleter.hpp"
+#include <SDL2/SDL_ttf.h>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 namespace Forradia
 {
     auto TextRenderer::Initialize() -> void

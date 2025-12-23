@@ -52,7 +52,7 @@ namespace Forradia
          * @param imageNameHash The hash of the image name.
          * @return The texture ID.
          */
-        [[nodiscard]] static auto GetTexture(int imageNameHash) -> GLuint;
+        [[nodiscard]] auto GetTexture(int imageNameHash) const -> GLuint;
 
         /**
          * Gets the dimensions of a texture with the given hash.

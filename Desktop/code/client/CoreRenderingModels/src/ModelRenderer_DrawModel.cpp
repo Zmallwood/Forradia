@@ -160,7 +160,7 @@ namespace Forradia
         auto textureName{meshes.at(0).textures.at(0).path};
         auto textureNameHash{Hash(textureName)};
 
-        auto textureID{TextureBank::GetTexture(textureNameHash)};
+        auto textureID{TextureBank::Instance().GetTexture(textureNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         auto &entry{m_operationsCache.at(modelNameHash)};

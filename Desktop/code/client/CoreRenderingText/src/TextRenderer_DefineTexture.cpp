@@ -3,20 +3,28 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "SDLDeleter.hpp"
 #include "TextRenderer.hpp"
+#include <SDL2/SDL.h>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia
 {
-    auto TextRenderer::DefineTexture(std::shared_ptr<SDL_Surface> surface) const -> void
+    auto TextRenderer::DefineTexture(const std::shared_ptr<SDL_Surface> &surface) const -> void
     {
         // Create an intermediary surface with RGBA format for OpenGL compatibility.
         auto intermediary{std::shared_ptr<SDL_Surface>(
-            SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000,
-                                 0xff000000),
+            // clang-format off
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            SDL_CreateRGBSurface(0, surface->w, surface->h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000),
+            // clang-format on
             SDLDeleter())};
 
         // Copy the source surface data to the intermediary surface.
-        SDL_BlitSurface(surface.get(), 0, intermediary.get(), 0);
+        SDL_BlitSurface(surface.get(), nullptr, intermediary.get(), nullptr);
 
         // Upload the surface pixel data to the OpenGL texture.
         glTexImage2D(GL_TEXTURE_2D, 0, 4, intermediary->w, intermediary->h, 0, GL_RGBA,

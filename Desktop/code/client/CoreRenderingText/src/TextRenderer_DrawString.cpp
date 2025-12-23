@@ -8,10 +8,13 @@
 #include "SDLDevice.hpp"
 #include "TextRenderer.hpp"
 #include "Textures/TextureBank.hpp"
+#include "SDLDeleter.hpp"
+#include "CanvasUtilities.hpp"
+#include <SDL2/SDL_ttf.h>
 
 namespace Forradia
 {
-    auto TextRenderer::DrawString(int uniqueRenderID, std::string_view text, float x, float y,
+    auto TextRenderer::DrawString(int uniqueRenderID, std::string_view text, float xPos, float yPos,
                                   FontSizes fontSize, bool centerAlign, bool forceRerender,
                                   Color textColor) const -> void
     {
@@ -60,11 +63,11 @@ namespace Forradia
 
         if (centerAlign)
         {
-            x -= width / 2;
-            y -= height / 2;
+            xPos -= width / 2;
+            yPos -= height / 2;
         }
 
-        Image2DRenderer::Instance().DrawImageByTextureID(uniqueRenderID, textureID, x, y, width,
+        Image2DRenderer::Instance().DrawImageByTextureID(uniqueRenderID, textureID, xPos, yPos, width,
                                                          height, true);
 
         this->RestoreState();

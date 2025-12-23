@@ -23,7 +23,7 @@ namespace Forradia
                                           float yPos, float width, float height,
                                           bool updateExisting) -> void
     {
-        auto textureID{TextureBank::GetTexture(imageNameHash)};
+        auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
         this->DrawImageByTextureID(uniqueRenderID, textureID, xPos, yPos, width, height,
                                    updateExisting);
     }

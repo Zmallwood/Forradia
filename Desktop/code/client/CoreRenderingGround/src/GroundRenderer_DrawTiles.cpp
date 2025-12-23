@@ -146,7 +146,7 @@ namespace Forradia
 
             auto group = entry.second;
 
-            auto textureID{TextureBank::GetTexture(imageNameHash)};
+            auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
             glBindTexture(GL_TEXTURE_2D, textureID);
 
             glBindVertexArray(group.vao);

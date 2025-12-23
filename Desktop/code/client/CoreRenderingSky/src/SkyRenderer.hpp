@@ -66,14 +66,14 @@ namespace Forradia
          *
          * @return The vertex shader source.
          */
-        auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto GetVSSource() const -> std::string override;
 
         /**
          * Returns the fragment shader source.
          *
          * @return The fragment shader source.
          */
-        auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto GetFSSource() const -> std::string override;
 
         /**
          * Does initialization that is specific to this renderer.
