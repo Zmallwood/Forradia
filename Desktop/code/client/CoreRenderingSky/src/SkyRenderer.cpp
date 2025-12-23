@@ -5,7 +5,6 @@
 
 #include "SkyRenderer.hpp"
 #include "ErrorUtilities.hpp"
-#include "GUIChatBox.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 #include "CanvasUtilities.hpp"
@@ -73,7 +72,7 @@ namespace Forradia
     auto SkyRenderer::SetupAttributeLayout() const -> void
     {
         // Position (3 floats).
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)nullptr);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, static_cast<void *>(nullptr));
         glEnableVertexAttribArray(0);
     }
 

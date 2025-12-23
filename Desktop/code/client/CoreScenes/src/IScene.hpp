@@ -17,6 +17,8 @@ namespace Forradia
     class IScene
     {
       public:
+        virtual ~IScene() = default;
+
         /**
          * Initializes the scene.
          */

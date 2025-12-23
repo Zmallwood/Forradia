@@ -41,7 +41,7 @@ namespace Forradia::Theme0
         /**
          * Updates the quest system.
          */
-        auto Update() -> void;
+        auto Update() const -> void;
 
         /**
          * Gets the name of the current quest.

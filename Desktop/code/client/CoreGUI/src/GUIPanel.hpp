@@ -19,9 +19,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the panel.
-         * @param x The x-coordinate of the panel.
-         * @param y The y-coordinate of the panel.
+         * @param uniqueName A unique name for the panel.
+         * @param xPos The x-coordinate of the panel.
+         * @param yPos The y-coordinate of the panel.
          * @param width The width of the panel.
          * @param height The height of the panel.
          * @param backgroundImage The background image of the panel.

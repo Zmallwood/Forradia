@@ -37,7 +37,7 @@ namespace Forradia
         /**
          * Destructor which cleans up the renderer.
          */
-        ~Image2DRenderer()
+        ~Image2DRenderer() override
         {
             // Clean up the renderer.
             this->Cleanup();
@@ -94,7 +94,6 @@ namespace Forradia
          * @param xPos The x coordinate of the image.
          * @param yPos The y coordinate of the image.
          * @param width The width of the image.
-         * @param height The height of the image.
          */
         auto DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float xPos,
                                  float yPos, float width) -> void;
@@ -120,7 +119,7 @@ namespace Forradia
         auto SetupAttributeLayout() const -> void override;
 
       private:
-        auto Cleanup() -> void;
+        auto Cleanup() const -> void;
 
         auto SetupState() const -> void;
 

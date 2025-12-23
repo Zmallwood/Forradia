@@ -20,10 +20,10 @@ namespace Forradia
         // Generate a hemisphere (sky dome) mesh.
 
         // Number of horizontal segments (increased for better coverage).
-        const auto segments{64};
+        constexpr auto segments{64};
 
         // Number of vertical rings (increased for smoother dome).
-        const auto rings{32};
+        constexpr auto rings{32};
 
         std::vector<float> vertices;
         std::vector<unsigned short> indices;

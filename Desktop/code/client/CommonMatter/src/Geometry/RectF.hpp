@@ -16,7 +16,7 @@ namespace Forradia
     {
       public:
         /**
-         * Check if this rectangle contains a certian point.
+         * Check if this rectangle contains a certain point.
          *
          * @param point Point to check if it is contained in this rectangle.
          * @return True if the Point is within this rectangle, otherwise false.

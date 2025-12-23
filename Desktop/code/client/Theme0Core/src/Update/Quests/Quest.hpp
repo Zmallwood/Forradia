@@ -15,6 +15,8 @@ namespace Forradia::Theme0
     class Quest
     {
       public:
+        virtual ~Quest() = default;
+
         /**
          * Updates the quest.
          */

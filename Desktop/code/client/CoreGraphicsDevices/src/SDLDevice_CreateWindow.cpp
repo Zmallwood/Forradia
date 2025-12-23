@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "ErrorUtilities.hpp"
-#include "MessageUtilities.hpp"
 #include "SDLDeleter.hpp"
 #include "SDLDevice.hpp"
 

@@ -12,8 +12,8 @@ namespace Forradia
                                                    const std::vector<float> &elevations,
                                                    std::vector<Color> colors) -> std::vector<float>
     {
-        auto xPos{xCoordinate * tileSize};
-        auto yPos{yCoordinate * tileSize};
+        auto xPos{static_cast<float>(xCoordinate) * tileSize};
+        auto yPos{static_cast<float>(yCoordinate) * tileSize};
         auto width{tileSize};
         auto height{tileSize};
 

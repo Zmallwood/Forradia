@@ -7,7 +7,6 @@
 // cache reaches a certain limit.
 
 #include "Color2DRenderer.hpp"
-#include "SDLDevice.hpp"
 #include <array>
 
 namespace Forradia
@@ -56,12 +55,12 @@ namespace Forradia
             needFillBuffers = true;
         }
 
-        const auto k_verticesCount{4};
-        const auto k_indicesCount{4};
+        constexpr auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting)
         {
+            constexpr auto k_verticesCount{4};
 
             constexpr int k_numFloats{28};
 

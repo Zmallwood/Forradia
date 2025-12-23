@@ -20,15 +20,15 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the title bar.
+         * @param uniqueName A unique name for the title bar.
          * @param parentWindow The parent window of the title bar.
          * @param windowTitle The title of the window.
          */
         GUIWindowTitleBar(std::string_view uniqueName, GUIWindow &parentWindow,
                           std::string_view windowTitle)
-            : m_parentWindow(parentWindow), k_windowTitle(windowTitle),
+            : GUIPanel(uniqueName, 0.0F, 0.0F, 0.0F, 0.0F, "GUIWindowTitleBarBackground"), k_windowTitle(windowTitle),
               k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
-              GUIPanel(uniqueName, 0.0F, 0.0F, 0.0F, 0.0F, "GUIWindowTitleBarBackground")
+              m_parentWindow(parentWindow)
         {
             this->Initialize(uniqueName);
         }
@@ -45,6 +45,7 @@ namespace Forradia
          */
         auto GetBounds() const -> RectF override;
 
+        // ReSharper disable once CppDFAConstantFunctionResult
         static auto GetHeight() -> float
         {
             return k_height;
@@ -53,7 +54,7 @@ namespace Forradia
       private:
         auto Initialize(std::string_view uniqueName) -> void;
 
-        inline static const float k_height{0.04F};
+        constexpr static float k_height{0.04F};
         const std::string k_windowTitle{};
         const float k_closeButtonTopMargin{0.01F};
         const float k_closeButtonRightMargin{0.02F};

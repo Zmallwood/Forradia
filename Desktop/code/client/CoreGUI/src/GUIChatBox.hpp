@@ -90,9 +90,9 @@ namespace Forradia
 
         constexpr static std::string_view k_defaultBackgroundImageDerived{"GUIChatBoxBackground"};
         constexpr static RectF k_defaultBounds{0.0F, 0.8F, 0.4F, 0.2F};
-        inline static const float k_lineHeight{0.028F};
-        inline static const float k_separatorHeight{0.003F};
-        inline static const float k_margin{0.008F};
+        constexpr static float k_lineHeight{0.028F};
+        constexpr static float k_separatorHeight{0.003F};
+        constexpr static float k_margin{0.008F};
         const int k_renderIDSeparator{Hash("RenderIDSeparator")};
         const int k_renderIDInputCursor{Hash("RenderIDInputCursor")};
         const int k_renderIDInputText{Hash("RenderIDInputText")};

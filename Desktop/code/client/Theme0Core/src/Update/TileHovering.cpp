@@ -18,10 +18,10 @@ namespace Forradia::Theme0
 {
     auto TileHovering::Update() -> void
     {
-        TileHovering::DetermineHoveredCoordinateWithRaycasting();
+        TileHovering::DetermineHoveredCoordinateWithRayCasting();
     }
 
-    auto TileHovering::DetermineHoveredCoordinateWithRaycasting() -> void
+    auto TileHovering::DetermineHoveredCoordinateWithRayCasting() -> void
     {
         TileHovering::IterateOverRenderedTiles();
     }
@@ -40,9 +40,7 @@ namespace Forradia::Theme0
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + yPos};
 
-                auto result{TileHovering::DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
-
-                if (result)
+                if (TileHovering::DetermineIfTileIsHovered(xCoordinate, yCoordinate))
                 {
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
 

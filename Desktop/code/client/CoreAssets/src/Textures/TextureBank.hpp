@@ -26,8 +26,10 @@ namespace Forradia
             static TextureBank instance;
             return instance;
         }
+
         // Delete copy/move
         TextureBank(const TextureBank &) = delete;
+
         auto operator=(const TextureBank &) -> TextureBank & = delete;
 
         /**

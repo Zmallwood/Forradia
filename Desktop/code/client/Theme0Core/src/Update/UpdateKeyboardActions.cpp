@@ -7,11 +7,6 @@
 #include "GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "GUISystemMenu.hpp"
-#include "Player/Player.hpp"
-#include "Tile.hpp"
-#include "Update/TileHovering.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

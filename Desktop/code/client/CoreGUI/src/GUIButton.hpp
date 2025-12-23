@@ -20,9 +20,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the button.
-         * @param x The x-coordinate of the button.
-         * @param y The y-coordinate of the button.
+         * @param uniqueName A unique name for the button.
+         * @param xPos The x-coordinate of the button.
+         * @param yPos The y-coordinate of the button.
          * @param width The width of the button.
          * @param height The height of the button.
          * @param text The text to display on the button.

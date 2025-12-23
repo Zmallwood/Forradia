@@ -42,7 +42,7 @@ namespace Forradia::Theme0
         }
 
       private:
-        static auto DetermineHoveredCoordinateWithRaycasting() -> void;
+        static auto DetermineHoveredCoordinateWithRayCasting() -> void;
 
         static auto IterateOverRenderedTiles() -> void;
 

@@ -20,9 +20,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the window.
-         * @param x The x-coordinate of the window.
-         * @param y The y-coordinate of the window.
+         * @param uniqueName A unique name for the window.
+         * @param xPos The x-coordinate of the window.
+         * @param yPos The y-coordinate of the window.
          * @param width The width of the window.
          * @param height The height of the window.
          * @param windowTitle The title of the window.

@@ -66,9 +66,9 @@ namespace Forradia
 
         auto AddFonts() -> void;
 
-        auto SetupState() const -> void;
+        static auto SetupState() -> void;
 
-        auto RestoreState() const -> void;
+        static auto RestoreState() -> void;
 
         static auto DefineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void;
 

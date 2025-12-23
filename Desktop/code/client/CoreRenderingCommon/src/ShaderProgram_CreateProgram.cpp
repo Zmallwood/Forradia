@@ -17,7 +17,7 @@ namespace Forradia
         glLinkProgram(m_programID);
 
         GLint isLinked{0};
-        glGetProgramiv(m_programID, GL_LINK_STATUS, (int *)&isLinked);
+        glGetProgramiv(m_programID, GL_LINK_STATUS, static_cast<int *>(&isLinked));
 
         // If the link failed.
         if (isLinked == GL_FALSE)

@@ -23,7 +23,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
                 action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
@@ -60,7 +60,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Forage)
             {
@@ -96,7 +96,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Pick)
             {
@@ -150,7 +150,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
@@ -204,7 +204,7 @@ namespace Forradia::Theme0
 
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch")
             {
@@ -257,7 +257,7 @@ namespace Forradia::Theme0
 
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
@@ -303,7 +303,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
             {
@@ -342,7 +342,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Lay)
             {
@@ -389,7 +389,7 @@ namespace Forradia::Theme0
 
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
             {
@@ -427,7 +427,7 @@ namespace Forradia::Theme0
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
+            //auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft)
             {

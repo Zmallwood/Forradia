@@ -35,9 +35,8 @@ namespace Forradia
         dynamic_cast<GUIComponent *>(this)->GUIComponent::UpdateDerived();
 
         auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
-        auto hovered{dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition)};
 
-        if (hovered)
+        if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition))
         {
             dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_hoveredBackgroundImage);
             Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);

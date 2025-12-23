@@ -16,11 +16,11 @@ namespace Forradia
 {
     auto Color2DRenderer::Cleanup() -> void
     {
-        for (auto &entry : m_operationsCache)
+        for (auto &val: m_operationsCache | std::views::values)
         {
-            glDeleteBuffers(1, &entry.second.ibo);
-            glDeleteBuffers(1, &entry.second.vbo);
-            glDeleteVertexArrays(1, &entry.second.vao);
+            glDeleteBuffers(1, &val.ibo);
+            glDeleteBuffers(1, &val.vbo);
+            glDeleteVertexArrays(1, &val.vao);
         }
 
         m_operationsCache.clear();
@@ -46,15 +46,15 @@ namespace Forradia
 
     auto Color2DRenderer::SetupAttributeLayout() const -> void
     {
-        const int k_stride{7};
+        constexpr int k_stride{7};
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * 0));
+                              reinterpret_cast<void *>(sizeof(float) * 0));
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * 3));
+                              reinterpret_cast<void *>(sizeof(float) * 3));
         glEnableVertexAttribArray(1);
     }
 

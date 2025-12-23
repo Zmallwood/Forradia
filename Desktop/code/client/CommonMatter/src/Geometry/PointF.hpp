@@ -25,7 +25,7 @@ namespace Forradia
          * Subtraction operator for the two points.
          *
          * @param other The other PointF to subtract from this point.
-         * @return The resulting PointF with the dimensions subtracted separetely.
+         * @return The resulting PointF with the dimensions subtracted separately.
          */
         auto operator-(const PointF &other) const -> PointF;
 

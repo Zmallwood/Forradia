@@ -65,11 +65,11 @@ namespace Forradia
         auto separatorX{bounds.x + k_margin};
         auto separatorY{bounds.y + bounds.height - k_lineHeight};
         auto separatorWidth{bounds.width - 2 * k_margin};
-        auto sepratorHeight{k_separatorHeight};
+        auto separatorHeight{k_separatorHeight};
 
         Color2DRenderer::Instance().DrawLine(
             k_renderIDSeparator, Palette::GetColor<Hash("Black")>(), separatorX, separatorY,
-            separatorX + separatorWidth, separatorY, sepratorHeight, true);
+            separatorX + separatorWidth, separatorY, separatorHeight, true);
 
         if (m_inputActive)
         {

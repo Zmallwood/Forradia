@@ -45,7 +45,7 @@ namespace Forradia
         }
     }
 
-    auto TextRenderer::SetupState() const -> void
+    auto TextRenderer::SetupState() -> void
     {
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         glEnable(GL_TEXTURE_2D);
@@ -53,7 +53,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto TextRenderer::RestoreState() const -> void
+    auto TextRenderer::RestoreState() -> void
     {
         glDisable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);

@@ -10,13 +10,13 @@
 
 namespace Forradia
 {
-    auto Image2DRenderer::Cleanup() -> void
+    auto Image2DRenderer::Cleanup() const -> void
     {
-        for (auto &entry : m_operationsCache)
+        for (const auto &val: m_operationsCache | std::views::values)
         {
-            glDeleteBuffers(1, &entry.second.ibo);
-            glDeleteBuffers(1, &entry.second.vbo);
-            glDeleteVertexArrays(1, &entry.second.vao);
+            glDeleteBuffers(1, &val.ibo);
+            glDeleteBuffers(1, &val.vbo);
+            glDeleteVertexArrays(1, &val.vao);
         }
     }
 
@@ -47,15 +47,15 @@ namespace Forradia
 
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_posPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_posPos));
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_colorPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_colorPos));
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_uvPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_uvPos));
         glEnableVertexAttribArray(2);
     }
 

@@ -5,7 +5,6 @@
 
 #include "GLDevice.hpp"
 #include "ErrorUtilities.hpp"
-#include "MessageUtilities.hpp"
 #include "SDLDevice.hpp"
 #include <SDL2/SDL.h>
 // clang-format off

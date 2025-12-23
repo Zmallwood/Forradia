@@ -34,7 +34,7 @@ namespace Forradia
         /**
          * Destructor which cleans up the renderer.
          */
-        ~Color2DRenderer()
+        ~Color2DRenderer() override
         {
             // Cleanup the renderer.
             this->Cleanup();
@@ -45,8 +45,8 @@ namespace Forradia
          *
          * @param uniqueRenderID The unique render ID.
          * @param color The color of the rectangle.
-         * @param x The x coordinate of the rectangle.
-         * @param y The y coordinate of the rectangle.
+         * @param xPos The x coordinate of the rectangle.
+         * @param yPos The y coordinate of the rectangle.
          * @param width The width of the rectangle.
          * @param height The height of the rectangle.
          * @param updateExisting Whether to update the existing operation.
@@ -59,10 +59,10 @@ namespace Forradia
          *
          * @param uniqueRenderID The unique render ID.
          * @param color The color of the line.
-         * @param x1 The x coordinate of the first point.
-         * @param y1 The y coordinate of the first point.
-         * @param x2 The x coordinate of the second point.
-         * @param y2 The y coordinate of the second point.
+         * @param xPos1 The x coordinate of the first point.
+         * @param yPos1 The y coordinate of the first point.
+         * @param xPos2 The x coordinate of the second point.
+         * @param yPos2 The y coordinate of the second point.
          * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
          * @param updateExisting Whether to update the existing operation.
          */

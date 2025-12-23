@@ -25,7 +25,7 @@ namespace Forradia::Theme0
         m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
     }
 
-    auto QuestSystem::Update() -> void
+    auto QuestSystem::Update() const -> void
     {
         for (auto &quest : this->m_quests)
         {

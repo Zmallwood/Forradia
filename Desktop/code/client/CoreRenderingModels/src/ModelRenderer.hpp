@@ -37,7 +37,7 @@ namespace Forradia
         /**
          * Destructor that cleans up the renderer.
          */
-        ~ModelRenderer()
+        ~ModelRenderer() override
         {
             // Clean up the renderer.
             this->Cleanup();

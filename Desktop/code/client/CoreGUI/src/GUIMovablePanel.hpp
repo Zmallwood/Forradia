@@ -18,9 +18,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the movable panel.
-         * @param x The x-coordinate of the movable panel.
-         * @param y The y-coordinate of the movable panel.
+         * @param uniqueName A unique name for the movable panel.
+         * @param xPos The x-coordinate of the movable panel.
+         * @param yPos The y-coordinate of the movable panel.
          * @param width The width of the movable panel.
          * @param height The height of the movable panel.
          */

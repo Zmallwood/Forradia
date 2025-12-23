@@ -47,9 +47,6 @@ namespace Forradia::Theme0
                 entity->SetDestination({newDestinationX, newDestinationY});
             }
 
-            auto worldArea{World::Instance().GetCurrentWorldArea()};
-            auto &entities{worldArea->GetEntitiesMirrorRef()};
-
             auto deltaX{entity->GetDestination().x - position.x};
             auto deltaY{entity->GetDestination().y - position.y};
 

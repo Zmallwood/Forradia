@@ -12,11 +12,11 @@ namespace Forradia
 {
     auto ModelRenderer::Cleanup() -> void
     {
-        for (auto &entry : m_operationsCache)
+        for (auto &val: m_operationsCache | std::views::values)
         {
-            glDeleteBuffers(1, &entry.second.ibo);
-            glDeleteBuffers(1, &entry.second.vbo);
-            glDeleteVertexArrays(1, &entry.second.vao);
+            glDeleteBuffers(1, &val.ibo);
+            glDeleteBuffers(1, &val.vbo);
+            glDeleteVertexArrays(1, &val.vao);
         }
 
         m_operationsCache.clear();
@@ -46,7 +46,7 @@ namespace Forradia
 
     auto ModelRenderer::SetupAttributeLayout() const -> void
     {
-        // Setup the attribute layout.
+        // Set up the attribute layout.
 
         constexpr int k_stride{8};
         constexpr int k_posPos{0};
@@ -56,19 +56,19 @@ namespace Forradia
         // Position.
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_posPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_posPos));
         glEnableVertexAttribArray(0);
 
         // Normal.
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_normalPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_normalPos));
         glEnableVertexAttribArray(1);
 
         // Texture coordinates (UV coordinates).
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * k_stride,
                               // NOLINTNEXTLINE(performance-no-int-to-ptr)
-                              (void *)(sizeof(float) * k_uvPos));
+                              reinterpret_cast<void *>(sizeof(float) * k_uvPos));
         glEnableVertexAttribArray(2);
     }
 

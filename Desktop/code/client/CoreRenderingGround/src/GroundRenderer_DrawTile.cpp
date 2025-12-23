@@ -67,14 +67,14 @@ namespace Forradia
             // Calculate the vertices with normals.
             auto verticesVector{GroundRenderer::CalcTileVerticesWithNormals(verticesNoNormals)};
 
-            constexpr int k_numFlotsPerVertex{11};
+            constexpr int k_numFloatsPerVertex{11};
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(k_indices[0]) * indicesCount,
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, static_cast<long>(sizeof(k_indices[0])) * indicesCount,
                          k_indices.data(), GL_STATIC_DRAW);
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBufferData(GL_ARRAY_BUFFER,
-                         sizeof(verticesVector[0]) * k_numFlotsPerVertex * verticesCount,
+                         static_cast<long>(sizeof(verticesVector[0])) * k_numFloatsPerVertex * verticesCount,
                          verticesVector.data(), GL_STATIC_DRAW);
 
             this->SetupAttributeLayout();

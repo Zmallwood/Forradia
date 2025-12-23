@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "TextureBank.hpp"
-#include <SDL2/SDL_image.h>
 
 namespace Forradia
 {

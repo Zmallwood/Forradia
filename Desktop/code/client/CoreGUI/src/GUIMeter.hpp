@@ -20,9 +20,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the meter.
-         * @param x The x-coordinate of the meter.
-         * @param y The y-coordinate of the meter.
+         * @param uniqueName A unique name for the meter.
+         * @param xPos The x-coordinate of the meter.
+         * @param yPos The y-coordinate of the meter.
          * @param width The width of the meter.
          * @param height The height of the meter.
          * @param filledColor The color of the filled part of the meter.

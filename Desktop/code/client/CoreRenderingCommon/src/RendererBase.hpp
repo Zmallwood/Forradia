@@ -17,6 +17,8 @@ namespace Forradia
     class RendererBase
     {
       public:
+        virtual ~RendererBase() = default;
+
         /**
          * Initialize the renderer with its shader program.
          */

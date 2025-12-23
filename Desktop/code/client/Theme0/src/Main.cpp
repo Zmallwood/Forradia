@@ -4,8 +4,6 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "GUIChatBox.hpp"
-#include "GUIExperienceBar.hpp"
 #include "SetupScenes.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"

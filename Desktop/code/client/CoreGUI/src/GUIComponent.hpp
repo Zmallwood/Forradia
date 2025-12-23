@@ -19,11 +19,13 @@ namespace Forradia
     class GUIComponent : public std::enable_shared_from_this<GUIComponent>
     {
       public:
+        virtual ~GUIComponent() = default;
+
         /**
          * Constructor.
          *
-         * @param x The x-coordinate of the component.
-         * @param y The y-coordinate of the component.
+         * @param xPos The x-coordinate of the component.
+         * @param yPos The y-coordinate of the component.
          * @param width The width of the component.
          * @param height The height of the component.
          */

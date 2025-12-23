@@ -7,6 +7,7 @@
 
 namespace Forradia
 {
+    // ReSharper disable once CppMemberFunctionMayBeStatic
     auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool
     {
         // Check if the text texture exists.

@@ -14,20 +14,21 @@ namespace Forradia
 
     auto TextureBank::Cleanup() -> void
     {
-        for (auto entry : m_textureEntries)
+        for (auto val: m_textureEntries | std::views::values)
         {
-            glDeleteTextures(1, &entry.second.textureID);
+            glDeleteTextures(1, &val.textureID);
         }
 
-        for (auto entry : m_textTextureIDs)
+        for (auto val: m_textTextureIDs | std::views::values)
         {
-            glDeleteTextures(1, &entry.second);
+            glDeleteTextures(1, &val);
         }
 
         m_textureEntries.clear();
         m_textTextureIDs.clear();
     }
 
+    // ReSharper disable once CppMemberFunctionMayBeStatic
     auto TextureBank::GetTexture(int imageNameHash) const -> GLuint
     {
         if (m_textureEntries.contains(imageNameHash))

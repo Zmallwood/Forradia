@@ -44,6 +44,8 @@ namespace Forradia
                 case SDL_BUTTON_RIGHT:
                     m_ticksRightMouseButtonFired = GetTicks();
                     break;
+                default:
+                    break;
                 }
                 SceneManager::Instance().OnMouseDownCurrentScene(event.button.button);
                 break;
@@ -59,12 +61,16 @@ namespace Forradia
                 case SDL_BUTTON_RIGHT:
                     clickSpeed = GetTicks() - m_ticksRightMouseButtonFired;
                     break;
+                default:
+                    break;
                 }
                 SceneManager::Instance().OnMouseUpCurrentScene(event.button.button, clickSpeed);
                 break;
             }
             case SDL_MOUSEWHEEL:
                 SceneManager::Instance().OnMouseWheelCurrentScene(event.wheel.y);
+                break;
+            default:
                 break;
             }
         }

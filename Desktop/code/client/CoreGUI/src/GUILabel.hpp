@@ -21,9 +21,9 @@ namespace Forradia
         /**
          * Constructor.
          *
-         * @param uniqueName An unique name for the label.
-         * @param x The x-coordinate of the label.
-         * @param y The y-coordinate of the label.
+         * @param uniqueName A unique name for the label.
+         * @param xPos The x-coordinate of the label.
+         * @param yPos The y-coordinate of the label.
          * @param width The width of the label.
          * @param height The height of the label.
          * @param text The text to display on the label.

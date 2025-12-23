@@ -8,6 +8,7 @@
 #include "GroundRenderingGroupOperation.hpp"
 #include "GroundRenderingOperation.hpp"
 #include "RendererBase.hpp"
+#include "TileData.hpp"
 #include "TileDrawGroup.hpp"
 #include <array>
 #include <glm/glm.hpp>

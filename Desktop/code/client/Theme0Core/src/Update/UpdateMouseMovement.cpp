@@ -6,7 +6,6 @@
 #include "UpdateMouseMovement.hpp"
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
-#include "TileHovering.hpp"
 #include "TimeUtilities.hpp"
 
 namespace Forradia::Theme0

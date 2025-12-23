@@ -6,9 +6,7 @@
 // - Consider implementing LRU eviction of operations memory, which is used when the operations
 // cache reaches a certain limit.
 
-#include "CanvasUtilities.hpp"
 #include "Image2DRenderer.hpp"
-#include "SDLDevice.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -62,12 +60,12 @@ namespace Forradia
             needFillBuffers = true;
         }
 
-        const auto k_verticesCount{4};
-        const auto k_indicesCount{4};
+        constexpr auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
         if (needFillBuffers || updateExisting)
         {
+            constexpr auto k_verticesCount{4};
             constexpr int k_numFloatsForVerticesData{32};
 
             std::array<float, k_numFloatsForVerticesData> vertices = {

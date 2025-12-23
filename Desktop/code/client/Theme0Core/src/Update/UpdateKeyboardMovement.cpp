@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "UpdateKeyboardMovement.hpp"
-#include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
 
 namespace Forradia::Theme0

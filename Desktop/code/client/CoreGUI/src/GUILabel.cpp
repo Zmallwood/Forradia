@@ -12,8 +12,10 @@ namespace Forradia
     {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
 
+        // ReSharper disable once CppDFAConstantConditions
         if (m_centerAlign)
         {
+            // ReSharper disable once CppDFAUnreachableCode
             bounds.x += bounds.width / 2;
             bounds.y += bounds.height / 2;
         }
