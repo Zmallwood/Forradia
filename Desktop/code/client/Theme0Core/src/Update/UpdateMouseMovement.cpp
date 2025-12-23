@@ -7,6 +7,7 @@
 #include "NumbersUtilities.hpp"
 #include "Player/Player.hpp"
 #include "TileHovering.hpp"
+#include "TimeUtilities.hpp"
 
 namespace Forradia::Theme0
 {
@@ -25,25 +26,25 @@ namespace Forradia::Theme0
         if (now >= Player::Instance().GetTicksLastMovement() +
                        InvertSpeed(Player::Instance().GetMovementSpeed()))
         {
-            auto dX{destination.x - playerPosition.x};
-            auto dY{destination.y - playerPosition.y};
+            auto deltaX{destination.x - playerPosition.x};
+            auto deltaY{destination.y - playerPosition.y};
 
-            if (dX < 0)
+            if (deltaX < 0)
             {
                 Player::Instance().MoveWest();
             }
 
-            if (dY < 0)
+            if (deltaY < 0)
             {
                 Player::Instance().MoveNorth();
             }
 
-            if (dX > 0)
+            if (deltaX > 0)
             {
                 Player::Instance().MoveEast();
             }
 
-            if (dY > 0)
+            if (deltaY > 0)
             {
                 Player::Instance().MoveSouth();
             }

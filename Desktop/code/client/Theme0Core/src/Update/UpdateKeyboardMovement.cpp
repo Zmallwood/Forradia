@@ -25,8 +25,6 @@ namespace Forradia::Theme0
             Player::Instance().SetDestination({-1, -1});
         }
 
-        auto now{GetTicks()};
-
         if (upPress || wPress)
         {
             Player::Instance().StartMovingNorth();
