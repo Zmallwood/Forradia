@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace Forradia::Theme0
 {
     /**

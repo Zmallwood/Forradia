@@ -5,8 +5,14 @@
 
 #pragma once
 
+#include <memory>
+#include <nlohmann/json.hpp>
+
 namespace Forradia::Theme0
 {
+    class WorldArea;
+    class Tile;
+
     /**
      * Manages the saving and loading of the game.
      */
@@ -34,6 +40,13 @@ namespace Forradia::Theme0
         /**
          * Loads the game from a file.
          */
-         static auto LoadGame() -> void;
+        static auto LoadGame() -> void;
+
+      private:
+        static auto LoadTiles(const std::shared_ptr<WorldArea> &worldArea,
+                              const nlohmann::json &jsonData) -> void;
+
+        static auto LoadTileObjects(const std::shared_ptr<Tile> &tile,
+                                    const nlohmann::json &tileJson) -> void;
     };
 }

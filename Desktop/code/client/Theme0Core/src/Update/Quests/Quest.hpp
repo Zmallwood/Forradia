@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace Forradia::Theme0
 {
     /**
@@ -21,7 +23,7 @@ namespace Forradia::Theme0
         /**
          * Gets the status of the quest.
          */
-        virtual auto GetStatus() const -> std::string = 0;
+        [[nodiscard]] virtual auto GetStatus() const -> std::string = 0;
 
         std::string name{};        ///< The name of the quest.
         std::string description{}; ///< The description of the quest.

@@ -92,7 +92,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numBranchesLeft{8};
+        constexpr static int k_numBranchesNeeded{8};
+        int m_numBranchesLeft{k_numBranchesNeeded};
     };
 
     class MineStoneFromBoulderQuest1 : public Quest
@@ -109,7 +110,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numMinedStonesLeft{10};
+        constexpr static int k_numStonesNeeded{10};
+        int m_numMinedStonesLeft{k_numStonesNeeded};
     };
 
     class CraftStoneSlabsQuest : public Quest
@@ -126,7 +128,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numCraftedSlabsLeft{10};
+        constexpr static int k_numSlabsNeeded{10};
+        int m_numCraftedSlabsLeft{k_numSlabsNeeded};
     };
 
     class LayStoneSlabsQuest : public Quest
@@ -143,7 +146,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numLaidSlabsLeft{10};
+        constexpr static int k_numSlabsPlacedNeeded{10};
+        int m_numLaidSlabsLeft{k_numSlabsPlacedNeeded};
     };
 
     class MineStoneFromBoulderQuest2 : public Quest
@@ -160,7 +164,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numMinedStonesLeft{10};
+        constexpr static int k_numMinedStonesNeeded{10};
+        int m_numMinedStonesLeft{k_numMinedStonesNeeded};
     };
 
     class CraftStoneBricksQuest : public Quest
@@ -177,7 +182,8 @@ namespace Forradia::Theme0
         auto GetStatus() const -> std::string override;
 
       private:
-        int m_numCraftedBricksLeft{10};
+        constexpr static int k_numCraftedBricksNeeded{10};
+        int m_numCraftedBricksLeft{k_numCraftedBricksNeeded};
     };
 
     class BuildStoneWallsQuest : public Quest

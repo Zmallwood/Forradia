@@ -7,6 +7,9 @@
 
 #include <fstream>
 #include <string>
+#include <memory>
+#include <string>
+#include <array>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -16,3 +19,4 @@
 
 #include "CanvasUtilities.hpp"
 #include "NumbersUtilities.hpp"
+#include "Hash.hpp"

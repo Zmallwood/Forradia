@@ -12,9 +12,8 @@
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
-#include <string>
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include <string>
 
 namespace Forradia::Theme0
 {
@@ -133,79 +132,86 @@ namespace Forradia::Theme0
 
         worldArea->Reset();
 
+        GameSaving::LoadTiles(worldArea, jsonData);
+    }
+
+    auto GameSaving::LoadTiles(const std::shared_ptr<WorldArea> &worldArea,
+                               const nlohmann::json &jsonData) -> void
+    {
         auto &entities{worldArea->GetEntitiesMirrorRef()};
 
-        if (jsonData.contains("size"))
+        if (!jsonData.contains("tiles") || !jsonData["tiles"].is_array())
         {
-            auto savedWidth{jsonData["size"]["width"].get<int>()};
-            auto savedHeight{jsonData["size"]["height"].get<int>()};
-            auto currentSize{worldArea->GetSize()};
+            return;
         }
 
-        if (jsonData.contains("tiles") && jsonData["tiles"].is_array())
+        for (const auto &tileJson : jsonData["tiles"])
         {
-            for (const auto &tileJson : jsonData["tiles"])
+            if (!tileJson.contains("x") || !tileJson.contains("y"))
             {
-                if (!tileJson.contains("x") || !tileJson.contains("y"))
+                continue;
+            }
+
+            auto xCoord{tileJson["x"].get<int>()};
+            auto yCoord{tileJson["y"].get<int>()};
+
+            if (!worldArea->IsValidCoordinate(xCoord, yCoord))
+            {
+                continue;
+            }
+
+            auto tile{worldArea->GetTile(xCoord, yCoord)};
+
+            if (!tile)
+            {
+                continue;
+            }
+
+            if (tileJson.contains("elevation"))
+            {
+                auto elevation{tileJson["elevation"].get<float>()};
+                tile->SetElevation(elevation);
+            }
+
+            if (tileJson.contains("ground"))
+            {
+                auto groundHash{Hash(tileJson["ground"].get<std::string>())};
+                tile->SetGround(groundHash);
+            }
+
+            GameSaving::LoadTileObjects(tile, tileJson);
+
+            if (tileJson.contains("entity"))
+            {
+                auto entityType{Hash(tileJson["entity"]["type"].get<std::string>())};
+
+                auto entity{std::make_shared<Entity>(entityType)};
+
+                tile->SetEntity(entity);
+
+                entities.insert({entity, {xCoord, yCoord}});
+            }
+        }
+    }
+
+    auto GameSaving::LoadTileObjects(const std::shared_ptr<Tile> &tile,
+                                     const nlohmann::json &tileJson) -> void
+    {
+        if (tileJson.contains("objects") && tileJson["objects"].is_array())
+        {
+            auto objectsStack{tile->GetObjectsStack()};
+            if (objectsStack)
+            {
+                objectsStack->ClearObjects();
+
+                for (const auto &objectJson : tileJson["objects"])
                 {
-                    continue;
-                }
-
-                auto xCoord{tileJson["x"].get<int>()};
-                auto yCoord{tileJson["y"].get<int>()};
-
-                if (!worldArea->IsValidCoordinate(xCoord, yCoord))
-                {
-                    continue;
-                }
-
-                auto tile{worldArea->GetTile(xCoord, yCoord)};
-
-                if (!tile)
-                {
-                    continue;
-                }
-
-                if (tileJson.contains("elevation"))
-                {
-                    auto elevation{tileJson["elevation"].get<float>()};
-                    tile->SetElevation(elevation);
-                }
-
-                if (tileJson.contains("ground"))
-                {
-                    auto groundHash{Hash(tileJson["ground"].get<std::string>())};
-                    tile->SetGround(groundHash);
-                }
-
-                if (tileJson.contains("objects") && tileJson["objects"].is_array())
-                {
-                    auto objectsStack{tile->GetObjectsStack()};
-                    if (objectsStack)
+                    if (objectJson.contains("type"))
                     {
-                        objectsStack->ClearObjects();
+                        auto objectType{objectJson["type"].get<std::string>()};
 
-                        for (const auto &objectJson : tileJson["objects"])
-                        {
-                            if (objectJson.contains("type"))
-                            {
-                                auto objectType{objectJson["type"].get<std::string>()};
-
-                                objectsStack->AddObject(objectType);
-                            }
-                        }
+                        objectsStack->AddObject(objectType);
                     }
-                }
-
-                if (tileJson.contains("entity"))
-                {
-                    auto entityType{Hash(tileJson["entity"]["type"].get<std::string>())};
-
-                    auto entity{std::make_shared<Entity>(entityType)};
-
-                    tile->SetEntity(entity);
-
-                    entities.insert({entity, {xCoord, yCoord}});
                 }
             }
         }

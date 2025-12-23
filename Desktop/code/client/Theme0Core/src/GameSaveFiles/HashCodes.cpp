@@ -4,6 +4,8 @@
  *********************************************************************/
 
 #include "HashCodes.hpp"
+#include "Hash.hpp"
+#include <array>
 
 namespace Forradia::Theme0
 {
