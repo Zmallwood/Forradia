@@ -13,7 +13,7 @@ namespace Forradia::Theme0
     class GameSaving
     {
       public:
-        static GameSaving &Instance()
+        static auto Instance() -> GameSaving &
         {
             static GameSaving instance;
             return instance;
@@ -22,18 +22,18 @@ namespace Forradia::Theme0
         // Delete copy/move
         GameSaving(const GameSaving &) = delete;
 
-        GameSaving &operator=(const GameSaving &) = delete;
+        auto operator=(const GameSaving &) -> GameSaving & = delete;
 
         GameSaving() = default;
 
         /**
          * Saves the game to a file.
          */
-        auto SaveGame() -> void;
+        static auto SaveGame() -> void;
 
         /**
          * Loads the game from a file.
          */
-        auto LoadGame() -> void;
+         static auto LoadGame() -> void;
     };
 }

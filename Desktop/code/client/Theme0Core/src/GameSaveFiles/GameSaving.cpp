@@ -12,6 +12,9 @@
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
 
 namespace Forradia::Theme0
 {
@@ -35,11 +38,11 @@ namespace Forradia::Theme0
         // Serialize tiles
         jsonData["tiles"] = nlohmann::json::array();
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
+        for (auto yCoord = 0; yCoord < worldAreaSize.height; yCoord++)
         {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            for (auto xCoord = 0; xCoord < worldAreaSize.width; xCoord++)
             {
-                auto tile{worldArea->GetTile(x, y)};
+                auto tile{worldArea->GetTile(xCoord, yCoord)};
 
                 if (!tile)
                 {
@@ -48,8 +51,8 @@ namespace Forradia::Theme0
 
                 nlohmann::json tileJson;
 
-                tileJson["x"] = x;
-                tileJson["y"] = y;
+                tileJson["x"] = xCoord;
+                tileJson["y"] = yCoord;
                 tileJson["elevation"] = tile->GetElevation();
                 tileJson["ground"] = GetNameFromAnyHash(tile->GetGround());
 
@@ -148,15 +151,15 @@ namespace Forradia::Theme0
                     continue;
                 }
 
-                auto x{tileJson["x"].get<int>()};
-                auto y{tileJson["y"].get<int>()};
+                auto xCoord{tileJson["x"].get<int>()};
+                auto yCoord{tileJson["y"].get<int>()};
 
-                if (!worldArea->IsValidCoordinate(x, y))
+                if (!worldArea->IsValidCoordinate(xCoord, yCoord))
                 {
                     continue;
                 }
 
-                auto tile{worldArea->GetTile(x, y)};
+                auto tile{worldArea->GetTile(xCoord, yCoord)};
 
                 if (!tile)
                 {
@@ -202,7 +205,7 @@ namespace Forradia::Theme0
 
                     tile->SetEntity(entity);
 
-                    entities.insert({entity, {x, y}});
+                    entities.insert({entity, {xCoord, yCoord}});
                 }
             }
         }
