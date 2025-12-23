@@ -11,7 +11,6 @@
 #include "Player/Player.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
-#include "TimeUtilities.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
@@ -46,8 +45,8 @@ namespace Forradia::Theme0
         auto objectsStack{tile->GetObjectsStack()};
         auto objects{objectsStack->GetObjects()};
 
-        if (m_elevationsAll.find(xCoordinate) == m_elevationsAll.end() ||
-            m_elevationsAll[xCoordinate].find(yCoordinate) == m_elevationsAll[xCoordinate].end())
+        if (!m_elevationsAll.contains(xCoordinate) ||
+            !m_elevationsAll[xCoordinate].contains(yCoordinate))
         {
             return;
         }
@@ -59,41 +58,12 @@ namespace Forradia::Theme0
         // NOLINTNEXTLINE(readability-magic-numbers)
         auto &elevationNE = elevations[1];
         // NOLINTNEXTLINE(readability-magic-numbers)
-        auto &elevationNEE = elevations[2];
-        // NOLINTNEXTLINE(readability-magic-numbers)
         auto &elevationSW = elevations[3];
         // NOLINTNEXTLINE(readability-magic-numbers)
         auto &elevationSE = elevations[4];
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        auto &elevationSEE = elevations[5];
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        auto &elevationSS = elevations[6];
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        auto &elevationSES = elevations[7];
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        auto &elevationSESE = elevations[8];
-
-        auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
 
         auto elevationMax{
             std::max(elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
-
-        auto ground{tile->GetGround()};
-
-        if (ground == Hash("GroundWater"))
-        {
-            auto waterDepth{tile->GetWaterDepth()};
-            waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
-
-            std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
-
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
-
-            waterImageString += "_" + std::to_string(animationIndex);
-
-            ground = Hash(waterImageString);
-        }
 
         // Check if this tile is within the normal grid size for object/entity
         // rendering.
@@ -115,9 +85,7 @@ namespace Forradia::Theme0
                                                     elevationMax, object->GetModelScaling());
             }
 
-            auto entity{tile->GetEntity()};
-
-            if (entity)
+            if (auto entity{tile->GetEntity()})
             {
                 auto entityType{entity->GetType()};
 

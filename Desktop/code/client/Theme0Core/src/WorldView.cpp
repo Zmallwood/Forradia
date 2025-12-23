@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "WorldView.hpp"
-#include "Directions.hpp"
 #include "GroundRenderer.hpp"
 #include "Player/Player.hpp"
 #include "SkyRenderer.hpp"

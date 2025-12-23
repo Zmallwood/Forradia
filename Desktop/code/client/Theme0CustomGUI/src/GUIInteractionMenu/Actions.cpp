@@ -16,8 +16,6 @@
 #include "Player/PlayerObjectsInventory.hpp"
 #include "SceneManager.hpp"
 #include "Tile.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
 
 namespace Forradia::Theme0
 {
@@ -31,7 +29,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectUnlitCampfire")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 for (auto &object : objects)
                 {
@@ -55,7 +53,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectUnlitCampfire"), Hash("ObjectLitCampfire")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 for (auto &object : objects)
                 {
@@ -89,7 +87,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectBranch")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -122,7 +120,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectStoneBowl")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 for (auto &object : objects)
                 {
@@ -155,7 +153,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectRedApple")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 for (auto objPtr : objects)
                 {
@@ -175,7 +173,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -198,7 +196,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStoneBrick")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -227,7 +225,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStoneBrick")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -256,7 +254,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -278,13 +276,11 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStoneSlab")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
                 inventory.RemoveObject("ObjectStoneSlab");
-
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
                 {
@@ -306,7 +302,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -328,7 +324,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectBranch"), Hash("ObjectStone")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -367,7 +363,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectStoneBoulder")},
             .objectsInInventory = {Hash("ObjectStonePickaxe")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -388,7 +384,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {Hash("ObjectSmallStones")},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -402,8 +398,6 @@ namespace Forradia::Theme0
                 }
 
                 inventory.RemoveObject("ObjectSmallStones");
-
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
 
                 if (tile)
                 {
@@ -422,10 +416,8 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
-
                 if (tile)
                 {
                     tile->SetGround(Hash("GroundPlowedLand"));
@@ -443,7 +435,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 s_timedActions.clear();
 
@@ -459,7 +451,7 @@ namespace Forradia::Theme0
             .groundMatches = {Hash("GroundGrass")},
             .objectMatches = {},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -481,7 +473,7 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
                 auto &inventory{Player::Instance().GetObjectsInventoryRef()};
 
@@ -501,10 +493,8 @@ namespace Forradia::Theme0
             .groundMatches = {},
             .objectMatches = {Hash("ObjectStone")},
             .objectsInInventory = {},
-            .action = [](std::shared_ptr<Tile> tile, std::vector<std::shared_ptr<Object> *> objects)
+            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
             {
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
-
                 if (tile)
                 {
                     tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");

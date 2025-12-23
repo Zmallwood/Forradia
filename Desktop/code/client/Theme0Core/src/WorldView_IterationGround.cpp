@@ -8,7 +8,6 @@
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "TimeUtilities.hpp"
-#include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 #include "WorldView.hpp"
@@ -21,7 +20,6 @@ namespace Forradia::Theme0
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
-        auto hoveredCoordinate{TileHovering::GetHoveredCoordinate()};
 
         // Calculate extended ground rendering size
         auto groundGridSize{
@@ -104,11 +102,6 @@ namespace Forradia::Theme0
 
         m_elevationsAll[xCoordinate][yCoordinate] = elevations;
 
-        auto elevationAverage{(elevationNW + elevationNE + elevationSW + elevationSE) / 4};
-
-        auto elevationMax{
-            std::max(elevationNW, std::max(elevationNE, std::max(elevationSE, elevationSW)))};
-
         auto ground{tile->GetGround()};
 
         auto color00{Palette::GetColor<Hash("White")>()};
@@ -158,13 +151,6 @@ namespace Forradia::Theme0
             tile->SetForceRedraw(true);
         }
 
-        // Check if this tile is within the normal grid size for object/entity
-        // rendering.
-        auto isWithinNormalGrid{xPos >= (groundGridSize.width - gridSize.width) / 2 &&
-                                xPos < (groundGridSize.width + gridSize.width) / 2 &&
-                                yPos >= (groundGridSize.height - gridSize.height) / 2 &&
-                                yPos < (groundGridSize.height + gridSize.height) / 2};
-
         m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
                            yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
                            color11, color01});
@@ -188,6 +174,8 @@ namespace Forradia::Theme0
 
         case Hash("GroundStoneSlab"):
             return Palette::GetColor<Hash("White")>();
+        default:
+            break;
         }
         return Palette::GetColor<Hash("White")>();
     }
