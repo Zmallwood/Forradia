@@ -11,6 +11,8 @@
 
 namespace Forradia::Theme0
 {
+    class WorldArea;
+
     /**
      * Renders the world.
      */
@@ -65,5 +67,12 @@ namespace Forradia::Theme0
         std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
         std::unordered_map<int, std::unordered_map<int, std::vector<float>>> m_elevationsAll;
         std::vector<TileData> m_tiles;
+        Point m_playerPos;
+        Size m_gridSize;
+        Size m_worldAreaSize;
+        Size m_groundGridSize;
+        std::shared_ptr<WorldArea> m_worldArea;
+        float m_rendTileSize;
+        Point m_hoveredCoordinate;
     };
 }

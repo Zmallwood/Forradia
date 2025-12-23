@@ -16,27 +16,15 @@ namespace Forradia::Theme0
 {
     auto WorldView::IterationGround(int xPos, int yPos) -> void
     {
-        auto playerPos{Player::Instance().GetPosition()};
-        auto gridSize{Theme0Properties::Instance().GetGridSize()};
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
+        auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
+        auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-        // Calculate extended ground rendering size
-        auto groundGridSize{
-            decltype(gridSize){static_cast<decltype(gridSize.width)>(
-                                   gridSize.width * k_groundRenderingDistanceMultiplier),
-                               static_cast<decltype(gridSize.height)>(
-                                   gridSize.height * k_groundRenderingDistanceMultiplier)}};
-
-        auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + xPos};
-        auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + yPos};
-
-        if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+        if (!m_worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
         {
             return;
         }
 
-        auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
+        auto tile{m_worldArea->GetTile(xCoordinate, yCoordinate)};
         auto objectsStack{tile->GetObjectsStack()};
         auto objects{objectsStack->GetObjects()};
 
@@ -55,28 +43,28 @@ namespace Forradia::Theme0
         auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
         auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
-        if (!worldArea->IsValidCoordinate(coordinateNW) ||
-            !worldArea->IsValidCoordinate(coordinateNE) ||
-            !worldArea->IsValidCoordinate(coordinateSW) ||
-            !worldArea->IsValidCoordinate(coordinateSE))
+        if (!m_worldArea->IsValidCoordinate(coordinateNW) ||
+            !m_worldArea->IsValidCoordinate(coordinateNE) ||
+            !m_worldArea->IsValidCoordinate(coordinateSW) ||
+            !m_worldArea->IsValidCoordinate(coordinateSE))
         {
             return;
         }
 
-        auto tileNWW{worldArea->GetTile(coordinateNWW)};
-        auto tileNNW{worldArea->GetTile(coordinateNNW)};
-        auto tileNNWW{worldArea->GetTile(coordinateNNWW)};
-        auto tileNNE{worldArea->GetTile(coordinateNNE)};
-        auto tileSWW{worldArea->GetTile(coordinateSWW)};
-        auto tileNW{worldArea->GetTile(coordinateNW)};
-        auto tileNE{worldArea->GetTile(coordinateNE)};
-        auto tileSW{worldArea->GetTile(coordinateSW)};
-        auto tileSE{worldArea->GetTile(coordinateSE)};
-        auto tileNEE{worldArea->GetTile(coordinateNEE)};
-        auto tileSEE{worldArea->GetTile(coordinateSEE)};
-        auto tileSESE{worldArea->GetTile(coordinateSESE)};
-        auto tileSES{worldArea->GetTile(coordinateSES)};
-        auto tileSS{worldArea->GetTile(coordinateSS)};
+        auto tileNWW{m_worldArea->GetTile(coordinateNWW)};
+        auto tileNNW{m_worldArea->GetTile(coordinateNNW)};
+        auto tileNNWW{m_worldArea->GetTile(coordinateNNWW)};
+        auto tileNNE{m_worldArea->GetTile(coordinateNNE)};
+        auto tileSWW{m_worldArea->GetTile(coordinateSWW)};
+        auto tileNW{m_worldArea->GetTile(coordinateNW)};
+        auto tileNE{m_worldArea->GetTile(coordinateNE)};
+        auto tileSW{m_worldArea->GetTile(coordinateSW)};
+        auto tileSE{m_worldArea->GetTile(coordinateSE)};
+        auto tileNEE{m_worldArea->GetTile(coordinateNEE)};
+        auto tileSEE{m_worldArea->GetTile(coordinateSEE)};
+        auto tileSESE{m_worldArea->GetTile(coordinateSESE)};
+        auto tileSES{m_worldArea->GetTile(coordinateSES)};
+        auto tileSS{m_worldArea->GetTile(coordinateSS)};
 
         std::vector<float> elevations;
 
@@ -162,7 +150,7 @@ namespace Forradia::Theme0
         }
 
         m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
-                           yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
+                           yCoordinate, m_rendTileSize, elevations, forceRedraw, color00, color10,
                            color11, color01});
     }
 

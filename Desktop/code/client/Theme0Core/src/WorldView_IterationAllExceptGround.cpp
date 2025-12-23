@@ -20,29 +20,17 @@ namespace Forradia::Theme0
 {
     auto WorldView::IterationAllExceptGround(int xPos, int yPos) -> void
     {
-        auto playerPos{Player::Instance().GetPosition()};
-        auto gridSize{Theme0Properties::Instance().GetGridSize()};
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
-        auto hoveredCoordinate{TileHovering::GetHoveredCoordinate()};
+        auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
+        auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-        // Calculate extended ground rendering size
-        auto groundGridSize{
-            decltype(gridSize){static_cast<decltype(gridSize.width)>(
-                                   gridSize.width * k_groundRenderingDistanceMultiplier),
-                               static_cast<decltype(gridSize.height)>(
-                                   gridSize.height * k_groundRenderingDistanceMultiplier)}};
-
-        auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + xPos};
-        auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + yPos};
-
-        if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+        if (!m_worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
         {
             return;
         }
 
-        auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
+        auto tile{m_worldArea->GetTile(xCoordinate, yCoordinate)};
         auto objectsStack{tile->GetObjectsStack()};
+
         auto objects{objectsStack->GetObjects()};
 
         if (!m_elevationsAll.contains(xCoordinate) ||
@@ -67,10 +55,10 @@ namespace Forradia::Theme0
 
         // Check if this tile is within the normal grid size for object/entity
         // rendering.
-        auto isWithinNormalGrid{xPos >= (groundGridSize.width - gridSize.width) / 2 &&
-                                xPos < (groundGridSize.width + gridSize.width) / 2 &&
-                                yPos >= (groundGridSize.height - gridSize.height) / 2 &&
-                                yPos < (groundGridSize.height + gridSize.height) / 2};
+        auto isWithinNormalGrid{xPos >= (m_groundGridSize.width - m_gridSize.width) / 2 &&
+                                xPos < (m_groundGridSize.width + m_gridSize.width) / 2 &&
+                                yPos >= (m_groundGridSize.height - m_gridSize.height) / 2 &&
+                                yPos < (m_groundGridSize.height + m_gridSize.height) / 2};
 
         // Only render objects, and entities within the normal grid size.
         if (isWithinNormalGrid)
@@ -79,10 +67,10 @@ namespace Forradia::Theme0
             {
                 auto objectType{object->GetType()};
 
-                ModelRenderer::Instance().DrawModel(objectType,
-                                                    (xCoordinate)*rendTileSize + rendTileSize / 2,
-                                                    (yCoordinate)*rendTileSize + rendTileSize / 2,
-                                                    elevationMax, object->GetModelScaling());
+                ModelRenderer::Instance().DrawModel(
+                    objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
+                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                    object->GetModelScaling());
             }
 
             if (auto entity{tile->GetEntity()})
@@ -90,17 +78,19 @@ namespace Forradia::Theme0
                 auto entityType{entity->GetType()};
 
                 ModelRenderer::Instance().DrawModel(
-                    entityType, (xCoordinate)*rendTileSize + rendTileSize / 2,
-                    (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
+                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax);
             }
 
-            if (xCoordinate == playerPos.x && yCoordinate == playerPos.y)
+            if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
+            {
                 ModelRenderer::Instance().DrawModel(
-                    Hash("Player"), (xCoordinate)*rendTileSize + rendTileSize / 2,
-                    (yCoordinate)*rendTileSize + rendTileSize / 2, elevationMax);
+                    Hash("Player"), (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
+                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax);
+            }
         }
 
-        if (xCoordinate == hoveredCoordinate.x && yCoordinate == hoveredCoordinate.y)
+        if (xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
         {
             for (auto &elevation : elevations)
             {
@@ -108,12 +98,15 @@ namespace Forradia::Theme0
                 elevation += 0.01F;
             }
 
+            ModelRenderer::Instance().RestoreState();
+
             GroundRenderer::Instance().SetupState();
             GroundRenderer::Instance().DrawTile(k_renderIDGroundSymbolHoveredTile,
                                                 Hash("HoveredTile"), xCoordinate, yCoordinate,
-                                                rendTileSize, elevations, true);
+                                                m_rendTileSize, elevations, true);
 
             GroundRenderer::RestoreState();
+            ModelRenderer::Instance().SetupState();
         }
     }
 }

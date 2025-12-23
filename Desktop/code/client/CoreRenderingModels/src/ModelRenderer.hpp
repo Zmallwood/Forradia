@@ -55,6 +55,10 @@ namespace Forradia
         auto DrawModel(int modelNameHash, float xPos, float yPos, float elevations,
                        float modelScaling = 1.0F) -> void;
 
+        auto SetupState() const -> void;
+
+        static auto RestoreState() -> void;
+
       protected:
         /**
          * Gets the vertex shader source.
@@ -82,10 +86,6 @@ namespace Forradia
 
       private:
         auto Cleanup() -> void;
-
-        auto SetupState() const -> void;
-
-        static auto RestoreState() -> void;
 
         [[nodiscard]] auto DrawingOperationIsCached(int modelNameHash) const -> bool;
 
