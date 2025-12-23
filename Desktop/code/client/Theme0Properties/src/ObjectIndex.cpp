@@ -14,7 +14,7 @@ namespace Forradia::Theme0
         AddObjectEntry("ObjectBush1", 1.2F, false, 0, false);
         AddObjectEntry("ObjectBush2", 1.2F, false, 0, false);
         AddObjectEntry("ObjectStoneWall", 0.8F, true, 0, true);
-        AddObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, true);
+        AddObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, false);
         AddObjectEntry("ObjectStoneBowl", 1.0F, true, 4, false);
         AddObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8, false);
         AddObjectEntry("ObjectLitCampfire", 1.3F, true, 8, false);
