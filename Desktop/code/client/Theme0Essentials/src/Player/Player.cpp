@@ -58,6 +58,7 @@ namespace Forradia::Theme0
                 break;
 
             case PlayerMoveDirections::None:
+                    break;
             }
 
             m_ticksLastMovement = now;

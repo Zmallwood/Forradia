@@ -32,7 +32,7 @@ namespace Forradia
 
     auto GUIButton::UpdateDerived() -> void
     {
-        dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
+        dynamic_cast<GUIComponent *>(this)->GUIComponent::UpdateDerived();
 
         auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto hovered{dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition)};

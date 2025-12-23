@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(Forradia)
 
@@ -37,3 +37,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0CustomGUI
     ForradiaTheme0Scenes
 )
+
+file(COPY ${CMAKE_SOURCE_DIR}/../Resources
+        DESTINATION ${CMAKE_BINARY_DIR}/client/Theme0)

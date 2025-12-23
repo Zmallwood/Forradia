@@ -32,7 +32,7 @@ namespace Forradia
 
     auto GUIChatBox::UpdateDerived() -> void
     {
-        dynamic_cast<GUIComponent *>(this)->GUIPanel::UpdateDerived();
+        dynamic_cast<GUIComponent *>(this)->GUIComponent::UpdateDerived();
     }
 
     auto GUIChatBox::RenderDerived() const -> void
