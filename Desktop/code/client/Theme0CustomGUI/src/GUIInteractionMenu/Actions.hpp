@@ -17,6 +17,7 @@ namespace Forradia::Theme0
      * @return The action for the given action type.
      */
     template <int N>
+    // ReSharper disable once CppFunctionIsNotImplemented
     auto GetAction() -> Action;
 
     /**

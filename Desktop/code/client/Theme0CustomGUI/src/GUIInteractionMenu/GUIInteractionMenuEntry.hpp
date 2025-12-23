@@ -24,7 +24,7 @@ namespace Forradia::Theme0
          */
         GUIInteractionMenuEntry(
             std::string_view label,
-            std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)>
+            const std::function<void(std::shared_ptr<Tile>, std::vector<std::shared_ptr<Object> *>)>&
                 action)
             : m_label(label), m_action(action)
         {
@@ -35,7 +35,7 @@ namespace Forradia::Theme0
          *
          * @return The label of the entry.
          */
-        auto GetLabel() const
+        [[nodiscard]] auto GetLabel() const
         {
             return m_label;
         }
@@ -45,7 +45,7 @@ namespace Forradia::Theme0
          *
          * @return The action of the entry.
          */
-        auto GetAction() const
+        [[nodiscard]] auto GetAction() const
         {
             return m_action;
         }

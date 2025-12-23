@@ -46,7 +46,7 @@ namespace Forradia::Theme0
          *
          * @return The height of the bar.
          */
-        auto GetHeight() const
+        static auto GetHeight()
         {
             return k_height;
         }
@@ -69,7 +69,7 @@ namespace Forradia::Theme0
          *
          * @return The filled color of the bar.
          */
-        auto GetFilledColor() const -> Color
+        static auto GetFilledColor() -> Color
         {
             return Palette::GetColor<Hash("Gold")>();
         }

@@ -49,13 +49,13 @@ namespace Forradia::Theme0
         auto CreateBiomeCluster(int centerX, int centerY, int radius,
                                 std::string_view groundType) const -> void;
 
-        auto GetMaxElevation() const -> int;
+        static auto GetMaxElevation() -> int;
 
-        auto GetMaxSlopePerTile() const -> int;
+        static auto GetMaxSlopePerTile() -> int;
 
-        auto GetMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
+        [[nodiscard]] auto GetMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
 
-        auto ClampElevation(int elevation) const -> int;
+        static auto ClampElevation(int elevation) -> int;
 
         auto CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const
             -> void;

@@ -195,9 +195,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Gets the well being of the player.
+         * Gets the well-being of the player.
          *
-         * @return The well being of the player.
+         * @return The well-being of the player.
          */
         auto GetWellBeing() const
         {
@@ -205,9 +205,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Gets the max well being of the player.
+         * Gets the max well-being of the player.
          *
-         * @return The max well being of the player.
+         * @return The max well-being of the player.
          */
         auto GetMaxWellBeing() const
         {
@@ -245,7 +245,7 @@ namespace Forradia::Theme0
             return m_spouse;
         }
 
-        void SetSpouse(std::shared_ptr<Spouse> value)
+        void SetSpouse(const std::shared_ptr<Spouse> &value)
         {
             m_spouse = value;
         }

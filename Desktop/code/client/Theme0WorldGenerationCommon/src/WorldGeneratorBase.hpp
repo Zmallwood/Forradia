@@ -29,13 +29,13 @@ namespace Forradia::Theme0
          * @param y2 The y coordinate of the second point.
          * @return The distance between the two points.
          */
-        auto GetDistance(int x1, int y1, int x2, int y2) const -> float;
+        static auto GetDistance(int x1, int y1, int x2, int y2) -> float;
 
         /**
          * Get the default ground elevation.
          * @return The default ground elevation.
          */
-        auto GetDefaultGroundElevation() const
+        [[nodiscard]] constexpr static auto GetDefaultGroundElevation()
         {
             return k_defaultGroundElevation;
         }
@@ -45,7 +45,7 @@ namespace Forradia::Theme0
          *
          * @return The world area.
          */
-        auto GetWorldArea() const
+        [[nodiscard]] auto GetWorldArea() const
         {
             return m_worldArea;
         }
@@ -55,7 +55,7 @@ namespace Forradia::Theme0
          *
          * @return The size of the world area.
          */
-        auto GetWorldAreaSize() const
+        [[nodiscard]] auto GetWorldAreaSize() const
         {
             return m_worldAreaSize;
         }
@@ -65,13 +65,13 @@ namespace Forradia::Theme0
          *
          * @return The scale factor of the world.
          */
-        auto GetWorldScaling() const
+        [[nodiscard]] auto GetWorldScaling() const
         {
             return m_worldScaling;
         }
 
       private:
-        const int k_defaultGroundElevation{10};
+        constexpr static int k_defaultGroundElevation{10};
         std::shared_ptr<WorldArea> m_worldArea{};
         Size m_worldAreaSize{};
         float m_worldScaling{};

@@ -11,9 +11,9 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGenerator::GenerateNewWorld() const -> void
+    auto WorldGenerator::GenerateNewWorld() -> void
     {
-        this->Prepare();
+        WorldGenerator::Prepare();
 
         WorldGeneratorGround::Instance().GenerateGroundWithElevation();
         WorldGeneratorWater::Instance().GenerateWater();
@@ -21,7 +21,7 @@ namespace Forradia::Theme0
         WorldGeneratorEntities::Instance().GenerateEntities();
     }
 
-    auto WorldGenerator::Prepare() const -> void
+    auto WorldGenerator::Prepare() -> void
     {
         WorldGeneratorGround::Instance().Prepare();
         WorldGeneratorWater::Instance().Prepare();

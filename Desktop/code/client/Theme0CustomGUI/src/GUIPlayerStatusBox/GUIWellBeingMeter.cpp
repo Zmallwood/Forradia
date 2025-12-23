@@ -17,8 +17,6 @@ namespace Forradia::Theme0
         auto health{player.GetWellBeing()};
         auto maxHealth{player.GetMaxWellBeing()};
 
-        auto bounds{this->GetBounds()};
-
         m_filledPercentage = health / maxHealth;
     }
 

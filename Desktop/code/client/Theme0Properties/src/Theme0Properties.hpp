@@ -33,21 +33,21 @@ namespace Forradia::Theme0
          *
          * @return The game window title.
          */
-        auto GetGameWindowTitle() const -> std::string;
+        static auto GetGameWindowTitle() -> std::string;
 
         /**
          * Get the clear color of the canvas.
          *
          * @return The clear color of the canvas.
          */
-        auto GetClearColor() const -> Color;
+        static auto GetClearColor() -> Color;
 
         /**
          * Get the size of the grid rendered by the WorldView.
          *
          * @return The size of the grid rendered by the WorldView.
          */
-        auto GetGridSize() const -> Size;
+        static auto GetGridSize() -> Size;
 
         /**
          * Get the base size of a single world area. This size is being scaled using
@@ -55,7 +55,7 @@ namespace Forradia::Theme0
          *
          * @return The base size of a single world area.
          */
-        auto GetBaseWorldAreaSize() const -> Size;
+        static auto GetBaseWorldAreaSize() -> Size;
 
         /**
          * Get the world scaling factor which is applied to the world area size and world generation
@@ -63,20 +63,20 @@ namespace Forradia::Theme0
          *
          * @return The world scaling factor.
          */
-        auto GetWorldScaling() const -> float;
+        static auto GetWorldScaling() -> float;
 
         /**
          * Get the size of a single tile in opengl space.
          *
          * @return The size of a single tile in opengl space.
          */
-        auto GetTileSize() const -> float;
+        static auto GetTileSize() -> float;
 
         /**
          * Get the height of one unit of elevation in opengl 3D space.
          *
          * @return The height of one unit of elevation.
          */
-        auto GetElevationHeight() const -> float;
+        static auto GetElevationHeight() -> float;
     };
 }

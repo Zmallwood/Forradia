@@ -62,6 +62,8 @@ namespace Forradia::Theme0
             }
         }
         break;
+        default:
+            break;
         }
 
         return false;
@@ -79,8 +81,6 @@ namespace Forradia::Theme0
 
         if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow)
         {
-            std::vector<int> objectHashes;
-
             m_clickedCoordinate = {-1, -1};
 
             m_clickedObjects.clear();
@@ -89,6 +89,8 @@ namespace Forradia::Theme0
 
             if (object)
             {
+                std::vector<int> objectHashes;
+
                 objectHashes.push_back((*object)->GetType());
 
                 m_clickedObjects.push_back(object.get());
@@ -102,7 +104,6 @@ namespace Forradia::Theme0
 
         auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
 
         m_clickedCoordinate = hoveredCoordinate;
 
@@ -130,7 +131,7 @@ namespace Forradia::Theme0
     }
 
     auto GUIInteractionMenu::ShowMenuForTileAndObjects(int groundHash,
-                                                       std::vector<int> objectHashes) -> void
+                                                       const std::vector<int>& objectHashes) -> void
     {
         std::vector<Action> actions{GetAction<Hash("ActionStop")>(),
                                     GetAction<Hash("ActionLayCobbleStone")>(),

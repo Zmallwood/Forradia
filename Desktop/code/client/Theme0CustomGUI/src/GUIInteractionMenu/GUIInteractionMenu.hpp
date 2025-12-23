@@ -49,7 +49,7 @@ namespace Forradia::Theme0
 
         auto HandleClick() -> void;
 
-        auto ShowMenuForTileAndObjects(int groundHash, std::vector<int> objectHashes) -> void;
+        auto ShowMenuForTileAndObjects(int groundHash, const std::vector<int>& objectHashes) -> void;
 
         /**
          * Gets the timed actions.
@@ -77,12 +77,12 @@ namespace Forradia::Theme0
          */
         auto Initialize() -> void;
 
-        virtual auto UpdateDerived() -> void override;
+        auto UpdateDerived() -> void override;
 
         /**
          * Does render logic that is specific to the interaction menu.
          */
-        virtual auto RenderDerived() const -> void override;
+        auto RenderDerived() const -> void override;
 
       private:
         static constexpr float k_indentWidth{0.01f};

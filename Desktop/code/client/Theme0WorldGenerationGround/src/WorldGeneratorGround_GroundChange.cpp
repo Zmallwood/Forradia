@@ -33,8 +33,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{static_cast<int>(6 * worldScaling + GetRandomInt(10 * worldScaling))};
-            auto density{0.7F + GetRandomInt(30) / 100.0F}; // 0.7 to 1.0.
+            auto radius{static_cast<int>(6 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(10 * worldScaling))))};
                                                             //
             CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
         }
@@ -84,7 +83,7 @@ namespace Forradia::Theme0
 
             // Create rock formations on high elevation.
 
-            auto radius{static_cast<int>(2 * worldScaling + GetRandomInt(5 * worldScaling))};
+            auto radius{static_cast<int>(2 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(5 * worldScaling))))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
@@ -97,7 +96,7 @@ namespace Forradia::Theme0
 
                     auto distance{GetDistance(x, y, xCenter, yCenter)};
 
-                    if (distance > radius)
+                    if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
@@ -140,14 +139,12 @@ namespace Forradia::Theme0
 
                 auto distance{GetDistance(x, y, centerX, centerY)};
 
-                if (distance > radius)
+                if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                auto tile{GetWorldArea()->GetTile(x, y)};
-
-                if (tile)
+                if (auto tile{GetWorldArea()->GetTile(x, y)})
                 {
                     tile->SetGround(groundType);
                 }

@@ -20,7 +20,7 @@ namespace Forradia::Theme0
         {
             auto xCenter{GetRandomInt(worldAreaSize.width)};
             auto yCenter{GetRandomInt(worldAreaSize.height)};
-            auto radius{static_cast<int>(8 * worldScaling + GetRandomInt(12 * worldScaling))};
+            auto radius{static_cast<int>(8 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(12 * worldScaling))))};
             auto maxElevation{30 + GetRandomInt(20)};
 
             CreateElevationHill(xCenter, yCenter, radius, maxElevation);
@@ -52,7 +52,7 @@ namespace Forradia::Theme0
                 if (worldArea->IsValidCoordinate(x, y))
                 {
                     auto radius{
-                        static_cast<int>(4 * worldScaling + GetRandomInt(6 * worldScaling))};
+                        static_cast<int>(4 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(6 * worldScaling))))};
 
                     auto elevation{120 + GetRandomInt(160)};
 
@@ -63,8 +63,8 @@ namespace Forradia::Theme0
                 auto angleRadians{
                     static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0F)};
 
-                currentX += std::cos(angleRadians) * (2.0f + GetRandomInt(3));
-                currentY += std::sin(angleRadians) * (2.0f + GetRandomInt(3));
+                currentX += std::cos(angleRadians) * (2.0f + static_cast<float>(GetRandomInt(3)));
+                currentY += std::sin(angleRadians) * (2.0f + static_cast<float>(GetRandomInt(3)));
 
                 // Occasionally change direction.
                 if (GetRandomInt(100) < 20)
@@ -98,7 +98,7 @@ namespace Forradia::Theme0
         {
             auto xCenter{GetRandomInt(worldAreaSize.width)};
             auto yCenter{GetRandomInt(worldAreaSize.height)};
-            auto radius{static_cast<int>(10 * worldScaling + GetRandomInt(15 * worldScaling))};
+            auto radius{static_cast<int>(10 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(15 * worldScaling))))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
@@ -111,7 +111,7 @@ namespace Forradia::Theme0
 
                     auto distance{GetDistance(x, y, xCenter, yCenter)};
 
-                    if (distance > radius)
+                    if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
@@ -123,7 +123,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto normalizedDistance{distance / radius};
+                    auto normalizedDistance{distance / static_cast<float>(radius)};
 
                     // Calculate the elevation reduction based on the normalized distance.
                     auto elevationReduction{static_cast<int>((1.0F - normalizedDistance) * 40.0F)};
@@ -153,7 +153,7 @@ namespace Forradia::Theme0
 
                 auto distance{GetDistance(x, y, centerX, centerY)};
 
-                if (distance > radius)
+                if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
@@ -171,17 +171,17 @@ namespace Forradia::Theme0
                 }
 
                 auto currentElevation{tile->GetElevation()};
-                auto maxElevation{GetMaxElevation()};
+                auto globalMaxElevation{GetMaxElevation()};
 
-                if (currentElevation >= maxElevation)
+                if (currentElevation >= globalMaxElevation)
                 {
                     continue;
                 }
 
-                auto normalizedDistance{distance / radius};
+                auto normalizedDistance{distance / static_cast<float>(radius)};
 
                 auto baseElevationGain{static_cast<float>(
-                    (1.0F - normalizedDistance * normalizedDistance) * maxElevation)};
+                    (1.0F - normalizedDistance * normalizedDistance) * static_cast<float>(globalMaxElevation))};
 
                 // Adjust the elevation gain to avoid abrupt height increases near the peak.
 
@@ -191,7 +191,7 @@ namespace Forradia::Theme0
                 // transition.
 
                 auto elevationRatio{static_cast<float>(currentElevation) /
-                                    static_cast<float>(maxElevation)};
+                                    static_cast<float>(globalMaxElevation)};
 
                 // Start falloff at 60 % of max elevation.
                 auto falloffStart{0.6F};

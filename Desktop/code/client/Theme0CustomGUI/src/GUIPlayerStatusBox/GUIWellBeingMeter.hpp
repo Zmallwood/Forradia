@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Represents the well being meter.
+     * Represents the well-being meter.
      */
     class GUIWellBeingMeter : public GUIMeter
     {
@@ -33,14 +33,14 @@ namespace Forradia::Theme0
          *
          * @return The height of the meter.
          */
-        auto GetHeight() const
+        static auto GetHeight()
         {
             return k_height;
         }
 
       protected:
         /**
-         * Does update logic that is specific to the well being meter.
+         * Does update logic that is specific to the well-being meter.
          */
         auto UpdateDerived() -> void override;
 
@@ -56,7 +56,7 @@ namespace Forradia::Theme0
          *
          * @return The filled color of the meter.
          */
-        auto GetFilledColor() const -> Color
+        static auto GetFilledColor() -> Color
         {
             return Palette::GetColor<Hash("Red")>();
         }

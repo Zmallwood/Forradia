@@ -31,9 +31,9 @@ namespace Forradia::Theme0
         /**
          * Generates a new world.
          */
-        auto GenerateNewWorld() const -> void;
+        static auto GenerateNewWorld() -> void;
 
       private:
-        auto Prepare() const -> void;
+        static auto Prepare() -> void;
     };
 }

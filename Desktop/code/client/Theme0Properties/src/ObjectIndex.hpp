@@ -49,7 +49,7 @@ namespace Forradia::Theme0
         auto ObjectEntryExists(int objectHash) const -> bool;
 
         /**
-         * Gets wether the object type with the given hash should have individual model scaling
+         * Gets whether the object type with the given hash should have individual model scaling
          * ignored.
          *
          * @param objectHash The hash of the object.

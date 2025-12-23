@@ -11,7 +11,6 @@
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "Player/Player.hpp"
-#include "Player/PlayerObjectsInventory.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0
@@ -23,7 +22,7 @@ namespace Forradia::Theme0
         this->AddChildComponent(m_guiContainerWindowArea);
     }
 
-    std::shared_ptr<std::shared_ptr<Object>> GUIContainerWindow::GetObjectPtrPtr(PointF position)
+    std::shared_ptr<std::shared_ptr<Object>> GUIContainerWindow::GetObjectPtrPtr(PointF position) const
     {
         return m_guiContainerWindowArea->GetObjectPtrPtr(position);
     }
@@ -37,7 +36,7 @@ namespace Forradia::Theme0
     }
 
     std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowArea::GetObjectPtrPtr(PointF position)
+    GUIContainerWindowArea::GetObjectPtrPtr(PointF position) const
     {
         return m_panel->GetObjectPtrPtr(position);
     }
@@ -54,12 +53,12 @@ namespace Forradia::Theme0
             m_renderIDsSlotsBackground[i] =
                 Hash("GUIContainerWindowSlotBackground" + std::to_string(i));
 
-            m_renderIDsSlotsObject[i] = Hash("GUIContainerWindowSlotobject" + std::to_string(i));
+            m_renderIDsSlotsObject[i] = Hash("GUIContainerWindowSlotObject" + std::to_string(i));
         }
     }
 
     std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowPanel::GetObjectPtrPtr(PointF position)
+    GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) const
     {
         auto bounds{this->GetBounds()};
         auto marginX{k_margin};
@@ -85,8 +84,8 @@ namespace Forradia::Theme0
             {
                 auto index{x + y * numColumns};
 
-                auto slotX{xStart + x * (slotWidth + marginX)};
-                auto slotY{yStart + y * (slotHeight + marginY)};
+                auto slotX{xStart + static_cast<float>(x) * (slotWidth + marginX)};
+                auto slotY{yStart + static_cast<float>(y) * (slotHeight + marginY)};
 
                 auto slotArea{RectF{slotX, slotY, slotWidth, slotHeight}};
 
@@ -153,12 +152,10 @@ namespace Forradia::Theme0
                 }
 
                 Image2DRenderer::Instance().DrawImageByName(
-                    renderIDBackground, k_slotImageName, xStart + x * (slotWidth + marginX),
-                    yStart + y * (slotHeight + marginY), slotWidth, slotHeight, true);
+                    renderIDBackground, k_slotImageName, xStart + static_cast<float>(x) * (slotWidth + marginX),
+                    yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth, slotHeight, true);
 
-                auto inventoryObject{objectsContainer.GetObject(index)};
-
-                if (inventoryObject)
+                if (auto inventoryObject{objectsContainer.GetObject(index)})
                 {
                     int renderIDObject{0};
 
@@ -177,7 +174,7 @@ namespace Forradia::Theme0
 
                     Image2DRenderer::Instance().DrawImageByHash(
                         renderIDObject, inventoryObject->GetType(),
-                        xStart + x * (slotWidth + marginX), yStart + y * (slotHeight + marginY),
+                        xStart + static_cast<float>(x) * (slotWidth + marginX), yStart + static_cast<float>(y) * (slotHeight + marginY),
                         slotWidth, slotHeight, true);
                 }
             }

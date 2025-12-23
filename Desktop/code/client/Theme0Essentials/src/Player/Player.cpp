@@ -5,7 +5,6 @@
 
 #include "Player.hpp"
 #include "NumbersUtilities.hpp"
-#include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
