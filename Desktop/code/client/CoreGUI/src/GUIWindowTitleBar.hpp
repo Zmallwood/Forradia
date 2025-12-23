@@ -28,32 +28,32 @@ namespace Forradia
                           std::string_view windowTitle)
             : GUIPanel(uniqueName, 0.0F, 0.0F, 0.0F, 0.0F, "GUIWindowTitleBarBackground"),
               k_windowTitle(windowTitle),
-              k_renderIDWindowTitleText(Hash(uniqueName.data() + std::string("WindowTitleText"))),
+              k_renderIDWindowTitleText(hash(uniqueName.data() + std::string("WindowTitleText"))),
               m_parentWindow(parentWindow)
         {
-            this->Initialize(uniqueName);
+            this->initialize(uniqueName);
         }
 
         /**
             Render tasks specific to the title bar, called by the GUIComponent base class.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
         /**
             Gets the bounds of the title bar.
 
             @return The bounds of the title bar.
          */
-        auto GetBounds() const -> RectF override;
+        auto getBounds() const -> RectF override;
 
         // ReSharper disable once CppDFAConstantFunctionResult
-        static auto GetHeight() -> float
+        static auto getHeight() -> float
         {
             return k_height;
         }
 
       private:
-        auto Initialize(std::string_view uniqueName) -> void;
+        auto initialize(std::string_view uniqueName) -> void;
 
         constexpr static float k_height{0.04F};
         const std::string k_windowTitle{};

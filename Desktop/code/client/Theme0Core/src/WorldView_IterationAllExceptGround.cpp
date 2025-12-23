@@ -18,20 +18,20 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldView::IterationAllExceptGround(int xPos, int yPos) -> void
+    auto WorldView::iterationAllExceptGround(int xPos, int yPos) -> void
     {
         auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
         auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-        if (!m_worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+        if (!m_worldArea->isValidCoordinate(xCoordinate, yCoordinate))
         {
             return;
         }
 
-        auto tile{m_worldArea->GetTile(xCoordinate, yCoordinate)};
-        auto objectsStack{tile->GetObjectsStack()};
+        auto tile{m_worldArea->getTile(xCoordinate, yCoordinate)};
+        auto objectsStack{tile->getObjectsStack()};
 
-        auto objects{objectsStack->GetObjects()};
+        auto objects{objectsStack->getObjects()};
 
         if (!m_elevationsAll.contains(xCoordinate) ||
             !m_elevationsAll[xCoordinate].contains(yCoordinate))
@@ -65,28 +65,28 @@ namespace Forradia::Theme0
         {
             for (const auto &object : objects)
             {
-                auto objectType{object->GetType()};
+                auto objectType{object->getType()};
 
-                ModelRenderer::Instance().DrawModel(
+                ModelRenderer::instance().drawModel(
                     objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                     (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    object->GetModelScaling());
+                    object->getModelScaling());
             }
 
-            if (auto entity{tile->GetEntity()})
+            if (auto entity{tile->getEntity()})
             {
-                auto entityType{entity->GetType()};
+                auto entityType{entity->getType()};
 
-                ModelRenderer::Instance().DrawModel(
+                ModelRenderer::instance().drawModel(
                     entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                     (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax);
             }
 
             if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
             {
-                auto playerSmoothPosition{Player::Instance().GetSmoothPosition()};
-                ModelRenderer::Instance().DrawModel(
-                    Hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
+                auto playerSmoothPosition{Player::instance().getSmoothPosition()};
+                ModelRenderer::instance().drawModel(
+                    hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
                     (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
             }
         }
@@ -99,15 +99,15 @@ namespace Forradia::Theme0
                 elevation += 0.01F;
             }
 
-            ModelRenderer::Instance().RestoreState();
+            ModelRenderer::instance().restoreState();
 
-            GroundRenderer::Instance().SetupState();
-            GroundRenderer::Instance().DrawTile(k_renderIDGroundSymbolHoveredTile,
-                                                Hash("HoveredTile"), xCoordinate, yCoordinate,
+            GroundRenderer::instance().setupState();
+            GroundRenderer::instance().drawTile(k_renderIDGroundSymbolHoveredTile,
+                                                hash("HoveredTile"), xCoordinate, yCoordinate,
                                                 m_rendTileSize, elevations, true);
 
-            GroundRenderer::RestoreState();
-            ModelRenderer::Instance().SetupState();
+            GroundRenderer::restoreState();
+            ModelRenderer::instance().setupState();
         }
     }
 }

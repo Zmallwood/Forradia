@@ -18,7 +18,7 @@ namespace Forradia
     class Color2DRenderer : public RendererBase
     {
       public:
-        static auto Instance() -> Color2DRenderer &
+        static auto instance() -> Color2DRenderer &
         {
             static Color2DRenderer instance;
             return instance;
@@ -37,7 +37,7 @@ namespace Forradia
         ~Color2DRenderer() override
         {
             // Cleanup the renderer.
-            this->Cleanup();
+            this->cleanup();
         }
 
         /**
@@ -51,7 +51,7 @@ namespace Forradia
             @param height The height of the rectangle.
             @param updateExisting Whether to update the existing operation.
          */
-        auto DrawFilledRectangle(int uniqueRenderID, Color color, float xPos, float yPos,
+        auto drawFilledRectangle(int uniqueRenderID, Color color, float xPos, float yPos,
                                  float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -66,7 +66,7 @@ namespace Forradia
             @param lineWidth The width of the line (normalized, as a fraction of canvas size).
             @param updateExisting Whether to update the existing operation.
          */
-        auto DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1, float xPos2,
+        auto drawLine(int uniqueRenderID, Color color, float xPos1, float yPos1, float xPos2,
                       float yPos2, float lineWidth = k_defaultLineWidth,
                       bool updateExisting = false) -> void;
 
@@ -76,28 +76,28 @@ namespace Forradia
 
             @return The vertex shader source.
          */
-        auto GetVSSource() const -> std::string override;
+        auto getVSSource() const -> std::string override;
 
         /**
             Returns the fragment shader source.
 
             @return The fragment shader source.
          */
-        auto GetFSSource() const -> std::string override;
+        auto getFSSource() const -> std::string override;
 
         /**
             Sets up the attribute layout.
          */
-        auto SetupAttributeLayout() const -> void override;
+        auto setupAttributeLayout() const -> void override;
 
       private:
-        auto Cleanup() -> void;
+        auto cleanup() -> void;
 
-        auto SetupState() const -> void;
+        auto setupState() const -> void;
 
-        static auto RestoreState() -> void;
+        static auto restoreState() -> void;
 
-        auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
+        auto drawingOperationIsCached(int uniqueRenderID) const -> bool;
 
         constexpr static float k_defaultLineWidth{0.001F};
         std::unordered_map<int, Color2DRenderingOperation> m_operationsCache{};

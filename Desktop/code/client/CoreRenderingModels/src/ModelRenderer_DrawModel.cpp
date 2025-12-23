@@ -16,20 +16,20 @@
 
 namespace Forradia
 {
-    auto ModelRenderer::DrawModel(int modelNameHash, float xPos, float yPos, float elevation,
+    auto ModelRenderer::drawModel(int modelNameHash, float xPos, float yPos, float elevation,
                                   float modelScaling) -> void
     {
-        this->SetupState();
+        this->setupState();
 
         GLuint vao;
         GLuint ibo;
         GLuint vbo;
 
-        auto model{ModelBank::Instance().GetModel(modelNameHash)};
-        const auto &meshes{model->GetMeshesRef()};
+        auto model{ModelBank::instance().getModel(modelNameHash)};
+        const auto &meshes{model->getMeshesRef()};
 
         // If the drawing operation is cached.
-        if (this->DrawingOperationIsCached(modelNameHash))
+        if (this->drawingOperationIsCached(modelNameHash))
         {
             auto &entry{m_operationsCache.at(modelNameHash)};
 
@@ -64,20 +64,20 @@ namespace Forradia
 
             float totalModelScaling{k_globalModelScaling};
 
-            if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
+            if (!Theme0::ObjectIndex::instance().getIgnoreIndividualModelScaling(modelNameHash))
             {
                 totalModelScaling *= modelScaling;
             }
 
-            if (Theme0::ObjectIndex::Instance().ObjectEntryExists(modelNameHash))
+            if (Theme0::ObjectIndex::instance().objectEntryExists(modelNameHash))
             {
-                totalModelScaling *= Theme0::ObjectIndex::Instance().GetModelScaling(modelNameHash);
+                totalModelScaling *= Theme0::ObjectIndex::instance().getModelScaling(modelNameHash);
             }
 
-            if (Theme0::CreatureIndex::Instance().CreatureEntryExists(modelNameHash))
+            if (Theme0::CreatureIndex::instance().creatureEntryExists(modelNameHash))
             {
                 totalModelScaling *=
-                    Theme0::CreatureIndex::Instance().GetModelScaling(modelNameHash);
+                    Theme0::CreatureIndex::instance().getModelScaling(modelNameHash);
             }
 
             // For each mesh.
@@ -126,16 +126,16 @@ namespace Forradia
                          sizeof(verticesVector[0]) * k_floatsPerVertex * verticesCount,
                          verticesVector.data(), GL_STATIC_DRAW);
 
-            this->SetupAttributeLayout();
+            this->setupAttributeLayout();
 
             entry.verticesCount = verticesCount;
 
             m_operationsCache[modelNameHash] = entry;
         }
 
-        auto elevationHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
+        auto elevationHeight{Theme0::Theme0Properties::instance().getElevationHeight()};
 
-        auto levitationHeight{Theme0::CreatureIndex::Instance().GetLevitationHeight(modelNameHash)};
+        auto levitationHeight{Theme0::CreatureIndex::instance().getLevitationHeight(modelNameHash)};
 
         // Calculate the model matrix. This matrix differs between different rendering
         // operations, even though they use the same model.
@@ -145,28 +145,28 @@ namespace Forradia
         modelMatrix = glm::translate(
             modelMatrix, glm::vec3(xPos, yPos, elevation * elevationHeight + levitationHeight));
 
-        if (!Theme0::ObjectIndex::Instance().GetIgnoreIndividualModelScaling(modelNameHash))
+        if (!Theme0::ObjectIndex::instance().getIgnoreIndividualModelScaling(modelNameHash))
         {
             modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
         }
 
-        auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::GetProjectionMatrix()};
+        auto viewMatrix{Camera::instance().getViewMatrix()};
+        auto projectionMatrix{Camera::getProjectionMatrix()};
 
         glUniformMatrix4fv(m_layoutLocationProjectionMatrix, 1, GL_FALSE, &projectionMatrix[0][0]);
         glUniformMatrix4fv(m_layoutLocationModelMatrix, 1, GL_FALSE, &modelMatrix[0][0]);
         glUniformMatrix4fv(m_layoutLocationViewMatrix, 1, GL_FALSE, &viewMatrix[0][0]);
 
         auto textureName{meshes.at(0).textures.at(0).path};
-        auto textureNameHash{Hash(textureName)};
+        auto textureNameHash{hash(textureName)};
 
-        auto textureID{TextureBank::Instance().GetTexture(textureNameHash)};
+        auto textureID{TextureBank::instance().getTexture(textureNameHash)};
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         auto &entry{m_operationsCache.at(modelNameHash)};
 
         glDrawElements(GL_TRIANGLES, entry.verticesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        ModelRenderer::RestoreState();
+        ModelRenderer::restoreState();
     }
 }

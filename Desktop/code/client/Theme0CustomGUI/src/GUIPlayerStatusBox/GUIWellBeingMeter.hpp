@@ -24,7 +24,7 @@ namespace Forradia::Theme0
             @param height The height of the meter.
          */
         GUIWellBeingMeter(float x, float y, float width, float height)
-            : GUIMeter("GUIWellBeingMeter", x, y, width, height, GetFilledColor())
+            : GUIMeter("GUIWellBeingMeter", x, y, width, height, getFilledColor())
         {
         }
 
@@ -33,7 +33,7 @@ namespace Forradia::Theme0
 
             @return The height of the meter.
          */
-        static auto GetHeight()
+        static auto getHeight()
         {
             return k_height;
         }
@@ -42,23 +42,23 @@ namespace Forradia::Theme0
         /**
             Does update logic that is specific to the well-being meter.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
             Gets the filled percentage of the meter.
 
             @return The filled percentage of the meter.
          */
-        auto GetFilledPercentage() const -> float override;
+        auto getFilledPercentage() const -> float override;
 
         /**
             Gets the filled color of the meter.
 
             @return The filled color of the meter.
          */
-        static auto GetFilledColor() -> Color
+        static auto getFilledColor() -> Color
         {
-            return Palette::GetColor<Hash("Red")>();
+            return Palette::getColor<hash("Red")>();
         }
 
       private:

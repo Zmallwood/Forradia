@@ -13,14 +13,14 @@
 
 namespace Forradia::Theme0
 {
-    auto SetupScenes() -> void
+    auto setupScenes() -> void
     {
-        SceneManager::Instance().AddScene("IntroScene", IntroScene::Instance());
-        SceneManager::Instance().AddScene("MainMenuScene", MainMenuScene::Instance());
-        SceneManager::Instance().AddScene("PlayScene", PlayScene::Instance());
-        SceneManager::Instance().AddScene("WorldGenerationScene", WorldGenerationScene::Instance());
-        SceneManager::Instance().AddScene("MainScene", MainScene::Instance());
+        SceneManager::instance().addScene("IntroScene", IntroScene::instance());
+        SceneManager::instance().addScene("MainMenuScene", MainMenuScene::instance());
+        SceneManager::instance().addScene("PlayScene", PlayScene::instance());
+        SceneManager::instance().addScene("WorldGenerationScene", WorldGenerationScene::instance());
+        SceneManager::instance().addScene("MainScene", MainScene::instance());
 
-        SceneManager::Instance().GoToScene("IntroScene");
+        SceneManager::instance().goToScene("IntroScene");
     }
 }

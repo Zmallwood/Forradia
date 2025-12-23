@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGenerationScene : public IScene
     {
       public:
-        static WorldGenerationScene &Instance()
+        static WorldGenerationScene &instance()
         {
             static WorldGenerationScene instance;
             return instance;
@@ -32,6 +32,6 @@ namespace Forradia::Theme0
         /**
             Called when the world generation scene is entered.
          */
-        virtual auto OnEnterDerived() -> void override;
+        virtual auto onEnterDerived() -> void override;
     };
 }

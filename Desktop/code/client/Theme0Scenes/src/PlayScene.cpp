@@ -13,39 +13,39 @@
 
 namespace Forradia::Theme0
 {
-    auto PlayScene::InitializeDerived() -> void
+    auto PlayScene::initializeDerived() -> void
     {
         auto panel{std::make_shared<GUIPanel>("PlayScenePanel", 0.4f, 0.32f, 0.2f, 0.32f)};
 
-        GetGUI()->AddChildComponent(panel);
+        getGUI()->addChildComponent(panel);
 
         auto btnNewGame{std::make_shared<GUIButton>(
             "PlaySceneButtonNewGame", 0.45, 0.36, 0.1, 0.04, "",
-            [] { SceneManager::Instance().GoToScene("WorldGenerationScene"); },
+            [] { SceneManager::instance().goToScene("WorldGenerationScene"); },
             "GUIButtonNewGameBackground", "GUIButtonNewGameHoveredBackground")};
 
-        GetGUI()->AddChildComponent(btnNewGame);
+        getGUI()->addChildComponent(btnNewGame);
 
         auto btnLoadGame{std::make_shared<GUIButton>(
             "PlaySceneButtonLoadGame", 0.45f, 0.44f, 0.1f, 0.04f, "", [] {},
             "GUIButtonLoadGameBackground", "GUIButtonLoadGameHoveredBackground")};
-        GetGUI()->AddChildComponent(btnLoadGame);
+        getGUI()->addChildComponent(btnLoadGame);
 
         auto btnBack{std::make_shared<GUIButton>(
             "PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "",
-            [] { SceneManager::Instance().GoToScene("MainMenuScene"); }, "GUIButtonBackBackground",
+            [] { SceneManager::instance().goToScene("MainMenuScene"); }, "GUIButtonBackBackground",
             "GUIButtonBackHoveredBackground")};
-        GetGUI()->AddChildComponent(btnBack);
+        getGUI()->addChildComponent(btnBack);
 
-        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
+        getGUI()->addChildComponent(GUIChatBox::instancePtr());
     }
 
-    auto PlayScene::RenderDerived() const -> void
+    auto PlayScene::renderDerived() const -> void
     {
-        Image2DRenderer::Instance().DrawImageByName(
-            Hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        Image2DRenderer::instance().drawImageByName(
+            hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::Instance().DrawImageAutoHeight(Hash("PlaySceneLogo"), "ForradiaLogo",
+        Image2DRenderer::instance().drawImageAutoHeight(hash("PlaySceneLogo"), "ForradiaLogo",
                                                         0.35f, 0.1f, 0.3f);
     }
 }

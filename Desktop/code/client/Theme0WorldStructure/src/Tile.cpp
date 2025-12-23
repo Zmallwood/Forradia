@@ -8,20 +8,20 @@
 
 namespace Forradia::Theme0
 {
-    auto Tile::Initialize() -> void
+    auto Tile::initialize() -> void
     {
         m_objectsStack = std::make_shared<Forradia::Theme0::ObjectsStack>();
     }
 
-    auto Tile::SetGround(int groundHash) -> void
+    auto Tile::setGround(int groundHash) -> void
     {
         m_ground = groundHash;
 
-        this->SetForceRedraw(true);
+        this->setForceRedraw(true);
     }
 
-    auto Tile::SetGround(std::string_view groundName) -> void
+    auto Tile::setGround(std::string_view groundName) -> void
     {
-        this->SetGround(Hash(groundName));
+        this->setGround(hash(groundName));
     }
 }

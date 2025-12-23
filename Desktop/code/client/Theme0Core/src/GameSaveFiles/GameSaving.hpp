@@ -19,7 +19,7 @@ namespace Forradia::Theme0
     class GameSaving
     {
       public:
-        static auto Instance() -> GameSaving &
+        static auto instance() -> GameSaving &
         {
             static GameSaving instance;
             return instance;
@@ -35,18 +35,18 @@ namespace Forradia::Theme0
         /**
             Saves the game to a file.
          */
-        static auto SaveGame() -> void;
+        static auto saveGame() -> void;
 
         /**
             Loads the game from a file.
          */
-        static auto LoadGame() -> void;
+        static auto loadGame() -> void;
 
       private:
-        static auto LoadTiles(const std::shared_ptr<WorldArea> &worldArea,
+        static auto loadTiles(const std::shared_ptr<WorldArea> &worldArea,
                               const nlohmann::json &jsonData) -> void;
 
-        static auto LoadTileObjects(const std::shared_ptr<Tile> &tile,
+        static auto loadTileObjects(const std::shared_ptr<Tile> &tile,
                                     const nlohmann::json &tileJson) -> void;
     };
 }

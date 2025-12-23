@@ -8,22 +8,22 @@
 
 namespace Forradia
 {
-    auto Model::ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
+    auto Model::processMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh
     {
         if (mesh == nullptr)
         {
-            ThrowError("mesh is nullptr");
+            throwError("mesh is nullptr");
         }
 
         if (scene == nullptr)
         {
-            ThrowError("scene is nullptr");
+            throwError("scene is nullptr");
         }
 
-        auto vertices{Model::GetVertices(mesh, transformation)};
-        auto indices{Model::GetIndices(mesh)};
-        auto textures{Model::GetTextures(mesh, scene)};
+        auto vertices{Model::getVertices(mesh, transformation)};
+        auto indices{Model::getIndices(mesh)};
+        auto textures{Model::getTextures(mesh, scene)};
 
         return {vertices, indices, textures};
     }

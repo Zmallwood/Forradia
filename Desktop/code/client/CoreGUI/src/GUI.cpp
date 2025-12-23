@@ -8,20 +8,20 @@
 
 namespace Forradia
 {
-    auto GUI::MouseHoveringGUI() const -> bool
+    auto GUI::mouseHoveringGUI() const -> bool
     {
-        if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
+        if (!dynamic_cast<const GUIComponent *>(this)->getVisible())
         {
             return false;
         }
 
         auto result{false};
 
-        auto childComponents{this->GetChildComponents()};
+        auto childComponents{this->getChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
-            result |= childComponent->MouseHoveringGUI();
+            result |= childComponent->mouseHoveringGUI();
         }
 
         return result;

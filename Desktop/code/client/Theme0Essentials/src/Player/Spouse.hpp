@@ -13,7 +13,7 @@ namespace Forradia::Theme0
     class Spouse
     {
       public:
-        bool IsPlaced() const;
+        bool isPlaced() const;
 
       private:
         Point m_position{-1, -1};

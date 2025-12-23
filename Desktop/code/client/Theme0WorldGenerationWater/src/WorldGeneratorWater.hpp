@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGeneratorWater : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorWater &Instance()
+        static WorldGeneratorWater &instance()
         {
             static WorldGeneratorWater instance;
             return instance;
@@ -31,17 +31,17 @@ namespace Forradia::Theme0
         /**
             Generate water.
          */
-        auto GenerateWater() const -> void;
+        auto generateWater() const -> void;
 
       private:
-        auto GenerateNaturalRivers() const -> void;
+        auto generateNaturalRivers() const -> void;
 
-        auto GenerateRiverFromSource(int startX, int startY, int length) const -> void;
+        auto generateRiverFromSource(int startX, int startY, int length) const -> void;
 
-        auto GenerateLakesInValleys() const -> void;
+        auto generateLakesInValleys() const -> void;
 
-        auto IsValidForWater(int x, int y) const -> bool;
+        auto isValidForWater(int x, int y) const -> bool;
 
-        auto SetAdjacentTilesElevationToZero(int x, int y) const -> void;
+        auto setAdjacentTilesElevationToZero(int x, int y) const -> void;
     };
 }

@@ -9,20 +9,20 @@
 
 namespace Forradia::Theme0
 {
-    auto GUIExperienceBar::UpdateDerived() -> void
+    auto GUIExperienceBar::updateDerived() -> void
     {
-        GUIMeter::UpdateDerived();
+        GUIMeter::updateDerived();
 
-        auto &player{Player::Instance()};
+        auto &player{Player::instance()};
 
-        auto experience{player.GetExperience()};
+        auto experience{player.getExperience()};
 
-        auto levelProgress{CalculateFractionalExperienceProgress(experience)};
+        auto levelProgress{calculateFractionalExperienceProgress(experience)};
 
         m_filledPercentage = levelProgress;
     }
 
-    auto GUIExperienceBar::GetFilledPercentage() const -> float
+    auto GUIExperienceBar::getFilledPercentage() const -> float
     {
         return m_filledPercentage;
     }

@@ -23,27 +23,27 @@
 
 namespace Forradia::Theme0
 {
-    auto GUIInteractionMenu::Initialize() -> void
+    auto GUIInteractionMenu::initialize() -> void
     {
-        this->SetVisible(false);
+        this->setVisible(false);
 
         for (auto i = 0; i < k_maxNumMenuEntries; i++)
         {
             m_renderIDsMenuEntryStrings.push_back(
-                Hash("GUIInteractionMenuEntryString" + std::to_string(i)));
+                hash("GUIInteractionMenuEntryString" + std::to_string(i)));
         }
     }
 
-    auto GUIInteractionMenu::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
         switch (mouseButton)
         {
         case SDL_BUTTON_LEFT:
         {
-            if (this->GetVisible())
+            if (this->getVisible())
             {
-                this->HandleClick();
-                this->SetVisible(false);
+                this->handleClick();
+                this->setVisible(false);
 
                 return true;
             }
@@ -52,11 +52,11 @@ namespace Forradia::Theme0
 
         case SDL_BUTTON_RIGHT:
         {
-            if (this->GetVisible() == false)
+            if (this->getVisible() == false)
             {
-                this->SetVisible(true);
-                this->SetPosition(GetNormalizedMousePosition(SDLDevice::Instance().GetWindow()));
-                this->BuildMenu();
+                this->setVisible(true);
+                this->setPosition(getNormalizedMousePosition(SDLDevice::instance().getWindow()));
+                this->buildMenu();
 
                 return true;
             }
@@ -69,91 +69,91 @@ namespace Forradia::Theme0
         return false;
     }
 
-    auto GUIInteractionMenu::BuildMenu() -> void
+    auto GUIInteractionMenu::buildMenu() -> void
     {
         m_entries.clear();
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         // First check if clicked in inventory (or other GUI windows)
         auto rightClickedInInventoryWindow{
-            GUIInventoryWindow::Instance().GetBounds().Contains(mousePos)};
+            GUIInventoryWindow::instance().getBounds().contains(mousePos)};
 
-        if (GUIInventoryWindow::Instance().GetVisible() && rightClickedInInventoryWindow)
+        if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
         {
             m_clickedCoordinate = {-1, -1};
 
             m_clickedObjects.clear();
 
-            auto object{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)};
+            auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
 
             if (object)
             {
                 std::vector<int> objectHashes;
 
-                objectHashes.push_back((*object)->GetType());
+                objectHashes.push_back((*object)->getType());
 
                 m_clickedObjects.push_back(object.get());
 
-                this->ShowMenuForTileAndObjects(0, objectHashes);
+                this->showMenuForTileAndObjects(0, objectHashes);
 
                 return;
             }
         }
         // If not clicked in inventory, check if clicked tile
 
-        auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
+        auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
 
         m_clickedCoordinate = hoveredCoordinate;
 
-        auto tile{worldArea->GetTile(hoveredCoordinate.x, hoveredCoordinate.y)};
+        auto tile{worldArea->getTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
-        auto objects{tile->GetObjectsStack()->GetObjects()};
+        auto objects{tile->getObjectsStack()->getObjects()};
 
         auto ground{0};
 
         if (tile)
         {
-            ground = tile->GetGround();
+            ground = tile->getGround();
         }
 
         std::vector<int> objectHashes;
 
         for (auto &object : objects)
         {
-            auto type{object->GetType()};
+            auto type{object->getType()};
 
             objectHashes.push_back(type);
         }
 
-        this->ShowMenuForTileAndObjects(ground, objectHashes);
+        this->showMenuForTileAndObjects(ground, objectHashes);
     }
 
-    auto GUIInteractionMenu::ShowMenuForTileAndObjects(int groundHash,
-                                                       const std::vector<int>& objectHashes) -> void
+    auto GUIInteractionMenu::showMenuForTileAndObjects(int groundHash,
+                                                       const std::vector<int> &objectHashes) -> void
     {
-        std::vector<Action> actions{GetAction<Hash("ActionStop")>(),
-                                    GetAction<Hash("ActionLayCobbleStone")>(),
-                                    GetAction<Hash("ActionPlowLand")>(),
-                                    GetAction<Hash("ActionForage")>(),
-                                    GetAction<Hash("ActionCraftStonePickaxe")>(),
-                                    GetAction<Hash("ActionCraftStoneSlab")>(),
-                                    GetAction<Hash("ActionLayStoneSlab")>(),
-                                    GetAction<Hash("ActionCraftStoneBrick")>(),
-                                    GetAction<Hash("ActionCraftStoneWall")>(),
-                                    GetAction<Hash("ActionCraftStoneWallDoor")>(),
-                                    GetAction<Hash("ActionCraftStoneBowl")>(),
-                                    GetAction<Hash("ActionPickBranch")>(),
-                                    GetAction<Hash("ActionPickStone")>(),
-                                    GetAction<Hash("ActionMineStone")>(),
-                                    GetAction<Hash("ActionEatRedApple")>(),
-                                    GetAction<Hash("ActionOpenStoneBowl")>(),
-                                    GetAction<Hash("ActionCraftUnlitCampfire")>(),
-                                    GetAction<Hash("ActionOpenCampfire")>(),
-                                    GetAction<Hash("ActionLightUnlitCampfire")>()};
+        std::vector<Action> actions{getAction<hash("ActionStop")>(),
+                                    getAction<hash("ActionLayCobbleStone")>(),
+                                    getAction<hash("ActionPlowLand")>(),
+                                    getAction<hash("ActionForage")>(),
+                                    getAction<hash("ActionCraftStonePickaxe")>(),
+                                    getAction<hash("ActionCraftStoneSlab")>(),
+                                    getAction<hash("ActionLayStoneSlab")>(),
+                                    getAction<hash("ActionCraftStoneBrick")>(),
+                                    getAction<hash("ActionCraftStoneWall")>(),
+                                    getAction<hash("ActionCraftStoneWallDoor")>(),
+                                    getAction<hash("ActionCraftStoneBowl")>(),
+                                    getAction<hash("ActionPickBranch")>(),
+                                    getAction<hash("ActionPickStone")>(),
+                                    getAction<hash("ActionMineStone")>(),
+                                    getAction<hash("ActionEatRedApple")>(),
+                                    getAction<hash("ActionOpenStoneBowl")>(),
+                                    getAction<hash("ActionCraftUnlitCampfire")>(),
+                                    getAction<hash("ActionOpenCampfire")>(),
+                                    getAction<hash("ActionLightUnlitCampfire")>()};
 
-        auto &inventory{Player::Instance().GetObjectsInventoryRef()};
+        auto &inventory{Player::instance().getObjectsInventoryRef()};
 
         for (auto &action : actions)
         {
@@ -203,7 +203,7 @@ namespace Forradia::Theme0
 
             for (auto invObjectMatch : action.objectsInInventory)
             {
-                if (inventory.CountHasObject(invObjectMatch))
+                if (inventory.countHasObject(invObjectMatch))
                 {
                     goOn = true;
                 }
@@ -222,14 +222,14 @@ namespace Forradia::Theme0
 
         auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
 
-        this->SetHeight(newHeight);
+        this->setHeight(newHeight);
     }
 
-    auto GUIInteractionMenu::HandleClick() -> void
+    auto GUIInteractionMenu::handleClick() -> void
     {
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
 
-        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         auto i{0};
 
@@ -239,93 +239,93 @@ namespace Forradia::Theme0
                                      bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
                                      k_lineHeight}};
 
-            if (menuEntryRect.Contains(mousePosition))
+            if (menuEntryRect.contains(mousePosition))
             {
-                auto worldArea{World::Instance().GetCurrentWorldArea()};
+                auto worldArea{World::instance().getCurrentWorldArea()};
 
-                auto tile{worldArea->GetTile(m_clickedCoordinate)};
+                auto tile{worldArea->getTile(m_clickedCoordinate)};
 
                 if (tile)
                 {
-                    auto playerPos{Player::Instance().GetPosition()};
+                    auto playerPos{Player::instance().getPosition()};
 
                     auto absDx{std::abs(m_clickedCoordinate.x - playerPos.x)};
                     auto absDy{std::abs(m_clickedCoordinate.y - playerPos.y)};
 
                     if (absDx > 1 || absDy > 1)
                     {
-                        GUIChatBox::Instance().Print("You are too far away to do the action.");
+                        GUIChatBox::instance().print("You are too far away to do the action.");
 
-                        this->SetVisible(false);
+                        this->setVisible(false);
 
                         return;
                     }
 
                     m_clickedObjects.clear();
 
-                    for (auto obj : tile->GetObjectsStack()->GetObjects())
+                    for (auto obj : tile->getObjectsStack()->getObjects())
                     {
                         m_clickedObjects.push_back(&obj);
                     }
                 }
 
-                entry.GetAction()(tile, m_clickedObjects);
+                entry.getAction()(tile, m_clickedObjects);
             }
 
-            this->SetVisible(false);
+            this->setVisible(false);
 
             ++i;
         }
 
-        this->SetVisible(false);
+        this->setVisible(false);
     }
 
-    auto GUIInteractionMenu::UpdateDerived() -> void
+    auto GUIInteractionMenu::updateDerived() -> void
     {
-        GUIPanel::UpdateDerived();
+        GUIPanel::updateDerived();
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
 
         bounds.y += k_lineHeight + 0.01F;
 
         bounds.height -= k_lineHeight + 2 * 0.01F;
 
-        if (bounds.Contains(mousePos))
+        if (bounds.contains(mousePos))
         {
-            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
     }
 
-    auto GUIInteractionMenu::RenderDerived() const -> void
+    auto GUIInteractionMenu::renderDerived() const -> void
     {
-        GUIPanel::RenderDerived();
+        GUIPanel::renderDerived();
 
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
 
-        TextRenderer::Instance().DrawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
+        TextRenderer::instance().drawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
                                             bounds.y + 0.01f, FontSizes::_20, false, true,
-                                            Palette::GetColor<Hash("YellowTransparent")>());
+                                            Palette::getColor<hash("YellowTransparent")>());
 
         auto i{0};
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         for (auto &entry : m_entries)
         {
             auto rowBounds{
                 RectF{bounds.x, bounds.y + (i + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
-            if (rowBounds.Contains(mousePos))
+            if (rowBounds.contains(mousePos))
             {
-                Color2DRenderer::Instance().DrawFilledRectangle(
-                    k_renderIDHoveredRow, Palette::GetColor<Hash("MildBlueTransparent")>(),
+                Color2DRenderer::instance().drawFilledRectangle(
+                    k_renderIDHoveredRow, Palette::getColor<hash("MildBlueTransparent")>(),
                     rowBounds.x, rowBounds.y, rowBounds.width, rowBounds.height, true);
             }
 
-            TextRenderer::Instance().DrawString(
-                m_renderIDsMenuEntryStrings[i], entry.GetLabel(), bounds.x + 0.01f + k_indentWidth,
+            TextRenderer::instance().drawString(
+                m_renderIDsMenuEntryStrings[i], entry.getLabel(), bounds.x + 0.01f + k_indentWidth,
                 bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
 
             ++i;

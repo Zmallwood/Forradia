@@ -23,7 +23,7 @@ namespace Forradia::Theme0
         Entity(int typeHash) : m_type(typeHash)
         {
             // Initialize the entity.
-            this->Initialize();
+            this->initialize();
         }
 
         /**
@@ -31,9 +31,9 @@ namespace Forradia::Theme0
 
             @param typeName The entity type by name.
          */
-        Entity(std::string_view typeName) : m_type{Hash(typeName)}
+        Entity(std::string_view typeName) : m_type{hash(typeName)}
         {
-            this->Initialize();
+            this->initialize();
         }
 
         /**
@@ -41,7 +41,7 @@ namespace Forradia::Theme0
 
             @return The entity type.
          */
-        auto GetType() const
+        auto getType() const
         {
             return m_type;
         }
@@ -51,7 +51,7 @@ namespace Forradia::Theme0
 
             @return The ticks since the entity last moved.
          */
-        auto GetTicksLastMovement() const
+        auto getTicksLastMovement() const
         {
             return m_ticksLastMovement;
         }
@@ -61,7 +61,7 @@ namespace Forradia::Theme0
 
             @param value The new ticks since the entity last moved.
          */
-        auto SetTicksLastMovement(int value) -> void
+        auto setTicksLastMovement(int value) -> void
         {
             m_ticksLastMovement = value;
         }
@@ -71,7 +71,7 @@ namespace Forradia::Theme0
 
             @return The movement speed of the entity.
          */
-        auto GetMovementSpeed() const
+        auto getMovementSpeed() const
         {
             return m_movementSpeed;
         }
@@ -81,7 +81,7 @@ namespace Forradia::Theme0
 
             @return The destination of the entity.
          */
-        auto GetDestination() const
+        auto getDestination() const
         {
             return m_destination;
         }
@@ -91,13 +91,13 @@ namespace Forradia::Theme0
 
             @param value The new destination of the entity.
          */
-        auto SetDestination(Point value) -> void
+        auto setDestination(Point value) -> void
         {
             m_destination = value;
         }
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         int m_type{0};
         int m_ticksLastMovement{0};

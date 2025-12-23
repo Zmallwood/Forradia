@@ -32,8 +32,8 @@ namespace Forradia
          */
         GUILabel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view text = "", bool centerAlign = false,
-                 Color color = Palette::GetColor<Hash("WheatTransparent")>())
-            : GUIComponent(xPos, yPos, width, height), k_renderIDText(Hash(uniqueName)),
+                 Color color = Palette::getColor<hash("WheatTransparent")>())
+            : GUIComponent(xPos, yPos, width, height), k_renderIDText(hash(uniqueName)),
               m_text(text), m_centerAlign(centerAlign), m_color(color)
         {
         }
@@ -43,7 +43,7 @@ namespace Forradia
 
             @param value The new text.
          */
-        auto SetText(std::string_view value) -> void
+        auto setText(std::string_view value) -> void
         {
             m_text = value;
         }
@@ -52,7 +52,7 @@ namespace Forradia
         /**
             Render tasks specific to the label, called by the GUIComponent base class.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
         const int k_renderIDText{};

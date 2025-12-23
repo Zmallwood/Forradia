@@ -35,7 +35,7 @@ namespace Forradia::Theme0
 
             @return The label of the entry.
          */
-        [[nodiscard]] auto GetLabel() const
+        [[nodiscard]] auto getLabel() const
         {
             return m_label;
         }
@@ -45,7 +45,7 @@ namespace Forradia::Theme0
 
             @return The action of the entry.
          */
-        [[nodiscard]] auto GetAction() const
+        [[nodiscard]] auto getAction() const
         {
             return m_action;
         }

@@ -13,41 +13,41 @@
 
 namespace Forradia::Theme0
 {
-    auto IntroScene::InitializeDerived() -> void
+    auto IntroScene::initializeDerived() -> void
     {
         auto lbl{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
                                             "Press to start", true)};
 
-        m_startText = GetGUI()->AddChildComponent(lbl);
+        m_startText = getGUI()->addChildComponent(lbl);
     }
 
-    auto IntroScene::OnEnterDerived() -> void
+    auto IntroScene::onEnterDerived() -> void
     {
-        GUIChatBox::Instance().Print("Game started.");
+        GUIChatBox::instance().print("Game started.");
     }
 
-    auto IntroScene::OnMouseDown(Uint8 mouseButton) -> void
+    auto IntroScene::onMouseDown(Uint8 mouseButton) -> void
     {
-        SceneManager::Instance().GoToScene("MainMenuScene");
+        SceneManager::instance().goToScene("MainMenuScene");
     }
 
-    auto IntroScene::OnKeyDown(SDL_Keycode key) -> void
+    auto IntroScene::onKeyDown(SDL_Keycode key) -> void
     {
-        SceneManager::Instance().GoToScene("MainMenuScene");
+        SceneManager::instance().goToScene("MainMenuScene");
     }
 
-    auto IntroScene::UpdateDerived() -> void
+    auto IntroScene::updateDerived() -> void
     {
-        m_startText->SetVisible(GetTicks() % 800 < 400);
-        Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+        m_startText->setVisible(getTicks() % 800 < 400);
+        Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
     }
 
-    auto IntroScene::RenderDerived() const -> void
+    auto IntroScene::renderDerived() const -> void
     {
-        Image2DRenderer::Instance().DrawImageByName(
-            Hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        Image2DRenderer::instance().drawImageByName(
+            hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::Instance().DrawImageAutoHeight(Hash("IntroSceneLogo"), "ForradiaLogo",
+        Image2DRenderer::instance().drawImageAutoHeight(hash("IntroSceneLogo"), "ForradiaLogo",
                                                         0.25f, 0.2f, 0.5f);
     }
 }

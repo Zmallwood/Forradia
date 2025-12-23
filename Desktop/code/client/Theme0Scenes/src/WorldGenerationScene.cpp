@@ -10,14 +10,14 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGenerationScene::OnEnterDerived() -> void
+    auto WorldGenerationScene::onEnterDerived() -> void
     {
-        GUIChatBox::Instance().Print("Generating world...");
+        GUIChatBox::instance().print("Generating world...");
 
-        WorldGenerator::Instance().GenerateNewWorld();
+        WorldGenerator::instance().generateNewWorld();
 
-        GUIChatBox::Instance().Print("World generation complete.");
+        GUIChatBox::instance().print("World generation complete.");
 
-        SceneManager::Instance().GoToScene("MainScene");
+        SceneManager::instance().goToScene("MainScene");
     }
 }

@@ -27,7 +27,7 @@ namespace Forradia
     class GroundRenderer : public RendererBase
     {
       public:
-        static auto Instance() -> GroundRenderer &
+        static auto instance() -> GroundRenderer &
         {
             static GroundRenderer instance;
             return instance;
@@ -45,7 +45,7 @@ namespace Forradia
          */
         ~GroundRenderer()
         {
-            this->Cleanup();
+            this->cleanup();
         }
         /**
             Draws a tile in the game world.
@@ -58,7 +58,7 @@ namespace Forradia
             @param elevations The elevations.
             @param forceUpdate Whether to force update the tile.
          */
-        auto DrawTile(int uniqueRenderID, int imageNameHash, int xCoordinate, int yCoordinate,
+        auto drawTile(int uniqueRenderID, int imageNameHash, int xCoordinate, int yCoordinate,
                       float tileSize, const std::vector<float> &elevations,
                       bool forceUpdate = false) -> void;
 
@@ -68,62 +68,62 @@ namespace Forradia
 
             @param tiles The vector of tiles to draw.
          */
-        auto DrawTiles(const std::vector<TileData> &tiles) -> void;
+        auto drawTiles(const std::vector<TileData> &tiles) -> void;
 
         /**
             Resets the renderer with regards to the operations cache. Called for instance when a
             new map is loaded from file.
          */
-        auto Reset() -> void;
+        auto reset() -> void;
 
         /**
             Cleans up the renderer.
          */
-        auto Cleanup() -> void;
+        auto cleanup() -> void;
 
         /**
             Sets up the state for the renderer.
          */
-        auto SetupState() const -> void;
+        auto setupState() const -> void;
 
         /**
             Restores the state for the renderer.
          */
-        static auto RestoreState() -> void;
+        static auto restoreState() -> void;
 
       protected:
         /**
             Returns the vertex shader source.
          */
-        [[nodiscard]] auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto getVSSource() const -> std::string override;
 
         /**
             Returns the fragment shader source.
          */
-        [[nodiscard]] auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto getFSSource() const -> std::string override;
 
         /**
             Does initialization that is specific to this renderer.
          */
-        auto InitializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
             Sets up the attribute layout for the vertex shader.
          */
-        auto SetupAttributeLayout() const -> void override;
+        auto setupAttributeLayout() const -> void override;
 
       private:
-        [[nodiscard]] auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
+        [[nodiscard]] auto drawingOperationIsCached(int uniqueRenderID) const -> bool;
 
         [[nodiscard]] static auto
-        CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+        calcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
                                   const std::vector<float> &elevations, std::vector<Color> colors)
             -> std::vector<float>;
 
-        [[nodiscard]] auto static CalcTileVerticesWithNormals(
+        [[nodiscard]] auto static calcTileVerticesWithNormals(
             const std::vector<float> &verticesNoNormals) -> std::vector<float>;
 
-        [[nodiscard]] static auto CalcTileNormals(const std::vector<float> &verticesNoNormals)
+        [[nodiscard]] static auto calcTileNormals(const std::vector<float> &verticesNoNormals)
             -> std::vector<glm::vec3>;
 
         static constexpr std::array<unsigned short, 4> k_indices{0, 1, 2, 3};

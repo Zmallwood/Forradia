@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class CameraRotator
     {
       public:
-        static auto Instance() -> CameraRotator &
+        static auto instance() -> CameraRotator &
         {
             static CameraRotator instance;
             return instance;
@@ -29,14 +29,14 @@ namespace Forradia::Theme0
 
         CameraRotator() = default;
 
-        auto OnMouseDown(Uint8 mouseButton) -> void;
+        auto onMouseDown(Uint8 mouseButton) -> void;
 
-        auto OnMouseUp(Uint8 mouseButton) -> void;
+        auto onMouseUp(Uint8 mouseButton) -> void;
 
         /**
          * Updates the camera rotation.
          */
-        auto Update() const -> void;
+        auto update() const -> void;
 
       private:
         bool m_isRotating{false};

@@ -8,11 +8,11 @@
 
 namespace Forradia
 {
-    auto Model::GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>
+    auto Model::getVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>
     {
         if (mesh == nullptr)
         {
-            ThrowError("mesh is nullptr");
+            throwError("mesh is nullptr");
         }
 
         std::vector<GLMVertex> vertices;

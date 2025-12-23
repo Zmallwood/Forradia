@@ -17,5 +17,5 @@ namespace Forradia::Palette
      */
     template <int N>
     // ReSharper disable once CppFunctionIsNotImplemented
-    auto GetColor() -> Color;
+    auto getColor() -> Color;
 }

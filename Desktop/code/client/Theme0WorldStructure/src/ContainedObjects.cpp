@@ -8,7 +8,7 @@
 
 namespace Forradia::Theme0
 {
-    auto ContainedObjects::Initialize(int numSlots) -> void
+    auto ContainedObjects::initialize(int numSlots) -> void
     {
         for (auto i = 0; i < numSlots; ++i)
         {
@@ -16,7 +16,7 @@ namespace Forradia::Theme0
         }
     }
 
-    auto ContainedObjects::GetObject(int index) -> std::shared_ptr<Object>
+    auto ContainedObjects::getObject(int index) -> std::shared_ptr<Object>
     {
         if (index >= 0 && index < m_objects.size())
         {
@@ -26,7 +26,7 @@ namespace Forradia::Theme0
         return nullptr;
     }
 
-    auto ContainedObjects::GetObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>
+    auto ContainedObjects::getObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>
     {
         if (index >= 0 && index < m_objects.size())
         {
@@ -36,7 +36,7 @@ namespace Forradia::Theme0
         return nullptr;
     }
 
-    auto ContainedObjects::AddObject(int objectType) -> void
+    auto ContainedObjects::addObject(int objectType) -> void
     {
         // Check if there is an empty slot.
         for (size_t i = 0; i < m_objects.size(); i++)
@@ -53,17 +53,17 @@ namespace Forradia::Theme0
         }
     }
 
-    auto ContainedObjects::AddObject(std::string_view objectName) -> void
+    auto ContainedObjects::addObject(std::string_view objectName) -> void
     {
-        AddObject(Hash(objectName));
+        addObject(hash(objectName));
     }
 
-    auto ContainedObjects::CountHasObject(std::string_view objectName) -> int
+    auto ContainedObjects::countHasObject(std::string_view objectName) -> int
     {
-        return CountHasObject(Hash(objectName));
+        return countHasObject(hash(objectName));
     }
 
-    auto ContainedObjects::CountHasObject(int objectHash) -> int
+    auto ContainedObjects::countHasObject(int objectHash) -> int
     {
         auto findCount{0};
 
@@ -74,7 +74,7 @@ namespace Forradia::Theme0
             if (*m_objects[i])
             {
                 // Check if object type matches.
-                if ((*m_objects[i])->GetType() == objectHash)
+                if ((*m_objects[i])->getType() == objectHash)
                 {
                     // Increment count if object type matches.
                     ++findCount;
@@ -85,7 +85,7 @@ namespace Forradia::Theme0
         return findCount;
     }
 
-    auto ContainedObjects::RemoveObject(std::string_view objectName, int count) -> void
+    auto ContainedObjects::removeObject(std::string_view objectName, int count) -> void
     {
         // Check each slot in the inventory.
         for (size_t i = 0; i < m_objects.size() && count > 0; i++)
@@ -94,7 +94,7 @@ namespace Forradia::Theme0
             if (*m_objects[i])
             {
                 // Check if object type matches.
-                if ((*m_objects[i])->GetType() == Hash(objectName))
+                if ((*m_objects[i])->getType() == hash(objectName))
                 {
                     // Remove object from slot.
                     *m_objects[i] = nullptr;
@@ -106,7 +106,7 @@ namespace Forradia::Theme0
         }
     }
 
-    auto ContainedObjects::Size() const -> int
+    auto ContainedObjects::size() const -> int
     {
         return m_objects.size();
     }

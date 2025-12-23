@@ -23,7 +23,7 @@ namespace Forradia
          */
         Model(std::string_view filePath)
         {
-            this->Initialize(filePath);
+            this->initialize(filePath);
         };
 
         /**
@@ -31,24 +31,24 @@ namespace Forradia
 
             @return A reference to the model's meshes.
          */
-        [[nodiscard]] auto GetMeshesRef() const -> const std::vector<GLMMesh> &
+        [[nodiscard]] auto getMeshesRef() const -> const std::vector<GLMMesh> &
         {
             return m_meshes;
         }
 
       private:
-        auto Initialize(std::string_view filePath) -> void;
+        auto initialize(std::string_view filePath) -> void;
 
-        auto ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform) -> void;
+        auto processNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transform) -> void;
 
-        static auto ProcessMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
+        static auto processMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
             -> GLMMesh;
 
-        static auto GetVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>;
+        static auto getVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>;
 
-        static auto GetIndices(aiMesh *mesh) -> std::vector<unsigned int>;
+        static auto getIndices(aiMesh *mesh) -> std::vector<unsigned int>;
 
-        static auto GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>;
+        static auto getTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>;
 
         std::vector<GLMMesh> m_meshes{};
     };

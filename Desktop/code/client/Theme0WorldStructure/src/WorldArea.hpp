@@ -32,20 +32,20 @@ namespace Forradia::Theme0
         {
             // Initialize the world area.
 
-            this->Initialize(worldAreaSize, worldScaling);
+            this->initialize(worldAreaSize, worldScaling);
         }
 
         /**
             Resets the world area.
          */
-        auto Reset() -> void;
+        auto reset() -> void;
 
         /**
             Gets the size of the world area.
 
             @return The size of the world area.
          */
-        auto GetSize() const -> Size;
+        auto getSize() const -> Size;
 
         /**
             Checks if a coordinate is valid in the world area.
@@ -54,7 +54,7 @@ namespace Forradia::Theme0
             @param y The y coordinate.
             @return True if the coordinate is valid, false otherwise.
          */
-        auto IsValidCoordinate(int x, int y) const -> bool;
+        auto isValidCoordinate(int x, int y) const -> bool;
 
         /**
             Checks if a coordinate is valid in the world area.
@@ -62,7 +62,7 @@ namespace Forradia::Theme0
             @param coordinate The coordinate.
             @return True if the coordinate is valid, false otherwise.
          */
-        auto IsValidCoordinate(Point coordinate) const -> bool;
+        auto isValidCoordinate(Point coordinate) const -> bool;
 
         /**
             Gets the tile at the given coordinate.
@@ -71,7 +71,7 @@ namespace Forradia::Theme0
             @param y The y coordinate.
             @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
          */
-        auto GetTile(int x, int y) const -> std::shared_ptr<Tile>;
+        auto getTile(int x, int y) const -> std::shared_ptr<Tile>;
 
         /**
             Gets the tile at the given coordinate.
@@ -79,20 +79,20 @@ namespace Forradia::Theme0
             @param coordinate The coordinate.
             @return The tile at the given coordinate, or nullptr if the coordinate is invalid.
          */
-        auto GetTile(Point coord) const -> std::shared_ptr<Tile>;
+        auto getTile(Point coord) const -> std::shared_ptr<Tile>;
 
         /**
             Gets a reference to the entities mirror.
 
             @return A reference to the entities mirror.
          */
-        auto &GetEntitiesMirrorRef()
+        auto &getEntitiesMirrorRef()
         {
             return m_entitiesMirror;
         }
 
       private:
-        auto Initialize(Size worldAreaSize, float worldScaling) -> void;
+        auto initialize(Size worldAreaSize, float worldScaling) -> void;
 
         std::vector<std::vector<std::shared_ptr<Tile>>> m_tiles{};
         std::map<std::shared_ptr<Entity>, Point> m_entitiesMirror{};

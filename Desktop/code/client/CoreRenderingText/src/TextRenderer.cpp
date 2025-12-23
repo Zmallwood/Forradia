@@ -5,8 +5,8 @@
 
 #include "TextRenderer.hpp"
 #include "ErrorUtilities.hpp"
-#include "StringUtilities.hpp"
 #include "SDLDeleter.hpp"
+#include "StringUtilities.hpp"
 #include <SDL2/SDL_ttf.h>
 // clang-format off
 #include <GL/glew.h>
@@ -14,17 +14,17 @@
 // clang-format on
 namespace Forradia
 {
-    auto TextRenderer::Initialize() -> void
+    auto TextRenderer::initialize() -> void
     {
         TTF_Init();
 
-        this->AddFonts();
+        this->addFonts();
     }
 
-    auto TextRenderer::AddFonts() -> void
+    auto TextRenderer::addFonts() -> void
     {
         auto absFontPath{std::string(SDL_GetBasePath()) + k_defaultFontPath};
-        auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
+        auto fontPathUnixStyle{replace(absFontPath, '\\', '/')};
 
         // Iterate over all available font sizes.
         for (auto fontSize : {FontSizes::_20, FontSizes::_26})
@@ -37,7 +37,7 @@ namespace Forradia
 
             if (!newFont)
             {
-                ThrowError("Error loading font size " + std::to_string(fontSizeN) +
+                throwError("Error loading font size " + std::to_string(fontSizeN) +
                            " from: " + fontPathUnixStyle);
             }
 
@@ -45,7 +45,7 @@ namespace Forradia
         }
     }
 
-    auto TextRenderer::SetupState() -> void
+    auto TextRenderer::setupState() -> void
     {
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
         glEnable(GL_TEXTURE_2D);
@@ -53,7 +53,7 @@ namespace Forradia
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto TextRenderer::RestoreState() -> void
+    auto TextRenderer::restoreState() -> void
     {
         glDisable(GL_BLEND);
         glDisable(GL_TEXTURE_2D);

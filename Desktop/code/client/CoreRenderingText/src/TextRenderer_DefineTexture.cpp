@@ -13,7 +13,7 @@
 
 namespace Forradia
 {
-    auto TextRenderer::DefineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void
+    auto TextRenderer::defineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void
     {
         // Create an intermediary surface with RGBA format for OpenGL compatibility.
         auto intermediary{std::shared_ptr<SDL_Surface>(

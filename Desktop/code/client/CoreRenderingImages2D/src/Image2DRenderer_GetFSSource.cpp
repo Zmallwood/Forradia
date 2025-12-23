@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto Image2DRenderer::GetFSSource() const -> std::string
+    auto Image2DRenderer::getFSSource() const -> std::string
     {
         return R"(
         #version 330 core

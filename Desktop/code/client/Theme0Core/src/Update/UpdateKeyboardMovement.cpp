@@ -13,7 +13,7 @@ namespace Forradia::Theme0
         static std::set<SDL_Keycode> pressedKeys{};
     }
 
-    auto UpdateKeyboardMovementStart(SDL_Keycode key) -> void
+    auto updateKeyboardMovementStart(SDL_Keycode key) -> void
     {
         pressedKeys.insert(key);
 
@@ -24,51 +24,51 @@ namespace Forradia::Theme0
 
         if (upPress || rightPress || downPress || leftPress)
         {
-            Player::Instance().SetDestination({-1, -1});
+            Player::instance().setDestination({-1, -1});
         }
 
         if (upPress && rightPress)
         {
-            Player::Instance().StartMovingNorthEast();
+            Player::instance().startMovingNorthEast();
         }
         else if (downPress && rightPress)
         {
-            Player::Instance().StartMovingSouthEast();
+            Player::instance().startMovingSouthEast();
         }
         else if (downPress && leftPress)
         {
-            Player::Instance().StartMovingSouthWest();
+            Player::instance().startMovingSouthWest();
         }
         else if (upPress && leftPress)
         {
-            Player::Instance().StartMovingNorthWest();
+            Player::instance().startMovingNorthWest();
         }
         else if (leftPress)
         {
-            Player::Instance().StartMovingWest();
+            Player::instance().startMovingWest();
         }
         else if (upPress)
         {
-            Player::Instance().StartMovingNorth();
+            Player::instance().startMovingNorth();
         }
         else if (rightPress)
         {
-            Player::Instance().StartMovingEast();
+            Player::instance().startMovingEast();
         }
         else if (downPress)
         {
-            Player::Instance().StartMovingSouth();
+            Player::instance().startMovingSouth();
         }
         else if (leftPress)
         {
-            Player::Instance().StartMovingWest();
+            Player::instance().startMovingWest();
         }
     }
 
-    auto UpdateKeyboardMovementStop() -> void
+    auto updateKeyboardMovementStop() -> void
     {
         pressedKeys.clear();
 
-        Player::Instance().StopMoving();
+        Player::instance().stopMoving();
     }
 }

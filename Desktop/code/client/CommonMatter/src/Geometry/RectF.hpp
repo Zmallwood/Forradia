@@ -21,21 +21,21 @@ namespace Forradia
             @param point Point to check if it is contained in this rectangle.
             @return True if the Point is within this rectangle, otherwise false.
          */
-        [[nodiscard]] auto Contains(PointF point) const -> bool;
+        [[nodiscard]] auto contains(PointF point) const -> bool;
 
         /**
             Returns only the position of this rectangle.
 
             @return The position.
          */
-        [[nodiscard]] auto GetPosition() const -> PointF;
+        [[nodiscard]] auto getPosition() const -> PointF;
 
         /**
             Adds an offset to this rectangle, with the dimensions altered separately.
 
             @param offset The offset to add.
          */
-        auto Offset(PointF offset) -> void;
+        auto offset(PointF offset) -> void;
 
         float x{0.0F};      ///< The x coordinate.
         float y{0.0F};      ///< The y coordinate.

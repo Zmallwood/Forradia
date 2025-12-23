@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto ModelRenderer::GetVSSource() const -> std::string
+    auto ModelRenderer::getVSSource() const -> std::string
     {
         return R"(
             #version 330 core

@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class ObjectIndex
     {
       public:
-        static ObjectIndex &Instance()
+        static ObjectIndex &instance()
         {
             static ObjectIndex instance;
             return instance;
@@ -38,7 +38,7 @@ namespace Forradia::Theme0
             @param objectHash The hash of the object.
             @return The model scaling for the given object.
          */
-        auto GetModelScaling(int objectHash) const -> float;
+        auto getModelScaling(int objectHash) const -> float;
 
         /**
             Check if an object entry exists for a given object hash.
@@ -46,7 +46,7 @@ namespace Forradia::Theme0
             @param objectHash The hash of the object.
             @return True if an object entry exists for the given object hash, false otherwise.
          */
-        auto ObjectEntryExists(int objectHash) const -> bool;
+        auto objectEntryExists(int objectHash) const -> bool;
 
         /**
             Gets whether the object type with the given hash should have individual model scaling
@@ -55,14 +55,14 @@ namespace Forradia::Theme0
             @param objectHash The hash of the object.
             @return True if individual model scaling should be ignored, otherwise false.
          */
-        auto GetIgnoreIndividualModelScaling(int objectHash) const -> bool;
+        auto getIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
-        auto GetNumContainerSlots(int objectHash) const -> int;
+        auto getNumContainerSlots(int objectHash) const -> int;
 
-        auto GetBlocksMovement(int objectHash) const -> bool;
+        auto getBlocksMovement(int objectHash) const -> bool;
 
       private:
-        auto AddObjectEntry(std::string_view objectName, float modelScaling,
+        auto addObjectEntry(std::string_view objectName, float modelScaling,
                             bool ignoreIndividualModelScaling, int numContainerSlots,
                             bool blocksMovement) -> void;
 

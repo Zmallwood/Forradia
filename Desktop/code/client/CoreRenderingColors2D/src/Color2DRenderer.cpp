@@ -14,9 +14,9 @@
 
 namespace Forradia
 {
-    auto Color2DRenderer::Cleanup() -> void
+    auto Color2DRenderer::cleanup() -> void
     {
-        for (auto &val: m_operationsCache | std::views::values)
+        for (auto &val : m_operationsCache | std::views::values)
         {
             glDeleteBuffers(1, &val.ibo);
             glDeleteBuffers(1, &val.vbo);
@@ -26,17 +26,17 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    auto Color2DRenderer::SetupState() const -> void
+    auto Color2DRenderer::setupState() const -> void
     {
-        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
+        auto canvasSize{getCanvasSize(SDLDevice::instance().getWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(GetShaderProgram()->GetProgramID());
+        glUseProgram(getShaderProgram()->getProgramID());
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto Color2DRenderer::RestoreState() -> void
+    auto Color2DRenderer::restoreState() -> void
     {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -44,7 +44,7 @@ namespace Forradia
         glUseProgram(0);
     }
 
-    auto Color2DRenderer::SetupAttributeLayout() const -> void
+    auto Color2DRenderer::setupAttributeLayout() const -> void
     {
         constexpr int k_stride{7};
 
@@ -58,7 +58,7 @@ namespace Forradia
         glEnableVertexAttribArray(1);
     }
 
-    auto Color2DRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool
+    auto Color2DRenderer::drawingOperationIsCached(int uniqueRenderID) const -> bool
     {
         return m_operationsCache.contains(uniqueRenderID);
     }

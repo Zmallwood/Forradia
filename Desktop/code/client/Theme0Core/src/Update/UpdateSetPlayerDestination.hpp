@@ -7,5 +7,5 @@
 
 namespace Forradia::Theme0
 {
-    auto UpdateSetPlayerDestination() -> void;
+    auto updateSetPlayerDestination() -> void;
 }

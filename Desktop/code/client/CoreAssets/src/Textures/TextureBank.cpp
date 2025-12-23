@@ -7,19 +7,19 @@
 
 namespace Forradia
 {
-    auto TextureBank::Initialize() -> void
+    auto TextureBank::initialize() -> void
     {
-        TextureBank::LoadTextures();
+        TextureBank::loadTextures();
     }
 
-    auto TextureBank::Cleanup() -> void
+    auto TextureBank::cleanup() -> void
     {
-        for (auto val: m_textureEntries | std::views::values)
+        for (auto val : m_textureEntries | std::views::values)
         {
             glDeleteTextures(1, &val.textureID);
         }
 
-        for (auto val: m_textTextureIDs | std::views::values)
+        for (auto val : m_textTextureIDs | std::views::values)
         {
             glDeleteTextures(1, &val);
         }
@@ -29,7 +29,7 @@ namespace Forradia
     }
 
     // ReSharper disable once CppMemberFunctionMayBeStatic
-    auto TextureBank::GetTexture(int imageNameHash) const -> GLuint
+    auto TextureBank::getTexture(int imageNameHash) const -> GLuint
     {
         if (m_textureEntries.contains(imageNameHash))
         {
@@ -39,7 +39,7 @@ namespace Forradia
         return -1;
     }
 
-    auto TextureBank::GetTextureDimensions(int imageNameHash) -> Size
+    auto TextureBank::getTextureDimensions(int imageNameHash) -> Size
     {
         if (m_textureEntries.contains(imageNameHash))
         {

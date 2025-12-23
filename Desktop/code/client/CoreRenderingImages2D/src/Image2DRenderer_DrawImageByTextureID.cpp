@@ -15,11 +15,11 @@
 
 namespace Forradia
 {
-    auto Image2DRenderer::DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
+    auto Image2DRenderer::drawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
                                                float yPos, float width, float height,
                                                bool updateExisting) -> void
     {
-        this->SetupState();
+        this->setupState();
 
         GLuint vao;
         GLuint ibo;
@@ -28,7 +28,7 @@ namespace Forradia
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->DrawingOperationIsCached(uniqueRenderID))
+        if (this->drawingOperationIsCached(uniqueRenderID))
         {
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
@@ -83,7 +83,7 @@ namespace Forradia
             glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
                          vertices.data(), GL_DYNAMIC_DRAW);
 
-            this->SetupAttributeLayout();
+            this->setupAttributeLayout();
         }
 
         glBindVertexArray(vao);
@@ -94,6 +94,6 @@ namespace Forradia
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        Image2DRenderer::RestoreState();
+        Image2DRenderer::restoreState();
     }
 }

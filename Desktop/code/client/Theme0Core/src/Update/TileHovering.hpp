@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class TileHovering
     {
       public:
-        static auto Instance() -> TileHovering &
+        static auto instance() -> TileHovering &
         {
             static TileHovering instance;
             return instance;
@@ -31,24 +31,24 @@ namespace Forradia::Theme0
         /**
          * Updates the tile hovering.
          */
-        static auto Update() -> void;
+        static auto update() -> void;
 
         /**
          * Provides the hovered coordinate.
          */
-        [[nodiscard]] static auto GetHoveredCoordinate() -> Point
+        [[nodiscard]] static auto getHoveredCoordinate() -> Point
         {
             return m_hoveredCoordinate;
         }
 
       private:
-        static auto DetermineHoveredCoordinateWithRayCasting() -> void;
+        static auto determineHoveredCoordinateWithRayCasting() -> void;
 
-        static auto IterateOverRenderedTiles() -> void;
+        static auto iterateOverRenderedTiles() -> void;
 
-        static auto DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool;
+        static auto determineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool;
 
-        static auto CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool;
+        static auto checkIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool;
 
         inline static Point m_hoveredCoordinate{-1, -1};
     };

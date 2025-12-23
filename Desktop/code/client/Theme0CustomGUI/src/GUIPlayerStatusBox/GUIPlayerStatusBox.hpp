@@ -25,30 +25,30 @@ namespace Forradia::Theme0
          */
         GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
         {
-            this->Initialize();
+            this->initialize();
         }
 
       protected:
         /**
             Initializes the player status box.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         /**
             Does update logic that is specific to the player status box.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
             Does render logic that is specific to the player status box.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
-        const int k_renderIDNameString{Hash("GUIPlayerStatusBoxName")};
-        const int k_renderLevelString{Hash("GUIPlayerStatusBoxLevel")};
-        const int k_renderWellBeingString{Hash("GUIPlayerStatusBoxWellBeing")};
-        const int k_renderWellBeingValueString{Hash("GUIPlayerStatusBoxWellBeingValue")};
+        const int k_renderIDNameString{hash("GUIPlayerStatusBoxName")};
+        const int k_renderLevelString{hash("GUIPlayerStatusBoxLevel")};
+        const int k_renderWellBeingString{hash("GUIPlayerStatusBoxWellBeing")};
+        const int k_renderWellBeingValueString{hash("GUIPlayerStatusBoxWellBeingValue")};
         std::shared_ptr<GUILabel> m_wellBeingValueTextLabel{};
     };
 }

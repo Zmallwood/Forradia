@@ -13,13 +13,13 @@ auto main(int argc, char **argv) -> int
     using namespace Forradia;
     using namespace Theme0;
 
-    Engine::Instance().Initialize(Theme0Properties::Instance().GetGameWindowTitle(),
-                                  Theme0Properties::Instance().GetClearColor());
-    SetupScenes();
+    Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),
+                                  Theme0Properties::instance().getClearColor());
+    setupScenes();
 
-    World::Instance().Initialize(Theme0Properties::Instance().GetBaseWorldAreaSize(),
-                                 Theme0Properties::Instance().GetWorldScaling());
-    Engine::Instance().Run();
+    World::instance().initialize(Theme0Properties::instance().getBaseWorldAreaSize(),
+                                 Theme0Properties::instance().getWorldScaling());
+    Engine::instance().run();
 
     return 0;
 }

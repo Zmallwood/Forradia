@@ -22,6 +22,6 @@ namespace Forradia
         {
         }
 
-        [[nodiscard]] auto MouseHoveringGUI() const -> bool override;
+        [[nodiscard]] auto mouseHoveringGUI() const -> bool override;
     };
 }

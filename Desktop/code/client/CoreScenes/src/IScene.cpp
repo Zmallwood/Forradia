@@ -8,59 +8,59 @@
 
 namespace Forradia
 {
-    auto IScene::Initialize() -> void
+    auto IScene::initialize() -> void
     {
         m_gui = std::make_shared<GUI>();
 
-        this->InitializeDerived();
+        this->initializeDerived();
     }
 
-    auto IScene::OnEnter() -> void
+    auto IScene::onEnter() -> void
     {
-        this->OnEnterDerived();
+        this->onEnterDerived();
     }
 
-    auto IScene::OnMouseDown(Uint8 mouseButton) -> void
+    auto IScene::onMouseDown(Uint8 mouseButton) -> void
     {
-        m_gui->OnMouseDown(mouseButton);
+        m_gui->onMouseDown(mouseButton);
     }
 
-    auto IScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void
+    auto IScene::onMouseUp(Uint8 mouseButton, int clickSpeed) -> void
     {
-        m_gui->OnMouseUp(mouseButton, clickSpeed);
+        m_gui->onMouseUp(mouseButton, clickSpeed);
     }
 
-    auto IScene::OnMouseWheel(int delta) -> void
+    auto IScene::onMouseWheel(int delta) -> void
     {
-        m_gui->OnMouseWheel(delta);
+        m_gui->onMouseWheel(delta);
     }
 
-    auto IScene::OnKeyDown(SDL_Keycode key) -> void
+    auto IScene::onKeyDown(SDL_Keycode key) -> void
     {
-        m_gui->OnKeyDown(key);
+        m_gui->onKeyDown(key);
     }
 
-    auto IScene::OnKeyUp(SDL_Keycode key) -> void
+    auto IScene::onKeyUp(SDL_Keycode key) -> void
     {
-        m_gui->OnKeyUp(key);
+        m_gui->onKeyUp(key);
     }
 
-    auto IScene::OnTextInput(std::string_view text) -> void
+    auto IScene::onTextInput(std::string_view text) -> void
     {
-        m_gui->OnTextInput(text);
+        m_gui->onTextInput(text);
     }
 
-    auto IScene::Update() -> void
+    auto IScene::update() -> void
     {
-        m_gui->Update();
+        m_gui->update();
 
-        this->UpdateDerived();
+        this->updateDerived();
     }
 
-    auto IScene::Render() const -> void
+    auto IScene::render() const -> void
     {
-        this->RenderDerived();
+        this->renderDerived();
 
-        m_gui->Render();
+        m_gui->render();
     }
 }

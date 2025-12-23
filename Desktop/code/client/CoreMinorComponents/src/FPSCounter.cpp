@@ -9,9 +9,9 @@
 
 namespace Forradia
 {
-    auto FPSCounter::Update() -> void
+    auto FPSCounter::update() -> void
     {
-        auto now{GetTicks()};
+        auto now{getTicks()};
 
         if (now > m_ticksLastUpdate + k_oneSecMillis)
         {

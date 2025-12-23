@@ -18,7 +18,7 @@ namespace Forradia
     class ModelBank
     {
       public:
-        static auto Instance() -> ModelBank &
+        static auto instance() -> ModelBank &
         {
             static ModelBank instance;
             return instance;
@@ -34,7 +34,7 @@ namespace Forradia
          */
         ModelBank()
         {
-            ModelBank::Initialize();
+            ModelBank::initialize();
         }
 
         /**
@@ -44,14 +44,14 @@ namespace Forradia
             @return The model.
          */
         // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-        [[nodiscard]] auto GetModel(int modelNameHash) const -> std::shared_ptr<Model>;
+        [[nodiscard]] auto getModel(int modelNameHash) const -> std::shared_ptr<Model>;
 
       private:
-        static auto Initialize() -> void;
+        static auto initialize() -> void;
 
-        static auto LoadModels() -> void;
+        static auto loadModels() -> void;
 
-        static auto LoadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>;
+        static auto loadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>;
 
         inline static const std::string k_relativeModelsPath{"./Resources/Models/"};
         inline static std::unordered_map<int, std::shared_ptr<Model>> m_models{};

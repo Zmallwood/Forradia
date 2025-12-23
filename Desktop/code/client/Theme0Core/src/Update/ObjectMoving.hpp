@@ -6,8 +6,8 @@
 #pragma once
 
 #include "Hash.hpp"
-#include <memory>
 #include <SDL2/SDL.h>
+#include <memory>
 
 namespace Forradia::Theme0
 {
@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class ObjectMoving
     {
       public:
-        static auto Instance() -> ObjectMoving &
+        static auto instance() -> ObjectMoving &
         {
             static ObjectMoving instance;
             return instance;
@@ -29,15 +29,15 @@ namespace Forradia::Theme0
 
         ObjectMoving() = default;
 
-        auto OnMouseDown(Uint8 mouseButton) -> bool;
+        auto onMouseDown(Uint8 mouseButton) -> bool;
 
-        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
+        auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
 
-        auto Render() const -> void;
+        auto render() const -> void;
 
       private:
         constexpr static float k_objectImageWidth{0.05F};
-        constexpr static int k_renderIDImage{Hash("ObjectInAir")};
+        constexpr static int k_renderIDImage{hash("ObjectInAir")};
         std::shared_ptr<Object> m_objectInAir{};
     };
 }

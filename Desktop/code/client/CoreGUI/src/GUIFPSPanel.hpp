@@ -25,20 +25,20 @@ namespace Forradia
                               k_defaultBounds.width, k_defaultBounds.height)
         {
             // Initialize this FPSPanel.
-            this->Initialize();
+            this->initialize();
         }
 
       protected:
         /**
             Update tasks specific to the FPSPanel, called by the GUIComponent base class.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
       private:
         /**
             Initializes this FPSPanel.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         constexpr static RectF k_defaultBounds{0.92F, 0.02F, 0.07F, 0.04F};
         const RectF k_labelBounds{0.01F, 0.01F, 0.1F, 0.05F};

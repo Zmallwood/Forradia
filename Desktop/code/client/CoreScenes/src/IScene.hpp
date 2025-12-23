@@ -22,41 +22,41 @@ namespace Forradia
         /**
             Initializes the scene.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         /**
             Called when the scene is entered.
          */
-        auto OnEnter() -> void;
+        auto onEnter() -> void;
 
-        virtual auto OnMouseDown(Uint8 mouseButton) -> void;
+        virtual auto onMouseDown(Uint8 mouseButton) -> void;
 
-        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
+        virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
 
-        virtual auto OnMouseWheel(int delta) -> void;
+        virtual auto onMouseWheel(int delta) -> void;
 
-        virtual auto OnKeyDown(SDL_Keycode key) -> void;
+        virtual auto onKeyDown(SDL_Keycode key) -> void;
 
-        virtual auto OnKeyUp(SDL_Keycode key) -> void;
+        virtual auto onKeyUp(SDL_Keycode key) -> void;
 
-        virtual auto OnTextInput(std::string_view text) -> void;
+        virtual auto onTextInput(std::string_view text) -> void;
 
         /**
             Updates the scene.
          */
-        virtual auto Update() -> void;
+        virtual auto update() -> void;
 
         /**
             Renders the scene.
          */
-        virtual auto Render() const -> void;
+        virtual auto render() const -> void;
 
         /**
             Gets the GUI.
 
             @return The GUI.
          */
-        [[nodiscard]] auto GetGUI() const -> std::shared_ptr<GUI>
+        [[nodiscard]] auto getGUI() const -> std::shared_ptr<GUI>
         {
             return m_gui;
         }
@@ -65,28 +65,28 @@ namespace Forradia
         /**
             Initializes the scene. Should be specific to the deriving class.
          */
-        virtual auto InitializeDerived() -> void
+        virtual auto initializeDerived() -> void
         {
         }
 
         /**
             Called when the scene is entered. Should be specific to the deriving class.
          */
-        virtual auto OnEnterDerived() -> void
+        virtual auto onEnterDerived() -> void
         {
         }
 
         /**
             Updates the scene. Should be specific to the deriving class.
          */
-        virtual auto UpdateDerived() -> void
+        virtual auto updateDerived() -> void
         {
         }
 
         /**
             Renders the scene. Should be specific to the deriving class.
          */
-        virtual auto RenderDerived() const -> void
+        virtual auto renderDerived() const -> void
         {
         }
 

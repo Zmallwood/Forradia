@@ -4,14 +4,14 @@
  *********************************************************************/
 
 #include "SkyRenderer.hpp"
+#include "CanvasUtilities.hpp"
 #include "ErrorUtilities.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
-#include "CanvasUtilities.hpp"
 
 namespace Forradia
 {
-    auto SkyRenderer::Cleanup() -> void
+    auto SkyRenderer::cleanup() -> void
     {
         if (m_vao != 0)
         {
@@ -37,12 +37,12 @@ namespace Forradia
         m_initialized = false;
     }
 
-    auto SkyRenderer::SetupState() const -> void
+    auto SkyRenderer::setupState() const -> void
     {
-        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
+        auto canvasSize{getCanvasSize(SDLDevice::instance().getWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(GetShaderProgram()->GetProgramID());
+        glUseProgram(getShaderProgram()->getProgramID());
 
         // Enable depth testing with LEQUAL.
         // The sky vertices are set to far plane (z = w) in the vertex shader,
@@ -58,7 +58,7 @@ namespace Forradia
         glDisable(GL_CULL_FACE);
     }
 
-    auto SkyRenderer::RestoreState() -> void
+    auto SkyRenderer::restoreState() -> void
     {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -69,26 +69,27 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    auto SkyRenderer::SetupAttributeLayout() const -> void
+    auto SkyRenderer::setupAttributeLayout() const -> void
     {
         // Position (3 floats).
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, static_cast<void *>(nullptr));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3,
+                              static_cast<void *>(nullptr));
         glEnableVertexAttribArray(0);
     }
 
-    auto SkyRenderer::InitializeDerived() -> void
+    auto SkyRenderer::initializeDerived() -> void
     {
-        m_layoutLocationMVP = glGetUniformLocation(GetShaderProgram()->GetProgramID(), "MVP");
+        m_layoutLocationMVP = glGetUniformLocation(getShaderProgram()->getProgramID(), "MVP");
         m_layoutLocationSunDirection =
-            glGetUniformLocation(GetShaderProgram()->GetProgramID(), "sunDirection");
+            glGetUniformLocation(getShaderProgram()->getProgramID(), "sunDirection");
         m_layoutLocationSunElevation =
-            glGetUniformLocation(GetShaderProgram()->GetProgramID(), "sunElevation");
+            glGetUniformLocation(getShaderProgram()->getProgramID(), "sunElevation");
 
         // Check if uniform locations are valid (should not be -1).
         if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
             m_layoutLocationSunElevation == -1)
         {
-            ThrowError("Uniform locations not found - shader might have compilation errors.");
+            throwError("Uniform locations not found - shader might have compilation errors.");
         }
     }
 }

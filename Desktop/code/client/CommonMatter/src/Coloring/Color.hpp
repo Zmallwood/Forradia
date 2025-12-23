@@ -20,7 +20,7 @@ namespace Forradia
 
             @return Corresponding SDL_Color object.
          */
-        [[nodiscard]] auto ToSDLColor() const -> SDL_Color;
+        [[nodiscard]] auto toSDLColor() const -> SDL_Color;
 
         float r{0.0F}; ///< Red component.
         float g{0.0F}; ///< Green component.

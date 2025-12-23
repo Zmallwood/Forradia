@@ -7,10 +7,10 @@
 
 namespace Forradia
 {
-    auto ShaderProgram::Initialize(std::string_view vertexShaderSource,
+    auto ShaderProgram::initialize(std::string_view vertexShaderSource,
                                    std::string_view fragmentShaderSource) -> void
     {
-        auto vertexShader{ShaderProgram::GetShader(vertexShaderSource, GL_VERTEX_SHADER)};
+        auto vertexShader{ShaderProgram::getShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
         // If the vertex shader failed.
         if (0 == vertexShader)
@@ -20,7 +20,7 @@ namespace Forradia
             return;
         }
 
-        auto fragmentShader{ShaderProgram::GetShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
+        auto fragmentShader{ShaderProgram::getShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
         // If the fragment shader failed.
         if (0 == fragmentShader)
@@ -31,7 +31,7 @@ namespace Forradia
             return;
         }
 
-        auto isLinked{this->CreateProgram(vertexShader, fragmentShader)};
+        auto isLinked{this->createProgram(vertexShader, fragmentShader)};
 
         // If the link failed, dont continue.
         if (GL_FALSE == isLinked)
@@ -45,7 +45,7 @@ namespace Forradia
         glDeleteShader(fragmentShader);
     }
 
-    auto ShaderProgram::Cleanup() -> void
+    auto ShaderProgram::cleanup() -> void
     {
         glDeleteProgram(m_programID);
         m_programID = 0;

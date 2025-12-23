@@ -15,30 +15,30 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldView::Initialize() -> void
+    auto WorldView::initialize() -> void
     {
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldAreaSize{worldArea->getSize()};
 
         for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
         {
             for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
             {
                 m_renderIDsGround[xPos][yPos] =
-                    Hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
+                    hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
             }
         }
 
         m_sunDirection = glm::normalize(k_sunDirectionRaw);
     }
 
-    auto WorldView::Render() -> void
+    auto WorldView::render() -> void
     {
-        SkyRenderer::Instance().Render(m_sunDirection, k_sunElevation);
+        SkyRenderer::instance().render(m_sunDirection, k_sunElevation);
 
         m_elevationsAll.clear();
 
-        m_gridSize = Theme0Properties::Instance().GetGridSize();
+        m_gridSize = Theme0Properties::instance().getGridSize();
 
         // Calculate extended ground rendering size
         m_groundGridSize =
@@ -47,13 +47,13 @@ namespace Forradia::Theme0
                                  static_cast<decltype(m_gridSize.height)>(
                                      m_gridSize.height * k_groundRenderingDistanceMultiplier)};
 
-        m_playerPos = Player::Instance().GetPosition();
-        m_worldArea = World::Instance().GetCurrentWorldArea();
-        m_worldAreaSize = m_worldArea->GetSize();
-        m_rendTileSize = Theme0Properties::Instance().GetTileSize();
-        m_hoveredCoordinate = TileHovering::GetHoveredCoordinate();
+        m_playerPos = Player::instance().getPosition();
+        m_worldArea = World::instance().getCurrentWorldArea();
+        m_worldAreaSize = m_worldArea->getSize();
+        m_rendTileSize = Theme0Properties::instance().getTileSize();
+        m_hoveredCoordinate = TileHovering::getHoveredCoordinate();
 
-        GroundRenderer::Instance().SetupState();
+        GroundRenderer::instance().setupState();
 
         // First pass: Render ground tiles at extended distance.
         for (auto yPos = 0; yPos < m_groundGridSize.height; yPos++)
@@ -71,13 +71,13 @@ namespace Forradia::Theme0
                     {
                         for (auto xx = 0; xx < k_tilesGroupSize; xx++)
                         {
-                            this->IterationGround(xPos + xx, yPos + yy);
+                            this->iterationGround(xPos + xx, yPos + yy);
                         }
                     }
 
                     if (!m_tiles.empty())
                     {
-                        GroundRenderer::Instance().DrawTiles(m_tiles);
+                        GroundRenderer::instance().drawTiles(m_tiles);
                     }
                 }
             }
@@ -85,19 +85,19 @@ namespace Forradia::Theme0
 
         m_tiles.clear();
 
-        GroundRenderer::Instance().RestoreState();
+        GroundRenderer::instance().restoreState();
 
-        //ModelRenderer::Instance().SetupState();
+        // ModelRenderer::Instance().SetupState();
 
         // Second pass: Render all except ground tiles.
         for (auto yPos = 0; yPos < m_worldAreaSize.height; yPos++)
         {
             for (auto xPos = 0; xPos < m_worldAreaSize.width; xPos++)
             {
-                this->IterationAllExceptGround(xPos, yPos);
+                this->iterationAllExceptGround(xPos, yPos);
             }
         }
 
-        //ModelRenderer::Instance().RestoreState();
+        // ModelRenderer::Instance().RestoreState();
     }
 }

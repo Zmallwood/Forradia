@@ -9,58 +9,58 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorGround::GenerateGroundWithElevation() const -> void
+    auto WorldGeneratorGround::generateGroundWithElevation() const -> void
     {
-        ClearWithDirt();
-        GenerateElevationWithBiomes();
-        GenerateMountainRanges();
-        GenerateValleys();
-        GenerateGrassBiomes();
-        GenerateRockFormations();
+        clearWithDirt();
+        generateElevationWithBiomes();
+        generateMountainRanges();
+        generateValleys();
+        generateGrassBiomes();
+        generateRockFormations();
     }
 
-    auto WorldGeneratorGround::ClearWithDirt() const -> void
+    auto WorldGeneratorGround::clearWithDirt() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
 
         for (auto y = 0; y < worldAreaSize.height; y++)
         {
             for (auto x = 0; x < worldAreaSize.width; x++)
             {
-                auto tile{worldArea->GetTile(x, y)};
+                auto tile{worldArea->getTile(x, y)};
 
                 if (!tile)
                 {
                     continue;
                 }
 
-                tile->SetGround("GroundDirt");
-                tile->SetElevation(GetDefaultGroundElevation());
+                tile->setGround("GroundDirt");
+                tile->setElevation(getDefaultGroundElevation());
             }
         }
     }
 
-    auto WorldGeneratorGround::GetMaxElevation() -> int
+    auto WorldGeneratorGround::getMaxElevation() -> int
     {
         // Maximum elevation cap to prevent excessive stacking.
         return 300;
     }
 
-    auto WorldGeneratorGround::GetMaxSlopePerTile() -> int
+    auto WorldGeneratorGround::getMaxSlopePerTile() -> int
     {
         // Maximum elevation difference between adjacent tiles.
         // This prevents mountains from becoming too steep.
         return 8;
     }
 
-    auto WorldGeneratorGround::GetMaxAllowedElevation(int x, int y, int currentElevation) const
+    auto WorldGeneratorGround::getMaxAllowedElevation(int x, int y, int currentElevation) const
         -> int
     {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
 
-        auto maxSlope{GetMaxSlopePerTile()};
+        auto maxSlope{getMaxSlopePerTile()};
 
         // Start with allowing max slope increase from current elevation
         auto maxAllowedElevation{currentElevation + maxSlope};
@@ -70,17 +70,18 @@ namespace Forradia::Theme0
 
         for (auto dir = 0; dir < 8; dir++)
         {
-            int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}};
+            int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                                 {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 
-            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
+            if (!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
-            auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
+            auto adjacentTile{getWorldArea()->getTile(adjacentX, adjacentY)};
 
             if (!adjacentTile)
             {
@@ -88,12 +89,12 @@ namespace Forradia::Theme0
             }
 
             // Skip water tiles - they have their own elevation rules (set to 0).
-            if (adjacentTile->GetGround() == Hash("GroundWater"))
+            if (adjacentTile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
 
-            auto adjacentElevation{adjacentTile->GetElevation()};
+            auto adjacentElevation{adjacentTile->getElevation()};
 
             // The new elevation should not exceed adjacent tile elevation + max slope.
             // This prevents creating a steep upward slope from the adjacent tile.
@@ -110,18 +111,18 @@ namespace Forradia::Theme0
         return maxAllowedElevation;
     }
 
-    auto WorldGeneratorGround::ClampElevation(int elevation) -> int
+    auto WorldGeneratorGround::clampElevation(int elevation) -> int
     {
-        auto maxElevation{GetMaxElevation()};
+        auto maxElevation{getMaxElevation()};
 
         if (elevation > maxElevation)
         {
             return maxElevation;
         }
 
-        if (elevation < GetDefaultGroundElevation())
+        if (elevation < getDefaultGroundElevation())
         {
-            return GetDefaultGroundElevation();
+            return getDefaultGroundElevation();
         }
 
         return elevation;

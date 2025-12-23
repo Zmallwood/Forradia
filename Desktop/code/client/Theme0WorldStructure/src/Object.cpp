@@ -9,12 +9,12 @@
 
 namespace Forradia::Theme0
 {
-    auto Object::Initialize() -> void
+    auto Object::initialize() -> void
     {
         // Randomize the model scaling.
-        m_modelScaling = 0.75F + static_cast<float>(GetRandomInt(100)) / 200.0F;
+        m_modelScaling = 0.75F + static_cast<float>(getRandomInt(100)) / 200.0F;
 
-        auto numContainerSlots{ObjectIndex::Instance().GetNumContainerSlots(m_type)};
+        auto numContainerSlots{ObjectIndex::instance().getNumContainerSlots(m_type)};
         m_containedObjects = std::make_shared<ContainedObjects>(numContainerSlots);
     }
 }

@@ -24,7 +24,7 @@ namespace Forradia::Theme0
     class Player
     {
       public:
-        static Player &Instance()
+        static Player &instance()
         {
             static Player instance;
             return instance;
@@ -41,75 +41,75 @@ namespace Forradia::Theme0
         Player()
         {
             // Initialize the player character.
-            this->Initialize();
+            this->initialize();
         }
 
-        auto Update() -> void;
+        auto update() -> void;
 
-        auto StartMovingNorth() -> void;
+        auto startMovingNorth() -> void;
 
-        auto StartMovingEast() -> void;
+        auto startMovingEast() -> void;
 
-        auto StartMovingSouth() -> void;
+        auto startMovingSouth() -> void;
 
-        auto StartMovingWest() -> void;
+        auto startMovingWest() -> void;
 
-        auto StartMovingNorthWest() -> void;
+        auto startMovingNorthWest() -> void;
 
-        auto StartMovingNorthEast() -> void;
+        auto startMovingNorthEast() -> void;
 
-        auto StartMovingSouthWest() -> void;
+        auto startMovingSouthWest() -> void;
 
-        auto StartMovingSouthEast() -> void;
+        auto startMovingSouthEast() -> void;
 
-        auto StopMoving() -> void;
+        auto stopMoving() -> void;
 
         /**
             Moves the player north.
          */
-        auto MoveNorth() -> void;
+        auto moveNorth() -> void;
 
         /**
             Moves the player east.
          */
-        auto MoveEast() -> void;
+        auto moveEast() -> void;
 
         /**
             Moves the player south.
          */
-        auto MoveSouth() -> void;
+        auto moveSouth() -> void;
 
         /**
             Moves the player west.
          */
-        auto MoveWest() -> void;
+        auto moveWest() -> void;
 
         /**
             Moves the player north-east.
          */
-        auto MoveNorthEast() -> void;
+        auto moveNorthEast() -> void;
 
         /**
             Moves the player south-east.
          */
-        auto MoveSouthEast() -> void;
+        auto moveSouthEast() -> void;
 
         /**
             Moves the player south-west.
          */
-        auto MoveSouthWest() -> void;
+        auto moveSouthWest() -> void;
 
         /**
             Moves the player north-west.
          */
-        auto MoveNorthWest() -> void;
+        auto moveNorthWest() -> void;
 
         /**
             Adds experience to the player.
 
             @param experience The experience to add.
          */
-        auto AddExperience(int experience) -> void;
+        auto addExperience(int experience) -> void;
 
         /**
             Adds a player action to the player.
@@ -118,18 +118,18 @@ namespace Forradia::Theme0
             @param actionFirstArgument The first argument of the player action.
             @param actionSecondArgument The second argument of the player action.
          */
-        auto AddPlayerAction(PlayerActionTypes playerAction,
+        auto addPlayerAction(PlayerActionTypes playerAction,
                              std::string_view actionFirstArgument = "",
                              Point actionSecondArgument = {-1, -1}) -> void;
 
-        PointF GetSmoothPosition() const;
+        PointF getSmoothPosition() const;
 
         /**
             Gets the name of the player.
 
             @return The name of the player.
          */
-        auto GetName() const
+        auto getName() const
         {
             return m_name;
         }
@@ -139,7 +139,7 @@ namespace Forradia::Theme0
 
             @param value The value to set.
          */
-        auto SetPosition(Point value) -> void
+        auto setPosition(Point value) -> void
         {
             m_position = value;
         }
@@ -149,7 +149,7 @@ namespace Forradia::Theme0
 
             @return The position of the player.
          */
-        auto GetPosition() const
+        auto getPosition() const
         {
             return m_position;
         }
@@ -159,7 +159,7 @@ namespace Forradia::Theme0
 
             @return The movement speed of the player.
          */
-        auto GetMovementSpeed() const
+        auto getMovementSpeed() const
         {
             return m_movementSpeed;
         }
@@ -169,7 +169,7 @@ namespace Forradia::Theme0
 
             @return The ticks since last movement.
          */
-        auto GetTicksLastMovement() const
+        auto getTicksLastMovement() const
         {
             return m_ticksLastMovement;
         }
@@ -179,7 +179,7 @@ namespace Forradia::Theme0
 
             @param value The value to set.
          */
-        auto SetTicksLastMovement(int value) -> void
+        auto setTicksLastMovement(int value) -> void
         {
             m_ticksLastMovement = value;
         }
@@ -189,7 +189,7 @@ namespace Forradia::Theme0
 
             @return The destination of the player.
          */
-        auto GetDestination() const
+        auto getDestination() const
         {
             return m_destination;
         }
@@ -199,7 +199,7 @@ namespace Forradia::Theme0
 
             @param value The value to set.
          */
-        auto SetDestination(Point value) -> void
+        auto setDestination(Point value) -> void
         {
             m_destination = value;
         }
@@ -209,7 +209,7 @@ namespace Forradia::Theme0
 
             @return The objects inventory of the player.
          */
-        auto GetObjectsInventoryRef() const -> PlayerObjectsInventory &
+        auto getObjectsInventoryRef() const -> PlayerObjectsInventory &
         {
             return *m_playerObjectsInventory;
         }
@@ -219,7 +219,7 @@ namespace Forradia::Theme0
 
             @return The experience of the player.
          */
-        auto GetExperience() const
+        auto getExperience() const
         {
             return m_experience;
         }
@@ -229,7 +229,7 @@ namespace Forradia::Theme0
 
             @return The well-being of the player.
          */
-        auto GetWellBeing() const
+        auto getWellBeing() const
         {
             return m_wellBeing;
         }
@@ -239,7 +239,7 @@ namespace Forradia::Theme0
 
             @return The max well-being of the player.
          */
-        auto GetMaxWellBeing() const
+        auto getMaxWellBeing() const
         {
             return m_maxWellBeing;
         }
@@ -249,7 +249,7 @@ namespace Forradia::Theme0
 
             @return The player actions of the player.
          */
-        auto GetPlayerActionsRef() const
+        auto getPlayerActionsRef() const
             -> const std::vector<std::tuple<PlayerActionTypes, std::string, Point>> &
         {
             return m_playerActions;
@@ -260,7 +260,7 @@ namespace Forradia::Theme0
 
             @return The quest completion points of the player.
          */
-        auto GetQuestCompletionPointsRef() -> std::unordered_map<std::string, int> &
+        auto getQuestCompletionPointsRef() -> std::unordered_map<std::string, int> &
         {
             return m_questCompletionPoints;
         }
@@ -270,20 +270,20 @@ namespace Forradia::Theme0
 
             @return The spouse of the player.
          */
-        auto GetSpouse() const
+        auto getSpouse() const
         {
             return m_spouse;
         }
 
-        void SetSpouse(const std::shared_ptr<Spouse> &value)
+        void setSpouse(const std::shared_ptr<Spouse> &value)
         {
             m_spouse = value;
         }
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
-        auto MoveToSuitablePosition() -> void;
+        auto moveToSuitablePosition() -> void;
 
         std::string m_name{"Unnamed Player"};
         Point m_position{60, 50};

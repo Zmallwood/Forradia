@@ -16,16 +16,16 @@ namespace Forradia::Theme0
     class GUIExperienceBar : public GUIMeter
     {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUIExperienceBar>
+        static auto instancePtr() -> std::shared_ptr<GUIExperienceBar>
         {
             static std::shared_ptr<GUIExperienceBar> instancePtr =
                 std::make_shared<GUIExperienceBar>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUIExperienceBar &
+        static auto instance() -> GUIExperienceBar &
         {
-            return *InstancePtr();
+            return *instancePtr();
         }
 
         // Delete copy/move
@@ -37,7 +37,7 @@ namespace Forradia::Theme0
             Constructor.
          */
         GUIExperienceBar()
-            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, GetFilledColor())
+            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, getFilledColor())
         {
         }
 
@@ -46,7 +46,7 @@ namespace Forradia::Theme0
 
             @return The height of the bar.
          */
-        static auto GetHeight()
+        static auto getHeight()
         {
             return k_height;
         }
@@ -55,23 +55,23 @@ namespace Forradia::Theme0
         /**
             Does update logic that is specific to the experience bar.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
             Gets the filled percentage of the bar.
 
             @return The filled percentage of the bar.
          */
-        auto GetFilledPercentage() const -> float override;
+        auto getFilledPercentage() const -> float override;
 
         /**
             Gets the filled color of the bar.
 
             @return The filled color of the bar.
          */
-        static auto GetFilledColor() -> Color
+        static auto getFilledColor() -> Color
         {
-            return Palette::GetColor<Hash("Gold")>();
+            return Palette::getColor<hash("Gold")>();
         }
 
       private:

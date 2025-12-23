@@ -18,24 +18,24 @@
 
 namespace Forradia
 {
-    auto Engine::Initialize(std::string_view gameWindowTitle, Color clearColor) -> void
+    auto Engine::initialize(std::string_view gameWindowTitle, Color clearColor) -> void
     {
         // Initialize random number generator so that unique random numbers are generated on
         // each game run.
-        Randomize();
+        randomize();
 
         // Initialize graphics devices.
-        SDLDevice::Instance().Initialize(gameWindowTitle, clearColor);
-        GLDevice::Instance().Initialize();
+        SDLDevice::instance().initialize(gameWindowTitle, clearColor);
+        GLDevice::instance().initialize();
 
         // Initialize renderers.
-        Color2DRenderer::Instance().Initialize();
-        Image2DRenderer::Instance().Initialize();
-        GroundRenderer::Instance().Initialize();
-        ModelRenderer::Instance().Initialize();
+        Color2DRenderer::instance().initialize();
+        Image2DRenderer::instance().initialize();
+        GroundRenderer::instance().initialize();
+        ModelRenderer::instance().initialize();
     }
 
-    auto Engine::Run() -> void
+    auto Engine::run() -> void
     {
         // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
         // in the game.
@@ -43,26 +43,26 @@ namespace Forradia
         {
             while (m_running)
             {
-                Cursor::Instance().ResetStyleToNormal();
+                Cursor::instance().resetStyleToNormal();
 
-                this->HandleEvents();
+                this->handleEvents();
 
-                SceneManager::Instance().UpdateCurrentScene();
-                FPSCounter::Instance().Update();
+                SceneManager::instance().updateCurrentScene();
+                FPSCounter::instance().update();
 
-                SDLDevice::Instance().ClearCanvas();
-                SceneManager::Instance().RenderCurrentScene();
-                Cursor::Instance().Render();
-                SDLDevice::Instance().PresentCanvas();
+                SDLDevice::instance().clearCanvas();
+                SceneManager::instance().renderCurrentScene();
+                Cursor::instance().render();
+                SDLDevice::instance().presentCanvas();
             }
         }
         catch (std::exception &e)
         {
-            PrintLine("Caught exception: " + std::string(e.what()));
+            printLine("Caught exception: " + std::string(e.what()));
         }
     }
 
-    auto Engine::Stop() -> void
+    auto Engine::stop() -> void
     {
         m_running = false;
     }

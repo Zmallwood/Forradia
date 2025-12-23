@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    auto InvertSpeed(float speed) -> float
+    auto invertSpeed(float speed) -> float
     {
         auto result{0.0F};
 
@@ -21,7 +21,7 @@ namespace Forradia
         return result;
     }
 
-    auto Normalize(int value) -> int
+    auto normalize(int value) -> int
     {
         auto absValue{std::abs(value)};
         auto normalized{0};
@@ -34,7 +34,7 @@ namespace Forradia
         return normalized;
     }
 
-    auto Ceil(float number, float numDecimalPlaces) -> float
+    auto ceil(float number, float numDecimalPlaces) -> float
     {
         const auto powBase{10.0F};
 

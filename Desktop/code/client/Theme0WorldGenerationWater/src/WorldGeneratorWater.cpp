@@ -9,18 +9,18 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorWater::GenerateWater() const -> void
+    auto WorldGeneratorWater::generateWater() const -> void
     {
-        GenerateNaturalRivers();
-        GenerateLakesInValleys();
+        generateNaturalRivers();
+        generateLakesInValleys();
     }
 
-    auto WorldGeneratorWater::GenerateNaturalRivers() const -> void
+    auto WorldGeneratorWater::generateNaturalRivers() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
 
-        auto numRivers{150 + GetRandomInt(100)};
+        auto numRivers{150 + getRandomInt(100)};
 
         for (auto i = 0; i < numRivers; i++)
         {
@@ -30,7 +30,7 @@ namespace Forradia::Theme0
             auto foundStart{false};
 
             // Vary starting elevations - some high, some medium, some low.
-            auto elevationType{GetRandomInt(100)};
+            auto elevationType{getRandomInt(100)};
 
             auto minElevation{0};
 
@@ -53,14 +53,14 @@ namespace Forradia::Theme0
             // Find a starting point.
             while (attempts < 100 && !foundStart)
             {
-                startX = GetRandomInt(worldAreaSize.width);
-                startY = GetRandomInt(worldAreaSize.height);
+                startX = getRandomInt(worldAreaSize.width);
+                startY = getRandomInt(worldAreaSize.height);
 
-                auto tile{worldArea->GetTile(startX, startY)};
+                auto tile{worldArea->getTile(startX, startY)};
 
                 // If the tile is found and the elevation is greater than the minimum elevation,
                 // and the tile is a valid water placement location.
-                if (tile && tile->GetElevation() > minElevation && IsValidForWater(startX, startY))
+                if (tile && tile->getElevation() > minElevation && isValidForWater(startX, startY))
                 {
                     foundStart = true;
                 }
@@ -74,7 +74,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto startElevation{worldArea->GetTile(startX, startY)->GetElevation()};
+            auto startElevation{worldArea->getTile(startX, startY)->getElevation()};
             auto baseLength{40};
             auto lengthVariation{60};
 
@@ -91,18 +91,18 @@ namespace Forradia::Theme0
                 lengthVariation = 70;
             }
 
-            auto length{baseLength + GetRandomInt(lengthVariation)};
+            auto length{baseLength + getRandomInt(lengthVariation)};
 
-            GenerateRiverFromSource(startX, startY, length);
+            generateRiverFromSource(startX, startY, length);
         }
     }
 
-    auto WorldGeneratorWater::GenerateLakesInValleys() const -> void
+    auto WorldGeneratorWater::generateLakesInValleys() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
-        auto numLakes{12 + GetRandomInt(8)};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
+        auto numLakes{12 + getRandomInt(8)};
 
         for (auto i = 0; i < numLakes; i++)
         {
@@ -115,12 +115,12 @@ namespace Forradia::Theme0
             // Find a suitable valley location.
             while (attempts < 50 && !foundLocation)
             {
-                centerX = GetRandomInt(worldAreaSize.width);
-                centerY = GetRandomInt(worldAreaSize.height);
+                centerX = getRandomInt(worldAreaSize.width);
+                centerY = getRandomInt(worldAreaSize.height);
 
-                auto tile{worldArea->GetTile(centerX, centerY)};
+                auto tile{worldArea->getTile(centerX, centerY)};
 
-                if (tile && tile->GetElevation() <= 32 && tile->GetGround() != Hash("GroundWater"))
+                if (tile && tile->getElevation() <= 32 && tile->getGround() != hash("GroundWater"))
                 {
                     // Set the flag to indicate that we found a suitable valley location.
                     foundLocation = true;
@@ -135,18 +135,20 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{static_cast<int>(3 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(6 * worldScaling))))};
+            auto radius{static_cast<int>(
+                3 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(6 * worldScaling))))};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    auto tile{worldArea->GetTile(x, y)};
+                    auto tile{worldArea->getTile(x, y)};
 
                     if (!tile)
                     {
@@ -154,47 +156,49 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    if (!IsValidForWater(x, y))
+                    if (!isValidForWater(x, y))
                     {
                         // Just continue to the next tile.
                         continue;
                     }
 
-                    auto distance{GetDistance(x, y, centerX, centerY)};
+                    auto distance{getDistance(x, y, centerX, centerY)};
 
                     if (distance * distance <= static_cast<float>(radius * radius))
                     {
-                        tile->SetGround("GroundWater");
+                        tile->setGround("GroundWater");
 
-                        auto depth{static_cast<int>((1.0F - distance / static_cast<float>(radius)) * 4.0F) + 1};
+                        auto depth{static_cast<int>((1.0F - distance / static_cast<float>(radius)) *
+                                                    4.0F) +
+                                   1};
 
-                        tile->SetWaterDepth(depth);
-                        tile->SetElevation(0);
+                        tile->setWaterDepth(depth);
+                        tile->setElevation(0);
 
-                        SetAdjacentTilesElevationToZero(x, y);
+                        setAdjacentTilesElevationToZero(x, y);
                     }
                 }
             }
         }
     }
 
-    auto WorldGeneratorWater::IsValidForWater(int x, int y) const -> bool
+    auto WorldGeneratorWater::isValidForWater(int x, int y) const -> bool
     {
-        if (!GetWorldArea()->IsValidCoordinate(x, y))
+        if (!getWorldArea()->isValidCoordinate(x, y))
         {
             return false;
         }
 
-        auto tile{GetWorldArea()->GetTile(x, y)};
+        auto tile{getWorldArea()->getTile(x, y)};
 
         if (!tile)
         {
             return false;
         }
 
-        return tile->GetElevation() < 80;
+        return tile->getElevation() < 80;
     }
-    auto WorldGeneratorWater::SetAdjacentTilesElevationToZero(int x, int y) const -> void
+    auto WorldGeneratorWater::setAdjacentTilesElevationToZero(int x, int y) const -> void
     {
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.
@@ -212,21 +216,21 @@ namespace Forradia::Theme0
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 
-            if (!GetWorldArea()->IsValidCoordinate(adjacentX, adjacentY))
+            if (!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
-            auto adjacentTile{GetWorldArea()->GetTile(adjacentX, adjacentY)};
+            auto adjacentTile{getWorldArea()->getTile(adjacentX, adjacentY)};
 
             if (!adjacentTile)
             {
                 continue;
             }
 
-            if (adjacentTile->GetGround() != Hash("GroundWater"))
+            if (adjacentTile->getGround() != hash("GroundWater"))
             {
-                adjacentTile->SetElevation(0);
+                adjacentTile->setElevation(0);
             }
         }
     }

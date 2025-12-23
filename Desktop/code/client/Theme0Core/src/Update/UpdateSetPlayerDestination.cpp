@@ -9,10 +9,10 @@
 
 namespace Forradia::Theme0
 {
-    auto UpdateSetPlayerDestination() -> void
+    auto updateSetPlayerDestination() -> void
     {
-        auto newDestination{TileHovering::GetHoveredCoordinate()};
+        auto newDestination{TileHovering::getHoveredCoordinate()};
 
-        Player::Instance().SetDestination(newDestination);
+        Player::instance().setDestination(newDestination);
     }
 }

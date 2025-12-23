@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class Theme0Properties
     {
       public:
-        static Theme0Properties &Instance()
+        static Theme0Properties &instance()
         {
             static Theme0Properties instance;
             return instance;
@@ -33,21 +33,21 @@ namespace Forradia::Theme0
 
             @return The game window title.
          */
-        static auto GetGameWindowTitle() -> std::string;
+        static auto getGameWindowTitle() -> std::string;
 
         /**
             Get the clear color of the canvas.
 
             @return The clear color of the canvas.
          */
-        static auto GetClearColor() -> Color;
+        static auto getClearColor() -> Color;
 
         /**
             Get the size of the grid rendered by the WorldView.
 
             @return The size of the grid rendered by the WorldView.
          */
-        static auto GetGridSize() -> Size;
+        static auto getGridSize() -> Size;
 
         /**
             Get the base size of a single world area. This size is being scaled using
@@ -55,7 +55,7 @@ namespace Forradia::Theme0
 
             @return The base size of a single world area.
          */
-        static auto GetBaseWorldAreaSize() -> Size;
+        static auto getBaseWorldAreaSize() -> Size;
 
         /**
             Get the world scaling factor which is applied to the world area size and world
@@ -63,20 +63,20 @@ namespace Forradia::Theme0
 
             @return The world scaling factor.
          */
-        static auto GetWorldScaling() -> float;
+        static auto getWorldScaling() -> float;
 
         /**
             Get the size of a single tile in opengl space.
 
             @return The size of a single tile in opengl space.
          */
-        static auto GetTileSize() -> float;
+        static auto getTileSize() -> float;
 
         /**
             Get the height of one unit of elevation in opengl 3D space.
 
             @return The height of one unit of elevation.
          */
-        static auto GetElevationHeight() -> float;
+        static auto getElevationHeight() -> float;
     };
 }

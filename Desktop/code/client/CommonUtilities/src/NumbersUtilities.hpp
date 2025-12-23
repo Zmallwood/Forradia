@@ -13,7 +13,7 @@ namespace Forradia
         @param speed Speed to invert.
         @return The inverse of the speed.
      */
-    auto InvertSpeed(float speed) -> float;
+    auto invertSpeed(float speed) -> float;
 
     /**
         Calculate the normalized value.
@@ -21,7 +21,7 @@ namespace Forradia
         @param value Value to normalize.
         @return The normalized value.
      */
-    auto Normalize(int value) -> int;
+    auto normalize(int value) -> int;
 
     /**
         Calculate the ceiled value with a given number of decimal places.
@@ -30,5 +30,5 @@ namespace Forradia
         @param numDecimalPlaces The number of decimal places.
         @return The ceiled value.
      */
-    auto Ceil(float number, float numDecimalPlaces) -> float;
+    auto ceil(float number, float numDecimalPlaces) -> float;
 }

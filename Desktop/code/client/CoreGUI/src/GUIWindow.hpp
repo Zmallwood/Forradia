@@ -32,7 +32,7 @@ namespace Forradia
             : GUIMovablePanel(uniqueName, xPos + s_positionOffset, yPos + s_positionOffset, width,
                               height)
         {
-            this->Initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
+            this->initialize(uniqueName.data() + std::string("WindowTitleBar"), windowTitle);
         }
 
         /**
@@ -40,7 +40,7 @@ namespace Forradia
 
             @return The window title bar of the window.
          */
-        auto GetGUIWindowTitleBar() const
+        auto getGUIWindowTitleBar() const
         {
             return m_guiWindowTitleBar;
         }
@@ -49,7 +49,7 @@ namespace Forradia
         /**
             Render tasks specific to the window, called by the GUIComponent base class.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
         /**
             Gets the draggable area for the window. This is the area which the player can drag
@@ -57,10 +57,10 @@ namespace Forradia
 
             @return The draggable area of the window.
          */
-        auto GetDraggableArea() const -> RectF override;
+        auto getDraggableArea() const -> RectF override;
 
       private:
-        auto Initialize(std::string_view uniqueName, std::string_view windowTitle) -> void;
+        auto initialize(std::string_view uniqueName, std::string_view windowTitle) -> void;
 
         constexpr static float k_positionOffsetChange{0.05F};
         inline static float s_positionOffset{0.0F};

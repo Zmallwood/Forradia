@@ -17,7 +17,7 @@ namespace Forradia
     class GLDevice
     {
       public:
-        static auto Instance() -> GLDevice &
+        static auto instance() -> GLDevice &
         {
             static GLDevice instance;
             return instance;
@@ -38,10 +38,10 @@ namespace Forradia
         /**
             Initializes this device by setting up the GL functionality.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
       private:
-        auto SetupGL() -> void;
+        auto setupGL() -> void;
 
         std::shared_ptr<SDL_GLContext> m_context{};
     };

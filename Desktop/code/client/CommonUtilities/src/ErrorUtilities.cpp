@@ -4,12 +4,12 @@
  *********************************************************************/
 
 #include "ErrorUtilities.hpp"
-#include <string>
 #include <stdexcept>
+#include <string>
 
 namespace Forradia
 {
-    void ThrowError(std::string_view message, std::source_location loc)
+    void throwError(std::string_view message, std::source_location loc)
     {
         auto filePath{std::string(loc.file_name())};
 
@@ -21,11 +21,11 @@ namespace Forradia
         throw std::runtime_error(fullMessage);
     }
 
-    void ThrowOnFalse(bool condition, std::string_view message, std::source_location loc)
+    void throwOnFalse(bool condition, std::string_view message, std::source_location loc)
     {
         if (condition == false)
         {
-            ThrowError(message, loc);
+            throwError(message, loc);
         }
     }
 }

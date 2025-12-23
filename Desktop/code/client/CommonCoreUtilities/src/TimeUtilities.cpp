@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    auto GetTicks() -> int
+    auto getTicks() -> int
     {
         return SDL_GetTicks();
     }

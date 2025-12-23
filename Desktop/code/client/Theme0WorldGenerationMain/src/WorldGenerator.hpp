@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGenerator
     {
       public:
-        static WorldGenerator &Instance()
+        static WorldGenerator &instance()
         {
             static WorldGenerator instance;
             return instance;
@@ -31,9 +31,9 @@ namespace Forradia::Theme0
         /**
             Generates a new world.
          */
-        static auto GenerateNewWorld() -> void;
+        static auto generateNewWorld() -> void;
 
       private:
-        static auto Prepare() -> void;
+        static auto prepare() -> void;
     };
 }

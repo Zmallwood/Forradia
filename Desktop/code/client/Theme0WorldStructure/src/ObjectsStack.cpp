@@ -8,22 +8,22 @@
 
 namespace Forradia::Theme0
 {
-    auto ObjectsStack::ClearObjects() -> void
+    auto ObjectsStack::clearObjects() -> void
     {
         m_objects.clear();
     }
 
-    auto ObjectsStack::AddObject(std::string_view objectName) -> void
+    auto ObjectsStack::addObject(std::string_view objectName) -> void
     {
-        m_objects.push_back(std::make_shared<Object>(Hash(objectName)));
+        m_objects.push_back(std::make_shared<Object>(hash(objectName)));
     }
 
-    auto ObjectsStack::RemoveOneOfObjectOfType(std::string_view objectTypeName) -> void
+    auto ObjectsStack::removeOneOfObjectOfType(std::string_view objectTypeName) -> void
     {
         for (auto it = m_objects.begin(); it != m_objects.end();)
         {
             // If the object type matches.
-            if ((*it)->GetType() == Hash(objectTypeName))
+            if ((*it)->getType() == hash(objectTypeName))
             {
                 // Delete the object.
                 m_objects.erase(it);
@@ -38,12 +38,12 @@ namespace Forradia::Theme0
         }
     }
 
-    auto ObjectsStack::GetSize() const -> int
+    auto ObjectsStack::getSize() const -> int
     {
         return m_objects.size();
     }
 
-    auto ObjectsStack::PopObject() -> std::shared_ptr<Object>
+    auto ObjectsStack::popObject() -> std::shared_ptr<Object>
     {
         if (m_objects.empty())
         {
@@ -56,7 +56,7 @@ namespace Forradia::Theme0
         return object;
     }
 
-    auto ObjectsStack::GetTopObjectPtrPtr() -> std::shared_ptr<Object> *
+    auto ObjectsStack::getTopObjectPtrPtr() -> std::shared_ptr<Object> *
     {
         if (m_objects.empty())
         {
@@ -66,11 +66,11 @@ namespace Forradia::Theme0
         return &m_objects.back();
     }
 
-    auto ObjectsStack::CountHasObject(std::string_view objectTypeName) const -> int
+    auto ObjectsStack::countHasObject(std::string_view objectTypeName) const -> int
     {
         // Return the number of objects of the specified type in the stack.
         return std::count_if(m_objects.begin(), m_objects.end(),
                              [&](const std::shared_ptr<Object> &object)
-                             { return object->GetType() == Hash(objectTypeName); });
+                             { return object->getType() == hash(objectTypeName); });
     }
 }

@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class PlayScene : public IScene
     {
       public:
-        static PlayScene &Instance()
+        static PlayScene &instance()
         {
             static PlayScene instance;
             return instance;
@@ -33,11 +33,11 @@ namespace Forradia::Theme0
         /**
             Initializes the play scene.
          */
-        virtual auto InitializeDerived() -> void override;
+        virtual auto initializeDerived() -> void override;
 
         /**
             Called every frame to render the scene.
          */
-        virtual auto RenderDerived() const -> void override;
+        virtual auto renderDerived() const -> void override;
     };
 }

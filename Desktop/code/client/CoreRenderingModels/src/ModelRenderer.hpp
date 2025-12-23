@@ -21,7 +21,7 @@ namespace Forradia
     class ModelRenderer : public RendererBase
     {
       public:
-        static auto Instance() -> ModelRenderer &
+        static auto instance() -> ModelRenderer &
         {
             static ModelRenderer instance;
             return instance;
@@ -40,7 +40,7 @@ namespace Forradia
         ~ModelRenderer() override
         {
             // Clean up the renderer.
-            this->Cleanup();
+            this->cleanup();
         }
 
         /**
@@ -52,12 +52,12 @@ namespace Forradia
             @param elevations The elevations of the tile where the model is located.
             @param modelScaling The scaling of the model.
          */
-        auto DrawModel(int modelNameHash, float xPos, float yPos, float elevations,
+        auto drawModel(int modelNameHash, float xPos, float yPos, float elevations,
                        float modelScaling = 1.0F) -> void;
 
-        auto SetupState() const -> void;
+        auto setupState() const -> void;
 
-        static auto RestoreState() -> void;
+        static auto restoreState() -> void;
 
       protected:
         /**
@@ -65,29 +65,29 @@ namespace Forradia
 
             @return The vertex shader source.
          */
-        [[nodiscard]] auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto getVSSource() const -> std::string override;
 
         /**
             Gets the fragment shader source.
 
             @return The fragment shader source.
          */
-        [[nodiscard]] auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto getFSSource() const -> std::string override;
 
         /**
             Additional initialization for this derived class.
          */
-        auto InitializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
             Sets up the attribute layout.
          */
-        auto SetupAttributeLayout() const -> void override;
+        auto setupAttributeLayout() const -> void override;
 
       private:
-        auto Cleanup() -> void;
+        auto cleanup() -> void;
 
-        [[nodiscard]] auto DrawingOperationIsCached(int modelNameHash) const -> bool;
+        [[nodiscard]] auto drawingOperationIsCached(int modelNameHash) const -> bool;
 
         static constexpr float k_globalModelScaling{0.5F};
         std::unordered_map<int, ModelRenderingOperation> m_operationsCache{};

@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    auto ShaderProgram::GetShader(std::string_view shaderSource, int shaderType) -> GLuint
+    auto ShaderProgram::getShader(std::string_view shaderSource, int shaderType) -> GLuint
     {
         auto shader{glCreateShader(shaderType)};
         const auto *source{(const GLchar *)shaderSource.data()};

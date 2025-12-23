@@ -16,16 +16,16 @@ namespace Forradia::Theme0
     class GUIInteractionMenu : public GUIPanel
     {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUIInteractionMenu>
+        static auto instancePtr() -> std::shared_ptr<GUIInteractionMenu>
         {
             static std::shared_ptr<GUIInteractionMenu> instancePtr =
                 std::make_shared<GUIInteractionMenu>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUIInteractionMenu &
+        static auto instance() -> GUIInteractionMenu &
         {
-            return *InstancePtr();
+            return *instancePtr();
         }
 
         // Delete copy/move
@@ -37,19 +37,19 @@ namespace Forradia::Theme0
          */
         GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
         {
-            this->Initialize();
+            this->initialize();
         }
 
-        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+        auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         /**
             Builds the menu.
          */
-        auto BuildMenu() -> void;
+        auto buildMenu() -> void;
 
-        auto HandleClick() -> void;
+        auto handleClick() -> void;
 
-        auto ShowMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
+        auto showMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
             -> void;
 
         /**
@@ -57,7 +57,7 @@ namespace Forradia::Theme0
 
             @return The timed actions.
          */
-        auto &GetTimedActionsRef()
+        auto &getTimedActionsRef()
         {
             return m_timedActions;
         }
@@ -67,7 +67,7 @@ namespace Forradia::Theme0
 
             @return The clicked coordinate.
          */
-        auto GetClickedCoordinate() const
+        auto getClickedCoordinate() const
         {
             return m_clickedCoordinate;
         }
@@ -76,21 +76,21 @@ namespace Forradia::Theme0
         /**
             Initializes the interaction menu.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
             Does render logic that is specific to the interaction menu.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
         static constexpr float k_indentWidth{0.01f};
         static constexpr float k_lineHeight{0.035f};
-        const int k_renderIDActionsString{Hash("GUIInteractionMenuActionsString")};
+        const int k_renderIDActionsString{hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
-        constexpr static int k_renderIDHoveredRow{Hash("GUIInteractionMenuHoveredRow")};
+        constexpr static int k_renderIDHoveredRow{hash("GUIInteractionMenuHoveredRow")};
         std::vector<int> m_renderIDsMenuEntryStrings{};
         std::vector<GUIInteractionMenuEntry> m_entries{};
         Point m_clickedCoordinate{-1, -1};

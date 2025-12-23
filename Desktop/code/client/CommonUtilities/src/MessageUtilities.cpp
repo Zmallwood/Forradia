@@ -8,12 +8,12 @@
 
 namespace Forradia
 {
-    auto Print(std::string_view text) -> void
+    auto print(std::string_view text) -> void
     {
         std::cout << text;
     }
 
-    auto PrintLine(std::string_view text) -> void
+    auto printLine(std::string_view text) -> void
     {
         std::cout << text << std::endl;
     }

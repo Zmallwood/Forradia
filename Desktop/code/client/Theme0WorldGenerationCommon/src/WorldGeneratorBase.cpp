@@ -10,14 +10,14 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorBase::Prepare() -> void
+    auto WorldGeneratorBase::prepare() -> void
     {
-        m_worldArea = Theme0::World::Instance().GetCurrentWorldArea();
-        m_worldAreaSize = m_worldArea->GetSize();
-        m_worldScaling = Theme0::Theme0Properties::GetWorldScaling();
+        m_worldArea = Theme0::World::instance().getCurrentWorldArea();
+        m_worldAreaSize = m_worldArea->getSize();
+        m_worldScaling = Theme0::Theme0Properties::getWorldScaling();
     }
 
-    auto WorldGeneratorBase::GetDistance(int x1, int y1, int x2, int y2) -> float
+    auto WorldGeneratorBase::getDistance(int x1, int y1, int x2, int y2) -> float
     {
         auto dx{static_cast<float>(x2 - x1)};
         auto dy{static_cast<float>(y2 - y1)};

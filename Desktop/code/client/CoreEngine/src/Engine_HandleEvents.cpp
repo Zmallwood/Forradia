@@ -10,7 +10,7 @@
 
 namespace Forradia
 {
-    auto Engine::HandleEvents() -> void
+    auto Engine::handleEvents() -> void
     {
         SDL_Event event;
 
@@ -19,19 +19,19 @@ namespace Forradia
             switch (event.type)
             {
             case SDL_QUIT:
-                this->Stop();
+                this->stop();
                 break;
 
             case SDL_KEYDOWN:
-                SceneManager::Instance().OnKeyDownCurrentScene(event.key.keysym.sym);
+                SceneManager::instance().onKeyDownCurrentScene(event.key.keysym.sym);
                 break;
 
             case SDL_KEYUP:
-                SceneManager::Instance().OnKeyUpCurrentScene(event.key.keysym.sym);
+                SceneManager::instance().onKeyUpCurrentScene(event.key.keysym.sym);
                 break;
 
             case SDL_TEXTINPUT:
-                SceneManager::Instance().OnTextInputCurrentScene(event.text.text);
+                SceneManager::instance().onTextInputCurrentScene(event.text.text);
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
@@ -39,15 +39,15 @@ namespace Forradia
                 switch (event.button.button)
                 {
                 case SDL_BUTTON_LEFT:
-                    m_ticksLeftMouseButtonFired = GetTicks();
+                    m_ticksLeftMouseButtonFired = getTicks();
                     break;
                 case SDL_BUTTON_RIGHT:
-                    m_ticksRightMouseButtonFired = GetTicks();
+                    m_ticksRightMouseButtonFired = getTicks();
                     break;
                 default:
                     break;
                 }
-                SceneManager::Instance().OnMouseDownCurrentScene(event.button.button);
+                SceneManager::instance().onMouseDownCurrentScene(event.button.button);
                 break;
             }
             case SDL_MOUSEBUTTONUP:
@@ -56,19 +56,19 @@ namespace Forradia
                 switch (event.button.button)
                 {
                 case SDL_BUTTON_LEFT:
-                    clickSpeed = GetTicks() - m_ticksLeftMouseButtonFired;
+                    clickSpeed = getTicks() - m_ticksLeftMouseButtonFired;
                     break;
                 case SDL_BUTTON_RIGHT:
-                    clickSpeed = GetTicks() - m_ticksRightMouseButtonFired;
+                    clickSpeed = getTicks() - m_ticksRightMouseButtonFired;
                     break;
                 default:
                     break;
                 }
-                SceneManager::Instance().OnMouseUpCurrentScene(event.button.button, clickSpeed);
+                SceneManager::instance().onMouseUpCurrentScene(event.button.button, clickSpeed);
                 break;
             }
             case SDL_MOUSEWHEEL:
-                SceneManager::Instance().OnMouseWheelCurrentScene(event.wheel.y);
+                SceneManager::instance().onMouseWheelCurrentScene(event.wheel.y);
                 break;
             default:
                 break;

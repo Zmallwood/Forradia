@@ -15,7 +15,7 @@ namespace Forradia
         @param path Path to the file.
         @return File extension.
      */
-    auto GetFileExtension(std::string_view path) -> std::string;
+    auto getFileExtension(std::string_view path) -> std::string;
 
     /**
         Get the file name without the extension.
@@ -23,5 +23,5 @@ namespace Forradia
         @param path Path to the file.
         @return File name without the extension.
      */
-    auto GetFileNameNoExtension(std::string_view path) -> std::string;
+    auto getFileNameNoExtension(std::string_view path) -> std::string;
 }

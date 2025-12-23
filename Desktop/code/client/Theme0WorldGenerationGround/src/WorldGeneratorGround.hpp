@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGeneratorGround : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorGround &Instance()
+        static WorldGeneratorGround &instance()
         {
             static WorldGeneratorGround instance;
             return instance;
@@ -31,33 +31,33 @@ namespace Forradia::Theme0
         /**
             Do all the steps to generate the ground with elevation.
          */
-        auto GenerateGroundWithElevation() const -> void;
+        auto generateGroundWithElevation() const -> void;
 
       private:
-        auto ClearWithDirt() const -> void;
+        auto clearWithDirt() const -> void;
 
-        auto GenerateGrassBiomes() const -> void;
+        auto generateGrassBiomes() const -> void;
 
-        auto GenerateRockFormations() const -> void;
+        auto generateRockFormations() const -> void;
 
-        auto GenerateElevationWithBiomes() const -> void;
+        auto generateElevationWithBiomes() const -> void;
 
-        auto GenerateMountainRanges() const -> void;
+        auto generateMountainRanges() const -> void;
 
-        auto GenerateValleys() const -> void;
+        auto generateValleys() const -> void;
 
-        auto CreateBiomeCluster(int centerX, int centerY, int radius,
+        auto createBiomeCluster(int centerX, int centerY, int radius,
                                 std::string_view groundType) const -> void;
 
-        static auto GetMaxElevation() -> int;
+        static auto getMaxElevation() -> int;
 
-        static auto GetMaxSlopePerTile() -> int;
+        static auto getMaxSlopePerTile() -> int;
 
-        [[nodiscard]] auto GetMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
+        [[nodiscard]] auto getMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
 
-        static auto ClampElevation(int elevation) -> int;
+        static auto clampElevation(int elevation) -> int;
 
-        auto CreateElevationHill(int centerX, int centerY, int radius, int maxElevation) const
+        auto createElevationHill(int centerX, int centerY, int radius, int maxElevation) const
             -> void;
     };
 }

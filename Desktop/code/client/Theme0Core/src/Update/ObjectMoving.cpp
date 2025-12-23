@@ -13,16 +13,16 @@
 
 namespace Forradia::Theme0
 {
-    auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool
+    auto ObjectMoving::onMouseDown(Uint8 mouseButton) -> bool
     {
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+        auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-        if (!m_objectInAir && GUIInventoryWindow::Instance().GetVisible() &&
-            inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+        if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
+            inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
         {
-            if (auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)})
+            if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
             {
                 m_objectInAir = *objectPtrPtr;
 
@@ -35,18 +35,18 @@ namespace Forradia::Theme0
         return false;
     }
 
-    auto ObjectMoving::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    auto ObjectMoving::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
         if (m_objectInAir)
         {
-            auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-            auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
+            auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-            if (GUIInventoryWindow::Instance().GetVisible() &&
-                inventoryWindowBounds.Contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+            if (GUIInventoryWindow::instance().getVisible() &&
+                inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
             {
-                if (auto objectPtrPtr{GUIInventoryWindow::Instance().GetObjectPtrPtr(mousePos)})
+                if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
                 {
                     *objectPtrPtr = m_objectInAir;
 
@@ -59,16 +59,16 @@ namespace Forradia::Theme0
         return false;
     }
 
-    auto ObjectMoving::Render() const -> void
+    auto ObjectMoving::render() const -> void
     {
         if (m_objectInAir)
         {
-            auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-            Image2DRenderer::Instance().DrawImageByHash(
-                k_renderIDImage, m_objectInAir->GetType(), mousePos.x, mousePos.y,
+            Image2DRenderer::instance().drawImageByHash(
+                k_renderIDImage, m_objectInAir->getType(), mousePos.x, mousePos.y,
                 k_objectImageWidth,
-                ConvertWidthToHeight(k_objectImageWidth, SDLDevice::Instance().GetWindow()), true);
+                convertWidthToHeight(k_objectImageWidth, SDLDevice::instance().getWindow()), true);
         }
     }
 }

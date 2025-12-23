@@ -10,7 +10,7 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::Cleanup() -> void
+    auto GroundRenderer::cleanup() -> void
     {
         for (auto &entry : m_operationsCache)
         {
@@ -22,22 +22,22 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    auto GroundRenderer::SetupState() const -> void
+    auto GroundRenderer::setupState() const -> void
     {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
         glFrontFace(GL_CW);
 
-        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
+        auto canvasSize{getCanvasSize(SDLDevice::instance().getWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID());
+        glUseProgram(dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID());
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
-    auto GroundRenderer::RestoreState() -> void
+    auto GroundRenderer::restoreState() -> void
     {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -48,12 +48,12 @@ namespace Forradia
         glDisable(GL_BLEND);
     }
 
-    auto GroundRenderer::Reset() -> void
+    auto GroundRenderer::reset() -> void
     {
-        this->Cleanup();
+        this->cleanup();
     }
 
-    auto GroundRenderer::SetupAttributeLayout() const -> void
+    auto GroundRenderer::setupAttributeLayout() const -> void
     {
         // Set up the attribute layout for the vertex shader.
 
@@ -88,14 +88,14 @@ namespace Forradia
         glEnableVertexAttribArray(3);
     }
 
-    auto GroundRenderer::DrawingOperationIsCached(int uniqueRenderID) const -> bool
+    auto GroundRenderer::drawingOperationIsCached(int uniqueRenderID) const -> bool
     {
         return m_operationsCache.contains(uniqueRenderID);
     }
 
-    auto GroundRenderer::InitializeDerived() -> void
+    auto GroundRenderer::initializeDerived() -> void
     {
         m_layoutLocationMVP = glGetUniformLocation(
-            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "MVP");
+            dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID(), "MVP");
     }
 }

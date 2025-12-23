@@ -9,33 +9,33 @@
 
 namespace Forradia
 {
-    auto GUIMeter::RenderDerived() const -> void
+    auto GUIMeter::renderDerived() const -> void
     {
-        auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
 
-        Color2DRenderer::Instance().DrawFilledRectangle(
-            k_renderIDBackground, Palette::GetColor<Hash("DarkGray")>(), bounds.x, bounds.y,
+        Color2DRenderer::instance().drawFilledRectangle(
+            k_renderIDBackground, Palette::getColor<hash("DarkGray")>(), bounds.x, bounds.y,
             bounds.width, bounds.height);
-        Color2DRenderer::Instance().DrawFilledRectangle(
+        Color2DRenderer::instance().drawFilledRectangle(
             k_renderIDFilled, k_filledColor, bounds.x, bounds.y,
-            bounds.width * GetFilledPercentage(), bounds.height, true);
+            bounds.width * getFilledPercentage(), bounds.height, true);
 
-        Color2DRenderer::Instance().DrawLine(
-            k_renderIDLineTop, Palette::GetColor<Hash("WheatTransparent")>(), bounds.x, bounds.y,
+        Color2DRenderer::instance().drawLine(
+            k_renderIDLineTop, Palette::getColor<hash("WheatTransparent")>(), bounds.x, bounds.y,
             bounds.x + bounds.width, bounds.y, k_borderWidth);
 
-        Color2DRenderer::Instance().DrawLine(
-            k_renderIDLineBottom, Palette::GetColor<Hash("WheatTransparent")>(), bounds.x,
+        Color2DRenderer::instance().drawLine(
+            k_renderIDLineBottom, Palette::getColor<hash("WheatTransparent")>(), bounds.x,
             bounds.y + bounds.height, bounds.x + bounds.width, bounds.y + bounds.height,
             k_borderWidth);
 
-        Color2DRenderer::Instance().DrawLine(
-            k_renderIDLineRight, Palette::GetColor<Hash("WheatTransparent")>(),
+        Color2DRenderer::instance().drawLine(
+            k_renderIDLineRight, Palette::getColor<hash("WheatTransparent")>(),
             bounds.x + bounds.width, bounds.y, bounds.x + bounds.width, bounds.y + bounds.height,
             k_borderWidth);
 
-        Color2DRenderer::Instance().DrawLine(
-            k_renderIDLineLeft, Palette::GetColor<Hash("WheatTransparent")>(), bounds.x, bounds.y,
+        Color2DRenderer::instance().drawLine(
+            k_renderIDLineLeft, Palette::getColor<hash("WheatTransparent")>(), bounds.x, bounds.y,
             bounds.x, bounds.y + bounds.height, k_borderWidth);
     }
 }

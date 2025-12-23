@@ -18,7 +18,7 @@ namespace Forradia::Theme0
         /**
             Prepare the world generator.
          */
-        auto Prepare() -> void;
+        auto prepare() -> void;
 
       protected:
         /**
@@ -30,14 +30,14 @@ namespace Forradia::Theme0
             @param y2 The y coordinate of the second point.
             @return The distance between the two points.
          */
-        static auto GetDistance(int x1, int y1, int x2, int y2) -> float;
+        static auto getDistance(int x1, int y1, int x2, int y2) -> float;
 
         /**
             Get the default ground elevation.
 
             @return The default ground elevation.
          */
-        [[nodiscard]] constexpr static auto GetDefaultGroundElevation()
+        [[nodiscard]] constexpr static auto getDefaultGroundElevation()
         {
             return k_defaultGroundElevation;
         }
@@ -47,7 +47,7 @@ namespace Forradia::Theme0
 
             @return The world area.
          */
-        [[nodiscard]] auto GetWorldArea() const
+        [[nodiscard]] auto getWorldArea() const
         {
             return m_worldArea;
         }
@@ -57,7 +57,7 @@ namespace Forradia::Theme0
 
             @return The size of the world area.
          */
-        [[nodiscard]] auto GetWorldAreaSize() const
+        [[nodiscard]] auto getWorldAreaSize() const
         {
             return m_worldAreaSize;
         }
@@ -67,7 +67,7 @@ namespace Forradia::Theme0
 
             @return The scale factor of the world.
          */
-        [[nodiscard]] auto GetWorldScaling() const
+        [[nodiscard]] auto getWorldScaling() const
         {
             return m_worldScaling;
         }

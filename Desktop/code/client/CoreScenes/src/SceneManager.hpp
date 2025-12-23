@@ -19,7 +19,7 @@ namespace Forradia
     class SceneManager
     {
       public:
-        static auto Instance() -> SceneManager &
+        static auto instance() -> SceneManager &
         {
             static SceneManager instance;
             return instance;
@@ -38,38 +38,38 @@ namespace Forradia
             @param sceneName The name of the scene.
             @param scene The scene to add.
          */
-        auto AddScene(std::string_view sceneName, IScene &scene) -> void;
+        auto addScene(std::string_view sceneName, IScene &scene) -> void;
 
         /**
             Goes to a scene.
 
             @param sceneName The name of the scene to go to.
          */
-        auto GoToScene(std::string_view sceneName) -> void;
+        auto goToScene(std::string_view sceneName) -> void;
 
-        auto OnMouseDownCurrentScene(Uint8 mouseButton) -> void;
+        auto onMouseDownCurrentScene(Uint8 mouseButton) -> void;
 
-        auto OnMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void;
+        auto onMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void;
 
-        auto OnMouseWheelCurrentScene(int delta) -> void;
+        auto onMouseWheelCurrentScene(int delta) -> void;
 
-        auto OnKeyDownCurrentScene(SDL_Keycode key) -> void;
+        auto onKeyDownCurrentScene(SDL_Keycode key) -> void;
 
-        auto OnKeyUpCurrentScene(SDL_Keycode key) -> void;
+        auto onKeyUpCurrentScene(SDL_Keycode key) -> void;
 
-        auto OnTextInputCurrentScene(std::string_view text) -> void;
+        auto onTextInputCurrentScene(std::string_view text) -> void;
 
         /**
             Updates the current scene.
          */
-        auto UpdateCurrentScene() -> void;
+        auto updateCurrentScene() -> void;
 
         /**
             Renders the current scene.
          */
-        auto RenderCurrentScene() const -> void;
+        auto renderCurrentScene() const -> void;
 
-        auto GetScene(std::string_view sceneName) -> IScene *;
+        auto getScene(std::string_view sceneName) -> IScene *;
 
       private:
         std::unordered_map<int, IScene &> m_scenes{};

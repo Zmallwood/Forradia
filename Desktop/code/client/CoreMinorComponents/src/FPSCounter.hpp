@@ -13,7 +13,7 @@ namespace Forradia
     class FPSCounter
     {
       public:
-        static auto Instance() -> FPSCounter &
+        static auto instance() -> FPSCounter &
         {
             static FPSCounter instance;
             return instance;
@@ -29,14 +29,14 @@ namespace Forradia
         /**
             Updates the FPS counter.
          */
-        auto Update() -> void;
+        auto update() -> void;
 
         /**
             Gets the current FPS.
 
             @return The current FPS.
          */
-        [[nodiscard]] auto GetFPS() const
+        [[nodiscard]] auto getFPS() const
         {
             return m_fps;
         }

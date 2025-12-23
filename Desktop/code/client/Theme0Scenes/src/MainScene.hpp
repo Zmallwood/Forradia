@@ -17,7 +17,7 @@ namespace Forradia::Theme0
     class MainScene : public IScene
     {
       public:
-        static MainScene &Instance()
+        static MainScene &instance()
         {
             static MainScene instance;
             return instance;
@@ -34,36 +34,36 @@ namespace Forradia::Theme0
         /**
             Initializes the main scene.
          */
-        virtual auto InitializeDerived() -> void override;
+        virtual auto initializeDerived() -> void override;
 
         /**
             Called when the main scene is entered.
          */
-        virtual auto OnEnterDerived() -> void override;
+        virtual auto onEnterDerived() -> void override;
 
-        virtual auto OnMouseDown(Uint8 mouseButton) -> void override;
+        virtual auto onMouseDown(Uint8 mouseButton) -> void override;
 
-        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
+        virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
 
-        virtual auto OnMouseWheel(int delta) -> void override;
+        virtual auto onMouseWheel(int delta) -> void override;
 
-        virtual auto OnKeyDown(SDL_Keycode key) -> void override;
+        virtual auto onKeyDown(SDL_Keycode key) -> void override;
 
-        virtual auto OnKeyUp(SDL_Keycode key) -> void override;
+        virtual auto onKeyUp(SDL_Keycode key) -> void override;
 
-        virtual auto OnTextInput(std::string_view text) -> void override;
+        virtual auto onTextInput(std::string_view text) -> void override;
 
-        virtual auto Render() const -> void override;
+        virtual auto render() const -> void override;
 
         /**
             Called every frame.
          */
-        virtual auto UpdateDerived() -> void override;
+        virtual auto updateDerived() -> void override;
 
         /**
             Called every frame to render the scene.
          */
-        virtual auto RenderDerived() const -> void override;
+        virtual auto renderDerived() const -> void override;
 
       private:
         std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu{};

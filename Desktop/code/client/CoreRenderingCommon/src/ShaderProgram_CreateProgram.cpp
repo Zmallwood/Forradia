@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    auto ShaderProgram::CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint
+    auto ShaderProgram::createProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint
     {
         m_programID = glCreateProgram();
         glAttachShader(m_programID, vertexShader);

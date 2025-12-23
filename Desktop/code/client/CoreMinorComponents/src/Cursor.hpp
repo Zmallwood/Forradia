@@ -16,7 +16,7 @@ namespace Forradia
     class Cursor
     {
       public:
-        static auto Instance() -> Cursor &
+        static auto instance() -> Cursor &
         {
             static Cursor instance;
             return instance;
@@ -32,36 +32,36 @@ namespace Forradia
          */
         Cursor()
         {
-            Cursor::Initialize();
+            Cursor::initialize();
         }
 
         /**
             Resets the cursor style to normal.
          */
-        auto ResetStyleToNormal() -> void;
+        auto resetStyleToNormal() -> void;
 
         /**
             Renders the cursor.
          */
-        auto Render() const -> void;
+        auto render() const -> void;
 
         /**
             Sets the cursor style.
 
             @param value New cursor style.
          */
-        auto SetCursorStyle(CursorStyles value) -> void
+        auto setCursorStyle(CursorStyles value) -> void
         {
             m_cursorStyle = value;
         }
 
       private:
-        static auto Initialize() -> void;
+        static auto initialize() -> void;
 
-        static auto DisableSystemCursor() -> void;
+        static auto disableSystemCursor() -> void;
 
         constexpr static float k_cursorSize{0.05F};
-        const int k_renderID{Hash("RenderIDCursor")};
+        const int k_renderID{hash("RenderIDCursor")};
         CursorStyles m_cursorStyle{CursorStyles::Normal};
     };
 }

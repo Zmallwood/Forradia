@@ -29,12 +29,12 @@ namespace Forradia
          */
         GUIMeter(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  Color filledColor)
-            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(Hash(uniqueName)),
-              k_renderIDFilled(Hash(uniqueName.data() + std::string("Filled"))),
-              k_renderIDLineTop(Hash(uniqueName.data() + std::string("TopBorder"))),
-              k_renderIDLineBottom(Hash(uniqueName.data() + std::string("BottomBorder"))),
-              k_renderIDLineRight(Hash(uniqueName.data() + std::string("RightBorder"))),
-              k_renderIDLineLeft(Hash(uniqueName.data() + std::string("LeftBorder"))),
+            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(hash(uniqueName)),
+              k_renderIDFilled(hash(uniqueName.data() + std::string("Filled"))),
+              k_renderIDLineTop(hash(uniqueName.data() + std::string("TopBorder"))),
+              k_renderIDLineBottom(hash(uniqueName.data() + std::string("BottomBorder"))),
+              k_renderIDLineRight(hash(uniqueName.data() + std::string("RightBorder"))),
+              k_renderIDLineLeft(hash(uniqueName.data() + std::string("LeftBorder"))),
               k_filledColor(filledColor)
         {
         }
@@ -43,14 +43,14 @@ namespace Forradia
         /**
             Render tasks specific to the meter, called by the GUIComponent base class.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
         /**
             Gets the filled percentage of the meter.
 
             @return The filled percentage of the meter.
          */
-        virtual auto GetFilledPercentage() const -> float = 0;
+        virtual auto getFilledPercentage() const -> float = 0;
 
       private:
         const float k_borderWidth{0.002F};

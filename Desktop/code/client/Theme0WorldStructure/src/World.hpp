@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class World
     {
       public:
-        static World &Instance()
+        static World &instance()
         {
             static World instance;
             return instance;
@@ -34,14 +34,14 @@ namespace Forradia::Theme0
             @param worldAreaSize The size of the world area.
             @param worldScaling The scaling of the world.
          */
-        auto Initialize(Size worldAreaSize, float worldScaling) -> void;
+        auto initialize(Size worldAreaSize, float worldScaling) -> void;
 
         /**
             Gets the current world area.
 
             @return The current world area.
          */
-        auto GetCurrentWorldArea() -> std::shared_ptr<WorldArea> const
+        auto getCurrentWorldArea() -> std::shared_ptr<WorldArea> const
         {
             return m_currentWorldArea;
         }

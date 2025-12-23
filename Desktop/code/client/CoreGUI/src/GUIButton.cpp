@@ -11,16 +11,16 @@
 
 namespace Forradia
 {
-    auto GUIButton::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    auto GUIButton::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (!dynamic_cast<const GUIComponent *>(this)->GetVisible())
+        if (!dynamic_cast<const GUIComponent *>(this)->getVisible())
         {
             return false;
         }
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos))
+        if (dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePos))
         {
             m_action();
 
@@ -30,30 +30,30 @@ namespace Forradia
         return false;
     }
 
-    auto GUIButton::UpdateDerived() -> void
+    auto GUIButton::updateDerived() -> void
     {
-        dynamic_cast<GUIComponent *>(this)->GUIComponent::UpdateDerived();
+        dynamic_cast<GUIComponent *>(this)->GUIComponent::updateDerived();
 
-        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition))
+        if (dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePosition))
         {
-            dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_hoveredBackgroundImage);
-            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            dynamic_cast<GUIPanel *>(this)->setBackgroundImage(m_hoveredBackgroundImage);
+            Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
         else
         {
-            dynamic_cast<GUIPanel *>(this)->SetBackgroundImage(m_backgroundImage);
+            dynamic_cast<GUIPanel *>(this)->setBackgroundImage(m_backgroundImage);
         }
     }
 
-    auto GUIButton::RenderDerived() const -> void
+    auto GUIButton::renderDerived() const -> void
     {
-        dynamic_cast<const GUIPanel *>(this)->GUIPanel::RenderDerived();
+        dynamic_cast<const GUIPanel *>(this)->GUIPanel::renderDerived();
 
-        auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
 
-        TextRenderer::Instance().DrawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
+        TextRenderer::instance().drawString(k_renderIDText, m_text, bounds.x + bounds.width / 2,
                                             bounds.y + bounds.height / 2, FontSizes::_20, true);
     }
 }

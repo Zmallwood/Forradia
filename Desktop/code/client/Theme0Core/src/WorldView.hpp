@@ -19,7 +19,7 @@ namespace Forradia::Theme0
     class WorldView
     {
       public:
-        static auto Instance() -> WorldView &
+        static auto instance() -> WorldView &
         {
             static WorldView instance;
             return instance;
@@ -35,27 +35,27 @@ namespace Forradia::Theme0
          */
         WorldView()
         {
-            this->Initialize();
+            this->initialize();
         }
 
         /**
             Renders the world.
          */
-        auto Render() -> void;
+        auto render() -> void;
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
-        auto IterationGround(int xPos, int yPos) -> void;
+        auto iterationGround(int xPos, int yPos) -> void;
 
-        auto IterationAllExceptGround(int xPos, int yPos) -> void;
+        auto iterationAllExceptGround(int xPos, int yPos) -> void;
 
-        static auto GetColorByGroundType(int groundType) -> Color;
+        static auto getColorByGroundType(int groundType) -> Color;
 
         const float k_groundRenderingDistanceMultiplier{1.5F};
         const int k_maxWaterDepthRendering{3};
-        const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
-        const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
+        const int k_renderIDGroundSymbolHoveredTile{hash("GroundSymbolHoveredTile")};
+        const int k_renderIDGroundSymbolTargetedRobot{hash("GroundSymbolTargetedRobot")};
         // 45 degrees up in +Z
         // NOLINTNEXTLINE(readability-magic-numbers)
         constexpr static glm::vec3 k_sunDirectionRaw = glm::vec3(0.7F, 0.0F, 0.7F);

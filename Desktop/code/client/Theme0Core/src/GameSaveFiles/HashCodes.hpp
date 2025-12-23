@@ -17,13 +17,13 @@ namespace Forradia::Theme0
      */
     template <int N>
     // ReSharper disable once CppFunctionIsNotImplemented
-    auto GetNameFromHash() -> std::string;
+    auto getNameFromHash() -> std::string;
 
     /**
         Gets the name from a hash code, i.e. it reverses the Hash function.
 
-        @param hash The hash code to get the name from.
+        @param hashCode The hash code to get the name from.
         @return The name from the hash code.
      */
-    auto GetNameFromAnyHash(int hash) -> std::string;
+    auto getNameFromAnyHash(int hashCode) -> std::string;
 }

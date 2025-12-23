@@ -25,17 +25,17 @@ namespace Forradia::Theme0
          */
         GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79f, 0.2f, 0.2f, 0.14f)
         {
-            this->Initialize();
+            this->initialize();
         }
 
       protected:
         /**
             Does update logic that is specific to the quest panel.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         std::shared_ptr<GUILabel> m_questTitleTextPanel{};
         std::shared_ptr<GUILabel> m_questNameTextPanel{};

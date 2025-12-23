@@ -30,39 +30,39 @@ namespace Forradia
         {
         }
 
-        auto OnMouseDown(Uint8 mouseButton) -> bool override;
+        auto onMouseDown(Uint8 mouseButton) -> bool override;
 
-        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+        auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
       protected:
         /**
             Update tasks specific to the movable panel, called by the GUIComponent base class.
          */
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
             Starts the move of the movable panel.
          */
-        auto StartMove() -> void;
+        auto startMove() -> void;
 
         /**
             Stops the move of the movable panel.
          */
-        auto StopMove() -> void;
+        auto stopMove() -> void;
 
         /**
             Gets the draggable area of the movable panel.
 
             @return The draggable area of the movable panel.
          */
-        virtual auto GetDraggableArea() const -> RectF;
+        virtual auto getDraggableArea() const -> RectF;
 
         /**
             Gets whether the movable panel is being moved.
 
             @return Whether the movable panel is being moved.
          */
-        auto GetIsBeingMoved() const
+        auto getIsBeingMoved() const
         {
             return m_isBeingMoved;
         }
@@ -72,7 +72,7 @@ namespace Forradia
 
             @return The starting position of the move of the movable panel.
          */
-        auto GetMoveStartingPosition() const
+        auto getMoveStartingPosition() const
         {
             return m_moveStartingPosition;
         }
@@ -82,7 +82,7 @@ namespace Forradia
 
             @return The starting mouse position of the move of the movable panel.
          */
-        auto GetMoveStartingMousePosition() const
+        auto getMoveStartingMousePosition() const
         {
             return m_moveStartingMousePosition;
         }

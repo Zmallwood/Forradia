@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto Color2DRenderer::GetFSSource() const -> std::string
+    auto Color2DRenderer::getFSSource() const -> std::string
     {
         return R"(
           #version 330 core

@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class CreatureIndex
     {
       public:
-        static CreatureIndex &Instance()
+        static CreatureIndex &instance()
         {
             static CreatureIndex instance;
             return instance;
@@ -38,7 +38,7 @@ namespace Forradia::Theme0
             @param creatureHash The hash of the creature.
             @return The model scaling for the given creature.
          */
-        auto GetModelScaling(int creatureHash) const -> float;
+        auto getModelScaling(int creatureHash) const -> float;
 
         /**
             Get the levitation height for a given creature hash.
@@ -46,7 +46,7 @@ namespace Forradia::Theme0
             @param creatureHash The hash of the creature.
             @return The levitation height for the given creature.
          */
-        auto GetLevitationHeight(int creatureHash) const -> float;
+        auto getLevitationHeight(int creatureHash) const -> float;
 
         /**
             Check if a creature entry exists for a given creature hash.
@@ -54,10 +54,10 @@ namespace Forradia::Theme0
             @param creatureHash The hash of the creature.
             @return True if a creature entry exists for the given creature hash, false otherwise.
          */
-        auto CreatureEntryExists(int creatureHash) const -> bool;
+        auto creatureEntryExists(int creatureHash) const -> bool;
 
       private:
-        auto AddCreatureEntry(std::string_view creatureName, float modelScaling,
+        auto addCreatureEntry(std::string_view creatureName, float modelScaling,
                               float levitationHeight) -> void;
 
         std::unordered_map<int, CreatureIndexEntry> m_entries{};

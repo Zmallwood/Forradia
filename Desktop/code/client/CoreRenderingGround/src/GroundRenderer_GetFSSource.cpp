@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::GetFSSource() const -> std::string
+    auto GroundRenderer::getFSSource() const -> std::string
     {
         return R"(
             #version 330 core

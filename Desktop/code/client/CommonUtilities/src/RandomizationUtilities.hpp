@@ -10,7 +10,7 @@ namespace Forradia
     /**
         Randomize the seed.
      */
-    auto Randomize() -> void;
+    auto randomize() -> void;
 
     /**
         Generate a random integer.
@@ -18,5 +18,5 @@ namespace Forradia
         @param upperLimit Upper limit.
         @return Random integer.
      */
-    auto GetRandomInt(int upperLimit) -> int;
+    auto getRandomInt(int upperLimit) -> int;
 }

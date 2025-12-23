@@ -5,9 +5,9 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace Forradia::Theme0
 {
@@ -19,7 +19,7 @@ namespace Forradia::Theme0
     class QuestSystem
     {
       public:
-        static auto Instance() -> QuestSystem &
+        static auto instance() -> QuestSystem &
         {
             static QuestSystem instance;
             return instance;
@@ -35,31 +35,31 @@ namespace Forradia::Theme0
          */
         QuestSystem()
         {
-            this->Initialize();
+            this->initialize();
         }
 
         /**
          * Updates the quest system.
          */
-        auto Update() const -> void;
+        auto update() const -> void;
 
         /**
          * Gets the name of the current quest.
          */
-        [[nodiscard]] auto GetCurrentQuestName() const -> std::string;
+        [[nodiscard]] auto getCurrentQuestName() const -> std::string;
 
         /**
          * Gets the description of the current quest.
          */
-        [[nodiscard]] auto GetCurrentQuestDescription() const -> std::string;
+        [[nodiscard]] auto getCurrentQuestDescription() const -> std::string;
 
         /**
          * Gets the status of the current quest.
          */
-        [[nodiscard]] auto GetCurrentQuestStatus() const -> std::string;
+        [[nodiscard]] auto getCurrentQuestStatus() const -> std::string;
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         std::vector<std::shared_ptr<Quest>> m_quests{};
     };

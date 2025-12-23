@@ -7,13 +7,13 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::CalcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals)
+    auto GroundRenderer::calcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals)
         -> std::vector<float>
     {
         // Create a vector to store the vertices consisting of only floats.
         std::vector<float> verticesFloatsVector;
 
-        auto normals{GroundRenderer::CalcTileNormals(verticesNoNormals)};
+        auto normals{GroundRenderer::calcTileNormals(verticesNoNormals)};
 
         constexpr auto k_vertexStride{8};
 

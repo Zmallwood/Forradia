@@ -21,7 +21,7 @@ namespace Forradia
     class TextureBank
     {
       public:
-        static auto Instance() -> TextureBank &
+        static auto instance() -> TextureBank &
         {
             static TextureBank instance;
             return instance;
@@ -37,7 +37,7 @@ namespace Forradia
          */
         TextureBank()
         {
-            TextureBank::Initialize();
+            TextureBank::initialize();
         }
 
         /**
@@ -45,7 +45,7 @@ namespace Forradia
          */
         ~TextureBank()
         {
-            TextureBank::Cleanup();
+            TextureBank::cleanup();
         }
 
         /**
@@ -54,7 +54,7 @@ namespace Forradia
             @param imageNameHash The hash of the image name.
             @return The texture ID.
          */
-        [[nodiscard]] auto GetTexture(int imageNameHash) const -> GLuint;
+        [[nodiscard]] auto getTexture(int imageNameHash) const -> GLuint;
 
         /**
             Gets the dimensions of a texture with the given hash.
@@ -62,7 +62,7 @@ namespace Forradia
             @param imageNameHash The hash of the image name.
             @return The dimensions of the texture.
          */
-        [[nodiscard]] static auto GetTextureDimensions(int imageNameHash) -> Size;
+        [[nodiscard]] static auto getTextureDimensions(int imageNameHash) -> Size;
 
         /**
             Obtains a text texture ID for the given unique texture ID.
@@ -71,16 +71,16 @@ namespace Forradia
             @param[out] textureID The texture ID (output parameter).
             @return True if the texture was found, false otherwise.
          */
-        auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool;
+        auto obtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool;
 
       private:
-        static auto Initialize() -> void;
+        static auto initialize() -> void;
 
-        static auto Cleanup() -> void;
+        static auto cleanup() -> void;
 
-        static auto LoadTextures() -> void;
+        static auto loadTextures() -> void;
 
-        [[nodiscard]] static auto LoadSingleTexture(const std::shared_ptr<SDL_Surface> &surface)
+        [[nodiscard]] static auto loadSingleTexture(const std::shared_ptr<SDL_Surface> &surface)
             -> GLuint;
 
         inline static const std::string k_relativeImagesPath{"./Resources/Images/"};

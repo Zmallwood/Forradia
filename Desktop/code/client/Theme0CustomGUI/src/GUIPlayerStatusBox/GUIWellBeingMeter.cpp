@@ -8,19 +8,19 @@
 
 namespace Forradia::Theme0
 {
-    auto GUIWellBeingMeter::UpdateDerived() -> void
+    auto GUIWellBeingMeter::updateDerived() -> void
     {
-        GUIMeter::UpdateDerived();
+        GUIMeter::updateDerived();
 
-        auto &player{Player::Instance()};
+        auto &player{Player::instance()};
 
-        auto health{player.GetWellBeing()};
-        auto maxHealth{player.GetMaxWellBeing()};
+        auto health{player.getWellBeing()};
+        auto maxHealth{player.getMaxWellBeing()};
 
         m_filledPercentage = health / maxHealth;
     }
 
-    auto GUIWellBeingMeter::GetFilledPercentage() const -> float
+    auto GUIWellBeingMeter::getFilledPercentage() const -> float
     {
         return m_filledPercentage;
     }

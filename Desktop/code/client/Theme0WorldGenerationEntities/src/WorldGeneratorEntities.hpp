@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorEntities &Instance()
+        static WorldGeneratorEntities &instance()
         {
             static WorldGeneratorEntities instance;
             return instance;
@@ -31,11 +31,11 @@ namespace Forradia::Theme0
         /**
             Generates entities for the world.
          */
-        auto GenerateEntities() const -> void;
+        auto generateEntities() const -> void;
 
       private:
-        auto GenerateEntitiesInEcosystems() const -> void;
+        auto generateEntitiesInEcosystems() const -> void;
 
-        auto IsNearWater(int x, int y, int radius) const -> bool;
+        auto isNearWater(int x, int y, int radius) const -> bool;
     };
 }

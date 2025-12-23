@@ -12,7 +12,7 @@
 
 namespace Forradia
 {
-    auto Model::Initialize(std::string_view filePath) -> void
+    auto Model::initialize(std::string_view filePath) -> void
     {
         Assimp::Importer importer;
 
@@ -24,11 +24,11 @@ namespace Forradia
 
         if (nullptr == scene || nullptr == scene->mRootNode)
         {
-            ThrowError("Assimp could not load model: " + std::string(importer.GetErrorString()));
+            throwError("Assimp could not load model: " + std::string(importer.GetErrorString()));
         }
         else
         {
-            this->ProcessNode(scene->mRootNode, scene, aiMatrix4x4());
+            this->processNode(scene->mRootNode, scene, aiMatrix4x4());
         }
     }
 }

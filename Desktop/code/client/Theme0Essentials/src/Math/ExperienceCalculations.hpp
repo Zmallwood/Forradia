@@ -13,7 +13,7 @@ namespace Forradia::Theme0
         @param experience The experience.
         @return The current level.
      */
-    auto CalculateCurrentLevel(int experience) -> int;
+    auto calculateCurrentLevel(int experience) -> int;
 
     /**
         Calculates the experience required for the given level.
@@ -21,7 +21,7 @@ namespace Forradia::Theme0
         @param level The level.
         @return The experience required for the given level.
      */
-    auto CalculateExperienceForLevel(int level) -> int;
+    auto calculateExperienceForLevel(int level) -> int;
 
     /**
         Calculates the experience difference to the next level.
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         @param experience The experience.
         @return The experience difference to the next level.
      */
-    auto CalculateExperienceDifferenceToNextLevel(int experience) -> int;
+    auto calculateExperienceDifferenceToNextLevel(int experience) -> int;
 
     /**
         Calculates the experience required for the current level start.
@@ -37,7 +37,7 @@ namespace Forradia::Theme0
         @param experience The experience.
         @return The experience required for the current level start.
      */
-    auto CalculateExperienceRequiredForCurrentLevelStart(int experience) -> int;
+    auto calculateExperienceRequiredForCurrentLevelStart(int experience) -> int;
 
     /**
         Calculates the experience gained since the level start.
@@ -45,7 +45,7 @@ namespace Forradia::Theme0
         @param experience The experience.
         @return The experience gained since the level start.
      */
-    auto CalculateExperienceGainedSinceLevelStart(int experience) -> int;
+    auto calculateExperienceGainedSinceLevelStart(int experience) -> int;
 
     /**
         Calculates the fractional experience progress.
@@ -53,5 +53,5 @@ namespace Forradia::Theme0
         @param experience The experience.
         @return The fractional experience progress.
      */
-    auto CalculateFractionalExperienceProgress(int experience) -> float;
+    auto calculateFractionalExperienceProgress(int experience) -> float;
 }

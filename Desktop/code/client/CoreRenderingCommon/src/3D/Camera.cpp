@@ -16,19 +16,19 @@
 
 namespace Forradia
 {
-    auto Camera::GetViewMatrix() const -> glm::mat4
+    auto Camera::getViewMatrix() const -> glm::mat4
     {
-        auto cameraPosition{GetPosition()};
-        auto cameraLookAt{GetLookAt()};
+        auto cameraPosition{getPosition()};
+        auto cameraLookAt{getLookAt()};
 
         return glm::lookAt(glm::vec3(cameraPosition.x, cameraPosition.y, cameraPosition.z),
                            glm::vec3(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z),
                            glm::vec3(0.0F, 0.0F, -1.0F));
     }
 
-    auto Camera::GetProjectionMatrix() -> glm::mat4
+    auto Camera::getProjectionMatrix() -> glm::mat4
     {
-        auto aspectRatio{CalcAspectRatio(SDLDevice::Instance().GetWindow())};
+        auto aspectRatio{calcAspectRatio(SDLDevice::instance().getWindow())};
 
         constexpr float k_near{0.1F};
         constexpr float k_far{100.0F};
@@ -36,12 +36,12 @@ namespace Forradia
         return glm::perspective(glm::radians(k_defaultFOV), aspectRatio, k_near, k_far);
     }
 
-    auto Camera::GetPosition() const -> Point3F
+    auto Camera::getPosition() const -> Point3F
     {
         // Returns the camera position in world space. The position is derived from the look-at
         // point with an offset which is determined by the zoom amount and the rotation angle.
 
-        auto point{GetLookAt()};
+        auto point{getLookAt()};
 
         // Calculate the rotation in the X and Y axes.
         auto cosRotation{std::cos(m_rotationAngleSideways + M_PI / 2)};
@@ -63,26 +63,28 @@ namespace Forradia
         return point;
     }
 
-    auto Camera::GetLookAt() -> Point3F
+    auto Camera::getLookAt() -> Point3F
     {
         // Computes the point in world space the camera should look at. This targets the center
         // of the player's current tile and uses the tile's elevation to set Z.
 
-        auto worldArea{Theme0::World::Instance().GetCurrentWorldArea()};
-        auto rendTileSize{Theme0::Theme0Properties::Instance().GetTileSize()};
-        //auto playerPos{Theme0::Player::Instance().GetPosition()};
-        auto playerSmoothPos{Theme0::Player::Instance().GetSmoothPosition()};
-        auto elevHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
-        auto playerElevation{worldArea->GetTile(playerSmoothPos.x, playerSmoothPos.y)->GetElevation()};
+        auto worldArea{Theme0::World::instance().getCurrentWorldArea()};
+        auto rendTileSize{Theme0::Theme0Properties::instance().getTileSize()};
+        // auto playerPos{Theme0::Player::Instance().GetPosition()};
+        auto playerSmoothPos{Theme0::Player::instance().getSmoothPosition()};
+        auto elevHeight{Theme0::Theme0Properties::instance().getElevationHeight()};
+        auto playerElevation{
+            worldArea->getTile(playerSmoothPos.x, playerSmoothPos.y)->getElevation()};
 
         // Construct the resulting look-at point in world space.
         Point3F lookAt{playerSmoothPos.x * rendTileSize + rendTileSize / 2,
-                       playerSmoothPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
+                       playerSmoothPos.y * rendTileSize + rendTileSize / 2,
+                       playerElevation * elevHeight};
 
         return lookAt;
     }
 
-    auto Camera::AddZoomAmountDelta(float zoomAmountDelta) -> void
+    auto Camera::addZoomAmountDelta(float zoomAmountDelta) -> void
     {
         // Add the delta to the current zoom amount and clamp it between the minimum and maximum
         // zoom amounts.
@@ -90,12 +92,12 @@ namespace Forradia
         m_zoomAmount = std::max(std::min(m_zoomAmount, k_maxZoomAmount), k_minZoomAmount);
     }
 
-    auto Camera::AddRotationDeltaSideways(float rotationDeltaSideways) -> void
+    auto Camera::addRotationDeltaSideways(float rotationDeltaSideways) -> void
     {
         m_rotationAngleSideways += rotationDeltaSideways;
     }
 
-    auto Camera::AddRotationDeltaVertical(float rotationDeltaVertical) -> void
+    auto Camera::addRotationDeltaVertical(float rotationDeltaVertical) -> void
     {
         // Add the delta to the current vertical rotation amount and clamp it between the
         // minimum and maximum vertical rotation angles.

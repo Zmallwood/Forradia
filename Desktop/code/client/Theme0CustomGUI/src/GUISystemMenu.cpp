@@ -11,41 +11,41 @@
 
 namespace Forradia::Theme0
 {
-    auto GUISystemMenu::Initialize() -> void
+    auto GUISystemMenu::initialize() -> void
     {
-        this->SetVisible(false);
+        this->setVisible(false);
 
         auto saveGameButton{std::make_shared<GUIButton>(
             "GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f, 0.08f, 0.05f, "Save game",
             [this]
             {
-                GUIChatBox::Instance().Print("Saving game...");
-                GameSaving::Instance().SaveGame();
+                GUIChatBox::instance().print("Saving game...");
+                GameSaving::instance().saveGame();
             })};
 
-        this->AddChildComponent(saveGameButton);
+        this->addChildComponent(saveGameButton);
 
         auto loadGameButton{std::make_shared<GUIButton>(
             "GUIButtonLoadGame", 0.5f - 0.08f / 2, 0.5f + 0.05f, 0.08f, 0.05f, "Load game",
             [this]
             {
-                GUIChatBox::Instance().Print("Loading game...");
-                GameSaving::Instance().LoadGame();
+                GUIChatBox::instance().print("Loading game...");
+                GameSaving::instance().loadGame();
             })};
 
-        this->AddChildComponent(loadGameButton);
+        this->addChildComponent(loadGameButton);
     }
 
-    auto GUISystemMenu::UpdateDerived() -> void
+    auto GUISystemMenu::updateDerived() -> void
     {
-        GUIComponent::UpdateDerived();
+        GUIComponent::updateDerived();
     }
 
-    auto GUISystemMenu::RenderDerived() const -> void
+    auto GUISystemMenu::renderDerived() const -> void
     {
-        GUIComponent::RenderDerived();
+        GUIComponent::renderDerived();
 
-        Color2DRenderer::Instance().DrawFilledRectangle(
+        Color2DRenderer::instance().drawFilledRectangle(
             k_renderIDBackgroundColor, {1.0f, 0.0f, 0.7f, 0.5f}, 0.0f, 0.0f, 1.0f, 1.0f);
     }
 }

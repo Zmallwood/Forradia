@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::CalcTileNormals(const std::vector<float> &verticesNoNormals)
+    auto GroundRenderer::calcTileNormals(const std::vector<float> &verticesNoNormals)
         -> std::vector<glm::vec3>
     {
         constexpr size_t k_vertexStride = 8;
@@ -42,10 +42,10 @@ namespace Forradia
         }
 
         // Calculate the normals.
-        auto normal00{ComputeNormal(coords[1][0], coords[0][0], coords[0][1])};
-        auto normal10{ComputeNormal(coords[2][0], coords[1][0], coords[1][1])};
-        auto normal11{ComputeNormal(coords[2][1], coords[1][1], coords[1][2])};
-        auto normal01{ComputeNormal(coords[1][1], coords[0][1], coords[0][2])};
+        auto normal00{computeNormal(coords[1][0], coords[0][0], coords[0][1])};
+        auto normal10{computeNormal(coords[2][0], coords[1][0], coords[1][1])};
+        auto normal11{computeNormal(coords[2][1], coords[1][1], coords[1][2])};
+        auto normal01{computeNormal(coords[1][1], coords[0][1], coords[0][2])};
 
         // Invert the z-component of the normals.
         normal00.z *= -1.0F;

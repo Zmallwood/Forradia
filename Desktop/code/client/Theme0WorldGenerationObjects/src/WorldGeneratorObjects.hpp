@@ -15,7 +15,7 @@ namespace Forradia::Theme0
     class WorldGeneratorObjects : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorObjects &Instance()
+        static WorldGeneratorObjects &instance()
         {
             static WorldGeneratorObjects instance;
             return instance;
@@ -31,15 +31,15 @@ namespace Forradia::Theme0
         /**
             Generate the objects in the world.
          */
-        auto GenerateObjects() const -> void;
+        auto generateObjects() const -> void;
 
       private:
-        auto GenerateForests() const -> void;
+        auto generateForests() const -> void;
 
-        auto GenerateMeadows() const -> void;
+        auto generateMeadows() const -> void;
 
-        auto GenerateObjectsInBiomes() const -> void;
+        auto generateObjectsInBiomes() const -> void;
 
-        [[nodiscard]] auto IsValidForFlora(int x, int y) const -> bool;
+        [[nodiscard]] auto isValidForFlora(int x, int y) const -> bool;
     };
 }

@@ -7,7 +7,7 @@
 
 namespace Forradia::Theme0
 {
-    auto Spouse::IsPlaced() const -> bool
+    auto Spouse::isPlaced() const -> bool
     {
         return m_position.x != -1 && m_position.y != -1;
     }

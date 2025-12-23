@@ -11,11 +11,11 @@
 
 namespace Forradia
 {
-    auto Color2DRenderer::DrawFilledRectangle(int uniqueRenderID, Color color, float xPos,
+    auto Color2DRenderer::drawFilledRectangle(int uniqueRenderID, Color color, float xPos,
                                               float yPos, float width, float height,
                                               bool updateExisting) -> void
     {
-        this->SetupState();
+        this->setupState();
 
         GLuint vao;
         GLuint ibo;
@@ -24,7 +24,7 @@ namespace Forradia
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->DrawingOperationIsCached(uniqueRenderID))
+        if (this->drawingOperationIsCached(uniqueRenderID))
         {
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
@@ -86,7 +86,7 @@ namespace Forradia
             glBufferData(GL_ARRAY_BUFFER, sizeof(vertices[0]) * k_floatsPerVertex * k_verticesCount,
                          vertices.data(), GL_DYNAMIC_DRAW);
 
-            this->SetupAttributeLayout();
+            this->setupAttributeLayout();
         }
 
         glBindVertexArray(vao);
@@ -95,6 +95,6 @@ namespace Forradia
 
         glDrawElements(GL_TRIANGLE_FAN, k_indicesCount, GL_UNSIGNED_SHORT, nullptr);
 
-        Color2DRenderer::RestoreState();
+        Color2DRenderer::restoreState();
     }
 }

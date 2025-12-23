@@ -15,66 +15,67 @@
 
 namespace Forradia::Theme0
 {
-    auto GUIContainerWindow::Initialize(ContainedObjects &containedObjects) -> void
+    auto GUIContainerWindow::initialize(ContainedObjects &containedObjects) -> void
     {
         m_guiContainerWindowArea = std::make_shared<GUIContainerWindowArea>(this, containedObjects);
 
-        this->AddChildComponent(m_guiContainerWindowArea);
+        this->addChildComponent(m_guiContainerWindowArea);
     }
 
-    std::shared_ptr<std::shared_ptr<Object>> GUIContainerWindow::GetObjectPtrPtr(PointF position) const
+    std::shared_ptr<std::shared_ptr<Object>>
+    GUIContainerWindow::getObjectPtrPtr(PointF position) const
     {
-        return m_guiContainerWindowArea->GetObjectPtrPtr(position);
+        return m_guiContainerWindowArea->getObjectPtrPtr(position);
     }
 
-    auto GUIContainerWindowArea::Initialize(GUIWindow *parentWindow,
+    auto GUIContainerWindowArea::initialize(GUIWindow *parentWindow,
                                             ContainedObjects &containedObjects) -> void
     {
         m_panel = std::make_shared<GUIContainerWindowPanel>(parentWindow, containedObjects);
 
-        this->AddChildComponent(m_panel);
+        this->addChildComponent(m_panel);
     }
 
     std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowArea::GetObjectPtrPtr(PointF position) const
+    GUIContainerWindowArea::getObjectPtrPtr(PointF position) const
     {
-        return m_panel->GetObjectPtrPtr(position);
+        return m_panel->getObjectPtrPtr(position);
     }
 
-    auto GUIContainerWindowArea::UpdateDerived() -> void
+    auto GUIContainerWindowArea::updateDerived() -> void
     {
-        GUIScrollableArea::UpdateDerived();
+        GUIScrollableArea::updateDerived();
     }
 
-    auto GUIContainerWindowPanel::Initialize() -> void
+    auto GUIContainerWindowPanel::initialize() -> void
     {
         for (auto i = 0; i < k_maxNumSlots; i++)
         {
             m_renderIDsSlotsBackground[i] =
-                Hash("GUIContainerWindowSlotBackground" + std::to_string(i));
+                hash("GUIContainerWindowSlotBackground" + std::to_string(i));
 
-            m_renderIDsSlotsObject[i] = Hash("GUIContainerWindowSlotObject" + std::to_string(i));
+            m_renderIDsSlotsObject[i] = hash("GUIContainerWindowSlotObject" + std::to_string(i));
         }
     }
 
     std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowPanel::GetObjectPtrPtr(PointF position) const
+    GUIContainerWindowPanel::getObjectPtrPtr(PointF position) const
     {
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, SDLDevice::Instance().GetWindow())};
+        auto marginY{convertWidthToHeight(k_margin, SDLDevice::instance().getWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
-                    m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
+                    m_parentWindow->getGUIWindowTitleBar()->getBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, SDLDevice::Instance().GetWindow())};
+        auto slotHeight{convertWidthToHeight(k_slotSize, SDLDevice::instance().getWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         auto &objectsContainer{m_containedObjects};
 
@@ -89,11 +90,11 @@ namespace Forradia::Theme0
 
                 auto slotArea{RectF{slotX, slotY, slotWidth, slotHeight}};
 
-                if (slotArea.Contains(mousePos))
+                if (slotArea.contains(mousePos))
                 {
-                    auto inventoryObject{objectsContainer.GetObject(index)};
+                    auto inventoryObject{objectsContainer.getObject(index)};
 
-                    return m_containedObjects.GetObjectPtrPtr(index);
+                    return m_containedObjects.getObjectPtrPtr(index);
                 }
             }
         }
@@ -101,19 +102,19 @@ namespace Forradia::Theme0
         return nullptr;
     }
 
-    auto GUIContainerWindowPanel::RenderDerived() const -> void
+    auto GUIContainerWindowPanel::renderDerived() const -> void
     {
-        GUIPanel::RenderDerived();
+        GUIPanel::renderDerived();
 
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
         auto marginX{k_margin};
-        auto marginY{ConvertWidthToHeight(k_margin, SDLDevice::Instance().GetWindow())};
+        auto marginY{convertWidthToHeight(k_margin, SDLDevice::instance().getWindow())};
         auto xStart{bounds.x + marginX};
         auto yStart{bounds.y + marginY +
-                    m_parentWindow->GetGUIWindowTitleBar()->GetBounds().height};
+                    m_parentWindow->getGUIWindowTitleBar()->getBounds().height};
 
         auto slotWidth{k_slotSize};
-        auto slotHeight{ConvertWidthToHeight(k_slotSize, SDLDevice::Instance().GetWindow())};
+        auto slotHeight{convertWidthToHeight(k_slotSize, SDLDevice::instance().getWindow())};
 
         auto numColumns{static_cast<int>((bounds.width - 2 * marginX) / slotWidth)};
         auto numRows{
@@ -128,7 +129,7 @@ namespace Forradia::Theme0
             for (auto x = 0; x < numColumns; x++)
             {
 
-                if (i >= m_containedObjects.Size())
+                if (i >= m_containedObjects.size())
                 {
                     continue;
                 }
@@ -145,17 +146,19 @@ namespace Forradia::Theme0
                 }
                 else
                 {
-                    PrintLine("GUIContainerWindow: Render ID not "
+                    printLine("GUIContainerWindow: Render ID not "
                               "found for index: " +
                               std::to_string(index));
                     return;
                 }
 
-                Image2DRenderer::Instance().DrawImageByName(
-                    renderIDBackground, k_slotImageName, xStart + static_cast<float>(x) * (slotWidth + marginX),
-                    yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth, slotHeight, true);
+                Image2DRenderer::instance().drawImageByName(
+                    renderIDBackground, k_slotImageName,
+                    xStart + static_cast<float>(x) * (slotWidth + marginX),
+                    yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth, slotHeight,
+                    true);
 
-                if (auto inventoryObject{objectsContainer.GetObject(index)})
+                if (auto inventoryObject{objectsContainer.getObject(index)})
                 {
                     int renderIDObject{0};
 
@@ -165,17 +168,18 @@ namespace Forradia::Theme0
                     }
                     else
                     {
-                        PrintLine("GUIContainerWindow: "
+                        printLine("GUIContainerWindow: "
                                   "Render ID not "
                                   "found for index: " +
                                   std::to_string(index));
                         return;
                     }
 
-                    Image2DRenderer::Instance().DrawImageByHash(
-                        renderIDObject, inventoryObject->GetType(),
-                        xStart + static_cast<float>(x) * (slotWidth + marginX), yStart + static_cast<float>(y) * (slotHeight + marginY),
-                        slotWidth, slotHeight, true);
+                    Image2DRenderer::instance().drawImageByHash(
+                        renderIDObject, inventoryObject->getType(),
+                        xStart + static_cast<float>(x) * (slotWidth + marginX),
+                        yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth,
+                        slotHeight, true);
                 }
             }
         }

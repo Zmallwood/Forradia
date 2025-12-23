@@ -9,38 +9,40 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorGround::GenerateElevationWithBiomes() const -> void
+    auto WorldGeneratorGround::generateElevationWithBiomes() const -> void
     {
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
 
-        auto numMajorHills{40 + GetRandomInt(20)};
+        auto numMajorHills{40 + getRandomInt(20)};
 
         for (auto i = 0; i < numMajorHills; i++)
         {
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
-            auto radius{static_cast<int>(8 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(12 * worldScaling))))};
-            auto maxElevation{30 + GetRandomInt(20)};
+            auto xCenter{getRandomInt(worldAreaSize.width)};
+            auto yCenter{getRandomInt(worldAreaSize.height)};
+            auto radius{static_cast<int>(
+                8 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(12 * worldScaling))))};
+            auto maxElevation{30 + getRandomInt(20)};
 
-            CreateElevationHill(xCenter, yCenter, radius, maxElevation);
+            createElevationHill(xCenter, yCenter, radius, maxElevation);
         }
     }
 
-    auto WorldGeneratorGround::GenerateMountainRanges() const -> void
+    auto WorldGeneratorGround::generateMountainRanges() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
 
-        auto numMountainRanges{3 + GetRandomInt(3)};
+        auto numMountainRanges{3 + getRandomInt(3)};
 
         for (auto range = 0; range < numMountainRanges; range++)
         {
-            auto startX{GetRandomInt(worldAreaSize.width)};
-            auto startY{GetRandomInt(worldAreaSize.height)};
-            auto length{30 + GetRandomInt(40)};
-            auto direction{GetRandomInt(360)};
+            auto startX{getRandomInt(worldAreaSize.width)};
+            auto startY{getRandomInt(worldAreaSize.height)};
+            auto length{30 + getRandomInt(40)};
+            auto direction{getRandomInt(360)};
             auto currentX{static_cast<float>(startX)};
             auto currentY{static_cast<float>(startY)};
 
@@ -49,27 +51,28 @@ namespace Forradia::Theme0
                 auto x{static_cast<int>(currentX)};
                 auto y{static_cast<int>(currentY)};
 
-                if (worldArea->IsValidCoordinate(x, y))
+                if (worldArea->isValidCoordinate(x, y))
                 {
-                    auto radius{
-                        static_cast<int>(4 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(6 * worldScaling))))};
+                    auto radius{static_cast<int>(
+                        4 * worldScaling +
+                        static_cast<float>(getRandomInt(static_cast<int>(6 * worldScaling))))};
 
-                    auto elevation{120 + GetRandomInt(160)};
+                    auto elevation{120 + getRandomInt(160)};
 
-                    CreateElevationHill(x, y, radius, elevation);
+                    createElevationHill(x, y, radius, elevation);
                 }
 
                 // Move along the mountain range with some variation.
                 auto angleRadians{
-                    static_cast<float>((direction + GetRandomInt(60) - 30) * M_PI / 180.0F)};
+                    static_cast<float>((direction + getRandomInt(60) - 30) * M_PI / 180.0F)};
 
-                currentX += std::cos(angleRadians) * (2.0f + static_cast<float>(GetRandomInt(3)));
-                currentY += std::sin(angleRadians) * (2.0f + static_cast<float>(GetRandomInt(3)));
+                currentX += std::cos(angleRadians) * (2.0f + static_cast<float>(getRandomInt(3)));
+                currentY += std::sin(angleRadians) * (2.0f + static_cast<float>(getRandomInt(3)));
 
                 // Occasionally change direction.
-                if (GetRandomInt(100) < 20)
+                if (getRandomInt(100) < 20)
                 {
-                    direction += GetRandomInt(60) - 30;
+                    direction += getRandomInt(60) - 30;
 
                     if (direction < 0)
                     {
@@ -85,38 +88,40 @@ namespace Forradia::Theme0
         }
     }
 
-    auto WorldGeneratorGround::GenerateValleys() const -> void
+    auto WorldGeneratorGround::generateValleys() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Create valleys by reducing elevation in certain areas.
-        auto numValleys{15 + GetRandomInt(10)};
+        auto numValleys{15 + getRandomInt(10)};
 
         for (auto i = 0; i < numValleys; i++)
         {
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
-            auto radius{static_cast<int>(10 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(15 * worldScaling))))};
+            auto xCenter{getRandomInt(worldAreaSize.width)};
+            auto yCenter{getRandomInt(worldAreaSize.height)};
+            auto radius{static_cast<int>(
+                10 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(15 * worldScaling))))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
                 for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    auto distance{GetDistance(x, y, xCenter, yCenter)};
+                    auto distance{getDistance(x, y, xCenter, yCenter)};
 
                     if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    auto tile = worldArea->GetTile(x, y);
+                    auto tile = worldArea->getTile(x, y);
 
                     if (!tile)
                     {
@@ -128,17 +133,17 @@ namespace Forradia::Theme0
                     // Calculate the elevation reduction based on the normalized distance.
                     auto elevationReduction{static_cast<int>((1.0F - normalizedDistance) * 40.0F)};
 
-                    auto currentElevation{tile->GetElevation()};
+                    auto currentElevation{tile->getElevation()};
                     auto newElevation{currentElevation - elevationReduction};
 
                     // Clamp the new elevation to the valid range.
-                    tile->SetElevation(ClampElevation(newElevation));
+                    tile->setElevation(clampElevation(newElevation));
                 }
             }
         }
     }
 
-    auto WorldGeneratorGround::CreateElevationHill(int centerX, int centerY, int radius,
+    auto WorldGeneratorGround::createElevationHill(int centerX, int centerY, int radius,
                                                    int maxElevation) const -> void
     {
         // Traverse the candidate tiles within the bounding square of the hill footprint.
@@ -146,32 +151,32 @@ namespace Forradia::Theme0
         {
             for (auto x = centerX - radius; x <= centerX + radius; x++)
             {
-                if (!GetWorldArea()->IsValidCoordinate(x, y))
+                if (!getWorldArea()->isValidCoordinate(x, y))
                 {
                     continue;
                 }
 
-                auto distance{GetDistance(x, y, centerX, centerY)};
+                auto distance{getDistance(x, y, centerX, centerY)};
 
                 if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                auto tile{GetWorldArea()->GetTile(x, y)};
+                auto tile{getWorldArea()->getTile(x, y)};
 
                 if (!tile)
                 {
                     continue;
                 }
 
-                if (tile->GetGround() == Hash("GroundWater"))
+                if (tile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
 
-                auto currentElevation{tile->GetElevation()};
-                auto globalMaxElevation{GetMaxElevation()};
+                auto currentElevation{tile->getElevation()};
+                auto globalMaxElevation{getMaxElevation()};
 
                 if (currentElevation >= globalMaxElevation)
                 {
@@ -180,8 +185,9 @@ namespace Forradia::Theme0
 
                 auto normalizedDistance{distance / static_cast<float>(radius)};
 
-                auto baseElevationGain{static_cast<float>(
-                    (1.0F - normalizedDistance * normalizedDistance) * static_cast<float>(globalMaxElevation))};
+                auto baseElevationGain{
+                    static_cast<float>((1.0F - normalizedDistance * normalizedDistance) *
+                                       static_cast<float>(globalMaxElevation))};
 
                 // Adjust the elevation gain to avoid abrupt height increases near the peak.
 
@@ -224,7 +230,7 @@ namespace Forradia::Theme0
                     auto desiredElevation{currentElevation + elevationGain};
 
                     // Limit elevation based on adjacent tiles to prevent steep slopes.
-                    auto maxAllowedElevation{GetMaxAllowedElevation(x, y, currentElevation)};
+                    auto maxAllowedElevation{getMaxAllowedElevation(x, y, currentElevation)};
 
                     // Use the minimum of desired elevation and max allowed elevation.
                     auto newElevation{desiredElevation};
@@ -236,7 +242,7 @@ namespace Forradia::Theme0
                     }
 
                     // Final safety clamp (elevation cap and minimum).
-                    tile->SetElevation(ClampElevation(newElevation));
+                    tile->setElevation(clampElevation(newElevation));
                 }
             }
         }

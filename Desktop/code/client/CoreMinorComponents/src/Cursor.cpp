@@ -11,27 +11,27 @@
 
 namespace Forradia
 {
-    auto Cursor::Initialize() -> void
+    auto Cursor::initialize() -> void
     {
-        Cursor::DisableSystemCursor();
+        Cursor::disableSystemCursor();
     }
 
-    auto Cursor::DisableSystemCursor() -> void
+    auto Cursor::disableSystemCursor() -> void
     {
         SDL_ShowCursor(SDL_DISABLE);
     }
 
-    auto Cursor::ResetStyleToNormal() -> void
+    auto Cursor::resetStyleToNormal() -> void
     {
         m_cursorStyle = CursorStyles::Normal;
     }
 
-    auto Cursor::Render() const -> void
+    auto Cursor::render() const -> void
     {
-        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         auto width{k_cursorSize};
-        auto height{ConvertWidthToHeight(k_cursorSize, SDLDevice::Instance().GetWindow())};
+        auto height{convertWidthToHeight(k_cursorSize, SDLDevice::instance().getWindow())};
 
         std::string cursorImage;
 
@@ -51,7 +51,7 @@ namespace Forradia
             break;
         }
 
-        Image2DRenderer::Instance().DrawImageByName(
+        Image2DRenderer::instance().drawImageByName(
             k_renderID, cursorImage, mousePosition.x - width / 2, mousePosition.y - height / 2,
             width, height, true);
     }

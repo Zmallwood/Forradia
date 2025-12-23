@@ -9,27 +9,27 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorEntities::GenerateEntities() const -> void
+    auto WorldGeneratorEntities::generateEntities() const -> void
     {
-        GenerateEntitiesInEcosystems();
+        generateEntitiesInEcosystems();
     }
 
-    auto WorldGeneratorEntities::IsNearWater(int x, int y, int radius) const -> bool
+    auto WorldGeneratorEntities::isNearWater(int x, int y, int radius) const -> bool
     {
         for (auto checkY = y - radius; checkY <= y + radius; checkY++)
         {
             for (auto checkX = x - radius; checkX <= x + radius; checkX++)
             {
-                if (!GetWorldArea()->IsValidCoordinate(checkX, checkY))
+                if (!getWorldArea()->isValidCoordinate(checkX, checkY))
                 {
                     continue;
                 }
 
-                auto tile{GetWorldArea()->GetTile(checkX, checkY)};
+                auto tile{getWorldArea()->getTile(checkX, checkY)};
 
-                if (tile && tile->GetGround() == Hash("GroundWater"))
+                if (tile && tile->getGround() == hash("GroundWater"))
                 {
-                    auto distance{GetDistance(x, y, checkX, checkY)};
+                    auto distance{getDistance(x, y, checkX, checkY)};
 
                     if (distance <= radius)
                     {

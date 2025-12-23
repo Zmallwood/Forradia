@@ -20,7 +20,7 @@ namespace Forradia
     class SkyRenderer : public RendererBase
     {
       public:
-        static auto Instance() -> SkyRenderer &
+        static auto instance() -> SkyRenderer &
         {
             static SkyRenderer instance;
             return instance;
@@ -37,7 +37,7 @@ namespace Forradia
         SkyRenderer()
         {
             // Initialize the renderer base class.
-            dynamic_cast<RendererBase *>(this)->Initialize();
+            dynamic_cast<RendererBase *>(this)->initialize();
         }
 
         /**
@@ -46,7 +46,7 @@ namespace Forradia
         ~SkyRenderer() override
         {
             // Cleanup the renderer.
-            this->Cleanup();
+            this->cleanup();
         }
 
         /**
@@ -58,7 +58,7 @@ namespace Forradia
             @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
             zenith). Negative values indicate nighttime (darker sky).
          */
-        auto Render(const glm::vec3 &sunDirection, float sunElevation) -> void;
+        auto render(const glm::vec3 &sunDirection, float sunElevation) -> void;
 
       protected:
         /**
@@ -66,33 +66,33 @@ namespace Forradia
 
             @return The vertex shader source.
          */
-        [[nodiscard]] auto GetVSSource() const -> std::string override;
+        [[nodiscard]] auto getVSSource() const -> std::string override;
 
         /**
             Returns the fragment shader source.
 
             @return The fragment shader source.
          */
-        [[nodiscard]] auto GetFSSource() const -> std::string override;
+        [[nodiscard]] auto getFSSource() const -> std::string override;
 
         /**
             Does initialization that is specific to this renderer.
          */
-        auto InitializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
             Sets up the attribute layout for the vertex shader.
          */
-        auto SetupAttributeLayout() const -> void override;
+        auto setupAttributeLayout() const -> void override;
 
       private:
-        auto Cleanup() -> void;
+        auto cleanup() -> void;
 
-        auto SetupState() const -> void;
+        auto setupState() const -> void;
 
-        static auto RestoreState() -> void;
+        static auto restoreState() -> void;
 
-        auto GenerateSkyDome() -> void;
+        auto generateSkyDome() -> void;
 
         GLuint m_vao{};
         GLuint m_ibo{};

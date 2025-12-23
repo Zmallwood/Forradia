@@ -14,7 +14,7 @@
 
 namespace Forradia
 {
-    auto TextureBank::LoadTextures() -> void
+    auto TextureBank::loadTextures() -> void
     {
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeImagesPath};
@@ -29,14 +29,14 @@ namespace Forradia
         // Iterate through the directory using the rdi.
         for (const auto &file : rdi)
         {
-            auto filePath{Replace(file.path().string(), '\\', '/')};
+            auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (GetFileExtension(filePath) == "png")
+            if (getFileExtension(filePath) == "png")
             {
-                auto fileName{GetFileNameNoExtension(filePath)};
-                auto hash{Forradia::Hash(fileName)};
+                auto fileName{getFileNameNoExtension(filePath)};
+                auto hash{Forradia::hash(fileName)};
                 auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
-                auto textureID{TextureBank::LoadSingleTexture(surface)};
+                auto textureID{TextureBank::loadSingleTexture(surface)};
                 auto imageSize{Size{surface->w, surface->h}};
 
                 TextureEntry newTextureEntry;

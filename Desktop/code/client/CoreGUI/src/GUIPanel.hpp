@@ -28,7 +28,7 @@ namespace Forradia
          */
         GUIPanel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view backgroundImage = k_defaultBackgroundImage)
-            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(Hash(uniqueName)),
+            : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(hash(uniqueName)),
               m_backgroundImage(backgroundImage)
         {
         }
@@ -36,14 +36,14 @@ namespace Forradia
         /**
             Render tasks specific to the panel, called by the GUIComponent base class.
          */
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
         /**
             Sets the background image of the panel.
 
             @param value The new background image.
          */
-        auto SetBackgroundImage(std::string_view value) -> void
+        auto setBackgroundImage(std::string_view value) -> void
         {
             m_backgroundImage = value;
         }

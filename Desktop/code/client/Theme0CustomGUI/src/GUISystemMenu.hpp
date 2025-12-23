@@ -15,15 +15,15 @@ namespace Forradia::Theme0
     class GUISystemMenu : public GUIComponent
     {
       public:
-        static auto InstancePtr() -> std::shared_ptr<GUISystemMenu>
+        static auto instancePtr() -> std::shared_ptr<GUISystemMenu>
         {
             static std::shared_ptr<GUISystemMenu> instancePtr = std::make_shared<GUISystemMenu>();
             return instancePtr;
         }
 
-        static auto Instance() -> GUISystemMenu &
+        static auto instance() -> GUISystemMenu &
         {
-            return *InstancePtr();
+            return *instancePtr();
         }
 
         // Delete copy/move
@@ -35,26 +35,26 @@ namespace Forradia::Theme0
          */
         GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
-            this->Initialize();
+            this->initialize();
         }
 
       protected:
         /**
             Initializes the system menu.
          */
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         /**
             Does update logic that is specific to the system menu.
          */
-        virtual auto UpdateDerived() -> void override;
+        virtual auto updateDerived() -> void override;
 
         /**
             Does render logic that is specific to the system menu.
          */
-        virtual auto RenderDerived() const -> void override;
+        virtual auto renderDerived() const -> void override;
 
       private:
-        const int k_renderIDBackgroundColor{Hash("GUISystemMenuBackgroundColor")};
+        const int k_renderIDBackgroundColor{hash("GUISystemMenuBackgroundColor")};
     };
 }

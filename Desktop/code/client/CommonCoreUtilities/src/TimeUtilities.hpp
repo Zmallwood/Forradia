@@ -12,5 +12,5 @@ namespace Forradia
 
         @return The number of ticks.
      */
-    auto GetTicks() -> int;
+    auto getTicks() -> int;
 }

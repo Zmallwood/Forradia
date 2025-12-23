@@ -40,41 +40,41 @@ namespace Forradia
             @param component The child component to add.
             @return The added component.
          */
-        auto AddChildComponent(std::shared_ptr<GUIComponent> component)
+        auto addChildComponent(std::shared_ptr<GUIComponent> component)
             -> std::shared_ptr<GUIComponent>;
 
-        virtual auto OnMouseDown(Uint8 mouseButton) -> bool;
+        virtual auto onMouseDown(Uint8 mouseButton) -> bool;
 
-        virtual auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
+        virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
 
-        virtual auto OnMouseWheel(int delta) -> bool;
+        virtual auto onMouseWheel(int delta) -> bool;
 
-        virtual auto OnKeyDown(SDL_Keycode key) -> bool;
+        virtual auto onKeyDown(SDL_Keycode key) -> bool;
 
-        virtual auto OnKeyUp(SDL_Keycode key) -> bool;
+        virtual auto onKeyUp(SDL_Keycode key) -> bool;
 
-        virtual auto OnTextInput(std::string_view text) -> bool;
+        virtual auto onTextInput(std::string_view text) -> bool;
 
         /**
             Updates the component and all its children.
          */
-        virtual auto Update() -> void;
+        virtual auto update() -> void;
 
         /**
             Renders the component and all its children.
          */
-        virtual auto Render() const -> void;
+        virtual auto render() const -> void;
 
         /**
             Gets the bounds of the component in screen coordinates.
 
             @return The bounds of the component in screen coordinates.
          */
-        [[nodiscard]] virtual auto GetBounds() const -> RectF;
+        [[nodiscard]] virtual auto getBounds() const -> RectF;
 
-        virtual auto MouseHoveringGUI() const -> bool;
+        virtual auto mouseHoveringGUI() const -> bool;
 
-        auto SetBounds(RectF value) -> void
+        auto setBounds(RectF value) -> void
         {
             m_bounds = value;
         }
@@ -84,26 +84,26 @@ namespace Forradia
 
             @param newPosition The new position of the component.
          */
-        auto SetPosition(PointF newPosition) -> void;
+        auto setPosition(PointF newPosition) -> void;
 
         /**
             Sets the height of the component.
 
             @param newHeight The new height of the component.
          */
-        auto SetHeight(float newHeight) -> void;
+        auto setHeight(float newHeight) -> void;
 
         /**
             Toggles the visibility of the component.
          */
-        auto ToggleVisibility() -> void;
+        auto toggleVisibility() -> void;
 
         /**
             Gets whether the component is visible.
 
             @return Whether the component is visible.
          */
-        auto GetVisible() const -> bool
+        auto getVisible() const -> bool
         {
             return m_visible;
         }
@@ -113,7 +113,7 @@ namespace Forradia
 
             @param value Whether the component should be visible.
          */
-        auto SetVisible(bool value) -> void
+        auto setVisible(bool value) -> void
         {
             m_visible = value;
         }
@@ -123,7 +123,7 @@ namespace Forradia
 
             @param value The parent component.
          */
-        auto SetParentComponent(GUIComponent *value) -> void
+        auto setParentComponent(GUIComponent *value) -> void
         {
             m_parentComponent = value;
         }
@@ -131,19 +131,19 @@ namespace Forradia
         /**
             Update tasks specific to the derived class, called by the Update method.
          */
-        virtual auto UpdateDerived() -> void
+        virtual auto updateDerived() -> void
         {
         }
 
         /**
             Render tasks specific to the derived class, called by the Render method.
          */
-        virtual auto RenderDerived() const -> void
+        virtual auto renderDerived() const -> void
         {
         }
 
       protected:
-        auto GetChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>>
+        auto getChildComponents() const -> std::vector<std::shared_ptr<GUIComponent>>
         {
             return m_childComponents;
         }

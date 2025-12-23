@@ -28,13 +28,13 @@ namespace Forradia::Theme0
         GUIContainerWindow(ContainedObjects &containedObjects)
             : GUIWindow("GUIContainerWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Container")
         {
-            this->Initialize(containedObjects);
+            this->initialize(containedObjects);
         }
 
-        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position) const;
+        std::shared_ptr<std::shared_ptr<Object>> getObjectPtrPtr(PointF position) const;
 
       private:
-        auto Initialize(ContainedObjects &containedObjects) -> void;
+        auto initialize(ContainedObjects &containedObjects) -> void;
 
         std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea{};
     };
@@ -46,16 +46,16 @@ namespace Forradia::Theme0
             : GUIScrollableArea("GUIContainerWindowArea", 0.0F, 0.0F, 0.2F, 0.45F),
               m_parentWindow(parentWindow)
         {
-            this->Initialize(parentWindow, containedObjects);
+            this->initialize(parentWindow, containedObjects);
         }
 
-        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position) const;
+        std::shared_ptr<std::shared_ptr<Object>> getObjectPtrPtr(PointF position) const;
 
       protected:
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
       private:
-        auto Initialize(GUIWindow *parentWindow, ContainedObjects &containedObjects) -> void;
+        auto initialize(GUIWindow *parentWindow, ContainedObjects &containedObjects) -> void;
 
         GUIWindow *m_parentWindow{nullptr};
         std::shared_ptr<GUIContainerWindowPanel> m_panel{};
@@ -68,16 +68,16 @@ namespace Forradia::Theme0
             : GUIPanel("GUIContainerWindowPanel", 0.0F, 0.0F, 0.2F, 1.0F),
               m_parentWindow(parentWindow), m_containedObjects(containedObjects)
         {
-            this->Initialize();
+            this->initialize();
         }
 
-        std::shared_ptr<std::shared_ptr<Object>> GetObjectPtrPtr(PointF position) const;
+        std::shared_ptr<std::shared_ptr<Object>> getObjectPtrPtr(PointF position) const;
 
       protected:
-        auto RenderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         static constexpr float k_margin{0.005f};
         static constexpr float k_slotSize{0.04f};

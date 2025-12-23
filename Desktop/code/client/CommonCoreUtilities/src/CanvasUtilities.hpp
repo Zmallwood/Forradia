@@ -17,14 +17,14 @@ namespace Forradia
         @param window Window to get the canvas size for.
         @return The canvas size in pixels.
      */
-    auto GetCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size;
+    auto getCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size;
 
     /** Calculate the aspect ratio of a given   window.
 
         @param window Window to calculate the aspect ratio for.
         @return The calculated aspect ratio.
      */
-    auto CalcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float;
+    auto calcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float;
 
     /**
        Convert a width to a height based on the width and the aspect ratio.
@@ -33,7 +33,7 @@ namespace Forradia
         @param window Window to calculate the aspect ratio for.
         @return The resulting height.
      */
-    auto ConvertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float;
+    auto convertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float;
 
     /**
        Convert a height to a width base on the height and the aspect ratio.
@@ -42,5 +42,5 @@ namespace Forradia
         @param window Window to calculate the aspect ratio for.
         @return The resulting width.
      */
-    auto ConvertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float;
+    auto convertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float;
 }

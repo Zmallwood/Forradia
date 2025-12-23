@@ -14,32 +14,32 @@
 
 namespace Forradia::Theme0
 {
-    auto MainMenuScene::InitializeDerived() -> void
+    auto MainMenuScene::initializeDerived() -> void
     {
         auto panel{std::make_shared<GUIPanel>("MainMenuScenePanel", 0.4f, 0.32f, 0.2f, 0.2f)};
-        GetGUI()->AddChildComponent(panel);
+        getGUI()->addChildComponent(panel);
 
         auto btnPlay{std::make_shared<GUIButton>(
             "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "",
-            [] { SceneManager::Instance().GoToScene("PlayScene"); }, "GUIButtonPlayBackground",
+            [] { SceneManager::instance().goToScene("PlayScene"); }, "GUIButtonPlayBackground",
             "GUIButtonPlayHoveredBackground")};
-        GetGUI()->AddChildComponent(btnPlay);
+        getGUI()->addChildComponent(btnPlay);
 
         auto btnQuit{std::make_shared<GUIButton>(
             "MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f, 0.04f, "",
-            [] { Engine::Instance().Stop(); }, "GUIButtonQuitBackground",
+            [] { Engine::instance().stop(); }, "GUIButtonQuitBackground",
             "GUIButtonQuitHoveredBackground")};
-        GetGUI()->AddChildComponent(btnQuit);
+        getGUI()->addChildComponent(btnQuit);
 
-        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
+        getGUI()->addChildComponent(GUIChatBox::instancePtr());
     }
 
-    auto MainMenuScene::RenderDerived() const -> void
+    auto MainMenuScene::renderDerived() const -> void
     {
-        Image2DRenderer::Instance().DrawImageByName(
-            Hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        Image2DRenderer::instance().drawImageByName(
+            hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::Instance().DrawImageAutoHeight(Hash("MainMenuSceneLogo"), "ForradiaLogo",
+        Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"), "ForradiaLogo",
                                                         0.35f, 0.1f, 0.3f);
     }
 }

@@ -16,7 +16,7 @@ namespace Forradia
         @param message The message to throw.
         @param loc The source location of the error, should not be provided manually.
      */
-    [[noreturn]] void ThrowError(std::string_view message,
+    [[noreturn]] void throwError(std::string_view message,
                                  std::source_location loc = std::source_location::current());
 
     /**
@@ -26,6 +26,6 @@ namespace Forradia
         @param message The message to throw.
         @param loc The source location of the error, should not be provided manually.
      */
-    void ThrowOnFalse(bool condition, std::string_view message,
+    void throwOnFalse(bool condition, std::string_view message,
                       std::source_location loc = std::source_location::current());
 }

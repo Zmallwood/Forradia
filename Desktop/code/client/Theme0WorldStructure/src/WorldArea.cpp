@@ -9,7 +9,7 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldArea::Initialize(Size worldAreaSize, float worldScaling) -> void
+    auto WorldArea::initialize(Size worldAreaSize, float worldScaling) -> void
     {
         auto size{worldAreaSize};
         size.width *= worldScaling;
@@ -26,11 +26,11 @@ namespace Forradia::Theme0
         }
     }
 
-    auto WorldArea::Reset() -> void
+    auto WorldArea::reset() -> void
     {
         m_entitiesMirror.clear();
 
-        auto size{this->GetSize()};
+        auto size{this->getSize()};
 
         for (auto y = 0; y < size.height; y++)
         {
@@ -39,16 +39,16 @@ namespace Forradia::Theme0
                 auto tile{m_tiles[x][y]};
 
                 // Set the tile to its default state.
-                tile->SetGround(Hash("GroundGrass"));
-                tile->SetEntity(nullptr);
-                tile->SetElevation(0.0F);
-                tile->SetWaterDepth(0);
-                tile->GetObjectsStack()->ClearObjects();
+                tile->setGround(hash("GroundGrass"));
+                tile->setEntity(nullptr);
+                tile->setElevation(0.0F);
+                tile->setWaterDepth(0);
+                tile->getObjectsStack()->clearObjects();
             }
         }
     }
 
-    auto WorldArea::GetSize() const -> Size
+    auto WorldArea::getSize() const -> Size
     {
         auto width{static_cast<int>(m_tiles.size())};
         auto height{0};
@@ -61,21 +61,21 @@ namespace Forradia::Theme0
         return {width, height};
     }
 
-    auto WorldArea::IsValidCoordinate(int x, int y) const -> bool
+    auto WorldArea::isValidCoordinate(int x, int y) const -> bool
     {
-        auto size{this->GetSize()};
+        auto size{this->getSize()};
 
         return x >= 0 && y >= 0 && x < size.width && y < size.height;
     }
 
-    auto WorldArea::IsValidCoordinate(Point coordinate) const -> bool
+    auto WorldArea::isValidCoordinate(Point coordinate) const -> bool
     {
-        return this->IsValidCoordinate(coordinate.x, coordinate.y);
+        return this->isValidCoordinate(coordinate.x, coordinate.y);
     }
 
-    auto WorldArea::GetTile(int x, int y) const -> std::shared_ptr<Tile>
+    auto WorldArea::getTile(int x, int y) const -> std::shared_ptr<Tile>
     {
-        if (this->IsValidCoordinate(x, y))
+        if (this->isValidCoordinate(x, y))
         {
             return m_tiles.at(x).at(y);
         }
@@ -83,8 +83,8 @@ namespace Forradia::Theme0
         return nullptr;
     }
 
-    auto WorldArea::GetTile(Point coord) const -> std::shared_ptr<Tile>
+    auto WorldArea::getTile(Point coord) const -> std::shared_ptr<Tile>
     {
-        return this->GetTile(coord.x, coord.y);
+        return this->getTile(coord.x, coord.y);
     }
 }

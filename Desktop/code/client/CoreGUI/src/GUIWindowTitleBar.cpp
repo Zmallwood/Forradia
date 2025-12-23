@@ -13,33 +13,33 @@
 
 namespace Forradia
 {
-    auto GUIWindowTitleBar::Initialize(std::string_view uniqueName) -> void
+    auto GUIWindowTitleBar::initialize(std::string_view uniqueName) -> void
     {
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.getBounds()};
 
-        AddChildComponent(std::make_shared<GUIButton>(
+        addChildComponent(std::make_shared<GUIButton>(
             uniqueName.data() + std::string("CloseButton"),
             parentWindowBounds.width - k_closeButtonRightMargin, k_closeButtonTopMargin,
             k_closeButtonWidth,
-            ConvertWidthToHeight(k_closeButtonWidth, SDLDevice::Instance().GetWindow()), "X",
-            [this] { m_parentWindow.ToggleVisibility(); }));
+            convertWidthToHeight(k_closeButtonWidth, SDLDevice::instance().getWindow()), "X",
+            [this] { m_parentWindow.toggleVisibility(); }));
     }
 
-    auto GUIWindowTitleBar::RenderDerived() const -> void
+    auto GUIWindowTitleBar::renderDerived() const -> void
     {
-        GUIPanel::RenderDerived();
+        GUIPanel::renderDerived();
 
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.getBounds()};
 
-        TextRenderer::Instance().DrawString(
+        TextRenderer::instance().drawString(
             k_renderIDWindowTitleText, k_windowTitle, parentWindowBounds.x + k_titleLeftMargin,
             parentWindowBounds.y + k_titleTopMargin - k_height, FontSizes::_20, false, false,
-            Palette::GetColor<Hash("Yellow")>());
+            Palette::getColor<hash("Yellow")>());
     }
 
-    auto GUIWindowTitleBar::GetBounds() const -> RectF
+    auto GUIWindowTitleBar::getBounds() const -> RectF
     {
-        auto parentWindowBounds{m_parentWindow.GetBounds()};
+        auto parentWindowBounds{m_parentWindow.getBounds()};
 
         RectF boundsResult;
         boundsResult.x = parentWindowBounds.x;

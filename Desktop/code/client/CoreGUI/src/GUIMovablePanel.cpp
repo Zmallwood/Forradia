@@ -11,27 +11,27 @@
 
 namespace Forradia
 {
-    auto GUIMovablePanel::OnMouseDown(Uint8 mouseButton) -> bool
+    auto GUIMovablePanel::onMouseDown(Uint8 mouseButton) -> bool
     {
-        if (!this->GetVisible())
+        if (!this->getVisible())
             return false;
 
-        auto childComponents{this->GetChildComponents()};
+        auto childComponents{this->getChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
-            if (childComponent->OnMouseDown(mouseButton))
+            if (childComponent->onMouseDown(mouseButton))
             {
                 return true;
             }
         }
 
-        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
-        auto draggableArea{this->GetDraggableArea()};
+        auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+        auto draggableArea{this->getDraggableArea()};
 
-        if (draggableArea.Contains(mousePosition))
+        if (draggableArea.contains(mousePosition))
         {
-            this->StartMove();
+            this->startMove();
 
             return true;
         }
@@ -39,28 +39,28 @@ namespace Forradia
         return false;
     }
 
-    auto GUIMovablePanel::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
+    auto GUIMovablePanel::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        this->StopMove();
+        this->stopMove();
 
-        if (!this->GetVisible())
+        if (!this->getVisible())
         {
             return false;
         }
 
-        auto childComponents{this->GetChildComponents()};
+        auto childComponents{this->getChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
-            if (childComponent->OnMouseUp(mouseButton, clickSpeed))
+            if (childComponent->onMouseUp(mouseButton, clickSpeed))
             {
                 return true;
             }
         }
 
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (GetBounds().Contains(mousePos))
+        if (getBounds().contains(mousePos))
         {
             return true;
         }
@@ -68,41 +68,40 @@ namespace Forradia
         return false;
     }
 
-    auto GUIMovablePanel::UpdateDerived() -> void
+    auto GUIMovablePanel::updateDerived() -> void
     {
-        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
-        auto draggableArea{this->GetDraggableArea()};
+        auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+        auto draggableArea{this->getDraggableArea()};
 
-        if (draggableArea.Contains(mousePosition))
+        if (draggableArea.contains(mousePosition))
         {
-            Cursor::Instance().SetCursorStyle(CursorStyles::HoveringClickableGUI);
+            Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
-        if (GetIsBeingMoved())
+        if (getIsBeingMoved())
         {
-            auto newPosition{GetMoveStartingPosition() + mousePosition -
-                             GetMoveStartingMousePosition()};
-            this->SetPosition(newPosition);
+            auto newPosition{getMoveStartingPosition() + mousePosition -
+                             getMoveStartingMousePosition()};
+            this->setPosition(newPosition);
         }
     }
 
-    auto GUIMovablePanel::StartMove() -> void
+    auto GUIMovablePanel::startMove() -> void
     {
         m_isBeingMoved = true;
-        m_moveStartingPosition = this->GetBounds().GetPosition();
-        m_moveStartingMousePosition =
-            GetNormalizedMousePosition(SDLDevice::Instance().GetWindow());
+        m_moveStartingPosition = this->getBounds().getPosition();
+        m_moveStartingMousePosition = getNormalizedMousePosition(SDLDevice::instance().getWindow());
     }
 
-    auto GUIMovablePanel::StopMove() -> void
+    auto GUIMovablePanel::stopMove() -> void
     {
         m_isBeingMoved = false;
     }
 
-    auto GUIMovablePanel::GetDraggableArea() const -> RectF
+    auto GUIMovablePanel::getDraggableArea() const -> RectF
     {
         // Set the draggable area to the bounds of this panel as default. This can be overridden
         // by derived classes.
-        return this->GetBounds();
+        return this->getBounds();
     }
 }

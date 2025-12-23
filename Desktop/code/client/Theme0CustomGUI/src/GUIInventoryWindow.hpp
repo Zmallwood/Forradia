@@ -14,9 +14,9 @@ namespace Forradia::Theme0
     class GUIInventoryWindow : public GUIContainerWindow
     {
       public:
-        static GUIInventoryWindow &Instance()
+        static GUIInventoryWindow &instance()
         {
-            static GUIInventoryWindow instance(Player::Instance().GetObjectsInventoryRef());
+            static GUIInventoryWindow instance(Player::instance().getObjectsInventoryRef());
             return instance;
         }
 

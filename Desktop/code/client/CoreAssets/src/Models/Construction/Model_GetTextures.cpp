@@ -9,16 +9,16 @@
 
 namespace Forradia
 {
-    auto Model::GetTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>
+    auto Model::getTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>
     {
         if (mesh == nullptr)
         {
-            ThrowError("mesh is nullptr");
+            throwError("mesh is nullptr");
         }
 
         if (scene == nullptr)
         {
-            ThrowError("scene is nullptr");
+            throwError("scene is nullptr");
         }
 
         std::vector<Texture> textures;
@@ -28,7 +28,7 @@ namespace Forradia
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0,
                                                             &textureFilePath);
         // Add the texture to the results.
-        textures.emplace_back(GetFileNameNoExtension(textureFilePath.C_Str()));
+        textures.emplace_back(getFileNameNoExtension(textureFilePath.C_Str()));
 
         return textures;
     }

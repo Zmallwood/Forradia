@@ -12,5 +12,5 @@ namespace Forradia::Theme0
     /**
      * Updates the keyboard actions.
      */
-    auto UpdateKeyboardActions(SDL_Keycode key) -> void;
+    auto updateKeyboardActions(SDL_Keycode key) -> void;
 }

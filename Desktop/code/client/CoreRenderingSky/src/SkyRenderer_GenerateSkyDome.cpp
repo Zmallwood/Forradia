@@ -6,8 +6,8 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
-#include <vector>
 #include <cmath>
+#include <vector>
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -15,7 +15,7 @@
 
 namespace Forradia
 {
-    auto SkyRenderer::GenerateSkyDome() -> void
+    auto SkyRenderer::generateSkyDome() -> void
     {
         // Generate a hemisphere (sky dome) mesh.
 
@@ -112,7 +112,7 @@ namespace Forradia
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short),
                      indices.data(), GL_STATIC_DRAW);
 
-        this->SetupAttributeLayout();
+        this->setupAttributeLayout();
 
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);

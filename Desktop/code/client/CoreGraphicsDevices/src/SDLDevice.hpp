@@ -12,6 +12,7 @@
 #include <string>
 
 struct SDL_Window;
+
 using Uint32 = uint32_t;
 
 namespace Forradia
@@ -22,7 +23,7 @@ namespace Forradia
     class SDLDevice
     {
       public:
-        static auto Instance() -> SDLDevice &
+        static auto instance() -> SDLDevice &
         {
             static SDLDevice instance;
             return instance;
@@ -41,32 +42,32 @@ namespace Forradia
             @param gameWindowTitle The title of the game window.
             @param clearColor The color to clear the canvas with.
          */
-        auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
+        auto initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
         /**
             Clears the canvas.
          */
-        auto ClearCanvas() const -> void;
+        auto clearCanvas() const -> void;
 
         /**
             Presents the canvas.
          */
-        auto PresentCanvas() const -> void;
+        auto presentCanvas() const -> void;
 
         /**
             Returns the SDL window object.
 
             @return The SDL window object.
          */
-        [[nodiscard]] auto GetWindow() const -> std::shared_ptr<SDL_Window>
+        [[nodiscard]] auto getWindow() const -> std::shared_ptr<SDL_Window>
         {
             return m_window;
         }
 
       private:
-        auto SetupSDLWindow() -> void;
+        auto setupSDLWindow() -> void;
 
-        [[nodiscard]] static auto GetScreenSize() -> Size;
+        [[nodiscard]] static auto getScreenSize() -> Size;
 
         constexpr static Uint32 k_windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                                               SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |

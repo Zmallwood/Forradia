@@ -10,122 +10,130 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorObjects::GenerateObjectsInBiomes() const -> void
+    auto WorldGeneratorObjects::generateObjectsInBiomes() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{worldArea->getSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Add scattered objects throughout the world based on biomes.
         // This complements the forests and meadows.
 
         // Scattered trees outside of forests.
 
-        auto numScatteredTrees{static_cast<int>(300 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(150 * worldScaling))))};
+        auto numScatteredTrees{static_cast<int>(
+            300 * worldScaling +
+            static_cast<float>(getRandomInt(static_cast<int>(150 * worldScaling))))};
 
         for (auto i = 0; i < numScatteredTrees; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile = worldArea->GetTile(x, y);
+            auto tile = worldArea->getTile(x, y);
 
-            if (!tile || !IsValidForFlora(x, y))
+            if (!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
 
             // Check if the tile has grass ground and if the random number is less than 8.
-            if (tile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 8)
+            if (tile->getGround() == hash("GroundGrass") && getRandomInt(100) < 8)
             {
-                tile->GetObjectsStack()->ClearObjects();
+                tile->getObjectsStack()->clearObjects();
 
                 // Add a tree with type of either fir or birch with a 50% chance.
 
-                if (GetRandomInt(100) < 50)
+                if (getRandomInt(100) < 50)
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectFirTree");
+                    tile->getObjectsStack()->addObject("ObjectFirTree");
                 }
                 else
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                    tile->getObjectsStack()->addObject("ObjectBirchTree");
                 }
             }
         }
 
         // Scattered bushes.
-        auto numScatteredBushes{static_cast<int>(1000 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
+        auto numScatteredBushes{static_cast<int>(
+            1000 * worldScaling +
+            static_cast<float>(getRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || !IsValidForFlora(x, y))
+            if (!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
 
-            if (GetRandomInt(100) < 8)
+            if (getRandomInt(100) < 8)
             {
-                tile->GetObjectsStack()->ClearObjects();
+                tile->getObjectsStack()->clearObjects();
 
                 // Add a bush with type of either bush1 or bush2 with a 50% chance.
-                if (GetRandomInt(100) < 50)
+                if (getRandomInt(100) < 50)
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectBush1");
+                    tile->getObjectsStack()->addObject("ObjectBush1");
                 }
                 else
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectBush2");
+                    tile->getObjectsStack()->addObject("ObjectBush2");
                 }
             }
         }
 
         // Stone boulders - prefer higher elevation areas.
-        auto numBoulders{static_cast<int>(150 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
+        auto numBoulders{static_cast<int>(
+            150 * worldScaling +
+            static_cast<float>(getRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numBoulders; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->GetWaterDepth() >= 4)
+            if (!tile || tile->getWaterDepth() >= 4)
             {
                 continue;
             }
 
             // Make it so that the tile has no other objects on it.
-            tile->GetObjectsStack()->ClearObjects();
+            tile->getObjectsStack()->clearObjects();
 
             // Add a stone boulder to the tile.
-            tile->GetObjectsStack()->AddObject("ObjectStoneBoulder");
+            tile->getObjectsStack()->addObject("ObjectStoneBoulder");
         }
 
         // Brown mushrooms - prefer forest areas with trees nearby.
         // Mushrooms grow on forest floors, often near trees.
-        auto numMushrooms{static_cast<int>(600 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(400 * worldScaling))))};
+        auto numMushrooms{static_cast<int>(
+            600 * worldScaling +
+            static_cast<float>(getRandomInt(static_cast<int>(400 * worldScaling))))};
 
         for (auto i = 0; i < numMushrooms; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || !IsValidForFlora(x, y))
+            if (!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
 
-            auto ground{tile->GetGround()};
+            auto ground{tile->getGround()};
 
             // Mushrooms prefer grass or dirt ground.
-            if (ground != Hash("GroundGrass") && ground != Hash("GroundDirt"))
+            if (ground != hash("GroundGrass") && ground != hash("GroundDirt"))
             {
                 continue;
             }
@@ -133,9 +141,9 @@ namespace Forradia::Theme0
             // Don't place mushrooms on tiles that already have trees or large objects.
             // (mushrooms are undergrowth, not replacement for trees).
 
-            auto objectsStack{tile->GetObjectsStack()};
+            auto objectsStack{tile->getObjectsStack()};
 
-            if (objectsStack->GetSize() > 0)
+            if (objectsStack->getSize() > 0)
             {
                 continue;
             }
@@ -154,14 +162,14 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    if (!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
-                    auto nearbyTile{worldArea->GetTile(checkX, checkY)};
+                    auto nearbyTile{worldArea->getTile(checkX, checkY)};
 
-                    if (nearbyTile && nearbyTile->GetObjectsStack()->GetSize() > 0)
+                    if (nearbyTile && nearbyTile->getObjectsStack()->getSize() > 0)
                     {
                         nearbyObjectsCount++;
                     }
@@ -184,36 +192,38 @@ namespace Forradia::Theme0
                 mushroomProbability = 25;
             }
 
-            if (GetRandomInt(100) < mushroomProbability)
+            if (getRandomInt(100) < mushroomProbability)
             {
-                tile->GetObjectsStack()->ClearObjects();
-                tile->GetObjectsStack()->AddObject("ObjectBrownMushroom");
+                tile->getObjectsStack()->clearObjects();
+                tile->getObjectsStack()->addObject("ObjectBrownMushroom");
             }
         }
 
-        auto numStones{static_cast<int>(1000 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
+        auto numStones{static_cast<int>(
+            1000 * worldScaling +
+            static_cast<float>(getRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numStones; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->GetGround() == Hash("GroundWater") || tile->GetWaterDepth() > 0)
+            if (!tile || tile->getGround() == hash("GroundWater") || tile->getWaterDepth() > 0)
             {
                 continue;
             }
 
-            auto objectsStack{tile->GetObjectsStack()};
+            auto objectsStack{tile->getObjectsStack()};
 
-            if (objectsStack->GetSize() > 0)
+            if (objectsStack->getSize() > 0)
             {
                 continue;
             }
 
-            objectsStack->ClearObjects();
-            objectsStack->AddObject("ObjectStone");
+            objectsStack->clearObjects();
+            objectsStack->addObject("ObjectStone");
         }
     }
 }

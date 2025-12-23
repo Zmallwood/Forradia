@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto SkyRenderer::GetVSSource() const -> std::string
+    auto SkyRenderer::getVSSource() const -> std::string
     {
         return R"(
             #version 330 core

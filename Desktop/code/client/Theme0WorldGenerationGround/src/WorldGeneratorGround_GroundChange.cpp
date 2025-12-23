@@ -9,33 +9,35 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorGround::GenerateGrassBiomes() const -> void
+    auto WorldGeneratorGround::generateGrassBiomes() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Create distinct grass biomes with organic shapes.
         // Grass appears in areas with moderate elevation (not mountains, not deep valleys).
 
-        auto numGrassBiomes{25 + GetRandomInt(15)};
+        auto numGrassBiomes{25 + getRandomInt(15)};
 
         for (auto i = 0; i < numGrassBiomes; i++)
         {
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
+            auto xCenter{getRandomInt(worldAreaSize.width)};
+            auto yCenter{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(xCenter, yCenter)};
+            auto tile{worldArea->getTile(xCenter, yCenter)};
 
             // Check if this area is suitable for grass (moderate elevation, not water).
-            if (!tile || tile->GetElevation() > 100 || tile->GetGround() == Hash("GroundWater"))
+            if (!tile || tile->getElevation() > 100 || tile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
 
-            auto radius{static_cast<int>(6 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(10 * worldScaling))))};
-                                                            //
-            CreateBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
+            auto radius{static_cast<int>(
+                6 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(10 * worldScaling))))};
+            //
+            createBiomeCluster(xCenter, yCenter, radius, "GroundGrass");
         }
 
         // Also add grass in valleys and low-lying areas naturally.
@@ -44,7 +46,7 @@ namespace Forradia::Theme0
         {
             for (auto x = 0; x < worldAreaSize.width; x++)
             {
-                auto tile = worldArea->GetTile(x, y);
+                auto tile = worldArea->getTile(x, y);
 
                 if (!tile)
                 {
@@ -52,60 +54,62 @@ namespace Forradia::Theme0
                 }
 
                 // Grass naturally grows in low-lying areas that aren't water.
-                if (tile->GetElevation() <= 20 && tile->GetGround() != Hash("GroundWater") &&
-                    tile->GetGround() != Hash("GroundRock"))
+                if (tile->getElevation() <= 20 && tile->getGround() != hash("GroundWater") &&
+                    tile->getGround() != hash("GroundRock"))
                 {
-                    tile->SetGround("GroundGrass");
+                    tile->setGround("GroundGrass");
                 }
             }
         }
     }
 
-    auto WorldGeneratorGround::GenerateRockFormations() const -> void
+    auto WorldGeneratorGround::generateRockFormations() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
+        auto worldScaling{getWorldScaling()};
 
-        auto numRockFormations{20 + GetRandomInt(15)};
+        auto numRockFormations{20 + getRandomInt(15)};
 
         for (auto i = 0; i < numRockFormations; i++)
         {
-            auto xCenter{GetRandomInt(worldAreaSize.width)};
-            auto yCenter{GetRandomInt(worldAreaSize.height)};
+            auto xCenter{getRandomInt(worldAreaSize.width)};
+            auto yCenter{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(xCenter, yCenter)};
+            auto tile{worldArea->getTile(xCenter, yCenter)};
 
-            if (!tile || tile->GetElevation() < 80)
+            if (!tile || tile->getElevation() < 80)
             {
                 continue;
             }
 
             // Create rock formations on high elevation.
 
-            auto radius{static_cast<int>(2 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(5 * worldScaling))))};
+            auto radius{static_cast<int>(
+                2 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(5 * worldScaling))))};
 
             for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
                 for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    auto distance{GetDistance(x, y, xCenter, yCenter)};
+                    auto distance{getDistance(x, y, xCenter, yCenter)};
 
                     if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    auto rockTile{worldArea->GetTile(x, y)};
+                    auto rockTile{worldArea->getTile(x, y)};
 
                     // Skip if the tile is not found or the ground is water.
 
-                    if (!rockTile || rockTile->GetGround() == Hash("GroundWater"))
+                    if (!rockTile || rockTile->getGround() == hash("GroundWater"))
                     {
                         continue;
                     }
@@ -113,18 +117,18 @@ namespace Forradia::Theme0
                     // Place rocks on mountain peaks and high elevation areas. Higher elevation =
                     // more likely to be rock.
 
-                    auto elevation{rockTile->GetElevation()};
+                    auto elevation{rockTile->getElevation()};
 
                     if (elevation > 60)
                     {
-                        rockTile->SetGround("GroundRock");
+                        rockTile->setGround("GroundRock");
                     }
                 }
             }
         }
     }
 
-    auto WorldGeneratorGround::CreateBiomeCluster(int centerX, int centerY, int radius,
+    auto WorldGeneratorGround::createBiomeCluster(int centerX, int centerY, int radius,
                                                   std::string_view groundType) const -> void
     {
         // Enumerate all tiles in the radius.
@@ -132,21 +136,21 @@ namespace Forradia::Theme0
         {
             for (auto x = centerX - radius; x <= centerX + radius; x++)
             {
-                if (!GetWorldArea()->IsValidCoordinate(x, y))
+                if (!getWorldArea()->isValidCoordinate(x, y))
                 {
                     continue;
                 }
 
-                auto distance{GetDistance(x, y, centerX, centerY)};
+                auto distance{getDistance(x, y, centerX, centerY)};
 
                 if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                if (auto tile{GetWorldArea()->GetTile(x, y)})
+                if (auto tile{getWorldArea()->getTile(x, y)})
                 {
-                    tile->SetGround(groundType);
+                    tile->setGround(groundType);
                 }
             }
         }

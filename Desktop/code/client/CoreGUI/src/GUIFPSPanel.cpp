@@ -10,19 +10,19 @@
 
 namespace Forradia
 {
-    auto GUIFPSPanel::Initialize() -> void
+    auto GUIFPSPanel::initialize() -> void
     {
         m_fpsTextLabel =
             std::make_shared<GUILabel>("GUILabelFPSPanel", k_labelBounds.x, k_labelBounds.y,
                                        k_labelBounds.width, k_labelBounds.height);
-        this->AddChildComponent(dynamic_pointer_cast<GUIComponent, GUILabel>(m_fpsTextLabel));
+        this->addChildComponent(dynamic_pointer_cast<GUIComponent, GUILabel>(m_fpsTextLabel));
     }
 
-    auto GUIFPSPanel::UpdateDerived() -> void
+    auto GUIFPSPanel::updateDerived() -> void
     {
-        GUIMovablePanel::UpdateDerived();
+        GUIMovablePanel::updateDerived();
 
-        auto fps{FPSCounter::Instance().GetFPS()};
-        m_fpsTextLabel->SetText(fmt::format("FPS: {}", fps));
+        auto fps{FPSCounter::instance().getFPS()};
+        m_fpsTextLabel->setText(fmt::format("FPS: {}", fps));
     }
 }

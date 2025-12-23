@@ -7,47 +7,47 @@
 
 namespace Forradia::Theme0
 {
-    auto CalculateCurrentLevel(int experience) -> int
+    auto calculateCurrentLevel(int experience) -> int
     {
         auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
 
         return static_cast<int>(level);
     }
 
-    auto CalculateExperienceForLevel(int level) -> int
+    auto calculateExperienceForLevel(int level) -> int
     {
         auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
 
         return static_cast<int>(experience);
     }
 
-    auto CalculateExperienceDifferenceToNextLevel(int experience) -> int
+    auto calculateExperienceDifferenceToNextLevel(int experience) -> int
     {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+        auto currentLevel{calculateCurrentLevel(experience)};
         auto nextLevel{currentLevel + 1};
-        auto totalExperienceForCurrentLevel{CalculateExperienceForLevel(currentLevel)};
-        auto totalExperienceForNextLevel{CalculateExperienceForLevel(nextLevel)};
+        auto totalExperienceForCurrentLevel{calculateExperienceForLevel(currentLevel)};
+        auto totalExperienceForNextLevel{calculateExperienceForLevel(nextLevel)};
 
         return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
     }
 
-    auto CalculateExperienceRequiredForCurrentLevelStart(int experience) -> int
+    auto calculateExperienceRequiredForCurrentLevelStart(int experience) -> int
     {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+        auto currentLevel{calculateCurrentLevel(experience)};
 
-        return CalculateExperienceForLevel(currentLevel);
+        return calculateExperienceForLevel(currentLevel);
     }
 
-    auto CalculateExperienceGainedSinceLevelStart(int experience) -> int
+    auto calculateExperienceGainedSinceLevelStart(int experience) -> int
     {
-        return experience - CalculateExperienceRequiredForCurrentLevelStart(experience);
+        return experience - calculateExperienceRequiredForCurrentLevelStart(experience);
     }
 
-    auto CalculateFractionalExperienceProgress(int experience) -> float
+    auto calculateFractionalExperienceProgress(int experience) -> float
     {
         auto experienceGain{experience -
-                            CalculateExperienceRequiredForCurrentLevelStart(experience)};
-        auto experienceDiff{CalculateExperienceDifferenceToNextLevel(experience)};
+                            calculateExperienceRequiredForCurrentLevelStart(experience)};
+        auto experienceDiff{calculateExperienceDifferenceToNextLevel(experience)};
 
         return static_cast<float>(experienceGain) / experienceDiff;
     }

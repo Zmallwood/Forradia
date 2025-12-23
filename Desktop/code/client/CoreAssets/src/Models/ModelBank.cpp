@@ -13,12 +13,12 @@
 
 namespace Forradia
 {
-    auto ModelBank::Initialize() -> void
+    auto ModelBank::initialize() -> void
     {
-        ModelBank::LoadModels();
+        ModelBank::loadModels();
     }
 
-    auto ModelBank::LoadModels() -> void
+    auto ModelBank::loadModels() -> void
     {
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeModelsPath};
@@ -33,13 +33,13 @@ namespace Forradia
         // Iterate through the directory using the rdi.
         for (const auto &file : rdi)
         {
-            auto filePath{Replace(file.path().string(), '\\', '/')};
+            auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (GetFileExtension(filePath) == "obj" || GetFileExtension(filePath) == "dae")
+            if (getFileExtension(filePath) == "obj" || getFileExtension(filePath) == "dae")
             {
-                auto fileName{GetFileNameNoExtension(filePath)};
-                auto hash{Forradia::Hash(fileName)};
-                auto model{ModelBank::LoadSingleModel(filePath)};
+                auto fileName{getFileNameNoExtension(filePath)};
+                auto hash{Forradia::hash(fileName)};
+                auto model{ModelBank::loadSingleModel(filePath)};
 
                 m_models.insert({hash, model});
             }
@@ -47,7 +47,7 @@ namespace Forradia
     }
 
     // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
-    auto ModelBank::GetModel(int modelNameHash) const -> std::shared_ptr<Model>
+    auto ModelBank::getModel(int modelNameHash) const -> std::shared_ptr<Model>
     {
         if (m_models.contains(modelNameHash))
         {
@@ -57,7 +57,7 @@ namespace Forradia
         return nullptr;
     }
 
-    auto ModelBank::LoadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>
+    auto ModelBank::loadSingleModel(std::string_view filePath) -> std::shared_ptr<Model>
     {
         // Load the model from the file at the path.
         auto modelResult{std::make_shared<Model>(filePath)};

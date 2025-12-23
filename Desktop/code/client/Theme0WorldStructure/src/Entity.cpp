@@ -7,9 +7,9 @@
 
 namespace Forradia::Theme0
 {
-    auto Entity::Initialize() -> void
+    auto Entity::initialize() -> void
     {
         // Multiply movement speed by a random number between 0.5 and 2.
-        m_movementSpeed *= (GetRandomInt(3) + 1) / 2.0F;
+        m_movementSpeed *= (getRandomInt(3) + 1) / 2.0F;
     }
 }

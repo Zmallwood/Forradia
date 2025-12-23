@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto Model::ProcessNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) -> void
+    auto Model::processNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) -> void
     {
         // Iterate over all meshes in the node.
         for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -19,12 +19,12 @@ namespace Forradia
             transformation *= node->mTransformation;
 
             // Process the mesh.
-            m_meshes.push_back(ProcessMesh(mesh, scene, transformation));
+            m_meshes.push_back(processMesh(mesh, scene, transformation));
         }
 
         // Iterate over all child nodes.
         for (unsigned int i = 0; i < node->mNumChildren; i++)
             // Process the child node (recursively).
-            this->ProcessNode(node->mChildren[i], scene, transformation);
+            this->processNode(node->mChildren[i], scene, transformation);
     }
 }

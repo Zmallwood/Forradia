@@ -22,10 +22,10 @@ namespace Forradia::Theme0
          */
         PlayerObjectsInventory() : ContainedObjects(30)
         {
-            this->Initialize();
+            this->initialize();
         }
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
     };
 }

@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::DrawTiles(const std::vector<TileData> &tiles) -> void
+    auto GroundRenderer::drawTiles(const std::vector<TileData> &tiles) -> void
     {
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
         auto forceUpdate{false};
@@ -75,13 +75,13 @@ namespace Forradia
                     auto elevations{tile.elevations};
 
                     // Calculate the vertices without normals.
-                    auto verticesNoNormals{GroundRenderer::CalcTileVerticesNoNormals(
+                    auto verticesNoNormals{GroundRenderer::calcTileVerticesNoNormals(
                         xCoordinate, yCoordinate, tileSize, elevations,
                         {tile.color00, tile.color10, tile.color11, tile.color01})};
 
                     // Calculate the vertices with normals.
                     auto verticesVector{
-                        GroundRenderer::CalcTileVerticesWithNormals(verticesNoNormals)};
+                        GroundRenderer::calcTileVerticesWithNormals(verticesNoNormals)};
 
                     // Add vertices to the combined buffer.
                     combinedVertices.insert(combinedVertices.end(), verticesVector.begin(),
@@ -109,7 +109,7 @@ namespace Forradia
                 glBufferData(GL_ARRAY_BUFFER, sizeof(combinedVertices[0]) * combinedVertices.size(),
                              combinedVertices.data(), GL_STATIC_DRAW);
 
-                this->SetupAttributeLayout();
+                this->setupAttributeLayout();
 
                 group.combinedIndicesCount = combinedIndices.size();
 
@@ -128,8 +128,8 @@ namespace Forradia
 
         // Calculate the MVP matrix.
         auto modelMatrix{glm::mat4(1.0F)};
-        auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::GetProjectionMatrix()};
+        auto viewMatrix{Camera::instance().getViewMatrix()};
+        auto projectionMatrix{Camera::getProjectionMatrix()};
         auto mvpMatrix{projectionMatrix * viewMatrix * modelMatrix};
 
         // Upload the MVP matrix to the shader.
@@ -146,7 +146,7 @@ namespace Forradia
 
             auto group = entry.second;
 
-            auto textureID{TextureBank::Instance().GetTexture(imageNameHash)};
+            auto textureID{TextureBank::instance().getTexture(imageNameHash)};
             glBindTexture(GL_TEXTURE_2D, textureID);
 
             glBindVertexArray(group.vao);

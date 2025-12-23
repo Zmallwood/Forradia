@@ -23,7 +23,7 @@ namespace Forradia::Theme0
         Object(int objectNameHash) : m_type(objectNameHash)
         {
             // Initialize the object.
-            this->Initialize();
+            this->initialize();
         }
 
         /**
@@ -31,10 +31,10 @@ namespace Forradia::Theme0
 
             @param objectTypeName The object type by name.
          */
-        Object(std::string_view objectTypeName) : m_type(Hash(objectTypeName))
+        Object(std::string_view objectTypeName) : m_type(hash(objectTypeName))
         {
             // Initialize the object.
-            this->Initialize();
+            this->initialize();
         }
 
         /**
@@ -42,12 +42,12 @@ namespace Forradia::Theme0
 
             @return The object type as a hash.
          */
-        auto GetType() const
+        auto getType() const
         {
             return m_type;
         }
 
-        auto SetType(int value) -> void
+        auto setType(int value) -> void
         {
             m_type = value;
         }
@@ -57,18 +57,18 @@ namespace Forradia::Theme0
 
             @return The model scaling of the object.
          */
-        auto GetModelScaling() const
+        auto getModelScaling() const
         {
             return m_modelScaling;
         }
 
-        auto GetContainedObjects() const -> std::shared_ptr<ContainedObjects>
+        auto getContainedObjects() const -> std::shared_ptr<ContainedObjects>
         {
             return m_containedObjects;
         }
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
         int m_type{0};
         float m_modelScaling{1.0F};

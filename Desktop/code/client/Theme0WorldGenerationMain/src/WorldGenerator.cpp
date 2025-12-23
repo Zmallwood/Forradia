@@ -11,21 +11,21 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGenerator::GenerateNewWorld() -> void
+    auto WorldGenerator::generateNewWorld() -> void
     {
-        WorldGenerator::Prepare();
+        WorldGenerator::prepare();
 
-        WorldGeneratorGround::Instance().GenerateGroundWithElevation();
-        WorldGeneratorWater::Instance().GenerateWater();
-        WorldGeneratorObjects::Instance().GenerateObjects();
-        WorldGeneratorEntities::Instance().GenerateEntities();
+        WorldGeneratorGround::instance().generateGroundWithElevation();
+        WorldGeneratorWater::instance().generateWater();
+        WorldGeneratorObjects::instance().generateObjects();
+        WorldGeneratorEntities::instance().generateEntities();
     }
 
-    auto WorldGenerator::Prepare() -> void
+    auto WorldGenerator::prepare() -> void
     {
-        WorldGeneratorGround::Instance().Prepare();
-        WorldGeneratorWater::Instance().Prepare();
-        WorldGeneratorObjects::Instance().Prepare();
-        WorldGeneratorEntities::Instance().Prepare();
+        WorldGeneratorGround::instance().prepare();
+        WorldGeneratorWater::instance().prepare();
+        WorldGeneratorObjects::instance().prepare();
+        WorldGeneratorEntities::instance().prepare();
     }
 }

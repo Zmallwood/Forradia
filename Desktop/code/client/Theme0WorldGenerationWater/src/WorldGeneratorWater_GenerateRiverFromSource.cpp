@@ -10,11 +10,11 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorWater::GenerateRiverFromSource(int startX, int startY, int length) const
+    auto WorldGeneratorWater::generateRiverFromSource(int startX, int startY, int length) const
         -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{GetWorldAreaSize()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{getWorldAreaSize()};
 
         auto currentX{static_cast<float>(startX)};
         auto currentY{static_cast<float>(startY)};
@@ -23,7 +23,7 @@ namespace Forradia::Theme0
         for (auto step = 0; step < length && tilesPlaced < length; step++)
         {
             int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+                                    {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
 
             constexpr auto minRiverLength{20};
 
@@ -56,19 +56,19 @@ namespace Forradia::Theme0
             {
                 // Try to place water at the edge if valid.
 
-                auto edgeTile{worldArea->GetTile(x, y)};
+                auto edgeTile{worldArea->getTile(x, y)};
 
-                if (edgeTile && IsValidForWater(x, y))
+                if (edgeTile && isValidForWater(x, y))
                 {
-                    edgeTile->SetGround("GroundWater");
-                    edgeTile->SetWaterDepth(1);
+                    edgeTile->setGround("GroundWater");
+                    edgeTile->setWaterDepth(1);
                     tilesPlaced++;
                 }
 
                 break;
             }
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
             if (!tile)
             {
@@ -79,7 +79,7 @@ namespace Forradia::Theme0
 
                 // Continue in a random direction.
 
-                auto angle{GetRandomInt(360) * M_PI / 180.0F};
+                auto angle{getRandomInt(360) * M_PI / 180.0F};
 
                 currentX += static_cast<float>(std::cos(angle) * 1.0F);
                 currentY += static_cast<float>(std::sin(angle) * 1.0F);
@@ -87,12 +87,12 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto canPlace{IsValidForWater(x, y)};
+            auto canPlace{isValidForWater(x, y)};
 
             if (!canPlace && tilesPlaced < minRiverLength)
             {
                 // Allow water in slightly higher elevation areas if we haven't reached minimum.
-                if (tile->GetElevation() < 90 && tile->GetGround() != Hash("GroundRock"))
+                if (tile->getElevation() < 90 && tile->getGround() != hash("GroundRock"))
                 {
                     canPlace = true;
                 }
@@ -114,11 +114,11 @@ namespace Forradia::Theme0
                     auto adjacentX{x + directions[dir][0]};
                     auto adjacentY{y + directions[dir][1]};
 
-                    if (worldArea->IsValidCoordinate(adjacentX, adjacentY))
+                    if (worldArea->isValidCoordinate(adjacentX, adjacentY))
                     {
-                        auto adjacentTile{worldArea->GetTile(adjacentX, adjacentY)};
+                        auto adjacentTile{worldArea->getTile(adjacentX, adjacentY)};
 
-                        if (adjacentTile && IsValidForWater(adjacentX, adjacentY))
+                        if (adjacentTile && isValidForWater(adjacentX, adjacentY))
                         {
                             x = adjacentX;
                             y = adjacentY;
@@ -139,7 +139,7 @@ namespace Forradia::Theme0
                 {
                     // Continue in a random direction.
 
-                    auto angle{GetRandomInt(360) * M_PI / 180.0F};
+                    auto angle{getRandomInt(360) * M_PI / 180.0F};
 
                     currentX += static_cast<float>(std::cos(angle) * 1.0F);
                     currentY += static_cast<float>(std::sin(angle) * 1.0F);
@@ -150,30 +150,30 @@ namespace Forradia::Theme0
 
             // Place water - rivers preserve their elevation.
 
-            tile->SetGround("GroundWater");
-            tile->SetWaterDepth(1 + GetRandomInt(2));
+            tile->setGround("GroundWater");
+            tile->setWaterDepth(1 + getRandomInt(2));
 
             // Note: Rivers do NOT set elevation to 0 - they keep their natural elevation.
 
             tilesPlaced++;
 
             // Occasionally create wider river sections.
-            if (GetRandomInt(100) < 25)
+            if (getRandomInt(100) < 25)
             {
                 // Visit each neighboring tile and update elevation when needed.
-                for (auto & direction : directions)
+                for (auto &direction : directions)
                 {
                     auto adjX{x + direction[0]};
                     auto adjY{y + direction[1]};
 
-                    if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
+                    if (worldArea->isValidCoordinate(adjX, adjY) && isValidForWater(adjX, adjY))
                     {
-                        auto adjacentTile{worldArea->GetTile(adjX, adjY)};
+                        auto adjacentTile{worldArea->getTile(adjX, adjY)};
 
-                        if (adjacentTile && GetRandomInt(100) < 40)
+                        if (adjacentTile && getRandomInt(100) < 40)
                         {
-                            adjacentTile->SetGround("GroundWater");
-                            adjacentTile->SetWaterDepth(1);
+                            adjacentTile->setGround("GroundWater");
+                            adjacentTile->setWaterDepth(1);
                             // Rivers preserve elevation - no elevation change.
                         }
                     }
@@ -185,35 +185,35 @@ namespace Forradia::Theme0
 
                 auto bestDX{0.0F};
                 auto bestDY{0.0F};
-                auto bestElevation{tile->GetElevation()};
+                auto bestElevation{tile->getElevation()};
                 auto foundDownhill{false};
 
                 // First, try to find a downhill direction (preferred but not required).
-                for (auto & direction : directions)
+                for (auto &direction : directions)
                 {
                     auto checkX{x + direction[0]};
                     auto checkY{y + direction[1]};
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    if (!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
-                    auto checkTile{worldArea->GetTile(checkX, checkY)};
+                    auto checkTile{worldArea->getTile(checkX, checkY)};
 
                     if (!checkTile)
                     {
                         continue;
                     }
 
-                    auto canPlaceHere{IsValidForWater(checkX, checkY)};
+                    auto canPlaceHere{isValidForWater(checkX, checkY)};
 
                     // If the adjacent tile is not a valid water placement location, and we
                     // haven't placed enough tiles, try to place water here.
                     if (!canPlaceHere && tilesPlaced < minRiverLength)
                     {
-                        if (checkTile->GetElevation() < 90 &&
-                            checkTile->GetGround() != Hash("GroundRock"))
+                        if (checkTile->getElevation() < 90 &&
+                            checkTile->getGround() != hash("GroundRock"))
                         {
                             canPlaceHere = true;
                         }
@@ -224,7 +224,7 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    auto checkElevation{checkTile->GetElevation()};
+                    auto checkElevation{checkTile->getElevation()};
 
                     if (checkElevation < bestElevation)
                     {
@@ -259,23 +259,23 @@ namespace Forradia::Theme0
                     // Try to find a direction for 20 attempts.
                     while (!foundDirection && attempts < 20)
                     {
-                        auto dir{GetRandomInt(8)};
+                        auto dir{getRandomInt(8)};
 
                         auto checkX{x + directions[dir][0]};
                         auto checkY{y + directions[dir][1]};
 
-                        if (worldArea->IsValidCoordinate(checkX, checkY))
+                        if (worldArea->isValidCoordinate(checkX, checkY))
                         {
-                            if (auto checkTile{worldArea->GetTile(checkX, checkY)})
+                            if (auto checkTile{worldArea->getTile(checkX, checkY)})
                             {
-                                auto canPlaceHere{IsValidForWater(checkX, checkY)};
+                                auto canPlaceHere{isValidForWater(checkX, checkY)};
 
                                 // If the tile is not a valid water placement location, and we
                                 // haven't placed enough tiles, try to place water here.
                                 if (!canPlaceHere && tilesPlaced < minRiverLength)
                                 {
-                                    if (checkTile->GetElevation() < 90 &&
-                                        checkTile->GetGround() != Hash("GroundRock"))
+                                    if (checkTile->getElevation() < 90 &&
+                                        checkTile->getGround() != hash("GroundRock"))
                                     {
                                         canPlaceHere = true;
                                     }
@@ -297,7 +297,7 @@ namespace Forradia::Theme0
                     if (!foundDirection)
                     {
                         // Just move in a random direction.
-                        auto angle{GetRandomInt(360) * M_PI / 180.0F};
+                        auto angle{getRandomInt(360) * M_PI / 180.0F};
 
                         currentX += static_cast<float>(std::cos(angle) * 1.0F);
                         currentY += static_cast<float>(std::sin(angle) * 1.0F);
@@ -305,7 +305,7 @@ namespace Forradia::Theme0
                 }
 
                 // Stop if we've placed enough tiles and reached very low elevation.
-                if (tilesPlaced >= minRiverLength && tile->GetElevation() <= 5)
+                if (tilesPlaced >= minRiverLength && tile->getElevation() <= 5)
                 {
                     break;
                 }

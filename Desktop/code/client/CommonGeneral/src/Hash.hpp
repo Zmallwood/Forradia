@@ -16,7 +16,7 @@ namespace Forradia
         @param text Text to compute hash code for.
         @return Computed hash code.
      */
-    constexpr auto Hash(std::string_view text) -> int
+    constexpr auto hash(std::string_view text) -> int
     {
         // Use djb2 algorithm by Daniel J. Bernstein.
         constexpr unsigned long algorithmConstant{5381};

@@ -21,7 +21,7 @@ namespace Forradia
     class Image2DRenderer : public RendererBase
     {
       public:
-        static auto Instance() -> Image2DRenderer &
+        static auto instance() -> Image2DRenderer &
         {
             static Image2DRenderer instance;
             return instance;
@@ -40,7 +40,7 @@ namespace Forradia
         ~Image2DRenderer() override
         {
             // Clean up the renderer.
-            this->Cleanup();
+            this->cleanup();
         }
 
         /**
@@ -54,7 +54,7 @@ namespace Forradia
             @param height The height of the image.
             @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByName(int uniqueRenderID, std::string_view imageName, float xPos, float yPos,
+        auto drawImageByName(int uniqueRenderID, std::string_view imageName, float xPos, float yPos,
                              float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -68,7 +68,7 @@ namespace Forradia
             @param height The height of the image.
             @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByHash(int uniqueRenderID, int imageNameHash, float xPos, float yPos,
+        auto drawImageByHash(int uniqueRenderID, int imageNameHash, float xPos, float yPos,
                              float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -82,7 +82,7 @@ namespace Forradia
             @param height The height of the image.
             @param updateExisting Whether to update the existing operation.
          */
-        auto DrawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos, float yPos,
+        auto drawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos, float yPos,
                                   float width, float height, bool updateExisting = false) -> void;
 
         /**
@@ -95,7 +95,7 @@ namespace Forradia
             @param yPos The y coordinate of the image.
             @param width The width of the image.
          */
-        auto DrawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float xPos,
+        auto drawImageAutoHeight(int uniqueRenderID, std::string_view imageName, float xPos,
                                  float yPos, float width) -> void;
 
       protected:
@@ -104,28 +104,28 @@ namespace Forradia
 
             @return The vertex shader source.
          */
-        auto GetVSSource() const -> std::string override;
+        auto getVSSource() const -> std::string override;
 
         /**
             Returns the fragment shader source.
 
             @return The fragment shader source.
          */
-        auto GetFSSource() const -> std::string override;
+        auto getFSSource() const -> std::string override;
 
         /**
             Sets up the attribute layout.
          */
-        auto SetupAttributeLayout() const -> void override;
+        auto setupAttributeLayout() const -> void override;
 
       private:
-        auto Cleanup() const -> void;
+        auto cleanup() const -> void;
 
-        auto SetupState() const -> void;
+        auto setupState() const -> void;
 
-        auto static RestoreState() -> void;
+        auto static restoreState() -> void;
 
-        auto DrawingOperationIsCached(int uniqueRenderID) const -> bool;
+        auto drawingOperationIsCached(int uniqueRenderID) const -> bool;
 
         std::unordered_map<int, Image2DRenderingOperation> m_operationsCache{};
     };

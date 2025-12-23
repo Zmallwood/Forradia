@@ -19,14 +19,14 @@ namespace Forradia
         SDL_GL_DeleteContext(*m_context);
     }
 
-    auto GLDevice::Initialize() -> void
+    auto GLDevice::initialize() -> void
     {
-        this->SetupGL();
+        this->setupGL();
     }
 
-    auto GLDevice::SetupGL() -> void
+    auto GLDevice::setupGL() -> void
     {
-        auto window{SDLDevice::Instance().GetWindow()};
+        auto window{SDLDevice::instance().getWindow()};
 
         m_context = std::make_shared<SDL_GLContext>(SDL_GL_CreateContext(window.get()));
 
@@ -39,7 +39,7 @@ namespace Forradia
             auto errorString{
                 std::string(reinterpret_cast<const char *>(glewGetErrorString(status)))};
 
-            ThrowError("GLEW error: " + errorString);
+            throwError("GLEW error: " + errorString);
         }
 
         // Turn of vertical sync.

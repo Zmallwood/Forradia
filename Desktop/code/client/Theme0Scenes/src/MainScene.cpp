@@ -34,189 +34,189 @@
 
 namespace Forradia::Theme0
 {
-    auto MainScene::InitializeDerived() -> void
+    auto MainScene::initializeDerived() -> void
     {
-        GetGUI()->AddChildComponent(std::make_shared<GUIPlayerStatusBox>());
+        getGUI()->addChildComponent(std::make_shared<GUIPlayerStatusBox>());
 
-        GetGUI()->AddChildComponent(GUIChatBox::InstancePtr());
+        getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
         auto btnInventoryWindow{std::make_shared<GUIButton>(
             "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, SDLDevice::Instance().GetWindow()), "",
-            [] { GUIInventoryWindow::Instance().ToggleVisibility(); },
+            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            [] { GUIInventoryWindow::instance().toggleVisibility(); },
             "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
 
-        GetGUI()->AddChildComponent(btnInventoryWindow);
+        getGUI()->addChildComponent(btnInventoryWindow);
 
         auto btnSystemMenu{std::make_shared<GUIButton>(
             "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-            ConvertWidthToHeight(0.05f, SDLDevice::Instance().GetWindow()), "",
-            [] { GUISystemMenu::Instance().ToggleVisibility(); }, "GUIButtonSystemMenuBackground",
+            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
             "GUIButtonSystemMenuHoveredBackground")};
 
-        GetGUI()->AddChildComponent(btnSystemMenu);
+        getGUI()->addChildComponent(btnSystemMenu);
 
-        GetGUI()->AddChildComponent(GUISystemMenu::InstancePtr());
+        getGUI()->addChildComponent(GUISystemMenu::instancePtr());
 
-        GetGUI()->AddChildComponent(std::make_shared<GUIFPSPanel>());
+        getGUI()->addChildComponent(std::make_shared<GUIFPSPanel>());
 
-        GetGUI()->AddChildComponent(std::make_shared<GUIQuestPanel>());
+        getGUI()->addChildComponent(std::make_shared<GUIQuestPanel>());
 
-        GetGUI()->AddChildComponent(GUIExperienceBar::InstancePtr());
+        getGUI()->addChildComponent(GUIExperienceBar::instancePtr());
 
         auto rightHandSlotPanel{std::make_shared<GUIPanel>(
             "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
-            ConvertWidthToHeight(0.05F, SDLDevice::Instance().GetWindow()),
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
             "GUIRightHandSlotBackground")};
 
         auto leftHandSlotPanel{std::make_shared<GUIPanel>(
             "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
-            ConvertWidthToHeight(0.05F, SDLDevice::Instance().GetWindow()),
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
             "GUILeftHandSlotBackground")};
 
-        GetGUI()->AddChildComponent(rightHandSlotPanel);
+        getGUI()->addChildComponent(rightHandSlotPanel);
 
-        GetGUI()->AddChildComponent(leftHandSlotPanel);
+        getGUI()->addChildComponent(leftHandSlotPanel);
 
-        m_guiInteractionMenu = GUIInteractionMenu::InstancePtr();
+        m_guiInteractionMenu = GUIInteractionMenu::instancePtr();
     }
 
-    auto MainScene::OnEnterDerived() -> void
+    auto MainScene::onEnterDerived() -> void
     {
-        auto chatBoxHeight{GUIChatBox::Instance().GetBounds().height};
+        auto chatBoxHeight{GUIChatBox::instance().getBounds().height};
 
-        auto experienceBarHeight{GUIExperienceBar::Instance().GetBounds().height};
+        auto experienceBarHeight{GUIExperienceBar::instance().getBounds().height};
 
-        GUIChatBox::Instance().SetPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
+        GUIChatBox::instance().setPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
 
-        GUIChatBox::Instance().Print("You have entered the world.");
+        GUIChatBox::instance().print("You have entered the world.");
     }
 
-    auto MainScene::OnMouseDown(Uint8 mouseButton) -> void
+    auto MainScene::onMouseDown(Uint8 mouseButton) -> void
     {
-        GetGUI()->OnMouseDown(mouseButton);
+        getGUI()->onMouseDown(mouseButton);
 
-        if (GetGUI()->MouseHoveringGUI())
+        if (getGUI()->mouseHoveringGUI())
         {
             return;
         }
 
-        if (ObjectMoving::Instance().OnMouseDown(mouseButton))
+        if (ObjectMoving::instance().onMouseDown(mouseButton))
         {
             return;
         }
 
-        if (GUIInventoryWindow::Instance().OnMouseDown(mouseButton))
+        if (GUIInventoryWindow::instance().onMouseDown(mouseButton))
         {
             return;
         }
 
-        if (!GUIInventoryWindow::Instance().MouseHoveringGUI())
+        if (!GUIInventoryWindow::instance().mouseHoveringGUI())
         {
-            CameraRotator::Instance().OnMouseDown(mouseButton);
+            CameraRotator::instance().onMouseDown(mouseButton);
         }
     }
 
-    auto MainScene::OnMouseUp(Uint8 mouseButton, int clickSpeed) -> void
+    auto MainScene::onMouseUp(Uint8 mouseButton, int clickSpeed) -> void
     {
-        CameraRotator::Instance().OnMouseUp(mouseButton);
+        CameraRotator::instance().onMouseUp(mouseButton);
 
-        GetGUI()->OnMouseUp(mouseButton, clickSpeed);
+        getGUI()->onMouseUp(mouseButton, clickSpeed);
 
-        if (GetGUI()->MouseHoveringGUI())
+        if (getGUI()->mouseHoveringGUI())
         {
             return;
         }
 
         if (clickSpeed < 200)
         {
-            if (m_guiInteractionMenu->OnMouseUp(mouseButton, clickSpeed))
+            if (m_guiInteractionMenu->onMouseUp(mouseButton, clickSpeed))
             {
                 return;
             }
         }
 
-        if (ObjectMoving::Instance().OnMouseUp(mouseButton, clickSpeed))
+        if (ObjectMoving::instance().onMouseUp(mouseButton, clickSpeed))
         {
             return;
         }
 
-        if (GUIInventoryWindow::Instance().OnMouseUp(mouseButton, clickSpeed))
+        if (GUIInventoryWindow::instance().onMouseUp(mouseButton, clickSpeed))
         {
             return;
         }
 
-        if (!GUIInventoryWindow::Instance().MouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
+        if (!GUIInventoryWindow::instance().mouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
         {
-            UpdateSetPlayerDestination();
+            updateSetPlayerDestination();
         }
     }
 
-    auto MainScene::OnMouseWheel(int delta) -> void
+    auto MainScene::onMouseWheel(int delta) -> void
     {
-        Camera::Instance().AddZoomAmountDelta(delta);
+        Camera::instance().addZoomAmountDelta(delta);
     }
 
-    auto MainScene::OnKeyDown(SDL_Keycode key) -> void
+    auto MainScene::onKeyDown(SDL_Keycode key) -> void
     {
-        GetGUI()->OnKeyDown(key);
+        getGUI()->onKeyDown(key);
 
-        UpdateKeyboardMovementStart(key);
+        updateKeyboardMovementStart(key);
 
-        UpdateKeyboardActions(key);
+        updateKeyboardActions(key);
     }
 
-    auto MainScene::OnKeyUp(SDL_Keycode key) -> void
+    auto MainScene::onKeyUp(SDL_Keycode key) -> void
     {
-        GetGUI()->OnKeyUp(key);
+        getGUI()->onKeyUp(key);
 
-        UpdateKeyboardMovementStop();
+        updateKeyboardMovementStop();
     }
 
-    auto MainScene::OnTextInput(std::string_view text) -> void
+    auto MainScene::onTextInput(std::string_view text) -> void
     {
-        if (GUIChatBox::Instance().GetInputActive())
+        if (GUIChatBox::instance().getInputActive())
         {
-            GUIChatBox::Instance().AddTextInput(text);
+            GUIChatBox::instance().addTextInput(text);
         }
     }
 
-    auto MainScene::UpdateDerived() -> void
+    auto MainScene::updateDerived() -> void
     {
-        m_guiInteractionMenu->Update();
+        m_guiInteractionMenu->update();
 
-        GUIInventoryWindow::Instance().Update();
+        GUIInventoryWindow::instance().update();
 
-        UpdateMouseMovement();
+        updateMouseMovement();
 
-        UpdateEntitiesMovement();
+        updateEntitiesMovement();
 
-        TileHovering::Instance().Update();
+        TileHovering::instance().update();
 
-        Player::Instance().Update();
+        Player::instance().update();
 
-        CameraRotator::Instance().Update();
+        CameraRotator::instance().update();
 
-        UpdateActions();
+        updateActions();
 
-        QuestSystem::Instance().Update();
+        QuestSystem::instance().update();
     }
 
-    auto MainScene::Render() const -> void
+    auto MainScene::render() const -> void
     {
-        this->RenderDerived();
+        this->renderDerived();
 
-        GetGUI()->Render();
+        getGUI()->render();
 
-        GUIInventoryWindow::Instance().Render();
+        GUIInventoryWindow::instance().render();
 
-        ObjectMoving::Instance().Render();
+        ObjectMoving::instance().render();
 
-        m_guiInteractionMenu->Render();
+        m_guiInteractionMenu->render();
     }
 
-    auto MainScene::RenderDerived() const -> void
+    auto MainScene::renderDerived() const -> void
     {
-        WorldView::Instance().Render();
+        WorldView::instance().render();
     }
 }

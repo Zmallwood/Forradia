@@ -10,64 +10,64 @@
 
 namespace Forradia::Theme0
 {
-    auto UpdateMouseMovement() -> void
+    auto updateMouseMovement() -> void
     {
-        auto playerPosition{Player::Instance().GetPosition()};
-        auto destination{Player::Instance().GetDestination()};
+        auto playerPosition{Player::instance().getPosition()};
+        auto destination{Player::instance().getDestination()};
 
         if (destination == Point{-1, -1})
         {
             return;
         }
 
-        auto now{GetTicks()};
+        auto now{getTicks()};
 
-        if (now >= Player::Instance().GetTicksLastMovement() +
-                       InvertSpeed(Player::Instance().GetMovementSpeed()))
+        if (now >= Player::instance().getTicksLastMovement() +
+                       invertSpeed(Player::instance().getMovementSpeed()))
         {
             auto deltaX{destination.x - playerPosition.x};
             auto deltaY{destination.y - playerPosition.y};
 
             if (deltaX > 0 && deltaY < 0)
             {
-                Player::Instance().MoveNorthEast();
+                Player::instance().moveNorthEast();
             }
             else if (deltaX > 0 && deltaY > 0)
             {
-                Player::Instance().MoveSouthEast();
+                Player::instance().moveSouthEast();
             }
             else if (deltaX < 0 && deltaY > 0)
             {
-                Player::Instance().MoveSouthWest();
+                Player::instance().moveSouthWest();
             }
             else if (deltaX < 0 && deltaY < 0)
             {
-                Player::Instance().MoveNorthWest();
+                Player::instance().moveNorthWest();
             }
             else if (deltaX < 0)
             {
-                Player::Instance().MoveWest();
+                Player::instance().moveWest();
             }
             else if (deltaY < 0)
             {
-                Player::Instance().MoveNorth();
+                Player::instance().moveNorth();
             }
             else if (deltaX > 0)
             {
-                Player::Instance().MoveEast();
+                Player::instance().moveEast();
             }
             else if (deltaY > 0)
             {
-                Player::Instance().MoveSouth();
+                Player::instance().moveSouth();
             }
 
             if (destination == playerPosition)
             {
-                Player::Instance().SetDestination({-1, -1});
-                Player::Instance().StopMoving();
+                Player::instance().setDestination({-1, -1});
+                Player::instance().stopMoving();
             }
 
-            Player::Instance().SetTicksLastMovement(now);
+            Player::instance().setTicksLastMovement(now);
         }
     }
 }

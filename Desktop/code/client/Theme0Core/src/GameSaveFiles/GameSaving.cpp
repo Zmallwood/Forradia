@@ -17,9 +17,9 @@
 
 namespace Forradia::Theme0
 {
-    auto GameSaving::SaveGame() -> void
+    auto GameSaving::saveGame() -> void
     {
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
 
         if (!worldArea)
         {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         nlohmann::json jsonData;
 
         // Get world area size
-        auto worldAreaSize{worldArea->GetSize()};
+        auto worldAreaSize{worldArea->getSize()};
 
         jsonData["size"]["width"] = worldAreaSize.width;
         jsonData["size"]["height"] = worldAreaSize.height;
@@ -41,7 +41,7 @@ namespace Forradia::Theme0
         {
             for (auto xCoord = 0; xCoord < worldAreaSize.width; xCoord++)
             {
-                auto tile{worldArea->GetTile(xCoord, yCoord)};
+                auto tile{worldArea->getTile(xCoord, yCoord)};
 
                 if (!tile)
                 {
@@ -52,15 +52,15 @@ namespace Forradia::Theme0
 
                 tileJson["x"] = xCoord;
                 tileJson["y"] = yCoord;
-                tileJson["elevation"] = tile->GetElevation();
-                tileJson["ground"] = GetNameFromAnyHash(tile->GetGround());
+                tileJson["elevation"] = tile->getElevation();
+                tileJson["ground"] = getNameFromAnyHash(tile->getGround());
 
                 // Serialize objects on this tile
-                auto objectsStack{tile->GetObjectsStack()};
+                auto objectsStack{tile->getObjectsStack()};
 
                 if (objectsStack)
                 {
-                    auto objects{objectsStack->GetObjects()};
+                    auto objects{objectsStack->getObjects()};
                     tileJson["objects"] = nlohmann::json::array();
 
                     for (auto &object : objects)
@@ -69,20 +69,20 @@ namespace Forradia::Theme0
                         {
                             nlohmann::json objectJson;
 
-                            objectJson["type"] = GetNameFromAnyHash(object->GetType());
+                            objectJson["type"] = getNameFromAnyHash(object->getType());
                             tileJson["objects"].push_back(objectJson);
                         }
                     }
                 }
 
                 // Serialize entity on this tile
-                auto entity{tile->GetEntity()};
+                auto entity{tile->getEntity()};
 
                 if (entity)
                 {
                     nlohmann::json entityJson;
 
-                    entityJson["type"] = GetNameFromAnyHash(entity->GetType());
+                    entityJson["type"] = getNameFromAnyHash(entity->getType());
                     tileJson["entity"] = entityJson;
                 }
 
@@ -100,9 +100,9 @@ namespace Forradia::Theme0
         }
     }
 
-    auto GameSaving::LoadGame() -> void
+    auto GameSaving::loadGame() -> void
     {
-        GroundRenderer::Instance().Reset();
+        GroundRenderer::instance().reset();
 
         std::ifstream file("savegame.json");
 
@@ -123,22 +123,22 @@ namespace Forradia::Theme0
             return;
         }
 
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
 
         if (!worldArea)
         {
             return;
         }
 
-        worldArea->Reset();
+        worldArea->reset();
 
-        GameSaving::LoadTiles(worldArea, jsonData);
+        GameSaving::loadTiles(worldArea, jsonData);
     }
 
-    auto GameSaving::LoadTiles(const std::shared_ptr<WorldArea> &worldArea,
+    auto GameSaving::loadTiles(const std::shared_ptr<WorldArea> &worldArea,
                                const nlohmann::json &jsonData) -> void
     {
-        auto &entities{worldArea->GetEntitiesMirrorRef()};
+        auto &entities{worldArea->getEntitiesMirrorRef()};
 
         if (!jsonData.contains("tiles") || !jsonData["tiles"].is_array())
         {
@@ -155,12 +155,12 @@ namespace Forradia::Theme0
             auto xCoord{tileJson["x"].get<int>()};
             auto yCoord{tileJson["y"].get<int>()};
 
-            if (!worldArea->IsValidCoordinate(xCoord, yCoord))
+            if (!worldArea->isValidCoordinate(xCoord, yCoord))
             {
                 continue;
             }
 
-            auto tile{worldArea->GetTile(xCoord, yCoord)};
+            auto tile{worldArea->getTile(xCoord, yCoord)};
 
             if (!tile)
             {
@@ -170,39 +170,39 @@ namespace Forradia::Theme0
             if (tileJson.contains("elevation"))
             {
                 auto elevation{tileJson["elevation"].get<float>()};
-                tile->SetElevation(elevation);
+                tile->setElevation(elevation);
             }
 
             if (tileJson.contains("ground"))
             {
-                auto groundHash{Hash(tileJson["ground"].get<std::string>())};
-                tile->SetGround(groundHash);
+                auto groundHash{hash(tileJson["ground"].get<std::string>())};
+                tile->setGround(groundHash);
             }
 
-            GameSaving::LoadTileObjects(tile, tileJson);
+            GameSaving::loadTileObjects(tile, tileJson);
 
             if (tileJson.contains("entity"))
             {
-                auto entityType{Hash(tileJson["entity"]["type"].get<std::string>())};
+                auto entityType{hash(tileJson["entity"]["type"].get<std::string>())};
 
                 auto entity{std::make_shared<Entity>(entityType)};
 
-                tile->SetEntity(entity);
+                tile->setEntity(entity);
 
                 entities.insert({entity, {xCoord, yCoord}});
             }
         }
     }
 
-    auto GameSaving::LoadTileObjects(const std::shared_ptr<Tile> &tile,
+    auto GameSaving::loadTileObjects(const std::shared_ptr<Tile> &tile,
                                      const nlohmann::json &tileJson) -> void
     {
         if (tileJson.contains("objects") && tileJson["objects"].is_array())
         {
-            auto objectsStack{tile->GetObjectsStack()};
+            auto objectsStack{tile->getObjectsStack()};
             if (objectsStack)
             {
-                objectsStack->ClearObjects();
+                objectsStack->clearObjects();
 
                 for (const auto &objectJson : tileJson["objects"])
                 {
@@ -210,7 +210,7 @@ namespace Forradia::Theme0
                     {
                         auto objectType{objectJson["type"].get<std::string>()};
 
-                        objectsStack->AddObject(objectType);
+                        objectsStack->addObject(objectType);
                     }
                 }
             }

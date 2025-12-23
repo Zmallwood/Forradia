@@ -9,12 +9,12 @@
 
 namespace Forradia
 {
-    auto Randomize() -> void
+    auto randomize() -> void
     {
         srand(time(nullptr));
     }
 
-    auto GetRandomInt(int upperLimit) -> int
+    auto getRandomInt(int upperLimit) -> int
     {
         return rand() % upperLimit;
     }

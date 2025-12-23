@@ -20,9 +20,9 @@ namespace Forradia::Theme0
             this->description = "Try to walk somewhere, 3 times.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         int m_numStepsLeft{3};
@@ -37,9 +37,9 @@ namespace Forradia::Theme0
             this->description = "Try to gather some resources, 3 times.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         int m_numForagingsLeft{3};
@@ -54,9 +54,9 @@ namespace Forradia::Theme0
             this->description = "Craft a stone pickaxe.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         bool m_numBranchPicked{false};
@@ -72,9 +72,9 @@ namespace Forradia::Theme0
             this->description = "Craft a stone bowl.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         bool m_stonedMined{false};
@@ -89,9 +89,9 @@ namespace Forradia::Theme0
             this->description = "Craft a campfire.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numBranchesNeeded{8};
@@ -107,9 +107,9 @@ namespace Forradia::Theme0
             this->description = "Mine 10 stones from a boulder.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numStonesNeeded{10};
@@ -125,9 +125,9 @@ namespace Forradia::Theme0
             this->description = "Craft 10 stone slabs.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numSlabsNeeded{10};
@@ -143,9 +143,9 @@ namespace Forradia::Theme0
             this->description = "Lay 10 stone slabs.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numSlabsPlacedNeeded{10};
@@ -161,9 +161,9 @@ namespace Forradia::Theme0
             this->description = "Mine 10 stones from a boulder.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numMinedStonesNeeded{10};
@@ -179,9 +179,9 @@ namespace Forradia::Theme0
             this->description = "Craft 10 stone bricks.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
         constexpr static int k_numCraftedBricksNeeded{10};
@@ -197,12 +197,12 @@ namespace Forradia::Theme0
             this->description = "Build stone walls (and a door) around the stone slabs floor.";
         }
 
-        auto Update() -> void override;
+        auto update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
-        static auto GetNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
+        static auto getNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
     };
 
     class PlaceSpouseQuest : public Quest
@@ -213,9 +213,9 @@ namespace Forradia::Theme0
             this->name = "Place Spouse";
             this->description = "Invite your spouse to the house.";
         }
-        
-        auto Update() -> void override;
 
-        [[nodiscard]] auto GetStatus() const -> std::string override;
+        auto update() -> void override;
+
+        [[nodiscard]] auto getStatus() const -> std::string override;
     };
 }

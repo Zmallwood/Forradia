@@ -8,24 +8,24 @@
 
 namespace Forradia
 {
-    auto GUIWindow::Initialize(std::string_view uniqueName, std::string_view windowTitle) -> void
+    auto GUIWindow::initialize(std::string_view uniqueName, std::string_view windowTitle) -> void
     {
-        this->SetVisible(false);
+        this->setVisible(false);
 
         m_guiWindowTitleBar = std::make_shared<GUIWindowTitleBar>(uniqueName, *this, windowTitle);
-        this->AddChildComponent(m_guiWindowTitleBar);
+        this->addChildComponent(m_guiWindowTitleBar);
 
         s_positionOffset += k_positionOffsetChange;
     }
 
-    auto GUIWindow::RenderDerived() const -> void
+    auto GUIWindow::renderDerived() const -> void
     {
-        GUIMovablePanel::RenderDerived();
+        GUIMovablePanel::renderDerived();
     }
 
-    auto GUIWindow::GetDraggableArea() const -> RectF
+    auto GUIWindow::getDraggableArea() const -> RectF
     {
         // Return the bounds of the window title bar as the draggable area.
-        return m_guiWindowTitleBar->GetBounds();
+        return m_guiWindowTitleBar->getBounds();
     }
 }

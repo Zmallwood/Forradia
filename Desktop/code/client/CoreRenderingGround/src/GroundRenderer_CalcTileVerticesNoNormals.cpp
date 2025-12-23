@@ -8,7 +8,7 @@
 
 namespace Forradia
 {
-    auto GroundRenderer::CalcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
+    auto GroundRenderer::calcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
                                                    const std::vector<float> &elevations,
                                                    std::vector<Color> colors) -> std::vector<float>
     {
@@ -17,7 +17,7 @@ namespace Forradia
         auto width{tileSize};
         auto height{tileSize};
 
-        auto elevationHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
+        auto elevationHeight{Theme0::Theme0Properties::instance().getElevationHeight()};
 
         constexpr int k_elevIdx00{0};
         constexpr int k_elevIdx10{1};

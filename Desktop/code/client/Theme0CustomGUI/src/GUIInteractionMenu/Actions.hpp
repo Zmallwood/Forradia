@@ -18,10 +18,10 @@ namespace Forradia::Theme0
      */
     template <int N>
     // ReSharper disable once CppFunctionIsNotImplemented
-    auto GetAction() -> Action;
+    auto getAction() -> Action;
 
     /**
         Updates the actions which are timed actions.
      */
-    auto UpdateActions() -> void;
+    auto updateActions() -> void;
 }

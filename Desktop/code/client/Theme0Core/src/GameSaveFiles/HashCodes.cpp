@@ -10,90 +10,90 @@
 namespace Forradia::Theme0
 {
     template <>
-    auto GetNameFromHash<Hash("GroundGrass")>() -> std::string
+    auto getNameFromHash<hash("GroundGrass")>() -> std::string
     {
         return "GroundGrass";
     }
 
     template <>
-    auto GetNameFromHash<Hash("GroundWater")>() -> std::string
+    auto getNameFromHash<hash("GroundWater")>() -> std::string
     {
         return "GroundWater";
     }
 
     template <>
-    auto GetNameFromHash<Hash("GroundRock")>() -> std::string
+    auto getNameFromHash<hash("GroundRock")>() -> std::string
     {
         return "GroundRock";
     }
 
     template <>
-    auto GetNameFromHash<Hash("GroundDirt")>() -> std::string
+    auto getNameFromHash<hash("GroundDirt")>() -> std::string
     {
         return "GroundDirt";
     }
 
     template <>
-    auto GetNameFromHash<Hash("GroundCobbleStone")>() -> std::string
+    auto getNameFromHash<hash("GroundCobbleStone")>() -> std::string
     {
         return "GroundCobbleStone";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectFirTree")>() -> std::string
+    auto getNameFromHash<hash("ObjectFirTree")>() -> std::string
     {
         return "ObjectFirTree";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectBirchTree")>() -> std::string
+    auto getNameFromHash<hash("ObjectBirchTree")>() -> std::string
     {
         return "ObjectBirchTree";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectBush1")>() -> std::string
+    auto getNameFromHash<hash("ObjectBush1")>() -> std::string
     {
         return "ObjectBush1";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectBush2")>() -> std::string
+    auto getNameFromHash<hash("ObjectBush2")>() -> std::string
     {
         return "ObjectBush2";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectStoneBoulder")>() -> std::string
+    auto getNameFromHash<hash("ObjectStoneBoulder")>() -> std::string
     {
         return "ObjectStoneBoulder";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectPinkFlower")>() -> std::string
+    auto getNameFromHash<hash("ObjectPinkFlower")>() -> std::string
     {
         return "ObjectPinkFlower";
     }
 
     template <>
-    auto GetNameFromHash<Hash("ObjectTallGrass")>() -> std::string
+    auto getNameFromHash<hash("ObjectTallGrass")>() -> std::string
     {
         return "ObjectTallGrass";
     }
 
     template <>
-    auto GetNameFromHash<Hash("CreatureWhiteRabbit")>() -> std::string
+    auto getNameFromHash<hash("CreatureWhiteRabbit")>() -> std::string
     {
         return "CreatureWhiteRabbit";
     }
 
     template <>
-    auto GetNameFromHash<Hash("RobotMechWolf")>() -> std::string
+    auto getNameFromHash<hash("RobotMechWolf")>() -> std::string
     {
         return "RobotMechWolf";
     }
 
-    auto GetNameFromAnyHash(int hash) -> std::string
+    auto getNameFromAnyHash(int hashCode) -> std::string
     {
         static constexpr std::array<std::string_view, 14> names{
             "GroundGrass",         "GroundWater",        "GroundRock",       "GroundDirt",
@@ -103,12 +103,12 @@ namespace Forradia::Theme0
 
         auto nameResults = [&]<std::size_t... I>(std::index_sequence<I...>)
         {
-            return std::array<std::string, sizeof...(I)>{GetNameFromHash<Hash(names[I])>()...};
+            return std::array<std::string, sizeof...(I)>{getNameFromHash<hash(names[I])>()...};
         }(std::make_index_sequence<names.size()>());
 
         for (auto i = 0; i < names.size(); i++)
         {
-            if (hash == Hash(names[i]))
+            if (hashCode == hash(names[i]))
             {
                 return nameResults[i];
             }

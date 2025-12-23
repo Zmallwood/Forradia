@@ -9,7 +9,7 @@
 
 namespace Forradia::Theme0
 {
-    auto QuestSystem::Initialize() -> void
+    auto QuestSystem::initialize() -> void
     {
         m_quests.push_back(std::make_shared<MoveQuest>());
         m_quests.push_back(std::make_shared<ForageQuest>());
@@ -25,7 +25,7 @@ namespace Forradia::Theme0
         m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
     }
 
-    auto QuestSystem::Update() const -> void
+    auto QuestSystem::update() const -> void
     {
         for (auto &quest : this->m_quests)
         {
@@ -34,13 +34,13 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            quest->Update();
+            quest->update();
 
             return;
         }
     }
 
-    auto QuestSystem::GetCurrentQuestName() const -> std::string
+    auto QuestSystem::getCurrentQuestName() const -> std::string
     {
         for (const auto &quest : this->m_quests)
         {
@@ -55,7 +55,7 @@ namespace Forradia::Theme0
         return "No quest";
     }
 
-    auto QuestSystem::GetCurrentQuestDescription() const -> std::string
+    auto QuestSystem::getCurrentQuestDescription() const -> std::string
     {
         for (const auto &quest : this->m_quests)
         {
@@ -69,7 +69,7 @@ namespace Forradia::Theme0
         return "";
     }
 
-    auto QuestSystem::GetCurrentQuestStatus() const -> std::string
+    auto QuestSystem::getCurrentQuestStatus() const -> std::string
     {
         for (const auto &quest : this->m_quests)
         {
@@ -78,7 +78,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            return quest->GetStatus();
+            return quest->getStatus();
         }
 
         return "";

@@ -27,7 +27,7 @@ namespace Forradia
          */
         ShaderProgram(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
         {
-            this->Initialize(vertexShaderSource, fragmentShaderSource);
+            this->initialize(vertexShaderSource, fragmentShaderSource);
         }
 
         /**
@@ -35,7 +35,7 @@ namespace Forradia
          */
         ~ShaderProgram()
         {
-            this->Cleanup();
+            this->cleanup();
         }
 
         /**
@@ -43,21 +43,21 @@ namespace Forradia
 
             @return The program ID.
          */
-        [[nodiscard]] auto GetProgramID() const
+        [[nodiscard]] auto getProgramID() const
         {
             return m_programID;
         }
 
       private:
-        auto Initialize(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
+        auto initialize(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
             -> void;
 
-        auto Cleanup() -> void;
+        auto cleanup() -> void;
 
-        [[nodiscard]] static auto GetShader(std::string_view shaderSource, int shaderType)
+        [[nodiscard]] static auto getShader(std::string_view shaderSource, int shaderType)
             -> GLuint;
 
-        auto CreateProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
+        auto createProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint;
 
         GLuint m_programID{};
     };

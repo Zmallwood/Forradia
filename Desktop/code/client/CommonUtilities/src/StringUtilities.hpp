@@ -17,5 +17,5 @@ namespace Forradia
         @param replaceWith Character to replace with.
         @return Replaced string.
      */
-    auto Replace(std::string_view text, char replace, char replaceWith) -> std::string;
+    auto replace(std::string_view text, char replace, char replaceWith) -> std::string;
 }

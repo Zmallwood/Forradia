@@ -10,54 +10,56 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorObjects::GenerateObjects() const -> void
+    auto WorldGeneratorObjects::generateObjects() const -> void
     {
-        GenerateForests();
-        GenerateMeadows();
-        GenerateObjectsInBiomes();
+        generateForests();
+        generateMeadows();
+        generateObjectsInBiomes();
     }
 
-    auto WorldGeneratorObjects::GenerateForests() const -> void
+    auto WorldGeneratorObjects::generateForests() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto size{worldArea->GetSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto size{worldArea->getSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Create dense forest clusters.
-        auto numForests{15 + GetRandomInt(10)};
+        auto numForests{15 + getRandomInt(10)};
 
         for (auto i = 0; i < numForests; i++)
         {
-            auto centerX{GetRandomInt(size.width)};
-            auto centerY{GetRandomInt(size.height)};
+            auto centerX{getRandomInt(size.width)};
+            auto centerY{getRandomInt(size.height)};
 
-            auto tile{worldArea->GetTile(centerX, centerY)};
+            auto tile{worldArea->getTile(centerX, centerY)};
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
+            if (!tile || !isValidForFlora(centerX, centerY))
             {
                 continue;
             }
 
-            auto radius{static_cast<int>(8 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(12 * worldScaling))))};
-            auto treeDensity{0.1F + static_cast<float>(GetRandomInt(20)) / 100.0F};
+            auto radius{static_cast<int>(
+                8 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(12 * worldScaling))))};
+            auto treeDensity{0.1F + static_cast<float>(getRandomInt(20)) / 100.0F};
 
-            auto useFir{GetRandomInt(100) < 60};
+            auto useFir{getRandomInt(100) < 60};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    if (!IsValidForFlora(x, y))
+                    if (!isValidForFlora(x, y))
                     {
                         continue;
                     }
 
-                    auto distance{GetDistance(x, y, centerX, centerY)};
+                    auto distance{getDistance(x, y, centerX, centerY)};
 
                     if (distance > static_cast<float>(radius))
                     {
@@ -69,46 +71,46 @@ namespace Forradia::Theme0
                     // Calculate the local density. Higher density in center, lower at edges.
                     auto localDensity{treeDensity * (1.0F - normalizedDistance * 0.5F)};
 
-                    if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
+                    if (getRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
                     {
-                        if (auto forestTile{worldArea->GetTile(x, y)})
+                        if (auto forestTile{worldArea->getTile(x, y)})
                         {
-                            forestTile->GetObjectsStack()->ClearObjects();
+                            forestTile->getObjectsStack()->clearObjects();
 
                             // Check if the forest should use fir or birch trees.
                             if (useFir)
                             {
-                                if (GetRandomInt(100) < 70)
+                                if (getRandomInt(100) < 70)
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                    forestTile->getObjectsStack()->addObject("ObjectFirTree");
                                 }
                                 else
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                    forestTile->getObjectsStack()->addObject("ObjectBirchTree");
                                 }
                             }
                             else
                             {
-                                if (GetRandomInt(100) < 70)
+                                if (getRandomInt(100) < 70)
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBirchTree");
+                                    forestTile->getObjectsStack()->addObject("ObjectBirchTree");
                                 }
                                 else
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectFirTree");
+                                    forestTile->getObjectsStack()->addObject("ObjectFirTree");
                                 }
                             }
 
                             // Add undergrowth in forests.
-                            if (GetRandomInt(100) < 25)
+                            if (getRandomInt(100) < 25)
                             {
-                                if (GetRandomInt(100) < 50)
+                                if (getRandomInt(100) < 50)
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBush1");
+                                    forestTile->getObjectsStack()->addObject("ObjectBush1");
                                 }
                                 else
                                 {
-                                    forestTile->GetObjectsStack()->AddObject("ObjectBush2");
+                                    forestTile->getObjectsStack()->addObject("ObjectBush2");
                                 }
                             }
                         }
@@ -118,60 +120,62 @@ namespace Forradia::Theme0
         }
     }
 
-    auto WorldGeneratorObjects::GenerateMeadows() const -> void
+    auto WorldGeneratorObjects::generateMeadows() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto size{worldArea->GetSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto size{worldArea->getSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Create meadow areas with flowers and tall grass.
-        auto numMeadows{20 + GetRandomInt(15)};
+        auto numMeadows{20 + getRandomInt(15)};
 
         for (auto i = 0; i < numMeadows; i++)
         {
-            auto centerX{GetRandomInt(size.width)};
-            auto centerY{GetRandomInt(size.height)};
+            auto centerX{getRandomInt(size.width)};
+            auto centerY{getRandomInt(size.height)};
 
-            auto tile{worldArea->GetTile(centerX, centerY)};
+            auto tile{worldArea->getTile(centerX, centerY)};
 
-            if (!tile || !IsValidForFlora(centerX, centerY))
+            if (!tile || !isValidForFlora(centerX, centerY))
             {
                 continue;
             }
 
-            if (tile->GetGround() != Hash("GroundGrass"))
+            if (tile->getGround() != hash("GroundGrass"))
             {
                 continue;
             }
 
-            auto radius{static_cast<int>(5 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(8 * worldScaling))))};
+            auto radius{static_cast<int>(
+                5 * worldScaling +
+                static_cast<float>(getRandomInt(static_cast<int>(8 * worldScaling))))};
 
-            auto flowerDensity{0.15f + static_cast<float>(GetRandomInt(15)) / 100.0f};
+            auto flowerDensity{0.15f + static_cast<float>(getRandomInt(15)) / 100.0f};
 
-            auto grassDensity{0.2f + static_cast<float>(GetRandomInt(20)) / 100.0f};
+            auto grassDensity{0.2f + static_cast<float>(getRandomInt(20)) / 100.0f};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    if (!IsValidForFlora(x, y))
+                    if (!isValidForFlora(x, y))
                     {
                         continue;
                     }
 
-                    auto meadowTile{worldArea->GetTile(x, y)};
+                    auto meadowTile{worldArea->getTile(x, y)};
 
-                    if (!meadowTile || meadowTile->GetGround() != Hash("GroundGrass"))
+                    if (!meadowTile || meadowTile->getGround() != hash("GroundGrass"))
                     {
                         continue;
                     }
 
-                    auto distance{GetDistance(x, y, centerX, centerY)};
+                    auto distance{getDistance(x, y, centerX, centerY)};
 
                     if (distance > static_cast<float>(radius))
                     {
@@ -180,38 +184,38 @@ namespace Forradia::Theme0
 
                     // Add flowers.
 
-                    if (GetRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
+                    if (getRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
                     {
-                        meadowTile->GetObjectsStack()->ClearObjects();
-                        meadowTile->GetObjectsStack()->AddObject("ObjectPinkFlower");
+                        meadowTile->getObjectsStack()->clearObjects();
+                        meadowTile->getObjectsStack()->addObject("ObjectPinkFlower");
                     }
-                    else if (GetRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
+                    else if (getRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
                     {
-                        meadowTile->GetObjectsStack()->ClearObjects();
-                        meadowTile->GetObjectsStack()->AddObject("ObjectTallGrass");
+                        meadowTile->getObjectsStack()->clearObjects();
+                        meadowTile->getObjectsStack()->addObject("ObjectTallGrass");
                     }
                 }
             }
         }
     }
 
-    auto WorldGeneratorObjects::IsValidForFlora(int x, int y) const -> bool
+    auto WorldGeneratorObjects::isValidForFlora(int x, int y) const -> bool
     {
-        if (!GetWorldArea()->IsValidCoordinate(x, y))
+        if (!getWorldArea()->isValidCoordinate(x, y))
         {
             return false;
         }
 
-        auto tile = GetWorldArea()->GetTile(x, y);
+        auto tile = getWorldArea()->getTile(x, y);
 
         if (!tile)
         {
             return false;
         }
 
-        auto ground{tile->GetGround()};
+        auto ground{tile->getGround()};
 
-        return ground != Hash("GroundWater") && ground != Hash("GroundRock") &&
-               tile->GetWaterDepth() == 0;
+        return ground != hash("GroundWater") && ground != hash("GroundRock") &&
+               tile->getWaterDepth() == 0;
     }
 }

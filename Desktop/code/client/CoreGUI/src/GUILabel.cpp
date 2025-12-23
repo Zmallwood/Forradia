@@ -8,9 +8,9 @@
 
 namespace Forradia
 {
-    auto GUILabel::RenderDerived() const -> void
+    auto GUILabel::renderDerived() const -> void
     {
-        auto bounds{dynamic_cast<const GUIComponent *>(this)->GetBounds()};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
 
         // ReSharper disable once CppDFAConstantConditions
         if (m_centerAlign)
@@ -20,7 +20,7 @@ namespace Forradia
             bounds.y += bounds.height / 2;
         }
 
-        TextRenderer::Instance().DrawString(k_renderIDText, m_text, bounds.x, bounds.y,
+        TextRenderer::instance().drawString(k_renderIDText, m_text, bounds.x, bounds.y,
                                             FontSizes::_20, m_centerAlign, true, m_color);
     }
 }

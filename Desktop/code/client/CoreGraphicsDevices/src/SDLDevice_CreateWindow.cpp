@@ -9,9 +9,9 @@
 
 namespace Forradia
 {
-    auto SDLDevice::SetupSDLWindow() -> void
+    auto SDLDevice::setupSDLWindow() -> void
     {
-        auto screenSize{SDLDevice::GetScreenSize()};
+        auto screenSize{SDLDevice::getScreenSize()};
 
         m_window = std::shared_ptr<SDL_Window>(
             SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED,
@@ -21,7 +21,7 @@ namespace Forradia
 
         if (m_window == nullptr)
         {
-            ThrowError("Window could not be created. "
+            throwError("Window could not be created. "
                        "SDL Error: " +
                        std::string(SDL_GetError()));
         }

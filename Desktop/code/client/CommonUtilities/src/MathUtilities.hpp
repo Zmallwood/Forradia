@@ -17,6 +17,6 @@ namespace Forradia
         @param p3 Third point.
         @return Normal.
      */
-    auto ComputeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
+    auto computeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
         -> glm::vec3;
 }

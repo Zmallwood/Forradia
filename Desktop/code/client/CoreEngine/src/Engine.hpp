@@ -17,7 +17,7 @@ namespace Forradia
     class Engine
     {
       public:
-        static auto Instance() -> Engine &
+        static auto instance() -> Engine &
         {
             static Engine instance;
             return instance;
@@ -36,20 +36,20 @@ namespace Forradia
             @param gameWindowTitle The title of the game window.
             @param clearColor The color to clear the canvas with.
          */
-        static auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
+        static auto initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
         /**
             Runs the engine.
          */
-        auto Run() -> void;
+        auto run() -> void;
 
         /**
             Stops the engine.
          */
-        auto Stop() -> void;
+        auto stop() -> void;
 
       private:
-        auto HandleEvents() -> void;
+        auto handleEvents() -> void;
 
         bool m_running{true};
         int m_ticksLeftMouseButtonFired{0};

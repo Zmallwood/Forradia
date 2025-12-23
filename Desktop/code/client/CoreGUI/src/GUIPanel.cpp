@@ -8,11 +8,11 @@
 
 namespace Forradia
 {
-    auto GUIPanel::RenderDerived() const -> void
+    auto GUIPanel::renderDerived() const -> void
     {
-        auto bounds{this->GetBounds()};
+        auto bounds{this->getBounds()};
 
-        Image2DRenderer::Instance().DrawImageByName(k_renderIDBackground, m_backgroundImage,
+        Image2DRenderer::instance().drawImageByName(k_renderIDBackground, m_backgroundImage,
                                                     bounds.x, bounds.y, bounds.width, bounds.height,
                                                     true);
     }

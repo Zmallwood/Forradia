@@ -14,7 +14,7 @@ namespace Forradia::Theme0
       public:
         ContainedObjects(int numSlots)
         {
-            this->Initialize(numSlots);
+            this->initialize(numSlots);
         }
 
         /**
@@ -23,23 +23,23 @@ namespace Forradia::Theme0
             @param index The index of the object.
             @return The object.
          */
-        auto GetObject(int index) -> std::shared_ptr<Object>;
+        auto getObject(int index) -> std::shared_ptr<Object>;
 
-        auto GetObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>;
+        auto getObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>;
 
         /**
             Adds an object to the inventory.
 
             @param objectType The type of the object as a hash.
          */
-        auto AddObject(int objectType) -> void;
+        auto addObject(int objectType) -> void;
 
         /**
             Adds an object to the inventory.
 
             @param objectName The name of the object as a string.
          */
-        auto AddObject(std::string_view objectName) -> void;
+        auto addObject(std::string_view objectName) -> void;
 
         /**
             Counts the number of objects in the inventory that have the given name.
@@ -47,9 +47,9 @@ namespace Forradia::Theme0
             @param objectName The name of the object as a string.
             @return The number of objects in the inventory that have the given name.
          */
-        auto CountHasObject(std::string_view objectName) -> int;
+        auto countHasObject(std::string_view objectName) -> int;
 
-        auto CountHasObject(int objectHash) -> int;
+        auto countHasObject(int objectHash) -> int;
 
         /**
             Removes objects from the inventory with the specified name and count.
@@ -57,12 +57,12 @@ namespace Forradia::Theme0
             @param objectName The name of the object as a string.
             @param count How many objects of the given type to remove.
          */
-        auto RemoveObject(std::string_view objectName, int count = 1) -> void;
+        auto removeObject(std::string_view objectName, int count = 1) -> void;
 
-        auto Size() const -> int;
+        auto size() const -> int;
 
       private:
-        auto Initialize(int numSlots) -> void;
+        auto initialize(int numSlots) -> void;
 
         std::vector<std::shared_ptr<std::shared_ptr<Object>>> m_objects{};
     };

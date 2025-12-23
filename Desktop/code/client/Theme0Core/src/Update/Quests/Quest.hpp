@@ -20,12 +20,12 @@ namespace Forradia::Theme0
         /**
          * Updates the quest.
          */
-        virtual auto Update() -> void = 0;
+        virtual auto update() -> void = 0;
 
         /**
          * Gets the status of the quest.
          */
-        [[nodiscard]] virtual auto GetStatus() const -> std::string = 0;
+        [[nodiscard]] virtual auto getStatus() const -> std::string = 0;
 
         std::string name{};        ///< The name of the quest.
         std::string description{}; ///< The description of the quest.

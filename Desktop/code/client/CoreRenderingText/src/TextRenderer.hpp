@@ -22,7 +22,7 @@ namespace Forradia
     class TextRenderer
     {
       public:
-        static auto Instance() -> TextRenderer &
+        static auto instance() -> TextRenderer &
         {
             static TextRenderer instance;
             return instance;
@@ -39,7 +39,7 @@ namespace Forradia
         TextRenderer()
         {
             // Initialize SDL TTF and load fonts.
-            this->Initialize();
+            this->initialize();
         }
 
         /**
@@ -55,22 +55,22 @@ namespace Forradia
            exists.
             @param textColor The color to use for the text (default: WheatTransparent).
          */
-        auto DrawString(int uniqueRenderID, std::string_view text, float xPos, float yPos,
+        auto drawString(int uniqueRenderID, std::string_view text, float xPos, float yPos,
                         FontSizes fontSizes = FontSizes::_20, bool centerAlign = false,
                         bool forceRerender = false,
-                        Color textColor = Palette::GetColor<Hash("WheatTransparent")>()) const
+                        Color textColor = Palette::getColor<hash("WheatTransparent")>()) const
             -> void;
 
       private:
-        auto Initialize() -> void;
+        auto initialize() -> void;
 
-        auto AddFonts() -> void;
+        auto addFonts() -> void;
 
-        static auto SetupState() -> void;
+        static auto setupState() -> void;
 
-        static auto RestoreState() -> void;
+        static auto restoreState() -> void;
 
-        static auto DefineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void;
+        static auto defineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void;
 
         const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
         std::unordered_map<FontSizes, std::shared_ptr<TTF_Font>> m_fonts{};

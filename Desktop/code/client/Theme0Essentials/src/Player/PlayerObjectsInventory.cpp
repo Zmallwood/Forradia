@@ -7,15 +7,15 @@
 
 namespace Forradia::Theme0
 {
-    auto PlayerObjectsInventory::Initialize() -> void
+    auto PlayerObjectsInventory::initialize() -> void
     {
         // Add starting objects.
-        AddObject("ObjectRedApple");
-        AddObject("ObjectRedApple");
-        AddObject("ObjectPlasticAxe");
-        AddObject("ObjectChisel");
-        AddObject("ObjectHammer");
-        AddObject("ObjectDragonEgg");
-        AddObject("ObjectDragonEgg");
+        addObject("ObjectRedApple");
+        addObject("ObjectRedApple");
+        addObject("ObjectPlasticAxe");
+        addObject("ObjectChisel");
+        addObject("ObjectHammer");
+        addObject("ObjectDragonEgg");
+        addObject("ObjectDragonEgg");
     }
 }

@@ -9,11 +9,11 @@
 
 namespace Forradia::Theme0
 {
-    auto GUIQuestPanel::Initialize() -> void
+    auto GUIQuestPanel::initialize() -> void
     {
         m_questTitleTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f,
-                                       "Current Quest", false, Palette::GetColor<Hash("Yellow")>());
+                                       "Current Quest", false, Palette::getColor<hash("Yellow")>());
 
         m_questNameTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestNamePanel", 0.01f, 0.041f, 0.1f, 0.05f);
@@ -24,23 +24,23 @@ namespace Forradia::Theme0
         m_questStatusTextPanel =
             std::make_shared<GUILabel>("GUILabelQuestStatusPanel", 0.01f, 0.097f, 0.1f, 0.05f);
 
-        this->AddChildComponent(m_questTitleTextPanel);
-        this->AddChildComponent(m_questNameTextPanel);
-        this->AddChildComponent(m_questDescriptionTextPanel);
-        this->AddChildComponent(m_questStatusTextPanel);
+        this->addChildComponent(m_questTitleTextPanel);
+        this->addChildComponent(m_questNameTextPanel);
+        this->addChildComponent(m_questDescriptionTextPanel);
+        this->addChildComponent(m_questStatusTextPanel);
     }
 
-    auto GUIQuestPanel::UpdateDerived() -> void
+    auto GUIQuestPanel::updateDerived() -> void
     {
-        GUIMovablePanel::UpdateDerived();
+        GUIMovablePanel::updateDerived();
 
-        auto questName{QuestSystem::Instance().GetCurrentQuestName()};
-        m_questNameTextPanel->SetText(questName);
+        auto questName{QuestSystem::instance().getCurrentQuestName()};
+        m_questNameTextPanel->setText(questName);
 
-        auto questDescription{QuestSystem::Instance().GetCurrentQuestDescription()};
-        m_questDescriptionTextPanel->SetText(questDescription);
+        auto questDescription{QuestSystem::instance().getCurrentQuestDescription()};
+        m_questDescriptionTextPanel->setText(questDescription);
 
-        auto questStatus{QuestSystem::Instance().GetCurrentQuestStatus()};
-        m_questStatusTextPanel->SetText(questStatus);
+        auto questStatus{QuestSystem::instance().getCurrentQuestStatus()};
+        m_questStatusTextPanel->setText(questStatus);
     }
 }

@@ -10,9 +10,9 @@
 
 namespace Forradia
 {
-    auto ModelRenderer::Cleanup() -> void
+    auto ModelRenderer::cleanup() -> void
     {
-        for (auto &val: m_operationsCache | std::views::values)
+        for (auto &val : m_operationsCache | std::views::values)
         {
             glDeleteBuffers(1, &val.ibo);
             glDeleteBuffers(1, &val.vbo);
@@ -22,20 +22,20 @@ namespace Forradia
         m_operationsCache.clear();
     }
 
-    auto ModelRenderer::SetupState() const -> void
+    auto ModelRenderer::setupState() const -> void
     {
         glEnable(GL_DEPTH_TEST);
 
-        auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};
+        auto canvasSize{getCanvasSize(SDLDevice::instance().getWindow())};
 
         glViewport(0, 0, canvasSize.width, canvasSize.height);
-        glUseProgram(dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID());
+        glUseProgram(dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID());
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBlendFuncSeparate(GL_ONE, GL_ONE_MINUS_SRC_ALPHA, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
     }
 
-    auto ModelRenderer::RestoreState() -> void
+    auto ModelRenderer::restoreState() -> void
     {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -44,7 +44,7 @@ namespace Forradia
         glDisable(GL_DEPTH_TEST);
     }
 
-    auto ModelRenderer::SetupAttributeLayout() const -> void
+    auto ModelRenderer::setupAttributeLayout() const -> void
     {
         // Set up the attribute layout.
 
@@ -72,7 +72,7 @@ namespace Forradia
         glEnableVertexAttribArray(2);
     }
 
-    auto ModelRenderer::DrawingOperationIsCached(int modelNameHash) const -> bool
+    auto ModelRenderer::drawingOperationIsCached(int modelNameHash) const -> bool
     {
         // Check if the drawing operation is cached.
         //
@@ -82,16 +82,16 @@ namespace Forradia
         return m_operationsCache.contains(modelNameHash);
     }
 
-    auto ModelRenderer::InitializeDerived() -> void
+    auto ModelRenderer::initializeDerived() -> void
     {
         // Obtain the layout location for the uniform matrices.
 
         m_layoutLocationProjectionMatrix = glGetUniformLocation(
-            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(),
+            dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID(),
             "projection");
         m_layoutLocationViewMatrix = glGetUniformLocation(
-            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "view");
+            dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID(), "view");
         m_layoutLocationModelMatrix = glGetUniformLocation(
-            dynamic_cast<const RendererBase *>(this)->GetShaderProgram()->GetProgramID(), "model");
+            dynamic_cast<const RendererBase *>(this)->getShaderProgram()->getProgramID(), "model");
     }
 }

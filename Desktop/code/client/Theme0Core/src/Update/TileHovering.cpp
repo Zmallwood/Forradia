@@ -16,21 +16,21 @@
 
 namespace Forradia::Theme0
 {
-    auto TileHovering::Update() -> void
+    auto TileHovering::update() -> void
     {
-        TileHovering::DetermineHoveredCoordinateWithRayCasting();
+        TileHovering::determineHoveredCoordinateWithRayCasting();
     }
 
-    auto TileHovering::DetermineHoveredCoordinateWithRayCasting() -> void
+    auto TileHovering::determineHoveredCoordinateWithRayCasting() -> void
     {
-        TileHovering::IterateOverRenderedTiles();
+        TileHovering::iterateOverRenderedTiles();
     }
 
-    auto TileHovering::IterateOverRenderedTiles() -> void
+    auto TileHovering::iterateOverRenderedTiles() -> void
     {
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto playerPos{Player::Instance().GetPosition()};
-        auto gridSize{Theme0Properties::Instance().GetGridSize()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto playerPos{Player::instance().getPosition()};
+        auto gridSize{Theme0Properties::instance().getGridSize()};
 
         // Iterate over the rendered tiles.
         for (auto yPos = 0; yPos < gridSize.height; yPos++)
@@ -40,7 +40,7 @@ namespace Forradia::Theme0
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + yPos};
 
-                if (TileHovering::DetermineIfTileIsHovered(xCoordinate, yCoordinate))
+                if (TileHovering::determineIfTileIsHovered(xCoordinate, yCoordinate))
                 {
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
 
@@ -50,20 +50,20 @@ namespace Forradia::Theme0
         }
     }
 
-    auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool
+    auto TileHovering::determineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool
     {
-        auto result{TileHovering::CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
+        auto result{TileHovering::checkIfRayIntersectsTile(xCoordinate, yCoordinate)};
 
         return result;
     }
 
-    auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool
+    auto TileHovering::checkIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool
     {
-        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
         // Get camera matrices.
-        auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::GetProjectionMatrix()};
+        auto viewMatrix{Camera::instance().getViewMatrix()};
+        auto projectionMatrix{Camera::getProjectionMatrix()};
 
         // Get inverse view-projection matrix for unprojecting.
         auto inverseViewProjection{glm::inverse(projectionMatrix * viewMatrix)};
@@ -100,7 +100,7 @@ namespace Forradia::Theme0
         glm::vec3 rayDir{glm::normalize(glm::vec3(farPoint.x, farPoint.y, farPoint.z) - rayOrigin)};
 
         // Get the world area.
-        auto worldArea{World::Instance().GetCurrentWorldArea()};
+        auto worldArea{World::instance().getCurrentWorldArea()};
 
         // Get the tile coordinates.
         auto coordinateNW{Point{xCoordinate, yCoordinate}};
@@ -109,29 +109,29 @@ namespace Forradia::Theme0
         auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
 
         // Check if coordinates are valid.
-        if (!worldArea->IsValidCoordinate(coordinateNW) ||
-            !worldArea->IsValidCoordinate(coordinateNE) ||
-            !worldArea->IsValidCoordinate(coordinateSW) ||
-            !worldArea->IsValidCoordinate(coordinateSE))
+        if (!worldArea->isValidCoordinate(coordinateNW) ||
+            !worldArea->isValidCoordinate(coordinateNE) ||
+            !worldArea->isValidCoordinate(coordinateSW) ||
+            !worldArea->isValidCoordinate(coordinateSE))
         {
             return false;
         }
 
         // Get the tiles.
-        auto tileNW{worldArea->GetTile(coordinateNW)};
-        auto tileNE{worldArea->GetTile(coordinateNE)};
-        auto tileSW{worldArea->GetTile(coordinateSW)};
-        auto tileSE{worldArea->GetTile(coordinateSE)};
+        auto tileNW{worldArea->getTile(coordinateNW)};
+        auto tileNE{worldArea->getTile(coordinateNE)};
+        auto tileSW{worldArea->getTile(coordinateSW)};
+        auto tileSE{worldArea->getTile(coordinateSE)};
 
         // Get the elevations.
-        auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
-        auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
-        auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0F};
-        auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0F};
+        auto elevationNW{tileNW ? tileNW->getElevation() : 0.0F};
+        auto elevationNE{tileNE ? tileNE->getElevation() : 0.0F};
+        auto elevationSW{tileSW ? tileSW->getElevation() : 0.0F};
+        auto elevationSE{tileSE ? tileSE->getElevation() : 0.0F};
 
         // Get tile size and elevation height.
-        auto tileSize{Theme0Properties::Instance().GetTileSize()};
-        auto elevationHeight{Theme0Properties::Instance().GetElevationHeight()};
+        auto tileSize{Theme0Properties::instance().getTileSize()};
+        auto elevationHeight{Theme0Properties::instance().getElevationHeight()};
 
         // Convert tile coordinates to world space positions.
         auto worldXNW{xCoordinate * tileSize - tileSize / 2};

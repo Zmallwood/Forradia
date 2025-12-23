@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    auto Color::ToSDLColor() const -> SDL_Color
+    auto Color::toSDLColor() const -> SDL_Color
     {
         auto rUint{static_cast<Uint8>(r * k_maxColorComponentValue)};
         auto gUint{static_cast<Uint8>(g * k_maxColorComponentValue)};

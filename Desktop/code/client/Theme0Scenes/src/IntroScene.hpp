@@ -21,7 +21,7 @@ namespace Forradia::Theme0
     class IntroScene : public IScene
     {
       public:
-        static IntroScene &Instance()
+        static IntroScene &instance()
         {
             static IntroScene instance;
             return instance;
@@ -38,26 +38,26 @@ namespace Forradia::Theme0
         /**
             Initializes the intro scene.
          */
-        virtual auto InitializeDerived() -> void override;
+        virtual auto initializeDerived() -> void override;
 
         /**
             Called when the intro scene is entered.
          */
-        virtual auto OnEnterDerived() -> void override;
+        virtual auto onEnterDerived() -> void override;
 
-        virtual auto OnMouseDown(Uint8 mouseButton) -> void override;
+        virtual auto onMouseDown(Uint8 mouseButton) -> void override;
 
-        virtual auto OnKeyDown(SDL_Keycode key) -> void override;
+        virtual auto onKeyDown(SDL_Keycode key) -> void override;
 
         /**
             Called every frame.
          */
-        virtual auto UpdateDerived() -> void override;
+        virtual auto updateDerived() -> void override;
 
         /**
             Called every frame to render the scene.
          */
-        virtual auto RenderDerived() const -> void override;
+        virtual auto renderDerived() const -> void override;
 
       private:
         std::shared_ptr<GUIComponent> m_startText{};

@@ -16,29 +16,29 @@ namespace Forradia
         GUIScrollableArea(std::string_view uniqueName, float xPos, float yPos, float width,
                           float height)
             : GUIComponent(xPos, yPos, width, height),
-              k_renderIDUpArrow(Hash(uniqueName.data() + std::string("_UpArrow"))),
-              k_renderIDDownArrow(Hash(uniqueName.data() + std::string("_DownArrow"))),
-              k_renderIDSlider(Hash(uniqueName.data() + std::string("_Slider")))
+              k_renderIDUpArrow(hash(uniqueName.data() + std::string("_UpArrow"))),
+              k_renderIDDownArrow(hash(uniqueName.data() + std::string("_DownArrow"))),
+              k_renderIDSlider(hash(uniqueName.data() + std::string("_Slider")))
         {
         }
 
       protected:
-        auto OnMouseDown(Uint8 mouseButton) -> bool override;
+        auto onMouseDown(Uint8 mouseButton) -> bool override;
 
-        auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
+        auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
-        auto UpdateDerived() -> void override;
+        auto updateDerived() -> void override;
 
-        auto Render() const -> void override;
+        auto render() const -> void override;
 
-        auto GetBounds() const -> RectF override;
+        auto getBounds() const -> RectF override;
 
       private:
-        auto GetUpArrowBounds() const -> RectF;
+        auto getUpArrowBounds() const -> RectF;
 
-        auto GetDownArrowBounds() const -> RectF;
+        auto getDownArrowBounds() const -> RectF;
 
-        auto GetSliderBounds() const -> RectF;
+        auto getSliderBounds() const -> RectF;
 
         const int k_renderIDUpArrow{};
         const int k_renderIDDownArrow{};

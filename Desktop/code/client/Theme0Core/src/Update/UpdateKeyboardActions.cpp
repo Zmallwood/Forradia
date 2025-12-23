@@ -10,25 +10,25 @@
 
 namespace Forradia::Theme0
 {
-    auto UpdateKeyboardActions(SDL_Keycode key) -> void
+    auto updateKeyboardActions(SDL_Keycode key) -> void
     {
         if (key == SDLK_ESCAPE)
         {
-            GUISystemMenu::Instance().ToggleVisibility();
+            GUISystemMenu::instance().toggleVisibility();
         }
         else if (key == SDLK_b)
         {
-            GUIInventoryWindow::Instance().ToggleVisibility();
+            GUIInventoryWindow::instance().toggleVisibility();
         }
         else if (key == SDLK_RETURN)
         {
-            if (GUIChatBox::Instance().GetInputActive())
+            if (GUIChatBox::instance().getInputActive())
             {
-                GUIChatBox::Instance().SubmitInput();
+                GUIChatBox::instance().submitInput();
             }
             else
             {
-                GUIChatBox::Instance().EnableInput();
+                GUIChatBox::instance().enableInput();
             }
         }
     }

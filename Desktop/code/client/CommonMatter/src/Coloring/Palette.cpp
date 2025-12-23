@@ -9,7 +9,7 @@
 namespace Forradia::Palette
 {
     template <>
-    auto GetColor<Hash("Black")>() -> Color
+    auto getColor<hash("Black")>() -> Color
     {
         constexpr auto red{0.0F};
         constexpr auto green{0.0F};
@@ -20,7 +20,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("White")>() -> Color
+    auto getColor<hash("White")>() -> Color
     {
         constexpr auto red{1.0F};
         constexpr auto green{1.0F};
@@ -31,7 +31,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Wheat")>() -> Color
+    auto getColor<hash("Wheat")>() -> Color
     {
         constexpr auto red{1.0F};
         constexpr auto green{1.0F};
@@ -42,9 +42,9 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("WheatTransparent")>() -> Color
+    auto getColor<hash("WheatTransparent")>() -> Color
     {
-        auto color{GetColor<Hash("Wheat")>()};
+        auto color{getColor<hash("Wheat")>()};
 
         constexpr auto alpha{0.7F};
 
@@ -54,7 +54,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Yellow")>() -> Color
+    auto getColor<hash("Yellow")>() -> Color
     {
         constexpr auto red{1.0F};
         constexpr auto green{1.0F};
@@ -65,7 +65,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Gold")>() -> Color
+    auto getColor<hash("Gold")>() -> Color
     {
         constexpr auto red{1.0F};
         constexpr auto green{0.7F};
@@ -76,9 +76,9 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("YellowTransparent")>() -> Color
+    auto getColor<hash("YellowTransparent")>() -> Color
     {
-        auto color{GetColor<Hash("Yellow")>()};
+        auto color{getColor<hash("Yellow")>()};
 
         constexpr auto alpha{0.7F};
 
@@ -88,7 +88,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("MildBlue")>() -> Color
+    auto getColor<hash("MildBlue")>() -> Color
     {
         constexpr auto red{0.0F};
         constexpr auto green{0.4F};
@@ -99,9 +99,9 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("MildBlueTransparent")>() -> Color
+    auto getColor<hash("MildBlueTransparent")>() -> Color
     {
-        auto color{GetColor<Hash("MildBlue")>()};
+        auto color{getColor<hash("MildBlue")>()};
 
         constexpr auto alpha{0.3F};
 
@@ -111,7 +111,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("LightBlue")>() -> Color
+    auto getColor<hash("LightBlue")>() -> Color
     {
         constexpr auto red{0.4F};
         constexpr auto green{0.4F};
@@ -122,7 +122,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Red")>() -> Color
+    auto getColor<hash("Red")>() -> Color
     {
         constexpr auto red{1.0F};
         constexpr auto green{0.0F};
@@ -133,7 +133,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Green")>() -> Color
+    auto getColor<hash("Green")>() -> Color
     {
         constexpr auto red{0.0F};
         constexpr auto green{1.0F};
@@ -144,7 +144,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("DarkGreen")>() -> Color
+    auto getColor<hash("DarkGreen")>() -> Color
     {
         constexpr auto red{0.2F};
         constexpr auto green{0.7F};
@@ -155,7 +155,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Brown")>() -> Color
+    auto getColor<hash("Brown")>() -> Color
     {
         constexpr auto red{0.5F};
         constexpr auto green{0.25F};
@@ -166,7 +166,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("Gray")>() -> Color
+    auto getColor<hash("Gray")>() -> Color
     {
         constexpr auto red{0.5F};
         constexpr auto green{0.5F};
@@ -177,7 +177,7 @@ namespace Forradia::Palette
     }
 
     template <>
-    auto GetColor<Hash("DarkGray")>() -> Color
+    auto getColor<hash("DarkGray")>() -> Color
     {
         constexpr auto red{0.3F};
         constexpr auto green{0.3F};

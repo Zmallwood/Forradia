@@ -12,108 +12,108 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldGeneratorEntities::GenerateEntitiesInEcosystems() const -> void
+    auto WorldGeneratorEntities::generateEntitiesInEcosystems() const -> void
     {
-        auto worldArea{GetWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
-        auto worldScaling{GetWorldScaling()};
+        auto worldArea{getWorldArea()};
+        auto worldAreaSize{worldArea->getSize()};
+        auto worldScaling{getWorldScaling()};
 
         // Generate white rabbits - prefer areas near water and in meadows/grass.
-        auto numWhiteRabbits{180 * worldScaling + GetRandomInt(40 * worldScaling)};
+        auto numWhiteRabbits{180 * worldScaling + getRandomInt(40 * worldScaling)};
 
         for (auto i = 0; i < numWhiteRabbits; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
 
             auto prefersLocation{false};
 
-            if (tile->GetGround() == Hash("GroundGrass"))
+            if (tile->getGround() == hash("GroundGrass"))
             {
-                if (IsNearWater(x, y, 8))
+                if (isNearWater(x, y, 8))
                 {
-                    prefersLocation = GetRandomInt(100) < 40;
+                    prefersLocation = getRandomInt(100) < 40;
                 }
                 else
                 {
-                    prefersLocation = GetRandomInt(100) < 20;
+                    prefersLocation = getRandomInt(100) < 20;
                 }
             }
-            else if (tile->GetGround() == Hash("GroundDirt"))
+            else if (tile->getGround() == hash("GroundDirt"))
             {
-                prefersLocation = GetRandomInt(100) < 5;
+                prefersLocation = getRandomInt(100) < 5;
             }
 
             if (prefersLocation)
             {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
-                tile->SetEntity(newEntity);
+                tile->setEntity(newEntity);
 
-                worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
+                worldArea->getEntitiesMirrorRef().insert({tile->getEntity(), {x, y}});
             }
         }
 
-        auto numWolves{180 * worldScaling + GetRandomInt(40 * worldScaling)};
+        auto numWolves{180 * worldScaling + getRandomInt(40 * worldScaling)};
 
         for (auto i = 0; i < numWolves; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
 
             auto prefersLocation{false};
 
-            if (tile->GetGround() == Hash("GroundGrass"))
+            if (tile->getGround() == hash("GroundGrass"))
             {
-                if (IsNearWater(x, y, 8))
+                if (isNearWater(x, y, 8))
                 {
-                    prefersLocation = GetRandomInt(100) < 40;
+                    prefersLocation = getRandomInt(100) < 40;
                 }
                 else
                 {
-                    prefersLocation = GetRandomInt(100) < 20;
+                    prefersLocation = getRandomInt(100) < 20;
                 }
             }
-            else if (tile->GetGround() == Hash("GroundDirt"))
+            else if (tile->getGround() == hash("GroundDirt"))
             {
-                prefersLocation = GetRandomInt(100) < 5;
+                prefersLocation = getRandomInt(100) < 5;
             }
 
             if (prefersLocation)
             {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureWolf")};
 
-                tile->SetEntity(newEntity);
+                tile->setEntity(newEntity);
 
-                worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
+                worldArea->getEntitiesMirrorRef().insert({tile->getEntity(), {x, y}});
             }
         }
 
         // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
-        auto numRedBirds{120 * worldScaling + GetRandomInt(30 * worldScaling)};
+        auto numRedBirds{120 * worldScaling + getRandomInt(30 * worldScaling)};
 
         for (auto i = 0; i < numRedBirds; i++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->GetEntity() || tile->GetGround() == Hash("GroundWater"))
+            if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
@@ -133,25 +133,25 @@ namespace Forradia::Theme0
                         continue;
                     }
 
-                    if (!worldArea->IsValidCoordinate(checkX, checkY))
+                    if (!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
-                    auto nearbyTile{worldArea->GetTile(checkX, checkY)};
+                    auto nearbyTile{worldArea->getTile(checkX, checkY)};
 
                     if (nearbyTile)
                     {
-                        auto objectsStack{nearbyTile->GetObjectsStack()};
+                        auto objectsStack{nearbyTile->getObjectsStack()};
 
-                        if (objectsStack->GetSize() > 0)
+                        if (objectsStack->getSize() > 0)
                         {
-                            for (auto object : objectsStack->GetObjects())
+                            for (auto object : objectsStack->getObjects())
                             {
-                                auto objectType{object->GetType()};
+                                auto objectType{object->getType()};
 
-                                if (objectType == Hash("ObjectFirTree") ||
-                                    objectType == Hash("ObjectBirchTree"))
+                                if (objectType == hash("ObjectFirTree") ||
+                                    objectType == hash("ObjectBirchTree"))
                                 {
                                     nearbyTreesCount++;
                                     // Birds can perch on trees, so nearby trees increase
@@ -169,38 +169,38 @@ namespace Forradia::Theme0
             if (nearbyTreesCount >= 2)
             {
                 // High probability in forest areas.
-                prefersLocation = GetRandomInt(100) < 50;
+                prefersLocation = getRandomInt(100) < 50;
             }
             else if (nearbyTreesCount == 1)
             {
                 // Moderate probability near a single tree.
-                prefersLocation = GetRandomInt(100) < 25;
+                prefersLocation = getRandomInt(100) < 25;
             }
-            else if (tile->GetGround() == Hash("GroundGrass"))
+            else if (tile->getGround() == hash("GroundGrass"))
             {
                 // Lower probability in open grass areas (birds can still be found there).
-                prefersLocation = GetRandomInt(100) < 8;
+                prefersLocation = getRandomInt(100) < 8;
             }
 
             if (prefersLocation)
             {
                 auto newEntity{std::make_shared<Theme0::Entity>("CreatureRedBird")};
 
-                tile->SetEntity(newEntity);
+                tile->setEntity(newEntity);
 
-                worldArea->GetEntitiesMirrorRef().insert({tile->GetEntity(), {x, y}});
+                worldArea->getEntitiesMirrorRef().insert({tile->getEntity(), {x, y}});
             }
         }
 
         // Create creature clusters near water sources (more realistic ecosystems).
-        auto numWaterSources{15 + GetRandomInt(10)};
+        auto numWaterSources{15 + getRandomInt(10)};
 
         for (auto source = 0; source < numWaterSources; source++)
         {
-            auto x{GetRandomInt(worldAreaSize.width)};
-            auto y{GetRandomInt(worldAreaSize.height)};
+            auto x{getRandomInt(worldAreaSize.width)};
+            auto y{getRandomInt(worldAreaSize.height)};
 
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->getTile(x, y)};
 
             auto attempts{0};
 
@@ -212,12 +212,12 @@ namespace Forradia::Theme0
             // Find a water tile.
             while (attempts < 30 && !foundWater)
             {
-                waterX = GetRandomInt(worldAreaSize.width);
-                waterY = GetRandomInt(worldAreaSize.height);
+                waterX = getRandomInt(worldAreaSize.width);
+                waterY = getRandomInt(worldAreaSize.height);
 
-                auto tile{worldArea->GetTile(waterX, waterY)};
+                auto tile{worldArea->getTile(waterX, waterY)};
 
-                if (tile && tile->GetGround() == Hash("GroundWater"))
+                if (tile && tile->getGround() == hash("GroundWater"))
                 {
                     foundWater = true;
                 }
@@ -230,45 +230,45 @@ namespace Forradia::Theme0
 
             // Create a small ecosystem around the water source.
 
-            auto ecosystemRadius{5 + GetRandomInt(8)};
+            auto ecosystemRadius{5 + getRandomInt(8)};
 
-            auto creaturesInEcosystem{3 + GetRandomInt(5)};
+            auto creaturesInEcosystem{3 + getRandomInt(5)};
 
             // Generate the creatures in the ecosystem.
             for (auto c = 0; c < creaturesInEcosystem; c++)
             {
                 // Generate a random angle.
-                auto angle{GetRandomInt(360) * M_PI / 180.0F};
+                auto angle{getRandomInt(360) * M_PI / 180.0F};
 
                 // Generate a random distance.
-                auto distance{2 + GetRandomInt(ecosystemRadius)};
+                auto distance{2 + getRandomInt(ecosystemRadius)};
 
                 auto creatureX{waterX + static_cast<int>(std::cos(angle) * distance)};
                 auto creatureY{waterY + static_cast<int>(std::sin(angle) * distance)};
 
                 // If the coordinates are out of bounds.
-                if (!worldArea->IsValidCoordinate(creatureX, creatureY))
+                if (!worldArea->isValidCoordinate(creatureX, creatureY))
                 {
                     continue;
                 }
 
-                auto creatureTile{worldArea->GetTile(creatureX, creatureY)};
+                auto creatureTile{worldArea->getTile(creatureX, creatureY)};
 
-                if (!creatureTile || creatureTile->GetEntity() ||
-                    creatureTile->GetGround() == Hash("GroundWater"))
+                if (!creatureTile || creatureTile->getEntity() ||
+                    creatureTile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
 
                 // Prefer grass for the ecosystem.
-                if (creatureTile->GetGround() == Hash("GroundGrass") && GetRandomInt(100) < 60)
+                if (creatureTile->getGround() == hash("GroundGrass") && getRandomInt(100) < 60)
                 {
                     auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
 
-                    creatureTile->SetEntity(newEntity);
+                    creatureTile->setEntity(newEntity);
 
-                    worldArea->GetEntitiesMirrorRef().insert(
-                        {creatureTile->GetEntity(), {creatureX, creatureY}});
+                    worldArea->getEntitiesMirrorRef().insert(
+                        {creatureTile->getEntity(), {creatureX, creatureY}});
                 }
             }
         }

@@ -5,20 +5,20 @@
 
 // TODO: Go through the comments and make sure they are correct.
 
-#include "SkyRenderer.hpp"
 #include "3D/Camera.hpp"
+#include "SkyRenderer.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Forradia
 {
-    auto SkyRenderer::Render(const glm::vec3 &sunDirection, float sunElevation) -> void
+    auto SkyRenderer::render(const glm::vec3 &sunDirection, float sunElevation) -> void
     {
         if (!m_initialized)
         {
-            this->GenerateSkyDome();
+            this->generateSkyDome();
         }
 
-        this->SetupState();
+        this->setupState();
 
         glBindVertexArray(m_vao);
 
@@ -48,7 +48,7 @@ namespace Forradia
 
         modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0F, 0.0F, k_skyOffsetZ));
 
-        auto viewMatrix{Camera::Instance().GetViewMatrix()};
+        auto viewMatrix{Camera::instance().getViewMatrix()};
 
         // For sky rendering, extract only the rotation part of the view matrix.
         // The view matrix from glm::lookAt has translation in the 4th column.
@@ -72,7 +72,7 @@ namespace Forradia
 
         viewMatrixRotationOnly[3] = glm::vec4(0.0F, 0.0F, 0.0F, 1.0F);
 
-        auto projectionMatrix{Camera::GetProjectionMatrix()};
+        auto projectionMatrix{Camera::getProjectionMatrix()};
 
         auto mvpMatrix{projectionMatrix * viewMatrixRotationOnly * modelMatrix};
 
@@ -87,6 +87,6 @@ namespace Forradia
 
         glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->RestoreState();
+        this->restoreState();
     }
 }

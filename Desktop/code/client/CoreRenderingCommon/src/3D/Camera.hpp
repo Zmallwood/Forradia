@@ -18,7 +18,7 @@ namespace Forradia
     class Camera
     {
       public:
-        static auto Instance() -> Camera &
+        static auto instance() -> Camera &
         {
             static Camera instance;
             return instance;
@@ -35,40 +35,40 @@ namespace Forradia
 
             @return The view matrix.
          */
-        [[nodiscard]] auto GetViewMatrix() const -> glm::mat4;
+        [[nodiscard]] auto getViewMatrix() const -> glm::mat4;
 
         /**
             Get the projection matrix.
 
             @return The projection matrix.
          */
-        [[nodiscard]] static auto GetProjectionMatrix() -> glm::mat4;
+        [[nodiscard]] static auto getProjectionMatrix() -> glm::mat4;
 
         /**
             Add a delta to the current zoom amount.
 
             @param zoomAmountDelta The delta to add.
          */
-        auto AddZoomAmountDelta(float zoomAmountDelta) -> void;
+        auto addZoomAmountDelta(float zoomAmountDelta) -> void;
 
         /**
             Add a delta to the current rotation amount, sideways.
 
             @param rotationDeltaSideways The delta to add.
          */
-        auto AddRotationDeltaSideways(float rotationDeltaSideways) -> void;
+        auto addRotationDeltaSideways(float rotationDeltaSideways) -> void;
 
         /**
             Add a delta to the current rotation amount, vertical.
 
             @param rotationDeltaVertical The delta to add.
          */
-        auto AddRotationDeltaVertical(float rotationDeltaVertical) -> void;
+        auto addRotationDeltaVertical(float rotationDeltaVertical) -> void;
 
       private:
-        [[nodiscard]] auto GetPosition() const -> Point3F;
+        [[nodiscard]] auto getPosition() const -> Point3F;
 
-        [[nodiscard]] static auto GetLookAt() -> Point3F;
+        [[nodiscard]] static auto getLookAt() -> Point3F;
 
         const float k_minZoomAmount{2.0F};
         const float k_maxZoomAmount{30.0F};

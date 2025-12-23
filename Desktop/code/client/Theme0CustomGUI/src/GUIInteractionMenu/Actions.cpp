@@ -22,499 +22,501 @@ namespace Forradia::Theme0
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 
     template <>
-    auto GetAction<Hash("ActionLightUnlitCampfire")>() -> Action
+    auto getAction<hash("ActionLightUnlitCampfire")>() -> Action
     {
-        return {
-            .label = "Light campfire",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectUnlitCampfire")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                for (auto &object : objects)
+        return {.label = "Light campfire",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectUnlitCampfire")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    if ((*object)->GetType() == Hash("ObjectUnlitCampfire"))
+                    for (auto &object : objects)
                     {
-                        (*object)->SetType(Hash("ObjectLitCampfire"));
+                        if ((*object)->getType() == hash("ObjectUnlitCampfire"))
+                        {
+                            (*object)->setType(hash("ObjectLitCampfire"));
 
-                        GUIChatBox::Instance().Print("You light the campfire.");
+                            GUIChatBox::instance().print("You light the campfire.");
 
-                        break;
+                            break;
+                        }
                     }
-                }
-            }};
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionOpenCampfire")>() -> Action
+    auto getAction<hash("ActionOpenCampfire")>() -> Action
     {
-        return {
-            .label = "Open campfire",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectUnlitCampfire"), Hash("ObjectLitCampfire")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                for (auto &object : objects)
+        return {.label = "Open campfire",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectUnlitCampfire"), hash("ObjectLitCampfire")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    if ((*object)->GetType() == Hash("ObjectUnlitCampfire") ||
-                        (*object)->GetType() == Hash("ObjectLitCampfire"))
+                    for (auto &object : objects)
                     {
-                        auto mainScene{SceneManager::Instance().GetScene("MainScene")};
+                        if ((*object)->getType() == hash("ObjectUnlitCampfire") ||
+                            (*object)->getType() == hash("ObjectLitCampfire"))
+                        {
+                            auto mainScene{SceneManager::instance().getScene("MainScene")};
 
-                        auto gui{mainScene->GetGUI()};
+                            auto gui{mainScene->getGUI()};
 
-                        auto containerWindow{std::make_shared<GUIContainerWindow>(
-                            *(*object)->GetContainedObjects())};
+                            auto containerWindow{std::make_shared<GUIContainerWindow>(
+                                *(*object)->getContainedObjects())};
 
-                        containerWindow->SetVisible(true);
+                            containerWindow->setVisible(true);
 
-                        gui->AddChildComponent(containerWindow);
+                            gui->addChildComponent(containerWindow);
 
-                        GUIChatBox::Instance().Print("You open the campfire.");
+                            GUIChatBox::instance().print("You open the campfire.");
 
-                        break;
+                            break;
+                        }
                     }
-                }
-            }};
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionCraftUnlitCampfire")>() -> Action
+    auto getAction<hash("ActionCraftUnlitCampfire")>() -> Action
     {
-        return {
-            .label = "Craft campfire",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectBranch")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                auto numBranchesInInventory{inventory.CountHasObject("ObjectBranch")};
-
-                if (numBranchesInInventory < 8)
+        return {.label = "Craft campfire",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectBranch")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    GUIChatBox::Instance().Print("You need 8 branches to craft a campfire.");
-                }
-                else
-                {
-                    tile->GetObjectsStack()->AddObject("ObjectUnlitCampfire");
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.RemoveObject("ObjectBranch", 8);
+                    auto numBranchesInInventory{inventory.countHasObject("ObjectBranch")};
 
-                    GUIChatBox::Instance().Print("You craft a campfire.");
-
-                    Player::Instance().AddExperience(10);
-                    Player::Instance().AddPlayerAction(PlayerActionTypes::Craft,
-                                                       "ObjectUnlitCampfire");
-                }
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionOpenStoneBowl")>() -> Action
-    {
-        return {
-            .label = "Open stone bowl",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectStoneBowl")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                for (auto &object : objects)
-                {
-                    if ((*object)->GetType() == Hash("ObjectStoneBowl"))
+                    if (numBranchesInInventory < 8)
                     {
-                        auto mainScene{SceneManager::Instance().GetScene("MainScene")};
-
-                        auto gui{mainScene->GetGUI()};
-
-                        auto containerWindow{std::make_shared<GUIContainerWindow>(
-                            *(*object)->GetContainedObjects())};
-
-                        containerWindow->SetVisible(true);
-
-                        gui->AddChildComponent(containerWindow);
-
-                        GUIChatBox::Instance().Print("You open the stone bowl.");
-
-                        break;
+                        GUIChatBox::instance().print("You need 8 branches to craft a campfire.");
                     }
-                }
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionEatRedApple")>() -> Action
-    {
-        return {
-            .label = "Eat",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectRedApple")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                for (auto objPtr : objects)
-                {
-                    if ((*objPtr)->GetType() == Hash("ObjectRedApple"))
+                    else
                     {
+                        tile->getObjectsStack()->addObject("ObjectUnlitCampfire");
+
+                        inventory.removeObject("ObjectBranch", 8);
+
+                        GUIChatBox::instance().print("You craft a campfire.");
+
+                        Player::instance().addExperience(10);
+                        Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                           "ObjectUnlitCampfire");
                     }
-                }
-                GUIChatBox::Instance().Print("You eat a red apple.");
-            }};
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionCraftStoneBowl")>() -> Action
+    auto getAction<hash("ActionOpenStoneBowl")>() -> Action
     {
-        return {
-            .label = "Craft stone bowl",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStone");
-
-                inventory.AddObject("ObjectStoneBowl");
-
-                GUIChatBox::Instance().Print("You craft a stone bowl.");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionCraftStoneWallDoor")>() -> Action
-    {
-        return {
-            .label = "Craft stone wall door",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStoneBrick")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStoneBrick");
-
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
-
-                if (tile)
+        return {.label = "Open stone bowl",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectStoneBowl")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectStoneWallDoor");
-                }
+                    for (auto &object : objects)
+                    {
+                        if ((*object)->getType() == hash("ObjectStoneBowl"))
+                        {
+                            auto mainScene{SceneManager::instance().getScene("MainScene")};
 
-                GUIChatBox::Instance().Print("You craft a stone wall door.");
+                            auto gui{mainScene->getGUI()};
 
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWallDoor",
-                                                   clickedCoordinate);
-            }};
+                            auto containerWindow{std::make_shared<GUIContainerWindow>(
+                                *(*object)->getContainedObjects())};
+
+                            containerWindow->setVisible(true);
+
+                            gui->addChildComponent(containerWindow);
+
+                            GUIChatBox::instance().print("You open the stone bowl.");
+
+                            break;
+                        }
+                    }
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionCraftStoneWall")>() -> Action
+    auto getAction<hash("ActionEatRedApple")>() -> Action
     {
-        return {
-            .label = "Craft stone wall",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStoneBrick")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStoneBrick");
-
-                auto clickedCoordinate{GUIInteractionMenu::Instance().GetClickedCoordinate()};
-
-                if (tile)
+        return {.label = "Eat",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectRedApple")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->GetObjectsStack()->AddObject("ObjectStoneWall");
-                }
-
-                GUIChatBox::Instance().Print("You craft a stone wall.");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
-                                                   clickedCoordinate);
-            }};
+                    for (auto objPtr : objects)
+                    {
+                        if ((*objPtr)->getType() == hash("ObjectRedApple"))
+                        {
+                        }
+                    }
+                    GUIChatBox::instance().print("You eat a red apple.");
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionCraftStoneBrick")>() -> Action
+    auto getAction<hash("ActionCraftStoneBowl")>() -> Action
     {
-        return {
-            .label = "Craft stone brick",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStone");
-                inventory.AddObject("ObjectStoneBrick");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBrick");
-
-                GUIChatBox::Instance().Print("You craft a stone brick.");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionLayStoneSlab")>() -> Action
-    {
-        return {
-            .label = "Lay stone slab",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStoneSlab")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStoneSlab");
-
-                if (tile)
+        return {.label = "Craft stone bowl",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStone")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->SetGround(Hash("GroundStoneSlab"));
-                }
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                GUIChatBox::Instance().Print("You lay a stone slab.");
+                    inventory.removeObject("ObjectStone");
 
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
-            }};
+                    inventory.addObject("ObjectStoneBowl");
+
+                    GUIChatBox::instance().print("You craft a stone bowl.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionCraftStoneSlab")>() -> Action
+    auto getAction<hash("ActionCraftStoneWallDoor")>() -> Action
     {
-        return {
-            .label = "Craft stone slab",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectStone")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.RemoveObject("ObjectStone");
-                inventory.AddObject("ObjectStoneSlab");
-
-                GUIChatBox::Instance().Print("You craft a stone slab.");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionCraftStonePickaxe")>() -> Action
-    {
-        return {
-            .label = "Craft stone pickaxe",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectBranch"), Hash("ObjectStone")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                if (inventory.CountHasObject("ObjectBranch") < 1)
+        return {.label = "Craft stone wall door",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStoneBrick")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    GUIChatBox::Instance().Print(
-                        "You don't have any branches to craft a stone pickaxe.");
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    return;
-                }
+                    inventory.removeObject("ObjectStoneBrick");
 
-                if (inventory.CountHasObject("ObjectStone") < 1)
+                    auto clickedCoordinate{GUIInteractionMenu::instance().getClickedCoordinate()};
+
+                    if (tile)
+                    {
+                        tile->getObjectsStack()->addObject("ObjectStoneWallDoor");
+                    }
+
+                    GUIChatBox::instance().print("You craft a stone wall door.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStoneWallDoor", clickedCoordinate);
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionCraftStoneWall")>() -> Action
+    {
+        return {.label = "Craft stone wall",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStoneBrick")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    GUIChatBox::Instance().Print(
-                        "You don't have any stones to craft a stone pickaxe.");
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    return;
-                }
+                    inventory.removeObject("ObjectStoneBrick");
 
-                inventory.RemoveObject("ObjectBranch");
-                inventory.RemoveObject("ObjectStone");
-                inventory.AddObject("ObjectStonePickaxe");
+                    auto clickedCoordinate{GUIInteractionMenu::instance().getClickedCoordinate()};
 
-                GUIChatBox::Instance().Print("You craft a stone pickaxe.");
+                    if (tile)
+                    {
+                        tile->getObjectsStack()->addObject("ObjectStoneWall");
+                    }
 
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Craft, "ObjectStonePickaxe");
-            }};
+                    GUIChatBox::instance().print("You craft a stone wall.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
+                                                       clickedCoordinate);
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionMineStone")>() -> Action
+    auto getAction<hash("ActionCraftStoneBrick")>() -> Action
     {
-        return {
-            .label = "Mine stone",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectStoneBoulder")},
-            .objectsInInventory = {Hash("ObjectStonePickaxe")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.AddObject("ObjectStone");
-
-                GUIChatBox::Instance().Print("You mine some stone.");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionLayCobbleStone")>() -> Action
-    {
-        return {
-            .label = "Lay cobble stone",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {Hash("ObjectSmallStones")},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                auto numSmallStonesInInventory{inventory.CountHasObject("ObjectSmallStones")};
-
-                if (numSmallStonesInInventory <= 0)
+        return {.label = "Craft stone brick",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStone")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    GUIChatBox::Instance().Print("You don't have any small stones to lay.");
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    return;
-                }
+                    inventory.removeObject("ObjectStone");
+                    inventory.addObject("ObjectStoneBrick");
 
-                inventory.RemoveObject("ObjectSmallStones");
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStoneBrick");
 
-                if (tile)
+                    GUIChatBox::instance().print("You craft a stone brick.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionLayStoneSlab")>() -> Action
+    {
+        return {.label = "Lay stone slab",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStoneSlab")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->SetGround(Hash("GroundCobbleStone"));
-                }
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                GUIChatBox::Instance().Print("You lay some cobble stone.");
-            }};
+                    inventory.removeObject("ObjectStoneSlab");
+
+                    if (tile)
+                    {
+                        tile->setGround(hash("GroundStoneSlab"));
+                    }
+
+                    GUIChatBox::instance().print("You lay a stone slab.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionPlowLand")>() -> Action
+    auto getAction<hash("ActionCraftStoneSlab")>() -> Action
     {
-        return {
-            .label = "Plow land",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                if (tile)
+        return {.label = "Craft stone slab",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStone")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->SetGround(Hash("GroundPlowedLand"));
-                }
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                GUIChatBox::Instance().Print("You plow the land.");
-            }};
+                    inventory.removeObject("ObjectStone");
+                    inventory.addObject("ObjectStoneSlab");
+
+                    GUIChatBox::instance().print("You craft a stone slab.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
+                }};
     }
 
     template <>
-    auto GetAction<Hash("ActionStop")>() -> Action
+    auto getAction<hash("ActionCraftStonePickaxe")>() -> Action
     {
-        return {
-            .label = "Stop",
-            .groundMatches = {},
-            .objectMatches = {},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                s_timedActions.clear();
-
-                GUIChatBox::Instance().Print("You stopped current action.");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionForage")>() -> Action
-    {
-        return {
-            .label = "Forage",
-            .groundMatches = {Hash("GroundGrass")},
-            .objectMatches = {},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.AddObject("ObjectBlueberries");
-
-                GUIChatBox::Instance().Print("Foraging... You found some "
-                                             "blueberries!");
-
-                Player::Instance().AddExperience(10);
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Forage);
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionPickBranch")>() -> Action
-    {
-        return {
-            .label = "Pick branch",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectFirTree"), Hash("ObjectBirchTree")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
-
-                inventory.AddObject("ObjectBranch");
-
-                GUIChatBox::Instance().Print("You picked a branch!");
-
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
-            }};
-    }
-
-    template <>
-    auto GetAction<Hash("ActionPickStone")>() -> Action
-    {
-        return {
-            .label = "Pick stone",
-            .groundMatches = {},
-            .objectMatches = {Hash("ObjectStone")},
-            .objectsInInventory = {},
-            .action = [](const std::shared_ptr<Tile>& tile, const std::vector<std::shared_ptr<Object> *> &objects)
-            {
-                if (tile)
+        return {.label = "Craft stone pickaxe",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectBranch"), hash("ObjectStone")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    tile->GetObjectsStack()->RemoveOneOfObjectOfType("ObjectStone");
-                }
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                auto &inventory{Player::Instance().GetObjectsInventoryRef()};
+                    if (inventory.countHasObject("ObjectBranch") < 1)
+                    {
+                        GUIChatBox::instance().print(
+                            "You don't have any branches to craft a stone pickaxe.");
 
-                inventory.AddObject("ObjectStone");
+                        return;
+                    }
 
-                GUIChatBox::Instance().Print("You picked a stone!");
+                    if (inventory.countHasObject("ObjectStone") < 1)
+                    {
+                        GUIChatBox::instance().print(
+                            "You don't have any stones to craft a stone pickaxe.");
 
-                Player::Instance().AddPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
-            }};
+                        return;
+                    }
+
+                    inventory.removeObject("ObjectBranch");
+                    inventory.removeObject("ObjectStone");
+                    inventory.addObject("ObjectStonePickaxe");
+
+                    GUIChatBox::instance().print("You craft a stone pickaxe.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                       "ObjectStonePickaxe");
+                }};
     }
 
-    auto UpdateActions() -> void
+    template <>
+    auto getAction<hash("ActionMineStone")>() -> Action
+    {
+        return {.label = "Mine stone",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectStoneBoulder")},
+                .objectsInInventory = {hash("ObjectStonePickaxe")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.addObject("ObjectStone");
+
+                    GUIChatBox::instance().print("You mine some stone.");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionLayCobbleStone")>() -> Action
+    {
+        return {.label = "Lay cobble stone",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectSmallStones")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    auto numSmallStonesInInventory{inventory.countHasObject("ObjectSmallStones")};
+
+                    if (numSmallStonesInInventory <= 0)
+                    {
+                        GUIChatBox::instance().print("You don't have any small stones to lay.");
+
+                        return;
+                    }
+
+                    inventory.removeObject("ObjectSmallStones");
+
+                    if (tile)
+                    {
+                        tile->setGround(hash("GroundCobbleStone"));
+                    }
+
+                    GUIChatBox::instance().print("You lay some cobble stone.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionPlowLand")>() -> Action
+    {
+        return {.label = "Plow land",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    if (tile)
+                    {
+                        tile->setGround(hash("GroundPlowedLand"));
+                    }
+
+                    GUIChatBox::instance().print("You plow the land.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionStop")>() -> Action
+    {
+        return {.label = "Stop",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    s_timedActions.clear();
+
+                    GUIChatBox::instance().print("You stopped current action.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionForage")>() -> Action
+    {
+        return {.label = "Forage",
+                .groundMatches = {hash("GroundGrass")},
+                .objectMatches = {},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.addObject("ObjectBlueberries");
+
+                    GUIChatBox::instance().print("Foraging... You found some "
+                                                 "blueberries!");
+
+                    Player::instance().addExperience(10);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Forage);
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionPickBranch")>() -> Action
+    {
+        return {.label = "Pick branch",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectFirTree"), hash("ObjectBirchTree")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.addObject("ObjectBranch");
+
+                    GUIChatBox::instance().print("You picked a branch!");
+
+                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionPickStone")>() -> Action
+    {
+        return {.label = "Pick stone",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectStone")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    if (tile)
+                    {
+                        tile->getObjectsStack()->removeOneOfObjectOfType("ObjectStone");
+                    }
+
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.addObject("ObjectStone");
+
+                    GUIChatBox::instance().print("You picked a stone!");
+
+                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
+                }};
+    }
+
+    auto updateActions() -> void
     {
         for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
         {
-            if (GetTicks() > it->first)
+            if (getTicks() > it->first)
             {
                 it->second();
                 it = s_timedActions.erase(it);

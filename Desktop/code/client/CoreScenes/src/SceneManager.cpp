@@ -4,95 +4,95 @@
  *********************************************************************/
 
 #include "SceneManager.hpp"
-#include "IScene.hpp"
 #include "Hash.hpp"
+#include "IScene.hpp"
 
 namespace Forradia
 {
-    auto SceneManager::AddScene(std::string_view sceneName, IScene &scene) -> void
+    auto SceneManager::addScene(std::string_view sceneName, IScene &scene) -> void
     {
-        scene.Initialize();
+        scene.initialize();
 
-        m_scenes.insert({Hash(sceneName), scene});
+        m_scenes.insert({hash(sceneName), scene});
     }
 
-    auto SceneManager::GoToScene(std::string_view sceneName) -> void
+    auto SceneManager::goToScene(std::string_view sceneName) -> void
     {
-        m_currentScene = Hash(sceneName);
+        m_currentScene = hash(sceneName);
 
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnEnter();
+            m_scenes.at(m_currentScene).onEnter();
         }
     }
 
-    auto SceneManager::OnMouseDownCurrentScene(Uint8 mouseButton) -> void
+    auto SceneManager::onMouseDownCurrentScene(Uint8 mouseButton) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnMouseDown(mouseButton);
+            m_scenes.at(m_currentScene).onMouseDown(mouseButton);
         }
     }
 
-    auto SceneManager::OnMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void
+    auto SceneManager::onMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnMouseUp(mouseButton, clickSpeed);
+            m_scenes.at(m_currentScene).onMouseUp(mouseButton, clickSpeed);
         }
     }
 
-    auto SceneManager::OnMouseWheelCurrentScene(int delta) -> void
+    auto SceneManager::onMouseWheelCurrentScene(int delta) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnMouseWheel(delta);
+            m_scenes.at(m_currentScene).onMouseWheel(delta);
         }
     }
 
-    auto SceneManager::OnKeyDownCurrentScene(SDL_Keycode key) -> void
+    auto SceneManager::onKeyDownCurrentScene(SDL_Keycode key) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnKeyDown(key);
+            m_scenes.at(m_currentScene).onKeyDown(key);
         }
     }
 
-    auto SceneManager::OnKeyUpCurrentScene(SDL_Keycode key) -> void
+    auto SceneManager::onKeyUpCurrentScene(SDL_Keycode key) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnKeyUp(key);
+            m_scenes.at(m_currentScene).onKeyUp(key);
         }
     }
 
-    auto SceneManager::OnTextInputCurrentScene(std::string_view text) -> void
+    auto SceneManager::onTextInputCurrentScene(std::string_view text) -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).OnTextInput(text);
+            m_scenes.at(m_currentScene).onTextInput(text);
         }
     }
 
-    auto SceneManager::UpdateCurrentScene() -> void
+    auto SceneManager::updateCurrentScene() -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).Update();
+            m_scenes.at(m_currentScene).update();
         }
     }
 
-    auto SceneManager::RenderCurrentScene() const -> void
+    auto SceneManager::renderCurrentScene() const -> void
     {
         if (m_scenes.contains(m_currentScene))
         {
-            m_scenes.at(m_currentScene).Render();
+            m_scenes.at(m_currentScene).render();
         }
     }
 
-    auto SceneManager::GetScene(std::string_view sceneName) -> IScene *
+    auto SceneManager::getScene(std::string_view sceneName) -> IScene *
     {
-        auto sceneHash{Hash(sceneName)};
+        auto sceneHash{hash(sceneName)};
 
         if (m_scenes.contains(sceneHash))
         {
