@@ -204,4 +204,18 @@ namespace Forradia::Theme0
       private:
         static auto GetNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
     };
+
+    class PlaceSpouseQuest : public Quest
+    {
+      public:
+        PlaceSpouseQuest()
+        {
+            this->name = "Place Spouse";
+            this->description = "Invite your spouse to the house.";
+        }
+        
+        auto Update() -> void override;
+
+        [[nodiscard]] auto GetStatus() const -> std::string override;
+    };
 }

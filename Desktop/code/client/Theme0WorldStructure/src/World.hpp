@@ -39,7 +39,7 @@ namespace Forradia::Theme0
          *
          * @return The current world area.
          */
-        auto GetCurrentWorldArea() const
+        auto GetCurrentWorldArea() -> std::shared_ptr<WorldArea> const
         {
             return m_currentWorldArea;
         }

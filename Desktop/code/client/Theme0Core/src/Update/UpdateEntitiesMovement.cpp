@@ -5,8 +5,11 @@
 
 #include "UpdateEntitiesMovement.hpp"
 #include "Entity.hpp"
+#include "Hash.hpp"
 #include "NumbersUtilities.hpp"
+#include "RandomizationUtilities.hpp"
 #include "Tile.hpp"
+#include "TimeUtilities.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 
@@ -35,7 +38,10 @@ namespace Forradia::Theme0
 
             if (destination.x == -1 && destination.y == -1)
             {
+                // NOLINTNEXTLINE(readability-magic-numbers)
                 auto newDestinationX{position.x + GetRandomInt(11) - 5};
+
+                // NOLINTNEXTLINE(readability-magic-numbers)
                 auto newDestinationY{position.y + GetRandomInt(11) - 5};
 
                 entity->SetDestination({newDestinationX, newDestinationY});
@@ -44,11 +50,11 @@ namespace Forradia::Theme0
             auto worldArea{World::Instance().GetCurrentWorldArea()};
             auto &entities{worldArea->GetEntitiesMirrorRef()};
 
-            auto dX{entity->GetDestination().x - position.x};
-            auto dY{entity->GetDestination().y - position.y};
+            auto deltaX{entity->GetDestination().x - position.x};
+            auto deltaY{entity->GetDestination().y - position.y};
 
-            auto normalizedDX{Normalize(dX)};
-            auto normalizedDY{Normalize(dY)};
+            auto normalizedDX{Normalize(deltaX)};
+            auto normalizedDY{Normalize(deltaY)};
 
             auto newX{position.x + normalizedDX};
             auto newY{position.y + normalizedDY};

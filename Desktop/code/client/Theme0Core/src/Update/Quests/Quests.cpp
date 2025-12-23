@@ -547,4 +547,13 @@ namespace Forradia::Theme0
     {
         return "You need to build more stone walls (and door).";
     }
+
+    auto PlaceSpouseQuest::Update() -> void
+    {
+    }
+
+    auto PlaceSpouseQuest::GetStatus() const -> std::string
+    {
+        return "Place your spouse in the house.";
+    }
 }
