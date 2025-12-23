@@ -5,6 +5,11 @@
 
 #pragma once
 
+#include <functional>
+#include <memory>
+#include <string>
+#include <vector>
+
 namespace Forradia::Theme0
 {
     class Tile;

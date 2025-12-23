@@ -15,7 +15,7 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldView::IterationGround(int x, int y) -> void
+    auto WorldView::IterationGround(int xPos, int yPos) -> void
     {
         auto playerPos{Player::Instance().GetPosition()};
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
@@ -30,8 +30,8 @@ namespace Forradia::Theme0
                                static_cast<decltype(gridSize.height)>(
                                    gridSize.height * k_groundRenderingDistanceMultiplier)}};
 
-        auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + x};
-        auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + y};
+        auto xCoordinate{playerPos.x - (groundGridSize.width - 1) / 2 + xPos};
+        auto yCoordinate{playerPos.y - (groundGridSize.height - 1) / 2 + yPos};
 
         if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
         {
@@ -148,6 +148,7 @@ namespace Forradia::Theme0
 
             std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
 
+            // NOLINTNEXTLINE(readability-magic-numbers)
             auto animationIndex{(GetTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 
             waterImageString += "_" + std::to_string(animationIndex);
@@ -159,17 +160,17 @@ namespace Forradia::Theme0
 
         // Check if this tile is within the normal grid size for object/entity
         // rendering.
-        auto isWithinNormalGrid{x >= (groundGridSize.width - gridSize.width) / 2 &&
-                                x < (groundGridSize.width + gridSize.width) / 2 &&
-                                y >= (groundGridSize.height - gridSize.height) / 2 &&
-                                y < (groundGridSize.height + gridSize.height) / 2};
+        auto isWithinNormalGrid{xPos >= (groundGridSize.width - gridSize.width) / 2 &&
+                                xPos < (groundGridSize.width + gridSize.width) / 2 &&
+                                yPos >= (groundGridSize.height - gridSize.height) / 2 &&
+                                yPos < (groundGridSize.height + gridSize.height) / 2};
 
         m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
                            yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
                            color11, color01});
     }
 
-    auto WorldView::GetColorByGroundType(int groundType) const -> Color
+    auto WorldView::GetColorByGroundType(int groundType) -> Color
     {
         switch (groundType)
         {

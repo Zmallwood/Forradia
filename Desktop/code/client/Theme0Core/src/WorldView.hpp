@@ -44,11 +44,11 @@ namespace Forradia::Theme0
       private:
         auto Initialize() -> void;
 
-        auto IterationGround(int x, int y) -> void;
+        auto IterationGround(int xPos, int yPos) -> void;
 
-        auto IterationAllExceptGround(int x, int y) -> void;
+        auto IterationAllExceptGround(int xPos, int yPos) -> void;
 
-        auto GetColorByGroundType(int groundType) const -> Color;
+        static auto GetColorByGroundType(int groundType) -> Color;
 
         const float k_groundRenderingDistanceMultiplier{1.5F};
         const int k_maxWaterDepthRendering{3};
