@@ -20,7 +20,7 @@ namespace Forradia::Theme0
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
-        auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
+        auto hoveredCoordinate{TileHovering::GetHoveredCoordinate()};
 
         // Calculate extended ground rendering size
         auto groundGridSize{
