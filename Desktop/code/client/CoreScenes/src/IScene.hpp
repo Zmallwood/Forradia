@@ -54,7 +54,7 @@ namespace Forradia
          *
          * @return The GUI.
          */
-        auto GetGUI() const -> std::shared_ptr<GUI>
+        [[nodiscard]] auto GetGUI() const -> std::shared_ptr<GUI>
         {
             return m_gui;
         }

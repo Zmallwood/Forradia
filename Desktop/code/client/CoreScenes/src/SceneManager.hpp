@@ -6,6 +6,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <string_view>
 #include <unordered_map>
 
 namespace Forradia
@@ -18,7 +19,7 @@ namespace Forradia
     class SceneManager
     {
       public:
-        static SceneManager &Instance()
+        static auto Instance() -> SceneManager &
         {
             static SceneManager instance;
             return instance;
@@ -27,7 +28,7 @@ namespace Forradia
         // Delete copy/move
         SceneManager(const SceneManager &) = delete;
 
-        SceneManager &operator=(const SceneManager &) = delete;
+        auto operator=(const SceneManager &) -> SceneManager & = delete;
 
         SceneManager() = default;
 
