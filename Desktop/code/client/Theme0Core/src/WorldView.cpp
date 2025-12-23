@@ -16,6 +16,7 @@
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "TileData.hpp"
+#include "TimeUtilities.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
@@ -27,12 +28,12 @@ namespace Forradia::Theme0
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
+        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
         {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
             {
-                m_renderIDsGround[x][y] =
-                    Hash("Ground_" + std::to_string(x) + "_" + std::to_string(y));
+                m_renderIDsGround[xPos][yPos] =
+                    Hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
             }
         }
     }

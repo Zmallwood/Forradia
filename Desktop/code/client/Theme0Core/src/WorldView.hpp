@@ -5,6 +5,9 @@
 
 #pragma once
 
+#include "Hash.hpp"
+#include <unordered_map>
+
 namespace Forradia::Theme0
 {
     /**
@@ -13,7 +16,7 @@ namespace Forradia::Theme0
     class WorldView
     {
       public:
-        static WorldView &Instance()
+        static auto Instance() -> WorldView &
         {
             static WorldView instance;
             return instance;
@@ -22,7 +25,7 @@ namespace Forradia::Theme0
         // Delete copy/move
         WorldView(const WorldView &) = delete;
 
-        WorldView &operator=(const WorldView &) = delete;
+        auto operator=(const WorldView &) -> WorldView & = delete;
 
         /**
          * Constructor.
@@ -40,7 +43,7 @@ namespace Forradia::Theme0
       private:
         auto Initiallize() -> void;
 
-        const float k_groundRenderingDistanceMultiplier{1.5f};
+        const float k_groundRenderingDistanceMultiplier{1.5F};
         const int k_maxWaterDepthRendering{3};
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
         const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};

@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include <fstream>
-#include <string>
-#include <memory>
-#include <string>
 #include <array>
+#include <fstream>
+#include <memory>
 #include <set>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 #include <SDL2/SDL.h>
@@ -21,9 +21,9 @@
 #include <nlohmann/json.hpp>
 
 #include "CanvasUtilities.hpp"
-#include "NumbersUtilities.hpp"
-#include "MouseUtilities.hpp"
-#include "Hash.hpp"
 #include "Geometry/Point.hpp"
-#include "TimeUtilities.hpp"
+#include "Hash.hpp"
+#include "MouseUtilities.hpp"
+#include "NumbersUtilities.hpp"
 #include "RandomizationUtilities.hpp"
+#include "TimeUtilities.hpp"
