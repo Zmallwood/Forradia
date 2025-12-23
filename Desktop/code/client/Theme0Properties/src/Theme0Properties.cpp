@@ -34,7 +34,7 @@ namespace Forradia::Theme0
 
     auto Theme0Properties::GetTileSize() -> float
     {
-        return 1.6F;
+        return 1.9F;
     }
 
     auto Theme0Properties::GetElevationHeight() -> float

@@ -82,6 +82,12 @@ namespace Forradia::Theme0
             }
 
             m_ticksLastMovement = now;
+
+            if (m_position == m_destination)
+            {
+                m_destination = {-1, -1};
+                m_playerMoveDirection = PlayerMoveDirections::None;
+            }
         }
     }
 
@@ -277,7 +283,7 @@ namespace Forradia::Theme0
 
         if (moveProgress > 1.0F)
         {
-            moveProgress = -1.0F;
+            moveProgress = 0.0F;
         }
 
         switch (m_playerMoveDirection)
