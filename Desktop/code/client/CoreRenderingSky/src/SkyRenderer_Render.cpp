@@ -6,6 +6,8 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
+#include "3D/Camera.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Forradia
 {
@@ -32,9 +34,9 @@ namespace Forradia
 
         // Within the far plane of 100.0
 
-        auto skyRadius{90.0F};
+        constexpr auto k_skyRadius{90.0F};
 
-        modelMatrix = glm::scale(modelMatrix, glm::vec3(skyRadius, skyRadius, skyRadius));
+        modelMatrix = glm::scale(modelMatrix, glm::vec3(k_skyRadius, k_skyRadius, k_skyRadius));
 
         // Translate the sky dome down along the Z axis to lower it.
         // Since we remove translation from the view matrix, this translation happens
@@ -42,9 +44,9 @@ namespace Forradia
         // Negative Z moves it down (since +Z is up in this coordinate system).
 
         // Adjust this value to control how much to lower the sky
-        auto skyOffsetZ{-0.5F};
+        constexpr auto k_skyOffsetZ{-0.5F};
 
-        modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0F, 0.0F, skyOffsetZ));
+        modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0F, 0.0F, k_skyOffsetZ));
 
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
 
@@ -70,7 +72,7 @@ namespace Forradia
 
         viewMatrixRotationOnly[3] = glm::vec4(0.0F, 0.0F, 0.0F, 1.0F);
 
-        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
+        auto projectionMatrix{Camera::GetProjectionMatrix()};
 
         auto mvpMatrix{projectionMatrix * viewMatrixRotationOnly * modelMatrix};
 

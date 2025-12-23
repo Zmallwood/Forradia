@@ -6,6 +6,11 @@
 #pragma once
 
 #include "RendererBase.hpp"
+#include <glm/vec3.hpp>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia
 {
@@ -15,7 +20,7 @@ namespace Forradia
     class SkyRenderer : public RendererBase
     {
       public:
-        static SkyRenderer &Instance()
+        static auto Instance() -> SkyRenderer &
         {
             static SkyRenderer instance;
             return instance;
@@ -24,15 +29,15 @@ namespace Forradia
         // Delete copy/move
         SkyRenderer(const SkyRenderer &) = delete;
 
-        SkyRenderer &operator=(const SkyRenderer &) = delete;
+        auto operator=(const SkyRenderer &) -> SkyRenderer & = delete;
 
         /**
          * Constructor.
          */
-        SkyRenderer() : m_vao{0}, m_ibo{0}, m_vbo{0}, m_indexCount{0}, m_initialized{false}
+        SkyRenderer()
         {
             // Initialize the renderer base class.
-            this->Initialize();
+            dynamic_cast<RendererBase *>(this)->Initialize();
         }
 
         /**
@@ -85,7 +90,7 @@ namespace Forradia
 
         auto SetupState() const -> void;
 
-        auto RestoreState() const -> void;
+        static auto RestoreState() -> void;
 
         auto GenerateSkyDome() -> void;
 
@@ -96,6 +101,6 @@ namespace Forradia
         GLint m_layoutLocationMVP{};
         GLint m_layoutLocationSunDirection{};
         GLint m_layoutLocationSunElevation{};
-        bool m_initialized{};
+        bool m_initialized{false};
     };
 }

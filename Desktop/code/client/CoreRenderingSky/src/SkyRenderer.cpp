@@ -8,6 +8,7 @@
 #include "GUIChatBox.hpp"
 #include "SDLDevice.hpp"
 #include "ShaderProgram.hpp"
+#include "CanvasUtilities.hpp"
 
 namespace Forradia
 {
@@ -58,7 +59,7 @@ namespace Forradia
         glDisable(GL_CULL_FACE);
     }
 
-    auto SkyRenderer::RestoreState() const -> void
+    auto SkyRenderer::RestoreState() -> void
     {
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -72,7 +73,7 @@ namespace Forradia
     auto SkyRenderer::SetupAttributeLayout() const -> void
     {
         // Position (3 floats).
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void *)nullptr);
         glEnableVertexAttribArray(0);
     }
 

@@ -8,6 +8,10 @@
 #include "SkyRenderer.hpp"
 #include <vector>
 #include <cmath>
+// clang-format off
+#include <GL/glew.h>
+#include <GL/gl.h>
+// clang-format on
 
 namespace Forradia
 {
@@ -28,6 +32,7 @@ namespace Forradia
         for (int ring = 0; ring <= rings; ++ring)
         {
             // Elevation angle (0 to PI/2).
+            // NOLINTNEXTLINE(readability-magic-numbers)
             auto theta{ring * static_cast<float>(M_PI) / (2.0F * rings)};
 
             auto sinTheta{std::sin(theta)};
@@ -36,6 +41,7 @@ namespace Forradia
             for (int segment = 0; segment <= segments; ++segment)
             {
                 // Azimuth angle (0 to 2*PI).
+                // NOLINTNEXTLINE(readability-magic-numbers)
                 auto phi{segment * 2.0F * static_cast<float>(M_PI) / segments};
 
                 auto sinPhi{std::sin(phi)};
@@ -47,16 +53,16 @@ namespace Forradia
                 // - phi is azimuth (0 to 2*PI, full circle)
                 // - Z is up (matches the game's coordinate system where +Z is vertical)
 
-                auto x{cosPhi * sinTheta};
-                auto y{sinPhi * sinTheta};
+                auto xPos{cosPhi * sinTheta};
+                auto yPos{sinPhi * sinTheta};
 
                 // Z ranges from 1.0 (zenith) to 0.0 (horizon)
-                auto z{cosTheta};
+                auto zPos{cosTheta};
 
                 // Store vertex position (3 floats).
-                vertices.push_back(x);
-                vertices.push_back(y);
-                vertices.push_back(z);
+                vertices.push_back(xPos);
+                vertices.push_back(yPos);
+                vertices.push_back(zPos);
             }
         }
 
@@ -72,22 +78,22 @@ namespace Forradia
             for (int segment = 0; segment < segments; ++segment)
             {
                 // Current ring vertices.
-                auto v0{baseIndex + segment};
-                auto v1{baseIndex + segment + 1};
+                auto vert0{baseIndex + segment};
+                auto vert1{baseIndex + segment + 1};
 
                 // Next ring vertices.
-                auto v2{nextBaseIndex + segment};
-                auto v3{nextBaseIndex + segment + 1};
+                auto vert2{nextBaseIndex + segment};
+                auto vert3{nextBaseIndex + segment + 1};
 
                 // First triangle: v0 -> v2 -> v1 (counter-clockwise when viewed from outside).
-                indices.push_back(v0);
-                indices.push_back(v2);
-                indices.push_back(v1);
+                indices.push_back(vert0);
+                indices.push_back(vert2);
+                indices.push_back(vert1);
 
                 // Second triangle: v1 -> v2 -> v3 (counter-clockwise when viewed from outside).
-                indices.push_back(v1);
-                indices.push_back(v2);
-                indices.push_back(v3);
+                indices.push_back(vert1);
+                indices.push_back(vert2);
+                indices.push_back(vert3);
             }
         }
 
