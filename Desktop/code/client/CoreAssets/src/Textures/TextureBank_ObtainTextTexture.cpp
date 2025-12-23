@@ -7,7 +7,7 @@
 
 namespace Forradia
 {
-    auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool
+    auto TextureBank::ObtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool
     {
         // Check if the text texture exists.
         if (m_textTextureIDs.contains(uniqueTextureID))

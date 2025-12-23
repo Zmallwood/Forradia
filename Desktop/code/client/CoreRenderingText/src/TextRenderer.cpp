@@ -23,7 +23,7 @@ namespace Forradia
 
     auto TextRenderer::AddFonts() -> void
     {
-        auto absFontPath{std::string(SDL_GetBasePath()) + k_defaultFontPath.data()};
+        auto absFontPath{std::string(SDL_GetBasePath()) + k_defaultFontPath};
         auto fontPathUnixStyle{Replace(absFontPath, '\\', '/')};
 
         // Iterate over all available font sizes.

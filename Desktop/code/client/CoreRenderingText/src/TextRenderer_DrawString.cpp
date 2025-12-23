@@ -23,7 +23,7 @@ namespace Forradia
             return;
         }
 
-        auto fontRaw{m_fonts.at(fontSize).get()};
+        auto *fontRaw{m_fonts.at(fontSize).get()};
 
         Size textureDimensions;
         TTF_SizeText(fontRaw, text.data(), &textureDimensions.width, &textureDimensions.height);
@@ -53,7 +53,7 @@ namespace Forradia
             }
 
             // Upload the surface data to the OpenGL texture.
-            this->DefineTexture(surface);
+            TextRenderer::DefineTexture(surface);
         }
 
         auto canvasSize{GetCanvasSize(SDLDevice::Instance().GetWindow())};

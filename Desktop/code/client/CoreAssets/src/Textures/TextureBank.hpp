@@ -69,7 +69,7 @@ namespace Forradia
          * @param[out] textureID The texture ID (output parameter).
          * @return True if the texture was found, false otherwise.
          */
-        static auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) -> bool;
+        auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool;
 
       private:
         static auto Initialize() -> void;

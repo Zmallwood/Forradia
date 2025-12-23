@@ -11,6 +11,8 @@
 #include <memory>
 #include <unordered_map>
 
+
+struct SDL_Surface;
 using TTF_Font = struct _TTF_Font;
 
 namespace Forradia
@@ -21,7 +23,7 @@ namespace Forradia
     class TextRenderer
     {
       public:
-        static TextRenderer &Instance()
+        static auto Instance() -> TextRenderer &
         {
             static TextRenderer instance;
             return instance;
@@ -30,7 +32,7 @@ namespace Forradia
         // Delete copy/move
         TextRenderer(const TextRenderer &) = delete;
 
-        TextRenderer &operator=(const TextRenderer &) = delete;
+        auto operator=(const TextRenderer &) -> TextRenderer & = delete;
 
         /**
          * Constructs a TextRenderer and initializes the rendering system.
@@ -68,7 +70,7 @@ namespace Forradia
 
         auto RestoreState() const -> void;
 
-        auto DefineTexture(const std::shared_ptr<SDL_Surface> &surface) const-> void;
+        static auto DefineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void;
 
         const std::string k_defaultFontPath{"./Resources/Fonts/PixeloidSans.ttf"};
         std::unordered_map<FontSizes, std::shared_ptr<TTF_Font>> m_fonts{};
