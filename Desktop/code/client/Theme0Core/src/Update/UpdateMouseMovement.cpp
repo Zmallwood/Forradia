@@ -28,22 +28,35 @@ namespace Forradia::Theme0
             auto deltaX{destination.x - playerPosition.x};
             auto deltaY{destination.y - playerPosition.y};
 
-            if (deltaX < 0)
+            if (deltaX > 0 && deltaY < 0)
+            {
+                Player::Instance().MoveNorthEast();
+            }
+            else if (deltaX > 0 && deltaY > 0)
+            {
+                Player::Instance().MoveSouthEast();
+            }
+            else if (deltaX < 0 && deltaY > 0)
+            {
+                Player::Instance().MoveSouthWest();
+            }
+            else if (deltaX < 0 && deltaY < 0)
+            {
+                Player::Instance().MoveNorthWest();
+            }
+            else if (deltaX < 0)
             {
                 Player::Instance().MoveWest();
             }
-
-            if (deltaY < 0)
+            else if (deltaY < 0)
             {
                 Player::Instance().MoveNorth();
             }
-
-            if (deltaX > 0)
+            else if (deltaX > 0)
             {
                 Player::Instance().MoveEast();
             }
-
-            if (deltaY > 0)
+            else if (deltaY > 0)
             {
                 Player::Instance().MoveSouth();
             }

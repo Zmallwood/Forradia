@@ -85,6 +85,26 @@ namespace Forradia::Theme0
         auto MoveWest() -> void;
 
         /**
+         * Moves the player north-east.
+         */
+        auto MoveNorthEast() -> void;
+
+        /**
+         * Moves the player south-east.
+         */
+        auto MoveSouthEast() -> void;
+
+        /**
+         * Moves the player south-west.
+         */
+        auto MoveSouthWest() -> void;
+
+        /**
+         * Moves the player north-west.
+         */
+        auto MoveNorthWest() -> void;
+
+        /**
          * Adds experience to the player.
          *
          * @param experience The experience to add.

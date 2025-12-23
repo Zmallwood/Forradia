@@ -36,7 +36,8 @@ namespace Forradia::Theme0
     {
         auto now{GetTicks()};
 
-        if (now >= m_ticksLastMovement + InvertSpeed(m_movementSpeed))
+        if (now >= m_ticksLastMovement + InvertSpeed(m_movementSpeed) &&
+            m_playerMoveDirection != PlayerMoveDirections::None)
         {
             switch (m_playerMoveDirection)
             {
@@ -77,7 +78,7 @@ namespace Forradia::Theme0
                 break;
 
             case PlayerMoveDirections::None:
-                    break;
+                break;
             }
 
             m_ticksLastMovement = now;
@@ -123,7 +124,7 @@ namespace Forradia::Theme0
     {
         m_playerMoveDirection = PlayerMoveDirections::SouthEast;
     }
-    
+
     auto Player::StopMoving() -> void
     {
         m_playerMoveDirection = PlayerMoveDirections::None;
@@ -140,6 +141,7 @@ namespace Forradia::Theme0
         {
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::North;
         }
     }
 
@@ -153,7 +155,8 @@ namespace Forradia::Theme0
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+            m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::East;
         }
     }
 
@@ -167,7 +170,8 @@ namespace Forradia::Theme0
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+            m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::South;
         }
     }
 
@@ -181,7 +185,68 @@ namespace Forradia::Theme0
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
             m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+            m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::West;
+        }
+    }
+
+    auto Player::MoveNorthEast() -> void
+    {
+        auto newX{m_position.x + 1};
+        auto newY{m_position.y - 1};
+
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
+
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
+            m_position = {newX, newY};
+            m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+        }
+    }
+
+    auto Player::MoveSouthEast() -> void
+    {
+        auto newX{m_position.x + 1};
+        auto newY{m_position.y + 1};
+
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
+
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
+            m_position = {newX, newY};
+            m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+        }
+    }
+
+    auto Player::MoveSouthWest() -> void
+    {
+        auto newX{m_position.x - 1};
+        auto newY{m_position.y + 1};
+
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
+
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
+            m_position = {newX, newY};
+            m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+        }
+    }
+
+    auto Player::MoveNorthWest() -> void
+    {
+        auto newX{m_position.x - 1};
+        auto newY{m_position.y - 1};
+
+        auto worldArea{World::Instance().GetCurrentWorldArea()};
+
+        if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
+        {
+            m_position = {newX, newY};
+            m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
+            m_playerMoveDirection = PlayerMoveDirections::NorthWest;
         }
     }
 
@@ -200,6 +265,65 @@ namespace Forradia::Theme0
 
     PointF Player::GetSmoothPosition() const
     {
-        return {0.0F, 0.0F};
+        auto dx{0.0F};
+        auto dy{0.0F};
+
+        auto now{GetTicks()};
+
+        auto elapsedTime{now - m_ticksLastMovement};
+        auto timeForOneStep{static_cast<int>(InvertSpeed(m_movementSpeed))};
+
+        auto moveProgress{static_cast<float>(elapsedTime) / timeForOneStep};
+
+        if (moveProgress > 1.0F)
+        {
+            moveProgress = 0.0F;
+        }
+
+        switch (m_playerMoveDirection)
+        {
+        case PlayerMoveDirections::North:
+            dy = -moveProgress;
+            break;
+
+        case PlayerMoveDirections::East:
+            dx = moveProgress;
+            break;
+
+        case PlayerMoveDirections::South:
+            dy = moveProgress;
+            break;
+
+        case PlayerMoveDirections::West:
+            dx = -moveProgress;
+            break;
+
+        case PlayerMoveDirections::NorthEast:
+            dx = moveProgress;
+            dy = -moveProgress;
+            break;
+
+        case PlayerMoveDirections::SouthEast:
+            dx = moveProgress;
+            dy = moveProgress;
+            break;
+
+        case PlayerMoveDirections::SouthWest:
+            dx = -moveProgress;
+            dy = moveProgress;
+            break;
+
+        case PlayerMoveDirections::NorthWest:
+            dx = -moveProgress;
+            dy = -moveProgress;
+            break;
+
+        case PlayerMoveDirections::None:
+            break;
+        }
+
+        auto position{m_position};
+
+        return {position.x + dx, position.y + dy};
     }
 }

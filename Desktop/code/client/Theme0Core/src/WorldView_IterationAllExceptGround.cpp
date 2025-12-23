@@ -84,9 +84,10 @@ namespace Forradia::Theme0
 
             if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
             {
+                auto playerSmoothPosition{Player::Instance().GetSmoothPosition()};
                 ModelRenderer::Instance().DrawModel(
-                    Hash("Player"), (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
-                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax);
+                    Hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
+                    (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
             }
         }
 

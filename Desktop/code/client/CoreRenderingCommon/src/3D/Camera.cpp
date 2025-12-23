@@ -70,13 +70,14 @@ namespace Forradia
 
         auto worldArea{Theme0::World::Instance().GetCurrentWorldArea()};
         auto rendTileSize{Theme0::Theme0Properties::Instance().GetTileSize()};
-        auto playerPos{Theme0::Player::Instance().GetPosition()};
+        //auto playerPos{Theme0::Player::Instance().GetPosition()};
+        auto playerSmoothPos{Theme0::Player::Instance().GetSmoothPosition()};
         auto elevHeight{Theme0::Theme0Properties::Instance().GetElevationHeight()};
-        auto playerElevation{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
+        auto playerElevation{worldArea->GetTile(playerSmoothPos.x, playerSmoothPos.y)->GetElevation()};
 
         // Construct the resulting look-at point in world space.
-        Point3F lookAt{playerPos.x * rendTileSize + rendTileSize / 2,
-                       playerPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
+        Point3F lookAt{playerSmoothPos.x * rendTileSize + rendTileSize / 2,
+                       playerSmoothPos.y * rendTileSize + rendTileSize / 2, playerElevation * elevHeight};
 
         return lookAt;
     }
