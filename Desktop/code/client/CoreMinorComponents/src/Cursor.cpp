@@ -28,7 +28,7 @@ namespace Forradia
 
     auto Cursor::Render() const -> void
     {
-        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto width{k_cursorSize};
         auto height{ConvertWidthToHeight(k_cursorSize, SDLDevice::Instance().GetWindow())};

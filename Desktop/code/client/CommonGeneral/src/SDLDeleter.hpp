@@ -15,7 +15,7 @@ using TTF_Font = struct _TTF_Font;
 namespace Forradia
 {
     /**
-     * Class used for SharedPtrs of SDL objects, which handles automaticallyfreeing up
+     * Class used for SharedPtrs of SDL objects, which handles automatically freeing up
      * resources at object deletion.
      */
     class SDLDeleter

@@ -61,7 +61,7 @@ namespace Forradia::Theme0
 
     auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool
     {
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // Get camera matrices.
         auto viewMatrix{Camera::Instance().GetViewMatrix()};

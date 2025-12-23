@@ -55,7 +55,7 @@ namespace Forradia::Theme0
             if (this->GetVisible() == false)
             {
                 this->SetVisible(true);
-                this->SetPosition(GetNormallizedMousePosition(SDLDevice::Instance().GetWindow()));
+                this->SetPosition(GetNormalizedMousePosition(SDLDevice::Instance().GetWindow()));
                 this->BuildMenu();
 
                 return true;
@@ -71,7 +71,7 @@ namespace Forradia::Theme0
     {
         m_entries.clear();
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // First check if clicked in inventory (or other GUI windows)
         auto rightClickedInInventoryWindow{
@@ -228,7 +228,7 @@ namespace Forradia::Theme0
     {
         auto bounds{this->GetBounds()};
 
-        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto i{0};
 
@@ -283,7 +283,7 @@ namespace Forradia::Theme0
     {
         GUIPanel::UpdateDerived();
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto bounds{this->GetBounds()};
 
@@ -309,7 +309,7 @@ namespace Forradia::Theme0
 
         auto i{0};
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         for (auto &entry : m_entries)
         {

@@ -19,14 +19,14 @@ namespace Forradia
     constexpr auto Hash(std::string_view text) -> int
     {
         // Use djb2 algorithm by Daniel J. Bernstein.
-        const unsigned long algorithmConstant{5381};
-        const unsigned long algorithmFactor{33};
+        constexpr unsigned long algorithmConstant{5381};
 
         unsigned long hash{algorithmConstant};
 
         for (char chr : text)
         {
-            hash = algorithmFactor * hash + (unsigned char)chr;
+            constexpr unsigned long algorithmFactor{33};
+            hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
         }
 
         return static_cast<int>(hash);

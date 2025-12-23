@@ -18,7 +18,7 @@ namespace Forradia
             return false;
         }
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         if (dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePos))
         {
@@ -34,7 +34,7 @@ namespace Forradia
     {
         dynamic_cast<GUIComponent *>(this)->GUIComponent::UpdateDerived();
 
-        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto hovered{dynamic_cast<const GUIComponent *>(this)->GetBounds().Contains(mousePosition)};
 
         if (hovered)

@@ -26,7 +26,7 @@ namespace Forradia
         auto downArrowBounds{this->GetDownArrowBounds()};
         auto sliderBounds{this->GetSliderBounds()};
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         if (upArrowBounds.Contains(mousePos))
         {
@@ -61,7 +61,7 @@ namespace Forradia
 
         m_movingSlider = false;
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         if (GetBounds().Contains(mousePos))
         {
@@ -75,7 +75,7 @@ namespace Forradia
     {
         GUIComponent::UpdateDerived();
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto upArrowBounds{this->GetUpArrowBounds()};
         auto downArrowBounds{this->GetDownArrowBounds()};

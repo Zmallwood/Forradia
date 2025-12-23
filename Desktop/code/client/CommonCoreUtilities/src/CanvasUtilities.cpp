@@ -24,7 +24,7 @@ namespace Forradia
         ThrowOnFalse(window != nullptr, "window is null");
 
         auto canvasSize{GetCanvasSize(window)};
-        auto aspectRatio{static_cast<float>(canvasSize.width) / canvasSize.height};
+        auto aspectRatio{static_cast<float>(canvasSize.width) / static_cast<float>(canvasSize.height)};
 
         return aspectRatio;
     }

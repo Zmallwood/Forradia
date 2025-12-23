@@ -75,7 +75,7 @@ namespace Forradia::Theme0
         auto numRows{
             static_cast<int>((bounds.height - 2 * marginY - (yStart - bounds.y)) / slotHeight)};
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto &objectsContainer{m_containedObjects};
 

@@ -15,7 +15,7 @@ namespace Forradia::Theme0
 {
     auto ObjectMoving::OnMouseDown(Uint8 mouseButton) -> bool
     {
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
 
@@ -41,7 +41,7 @@ namespace Forradia::Theme0
     {
         if (m_objectInAir)
         {
-            auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
             auto inventoryWindowBounds{GUIInventoryWindow::Instance().GetBounds()};
 
@@ -67,7 +67,7 @@ namespace Forradia::Theme0
     {
         if (m_objectInAir)
         {
-            auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
             Image2DRenderer::Instance().DrawImageByHash(
                 k_renderIDImage, m_objectInAir->GetType(), mousePos.x, mousePos.y,

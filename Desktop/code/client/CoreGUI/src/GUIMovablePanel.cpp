@@ -26,7 +26,7 @@ namespace Forradia
             }
         }
 
-        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
 
         if (draggableArea.Contains(mousePosition))
@@ -58,7 +58,7 @@ namespace Forradia
             }
         }
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         if (GetBounds().Contains(mousePos))
         {
@@ -70,7 +70,7 @@ namespace Forradia
 
     auto GUIMovablePanel::UpdateDerived() -> void
     {
-        auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
         auto draggableArea{this->GetDraggableArea()};
 
         if (draggableArea.Contains(mousePosition))
@@ -91,7 +91,7 @@ namespace Forradia
         m_isBeingMoved = true;
         m_moveStartingPosition = this->GetBounds().GetPosition();
         m_moveStartingMousePosition =
-            GetNormallizedMousePosition(SDLDevice::Instance().GetWindow());
+            GetNormalizedMousePosition(SDLDevice::Instance().GetWindow());
     }
 
     auto GUIMovablePanel::StopMove() -> void

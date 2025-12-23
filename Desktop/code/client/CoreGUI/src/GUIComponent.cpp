@@ -132,7 +132,7 @@ namespace Forradia
             return false;
         }
 
-        auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+        auto mousePos{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         auto result{GetBounds().Contains(mousePos)};
 

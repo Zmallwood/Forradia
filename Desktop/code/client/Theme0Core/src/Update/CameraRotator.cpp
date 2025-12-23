@@ -17,7 +17,7 @@ namespace Forradia::Theme0
             m_isRotating = true;
 
             m_mousePositionLastUpdate =
-                GetNormallizedMousePosition(SDLDevice::Instance().GetWindow());
+                GetNormalizedMousePosition(SDLDevice::Instance().GetWindow());
         }
     }
 
@@ -36,7 +36,7 @@ namespace Forradia::Theme0
     {
         if (m_isRotating)
         {
-            auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
+            auto mousePosition{GetNormalizedMousePosition(SDLDevice::Instance().GetWindow())};
 
             auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
 

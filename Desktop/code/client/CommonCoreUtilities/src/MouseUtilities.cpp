@@ -10,7 +10,7 @@
 
 namespace Forradia
 {
-    auto GetNormallizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
+    auto GetNormalizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
     {
         ThrowOnFalse(window != nullptr, "window is null");
 
