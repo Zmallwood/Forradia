@@ -5,6 +5,10 @@
 
 #pragma once
 
+#include "Hash.hpp"
+#include <memory>
+#include <SDL2/SDL.h>
+
 namespace Forradia::Theme0
 {
     class Object;
@@ -12,7 +16,7 @@ namespace Forradia::Theme0
     class ObjectMoving
     {
       public:
-        static ObjectMoving &Instance()
+        static auto Instance() -> ObjectMoving &
         {
             static ObjectMoving instance;
             return instance;
@@ -21,7 +25,7 @@ namespace Forradia::Theme0
         // Delete copy/move
         ObjectMoving(const ObjectMoving &) = delete;
 
-        ObjectMoving &operator=(const ObjectMoving &) = delete;
+        auto operator=(const ObjectMoving &) -> ObjectMoving & = delete;
 
         ObjectMoving() = default;
 

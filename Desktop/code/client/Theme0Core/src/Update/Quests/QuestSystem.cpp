@@ -41,7 +41,7 @@ namespace Forradia::Theme0
 
     auto QuestSystem::GetCurrentQuestName() const -> std::string
     {
-        for (auto &quest : this->m_quests)
+        for (const auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
             {
@@ -56,7 +56,7 @@ namespace Forradia::Theme0
 
     auto QuestSystem::GetCurrentQuestDescription() const -> std::string
     {
-        for (auto &quest : this->m_quests)
+        for (const auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
             {
@@ -70,7 +70,7 @@ namespace Forradia::Theme0
 
     auto QuestSystem::GetCurrentQuestStatus() const -> std::string
     {
-        for (auto &quest : this->m_quests)
+        for (const auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
             {

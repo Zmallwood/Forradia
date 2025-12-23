@@ -5,6 +5,7 @@
 
 #include "CameraRotator.hpp"
 #include "3D/Camera.hpp"
+#include "MouseUtilities.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia::Theme0
@@ -31,19 +32,19 @@ namespace Forradia::Theme0
         }
     }
 
-    auto CameraRotator::Update() -> void
+    auto CameraRotator::Update() const -> void
     {
         if (m_isRotating)
         {
             auto mousePosition{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
-            auto dX{mousePosition.x - m_mousePositionLastUpdate.x};
+            auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-            Camera::Instance().AddRotationDeltaSideways(dX);
+            Camera::Instance().AddRotationDeltaSideways(deltaX);
 
-            auto dY{mousePosition.y - m_mousePositionLastUpdate.y};
+            auto deltaY{mousePosition.y - m_mousePositionLastUpdate.y};
 
-            Camera::Instance().AddRotationDeltaVertical(dY);
+            Camera::Instance().AddRotationDeltaVertical(deltaY);
         }
     }
 }

@@ -5,7 +5,9 @@
 
 #pragma once
 
+#include "Geometry/Point.hpp"
 #include "Quest.hpp"
+#include <set>
 
 namespace Forradia::Theme0
 {
@@ -20,7 +22,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         int m_numStepsLeft{3};
@@ -37,7 +39,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         int m_numForagingsLeft{3};
@@ -54,7 +56,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         bool m_numBranchPicked{false};
@@ -72,7 +74,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         bool m_stonedMined{false};
@@ -89,7 +91,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numBranchesNeeded{8};
@@ -107,7 +109,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numStonesNeeded{10};
@@ -125,7 +127,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numSlabsNeeded{10};
@@ -143,7 +145,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numSlabsPlacedNeeded{10};
@@ -161,7 +163,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numMinedStonesNeeded{10};
@@ -179,7 +181,7 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
 
       private:
         constexpr static int k_numCraftedBricksNeeded{10};
@@ -197,6 +199,9 @@ namespace Forradia::Theme0
 
         auto Update() -> void override;
 
-        auto GetStatus() const -> std::string override;
+        [[nodiscard]] auto GetStatus() const -> std::string override;
+
+      private:
+        static auto GetNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
     };
 }

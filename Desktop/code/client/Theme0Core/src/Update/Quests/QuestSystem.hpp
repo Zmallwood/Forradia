@@ -5,6 +5,10 @@
 
 #pragma once
 
+#include <string>
+#include <vector>
+#include <memory>
+
 namespace Forradia::Theme0
 {
     class Quest;
@@ -15,7 +19,7 @@ namespace Forradia::Theme0
     class QuestSystem
     {
       public:
-        static QuestSystem &Instance()
+        static auto Instance() -> QuestSystem &
         {
             static QuestSystem instance;
             return instance;
@@ -24,7 +28,7 @@ namespace Forradia::Theme0
         // Delete copy/move
         QuestSystem(const QuestSystem &) = delete;
 
-        QuestSystem &operator=(const QuestSystem &) = delete;
+        auto operator=(const QuestSystem &) -> QuestSystem & = delete;
 
         /**
          * Constructor.
@@ -42,17 +46,17 @@ namespace Forradia::Theme0
         /**
          * Gets the name of the current quest.
          */
-        auto GetCurrentQuestName() const -> std::string;
+        [[nodiscard]] auto GetCurrentQuestName() const -> std::string;
 
         /**
          * Gets the description of the current quest.
          */
-        auto GetCurrentQuestDescription() const -> std::string;
+        [[nodiscard]] auto GetCurrentQuestDescription() const -> std::string;
 
         /**
          * Gets the status of the current quest.
          */
-        auto GetCurrentQuestStatus() const -> std::string;
+        [[nodiscard]] auto GetCurrentQuestStatus() const -> std::string;
 
       private:
         auto Initialize() -> void;

@@ -458,13 +458,11 @@ namespace Forradia::Theme0
 
     auto BuildStoneWallsQuest::Update() -> void
     {
-        auto &playerActions{Player::Instance().GetPlayerActionsRef()};
+        const auto &playerActions{Player::Instance().GetPlayerActionsRef()};
 
         std::set<Point> wallPositions;
 
-        auto numIncompleteWallTiles{0};
-
-        for (auto &entry : playerActions)
+        for (const auto &entry : playerActions)
         {
             auto action{get<0>(entry)};
             auto actionFirstArg{get<1>(entry)};
@@ -477,9 +475,27 @@ namespace Forradia::Theme0
             }
         }
 
+        auto numIncompleteWallTiles{BuildStoneWallsQuest::GetNumIncompleteWallTiles(wallPositions)};
+
+        if (!wallPositions.empty() && numIncompleteWallTiles == 0)
+        {
+            isCompleted = true;
+
+            GUIChatBox::Instance().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
+
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            Player::Instance().AddExperience(50);
+        }
+    }
+
+    auto BuildStoneWallsQuest::GetNumIncompleteWallTiles(const std::set<Point> &wallPositions)
+        -> int
+    {
+        auto numIncompleteWallTiles{0};
+
         auto worldArea{World::Instance().GetCurrentWorldArea()};
 
-        for (auto &position : wallPositions)
+        for (const auto &position : wallPositions)
         {
             auto tileNorth{worldArea->GetTile(position.x, position.y - 1)};
             auto tileSouth{worldArea->GetTile(position.x, position.y + 1)};
@@ -490,76 +506,32 @@ namespace Forradia::Theme0
             auto tileSouthWest{worldArea->GetTile(position.x - 1, position.y + 1)};
             auto tileNorthWest{worldArea->GetTile(position.x - 1, position.y - 1)};
 
+            std::vector<std::shared_ptr<Tile>> tilesWithDiagonals{
+                tileNorth,     tileSouth,     tileWest,      tileEast,
+                tileNorthEast, tileSouthEast, tileSouthWest, tileNorthWest};
+
+            std::vector<std::shared_ptr<Tile>> tilesWithoutDiagonals{tileNorth, tileSouth, tileWest,
+                                                                     tileEast};
+
             auto adjacentStoneSlabTiles{0};
 
-            if (tileNorth && tileNorth->GetGround() == Hash("GroundStoneSlab"))
+            for (const auto &tile : tilesWithDiagonals)
             {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileSouth && tileSouth->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileWest && tileWest->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileEast && tileEast->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileNorthEast && tileNorthEast->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileSouthEast && tileSouthEast->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileSouthWest && tileSouthWest->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
-            }
-
-            if (tileNorthWest && tileNorthWest->GetGround() == Hash("GroundStoneSlab"))
-            {
-                adjacentStoneSlabTiles++;
+                if (tile && tile->GetGround() == Hash("GroundStoneSlab"))
+                {
+                    adjacentStoneSlabTiles++;
+                }
             }
 
             auto adjacentStoneWallOrDoorTiles{0};
 
-            if (tileNorth &&
-                (tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                 tileNorth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+            for (const auto &tile : tilesWithoutDiagonals)
             {
-                adjacentStoneWallOrDoorTiles++;
-            }
-
-            if (tileSouth &&
-                (tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                 tileSouth->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
-            {
-                adjacentStoneWallOrDoorTiles++;
-            }
-
-            if (tileWest &&
-                (tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                 tileWest->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
-            {
-                adjacentStoneWallOrDoorTiles++;
-            }
-
-            if (tileEast &&
-                (tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
-                 tileEast->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
-            {
-                adjacentStoneWallOrDoorTiles++;
+                if (tile && (tile->GetObjectsStack()->CountHasObject("ObjectStoneWall") > 0 ||
+                             tile->GetObjectsStack()->CountHasObject("ObjectStoneWallDoor") > 0))
+                {
+                    adjacentStoneWallOrDoorTiles++;
+                }
             }
 
             if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
@@ -568,14 +540,7 @@ namespace Forradia::Theme0
             }
         }
 
-        if (wallPositions.size() > 0 && numIncompleteWallTiles == 0)
-        {
-            isCompleted = true;
-
-            GUIChatBox::Instance().Print("Quest completed: Build Stone Walls. Obtained 50 XP.");
-
-            Player::Instance().AddExperience(50);
-        }
+        return numIncompleteWallTiles;
     }
 
     auto BuildStoneWallsQuest::GetStatus() const -> std::string

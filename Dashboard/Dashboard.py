@@ -8,7 +8,7 @@ import os
 import subprocess
 from PIL import Image
 
-opening_app = "neovide"
+opening_app = "cursor"
 
 # Set up the dashboard window
 class Dashboard(ctk.CTk):
@@ -94,11 +94,23 @@ class Dashboard(ctk.CTk):
 
         create_app_button(
             app_frame,
+            "Project",
+            opening_app,
+            "/home/andreas/code/git/Forradia/Desktop",
+            "icons/DefaultButton.png",
+            1,
+            0,
+            self.script_dir,
+            "#AAAA00",
+        )
+
+        create_app_button(
+            app_frame,
             "CMake",
             opening_app,
             "/home/andreas/code/git/Forradia/Desktop/code",
             "icons/DefaultButton.png",
-            1,
+            2,
             0,
             self.script_dir,
             "#AAAA00",
@@ -652,7 +664,7 @@ def create_app_button(
 ):
     def open_app():
         #subprocess.run([command, path, "-r"])
-        subprocess.run("neovide", cwd=path)
+        subprocess.run([opening_app, path, "-r"])
 
     # Use absolute path for the icon
     full_icon_path = os.path.join(script_dir, icon_path)

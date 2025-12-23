@@ -7,7 +7,9 @@
 #include "CanvasUtilities.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "Image2DRenderer.hpp"
+#include "MouseUtilities.hpp"
 #include "Object.hpp"
+#include "SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

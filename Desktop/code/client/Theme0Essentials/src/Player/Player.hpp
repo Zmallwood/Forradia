@@ -16,6 +16,7 @@
 namespace Forradia::Theme0
 {
     class PlayerObjectsInventory;
+    class Spouse;
 
     /**
      * Represents the player character.
@@ -234,6 +235,21 @@ namespace Forradia::Theme0
             return m_questCompletionPoints;
         }
 
+        /**
+         * Gets the spouse of the player.
+         *
+         * @return The spouse of the player.
+         */
+        auto GetSpouse() const
+        {
+            return m_spouse;
+        }
+
+        void SetSpouse(std::shared_ptr<Spouse> value)
+        {
+            m_spouse = value;
+        }
+
       private:
         auto Initialize() -> void;
 
@@ -251,5 +267,6 @@ namespace Forradia::Theme0
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions{};
         std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
+        std::shared_ptr<Spouse> m_spouse{};
     };
 }

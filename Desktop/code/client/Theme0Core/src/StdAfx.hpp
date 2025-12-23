@@ -10,7 +10,10 @@
 #include <memory>
 #include <string>
 #include <array>
+#include <set>
+#include <vector>
 
+#include <SDL2/SDL.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
@@ -19,4 +22,6 @@
 
 #include "CanvasUtilities.hpp"
 #include "NumbersUtilities.hpp"
+#include "MouseUtilities.hpp"
 #include "Hash.hpp"
+#include "Geometry/Point.hpp"

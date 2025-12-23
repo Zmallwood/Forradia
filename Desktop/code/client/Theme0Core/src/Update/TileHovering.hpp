@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Geometry/Point.hpp"
+
 namespace Forradia::Theme0
 {
     /**
@@ -13,7 +15,7 @@ namespace Forradia::Theme0
     class TileHovering
     {
       public:
-        static TileHovering &Instance()
+        static auto Instance() -> TileHovering &
         {
             static TileHovering instance;
             return instance;
@@ -22,32 +24,32 @@ namespace Forradia::Theme0
         // Delete copy/move
         TileHovering(const TileHovering &) = delete;
 
-        TileHovering &operator=(const TileHovering &) = delete;
+        auto operator=(const TileHovering &) -> TileHovering & = delete;
 
         TileHovering() = default;
 
         /**
          * Updates the tile hovering.
          */
-        auto Update() -> void;
+        static auto Update() -> void;
 
         /**
          * Provides the hovered coordinate.
          */
-        auto GetHoveredCoordinate() const
+        [[nodiscard]] static auto GetHoveredCoordinate() -> Point
         {
             return m_hoveredCoordinate;
         }
 
       private:
-        auto DetermineHoveredCoordinateWithRaycasting() -> void;
+        static auto DetermineHoveredCoordinateWithRaycasting() -> void;
 
-        auto IterateOverRenderedTiles() -> void;
+        static auto IterateOverRenderedTiles() -> void;
 
-        auto DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool;
+        static auto DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool;
 
-        auto CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool;
+        static auto CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool;
 
-        Point m_hoveredCoordinate{-1, -1};
+        inline static Point m_hoveredCoordinate{-1, -1};
     };
 }

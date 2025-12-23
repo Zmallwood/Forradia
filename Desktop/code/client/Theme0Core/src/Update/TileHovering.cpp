@@ -5,41 +5,42 @@
 
 #include "TileHovering.hpp"
 #include "3D/Camera.hpp"
+#include "MouseUtilities.hpp"
 #include "Player/Player.hpp"
 #include "SDLDevice.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
+#include <glm/gtx/intersect.hpp>
 
 namespace Forradia::Theme0
 {
     auto TileHovering::Update() -> void
     {
-        this->DetermineHoveredCoordinateWithRaycasting();
+        TileHovering::DetermineHoveredCoordinateWithRaycasting();
     }
 
     auto TileHovering::DetermineHoveredCoordinateWithRaycasting() -> void
     {
-        this->IterateOverRenderedTiles();
+        TileHovering::IterateOverRenderedTiles();
     }
 
     auto TileHovering::IterateOverRenderedTiles() -> void
     {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
-        auto worldAreaSize{worldArea->GetSize()};
         auto playerPos{Player::Instance().GetPosition()};
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
 
         // Iterate over the rendered tiles.
-        for (auto y = 0; y < gridSize.height; y++)
+        for (auto yPos = 0; yPos < gridSize.height; yPos++)
         {
-            for (auto x = 0; x < gridSize.width; x++)
+            for (auto xPos = 0; xPos < gridSize.width; xPos++)
             {
-                auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + x};
-                auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + y};
+                auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + xPos};
+                auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + yPos};
 
-                auto result{this->DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
+                auto result{TileHovering::DetermineIfTileIsHovered(xCoordinate, yCoordinate)};
 
                 if (result)
                 {
@@ -51,20 +52,20 @@ namespace Forradia::Theme0
         }
     }
 
-    auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) const -> bool
+    auto TileHovering::DetermineIfTileIsHovered(int xCoordinate, int yCoordinate) -> bool
     {
-        auto result{this->CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
+        auto result{TileHovering::CheckIfRayIntersectsTile(xCoordinate, yCoordinate)};
 
         return result;
     }
 
-    auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) const -> bool
+    auto TileHovering::CheckIfRayIntersectsTile(int xCoordinate, int yCoordinate) -> bool
     {
         auto mousePos{GetNormallizedMousePosition(SDLDevice::Instance().GetWindow())};
 
         // Get camera matrices.
         auto viewMatrix{Camera::Instance().GetViewMatrix()};
-        auto projectionMatrix{Camera::Instance().GetProjectionMatrix()};
+        auto projectionMatrix{Camera::GetProjectionMatrix()};
 
         // Get inverse view-projection matrix for unprojecting.
         auto inverseViewProjection{glm::inverse(projectionMatrix * viewMatrix)};
@@ -73,7 +74,10 @@ namespace Forradia::Theme0
         // range
         // [-1, 1]).
 
+        // NOLINTNEXTLINE(readability-magic-numbers)
         glm::vec4 nearPoint{mousePos.x * 2.0F - 1.0F, mousePos.y * 2.0F - 1.0F, -1.0F, 1.0F};
+
+        // NOLINTNEXTLINE(readability-magic-numbers)
         glm::vec4 farPoint{mousePos.x * 2.0F - 1.0F, mousePos.y * 2.0F - 1.0F, 1.0F, 1.0F};
 
         // Unproject to world space.
@@ -81,12 +85,13 @@ namespace Forradia::Theme0
         farPoint = inverseViewProjection * farPoint;
 
         // Perspective divide.
-
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (std::abs(nearPoint.w) > 0.0001F)
         {
             nearPoint /= nearPoint.w;
         }
 
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (std::abs(farPoint.w) > 0.0001F)
         {
             farPoint /= farPoint.w;
@@ -121,10 +126,10 @@ namespace Forradia::Theme0
         auto tileSE{worldArea->GetTile(coordinateSE)};
 
         // Get the elevations.
-        auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0f};
-        auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0f};
-        auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0f};
-        auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0f};
+        auto elevationNW{tileNW ? tileNW->GetElevation() : 0.0F};
+        auto elevationNE{tileNE ? tileNE->GetElevation() : 0.0F};
+        auto elevationSW{tileSW ? tileSW->GetElevation() : 0.0F};
+        auto elevationSE{tileSE ? tileSE->GetElevation() : 0.0F};
 
         // Get tile size and elevation height.
         auto tileSize{Theme0Properties::Instance().GetTileSize()};

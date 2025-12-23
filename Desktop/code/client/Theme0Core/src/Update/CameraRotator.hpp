@@ -5,6 +5,9 @@
 
 #pragma once
 
+#include "Geometry/PointF.hpp"
+#include <SDL2/SDL.h>
+
 namespace Forradia::Theme0
 {
     /**
@@ -13,7 +16,7 @@ namespace Forradia::Theme0
     class CameraRotator
     {
       public:
-        static CameraRotator &Instance()
+        static auto Instance() -> CameraRotator &
         {
             static CameraRotator instance;
             return instance;
@@ -22,7 +25,7 @@ namespace Forradia::Theme0
         // Delete copy/move
         CameraRotator(const CameraRotator &) = delete;
 
-        CameraRotator &operator=(const CameraRotator &) = delete;
+        auto operator=(const CameraRotator &) -> CameraRotator & = delete;
 
         CameraRotator() = default;
 
@@ -33,7 +36,7 @@ namespace Forradia::Theme0
         /**
          * Updates the camera rotation.
          */
-        auto Update() -> void;
+        auto Update() const -> void;
 
       private:
         bool m_isRotating{false};
