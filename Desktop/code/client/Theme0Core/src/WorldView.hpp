@@ -48,6 +48,8 @@ namespace Forradia::Theme0
 
         auto IterationAllExceptGround(int x, int y) -> void;
 
+        auto GetColorByGroundType(int groundType) const -> Color;
+
         const float k_groundRenderingDistanceMultiplier{1.5F};
         const int k_maxWaterDepthRendering{3};
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};

@@ -7,11 +7,11 @@
 #include "Player/Player.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
+#include "TimeUtilities.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 #include "WorldView.hpp"
-#include "TimeUtilities.hpp"
 
 namespace Forradia::Theme0
 {
@@ -118,105 +118,21 @@ namespace Forradia::Theme0
 
         if (ground != Hash("GroundStoneSlab"))
         {
-            switch (ground)
-            {
-            case Hash("GroundGrass"):
-                color00 = Palette::GetColor<Hash("DarkGreen")>();
-                break;
-
-            case Hash("GroundWater"):
-                color00 = Palette::GetColor<Hash("LightBlue")>();
-                break;
-
-            case Hash("GroundDirt"):
-                color00 = Palette::GetColor<Hash("Brown")>();
-                break;
-
-            case Hash("GroundRock"):
-                color00 = Palette::GetColor<Hash("Gray")>();
-                break;
-
-            case Hash("GroundStoneSlab"):
-                color00 = Palette::GetColor<Hash("White")>();
-                break;
-            }
+            color00 = GetColorByGroundType(ground);
 
             if (tileNE)
             {
-                switch (tileNE->GetGround())
-                {
-                case Hash("GroundGrass"):
-                    color10 = Palette::GetColor<Hash("DarkGreen")>();
-                    break;
-
-                case Hash("GroundWater"):
-                    color10 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-
-                case Hash("GroundDirt"):
-                    color10 = Palette::GetColor<Hash("Brown")>();
-                    break;
-
-                case Hash("GroundRock"):
-                    color10 = Palette::GetColor<Hash("Gray")>();
-                    break;
-
-                case Hash("GroundStoneSlab"):
-                    color10 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
+                color10 = GetColorByGroundType(tileNE->GetGround());
             }
 
             if (tileSE)
             {
-                switch (tileSE->GetGround())
-                {
-                case Hash("GroundGrass"):
-                    color11 = Palette::GetColor<Hash("DarkGreen")>();
-                    break;
-
-                case Hash("GroundWater"):
-                    color11 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-
-                case Hash("GroundDirt"):
-                    color11 = Palette::GetColor<Hash("Brown")>();
-                    break;
-
-                case Hash("GroundRock"):
-                    color11 = Palette::GetColor<Hash("Gray")>();
-                    break;
-
-                case Hash("GroundStoneSlab"):
-                    color11 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
+                color11 = GetColorByGroundType(tileSE->GetGround());
             }
 
             if (tileSW)
             {
-                switch (tileSW->GetGround())
-                {
-                case Hash("GroundGrass"):
-                    color01 = Palette::GetColor<Hash("DarkGreen")>();
-                    break;
-
-                case Hash("GroundWater"):
-                    color01 = Palette::GetColor<Hash("LightBlue")>();
-                    break;
-
-                case Hash("GroundDirt"):
-                    color01 = Palette::GetColor<Hash("Brown")>();
-                    break;
-
-                case Hash("GroundRock"):
-                    color01 = Palette::GetColor<Hash("Gray")>();
-                    break;
-
-                case Hash("GroundStoneSlab"):
-                    color01 = Palette::GetColor<Hash("White")>();
-                    break;
-                }
+                color01 = GetColorByGroundType(tileSW->GetGround());
             }
         }
 
@@ -251,5 +167,27 @@ namespace Forradia::Theme0
         m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
                            yCoordinate, rendTileSize, elevations, forceRedraw, color00, color10,
                            color11, color01});
+    }
+
+    auto WorldView::GetColorByGroundType(int groundType) const -> Color
+    {
+        switch (groundType)
+        {
+        case Hash("GroundGrass"):
+            return Palette::GetColor<Hash("DarkGreen")>();
+
+        case Hash("GroundWater"):
+            return Palette::GetColor<Hash("LightBlue")>();
+
+        case Hash("GroundDirt"):
+            return Palette::GetColor<Hash("Brown")>();
+
+        case Hash("GroundRock"):
+            return Palette::GetColor<Hash("Gray")>();
+
+        case Hash("GroundStoneSlab"):
+            return Palette::GetColor<Hash("White")>();
+        }
+        return Palette::GetColor<Hash("White")>();
     }
 }
