@@ -8,7 +8,7 @@
 namespace Forradia
 {
     /**
-     * Size in 2D space with dimensions of float values.
+        Size in 2D space with dimensions of float values.
      */
     class SizeF
     {

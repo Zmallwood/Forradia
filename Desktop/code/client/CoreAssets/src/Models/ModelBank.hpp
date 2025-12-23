@@ -13,7 +13,7 @@ namespace Forradia
     class Model;
 
     /**
-     * Loads, stores and provides models.
+        Loads, stores and provides models.
      */
     class ModelBank
     {
@@ -30,7 +30,7 @@ namespace Forradia
         auto operator=(const ModelBank &) -> ModelBank & = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         ModelBank()
         {
@@ -38,10 +38,10 @@ namespace Forradia
         }
 
         /**
-         * Get a model by name hash.
-         *
-         * @param modelNameHash The hash of the model name.
-         * @return The model.
+            Get a model by name hash.
+
+            @param modelNameHash The hash of the model name.
+            @return The model.
          */
         // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
         [[nodiscard]] auto GetModel(int modelNameHash) const -> std::shared_ptr<Model>;

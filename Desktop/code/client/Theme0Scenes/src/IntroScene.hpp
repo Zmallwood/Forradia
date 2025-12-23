@@ -15,8 +15,8 @@ namespace Forradia
 namespace Forradia::Theme0
 {
     /**
-     * The intro scene is the first scene that is displayed when the game is started.
-     * It displays the title of the game and the main menu.
+        The intro scene is the first scene that is displayed when the game is started.
+        It displays the title of the game and the main menu.
      */
     class IntroScene : public IScene
     {
@@ -36,12 +36,12 @@ namespace Forradia::Theme0
 
       protected:
         /**
-         * Initializes the intro scene.
+            Initializes the intro scene.
          */
         virtual auto InitializeDerived() -> void override;
 
         /**
-         * Called when the intro scene is entered.
+            Called when the intro scene is entered.
          */
         virtual auto OnEnterDerived() -> void override;
 
@@ -50,12 +50,12 @@ namespace Forradia::Theme0
         virtual auto OnKeyDown(SDL_Keycode key) -> void override;
 
         /**
-         * Called every frame.
+            Called every frame.
          */
         virtual auto UpdateDerived() -> void override;
 
         /**
-         * Called every frame to render the scene.
+            Called every frame to render the scene.
          */
         virtual auto RenderDerived() const -> void override;
 

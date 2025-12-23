@@ -10,12 +10,12 @@
 namespace Forradia
 {
     /**
-     * A vertex used for models using GLM types.
+        A vertex used for models using GLM types.
      */
     class GLMVertex
     {
       public:
-        glm::vec3 position{}; //< The position.
+        glm::vec3 position{}; ///< The position.
         glm::vec3 normal{};   ///< The normal.
         glm::vec2 uv{};       ///< The texture coordinates.
     };

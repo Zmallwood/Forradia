@@ -15,7 +15,7 @@
 namespace Forradia
 {
     /**
-     * A renderer for procedurally rendering the sky.
+        A renderer for procedurally rendering the sky.
      */
     class SkyRenderer : public RendererBase
     {
@@ -32,7 +32,7 @@ namespace Forradia
         auto operator=(const SkyRenderer &) -> SkyRenderer & = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         SkyRenderer()
         {
@@ -41,7 +41,7 @@ namespace Forradia
         }
 
         /**
-         * Destructor that cleans up the renderer.
+            Destructor that cleans up the renderer.
          */
         ~SkyRenderer() override
         {
@@ -50,38 +50,38 @@ namespace Forradia
         }
 
         /**
-         * Renders the sky dome.
-         *
-         * @note This should be called FIRST, before rendering any other 3D geometry,
-         *
-         * @param sunDirection The direction vector of the sun (should be normalized).
-         * @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
-         * zenith). Negative values indicate nighttime (darker sky).
+            Renders the sky dome.
+
+            @note This should be called FIRST, before rendering any other 3D geometry,
+
+            @param sunDirection The direction vector of the sun (should be normalized).
+            @param sunElevation The elevation angle of the sun in radians (0 = horizon, PI/2 =
+            zenith). Negative values indicate nighttime (darker sky).
          */
         auto Render(const glm::vec3 &sunDirection, float sunElevation) -> void;
 
       protected:
         /**
-         * Returns the vertex shader source.
-         *
-         * @return The vertex shader source.
+            Returns the vertex shader source.
+
+            @return The vertex shader source.
          */
         [[nodiscard]] auto GetVSSource() const -> std::string override;
 
         /**
-         * Returns the fragment shader source.
-         *
-         * @return The fragment shader source.
+            Returns the fragment shader source.
+
+            @return The fragment shader source.
          */
         [[nodiscard]] auto GetFSSource() const -> std::string override;
 
         /**
-         * Does initialization that is specific to this renderer.
+            Does initialization that is specific to this renderer.
          */
         auto InitializeDerived() -> void override;
 
         /**
-         * Sets up the attribute layout for the vertex shader.
+            Sets up the attribute layout for the vertex shader.
          */
         auto SetupAttributeLayout() const -> void override;
 

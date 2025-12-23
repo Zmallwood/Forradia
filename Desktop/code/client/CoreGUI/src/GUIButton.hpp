@@ -12,23 +12,23 @@
 namespace Forradia
 {
     /**
-     * A button component for the GUI.
+        A button component for the GUI.
      */
     class GUIButton : public GUIPanel
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param uniqueName A unique name for the button.
-         * @param xPos The x-coordinate of the button.
-         * @param yPos The y-coordinate of the button.
-         * @param width The width of the button.
-         * @param height The height of the button.
-         * @param text The text to display on the button.
-         * @param action The action to perform when the button is clicked.
-         * @param backgroundImage The background image of the button.
-         * @param hoveredBackgroundImage The background image of the button when hovered.
+            Constructor.
+
+            @param uniqueName A unique name for the button.
+            @param xPos The x-coordinate of the button.
+            @param yPos The y-coordinate of the button.
+            @param width The width of the button.
+            @param height The height of the button.
+            @param text The text to display on the button.
+            @param action The action to perform when the button is clicked.
+            @param backgroundImage The background image of the button.
+            @param hoveredBackgroundImage The background image of the button when hovered.
          */
         GUIButton(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                   std::string_view text, std::function<void()> action,
@@ -45,12 +45,12 @@ namespace Forradia
         auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         /**
-         * Update tasks specific to the button, called by the GUIComponent base class.
+            Update tasks specific to the button, called by the GUIComponent base class.
          */
         auto UpdateDerived() -> void override;
 
         /**
-         * Render tasks specific to the button, called by the GUIComponent base class.
+            Render tasks specific to the button, called by the GUIComponent base class.
          */
         auto RenderDerived() const -> void override;
 

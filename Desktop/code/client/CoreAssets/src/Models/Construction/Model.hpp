@@ -11,15 +11,15 @@
 namespace Forradia
 {
     /**
-     * Holds information about a model, used by the ModelBank.
+        Holds information about a model, used by the ModelBank.
      */
     class Model
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param filePath The path to the model file.
+            Constructor.
+
+            @param filePath The path to the model file.
          */
         Model(std::string_view filePath)
         {
@@ -27,9 +27,9 @@ namespace Forradia
         };
 
         /**
-         * Returns a reference to the model's meshes.
-         *
-         * @return A reference to the model's meshes.
+            Returns a reference to the model's meshes.
+
+            @return A reference to the model's meshes.
          */
         [[nodiscard]] auto GetMeshesRef() const -> const std::vector<GLMMesh> &
         {

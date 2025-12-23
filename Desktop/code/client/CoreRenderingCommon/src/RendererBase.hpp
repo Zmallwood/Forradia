@@ -12,7 +12,7 @@ namespace Forradia
     class ShaderProgram;
 
     /**
-     * Base class for all renderers.
+        Base class for all renderers.
      */
     class RendererBase
     {
@@ -20,14 +20,14 @@ namespace Forradia
         virtual ~RendererBase() = default;
 
         /**
-         * Initialize the renderer with its shader program.
+            Initialize the renderer with its shader program.
          */
         auto Initialize() -> void;
 
         /**
-         * Get the shader program.
-         *
-         * @return The shader program.
+            Get the shader program.
+
+            @return The shader program.
          */
         [[nodiscard]] auto GetShaderProgram() const
         {
@@ -36,28 +36,28 @@ namespace Forradia
 
       protected:
         /**
-         * Get the vertex shader source code.
-         *
-         * @return The vertex shader source code.
+            Get the vertex shader source code.
+
+            @return The vertex shader source code.
          */
         [[nodiscard]] virtual auto GetVSSource() const -> std::string = 0;
 
         /**
-         * Get the fragment shader source code.
-         *
-         * @return The fragment shader source code.
+            Get the fragment shader source code.
+
+            @return The fragment shader source code.
          */
         [[nodiscard]] virtual auto GetFSSource() const -> std::string = 0;
 
         /**
-         * Can be used to do additional initialization implemented in deriving class.
+            Can be used to do additional initialization implemented in deriving class.
          */
         virtual auto InitializeDerived() -> void
         {
         }
 
         /**
-         * Set up the attribute layout.
+            Set up the attribute layout.
          */
         virtual auto SetupAttributeLayout() const -> void = 0;
 

@@ -12,17 +12,17 @@
 namespace Forradia
 {
     /**
-     * A mesh used primarily for models, using GLM types.
+        A mesh used primarily for models, using GLM types.
      */
     class GLMMesh
     {
       public:
         /**
-         * Constructor for the GLMMesh class.
-         *
-         * @param vertices The vertices of the mesh.
-         * @param indices The indices of the mesh.
-         * @param textures The textures of the mesh.
+             Constructor for the GLMMesh class.
+
+            @param vertices The vertices of the mesh.
+            @param indices The indices of the mesh.
+            @param textures The textures of the mesh.
          */
         GLMMesh(std::vector<GLMVertex> vertices, std::vector<unsigned int> indices,
                 std::vector<Texture> textures)

@@ -11,7 +11,7 @@
 namespace Forradia
 {
     /**
-     * Class for the game cursor, which replaces the default system cursor.
+        Class for the game cursor, which replaces the default system cursor.
      */
     class Cursor
     {
@@ -28,7 +28,7 @@ namespace Forradia
         auto operator=(const Cursor &) -> Cursor & = delete;
 
         /**
-         * Default constructor
+            Default constructor
          */
         Cursor()
         {
@@ -36,18 +36,19 @@ namespace Forradia
         }
 
         /**
-         * Resets the cursor style to normal.
+            Resets the cursor style to normal.
          */
         auto ResetStyleToNormal() -> void;
 
         /**
-         * Renders the cursor.
+            Renders the cursor.
          */
         auto Render() const -> void;
 
         /**
-         * Sets the cursor style.
-         * @param value New cursor style.
+            Sets the cursor style.
+
+            @param value New cursor style.
          */
         auto SetCursorStyle(CursorStyles value) -> void
         {

@@ -14,7 +14,7 @@ namespace Forradia::Theme0
     class WorldArea;
 
     /**
-     * Renders the world.
+        Renders the world.
      */
     class WorldView
     {
@@ -31,7 +31,7 @@ namespace Forradia::Theme0
         auto operator=(const WorldView &) -> WorldView & = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         WorldView()
         {
@@ -39,7 +39,7 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Renders the world.
+            Renders the world.
          */
         auto Render() -> void;
 

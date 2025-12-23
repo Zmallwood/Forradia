@@ -16,7 +16,7 @@
 namespace Forradia
 {
     /**
-     * This renderer is used to render models from the model bank in 3D space.
+        This renderer is used to render models from the model bank in 3D space.
      */
     class ModelRenderer : public RendererBase
     {
@@ -35,7 +35,7 @@ namespace Forradia
         ModelRenderer() = default;
 
         /**
-         * Destructor that cleans up the renderer.
+            Destructor that cleans up the renderer.
          */
         ~ModelRenderer() override
         {
@@ -44,13 +44,13 @@ namespace Forradia
         }
 
         /**
-         * Draws a model in 3D space.
-         *
-         * @param modelNameHash The hash of the model to draw.
-         * @param xPos The x coordinate of the model.
-         * @param yPos The y coordinate of the model.
-         * @param elevations The elevations of the tile where the model is located.
-         * @param modelScaling The scaling of the model.
+            Draws a model in 3D space.
+
+            @param modelNameHash The hash of the model to draw.
+            @param xPos The x coordinate of the model.
+            @param yPos The y coordinate of the model.
+            @param elevations The elevations of the tile where the model is located.
+            @param modelScaling The scaling of the model.
          */
         auto DrawModel(int modelNameHash, float xPos, float yPos, float elevations,
                        float modelScaling = 1.0F) -> void;
@@ -61,26 +61,26 @@ namespace Forradia
 
       protected:
         /**
-         * Gets the vertex shader source.
-         *
-         * @return The vertex shader source.
+            Gets the vertex shader source.
+
+            @return The vertex shader source.
          */
         [[nodiscard]] auto GetVSSource() const -> std::string override;
 
         /**
-         * Gets the fragment shader source.
-         *
-         * @return The fragment shader source.
+            Gets the fragment shader source.
+
+            @return The fragment shader source.
          */
         [[nodiscard]] auto GetFSSource() const -> std::string override;
 
         /**
-         * Additional initialization for this derived class.
+            Additional initialization for this derived class.
          */
         auto InitializeDerived() -> void override;
 
         /**
-         * Sets up the attribute layout.
+            Sets up the attribute layout.
          */
         auto SetupAttributeLayout() const -> void override;
 

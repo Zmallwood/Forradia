@@ -11,20 +11,20 @@
 namespace Forradia
 {
     /**
-     * A panel component for the GUI.
+        A panel component for the GUI.
      */
     class GUIPanel : public GUIComponent
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param uniqueName A unique name for the panel.
-         * @param xPos The x-coordinate of the panel.
-         * @param yPos The y-coordinate of the panel.
-         * @param width The width of the panel.
-         * @param height The height of the panel.
-         * @param backgroundImage The background image of the panel.
+            Constructor.
+
+            @param uniqueName A unique name for the panel.
+            @param xPos The x-coordinate of the panel.
+            @param yPos The y-coordinate of the panel.
+            @param width The width of the panel.
+            @param height The height of the panel.
+            @param backgroundImage The background image of the panel.
          */
         GUIPanel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view backgroundImage = k_defaultBackgroundImage)
@@ -34,14 +34,14 @@ namespace Forradia
         }
 
         /**
-         * Render tasks specific to the panel, called by the GUIComponent base class.
+            Render tasks specific to the panel, called by the GUIComponent base class.
          */
         auto RenderDerived() const -> void override;
 
         /**
-         * Sets the background image of the panel.
-         *
-         * @param value The new background image.
+            Sets the background image of the panel.
+
+            @param value The new background image.
          */
         auto SetBackgroundImage(std::string_view value) -> void
         {

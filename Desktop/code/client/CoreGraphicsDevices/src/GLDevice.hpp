@@ -12,7 +12,7 @@ using SDL_GLContext = void *;
 namespace Forradia
 {
     /**
-     * Sets up the OpenGL context and the OpenGL functions.
+        Sets up the OpenGL context and the OpenGL functions.
      */
     class GLDevice
     {
@@ -31,12 +31,12 @@ namespace Forradia
         GLDevice() = default;
 
         /**
-         * Default destructor.
+            Default destructor.
          */
         ~GLDevice();
 
         /**
-         * Initializes this device by setting up the GL functionality.
+            Initializes this device by setting up the GL functionality.
          */
         auto Initialize() -> void;
 

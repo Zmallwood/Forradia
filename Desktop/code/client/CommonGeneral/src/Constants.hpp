@@ -7,6 +7,6 @@
 
 namespace Forradia
 {
-    static constexpr int k_oneSecMillis{1000}; ///< Number of milliseconds in one second.
-    static constexpr int k_maxColorComponentValue{255};
+    static constexpr int k_oneSecMillis{1000};          ///< Number of milliseconds in one second.
+    static constexpr int k_maxColorComponentValue{255}; ///< Maximum value for a color component.
 }

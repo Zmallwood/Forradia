@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Represents the interaction menu.
+        Represents the interaction menu.
      */
     class GUIInteractionMenu : public GUIPanel
     {
@@ -33,7 +33,7 @@ namespace Forradia::Theme0
         GUIInteractionMenu &operator=(const GUIInteractionMenu &) = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
         {
@@ -43,18 +43,19 @@ namespace Forradia::Theme0
         auto OnMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         /**
-         * Builds the menu.
+            Builds the menu.
          */
         auto BuildMenu() -> void;
 
         auto HandleClick() -> void;
 
-        auto ShowMenuForTileAndObjects(int groundHash, const std::vector<int>& objectHashes) -> void;
+        auto ShowMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
+            -> void;
 
         /**
-         * Gets the timed actions.
-         *
-         * @return The timed actions.
+            Gets the timed actions.
+
+            @return The timed actions.
          */
         auto &GetTimedActionsRef()
         {
@@ -62,9 +63,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Gets the clicked coordinate.
-         *
-         * @return The clicked coordinate.
+            Gets the clicked coordinate.
+
+            @return The clicked coordinate.
          */
         auto GetClickedCoordinate() const
         {
@@ -73,14 +74,14 @@ namespace Forradia::Theme0
 
       protected:
         /**
-         * Initializes the interaction menu.
+            Initializes the interaction menu.
          */
         auto Initialize() -> void;
 
         auto UpdateDerived() -> void override;
 
         /**
-         * Does render logic that is specific to the interaction menu.
+            Does render logic that is specific to the interaction menu.
          */
         auto RenderDerived() const -> void override;
 

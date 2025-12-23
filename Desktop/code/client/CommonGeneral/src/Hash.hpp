@@ -10,11 +10,11 @@
 namespace Forradia
 {
     /**
-     * Compute hash code from a given input text, which gets computed the same every game
-     * start.
-     *
-     * @param text Text to compute hash code for.
-     * @return Computed hash code.
+        Compute hash code from a given input text, which gets computed the same every game
+        start.
+
+        @param text Text to compute hash code for.
+        @return Computed hash code.
      */
     constexpr auto Hash(std::string_view text) -> int
     {
@@ -26,6 +26,7 @@ namespace Forradia
         for (char chr : text)
         {
             constexpr unsigned long algorithmFactor{33};
+
             hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
         }
 

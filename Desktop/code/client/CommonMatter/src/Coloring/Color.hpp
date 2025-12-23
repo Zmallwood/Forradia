@@ -10,15 +10,15 @@ struct SDL_Color;
 namespace Forradia
 {
     /**
-     * An RGBA color with components defined with float values.
+        An RGBA color with components defined with float values.
      */
     class Color
     {
       public:
         /**
-         * Convert this color to a corresponding SDL_Color object.
-         *
-         * @return Corresponding SDL_Color object.
+            Convert this color to a corresponding SDL_Color object.
+
+            @return Corresponding SDL_Color object.
          */
         [[nodiscard]] auto ToSDLColor() const -> SDL_Color;
 

@@ -11,14 +11,13 @@
 #include <memory>
 #include <unordered_map>
 
-
 struct SDL_Surface;
 using TTF_Font = struct _TTF_Font;
 
 namespace Forradia
 {
     /**
-     * Renders text strings to the screen using SDL_ttf and OpenGL.
+        Renders text strings to the screen using SDL_ttf and OpenGL.
      */
     class TextRenderer
     {
@@ -35,7 +34,7 @@ namespace Forradia
         auto operator=(const TextRenderer &) -> TextRenderer & = delete;
 
         /**
-         * Constructs a TextRenderer and initializes the rendering system.
+            Constructs a TextRenderer and initializes the rendering system.
          */
         TextRenderer()
         {
@@ -44,16 +43,17 @@ namespace Forradia
         }
 
         /**
-         * Draws a text string at the specified position.
-         *
-         * @param uniqueRenderID A unique identifier for the render operation.
-         * @param text The text string to render.
-         * @param xPos The x-coordinate of the text position (in normalized coordinates).
-         * @param yPos The y-coordinate of the text position (in normalized coordinates).
-         * @param fontSizes The font size to use for rendering (default: FontSizes::_20).
-         * @param centerAlign If true, centers the text at the specified position (default: false).
-         * @param forceRerender If true, forces the text to be rerendered even if it already exists.
-         * @param textColor The color to use for the text (default: WheatTransparent).
+            Draws a text string at the specified position.
+
+            @param uniqueRenderID A unique identifier for the render operation.
+            @param text The text string to render.
+            @param xPos The x-coordinate of the text position (in normalized coordinates).
+            @param yPos The y-coordinate of the text position (in normalized coordinates).
+            @param fontSizes The font size to use for rendering (default: FontSizes::_20).
+            @param centerAlign If true, centers the text at the specified position (default: false).
+            @param forceRerender If true, forces the text to be rerendered even if it already
+           exists.
+            @param textColor The color to use for the text (default: WheatTransparent).
          */
         auto DrawString(int uniqueRenderID, std::string_view text, float xPos, float yPos,
                         FontSizes fontSizes = FontSizes::_20, bool centerAlign = false,

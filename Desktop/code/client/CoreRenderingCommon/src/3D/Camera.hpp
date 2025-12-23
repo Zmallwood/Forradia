@@ -11,9 +11,9 @@
 namespace Forradia
 {
     /**
-     * Camera representing a viewpoint in 3D space.
-     *
-     * Provides accessors for the camera's world-space position and the point it is looking at.
+        Camera representing a viewpoint in 3D space.
+
+        Provides accessors for the camera's world-space position and the point it is looking at.
      */
     class Camera
     {
@@ -31,37 +31,37 @@ namespace Forradia
         Camera() = default;
 
         /**
-         * Get the view matrix.
-         *
-         * @return The view matrix.
+            Get the view matrix.
+
+            @return The view matrix.
          */
         [[nodiscard]] auto GetViewMatrix() const -> glm::mat4;
 
         /**
-         * Get the projection matrix.
-         *
-         * @return The projection matrix.
+            Get the projection matrix.
+
+            @return The projection matrix.
          */
         [[nodiscard]] static auto GetProjectionMatrix() -> glm::mat4;
 
         /**
-         * Add a delta to the current zoom amount.
-         *
-         * @param zoomAmountDelta The delta to add.
+            Add a delta to the current zoom amount.
+
+            @param zoomAmountDelta The delta to add.
          */
         auto AddZoomAmountDelta(float zoomAmountDelta) -> void;
 
         /**
-         * Add a delta to the current rotation amount, sideways.
-         *
-         * @param rotationDeltaSideways The delta to add.
+            Add a delta to the current rotation amount, sideways.
+
+            @param rotationDeltaSideways The delta to add.
          */
         auto AddRotationDeltaSideways(float rotationDeltaSideways) -> void;
 
         /**
-         * Add a delta to the current rotation amount, vertical.
-         *
-         * @param rotationDeltaVertical The delta to add.
+            Add a delta to the current rotation amount, vertical.
+
+            @param rotationDeltaVertical The delta to add.
          */
         auto AddRotationDeltaVertical(float rotationDeltaVertical) -> void;
 

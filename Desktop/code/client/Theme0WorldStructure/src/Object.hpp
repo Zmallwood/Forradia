@@ -10,15 +10,15 @@ namespace Forradia::Theme0
     class ContainedObjects;
 
     /**
-     * An object, either in the game world, a container or inventory.
+        An object, either in the game world, a container or inventory.
      */
     class Object
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param objectNameHash The object name as a hash.
+            Constructor.
+
+            @param objectNameHash The object name as a hash.
          */
         Object(int objectNameHash) : m_type(objectNameHash)
         {
@@ -27,9 +27,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Constructor.
-         *
-         * @param objectTypeName The object type by name.
+            Constructor.
+
+            @param objectTypeName The object type by name.
          */
         Object(std::string_view objectTypeName) : m_type(Hash(objectTypeName))
         {
@@ -38,9 +38,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Gets the object type.
-         *
-         * @return The object type as a hash.
+            Gets the object type.
+
+            @return The object type as a hash.
          */
         auto GetType() const
         {
@@ -53,9 +53,9 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Gets the model scaling of the object.
-         *
-         * @return The model scaling of the object.
+            Gets the model scaling of the object.
+
+            @return The model scaling of the object.
          */
         auto GetModelScaling() const
         {

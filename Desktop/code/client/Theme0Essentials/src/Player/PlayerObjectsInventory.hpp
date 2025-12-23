@@ -10,14 +10,15 @@
 namespace Forradia::Theme0
 {
     /**
-     * Represents the inventory of objects for the player.
-     * TODO: Decide if should be used also for other entities.
+        Represents the inventory of objects for the player.
+
+        TODO: Decide if should be used also for other entities.
      */
     class PlayerObjectsInventory : public ContainedObjects
     {
       public:
         /**
-         * Constructor.
+            Constructor.
          */
         PlayerObjectsInventory() : ContainedObjects(30)
         {

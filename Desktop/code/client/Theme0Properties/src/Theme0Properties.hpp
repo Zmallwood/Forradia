@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Class for storing theme 0 properties.
+        Class for storing theme 0 properties.
      */
     class Theme0Properties
     {
@@ -29,53 +29,53 @@ namespace Forradia::Theme0
         Theme0Properties() = default;
 
         /**
-         * Get the game window title.
-         *
-         * @return The game window title.
+            Get the game window title.
+
+            @return The game window title.
          */
         static auto GetGameWindowTitle() -> std::string;
 
         /**
-         * Get the clear color of the canvas.
-         *
-         * @return The clear color of the canvas.
+            Get the clear color of the canvas.
+
+            @return The clear color of the canvas.
          */
         static auto GetClearColor() -> Color;
 
         /**
-         * Get the size of the grid rendered by the WorldView.
-         *
-         * @return The size of the grid rendered by the WorldView.
+            Get the size of the grid rendered by the WorldView.
+
+            @return The size of the grid rendered by the WorldView.
          */
         static auto GetGridSize() -> Size;
 
         /**
-         * Get the base size of a single world area. This size is being scaled using
-         * GetWorldScaling() to obtain the resulting world area size.
-         *
-         * @return The base size of a single world area.
+            Get the base size of a single world area. This size is being scaled using
+            GetWorldScaling() to obtain the resulting world area size.
+
+            @return The base size of a single world area.
          */
         static auto GetBaseWorldAreaSize() -> Size;
 
         /**
-         * Get the world scaling factor which is applied to the world area size and world generation
-         * amounts.
-         *
-         * @return The world scaling factor.
+            Get the world scaling factor which is applied to the world area size and world
+           generation amounts.
+
+            @return The world scaling factor.
          */
         static auto GetWorldScaling() -> float;
 
         /**
-         * Get the size of a single tile in opengl space.
-         *
-         * @return The size of a single tile in opengl space.
+            Get the size of a single tile in opengl space.
+
+            @return The size of a single tile in opengl space.
          */
         static auto GetTileSize() -> float;
 
         /**
-         * Get the height of one unit of elevation in opengl 3D space.
-         *
-         * @return The height of one unit of elevation.
+            Get the height of one unit of elevation in opengl 3D space.
+
+            @return The height of one unit of elevation.
          */
         static auto GetElevationHeight() -> float;
     };

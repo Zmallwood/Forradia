@@ -12,13 +12,13 @@ namespace Forradia
     class GUILabel;
 
     /**
-     * A panel that displays the FPS.
+        A panel that displays the FPS.
      */
     class GUIFPSPanel : public GUIMovablePanel
     {
       public:
         /**
-         * Constructor.
+            Constructor.
          */
         GUIFPSPanel()
             : GUIMovablePanel("FPSPanel", k_defaultBounds.x, k_defaultBounds.y,
@@ -30,13 +30,13 @@ namespace Forradia
 
       protected:
         /**
-         * Update tasks specific to the FPSPanel, called by the GUIComponent base class.
+            Update tasks specific to the FPSPanel, called by the GUIComponent base class.
          */
         auto UpdateDerived() -> void override;
 
       private:
         /**
-         * Initializes this FPSPanel.
+            Initializes this FPSPanel.
          */
         auto Initialize() -> void;
 

@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * The world generator for the ground with elevation.
+        The world generator for the ground with elevation.
      */
     class WorldGeneratorGround : public WorldGeneratorBase
     {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         WorldGeneratorGround() = default;
 
         /**
-         * Do all the steps to generate the ground with elevation.
+            Do all the steps to generate the ground with elevation.
          */
         auto GenerateGroundWithElevation() const -> void;
 

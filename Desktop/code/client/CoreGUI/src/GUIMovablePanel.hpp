@@ -10,19 +10,19 @@
 namespace Forradia
 {
     /**
-     * A panel that can be moved by the mouse.
+        A panel that can be moved by the mouse.
      */
     class GUIMovablePanel : public GUIPanel
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param uniqueName A unique name for the movable panel.
-         * @param xPos The x-coordinate of the movable panel.
-         * @param yPos The y-coordinate of the movable panel.
-         * @param width The width of the movable panel.
-         * @param height The height of the movable panel.
+            Constructor.
+
+            @param uniqueName A unique name for the movable panel.
+            @param xPos The x-coordinate of the movable panel.
+            @param yPos The y-coordinate of the movable panel.
+            @param width The width of the movable panel.
+            @param height The height of the movable panel.
          */
         GUIMovablePanel(std::string_view uniqueName, float xPos, float yPos, float width,
                         float height)
@@ -36,31 +36,31 @@ namespace Forradia
 
       protected:
         /**
-         * Update tasks specific to the movable panel, called by the GUIComponent base class.
+            Update tasks specific to the movable panel, called by the GUIComponent base class.
          */
         auto UpdateDerived() -> void override;
 
         /**
-         * Starts the move of the movable panel.
+            Starts the move of the movable panel.
          */
         auto StartMove() -> void;
 
         /**
-         * Stops the move of the movable panel.
+            Stops the move of the movable panel.
          */
         auto StopMove() -> void;
 
         /**
-         * Gets the draggable area of the movable panel.
-         *
-         * @return The draggable area of the movable panel.
+            Gets the draggable area of the movable panel.
+
+            @return The draggable area of the movable panel.
          */
         virtual auto GetDraggableArea() const -> RectF;
 
         /**
-         * Gets whether the movable panel is being moved.
-         *
-         * @return Whether the movable panel is being moved.
+            Gets whether the movable panel is being moved.
+
+            @return Whether the movable panel is being moved.
          */
         auto GetIsBeingMoved() const
         {
@@ -68,9 +68,9 @@ namespace Forradia
         }
 
         /**
-         * Gets the starting position of the move of the movable panel.
-         *
-         * @return The starting position of the move of the movable panel.
+            Gets the starting position of the move of the movable panel.
+
+            @return The starting position of the move of the movable panel.
          */
         auto GetMoveStartingPosition() const
         {
@@ -78,9 +78,9 @@ namespace Forradia
         }
 
         /**
-         * Gets the starting mouse position of the move of the movable panel.
-         *
-         * @return The starting mouse position of the move of the movable panel.
+            Gets the starting mouse position of the move of the movable panel.
+
+            @return The starting mouse position of the move of the movable panel.
          */
         auto GetMoveStartingMousePosition() const
         {

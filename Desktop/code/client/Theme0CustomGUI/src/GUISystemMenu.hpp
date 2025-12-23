@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Represents the system menu.
+        Represents the system menu.
      */
     class GUISystemMenu : public GUIComponent
     {
@@ -31,7 +31,7 @@ namespace Forradia::Theme0
         GUISystemMenu &operator=(const GUISystemMenu &) = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
         {
@@ -40,17 +40,17 @@ namespace Forradia::Theme0
 
       protected:
         /**
-         * Initializes the system menu.
+            Initializes the system menu.
          */
         auto Initialize() -> void;
 
         /**
-         * Does update logic that is specific to the system menu.
+            Does update logic that is specific to the system menu.
          */
         virtual auto UpdateDerived() -> void override;
 
         /**
-         * Does render logic that is specific to the system menu.
+            Does render logic that is specific to the system menu.
          */
         virtual auto RenderDerived() const -> void override;
 

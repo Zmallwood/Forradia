@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-     * A model rendering operation.
+        A model rendering operation.
      */
     class ModelRenderingOperation
     {

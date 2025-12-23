@@ -12,8 +12,8 @@
 namespace Forradia
 {
     /**
-     * A chat box component for the GUI which displays a list of messages and allows the user
-     * to input a message.
+        A chat box component for the GUI which displays a list of messages and allows the user
+        to input a message.
      */
     class GUIChatBox : public GUIPanel
     {
@@ -35,7 +35,7 @@ namespace Forradia
         auto operator=(const GUIChatBox &) -> GUIChatBox & = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         GUIChatBox()
             : GUIPanel("ChatBox", k_defaultBounds.x, k_defaultBounds.y, k_defaultBounds.width,
@@ -45,38 +45,38 @@ namespace Forradia
         }
 
         /**
-         * Update tasks specific to the chat box, called by the GUIComponent base class.
+            Update tasks specific to the chat box, called by the GUIComponent base class.
          */
         auto UpdateDerived() -> void override;
 
         /**
-         * Render tasks specific to the chat box, called by the GUIComponent base class.
+            Render tasks specific to the chat box, called by the GUIComponent base class.
          */
         auto RenderDerived() const -> void override;
 
         /**
-         * Prints a message to the chat box.
-         *
-         * @param text The message to print.
+            Prints a message to the chat box.
+
+            @param text The message to print.
          */
         auto Print(std::string_view text) -> void;
 
         auto AddTextInput(std::string_view text) -> void;
 
         /**
-         * Enables input to the chat box.
+            Enables input to the chat box.
          */
         auto EnableInput() -> void;
 
         /**
-         * Submits the input to the chat box.
+            Submits the input to the chat box.
          */
         auto SubmitInput() -> void;
 
         /**
-         * Gets whether the input is active.
-         *
-         * @return Whether the input is active.
+            Gets whether the input is active.
+
+            @return Whether the input is active.
          */
         [[nodiscard]] auto GetInputActive() const
         {

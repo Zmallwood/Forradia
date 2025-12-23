@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class Object;
 
     /**
-     * Represents an action that can be performed by the player.
+        Represents an action that can be performed by the player.
      */
     class Action
     {
@@ -28,7 +28,8 @@ namespace Forradia::Theme0
             objectMatches{}; ///< The types of objects that the action can be performed on.
         std::vector<int> objectsInInventory{}; ///< The types of objects that need to be in the
                                                ///< players inventory.
-        std::function<void(const std::shared_ptr<Tile>&, const std::vector<std::shared_ptr<Object> *> &)>
+        std::function<void(const std::shared_ptr<Tile> &,
+                           const std::vector<std::shared_ptr<Object> *> &)>
             action{}; ///< The function that performs the action.
     };
 }

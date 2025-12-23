@@ -15,13 +15,13 @@ namespace Forradia
 namespace Forradia::Theme0
 {
     /**
-     * Represents the player status box.
+        Represents the player status box.
      */
     class GUIPlayerStatusBox : public GUIPanel
     {
       public:
         /**
-         * Constructor.
+            Constructor.
          */
         GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
         {
@@ -30,17 +30,17 @@ namespace Forradia::Theme0
 
       protected:
         /**
-         * Initializes the player status box.
+            Initializes the player status box.
          */
         auto Initialize() -> void;
 
         /**
-         * Does update logic that is specific to the player status box.
+            Does update logic that is specific to the player status box.
          */
         auto UpdateDerived() -> void override;
 
         /**
-         * Does render logic that is specific to the player status box.
+            Does render logic that is specific to the player status box.
          */
         auto RenderDerived() const -> void override;
 

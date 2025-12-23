@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Generates entities for the world.
+        Generates entities for the world.
      */
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         WorldGeneratorEntities() = default;
 
         /**
-         * Generates entities for the world.
+            Generates entities for the world.
          */
         auto GenerateEntities() const -> void;
 

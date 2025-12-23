@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-     * A renderer for drawing colors to the canvas.
+        A renderer for drawing colors to the canvas.
      */
     class Color2DRenderer : public RendererBase
     {
@@ -32,7 +32,7 @@ namespace Forradia
         Color2DRenderer() = default;
 
         /**
-         * Destructor which cleans up the renderer.
+            Destructor which cleans up the renderer.
          */
         ~Color2DRenderer() override
         {
@@ -41,30 +41,30 @@ namespace Forradia
         }
 
         /**
-         * Draws a filled rectangle.
-         *
-         * @param uniqueRenderID The unique render ID.
-         * @param color The color of the rectangle.
-         * @param xPos The x coordinate of the rectangle.
-         * @param yPos The y coordinate of the rectangle.
-         * @param width The width of the rectangle.
-         * @param height The height of the rectangle.
-         * @param updateExisting Whether to update the existing operation.
+            Draws a filled rectangle.
+
+            @param uniqueRenderID The unique render ID.
+            @param color The color of the rectangle.
+            @param xPos The x coordinate of the rectangle.
+            @param yPos The y coordinate of the rectangle.
+            @param width The width of the rectangle.
+            @param height The height of the rectangle.
+            @param updateExisting Whether to update the existing operation.
          */
         auto DrawFilledRectangle(int uniqueRenderID, Color color, float xPos, float yPos,
                                  float width, float height, bool updateExisting = false) -> void;
 
         /**
-         * Draws a line between two points.
-         *
-         * @param uniqueRenderID The unique render ID.
-         * @param color The color of the line.
-         * @param xPos1 The x coordinate of the first point.
-         * @param yPos1 The y coordinate of the first point.
-         * @param xPos2 The x coordinate of the second point.
-         * @param yPos2 The y coordinate of the second point.
-         * @param lineWidth The width of the line (normalized, as a fraction of canvas size).
-         * @param updateExisting Whether to update the existing operation.
+            Draws a line between two points.
+
+            @param uniqueRenderID The unique render ID.
+            @param color The color of the line.
+            @param xPos1 The x coordinate of the first point.
+            @param yPos1 The y coordinate of the first point.
+            @param xPos2 The x coordinate of the second point.
+            @param yPos2 The y coordinate of the second point.
+            @param lineWidth The width of the line (normalized, as a fraction of canvas size).
+            @param updateExisting Whether to update the existing operation.
          */
         auto DrawLine(int uniqueRenderID, Color color, float xPos1, float yPos1, float xPos2,
                       float yPos2, float lineWidth = k_defaultLineWidth,
@@ -72,21 +72,21 @@ namespace Forradia
 
       protected:
         /**
-         * Returns the vertex shader source.
-         *
-         * @return The vertex shader source.
+            Returns the vertex shader source.
+
+            @return The vertex shader source.
          */
         auto GetVSSource() const -> std::string override;
 
         /**
-         * Returns the fragment shader source.
-         *
-         * @return The fragment shader source.
+            Returns the fragment shader source.
+
+            @return The fragment shader source.
          */
         auto GetFSSource() const -> std::string override;
 
         /**
-         * Sets up the attribute layout.
+            Sets up the attribute layout.
          */
         auto SetupAttributeLayout() const -> void override;
 

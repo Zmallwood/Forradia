@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-     * A draw group for a tile.
+        A draw group for a tile.
      */
     class TileDrawGroup
     {

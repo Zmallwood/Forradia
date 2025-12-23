@@ -10,15 +10,15 @@
 namespace Forradia
 {
     /**
-     * A texture, primarily used for models.
+        A texture, primarily used for models.
      */
     class Texture
     {
       public:
         /**
-         * Constructor for the Texture class.
-         *
-         * @param path The path to the texture.
+            Constructor for the Texture class.
+
+            @param path The path to the texture.
          */
         Texture(std::string_view path) : path(path)
         {

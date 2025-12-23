@@ -16,7 +16,7 @@ struct SDL_Surface;
 namespace Forradia
 {
     /**
-     * Manages loading and providing of textures which are being used in opengl rendering.
+        Manages loading and providing of textures which are being used in opengl rendering.
      */
     class TextureBank
     {
@@ -33,7 +33,7 @@ namespace Forradia
         auto operator=(const TextureBank &) -> TextureBank & = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         TextureBank()
         {
@@ -41,7 +41,7 @@ namespace Forradia
         }
 
         /**
-         * Destructor.
+            Destructor.
          */
         ~TextureBank()
         {
@@ -49,27 +49,27 @@ namespace Forradia
         }
 
         /**
-         * Get a texture ID for the given image name hash.
-         *
-         * @param imageNameHash The hash of the image name.
-         * @return The texture ID.
+            Get a texture ID for the given image name hash.
+
+            @param imageNameHash The hash of the image name.
+            @return The texture ID.
          */
         [[nodiscard]] auto GetTexture(int imageNameHash) const -> GLuint;
 
         /**
-         * Gets the dimensions of a texture with the given hash.
-         *
-         * @param imageNameHash The hash of the image name.
-         * @return The dimensions of the texture.
+            Gets the dimensions of a texture with the given hash.
+
+            @param imageNameHash The hash of the image name.
+            @return The dimensions of the texture.
          */
         [[nodiscard]] static auto GetTextureDimensions(int imageNameHash) -> Size;
 
         /**
-         * Obtains a text texture ID for the given unique texture ID.
-         *
-         * @param uniqueTextureID The unique texture ID.
-         * @param[out] textureID The texture ID (output parameter).
-         * @return True if the texture was found, false otherwise.
+            Obtains a text texture ID for the given unique texture ID.
+
+            @param uniqueTextureID The unique texture ID.
+            @param[out] textureID The texture ID (output parameter).
+            @return True if the texture was found, false otherwise.
          */
         auto ObtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool;
 

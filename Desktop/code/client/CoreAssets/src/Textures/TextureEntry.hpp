@@ -14,7 +14,7 @@
 namespace Forradia
 {
     /**
-     * Holds information about a texture, used by the TextureBank.
+        Holds information about a texture, used by the TextureBank.
      */
     class TextureEntry
     {

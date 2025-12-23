@@ -12,20 +12,20 @@
 namespace Forradia
 {
     /**
-     * A meter component for the GUI.
+        A meter component for the GUI.
      */
     class GUIMeter : public GUIComponent
     {
       public:
         /**
-         * Constructor.
-         *
-         * @param uniqueName A unique name for the meter.
-         * @param xPos The x-coordinate of the meter.
-         * @param yPos The y-coordinate of the meter.
-         * @param width The width of the meter.
-         * @param height The height of the meter.
-         * @param filledColor The color of the filled part of the meter.
+            Constructor.
+
+            @param uniqueName A unique name for the meter.
+            @param xPos The x-coordinate of the meter.
+            @param yPos The y-coordinate of the meter.
+            @param width The width of the meter.
+            @param height The height of the meter.
+            @param filledColor The color of the filled part of the meter.
          */
         GUIMeter(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  Color filledColor)
@@ -41,14 +41,14 @@ namespace Forradia
 
       protected:
         /**
-         * Render tasks specific to the meter, called by the GUIComponent base class.
+            Render tasks specific to the meter, called by the GUIComponent base class.
          */
         auto RenderDerived() const -> void override;
 
         /**
-         * Gets the filled percentage of the meter.
-         *
-         * @return The filled percentage of the meter.
+            Gets the filled percentage of the meter.
+
+            @return The filled percentage of the meter.
          */
         virtual auto GetFilledPercentage() const -> float = 0;
 

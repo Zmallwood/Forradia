@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Class for managing creature properties.
+        Class for managing creature properties.
      */
     class CreatureIndex
     {
@@ -28,31 +28,31 @@ namespace Forradia::Theme0
         CreatureIndex &operator=(const CreatureIndex &) = delete;
 
         /**
-         * Constructor.
+            Constructor.
          */
         CreatureIndex();
 
         /**
-         * Get the model scaling for a given creature hash.
-         *
-         * @param creatureHash The hash of the creature.
-         * @return The model scaling for the given creature.
+            Get the model scaling for a given creature hash.
+
+            @param creatureHash The hash of the creature.
+            @return The model scaling for the given creature.
          */
         auto GetModelScaling(int creatureHash) const -> float;
 
         /**
-         * Get the levitation height for a given creature hash.
-         *
-         * @param creatureHash The hash of the creature.
-         * @return The levitation height for the given creature.
+            Get the levitation height for a given creature hash.
+
+            @param creatureHash The hash of the creature.
+            @return The levitation height for the given creature.
          */
         auto GetLevitationHeight(int creatureHash) const -> float;
 
         /**
-         * Check if a creature entry exists for a given creature hash.
-         *
-         * @param creatureHash The hash of the creature.
-         * @return True if a creature entry exists for the given creature hash, false otherwise.
+            Check if a creature entry exists for a given creature hash.
+
+            @param creatureHash The hash of the creature.
+            @return True if a creature entry exists for the given creature hash, false otherwise.
          */
         auto CreatureEntryExists(int creatureHash) const -> bool;
 

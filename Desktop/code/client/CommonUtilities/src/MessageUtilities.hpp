@@ -10,16 +10,16 @@
 namespace Forradia
 {
     /**
-     * Print out a string of text, without a following line break.
-     *
-     * @param text Text to print.
+        Print out a string of text, without a following line break.
+
+        @param text Text to print.
      */
     auto Print(std::string_view text) -> void;
 
     /**
-     * Print out a string of text, with an added line break at the end.
-     *
-     * @param text Text to print.
+        Print out a string of text, with an added line break at the end.
+
+        @param text Text to print.
      */
     auto PrintLine(std::string_view text) -> void;
 }

@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Sets up the scenes for the theme.
+        Sets up the scenes for the theme.
      */
     auto SetupScenes() -> void;
 }

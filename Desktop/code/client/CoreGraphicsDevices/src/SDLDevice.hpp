@@ -17,7 +17,7 @@ using Uint32 = uint32_t;
 namespace Forradia
 {
     /**
-     * Sets up the objects related to SDL.
+        Sets up the objects related to SDL.
      */
     class SDLDevice
     {
@@ -36,27 +36,27 @@ namespace Forradia
         SDLDevice() = default;
 
         /**
-         * Sets up SDL and OpenGL.
-         *
-         * @param gameWindowTitle The title of the game window.
-         * @param clearColor The color to clear the canvas with.
+            Sets up SDL and OpenGL.
+
+            @param gameWindowTitle The title of the game window.
+            @param clearColor The color to clear the canvas with.
          */
         auto Initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
         /**
-         * Clears the canvas.
+            Clears the canvas.
          */
         auto ClearCanvas() const -> void;
 
         /**
-         * Presents the canvas.
+            Presents the canvas.
          */
         auto PresentCanvas() const -> void;
 
         /**
-         * Returns the SDL window object.
-         *
-         * @return The SDL window object.
+            Returns the SDL window object.
+
+            @return The SDL window object.
          */
         [[nodiscard]] auto GetWindow() const -> std::shared_ptr<SDL_Window>
         {

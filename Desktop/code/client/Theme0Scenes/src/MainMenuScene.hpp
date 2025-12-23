@@ -10,8 +10,8 @@
 namespace Forradia::Theme0
 {
     /**
-     * The main menu scene is the second scene that is displayed when the game is started.
-     * It displays the title of the game and the main menu.
+        The main menu scene is the second scene that is displayed when the game is started.
+        It displays the title of the game and the main menu.
      */
     class MainMenuScene : public IScene
     {
@@ -31,12 +31,12 @@ namespace Forradia::Theme0
 
       protected:
         /**
-         * Initializes the main menu scene.
+            Initializes the main menu scene.
          */
         virtual auto InitializeDerived() -> void override;
 
         /**
-         * Called every frame to render the scene.
+            Called every frame to render the scene.
          */
         virtual auto RenderDerived() const -> void override;
     };

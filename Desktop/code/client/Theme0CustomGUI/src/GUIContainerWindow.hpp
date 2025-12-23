@@ -17,13 +17,13 @@ namespace Forradia::Theme0
     class ContainedObjects;
 
     /**
-     * Represents the inventory window.
+        Represents the inventory window.
      */
     class GUIContainerWindow : public GUIWindow
     {
       public:
         /**
-         * Constructor.
+            Constructor.
          */
         GUIContainerWindow(ContainedObjects &containedObjects)
             : GUIWindow("GUIContainerWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Container")
