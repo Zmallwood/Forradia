@@ -11,6 +11,7 @@
 #include "World.hpp"
 #include "WorldArea.hpp"
 #include "WorldView.hpp"
+#include "TimeUtilities.hpp"
 
 namespace Forradia::Theme0
 {
