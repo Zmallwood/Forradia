@@ -17,5 +17,6 @@ namespace Forradia::Theme0
         bool ignoreIndividualModelScaling{
             false}; ///< Whether to ignore the individual model scaling.
         int numContainerSlots{0};
+        bool blocksMovement{false};
     };
 }

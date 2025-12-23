@@ -59,9 +59,12 @@ namespace Forradia::Theme0
 
         auto GetNumContainerSlots(int objectHash) const -> int;
 
+        auto GetBlocksMovement(int objectHash) const -> bool;
+
       private:
         auto AddObjectEntry(std::string_view objectName, float modelScaling,
-                            bool ignoreIndividualModelScaling, int numContainerSlots) -> void;
+                            bool ignoreIndividualModelScaling, int numContainerSlots,
+                            bool blocksMovement) -> void;
 
         std::unordered_map<int, ObjectIndexEntry> m_entries{};
     };

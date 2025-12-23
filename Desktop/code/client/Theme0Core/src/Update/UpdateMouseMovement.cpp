@@ -63,7 +63,6 @@ namespace Forradia::Theme0
 
             if (destination == playerPosition)
             {
-                std::cout << "Destination reached" << std::endl;
                 Player::Instance().SetDestination({-1, -1});
                 Player::Instance().StopMoving();
             }

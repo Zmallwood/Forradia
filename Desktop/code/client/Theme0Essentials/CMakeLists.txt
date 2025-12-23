@@ -17,5 +17,6 @@ target_link_libraries(ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
     ForradiaTheme0WorldStructure
+    ForradiaTheme0Properties
 )
 target_precompile_headers(ForradiaTheme0Essentials PUBLIC ./src/StdAfx.hpp)

@@ -7,8 +7,11 @@
 #include "NumbersUtilities.hpp"
 #include "PlayerObjectsInventory.hpp"
 #include "Tile.hpp"
+#include "Object.hpp"
+#include "ObjectsStack.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
+#include "ObjectIndex.hpp"
 
 namespace Forradia::Theme0
 {
@@ -145,6 +148,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::North;
@@ -160,6 +172,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::East;
@@ -175,6 +196,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::South;
@@ -190,6 +220,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::West;
@@ -205,6 +244,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::NorthEast;
@@ -220,6 +268,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::SouthEast;
@@ -235,6 +292,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::SouthWest;
@@ -250,6 +316,15 @@ namespace Forradia::Theme0
 
         if (worldArea->GetTile(newX, newY)->GetGround() != Hash("GroundWater"))
         {
+            auto objectsStack{worldArea->GetTile(newX, newY)->GetObjectsStack()};
+            for (auto object : objectsStack->GetObjects())
+            {
+                if (ObjectIndex::Instance().GetBlocksMovement(object->GetType()))
+                {
+                    return;
+                }
+            }
+            
             m_position = {newX, newY};
             m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::NorthWest;
