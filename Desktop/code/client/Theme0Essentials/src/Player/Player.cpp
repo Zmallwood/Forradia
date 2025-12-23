@@ -56,6 +56,26 @@ namespace Forradia::Theme0
                 this->MoveWest();
                 break;
 
+            case PlayerMoveDirections::NorthEast:
+                this->MoveNorth();
+                this->MoveEast();
+                break;
+
+            case PlayerMoveDirections::SouthEast:
+                this->MoveSouth();
+                this->MoveEast();
+                break;
+
+            case PlayerMoveDirections::SouthWest:
+                this->MoveSouth();
+                this->MoveWest();
+                break;
+
+            case PlayerMoveDirections::NorthWest:
+                this->MoveNorth();
+                this->MoveWest();
+                break;
+
             case PlayerMoveDirections::None:
                     break;
             }
@@ -84,6 +104,26 @@ namespace Forradia::Theme0
         m_playerMoveDirection = PlayerMoveDirections::West;
     }
 
+    auto Player::StartMovingNorthWest() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+    }
+
+    auto Player::StartMovingNorthEast() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+    }
+
+    auto Player::StartMovingSouthWest() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+    }
+
+    auto Player::StartMovingSouthEast() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+    }
+    
     auto Player::StopMoving() -> void
     {
         m_playerMoveDirection = PlayerMoveDirections::None;
@@ -156,5 +196,10 @@ namespace Forradia::Theme0
     {
         m_playerActions.push_back(std::tuple<PlayerActionTypes, std::string, Point>{
             playerAction, actionFirstArgument, actionSecondArgument});
+    }
+
+    PointF Player::GetSmoothPosition() const
+    {
+        return {0.0F, 0.0F};
     }
 }

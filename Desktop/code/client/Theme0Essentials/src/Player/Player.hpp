@@ -54,6 +54,14 @@ namespace Forradia::Theme0
 
         auto StartMovingWest() -> void;
 
+        auto StartMovingNorthWest() -> void;
+
+        auto StartMovingNorthEast() -> void;
+
+        auto StartMovingSouthWest() -> void;
+
+        auto StartMovingSouthEast() -> void;
+
         auto StopMoving() -> void;
 
         /**
@@ -93,6 +101,8 @@ namespace Forradia::Theme0
         auto AddPlayerAction(PlayerActionTypes playerAction,
                              std::string_view actionFirstArgument = "",
                              Point actionSecondArgument = {-1, -1}) -> void;
+
+        PointF GetSmoothPosition() const;
 
         /**
          * Gets the name of the player.
