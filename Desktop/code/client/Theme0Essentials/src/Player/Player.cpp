@@ -277,7 +277,7 @@ namespace Forradia::Theme0
 
         if (moveProgress > 1.0F)
         {
-            moveProgress = 0.0F;
+            moveProgress = -1.0F;
         }
 
         switch (m_playerMoveDirection)
