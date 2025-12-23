@@ -10,3 +10,34 @@ Checks: >
 WarningsAsErrors: ''
 HeaderFilterRegex: '^/home/andreas/code/git/Forradia/Desktop/code/'  # Only show warnings from files in the code/ directory
 AnalyzeTemporaryDtors: false
+ExtraArgs:
+  - -Icode/client/CommonCoreUtilities/src
+  - -Icode/client/CommonGeneral/src
+  - -Icode/client/CommonMatter/src
+  - -Icode/client/CommonUtilities/src
+  - -Icode/client/CoreAssets/src
+  - -Icode/client/CoreEngine/src
+  - -Icode/client/CoreGraphicsDevices/src
+  - -Icode/client/CoreGUI/src
+  - -Icode/client/CoreMinorComponents/src
+  - -Icode/client/CoreRenderingColors2D/src
+  - -Icode/client/CoreRenderingCommon/src
+  - -Icode/client/CoreRenderingGround/src
+  - -Icode/client/CoreRenderingImages2D/src
+  - -Icode/client/CoreRenderingModels/src
+  - -Icode/client/CoreRenderingSky/src
+  - -Icode/client/CoreRenderingText/src
+  - -Icode/client/CoreScenes/src
+  - -Icode/client/Theme0/src
+  - -Icode/client/Theme0Core/src
+  - -Icode/client/Theme0CustomGUI/src
+  - -Icode/client/Theme0Essentials/src
+  - -Icode/client/Theme0Properties/src
+  - -Icode/client/Theme0Scenes/src
+  - -Icode/client/Theme0WorldGenerationCommon/src
+  - -Icode/client/Theme0WorldGenerationEntities/src
+  - -Icode/client/Theme0WorldGenerationGround/src
+  - -Icode/client/Theme0WorldGenerationMain/src
+  - -Icode/client/Theme0WorldGenerationObjects/src
+  - -Icode/client/Theme0WorldGenerationWater/src
+  - -Icode/client/Theme0WorldStructure/src
