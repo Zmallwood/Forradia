@@ -100,6 +100,16 @@ namespace Forradia::Theme0
         elevations.push_back(elevationSES);
         elevations.push_back(elevationSESE);
 
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+        // elevations.push_back(0.0F);
+
         m_elevationsAll[xCoordinate][yCoordinate] = elevations;
 
         auto ground{tile->GetGround()};

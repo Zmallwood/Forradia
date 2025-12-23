@@ -21,7 +21,7 @@ namespace Forradia::Theme0
 
         // Scattered trees outside of forests.
 
-        auto numScatteredTrees{300 * worldScaling + GetRandomInt(150 * worldScaling)};
+        auto numScatteredTrees{static_cast<int>(300 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(150 * worldScaling))))};
 
         for (auto i = 0; i < numScatteredTrees; i++)
         {
@@ -54,7 +54,7 @@ namespace Forradia::Theme0
         }
 
         // Scattered bushes.
-        auto numScatteredBushes{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
+        auto numScatteredBushes{static_cast<int>(1000 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numScatteredBushes; i++)
         {
@@ -85,7 +85,7 @@ namespace Forradia::Theme0
         }
 
         // Stone boulders - prefer higher elevation areas.
-        auto numBoulders{150 * worldScaling + GetRandomInt(100 * worldScaling)};
+        auto numBoulders{static_cast<int>(150 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numBoulders; i++)
         {
@@ -108,7 +108,7 @@ namespace Forradia::Theme0
 
         // Brown mushrooms - prefer forest areas with trees nearby.
         // Mushrooms grow on forest floors, often near trees.
-        auto numMushrooms{600 * worldScaling + GetRandomInt(400 * worldScaling)};
+        auto numMushrooms{static_cast<int>(600 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(400 * worldScaling))))};
 
         for (auto i = 0; i < numMushrooms; i++)
         {
@@ -191,7 +191,7 @@ namespace Forradia::Theme0
             }
         }
 
-        auto numStones{1000 * worldScaling + GetRandomInt(100 * worldScaling)};
+        auto numStones{static_cast<int>(1000 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(100 * worldScaling))))};
 
         for (auto i = 0; i < numStones; i++)
         {

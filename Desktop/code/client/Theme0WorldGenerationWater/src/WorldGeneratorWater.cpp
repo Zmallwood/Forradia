@@ -135,8 +135,7 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{static_cast<int>(3 * worldScaling + GetRandomInt(6 * worldScaling))};
-            auto irregularity{0.3F + GetRandomInt(20) / 100.0F};
+            auto radius{static_cast<int>(3 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(6 * worldScaling))))};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
@@ -163,11 +162,11 @@ namespace Forradia::Theme0
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
-                    if (distance * distance <= radius * radius)
+                    if (distance * distance <= static_cast<float>(radius * radius))
                     {
                         tile->SetGround("GroundWater");
 
-                        auto depth{static_cast<int>((1.0F - distance / radius) * 4.0F) + 1};
+                        auto depth{static_cast<int>((1.0F - distance / static_cast<float>(radius)) * 4.0F) + 1};
 
                         tile->SetWaterDepth(depth);
                         tile->SetElevation(0);
@@ -202,14 +201,14 @@ namespace Forradia::Theme0
 
         // Enumerate all eight surrounding directions for neighbor checks.
 
-        // clang-format off
-        int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                             {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
-        // clang-format on
-
         // Visit each neighboring tile and update elevation when needed.
         for (auto dir = 0; dir < 8; dir++)
         {
+            // clang-format off
+            int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                                 {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+            // clang-format on
+
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 

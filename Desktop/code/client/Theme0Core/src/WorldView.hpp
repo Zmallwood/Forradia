@@ -54,6 +54,14 @@ namespace Forradia::Theme0
         const int k_maxWaterDepthRendering{3};
         const int k_renderIDGroundSymbolHoveredTile{Hash("GroundSymbolHoveredTile")};
         const int k_renderIDGroundSymbolTargetedRobot{Hash("GroundSymbolTargetedRobot")};
+        // 45 degrees up in +Z
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        constexpr static glm::vec3 k_sunDirectionRaw = glm::vec3(0.7F, 0.0F, 0.7F);
+        // 45 degrees
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        constexpr static float k_sunElevation = M_PI / 4.0F;
+        constexpr static auto k_tilesGroupSize{20};
+        glm::vec3 m_sunDirection;
         std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
         std::unordered_map<int, std::unordered_map<int, std::vector<float>>> m_elevationsAll;
         std::vector<TileData> m_tiles;

@@ -40,6 +40,6 @@ namespace Forradia::Theme0
 
         auto GenerateObjectsInBiomes() const -> void;
 
-        auto IsValidForFlora(int x, int y) const -> bool;
+        [[nodiscard]] auto IsValidForFlora(int x, int y) const -> bool;
     };
 }

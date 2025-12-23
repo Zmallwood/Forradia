@@ -38,8 +38,8 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{static_cast<int>(8 * worldScaling + GetRandomInt(12 * worldScaling))};
-            auto treeDensity{0.1F + GetRandomInt(20) / 100.0F};
+            auto radius{static_cast<int>(8 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(12 * worldScaling))))};
+            auto treeDensity{0.1F + static_cast<float>(GetRandomInt(20)) / 100.0F};
 
             auto useFir{GetRandomInt(100) < 60};
 
@@ -59,21 +59,19 @@ namespace Forradia::Theme0
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
-                    if (distance > radius)
+                    if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    auto normalizedDistance{distance / radius};
+                    auto normalizedDistance{distance / static_cast<float>(radius)};
 
                     // Calculate the local density. Higher density in center, lower at edges.
                     auto localDensity{treeDensity * (1.0F - normalizedDistance * 0.5F)};
 
                     if (GetRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
                     {
-                        auto forestTile{worldArea->GetTile(x, y)};
-
-                        if (forestTile)
+                        if (auto forestTile{worldArea->GetTile(x, y)})
                         {
                             forestTile->GetObjectsStack()->ClearObjects();
 
@@ -146,11 +144,11 @@ namespace Forradia::Theme0
                 continue;
             }
 
-            auto radius{static_cast<int>(5 * worldScaling + GetRandomInt(8 * worldScaling))};
+            auto radius{static_cast<int>(5 * worldScaling + static_cast<float>(GetRandomInt(static_cast<int>(8 * worldScaling))))};
 
-            auto flowerDensity{0.15f + GetRandomInt(15) / 100.0f};
+            auto flowerDensity{0.15f + static_cast<float>(GetRandomInt(15)) / 100.0f};
 
-            auto grassDensity{0.2f + GetRandomInt(20) / 100.0f};
+            auto grassDensity{0.2f + static_cast<float>(GetRandomInt(20)) / 100.0f};
 
             for (auto y = centerY - radius; y <= centerY + radius; y++)
             {
@@ -175,7 +173,7 @@ namespace Forradia::Theme0
 
                     auto distance{GetDistance(x, y, centerX, centerY)};
 
-                    if (distance > radius)
+                    if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }

@@ -26,21 +26,14 @@ namespace Forradia::Theme0
                     Hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
             }
         }
+
+        m_sunDirection = glm::normalize(k_sunDirectionRaw);
     }
 
     auto WorldView::Render() -> void
     {
-        // 45 degrees up in +Z
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        glm::vec3 sunDirection = glm::normalize(glm::vec3(0.7F, 0.0F, 0.7F));
+        SkyRenderer::Instance().Render(m_sunDirection, k_sunElevation);
 
-        // 45 degrees
-        // NOLINTNEXTLINE(readability-magic-numbers)
-        float sunElevation = M_PI / 4.0F;
-
-        SkyRenderer::Instance().Render(sunDirection, sunElevation);
-
-        m_tiles.clear();
         m_elevationsAll.clear();
 
         auto gridSize{Theme0Properties::Instance().GetGridSize()};
@@ -57,9 +50,7 @@ namespace Forradia::Theme0
         auto worldAreaSize{worldArea->GetSize()};
 
         GroundRenderer::Instance().SetupState();
-
-        constexpr auto k_tilesGroupSize{20};
-
+        
         // First pass: Render ground tiles at extended distance.
         for (auto yPos = 0; yPos < groundGridSize.height; yPos++)
         {
@@ -70,6 +61,8 @@ namespace Forradia::Theme0
 
                 if (xCoordinate % k_tilesGroupSize == 0 && yCoordinate % k_tilesGroupSize == 0)
                 {
+                    m_tiles.clear();
+
                     for (auto yy = 0; yy < k_tilesGroupSize; yy++)
                     {
                         for (auto xx = 0; xx < k_tilesGroupSize; xx++)
@@ -77,18 +70,18 @@ namespace Forradia::Theme0
                             this->IterationGround(xPos + xx, yPos + yy);
                         }
                     }
+
+                    if (!m_tiles.empty())
+                    {
+                        GroundRenderer::Instance().DrawTiles(m_tiles);
+                    }
                 }
             }
         }
 
-        if (!m_tiles.empty())
-        {
-            GroundRenderer::Instance().DrawTiles(m_tiles);
-        }
-
         m_tiles.clear();
 
-        GroundRenderer::Instance().SetupState();
+        GroundRenderer::Instance().RestoreState();
 
         // Second pass: Render all except ground tiles.
         for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)

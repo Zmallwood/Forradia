@@ -6,6 +6,7 @@
 #include "Tile.hpp"
 #include "WorldArea.hpp"
 #include "WorldGeneratorWater.hpp"
+#include "WorldGeneratorWater_GenerateRiverFromSource_Sub.hpp"
 
 namespace Forradia::Theme0
 {
@@ -15,17 +16,17 @@ namespace Forradia::Theme0
         auto worldArea{GetWorldArea()};
         auto worldAreaSize{GetWorldAreaSize()};
 
-        const auto minRiverLength{20};
-
-        int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
-
         auto currentX{static_cast<float>(startX)};
         auto currentY{static_cast<float>(startY)};
         auto tilesPlaced{0};
 
         for (auto step = 0; step < length && tilesPlaced < length; step++)
         {
+            int directions[8][2] = {{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
+                {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+
+            constexpr auto minRiverLength{20};
+
             auto x{static_cast<int>(currentX)};
             auto y{static_cast<int>(currentY)};
 
@@ -80,8 +81,8 @@ namespace Forradia::Theme0
 
                 auto angle{GetRandomInt(360) * M_PI / 180.0F};
 
-                currentX += std::cos(angle) * 1.0F;
-                currentY += std::sin(angle) * 1.0F;
+                currentX += static_cast<float>(std::cos(angle) * 1.0F);
+                currentY += static_cast<float>(std::sin(angle) * 1.0F);
 
                 continue;
             }
@@ -140,8 +141,8 @@ namespace Forradia::Theme0
 
                     auto angle{GetRandomInt(360) * M_PI / 180.0F};
 
-                    currentX += std::cos(angle) * 1.0F;
-                    currentY += std::sin(angle) * 1.0F;
+                    currentX += static_cast<float>(std::cos(angle) * 1.0F);
+                    currentY += static_cast<float>(std::sin(angle) * 1.0F);
 
                     continue;
                 }
@@ -160,10 +161,10 @@ namespace Forradia::Theme0
             if (GetRandomInt(100) < 25)
             {
                 // Visit each neighboring tile and update elevation when needed.
-                for (auto dir = 0; dir < 8; dir++)
+                for (auto & direction : directions)
                 {
-                    auto adjX{x + directions[dir][0]};
-                    auto adjY{y + directions[dir][1]};
+                    auto adjX{x + direction[0]};
+                    auto adjY{y + direction[1]};
 
                     if (worldArea->IsValidCoordinate(adjX, adjY) && IsValidForWater(adjX, adjY))
                     {
@@ -188,10 +189,10 @@ namespace Forradia::Theme0
                 auto foundDownhill{false};
 
                 // First, try to find a downhill direction (preferred but not required).
-                for (auto dir = 0; dir < 8; dir++)
+                for (auto & direction : directions)
                 {
-                    auto checkX{x + directions[dir][0]};
-                    auto checkY{y + directions[dir][1]};
+                    auto checkX{x + direction[0]};
+                    auto checkY{y + direction[1]};
 
                     if (!worldArea->IsValidCoordinate(checkX, checkY))
                     {
@@ -231,8 +232,8 @@ namespace Forradia::Theme0
                         bestElevation = checkElevation;
 
                         // Update the best direction.
-                        bestDX = static_cast<float>(directions[dir][0]);
-                        bestDY = static_cast<float>(directions[dir][1]);
+                        bestDX = static_cast<float>(direction[0]);
+                        bestDY = static_cast<float>(direction[1]);
 
                         // Set the flag to indicate that we found a downhill direction.
                         foundDownhill = true;
@@ -265,10 +266,7 @@ namespace Forradia::Theme0
 
                         if (worldArea->IsValidCoordinate(checkX, checkY))
                         {
-
-                            auto checkTile{worldArea->GetTile(checkX, checkY)};
-
-                            if (checkTile)
+                            if (auto checkTile{worldArea->GetTile(checkX, checkY)})
                             {
                                 auto canPlaceHere{IsValidForWater(checkX, checkY)};
 
@@ -301,8 +299,8 @@ namespace Forradia::Theme0
                         // Just move in a random direction.
                         auto angle{GetRandomInt(360) * M_PI / 180.0F};
 
-                        currentX += std::cos(angle) * 1.0F;
-                        currentY += std::sin(angle) * 1.0F;
+                        currentX += static_cast<float>(std::cos(angle) * 1.0F);
+                        currentY += static_cast<float>(std::sin(angle) * 1.0F);
                     }
                 }
 
