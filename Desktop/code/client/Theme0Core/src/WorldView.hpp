@@ -33,7 +33,7 @@ namespace Forradia::Theme0
          */
         WorldView()
         {
-            this->Initiallize();
+            this->Initialize();
         }
 
         /**
@@ -42,7 +42,7 @@ namespace Forradia::Theme0
         auto Render() -> void;
 
       private:
-        auto Initiallize() -> void;
+        auto Initialize() -> void;
 
         auto IterationGround(int x, int y) -> void;
 

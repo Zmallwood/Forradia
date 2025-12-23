@@ -22,7 +22,7 @@
 
 namespace Forradia::Theme0
 {
-    auto WorldView::Initiallize() -> void
+    auto WorldView::Initialize() -> void
     {
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
@@ -62,12 +62,6 @@ namespace Forradia::Theme0
         auto playerPos{Player::Instance().GetPosition()};
         auto worldArea{World::Instance().GetCurrentWorldArea()};
         auto worldAreaSize{worldArea->GetSize()};
-        auto hoveredCoordinate{TileHovering::Instance().GetHoveredCoordinate()};
-        auto elevHeight{Theme0Properties::Instance().GetElevationHeight()};
-
-        auto playerElev{worldArea->GetTile(playerPos.x, playerPos.y)->GetElevation()};
-
-        auto rendTileSize{Theme0Properties::Instance().GetTileSize()};
 
         GroundRenderer::Instance().SetupState();
 
