@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "SetupScenes.hpp"
+#include "Scenes/SetupScenes.hpp"
 #include "Theme0Properties.hpp"
 #include "World.hpp"
 
