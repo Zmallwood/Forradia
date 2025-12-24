@@ -15,7 +15,6 @@ target_include_directories(ForradiaTheme0WorldGenerationWater PUBLIC
 target_link_libraries(ForradiaTheme0WorldGenerationWater PRIVATE
     ForradiaEngine
     ForradiaTheme0WorldStructure
-    ForradiaTheme0Properties
     ForradiaTheme0WorldGenerationCommon
 )
 target_precompile_headers(ForradiaTheme0WorldGenerationWater PUBLIC ./src/PCH.hpp)

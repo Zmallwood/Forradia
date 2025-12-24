@@ -35,7 +35,6 @@ target_link_libraries(RiverDiggerLib
         ForradiaTheme0WorldGenerationMain
         ForradiaTheme0Essentials
         ForradiaEngine
-        ForradiaTheme0Properties
         ForradiaTheme0Core
         ForradiaTheme0CustomGUI
         SDL2

@@ -5,7 +5,7 @@
 
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
-#include "Theme0Properties.hpp"
+#include "Content/Properties/Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "Common/Utilities/TimeUtilities.hpp"
 #include "World.hpp"

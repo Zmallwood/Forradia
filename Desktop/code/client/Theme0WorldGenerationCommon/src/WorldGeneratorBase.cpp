@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "WorldGeneratorBase.hpp"
-#include "Theme0Properties.hpp"
+#include "Content/Properties/Theme0Properties.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 

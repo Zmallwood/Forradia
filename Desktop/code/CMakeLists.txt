@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(./client/Theme0WorldStructure/)
-add_subdirectory(./client/Theme0Properties/)
 add_subdirectory(./client/Theme0WorldGenerationCommon/)
 add_subdirectory(./client/Theme0WorldGenerationGround/)
 add_subdirectory(./client/Theme0WorldGenerationWater/)

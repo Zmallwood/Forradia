@@ -14,8 +14,8 @@ target_include_directories(ForradiaTheme0Core PUBLIC
 target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
-    ForradiaTheme0Properties
     ForradiaEngine
     ForradiaTheme0CustomGUI
+    RiverDiggerLib
 )
 target_precompile_headers(ForradiaTheme0Core PUBLIC ./src/PCH.hpp)

@@ -7,7 +7,7 @@
 #include "Common/Utilities/CanvasUtilities.hpp"
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
-#include "Theme0Properties.hpp"
+#include "Content/Properties/Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

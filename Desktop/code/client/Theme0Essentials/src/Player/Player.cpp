@@ -6,7 +6,7 @@
 #include "Player.hpp"
 #include "Common/Utilities/NumbersUtilities.hpp"
 #include "Object.hpp"
-#include "ObjectIndex.hpp"
+#include "Content/Properties/ObjectIndex.hpp"
 #include "ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
 #include "Tile.hpp"

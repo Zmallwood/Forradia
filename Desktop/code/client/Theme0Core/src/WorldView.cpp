@@ -8,7 +8,7 @@
 #include "Rendering/Models/ModelRenderer.hpp"
 #include "Player/Player.hpp"
 #include "Rendering/Sky/SkyRenderer.hpp"
-#include "Theme0Properties.hpp"
+#include "Content/Properties/Theme0Properties.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"

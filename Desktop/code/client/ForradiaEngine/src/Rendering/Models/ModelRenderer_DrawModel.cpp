@@ -4,20 +4,18 @@
  *********************************************************************/
 
 #include "Assets/Models/Construction/Model.hpp"
-#include "Rendering/Base/3D/Camera.hpp"
-#include "CreatureIndex.hpp"
+#include "Assets/Models/ModelBank.hpp"
+#include "Assets/Textures/TextureBank.hpp"
 #include "Common/General/Hash.hpp"
 #include "ModelRenderer.hpp"
-#include "Assets/Models/ModelBank.hpp"
-#include "ObjectIndex.hpp"
-#include "Assets/Textures/TextureBank.hpp"
-#include "Theme0Properties.hpp"
+#include "Rendering/Base/3D/Camera.hpp"
 #include <glm/gtx/transform.hpp>
 
 namespace Forradia
 {
     auto ModelRenderer::drawModel(int modelNameHash, float xPos, float yPos, float elevation,
-                                  float modelScaling) -> void
+                                  float modelScaling, float elevationHeight, float levitationHeight)
+        -> void
     {
         this->setupState();
 
@@ -62,23 +60,7 @@ namespace Forradia
             // To contain the index of the first vertex of the next mesh.
             auto indexFirstVertexOfMesh{0};
 
-            float totalModelScaling{k_globalModelScaling};
-
-            if (!Theme0::ObjectIndex::instance().getIgnoreIndividualModelScaling(modelNameHash))
-            {
-                totalModelScaling *= modelScaling;
-            }
-
-            if (Theme0::ObjectIndex::instance().objectEntryExists(modelNameHash))
-            {
-                totalModelScaling *= Theme0::ObjectIndex::instance().getModelScaling(modelNameHash);
-            }
-
-            if (Theme0::CreatureIndex::instance().creatureEntryExists(modelNameHash))
-            {
-                totalModelScaling *=
-                    Theme0::CreatureIndex::instance().getModelScaling(modelNameHash);
-            }
+            float totalModelScaling{k_globalModelScaling * modelScaling};
 
             // For each mesh.
             for (const auto &mesh : meshes)
@@ -133,10 +115,6 @@ namespace Forradia
             m_operationsCache[modelNameHash] = entry;
         }
 
-        auto elevationHeight{Theme0::Theme0Properties::instance().getElevationHeight()};
-
-        auto levitationHeight{Theme0::CreatureIndex::instance().getLevitationHeight(modelNameHash)};
-
         // Calculate the model matrix. This matrix differs between different rendering
         // operations, even though they use the same model.
         auto modelMatrix{glm::mat4(1.0F)};
@@ -145,10 +123,7 @@ namespace Forradia
         modelMatrix = glm::translate(
             modelMatrix, glm::vec3(xPos, yPos, elevation * elevationHeight + levitationHeight));
 
-        if (!Theme0::ObjectIndex::instance().getIgnoreIndividualModelScaling(modelNameHash))
-        {
-            modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
-        }
+        modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
         auto viewMatrix{Camera::instance().getViewMatrix()};
         auto projectionMatrix{Camera::getProjectionMatrix()};

@@ -5,7 +5,7 @@
 
 #include "Object.hpp"
 #include "ContainedObjects.hpp"
-#include "ObjectIndex.hpp"
+#include "Content/Properties/ObjectIndex.hpp"
 
 namespace Forradia::Theme0
 {

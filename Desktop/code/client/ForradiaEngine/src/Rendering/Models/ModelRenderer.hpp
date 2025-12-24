@@ -50,9 +50,12 @@ namespace Forradia
          *  @param yPos The y coordinate of the model.
          *  @param elevations The elevations of the tile where the model is located.
          *  @param modelScaling The scaling of the model.
+         *  @param elevationHeight The height of the elevation.
+         *  @param levitationHeight The height of the levitation.
          */
         auto drawModel(int modelNameHash, float xPos, float yPos, float elevations,
-                       float modelScaling = 1.0F) -> void;
+                       float modelScaling = 1.0F, float elevationHeight = 0.15F,
+                       float levitationHeight = 0.0F) -> void;
 
         auto setupState() const -> void;
 

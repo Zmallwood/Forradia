@@ -11,3 +11,5 @@
 #include <vector>
 
 #include <fmt/format.h>
+
+#include "Common/Matter/Coloring/Palette.hpp"

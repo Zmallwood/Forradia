@@ -14,7 +14,7 @@ target_include_directories(ForradiaTheme0WorldGenerationCommon PUBLIC
 target_link_libraries(ForradiaTheme0WorldGenerationCommon PRIVATE
     ForradiaEngine
     ForradiaTheme0WorldStructure
-    ForradiaTheme0Properties
+    RiverDiggerLib
     ForradiaTheme0WorldGenerationGround
     ForradiaTheme0WorldGenerationWater
     ForradiaTheme0WorldGenerationObjects

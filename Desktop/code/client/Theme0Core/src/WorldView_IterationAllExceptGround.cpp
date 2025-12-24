@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "Content/Properties/CreatureIndex.hpp"
+#include "Content/Properties/ObjectIndex.hpp"
+#include "Content/Properties/Theme0Properties.hpp"
 #include "Entity.hpp"
-#include "Rendering/Ground/GroundRenderer.hpp"
-#include "Rendering/Models/ModelRenderer.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
-#include "Theme0Properties.hpp"
+#include "Rendering/Ground/GroundRenderer.hpp"
+#include "Rendering/Models/ModelRenderer.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"
@@ -67,19 +69,38 @@ namespace Forradia::Theme0
             {
                 auto objectType{object->getType()};
 
+                auto totModelScaling{1.0F};
+
+                totModelScaling = object->getModelScaling();
+
+                if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
+                {
+                    totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                }
+
+                //totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+
                 ModelRenderer::instance().drawModel(
                     objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                     (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    object->getModelScaling());
+                    totModelScaling, Theme0Properties::instance().getElevationHeight());
             }
 
             if (auto entity{tile->getEntity()})
             {
                 auto entityType{entity->getType()};
 
+                auto totModelScaling{1.0F};
+
+                totModelScaling = CreatureIndex::instance().getModelScaling(entityType);
+
+                auto levitationHeight{CreatureIndex::instance().getLevitationHeight(entityType)};
+
                 ModelRenderer::instance().drawModel(
                     entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
-                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax);
+                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                    totModelScaling, Theme0Properties::instance().getElevationHeight(),
+                    levitationHeight);
             }
 
             if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
