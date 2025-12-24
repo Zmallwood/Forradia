@@ -6,7 +6,7 @@
 #include "Color2DRenderer.hpp"
 #include "CanvasUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
-#include "ShaderProgram.hpp"
+#include "Rendering/Base/ShaderProgram.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>

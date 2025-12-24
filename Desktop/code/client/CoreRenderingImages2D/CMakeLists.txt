@@ -18,6 +18,5 @@ target_link_libraries(ForradiaCoreRenderingImages2D
     ForradiaCoreEngine
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
-    ForradiaCoreRenderingCommon
 )
 target_precompile_headers(ForradiaCoreRenderingImages2D PUBLIC ./src/PCH.hpp)

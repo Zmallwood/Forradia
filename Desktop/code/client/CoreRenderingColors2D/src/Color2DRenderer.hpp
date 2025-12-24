@@ -7,7 +7,7 @@
 
 #include "Color2DRenderingOperation.hpp"
 #include "Coloring/Color.hpp"
-#include "RendererBase.hpp"
+#include "Rendering/Base/RendererBase.hpp"
 #include <unordered_map>
 
 namespace Forradia

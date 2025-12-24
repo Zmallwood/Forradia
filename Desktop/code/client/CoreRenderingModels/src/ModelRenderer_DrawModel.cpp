@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Assets/Models/Construction/Model.hpp"
-#include "3D/Camera.hpp"
+#include "Rendering/Base/3D/Camera.hpp"
 #include "CreatureIndex.hpp"
 #include "Hash.hpp"
 #include "ModelRenderer.hpp"

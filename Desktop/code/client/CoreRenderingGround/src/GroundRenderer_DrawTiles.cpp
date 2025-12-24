@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "3D/Camera.hpp"
+#include "Rendering/Base/3D/Camera.hpp"
 #include "GroundRenderer.hpp"
 #include "Assets/Textures/TextureBank.hpp"
 

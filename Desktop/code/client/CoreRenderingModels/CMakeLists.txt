@@ -18,7 +18,6 @@ target_link_libraries(ForradiaCoreRenderingModels
     ForradiaCoreEngine
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
-    ForradiaCoreRenderingCommon
     ForradiaTheme0Properties
 )
 target_precompile_headers(ForradiaCoreRenderingModels PUBLIC ./src/PCH.hpp)

@@ -18,6 +18,7 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Properties
+    ForradiaCoreEngine
     ForradiaCoreRenderingGround
     ForradiaCoreRenderingImages2D
     ForradiaTheme0CustomGUI

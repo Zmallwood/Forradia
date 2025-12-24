@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "RendererBase.hpp"
+#include "Rendering/Base/RendererBase.hpp"
 #include <glm/vec3.hpp>
 // clang-format off
 #include <GL/glew.h>

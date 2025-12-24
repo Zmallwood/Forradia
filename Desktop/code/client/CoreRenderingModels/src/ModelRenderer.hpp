@@ -6,7 +6,7 @@
 #pragma once
 
 #include "ModelRenderingOperation.hpp"
-#include "RendererBase.hpp"
+#include "Rendering/Base/RendererBase.hpp"
 #include <unordered_map>
 // clang-format off
 #include <GL/glew.h>

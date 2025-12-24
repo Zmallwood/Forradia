@@ -16,7 +16,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/vec3.hpp>
 
-#include "3D/Camera.hpp"
+#include "Rendering/Base/3D/Camera.hpp"
 #include "CanvasUtilities.hpp"
 #include "Coloring/Color.hpp"
 #include "ErrorUtilities.hpp"

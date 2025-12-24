@@ -26,7 +26,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCommonCoreUtilities
     ForradiaCoreEngine
     ForradiaTheme0Properties
-    ForradiaCoreRenderingCommon
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingSky
     ForradiaTheme0Core

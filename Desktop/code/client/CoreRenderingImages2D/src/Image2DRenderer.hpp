@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Image2DRenderingOperation.hpp"
-#include "RendererBase.hpp"
+#include "Rendering/Base/RendererBase.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>

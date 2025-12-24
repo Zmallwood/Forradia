@@ -6,7 +6,7 @@
 #include "Image2DRenderer.hpp"
 #include "CanvasUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
-#include "ShaderProgram.hpp"
+#include "Rendering/Base/ShaderProgram.hpp"
 
 namespace Forradia
 {

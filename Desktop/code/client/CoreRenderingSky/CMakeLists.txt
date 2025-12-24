@@ -18,6 +18,5 @@ target_link_libraries(ForradiaCoreRenderingSky
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
     ForradiaCoreEngine
-    ForradiaCoreRenderingCommon
 )
 target_precompile_headers(ForradiaCoreRenderingSky PUBLIC ./src/PCH.hpp)
