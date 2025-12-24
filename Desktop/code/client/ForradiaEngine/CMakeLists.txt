@@ -7,12 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB_RECURSE SOURCES "./src/*.cpp")
-add_library(ForradiaCoreEngine ${SOURCES})
-target_include_directories(ForradiaCoreEngine PUBLIC
+add_library(ForradiaEngine ${SOURCES})
+target_include_directories(ForradiaEngine PUBLIC
     "./src"
 )
-target_link_libraries(ForradiaCoreEngine PRIVATE
+target_link_libraries(ForradiaEngine PRIVATE
     ForradiaTheme0Essentials
     assimp
 )
-target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/PCH.hpp)
+target_precompile_headers(ForradiaEngine PUBLIC ./src/PCH.hpp)

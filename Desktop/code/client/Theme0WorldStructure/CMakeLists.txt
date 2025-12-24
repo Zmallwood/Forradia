@@ -12,7 +12,7 @@ target_include_directories(ForradiaTheme0WorldStructure PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0WorldStructure PRIVATE
-    ForradiaCoreEngine
+    ForradiaEngine
     ForradiaTheme0Properties
 )
 target_precompile_headers(ForradiaTheme0WorldStructure PUBLIC ./src/PCH.hpp)

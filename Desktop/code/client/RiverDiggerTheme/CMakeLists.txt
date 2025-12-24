@@ -17,7 +17,7 @@ target_link_libraries(RiverDigger PRIVATE
     ForradiaTheme0WorldStructure
     ForradiaTheme0WorldGenerationMain
     ForradiaTheme0Essentials
-    ForradiaCoreEngine
+    ForradiaEngine
     ForradiaTheme0Properties
     ForradiaTheme0Core
     ForradiaTheme0CustomGUI

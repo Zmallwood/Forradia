@@ -12,7 +12,7 @@ target_include_directories(ForradiaTheme0WorldGenerationEntities PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0WorldGenerationEntities PRIVATE
-    ForradiaCoreEngine
+    ForradiaEngine
     ForradiaTheme0WorldStructure
     ForradiaTheme0Properties
     ForradiaTheme0WorldGenerationCommon

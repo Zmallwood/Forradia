@@ -12,7 +12,7 @@ target_include_directories(ForradiaTheme0CustomGUI PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
-    ForradiaCoreEngine
+    ForradiaEngine
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Core

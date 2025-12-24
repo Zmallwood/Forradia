@@ -12,6 +12,6 @@ target_include_directories(ForradiaTheme0Properties PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0Properties PRIVATE
-    ForradiaCoreEngine
+    ForradiaEngine
 )
 target_precompile_headers(ForradiaTheme0Properties PUBLIC ./src/PCH.hpp)

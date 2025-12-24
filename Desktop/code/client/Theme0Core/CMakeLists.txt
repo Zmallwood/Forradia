@@ -15,7 +15,7 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Properties
-    ForradiaCoreEngine
+    ForradiaEngine
     ForradiaTheme0CustomGUI
 )
 target_precompile_headers(ForradiaTheme0Core PUBLIC ./src/PCH.hpp)
