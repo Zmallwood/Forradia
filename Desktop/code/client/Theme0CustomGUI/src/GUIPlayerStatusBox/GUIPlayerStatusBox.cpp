@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIPlayerStatusBox.hpp"
-#include "GUILabel.hpp"
+#include "GUICore/GUILabel.hpp"
 #include "GUIWellBeingMeter.hpp"
 #include "Math/ExperienceCalculations.hpp"
 #include "Player/Player.hpp"

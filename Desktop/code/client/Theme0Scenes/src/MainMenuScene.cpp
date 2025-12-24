@@ -5,10 +5,10 @@
 
 #include "MainMenuScene.hpp"
 #include "Engine.hpp"
-#include "GUI.hpp"
-#include "GUIButton.hpp"
-#include "GUIChatBox.hpp"
-#include "GUIPanel.hpp"
+#include "GUICore/GUI.hpp"
+#include "GUICore/GUIButton.hpp"
+#include "GUICore/GUIChatBox.hpp"
+#include "GUICore/GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
 #include "ScenesCore/SceneManager.hpp"
 

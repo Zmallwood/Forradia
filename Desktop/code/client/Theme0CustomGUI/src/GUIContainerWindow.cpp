@@ -5,8 +5,8 @@
 
 #include "GUIContainerWindow.hpp"
 #include "ContainedObjects.hpp"
-#include "GUIScrollableArea.hpp"
-#include "GUIWindowTitleBar.hpp"
+#include "GUICore/GUIScrollableArea.hpp"
+#include "GUICore/GUIWindowTitleBar.hpp"
 #include "Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"

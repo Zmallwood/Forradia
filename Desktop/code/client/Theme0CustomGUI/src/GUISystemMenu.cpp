@@ -5,8 +5,8 @@
 
 #include "GUISystemMenu.hpp"
 #include "Color2DRenderer.hpp"
-#include "GUIButton.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUIButton.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "GameSaveFiles/GameSaving.hpp"
 
 namespace Forradia::Theme0

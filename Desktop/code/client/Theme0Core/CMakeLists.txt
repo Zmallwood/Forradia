@@ -15,11 +15,11 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCommonUtilities
-    ForradiaCoreGUI
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Properties
     ForradiaCoreRenderingGround
+    ForradiaCoreRenderingImages2D
     ForradiaTheme0CustomGUI
     ForradiaCoreRenderingModels
     ForradiaCoreRenderingSky

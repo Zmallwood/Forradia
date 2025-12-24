@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "WorldGenerationScene.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "ScenesCore/SceneManager.hpp"
 #include "WorldGenerator.hpp"
 

@@ -24,7 +24,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
-    ForradiaCoreGUI
     ForradiaCoreEngine
     ForradiaTheme0Properties
     ForradiaCoreRenderingCommon

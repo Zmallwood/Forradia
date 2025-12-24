@@ -14,7 +14,10 @@ target_include_directories(ForradiaTheme0CustomGUI PUBLIC
 target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
-    ForradiaCoreGUI
+    ForradiaCoreEngine
+    ForradiaCoreRenderingColors2D
+    ForradiaCoreRenderingImages2D
+    ForradiaCoreRenderingText
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Core

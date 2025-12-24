@@ -6,7 +6,7 @@
 #pragma once
 
 #include "GUIInteractionMenuEntry.hpp"
-#include "GUIPanel.hpp"
+#include "GUICore/GUIPanel.hpp"
 
 namespace Forradia::Theme0
 {

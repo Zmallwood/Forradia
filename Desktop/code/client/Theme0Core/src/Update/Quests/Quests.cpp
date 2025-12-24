@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Quests.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Tile.hpp"

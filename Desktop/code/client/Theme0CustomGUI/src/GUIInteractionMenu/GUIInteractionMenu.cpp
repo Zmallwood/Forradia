@@ -7,7 +7,7 @@
 #include "Actions.hpp"
 #include "Color2DRenderer.hpp"
 #include "MinorComponents/Cursor.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"

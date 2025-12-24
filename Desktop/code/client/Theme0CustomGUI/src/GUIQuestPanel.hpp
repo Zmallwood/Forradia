@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "GUIMovablePanel.hpp"
+#include "GUICore/GUIMovablePanel.hpp"
 
 namespace Forradia
 {

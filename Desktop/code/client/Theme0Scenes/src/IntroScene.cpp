@@ -5,9 +5,9 @@
 
 #include "IntroScene.hpp"
 #include "MinorComponents/Cursor.hpp"
-#include "GUI.hpp"
-#include "GUIChatBox.hpp"
-#include "GUILabel.hpp"
+#include "GUICore/GUI.hpp"
+#include "GUICore/GUIChatBox.hpp"
+#include "GUICore/GUILabel.hpp"
 #include "Image2DRenderer.hpp"
 #include "ScenesCore/SceneManager.hpp"
 

@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "IScene.hpp"
-#include "GUI.hpp"
+#include "GUICore/GUI.hpp"
 
 namespace Forradia
 {

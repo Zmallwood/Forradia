@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "UpdateKeyboardActions.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "GUISystemMenu.hpp"
 

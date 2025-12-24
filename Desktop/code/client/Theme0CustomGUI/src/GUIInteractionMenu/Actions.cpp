@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "Actions.hpp"
-#include "GUI.hpp"
-#include "GUIChatBox.hpp"
+#include "GUICore/GUI.hpp"
+#include "GUICore/GUIChatBox.hpp"
 #include "GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
 #include "ScenesCore/IScene.hpp"

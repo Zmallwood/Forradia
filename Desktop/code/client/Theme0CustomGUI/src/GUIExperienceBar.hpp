@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Coloring/Palette.hpp"
-#include "GUIMeter.hpp"
+#include "GUICore/GUIMeter.hpp"
 
 namespace Forradia::Theme0
 {

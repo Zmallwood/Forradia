@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "GUIPanel.hpp"
-#include "GUIScrollableArea.hpp"
-#include "GUIWindow.hpp"
+#include "GUICore/GUIPanel.hpp"
+#include "GUICore/GUIScrollableArea.hpp"
+#include "GUICore/GUIWindow.hpp"
 
 namespace Forradia::Theme0
 {
