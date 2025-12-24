@@ -12,7 +12,6 @@ target_include_directories(ForradiaTheme0Core PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0Core PRIVATE
-    ForradiaTheme0Essentials
     ForradiaEngine
     ForradiaTheme0CustomGUI
     RiverDiggerLib

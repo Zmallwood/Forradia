@@ -11,9 +11,9 @@
 #include "ScenesCore/IScene.hpp"
 #include "Content/WorldStructure/Object.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Player/Player.hpp"
-#include "Player/PlayerActions/PlayerActionTypes.hpp"
-#include "Player/PlayerObjectsInventory.hpp"
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Essentials/Player/PlayerActions/PlayerActionTypes.hpp"
+#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
 #include "ScenesCore/SceneManager.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 

@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 #include "Common/Utilities/TimeUtilities.hpp"

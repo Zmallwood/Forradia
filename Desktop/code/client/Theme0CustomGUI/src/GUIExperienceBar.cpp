@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "GUIExperienceBar.hpp"
-#include "Math/ExperienceCalculations.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Math/ExperienceCalculations.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace Forradia::Theme0
 {

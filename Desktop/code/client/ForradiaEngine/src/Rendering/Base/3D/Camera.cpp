@@ -5,7 +5,7 @@
 
 #include "Camera.hpp"
 #include "Common/Utilities/CanvasUtilities.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Content/WorldStructure/Tile.hpp"

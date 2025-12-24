@@ -6,7 +6,7 @@
 #include "WorldView.hpp"
 #include "Rendering/Ground/GroundRenderer.hpp"
 #include "Rendering/Models/ModelRenderer.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "Rendering/Sky/SkyRenderer.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Update/TileHovering.hpp"

@@ -6,7 +6,7 @@
 #include "Quests.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 #include "Content/WorldStructure/World.hpp"
 #include "Content/WorldStructure/WorldArea.hpp"

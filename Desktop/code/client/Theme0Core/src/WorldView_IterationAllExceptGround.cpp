@@ -9,7 +9,7 @@
 #include "Content/WorldStructure/Entity.hpp"
 #include "Content/WorldStructure/Object.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "Rendering/Ground/GroundRenderer.hpp"
 #include "Rendering/Models/ModelRenderer.hpp"
 #include "Content/WorldStructure/Tile.hpp"

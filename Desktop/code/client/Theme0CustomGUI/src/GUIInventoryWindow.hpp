@@ -6,8 +6,8 @@
 #pragma once
 
 #include "GUIContainerWindow.hpp"
-#include "Player/Player.hpp"
-#include "Player/PlayerObjectsInventory.hpp"
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
 
 namespace Forradia::Theme0
 {

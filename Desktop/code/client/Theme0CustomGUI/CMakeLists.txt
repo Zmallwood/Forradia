@@ -13,7 +13,7 @@ target_include_directories(ForradiaTheme0CustomGUI PUBLIC
 )
 target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
     ForradiaEngine
-    ForradiaTheme0Essentials
     ForradiaTheme0Core
+    RiverDiggerLib
 )
 target_precompile_headers(ForradiaTheme0CustomGUI PUBLIC ./src/PCH.hpp)

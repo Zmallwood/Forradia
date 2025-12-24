@@ -6,7 +6,7 @@
 #include "TileHovering.hpp"
 #include "Rendering/Base/3D/Camera.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Content/WorldStructure/Tile.hpp"

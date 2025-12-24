@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIWellBeingMeter.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace Forradia::Theme0
 {

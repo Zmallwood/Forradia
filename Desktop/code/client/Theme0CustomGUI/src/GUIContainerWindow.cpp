@@ -10,7 +10,7 @@
 #include "Rendering/Images/Image2DRenderer.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
 #include "Content/WorldStructure/Object.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0

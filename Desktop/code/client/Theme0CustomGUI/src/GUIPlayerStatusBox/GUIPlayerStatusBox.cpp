@@ -6,8 +6,8 @@
 #include "GUIPlayerStatusBox.hpp"
 #include "GUICore/GUILabel.hpp"
 #include "GUIWellBeingMeter.hpp"
-#include "Math/ExperienceCalculations.hpp"
-#include "Player/Player.hpp"
+#include "Content/Essentials/Math/ExperienceCalculations.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 #include "Rendering/Text/TextRenderer.hpp"
 #include <fmt/format.h>
 
