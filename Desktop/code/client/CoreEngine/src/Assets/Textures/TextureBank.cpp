@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "TextureBank.hpp"
+#include <ranges>
 
 namespace Forradia
 {

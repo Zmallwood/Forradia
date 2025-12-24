@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Geometry/Size.hpp"
+#include "Common/Matter/Geometry/Size.hpp"
 #include "TextureEntry.hpp"
 #include <GL/gl.h>
 #include <memory>

@@ -1,0 +1,4 @@
+void dummy()
+{
+    // Do nothing
+}

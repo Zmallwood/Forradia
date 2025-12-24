@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "SkyRenderer.hpp"
-#include "CanvasUtilities.hpp"
-#include "ErrorUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Base/ShaderProgram.hpp"
 

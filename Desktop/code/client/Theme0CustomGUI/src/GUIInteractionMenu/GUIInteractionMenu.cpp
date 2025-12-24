@@ -9,7 +9,7 @@
 #include "MinorComponents/Cursor.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"

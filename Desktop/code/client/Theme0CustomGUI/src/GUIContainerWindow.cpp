@@ -8,7 +8,7 @@
 #include "GUICore/GUIScrollableArea.hpp"
 #include "GUICore/GUIWindowTitleBar.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "Object.hpp"
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"

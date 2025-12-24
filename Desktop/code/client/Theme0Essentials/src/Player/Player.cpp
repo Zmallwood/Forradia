@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Player.hpp"
-#include "NumbersUtilities.hpp"
+#include "Common/Utilities/NumbersUtilities.hpp"
 #include "Object.hpp"
 #include "ObjectIndex.hpp"
 #include "ObjectsStack.hpp"

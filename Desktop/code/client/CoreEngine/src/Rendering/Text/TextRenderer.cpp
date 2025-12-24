@@ -4,9 +4,9 @@
  *********************************************************************/
 
 #include "TextRenderer.hpp"
-#include "ErrorUtilities.hpp"
-#include "SDLDeleter.hpp"
-#include "StringUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
+#include "Common/General/SDLDeleter.hpp"
+#include "Common/Utilities/StringUtilities.hpp"
 #include <SDL2/SDL_ttf.h>
 // clang-format off
 #include <GL/glew.h>

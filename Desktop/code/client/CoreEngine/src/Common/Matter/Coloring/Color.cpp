@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "Color.hpp"
-#include "Constants.hpp"
-#include "ErrorUtilities.hpp"
+#include "Common/General/Constants.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include <SDL2/SDL.h>
 
 namespace Forradia

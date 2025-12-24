@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "Model.hpp"
-#include "ErrorUtilities.hpp"
-#include "MessageUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
+#include "Common/Utilities/MessageUtilities.hpp"
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"

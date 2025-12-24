@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Camera.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Theme0Properties.hpp"

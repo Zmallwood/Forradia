@@ -4,9 +4,9 @@
  *********************************************************************/
 
 #include "UpdateMouseMovement.hpp"
-#include "NumbersUtilities.hpp"
+#include "Common/Utilities/NumbersUtilities.hpp"
 #include "Player/Player.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"
 
 namespace Forradia::Theme0
 {

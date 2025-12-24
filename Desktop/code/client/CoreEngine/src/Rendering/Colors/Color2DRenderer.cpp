@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Color2DRenderer.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Base/ShaderProgram.hpp"
 // clang-format off

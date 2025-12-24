@@ -5,7 +5,7 @@
 
 #include "GUIButton.hpp"
 #include "MinorComponents/Cursor.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Text/TextRenderer.hpp"
 

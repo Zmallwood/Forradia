@@ -5,6 +5,7 @@
 
 #include "ObjectsStack.hpp"
 #include "Object.hpp"
+#include <algorithm>
 
 namespace Forradia::Theme0
 {

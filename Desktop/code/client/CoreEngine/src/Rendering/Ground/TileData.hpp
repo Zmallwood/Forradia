@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "Coloring/Palette.hpp"
-#include "Hash.hpp"
+#include "Common/Matter/Coloring/Palette.hpp"
+#include "Common/General/Hash.hpp"
 #include <vector>
 
 namespace Forradia

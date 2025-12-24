@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Coloring/Color.hpp"
+#include "Common/Matter/Coloring/Color.hpp"
 #include <string_view>
 
 namespace Forradia

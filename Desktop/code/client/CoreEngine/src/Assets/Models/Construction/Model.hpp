@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Geometry/GLMTypes/GLMMesh.hpp"
+#include "Common/Matter/Geometry/GLMTypes/GLMMesh.hpp"
 #include "assimp/scene.h"
 
 namespace Forradia

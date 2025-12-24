@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ErrorUtilities.hpp"
-#include "SDLDeleter.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
+#include "Common/General/SDLDeleter.hpp"
 #include "SDLDevice.hpp"
 
 namespace Forradia

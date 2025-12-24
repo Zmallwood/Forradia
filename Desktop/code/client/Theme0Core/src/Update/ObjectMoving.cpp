@@ -4,10 +4,10 @@
  *********************************************************************/
 
 #include "ObjectMoving.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "Object.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 

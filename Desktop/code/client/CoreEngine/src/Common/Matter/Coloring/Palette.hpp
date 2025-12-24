@@ -5,18 +5,17 @@
 
 #pragma once
 
-#include "Geometry/PointF.hpp"
-#include <memory>
+#include "Color.hpp"
 
-struct SDL_Window;
-
-namespace Forradia
+namespace Forradia::Palette
 {
     /**
-     *  Obtain normalized mouse position.
+     *   Get a color from the palette.
      *
-     *  @param window Window to get the mouse position for.
-     *  @return The normalized mouse position.
+     *  @tparam N The hash of the name of the color to get.
+     *  @return The color.
      */
-    auto getNormalizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF;
+    template <int N>
+    // ReSharper disable once CppFunctionIsNotImplemented
+    auto getColor() -> Color;
 }

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include "Rendering/Ground/TileData.hpp"
 #include <unordered_map>
 

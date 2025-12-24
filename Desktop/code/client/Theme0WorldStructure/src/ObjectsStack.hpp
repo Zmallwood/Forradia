@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <vector>
+
 namespace Forradia::Theme0
 {
     class Object;

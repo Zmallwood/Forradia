@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "SDLDeleter.hpp"
-#include "ErrorUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 

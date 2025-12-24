@@ -6,8 +6,9 @@
 #pragma once
 
 #include <unordered_map>
+#include <string>
 
-#include "Coloring/Color.hpp"
-#include "Coloring/Palette.hpp"
-#include "Geometry/Size.hpp"
-#include "Hash.hpp"
+#include "Common/Matter/Coloring/Color.hpp"
+#include "Common/Matter/Coloring/Palette.hpp"
+#include "Common/Matter/Geometry/Size.hpp"
+#include "Common/General/Hash.hpp"

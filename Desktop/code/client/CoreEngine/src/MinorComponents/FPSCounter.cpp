@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "FPSCounter.hpp"
-#include "Constants.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/General/Constants.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"
 
 namespace Forradia
 {

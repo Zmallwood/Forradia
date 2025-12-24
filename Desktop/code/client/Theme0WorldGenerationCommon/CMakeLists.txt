@@ -12,10 +12,7 @@ target_include_directories(ForradiaTheme0WorldGenerationCommon PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0WorldGenerationCommon PRIVATE
-    ForradiaCommonMatter
-    ForradiaCommonGeneral
-    ForradiaCommonUtilities
-    ForradiaCommonCoreUtilities
+    ForradiaCoreEngine
     ForradiaTheme0WorldStructure
     ForradiaTheme0Properties
     ForradiaTheme0WorldGenerationGround

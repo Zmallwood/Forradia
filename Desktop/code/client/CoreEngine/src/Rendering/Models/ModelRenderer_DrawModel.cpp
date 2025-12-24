@@ -6,7 +6,7 @@
 #include "Assets/Models/Construction/Model.hpp"
 #include "Rendering/Base/3D/Camera.hpp"
 #include "CreatureIndex.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include "ModelRenderer.hpp"
 #include "Assets/Models/ModelBank.hpp"
 #include "ObjectIndex.hpp"

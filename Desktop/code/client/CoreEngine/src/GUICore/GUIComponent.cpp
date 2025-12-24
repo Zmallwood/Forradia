@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIComponent.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include <algorithm>
 #include <ranges>

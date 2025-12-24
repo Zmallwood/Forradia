@@ -6,7 +6,7 @@
 #pragma once
 
 #include "GUIPanel.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include <functional>
 
 namespace Forradia

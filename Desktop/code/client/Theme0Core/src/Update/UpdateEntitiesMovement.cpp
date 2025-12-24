@@ -5,11 +5,11 @@
 
 #include "UpdateEntitiesMovement.hpp"
 #include "Entity.hpp"
-#include "Hash.hpp"
-#include "NumbersUtilities.hpp"
-#include "RandomizationUtilities.hpp"
+#include "Common/General/Hash.hpp"
+#include "Common/Utilities/NumbersUtilities.hpp"
+#include "Common/Utilities/RandomizationUtilities.hpp"
 #include "Tile.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"
 #include "World.hpp"
 #include "WorldArea.hpp"
 

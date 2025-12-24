@@ -12,8 +12,6 @@ target_include_directories(ForradiaTheme0CustomGUI PUBLIC
     "./src"
 )
 target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
-    ForradiaCommonGeneral
-    ForradiaCommonMatter
     ForradiaCoreEngine
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials

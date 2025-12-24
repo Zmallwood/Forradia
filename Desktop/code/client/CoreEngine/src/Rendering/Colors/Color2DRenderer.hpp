@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Color2DRenderingOperation.hpp"
-#include "Coloring/Color.hpp"
+#include "Common/Matter/Coloring/Color.hpp"
 #include "Rendering/Base/RendererBase.hpp"
 #include <unordered_map>
 

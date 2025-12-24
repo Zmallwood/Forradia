@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GLDevice.hpp"
-#include "ErrorUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include "SDLDevice.hpp"
 #include <SDL2/SDL.h>
 // clang-format off

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Geometry/Size.hpp"
+#include "Common/Matter/Geometry/Size.hpp"
 // clang-format off
 #include <GL/glew.h>
 #include <GL/gl.h>

@@ -5,7 +5,7 @@
 
 #include "TileHovering.hpp"
 #include "Rendering/Base/3D/Camera.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Theme0Properties.hpp"

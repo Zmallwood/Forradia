@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Geometry/Point.hpp"
+#include "Common/Matter/Geometry/Point.hpp"
 
 namespace Forradia::Theme0
 {

@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "Coloring/Palette.hpp"
+#include "Common/Matter/Coloring/Palette.hpp"
 #include "FontSizes.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include <memory>
 #include <unordered_map>
 

@@ -6,7 +6,7 @@
 #pragma once
 
 #include "GLMVertex.hpp"
-#include "Texturing/Texture.hpp"
+#include "Common/Matter/Texturing/Texture.hpp"
 #include <vector>
 
 namespace Forradia

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include <SDL2/SDL.h>
 #include <memory>
 

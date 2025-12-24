@@ -9,6 +9,7 @@
 #include "Math/ExperienceCalculations.hpp"
 #include "Player/Player.hpp"
 #include "Rendering/Text/TextRenderer.hpp"
+#include <fmt/format.h>
 
 namespace Forradia::Theme0
 {

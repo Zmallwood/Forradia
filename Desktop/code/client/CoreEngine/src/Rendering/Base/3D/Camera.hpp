@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Geometry/Point3F.hpp"
+#include "Common/Matter/Geometry/Point3F.hpp"
 #include <glm/glm.hpp>
 
 namespace Forradia

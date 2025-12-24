@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "CanvasUtilities.hpp"
-#include "ErrorUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
-#include "SDLDeleter.hpp"
+#include "Common/General/SDLDeleter.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "TextRenderer.hpp"
 #include "Assets/Textures/TextureBank.hpp"

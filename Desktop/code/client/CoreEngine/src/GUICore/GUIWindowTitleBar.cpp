@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "GUIWindowTitleBar.hpp"
-#include "CanvasUtilities.hpp"
-#include "Coloring/Palette.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
+#include "Common/Matter/Coloring/Palette.hpp"
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"

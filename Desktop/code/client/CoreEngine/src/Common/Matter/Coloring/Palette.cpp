@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Palette.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 
 namespace Forradia::Palette
 {

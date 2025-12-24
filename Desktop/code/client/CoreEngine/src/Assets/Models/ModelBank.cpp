@@ -5,9 +5,9 @@
 
 #include "ModelBank.hpp"
 #include "Construction/Model.hpp"
-#include "FilePathUtilities.hpp"
-#include "Hash.hpp"
-#include "StringUtilities.hpp"
+#include "Common/Utilities/FilePathUtilities.hpp"
+#include "Common/General/Hash.hpp"
+#include "Common/Utilities/StringUtilities.hpp"
 #include <SDL2/SDL.h>
 #include <filesystem>
 

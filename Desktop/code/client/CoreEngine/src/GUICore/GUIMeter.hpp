@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "Coloring/Color.hpp"
+#include "Common/Matter/Coloring/Color.hpp"
 #include "GUIComponent.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 
 namespace Forradia
 {

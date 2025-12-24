@@ -4,9 +4,9 @@
  *********************************************************************/
 
 #include "Cursor.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
-#include "MouseUtilities.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia

@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "NumbersUtilities.hpp"
-#include "Constants.hpp"
+#include "Common/General/Constants.hpp"
 #include <cmath>
 
 namespace Forradia

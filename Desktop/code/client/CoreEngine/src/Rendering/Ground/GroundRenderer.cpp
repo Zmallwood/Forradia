@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Base/ShaderProgram.hpp"
 

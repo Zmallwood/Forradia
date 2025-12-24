@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "Geometry/PointF.hpp"
-#include "Geometry/RectF.hpp"
+#include "Common/Matter/Geometry/PointF.hpp"
+#include "Common/Matter/Geometry/RectF.hpp"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <vector>

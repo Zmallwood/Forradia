@@ -20,10 +20,10 @@
 #include <glm/gtx/projection.hpp>
 #include <nlohmann/json.hpp>
 
-#include "CanvasUtilities.hpp"
-#include "Geometry/Point.hpp"
-#include "Hash.hpp"
-#include "MouseUtilities.hpp"
-#include "NumbersUtilities.hpp"
-#include "RandomizationUtilities.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
+#include "Common/Matter/Geometry/Point.hpp"
+#include "Common/General/Hash.hpp"
+#include "Common/Utilities/MouseUtilities.hpp"
+#include "Common/Utilities/NumbersUtilities.hpp"
+#include "Common/Utilities/RandomizationUtilities.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"

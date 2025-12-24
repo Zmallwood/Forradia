@@ -5,7 +5,7 @@
 
 #include "Engine.hpp"
 #include "ScenesCore/SceneManager.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"
 #include <SDL2/SDL.h>
 
 namespace Forradia

@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ErrorUtilities.hpp"
+#include "Common/Utilities/ErrorUtilities.hpp"
 #include "Model.hpp"
 #include "assimp/scene.h"
 

@@ -8,13 +8,15 @@
 #include <map>
 #include <memory>
 #include <set>
+#include <vector>
+#include <algorithm>
 
 #include <SDL2/SDL.h>
 
-#include "Constants.hpp"
-#include "Geometry/Point.hpp"
-#include "Geometry/PointF.hpp"
-#include "Geometry/Size.hpp"
-#include "Hash.hpp"
-#include "RandomizationUtilities.hpp"
-#include "TimeUtilities.hpp"
+#include "Common/General/Constants.hpp"
+#include "Common/Matter/Geometry/Point.hpp"
+#include "Common/Matter/Geometry/PointF.hpp"
+#include "Common/Matter/Geometry/Size.hpp"
+#include "Common/General/Hash.hpp"
+#include "Common/Utilities/RandomizationUtilities.hpp"
+#include "Common/Utilities/TimeUtilities.hpp"

@@ -5,7 +5,7 @@
 
 #include "MainScene.hpp"
 #include "Rendering/Base/3D/Camera.hpp"
-#include "CanvasUtilities.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
 #include "GUICore/GUI.hpp"
 #include "GUICore/GUIButton.hpp"
 #include "GUICore/GUIChatBox.hpp"

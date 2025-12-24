@@ -14,17 +14,20 @@ target_include_directories(Forradia PUBLIC
     "./src"
 )
 target_link_libraries(Forradia PRIVATE
-    ForradiaCommonGeneral
     ForradiaTheme0WorldStructure
     ForradiaTheme0WorldGenerationMain
     ForradiaTheme0Essentials
-    ForradiaCommonUtilities
-    ForradiaCommonCoreUtilities
     ForradiaCoreEngine
     ForradiaTheme0Properties
     ForradiaTheme0Core
     ForradiaTheme0CustomGUI
     ForradiaTheme0Scenes
+    SDL2
+    SDL2_image
+    SDL2_ttf
+    GL
+    GLEW
+    fmt
 )
 
 file(COPY ${CMAKE_SOURCE_DIR}/../Resources

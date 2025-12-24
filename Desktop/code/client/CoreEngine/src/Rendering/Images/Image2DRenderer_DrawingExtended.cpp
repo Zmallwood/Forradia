@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "CanvasUtilities.hpp"
-#include "Hash.hpp"
+#include "Common/Utilities/CanvasUtilities.hpp"
+#include "Common/General/Hash.hpp"
 #include "Image2DRenderer.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Assets/Textures/TextureBank.hpp"

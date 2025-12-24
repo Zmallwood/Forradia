@@ -5,7 +5,7 @@
 
 #include "GUIChatBox.hpp"
 #include "Rendering/Colors/Color2DRenderer.hpp"
-#include "Coloring/Palette.hpp"
+#include "Common/Matter/Coloring/Palette.hpp"
 #include "Engine.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
 #include "Rendering/Text/TextRenderer.hpp"

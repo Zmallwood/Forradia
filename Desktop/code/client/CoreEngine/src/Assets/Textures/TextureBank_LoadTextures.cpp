@@ -3,10 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "FilePathUtilities.hpp"
-#include "Hash.hpp"
-#include "SDLDeleter.hpp"
-#include "StringUtilities.hpp"
+#include "Common/Utilities/FilePathUtilities.hpp"
+#include "Common/General/Hash.hpp"
+#include "Common/General/SDLDeleter.hpp"
+#include "Common/Utilities/StringUtilities.hpp"
 #include "TextureBank.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>

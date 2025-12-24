@@ -9,5 +9,3 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/gtx/projection.hpp>
-
-#include "Geometry/Point3F.hpp"

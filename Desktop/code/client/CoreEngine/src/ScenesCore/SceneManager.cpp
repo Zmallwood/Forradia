@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "SceneManager.hpp"
-#include "Hash.hpp"
+#include "Common/General/Hash.hpp"
 #include "IScene.hpp"
 
 namespace Forradia

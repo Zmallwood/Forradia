@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SDLDeleter.hpp"
+#include "Common/General/SDLDeleter.hpp"
 #include "TextRenderer.hpp"
 #include <SDL2/SDL.h>
 // clang-format off
