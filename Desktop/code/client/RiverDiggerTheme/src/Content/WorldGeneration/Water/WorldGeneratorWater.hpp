@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "WorldGeneratorBase.hpp"
+#include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
 
 namespace Forradia::Theme0
 {

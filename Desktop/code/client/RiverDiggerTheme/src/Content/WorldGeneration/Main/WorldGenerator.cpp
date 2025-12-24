@@ -4,10 +4,10 @@
  *********************************************************************/
 
 #include "WorldGenerator.hpp"
-#include "WorldGeneratorEntities.hpp"
-#include "WorldGeneratorGround.hpp"
-#include "WorldGeneratorObjects.hpp"
-#include "WorldGeneratorWater.hpp"
+#include "Content/WorldGeneration/Entities/WorldGeneratorEntities.hpp"
+#include "Content/WorldGeneration/Ground/WorldGeneratorGround.hpp"
+#include "Content/WorldGeneration/Objects/WorldGeneratorObjects.hpp"
+#include "Content/WorldGeneration/Water/WorldGeneratorWater.hpp"
 
 namespace Forradia::Theme0
 {
