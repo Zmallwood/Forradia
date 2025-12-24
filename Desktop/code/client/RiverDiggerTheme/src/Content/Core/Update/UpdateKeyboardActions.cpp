@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "UpdateKeyboardActions.hpp"
-#include "GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "Content/CustomGUI/GUIInventoryWindow.hpp"
 #include "Content/CustomGUI/GUISystemMenu.hpp"
 

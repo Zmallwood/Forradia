@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "GUICore/GUIComponent.hpp"
+#include "ForradiaEngine/GUICore/GUIComponent.hpp"
 
 namespace Forradia::Theme0
 {

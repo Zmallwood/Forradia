@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Quests.hpp"
-#include "GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
 #include "Content/Essentials/Player/Player.hpp"
 #include "Content/WorldStructure/Tile.hpp"

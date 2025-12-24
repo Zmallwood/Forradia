@@ -4,11 +4,11 @@
  *********************************************************************/
 
 #include "GUIPlayerStatusBox.hpp"
-#include "GUICore/GUILabel.hpp"
+#include "ForradiaEngine/GUICore/GUILabel.hpp"
 #include "GUIWellBeingMeter.hpp"
 #include "Content/Essentials/Math/ExperienceCalculations.hpp"
 #include "Content/Essentials/Player/Player.hpp"
-#include "Rendering/Text/TextRenderer.hpp"
+#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 #include <fmt/format.h>
 
 namespace Forradia::Theme0

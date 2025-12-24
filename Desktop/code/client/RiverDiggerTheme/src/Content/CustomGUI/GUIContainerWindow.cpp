@@ -5,13 +5,13 @@
 
 #include "GUIContainerWindow.hpp"
 #include "Content/WorldStructure/ContainedObjects.hpp"
-#include "GUICore/GUIScrollableArea.hpp"
-#include "GUICore/GUIWindowTitleBar.hpp"
-#include "Rendering/Images/Image2DRenderer.hpp"
-#include "Common/Utilities/MouseUtilities.hpp"
+#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
+#include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
 #include "Content/WorldStructure/Object.hpp"
 #include "Content/Essentials/Player/Player.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

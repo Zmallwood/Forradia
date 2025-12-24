@@ -5,11 +5,11 @@
 
 #include "UpdateEntitiesMovement.hpp"
 #include "Content/WorldStructure/Entity.hpp"
-#include "Common/General/Hash.hpp"
-#include "Common/Utilities/NumbersUtilities.hpp"
-#include "Common/Utilities/RandomizationUtilities.hpp"
+#include "ForradiaEngine/Common/General/Hash.hpp"
+#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
 #include "Content/WorldStructure/Tile.hpp"
-#include "Common/Utilities/TimeUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
 #include "Content/WorldStructure/World.hpp"
 #include "Content/WorldStructure/WorldArea.hpp"
 

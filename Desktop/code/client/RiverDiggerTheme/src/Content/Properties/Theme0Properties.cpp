@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Theme0Properties.hpp"
-#include "Common/Matter/Coloring/Palette.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
 
 namespace Forradia::Theme0
 {

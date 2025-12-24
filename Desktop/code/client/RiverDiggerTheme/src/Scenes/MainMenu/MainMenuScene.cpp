@@ -4,13 +4,13 @@
  *********************************************************************/
 
 #include "MainMenuScene.hpp"
-#include "Engine.hpp"
-#include "GUICore/GUI.hpp"
-#include "GUICore/GUIButton.hpp"
-#include "GUICore/GUIChatBox.hpp"
-#include "GUICore/GUIPanel.hpp"
-#include "Rendering/Images/Image2DRenderer.hpp"
-#include "ScenesCore/SceneManager.hpp"
+#include "ForradiaEngine/Engine.hpp"
+#include "ForradiaEngine/GUICore/GUI.hpp"
+#include "ForradiaEngine/GUICore/GUIButton.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 
 namespace Forradia::Theme0
 {

@@ -4,17 +4,17 @@
  *********************************************************************/
 
 #include "Actions.hpp"
-#include "GUICore/GUI.hpp"
-#include "GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUI.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "Content/CustomGUI/GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
-#include "ScenesCore/IScene.hpp"
+#include "ForradiaEngine/ScenesCore/IScene.hpp"
 #include "Content/WorldStructure/Object.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
 #include "Content/Essentials/Player/Player.hpp"
 #include "Content/Essentials/Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
-#include "ScenesCore/SceneManager.hpp"
+#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 
 namespace Forradia::Theme0

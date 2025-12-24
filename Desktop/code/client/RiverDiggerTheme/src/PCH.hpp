@@ -13,16 +13,21 @@
 #include <unordered_map>
 #include <vector>
 #include <functional>
+#include <ranges>
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/gtx/projection.hpp>
 
-#include "Common/Utilities/CanvasUtilities.hpp"
-#include "Common/Matter/Geometry/Point.hpp"
-#include "Common/General/Hash.hpp"
-#include "Common/Utilities/MouseUtilities.hpp"
-#include "Common/Utilities/NumbersUtilities.hpp"
-#include "Common/Utilities/RandomizationUtilities.hpp"
-#include "Common/Utilities/TimeUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+#include "ForradiaEngine/Common/General/Hash.hpp"
+#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"

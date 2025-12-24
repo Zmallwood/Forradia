@@ -4,9 +4,9 @@
  *********************************************************************/
 
 #include "CameraRotator.hpp"
-#include "Rendering/Base/3D/Camera.hpp"
-#include "Common/Utilities/MouseUtilities.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

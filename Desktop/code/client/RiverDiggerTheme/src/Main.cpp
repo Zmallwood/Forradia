@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Engine.hpp"
+#include "ForradiaEngine/Engine.hpp"
 #include "Scenes/SetupScenes.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Content/WorldStructure/World.hpp"

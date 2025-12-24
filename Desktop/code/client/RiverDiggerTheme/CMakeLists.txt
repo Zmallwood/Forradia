@@ -31,13 +31,13 @@ target_precompile_headers(RiverDiggerLib
 
 target_link_libraries(RiverDiggerLib
     PUBLIC
-        ForradiaEngine
         SDL2
         SDL2_image
         SDL2_ttf
         GL
         GLEW
         fmt
+        assimp
 )
 
 # -------------------------------------------------

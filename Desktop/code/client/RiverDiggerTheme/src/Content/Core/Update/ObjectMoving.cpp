@@ -4,12 +4,12 @@
  *********************************************************************/
 
 #include "ObjectMoving.hpp"
-#include "Common/Utilities/CanvasUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
 #include "Content/CustomGUI/GUIInventoryWindow.hpp"
-#include "Rendering/Images/Image2DRenderer.hpp"
-#include "Common/Utilities/MouseUtilities.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
 #include "Content/WorldStructure/Object.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

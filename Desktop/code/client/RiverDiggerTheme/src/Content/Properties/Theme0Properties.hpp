@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "Common/Matter/Coloring/Color.hpp"
-#include "Common/Matter/Geometry/Size.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
 #include <string>
 
 namespace Forradia::Theme0

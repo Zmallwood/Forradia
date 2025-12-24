@@ -8,7 +8,7 @@
 #include "MainMenu/MainMenuScene.hpp"
 #include "Main/MainScene.hpp"
 #include "Play/PlayScene.hpp"
-#include "ScenesCore/SceneManager.hpp"
+#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 #include "WorldGeneration/WorldGenerationScene.hpp"
 
 namespace Forradia::Theme0

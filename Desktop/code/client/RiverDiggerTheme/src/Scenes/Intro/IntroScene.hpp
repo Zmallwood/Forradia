@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "ScenesCore/IScene.hpp"
+#include "ForradiaEngine/ScenesCore/IScene.hpp"
 
 namespace Forradia
 {

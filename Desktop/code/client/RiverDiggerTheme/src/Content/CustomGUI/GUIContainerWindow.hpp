@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "GUICore/GUIPanel.hpp"
-#include "GUICore/GUIScrollableArea.hpp"
-#include "GUICore/GUIWindow.hpp"
+#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
+#include "ForradiaEngine/GUICore/GUIWindow.hpp"
 #include <unordered_map>
 
 namespace Forradia::Theme0

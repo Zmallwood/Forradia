@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIQuestPanel.hpp"
-#include "GUICore/GUILabel.hpp"
+#include "ForradiaEngine/GUICore/GUILabel.hpp"
 #include "Content/Core/Update/Quests/QuestSystem.hpp"
 
 namespace Forradia::Theme0
