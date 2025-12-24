@@ -9,8 +9,8 @@ if [ ! -d "$directory" ]; then
 fi
 
 rm -rf ./bin/Resources
-cp ./build/client/Theme0/Forradia ./bin/
+cp ./build/client/RiverDiggerTheme/RiverDigger ./bin/
 cp -r ./Resources ./bin/
 cd ./bin
 
-./Forradia
+./RiverDigger
