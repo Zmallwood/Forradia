@@ -6,7 +6,7 @@
 #include "Actions.hpp"
 #include "GUICore/GUI.hpp"
 #include "GUICore/GUIChatBox.hpp"
-#include "GUIContainerWindow.hpp"
+#include "Content/CustomGUI/GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
 #include "ScenesCore/IScene.hpp"
 #include "Content/WorldStructure/Object.hpp"

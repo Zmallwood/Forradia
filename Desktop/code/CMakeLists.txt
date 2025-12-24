@@ -8,7 +8,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(./client/ForradiaEngine/)
 add_subdirectory(./client/Theme0Core/)
-add_subdirectory(./client/Theme0CustomGUI/)
 add_subdirectory(./client/RiverDiggerTheme/)
 
 install(TARGETS RiverDigger RUNTIME DESTINATION bin)

@@ -8,7 +8,7 @@
 #include "Rendering/Colors/Color2DRenderer.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "GUICore/GUIChatBox.hpp"
-#include "GUIInventoryWindow.hpp"
+#include "Content/CustomGUI/GUIInventoryWindow.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
 #include "Content/WorldStructure/Object.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"

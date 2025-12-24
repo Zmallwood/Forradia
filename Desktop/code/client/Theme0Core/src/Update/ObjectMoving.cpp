@@ -5,7 +5,7 @@
 
 #include "ObjectMoving.hpp"
 #include "Common/Utilities/CanvasUtilities.hpp"
-#include "GUIInventoryWindow.hpp"
+#include "Content/CustomGUI/GUIInventoryWindow.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
 #include "Content/WorldStructure/Object.hpp"

@@ -33,7 +33,6 @@ target_link_libraries(RiverDiggerLib
     PUBLIC
         ForradiaEngine
         ForradiaTheme0Core
-        ForradiaTheme0CustomGUI
         SDL2
         SDL2_image
         SDL2_ttf

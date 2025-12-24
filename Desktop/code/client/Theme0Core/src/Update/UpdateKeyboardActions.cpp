@@ -5,8 +5,8 @@
 
 #include "UpdateKeyboardActions.hpp"
 #include "GUICore/GUIChatBox.hpp"
-#include "GUIInventoryWindow.hpp"
-#include "GUISystemMenu.hpp"
+#include "Content/CustomGUI/GUIInventoryWindow.hpp"
+#include "Content/CustomGUI/GUISystemMenu.hpp"
 
 namespace Forradia::Theme0
 {
