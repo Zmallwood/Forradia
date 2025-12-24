@@ -8,7 +8,7 @@
 #include "GUIInventoryWindow.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
-#include "Object.hpp"
+#include "Content/WorldStructure/Object.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0

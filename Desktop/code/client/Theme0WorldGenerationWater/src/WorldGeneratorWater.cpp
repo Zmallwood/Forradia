@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "WorldGeneratorWater.hpp"
-#include "Tile.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

@@ -3,13 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ObjectsStack.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
-#include "Tile.hpp"
+#include "Content/WorldStructure/Tile.hpp"
 #include "Common/Utilities/TimeUtilities.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 #include "WorldView.hpp"
 
 namespace Forradia::Theme0

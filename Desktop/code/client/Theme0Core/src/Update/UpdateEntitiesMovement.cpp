@@ -4,14 +4,14 @@
  *********************************************************************/
 
 #include "UpdateEntitiesMovement.hpp"
-#include "Entity.hpp"
+#include "Content/WorldStructure/Entity.hpp"
 #include "Common/General/Hash.hpp"
 #include "Common/Utilities/NumbersUtilities.hpp"
 #include "Common/Utilities/RandomizationUtilities.hpp"
-#include "Tile.hpp"
+#include "Content/WorldStructure/Tile.hpp"
 #include "Common/Utilities/TimeUtilities.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

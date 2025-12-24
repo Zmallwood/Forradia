@@ -31,7 +31,6 @@ target_precompile_headers(RiverDiggerLib
 
 target_link_libraries(RiverDiggerLib
     PUBLIC
-        ForradiaTheme0WorldStructure
         ForradiaTheme0WorldGenerationMain
         ForradiaTheme0Essentials
         ForradiaEngine

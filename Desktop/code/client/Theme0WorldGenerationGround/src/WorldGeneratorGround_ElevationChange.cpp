@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Tile.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 #include "WorldGeneratorGround.hpp"
 
 namespace Forradia::Theme0

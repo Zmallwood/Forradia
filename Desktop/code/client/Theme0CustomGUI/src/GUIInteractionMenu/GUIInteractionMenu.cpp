@@ -10,16 +10,16 @@
 #include "GUICore/GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
-#include "Object.hpp"
-#include "ObjectsStack.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Text/TextRenderer.hpp"
-#include "Tile.hpp"
+#include "Content/WorldStructure/Tile.hpp"
 #include "Update/TileHovering.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

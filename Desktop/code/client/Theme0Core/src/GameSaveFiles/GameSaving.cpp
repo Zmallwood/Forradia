@@ -4,14 +4,14 @@
  *********************************************************************/
 
 #include "GameSaving.hpp"
-#include "Entity.hpp"
+#include "Content/WorldStructure/Entity.hpp"
 #include "Rendering/Ground/GroundRenderer.hpp"
 #include "HashCodes.hpp"
-#include "Object.hpp"
-#include "ObjectsStack.hpp"
-#include "Tile.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 #include <fstream>
 #include <string>
 

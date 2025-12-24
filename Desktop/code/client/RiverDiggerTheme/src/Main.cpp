@@ -6,7 +6,7 @@
 #include "Engine.hpp"
 #include "Scenes/SetupScenes.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
-#include "World.hpp"
+#include "Content/WorldStructure/World.hpp"
 
 auto main(int argc, char **argv) -> int
 {

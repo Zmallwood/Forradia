@@ -9,13 +9,13 @@
 #include "GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
 #include "ScenesCore/IScene.hpp"
-#include "Object.hpp"
-#include "ObjectsStack.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "ScenesCore/SceneManager.hpp"
-#include "Tile.hpp"
+#include "Content/WorldStructure/Tile.hpp"
 
 namespace Forradia::Theme0
 {

@@ -13,7 +13,7 @@ target_include_directories(ForradiaTheme0WorldGenerationObjects PUBLIC
 )
 target_link_libraries(ForradiaTheme0WorldGenerationObjects PRIVATE
     ForradiaEngine
-    ForradiaTheme0WorldStructure
     ForradiaTheme0WorldGenerationCommon
+    RiverDiggerLib
 )
 target_precompile_headers(ForradiaTheme0WorldGenerationObjects PUBLIC ./src/PCH.hpp)

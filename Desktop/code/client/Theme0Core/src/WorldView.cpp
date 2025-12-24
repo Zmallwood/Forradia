@@ -10,8 +10,8 @@
 #include "Rendering/Sky/SkyRenderer.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Update/TileHovering.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

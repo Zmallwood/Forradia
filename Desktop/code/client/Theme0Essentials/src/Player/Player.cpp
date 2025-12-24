@@ -5,13 +5,13 @@
 
 #include "Player.hpp"
 #include "Common/Utilities/NumbersUtilities.hpp"
-#include "Object.hpp"
+#include "Content/WorldStructure/Object.hpp"
 #include "Content/Properties/ObjectIndex.hpp"
-#include "ObjectsStack.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
 #include "PlayerObjectsInventory.hpp"
-#include "Tile.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace Forradia::Theme0
 {

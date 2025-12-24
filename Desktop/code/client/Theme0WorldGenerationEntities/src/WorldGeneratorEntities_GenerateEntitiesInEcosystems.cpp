@@ -3,11 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Entity.hpp"
-#include "Object.hpp"
-#include "ObjectsStack.hpp"
-#include "Tile.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Entity.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 #include "WorldGeneratorEntities.hpp"
 
 namespace Forradia::Theme0

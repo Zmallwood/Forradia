@@ -13,7 +13,7 @@ target_include_directories(ForradiaTheme0WorldGenerationMain PUBLIC
 )
 target_link_libraries(ForradiaTheme0WorldGenerationMain PRIVATE
     ForradiaEngine
-    ForradiaTheme0WorldStructure
+    
     ForradiaTheme0WorldGenerationGround
     ForradiaTheme0WorldGenerationWater
     ForradiaTheme0WorldGenerationObjects

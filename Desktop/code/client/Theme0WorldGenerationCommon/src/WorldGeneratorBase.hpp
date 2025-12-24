@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <memory>
+
 namespace Forradia::Theme0
 {
     class WorldArea;

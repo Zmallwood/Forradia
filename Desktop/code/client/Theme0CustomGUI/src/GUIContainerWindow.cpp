@@ -4,12 +4,12 @@
  *********************************************************************/
 
 #include "GUIContainerWindow.hpp"
-#include "ContainedObjects.hpp"
+#include "Content/WorldStructure/ContainedObjects.hpp"
 #include "GUICore/GUIScrollableArea.hpp"
 #include "GUICore/GUIWindowTitleBar.hpp"
 #include "Rendering/Images/Image2DRenderer.hpp"
 #include "Common/Utilities/MouseUtilities.hpp"
-#include "Object.hpp"
+#include "Content/WorldStructure/Object.hpp"
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 

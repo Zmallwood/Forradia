@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "ContainedObjects.hpp"
+#include "Content/WorldStructure/ContainedObjects.hpp"
 
 namespace Forradia::Theme0
 {

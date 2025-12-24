@@ -8,9 +8,9 @@
 #include "Player/Player.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
-#include "Tile.hpp"
-#include "World.hpp"
-#include "WorldArea.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Forradia
