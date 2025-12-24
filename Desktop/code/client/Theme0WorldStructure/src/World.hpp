@@ -10,7 +10,7 @@ namespace Forradia::Theme0
     class WorldArea;
 
     /**
-        The world in the game.
+     *  The world in the game.
      */
     class World
     {
@@ -29,17 +29,17 @@ namespace Forradia::Theme0
         World() = default;
 
         /**
-            Initializes the world.
-
-            @param worldAreaSize The size of the world area.
-            @param worldScaling The scaling of the world.
+         *  Initializes the world.
+         *
+         *  @param worldAreaSize The size of the world area.
+         *  @param worldScaling The scaling of the world.
          */
         auto initialize(Size worldAreaSize, float worldScaling) -> void;
 
         /**
-            Gets the current world area.
-
-            @return The current world area.
+         *  Gets the current world area.
+         *
+         *  @return The current world area.
          */
         auto getCurrentWorldArea() -> std::shared_ptr<WorldArea> const
         {

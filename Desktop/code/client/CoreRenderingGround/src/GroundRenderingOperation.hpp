@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-        A rendering operation for a ground tile.
+     *  A rendering operation for a ground tile.
      */
     class GroundRenderingOperation
     {

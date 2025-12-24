@@ -12,20 +12,20 @@ namespace Forradia
     class GUIWindowTitleBar;
 
     /**
-        A window component for the GUI that can be moved by the mouse.
+     *  A window component for the GUI that can be moved by the mouse.
      */
     class GUIWindow : public GUIMovablePanel
     {
       public:
         /**
-            Constructor.
-
-            @param uniqueName A unique name for the window.
-            @param xPos The x-coordinate of the window.
-            @param yPos The y-coordinate of the window.
-            @param width The width of the window.
-            @param height The height of the window.
-            @param windowTitle The title of the window.
+         *  Constructor.
+         *
+         *  @param uniqueName A unique name for the window.
+         *  @param xPos The x-coordinate of the window.
+         *  @param yPos The y-coordinate of the window.
+         *  @param width The width of the window.
+         *  @param height The height of the window.
+         *  @param windowTitle The title of the window.
          */
         GUIWindow(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                   std::string_view windowTitle)
@@ -36,9 +36,9 @@ namespace Forradia
         }
 
         /**
-            Gets the window title bar of the window.
-
-            @return The window title bar of the window.
+         *  Gets the window title bar of the window.
+         *
+         *  @return The window title bar of the window.
          */
         auto getGUIWindowTitleBar() const
         {
@@ -47,15 +47,15 @@ namespace Forradia
 
       protected:
         /**
-            Render tasks specific to the window, called by the GUIComponent base class.
+         *  Render tasks specific to the window, called by the GUIComponent base class.
          */
         auto renderDerived() const -> void override;
 
         /**
-            Gets the draggable area for the window. This is the area which the player can drag
-            the window by.
-
-            @return The draggable area of the window.
+         *  Gets the draggable area for the window. This is the area which the player can drag
+         *  the window by.
+         *
+         *  @return The draggable area of the window.
          */
         auto getDraggableArea() const -> RectF override;
 

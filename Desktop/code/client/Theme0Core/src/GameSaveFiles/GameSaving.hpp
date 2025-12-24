@@ -14,7 +14,7 @@ namespace Forradia::Theme0
     class Tile;
 
     /**
-        Manages the saving and loading of the game.
+     *  Manages the saving and loading of the game.
      */
     class GameSaving
     {
@@ -33,12 +33,12 @@ namespace Forradia::Theme0
         GameSaving() = default;
 
         /**
-            Saves the game to a file.
+         *  Saves the game to a file.
          */
         static auto saveGame() -> void;
 
         /**
-            Loads the game from a file.
+         *  Loads the game from a file.
          */
         static auto loadGame() -> void;
 

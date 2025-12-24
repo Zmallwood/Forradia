@@ -11,7 +11,7 @@
 namespace Forradia
 {
     /**
-        A rendering operation for a group of tiles.
+     *   A rendering operation for a group of tiles.
      */
     class GroundRenderingGroupOperation
     {

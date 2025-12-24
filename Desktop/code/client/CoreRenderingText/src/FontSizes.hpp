@@ -8,7 +8,7 @@
 namespace Forradia
 {
     /**
-        Available font sizes.
+     *  Available font sizes.
      */
     enum class FontSizes
     {

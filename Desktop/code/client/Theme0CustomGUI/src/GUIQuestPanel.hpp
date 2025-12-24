@@ -15,13 +15,13 @@ namespace Forradia
 namespace Forradia::Theme0
 {
     /**
-        Represents the quest panel.
+     *  Represents the quest panel.
      */
     class GUIQuestPanel : public GUIMovablePanel
     {
       public:
         /**
-            Constructor.
+         *  Constructor.
          */
         GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79f, 0.2f, 0.2f, 0.14f)
         {
@@ -30,7 +30,7 @@ namespace Forradia::Theme0
 
       protected:
         /**
-            Does update logic that is specific to the quest panel.
+         *  Does update logic that is specific to the quest panel.
          */
         auto updateDerived() -> void override;
 

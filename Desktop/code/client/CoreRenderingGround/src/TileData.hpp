@@ -12,7 +12,7 @@
 namespace Forradia
 {
     /**
-        Tile data structure for batched rendering.
+     *  Tile data structure for batched rendering.
      */
     class TileData
     {

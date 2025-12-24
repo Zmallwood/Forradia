@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Manages the rotation of the camera.
+     *  Manages the rotation of the camera.
      */
     class CameraRotator
     {
@@ -34,7 +34,7 @@ namespace Forradia::Theme0
         auto onMouseUp(Uint8 mouseButton) -> void;
 
         /**
-         * Updates the camera rotation.
+         *  Updates the camera rotation.
          */
         auto update() const -> void;
 

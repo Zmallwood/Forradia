@@ -13,22 +13,22 @@
 namespace Forradia
 {
     /**
-        A label component for the GUI.
+     *  A label component for the GUI.
      */
     class GUILabel : public GUIComponent
     {
       public:
         /**
-            Constructor.
-
-            @param uniqueName A unique name for the label.
-            @param xPos The x-coordinate of the label.
-            @param yPos The y-coordinate of the label.
-            @param width The width of the label.
-            @param height The height of the label.
-            @param text The text to display on the label.
-            @param centerAlign Whether to center the text.
-            @param color The color of the text.
+         *  Constructor.
+         *
+         *  @param uniqueName A unique name for the label.
+         *  @param xPos The x-coordinate of the label.
+         *  @param yPos The y-coordinate of the label.
+         *  @param width The width of the label.
+         *  @param height The height of the label.
+         *  @param text The text to display on the label.
+         *  @param centerAlign Whether to center the text.
+         *  @param color The color of the text.
          */
         GUILabel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
                  std::string_view text = "", bool centerAlign = false,
@@ -39,9 +39,9 @@ namespace Forradia
         }
 
         /**
-            Sets the text of the label.
-
-            @param value The new text.
+         *  Sets the text of the label.
+         *
+         *  @param value The new text.
          */
         auto setText(std::string_view value) -> void
         {
@@ -50,7 +50,7 @@ namespace Forradia
 
       protected:
         /**
-            Render tasks specific to the label, called by the GUIComponent base class.
+         *  Render tasks specific to the label, called by the GUIComponent base class.
          */
         auto renderDerived() const -> void override;
 

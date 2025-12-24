@@ -16,7 +16,7 @@ namespace Forradia::Theme0
     class Object;
 
     /**
-        Represents an action that can be performed by the player.
+     *  Represents an action that can be performed by the player.
      */
     class Action
     {

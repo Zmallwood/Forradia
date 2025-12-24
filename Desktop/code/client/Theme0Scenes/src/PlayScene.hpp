@@ -10,8 +10,8 @@
 namespace Forradia::Theme0
 {
     /**
-        The play scene is the scene where the player can choose to play a new game or continue a
-        saved game.
+     *  The play scene is the scene where the player can choose to play a new game or continue a
+     *  saved game.
      */
     class PlayScene : public IScene
     {
@@ -31,12 +31,12 @@ namespace Forradia::Theme0
 
       protected:
         /**
-            Initializes the play scene.
+         *  Initializes the play scene.
          */
         virtual auto initializeDerived() -> void override;
 
         /**
-            Called every frame to render the scene.
+         *  Called every frame to render the scene.
          */
         virtual auto renderDerived() const -> void override;
     };

@@ -8,7 +8,7 @@
 namespace Forradia
 {
     /**
-        Class for the FPS counter.
+     *  Class for the FPS counter.
      */
     class FPSCounter
     {
@@ -27,14 +27,14 @@ namespace Forradia
         FPSCounter() = default;
 
         /**
-            Updates the FPS counter.
+         *  Updates the FPS counter.
          */
         auto update() -> void;
 
         /**
-            Gets the current FPS.
-
-            @return The current FPS.
+         *  Gets the current FPS.
+         *
+         *  @return The current FPS.
          */
         [[nodiscard]] auto getFPS() const
         {

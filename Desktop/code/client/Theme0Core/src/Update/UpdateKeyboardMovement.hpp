@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Updates the keyboard movement.
+     *  Updates the keyboard movement.
      */
     auto updateKeyboardMovementStart(SDL_Keycode key) -> void;
 

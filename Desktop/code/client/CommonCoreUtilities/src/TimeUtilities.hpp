@@ -8,9 +8,9 @@
 namespace Forradia
 {
     /**
-        Get the number of ticks.
-
-        @return The number of ticks.
+     *  Get the number of ticks.
+     *
+     *  @return The number of ticks.
      */
     auto getTicks() -> int;
 }

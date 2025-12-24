@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Represents the experience bar.
+     *  Represents the experience bar.
      */
     class GUIExperienceBar : public GUIMeter
     {
@@ -34,7 +34,7 @@ namespace Forradia::Theme0
         GUIExperienceBar &operator=(const GUIExperienceBar &) = delete;
 
         /**
-            Constructor.
+         *  Constructor.
          */
         GUIExperienceBar()
             : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, getFilledColor())
@@ -42,9 +42,9 @@ namespace Forradia::Theme0
         }
 
         /**
-            Gets the height of the bar.
-
-            @return The height of the bar.
+         *  Gets the height of the bar.
+         *
+         *  @return The height of the bar.
          */
         static auto getHeight()
         {
@@ -53,21 +53,21 @@ namespace Forradia::Theme0
 
       protected:
         /**
-            Does update logic that is specific to the experience bar.
+         *  Does update logic that is specific to the experience bar.
          */
         auto updateDerived() -> void override;
 
         /**
-            Gets the filled percentage of the bar.
-
-            @return The filled percentage of the bar.
+         *  Gets the filled percentage of the bar.
+         *
+         *  @return The filled percentage of the bar.
          */
         auto getFilledPercentage() const -> float override;
 
         /**
-            Gets the filled color of the bar.
-
-            @return The filled color of the bar.
+         *  Gets the filled color of the bar.
+         *
+         *  @return The filled color of the bar.
          */
         static auto getFilledColor() -> Color
         {

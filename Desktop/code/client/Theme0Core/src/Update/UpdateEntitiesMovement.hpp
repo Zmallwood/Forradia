@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Updates the movement of the entities in the world.
+     *  Updates the movement of the entities in the world.
      */
     auto updateEntitiesMovement() -> void;
 }

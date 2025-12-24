@@ -14,7 +14,7 @@ namespace Forradia
     class IScene;
 
     /**
-        The manager for the scenes.
+     *  The manager for the scenes.
      */
     class SceneManager
     {
@@ -33,17 +33,17 @@ namespace Forradia
         SceneManager() = default;
 
         /**
-            Adds a scene to the manager.
-
-            @param sceneName The name of the scene.
-            @param scene The scene to add.
+         *  Adds a scene to the manager.
+         *
+         *  @param sceneName The name of the scene.
+         *  @param scene The scene to add.
          */
         auto addScene(std::string_view sceneName, IScene &scene) -> void;
 
         /**
-            Goes to a scene.
-
-            @param sceneName The name of the scene to go to.
+         *  Goes to a scene.
+         *
+         *  @param sceneName The name of the scene to go to.
          */
         auto goToScene(std::string_view sceneName) -> void;
 
@@ -60,12 +60,12 @@ namespace Forradia
         auto onTextInputCurrentScene(std::string_view text) -> void;
 
         /**
-            Updates the current scene.
+         *  Updates the current scene.
          */
         auto updateCurrentScene() -> void;
 
         /**
-            Renders the current scene.
+         *  Renders the current scene.
          */
         auto renderCurrentScene() const -> void;
 

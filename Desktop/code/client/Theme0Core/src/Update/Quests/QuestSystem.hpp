@@ -14,7 +14,7 @@ namespace Forradia::Theme0
     class Quest;
 
     /**
-     * Manages the quests in the game.
+     *  Manages the quests in the game.
      */
     class QuestSystem
     {
@@ -31,7 +31,7 @@ namespace Forradia::Theme0
         auto operator=(const QuestSystem &) -> QuestSystem & = delete;
 
         /**
-         * Constructor.
+         *  Constructor.
          */
         QuestSystem()
         {
@@ -39,22 +39,22 @@ namespace Forradia::Theme0
         }
 
         /**
-         * Updates the quest system.
+         *  Updates the quest system.
          */
         auto update() const -> void;
 
         /**
-         * Gets the name of the current quest.
+         *  Gets the name of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestName() const -> std::string;
 
         /**
-         * Gets the description of the current quest.
+         *  Gets the description of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestDescription() const -> std::string;
 
         /**
-         * Gets the status of the current quest.
+         *  Gets the status of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestStatus() const -> std::string;
 

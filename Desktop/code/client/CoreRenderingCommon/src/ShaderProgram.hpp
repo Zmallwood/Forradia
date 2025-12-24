@@ -14,16 +14,16 @@
 namespace Forradia
 {
     /**
-        Shader program which is used for each renderer.
+     *  Shader program which is used for each renderer.
      */
     class ShaderProgram
     {
       public:
         /**
-            Initialize the shader program.
-
-            @param vertexShaderSource Vertex shader source.
-            @param fragmentShaderSource Fragment shader source.
+         *  Initialize the shader program.
+         *
+         *  @param vertexShaderSource Vertex shader source.
+         *  @param fragmentShaderSource Fragment shader source.
          */
         ShaderProgram(std::string_view vertexShaderSource, std::string_view fragmentShaderSource)
         {
@@ -31,7 +31,7 @@ namespace Forradia
         }
 
         /**
-            Cleanup the shader program.
+         *  Cleanup the shader program.
          */
         ~ShaderProgram()
         {
@@ -39,9 +39,9 @@ namespace Forradia
         }
 
         /**
-            Get the program ID.
-
-            @return The program ID.
+         *  Get the program ID.
+         *
+         *  @return The program ID.
          */
         [[nodiscard]] auto getProgramID() const
         {

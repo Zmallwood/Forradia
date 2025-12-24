@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Represents the spouse of the player.
+     *  Represents the spouse of the player.
      */
     class Spouse
     {

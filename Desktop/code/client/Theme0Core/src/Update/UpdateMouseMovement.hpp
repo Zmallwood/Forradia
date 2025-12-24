@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Updates the mouse movement.
+     *  Updates the mouse movement.
      */
     auto updateMouseMovement() -> void;
 }

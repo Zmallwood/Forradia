@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-        A rendering operation for an image.
+     *  A rendering operation for an image.
      */
     class Image2DRenderingOperation
     {

@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Compass directions in the game world.
+     *  Compass directions in the game world.
      */
     enum class Directions
     {

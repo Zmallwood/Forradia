@@ -8,7 +8,7 @@
 namespace Forradia
 {
     /**
-        Point in 3D space using dimensions of float type.
+     *  Point in 3D space using dimensions of float type.
      */
     class Point3F
     {

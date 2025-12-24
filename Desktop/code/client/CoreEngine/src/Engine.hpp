@@ -11,8 +11,8 @@
 namespace Forradia
 {
     /**
-        The engine class is responsible for initializing, running and stopping
-        the game.
+     *  The engine class is responsible for initializing, running and stopping
+     *  the game.
      */
     class Engine
     {
@@ -31,20 +31,20 @@ namespace Forradia
         Engine() = default;
 
         /**
-            Initializes the engine.
-
-            @param gameWindowTitle The title of the game window.
-            @param clearColor The color to clear the canvas with.
+         *  Initializes the engine.
+         *
+         *  @param gameWindowTitle The title of the game window.
+         *  @param clearColor The color to clear the canvas with.
          */
         static auto initialize(std::string_view gameWindowTitle, Color clearColor) -> void;
 
         /**
-            Runs the engine.
+         *  Runs the engine.
          */
         auto run() -> void;
 
         /**
-            Stops the engine.
+         *  Stops the engine.
          */
         auto stop() -> void;
 

@@ -13,7 +13,7 @@
 namespace Forradia
 {
     /**
-        A rendering operation for colors in 2D.
+     *  A rendering operation for colors in 2D.
      */
     class Color2DRenderingOperation
     {

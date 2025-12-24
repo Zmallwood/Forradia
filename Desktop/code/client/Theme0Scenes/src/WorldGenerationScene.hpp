@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-        The world generation scene is the scene where the world is generated.
+     *  The world generation scene is the scene where the world is generated.
      */
     class WorldGenerationScene : public IScene
     {
@@ -30,7 +30,7 @@ namespace Forradia::Theme0
 
       protected:
         /**
-            Called when the world generation scene is entered.
+         *  Called when the world generation scene is entered.
          */
         virtual auto onEnterDerived() -> void override;
     };

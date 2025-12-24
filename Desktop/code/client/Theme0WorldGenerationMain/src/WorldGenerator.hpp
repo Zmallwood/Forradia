@@ -10,7 +10,7 @@ namespace Forradia::Theme0
     class WorldArea;
 
     /**
-        The WorldGenerator class is responsible for generating a new world.
+     *  The WorldGenerator class is responsible for generating a new world.
      */
     class WorldGenerator
     {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         WorldGenerator() = default;
 
         /**
-            Generates a new world.
+         *  Generates a new world.
          */
         static auto generateNewWorld() -> void;
 

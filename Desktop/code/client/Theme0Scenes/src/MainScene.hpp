@@ -12,7 +12,7 @@ namespace Forradia::Theme0
     class GUIInteractionMenu;
 
     /**
-        The main scene is the scene where the actual game is played.
+     *  The main scene is the scene where the actual game is played.
      */
     class MainScene : public IScene
     {
@@ -32,12 +32,12 @@ namespace Forradia::Theme0
 
       protected:
         /**
-            Initializes the main scene.
+         *  Initializes the main scene.
          */
         virtual auto initializeDerived() -> void override;
 
         /**
-            Called when the main scene is entered.
+         *  Called when the main scene is entered.
          */
         virtual auto onEnterDerived() -> void override;
 
@@ -56,12 +56,12 @@ namespace Forradia::Theme0
         virtual auto render() const -> void override;
 
         /**
-            Called every frame.
+         *  Called every frame.
          */
         virtual auto updateDerived() -> void override;
 
         /**
-            Called every frame to render the scene.
+         *  Called every frame to render the scene.
          */
         virtual auto renderDerived() const -> void override;
 

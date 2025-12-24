@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Class for storing object properties.
+     *  Class for storing object properties.
      */
     class ObjectIndexEntry
     {

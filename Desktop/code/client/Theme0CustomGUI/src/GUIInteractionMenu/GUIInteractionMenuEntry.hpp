@@ -11,16 +11,16 @@ namespace Forradia::Theme0
     class Object;
 
     /**
-        Represents an entry in the interaction menu.
+     *  Represents an entry in the interaction menu.
      */
     class GUIInteractionMenuEntry
     {
       public:
         /**
-            Constructor.
-
-            @param label The label of the entry.
-            @param action The action to perform when the entry is clicked.
+         *  Constructor.
+         *
+         *  @param label The label of the entry.
+         *  @param action The action to perform when the entry is clicked.
          */
         GUIInteractionMenuEntry(
             std::string_view label,
@@ -31,9 +31,9 @@ namespace Forradia::Theme0
         }
 
         /**
-            Gets the label of the entry.
-
-            @return The label of the entry.
+         *  Gets the label of the entry.
+         *
+         *  @return The label of the entry.
          */
         [[nodiscard]] auto getLabel() const
         {
@@ -41,9 +41,9 @@ namespace Forradia::Theme0
         }
 
         /**
-            Gets the action of the entry.
-
-            @return The action of the entry.
+         *  Gets the action of the entry.
+         *
+         *  @return The action of the entry.
          */
         [[nodiscard]] auto getAction() const
         {

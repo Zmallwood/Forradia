@@ -8,50 +8,50 @@
 namespace Forradia::Theme0
 {
     /**
-        Calculates the current level based on the experience.
-
-        @param experience The experience.
-        @return The current level.
+     *  Calculates the current level based on the experience.
+     *
+     *  @param experience The experience.
+     *  @return The current level.
      */
     auto calculateCurrentLevel(int experience) -> int;
 
     /**
-        Calculates the experience required for the given level.
-
-        @param level The level.
-        @return The experience required for the given level.
+     *  Calculates the experience required for the given level.
+     *
+     *  @param level The level.
+     *  @return The experience required for the given level.
      */
     auto calculateExperienceForLevel(int level) -> int;
 
     /**
-        Calculates the experience difference to the next level.
-
-        @param experience The experience.
-        @return The experience difference to the next level.
+     *  Calculates the experience difference to the next level.
+     *
+     *  @param experience The experience.
+     *  @return The experience difference to the next level.
      */
     auto calculateExperienceDifferenceToNextLevel(int experience) -> int;
 
     /**
-        Calculates the experience required for the current level start.
-
-        @param experience The experience.
-        @return The experience required for the current level start.
+     *  Calculates the experience required for the current level start.
+     *
+     *  @param experience The experience.
+     *  @return The experience required for the current level start.
      */
     auto calculateExperienceRequiredForCurrentLevelStart(int experience) -> int;
 
     /**
-        Calculates the experience gained since the level start.
-
-        @param experience The experience.
-        @return The experience gained since the level start.
+     *  Calculates the experience gained since the level start.
+     *
+     *  @param experience The experience.
+     *  @return The experience gained since the level start.
      */
     auto calculateExperienceGainedSinceLevelStart(int experience) -> int;
 
     /**
-        Calculates the fractional experience progress.
-
-        @param experience The experience.
-        @return The fractional experience progress.
+     *  Calculates the fractional experience progress.
+     *
+     *  @param experience The experience.
+     *  @return The fractional experience progress.
      */
     auto calculateFractionalExperienceProgress(int experience) -> float;
 }

@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-        The world generator for objects.
+     *  The world generator for objects.
      */
     class WorldGeneratorObjects : public WorldGeneratorBase
     {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         WorldGeneratorObjects() = default;
 
         /**
-            Generate the objects in the world.
+         *  Generate the objects in the world.
          */
         auto generateObjects() const -> void;
 

@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Types of player actions.
+     *  Types of player actions.
      */
     enum class PlayerActionTypes
     {

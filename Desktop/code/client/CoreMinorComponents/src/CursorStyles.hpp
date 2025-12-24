@@ -8,7 +8,7 @@
 namespace Forradia
 {
     /**
-        Enum for the available cursor styles.
+     *  Enum for the available cursor styles.
      */
     enum class CursorStyles
     {

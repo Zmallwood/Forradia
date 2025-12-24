@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * Determines and provides the tile hovered by the mouse.
+     *  Determines and provides the tile hovered by the mouse.
      */
     class TileHovering
     {
@@ -29,12 +29,12 @@ namespace Forradia::Theme0
         TileHovering() = default;
 
         /**
-         * Updates the tile hovering.
+         *  Updates the tile hovering.
          */
         static auto update() -> void;
 
         /**
-         * Provides the hovered coordinate.
+         *  Provides the hovered coordinate.
          */
         [[nodiscard]] static auto getHoveredCoordinate() -> Point
         {

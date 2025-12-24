@@ -11,7 +11,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Class for managing object properties.
+     *  Class for managing object properties.
      */
     class ObjectIndex
     {
@@ -28,32 +28,32 @@ namespace Forradia::Theme0
         ObjectIndex &operator=(const ObjectIndex &) = delete;
 
         /**
-            Constructor.
+         *  Constructor.
          */
         ObjectIndex();
 
         /**
-            Get the model scaling for a given object hash.
-
-            @param objectHash The hash of the object.
-            @return The model scaling for the given object.
+         *  Get the model scaling for a given object hash.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return The model scaling for the given object.
          */
         auto getModelScaling(int objectHash) const -> float;
 
         /**
-            Check if an object entry exists for a given object hash.
-
-            @param objectHash The hash of the object.
-            @return True if an object entry exists for the given object hash, false otherwise.
+         *  Check if an object entry exists for a given object hash.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return True if an object entry exists for the given object hash, false otherwise.
          */
         auto objectEntryExists(int objectHash) const -> bool;
 
         /**
-            Gets whether the object type with the given hash should have individual model scaling
-            ignored.
-
-            @param objectHash The hash of the object.
-            @return True if individual model scaling should be ignored, otherwise false.
+         *  Gets whether the object type with the given hash should have individual model scaling
+         *  ignored.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return True if individual model scaling should be ignored, otherwise false.
          */
         auto getIgnoreIndividualModelScaling(int objectHash) const -> bool;
 

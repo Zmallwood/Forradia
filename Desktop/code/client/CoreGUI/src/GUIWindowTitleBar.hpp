@@ -12,17 +12,17 @@ namespace Forradia
     class GUIWindow;
 
     /**
-        A title bar for a window.
+     *  A title bar for a window.
      */
     class GUIWindowTitleBar : public GUIPanel
     {
       public:
         /**
-            Constructor.
-
-            @param uniqueName A unique name for the title bar.
-            @param parentWindow The parent window of the title bar.
-            @param windowTitle The title of the window.
+         *  Constructor.
+         *
+         *  @param uniqueName A unique name for the title bar.
+         *  @param parentWindow The parent window of the title bar.
+         *  @param windowTitle The title of the window.
          */
         GUIWindowTitleBar(std::string_view uniqueName, GUIWindow &parentWindow,
                           std::string_view windowTitle)
@@ -35,14 +35,14 @@ namespace Forradia
         }
 
         /**
-            Render tasks specific to the title bar, called by the GUIComponent base class.
+         *  Render tasks specific to the title bar, called by the GUIComponent base class.
          */
         auto renderDerived() const -> void override;
 
         /**
-            Gets the bounds of the title bar.
-
-            @return The bounds of the title bar.
+         *  Gets the bounds of the title bar.
+         *
+         *  @return The bounds of the title bar.
          */
         auto getBounds() const -> RectF override;
 

@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-     * A quest is a task that the player can complete to progress the game.
+     *  A quest is a task that the player can complete to progress the game.
      */
     class Quest
     {
@@ -18,12 +18,12 @@ namespace Forradia::Theme0
         virtual ~Quest() = default;
 
         /**
-         * Updates the quest.
+         *  Updates the quest.
          */
         virtual auto update() -> void = 0;
 
         /**
-         * Gets the status of the quest.
+         *  Gets the status of the quest.
          */
         [[nodiscard]] virtual auto getStatus() const -> std::string = 0;
 

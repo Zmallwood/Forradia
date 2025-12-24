@@ -8,15 +8,15 @@
 namespace Forradia
 {
     /**
-        Randomize the seed.
+     *  Randomize the seed.
      */
     auto randomize() -> void;
 
     /**
-        Generate a random integer.
-
-        @param upperLimit Upper limit.
-        @return Random integer.
+     *  Generate a random integer.
+     *
+     *  @param upperLimit Upper limit.
+     *  @return Random integer.
      */
     auto getRandomInt(int upperLimit) -> int;
 }

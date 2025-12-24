@@ -10,13 +10,13 @@
 namespace Forradia
 {
     /**
-        The root GUI class which is created for every scene.
+     *  The root GUI class which is created for every scene.
      */
     class GUI : public GUIComponent
     {
       public:
         /**
-            Constructor.
+         *  Constructor.
          */
         GUI() : GUIComponent(0.0F, 0.0F, 1.0F, 1.0F)
         {

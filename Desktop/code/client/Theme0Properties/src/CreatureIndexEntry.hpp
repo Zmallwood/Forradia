@@ -8,7 +8,7 @@
 namespace Forradia::Theme0
 {
     /**
-        Class for storing creature properties.
+     *  Class for storing creature properties.
      */
     class CreatureIndexEntry
     {

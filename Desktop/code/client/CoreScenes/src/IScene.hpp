@@ -12,7 +12,7 @@ namespace Forradia
     class GUI;
 
     /**
-        The base class for all scenes.
+     *  The base class for all scenes.
      */
     class IScene
     {
@@ -20,12 +20,12 @@ namespace Forradia
         virtual ~IScene() = default;
 
         /**
-            Initializes the scene.
+         *  Initializes the scene.
          */
         auto initialize() -> void;
 
         /**
-            Called when the scene is entered.
+         *  Called when the scene is entered.
          */
         auto onEnter() -> void;
 
@@ -42,19 +42,19 @@ namespace Forradia
         virtual auto onTextInput(std::string_view text) -> void;
 
         /**
-            Updates the scene.
+         *  Updates the scene.
          */
         virtual auto update() -> void;
 
         /**
-            Renders the scene.
+         *  Renders the scene.
          */
         virtual auto render() const -> void;
 
         /**
-            Gets the GUI.
-
-            @return The GUI.
+         *  Gets the GUI.
+         *
+         *  @return The GUI.
          */
         [[nodiscard]] auto getGUI() const -> std::shared_ptr<GUI>
         {
@@ -63,28 +63,28 @@ namespace Forradia
 
       protected:
         /**
-            Initializes the scene. Should be specific to the deriving class.
+         *  Initializes the scene. Should be specific to the deriving class.
          */
         virtual auto initializeDerived() -> void
         {
         }
 
         /**
-            Called when the scene is entered. Should be specific to the deriving class.
+         *  Called when the scene is entered. Should be specific to the deriving class.
          */
         virtual auto onEnterDerived() -> void
         {
         }
 
         /**
-            Updates the scene. Should be specific to the deriving class.
+         *  Updates the scene. Should be specific to the deriving class.
          */
         virtual auto updateDerived() -> void
         {
         }
 
         /**
-            Renders the scene. Should be specific to the deriving class.
+         *  Renders the scene. Should be specific to the deriving class.
          */
         virtual auto renderDerived() const -> void
         {

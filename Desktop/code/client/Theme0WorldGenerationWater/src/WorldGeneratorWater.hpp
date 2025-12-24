@@ -10,7 +10,7 @@
 namespace Forradia::Theme0
 {
     /**
-        World generator for water.
+     *  World generator for water.
      */
     class WorldGeneratorWater : public WorldGeneratorBase
     {
@@ -29,7 +29,7 @@ namespace Forradia::Theme0
         WorldGeneratorWater() = default;
 
         /**
-            Generate water.
+         *  Generate water.
          */
         auto generateWater() const -> void;
 
