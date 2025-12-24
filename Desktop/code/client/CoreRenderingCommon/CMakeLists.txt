@@ -15,9 +15,9 @@ target_include_directories(ForradiaCoreRenderingCommon PUBLIC
 target_link_libraries(ForradiaCoreRenderingCommon PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
-    ForradiaCoreGraphicsDevices
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
+    ForradiaCoreEngine
     ForradiaTheme0WorldStructure
     ForradiaTheme0Properties
     ForradiaTheme0Essentials

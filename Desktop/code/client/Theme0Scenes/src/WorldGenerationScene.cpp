@@ -5,7 +5,7 @@
 
 #include "WorldGenerationScene.hpp"
 #include "GUIChatBox.hpp"
-#include "SceneManager.hpp"
+#include "ScenesCore/SceneManager.hpp"
 #include "WorldGenerator.hpp"
 
 namespace Forradia::Theme0

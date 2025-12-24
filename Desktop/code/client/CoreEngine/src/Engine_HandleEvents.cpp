@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "SceneManager.hpp"
+#include "ScenesCore/SceneManager.hpp"
 #include "TimeUtilities.hpp"
 #include <SDL2/SDL.h>
 

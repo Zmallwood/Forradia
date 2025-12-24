@@ -10,7 +10,7 @@
 #include "GUIChatBox.hpp"
 #include "GUIPanel.hpp"
 #include "Image2DRenderer.hpp"
-#include "SceneManager.hpp"
+#include "ScenesCore/SceneManager.hpp"
 
 namespace Forradia::Theme0
 {

@@ -21,4 +21,4 @@
 #include "Coloring/Color.hpp"
 #include "ErrorUtilities.hpp"
 #include "Geometry/Point3F.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"

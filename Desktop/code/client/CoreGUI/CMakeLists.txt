@@ -13,7 +13,6 @@ target_include_directories(ForradiaCoreGUI PUBLIC
 )
 target_precompile_headers(ForradiaCoreGUI PUBLIC ./src/PCH.hpp)
 target_link_libraries(ForradiaCoreGUI
-    ForradiaCoreMinorComponents
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingText
     ForradiaCoreEngine

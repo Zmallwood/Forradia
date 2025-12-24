@@ -3,14 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Models/Construction/Model.hpp"
+#include "Assets/Models/Construction/Model.hpp"
 #include "3D/Camera.hpp"
 #include "CreatureIndex.hpp"
 #include "Hash.hpp"
 #include "ModelRenderer.hpp"
-#include "Models/ModelBank.hpp"
+#include "Assets/Models/ModelBank.hpp"
 #include "ObjectIndex.hpp"
-#include "Textures/TextureBank.hpp"
+#include "Assets/Textures/TextureBank.hpp"
 #include "Theme0Properties.hpp"
 #include <glm/gtx/transform.hpp>
 

@@ -7,7 +7,7 @@
 #include "3D/Camera.hpp"
 #include "MouseUtilities.hpp"
 #include "Player/Player.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "Theme0Properties.hpp"
 #include "Tile.hpp"
 #include "World.hpp"

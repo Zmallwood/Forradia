@@ -6,7 +6,7 @@
 #include "3D/Camera.hpp"
 #include "GroundRenderer.hpp"
 #include "Hash.hpp"
-#include "Textures/TextureBank.hpp"
+#include "Assets/Textures/TextureBank.hpp"
 
 namespace Forradia
 {

@@ -4,12 +4,12 @@
  *********************************************************************/
 
 #include "IntroScene.hpp"
-#include "Cursor.hpp"
+#include "MinorComponents/Cursor.hpp"
 #include "GUI.hpp"
 #include "GUIChatBox.hpp"
 #include "GUILabel.hpp"
 #include "Image2DRenderer.hpp"
-#include "SceneManager.hpp"
+#include "ScenesCore/SceneManager.hpp"
 
 namespace Forradia::Theme0
 {

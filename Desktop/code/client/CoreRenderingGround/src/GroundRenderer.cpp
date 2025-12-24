@@ -5,7 +5,7 @@
 
 #include "GroundRenderer.hpp"
 #include "CanvasUtilities.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
 namespace Forradia

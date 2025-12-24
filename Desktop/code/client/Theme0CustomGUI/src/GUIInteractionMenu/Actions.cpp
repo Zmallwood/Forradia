@@ -8,13 +8,13 @@
 #include "GUIChatBox.hpp"
 #include "GUIContainerWindow.hpp"
 #include "GUIInteractionMenu.hpp"
-#include "IScene.hpp"
+#include "ScenesCore/IScene.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerActions/PlayerActionTypes.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
-#include "SceneManager.hpp"
+#include "ScenesCore/SceneManager.hpp"
 #include "Tile.hpp"
 
 namespace Forradia::Theme0

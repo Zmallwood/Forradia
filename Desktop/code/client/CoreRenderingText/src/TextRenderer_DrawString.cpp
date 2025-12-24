@@ -7,9 +7,9 @@
 #include "ErrorUtilities.hpp"
 #include "Image2DRenderer.hpp"
 #include "SDLDeleter.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "TextRenderer.hpp"
-#include "Textures/TextureBank.hpp"
+#include "Assets/Textures/TextureBank.hpp"
 #include <SDL2/SDL_ttf.h>
 
 namespace Forradia

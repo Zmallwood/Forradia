@@ -17,7 +17,6 @@ target_link_libraries(ForradiaCoreRenderingSky
     ForradiaCommonMatter
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
-    ForradiaCoreGraphicsDevices
     ForradiaCoreRenderingCommon
     ForradiaCoreGUI
 )

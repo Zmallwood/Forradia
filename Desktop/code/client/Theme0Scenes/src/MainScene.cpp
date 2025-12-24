@@ -20,7 +20,7 @@
 #include "GUISystemMenu.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "Update/CameraRotator.hpp"
 #include "Update/ObjectMoving.hpp"
 #include "Update/Quests/QuestSystem.hpp"

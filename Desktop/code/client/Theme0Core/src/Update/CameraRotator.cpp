@@ -6,7 +6,7 @@
 #include "CameraRotator.hpp"
 #include "3D/Camera.hpp"
 #include "MouseUtilities.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

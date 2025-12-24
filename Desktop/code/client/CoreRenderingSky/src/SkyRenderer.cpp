@@ -6,7 +6,7 @@
 #include "SkyRenderer.hpp"
 #include "CanvasUtilities.hpp"
 #include "ErrorUtilities.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "ShaderProgram.hpp"
 
 namespace Forradia

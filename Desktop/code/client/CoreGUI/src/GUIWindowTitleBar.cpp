@@ -8,7 +8,7 @@
 #include "Coloring/Palette.hpp"
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia

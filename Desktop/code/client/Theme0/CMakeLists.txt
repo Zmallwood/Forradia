@@ -24,12 +24,9 @@ target_link_libraries(Forradia PRIVATE
     ForradiaTheme0Essentials
     ForradiaCommonUtilities
     ForradiaCommonCoreUtilities
-    ForradiaCoreAssets
     ForradiaCoreGUI
-    ForradiaCoreScenes
     ForradiaCoreEngine
     ForradiaTheme0Properties
-    ForradiaCoreMinorComponents
     ForradiaCoreRenderingCommon
     ForradiaCoreRenderingColors2D
     ForradiaCoreRenderingSky

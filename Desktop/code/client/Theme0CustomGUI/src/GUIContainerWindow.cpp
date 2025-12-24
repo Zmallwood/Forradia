@@ -11,7 +11,7 @@
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "Player/Player.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

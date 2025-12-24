@@ -15,7 +15,6 @@ target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
     ForradiaCoreGUI
-    ForradiaCoreScenes
     ForradiaTheme0WorldStructure
     ForradiaTheme0Essentials
     ForradiaTheme0Core

@@ -16,7 +16,7 @@ target_link_libraries(ForradiaCoreEngine PRIVATE
     ForradiaCoreRenderingImages2D
     ForradiaCoreRenderingGround
     ForradiaCoreRenderingModels
-    ForradiaCoreMinorComponents
-    ForradiaCoreScenes
+    ForradiaCoreGUI
+    assimp
 )
 target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/PCH.hpp)

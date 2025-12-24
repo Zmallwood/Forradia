@@ -4,9 +4,9 @@
  *********************************************************************/
 
 #include "GUIButton.hpp"
-#include "Cursor.hpp"
+#include "MinorComponents/Cursor.hpp"
 #include "MouseUtilities.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 #include "TextRenderer.hpp"
 
 namespace Forradia

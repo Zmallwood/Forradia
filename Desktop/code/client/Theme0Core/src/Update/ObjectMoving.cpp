@@ -9,7 +9,7 @@
 #include "Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
-#include "SDLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
 
 namespace Forradia::Theme0
 {

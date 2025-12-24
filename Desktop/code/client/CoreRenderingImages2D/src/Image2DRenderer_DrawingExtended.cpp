@@ -6,8 +6,8 @@
 #include "CanvasUtilities.hpp"
 #include "Hash.hpp"
 #include "Image2DRenderer.hpp"
-#include "SDLDevice.hpp"
-#include "Textures/TextureBank.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
+#include "Assets/Textures/TextureBank.hpp"
 
 namespace Forradia
 {

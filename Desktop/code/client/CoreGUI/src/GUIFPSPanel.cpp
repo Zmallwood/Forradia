@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIFPSPanel.hpp"
-#include "FPSCounter.hpp"
+#include "MinorComponents/FPSCounter.hpp"
 #include "GUILabel.hpp"
 #include <fmt/format.h>
 

@@ -14,7 +14,6 @@ target_include_directories(ForradiaTheme0Scenes PUBLIC
 target_link_libraries(ForradiaTheme0Scenes PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
-    ForradiaCoreScenes
     ForradiaCoreGUI
     ForradiaTheme0Essentials
     ForradiaTheme0WorldGenerationMain
