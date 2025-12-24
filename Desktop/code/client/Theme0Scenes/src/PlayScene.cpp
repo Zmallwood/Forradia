@@ -45,7 +45,7 @@ namespace Forradia::Theme0
         Image2DRenderer::instance().drawImageByName(
             hash("PlaySceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::instance().drawImageAutoHeight(hash("PlaySceneLogo"), "ForradiaLogo",
+        Image2DRenderer::instance().drawImageAutoHeight(hash("PlaySceneLogo"), "RiverDiggerLogo",
                                                         0.35f, 0.1f, 0.3f);
     }
 }

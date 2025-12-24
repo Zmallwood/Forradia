@@ -39,7 +39,7 @@ namespace Forradia::Theme0
         Image2DRenderer::instance().drawImageByName(
             hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"), "ForradiaLogo",
+        Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"), "RiverDiggerLogo",
                                                         0.35f, 0.1f, 0.3f);
     }
 }

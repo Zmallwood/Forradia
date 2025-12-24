@@ -24,7 +24,9 @@ namespace Forradia
 
         // Iterate over all child nodes.
         for (unsigned int i = 0; i < node->mNumChildren; i++)
+        {
             // Process the child node (recursively).
             this->processNode(node->mChildren[i], scene, transformation);
+        }
     }
 }
