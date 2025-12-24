@@ -21,4 +21,4 @@ target_link_libraries(ForradiaTheme0WorldGenerationWater PRIVATE
     ForradiaTheme0Properties
     ForradiaTheme0WorldGenerationCommon
 )
-target_precompile_headers(ForradiaTheme0WorldGenerationWater PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0WorldGenerationWater PUBLIC ./src/PCH.hpp)

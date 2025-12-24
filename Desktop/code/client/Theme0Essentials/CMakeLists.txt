@@ -19,4 +19,4 @@ target_link_libraries(ForradiaTheme0Essentials
     ForradiaTheme0WorldStructure
     ForradiaTheme0Properties
 )
-target_precompile_headers(ForradiaTheme0Essentials PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0Essentials PUBLIC ./src/PCH.hpp)

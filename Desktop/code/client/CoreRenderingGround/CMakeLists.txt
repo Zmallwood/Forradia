@@ -22,4 +22,4 @@ target_link_libraries(ForradiaCoreRenderingGround
     ForradiaCoreRenderingCommon
     ForradiaTheme0Properties
 )
-target_precompile_headers(ForradiaCoreRenderingGround PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreRenderingGround PUBLIC ./src/PCH.hpp)

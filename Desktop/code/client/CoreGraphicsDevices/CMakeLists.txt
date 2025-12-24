@@ -19,4 +19,4 @@ target_link_libraries(ForradiaCoreGraphicsDevices PRIVATE
     ForradiaCommonCoreUtilities
     assimp
 )
-target_precompile_headers(ForradiaCoreGraphicsDevices PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreGraphicsDevices PUBLIC ./src/PCH.hpp)

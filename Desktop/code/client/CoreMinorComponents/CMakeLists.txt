@@ -20,4 +20,4 @@ target_link_libraries(ForradiaCoreMinorComponents PRIVATE
     ForradiaCoreGraphicsDevices
     ForradiaCoreRenderingImages2D
 )
-target_precompile_headers(ForradiaCoreMinorComponents PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreMinorComponents PUBLIC ./src/PCH.hpp)

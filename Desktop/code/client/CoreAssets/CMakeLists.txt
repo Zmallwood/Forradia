@@ -16,4 +16,4 @@ target_link_libraries(ForradiaCoreAssets
     ForradiaCommonGeneral
     ForradiaCommonMatter
 )
-target_precompile_headers(ForradiaCoreAssets PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreAssets PUBLIC ./src/PCH.hpp)

@@ -24,4 +24,4 @@ target_link_libraries(ForradiaTheme0Core PRIVATE
     ForradiaCoreRenderingModels
     ForradiaCoreRenderingSky
 )
-target_precompile_headers(ForradiaTheme0Core PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0Core PUBLIC ./src/PCH.hpp)

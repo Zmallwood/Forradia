@@ -20,4 +20,4 @@ target_link_libraries(ForradiaTheme0CustomGUI PRIVATE
     ForradiaTheme0Essentials
     ForradiaTheme0Core
 )
-target_precompile_headers(ForradiaTheme0CustomGUI PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0CustomGUI PUBLIC ./src/PCH.hpp)

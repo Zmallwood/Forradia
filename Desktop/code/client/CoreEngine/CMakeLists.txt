@@ -19,4 +19,4 @@ target_link_libraries(ForradiaCoreEngine PRIVATE
     ForradiaCoreMinorComponents
     ForradiaCoreScenes
 )
-target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreEngine PUBLIC ./src/PCH.hpp)

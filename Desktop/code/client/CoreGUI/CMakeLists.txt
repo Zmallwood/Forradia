@@ -11,7 +11,7 @@ add_library(ForradiaCoreGUI ${SOURCES})
 target_include_directories(ForradiaCoreGUI PUBLIC
     "./src"
 )
-target_precompile_headers(ForradiaCoreGUI PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreGUI PUBLIC ./src/PCH.hpp)
 target_link_libraries(ForradiaCoreGUI
     ForradiaCoreMinorComponents
     ForradiaCoreRenderingColors2D

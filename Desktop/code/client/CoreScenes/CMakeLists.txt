@@ -17,4 +17,4 @@ target_link_libraries(ForradiaCoreScenes PRIVATE
     ForradiaCoreRenderingImages2D
     ForradiaCoreGUI
 )
-target_precompile_headers(ForradiaCoreScenes PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreScenes PUBLIC ./src/PCH.hpp)

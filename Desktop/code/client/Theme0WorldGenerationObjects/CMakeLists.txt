@@ -20,4 +20,4 @@ target_link_libraries(ForradiaTheme0WorldGenerationObjects PRIVATE
     ForradiaTheme0Properties
     ForradiaTheme0WorldGenerationCommon
 )
-target_precompile_headers(ForradiaTheme0WorldGenerationObjects PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0WorldGenerationObjects PUBLIC ./src/PCH.hpp)

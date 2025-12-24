@@ -22,4 +22,4 @@ target_link_libraries(ForradiaTheme0Scenes PRIVATE
     ForradiaTheme0Core
     ForradiaCoreRenderingGround
 )
-target_precompile_headers(ForradiaTheme0Scenes PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0Scenes PUBLIC ./src/PCH.hpp)

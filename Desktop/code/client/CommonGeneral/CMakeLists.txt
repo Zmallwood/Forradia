@@ -21,4 +21,4 @@ target_link_libraries(ForradiaCommonGeneral PUBLIC
     GL
     GLEW
 )
-target_precompile_headers(ForradiaCommonGeneral PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCommonGeneral PUBLIC ./src/PCH.hpp)

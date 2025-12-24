@@ -21,4 +21,4 @@ target_link_libraries(ForradiaCoreRenderingText
     ForradiaCoreAssets
     ForradiaCoreRenderingImages2D
 )
-target_precompile_headers(ForradiaCoreRenderingText PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreRenderingText PUBLIC ./src/PCH.hpp)

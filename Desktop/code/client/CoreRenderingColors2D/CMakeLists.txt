@@ -20,4 +20,4 @@ target_link_libraries(ForradiaCoreRenderingColors2D
     ForradiaCommonCoreUtilities
     ForradiaCoreRenderingCommon
 )
-target_precompile_headers(ForradiaCoreRenderingColors2D PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaCoreRenderingColors2D PUBLIC ./src/PCH.hpp)

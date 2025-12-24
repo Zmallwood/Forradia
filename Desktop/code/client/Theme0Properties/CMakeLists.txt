@@ -15,4 +15,4 @@ target_link_libraries(ForradiaTheme0Properties PRIVATE
     ForradiaCommonGeneral
     ForradiaCommonMatter
 )
-target_precompile_headers(ForradiaTheme0Properties PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(ForradiaTheme0Properties PUBLIC ./src/PCH.hpp)

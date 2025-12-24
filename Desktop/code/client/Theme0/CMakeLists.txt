@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE SOURCES "./src/*.cpp")
 add_executable(Forradia ${SOURCES})
 #target_link_libraries(Forradia PRIVATE )
-target_precompile_headers(Forradia PUBLIC ./src/StdAfx.hpp)
+target_precompile_headers(Forradia PUBLIC ./src/PCH.hpp)
 target_include_directories(Forradia PUBLIC
     "./src"
 )
