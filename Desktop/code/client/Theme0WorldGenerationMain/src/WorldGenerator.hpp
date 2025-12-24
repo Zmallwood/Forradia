@@ -21,7 +21,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         WorldGenerator(const WorldGenerator &) = delete;
 
         WorldGenerator &operator=(const WorldGenerator &) = delete;

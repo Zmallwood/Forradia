@@ -24,7 +24,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         ModelBank(const ModelBank &) = delete;
 
         auto operator=(const ModelBank &) -> ModelBank & = delete;

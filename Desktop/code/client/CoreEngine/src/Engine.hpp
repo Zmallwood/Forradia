@@ -23,7 +23,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         Engine(const Engine &) = delete;
 
         auto operator=(const Engine &) -> Engine & = delete;

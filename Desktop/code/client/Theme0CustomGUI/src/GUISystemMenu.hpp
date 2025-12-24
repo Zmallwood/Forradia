@@ -26,8 +26,8 @@ namespace Forradia::Theme0
             return *instancePtr();
         }
 
-        // Delete copy/move
         GUISystemMenu(const GUISystemMenu &) = delete;
+        
         GUISystemMenu &operator=(const GUISystemMenu &) = delete;
 
         /**

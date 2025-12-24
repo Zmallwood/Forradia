@@ -29,7 +29,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         SDLDevice(const SDLDevice &) = delete;
 
         auto operator=(const SDLDevice &) -> SDLDevice & = delete;

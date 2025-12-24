@@ -23,7 +23,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         GLDevice(const GLDevice &) = delete;
 
         auto operator=(const GLDevice &) -> GLDevice & = delete;

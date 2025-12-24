@@ -24,7 +24,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         Color2DRenderer(const Color2DRenderer &) = delete;
 
         auto operator=(const Color2DRenderer &) -> Color2DRenderer & = delete;

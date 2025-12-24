@@ -25,7 +25,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         GameSaving(const GameSaving &) = delete;
 
         auto operator=(const GameSaving &) -> GameSaving & = delete;

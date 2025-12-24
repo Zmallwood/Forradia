@@ -28,7 +28,6 @@ namespace Forradia::Theme0
             return *instancePtr();
         }
 
-        // Delete copy/move
         GUIExperienceBar(const GUIExperienceBar &) = delete;
 
         GUIExperienceBar &operator=(const GUIExperienceBar &) = delete;

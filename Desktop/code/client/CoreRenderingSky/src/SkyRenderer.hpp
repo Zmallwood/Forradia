@@ -26,7 +26,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         SkyRenderer(const SkyRenderer &) = delete;
 
         auto operator=(const SkyRenderer &) -> SkyRenderer & = delete;

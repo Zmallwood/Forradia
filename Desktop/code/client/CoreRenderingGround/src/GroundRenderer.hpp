@@ -33,7 +33,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         GroundRenderer(const GroundRenderer &) = delete;
 
         auto operator=(const GroundRenderer &) -> GroundRenderer & = delete;

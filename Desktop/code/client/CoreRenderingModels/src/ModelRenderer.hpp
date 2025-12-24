@@ -27,7 +27,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         ModelRenderer(const ModelRenderer &) = delete;
 
         auto operator=(const ModelRenderer &) -> ModelRenderer & = delete;

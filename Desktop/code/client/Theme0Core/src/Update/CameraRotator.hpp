@@ -22,7 +22,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         CameraRotator(const CameraRotator &) = delete;
 
         auto operator=(const CameraRotator &) -> CameraRotator & = delete;

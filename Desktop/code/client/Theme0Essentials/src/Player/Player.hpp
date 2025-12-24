@@ -30,7 +30,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         Player(const Player &) = delete;
 
         Player &operator=(const Player &) = delete;

@@ -22,7 +22,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         ObjectIndex(const ObjectIndex &) = delete;
 
         ObjectIndex &operator=(const ObjectIndex &) = delete;

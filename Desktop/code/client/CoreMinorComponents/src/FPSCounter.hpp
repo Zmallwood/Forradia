@@ -19,7 +19,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         FPSCounter(const FPSCounter &) = delete;
 
         auto operator=(const FPSCounter &) -> FPSCounter & = delete;

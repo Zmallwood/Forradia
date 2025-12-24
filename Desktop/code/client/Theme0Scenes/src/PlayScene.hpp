@@ -22,7 +22,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         PlayScene(const PlayScene &) = delete;
 
         PlayScene &operator=(const PlayScene &) = delete;

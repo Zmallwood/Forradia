@@ -25,7 +25,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         QuestSystem(const QuestSystem &) = delete;
 
         auto operator=(const QuestSystem &) -> QuestSystem & = delete;

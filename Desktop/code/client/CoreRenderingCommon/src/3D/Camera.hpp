@@ -24,8 +24,8 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         Camera(const Camera &) = delete;
+        
         auto operator=(const Camera &) -> Camera & = delete;
 
         Camera() = default;

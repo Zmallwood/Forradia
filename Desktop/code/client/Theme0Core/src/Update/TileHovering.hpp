@@ -21,7 +21,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         TileHovering(const TileHovering &) = delete;
 
         auto operator=(const TileHovering &) -> TileHovering & = delete;

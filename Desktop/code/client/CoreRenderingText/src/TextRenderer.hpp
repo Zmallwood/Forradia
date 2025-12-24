@@ -28,7 +28,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         TextRenderer(const TextRenderer &) = delete;
 
         auto operator=(const TextRenderer &) -> TextRenderer & = delete;

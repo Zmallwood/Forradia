@@ -22,7 +22,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         CreatureIndex(const CreatureIndex &) = delete;
 
         CreatureIndex &operator=(const CreatureIndex &) = delete;

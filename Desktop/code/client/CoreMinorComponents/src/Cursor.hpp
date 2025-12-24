@@ -22,7 +22,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         Cursor(const Cursor &) = delete;
 
         auto operator=(const Cursor &) -> Cursor & = delete;

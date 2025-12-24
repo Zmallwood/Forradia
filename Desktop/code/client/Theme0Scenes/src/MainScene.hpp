@@ -23,7 +23,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         MainScene(const MainScene &) = delete;
 
         MainScene &operator=(const MainScene &) = delete;

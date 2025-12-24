@@ -22,8 +22,8 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         Theme0Properties(const Theme0Properties &) = delete;
+        
         Theme0Properties &operator=(const Theme0Properties &) = delete;
 
         Theme0Properties() = default;

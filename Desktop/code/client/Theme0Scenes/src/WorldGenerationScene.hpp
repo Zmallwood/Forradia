@@ -21,7 +21,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         WorldGenerationScene(const WorldGenerationScene &) = delete;
 
         WorldGenerationScene &operator=(const WorldGenerationScene &) = delete;

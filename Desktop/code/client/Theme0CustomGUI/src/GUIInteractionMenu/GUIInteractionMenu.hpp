@@ -28,8 +28,8 @@ namespace Forradia::Theme0
             return *instancePtr();
         }
 
-        // Delete copy/move
         GUIInteractionMenu(const GUIInteractionMenu &) = delete;
+        
         GUIInteractionMenu &operator=(const GUIInteractionMenu &) = delete;
 
         /**

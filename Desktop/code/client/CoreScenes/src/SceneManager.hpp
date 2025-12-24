@@ -25,7 +25,6 @@ namespace Forradia
             return instance;
         }
 
-        // Delete copy/move
         SceneManager(const SceneManager &) = delete;
 
         auto operator=(const SceneManager &) -> SceneManager & = delete;

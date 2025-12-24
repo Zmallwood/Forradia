@@ -22,7 +22,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         ObjectMoving(const ObjectMoving &) = delete;
 
         auto operator=(const ObjectMoving &) -> ObjectMoving & = delete;

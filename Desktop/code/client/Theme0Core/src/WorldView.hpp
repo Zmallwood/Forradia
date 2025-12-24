@@ -25,7 +25,6 @@ namespace Forradia::Theme0
             return instance;
         }
 
-        // Delete copy/move
         WorldView(const WorldView &) = delete;
 
         auto operator=(const WorldView &) -> WorldView & = delete;
