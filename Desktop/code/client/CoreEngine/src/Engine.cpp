@@ -4,16 +4,16 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "Color2DRenderer.hpp"
+#include "GraphicsDevices/GLDevice.hpp"
+#include "GraphicsDevices/SDLDevice.hpp"
+#include "MessageUtilities.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "MinorComponents/FPSCounter.hpp"
-#include "GraphicsDevices/GLDevice.hpp"
-#include "GroundRenderer.hpp"
-#include "Image2DRenderer.hpp"
-#include "MessageUtilities.hpp"
-#include "ModelRenderer.hpp"
 #include "RandomizationUtilities.hpp"
-#include "GraphicsDevices/SDLDevice.hpp"
+#include "Rendering/Colors/Color2DRenderer.hpp"
+#include "Rendering/Ground/GroundRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
+#include "Rendering/Models/ModelRenderer.hpp"
 #include "ScenesCore/SceneManager.hpp"
 
 namespace Forradia

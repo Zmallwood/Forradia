@@ -8,7 +8,7 @@
 #include "GUICore/GUI.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "GUICore/GUILabel.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "ScenesCore/SceneManager.hpp"
 
 namespace Forradia::Theme0

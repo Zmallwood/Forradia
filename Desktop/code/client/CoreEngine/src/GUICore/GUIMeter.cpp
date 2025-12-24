@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIMeter.hpp"
-#include "Color2DRenderer.hpp"
+#include "Rendering/Colors/Color2DRenderer.hpp"
 #include "Coloring/Palette.hpp"
 
 namespace Forradia

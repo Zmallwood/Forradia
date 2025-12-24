@@ -4,11 +4,11 @@
  *********************************************************************/
 
 #include "GUIChatBox.hpp"
-#include "Color2DRenderer.hpp"
+#include "Rendering/Colors/Color2DRenderer.hpp"
 #include "Coloring/Palette.hpp"
 #include "Engine.hpp"
-#include "Image2DRenderer.hpp"
-#include "TextRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
+#include "Rendering/Text/TextRenderer.hpp"
 #include <fmt/format.h>
 
 namespace Forradia

@@ -5,7 +5,7 @@
 
 #include "GameSaving.hpp"
 #include "Entity.hpp"
-#include "GroundRenderer.hpp"
+#include "Rendering/Ground/GroundRenderer.hpp"
 #include "HashCodes.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"

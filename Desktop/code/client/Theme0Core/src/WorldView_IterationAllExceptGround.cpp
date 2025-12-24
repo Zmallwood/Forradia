@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "Entity.hpp"
-#include "GroundRenderer.hpp"
-#include "ModelRenderer.hpp"
+#include "Rendering/Ground/GroundRenderer.hpp"
+#include "Rendering/Models/ModelRenderer.hpp"
 #include "Object.hpp"
 #include "ObjectsStack.hpp"
 #include "Player/Player.hpp"

@@ -6,7 +6,7 @@
 #include "ObjectMoving.hpp"
 #include "CanvasUtilities.hpp"
 #include "GUIInventoryWindow.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"

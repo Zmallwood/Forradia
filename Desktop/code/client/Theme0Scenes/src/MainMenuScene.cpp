@@ -9,7 +9,7 @@
 #include "GUICore/GUIButton.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "GUICore/GUIPanel.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "ScenesCore/SceneManager.hpp"
 
 namespace Forradia::Theme0

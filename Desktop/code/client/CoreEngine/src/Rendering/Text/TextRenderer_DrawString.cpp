@@ -5,7 +5,7 @@
 
 #include "CanvasUtilities.hpp"
 #include "ErrorUtilities.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "SDLDeleter.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "TextRenderer.hpp"

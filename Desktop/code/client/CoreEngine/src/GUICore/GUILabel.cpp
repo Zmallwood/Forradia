@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUILabel.hpp"
-#include "TextRenderer.hpp"
+#include "Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {

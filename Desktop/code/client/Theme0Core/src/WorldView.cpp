@@ -4,10 +4,10 @@
  *********************************************************************/
 
 #include "WorldView.hpp"
-#include "GroundRenderer.hpp"
-#include "ModelRenderer.hpp"
+#include "Rendering/Ground/GroundRenderer.hpp"
+#include "Rendering/Models/ModelRenderer.hpp"
 #include "Player/Player.hpp"
-#include "SkyRenderer.hpp"
+#include "Rendering/Sky/SkyRenderer.hpp"
 #include "Theme0Properties.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"

@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Hash.hpp"
-#include "TileData.hpp"
+#include "Rendering/Ground/TileData.hpp"
 #include <unordered_map>
 
 namespace Forradia::Theme0

@@ -5,7 +5,7 @@
 
 #include "GUIInteractionMenu.hpp"
 #include "Actions.hpp"
-#include "Color2DRenderer.hpp"
+#include "Rendering/Colors/Color2DRenderer.hpp"
 #include "MinorComponents/Cursor.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "GUIInventoryWindow.hpp"
@@ -15,7 +15,7 @@
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
-#include "TextRenderer.hpp"
+#include "Rendering/Text/TextRenderer.hpp"
 #include "Tile.hpp"
 #include "Update/TileHovering.hpp"
 #include "World.hpp"

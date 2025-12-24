@@ -8,7 +8,7 @@
 #include "MinorComponents/Cursor.hpp"
 #include "MinorComponents/CursorStyles.hpp"
 #include "GUI.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "GraphicsDevices/SDLDevice.hpp"
 #include <GL/gl.h>

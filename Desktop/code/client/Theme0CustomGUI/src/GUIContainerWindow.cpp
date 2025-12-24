@@ -7,7 +7,7 @@
 #include "ContainedObjects.hpp"
 #include "GUICore/GUIScrollableArea.hpp"
 #include "GUICore/GUIWindowTitleBar.hpp"
-#include "Image2DRenderer.hpp"
+#include "Rendering/Images/Image2DRenderer.hpp"
 #include "MouseUtilities.hpp"
 #include "Object.hpp"
 #include "Player/Player.hpp"

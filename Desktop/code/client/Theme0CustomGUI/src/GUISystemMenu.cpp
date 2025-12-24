@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUISystemMenu.hpp"
-#include "Color2DRenderer.hpp"
+#include "Rendering/Colors/Color2DRenderer.hpp"
 #include "GUICore/GUIButton.hpp"
 #include "GUICore/GUIChatBox.hpp"
 #include "GameSaveFiles/GameSaving.hpp"

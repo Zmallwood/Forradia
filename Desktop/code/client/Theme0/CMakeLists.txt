@@ -15,10 +15,6 @@ target_include_directories(Forradia PUBLIC
 )
 target_link_libraries(Forradia PRIVATE
     ForradiaCommonGeneral
-    ForradiaCoreRenderingImages2D
-    ForradiaCoreRenderingText
-    ForradiaCoreRenderingGround
-    ForradiaCoreRenderingModels
     ForradiaTheme0WorldStructure
     ForradiaTheme0WorldGenerationMain
     ForradiaTheme0Essentials
@@ -26,8 +22,6 @@ target_link_libraries(Forradia PRIVATE
     ForradiaCommonCoreUtilities
     ForradiaCoreEngine
     ForradiaTheme0Properties
-    ForradiaCoreRenderingColors2D
-    ForradiaCoreRenderingSky
     ForradiaTheme0Core
     ForradiaTheme0CustomGUI
     ForradiaTheme0Scenes
