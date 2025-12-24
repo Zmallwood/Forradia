@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Directions.hpp"
+#include <memory>
 
 namespace Forradia::Theme0
 {

@@ -17,7 +17,7 @@
 #include "GraphicsDevices/SDLDevice.hpp"
 #include "Rendering/Text/TextRenderer.hpp"
 #include "Content/WorldStructure/Tile.hpp"
-#include "Update/TileHovering.hpp"
+#include "Content/Core/Update/TileHovering.hpp"
 #include "Content/WorldStructure/World.hpp"
 #include "Content/WorldStructure/WorldArea.hpp"
 

@@ -9,6 +9,7 @@
 #include <map>
 #include <memory>
 #include <set>
+#include <vector>
 
 namespace Forradia::Theme0
 {

@@ -7,6 +7,7 @@
 
 #include "Common/General/Hash.hpp"
 #include "Rendering/Ground/TileData.hpp"
+#include "Common/Matter/Geometry/Point.hpp"
 #include <unordered_map>
 
 namespace Forradia::Theme0

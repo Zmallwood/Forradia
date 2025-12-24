@@ -8,6 +8,7 @@
 #include "GUICore/GUIPanel.hpp"
 #include "GUICore/GUIScrollableArea.hpp"
 #include "GUICore/GUIWindow.hpp"
+#include <unordered_map>
 
 namespace Forradia::Theme0
 {

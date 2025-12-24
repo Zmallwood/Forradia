@@ -32,7 +32,6 @@ target_precompile_headers(RiverDiggerLib
 target_link_libraries(RiverDiggerLib
     PUBLIC
         ForradiaEngine
-        ForradiaTheme0Core
         SDL2
         SDL2_image
         SDL2_ttf

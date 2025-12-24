@@ -5,7 +5,7 @@
 
 #include "GUIQuestPanel.hpp"
 #include "GUICore/GUILabel.hpp"
-#include "Update/Quests/QuestSystem.hpp"
+#include "Content/Core/Update/Quests/QuestSystem.hpp"
 
 namespace Forradia::Theme0
 {

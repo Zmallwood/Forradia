@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Common/Matter/Geometry/Point.hpp"
+#include "Common/Matter/Geometry/PointF.hpp"
 #include "PlayerActions/PlayerActionTypes.hpp"
 #include "PlayerMoveDirections.hpp"
 #include <memory>
