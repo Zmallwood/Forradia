@@ -4,12 +4,12 @@
  *********************************************************************/
 
 #include "SetupScenes.hpp"
-#include "IntroScene.hpp"
-#include "MainMenuScene.hpp"
-#include "MainScene.hpp"
-#include "PlayScene.hpp"
+#include "Intro/IntroScene.hpp"
+#include "MainMenu/MainMenuScene.hpp"
+#include "Main/MainScene.hpp"
+#include "Play/PlayScene.hpp"
 #include "ScenesCore/SceneManager.hpp"
-#include "WorldGenerationScene.hpp"
+#include "WorldGeneration/WorldGenerationScene.hpp"
 
 namespace Forradia::Theme0
 {
