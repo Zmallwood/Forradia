@@ -4,14 +4,14 @@
  *********************************************************************/
 
 #include "Player.hpp"
-#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-#include "Content/WorldStructure/Object.hpp"
 #include "Content/Properties/ObjectIndex.hpp"
+#include "Content/WorldStructure/Object.hpp"
 #include "Content/WorldStructure/ObjectsStack.hpp"
-#include "PlayerObjectsInventory.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 #include "Content/WorldStructure/World.hpp"
 #include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+#include "PlayerObjectsInventory.hpp"
 
 namespace Forradia::Theme0
 {
@@ -356,47 +356,48 @@ namespace Forradia::Theme0
 
         auto moveProgress{static_cast<float>(elapsedTime) / timeForOneStep};
 
-        if (moveProgress > 1.0F)
+        if (moveProgress >= 1.0F)
         {
             moveProgress = 0.0F;
+            return {static_cast<float>(m_position.x), static_cast<float>(m_position.y)};
         }
 
         switch (m_playerMoveDirection)
         {
         case PlayerMoveDirections::North:
-            dy = -moveProgress;
+            dy = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::East:
-            dx = moveProgress;
+            dx = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::South:
-            dy = moveProgress;
+            dy = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::West:
-            dx = -moveProgress;
+            dx = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::NorthEast:
-            dx = moveProgress;
-            dy = -moveProgress;
+            dx = -1.0f + moveProgress;
+            dy = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::SouthEast:
-            dx = moveProgress;
-            dy = moveProgress;
+            dx = -1.0f + moveProgress;
+            dy = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::SouthWest:
-            dx = -moveProgress;
-            dy = moveProgress;
+            dx = 1.0f - moveProgress;
+            dy = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::NorthWest:
-            dx = -moveProgress;
-            dy = -moveProgress;
+            dx = 1.0f - moveProgress;
+            dy = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::None:
