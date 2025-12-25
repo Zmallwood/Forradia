@@ -5,18 +5,18 @@
 
 #pragma once
 
-#include "GroundRenderingGroupOperation.hpp"
-#include "GroundRenderingOperation.hpp"
-#include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
-#include "TileData.hpp"
-#include "TileDrawGroup.hpp"
-#include <array>
-#include <glm/glm.hpp>
-#include <unordered_map>
-#include <vector>
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "GroundRenderingGroupOperation.hpp"
+    #include "GroundRenderingOperation.hpp"
+    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
+    #include "TileData.hpp"
+    #include "TileDrawGroup.hpp"
+    #include <array>
+    #include <glm/glm.hpp>
+    #include <unordered_map>
+    #include <vector>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

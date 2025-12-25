@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Color2DRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "Color2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

@@ -5,14 +5,16 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
-#include "PlayerActions/PlayerActionTypes.hpp"
-#include "PlayerMoveDirections.hpp"
-#include <memory>
-#include <string>
-#include <unordered_map>
-#include <vector>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
+    #include "PlayerActions/PlayerActionTypes.hpp"
+    #include "PlayerMoveDirections.hpp"
+    #include <memory>
+    #include <string>
+    #include <unordered_map>
+    #include <vector>
+// clang-format on
 
 namespace Forradia::Theme0
 {

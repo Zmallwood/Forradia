@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "RectF.hpp"
+/* Includes */ // clang-format off
+    #include "RectF.hpp"
+// clang-format on
 
 namespace Forradia
 {

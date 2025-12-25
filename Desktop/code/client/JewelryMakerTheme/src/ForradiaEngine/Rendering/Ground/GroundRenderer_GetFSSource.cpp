@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GroundRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "GroundRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

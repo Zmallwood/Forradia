@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

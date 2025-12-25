@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Spouse.hpp"
+/* Includes */ // clang-format off
+    #include "Spouse.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

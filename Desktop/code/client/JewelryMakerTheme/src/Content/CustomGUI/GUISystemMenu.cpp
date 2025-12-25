@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUISystemMenu.hpp"
-#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-#include "ForradiaEngine/GUICore/GUIButton.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "Content/Core/GameSaveFiles/GameSaving.hpp"
+/* Includes */ // clang-format off
+    #include "GUISystemMenu.hpp"
+    #include "Content/Core/GameSaveFiles/GameSaving.hpp"
+    #include "ForradiaEngine/GUICore/GUIButton.hpp"
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

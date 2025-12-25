@@ -3,15 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Camera.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include <glm/gtc/matrix_transform.hpp>
+/* Includes */ // clang-format off
+    #include "Camera.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include <glm/gtc/matrix_transform.hpp>
+// clang-format on
 
 namespace Forradia
 {

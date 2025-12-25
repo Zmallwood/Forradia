@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIChatBox.hpp"
-#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
-#include "ForradiaEngine/Engine.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-#include <fmt/format.h>
+/* Includes */ // clang-format off
+    #include "GUIChatBox.hpp"
+    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Engine.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+    #include <fmt/format.h>
+// clang-format on
 
 namespace Forradia
 {

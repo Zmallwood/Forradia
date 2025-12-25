@@ -3,15 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateEntitiesMovement.hpp"
-#include "Content/WorldStructure/Entity.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+/* Includes */ // clang-format off
+    #include "UpdateEntitiesMovement.hpp"
+    #include "Content/WorldStructure/Entity.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp" 
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

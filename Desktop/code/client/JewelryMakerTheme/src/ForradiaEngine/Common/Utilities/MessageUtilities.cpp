@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "MessageUtilities.hpp"
-#include <iostream>
+/* Includes */ // clang-format off
+    #include "MessageUtilities.hpp"
+    #include <iostream>
+// clang-format on
 
 namespace Forradia
 {

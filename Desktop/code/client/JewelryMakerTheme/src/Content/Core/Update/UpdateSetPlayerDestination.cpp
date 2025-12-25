@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateSetPlayerDestination.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "TileHovering.hpp"
+/* Includes */ // clang-format off
+    #include "UpdateSetPlayerDestination.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "TileHovering.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

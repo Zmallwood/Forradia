@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Quests.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+/* Includes */ // clang-format off
+    #include "Quests.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp" 
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

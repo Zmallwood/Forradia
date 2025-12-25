@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "CanvasUtilities.hpp"
-#include "ErrorUtilities.hpp"
-#include <SDL2/SDL.h>
+/* Includes */ // clang-format off
+    #include "CanvasUtilities.hpp"
+    #include "ErrorUtilities.hpp"
+    #include <SDL2/SDL.h>
+// clang-format on
 
 namespace Forradia
 {

@@ -3,20 +3,22 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Content/Properties/CreatureIndex.hpp"
-#include "Content/Properties/ObjectIndex.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Content/WorldStructure/Entity.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
-#include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Update/TileHovering.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include "WorldView.hpp"
+/* Includes */ // clang-format off
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Properties/CreatureIndex.hpp"
+    #include "Content/Properties/ObjectIndex.hpp"
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/Entity.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
+    #include "Update/TileHovering.hpp"
+    #include "WorldView.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -78,7 +80,7 @@ namespace Forradia::Theme0
                     totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
                 }
 
-                //totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                // totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
 
                 ModelRenderer::instance().drawModel(
                     objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,

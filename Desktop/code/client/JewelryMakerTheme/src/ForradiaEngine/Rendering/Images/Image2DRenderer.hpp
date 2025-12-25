@@ -5,13 +5,13 @@
 
 #pragma once
 
-#include "Image2DRenderingOperation.hpp"
-#include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "Image2DRenderingOperation.hpp"
+    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
+    #include <GL/glew.h>
+    #include <GL/gl.h>
+    #include <unordered_map>
 // clang-format on
-#include <unordered_map>
 
 namespace Forradia
 {

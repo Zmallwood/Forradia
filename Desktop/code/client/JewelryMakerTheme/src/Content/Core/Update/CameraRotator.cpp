@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "CameraRotator.hpp"
-#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+/* Includes */ // clang-format off
+    #include "CameraRotator.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp" 
+    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

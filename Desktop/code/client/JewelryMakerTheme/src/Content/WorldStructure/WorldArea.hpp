@@ -5,11 +5,13 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-#include <map>
-#include <memory>
-#include <set>
-#include <vector>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+    #include <map>
+    #include <memory>
+    #include <set>
+    #include <vector>
+// clang-format on
 
 namespace Forradia::Theme0
 {

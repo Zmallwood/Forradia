@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Assets/Models/Construction/Model.hpp"
-#include "ForradiaEngine/Assets/Models/ModelBank.hpp"
-#include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ModelRenderer.hpp"
-#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include <glm/gtx/transform.hpp>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Assets/Models/Construction/Model.hpp"
+    #include "ForradiaEngine/Assets/Models/ModelBank.hpp"
+    #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ModelRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+    #include <glm/gtx/transform.hpp>
+// clang-format on
 
 namespace Forradia
 {

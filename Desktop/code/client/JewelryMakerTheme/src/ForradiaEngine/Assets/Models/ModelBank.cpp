@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ModelBank.hpp"
-#include "Construction/Model.hpp"
-#include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
-#include <SDL2/SDL.h>
-#include <filesystem>
+/* Includes */ // clang-format off
+    #include "ModelBank.hpp"
+    #include "Construction/Model.hpp"
+    #include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
+    #include <SDL2/SDL.h>
+    #include <filesystem>
+// clang-format on
 
 namespace Forradia
 {

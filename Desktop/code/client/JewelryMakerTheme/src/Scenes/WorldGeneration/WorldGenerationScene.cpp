@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "WorldGenerationScene.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
-#include "Content/WorldGeneration/Main/WorldGenerator.hpp"
+/* Includes */ // clang-format off
+    #include "WorldGenerationScene.hpp"
+    #include "Content/WorldGeneration/Main/WorldGenerator.hpp"
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

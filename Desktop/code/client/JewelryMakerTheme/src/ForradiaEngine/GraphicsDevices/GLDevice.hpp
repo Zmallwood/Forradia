@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include <memory>
+/* Includes */ // clang-format off
+    #include <memory>
+// clang-format on
 
 using SDL_GLContext = void *;
 

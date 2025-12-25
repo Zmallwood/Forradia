@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIPanel.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "GUIPanel.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

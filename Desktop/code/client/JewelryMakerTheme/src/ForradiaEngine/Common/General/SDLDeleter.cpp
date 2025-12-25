@@ -3,18 +3,20 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SDLDeleter.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+/* Includes */ // clang-format off
+    #include "SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include <SDL2/SDL.h>
+    #include <SDL2/SDL_ttf.h>
+// clang-format on
 
 namespace Forradia
 {
     auto SDLDeleter::operator()(SDL_Window *window) const -> void
     {
-        { // Validation
-            throwOnFalse(window != nullptr, "window is null");
-        }
+        // clang-format off - Validation
+        throwOnFalse(window != nullptr, "window is null");
+        // clang-format on
 
         SDL_DestroyWindow(window);
     }

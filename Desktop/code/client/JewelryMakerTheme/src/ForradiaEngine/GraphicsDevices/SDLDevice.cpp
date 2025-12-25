@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SDLDevice.hpp"
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "SDLDevice.hpp"
+    #include <GL/gl.h>
+// clang-format on
 
 namespace Forradia
 {

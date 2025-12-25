@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "Image2DRenderer.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "Image2DRenderer.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
+// clang-format on
 
 namespace Forradia
 {

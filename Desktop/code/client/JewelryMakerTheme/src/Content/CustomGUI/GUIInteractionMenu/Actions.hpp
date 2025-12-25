@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "Action.hpp"
+/* Includes */ // clang-format off
+    #include "Action.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

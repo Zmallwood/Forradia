@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include "GroundRenderer.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+    #include "GroundRenderer.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
+// clang-format on
 
 namespace Forradia
 {

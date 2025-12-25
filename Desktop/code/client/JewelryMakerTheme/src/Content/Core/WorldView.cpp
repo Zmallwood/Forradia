@@ -3,15 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "WorldView.hpp"
-#include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
-#include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/Rendering/Sky/SkyRenderer.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Update/TileHovering.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+/* Includes */ // clang-format off
+    #include "WorldView.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp" 
+    #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Sky/SkyRenderer.hpp"
+    #include "Update/TileHovering.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIPlayerStatusBox.hpp"
-#include "ForradiaEngine/GUICore/GUILabel.hpp"
-#include "GUIWellBeingMeter.hpp"
-#include "Content/Essentials/Math/ExperienceCalculations.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-#include <fmt/format.h>
+/* Includes */ // clang-format off
+    #include "GUIPlayerStatusBox.hpp"
+    #include "Content/Essentials/Math/ExperienceCalculations.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "ForradiaEngine/GUICore/GUILabel.hpp"
+    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+    #include "GUIWellBeingMeter.hpp"
+    #include <fmt/format.h>
+// clang-format on
 
 namespace Forradia::Theme0
 {

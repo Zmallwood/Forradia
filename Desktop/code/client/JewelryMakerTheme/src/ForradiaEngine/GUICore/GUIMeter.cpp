@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIMeter.hpp"
-#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+/* Includes */ // clang-format off
+    #include "GUIMeter.hpp"
+    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+// clang-format on
 
 namespace Forradia
 {

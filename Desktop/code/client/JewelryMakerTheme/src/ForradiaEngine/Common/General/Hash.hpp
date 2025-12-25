@@ -5,17 +5,18 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include <string_view>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include <string_view>
+// clang-format on
 
 namespace Forradia
 {
     /**
-     *  Compute hash code from a given input text, which gets computed the same every game
-     *  start.
-     *
-     *  @param text Text to compute hash code for.
-     *  @return Computed hash code.
+     * Compute hash code from a given input text, which gets computed the same every game
+     * start.
+     * @param text Text to compute hash code for.
+     * @return Computed hash code.
      */
     constexpr auto hash(std::string_view text) -> int
     {

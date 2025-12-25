@@ -3,23 +3,25 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIInteractionMenu.hpp"
-#include "Actions.hpp"
-#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-#include "ForradiaEngine/MinorComponents/Cursor.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "Content/CustomGUI/GUIInventoryWindow.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/Core/Update/TileHovering.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+/* Includes */ // clang-format off
+    #include "GUIInteractionMenu.hpp"
+    #include "Actions.hpp"
+    #include "Content/Core/Update/TileHovering.hpp"
+    #include "Content/CustomGUI/GUIInventoryWindow.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
+    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

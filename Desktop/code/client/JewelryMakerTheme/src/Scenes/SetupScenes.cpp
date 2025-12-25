@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SetupScenes.hpp"
-#include "Intro/IntroScene.hpp"
-#include "MainMenu/MainMenuScene.hpp"
-#include "Main/MainScene.hpp"
-#include "Play/PlayScene.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
-#include "WorldGeneration/WorldGenerationScene.hpp"
+/* Includes */ // clang-format off
+    #include "SetupScenes.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+    #include "Intro/IntroScene.hpp"
+    #include "Main/MainScene.hpp"
+    #include "MainMenu/MainMenuScene.hpp"
+    #include "Play/PlayScene.hpp"
+    #include "WorldGeneration/WorldGenerationScene.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

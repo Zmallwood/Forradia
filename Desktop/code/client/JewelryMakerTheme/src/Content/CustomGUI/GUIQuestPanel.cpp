@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIQuestPanel.hpp"
-#include "ForradiaEngine/GUICore/GUILabel.hpp"
-#include "Content/Core/Update/Quests/QuestSystem.hpp"
+/* Includes */ // clang-format off
+    #include "GUIQuestPanel.hpp"
+    #include "Content/Core/Update/Quests/QuestSystem.hpp"
+    #include "ForradiaEngine/GUICore/GUILabel.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

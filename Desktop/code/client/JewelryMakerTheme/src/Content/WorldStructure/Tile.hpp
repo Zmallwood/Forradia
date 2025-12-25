@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "Directions.hpp"
-#include <memory>
+/* Includes */ // clang-format off
+    #include "Directions.hpp"
+    #include <memory>
+// clang-format on
 
 namespace Forradia::Theme0
 {

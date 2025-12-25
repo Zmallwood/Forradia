@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ShaderProgram.hpp"
+/* Includes */ // clang-format off
+    #include "ShaderProgram.hpp"
+// clang-format on
 
 namespace Forradia
 {

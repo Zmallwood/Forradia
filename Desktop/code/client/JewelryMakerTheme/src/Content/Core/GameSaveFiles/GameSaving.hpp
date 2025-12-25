@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include <memory>
-#include <nlohmann/json.hpp>
+/* Includes */ // clang-format off
+    #include <memory>
+    #include <nlohmann/json.hpp>
+// clang-format on
 
 namespace Forradia::Theme0
 {

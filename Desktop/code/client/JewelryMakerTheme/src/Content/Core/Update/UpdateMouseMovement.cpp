@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateMouseMovement.hpp"
-#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+/* Includes */ // clang-format off
+    #include "UpdateMouseMovement.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

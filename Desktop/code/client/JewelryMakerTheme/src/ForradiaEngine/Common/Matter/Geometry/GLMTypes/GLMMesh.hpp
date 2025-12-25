@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "GLMVertex.hpp"
-#include "ForradiaEngine/Common/Matter/Texturing/Texture.hpp"
-#include <vector>
+/* Includes */ // clang-format off
+    #include "GLMVertex.hpp"
+    #include "ForradiaEngine/Common/Matter/Texturing/Texture.hpp"
+    #include <vector>
+// clang-format on
 
 namespace Forradia
 {

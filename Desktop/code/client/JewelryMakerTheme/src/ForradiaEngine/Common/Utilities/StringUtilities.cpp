@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "StringUtilities.hpp"
-#include <algorithm>
+/* Includes */ // clang-format off
+    #include "StringUtilities.hpp"
+    #include <algorithm>
+// clang-format on
 
 namespace Forradia
 {

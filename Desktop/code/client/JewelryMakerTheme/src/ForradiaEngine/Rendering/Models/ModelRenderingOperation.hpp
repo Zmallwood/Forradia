@@ -5,9 +5,9 @@
 
 #pragma once
 
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include <SDL2/SDL.h>
+/* Includes */ // clang-format off
+    #include <SDL2/SDL.h>
+// clang-format on
 
 namespace Forradia::Theme0
 {

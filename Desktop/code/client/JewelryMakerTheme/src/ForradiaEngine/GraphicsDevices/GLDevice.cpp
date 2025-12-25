@@ -3,13 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GLDevice.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "SDLDevice.hpp"
-#include <SDL2/SDL.h>
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "GLDevice.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "SDLDevice.hpp"
+    #include <SDL2/SDL.h>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

@@ -5,11 +5,13 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/RectF.hpp"
-#include <SDL2/SDL.h>
-#include <memory>
-#include <vector>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/RectF.hpp"
+    #include <SDL2/SDL.h>
+    #include <memory>
+    #include <vector>
+// clang-format on
 
 namespace Forradia
 {

@@ -3,15 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Player.hpp"
-#include "Content/Properties/ObjectIndex.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-#include "PlayerObjectsInventory.hpp"
+/* Includes */ // clang-format off
+    #include "Player.hpp"
+    #include "Content/Properties/ObjectIndex.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+    #include "PlayerObjectsInventory.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

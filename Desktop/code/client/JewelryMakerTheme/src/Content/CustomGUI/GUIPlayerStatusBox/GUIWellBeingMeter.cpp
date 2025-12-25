@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIWellBeingMeter.hpp"
-#include "Content/Essentials/Player/Player.hpp"
+/* Includes */ // clang-format off
+    #include "GUIWellBeingMeter.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

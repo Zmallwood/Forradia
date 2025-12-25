@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
-#include <string>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include <string>
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -24,7 +26,7 @@ namespace Forradia::Theme0
         }
 
         Theme0Properties(const Theme0Properties &) = delete;
-        
+
         Theme0Properties &operator=(const Theme0Properties &) = delete;
 
         Theme0Properties() = default;

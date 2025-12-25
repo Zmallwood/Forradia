@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
-#include <memory>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
+    #include <memory>
+// clang-format on
 
 struct SDL_Window;
 

@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "GUIInteractionMenuEntry.hpp"
-#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
+    #include "GUIInteractionMenuEntry.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -29,7 +31,7 @@ namespace Forradia::Theme0
         }
 
         GUIInteractionMenu(const GUIInteractionMenu &) = delete;
-        
+
         GUIInteractionMenu &operator=(const GUIInteractionMenu &) = delete;
 
         /**

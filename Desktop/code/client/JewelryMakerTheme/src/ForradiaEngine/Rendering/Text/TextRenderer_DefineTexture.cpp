@@ -3,12 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Common/General/SDLDeleter.hpp"
-#include "TextRenderer.hpp"
-#include <SDL2/SDL.h>
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "TextRenderer.hpp"
+    #include <SDL2/SDL.h>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

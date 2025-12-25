@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Entity.hpp"
+/* Includes */ // clang-format off
+    #include "Entity.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

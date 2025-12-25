@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Color.hpp"
-#include "ForradiaEngine/Common/General/Constants.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include <SDL2/SDL.h>
+/* Includes */ // clang-format off
+    #include "Color.hpp"
+    #include "ForradiaEngine/Common/General/Constants.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include <SDL2/SDL.h>
+// clang-format on
 
 namespace Forradia
 {

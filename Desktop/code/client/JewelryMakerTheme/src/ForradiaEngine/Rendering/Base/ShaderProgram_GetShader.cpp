@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ShaderProgram.hpp"
-#include <GL/glext.h>
-#include <vector>
+/* Includes */ // clang-format off
+    #include "ShaderProgram.hpp"
+    #include <GL/glext.h>
+    #include <vector>
+// clang-format on
 
 namespace Forradia
 {

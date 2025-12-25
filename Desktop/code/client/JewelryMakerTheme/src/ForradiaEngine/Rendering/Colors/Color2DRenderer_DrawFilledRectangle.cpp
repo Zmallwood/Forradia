@@ -6,8 +6,10 @@
 // - Consider change to using LRU eviction of operations memory, which is used when the operations
 // cache reaches a certain limit.
 
-#include "Color2DRenderer.hpp"
-#include <array>
+/* Includes */ // clang-format off
+    #include "Color2DRenderer.hpp"
+    #include <array>
+// clang-format on
 
 namespace Forradia
 {

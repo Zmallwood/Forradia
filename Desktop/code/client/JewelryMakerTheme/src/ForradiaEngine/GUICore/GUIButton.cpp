@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIButton.hpp"
-#include "ForradiaEngine/MinorComponents/Cursor.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "GUIButton.hpp"
+    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

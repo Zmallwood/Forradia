@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "IScene.hpp"
-#include "ForradiaEngine/GUICore/GUI.hpp"
+/* Includes */ // clang-format off
+    #include "IScene.hpp"
+    #include "ForradiaEngine/GUICore/GUI.hpp"
+// clang-format on
 
 namespace Forradia
 {

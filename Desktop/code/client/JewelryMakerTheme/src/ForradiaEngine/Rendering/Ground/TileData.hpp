@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include <vector>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include <vector>
+// clang-format on
 
 namespace Forradia
 {

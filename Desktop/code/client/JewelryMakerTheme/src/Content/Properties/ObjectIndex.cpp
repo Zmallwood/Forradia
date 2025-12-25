@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ObjectIndex.hpp"
+/* Includes */ // clang-format off
+    #include "ObjectIndex.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

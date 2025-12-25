@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "ObjectIndexEntry.hpp"
-#include <unordered_map>
+/* Includes */ // clang-format off
+    #include "ObjectIndexEntry.hpp"
+    #include <unordered_map>
+// clang-format on
 
 namespace Forradia::Theme0
 {

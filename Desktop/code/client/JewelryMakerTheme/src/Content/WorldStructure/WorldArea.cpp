@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "WorldArea.hpp"
-#include "ObjectsStack.hpp"
-#include "Tile.hpp"
+/* Includes */ // clang-format off
+    #include "WorldArea.hpp"
+    #include "ObjectsStack.hpp"
+    #include "Tile.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

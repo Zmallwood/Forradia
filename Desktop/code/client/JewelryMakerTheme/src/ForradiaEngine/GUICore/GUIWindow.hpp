@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "GUIMovablePanel.hpp"
+/* Includes */ // clang-format off
+    #include "GUIMovablePanel.hpp"
+// clang-format on
 
 namespace Forradia
 {

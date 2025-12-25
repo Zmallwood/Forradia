@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "Content/WorldStructure/ContainedObjects.hpp"
+/* Includes */ // clang-format off
+    #include "Content/WorldStructure/ContainedObjects.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

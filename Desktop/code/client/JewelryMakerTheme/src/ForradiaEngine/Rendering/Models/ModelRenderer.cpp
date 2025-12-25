@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ModelRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
+/* Includes */ // clang-format off
+    #include "ModelRenderer.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
+// clang-format on
 
 namespace Forradia
 {

@@ -16,7 +16,7 @@ namespace Forradia
 {
     /**
      *  Class used for SharedPtrs of SDL objects, which handles automatically freeing up
-     *   resources at object deletion.
+     *  resources at object deletion.
      *
      *  @return The SDLDeleter object.
      */

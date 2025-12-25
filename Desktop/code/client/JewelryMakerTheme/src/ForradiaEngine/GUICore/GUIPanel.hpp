@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "GUIComponent.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
+/* Includes */ // clang-format off
+    #include "GUIComponent.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+// clang-format on
 
 namespace Forradia
 {

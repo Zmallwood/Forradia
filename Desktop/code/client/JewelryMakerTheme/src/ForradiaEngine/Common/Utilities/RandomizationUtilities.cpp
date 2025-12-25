@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "RandomizationUtilities.hpp"
-#include <cstdlib>
-#include <ctime>
+/* Includes */ // clang-format off
+    #include "RandomizationUtilities.hpp"
+    #include <cstdlib>
+    #include <ctime>
+// clang-format on
 
 namespace Forradia
 {

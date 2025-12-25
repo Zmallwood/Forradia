@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
-#include "ForradiaEngine/GUICore/GUIMeter.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/GUICore/GUIMeter.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

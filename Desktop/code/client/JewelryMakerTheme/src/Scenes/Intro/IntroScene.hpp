@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "ForradiaEngine/ScenesCore/IScene.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/ScenesCore/IScene.hpp"
+// clang-format on
 
 namespace Forradia
 {

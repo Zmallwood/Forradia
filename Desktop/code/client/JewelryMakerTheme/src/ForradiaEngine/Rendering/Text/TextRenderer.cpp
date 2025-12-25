@@ -3,15 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "TextRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "ForradiaEngine/Common/General/SDLDeleter.hpp"
-#include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
-#include <SDL2/SDL_ttf.h>
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "TextRenderer.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
+    #include <SDL2/SDL_ttf.h>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
+
 namespace Forradia
 {
     auto TextRenderer::initialize() -> void

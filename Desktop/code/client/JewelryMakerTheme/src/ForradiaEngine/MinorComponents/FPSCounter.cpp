@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "FPSCounter.hpp"
-#include "ForradiaEngine/Common/General/Constants.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+/* Includes */ // clang-format off
+    #include "FPSCounter.hpp"
+    #include "ForradiaEngine/Common/General/Constants.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+// clang-format on
 
 namespace Forradia
 {

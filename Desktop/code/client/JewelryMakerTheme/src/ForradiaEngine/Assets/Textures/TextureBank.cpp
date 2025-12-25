@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "TextureBank.hpp"
-#include <ranges>
+/* Includes */ // clang-format off
+    #include "TextureBank.hpp"
+    #include <ranges>
+// clang-format on
 
 namespace Forradia
 {

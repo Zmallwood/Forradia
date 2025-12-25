@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Image2DRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "Image2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

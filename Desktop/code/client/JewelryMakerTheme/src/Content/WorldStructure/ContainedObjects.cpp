@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ContainedObjects.hpp"
-#include "Object.hpp"
+/* Includes */ // clang-format off
+    #include "ContainedObjects.hpp"
+    #include "Object.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

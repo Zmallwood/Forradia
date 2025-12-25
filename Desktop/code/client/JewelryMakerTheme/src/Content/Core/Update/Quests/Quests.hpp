@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-#include "Quest.hpp"
-#include <set>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+    #include "Quest.hpp"
+    #include <set>
+// clang-format on
 
 namespace Forradia::Theme0
 {

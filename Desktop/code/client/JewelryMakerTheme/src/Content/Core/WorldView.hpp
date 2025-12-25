@@ -5,10 +5,12 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ForradiaEngine/Rendering/Ground/TileData.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-#include <unordered_map>
+/* Includes */ // clang-format off
+  #include "ForradiaEngine/Common/General/Hash.hpp"
+  #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+  #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
+  #include <unordered_map>
+// clang-format on
 
 namespace Forradia::Theme0
 {

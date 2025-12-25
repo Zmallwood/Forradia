@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "EntityTypes.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+/* Includes */ // clang-format off
+    #include "EntityTypes.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

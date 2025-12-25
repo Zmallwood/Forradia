@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "Model.hpp"
-#include "assimp/scene.h"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "Model.hpp"
+    #include "assimp/scene.h"
+// clang-format on
 
 namespace Forradia
 {

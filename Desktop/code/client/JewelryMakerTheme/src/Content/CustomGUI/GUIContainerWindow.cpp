@@ -3,15 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIContainerWindow.hpp"
-#include "Content/WorldStructure/ContainedObjects.hpp"
-#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
-#include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+/* Includes */ // clang-format off
+    #include "GUIContainerWindow.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/WorldStructure/ContainedObjects.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
+    #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

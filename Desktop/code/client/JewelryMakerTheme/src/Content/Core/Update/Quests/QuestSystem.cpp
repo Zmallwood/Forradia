@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "QuestSystem.hpp"
-#include "Quest.hpp"
-#include "Quests.hpp"
+/* Includes */ // clang-format off
+    #include "QuestSystem.hpp"
+    #include "Quest.hpp"
+    #include "Quests.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

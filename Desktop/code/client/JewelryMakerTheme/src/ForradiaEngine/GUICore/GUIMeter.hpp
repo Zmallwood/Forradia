@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
-#include "GUIComponent.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
+    #include "GUIComponent.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+// clang-format on
 
 namespace Forradia
 {

@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Cursor.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+/* Includes */ // clang-format off
+    #include "Cursor.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+// clang-format on
 
 namespace Forradia
 {

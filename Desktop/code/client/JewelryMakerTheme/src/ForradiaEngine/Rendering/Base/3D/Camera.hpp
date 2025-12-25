@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Point3F.hpp"
-#include <glm/glm.hpp>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Point3F.hpp"
+    #include <glm/glm.hpp>
+// clang-format on
 
 namespace Forradia
 {
@@ -25,7 +27,7 @@ namespace Forradia
         }
 
         Camera(const Camera &) = delete;
-        
+
         auto operator=(const Camera &) -> Camera & = delete;
 
         Camera() = default;

@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "GUIComponent.hpp"
+/* Includes */ // clang-format off
+    #include "GUIComponent.hpp"
+// clang-format on
 
 namespace Forradia
 {

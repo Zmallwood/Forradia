@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SkyRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "SkyRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

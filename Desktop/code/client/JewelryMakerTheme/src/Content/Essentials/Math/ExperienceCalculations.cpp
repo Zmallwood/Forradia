@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ExperienceCalculations.hpp"
+/* Includes */ // clang-format off
+    #include "ExperienceCalculations.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIComponent.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include <algorithm>
-#include <ranges>
+/* Includes */ // clang-format off
+    #include "GUIComponent.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include <algorithm>
+    #include <ranges>
+// clang-format on
 
 namespace Forradia
 {

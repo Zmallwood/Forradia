@@ -6,12 +6,12 @@
 // - Consider implementing LRU eviction of operations memory, which is used when the operations
 // cache reaches a certain limit.
 
-#include "Image2DRenderer.hpp"
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "Image2DRenderer.hpp"
+    #include <GL/glew.h>
+    #include <GL/gl.h>
+    #include <array>
 // clang-format on
-#include <array>
 
 namespace Forradia
 {

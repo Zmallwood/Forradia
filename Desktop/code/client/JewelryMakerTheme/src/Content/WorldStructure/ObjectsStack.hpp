@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include <vector>
+/* Includes */ // clang-format off
+    #include <vector>
+// clang-format on
 
 namespace Forradia::Theme0
 {

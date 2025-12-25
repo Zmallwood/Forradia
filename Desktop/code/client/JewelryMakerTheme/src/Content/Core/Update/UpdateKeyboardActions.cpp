@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateKeyboardActions.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "Content/CustomGUI/GUIInventoryWindow.hpp"
-#include "Content/CustomGUI/GUISystemMenu.hpp"
+/* Includes */ // clang-format off
+    #include "UpdateKeyboardActions.hpp"
+    #include "Content/CustomGUI/GUIInventoryWindow.hpp"
+    #include "Content/CustomGUI/GUISystemMenu.hpp" 
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

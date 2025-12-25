@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUILabel.hpp"
-#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "GUILabel.hpp"
+    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

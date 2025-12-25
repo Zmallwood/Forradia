@@ -5,10 +5,12 @@
 
 #pragma once
 
-#include "ForradiaEngine/GUICore/GUIPanel.hpp"
-#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
-#include "ForradiaEngine/GUICore/GUIWindow.hpp"
-#include <unordered_map>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
+    #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
+    #include "ForradiaEngine/GUICore/GUIWindow.hpp"
+    #include <unordered_map>
+// clang-format on
 
 namespace Forradia::Theme0
 {

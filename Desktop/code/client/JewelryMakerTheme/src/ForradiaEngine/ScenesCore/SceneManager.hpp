@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include <SDL2/SDL.h>
-#include <string_view>
-#include <unordered_map>
+/* Includes */ // clang-format off
+    #include <SDL2/SDL.h>
+    #include <string_view>
+    #include <unordered_map>
+// clang-format on
 
 namespace Forradia
 {

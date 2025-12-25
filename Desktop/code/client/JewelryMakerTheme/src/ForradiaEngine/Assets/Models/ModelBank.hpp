@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include <memory>
-#include <unordered_map>
+/* Includes */ // clang-format off
+    #include <memory>
+    #include <unordered_map>
+// clang-format on
 
 namespace Forradia
 {

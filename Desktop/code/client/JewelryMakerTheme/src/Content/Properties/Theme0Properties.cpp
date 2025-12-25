@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Theme0Properties.hpp"
-#include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+/* Includes */ // clang-format off
+    #include "Theme0Properties.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

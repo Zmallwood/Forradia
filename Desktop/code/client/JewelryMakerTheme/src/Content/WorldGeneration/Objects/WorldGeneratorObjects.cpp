@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "WorldGeneratorObjects.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+/* Includes */ // clang-format off
+    #include "WorldGeneratorObjects.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

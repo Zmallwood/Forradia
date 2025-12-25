@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ObjectMoving.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "Content/CustomGUI/GUIInventoryWindow.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+/* Includes */ // clang-format off
+    #include "ObjectMoving.hpp"
+    #include "Content/CustomGUI/GUIInventoryWindow.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp" 
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

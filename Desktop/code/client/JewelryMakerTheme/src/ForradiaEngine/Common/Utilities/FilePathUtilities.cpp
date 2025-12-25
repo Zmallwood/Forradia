@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "FilePathUtilities.hpp"
+/* Includes */ // clang-format off
+    #include "FilePathUtilities.hpp"
+// clang-format on
 
 namespace Forradia
 {

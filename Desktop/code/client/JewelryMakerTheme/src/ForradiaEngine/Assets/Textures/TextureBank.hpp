@@ -5,11 +5,13 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
-#include "TextureEntry.hpp"
-#include <GL/gl.h>
-#include <memory>
-#include <unordered_map>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include "TextureEntry.hpp"
+    #include <GL/gl.h>
+    #include <memory>
+    #include <unordered_map>
+// clang-format on
 
 struct SDL_Surface;
 

@@ -3,18 +3,20 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Engine.hpp"
-#include "ForradiaEngine/GraphicsDevices/GLDevice.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"
-#include "ForradiaEngine/MinorComponents/Cursor.hpp"
-#include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
-#include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
-#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-#include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+/* Includes */ // clang-format off
+    #include "Engine.hpp"
+    #include "ForradiaEngine/GraphicsDevices/GLDevice.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"
+    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
+    #include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
+    #include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
+    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+// clang-format on
 
 namespace Forradia
 {

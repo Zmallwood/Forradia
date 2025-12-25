@@ -3,14 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "ForradiaEngine/Common/General/SDLDeleter.hpp"
-#include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
-#include "TextureBank.hpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <filesystem>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
+    #include "TextureBank.hpp"
+    #include <SDL2/SDL.h>
+    #include <SDL2/SDL_image.h>
+    #include <filesystem>
+// clang-format on
 
 namespace Forradia
 {

@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIExperienceBar.hpp"
-#include "Content/Essentials/Math/ExperienceCalculations.hpp"
-#include "Content/Essentials/Player/Player.hpp"
+/* Includes */ // clang-format off
+    #include "GUIExperienceBar.hpp"
+    #include "Content/Essentials/Math/ExperienceCalculations.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

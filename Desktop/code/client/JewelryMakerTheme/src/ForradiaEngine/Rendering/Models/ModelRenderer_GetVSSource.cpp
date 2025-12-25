@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ModelRenderer.hpp"
+/* Includes */ // clang-format off
+    #include "ModelRenderer.hpp"
+// clang-format on
 
 namespace Forradia
 {

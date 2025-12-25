@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ErrorUtilities.hpp"
-#include <stdexcept>
-#include <string>
+/* Includes */ // clang-format off
+    #include "ErrorUtilities.hpp"
+    #include <stdexcept>
+    #include <string>
+// clang-format on
 
 namespace Forradia
 {

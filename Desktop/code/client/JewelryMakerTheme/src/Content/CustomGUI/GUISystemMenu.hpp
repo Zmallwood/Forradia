@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "ForradiaEngine/GUICore/GUIComponent.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/GUICore/GUIComponent.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -27,7 +29,7 @@ namespace Forradia::Theme0
         }
 
         GUISystemMenu(const GUISystemMenu &) = delete;
-        
+
         GUISystemMenu &operator=(const GUISystemMenu &) = delete;
 
         /**

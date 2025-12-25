@@ -3,16 +3,18 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "TileHovering.hpp"
-#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include <glm/gtx/intersect.hpp>
+/* Includes */ // clang-format off
+    #include "TileHovering.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+    #include <glm/gtx/intersect.hpp>
+// clang-format on
 
 namespace Forradia::Theme0
 {

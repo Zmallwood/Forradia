@@ -3,17 +3,19 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GameSaving.hpp"
-#include "Content/WorldStructure/Entity.hpp"
-#include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
-#include "HashCodes.hpp"
-#include "Content/WorldStructure/Object.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include <fstream>
-#include <string>
+/* Includes */ // clang-format off
+    #include "GameSaving.hpp"
+    #include "Content/WorldStructure/Entity.hpp"
+    #include "Content/WorldStructure/Object.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
+    #include "HashCodes.hpp"
+    #include <fstream>
+    #include <string>
+// clang-format on
 
 namespace Forradia::Theme0
 {

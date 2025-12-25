@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "NumbersUtilities.hpp"
-#include "ForradiaEngine/Common/General/Constants.hpp"
-#include <cmath>
+/* Includes */ // clang-format off
+    #include "NumbersUtilities.hpp"
+    #include "ForradiaEngine/Common/General/Constants.hpp"
+    #include <cmath>
+// clang-format on
 
 namespace Forradia
 {

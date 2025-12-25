@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "PointF.hpp"
+/* Includes */ // clang-format off
+    #include "PointF.hpp"
+// clang-format on
 
 namespace Forradia
 {

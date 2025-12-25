@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include <SDL2/SDL.h>
-#include <memory>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include <SDL2/SDL.h>
+    #include <memory>
+// clang-format on
 
 namespace Forradia::Theme0
 {

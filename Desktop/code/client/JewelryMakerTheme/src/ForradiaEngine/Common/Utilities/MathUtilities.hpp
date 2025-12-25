@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include <glm/glm.hpp>
+/* Includes */ // clang-format off
+    #include <glm/glm.hpp>
+// clang-format on
 
 namespace Forradia
 {

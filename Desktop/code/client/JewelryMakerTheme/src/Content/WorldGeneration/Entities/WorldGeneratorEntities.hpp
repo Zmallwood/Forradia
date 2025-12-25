@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
+/* Includes */ // clang-format off
+    #include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

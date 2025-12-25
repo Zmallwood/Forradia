@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Engine.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
-#include <SDL2/SDL.h>
+/* Includes */ // clang-format off
+    #include "Engine.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include <SDL2/SDL.h>
+// clang-format on
 
 namespace Forradia
 {

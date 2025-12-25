@@ -5,10 +5,12 @@
 
 #pragma once
 
-#include <functional>
-#include <memory>
-#include <string>
-#include <vector>
+/* Includes */ // clang-format off
+    #include <functional>
+    #include <memory>
+    #include <string>
+    #include <vector>
+// clang-format on
 
 namespace Forradia::Theme0
 {

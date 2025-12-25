@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "Model.hpp"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "Model.hpp"
+// clang-format on
 
 namespace Forradia
 {

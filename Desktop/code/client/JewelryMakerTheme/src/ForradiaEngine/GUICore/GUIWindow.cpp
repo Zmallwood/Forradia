@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "GUIWindow.hpp"
-#include "GUIWindowTitleBar.hpp"
+/* Includes */ // clang-format off
+    #include "GUIWindow.hpp"
+    #include "GUIWindowTitleBar.hpp"
+// clang-format on
 
 namespace Forradia
 {

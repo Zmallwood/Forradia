@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include <source_location>
-#include <string_view>
+/* Includes */ // clang-format off
+    #include <source_location>
+    #include <string_view>
+// clang-format on
 
 namespace Forradia
 {

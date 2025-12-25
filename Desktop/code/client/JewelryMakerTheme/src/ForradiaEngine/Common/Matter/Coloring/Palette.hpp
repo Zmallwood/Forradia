@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "Color.hpp"
+/* Includes */ // clang-format off
+    #include "Color.hpp"
+// clang-format on
 
 namespace Forradia::Palette
 {

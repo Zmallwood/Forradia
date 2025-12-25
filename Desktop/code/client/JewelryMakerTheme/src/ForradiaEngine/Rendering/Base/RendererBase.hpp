@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include <memory>
+/* Includes */ // clang-format off
+    #include <memory>
+// clang-format on
 
 namespace Forradia
 {

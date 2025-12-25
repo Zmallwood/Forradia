@@ -3,14 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Content/WorldStructure/ObjectsStack.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include "WorldView.hpp"
+/* Includes */ // clang-format off
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include "WorldView.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -165,7 +167,7 @@ namespace Forradia::Theme0
         default:
             break;
         }
-        
+
         return Palette::getColor<hash("White")>();
     }
 }

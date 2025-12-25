@@ -3,12 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Model.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"
-#include "assimp/Importer.hpp"
-#include "assimp/postprocess.h"
-#include "assimp/scene.h"
+/* Includes */ // clang-format off
+    #include "Model.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"
+    #include "assimp/Importer.hpp"
+    #include "assimp/postprocess.h"
+    #include "assimp/scene.h"
+// clang-format on
 
 namespace Forradia
 {

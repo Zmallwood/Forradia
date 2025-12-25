@@ -3,13 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "PlayScene.hpp"
-#include "ForradiaEngine/GUICore/GUI.hpp"
-#include "ForradiaEngine/GUICore/GUIButton.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "ForradiaEngine/GUICore/GUIPanel.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+/* Includes */ // clang-format off
+    #include "PlayScene.hpp"
+    #include "ForradiaEngine/GUICore/GUI.hpp"
+    #include "ForradiaEngine/GUICore/GUIButton.hpp"
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

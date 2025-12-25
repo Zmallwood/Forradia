@@ -3,14 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "MainMenuScene.hpp"
-#include "ForradiaEngine/Engine.hpp"
-#include "ForradiaEngine/GUICore/GUI.hpp"
-#include "ForradiaEngine/GUICore/GUIButton.hpp"
-#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "ForradiaEngine/GUICore/GUIPanel.hpp"
-#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-#include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+/* Includes */ // clang-format off
+    #include "MainMenuScene.hpp"
+    #include "ForradiaEngine/Engine.hpp"
+    #include "ForradiaEngine/GUICore/GUI.hpp"
+    #include "ForradiaEngine/GUICore/GUIButton.hpp"
+    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
+    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {
@@ -39,7 +41,7 @@ namespace Forradia::Theme0
         Image2DRenderer::instance().drawImageByName(
             hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
 
-        Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"), "JewelryMakerLogo",
-                                                        0.35f, 0.1f, 0.3f);
+        Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"),
+                                                        "JewelryMakerLogo", 0.35f, 0.1f, 0.3f);
     }
 }

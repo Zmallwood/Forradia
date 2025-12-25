@@ -5,9 +5,11 @@
 
 #pragma once
 
-#include "GUIContainerWindow.hpp"
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
+/* Includes */ // clang-format off
+    #include "GUIContainerWindow.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
+    #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

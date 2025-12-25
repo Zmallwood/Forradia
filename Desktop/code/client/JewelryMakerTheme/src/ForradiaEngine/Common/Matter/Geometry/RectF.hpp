@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "PointF.hpp"
+/* Includes */ // clang-format off
+    #include "PointF.hpp"
+// clang-format on
 
 namespace Forradia
 {

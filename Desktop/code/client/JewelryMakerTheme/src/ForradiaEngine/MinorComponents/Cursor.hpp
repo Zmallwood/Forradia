@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "CursorStyles.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
+/* Includes */ // clang-format off
+    #include "CursorStyles.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+// clang-format on
 
 namespace Forradia
 {

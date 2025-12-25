@@ -3,8 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Tile.hpp"
-#include "ObjectsStack.hpp"
+/* Includes */ // clang-format off
+    #include "Tile.hpp"
+    #include "ObjectsStack.hpp"
+// clang-format on
 
 namespace Forradia::Theme0
 {

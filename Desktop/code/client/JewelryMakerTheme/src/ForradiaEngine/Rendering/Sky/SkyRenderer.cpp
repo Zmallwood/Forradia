@@ -3,11 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SkyRenderer.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
+/* Includes */ // clang-format off
+    #include "SkyRenderer.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
+// clang-format on
 
 namespace Forradia
 {

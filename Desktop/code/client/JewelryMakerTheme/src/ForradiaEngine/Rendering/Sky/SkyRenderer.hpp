@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
-#include <glm/vec3.hpp>
-// clang-format off
-#include <GL/glew.h>
-#include <GL/gl.h>
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
+    #include <glm/vec3.hpp>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
 // clang-format on
 
 namespace Forradia

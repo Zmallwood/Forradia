@@ -3,7 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "TextureBank.hpp"
+/* Includes */ // clang-format off
+    #include "TextureBank.hpp"
+// clang-format on
 
 namespace Forradia
 {

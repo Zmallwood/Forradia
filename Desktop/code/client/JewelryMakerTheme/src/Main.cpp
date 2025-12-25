@@ -3,10 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "ForradiaEngine/Engine.hpp"
-#include "Scenes/SetupScenes.hpp"
-#include "Content/Properties/Theme0Properties.hpp"
-#include "Content/WorldStructure/World.hpp"
+/* Includes */ // clang-format off
+    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/WorldStructure/World.hpp"
+    #include "ForradiaEngine/Engine.hpp"
+    #include "Scenes/SetupScenes.hpp"
+// clang-format on
 
 auto main(int argc, char **argv) -> int
 {

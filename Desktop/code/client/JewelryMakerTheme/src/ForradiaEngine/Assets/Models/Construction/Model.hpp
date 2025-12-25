@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "ForradiaEngine/Common/Matter/Geometry/GLMTypes/GLMMesh.hpp"
-#include "assimp/scene.h"
+/* Includes */ // clang-format off
+    #include "ForradiaEngine/Common/Matter/Geometry/GLMTypes/GLMMesh.hpp"
+    #include "assimp/scene.h"
+// clang-format on
 
 namespace Forradia
 {

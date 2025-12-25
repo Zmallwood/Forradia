@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SceneManager.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include "IScene.hpp"
+/* Includes */ // clang-format off
+    #include "SceneManager.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "IScene.hpp"
+// clang-format on
 
 namespace Forradia
 {

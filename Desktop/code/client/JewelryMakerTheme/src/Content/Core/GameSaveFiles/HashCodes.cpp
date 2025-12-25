@@ -3,9 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "HashCodes.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
-#include <array>
+/* Includes */ // clang-format off
+    #include "HashCodes.hpp"
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include <array>
+// clang-format on
 
 namespace Forradia::Theme0
 {
