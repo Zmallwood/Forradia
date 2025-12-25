@@ -14,7 +14,7 @@
     #include <SDL2/SDL_ttf.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto TextRenderer::drawString(int uniqueRenderID, std::string_view text, float xPos, float yPos,
                                   FontSizes fontSize, bool centerAlign, bool forceRerender,

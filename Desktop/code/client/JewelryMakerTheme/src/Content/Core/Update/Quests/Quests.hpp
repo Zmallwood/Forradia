@@ -11,7 +11,7 @@
     #include <set>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     class MoveQuest : public Quest
     {

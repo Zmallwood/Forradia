@@ -9,7 +9,7 @@
     #include "GUIComponent.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  The root GUI class which is created for every scene.

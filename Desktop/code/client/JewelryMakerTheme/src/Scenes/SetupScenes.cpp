@@ -13,7 +13,7 @@
     #include "WorldGeneration/WorldGenerationScene.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto setupScenes() -> void
     {

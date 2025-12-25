@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUILabel::renderDerived() const -> void
     {

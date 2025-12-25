@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Common/Utilities/MathUtilities.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::calcTileNormals(const std::vector<float> &verticesNoNormals)
         -> std::vector<glm::vec3>

@@ -9,7 +9,7 @@
     #include "ForradiaEngine/GUICore/GUIComponent.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class GUI;
 

@@ -9,7 +9,7 @@
     #include "Action.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Gets the action for the given action type. The action name hash is passed as a template

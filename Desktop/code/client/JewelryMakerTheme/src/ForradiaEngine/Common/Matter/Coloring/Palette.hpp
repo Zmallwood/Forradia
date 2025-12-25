@@ -9,7 +9,7 @@
     #include "Color.hpp"
 // clang-format on
 
-namespace Forradia::Palette
+namespace ForradiaEngine::Palette
 {
     /**
      *   Get a color from the palette.

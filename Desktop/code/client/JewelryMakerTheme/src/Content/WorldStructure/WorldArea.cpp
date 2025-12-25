@@ -9,7 +9,7 @@
     #include "Tile.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto WorldArea::initialize(Size worldAreaSize, float worldScaling) -> void
     {

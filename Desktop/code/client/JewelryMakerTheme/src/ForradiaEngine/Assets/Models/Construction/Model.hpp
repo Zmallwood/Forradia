@@ -10,7 +10,7 @@
     #include "assimp/scene.h"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
         Holds information about a model, used by the ModelBank.

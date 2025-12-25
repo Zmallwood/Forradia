@@ -8,7 +8,7 @@
     #include "GUIWindowTitleBar.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIWindow::initialize(std::string_view uniqueName, std::string_view windowTitle) -> void
     {

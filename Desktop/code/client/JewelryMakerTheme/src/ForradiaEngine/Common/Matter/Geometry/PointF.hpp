@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Point in 2D space using dimensions of float type.

@@ -18,7 +18,7 @@
     #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Engine::initialize(std::string_view gameWindowTitle, Color clearColor) -> void
     {

@@ -20,7 +20,7 @@
     #include "WorldView.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto WorldView::iterationAllExceptGround(int xPos, int yPos) -> void
     {

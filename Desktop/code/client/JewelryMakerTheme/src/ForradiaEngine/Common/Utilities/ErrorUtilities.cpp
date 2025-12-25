@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     void throwError(std::string_view message, std::source_location loc)
     {

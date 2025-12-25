@@ -13,7 +13,7 @@
     #include <array>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Image2DRenderer::drawImageByTextureID(int uniqueRenderID, GLuint textureID, float xPos,
                                                float yPos, float width, float height,

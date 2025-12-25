@@ -10,7 +10,7 @@
     #include "ForradiaEngine/GUICore/GUIMeter.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Represents the well-being meter.

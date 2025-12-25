@@ -10,7 +10,7 @@
     #include <string_view>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Throw an error with a given message.

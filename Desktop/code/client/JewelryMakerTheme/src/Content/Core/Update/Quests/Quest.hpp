@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  A quest is a task that the player can complete to progress the game.

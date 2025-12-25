@@ -7,7 +7,7 @@
 
 struct SDL_Color;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  An RGBA color with components defined with float values.

@@ -10,7 +10,7 @@
     #include <SDL2/SDL.h>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Manages the rotation of the camera.

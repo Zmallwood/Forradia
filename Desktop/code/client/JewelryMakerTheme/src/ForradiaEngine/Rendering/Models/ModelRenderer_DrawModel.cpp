@@ -13,7 +13,7 @@
     #include <glm/gtx/transform.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ModelRenderer::drawModel(int modelNameHash, float xPos, float yPos, float elevation,
                                   float modelScaling, float elevationHeight, float levitationHeight)

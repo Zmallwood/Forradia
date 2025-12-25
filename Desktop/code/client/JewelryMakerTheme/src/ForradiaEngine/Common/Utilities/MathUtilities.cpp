@@ -7,7 +7,7 @@
     #include "MathUtilities.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto computeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
         -> glm::vec3

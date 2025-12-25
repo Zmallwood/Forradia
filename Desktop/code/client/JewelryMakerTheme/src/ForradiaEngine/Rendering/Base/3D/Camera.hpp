@@ -10,7 +10,7 @@
     #include <glm/glm.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Camera representing a viewpoint in 3D space.

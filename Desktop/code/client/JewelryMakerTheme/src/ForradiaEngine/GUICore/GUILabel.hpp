@@ -12,7 +12,7 @@
     #include "ForradiaEngine/Common/General/Hash.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A label component for the GUI.

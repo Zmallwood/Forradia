@@ -15,7 +15,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIScrollableArea::onMouseDown(Uint8 mouseButton) -> bool
     {

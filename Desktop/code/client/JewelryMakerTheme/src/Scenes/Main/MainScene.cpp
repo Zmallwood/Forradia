@@ -34,7 +34,7 @@
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto MainScene::initializeDerived() -> void
     {

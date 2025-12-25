@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Get the number of ticks.

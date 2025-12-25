@@ -8,7 +8,7 @@
     #include <iostream>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto print(std::string_view text) -> void
     {

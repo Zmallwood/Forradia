@@ -7,7 +7,7 @@
     #include "GroundRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::calcTileVerticesWithNormals(const std::vector<float> &verticesNoNormals)
         -> std::vector<float>

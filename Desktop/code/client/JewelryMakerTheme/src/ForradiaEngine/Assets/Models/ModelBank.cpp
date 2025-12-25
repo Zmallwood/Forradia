@@ -13,7 +13,7 @@
     #include <filesystem>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ModelBank::initialize() -> void
     {
@@ -40,7 +40,7 @@ namespace Forradia
             if (getFileExtension(filePath) == "obj" || getFileExtension(filePath) == "dae")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
-                auto hash{Forradia::hash(fileName)};
+                auto hash{ForradiaEngine::hash(fileName)};
                 auto model{ModelBank::loadSingleModel(filePath)};
 
                 m_models.insert({hash, model});

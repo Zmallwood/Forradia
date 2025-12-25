@@ -13,7 +13,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  This renderer is used to render models from the model bank in 3D space.

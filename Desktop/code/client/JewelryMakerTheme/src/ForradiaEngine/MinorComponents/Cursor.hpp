@@ -10,7 +10,7 @@
     #include "ForradiaEngine/Common/General/Hash.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Class for the game cursor, which replaces the default system cursor.

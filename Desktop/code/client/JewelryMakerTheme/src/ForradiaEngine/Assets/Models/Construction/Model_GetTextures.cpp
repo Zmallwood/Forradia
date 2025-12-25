@@ -9,7 +9,7 @@
     #include "Model.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Model::getTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>
     {

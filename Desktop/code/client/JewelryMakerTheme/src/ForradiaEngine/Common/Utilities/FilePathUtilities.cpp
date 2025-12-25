@@ -7,7 +7,7 @@
     #include "FilePathUtilities.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto getFileExtension(std::string_view path) -> std::string
     {

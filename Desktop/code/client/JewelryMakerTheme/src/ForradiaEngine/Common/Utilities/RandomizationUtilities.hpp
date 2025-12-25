@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Randomize the seed.

@@ -9,7 +9,7 @@
     #include "SDLDevice.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SDLDevice::setupSDLWindow() -> void
     {

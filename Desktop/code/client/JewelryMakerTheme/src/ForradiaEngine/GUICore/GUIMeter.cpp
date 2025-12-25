@@ -9,7 +9,7 @@
     #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIMeter::renderDerived() const -> void
     {

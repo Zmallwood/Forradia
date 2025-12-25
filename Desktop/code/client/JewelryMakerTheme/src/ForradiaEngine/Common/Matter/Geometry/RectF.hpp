@@ -9,7 +9,7 @@
     #include "PointF.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *   A rectangle in 2D space using dimensions of float type.

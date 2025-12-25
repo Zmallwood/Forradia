@@ -7,7 +7,7 @@
     #include "Spouse.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto Spouse::isPlaced() const -> bool
     {

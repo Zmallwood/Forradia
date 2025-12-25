@@ -11,7 +11,7 @@
     #include <array>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Color2DRenderer::drawFilledRectangle(int uniqueRenderID, Color color, float xPos,
                                               float yPos, float width, float height,

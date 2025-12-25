@@ -8,7 +8,7 @@
     #include "Model.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Model::getVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>
     {

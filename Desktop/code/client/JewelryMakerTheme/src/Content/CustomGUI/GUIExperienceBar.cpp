@@ -9,7 +9,7 @@
     #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto GUIExperienceBar::updateDerived() -> void
     {

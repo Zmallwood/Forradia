@@ -9,7 +9,7 @@
     #include <cmath>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto invertSpeed(float speed) -> float
     {

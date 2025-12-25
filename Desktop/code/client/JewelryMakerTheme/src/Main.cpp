@@ -12,7 +12,7 @@
 
 auto main(int argc, char **argv) -> int
 {
-    using namespace Forradia;
+    using namespace ForradiaEngine;
     using namespace Theme0;
 
     Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),

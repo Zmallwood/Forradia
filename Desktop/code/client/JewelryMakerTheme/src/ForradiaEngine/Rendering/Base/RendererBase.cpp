@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto RendererBase::initialize() -> void
     {

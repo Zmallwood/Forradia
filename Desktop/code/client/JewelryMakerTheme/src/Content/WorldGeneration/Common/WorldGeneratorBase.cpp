@@ -10,7 +10,7 @@
     #include "Content/WorldStructure/WorldArea.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto WorldGeneratorBase::prepare() -> void
     {

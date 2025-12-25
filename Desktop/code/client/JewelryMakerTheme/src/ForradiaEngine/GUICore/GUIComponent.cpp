@@ -11,7 +11,7 @@
     #include <ranges>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIComponent::addChildComponent(std::shared_ptr<GUIComponent> component)
         -> std::shared_ptr<GUIComponent>

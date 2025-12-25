@@ -9,7 +9,7 @@
     #include "GUIMovablePanel.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class GUILabel;
 

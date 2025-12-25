@@ -9,7 +9,7 @@
     #include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  The world generator for objects.

@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Size in 2D space, with the dimensions as int values.

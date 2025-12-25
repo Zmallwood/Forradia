@@ -15,7 +15,7 @@
 
 struct SDL_Surface;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Manages loading and providing of textures which are being used in opengl rendering.

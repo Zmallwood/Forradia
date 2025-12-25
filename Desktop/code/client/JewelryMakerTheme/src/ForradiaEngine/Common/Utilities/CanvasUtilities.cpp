@@ -9,7 +9,7 @@
     #include <SDL2/SDL.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto getCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size
     {

@@ -10,7 +10,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A rendering operation for colors in 2D.

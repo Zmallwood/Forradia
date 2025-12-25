@@ -9,7 +9,7 @@
     #include "Content/WorldStructure/ContainedObjects.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Represents the inventory of objects for the player.

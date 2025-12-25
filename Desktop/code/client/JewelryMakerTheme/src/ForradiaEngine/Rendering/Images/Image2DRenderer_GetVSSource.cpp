@@ -7,7 +7,7 @@
     #include "Image2DRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Image2DRenderer::getVSSource() const -> std::string
     {

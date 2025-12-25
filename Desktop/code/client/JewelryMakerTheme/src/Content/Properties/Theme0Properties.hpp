@@ -11,7 +11,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Class for storing theme 0 properties.

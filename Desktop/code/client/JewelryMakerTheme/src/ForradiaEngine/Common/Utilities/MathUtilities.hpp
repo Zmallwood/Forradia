@@ -9,7 +9,7 @@
     #include <glm/glm.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Compute the normal of a triangle.

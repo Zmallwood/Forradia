@@ -8,7 +8,7 @@
     #include "Object.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto ContainedObjects::initialize(int numSlots) -> void
     {

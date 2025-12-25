@@ -7,7 +7,7 @@
     #include "RectF.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto RectF::contains(PointF point) const -> bool
     {

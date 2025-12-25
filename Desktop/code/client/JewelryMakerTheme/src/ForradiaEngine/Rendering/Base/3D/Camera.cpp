@@ -15,7 +15,7 @@
     #include <glm/gtc/matrix_transform.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Camera::getViewMatrix() const -> glm::mat4
     {

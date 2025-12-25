@@ -14,7 +14,7 @@
     #include <filesystem>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto TextureBank::loadTextures() -> void
     {
@@ -36,7 +36,7 @@ namespace Forradia
             if (getFileExtension(filePath) == "png")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
-                auto hash{Forradia::hash(fileName)};
+                auto hash{ForradiaEngine::hash(fileName)};
                 auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(filePath.data()), SDLDeleter())};
                 auto textureID{TextureBank::loadSingleTexture(surface)};
                 auto imageSize{Size{surface->w, surface->h}};

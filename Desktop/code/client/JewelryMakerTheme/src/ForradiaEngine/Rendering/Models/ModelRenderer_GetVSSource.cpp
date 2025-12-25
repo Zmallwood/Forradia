@@ -7,7 +7,7 @@
     #include "ModelRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ModelRenderer::getVSSource() const -> std::string
     {

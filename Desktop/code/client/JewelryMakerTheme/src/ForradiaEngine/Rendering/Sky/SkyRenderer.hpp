@@ -12,7 +12,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      * A renderer for procedurally rendering the sky.

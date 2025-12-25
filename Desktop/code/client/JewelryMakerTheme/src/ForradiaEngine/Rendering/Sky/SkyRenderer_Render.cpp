@@ -11,7 +11,7 @@
     #include <glm/gtc/matrix_transform.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SkyRenderer::render(const glm::vec3 &sunDirection, float sunElevation) -> void
     {

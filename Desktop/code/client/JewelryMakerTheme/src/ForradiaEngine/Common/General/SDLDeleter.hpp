@@ -12,7 +12,7 @@ struct SDL_Surface;
 
 using TTF_Font = struct _TTF_Font;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Class used for SharedPtrs of SDL objects, which handles automatically freeing up

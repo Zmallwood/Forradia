@@ -9,7 +9,7 @@
     #include <glm/glm.hpp>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
         A vertex used for models using GLM types.

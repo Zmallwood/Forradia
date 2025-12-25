@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Calculate the inverse of the speed.

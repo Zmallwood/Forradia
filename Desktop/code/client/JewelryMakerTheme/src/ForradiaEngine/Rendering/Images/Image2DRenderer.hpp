@@ -13,7 +13,7 @@
     #include <unordered_map>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A renderer for drawing images to the canvas.

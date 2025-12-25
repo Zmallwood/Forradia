@@ -9,7 +9,7 @@
     #include "IScene.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SceneManager::addScene(std::string_view sceneName, IScene &scene) -> void
     {

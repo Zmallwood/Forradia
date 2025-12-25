@@ -11,7 +11,7 @@
     #include <unordered_map>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class IScene;
 

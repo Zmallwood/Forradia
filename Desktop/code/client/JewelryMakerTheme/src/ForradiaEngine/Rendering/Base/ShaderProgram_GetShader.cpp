@@ -9,7 +9,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ShaderProgram::getShader(std::string_view shaderSource, int shaderType) -> GLuint
     {

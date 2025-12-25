@@ -8,7 +8,7 @@
     #include "ForradiaEngine/GUICore/GUI.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto IScene::initialize() -> void
     {

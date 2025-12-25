@@ -9,12 +9,12 @@
     #include "ForradiaEngine/GUICore/GUIMovablePanel.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class GUILabel;
 }
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Represents the quest panel.

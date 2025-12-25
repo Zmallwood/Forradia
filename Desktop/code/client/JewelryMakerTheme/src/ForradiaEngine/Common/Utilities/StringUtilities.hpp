@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Replace all instances of a character in a string with another character.

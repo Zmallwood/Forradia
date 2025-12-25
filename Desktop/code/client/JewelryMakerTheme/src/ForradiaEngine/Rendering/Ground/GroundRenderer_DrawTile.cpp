@@ -10,7 +10,7 @@
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::drawTile(int uniqueRenderID, int imageNameHash, int xCoordinate,
                                   int yCoordinate, float tileSize,

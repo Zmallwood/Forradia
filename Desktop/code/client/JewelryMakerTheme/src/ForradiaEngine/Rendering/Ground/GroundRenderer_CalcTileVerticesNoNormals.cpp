@@ -8,7 +8,7 @@
     #include "Content/Properties/Theme0Properties.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::calcTileVerticesNoNormals(int xCoordinate, int yCoordinate, float tileSize,
                                                    const std::vector<float> &elevations,

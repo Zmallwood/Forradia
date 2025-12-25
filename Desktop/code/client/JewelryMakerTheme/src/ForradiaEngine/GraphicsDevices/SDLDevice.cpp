@@ -8,7 +8,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SDLDevice::initialize(std::string_view gameWindowTitle, Color clearColor) -> void
     {

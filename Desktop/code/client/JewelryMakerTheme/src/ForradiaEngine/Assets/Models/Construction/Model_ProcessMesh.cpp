@@ -8,7 +8,7 @@
     #include "Model.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Model::processMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh

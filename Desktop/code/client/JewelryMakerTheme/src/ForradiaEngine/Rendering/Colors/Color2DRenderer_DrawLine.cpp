@@ -12,7 +12,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Color2DRenderer::drawLine(int uniqueRenderID, Color color, float xPos1, float yPos1,
                                    float xPos2, float yPos2, float lineWidth, bool updateExisting)

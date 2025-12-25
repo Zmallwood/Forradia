@@ -9,7 +9,7 @@
     #include <memory>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     class WorldArea;
 

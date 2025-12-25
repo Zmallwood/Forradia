@@ -9,7 +9,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ShaderProgram::createProgram(GLuint vertexShader, GLuint fragmentShader) -> GLint
     {

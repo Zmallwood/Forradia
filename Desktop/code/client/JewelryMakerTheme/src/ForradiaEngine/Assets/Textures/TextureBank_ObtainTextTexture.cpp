@@ -7,7 +7,7 @@
     #include "TextureBank.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     // ReSharper disable once CppMemberFunctionMayBeStatic
     auto TextureBank::obtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool

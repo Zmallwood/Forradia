@@ -9,7 +9,7 @@
     #include <ctime>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto randomize() -> void
     {

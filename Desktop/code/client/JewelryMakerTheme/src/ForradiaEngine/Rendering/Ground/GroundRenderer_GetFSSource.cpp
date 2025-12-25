@@ -7,7 +7,7 @@
     #include "GroundRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::getFSSource() const -> std::string
     {

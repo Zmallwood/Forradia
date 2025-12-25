@@ -7,7 +7,7 @@
     #include "PointF.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto PointF::operator+(const PointF &other) const -> PointF
     {

@@ -9,7 +9,7 @@
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GroundRenderer::drawTiles(const std::vector<TileData> &tiles) -> void
     {

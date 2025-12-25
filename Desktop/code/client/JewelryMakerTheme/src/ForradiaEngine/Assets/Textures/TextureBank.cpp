@@ -8,7 +8,7 @@
     #include <ranges>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto TextureBank::initialize() -> void
     {

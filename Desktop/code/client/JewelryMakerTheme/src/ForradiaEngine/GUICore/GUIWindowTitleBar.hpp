@@ -9,7 +9,7 @@
     #include "GUIPanel.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class GUIWindow;
 

@@ -11,7 +11,7 @@
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Cursor::initialize() -> void
     {

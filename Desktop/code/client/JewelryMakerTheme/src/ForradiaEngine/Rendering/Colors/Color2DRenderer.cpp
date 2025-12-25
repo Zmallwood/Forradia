@@ -12,7 +12,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Color2DRenderer::cleanup() -> void
     {

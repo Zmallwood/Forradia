@@ -11,7 +11,7 @@
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Image2DRenderer::drawImageByName(int uniqueRenderID, std::string_view imageName,
                                           float xPos, float yPos, float width, float height,
@@ -33,7 +33,7 @@ namespace Forradia
     auto Image2DRenderer::drawImageAutoHeight(int uniqueRenderID, std::string_view imageName,
                                               float xPos, float yPos, float width) -> void
     {
-        auto hash{Forradia::hash(imageName)};
+        auto hash{ForradiaEngine::hash(imageName)};
 
         auto imageDimensions{TextureBank::getTextureDimensions(hash)};
         if (imageDimensions.width <= 0 || imageDimensions.height <= 0)

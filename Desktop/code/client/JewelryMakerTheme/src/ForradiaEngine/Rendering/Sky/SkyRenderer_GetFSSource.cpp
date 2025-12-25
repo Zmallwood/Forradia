@@ -7,7 +7,7 @@
     #include "SkyRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SkyRenderer::getFSSource() const -> std::string
     {

@@ -11,7 +11,7 @@
 
 using SDL_GLContext = void *;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Sets up the OpenGL context and the OpenGL functions.

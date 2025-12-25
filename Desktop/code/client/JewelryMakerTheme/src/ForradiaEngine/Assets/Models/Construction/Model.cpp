@@ -12,7 +12,7 @@
     #include "assimp/scene.h"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Model::initialize(std::string_view filePath) -> void
     {

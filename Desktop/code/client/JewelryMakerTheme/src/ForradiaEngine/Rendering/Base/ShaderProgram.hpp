@@ -11,7 +11,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Shader program which is used for each renderer.

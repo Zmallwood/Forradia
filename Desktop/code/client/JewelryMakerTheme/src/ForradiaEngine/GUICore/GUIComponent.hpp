@@ -13,7 +13,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Base class for all GUI components.

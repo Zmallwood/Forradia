@@ -9,7 +9,7 @@
     #include <algorithm>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     auto ObjectsStack::clearObjects() -> void
     {

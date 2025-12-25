@@ -7,7 +7,7 @@
     #include "Model.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Model::processNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) -> void
     {

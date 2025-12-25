@@ -7,7 +7,7 @@
     #include "Point.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Point::operator==(const Point &other) const -> bool
     {

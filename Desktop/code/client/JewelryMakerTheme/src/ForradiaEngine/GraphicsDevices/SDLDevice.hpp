@@ -17,7 +17,7 @@ struct SDL_Window;
 
 using Uint32 = uint32_t;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Sets up the objects related to SDL.

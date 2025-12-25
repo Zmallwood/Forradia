@@ -8,7 +8,7 @@
     #include <algorithm>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto replace(std::string_view text, char replace, char replaceWith) -> std::string
     {

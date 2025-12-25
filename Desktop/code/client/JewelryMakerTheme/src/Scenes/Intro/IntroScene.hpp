@@ -9,12 +9,12 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class GUIComponent;
 }
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  The intro scene is the first scene that is displayed when the game is started.

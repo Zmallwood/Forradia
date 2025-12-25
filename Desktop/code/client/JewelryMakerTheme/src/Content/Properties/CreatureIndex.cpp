@@ -7,7 +7,7 @@
     #include "CreatureIndex.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     CreatureIndex::CreatureIndex()
     {

@@ -7,7 +7,7 @@
     #include "Color2DRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto Color2DRenderer::getVSSource() const -> std::string
     {

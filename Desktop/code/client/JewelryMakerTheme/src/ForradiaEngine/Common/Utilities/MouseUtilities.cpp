@@ -10,7 +10,7 @@
     #include <SDL2/SDL.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto getNormalizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
     {

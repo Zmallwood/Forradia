@@ -10,7 +10,7 @@
     #include <fmt/format.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIFPSPanel::initialize() -> void
     {

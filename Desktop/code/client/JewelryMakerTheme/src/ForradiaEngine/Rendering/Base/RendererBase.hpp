@@ -9,7 +9,7 @@
     #include <memory>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     class ShaderProgram;
 

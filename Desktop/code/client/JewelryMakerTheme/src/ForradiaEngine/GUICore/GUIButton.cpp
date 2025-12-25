@@ -11,7 +11,7 @@
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIButton::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {

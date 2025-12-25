@@ -10,7 +10,7 @@
     #include <string_view>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  The engine class is responsible for initializing, running and stopping

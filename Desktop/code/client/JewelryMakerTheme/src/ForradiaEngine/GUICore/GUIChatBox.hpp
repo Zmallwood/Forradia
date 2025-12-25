@@ -11,7 +11,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A chat box component for the GUI which displays a list of messages and allows the user

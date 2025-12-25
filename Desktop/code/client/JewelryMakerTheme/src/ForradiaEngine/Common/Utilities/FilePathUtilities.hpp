@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Get the file extension from a given path.

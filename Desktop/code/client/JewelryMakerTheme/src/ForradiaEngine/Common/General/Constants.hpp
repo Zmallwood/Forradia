@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /// Number of milliseconds in one second.
     static constexpr int k_oneSecMillis{1000};

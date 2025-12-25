@@ -16,7 +16,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     class PlayerObjectsInventory;
     class Spouse;

@@ -16,7 +16,7 @@
 struct SDL_Surface;
 using TTF_Font = struct _TTF_Font;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Renders text strings to the screen using SDL_ttf and OpenGL.

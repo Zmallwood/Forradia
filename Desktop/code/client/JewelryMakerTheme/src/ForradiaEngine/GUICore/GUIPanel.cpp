@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIPanel::renderDerived() const -> void
     {

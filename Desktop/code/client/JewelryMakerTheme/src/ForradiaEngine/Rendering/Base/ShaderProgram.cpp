@@ -7,7 +7,7 @@
     #include "ShaderProgram.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto ShaderProgram::initialize(std::string_view vertexShaderSource,
                                    std::string_view fragmentShaderSource) -> void

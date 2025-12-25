@@ -9,7 +9,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  The world generation scene is the scene where the world is generated.

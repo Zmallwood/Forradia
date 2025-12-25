@@ -10,7 +10,7 @@
     #include <string_view>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      * Compute hash code from a given input text, which gets computed the same every game

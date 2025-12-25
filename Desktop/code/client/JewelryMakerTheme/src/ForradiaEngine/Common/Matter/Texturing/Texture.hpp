@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A texture, primarily used for models.

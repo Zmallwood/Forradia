@@ -12,7 +12,7 @@
 
 struct SDL_Window;
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      * Obtain canvas size in pixels.

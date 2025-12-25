@@ -11,7 +11,7 @@
     #include <ranges>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIMovablePanel::onMouseDown(Uint8 mouseButton) -> bool
     {

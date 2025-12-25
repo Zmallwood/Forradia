@@ -11,7 +11,7 @@
     #include <functional>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  A button component for the GUI.

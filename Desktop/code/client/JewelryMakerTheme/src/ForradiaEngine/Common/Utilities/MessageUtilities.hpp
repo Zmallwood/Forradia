@@ -9,7 +9,7 @@
     #include <string_view>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Print out a string of text, without a following line break.

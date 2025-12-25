@@ -13,7 +13,7 @@
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto GUIWindowTitleBar::initialize(std::string_view uniqueName) -> void
     {

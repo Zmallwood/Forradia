@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Common/General/Hash.hpp"
 // clang-format on
 
-namespace Forradia::Palette
+namespace ForradiaEngine::Palette
 {
     template <>
     auto getColor<hash("Black")>() -> Color

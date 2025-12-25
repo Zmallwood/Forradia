@@ -11,7 +11,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
      *  Holds information about a texture, used by the TextureBank.

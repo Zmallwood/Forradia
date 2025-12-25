@@ -9,7 +9,7 @@
     #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto FPSCounter::update() -> void
     {

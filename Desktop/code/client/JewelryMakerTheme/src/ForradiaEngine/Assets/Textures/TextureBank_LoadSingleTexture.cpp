@@ -7,7 +7,7 @@
     #include "TextureBank.hpp"
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto TextureBank::loadSingleTexture(const std::shared_ptr<SDL_Surface> &surface) -> GLuint
     {

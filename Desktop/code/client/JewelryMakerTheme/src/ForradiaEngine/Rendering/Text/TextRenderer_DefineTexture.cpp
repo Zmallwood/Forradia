@@ -11,7 +11,7 @@
     #include <GL/gl.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto TextRenderer::defineTexture(const std::shared_ptr<SDL_Surface> &surface) -> void
     {

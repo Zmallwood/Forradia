@@ -10,7 +10,7 @@
     #include <SDL2/SDL_ttf.h>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     auto SDLDeleter::operator()(SDL_Window *window) const -> void
     {

@@ -11,7 +11,7 @@
     #include <vector>
 // clang-format on
 
-namespace Forradia
+namespace ForradiaEngine
 {
     /**
         A mesh used primarily for models, using GLM types.

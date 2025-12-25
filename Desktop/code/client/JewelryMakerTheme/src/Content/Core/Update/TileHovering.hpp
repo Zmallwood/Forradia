@@ -9,7 +9,7 @@
     #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
 // clang-format on
 
-namespace Forradia::Theme0
+namespace ForradiaEngine::Theme0
 {
     /**
      *  Determines and provides the tile hovered by the mouse.
