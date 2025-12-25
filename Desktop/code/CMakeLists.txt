@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory(./client/RiverDiggerTheme/)
+add_subdirectory(./client/JewelryMakerTheme/)
 
-install(TARGETS RiverDigger RUNTIME DESTINATION bin)
+install(TARGETS JewelryMaker RUNTIME DESTINATION bin)

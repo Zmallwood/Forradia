@@ -2,4 +2,4 @@
 cd ..
 shopt -s globstar  # Enable recursive globbing
 INCLUDE_FLAGS=$(find code/client -type d -name "src" -exec printf -- "--extra-arg=-I%s " {} \;)
-clang-tidy code/client/RiverDiggerTheme/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20
+clang-tidy code/client/JewelryMakerTheme/**/*.{cpp,hpp} $INCLUDE_FLAGS -p build -- --std=c++20

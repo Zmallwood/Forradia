@@ -9,8 +9,8 @@ if [ ! -d "$directory" ]; then
 fi
 
 rm -rf ./bin/Resources
-cp ./build/client/RiverDiggerTheme/RiverDigger ./bin/
+cp ./build/client/JewelryMakerTheme/JewelryMaker ./bin/
 cp -r ./Resources ./bin/
 cd ./bin
 
-./RiverDigger
+./JewelryMaker
