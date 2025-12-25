@@ -9,7 +9,7 @@
     #include <SDL2/SDL.h>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Updates the keyboard movement.

@@ -14,7 +14,7 @@
     #include "WorldView.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldView::iterationGround(int xPos, int yPos) -> void
     {

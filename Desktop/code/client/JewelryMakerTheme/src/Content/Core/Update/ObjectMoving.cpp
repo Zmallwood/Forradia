@@ -13,7 +13,7 @@
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto ObjectMoving::onMouseDown(Uint8 mouseButton) -> bool
     {

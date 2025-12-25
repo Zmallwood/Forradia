@@ -23,7 +23,7 @@
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUIInteractionMenu::initialize() -> void
     {

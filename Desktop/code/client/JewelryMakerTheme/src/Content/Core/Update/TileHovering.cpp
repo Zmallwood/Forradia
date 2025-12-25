@@ -16,7 +16,7 @@
     #include <glm/gtx/intersect.hpp>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto TileHovering::update() -> void
     {

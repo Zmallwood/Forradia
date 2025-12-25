@@ -12,7 +12,7 @@
     #include "WorldGeneratorEntities.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorEntities::generateEntitiesInEcosystems() const -> void
     {
@@ -55,7 +55,7 @@ namespace ForradiaEngine::Theme0
 
             if (prefersLocation)
             {
-                auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
+                auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};
 
                 tile->setEntity(newEntity);
 
@@ -97,7 +97,7 @@ namespace ForradiaEngine::Theme0
 
             if (prefersLocation)
             {
-                auto newEntity{std::make_shared<Theme0::Entity>("CreatureWolf")};
+                auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureWolf")};
 
                 tile->setEntity(newEntity);
 
@@ -186,7 +186,7 @@ namespace ForradiaEngine::Theme0
 
             if (prefersLocation)
             {
-                auto newEntity{std::make_shared<Theme0::Entity>("CreatureRedBird")};
+                auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureRedBird")};
 
                 tile->setEntity(newEntity);
 
@@ -265,7 +265,7 @@ namespace ForradiaEngine::Theme0
                 // Prefer grass for the ecosystem.
                 if (creatureTile->getGround() == hash("GroundGrass") && getRandomInt(100) < 60)
                 {
-                    auto newEntity{std::make_shared<Theme0::Entity>("CreatureWhiteRabbit")};
+                    auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};
 
                     creatureTile->setEntity(newEntity);
 

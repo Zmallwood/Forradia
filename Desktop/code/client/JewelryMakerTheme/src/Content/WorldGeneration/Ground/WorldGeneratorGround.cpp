@@ -9,7 +9,7 @@
     #include "Content/WorldStructure/WorldArea.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorGround::generateGroundWithElevation() const -> void
     {

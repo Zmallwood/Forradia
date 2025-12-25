@@ -13,7 +13,7 @@
     #include <fmt/format.h>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUIPlayerStatusBox::initialize() -> void
     {

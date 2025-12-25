@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Sets up the scenes for the theme.

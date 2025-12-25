@@ -12,7 +12,7 @@
     #include <unordered_map>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     class Object;
     class GUIContainerWindowArea;

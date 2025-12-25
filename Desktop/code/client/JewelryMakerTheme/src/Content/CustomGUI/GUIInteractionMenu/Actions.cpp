@@ -19,7 +19,7 @@
     #include "GUIInteractionMenu.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 

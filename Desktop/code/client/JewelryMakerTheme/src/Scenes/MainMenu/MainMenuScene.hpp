@@ -9,7 +9,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  The main menu scene is the second scene that is displayed when the game is started.

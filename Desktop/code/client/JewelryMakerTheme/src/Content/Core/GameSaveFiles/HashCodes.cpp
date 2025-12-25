@@ -9,7 +9,7 @@
     #include <array>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     template <>
     auto getNameFromHash<ForradiaEngine::hash("GroundGrass")>() -> std::string

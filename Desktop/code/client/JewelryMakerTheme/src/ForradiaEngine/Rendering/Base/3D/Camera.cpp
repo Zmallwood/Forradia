@@ -69,11 +69,11 @@ namespace ForradiaEngine
         // Computes the point in world space the camera should look at. This targets the center
         // of the player's current tile and uses the tile's elevation to set Z.
 
-        auto worldArea{Theme0::World::instance().getCurrentWorldArea()};
-        auto rendTileSize{Theme0::Theme0Properties::instance().getTileSize()};
-        // auto playerPos{Theme0::Player::Instance().GetPosition()};
-        auto playerSmoothPos{Theme0::Player::instance().getSmoothPosition()};
-        auto elevHeight{Theme0::Theme0Properties::instance().getElevationHeight()};
+        auto worldArea{JewelryMakerTheme::World::instance().getCurrentWorldArea()};
+        auto rendTileSize{JewelryMakerTheme::Theme0Properties::instance().getTileSize()};
+        // auto playerPos{JewelryMakerTheme::Player::Instance().GetPosition()};
+        auto playerSmoothPos{JewelryMakerTheme::Player::instance().getSmoothPosition()};
+        auto elevHeight{JewelryMakerTheme::Theme0Properties::instance().getElevationHeight()};
         auto playerElevation{
             worldArea->getTile(playerSmoothPos.x, playerSmoothPos.y)->getElevation()};
 

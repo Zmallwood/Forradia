@@ -8,7 +8,7 @@
     #include "WorldArea.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto World::initialize(Size worldAreaSize, float worldScaling) -> void
     {

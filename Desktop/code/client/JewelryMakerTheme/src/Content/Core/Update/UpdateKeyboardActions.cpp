@@ -10,7 +10,7 @@
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateKeyboardActions(SDL_Keycode key) -> void
     {

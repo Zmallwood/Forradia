@@ -10,7 +10,7 @@
     #include "WorldGeneratorObjects.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorObjects::generateObjectsInBiomes() const -> void
     {

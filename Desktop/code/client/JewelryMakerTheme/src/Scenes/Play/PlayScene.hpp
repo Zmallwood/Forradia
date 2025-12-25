@@ -9,7 +9,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  The play scene is the scene where the player can choose to play a new game or continue a

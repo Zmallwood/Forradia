@@ -10,7 +10,7 @@
     #include <unordered_map>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Class for managing creature properties.

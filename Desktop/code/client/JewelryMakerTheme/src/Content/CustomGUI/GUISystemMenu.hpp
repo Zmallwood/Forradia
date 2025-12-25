@@ -9,7 +9,7 @@
     #include "ForradiaEngine/GUICore/GUIComponent.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Represents the system menu.

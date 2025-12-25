@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateSetPlayerDestination() -> void;
 }

@@ -7,7 +7,7 @@
     #include "ExperienceCalculations.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto calculateCurrentLevel(int experience) -> int
     {

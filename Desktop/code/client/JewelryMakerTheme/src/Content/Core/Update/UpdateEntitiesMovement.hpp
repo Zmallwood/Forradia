@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Updates the movement of the entities in the world.

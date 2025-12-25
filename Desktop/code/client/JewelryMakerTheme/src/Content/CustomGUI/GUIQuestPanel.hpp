@@ -14,7 +14,7 @@ namespace ForradiaEngine
     class GUILabel;
 }
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Represents the quest panel.

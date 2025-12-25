@@ -15,7 +15,7 @@
     #include "Update/TileHovering.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldView::initialize() -> void
     {

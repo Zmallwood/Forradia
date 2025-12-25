@@ -10,7 +10,7 @@
     #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  A creature in the game world.

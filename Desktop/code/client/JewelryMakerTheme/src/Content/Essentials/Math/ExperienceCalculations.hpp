@@ -5,7 +5,7 @@
 
 #pragma once
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Calculates the current level based on the experience.

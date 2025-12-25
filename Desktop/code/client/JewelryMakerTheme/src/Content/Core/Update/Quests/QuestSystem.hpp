@@ -11,7 +11,7 @@
     #include <vector>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     class Quest;
 

@@ -14,7 +14,7 @@ namespace ForradiaEngine
     class GUIComponent;
 }
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  The intro scene is the first scene that is displayed when the game is started.

@@ -13,7 +13,7 @@
 auto main(int argc, char **argv) -> int
 {
     using namespace ForradiaEngine;
-    using namespace Theme0;
+    using namespace JewelryMakerTheme;
 
     Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),
                                   Theme0Properties::instance().getClearColor());

@@ -11,7 +11,7 @@
     #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     class GUIInventoryWindow : public GUIContainerWindow
     {

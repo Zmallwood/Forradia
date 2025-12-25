@@ -9,7 +9,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     class GUIInteractionMenu;
 

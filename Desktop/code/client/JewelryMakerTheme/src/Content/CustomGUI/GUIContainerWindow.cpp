@@ -15,7 +15,7 @@
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUIContainerWindow::initialize(ContainedObjects &containedObjects) -> void
     {

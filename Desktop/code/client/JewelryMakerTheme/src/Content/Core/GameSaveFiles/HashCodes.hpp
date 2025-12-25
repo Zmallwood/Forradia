@@ -9,7 +9,7 @@
     #include <string>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  Gets the name from a hash code as a template function, i.e. it reverses the Hash function.

@@ -10,7 +10,7 @@
     #include <nlohmann/json.hpp>
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     class WorldArea;
     class Tile;

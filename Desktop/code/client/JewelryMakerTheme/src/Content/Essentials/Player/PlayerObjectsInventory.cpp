@@ -7,7 +7,7 @@
     #include "PlayerObjectsInventory.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto PlayerObjectsInventory::initialize() -> void
     {

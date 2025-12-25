@@ -8,7 +8,7 @@
     #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     namespace
     {

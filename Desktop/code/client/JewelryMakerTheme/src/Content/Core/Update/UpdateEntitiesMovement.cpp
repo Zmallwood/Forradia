@@ -15,7 +15,7 @@
     #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateEntitiesMovement() -> void
     {

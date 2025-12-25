@@ -11,7 +11,7 @@
     #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUISystemMenu::initialize() -> void
     {

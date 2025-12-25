@@ -13,7 +13,7 @@
     #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto IntroScene::initializeDerived() -> void
     {

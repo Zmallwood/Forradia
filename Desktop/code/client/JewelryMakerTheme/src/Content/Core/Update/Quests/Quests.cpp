@@ -13,7 +13,7 @@
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto MoveQuest::update() -> void
     {

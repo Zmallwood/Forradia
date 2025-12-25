@@ -9,7 +9,7 @@
     #include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
      *  The world generator for the ground with elevation.

@@ -10,7 +10,7 @@
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto CameraRotator::onMouseDown(Uint8 mouseButton) -> void
     {

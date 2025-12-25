@@ -10,7 +10,7 @@
     #include "WorldGeneratorWater_GenerateRiverFromSource_Sub.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorWater::generateRiverFromSource(int startX, int startY, int length) const
         -> void

@@ -9,7 +9,7 @@
     #include "Content/Properties/ObjectIndex.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto Object::initialize() -> void
     {

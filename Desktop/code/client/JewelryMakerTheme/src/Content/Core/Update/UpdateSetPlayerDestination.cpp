@@ -9,7 +9,7 @@
     #include "TileHovering.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateSetPlayerDestination() -> void
     {

@@ -9,7 +9,7 @@
     #include "WorldGeneratorGround.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorGround::generateElevationWithBiomes() const -> void
     {

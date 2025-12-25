@@ -8,11 +8,11 @@
     #include "ObjectsStack.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto Tile::initialize() -> void
     {
-        m_objectsStack = std::make_shared<ForradiaEngine::Theme0::ObjectsStack>();
+        m_objectsStack = std::make_shared<ForradiaEngine::JewelryMakerTheme::ObjectsStack>();
     }
 
     auto Tile::setGround(int groundHash) -> void

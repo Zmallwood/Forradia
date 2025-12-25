@@ -8,7 +8,7 @@
     #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
 // clang-format on
 
-namespace ForradiaEngine::Theme0
+namespace ForradiaEngine::JewelryMakerTheme
 {
     auto Theme0Properties::getGameWindowTitle() -> std::string
     {
