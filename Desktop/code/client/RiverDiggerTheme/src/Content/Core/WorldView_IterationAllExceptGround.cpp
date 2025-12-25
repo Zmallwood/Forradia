@@ -107,8 +107,8 @@ namespace Forradia::Theme0
             {
                 auto playerSmoothPosition{Player::instance().getSmoothPosition()};
                 ModelRenderer::instance().drawModel(
-                    hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
-                    (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
+                    hash("Player"), (playerSmoothPosition.x) * m_rendTileSize,
+                    (playerSmoothPosition.y) * m_rendTileSize, elevationMax);
             }
         }
 

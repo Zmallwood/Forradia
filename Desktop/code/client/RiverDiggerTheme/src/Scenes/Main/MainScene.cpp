@@ -31,6 +31,7 @@
 #include "Content/Core/Update/UpdateMouseMovement.hpp"
 #include "Content/Core/Update/UpdateSetPlayerDestination.hpp"
 #include "Content/Core/WorldView.hpp"
+#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 
 namespace Forradia::Theme0
 {
@@ -200,6 +201,8 @@ namespace Forradia::Theme0
         updateActions();
 
         QuestSystem::instance().update();
+
+        Camera::update();
     }
 
     auto MainScene::render() const -> void

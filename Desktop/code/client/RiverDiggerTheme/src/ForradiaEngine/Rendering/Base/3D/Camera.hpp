@@ -30,6 +30,8 @@ namespace Forradia
 
         Camera() = default;
 
+        static auto update() -> void;
+
         /**
          *  Get the view matrix.
          *
@@ -80,5 +82,6 @@ namespace Forradia
         float m_rotationAngleSideways{0.0F};
         // NOLINTNEXTLINE(readability-magic-numbers)
         float m_rotationAngleVertical{-M_PI / 4.0F};
+        inline static Point3F m_lookAt;
     };
 }

@@ -4,13 +4,13 @@
  *********************************************************************/
 
 #include "Camera.hpp"
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
 #include "Content/Essentials/Player/Player.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "Content/Properties/Theme0Properties.hpp"
 #include "Content/WorldStructure/Tile.hpp"
 #include "Content/WorldStructure/World.hpp"
 #include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Forradia
@@ -62,7 +62,7 @@ namespace Forradia
         return point;
     }
 
-    auto Camera::getLookAt() -> Point3F
+    auto Camera::update() -> void
     {
         // Computes the point in world space the camera should look at. This targets the center
         // of the player's current tile and uses the tile's elevation to set Z.
@@ -76,11 +76,15 @@ namespace Forradia
             worldArea->getTile(playerSmoothPos.x, playerSmoothPos.y)->getElevation()};
 
         // Construct the resulting look-at point in world space.
-        Point3F lookAt{playerSmoothPos.x * rendTileSize + rendTileSize / 2,
-                       playerSmoothPos.y * rendTileSize + rendTileSize / 2,
+        Point3F lookAt{playerSmoothPos.x * rendTileSize, playerSmoothPos.y * rendTileSize,
                        playerElevation * elevHeight};
 
-        return lookAt;
+        m_lookAt = lookAt;
+    }
+
+    auto Camera::getLookAt() -> Point3F
+    {
+        return m_lookAt;
     }
 
     auto Camera::addZoomAmountDelta(float zoomAmountDelta) -> void
