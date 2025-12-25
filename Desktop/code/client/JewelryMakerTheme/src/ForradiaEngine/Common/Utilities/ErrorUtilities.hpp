@@ -18,8 +18,9 @@ namespace ForradiaEngine
      *  @param message The message to throw.
      *  @param loc The source location of the error, should not be provided manually.
      */
-    [[noreturn]] void throwError(std::string_view message,
-                                 std::source_location loc = std::source_location::current());
+    [[noreturn]] auto throwError(std::string_view message,
+                                 std::source_location loc = std::source_location::current())
+        -> void;
 
     /**
      *  Throw an error if a condition is false.
@@ -28,6 +29,6 @@ namespace ForradiaEngine
      *  @param message The message to throw.
      *  @param loc The source location of the error, should not be provided manually.
      */
-    void throwOnFalse(bool condition, std::string_view message,
-                      std::source_location loc = std::source_location::current());
+    auto throwOnFalse(bool condition, std::string_view message,
+                      std::source_location loc = std::source_location::current()) -> void;
 }

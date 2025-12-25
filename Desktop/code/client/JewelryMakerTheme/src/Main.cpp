@@ -12,15 +12,20 @@
 
 auto main(int argc, char **argv) -> int
 {
-    using namespace ForradiaEngine;
-    using namespace JewelryMakerTheme;
+    /* Usings */ // clang-format off
+        using namespace ForradiaEngine;
+        using namespace JewelryMakerTheme;
+    // clang-format on
 
-    Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),
-                                  Theme0Properties::instance().getClearColor());
-    setupScenes();
+    /* Initialization */ // clang-format off
+        Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),
+                                    Theme0Properties::instance().getClearColor());
+        setupScenes();
 
-    World::instance().initialize(Theme0Properties::instance().getBaseWorldAreaSize(),
-                                 Theme0Properties::instance().getWorldScaling());
+        World::instance().initialize(Theme0Properties::instance().getBaseWorldAreaSize(),
+                                    Theme0Properties::instance().getWorldScaling());
+    // clang-format on
+
     Engine::instance().run();
 
     return 0;

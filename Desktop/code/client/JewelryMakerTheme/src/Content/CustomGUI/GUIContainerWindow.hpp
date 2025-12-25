@@ -34,7 +34,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize(containedObjects);
         }
 
-        std::shared_ptr<std::shared_ptr<Object>> getObjectPtrPtr(PointF position) const;
+        auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
       private:
         auto initialize(ContainedObjects &containedObjects) -> void;

@@ -124,7 +124,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                              std::string_view actionFirstArgument = "",
                              Point actionSecondArgument = {-1, -1}) -> void;
 
-        PointF getSmoothPosition() const;
+        auto getSmoothPosition() const -> PointF;
 
         /**
          *  Gets the name of the player.
@@ -277,7 +277,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_spouse;
         }
 
-        void setSpouse(const std::shared_ptr<Spouse> &value)
+        auto setSpouse(const std::shared_ptr<Spouse> &value) -> void
         {
             m_spouse = value;
         }

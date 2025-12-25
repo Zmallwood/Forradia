@@ -346,7 +346,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             playerAction, actionFirstArgument, actionSecondArgument});
     }
 
-    PointF Player::getSmoothPosition() const
+    auto Player::getSmoothPosition() const -> PointF
     {
         auto dx{0.0F};
         auto dy{0.0F};

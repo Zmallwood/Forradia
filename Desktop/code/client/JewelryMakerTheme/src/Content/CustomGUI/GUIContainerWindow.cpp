@@ -38,8 +38,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         this->addChildComponent(m_panel);
     }
 
-    std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowArea::getObjectPtrPtr(PointF position) const
+    auto GUIContainerWindowArea::getObjectPtrPtr(PointF position) const
+        -> std::shared_ptr<std::shared_ptr<Object>>
     {
         return m_panel->getObjectPtrPtr(position);
     }

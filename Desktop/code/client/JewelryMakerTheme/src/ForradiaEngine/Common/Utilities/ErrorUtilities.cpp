@@ -11,7 +11,7 @@
 
 namespace ForradiaEngine
 {
-    void throwError(std::string_view message, std::source_location loc)
+    auto throwError(std::string_view message, std::source_location loc) -> void
     {
         auto filePath{std::string(loc.file_name())};
 
@@ -23,7 +23,7 @@ namespace ForradiaEngine
         throw std::runtime_error(fullMessage);
     }
 
-    void throwOnFalse(bool condition, std::string_view message, std::source_location loc)
+    auto throwOnFalse(bool condition, std::string_view message, std::source_location loc) -> void
     {
         if (condition == false)
         {

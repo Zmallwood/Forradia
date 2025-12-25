@@ -13,7 +13,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class Spouse
     {
       public:
-        bool isPlaced() const;
+        auto isPlaced() const -> bool;
 
       private:
         Point m_position{-1, -1};
