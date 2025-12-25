@@ -15,7 +15,5 @@ namespace Forradia::Theme0
         addObject("ObjectPlasticAxe");
         addObject("ObjectChisel");
         addObject("ObjectHammer");
-        addObject("ObjectDragonEgg");
-        addObject("ObjectDragonEgg");
     }
 }
