@@ -18,12 +18,12 @@ auto main(int argc, char **argv) -> int
     // clang-format on
 
     /* Initialization */ // clang-format off
-        Engine::instance().initialize(Theme0Properties::instance().getGameWindowTitle(),
-                                    Theme0Properties::instance().getClearColor());
+        Engine::initialize(Theme0Properties::getGameWindowTitle(),
+                                    Theme0Properties::getClearColor());
         setupScenes();
 
-        World::instance().initialize(Theme0Properties::instance().getBaseWorldAreaSize(),
-                                    Theme0Properties::instance().getWorldScaling());
+        World::instance().initialize(Theme0Properties::getBaseWorldAreaSize(),
+                                    Theme0Properties::getWorldScaling());
     // clang-format on
 
     Engine::instance().run();

@@ -23,7 +23,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class IntroScene : public IScene
     {
       public:
-        static IntroScene &instance()
+        static auto instance() -> IntroScene &
         {
             static IntroScene instance;
             return instance;
@@ -31,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         IntroScene(const IntroScene &) = delete;
 
-        IntroScene &operator=(const IntroScene &) = delete;
+        auto operator=(const IntroScene &) -> IntroScene & = delete;
 
         IntroScene() = default;
 
@@ -39,26 +39,26 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Initializes the intro scene.
          */
-        virtual auto initializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
          *  Called when the intro scene is entered.
          */
-        virtual auto onEnterDerived() -> void override;
+        auto onEnterDerived() -> void override;
 
-        virtual auto onMouseDown(Uint8 mouseButton) -> void override;
+        auto onMouseDown(Uint8 mouseButton) -> void override;
 
-        virtual auto onKeyDown(SDL_Keycode key) -> void override;
+        auto onKeyDown(SDL_Keycode key) -> void override;
 
         /**
          *  Called every frame.
          */
-        virtual auto updateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
          *  Called every frame to render the scene.
          */
-        virtual auto renderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
         std::shared_ptr<GUIComponent> m_startText{};

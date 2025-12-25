@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class MainScene : public IScene
     {
       public:
-        static MainScene &instance()
+        static auto instance() -> MainScene &
         {
             static MainScene instance;
             return instance;
@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         MainScene(const MainScene &) = delete;
 
-        MainScene &operator=(const MainScene &) = delete;
+        auto operator=(const MainScene &) -> MainScene & = delete;
 
         MainScene() = default;
 
@@ -35,36 +35,36 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Initializes the main scene.
          */
-        virtual auto initializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
          *  Called when the main scene is entered.
          */
-        virtual auto onEnterDerived() -> void override;
+        auto onEnterDerived() -> void override;
 
-        virtual auto onMouseDown(Uint8 mouseButton) -> void override;
+        auto onMouseDown(Uint8 mouseButton) -> void override;
 
-        virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
+        auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> void override;
 
-        virtual auto onMouseWheel(int delta) -> void override;
+        auto onMouseWheel(int delta) -> void override;
 
-        virtual auto onKeyDown(SDL_Keycode key) -> void override;
+        auto onKeyDown(SDL_Keycode key) -> void override;
 
-        virtual auto onKeyUp(SDL_Keycode key) -> void override;
+        auto onKeyUp(SDL_Keycode key) -> void override;
 
-        virtual auto onTextInput(std::string_view text) -> void override;
+        auto onTextInput(std::string_view text) -> void override;
 
-        virtual auto render() const -> void override;
+        auto render() const -> void override;
 
         /**
          *  Called every frame.
          */
-        virtual auto updateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
          *  Called every frame to render the scene.
          */
-        virtual auto renderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
         std::shared_ptr<GUIInteractionMenu> m_guiInteractionMenu{};

@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class World
     {
       public:
-        static World &instance()
+        static auto instance() -> World &
         {
             static World instance;
             return instance;
@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         World(const World &) = delete;
 
-        World &operator=(const World &) = delete;
+        auto operator=(const World &) -> World & = delete;
 
         World() = default;
 
@@ -44,7 +44,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The current world area.
          */
-        auto getCurrentWorldArea() -> std::shared_ptr<WorldArea> const
+        [[nodiscard]] auto getCurrentWorldArea() -> std::shared_ptr<WorldArea>
         {
             return m_currentWorldArea;
         }

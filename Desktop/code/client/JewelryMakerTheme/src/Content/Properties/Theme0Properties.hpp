@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class Theme0Properties
     {
       public:
-        static Theme0Properties &instance()
+        static auto instance() -> Theme0Properties &
         {
             static Theme0Properties instance;
             return instance;
@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         Theme0Properties(const Theme0Properties &) = delete;
 
-        Theme0Properties &operator=(const Theme0Properties &) = delete;
+        auto operator=(const Theme0Properties &) -> Theme0Properties & = delete;
 
         Theme0Properties() = default;
 
