@@ -31,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto QuestSystem::update() const -> void
     {
-        for (auto &quest : this->m_quests)
+        for (const auto &quest : this->m_quests)
         {
             if (quest->isCompleted)
             {

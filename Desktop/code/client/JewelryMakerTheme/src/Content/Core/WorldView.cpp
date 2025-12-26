@@ -54,7 +54,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerPos = Player::instance().getPosition();
         m_worldArea = World::instance().getCurrentWorldArea();
         m_worldAreaSize = m_worldArea->getSize();
-        m_rendTileSize = ThemeProperties::instance().getTileSize();
+        m_rendTileSize = ThemeProperties::getTileSize();
         m_hoveredCoordinate = TileHovering::getHoveredCoordinate();
 
         GroundRenderer::instance().setupState();
@@ -90,7 +90,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_tiles.clear();
 
-        GroundRenderer::instance().restoreState();
+        GroundRenderer::restoreState();
 
         // ModelRenderer::Instance().SetupState();
 

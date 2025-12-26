@@ -32,7 +32,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto worldArea{World::instance().getCurrentWorldArea()};
         auto playerPos{Player::instance().getPosition()};
-        auto gridSize{ThemeProperties::instance().getGridSize()};
+        auto gridSize{ThemeProperties::getGridSize()};
 
         // Iterate over the rendered tiles.
         for (auto yPos = 0; yPos < gridSize.height; yPos++)
@@ -132,8 +132,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto elevationSE{tileSE ? tileSE->getElevation() : 0.0F};
 
         // Get tile size and elevation height.
-        auto tileSize{ThemeProperties::instance().getTileSize()};
-        auto elevationHeight{ThemeProperties::instance().getElevationHeight()};
+        auto tileSize{ThemeProperties::getTileSize()};
+        auto elevationHeight{ThemeProperties::getElevationHeight()};
 
         // Convert tile coordinates to world space positions.
         auto worldXNW{xCoordinate * tileSize - tileSize / 2};

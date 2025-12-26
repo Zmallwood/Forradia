@@ -6,10 +6,14 @@
 #pragma once
 
 /* Includes */ // clang-format off
-  #include "ForradiaEngine/Common/General/Hash.hpp"
-  #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-  #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
-  #include <unordered_map>
+    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
+    #include <unordered_map>
+    #include <numbers>
+    #include <memory>
+    #include <glm/glm.hpp>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -63,18 +67,18 @@ namespace ForradiaEngine::JewelryMakerTheme
         constexpr static glm::vec3 k_sunDirectionRaw = glm::vec3(0.7F, 0.0F, 0.7F);
         // 45 degrees
         // NOLINTNEXTLINE(readability-magic-numbers)
-        constexpr static float k_sunElevation = M_PI / 4.0F;
+        constexpr static float k_sunElevation = std::numbers::pi / 4.0F;
         constexpr static auto k_tilesGroupSize{20};
-        glm::vec3 m_sunDirection;
+        glm::vec3 m_sunDirection{};
         std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
         std::unordered_map<int, std::unordered_map<int, std::vector<float>>> m_elevationsAll;
-        std::vector<TileData> m_tiles;
-        Point m_playerPos;
-        Size m_gridSize;
-        Size m_worldAreaSize;
-        Size m_groundGridSize;
-        std::shared_ptr<WorldArea> m_worldArea;
-        float m_rendTileSize;
-        Point m_hoveredCoordinate;
+        std::vector<TileData> m_tiles{};
+        Point m_playerPos{};
+        Size m_gridSize{};
+        Size m_worldAreaSize{};
+        Size m_groundGridSize{};
+        std::shared_ptr<WorldArea> m_worldArea{};
+        float m_rendTileSize{};
+        Point m_hoveredCoordinate{};
     };
 }

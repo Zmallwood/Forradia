@@ -86,7 +86,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ModelRenderer::instance().drawModel(
                         objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                         (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                        totModelScaling, ThemeProperties::instance().getElevationHeight());
+                        totModelScaling, ThemeProperties::getElevationHeight());
                 }
             // clang-format on
 
@@ -104,7 +104,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ModelRenderer::instance().drawModel(
                         entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                         (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                        totModelScaling, ThemeProperties::instance().getElevationHeight(),
+                        totModelScaling, ThemeProperties::getElevationHeight(),
                         levitationHeight);
                 }
             // clang-format on
@@ -130,7 +130,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     elevation += 0.01F;
                 }
 
-                ModelRenderer::instance().restoreState();
+                ModelRenderer::restoreState();
 
                 GroundRenderer::instance().setupState();
                 GroundRenderer::instance().drawTile(k_renderIDGroundSymbolHoveredTile,
