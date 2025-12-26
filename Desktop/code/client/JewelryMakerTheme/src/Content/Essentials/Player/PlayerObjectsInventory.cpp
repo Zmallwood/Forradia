@@ -14,7 +14,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Add starting objects.
         addObject("ObjectRedApple");
         addObject("ObjectRedApple");
-        addObject("ObjectPlasticAxe");
         addObject("ObjectChisel");
         addObject("ObjectHammer");
     }

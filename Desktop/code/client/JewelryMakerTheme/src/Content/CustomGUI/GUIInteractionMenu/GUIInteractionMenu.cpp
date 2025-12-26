@@ -29,11 +29,13 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         this->setVisible(false);
 
-        for (auto i = 0; i < k_maxNumMenuEntries; i++)
-        {
-            m_renderIDsMenuEntryStrings.push_back(
-                hash("GUIInteractionMenuEntryString" + std::to_string(i)));
-        }
+        /* Initialize the render IDs for the menu entries */ // clang-format off
+            for (auto i = 0; i < k_maxNumMenuEntries; i++)
+            {
+                m_renderIDsMenuEntryStrings.push_back(
+                    hash("GUIInteractionMenuEntryString" + std::to_string(i)));
+            }
+        // clang-format on
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
@@ -77,83 +79,88 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        // First check if clicked in inventory (or other GUI windows)
-        auto rightClickedInInventoryWindow{
-            GUIInventoryWindow::instance().getBounds().contains(mousePos)};
+        /* First check if clicked in inventory window */ // clang-format off
+            // First check if clicked in inventory (or other GUI windows)
+            auto rightClickedInInventoryWindow{
+                GUIInventoryWindow::instance().getBounds().contains(mousePos)};
 
-        if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
-        {
-            m_clickedCoordinate = {-1, -1};
-
-            m_clickedObjects.clear();
-
-            auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
-
-            if (object)
+            if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
             {
-                std::vector<int> objectHashes;
+                m_clickedCoordinate = {-1, -1};
 
-                objectHashes.push_back((*object)->getType());
+                m_clickedObjects.clear();
 
-                m_clickedObjects.push_back(object.get());
+                auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
 
-                this->showMenuForTileAndObjects(0, objectHashes);
+                if (object)
+                {
+                    std::vector<int> objectHashes;
 
-                return;
+                    objectHashes.push_back((*object)->getType());
+
+                    m_clickedObjects.push_back(object.get());
+
+                    this->showMenuForTileAndObjects(0, objectHashes);
+
+                    return;
+                }
             }
-        }
-        // If not clicked in inventory, check if clicked tile
+        // clang-format on
 
-        auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        /* If not clicked in inventory, check if clicked tile */ // clang-format off
+            auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
+            auto worldArea{World::instance().getCurrentWorldArea()};
 
-        m_clickedCoordinate = hoveredCoordinate;
+            m_clickedCoordinate = hoveredCoordinate;
 
-        auto tile{worldArea->getTile(hoveredCoordinate.x, hoveredCoordinate.y)};
+            auto tile{worldArea->getTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
-        auto objects{tile->getObjectsStack()->getObjects()};
+            auto objects{tile->getObjectsStack()->getObjects()};
 
-        auto ground{0};
+            auto ground{0};
 
-        if (tile)
-        {
-            ground = tile->getGround();
-        }
+            if (tile)
+            {
+                ground = tile->getGround();
+            }
 
-        std::vector<int> objectHashes;
+            std::vector<int> objectHashes;
 
-        for (auto &object : objects)
-        {
-            auto type{object->getType()};
+            for (auto &object : objects)
+            {
+                auto type{object->getType()};
 
-            objectHashes.push_back(type);
-        }
+                objectHashes.push_back(type);
+            }
 
-        this->showMenuForTileAndObjects(ground, objectHashes);
+            this->showMenuForTileAndObjects(ground, objectHashes);
+        // clang-format on
     }
 
     auto GUIInteractionMenu::showMenuForTileAndObjects(int groundHash,
                                                        const std::vector<int> &objectHashes) -> void
     {
-        std::vector<Action> actions{getAction<hash("ActionStop")>(),
-                                    getAction<hash("ActionLayCobbleStone")>(),
-                                    getAction<hash("ActionPlowLand")>(),
-                                    getAction<hash("ActionForage")>(),
-                                    getAction<hash("ActionCraftStonePickaxe")>(),
-                                    getAction<hash("ActionCraftStoneSlab")>(),
-                                    getAction<hash("ActionLayStoneSlab")>(),
-                                    getAction<hash("ActionCraftStoneBrick")>(),
-                                    getAction<hash("ActionCraftStoneWall")>(),
-                                    getAction<hash("ActionCraftStoneWallDoor")>(),
-                                    getAction<hash("ActionCraftStoneBowl")>(),
-                                    getAction<hash("ActionPickBranch")>(),
-                                    getAction<hash("ActionPickStone")>(),
-                                    getAction<hash("ActionMineStone")>(),
-                                    getAction<hash("ActionEatRedApple")>(),
-                                    getAction<hash("ActionOpenStoneBowl")>(),
-                                    getAction<hash("ActionCraftUnlitCampfire")>(),
-                                    getAction<hash("ActionOpenCampfire")>(),
-                                    getAction<hash("ActionLightUnlitCampfire")>()};
+        /* Add the actions to the menu */ // clang-format off
+            std::vector<Action> actions{getAction<hash("ActionStop")>(),
+                                        getAction<hash("ActionLayCobbleStone")>(),
+                                        getAction<hash("ActionPlowLand")>(),
+                                        getAction<hash("ActionForage")>(),
+                                        getAction<hash("ActionCraftStonePickaxe")>(),
+                                        getAction<hash("ActionCraftStoneSlab")>(),
+                                        getAction<hash("ActionLayStoneSlab")>(),
+                                        getAction<hash("ActionCraftStoneBrick")>(),
+                                        getAction<hash("ActionCraftStoneWall")>(),
+                                        getAction<hash("ActionCraftStoneWallDoor")>(),
+                                        getAction<hash("ActionCraftStoneBowl")>(),
+                                        getAction<hash("ActionPickBranch")>(),
+                                        getAction<hash("ActionPickStone")>(),
+                                        getAction<hash("ActionMineStone")>(),
+                                        getAction<hash("ActionEatRedApple")>(),
+                                        getAction<hash("ActionOpenStoneBowl")>(),
+                                        getAction<hash("ActionCraftUnlitCampfire")>(),
+                                        getAction<hash("ActionOpenCampfire")>(),
+                                        getAction<hash("ActionLightUnlitCampfire")>()};
+        // clang-format on
 
         auto &inventory{Player::instance().getObjectsInventoryRef()};
 
