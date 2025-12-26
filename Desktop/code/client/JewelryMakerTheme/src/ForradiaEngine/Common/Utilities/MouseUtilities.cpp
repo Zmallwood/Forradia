@@ -14,9 +14,9 @@ namespace ForradiaEngine
 {
     auto getNormalizedMousePosition(const std::shared_ptr<SDL_Window> &window) -> PointF
     {
-        { // Validation
+        /* Validation */ // clang-format off
             throwOnFalse(window != nullptr, "window is null");
-        }
+        // clang-format on
 
         int xPx;
         int yPx;

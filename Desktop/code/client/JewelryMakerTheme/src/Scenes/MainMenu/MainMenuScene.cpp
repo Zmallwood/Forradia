@@ -19,19 +19,26 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto MainMenuScene::initializeDerived() -> void
     {
         auto panel{std::make_shared<GUIPanel>("MainMenuScenePanel", 0.4f, 0.32f, 0.2f, 0.2f)};
+
         getGUI()->addChildComponent(panel);
 
-        auto btnPlay{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "",
-            [] { SceneManager::instance().goToScene("PlayScene"); }, "GUIButtonPlayBackground",
-            "GUIButtonPlayHoveredBackground")};
-        getGUI()->addChildComponent(btnPlay);
+        /* Adding Play button */ // clang-format off
+            auto btnPlay{std::make_shared<GUIButton>(
+                "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "",
+                [] { SceneManager::instance().goToScene("PlayScene"); }, "GUIButtonPlayBackground",
+                "GUIButtonPlayHoveredBackground")};
+                
+            getGUI()->addChildComponent(btnPlay);
+        // clang-format on
 
-        auto btnQuit{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f, 0.04f, "",
-            [] { Engine::instance().stop(); }, "GUIButtonQuitBackground",
-            "GUIButtonQuitHoveredBackground")};
-        getGUI()->addChildComponent(btnQuit);
+        /* Adding Quit button */ // clang-format off
+            auto btnQuit{std::make_shared<GUIButton>(
+                "MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f, 0.04f, "",
+                [] { Engine::instance().stop(); }, "GUIButtonQuitBackground",
+                "GUIButtonQuitHoveredBackground")};
+                
+            getGUI()->addChildComponent(btnQuit);
+        // clang-format on
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
     }

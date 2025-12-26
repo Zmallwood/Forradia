@@ -42,21 +42,25 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
-        auto btnInventoryWindow{std::make_shared<GUIButton>(
-            "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
-            [] { GUIInventoryWindow::instance().toggleVisibility(); },
-            "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
+        /* Adding Inventory Window button */ // clang-format off
+            auto btnInventoryWindow{std::make_shared<GUIButton>(
+                "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
+                convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+                [] { GUIInventoryWindow::instance().toggleVisibility(); },
+                "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
 
-        getGUI()->addChildComponent(btnInventoryWindow);
+            getGUI()->addChildComponent(btnInventoryWindow);
+        // clang-format on
 
-        auto btnSystemMenu{std::make_shared<GUIButton>(
-            "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
-            [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
-            "GUIButtonSystemMenuHoveredBackground")};
+        /* Adding System Menu button */ // clang-format off
+            auto btnSystemMenu{std::make_shared<GUIButton>(
+                "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
+                convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+                [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
+                "GUIButtonSystemMenuHoveredBackground")};
 
-        getGUI()->addChildComponent(btnSystemMenu);
+            getGUI()->addChildComponent(btnSystemMenu);
+        // clang-format on
 
         getGUI()->addChildComponent(GUISystemMenu::instancePtr());
 
@@ -66,19 +70,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIExperienceBar::instancePtr());
 
-        auto rightHandSlotPanel{std::make_shared<GUIPanel>(
-            "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
-            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
-            "GUIRightHandSlotBackground")};
+        /* Adding Right Hand Slot Panel */ // clang-format off
+            auto rightHandSlotPanel{std::make_shared<GUIPanel>(
+                "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
+                convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
+                "GUIRightHandSlotBackground")};
 
-        auto leftHandSlotPanel{std::make_shared<GUIPanel>(
-            "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
-            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
-            "GUILeftHandSlotBackground")};
+            getGUI()->addChildComponent(rightHandSlotPanel);
+        // clang-format on
 
-        getGUI()->addChildComponent(rightHandSlotPanel);
+        /* Adding Left Hand Slot Panel */ // clang-format off
+            auto leftHandSlotPanel{std::make_shared<GUIPanel>(
+                "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
+                convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
+                "GUILeftHandSlotBackground")};
 
-        getGUI()->addChildComponent(leftHandSlotPanel);
+            getGUI()->addChildComponent(leftHandSlotPanel);
+        // clang-format on
 
         m_guiInteractionMenu = GUIInteractionMenu::instancePtr();
     }

@@ -11,97 +11,93 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("GroundGrass")>() -> std::string
-    {
-        return "GroundGrass";
-    }
+    /* Define names for some of the hash codes */ // clang-format off
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("GroundGrass")>() -> std::string
+        {
+            return "GroundGrass";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("GroundWater")>() -> std::string
-    {
-        return "GroundWater";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("GroundWater")>() -> std::string
+        {
+            return "GroundWater";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("GroundRock")>() -> std::string
-    {
-        return "GroundRock";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("GroundRock")>() -> std::string
+        {
+            return "GroundRock";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("GroundDirt")>() -> std::string
-    {
-        return "GroundDirt";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("GroundDirt")>() -> std::string
+        {
+            return "GroundDirt";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("GroundCobbleStone")>() -> std::string
-    {
-        return "GroundCobbleStone";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("GroundCobbleStone")>() -> std::string
+        {
+            return "GroundCobbleStone";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectFirTree")>() -> std::string
-    {
-        return "ObjectFirTree";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectFirTree")>() -> std::string
+        {
+            return "ObjectFirTree";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectBirchTree")>() -> std::string
-    {
-        return "ObjectBirchTree";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectBirchTree")>() -> std::string
+        {
+            return "ObjectBirchTree";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectBush1")>() -> std::string
-    {
-        return "ObjectBush1";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectBush1")>() -> std::string
+        {
+            return "ObjectBush1";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectBush2")>() -> std::string
-    {
-        return "ObjectBush2";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectBush2")>() -> std::string
+        {
+            return "ObjectBush2";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectStoneBoulder")>() -> std::string
-    {
-        return "ObjectStoneBoulder";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectStoneBoulder")>() -> std::string
+        {
+            return "ObjectStoneBoulder";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectPinkFlower")>() -> std::string
-    {
-        return "ObjectPinkFlower";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectPinkFlower")>() -> std::string
+        {
+            return "ObjectPinkFlower";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("ObjectTallGrass")>() -> std::string
-    {
-        return "ObjectTallGrass";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("ObjectTallGrass")>() -> std::string
+        {
+            return "ObjectTallGrass";
+        }
 
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("CreatureWhiteRabbit")>() -> std::string
-    {
-        return "CreatureWhiteRabbit";
-    }
-
-    template <>
-    auto getNameFromHash<ForradiaEngine::hash("RobotMechWolf")>() -> std::string
-    {
-        return "RobotMechWolf";
-    }
+        template <>
+        auto getNameFromHash<ForradiaEngine::hash("CreatureWhiteRabbit")>() -> std::string
+        {
+            return "CreatureWhiteRabbit";
+        }
+    // clang-format on
 
     auto getNameFromAnyHash(int hashCode) -> std::string
     {
-        static constexpr std::array<std::string_view, 14> names{
-            "GroundGrass",         "GroundWater",        "GroundRock",       "GroundDirt",
-            "GroundCobbleStone",   "ObjectFirTree",      "ObjectBirchTree",  "ObjectBush1",
-            "ObjectBush2",         "ObjectStoneBoulder", "ObjectPinkFlower", "ObjectTallGrass",
-            "CreatureWhiteRabbit", "RobotMechWolf"};
+        static constexpr std::array<std::string_view, 13> names{
+            "GroundGrass",        "GroundWater",        "GroundRock",       "GroundDirt",
+            "GroundCobbleStone",  "ObjectFirTree",      "ObjectBirchTree",  "ObjectBush1",
+            "ObjectBush2",        "ObjectStoneBoulder", "ObjectPinkFlower", "ObjectTallGrass",
+            "CreatureWhiteRabbit"};
 
         auto nameResults = [&]<std::size_t... I>(std::index_sequence<I...>)
         {

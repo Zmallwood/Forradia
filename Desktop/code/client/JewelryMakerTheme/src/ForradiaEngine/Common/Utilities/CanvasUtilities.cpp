@@ -13,9 +13,9 @@ namespace ForradiaEngine
 {
     auto getCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size
     {
-        { // Validation
+        /* Validation */ // clang-format off
             throwOnFalse(window != nullptr, "window is null");
-        }
+        // clang-format on
 
         Size canvasSize;
 
@@ -26,9 +26,9 @@ namespace ForradiaEngine
 
     auto calcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float
     {
-        { // Validation
+        /* Validation */ // clang-format off
             throwOnFalse(window != nullptr, "window is null");
-        }
+        // clang-format on
 
         auto canvasSize{getCanvasSize(window)};
 
@@ -40,18 +40,18 @@ namespace ForradiaEngine
 
     auto convertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float
     {
-        { // Validation
-            throwOnFalse(window != nullptr, "window is null");
-        }
+        /* Validation */ // clang-format off
+                throwOnFalse(window != nullptr, "window is null");
+        // clang-format on
 
         return width * calcAspectRatio(window);
     }
 
     auto convertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float
     {
-        { // Validation
-            throwOnFalse(window != nullptr, "window is null");
-        }
+        /* Validation */ // clang-format off
+                throwOnFalse(window != nullptr, "window is null");
+        // clang-format on
 
         return height / calcAspectRatio(window);
     }

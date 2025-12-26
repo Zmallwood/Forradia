@@ -21,23 +21,31 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(panel);
 
-        auto btnNewGame{std::make_shared<GUIButton>(
-            "PlaySceneButtonNewGame", 0.45, 0.36, 0.1, 0.04, "",
-            [] { SceneManager::instance().goToScene("WorldGenerationScene"); },
-            "GUIButtonNewGameBackground", "GUIButtonNewGameHoveredBackground")};
+        /* Adding New Game button */ // clang-format off
+            auto buttonNewGame{std::make_shared<GUIButton>(
+                "PlaySceneButtonNewGame", 0.45, 0.36, 0.1, 0.04, "",
+                [] { SceneManager::instance().goToScene("WorldGenerationScene"); },
+                "GUIButtonNewGameBackground", "GUIButtonNewGameHoveredBackground")};
 
-        getGUI()->addChildComponent(btnNewGame);
+            getGUI()->addChildComponent(buttonNewGame);
+        // clang-format on
 
-        auto btnLoadGame{std::make_shared<GUIButton>(
-            "PlaySceneButtonLoadGame", 0.45f, 0.44f, 0.1f, 0.04f, "", [] {},
-            "GUIButtonLoadGameBackground", "GUIButtonLoadGameHoveredBackground")};
-        getGUI()->addChildComponent(btnLoadGame);
+        /* Adding Load Game button */ // clang-format off
+            auto buttonLoadGame{std::make_shared<GUIButton>(
+                "PlaySceneButtonLoadGame", 0.45f, 0.44f, 0.1f, 0.04f, "", [] {},
+                "GUIButtonLoadGameBackground", "GUIButtonLoadGameHoveredBackground")};
 
-        auto btnBack{std::make_shared<GUIButton>(
-            "PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "",
-            [] { SceneManager::instance().goToScene("MainMenuScene"); }, "GUIButtonBackBackground",
-            "GUIButtonBackHoveredBackground")};
-        getGUI()->addChildComponent(btnBack);
+            getGUI()->addChildComponent(buttonLoadGame);
+        // clang-format on
+
+        /* Adding Back button */ // clang-format off
+            auto buttonBack{std::make_shared<GUIButton>(
+                "PlaySceneButtonBack", 0.45f, 0.56f, 0.1f, 0.04f, "",
+                [] { SceneManager::instance().goToScene("MainMenuScene"); }, "GUIButtonBackBackground",
+                "GUIButtonBackHoveredBackground")};
+
+            getGUI()->addChildComponent(buttonBack);
+        // clang-format on
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
     }

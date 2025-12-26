@@ -17,11 +17,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto setupScenes() -> void
     {
-        SceneManager::instance().addScene("IntroScene", IntroScene::instance());
-        SceneManager::instance().addScene("MainMenuScene", MainMenuScene::instance());
-        SceneManager::instance().addScene("PlayScene", PlayScene::instance());
-        SceneManager::instance().addScene("WorldGenerationScene", WorldGenerationScene::instance());
-        SceneManager::instance().addScene("MainScene", MainScene::instance());
+        /* Adding scenes */ // clang-format off
+            SceneManager::instance().addScene("IntroScene", IntroScene::instance());
+            SceneManager::instance().addScene("MainMenuScene", MainMenuScene::instance());
+            SceneManager::instance().addScene("PlayScene", PlayScene::instance());
+            SceneManager::instance().addScene("WorldGenerationScene", WorldGenerationScene::instance());
+            SceneManager::instance().addScene("MainScene", MainScene::instance());
+        // clang-format on
 
         SceneManager::instance().goToScene("IntroScene");
     }

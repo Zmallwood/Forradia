@@ -28,6 +28,7 @@ namespace ForradiaEngine
         }
 
         m_textureEntries.clear();
+        
         m_textTextureIDs.clear();
     }
 
