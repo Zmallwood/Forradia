@@ -22,14 +22,16 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getCurrentWorldArea()};
         auto worldAreaSize{worldArea->getSize()};
 
-        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
-        {
-            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
+        /* Initialize the render IDs for the ground tiles */ // clang-format off
+            for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
             {
-                m_renderIDsGround[xPos][yPos] =
-                    hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
+                for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
+                {
+                    m_renderIDsGround[xPos][yPos] =
+                        hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
+                }
             }
-        }
+        // clang-format on
 
         m_sunDirection = glm::normalize(k_sunDirectionRaw);
     }
@@ -57,33 +59,34 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GroundRenderer::instance().setupState();
 
-        // First pass: Render ground tiles at extended distance.
-        for (auto yPos = 0; yPos < m_groundGridSize.height; yPos++)
-        {
-            for (auto xPos = 0; xPos < m_groundGridSize.width; xPos++)
+        /* First pass: Render ground tiles at extended distance */ // clang-format off
+            for (auto yPos = 0; yPos < m_groundGridSize.height; yPos++)
             {
-                auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
-                auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
-
-                if (xCoordinate % k_tilesGroupSize == 0 && yCoordinate % k_tilesGroupSize == 0)
+                for (auto xPos = 0; xPos < m_groundGridSize.width; xPos++)
                 {
-                    m_tiles.clear();
+                    auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
+                    auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-                    for (auto yy = 0; yy < k_tilesGroupSize; yy++)
+                    if (xCoordinate % k_tilesGroupSize == 0 && yCoordinate % k_tilesGroupSize == 0)
                     {
-                        for (auto xx = 0; xx < k_tilesGroupSize; xx++)
+                        m_tiles.clear();
+
+                        for (auto yy = 0; yy < k_tilesGroupSize; yy++)
                         {
-                            this->iterationGround(xPos + xx, yPos + yy);
+                            for (auto xx = 0; xx < k_tilesGroupSize; xx++)
+                            {
+                                this->iterationGround(xPos + xx, yPos + yy);
+                            }
                         }
-                    }
 
-                    if (!m_tiles.empty())
-                    {
-                        GroundRenderer::instance().drawTiles(m_tiles);
+                        if (!m_tiles.empty())
+                        {
+                            GroundRenderer::instance().drawTiles(m_tiles);
+                        }
                     }
                 }
             }
-        }
+        // clang-format on
 
         m_tiles.clear();
 
@@ -91,14 +94,15 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         // ModelRenderer::Instance().SetupState();
 
-        // Second pass: Render all except ground tiles.
-        for (auto yPos = 0; yPos < m_worldAreaSize.height; yPos++)
-        {
-            for (auto xPos = 0; xPos < m_worldAreaSize.width; xPos++)
+        /* Second pass: Render all except ground tiles */ // clang-format off
+            for (auto yPos = 0; yPos < m_worldAreaSize.height; yPos++)
             {
-                this->iterationAllExceptGround(xPos, yPos);
+                for (auto xPos = 0; xPos < m_worldAreaSize.width; xPos++)
+                {
+                    this->iterationAllExceptGround(xPos, yPos);
+                }
             }
-        }
+        // clang-format on
 
         // ModelRenderer::Instance().RestoreState();
     }
