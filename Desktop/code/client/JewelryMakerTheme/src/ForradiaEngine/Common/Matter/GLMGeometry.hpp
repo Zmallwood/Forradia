@@ -6,7 +6,6 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Texturing/Texture.hpp"
     #include <vector>
     #include <string>
     #include <glm/glm.hpp>
