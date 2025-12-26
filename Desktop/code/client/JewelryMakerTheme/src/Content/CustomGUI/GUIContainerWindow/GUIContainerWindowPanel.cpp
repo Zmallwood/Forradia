@@ -26,8 +26,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindowPanel::getObjectPtrPtr(PointF position) const
+    auto GUIContainerWindowPanel::getObjectPtrPtr(PointF position) const
+        -> std::shared_ptr<std::shared_ptr<Object>>
     {
         auto bounds{this->getBounds()};
         auto marginX{k_margin};

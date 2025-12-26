@@ -31,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize(parentWindow, containedObjects);
         }
 
-        std::shared_ptr<std::shared_ptr<Object>> getObjectPtrPtr(PointF position) const;
+        auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
       protected:
         auto updateDerived() -> void override;
