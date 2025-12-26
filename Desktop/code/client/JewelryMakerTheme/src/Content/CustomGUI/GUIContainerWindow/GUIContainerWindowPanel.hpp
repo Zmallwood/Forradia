@@ -7,6 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/GUICore/GUIPanel.hpp"
+    #include <unordered_map>
 // clang-format on
 
 namespace ForradiaEngine
@@ -23,7 +24,8 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
       public:
         GUIContainerWindowPanel(GUIWindow *parentWindow, ContainedObjects &containedObjects)
-            : GUIPanel("GUIContainerWindowPanel", 0.0F, 0.0F, 0.2F, 1.0F),
+            : GUIPanel("GUIContainerWindowPanel", k_defaultBounds.x, k_defaultBounds.y,
+                       k_defaultBounds.width, k_defaultBounds.height),
               m_parentWindow(parentWindow), m_containedObjects(containedObjects)
         {
             this->initialize();
@@ -36,9 +38,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
       private:
         auto initialize() -> void;
-
-        static constexpr float k_margin{0.005f};
-        static constexpr float k_slotSize{0.04f};
+        constexpr static RectF k_defaultBounds{0.0F, 0.0F, 0.2F, 1.0F};
+        static constexpr float k_margin{0.005F};
+        static constexpr float k_slotSize{0.04F};
         inline static const std::string k_slotImageName{"GUIContainerWindowSlotBackground"};
         const int k_maxNumSlots{60};
         std::unordered_map<int, int> m_renderIDsSlotsBackground{};

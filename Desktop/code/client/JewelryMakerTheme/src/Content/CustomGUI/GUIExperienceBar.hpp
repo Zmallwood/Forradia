@@ -32,13 +32,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GUIExperienceBar(const GUIExperienceBar &) = delete;
 
-        GUIExperienceBar &operator=(const GUIExperienceBar &) = delete;
+        auto operator=(const GUIExperienceBar &) -> GUIExperienceBar & = delete;
 
         /**
          *  Constructor.
          */
         GUIExperienceBar()
-            : GUIMeter("GUIExperienceBar", 0.0f, 1.0f - k_height, 1.0f, k_height, getFilledColor())
+            : GUIMeter("GUIExperienceBar", 0.0F, 1.0F - k_height, 1.0F, k_height, getFilledColor())
         {
         }
 
@@ -76,7 +76,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
 
       private:
-        constexpr static float k_height{0.012f};
-        float m_filledPercentage{0.0f};
+        constexpr static float k_height{0.012F};
+        float m_filledPercentage{0.0F};
     };
 }

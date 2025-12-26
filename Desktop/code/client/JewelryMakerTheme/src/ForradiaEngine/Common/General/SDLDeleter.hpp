@@ -5,12 +5,14 @@
 
 #pragma once
 
-struct SDL_Window;
-struct SDL_Renderer;
-struct SDL_Texture;
-struct SDL_Surface;
+/* Forward declarations */ // clang-format off
+    struct SDL_Window;
+    struct SDL_Renderer;
+    struct SDL_Texture;
+    struct SDL_Surface;
 
-using TTF_Font = struct _TTF_Font;
+    using TTF_Font = struct _TTF_Font;
+// clang-format on
 
 namespace ForradiaEngine
 {

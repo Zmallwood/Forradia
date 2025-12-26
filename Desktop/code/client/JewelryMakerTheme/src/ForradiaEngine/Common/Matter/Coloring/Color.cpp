@@ -14,17 +14,19 @@ namespace ForradiaEngine
 {
     auto Color::toSDLColor() const -> SDL_Color
     {
-        { // Validation
+        /* Validation */ // clang-format off
             throwOnFalse(r >= 0.0F && r <= 1.0F, "r is out of range");
             throwOnFalse(g >= 0.0F && g <= 1.0F, "g is out of range");
             throwOnFalse(b >= 0.0F && b <= 1.0F, "b is out of range");
             throwOnFalse(a >= 0.0F && a <= 1.0F, "a is out of range");
-        }
+        // clang-format on */
 
-        auto rUint{static_cast<Uint8>(r * k_maxColorComponentValue)};
-        auto gUint{static_cast<Uint8>(g * k_maxColorComponentValue)};
-        auto bUint{static_cast<Uint8>(b * k_maxColorComponentValue)};
-        auto aUint{static_cast<Uint8>(a * k_maxColorComponentValue)};
+        /* Calculations */ // clang-format off
+            auto rUint{static_cast<Uint8>(r * k_maxColorComponentValue)};
+            auto gUint{static_cast<Uint8>(g * k_maxColorComponentValue)};
+            auto bUint{static_cast<Uint8>(b * k_maxColorComponentValue)};
+            auto aUint{static_cast<Uint8>(a * k_maxColorComponentValue)};
+        // clang-format on */
 
         return {rUint, gUint, bUint, aUint};
     }

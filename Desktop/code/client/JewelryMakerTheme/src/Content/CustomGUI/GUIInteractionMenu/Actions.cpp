@@ -34,7 +34,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     .action = [](const std::shared_ptr<Tile> &tile,
                                 const std::vector<std::shared_ptr<Object> *> &objects)
                     {
-                        for (auto &object : objects)
+                        for (const auto &object : objects)
                         {
                             if ((*object)->getType() == hash("ObjectUnlitCampfire"))
                             {
@@ -60,7 +60,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     .action = [](const std::shared_ptr<Tile> &tile,
                                 const std::vector<std::shared_ptr<Object> *> &objects)
                     {
-                        for (auto &object : objects)
+                        for (const auto &object : objects)
                         {
                             if ((*object)->getType() == hash("ObjectUnlitCampfire") ||
                                 (*object)->getType() == hash("ObjectLitCampfire"))
@@ -100,7 +100,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         auto numBranchesInInventory{inventory.countHasObject("ObjectBranch")};
 
-                        if (numBranchesInInventory < 8)
+                        constexpr auto k_numBranchesRequired{8};
+
+                        if (numBranchesInInventory < k_numBranchesRequired)
                         {
                             GUIChatBox::instance().print("You need 8 branches to craft a campfire.");
                         }
@@ -108,10 +110,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                         {
                             tile->getObjectsStack()->addObject("ObjectUnlitCampfire");
 
-                            inventory.removeObject("ObjectBranch", 8);
+                            inventory.removeObject("ObjectBranch",k_numBranchesRequired);
 
                             GUIChatBox::instance().print("You craft a campfire.");
-
+                            
+                            // NOLINTNEXTLINE(readability-magic-numbers)
                             Player::instance().addExperience(10);
                             Player::instance().addPlayerAction(PlayerActionTypes::Craft,
                                                             "ObjectUnlitCampfire");
@@ -131,10 +134,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                     .action = [](const std::shared_ptr<Tile> &tile,
                                 const std::vector<std::shared_ptr<Object> *> &objects)
                     {
-                        for (auto &object : objects)
+                        for (const auto &object : objects)
                         {
                             if ((*object)->getType() == hash("ObjectStoneBowl"))
                             {
+                                // NOLINTNEXTLINE(readability-qualified-auto)
                                 auto mainScene{SceneManager::instance().getScene("MainScene")};
 
                                 auto gui{mainScene->getGUI()};
@@ -166,7 +170,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     .action = [](const std::shared_ptr<Tile> &tile,
                                 const std::vector<std::shared_ptr<Object> *> &objects)
                     {
-                        for (auto objPtr : objects)
+                        for (const auto &objPtr : objects)
                         {
                             if ((*objPtr)->getType() == hash("ObjectRedApple"))
                             {

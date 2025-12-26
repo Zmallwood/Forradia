@@ -42,7 +42,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_elevationsAll.clear();
 
-        m_gridSize = ThemeProperties::instance().getGridSize();
+        m_gridSize = ThemeProperties::getGridSize();
 
         // Calculate extended ground rendering size
         m_groundGridSize =
