@@ -26,7 +26,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveToSuitablePosition() -> void
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
         auto size{worldArea->getSize()};
 
         m_position = {size.width / 2, size.height / 2};
@@ -147,7 +147,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x};
             auto newY{m_position.y - 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -171,7 +171,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x + 1};
             auto newY{m_position.y};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -195,7 +195,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x};
             auto newY{m_position.y + 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -219,7 +219,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x - 1};
             auto newY{m_position.y};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -243,7 +243,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x + 1};
             auto newY{m_position.y - 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -267,7 +267,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x + 1};
             auto newY{m_position.y + 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -291,7 +291,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x - 1};
             auto newY{m_position.y + 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
@@ -315,7 +315,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newX{m_position.x - 1};
             auto newY{m_position.y - 1};
 
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {

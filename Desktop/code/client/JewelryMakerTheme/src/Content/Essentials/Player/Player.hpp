@@ -36,14 +36,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         Player &operator=(const Player &) = delete;
 
-        /**
-         *  Constructor.
-         */
-        Player()
-        {
-            // Initialize the player character.
-            this->initialize();
-        }
+        Player() = default;
+
+        auto initialize() -> void;
 
         auto update() -> void;
 
@@ -283,9 +278,12 @@ namespace ForradiaEngine::JewelryMakerTheme
             m_spouse = value;
         }
 
-      private:
-        auto initialize() -> void;
+        auto getWorldAreaCoordinate() const -> Point3
+        {
+            return m_worldAreaCoordinate;
+        }
 
+      private:
         auto moveToSuitablePosition() -> void;
 
         std::string m_name{"Unnamed Player"};
@@ -301,5 +299,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
         std::shared_ptr<Spouse> m_spouse{};
+        Point3 m_worldAreaCoordinate{0, 0, 0};
     };
 }

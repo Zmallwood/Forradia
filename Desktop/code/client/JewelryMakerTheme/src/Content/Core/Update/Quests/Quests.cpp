@@ -517,7 +517,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto BuildStoneWallsQuest::getNumIncompleteWallTiles(const std::set<Point> &wallPositions)
         -> int
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
         auto numIncompleteWallTiles{0};
 

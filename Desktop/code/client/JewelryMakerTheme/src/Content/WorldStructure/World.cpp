@@ -17,8 +17,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_worldAreas[0][0][0] = worldArea;
     }
 
-    auto World::getCurrentWorldArea() -> std::shared_ptr<WorldArea>
+    auto World::getWorldArea(Point3 coordinate) -> std::shared_ptr<WorldArea>
     {
-        return m_worldAreas[0][0][0];
+        return m_worldAreas[coordinate.x][coordinate.y][coordinate.z];
     }
 }

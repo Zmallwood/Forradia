@@ -30,7 +30,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto TileHovering::iterateOverRenderedTiles() -> void
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto playerPos{Player::instance().getPosition()};
         auto gridSize{ThemeProperties::getGridSize()};
 
@@ -102,7 +102,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         glm::vec3 rayDir{glm::normalize(glm::vec3(farPoint.x, farPoint.y, farPoint.z) - rayOrigin)};
 
         // Get the world area.
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
         // Get the tile coordinates.
         auto coordinateNW{Point{xCoordinate, yCoordinate}};

@@ -32,6 +32,7 @@
     #include "ForradiaEngine/GUICore/GUIPanel.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -93,6 +94,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto MainScene::onEnterDerived() -> void
     {
+        Player::instance().initialize();
+
         auto chatBoxHeight{GUIChatBox::instance().getBounds().height};
 
         auto experienceBarHeight{GUIExperienceBar::instance().getBounds().height};

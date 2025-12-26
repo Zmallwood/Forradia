@@ -133,7 +133,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /* If not clicked in inventory, check if clicked tile */ // clang-format off
             auto hoveredCoordinate{TileHovering::getHoveredCoordinate()};
-            auto worldArea{World::instance().getCurrentWorldArea()};
+            auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
             m_clickedCoordinate = hoveredCoordinate;
 
@@ -268,7 +268,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (rowBounds.contains(mousePosition))
             {
-                auto worldArea{World::instance().getCurrentWorldArea()};
+                auto worldArea{
+                    World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
                 auto tile{worldArea->getTile(m_clickedCoordinate)};
 

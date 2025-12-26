@@ -75,6 +75,26 @@ namespace ForradiaEngine
         };
 
         /**
+        *  Point in 3D space using dimensions of integer type.
+        */
+        class Point3
+        {
+          public:
+            /**
+            *  The x dimension.
+            */
+            int x{0};
+            /**
+            *  The y dimension.
+            */
+            int y{0};
+            /**
+            *  The z dimension.
+            */
+            int z{0};
+        };
+
+        /**
         *  Point in 3D space using dimensions of float type.
         */
         class Point3F

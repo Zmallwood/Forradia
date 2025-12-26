@@ -45,7 +45,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The current world area.
          */
-        [[nodiscard]] auto getCurrentWorldArea() -> std::shared_ptr<WorldArea>;
+        [[nodiscard]] auto getWorldArea(Point3 coordinate) -> std::shared_ptr<WorldArea>;
 
       private:
         std::unordered_map<

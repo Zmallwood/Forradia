@@ -12,6 +12,7 @@
     #include "Content/WorldStructure/WorldArea.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
     #include <glm/gtc/matrix_transform.hpp>
 // clang-format on
 
@@ -69,7 +70,8 @@ namespace ForradiaEngine
         // Computes the point in world space the camera should look at. This targets the center
         // of the player's current tile and uses the tile's elevation to set Z.
 
-        auto worldArea{JewelryMakerTheme::World::instance().getCurrentWorldArea()};
+        auto worldArea{JewelryMakerTheme::World::instance().getWorldArea(
+            JewelryMakerTheme::Player::instance().getWorldAreaCoordinate())};
         auto rendTileSize{JewelryMakerTheme::ThemeProperties::instance().getTileSize()};
         // auto playerPos{JewelryMakerTheme::Player::Instance().GetPosition()};
         auto playerSmoothPos{JewelryMakerTheme::Player::instance().getSmoothPosition()};

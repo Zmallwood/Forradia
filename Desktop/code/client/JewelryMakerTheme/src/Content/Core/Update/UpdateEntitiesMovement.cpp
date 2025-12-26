@@ -11,13 +11,14 @@
     #include "Content/WorldStructure/WorldArea.hpp" 
     #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateEntitiesMovement() -> void
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto &entities{worldArea->getEntitiesMirrorRef()};
 
         auto now{getTicks()};

@@ -8,13 +8,15 @@
     #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldGeneratorBase::prepare() -> void
     {
-        m_worldArea = JewelryMakerTheme::World::instance().getCurrentWorldArea();
+        m_worldArea = JewelryMakerTheme::World::instance().getWorldArea(
+            Player::instance().getWorldAreaCoordinate());
         m_worldAreaSize = m_worldArea->getSize();
         m_worldScaling = JewelryMakerTheme::ThemeProperties::getWorldScaling();
     }

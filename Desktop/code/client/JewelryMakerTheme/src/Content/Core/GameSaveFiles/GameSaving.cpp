@@ -13,6 +13,7 @@
     #include "Content/WorldStructure/WorldArea.hpp"
     #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
     #include "HashCodes.hpp"
+    #include "Content/Essentials/Player/Player.hpp"
     #include <fstream>
     #include <string>
 // clang-format on
@@ -21,7 +22,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GameSaving::saveGame() -> void
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
         // Validation
         if (!worldArea)
@@ -128,7 +129,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             return;
         }
 
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
         if (!worldArea)
         {

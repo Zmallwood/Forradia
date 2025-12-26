@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto WorldView::initialize() -> void
     {
-        auto worldArea{World::instance().getCurrentWorldArea()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto worldAreaSize{worldArea->getSize()};
 
         /* Initialize the render IDs for the ground tiles */ // clang-format off
@@ -52,7 +52,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                      m_gridSize.height * k_groundRenderingDistanceMultiplier)};
 
         m_playerPos = Player::instance().getPosition();
-        m_worldArea = World::instance().getCurrentWorldArea();
+        m_worldArea = World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate());
         m_worldAreaSize = m_worldArea->getSize();
         m_rendTileSize = ThemeProperties::getTileSize();
         m_hoveredCoordinate = TileHovering::getHoveredCoordinate();
