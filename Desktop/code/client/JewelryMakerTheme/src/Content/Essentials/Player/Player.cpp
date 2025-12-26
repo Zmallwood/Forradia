@@ -96,242 +96,244 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto Player::startMovingNorth() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::North;
-    }
-
-    auto Player::startMovingEast() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::East;
-    }
-
-    auto Player::startMovingSouth() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::South;
-    }
-
-    auto Player::startMovingWest() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::West;
-    }
-
-    auto Player::startMovingNorthWest() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::NorthWest;
-    }
-
-    auto Player::startMovingNorthEast() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::NorthEast;
-    }
-
-    auto Player::startMovingSouthWest() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::SouthWest;
-    }
-
-    auto Player::startMovingSouthEast() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::SouthEast;
-    }
-
-    auto Player::stopMoving() -> void
-    {
-        m_playerMoveDirection = PlayerMoveDirections::None;
-    }
-
-    auto Player::moveNorth() -> void
-    {
-        auto newX{m_position.x};
-        auto newY{m_position.y - 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+    /* Player movement */ // clang-format off
+        auto Player::startMovingNorth() -> void
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::North;
         }
-    }
 
-    auto Player::moveEast() -> void
-    {
-        auto newX{m_position.x + 1};
-        auto newY{m_position.y};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        auto Player::startMovingEast() -> void
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::East;
         }
-    }
 
-    auto Player::moveSouth() -> void
-    {
-        auto newX{m_position.x};
-        auto newY{m_position.y + 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        auto Player::startMovingSouth() -> void
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::South;
         }
-    }
 
-    auto Player::moveWest() -> void
-    {
-        auto newX{m_position.x - 1};
-        auto newY{m_position.y};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        auto Player::startMovingWest() -> void
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::West;
         }
-    }
 
-    auto Player::moveNorthEast() -> void
-    {
-        auto newX{m_position.x + 1};
-        auto newY{m_position.y - 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        auto Player::startMovingNorthWest() -> void
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
-            m_playerMoveDirection = PlayerMoveDirections::NorthEast;
-        }
-    }
-
-    auto Player::moveSouthEast() -> void
-    {
-        auto newX{m_position.x + 1};
-        auto newY{m_position.y + 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-        {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
-            m_playerMoveDirection = PlayerMoveDirections::SouthEast;
-        }
-    }
-
-    auto Player::moveSouthWest() -> void
-    {
-        auto newX{m_position.x - 1};
-        auto newY{m_position.y + 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-        {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
-            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
-        }
-    }
-
-    auto Player::moveNorthWest() -> void
-    {
-        auto newX{m_position.x - 1};
-        auto newY{m_position.y - 1};
-
-        auto worldArea{World::instance().getCurrentWorldArea()};
-
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-        {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
-            {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
-            }
-
-            m_position = {newX, newY};
-            m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
             m_playerMoveDirection = PlayerMoveDirections::NorthWest;
         }
-    }
+
+        auto Player::startMovingNorthEast() -> void
+        {
+            m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+        }
+
+        auto Player::startMovingSouthWest() -> void
+        {
+            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+        }
+
+        auto Player::startMovingSouthEast() -> void
+        {
+            m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+        }
+
+        auto Player::stopMoving() -> void
+        {
+            m_playerMoveDirection = PlayerMoveDirections::None;
+        }
+
+        auto Player::moveNorth() -> void
+        {
+            auto newX{m_position.x};
+            auto newY{m_position.y - 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::North;
+            }
+        }
+
+        auto Player::moveEast() -> void
+        {
+            auto newX{m_position.x + 1};
+            auto newY{m_position.y};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::East;
+            }
+        }
+
+        auto Player::moveSouth() -> void
+        {
+            auto newX{m_position.x};
+            auto newY{m_position.y + 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::South;
+            }
+        }
+
+        auto Player::moveWest() -> void
+        {
+            auto newX{m_position.x - 1};
+            auto newY{m_position.y};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::West;
+            }
+        }
+
+        auto Player::moveNorthEast() -> void
+        {
+            auto newX{m_position.x + 1};
+            auto newY{m_position.y - 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+            }
+        }
+
+        auto Player::moveSouthEast() -> void
+        {
+            auto newX{m_position.x + 1};
+            auto newY{m_position.y + 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+            }
+        }
+
+        auto Player::moveSouthWest() -> void
+        {
+            auto newX{m_position.x - 1};
+            auto newY{m_position.y + 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+            }
+        }
+
+        auto Player::moveNorthWest() -> void
+        {
+            auto newX{m_position.x - 1};
+            auto newY{m_position.y - 1};
+
+            auto worldArea{World::instance().getCurrentWorldArea()};
+
+            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            {
+                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+                for (auto object : objectsStack->getObjects())
+                {
+                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                    {
+                        return;
+                    }
+                }
+
+                m_position = {newX, newY};
+                m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
+                m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+            }
+        }
+    // clang-format on
 
     auto Player::addExperience(int experience) -> void
     {
