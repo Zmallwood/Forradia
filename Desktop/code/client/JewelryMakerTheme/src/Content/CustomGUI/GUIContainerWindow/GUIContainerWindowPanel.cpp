@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIContainerWindowPanel.hpp"
+#include "ForradiaEngine/GUICore/GUIComponent.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/GUICore/GUIWindow.hpp"
     #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
@@ -15,6 +16,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIContainerWindowPanel::initialize() -> void
     {
         for (auto i = 0; i < k_maxNumSlots; i++)
@@ -29,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIContainerWindowPanel::getObjectPtrPtr(PointF position) const
         -> std::shared_ptr<std::shared_ptr<Object>>
     {
-        auto bounds{this->getBounds()};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
         auto marginX{k_margin};
         auto marginY{convertWidthToHeight(k_margin, SDLDevice::instance().getWindow())};
         auto xStart{bounds.x + marginX};
