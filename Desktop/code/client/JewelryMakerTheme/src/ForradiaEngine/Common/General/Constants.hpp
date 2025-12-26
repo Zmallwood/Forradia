@@ -7,8 +7,12 @@
 
 namespace ForradiaEngine
 {
-    /// Number of milliseconds in one second.
+    /**
+     * Number of milliseconds in one second.
+     */
     static constexpr int k_oneSecMillis{1000};
-    /// Maximum value for a color component.
+    /**
+     * Maximum value for a color component.
+     */
     static constexpr int k_maxColorComponentValue{255};
 }
