@@ -16,5 +16,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         addObject("ObjectRedApple");
         addObject("ObjectChisel");
         addObject("ObjectHammer");
+        addObject("ObjectShovel");
     }
 }
