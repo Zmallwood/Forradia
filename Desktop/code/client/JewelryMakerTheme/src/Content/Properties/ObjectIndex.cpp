@@ -11,16 +11,18 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     ObjectIndex::ObjectIndex()
     {
-        addObjectEntry("ObjectFirTree", 2.0F, false, 0, false);
-        addObjectEntry("ObjectBirchTree", 2.0F, false, 0, false);
-        addObjectEntry("ObjectBush1", 1.2F, false, 0, false);
-        addObjectEntry("ObjectBush2", 1.2F, false, 0, false);
-        addObjectEntry("ObjectStoneWall", 0.8F, true, 0, true);
-        addObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, false);
-        addObjectEntry("ObjectStoneBowl", 1.0F, true, 4, false);
-        addObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8, false);
-        addObjectEntry("ObjectLitCampfire", 1.3F, true, 8, false);
-        addObjectEntry("ObjectStoneBoulder", 1.0F, false, 0, true);
+        /* Add some object entries for objects that need custom properties */ // clang-format off
+            addObjectEntry("ObjectFirTree", 2.0F, false, 0, false);
+            addObjectEntry("ObjectBirchTree", 2.0F, false, 0, false);
+            addObjectEntry("ObjectBush1", 1.2F, false, 0, false);
+            addObjectEntry("ObjectBush2", 1.2F, false, 0, false);
+            addObjectEntry("ObjectStoneWall", 0.8F, true, 0, true);
+            addObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, false);
+            addObjectEntry("ObjectStoneBowl", 1.0F, true, 4, false);
+            addObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8, false);
+            addObjectEntry("ObjectLitCampfire", 1.3F, true, 8, false);
+            addObjectEntry("ObjectStoneBoulder", 1.0F, false, 0, true);
+        // clang-format on
     }
 
     auto ObjectIndex::addObjectEntry(std::string_view objectName, float modelScaling,
