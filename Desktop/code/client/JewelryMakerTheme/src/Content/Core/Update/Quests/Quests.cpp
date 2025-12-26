@@ -29,7 +29,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                 // auto actionSecondArg{get<2>(entry)};
 
                 if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
-                    action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
+                    action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest ||
+                    action == PlayerActionTypes::MoveNorthEast || action == PlayerActionTypes::MoveSouthEast ||
+                    action == PlayerActionTypes::MoveSouthWest || action == PlayerActionTypes::MoveNorthWest)
                 {
                     numSteps++;
                 }
