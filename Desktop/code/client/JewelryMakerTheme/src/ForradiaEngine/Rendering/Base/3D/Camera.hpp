@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry/Point3F.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <glm/glm.hpp>
 // clang-format on
 

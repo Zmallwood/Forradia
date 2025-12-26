@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include "Quest.hpp"
     #include <set>
 // clang-format on

@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <memory>
 // clang-format on
 

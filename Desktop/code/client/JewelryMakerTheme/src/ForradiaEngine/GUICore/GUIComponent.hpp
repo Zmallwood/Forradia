@@ -6,8 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry/PointF.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry/RectF.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <SDL2/SDL.h>
     #include <memory>
     #include <vector>

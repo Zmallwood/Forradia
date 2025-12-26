@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <string>
 // clang-format on
 

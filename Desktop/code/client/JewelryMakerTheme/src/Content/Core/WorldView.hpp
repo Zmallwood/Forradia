@@ -7,8 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/General/Hash.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
     #include <unordered_map>
     #include <numbers>

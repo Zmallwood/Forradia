@@ -25,8 +25,7 @@
 #include <glm/gtx/projection.hpp>
 
 #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
-#include "ForradiaEngine/Common/Matter/Geometry/Size.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "ForradiaEngine/Common/General/Hash.hpp"
 #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
 #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
