@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "TileHovering.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
@@ -32,7 +32,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto worldArea{World::instance().getCurrentWorldArea()};
         auto playerPos{Player::instance().getPosition()};
-        auto gridSize{Theme0Properties::instance().getGridSize()};
+        auto gridSize{ThemeProperties::instance().getGridSize()};
 
         // Iterate over the rendered tiles.
         for (auto yPos = 0; yPos < gridSize.height; yPos++)
@@ -132,8 +132,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto elevationSE{tileSE ? tileSE->getElevation() : 0.0F};
 
         // Get tile size and elevation height.
-        auto tileSize{Theme0Properties::instance().getTileSize()};
-        auto elevationHeight{Theme0Properties::instance().getElevationHeight()};
+        auto tileSize{ThemeProperties::instance().getTileSize()};
+        auto elevationHeight{ThemeProperties::instance().getElevationHeight()};
 
         // Convert tile coordinates to world space positions.
         auto worldXNW{xCoordinate * tileSize - tileSize / 2};

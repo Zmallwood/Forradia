@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GroundRenderer.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
 // clang-format on
 
 namespace ForradiaEngine
@@ -19,7 +19,7 @@ namespace ForradiaEngine
         auto width{tileSize};
         auto height{tileSize};
 
-        auto elevationHeight{JewelryMakerTheme::Theme0Properties::instance().getElevationHeight()};
+        auto elevationHeight{JewelryMakerTheme::ThemeProperties::instance().getElevationHeight()};
 
         constexpr int k_elevIdx00{0};
         constexpr int k_elevIdx10{1};

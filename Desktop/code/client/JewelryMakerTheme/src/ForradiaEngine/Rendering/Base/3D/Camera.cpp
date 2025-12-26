@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "Camera.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
@@ -70,10 +70,10 @@ namespace ForradiaEngine
         // of the player's current tile and uses the tile's elevation to set Z.
 
         auto worldArea{JewelryMakerTheme::World::instance().getCurrentWorldArea()};
-        auto rendTileSize{JewelryMakerTheme::Theme0Properties::instance().getTileSize()};
+        auto rendTileSize{JewelryMakerTheme::ThemeProperties::instance().getTileSize()};
         // auto playerPos{JewelryMakerTheme::Player::Instance().GetPosition()};
         auto playerSmoothPos{JewelryMakerTheme::Player::instance().getSmoothPosition()};
-        auto elevHeight{JewelryMakerTheme::Theme0Properties::instance().getElevationHeight()};
+        auto elevHeight{JewelryMakerTheme::ThemeProperties::instance().getElevationHeight()};
         auto playerElevation{
             worldArea->getTile(playerSmoothPos.x, playerSmoothPos.y)->getElevation()};
 

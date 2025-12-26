@@ -16,20 +16,20 @@ namespace ForradiaEngine::JewelryMakerTheme
     /**
      *  Class for storing theme 0 properties.
      */
-    class Theme0Properties
+    class ThemeProperties
     {
       public:
-        static auto instance() -> Theme0Properties &
+        static auto instance() -> ThemeProperties &
         {
-            static Theme0Properties instance;
+            static ThemeProperties instance;
             return instance;
         }
 
-        Theme0Properties(const Theme0Properties &) = delete;
+        ThemeProperties(const ThemeProperties &) = delete;
 
-        auto operator=(const Theme0Properties &) -> Theme0Properties & = delete;
+        auto operator=(const ThemeProperties &) -> ThemeProperties & = delete;
 
-        Theme0Properties() = default;
+        ThemeProperties() = default;
 
         /**
          *  Get the game window title.

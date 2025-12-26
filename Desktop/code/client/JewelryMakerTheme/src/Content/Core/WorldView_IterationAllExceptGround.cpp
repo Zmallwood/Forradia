@@ -7,7 +7,7 @@
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Properties/CreatureIndex.hpp"
     #include "Content/Properties/ObjectIndex.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/Entity.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"
@@ -86,7 +86,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ModelRenderer::instance().drawModel(
                         objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                         (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                        totModelScaling, Theme0Properties::instance().getElevationHeight());
+                        totModelScaling, ThemeProperties::instance().getElevationHeight());
                 }
             // clang-format on
 
@@ -104,7 +104,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ModelRenderer::instance().drawModel(
                         entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                         (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                        totModelScaling, Theme0Properties::instance().getElevationHeight(),
+                        totModelScaling, ThemeProperties::instance().getElevationHeight(),
                         levitationHeight);
                 }
             // clang-format on

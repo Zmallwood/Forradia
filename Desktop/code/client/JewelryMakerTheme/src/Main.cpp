@@ -4,7 +4,7 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "ForradiaEngine/Engine.hpp"
     #include "Scenes/SetupScenes.hpp"
@@ -18,12 +18,12 @@ auto main(int argc, char **argv) -> int
     // clang-format on
 
     /* Initialization */ // clang-format off
-        Engine::initialize(Theme0Properties::getGameWindowTitle(),
-                                    Theme0Properties::getClearColor());
+        Engine::initialize(ThemeProperties::getGameWindowTitle(),
+                                    ThemeProperties::getClearColor());
         setupScenes();
 
-        World::instance().initialize(Theme0Properties::getBaseWorldAreaSize(),
-                                    Theme0Properties::getWorldScaling());
+        World::instance().initialize(ThemeProperties::getBaseWorldAreaSize(),
+                                    ThemeProperties::getWorldScaling());
     // clang-format on
 
     Engine::instance().run();

@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"

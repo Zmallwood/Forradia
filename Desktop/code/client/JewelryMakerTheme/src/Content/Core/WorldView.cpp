@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "WorldView.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp" 
     #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
@@ -42,7 +42,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_elevationsAll.clear();
 
-        m_gridSize = Theme0Properties::instance().getGridSize();
+        m_gridSize = ThemeProperties::instance().getGridSize();
 
         // Calculate extended ground rendering size
         m_groundGridSize =
@@ -54,7 +54,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerPos = Player::instance().getPosition();
         m_worldArea = World::instance().getCurrentWorldArea();
         m_worldAreaSize = m_worldArea->getSize();
-        m_rendTileSize = Theme0Properties::instance().getTileSize();
+        m_rendTileSize = ThemeProperties::instance().getTileSize();
         m_hoveredCoordinate = TileHovering::getHoveredCoordinate();
 
         GroundRenderer::instance().setupState();

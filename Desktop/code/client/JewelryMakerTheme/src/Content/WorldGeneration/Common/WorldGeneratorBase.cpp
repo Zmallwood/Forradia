@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "WorldGeneratorBase.hpp"
-    #include "Content/Properties/Theme0Properties.hpp"
+    #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
 // clang-format on
@@ -16,7 +16,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         m_worldArea = JewelryMakerTheme::World::instance().getCurrentWorldArea();
         m_worldAreaSize = m_worldArea->getSize();
-        m_worldScaling = JewelryMakerTheme::Theme0Properties::getWorldScaling();
+        m_worldScaling = JewelryMakerTheme::ThemeProperties::getWorldScaling();
     }
 
     auto WorldGeneratorBase::getDistance(int x1, int y1, int x2, int y2) -> float

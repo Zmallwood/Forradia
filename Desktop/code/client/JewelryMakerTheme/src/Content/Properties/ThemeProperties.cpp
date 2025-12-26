@@ -4,43 +4,43 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "Theme0Properties.hpp"
+    #include "ThemeProperties.hpp"
     #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto Theme0Properties::getGameWindowTitle() -> std::string
+    auto ThemeProperties::getGameWindowTitle() -> std::string
     {
         return "Forradia";
     }
 
-    auto Theme0Properties::getClearColor() -> Color
+    auto ThemeProperties::getClearColor() -> Color
     {
         return Palette::getColor<hash("MildBlue")>();
     }
 
-    auto Theme0Properties::getGridSize() -> Size
+    auto ThemeProperties::getGridSize() -> Size
     {
         return {45, 45};
     }
 
-    auto Theme0Properties::getBaseWorldAreaSize() -> Size
+    auto ThemeProperties::getBaseWorldAreaSize() -> Size
     {
         return {120, 100};
     }
 
-    auto Theme0Properties::getWorldScaling() -> float
+    auto ThemeProperties::getWorldScaling() -> float
     {
         return 5.0F;
     }
 
-    auto Theme0Properties::getTileSize() -> float
+    auto ThemeProperties::getTileSize() -> float
     {
         return 2.2F;
     }
 
-    auto Theme0Properties::getElevationHeight() -> float
+    auto ThemeProperties::getElevationHeight() -> float
     {
         return 0.15F;
     }
