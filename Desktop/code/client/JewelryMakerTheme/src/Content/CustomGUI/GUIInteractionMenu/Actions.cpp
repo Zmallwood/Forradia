@@ -170,6 +170,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     .action = [](const std::shared_ptr<Tile> &tile,
                                 const std::vector<std::shared_ptr<Object> *> &objects)
                     {
+                        // NOLINTNEXTLINE(readability-qualified-auto)
                         for (const auto &objPtr : objects)
                         {
                             if ((*objPtr)->getType() == hash("ObjectRedApple"))
@@ -200,6 +201,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You craft a stone bowl.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
                     }};
@@ -230,6 +232,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You craft a stone wall door.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Craft,
                                                         "ObjectStoneWallDoor", clickedCoordinate);
@@ -261,6 +264,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You craft a stone wall.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
                                                         clickedCoordinate);
@@ -284,6 +288,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         inventory.removeObject("ObjectStone");
                         inventory.addObject("ObjectStoneBrick");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Craft,
                                                         "ObjectStoneBrick");
@@ -315,6 +320,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You lay a stone slab.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
                     }};
@@ -339,6 +345,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You craft a stone slab.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
                     }};
@@ -380,6 +387,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     GUIChatBox::instance().print("You craft a stone pickaxe.");
 
+                    // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
                     Player::instance().addPlayerAction(PlayerActionTypes::Craft,
                                                        "ObjectStonePickaxe");
@@ -404,6 +412,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You mine some stone.");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
                     }};
@@ -501,6 +510,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         GUIChatBox::instance().print("Foraging... You found some "
                                                     "blueberries!");
 
+                        // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
                         Player::instance().addPlayerAction(PlayerActionTypes::Forage);
                     }};
