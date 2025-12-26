@@ -5,8 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
-    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
     #include "TextureBank.hpp"
     #include <SDL2/SDL.h>

@@ -7,7 +7,7 @@
     #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
     #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "TextRenderer.hpp"
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"

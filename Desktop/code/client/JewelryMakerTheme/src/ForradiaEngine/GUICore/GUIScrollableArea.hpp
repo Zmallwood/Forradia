@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIComponent.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
 // clang-format on
 
 namespace ForradiaEngine

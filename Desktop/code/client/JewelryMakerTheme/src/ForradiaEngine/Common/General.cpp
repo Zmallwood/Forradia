@@ -4,7 +4,7 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "SDLDeleter.hpp"
+    #include "General.hpp"
     #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
@@ -15,7 +15,7 @@ namespace ForradiaEngine
     auto SDLDeleter::operator()(SDL_Window *window) const -> void
     {
         /* Validation */ // clang-format off
-            throwOnFalse(window != nullptr, "window is null");
+        throwOnFalse(window != nullptr, "window is null");
         // clang-format on */
 
         SDL_DestroyWindow(window);

@@ -4,7 +4,7 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "TextRenderer.hpp"
     #include <SDL2/SDL.h>
     #include <GL/glew.h>

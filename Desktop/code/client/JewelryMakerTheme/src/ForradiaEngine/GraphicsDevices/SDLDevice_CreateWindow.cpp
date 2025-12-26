@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-    #include "ForradiaEngine/Common/General/SDLDeleter.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "SDLDevice.hpp"
 // clang-format on
 

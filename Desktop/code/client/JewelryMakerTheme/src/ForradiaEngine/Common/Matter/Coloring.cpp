@@ -4,10 +4,10 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-#include "Coloring.hpp"
-#include "ForradiaEngine/Common/General/Constants.hpp"
-#include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
-#include <SDL2/SDL.h>
+    #include "Coloring.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
+    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include <SDL2/SDL.h>
 // clang-format on
 
 namespace ForradiaEngine

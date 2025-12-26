@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "NumbersUtilities.hpp"
-    #include "ForradiaEngine/Common/General/Constants.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <cmath>
 // clang-format on
 

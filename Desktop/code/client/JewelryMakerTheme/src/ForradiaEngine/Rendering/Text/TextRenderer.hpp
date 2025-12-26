@@ -8,7 +8,7 @@
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "FontSizes.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <memory>
     #include <unordered_map>
 // clang-format on

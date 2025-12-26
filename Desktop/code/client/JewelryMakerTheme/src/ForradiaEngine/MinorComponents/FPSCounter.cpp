@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "FPSCounter.hpp"
-    #include "ForradiaEngine/Common/General/Constants.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
 // clang-format on
 

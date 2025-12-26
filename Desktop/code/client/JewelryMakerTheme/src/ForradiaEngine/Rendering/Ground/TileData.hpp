@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <vector>
 // clang-format on
 

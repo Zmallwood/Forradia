@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIPanel.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <functional>
 // clang-format on
 

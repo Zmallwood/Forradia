@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <SDL2/SDL.h>
     #include <memory>
 // clang-format on

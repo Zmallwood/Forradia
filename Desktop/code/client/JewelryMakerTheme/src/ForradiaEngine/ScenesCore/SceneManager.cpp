@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "SceneManager.hpp"
-    #include "ForradiaEngine/Common/General/Hash.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "IScene.hpp"
 // clang-format on
 

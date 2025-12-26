@@ -27,7 +27,7 @@
 #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-#include "ForradiaEngine/Common/General/Hash.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
 #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
 #include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
