@@ -68,8 +68,6 @@ namespace ForradiaEngine
       private:
         auto setupSDLWindow() -> void;
 
-        [[nodiscard]] static auto getScreenSize() -> Size;
-
         constexpr static Uint32 k_windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE |
                                               SDL_WINDOW_MAXIMIZED | SDL_WINDOW_FULLSCREEN_DESKTOP |
                                               SDL_WINDOW_OPENGL};
