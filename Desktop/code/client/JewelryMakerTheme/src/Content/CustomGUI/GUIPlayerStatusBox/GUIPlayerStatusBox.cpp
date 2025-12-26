@@ -18,7 +18,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIPlayerStatusBox::initialize() -> void
     {
         /* Add the well-being meter */ // clang-format off
-                auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+                auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06F, 0.1F, 0.12F, 0.015F)};
 
                 this->addChildComponent(wellBeingMeter);
         // clang-format on

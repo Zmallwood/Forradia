@@ -35,12 +35,12 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GUIInteractionMenu(const GUIInteractionMenu &) = delete;
 
-        GUIInteractionMenu &operator=(const GUIInteractionMenu &) = delete;
+        auto operator=(const GUIInteractionMenu &) -> GUIInteractionMenu & = delete;
 
         /**
          *  Constructor.
          */
-        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0f, 0.0f, 0.2f, 0.14f)
+        GUIInteractionMenu() : GUIPanel("GUIInteractionMenu", 0.0F, 0.0F, k_defaultWidth, 0.0F)
         {
             this->initialize();
         }
@@ -56,16 +56,6 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto showMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
             -> void;
-
-        /**
-         *  Gets the timed actions.
-         *
-         *  @return The timed actions.
-         */
-        auto &getTimedActionsRef()
-        {
-            return m_timedActions;
-        }
 
         /**
          *  Gets the clicked coordinate.
@@ -93,13 +83,15 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         static auto checkActionGroundMatches(Action &action, int groundHash) -> bool;
 
-        static auto checkActionObjectMatches(Action &action, const std::vector<int> &objectHashes) -> bool;
+        static auto checkActionObjectMatches(Action &action, const std::vector<int> &objectHashes)
+            -> bool;
 
         static auto checkActionInventoryObjectsMatches(Action &action) -> bool;
 
-        static constexpr float k_indentWidth{0.01f};
-        static constexpr float k_lineHeight{0.035f};
-        static constexpr float k_margin {0.01F};
+        static constexpr float k_indentWidth{0.01F};
+        static constexpr float k_lineHeight{0.035F};
+        static constexpr float k_margin{0.01F};
+        static constexpr float k_defaultWidth{0.2F};
         const int k_renderIDActionsString{hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
         constexpr static int k_renderIDHoveredRow{hash("GUIInteractionMenuHoveredRow")};
@@ -107,7 +99,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         std::vector<int> m_renderIDsMenuEntryStrings{};
         std::vector<GUIInteractionMenuEntry> m_entries{};
         Point m_clickedCoordinate{-1, -1};
-        std::unordered_map<int, int> m_timedActions{};
         std::vector<std::shared_ptr<Object> *> m_clickedObjects{};
     };
 }

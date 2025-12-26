@@ -16,7 +16,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class GUIInventoryWindow : public GUIContainerWindow
     {
       public:
-        static GUIInventoryWindow &instance()
+        static auto instance() -> GUIInventoryWindow &
         {
             static GUIInventoryWindow instance(Player::instance().getObjectsInventoryRef());
             return instance;
@@ -24,7 +24,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GUIInventoryWindow(const GUIInventoryWindow &) = delete;
 
-        GUIInventoryWindow &operator=(const GUIInventoryWindow &) = delete;
+        auto operator=(const GUIInventoryWindow &) -> GUIInventoryWindow & = delete;
 
         using GUIContainerWindow::GUIContainerWindow;
     };

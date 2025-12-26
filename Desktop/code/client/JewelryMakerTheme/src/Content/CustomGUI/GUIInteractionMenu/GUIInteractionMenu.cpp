@@ -334,14 +334,14 @@ namespace ForradiaEngine::JewelryMakerTheme
                                             bounds.y + k_margin, FontSizes::_20, false, true,
                                             Palette::getColor<hash("YellowTransparent")>());
 
-        auto i{0};
+        auto idx{0};
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        for (auto &entry : m_entries)
+        for (const auto &entry : m_entries)
         {
             auto rowBounds{
-                RectF{bounds.x, bounds.y + (i + 1) * k_lineHeight, bounds.width, k_lineHeight}};
+                RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
             if (rowBounds.contains(mousePos))
             {
@@ -350,12 +350,12 @@ namespace ForradiaEngine::JewelryMakerTheme
                     rowBounds.x, rowBounds.y, rowBounds.width, rowBounds.height, true);
             }
 
-            TextRenderer::instance().drawString(m_renderIDsMenuEntryStrings[i], entry.getLabel(),
+            TextRenderer::instance().drawString(m_renderIDsMenuEntryStrings[idx], entry.getLabel(),
                                                 bounds.x + k_margin + k_indentWidth,
-                                                bounds.y + k_margin + (i + 1) * k_lineHeight,
+                                                bounds.y + k_margin + (idx + 1) * k_lineHeight,
                                                 FontSizes::_20, false, true);
 
-            ++i;
+            ++idx;
         }
     }
 }
