@@ -29,7 +29,13 @@ namespace ForradiaEngine
          */
         auto operator-(const PointF &other) const -> PointF;
 
-        float x{0.0F}; ///< The x dimension.
-        float y{0.0F}; ///< The y dimension.
+        /**
+         *  The x dimension.
+         */
+        float x{0.0F};
+        /**
+         *  The y dimension.
+         */
+        float y{0.0F};
     };
 }

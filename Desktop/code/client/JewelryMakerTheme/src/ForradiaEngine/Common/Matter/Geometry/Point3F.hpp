@@ -13,8 +13,17 @@ namespace ForradiaEngine
     class Point3F
     {
       public:
-        float x{0.0F}; ///< The x dimension.
-        float y{0.0F}; ///< The y dimension.
-        float z{0.0F}; ///< The z dimension.
+        /**
+         *  The x dimension.
+         */
+        float x{0.0F};
+        /**
+         *  The y dimension.
+         */
+        float y{0.0F};
+        /**
+         *  The z dimension.
+         */
+        float z{0.0F};
     };
 }

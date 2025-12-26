@@ -20,9 +20,18 @@ namespace ForradiaEngine
     class GLMVertex
     {
       public:
-        glm::vec3 position{}; ///< The position.
-        glm::vec3 normal{};   ///< The normal.
-        glm::vec2 uv{};       ///< The texture coordinates.
+        /**
+         *  The position.
+         */
+        glm::vec3 position{};
+        /**
+         *  The normal.
+         */
+        glm::vec3 normal{};
+        /**
+         *  The texture coordinates.
+         */
+        glm::vec2 uv{};
     };
 
     /**
@@ -40,7 +49,10 @@ namespace ForradiaEngine
         {
         }
 
-        std::string path{}; ///< The path to the texture.
+        /**
+         *  The path to the texture.
+         */
+        std::string path{};
     };
 
     /**
@@ -63,8 +75,17 @@ namespace ForradiaEngine
         {
         }
 
-        std::vector<GLMVertex> vertices{};   ///< The vertices.
-        std::vector<unsigned int> indices{}; ///< The indices.
-        std::vector<Texture> textures{};     ///< The textures.
+        /**
+         *  The vertices.
+         */
+        std::vector<GLMVertex> vertices{};
+        /**
+         *  The indices.
+         */
+        std::vector<unsigned int> indices{};
+        /**
+         *  The textures.
+         */
+        std::vector<Texture> textures{};
     };
 }

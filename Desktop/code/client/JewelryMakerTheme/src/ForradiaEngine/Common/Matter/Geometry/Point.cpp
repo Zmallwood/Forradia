@@ -24,11 +24,11 @@ namespace ForradiaEngine
         return this->y < other.y;
     }
 
-    // auto Point::operator=(const Point &other) -> Point &
-    // {
-    //     this->x = other.x;
-    //     this->y = other.y;
+    auto Point::operator=(const Point &other) -> Point &
+    {
+        this->x = other.x;
+        this->y = other.y;
         
-    //     return *this;
-    // }
+        return *this;
+    }
 }

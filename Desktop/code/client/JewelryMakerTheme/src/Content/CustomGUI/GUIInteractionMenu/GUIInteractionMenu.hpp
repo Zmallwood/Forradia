@@ -8,6 +8,7 @@
 /* Includes */ // clang-format off
     #include "ForradiaEngine/GUICore/GUIPanel.hpp"
     #include "GUIInteractionMenuEntry.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry/Point.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
