@@ -19,67 +19,84 @@
 
 namespace ForradiaEngine
 {
-    auto Engine::initialize(std::string_view gameWindowTitle, Color clearColor) -> void
-    {
-        // Initialize random number generator so that unique random numbers are generated on
-        // each game run.
-        randomize();
-
-        // Initialize graphics devices.
-        SDLDevice::instance().initialize(gameWindowTitle, clearColor);
-        GLDevice::instance().initialize();
-
-        // Initialize renderers.
-        Color2DRenderer::instance().initialize();
-        Image2DRenderer::instance().initialize();
-        GroundRenderer::instance().initialize();
-        ModelRenderer::instance().initialize();
-    }
-
-    auto Engine::run() -> void
-    {
-        // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
-        // in the game.
-        try
+    /* Engine initialization */ // clang-format off
+        auto Engine::initialize(std::string_view gameWindowTitle, Color clearColor) -> void
         {
-            while (m_running)
+            // Initialize random number generator so that unique random numbers are generated on
+            // each game run.
+            randomize();
+
+            // Initialize graphics devices.
+            SDLDevice::instance().initialize(gameWindowTitle, clearColor);
+            GLDevice::instance().initialize();
+
+            // Initialize renderers.
+            Color2DRenderer::instance().initialize();
+            Image2DRenderer::instance().initialize();
+            GroundRenderer::instance().initialize();
+            ModelRenderer::instance().initialize();
+        }
+    // clang-format on
+
+    /* Engine run/stop */ // clang-format off
+        auto Engine::run() -> void
+        {
+            // Enclose the main game loop in a try-catch block, to catch exceptions thrown anywhere
+            // in the game.
+            try
             {
-                Cursor::instance().resetStyleToNormal();
+                /* Run main game loop */ // clang-format off
+                    while (m_running)
+                    {
+                        Cursor::instance().resetStyleToNormal();
 
-                this->handleEvents();
+                        this->handleEvents();
 
-                SceneManager::instance().updateCurrentScene();
-                FPSCounter::instance().update();
+                        SceneManager::instance().updateCurrentScene();
+                        FPSCounter::instance().update();
 
-                SDLDevice::instance().clearCanvas();
-                SceneManager::instance().renderCurrentScene();
-                Cursor::instance().render();
-                SDLDevice::instance().presentCanvas();
+                        SDLDevice::instance().clearCanvas();
+                        SceneManager::instance().renderCurrentScene();
+                        Cursor::instance().render();
+                        SDLDevice::instance().presentCanvas();
+                    }
+                // clang-format on
+            }
+            catch (std::exception &e)
+            {
+                printLine("Caught exception: " + std::string(e.what()));
             }
         }
-        catch (std::exception &e)
+
+        auto Engine::stop() -> void
         {
-            printLine("Caught exception: " + std::string(e.what()));
+            m_running = false;
         }
-    }
+    // clang-format on
 
-    auto Engine::stop() -> void
-    {
-        m_running = false;
-    }
-
-    auto Engine::handleEvents() -> void
-    {
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event) != 0)
+    /* Engine event handling */ // clang-format off
+        auto Engine::handleEvents() -> void
         {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-                this->stop();
-                break;
+            SDL_Event event;
 
+            while (SDL_PollEvent(&event) != 0)
+            {
+                this->handleSingleEvent(event);
+            }
+        }
+    // clang-format on
+
+    auto Engine::handleSingleEvent(SDL_Event &event) -> void
+    {
+        switch (event.type)
+        {
+        /* Quit event */ // clang-format off
+            case SDL_QUIT:
+            this->stop();
+            break;
+        // clang-format on
+
+        /* Keyboard events */ // clang-format off
             case SDL_KEYDOWN:
                 SceneManager::instance().onKeyDownCurrentScene(event.key.keysym.sym);
                 break;
@@ -91,7 +108,9 @@ namespace ForradiaEngine
             case SDL_TEXTINPUT:
                 SceneManager::instance().onTextInputCurrentScene(event.text.text);
                 break;
+        // clang-format on
 
+        /* Mouse event */ // clang-format off
             case SDL_MOUSEBUTTONDOWN:
             {
                 switch (event.button.button)
@@ -127,10 +146,10 @@ namespace ForradiaEngine
             }
             case SDL_MOUSEWHEEL:
                 SceneManager::instance().onMouseWheelCurrentScene(event.wheel.y);
-                break;
-            default:
-                break;
-            }
+        // clang-format on
+
+        default:
+            break;
         }
     }
 }

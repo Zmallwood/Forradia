@@ -52,6 +52,8 @@ namespace ForradiaEngine
       private:
         auto handleEvents() -> void;
 
+        auto handleSingleEvent(SDL_Event &event) -> void;
+
         bool m_running{true};
         int m_ticksLeftMouseButtonFired{0};
         int m_ticksRightMouseButtonFired{0};
