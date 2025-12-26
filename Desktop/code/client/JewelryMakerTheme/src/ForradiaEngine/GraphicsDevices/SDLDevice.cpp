@@ -5,6 +5,8 @@
 
 /* Includes */ // clang-format off
     #include "SDLDevice.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include <GL/gl.h>
 // clang-format on
 
@@ -18,6 +20,24 @@ namespace ForradiaEngine
         SDL_Init(SDL_INIT_EVERYTHING);
 
         this->setupSDLWindow();
+    }
+
+    auto SDLDevice::setupSDLWindow() -> void
+    {
+        auto screenSize{SDLDevice::getScreenSize()};
+
+        m_window = std::shared_ptr<SDL_Window>(
+            SDL_CreateWindow(m_gameWindowTitle.data(), SDL_WINDOWPOS_CENTERED,
+                             SDL_WINDOWPOS_CENTERED, screenSize.width, screenSize.height,
+                             k_windowFlags),
+            SDLDeleter());
+
+        if (m_window == nullptr)
+        {
+            throwError("Window could not be created. "
+                       "SDL Error: " +
+                       std::string(SDL_GetError()));
+        }
     }
 
     auto SDLDevice::clearCanvas() const -> void

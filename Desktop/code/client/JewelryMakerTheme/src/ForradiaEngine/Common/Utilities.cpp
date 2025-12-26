@@ -105,7 +105,7 @@ namespace ForradiaEngine
         auto printLine(std::string_view text) -> void
         {
             std::cout << text << std::endl;
-    }
+        }
     // clang-format on
 
     /* Randomization utilities */ // clang-format off
