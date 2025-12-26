@@ -7,7 +7,6 @@
     #include "WorldGenerationScene.hpp"
     #include "Content/WorldGeneration/Main/WorldGenerator.hpp"
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

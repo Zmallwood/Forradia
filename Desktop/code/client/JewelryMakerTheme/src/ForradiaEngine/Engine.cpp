@@ -14,7 +14,7 @@
     #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
-    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+    #include "ForradiaEngine/ScenesCore.hpp"
 // clang-format on
 
 namespace ForradiaEngine

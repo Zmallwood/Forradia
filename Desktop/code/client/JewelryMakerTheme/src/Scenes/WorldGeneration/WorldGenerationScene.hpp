@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/ScenesCore/IScene.hpp"
+    #include "ForradiaEngine/ScenesCore.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

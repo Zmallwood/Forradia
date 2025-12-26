@@ -10,7 +10,6 @@
     #include "ForradiaEngine/GUICore/GUILabel.hpp"
     #include "ForradiaEngine/MinorComponents/Cursor.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

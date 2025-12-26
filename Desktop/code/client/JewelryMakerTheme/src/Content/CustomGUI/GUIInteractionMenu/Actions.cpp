@@ -14,8 +14,7 @@
     #include "Content/WorldStructure/Tile.hpp"
     #include "ForradiaEngine/GUICore/GUI.hpp"
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-    #include "ForradiaEngine/ScenesCore/IScene.hpp"
-    #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
+    #include "ForradiaEngine/ScenesCore.hpp"
     #include "GUIInteractionMenu.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
