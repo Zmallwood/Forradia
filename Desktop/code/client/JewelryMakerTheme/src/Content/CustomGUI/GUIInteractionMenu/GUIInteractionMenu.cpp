@@ -244,11 +244,10 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (auto &entry : m_entries)
         {
-            auto menuEntryRect{RectF{bounds.x + 0.01f + k_indentWidth,
-                                     bounds.y + 0.01f + k_lineHeight * (i + 1), bounds.width,
-                                     k_lineHeight}};
+            auto rowBounds{
+                RectF{bounds.x, bounds.y + (i + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
-            if (menuEntryRect.contains(mousePosition))
+            if (rowBounds.contains(mousePosition))
             {
                 auto worldArea{World::instance().getCurrentWorldArea()};
 
