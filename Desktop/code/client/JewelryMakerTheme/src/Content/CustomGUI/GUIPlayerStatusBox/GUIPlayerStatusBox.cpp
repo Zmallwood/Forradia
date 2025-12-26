@@ -17,25 +17,31 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUIPlayerStatusBox::initialize() -> void
     {
-        auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
+        /* Add the well-being meter */ // clang-format off
+                auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06f, 0.1f, 0.12f, 0.015f)};
 
-        this->addChildComponent(wellBeingMeter);
+                this->addChildComponent(wellBeingMeter);
+        // clang-format on
 
-        m_wellBeingValueTextLabel =
-            std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
-                                       false, Palette::getColor<hash("Black")>());
+        /* Add the well-being value text label */ // clang-format off
+            m_wellBeingValueTextLabel =
+                std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+                                        false, Palette::getColor<hash("Black")>());
 
-        this->addChildComponent(m_wellBeingValueTextLabel);
+            this->addChildComponent(m_wellBeingValueTextLabel);
+        // clang-format on
     }
 
     auto GUIPlayerStatusBox::updateDerived() -> void
     {
         GUIPanel::updateDerived();
 
-        auto wellBeing{Player::instance().getWellBeing()};
-        auto maxWellBeing{Player::instance().getMaxWellBeing()};
+        /* Update the well-being value text label */ // clang-format off
+            auto wellBeing{Player::instance().getWellBeing()};
+            auto maxWellBeing{Player::instance().getMaxWellBeing()};
 
-        m_wellBeingValueTextLabel->setText(fmt::format("{} / {}", wellBeing, maxWellBeing));
+            m_wellBeingValueTextLabel->setText(fmt::format("{} / {}", wellBeing, maxWellBeing));
+        // clang-format on
     }
 
     auto GUIPlayerStatusBox::renderDerived() const -> void
@@ -44,16 +50,19 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto bounds{this->getBounds()};
 
-        TextRenderer::instance().drawString(k_renderIDNameString, Player::instance().getName(),
-                                            bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
-
         auto experience{Player::instance().getExperience()};
         auto level{calculateCurrentLevel(experience)};
 
-        TextRenderer::instance().drawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                            bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
-                                            false, true);
-        TextRenderer::instance().drawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                            bounds.y + 0.095f, FontSizes::_20);
+        /* Draw the status box components */ // clang-format off
+            TextRenderer::instance().drawString(k_renderIDNameString, Player::instance().getName(),
+                                                bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+
+            TextRenderer::instance().drawString(k_renderLevelString, fmt::format("Level: {}", level),
+                                                bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
+                                                false, true);
+                                                
+            TextRenderer::instance().drawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
+                                                bounds.y + 0.095f, FontSizes::_20);
+        // clang-format on
     }
 }

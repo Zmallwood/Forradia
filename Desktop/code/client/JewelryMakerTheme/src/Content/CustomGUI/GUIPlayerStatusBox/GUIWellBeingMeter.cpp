@@ -14,12 +14,14 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         GUIMeter::updateDerived();
 
-        auto &player{Player::instance()};
+        /* Update the filled percentage of the well-being meter */ // clang-format off
+            auto &player{Player::instance()};
 
-        auto health{player.getWellBeing()};
-        auto maxHealth{player.getMaxWellBeing()};
+            auto health{player.getWellBeing()};
+            auto maxHealth{player.getMaxWellBeing()};
 
-        m_filledPercentage = health / maxHealth;
+            m_filledPercentage = health / maxHealth;
+        // clang-format on
     }
 
     auto GUIWellBeingMeter::getFilledPercentage() const -> float
