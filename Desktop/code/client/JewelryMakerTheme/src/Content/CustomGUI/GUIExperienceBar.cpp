@@ -15,13 +15,9 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         GUIMeter::updateDerived();
 
-        auto &player{Player::instance()};
+        auto experience{Player::instance().getExperience()};
 
-        auto experience{player.getExperience()};
-
-        auto levelProgress{calculateFractionalExperienceProgress(experience)};
-
-        m_filledPercentage = levelProgress;
+        m_filledPercentage = calculateFractionalExperienceProgress(experience);
     }
 
     auto GUIExperienceBar::getFilledPercentage() const -> float
