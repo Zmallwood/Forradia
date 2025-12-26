@@ -13,18 +13,20 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto QuestSystem::initialize() -> void
     {
-        m_quests.push_back(std::make_shared<MoveQuest>());
-        m_quests.push_back(std::make_shared<ForageQuest>());
-        m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
-        m_quests.push_back(std::make_shared<CraftStoneBowlQuest>());
-        m_quests.push_back(std::make_shared<CraftCampfireQuest>());
-        m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
-        m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());
-        m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());
-        m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
-        m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
-        m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
-        m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
+        /* Add quests to the system */ // clang-format off
+            m_quests.push_back(std::make_shared<MoveQuest>());
+            m_quests.push_back(std::make_shared<ForageQuest>());
+            m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
+            m_quests.push_back(std::make_shared<CraftStoneBowlQuest>());
+            m_quests.push_back(std::make_shared<CraftCampfireQuest>());
+            m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
+            m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());
+            m_quests.push_back(std::make_shared<LayStoneSlabsQuest>());
+            m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
+            m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
+            m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
+            m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
+        // clang-format on
     }
 
     auto QuestSystem::update() const -> void

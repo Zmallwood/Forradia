@@ -17,34 +17,36 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto MoveQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numSteps{0};
+            auto numSteps{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
-                action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
+            for (const auto &entry : playerActions)
             {
-                numSteps++;
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
+                    action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest)
+                {
+                    numSteps++;
+                }
             }
-        }
 
-        m_numStepsLeft = 3 - numSteps;
+            m_numStepsLeft = 3 - numSteps;
 
-        if (numSteps >= 3)
-        {
-            isCompleted = true;
+            if (numSteps >= 3)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Movement. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Movement. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto MoveQuest::getStatus() const -> std::string
@@ -54,33 +56,35 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ForageQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numForagings{0};
+            auto numForagings{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Forage)
+            for (const auto &entry : playerActions)
             {
-                numForagings++;
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Forage)
+                {
+                    numForagings++;
+                }
             }
-        }
 
-        m_numForagingsLeft = 3 - numForagings;
+            m_numForagingsLeft = 3 - numForagings;
 
-        if (numForagings >= 3)
-        {
-            isCompleted = true;
+            if (numForagings >= 3)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Forage. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Forage. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto ForageQuest::getStatus() const -> std::string
@@ -90,41 +94,43 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStonePickaxeQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto idx{0};
+            auto idx{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Pick)
+            for (const auto &entry : playerActions)
             {
-                if (actionFirstArg == "ObjectBranch")
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Pick)
                 {
-                    m_numBranchPicked = true;
-                    Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"] =
-                        idx;
+                    if (actionFirstArg == "ObjectBranch")
+                    {
+                        m_numBranchPicked = true;
+                        Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"] =
+                            idx;
+                    }
+
+                    if (actionFirstArg == "ObjectStone")
+                    {
+                        m_numStonePicked = true;
+                    }
                 }
 
-                if (actionFirstArg == "ObjectStone")
+                if (action == PlayerActionTypes::Craft)
                 {
-                    m_numStonePicked = true;
+                    if (actionFirstArg == "ObjectStonePickaxe")
+                    {
+                        isCompleted = true;
+                    }
                 }
+
+                idx++;
             }
-
-            if (action == PlayerActionTypes::Craft)
-            {
-                if (actionFirstArg == "ObjectStonePickaxe")
-                {
-                    isCompleted = true;
-                }
-            }
-
-            idx++;
-        }
+        // clang-format on
     }
 
     auto CraftStonePickaxeQuest::getStatus() const -> std::string
@@ -144,34 +150,36 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStoneBowlQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto idx{0};
+            auto idx{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            for (const auto &entry : playerActions)
             {
-                m_stonedMined = true;
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
 
-                Player::instance().getQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] =
-                    idx;
-            }
-
-            if (action == PlayerActionTypes::Craft)
-            {
-                if (actionFirstArg == "ObjectStoneBowl")
+                if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
                 {
-                    isCompleted = true;
-                }
-            }
+                    m_stonedMined = true;
 
-            idx++;
-        }
+                    Player::instance().getQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"] =
+                        idx;
+                }
+
+                if (action == PlayerActionTypes::Craft)
+                {
+                    if (actionFirstArg == "ObjectStoneBowl")
+                    {
+                        isCompleted = true;
+                    }
+                }
+
+                idx++;
+            }
+        // clang-format on
     }
 
     auto CraftStoneBowlQuest::getStatus() const -> std::string
@@ -186,45 +194,47 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftCampfireQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto idx{0};
+            auto idx{0};
 
-        auto previousBranchPickQuestCompletionPoint{
-            Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"]};
+            auto previousBranchPickQuestCompletionPoint{
+                Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"]};
 
-        auto numPickedBranches{0};
+            auto numPickedBranches{0};
 
-        for (const auto &entry : playerActions)
-        {
-            if (idx <= previousBranchPickQuestCompletionPoint)
+            for (const auto &entry : playerActions)
             {
-                idx++;
-
-                continue;
-            }
-
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch")
-            {
-                ++numPickedBranches;
-            }
-
-            if (action == PlayerActionTypes::Craft)
-            {
-                if (actionFirstArg == "ObjectUnlitCampfire")
+                if (idx <= previousBranchPickQuestCompletionPoint)
                 {
-                    isCompleted = true;
+                    idx++;
+
+                    continue;
                 }
+
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch")
+                {
+                    ++numPickedBranches;
+                }
+
+                if (action == PlayerActionTypes::Craft)
+                {
+                    if (actionFirstArg == "ObjectUnlitCampfire")
+                    {
+                        isCompleted = true;
+                    }
+                }
+
+                idx++;
             }
 
-            idx++;
-        }
-
-        m_numBranchesLeft = k_numBranchesNeeded - numPickedBranches;
+            m_numBranchesLeft = k_numBranchesNeeded - numPickedBranches;
+        // clang-format on
     }
 
     auto CraftCampfireQuest::getStatus() const -> std::string
@@ -239,55 +249,57 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto MineStoneFromBoulderQuest1::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numMinedStones{0};
+            auto numMinedStones{0};
 
-        auto idx{0};
+            auto idx{0};
 
-        auto previousMineQuestCompletionPoint{
-            Player::instance().getQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
+            auto previousMineQuestCompletionPoint{
+                Player::instance().getQuestCompletionPointsRef()["MineStoneFromCraftStoneBowl"]};
 
-        for (const auto &entry : playerActions)
-        {
-            if (idx <= previousMineQuestCompletionPoint)
+            for (const auto &entry : playerActions)
             {
-                idx++;
-
-                continue;
-            }
-
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
-            {
-                numMinedStones++;
-
-                if (numMinedStones == k_numStonesNeeded)
+                if (idx <= previousMineQuestCompletionPoint)
                 {
-                    Player::instance().getQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] =
-                        idx;
+                    idx++;
 
-                    break;
+                    continue;
                 }
+
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+                {
+                    numMinedStones++;
+
+                    if (numMinedStones == k_numStonesNeeded)
+                    {
+                        Player::instance().getQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] =
+                            idx;
+
+                        break;
+                    }
+                }
+
+                idx++;
             }
 
-            idx++;
-        }
+            m_numMinedStonesLeft = k_numStonesNeeded - numMinedStones;
 
-        m_numMinedStonesLeft = k_numStonesNeeded - numMinedStones;
+            if (numMinedStones >= k_numStonesNeeded)
+            {
+                isCompleted = true;
 
-        if (numMinedStones >= k_numStonesNeeded)
-        {
-            isCompleted = true;
+                GUIChatBox::instance().print("Quest completed: Mine Stone. Obtained 50 XP.");
 
-            GUIChatBox::instance().print("Quest completed: Mine Stone. Obtained 50 XP.");
-
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto MineStoneFromBoulderQuest1::getStatus() const -> std::string
@@ -297,36 +309,38 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStoneSlabsQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numCraftedSlabs{0};
+            auto numCraftedSlabs{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Craft)
+            for (const auto &entry : playerActions)
             {
-                if (actionFirstArg == "ObjectStoneSlab")
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Craft)
                 {
-                    numCraftedSlabs++;
+                    if (actionFirstArg == "ObjectStoneSlab")
+                    {
+                        numCraftedSlabs++;
+                    }
                 }
             }
-        }
 
-        m_numCraftedSlabsLeft = k_numSlabsNeeded - numCraftedSlabs;
+            m_numCraftedSlabsLeft = k_numSlabsNeeded - numCraftedSlabs;
 
-        if (numCraftedSlabs >= k_numSlabsNeeded)
-        {
-            isCompleted = true;
+            if (numCraftedSlabs >= k_numSlabsNeeded)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Craft Stone Slabs. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto CraftStoneSlabsQuest::getStatus() const -> std::string
@@ -336,33 +350,35 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto LayStoneSlabsQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numLaidSlabs{0};
+            auto numLaidSlabs{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Lay)
+            for (const auto &entry : playerActions)
             {
-                numLaidSlabs++;
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Lay)
+                {
+                    numLaidSlabs++;
+                }
             }
-        }
 
-        m_numLaidSlabsLeft = k_numSlabsPlacedNeeded - numLaidSlabs;
+            m_numLaidSlabsLeft = k_numSlabsPlacedNeeded - numLaidSlabs;
 
-        if (numLaidSlabs >= k_numSlabsPlacedNeeded)
-        {
-            isCompleted = true;
+            if (numLaidSlabs >= k_numSlabsPlacedNeeded)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Lay Stone Slabs. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto LayStoneSlabsQuest::getStatus() const -> std::string
@@ -372,46 +388,48 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto MineStoneFromBoulderQuest2::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numMinedStones{0};
+            auto numMinedStones{0};
 
-        auto idx{0};
+            auto idx{0};
 
-        auto previousMineQuestCompletionPoint{
-            Player::instance().getQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
+            auto previousMineQuestCompletionPoint{
+                Player::instance().getQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"]};
 
-        for (const auto &entry : playerActions)
-        {
-            if (idx <= previousMineQuestCompletionPoint)
+            for (const auto &entry : playerActions)
             {
+                if (idx <= previousMineQuestCompletionPoint)
+                {
+                    idx++;
+                    continue;
+                }
+
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+                {
+                    numMinedStones++;
+                }
+
                 idx++;
-                continue;
             }
 
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
+            m_numMinedStonesLeft = k_numMinedStonesNeeded - numMinedStones;
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            if (numMinedStones >= k_numMinedStonesNeeded)
             {
-                numMinedStones++;
+                isCompleted = true;
+
+                GUIChatBox::instance().print("Quest completed: Mine Stone. Obtained 50 XP.");
+
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
             }
-
-            idx++;
-        }
-
-        m_numMinedStonesLeft = k_numMinedStonesNeeded - numMinedStones;
-
-        if (numMinedStones >= k_numMinedStonesNeeded)
-        {
-            isCompleted = true;
-
-            GUIChatBox::instance().print("Quest completed: Mine Stone. Obtained 50 XP.");
-
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+        // clang-format on
     }
 
     auto MineStoneFromBoulderQuest2::getStatus() const -> std::string
@@ -421,36 +439,38 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStoneBricksQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        auto numCraftedBricks{0};
+            auto numCraftedBricks{0};
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            // auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Craft)
+            for (const auto &entry : playerActions)
             {
-                if (actionFirstArg == "ObjectStoneBrick")
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                // auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Craft)
                 {
-                    numCraftedBricks++;
+                    if (actionFirstArg == "ObjectStoneBrick")
+                    {
+                        numCraftedBricks++;
+                    }
                 }
             }
-        }
 
-        m_numCraftedBricksLeft = k_numCraftedBricksNeeded - numCraftedBricks;
+            m_numCraftedBricksLeft = k_numCraftedBricksNeeded - numCraftedBricks;
 
-        if (numCraftedBricks >= k_numCraftedBricksNeeded)
-        {
-            isCompleted = true;
+            if (numCraftedBricks >= k_numCraftedBricksNeeded)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Craft Stone Bricks. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto CraftStoneBricksQuest::getStatus() const -> std::string
@@ -460,60 +480,64 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto BuildStoneWallsQuest::update() -> void
     {
-        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+        /* Quest logic */ // clang-format off
+            const auto &playerActions{Player::instance().getPlayerActionsRef()};
 
-        std::set<Point> wallPositions;
+            std::set<Point> wallPositions;
 
-        for (const auto &entry : playerActions)
-        {
-            auto action{get<0>(entry)};
-            auto actionFirstArg{get<1>(entry)};
-            auto actionSecondArg{get<2>(entry)};
-
-            if (action == PlayerActionTypes::Craft &&
-                (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
+            for (const auto &entry : playerActions)
             {
-                wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
+                auto action{get<0>(entry)};
+                auto actionFirstArg{get<1>(entry)};
+                auto actionSecondArg{get<2>(entry)};
+
+                if (action == PlayerActionTypes::Craft &&
+                    (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
+                {
+                    wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
+                }
             }
-        }
 
-        auto numIncompleteWallTiles{BuildStoneWallsQuest::getNumIncompleteWallTiles(wallPositions)};
+            auto numIncompleteWallTiles{BuildStoneWallsQuest::getNumIncompleteWallTiles(wallPositions)};
 
-        if (!wallPositions.empty() && numIncompleteWallTiles == 0)
-        {
-            isCompleted = true;
+            if (!wallPositions.empty() && numIncompleteWallTiles == 0)
+            {
+                isCompleted = true;
 
-            GUIChatBox::instance().print("Quest completed: Build Stone Walls. Obtained 50 XP.");
+                GUIChatBox::instance().print("Quest completed: Build Stone Walls. Obtained 50 XP.");
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            Player::instance().addExperience(50);
-        }
+                // NOLINTNEXTLINE(readability-magic-numbers)
+                Player::instance().addExperience(50);
+            }
+        // clang-format on
     }
 
     auto BuildStoneWallsQuest::getNumIncompleteWallTiles(const std::set<Point> &wallPositions)
         -> int
     {
-        auto numIncompleteWallTiles{0};
-
         auto worldArea{World::instance().getCurrentWorldArea()};
+
+        auto numIncompleteWallTiles{0};
 
         for (const auto &position : wallPositions)
         {
-            auto tileNorth{worldArea->getTile(position.x, position.y - 1)};
-            auto tileSouth{worldArea->getTile(position.x, position.y + 1)};
-            auto tileWest{worldArea->getTile(position.x - 1, position.y)};
-            auto tileEast{worldArea->getTile(position.x + 1, position.y)};
-            auto tileNorthEast{worldArea->getTile(position.x + 1, position.y - 1)};
-            auto tileSouthEast{worldArea->getTile(position.x + 1, position.y + 1)};
-            auto tileSouthWest{worldArea->getTile(position.x - 1, position.y + 1)};
-            auto tileNorthWest{worldArea->getTile(position.x - 1, position.y - 1)};
+            /* Get surrounding tiles */ // clang-format off
+                auto tileNorth{worldArea->getTile(position.x, position.y - 1)};
+                auto tileSouth{worldArea->getTile(position.x, position.y + 1)};
+                auto tileWest{worldArea->getTile(position.x - 1, position.y)};
+                auto tileEast{worldArea->getTile(position.x + 1, position.y)};
+                auto tileNorthEast{worldArea->getTile(position.x + 1, position.y - 1)};
+                auto tileSouthEast{worldArea->getTile(position.x + 1, position.y + 1)};
+                auto tileSouthWest{worldArea->getTile(position.x - 1, position.y + 1)};
+                auto tileNorthWest{worldArea->getTile(position.x - 1, position.y - 1)};
 
-            std::vector<std::shared_ptr<Tile>> tilesWithDiagonals{
-                tileNorth,     tileSouth,     tileWest,      tileEast,
-                tileNorthEast, tileSouthEast, tileSouthWest, tileNorthWest};
+                std::vector<std::shared_ptr<Tile>> tilesWithDiagonals{
+                    tileNorth,     tileSouth,     tileWest,      tileEast,
+                    tileNorthEast, tileSouthEast, tileSouthWest, tileNorthWest};
 
-            std::vector<std::shared_ptr<Tile>> tilesWithoutDiagonals{tileNorth, tileSouth, tileWest,
-                                                                     tileEast};
+                std::vector<std::shared_ptr<Tile>> tilesWithoutDiagonals{tileNorth, tileSouth, tileWest,
+                                                                        tileEast};
+            // clang-format on
 
             auto adjacentStoneSlabTiles{0};
 

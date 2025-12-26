@@ -13,211 +13,235 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    class MoveQuest : public Quest
-    {
-      public:
-        MoveQuest()
+    /* Move quest */ // clang-format off
+        class MoveQuest : public Quest
         {
-            this->name = "Movement";
-            this->description = "Try to walk somewhere, 3 times.";
-        }
+          public:
+            MoveQuest()
+            {
+                this->name = "Movement";
+                this->description = "Try to walk somewhere, 3 times.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        int m_numStepsLeft{3};
-    };
+          private:
+            int m_numStepsLeft{3};
+        };
+    // clang-format on
 
-    class ForageQuest : public Quest
-    {
-      public:
-        ForageQuest()
+    /* Forage quest */ // clang-format off
+        class ForageQuest : public Quest
         {
-            this->name = "Forage";
-            this->description = "Try to gather some resources, 3 times.";
-        }
+          public:
+            ForageQuest()
+            {
+                this->name = "Forage";
+                this->description = "Try to gather some resources, 3 times.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        int m_numForagingsLeft{3};
-    };
+          private:
+            int m_numForagingsLeft{3};
+        };
+    // clang-format on
 
-    class CraftStonePickaxeQuest : public Quest
-    {
-      public:
-        CraftStonePickaxeQuest()
+    /* Craft stone pickaxe quest */ // clang-format off
+        class CraftStonePickaxeQuest : public Quest
         {
-            this->name = "First Crafting: Stone Pickaxe";
-            this->description = "Craft a stone pickaxe.";
-        }
+          public:
+            CraftStonePickaxeQuest()
+            {
+                this->name = "First Crafting: Stone Pickaxe";
+                this->description = "Craft a stone pickaxe.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        bool m_numBranchPicked{false};
-        bool m_numStonePicked{false};
-    };
+          private:
+            bool m_numBranchPicked{false};
+            bool m_numStonePicked{false};
+        };
+    // clang-format on
 
-    class CraftStoneBowlQuest : public Quest
-    {
-      public:
-        CraftStoneBowlQuest()
+    /* Craft stone bowl quest */ // clang-format off
+        class CraftStoneBowlQuest : public Quest
         {
-            this->name = "Craft Stone Bowl";
-            this->description = "Craft a stone bowl.";
-        }
+          public:
+            CraftStoneBowlQuest()
+            {
+                this->name = "Craft Stone Bowl";
+                this->description = "Craft a stone bowl.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        bool m_stonedMined{false};
-    };
+          private:
+            bool m_stonedMined{false};
+        };
+    // clang-format on
 
-    class CraftCampfireQuest : public Quest
-    {
-      public:
-        CraftCampfireQuest()
+    /* Craft campfire quest */ // clang-format off
+        class CraftCampfireQuest : public Quest
         {
-            this->name = "Craft Campfire";
-            this->description = "Craft a campfire.";
-        }
+          public:
+            CraftCampfireQuest()
+            {
+                this->name = "Craft Campfire";
+                this->description = "Craft a campfire.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numBranchesNeeded{8};
-        int m_numBranchesLeft{k_numBranchesNeeded};
-    };
+          private:
+            constexpr static int k_numBranchesNeeded{8};
+            int m_numBranchesLeft{k_numBranchesNeeded};
+        };
+    // clang-format on
 
-    class MineStoneFromBoulderQuest1 : public Quest
-    {
-      public:
-        MineStoneFromBoulderQuest1()
+    /* Mine stone from boulder quest 1 */ // clang-format off
+        class MineStoneFromBoulderQuest1 : public Quest
         {
-            this->name = "Mine Stone";
-            this->description = "Mine 10 stones from a boulder.";
-        }
+          public:
+            MineStoneFromBoulderQuest1()
+            {
+                this->name = "Mine Stone";
+                this->description = "Mine 10 stones from a boulder.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numStonesNeeded{10};
-        int m_numMinedStonesLeft{k_numStonesNeeded};
-    };
+          private:
+            constexpr static int k_numStonesNeeded{10};
+            int m_numMinedStonesLeft{k_numStonesNeeded};
+        };
+    // clang-format on
 
-    class CraftStoneSlabsQuest : public Quest
-    {
-      public:
-        CraftStoneSlabsQuest()
+    /* Craft stone slabs quest */ // clang-format off
+        class CraftStoneSlabsQuest : public Quest
         {
-            this->name = "Craft Stone Slabs";
-            this->description = "Craft 10 stone slabs.";
-        }
+          public:
+            CraftStoneSlabsQuest()
+            {
+                this->name = "Craft Stone Slabs";
+                this->description = "Craft 10 stone slabs.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numSlabsNeeded{10};
-        int m_numCraftedSlabsLeft{k_numSlabsNeeded};
-    };
+          private:
+            constexpr static int k_numSlabsNeeded{10};
+            int m_numCraftedSlabsLeft{k_numSlabsNeeded};
+        };
+    // clang-format on
 
-    class LayStoneSlabsQuest : public Quest
-    {
-      public:
-        LayStoneSlabsQuest()
+    /* Lay stone slabs quest */ // clang-format off
+        class LayStoneSlabsQuest : public Quest
         {
-            this->name = "Lay Stone Slabs";
-            this->description = "Lay 10 stone slabs.";
-        }
+          public:
+            LayStoneSlabsQuest()
+            {
+                this->name = "Lay Stone Slabs";
+                this->description = "Lay 10 stone slabs.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numSlabsPlacedNeeded{10};
-        int m_numLaidSlabsLeft{k_numSlabsPlacedNeeded};
-    };
+          private:
+            constexpr static int k_numSlabsPlacedNeeded{10};
+            int m_numLaidSlabsLeft{k_numSlabsPlacedNeeded};
+        };
+    // clang-format on
 
-    class MineStoneFromBoulderQuest2 : public Quest
-    {
-      public:
-        MineStoneFromBoulderQuest2()
+    /* Mine stone from boulder quest 2 */ // clang-format off
+        class MineStoneFromBoulderQuest2 : public Quest
         {
-            this->name = "Mine Stone";
-            this->description = "Mine 10 stones from a boulder.";
-        }
+          public:
+            MineStoneFromBoulderQuest2()
+            {
+                this->name = "Mine Stone";
+                this->description = "Mine 10 stones from a boulder.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numMinedStonesNeeded{10};
-        int m_numMinedStonesLeft{k_numMinedStonesNeeded};
-    };
+          private:
+            constexpr static int k_numMinedStonesNeeded{10};
+            int m_numMinedStonesLeft{k_numMinedStonesNeeded};
+        };
+    // clang-format on
 
-    class CraftStoneBricksQuest : public Quest
-    {
-      public:
-        CraftStoneBricksQuest()
+    /* Craft stone bricks quest */ // clang-format off
+        class CraftStoneBricksQuest : public Quest
         {
-            this->name = "Craft Stone Bricks";
-            this->description = "Craft 10 stone bricks.";
-        }
+          public:
+            CraftStoneBricksQuest()
+            {
+                this->name = "Craft Stone Bricks";
+                this->description = "Craft 10 stone bricks.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        constexpr static int k_numCraftedBricksNeeded{10};
-        int m_numCraftedBricksLeft{k_numCraftedBricksNeeded};
-    };
+          private:
+            constexpr static int k_numCraftedBricksNeeded{10};
+            int m_numCraftedBricksLeft{k_numCraftedBricksNeeded};
+        };
+    // clang-format on
 
-    class BuildStoneWallsQuest : public Quest
-    {
-      public:
-        BuildStoneWallsQuest()
+    /* Build stone walls quest */ // clang-format off
+        class BuildStoneWallsQuest : public Quest
         {
-            this->name = "Build Stone Wall";
-            this->description = "Build stone walls (and a door) around the stone slabs floor.";
-        }
+          public:
+            BuildStoneWallsQuest()
+            {
+                this->name = "Build Stone Wall";
+                this->description = "Build stone walls (and a door) around the stone slabs floor.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
+            [[nodiscard]] auto getStatus() const -> std::string override;
 
-      private:
-        static auto getNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
-    };
+          private:
+            static auto getNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
+        };
+    // clang-format on
 
-    class PlaceSpouseQuest : public Quest
-    {
-      public:
-        PlaceSpouseQuest()
+    /* Place spouse quest */ // clang-format off
+        class PlaceSpouseQuest : public Quest
         {
-            this->name = "Place Spouse";
-            this->description = "Invite your spouse to the house.";
-        }
+          public:
+            PlaceSpouseQuest()
+            {
+                this->name = "Place Spouse";
+                this->description = "Invite your spouse to the house.";
+            }
 
-        auto update() -> void override;
+            auto update() -> void override;
 
-        [[nodiscard]] auto getStatus() const -> std::string override;
-    };
+            [[nodiscard]] auto getStatus() const -> std::string override;
+        };
+    // clang-format on
 }
