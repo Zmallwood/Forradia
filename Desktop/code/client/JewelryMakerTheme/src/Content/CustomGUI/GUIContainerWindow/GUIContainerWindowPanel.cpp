@@ -96,9 +96,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto index{0};
 
-        for (auto y = 0; y < numRows; y++)
+        for (auto yPos = 0; yPos < numRows; yPos++)
         {
-            for (auto x = 0; x < numColumns; x++)
+            for (auto xPos = 0; xPos < numColumns; xPos++)
             {
 
                 if (index >= m_containedObjects.size())
@@ -108,7 +108,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 ++index;
 
-                auto index{x + y * numColumns};
+                auto index{xPos + yPos * numColumns};
 
                 int renderIDBackground{0};
 
@@ -126,8 +126,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 Image2DRenderer::instance().drawImageByName(
                     renderIDBackground, k_slotImageName,
-                    xStart + static_cast<float>(x) * (slotWidth + marginX),
-                    yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth, slotHeight,
+                    xStart + static_cast<float>(xPos) * (slotWidth + marginX),
+                    yStart + static_cast<float>(yPos) * (slotHeight + marginY), slotWidth, slotHeight,
                     true);
 
                 if (auto inventoryObject{objectsContainer.getObject(index)})
@@ -149,8 +149,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     Image2DRenderer::instance().drawImageByHash(
                         renderIDObject, inventoryObject->getType(),
-                        xStart + static_cast<float>(x) * (slotWidth + marginX),
-                        yStart + static_cast<float>(y) * (slotHeight + marginY), slotWidth,
+                        xStart + static_cast<float>(xPos) * (slotWidth + marginX),
+                        yStart + static_cast<float>(yPos) * (slotHeight + marginY), slotWidth,
                         slotHeight, true);
                 }
             }
