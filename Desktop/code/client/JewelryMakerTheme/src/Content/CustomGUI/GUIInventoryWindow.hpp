@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "GUIContainerWindow.hpp"
+    #include "GUIContainerWindow/GUIContainerWindow.hpp"
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
 // clang-format on

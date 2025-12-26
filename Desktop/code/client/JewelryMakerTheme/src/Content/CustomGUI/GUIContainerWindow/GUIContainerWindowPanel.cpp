@@ -4,51 +4,17 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "GUIContainerWindow.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/WorldStructure/ContainedObjects.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-    #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
-    #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
+    #include "GUIContainerWindowPanel.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+    #include "ForradiaEngine/GUICore/GUIWindow.hpp"
+    #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
+    #include "Content/WorldStructure/ContainedObjects.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+    #include "Content/WorldStructure/Object.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto GUIContainerWindow::initialize(ContainedObjects &containedObjects) -> void
-    {
-        m_guiContainerWindowArea = std::make_shared<GUIContainerWindowArea>(this, containedObjects);
-
-        this->addChildComponent(m_guiContainerWindowArea);
-    }
-
-    std::shared_ptr<std::shared_ptr<Object>>
-    GUIContainerWindow::getObjectPtrPtr(PointF position) const
-    {
-        return m_guiContainerWindowArea->getObjectPtrPtr(position);
-    }
-
-    auto GUIContainerWindowArea::initialize(GUIWindow *parentWindow,
-                                            ContainedObjects &containedObjects) -> void
-    {
-        m_panel = std::make_shared<GUIContainerWindowPanel>(parentWindow, containedObjects);
-
-        this->addChildComponent(m_panel);
-    }
-
-    auto GUIContainerWindowArea::getObjectPtrPtr(PointF position) const
-        -> std::shared_ptr<std::shared_ptr<Object>>
-    {
-        return m_panel->getObjectPtrPtr(position);
-    }
-
-    auto GUIContainerWindowArea::updateDerived() -> void
-    {
-        GUIScrollableArea::updateDerived();
-    }
-
     auto GUIContainerWindowPanel::initialize() -> void
     {
         for (auto i = 0; i < k_maxNumSlots; i++)
