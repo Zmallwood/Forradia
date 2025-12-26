@@ -29,7 +29,7 @@ namespace ForradiaEngine
          */
         auto operator<(const Point &other) const -> bool;
 
-        auto operator=(const Point &other) -> Point &;
+        //auto operator=(const Point &other) -> Point &;
 
         int x{0}; ///< The x dimension.
         int y{0}; ///< The y dimension.
