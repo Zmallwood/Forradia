@@ -5,13 +5,15 @@
 
 /* Includes */ // clang-format off
     #include "GUIContainerWindowPanel.hpp"
-#include "ForradiaEngine/GUICore/GUIComponent.hpp"
+    #include "ForradiaEngine/GUICore/GUIComponent.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/GUICore/GUIWindow.hpp"
     #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
     #include "Content/WorldStructure/ContainedObjects.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "Content/WorldStructure/Object.hpp"
+    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -49,14 +51,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto &objectsContainer{m_containedObjects};
 
-        for (auto y = 0; y < numRows; y++)
+        for (auto yPos = 0; yPos < numRows; yPos++)
         {
-            for (auto x = 0; x < numColumns; x++)
+            for (auto xPos = 0; xPos < numColumns; xPos++)
             {
-                auto index{x + y * numColumns};
+                auto index{xPos + yPos * numColumns};
 
-                auto slotX{xStart + static_cast<float>(x) * (slotWidth + marginX)};
-                auto slotY{yStart + static_cast<float>(y) * (slotHeight + marginY)};
+                auto slotX{xStart + static_cast<float>(xPos) * (slotWidth + marginX)};
+                auto slotY{yStart + static_cast<float>(yPos) * (slotHeight + marginY)};
 
                 auto slotArea{RectF{slotX, slotY, slotWidth, slotHeight}};
 
@@ -74,9 +76,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto GUIContainerWindowPanel::renderDerived() const -> void
     {
-        GUIPanel::renderDerived();
+        dynamic_cast<const GUIPanel *>(this)->GUIPanel::renderDerived();
 
-        auto bounds{this->getBounds()};
+        auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
         auto marginX{k_margin};
         auto marginY{convertWidthToHeight(k_margin, SDLDevice::instance().getWindow())};
         auto xStart{bounds.x + marginX};
@@ -92,19 +94,19 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto &objectsContainer{m_containedObjects};
 
-        auto i{0};
+        auto index{0};
 
         for (auto y = 0; y < numRows; y++)
         {
             for (auto x = 0; x < numColumns; x++)
             {
 
-                if (i >= m_containedObjects.size())
+                if (index >= m_containedObjects.size())
                 {
                     continue;
                 }
 
-                ++i;
+                ++index;
 
                 auto index{x + y * numColumns};
 
