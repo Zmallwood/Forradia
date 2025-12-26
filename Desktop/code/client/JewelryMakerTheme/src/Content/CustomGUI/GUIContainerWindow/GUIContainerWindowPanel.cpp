@@ -12,9 +12,7 @@
     #include "Content/WorldStructure/ContainedObjects.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "Content/WorldStructure/Object.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

@@ -6,9 +6,8 @@
 /* Includes */ // clang-format off
     #include "ModelBank.hpp"
     #include "Construction/Model.hpp"
-    #include "ForradiaEngine/Common/Utilities/FilePathUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
     #include <SDL2/SDL.h>
     #include <filesystem>
 // clang-format on

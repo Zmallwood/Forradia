@@ -17,7 +17,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
     #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
     #include "GUIInteractionMenu.hpp"
-    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp" // getTicks()
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

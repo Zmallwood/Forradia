@@ -10,7 +10,7 @@
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "WorldView.hpp"
 // clang-format on
 

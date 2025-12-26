@@ -24,12 +24,7 @@
 #include <glm/gtx/intersect.hpp>
 #include <glm/gtx/projection.hpp>
 
-#include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Common/General.hpp"
-#include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
-#include "ForradiaEngine/Common/Utilities/MessageUtilities.hpp"

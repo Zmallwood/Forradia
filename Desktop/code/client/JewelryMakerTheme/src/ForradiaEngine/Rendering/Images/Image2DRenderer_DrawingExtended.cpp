@@ -4,7 +4,7 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
     #include "Image2DRenderer.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"

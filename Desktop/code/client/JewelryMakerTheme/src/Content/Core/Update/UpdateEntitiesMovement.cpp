@@ -10,9 +10,7 @@
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp" 
     #include "ForradiaEngine/Common/General.hpp"
-    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/RandomizationUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

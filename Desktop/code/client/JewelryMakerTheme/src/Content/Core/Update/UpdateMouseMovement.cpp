@@ -6,8 +6,7 @@
 /* Includes */ // clang-format off
     #include "UpdateMouseMovement.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

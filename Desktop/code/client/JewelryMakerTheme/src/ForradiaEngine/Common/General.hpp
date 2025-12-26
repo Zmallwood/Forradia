@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include <string_view>
 // clang-format on
 

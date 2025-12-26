@@ -1,27 +1,27 @@
-/*********************************************************************
- * Copyright 2025 Andreas Åkerberg                                   *
- * This code is licensed under MIT license (see LICENSE for details) *
- *********************************************************************/
+// /*********************************************************************
+//  * Copyright 2025 Andreas Åkerberg                                   *
+//  * This code is licensed under MIT license (see LICENSE for details) *
+//  *********************************************************************/
 
-#pragma once
+// #pragma once
 
-/* Includes */ // clang-format off
-    #include <string_view>
-// clang-format on
+// /* Includes */ // clang-format off
+//     #include <string_view>
+// // clang-format on
 
-namespace ForradiaEngine
-{
-    /**
-     *  Print out a string of text, without a following line break.
-     *
-     *  @param text Text to print.
-     */
-    auto print(std::string_view text) -> void;
+// namespace ForradiaEngine
+// {
+//     /**
+//      *  Print out a string of text, without a following line break.
+//      *
+//      *  @param text Text to print.
+//      */
+//     auto print(std::string_view text) -> void;
 
-    /**
-     *  Print out a string of text, with an added line break at the end.
-     *
-     *  @param text Text to print.
-     */
-    auto printLine(std::string_view text) -> void;
-}
+//     /**
+//      *  Print out a string of text, with an added line break at the end.
+//      *
+//      *  @param text Text to print.
+//      */
+//     auto printLine(std::string_view text) -> void;
+// }

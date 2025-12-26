@@ -5,8 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "SkyRenderer.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 // clang-format on

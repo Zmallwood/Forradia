@@ -5,9 +5,8 @@
 
 /* Includes */ // clang-format off
     #include "Cursor.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 // clang-format on
 

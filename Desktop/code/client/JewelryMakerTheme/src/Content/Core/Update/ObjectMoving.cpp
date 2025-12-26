@@ -7,8 +7,7 @@
     #include "ObjectMoving.hpp"
     #include "Content/CustomGUI/GUIInventoryWindow.hpp"
     #include "Content/WorldStructure/Object.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp" 
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 // clang-format on

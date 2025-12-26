@@ -5,9 +5,8 @@
 
 /* Includes */ // clang-format off
     #include "TextRenderer.hpp"
-    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include "ForradiaEngine/Common/Utilities/StringUtilities.hpp"
     #include <SDL2/SDL_ttf.h>
     #include <GL/glew.h>
     #include <GL/gl.h>

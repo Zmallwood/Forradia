@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GroundRenderer.hpp"
-    #include "ForradiaEngine/Common/Utilities/MathUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine

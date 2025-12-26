@@ -1,58 +1,58 @@
-/*********************************************************************
- * Copyright 2025 Andreas Åkerberg                                   *
- * This code is licensed under MIT license (see LICENSE for details) *
- *********************************************************************/
+// /*********************************************************************
+//  * Copyright 2025 Andreas Åkerberg                                   *
+//  * This code is licensed under MIT license (see LICENSE for details) *
+//  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "CanvasUtilities.hpp"
-    #include "ErrorUtilities.hpp"
-    #include <SDL2/SDL.h>
-// clang-format on
+// /* Includes */ // clang-format off
+//     #include "CanvasUtilities.hpp"
+//     #include "ErrorUtilities.hpp"
+//     #include <SDL2/SDL.h>
+// // clang-format on
 
-namespace ForradiaEngine
-{
-    auto getCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size
-    {
-        /* Validation */ // clang-format off
-            throwOnFalse(window != nullptr, "window is null");
-        // clang-format on
+// namespace ForradiaEngine
+// {
+//     auto getCanvasSize(const std::shared_ptr<SDL_Window> &window) -> Size
+//     {
+//         /* Validation */ // clang-format off
+//             throwOnFalse(window != nullptr, "window is null");
+//         // clang-format on
 
-        Size canvasSize;
+//         Size canvasSize;
 
-        SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
+//         SDL_GetWindowSize(window.get(), &canvasSize.width, &canvasSize.height);
 
-        return canvasSize;
-    }
+//         return canvasSize;
+//     }
 
-    auto calcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float
-    {
-        /* Validation */ // clang-format off
-            throwOnFalse(window != nullptr, "window is null");
-        // clang-format on
+//     auto calcAspectRatio(const std::shared_ptr<SDL_Window> &window) -> float
+//     {
+//         /* Validation */ // clang-format off
+//             throwOnFalse(window != nullptr, "window is null");
+//         // clang-format on
 
-        auto canvasSize{getCanvasSize(window)};
+//         auto canvasSize{getCanvasSize(window)};
 
-        auto aspectRatio{static_cast<float>(canvasSize.width) /
-                         static_cast<float>(canvasSize.height)};
+//         auto aspectRatio{static_cast<float>(canvasSize.width) /
+//                          static_cast<float>(canvasSize.height)};
 
-        return aspectRatio;
-    }
+//         return aspectRatio;
+//     }
 
-    auto convertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float
-    {
-        /* Validation */ // clang-format off
-                throwOnFalse(window != nullptr, "window is null");
-        // clang-format on
+//     auto convertWidthToHeight(float width, const std::shared_ptr<SDL_Window> &window) -> float
+//     {
+//         /* Validation */ // clang-format off
+//                 throwOnFalse(window != nullptr, "window is null");
+//         // clang-format on
 
-        return width * calcAspectRatio(window);
-    }
+//         return width * calcAspectRatio(window);
+//     }
 
-    auto convertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float
-    {
-        /* Validation */ // clang-format off
-                throwOnFalse(window != nullptr, "window is null");
-        // clang-format on
+//     auto convertHeightToWidth(float height, const std::shared_ptr<SDL_Window> &window) -> float
+//     {
+//         /* Validation */ // clang-format off
+//                 throwOnFalse(window != nullptr, "window is null");
+//         // clang-format on
 
-        return height / calcAspectRatio(window);
-    }
-}
+//         return height / calcAspectRatio(window);
+//     }
+// }

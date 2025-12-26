@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIWindowTitleBar.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "GUIButton.hpp"
     #include "GUIWindow.hpp"

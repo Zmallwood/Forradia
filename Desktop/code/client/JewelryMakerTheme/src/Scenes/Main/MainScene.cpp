@@ -24,7 +24,7 @@
     #include "Content/CustomGUI/GUISystemMenu.hpp"
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
-    #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GUICore/GUI.hpp"
     #include "ForradiaEngine/GUICore/GUIButton.hpp"
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"

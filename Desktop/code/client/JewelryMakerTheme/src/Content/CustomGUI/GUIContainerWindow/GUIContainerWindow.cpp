@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "GUIContainerWindow.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "ForradiaEngine/Common/Utilities/MouseUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
     #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
     #include "GUIContainerWindowArea.hpp"

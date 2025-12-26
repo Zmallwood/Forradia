@@ -4,7 +4,7 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "Model.hpp"
     #include "assimp/scene.h"
 // clang-format on

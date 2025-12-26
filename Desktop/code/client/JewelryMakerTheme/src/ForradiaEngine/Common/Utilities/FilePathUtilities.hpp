@@ -1,29 +1,29 @@
-/*********************************************************************
- * Copyright 2025 Andreas Åkerberg                                   *
- * This code is licensed under MIT license (see LICENSE for details) *
- *********************************************************************/
+// /*********************************************************************
+//  * Copyright 2025 Andreas Åkerberg                                   *
+//  * This code is licensed under MIT license (see LICENSE for details) *
+//  *********************************************************************/
 
-#pragma once
+// #pragma once
 
-/* Includes */ // clang-format off
-    #include <string>
-// clang-format on
+// /* Includes */ // clang-format off
+//     #include <string>
+// // clang-format on
 
-namespace ForradiaEngine
-{
-    /**
-     *  Get the file extension from a given path.
-     *
-     *  @param path Path to the file.
-     *  @return File extension.
-     */
-    auto getFileExtension(std::string_view path) -> std::string;
+// namespace ForradiaEngine
+// {
+//     /**
+//      *  Get the file extension from a given path.
+//      *
+//      *  @param path Path to the file.
+//      *  @return File extension.
+//      */
+//     auto getFileExtension(std::string_view path) -> std::string;
 
-    /**
-     *  Get the file name without the extension.
-     *
-     *  @param path Path to the file.
-     *  @return File name without the extension.
-     */
-    auto getFileNameNoExtension(std::string_view path) -> std::string;
-}
+//     /**
+//      *  Get the file name without the extension.
+//      *
+//      *  @param path Path to the file.
+//      *  @return File name without the extension.
+//      */
+//     auto getFileNameNoExtension(std::string_view path) -> std::string;
+// }

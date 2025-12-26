@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "General.hpp"
-    #include "ForradiaEngine/Common/Utilities/ErrorUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_ttf.h>
 // clang-format on

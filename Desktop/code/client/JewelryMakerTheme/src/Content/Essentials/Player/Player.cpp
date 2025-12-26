@@ -11,7 +11,7 @@
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities/NumbersUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "PlayerObjectsInventory.hpp"
 // clang-format on
 

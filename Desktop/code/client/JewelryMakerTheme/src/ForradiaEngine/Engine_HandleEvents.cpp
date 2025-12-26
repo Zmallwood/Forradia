@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "Engine.hpp"
     #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
-    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp"
+    #include "ForradiaEngine/Common/Utilities.hpp"
     #include <SDL2/SDL.h>
 // clang-format on
 
