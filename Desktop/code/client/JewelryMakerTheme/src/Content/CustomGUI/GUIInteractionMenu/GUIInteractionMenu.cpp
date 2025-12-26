@@ -174,16 +174,12 @@ namespace ForradiaEngine::JewelryMakerTheme
                 continue;
             }
 
-            goOn = false;
-
             goOn = this->checkActionObjectMatches(action, objectHashes);
 
             if (goOn == false)
             {
                 continue;
             }
-
-            goOn = false;
 
             goOn = this->checkActionInventoryObjectsMatches(action);
 

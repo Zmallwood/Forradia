@@ -5,6 +5,13 @@
 
 #pragma once
 
+/* Includes */ // clang-format off
+    #include <functional>
+    #include <string_view>
+    #include <string>
+    #include <memory>
+// clang-format on
+
 namespace ForradiaEngine::JewelryMakerTheme
 {
     class Tile;
