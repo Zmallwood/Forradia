@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "GUIMeter.hpp"
     #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 // clang-format on
 
 namespace ForradiaEngine

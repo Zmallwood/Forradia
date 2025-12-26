@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "GUIChatBox.hpp"
     #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "ForradiaEngine/Engine.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"

@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "Color2DRenderingOperation.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
     #include <unordered_map>
 // clang-format on

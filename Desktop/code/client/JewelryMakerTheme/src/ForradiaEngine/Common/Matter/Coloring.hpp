@@ -21,7 +21,7 @@ namespace ForradiaEngine
          *  @return Corresponding SDL_Color object.
          */
         [[nodiscard]] auto toSDLColor() const -> SDL_Color;
-        
+
         /**
          *  Red component.
          */
@@ -39,4 +39,17 @@ namespace ForradiaEngine
          */
         float a{0.0F};
     };
+
+    namespace Palette
+    {
+        /**
+         *   Get a color from the palette.
+         *
+         *  @tparam N The hash of the name of the color to get.
+         *  @return The color.
+         */
+        template <int N>
+        // ReSharper disable once CppFunctionIsNotImplemented
+        auto getColor() -> Color;
+    }
 }

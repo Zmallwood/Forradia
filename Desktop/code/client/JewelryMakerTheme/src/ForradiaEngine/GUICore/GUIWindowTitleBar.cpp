@@ -6,7 +6,7 @@
 /* Includes */ // clang-format off
     #include "GUIWindowTitleBar.hpp"
     #include "ForradiaEngine/Common/Utilities/CanvasUtilities.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "GUIButton.hpp"
     #include "GUIWindow.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"

@@ -9,6 +9,7 @@
     #include "ForradiaEngine/Common/General/Hash.hpp"
     #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include <unordered_map>
     #include <numbers>
     #include <memory>

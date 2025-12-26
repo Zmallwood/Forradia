@@ -6,7 +6,7 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Coloring/Color.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "GUIComponent.hpp"
     #include "ForradiaEngine/Common/General/Hash.hpp"
 // clang-format on

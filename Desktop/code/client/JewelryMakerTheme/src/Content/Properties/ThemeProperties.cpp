@@ -5,7 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ThemeProperties.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring/Palette.hpp"
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
