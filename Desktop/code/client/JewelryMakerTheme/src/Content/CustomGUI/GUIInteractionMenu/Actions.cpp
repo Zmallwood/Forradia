@@ -7,7 +7,7 @@
     #include "Actions.hpp"
     #include "Content/CustomGUI/GUIContainerWindow/GUIContainerWindow.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Essentials/Player/PlayerActions/PlayerActionTypes.hpp"
+    #include "Content/Essentials/Player/PlayerActionTypes.hpp"
     #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"

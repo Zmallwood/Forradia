@@ -7,7 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "PlayerActions/PlayerActionTypes.hpp"
+    #include "PlayerActionTypes.hpp"
     #include "PlayerMoveDirections.hpp"
     #include <memory>
     #include <string>
