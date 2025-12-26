@@ -25,7 +25,8 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
       public:
         GUIContainerWindowArea(GUIWindow *parentWindow, ContainedObjects &containedObjects)
-            : GUIScrollableArea("GUIContainerWindowArea", 0.0F, 0.0F, 0.2F, 0.45F),
+            : GUIScrollableArea("GUIContainerWindowArea", k_defaultBounds.x, k_defaultBounds.y,
+                                k_defaultBounds.width, k_defaultBounds.height),
               m_parentWindow(parentWindow)
         {
             this->initialize(parentWindow, containedObjects);
@@ -39,6 +40,7 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto initialize(GUIWindow *parentWindow, ContainedObjects &containedObjects) -> void;
 
+        constexpr static RectF k_defaultBounds{0.0F, 0.0F, 0.2F, 0.45F};
         GUIWindow *m_parentWindow{nullptr};
         std::shared_ptr<GUIContainerWindowPanel> m_panel{};
     };

@@ -28,7 +28,8 @@ namespace ForradiaEngine::JewelryMakerTheme
          *  Constructor.
          */
         GUIContainerWindow(ContainedObjects &containedObjects)
-            : GUIWindow("GUIContainerWindow", 0.5f, 0.2f, 0.2f, 0.5f, "Container")
+            : GUIWindow("GUIContainerWindow", k_defaultBounds.x, k_defaultBounds.y,
+                        k_defaultBounds.width, k_defaultBounds.height, "Container")
         {
             this->initialize(containedObjects);
         }
@@ -38,6 +39,7 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto initialize(ContainedObjects &containedObjects) -> void;
 
+        constexpr static RectF k_defaultBounds{0.5F, 0.2F, 0.2F, 0.5F};
         std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea{};
     };
 }
