@@ -17,6 +17,7 @@
     #include "ForradiaEngine/ScenesCore/IScene.hpp"
     #include "ForradiaEngine/ScenesCore/SceneManager.hpp"
     #include "GUIInteractionMenu.hpp"
+    #include "ForradiaEngine/Common/Utilities/TimeUtilities.hpp" // getTicks()
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -65,6 +66,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             if ((*object)->getType() == hash("ObjectUnlitCampfire") ||
                                 (*object)->getType() == hash("ObjectLitCampfire"))
                             {
+                                // NOLINTNEXTLINE(readability-qualified-auto)
                                 auto mainScene{SceneManager::instance().getScene("MainScene")};
 
                                 auto gui{mainScene->getGUI()};

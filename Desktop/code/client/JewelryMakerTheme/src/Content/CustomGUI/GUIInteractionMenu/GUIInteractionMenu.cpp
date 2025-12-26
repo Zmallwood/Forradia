@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUIInteractionMenu::initialize() -> void
     {
-        this->setVisible(false);
+        dynamic_cast<GUIPanel *>(this)->setVisible(false);
 
         /* Initialize the render IDs for the menu entries */ // clang-format off
             for (auto i = 0; i < k_maxNumMenuEntries; i++)
@@ -44,10 +44,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
         case SDL_BUTTON_LEFT:
         {
-            if (this->getVisible())
+            if (dynamic_cast<const GUIComponent *>(this)->getVisible())
             {
                 this->handleClick();
-                this->setVisible(false);
+                dynamic_cast<GUIPanel *>(this)->setVisible(false);
 
                 return true;
             }
@@ -56,10 +56,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         case SDL_BUTTON_RIGHT:
         {
-            if (this->getVisible() == false)
+            if (dynamic_cast<const GUIComponent *>(this)->getVisible() == false)
             {
-                this->setVisible(true);
-                this->setPosition(getNormalizedMousePosition(SDLDevice::instance().getWindow()));
+                dynamic_cast<GUIPanel *>(this)->setVisible(true);
+                dynamic_cast<GUIPanel *>(this)->setPosition(
+                    getNormalizedMousePosition(SDLDevice::instance().getWindow()));
                 this->buildMenu();
 
                 return true;
@@ -108,7 +109,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // clang-format on
 
         /* If not clicked in inventory, check if clicked tile */ // clang-format off
-            auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
+            auto hoveredCoordinate{TileHovering::getHoveredCoordinate()};
             auto worldArea{World::instance().getCurrentWorldArea()};
 
             m_clickedCoordinate = hoveredCoordinate;
