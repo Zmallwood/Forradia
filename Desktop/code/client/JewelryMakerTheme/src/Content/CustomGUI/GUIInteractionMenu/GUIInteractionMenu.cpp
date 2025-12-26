@@ -190,7 +190,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             }
         }
 
-        auto newHeight{2 * 0.01F + k_lineHeight * (m_entries.size() + 1)};
+        auto newHeight{2 * k_margin + k_lineHeight * (m_entries.size() + 1)};
 
         this->setHeight(newHeight);
     }
@@ -314,9 +314,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto bounds{this->getBounds()};
 
-        bounds.y += k_lineHeight + 0.01F;
+        bounds.y += k_lineHeight + k_margin;
 
-        bounds.height -= k_lineHeight + 2 * 0.01F;
+        bounds.height -= k_lineHeight + 2 * k_margin;
 
         if (bounds.contains(mousePos))
         {
@@ -330,8 +330,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto bounds{this->getBounds()};
 
-        TextRenderer::instance().drawString(k_renderIDActionsString, "Actions", bounds.x + 0.01f,
-                                            bounds.y + 0.01f, FontSizes::_20, false, true,
+        TextRenderer::instance().drawString(k_renderIDActionsString, "Actions", bounds.x + k_margin,
+                                            bounds.y + k_margin, FontSizes::_20, false, true,
                                             Palette::getColor<hash("YellowTransparent")>());
 
         auto i{0};
@@ -350,9 +350,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                     rowBounds.x, rowBounds.y, rowBounds.width, rowBounds.height, true);
             }
 
-            TextRenderer::instance().drawString(
-                m_renderIDsMenuEntryStrings[i], entry.getLabel(), bounds.x + 0.01f + k_indentWidth,
-                bounds.y + 0.01f + (i + 1) * k_lineHeight, FontSizes::_20, false, true);
+            TextRenderer::instance().drawString(m_renderIDsMenuEntryStrings[i], entry.getLabel(),
+                                                bounds.x + k_margin + k_indentWidth,
+                                                bounds.y + k_margin + (i + 1) * k_lineHeight,
+                                                FontSizes::_20, false, true);
 
             ++i;
         }

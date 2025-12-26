@@ -99,6 +99,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         static constexpr float k_indentWidth{0.01f};
         static constexpr float k_lineHeight{0.035f};
+        static constexpr float k_margin {0.01F};
         const int k_renderIDActionsString{hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
         constexpr static int k_renderIDHoveredRow{hash("GUIInteractionMenuHoveredRow")};
