@@ -24,6 +24,23 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::unordered_map<int, std::function<void()>> s_timedActions;
 
     template <>
+    auto getAction<hash("ActionBuildMineEntrance")>() -> Action
+    {
+        /* Action logic */ // clang-format off
+            return {.label = "Build mine entrance",
+                    .groundMatches = {},
+                    .objectMatches = {},
+                    .objectsInInventory = {hash("ObjectShovel")},
+                    .action = [](const std::shared_ptr<Tile> &tile,
+                                const std::vector<std::shared_ptr<Object> *> &objects)
+                    {
+                        tile->getObjectsStack()->addObject("ObjectMineEntrance");
+
+                        GUIChatBox::instance().print("You build a mine entrance.");
+                    }};
+        // clang-format on
+    }
+    template <>
     auto getAction<hash("ActionLightUnlitCampfire")>() -> Action
     {
         /* Action logic */ // clang-format off

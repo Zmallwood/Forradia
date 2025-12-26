@@ -56,7 +56,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                 getAction<hash("ActionOpenStoneBowl")>(),
                 getAction<hash("ActionCraftUnlitCampfire")>(),
                 getAction<hash("ActionOpenCampfire")>(),
-                getAction<hash("ActionLightUnlitCampfire")>()};
+                getAction<hash("ActionLightUnlitCampfire")>(),
+                getAction<hash("ActionBuildMineEntrance")>()};
         // clang-format on
     }
 

@@ -7,6 +7,7 @@
 
 /* Includes */ // clang-format off
     #include <memory>
+    #include <unordered_map>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -44,12 +45,11 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The current world area.
          */
-        [[nodiscard]] auto getCurrentWorldArea() -> std::shared_ptr<WorldArea>
-        {
-            return m_currentWorldArea;
-        }
+        [[nodiscard]] auto getCurrentWorldArea() -> std::shared_ptr<WorldArea>;
 
       private:
-        std::shared_ptr<WorldArea> m_currentWorldArea{};
+        std::unordered_map<
+            int, std::unordered_map<int, std::unordered_map<int, std::shared_ptr<WorldArea>>>>
+            m_worldAreas{};
     };
 }

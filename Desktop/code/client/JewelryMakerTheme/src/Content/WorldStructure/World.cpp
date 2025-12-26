@@ -12,6 +12,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto World::initialize(Size worldAreaSize, float worldScaling) -> void
     {
-        m_currentWorldArea = std::make_shared<WorldArea>(worldAreaSize, worldScaling);
+        auto worldArea{std::make_shared<WorldArea>(worldAreaSize, worldScaling)};
+
+        m_worldAreas[0][0][0] = worldArea;
+    }
+
+    auto World::getCurrentWorldArea() -> std::shared_ptr<WorldArea>
+    {
+        return m_worldAreas[0][0][0];
     }
 }
