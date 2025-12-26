@@ -36,6 +36,28 @@ namespace ForradiaEngine::JewelryMakerTheme
                     hash("GUIInteractionMenuEntryString" + std::to_string(i)));
             }
         // clang-format on
+
+        /* Add the actions to the menu */ // clang-format off
+            m_actions = {getAction<hash("ActionStop")>(),
+                getAction<hash("ActionLayCobbleStone")>(),
+                getAction<hash("ActionPlowLand")>(),
+                getAction<hash("ActionForage")>(),
+                getAction<hash("ActionCraftStonePickaxe")>(),
+                getAction<hash("ActionCraftStoneSlab")>(),
+                getAction<hash("ActionLayStoneSlab")>(),
+                getAction<hash("ActionCraftStoneBrick")>(),
+                getAction<hash("ActionCraftStoneWall")>(),
+                getAction<hash("ActionCraftStoneWallDoor")>(),
+                getAction<hash("ActionCraftStoneBowl")>(),
+                getAction<hash("ActionPickBranch")>(),
+                getAction<hash("ActionPickStone")>(),
+                getAction<hash("ActionMineStone")>(),
+                getAction<hash("ActionEatRedApple")>(),
+                getAction<hash("ActionOpenStoneBowl")>(),
+                getAction<hash("ActionCraftUnlitCampfire")>(),
+                getAction<hash("ActionOpenCampfire")>(),
+                getAction<hash("ActionLightUnlitCampfire")>()};
+        // clang-format on
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
@@ -141,89 +163,31 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIInteractionMenu::showMenuForTileAndObjects(int groundHash,
                                                        const std::vector<int> &objectHashes) -> void
     {
-        /* Add the actions to the menu */ // clang-format off
-            std::vector<Action> actions{getAction<hash("ActionStop")>(),
-                                        getAction<hash("ActionLayCobbleStone")>(),
-                                        getAction<hash("ActionPlowLand")>(),
-                                        getAction<hash("ActionForage")>(),
-                                        getAction<hash("ActionCraftStonePickaxe")>(),
-                                        getAction<hash("ActionCraftStoneSlab")>(),
-                                        getAction<hash("ActionLayStoneSlab")>(),
-                                        getAction<hash("ActionCraftStoneBrick")>(),
-                                        getAction<hash("ActionCraftStoneWall")>(),
-                                        getAction<hash("ActionCraftStoneWallDoor")>(),
-                                        getAction<hash("ActionCraftStoneBowl")>(),
-                                        getAction<hash("ActionPickBranch")>(),
-                                        getAction<hash("ActionPickStone")>(),
-                                        getAction<hash("ActionMineStone")>(),
-                                        getAction<hash("ActionEatRedApple")>(),
-                                        getAction<hash("ActionOpenStoneBowl")>(),
-                                        getAction<hash("ActionCraftUnlitCampfire")>(),
-                                        getAction<hash("ActionOpenCampfire")>(),
-                                        getAction<hash("ActionLightUnlitCampfire")>()};
-        // clang-format on
-
-        auto &inventory{Player::instance().getObjectsInventoryRef()};
-
-        for (auto &action : actions)
+        for (auto &action : m_actions)
         {
             bool goOn{false};
 
-            for (auto groundMatch : action.groundMatches)
-            {
-                if (groundMatch == groundHash)
-                {
-                    goOn = true;
-                }
-            }
+            goOn = this->checkActionGroundMatches(action, groundHash);
 
-            if (action.groundMatches.size() == 0 || groundHash == 0)
-            {
-                goOn = true;
-            }
-
-            if (!goOn)
+            if (goOn == false)
             {
                 continue;
             }
 
             goOn = false;
 
-            for (auto objectMatch : action.objectMatches)
-            {
-                for (auto objectHash : objectHashes)
-                {
-                    if (objectMatch == objectHash)
-                    {
-                        goOn = true;
-                    }
-                }
-            }
-            if (action.objectMatches.size() == 0)
-            {
-                goOn = true;
-            }
+            goOn = this->checkActionObjectMatches(action, objectHashes);
 
-            if (!goOn)
+            if (goOn == false)
             {
                 continue;
             }
 
             goOn = false;
 
-            for (auto invObjectMatch : action.objectsInInventory)
-            {
-                if (inventory.countHasObject(invObjectMatch))
-                {
-                    goOn = true;
-                }
-            }
+            goOn = this->checkActionInventoryObjectsMatches(action);
 
-            if (action.objectsInInventory.size() == 0)
-            {
-                goOn = true;
-            }
-
+            // If the action passed all checks, then add it to the menu.
             if (goOn)
             {
                 m_entries.push_back({action.label, action.action});
@@ -233,6 +197,63 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
 
         this->setHeight(newHeight);
+    }
+
+    auto GUIInteractionMenu::checkActionGroundMatches(Action &action, int groundHash) -> bool
+    {
+        bool goOn{false};
+
+        // Check if the ground need to match a specific ground hash.
+        for (auto groundMatch : action.groundMatches)
+        {
+            goOn = groundMatch == groundHash ? true : goOn;
+        }
+
+        // If no ground match is needed or the ground hash is 0, then go on with other checks.
+        goOn = action.groundMatches.empty() || groundHash == 0 ? true : goOn;
+
+        return goOn;
+    }
+
+    auto GUIInteractionMenu::checkActionObjectMatches(Action &action,
+                                                      const std::vector<int> &objectHashes) -> bool
+    {
+        bool goOn{false};
+
+        // Check if the object need to match a specific object hash.
+        for (auto objectMatch : action.objectMatches)
+        {
+            // Check if the object need to match a specific object hash, looking through the
+            // object hashes where the mouse was clicked.
+            for (auto objectHash : objectHashes)
+            {
+                goOn = objectMatch == objectHash ? true : goOn;
+            }
+        }
+
+        // If no object match is needed, then go on with other checks.
+        goOn = action.objectMatches.empty() ? true : goOn;
+
+        return goOn;
+    }
+
+    auto GUIInteractionMenu::checkActionInventoryObjectsMatches(Action &action) -> bool
+    {
+        auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+        bool goOn{false};
+
+        // Check if the action need to match a specific object in the inventory.
+        for (auto invObjectMatch : action.objectsInInventory)
+        {
+            // Check if the object to match is in the inventory.
+            goOn = inventory.countHasObject(invObjectMatch) > 0 ? true : goOn;
+        }
+
+        // If no object in inventory object match is needed, then then go on.
+        goOn = action.objectsInInventory.empty() ? true : goOn;
+
+        return goOn;
     }
 
     auto GUIInteractionMenu::handleClick() -> void

@@ -9,6 +9,7 @@
     #include "ForradiaEngine/GUICore/GUIPanel.hpp"
     #include "GUIInteractionMenuEntry.hpp"
     #include "ForradiaEngine/Common/Matter/Geometry.hpp"
+    #include "Action.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -89,11 +90,18 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto renderDerived() const -> void override;
 
       private:
+        auto checkActionGroundMatches(Action &action, int groundHash) -> bool;
+
+        auto checkActionObjectMatches(Action &action, const std::vector<int> &objectHashes) -> bool;
+
+        auto checkActionInventoryObjectsMatches(Action &action) -> bool;
+
         static constexpr float k_indentWidth{0.01f};
         static constexpr float k_lineHeight{0.035f};
         const int k_renderIDActionsString{hash("GUIInteractionMenuActionsString")};
         const int k_maxNumMenuEntries{40};
         constexpr static int k_renderIDHoveredRow{hash("GUIInteractionMenuHoveredRow")};
+        std::vector<Action> m_actions{};
         std::vector<int> m_renderIDsMenuEntryStrings{};
         std::vector<GUIInteractionMenuEntry> m_entries{};
         Point m_clickedCoordinate{-1, -1};
