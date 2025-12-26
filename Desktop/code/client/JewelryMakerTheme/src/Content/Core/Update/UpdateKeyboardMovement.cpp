@@ -13,7 +13,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     namespace
     {
-        static std::set<SDL_Keycode> pressedKeys{};
+        std::set<SDL_Keycode> pressedKeys{};
     }
 
     auto updateKeyboardMovementStart(SDL_Keycode key) -> void
