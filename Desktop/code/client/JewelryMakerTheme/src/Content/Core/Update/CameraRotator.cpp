@@ -38,15 +38,17 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         if (m_isRotating)
         {
-            auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+            /* Rotate camera sideways and vertically */ // clang-format off
+                auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-            auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
+                auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-            Camera::instance().addRotationDeltaSideways(deltaX);
+                Camera::instance().addRotationDeltaSideways(deltaX);
 
-            auto deltaY{mousePosition.y - m_mousePositionLastUpdate.y};
+                auto deltaY{mousePosition.y - m_mousePositionLastUpdate.y};
 
-            Camera::instance().addRotationDeltaVertical(deltaY);
+                Camera::instance().addRotationDeltaVertical(deltaY);
+            // clang-format on
         }
     }
 }

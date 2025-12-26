@@ -67,70 +67,79 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Only render objects, and entities within the normal grid size.
         if (isWithinNormalGrid)
         {
-            for (const auto &object : objects)
-            {
-                auto objectType{object->getType()};
-
-                auto totModelScaling{1.0F};
-
-                totModelScaling = object->getModelScaling();
-
-                if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
+            /* Render the objects on the tile */ // clang-format off
+                for (const auto &object : objects)
                 {
-                    totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                    auto objectType{object->getType()};
+
+                    auto totModelScaling{1.0F};
+
+                    totModelScaling = object->getModelScaling();
+
+                    if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
+                    {
+                        totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                    }
+
+                    // totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+
+                    ModelRenderer::instance().drawModel(
+                        objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
+                        (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                        totModelScaling, Theme0Properties::instance().getElevationHeight());
+                }
+            // clang-format on
+
+            /* Render the entity on the tile */ // clang-format off
+                if (auto entity{tile->getEntity()})
+                {
+                    auto entityType{entity->getType()};
+
+                    auto totModelScaling{1.0F};
+
+                    totModelScaling = CreatureIndex::instance().getModelScaling(entityType);
+
+                    auto levitationHeight{CreatureIndex::instance().getLevitationHeight(entityType)};
+
+                    ModelRenderer::instance().drawModel(
+                        entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
+                        (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                        totModelScaling, Theme0Properties::instance().getElevationHeight(),
+                        levitationHeight);
+                }
+            // clang-format on
+
+            /* Render the player */ // clang-format off
+                if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
+                {
+                    auto playerSmoothPosition{Player::instance().getSmoothPosition()};
+                    
+                    ModelRenderer::instance().drawModel(
+                        hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
+                        (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
+                }
+            // clang-format on
+        }
+
+        /* Render the hovered tile */ // clang-format off
+            if (xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
+            {
+                for (auto &elevation : elevations)
+                {
+                    // NOLINTNEXTLINE(readability-magic-numbers)
+                    elevation += 0.01F;
                 }
 
-                // totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                ModelRenderer::instance().restoreState();
 
-                ModelRenderer::instance().drawModel(
-                    objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
-                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    totModelScaling, Theme0Properties::instance().getElevationHeight());
+                GroundRenderer::instance().setupState();
+                GroundRenderer::instance().drawTile(k_renderIDGroundSymbolHoveredTile,
+                                                    hash("HoveredTile"), xCoordinate, yCoordinate,
+                                                    m_rendTileSize, elevations, true);
+
+                GroundRenderer::restoreState();
+                ModelRenderer::instance().setupState();
             }
-
-            if (auto entity{tile->getEntity()})
-            {
-                auto entityType{entity->getType()};
-
-                auto totModelScaling{1.0F};
-
-                totModelScaling = CreatureIndex::instance().getModelScaling(entityType);
-
-                auto levitationHeight{CreatureIndex::instance().getLevitationHeight(entityType)};
-
-                ModelRenderer::instance().drawModel(
-                    entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
-                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    totModelScaling, Theme0Properties::instance().getElevationHeight(),
-                    levitationHeight);
-            }
-
-            if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
-            {
-                auto playerSmoothPosition{Player::instance().getSmoothPosition()};
-                ModelRenderer::instance().drawModel(
-                    hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
-                    (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
-            }
-        }
-
-        if (xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
-        {
-            for (auto &elevation : elevations)
-            {
-                // NOLINTNEXTLINE(readability-magic-numbers)
-                elevation += 0.01F;
-            }
-
-            ModelRenderer::instance().restoreState();
-
-            GroundRenderer::instance().setupState();
-            GroundRenderer::instance().drawTile(k_renderIDGroundSymbolHoveredTile,
-                                                hash("HoveredTile"), xCoordinate, yCoordinate,
-                                                m_rendTileSize, elevations, true);
-
-            GroundRenderer::restoreState();
-            ModelRenderer::instance().setupState();
-        }
+        // clang-format on
     }
 }

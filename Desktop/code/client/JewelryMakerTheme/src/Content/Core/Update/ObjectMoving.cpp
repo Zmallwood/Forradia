@@ -17,22 +17,24 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto ObjectMoving::onMouseDown(Uint8 mouseButton) -> bool
     {
-        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+        /* Pick up object from inventory */ // clang-format off
+            auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
+            auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-        if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
-            inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
-        {
-            if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+            if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
+                inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
             {
-                m_objectInAir = *objectPtrPtr;
+                if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+                {
+                    m_objectInAir = *objectPtrPtr;
 
-                *objectPtrPtr = nullptr;
+                    *objectPtrPtr = nullptr;
 
-                return true;
+                    return true;
+                }
             }
-        }
+        // clang-format on
 
         return false;
     }
@@ -41,23 +43,26 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         if (m_objectInAir)
         {
-            auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+            /* Drop object into inventory */ // clang-format off
+                auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-            auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
+                auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-            if (GUIInventoryWindow::instance().getVisible() &&
-                inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
-            {
-                if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+                if (GUIInventoryWindow::instance().getVisible() &&
+                    inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
                 {
-                    *objectPtrPtr = m_objectInAir;
+                    if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+                    {
+                        *objectPtrPtr = m_objectInAir;
 
-                    m_objectInAir = nullptr;
+                        m_objectInAir = nullptr;
 
-                    return true;
+                        return true;
+                    }
                 }
-            }
+            // clang-format on
         }
+
         return false;
     }
 
@@ -65,12 +70,14 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         if (m_objectInAir)
         {
-            auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+            /* Render object in air at mouse position */ // clang-format off
+                auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-            Image2DRenderer::instance().drawImageByHash(
-                k_renderIDImage, m_objectInAir->getType(), mousePos.x, mousePos.y,
-                k_objectImageWidth,
-                convertWidthToHeight(k_objectImageWidth, SDLDevice::instance().getWindow()), true);
+                Image2DRenderer::instance().drawImageByHash(
+                    k_renderIDImage, m_objectInAir->getType(), mousePos.x, mousePos.y,
+                    k_objectImageWidth,
+                    convertWidthToHeight(k_objectImageWidth, SDLDevice::instance().getWindow()), true);
+            // clang-format on
         }
     }
 }

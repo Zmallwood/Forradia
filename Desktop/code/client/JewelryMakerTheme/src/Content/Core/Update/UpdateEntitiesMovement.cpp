@@ -49,16 +49,18 @@ namespace ForradiaEngine::JewelryMakerTheme
                 entity->setDestination({newDestinationX, newDestinationY});
             }
 
-            auto deltaX{entity->getDestination().x - position.x};
-            auto deltaY{entity->getDestination().y - position.y};
+            /* Calculate the new position */ // clang-format off
+                auto deltaX{entity->getDestination().x - position.x};
+                auto deltaY{entity->getDestination().y - position.y};
 
-            auto normalizedDX{normalize(deltaX)};
-            auto normalizedDY{normalize(deltaY)};
+                auto normalizedDX{normalize(deltaX)};
+                auto normalizedDY{normalize(deltaY)};
 
-            auto newX{position.x + normalizedDX};
-            auto newY{position.y + normalizedDY};
+                auto newX{position.x + normalizedDX};
+                auto newY{position.y + normalizedDY};
 
-            Point newPosition{newX, newY};
+                Point newPosition{newX, newY};
+            // clang-format on
 
             if (newPosition == entity->getDestination())
             {
@@ -69,18 +71,20 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (tile && !tile->getEntity() && tile->getGround() != hash("GroundWater"))
             {
-                auto oldPosition{entities.at(entity)};
+                /* Move entity to the new tile */ // clang-format off
+                    auto oldPosition{entities.at(entity)};
 
-                entity->setTicksLastMovement(now);
+                    entity->setTicksLastMovement(now);
 
-                auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
-                auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
+                    auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
+                    auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
 
-                oldTile->setEntity(nullptr);
-                newTile->setEntity(entity);
+                    oldTile->setEntity(nullptr);
+                    newTile->setEntity(entity);
 
-                entities.erase(entity);
-                entities.insert({entity, {newPosition.x, newPosition.y}});
+                    entities.erase(entity);
+                    entities.insert({entity, {newPosition.x, newPosition.y}});
+                // clang-format on
             }
             else
             {

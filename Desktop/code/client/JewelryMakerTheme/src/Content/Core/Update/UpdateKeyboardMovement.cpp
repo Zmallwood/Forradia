@@ -19,10 +19,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         pressedKeys.insert(key);
 
-        auto upPress{pressedKeys.contains(SDLK_UP) || pressedKeys.contains(SDLK_w)};
-        auto rightPress{pressedKeys.contains(SDLK_RIGHT) || pressedKeys.contains(SDLK_d)};
-        auto downPress{pressedKeys.contains(SDLK_DOWN) || pressedKeys.contains(SDLK_s)};
-        auto leftPress{pressedKeys.contains(SDLK_LEFT) || pressedKeys.contains(SDLK_a)};
+        /* Check if the movement keys are pressed */ // clang-format off
+            auto upPress{pressedKeys.contains(SDLK_UP) || pressedKeys.contains(SDLK_w)};
+            auto rightPress{pressedKeys.contains(SDLK_RIGHT) || pressedKeys.contains(SDLK_d)};
+            auto downPress{pressedKeys.contains(SDLK_DOWN) || pressedKeys.contains(SDLK_s)};
+            auto leftPress{pressedKeys.contains(SDLK_LEFT) || pressedKeys.contains(SDLK_a)};
+        // clang-format on
 
         if (upPress || rightPress || downPress || leftPress)
         {
