@@ -167,30 +167,30 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             bool goOn{false};
 
-            goOn = this->checkActionGroundMatches(action, groundHash);
+            goOn = GUIInteractionMenu::checkActionGroundMatches(action, groundHash);
 
             if (goOn == false)
             {
                 continue;
             }
 
-            goOn = this->checkActionObjectMatches(action, objectHashes);
+            goOn = GUIInteractionMenu::checkActionObjectMatches(action, objectHashes);
 
             if (goOn == false)
             {
                 continue;
             }
 
-            goOn = this->checkActionInventoryObjectsMatches(action);
+            goOn = GUIInteractionMenu::checkActionInventoryObjectsMatches(action);
 
             // If the action passed all checks, then add it to the menu.
             if (goOn)
             {
-                m_entries.push_back({action.label, action.action});
+                m_entries.emplace_back(action.label, action.action);
             }
         }
 
-        auto newHeight{2 * 0.01f + k_lineHeight * (m_entries.size() + 1)};
+        auto newHeight{2 * 0.01F + k_lineHeight * (m_entries.size() + 1)};
 
         this->setHeight(newHeight);
     }
@@ -258,12 +258,12 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        auto i{0};
+        auto idx{0};
 
         for (auto &entry : m_entries)
         {
             auto rowBounds{
-                RectF{bounds.x, bounds.y + (i + 1) * k_lineHeight, bounds.width, k_lineHeight}};
+                RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
             if (rowBounds.contains(mousePosition))
             {
@@ -300,7 +300,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             this->setVisible(false);
 
-            ++i;
+            ++idx;
         }
 
         this->setVisible(false);

@@ -91,11 +91,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto renderDerived() const -> void override;
 
       private:
-        auto checkActionGroundMatches(Action &action, int groundHash) -> bool;
+        static auto checkActionGroundMatches(Action &action, int groundHash) -> bool;
 
-        auto checkActionObjectMatches(Action &action, const std::vector<int> &objectHashes) -> bool;
+        static auto checkActionObjectMatches(Action &action, const std::vector<int> &objectHashes) -> bool;
 
-        auto checkActionInventoryObjectsMatches(Action &action) -> bool;
+        static auto checkActionInventoryObjectsMatches(Action &action) -> bool;
 
         static constexpr float k_indentWidth{0.01f};
         static constexpr float k_lineHeight{0.035f};
