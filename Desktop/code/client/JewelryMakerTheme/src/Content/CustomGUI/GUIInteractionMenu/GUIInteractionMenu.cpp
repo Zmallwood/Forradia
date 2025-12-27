@@ -3,26 +3,24 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIInteractionMenu.hpp"
-    
-    #include "Actions.hpp"
-    #include "Content/Core/Update/TileHovering.hpp"
-    #include "Content/CustomGUI/GUIInventoryWindow.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "Content/WorldStructure/ObjectsStack.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
-    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-// clang-format on
+#include "GUIInteractionMenu.hpp"
+
+#include "Actions.hpp"
+#include "Content/Core/Update/TileHovering.hpp"
+#include "Content/CustomGUI/GUIInventoryWindow.hpp"
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/MinorComponents/Cursor.hpp"
+#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -30,36 +28,32 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         dynamic_cast<GUIPanel *>(this)->setVisible(false);
 
-        /* Initialize the render IDs for the menu entries */ // clang-format off
-            for (auto i = 0; i < k_maxNumMenuEntries; i++)
-            {
-                m_renderIDsMenuEntryStrings.push_back(
-                    hash("GUIInteractionMenuEntryString" + std::to_string(i)));
-            }
-        // clang-format on
+        for (auto i = 0; i < k_maxNumMenuEntries; i++)
+        {
+            m_renderIDsMenuEntryStrings.push_back(
+                hash("GUIInteractionMenuEntryString" + std::to_string(i)));
+        }
 
-        /* Add the actions to the menu */ // clang-format off
-            m_actions = {getAction<hash("ActionStop")>(),
-                getAction<hash("ActionLayCobbleStone")>(),
-                getAction<hash("ActionPlowLand")>(),
-                getAction<hash("ActionForage")>(),
-                getAction<hash("ActionCraftStonePickaxe")>(),
-                getAction<hash("ActionCraftStoneSlab")>(),
-                getAction<hash("ActionLayStoneSlab")>(),
-                getAction<hash("ActionCraftStoneBrick")>(),
-                getAction<hash("ActionCraftStoneWall")>(),
-                getAction<hash("ActionCraftStoneWallDoor")>(),
-                getAction<hash("ActionCraftStoneBowl")>(),
-                getAction<hash("ActionPickBranch")>(),
-                getAction<hash("ActionPickStone")>(),
-                getAction<hash("ActionMineStone")>(),
-                getAction<hash("ActionEatRedApple")>(),
-                getAction<hash("ActionOpenStoneBowl")>(),
-                getAction<hash("ActionCraftUnlitCampfire")>(),
-                getAction<hash("ActionOpenCampfire")>(),
-                getAction<hash("ActionLightUnlitCampfire")>(),
-                getAction<hash("ActionBuildMineEntrance")>()};
-        // clang-format on
+        m_actions = {getAction<hash("ActionStop")>(),
+                     getAction<hash("ActionLayCobbleStone")>(),
+                     getAction<hash("ActionPlowLand")>(),
+                     getAction<hash("ActionForage")>(),
+                     getAction<hash("ActionCraftStonePickaxe")>(),
+                     getAction<hash("ActionCraftStoneSlab")>(),
+                     getAction<hash("ActionLayStoneSlab")>(),
+                     getAction<hash("ActionCraftStoneBrick")>(),
+                     getAction<hash("ActionCraftStoneWall")>(),
+                     getAction<hash("ActionCraftStoneWallDoor")>(),
+                     getAction<hash("ActionCraftStoneBowl")>(),
+                     getAction<hash("ActionPickBranch")>(),
+                     getAction<hash("ActionPickStone")>(),
+                     getAction<hash("ActionMineStone")>(),
+                     getAction<hash("ActionEatRedApple")>(),
+                     getAction<hash("ActionOpenStoneBowl")>(),
+                     getAction<hash("ActionCraftUnlitCampfire")>(),
+                     getAction<hash("ActionOpenCampfire")>(),
+                     getAction<hash("ActionLightUnlitCampfire")>(),
+                     getAction<hash("ActionBuildMineEntrance")>()};
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
@@ -104,62 +98,58 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        /* First check if clicked in inventory window */ // clang-format off
-            // First check if clicked in inventory (or other GUI windows)
-            auto rightClickedInInventoryWindow{
-                GUIInventoryWindow::instance().getBounds().contains(mousePos)};
+        // First check if clicked in inventory (or other GUI windows)
+        auto rightClickedInInventoryWindow{
+            GUIInventoryWindow::instance().getBounds().contains(mousePos)};
 
-            if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
+        if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
+        {
+            m_clickedCoordinate = {-1, -1};
+
+            m_clickedObjects.clear();
+
+            auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
+
+            if (object)
             {
-                m_clickedCoordinate = {-1, -1};
+                std::vector<int> objectHashes;
 
-                m_clickedObjects.clear();
+                objectHashes.push_back((*object)->getType());
 
-                auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
+                m_clickedObjects.push_back(object.get());
 
-                if (object)
-                {
-                    std::vector<int> objectHashes;
+                this->showMenuForTileAndObjects(0, objectHashes);
 
-                    objectHashes.push_back((*object)->getType());
-
-                    m_clickedObjects.push_back(object.get());
-
-                    this->showMenuForTileAndObjects(0, objectHashes);
-
-                    return;
-                }
+                return;
             }
-        // clang-format on
+        }
 
-        /* If not clicked in inventory, check if clicked tile */ // clang-format off
-            auto hoveredCoordinate{TileHovering::getHoveredCoordinate()};
-            auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
+        auto hoveredCoordinate{TileHovering::getHoveredCoordinate()};
+        auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
-            m_clickedCoordinate = hoveredCoordinate;
+        m_clickedCoordinate = hoveredCoordinate;
 
-            auto tile{worldArea->getTile(hoveredCoordinate.x, hoveredCoordinate.y)};
+        auto tile{worldArea->getTile(hoveredCoordinate.x, hoveredCoordinate.y)};
 
-            auto objects{tile->getObjectsStack()->getObjects()};
+        auto objects{tile->getObjectsStack()->getObjects()};
 
-            auto ground{0};
+        auto ground{0};
 
-            if (tile)
-            {
-                ground = tile->getGround();
-            }
+        if (tile)
+        {
+            ground = tile->getGround();
+        }
 
-            std::vector<int> objectHashes;
+        std::vector<int> objectHashes;
 
-            for (auto &object : objects)
-            {
-                auto type{object->getType()};
+        for (auto &object : objects)
+        {
+            auto type{object->getType()};
 
-                objectHashes.push_back(type);
-            }
+            objectHashes.push_back(type);
+        }
 
-            this->showMenuForTileAndObjects(ground, objectHashes);
-        // clang-format on
+        this->showMenuForTileAndObjects(ground, objectHashes);
     }
 
     auto GUIInteractionMenu::showMenuForTileAndObjects(int groundHash,

@@ -5,14 +5,12 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <vector>
-    
-    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
-    #include "GUIInteractionMenuEntry.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "Action.hpp"
-// clang-format on
+#include <vector>
+
+#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+#include "GUIInteractionMenuEntry.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "Action.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

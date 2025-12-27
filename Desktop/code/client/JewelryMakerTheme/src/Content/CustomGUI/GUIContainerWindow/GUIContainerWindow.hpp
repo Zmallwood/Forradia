@@ -5,13 +5,11 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <unordered_map>
-    
-    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
-    #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
-    #include "ForradiaEngine/GUICore/GUIWindow.hpp"
-// clang-format on
+#include <unordered_map>
+
+#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
+#include "ForradiaEngine/GUICore/GUIWindow.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "ForradiaEngine/GUICore/GUIMovablePanel.hpp"
-// clang-format on
+#include "ForradiaEngine/GUICore/GUIMovablePanel.hpp"
 
 namespace ForradiaEngine
 {

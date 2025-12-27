@@ -5,10 +5,8 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/GUICore/GUIMeter.hpp"
-// clang-format on
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "ForradiaEngine/GUICore/GUIMeter.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

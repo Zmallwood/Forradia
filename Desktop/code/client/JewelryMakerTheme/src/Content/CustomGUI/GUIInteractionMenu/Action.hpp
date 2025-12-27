@@ -5,12 +5,10 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <functional>
-    #include <memory>
-    #include <string>
-    #include <vector>
-// clang-format on
+#include <functional>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

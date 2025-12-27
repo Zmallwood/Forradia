@@ -3,18 +3,16 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIContainerWindowPanel.hpp"
-    
-    #include "ForradiaEngine/GUICore/GUIComponent.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "ForradiaEngine/GUICore/GUIWindow.hpp"
-    #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
-    #include "Content/WorldStructure/ContainedObjects.hpp"
-    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-// clang-format on
+#include "GUIContainerWindowPanel.hpp"
+
+#include "ForradiaEngine/GUICore/GUIComponent.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/GUICore/GUIWindow.hpp"
+#include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
+#include "Content/WorldStructure/ContainedObjects.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -127,8 +125,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                 Image2DRenderer::instance().drawImageByName(
                     renderIDBackground, k_slotImageName,
                     xStart + static_cast<float>(xPos) * (slotWidth + marginX),
-                    yStart + static_cast<float>(yPos) * (slotHeight + marginY), slotWidth, slotHeight,
-                    true);
+                    yStart + static_cast<float>(yPos) * (slotHeight + marginY), slotWidth,
+                    slotHeight, true);
 
                 if (auto inventoryObject{objectsContainer.getObject(index)})
                 {

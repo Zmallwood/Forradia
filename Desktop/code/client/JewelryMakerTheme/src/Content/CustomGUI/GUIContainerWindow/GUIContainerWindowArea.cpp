@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIContainerWindowArea.hpp"
-    
-    #include "Content/WorldStructure/Object.hpp"
-    #include "GUIContainerWindowPanel.hpp"
-// clang-format on
+#include "GUIContainerWindowArea.hpp"
+
+#include "Content/WorldStructure/Object.hpp"
+#include "GUIContainerWindowPanel.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIWellBeingMeter.hpp"
-    
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "GUIWellBeingMeter.hpp"
+
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -15,14 +13,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         GUIMeter::updateDerived();
 
-        /* Update the filled percentage of the well-being meter */ // clang-format off
-            auto &player{Player::instance()};
+        auto &player{Player::instance()};
 
-            auto health{player.getWellBeing()};
-            auto maxHealth{player.getMaxWellBeing()};
+        auto health{player.getWellBeing()};
+        auto maxHealth{player.getMaxWellBeing()};
 
-            m_filledPercentage = health / maxHealth;
-        // clang-format on
+        m_filledPercentage = health / maxHealth;
     }
 
     auto GUIWellBeingMeter::getFilledPercentage() const -> float
