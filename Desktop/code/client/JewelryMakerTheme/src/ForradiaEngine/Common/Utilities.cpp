@@ -5,13 +5,14 @@
 
 /* Includes */ // clang-format off
     #include "Utilities.hpp"
-    
+
     #include <stdexcept>
     #include <iostream>
     #include <algorithm>
     #include <cmath>
     #include <cstdlib>
     #include <ctime>
+    
     #include <SDL2/SDL.h>
 // clang-format on
 

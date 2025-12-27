@@ -6,8 +6,9 @@
 /* Includes */ // clang-format off
     #include "UpdateKeyboardMovement.hpp"
     
-    #include "Content/Essentials/Player/Player.hpp"
     #include <set>
+    
+    #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

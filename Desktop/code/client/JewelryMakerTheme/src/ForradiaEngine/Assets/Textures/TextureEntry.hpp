@@ -6,9 +6,10 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <GL/glew.h>
     #include <GL/gl.h>
+    
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 // clang-format on
 
 namespace ForradiaEngine

@@ -6,9 +6,11 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/General.hpp"
-    #include <SDL2/SDL.h>
     #include <memory>
+
+    #include <SDL2/SDL.h>
+    
+    #include "ForradiaEngine/Common/General.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

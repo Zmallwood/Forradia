@@ -10,6 +10,7 @@
     
     #include <cmath>
     #include <vector>
+    
     #include <GL/glew.h>
     #include <GL/gl.h>
 // clang-format on

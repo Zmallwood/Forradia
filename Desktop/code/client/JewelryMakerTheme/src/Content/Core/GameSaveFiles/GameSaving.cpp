@@ -6,6 +6,9 @@
 /* Includes */ // clang-format off
     #include "GameSaving.hpp"
     
+    #include <fstream>
+    #include <string>
+    
     #include "Content/WorldStructure/Entity.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"
@@ -15,8 +18,6 @@
     #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
     #include "HashCodes.hpp"
     #include "Content/Essentials/Player/Player.hpp"
-    #include <fstream>
-    #include <string>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

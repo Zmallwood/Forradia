@@ -6,12 +6,13 @@
 /* Includes */ // clang-format off
     #include "GUIPlayerStatusBox.hpp"
     
+    #include <fmt/format.h>
+    
     #include "Content/Essentials/Math/ExperienceCalculations.hpp"
     #include "Content/Essentials/Player/Player.hpp"
     #include "ForradiaEngine/GUICore/GUILabel.hpp"
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
     #include "GUIWellBeingMeter.hpp"
-    #include <fmt/format.h>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

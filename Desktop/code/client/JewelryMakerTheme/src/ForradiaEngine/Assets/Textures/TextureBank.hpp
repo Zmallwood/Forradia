@@ -6,11 +6,14 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "TextureEntry.hpp"
-    #include <GL/gl.h>
     #include <memory>
     #include <unordered_map>
+
+    #include <GL/glew.h>
+    #include <GL/gl.h>
+    
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
+    #include "TextureEntry.hpp"
 // clang-format on
 
 struct SDL_Surface;

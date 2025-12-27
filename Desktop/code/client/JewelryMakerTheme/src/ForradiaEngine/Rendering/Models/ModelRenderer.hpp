@@ -6,11 +6,13 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ModelRenderingOperation.hpp"
-    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
     #include <unordered_map>
+    
     #include <GL/glew.h>
     #include <GL/gl.h>
+
+    #include "ModelRenderingOperation.hpp"
+    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
 // clang-format on
 
 namespace ForradiaEngine

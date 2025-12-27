@@ -6,9 +6,10 @@
 #pragma once
 
 /* Includes */ // clang-format off
+    #include <functional>
+    
     #include "GUIPanel.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include <functional>
 // clang-format on
 
 namespace ForradiaEngine

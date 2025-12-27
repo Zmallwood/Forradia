@@ -6,9 +6,10 @@
 #pragma once
 
 /* Includes */ // clang-format off
+    #include <vector>
+    
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include <vector>
 // clang-format on
 
 namespace ForradiaEngine

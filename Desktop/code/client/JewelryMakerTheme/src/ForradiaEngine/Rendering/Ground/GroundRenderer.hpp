@@ -6,17 +6,19 @@
 #pragma once
 
 /* Includes */ // clang-format off
+    #include <array>
+    #include <unordered_map>
+    #include <vector>
+    
+    #include <glm/glm.hpp>
+    #include <GL/glew.h>
+    #include <GL/gl.h>
+
     #include "GroundRenderingGroupOperation.hpp"
     #include "GroundRenderingOperation.hpp"
     #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
     #include "TileData.hpp"
     #include "TileDrawGroup.hpp"
-    #include <array>
-    #include <glm/glm.hpp>
-    #include <unordered_map>
-    #include <vector>
-    #include <GL/glew.h>
-    #include <GL/gl.h>
 // clang-format on
 
 namespace ForradiaEngine

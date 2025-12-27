@@ -6,8 +6,9 @@
 /* Includes */ // clang-format off
     #include "HashCodes.hpp"
     
-    #include "ForradiaEngine/Common/General.hpp"
     #include <array>
+    
+    #include "ForradiaEngine/Common/General.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

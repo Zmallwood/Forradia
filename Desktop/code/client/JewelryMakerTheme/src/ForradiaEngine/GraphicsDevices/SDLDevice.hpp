@@ -6,11 +6,13 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include <SDL2/SDL.h>
     #include <memory>
     #include <string>
+    
+    #include <SDL2/SDL.h>
+
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 // clang-format on
 
 struct SDL_Window;

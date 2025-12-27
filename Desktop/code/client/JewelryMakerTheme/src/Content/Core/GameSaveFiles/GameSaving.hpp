@@ -7,6 +7,7 @@
 
 /* Includes */ // clang-format off
     #include <memory>
+    
     #include <nlohmann/json.hpp>
 // clang-format on
 

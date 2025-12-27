@@ -6,9 +6,10 @@
 /* Includes */ // clang-format off
     #include "SDLDevice.hpp"
     
+    #include <GL/gl.h>
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include <GL/gl.h>
 // clang-format on
 
 namespace ForradiaEngine

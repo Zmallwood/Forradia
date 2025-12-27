@@ -9,9 +9,10 @@
 /* Includes */ // clang-format off
     #include "Image2DRenderer.hpp"
     
+    #include <array>
+    
     #include <GL/glew.h>
     #include <GL/gl.h>
-    #include <array>
 // clang-format on
 
 namespace ForradiaEngine

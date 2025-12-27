@@ -5,6 +5,9 @@
 
 /* Includes */ // clang-format off
     #include "GUIScrollableArea.hpp"
+
+    #include <GL/glew.h>
+    #include <GL/gl.h>
     
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/MinorComponents/Cursor.hpp"
@@ -12,7 +15,6 @@
     #include "GUI.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include <GL/gl.h>
 // clang-format on
 
 namespace ForradiaEngine

@@ -6,9 +6,10 @@
 #pragma once
 
 /* Includes */ // clang-format off
+    #include <string>
+    
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include <string>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

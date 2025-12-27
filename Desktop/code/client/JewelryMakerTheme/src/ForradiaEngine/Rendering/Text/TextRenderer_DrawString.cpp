@@ -6,12 +6,13 @@
 /* Includes */ // clang-format off
     #include "TextRenderer.hpp"
     
+    #include <SDL2/SDL_ttf.h>
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
     #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
-    #include <SDL2/SDL_ttf.h>
 // clang-format on
 
 namespace ForradiaEngine

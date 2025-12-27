@@ -6,11 +6,12 @@
 #pragma once
 
 /* Includes */ // clang-format off
+    #include <memory>
+    #include <unordered_map>
+    
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include "FontSizes.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include <memory>
-    #include <unordered_map>
 // clang-format on
 
 struct SDL_Surface;

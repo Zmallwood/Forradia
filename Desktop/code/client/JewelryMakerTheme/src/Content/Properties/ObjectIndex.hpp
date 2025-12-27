@@ -6,8 +6,9 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ObjectIndexEntry.hpp"
     #include <unordered_map>
+    
+    #include "ObjectIndexEntry.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

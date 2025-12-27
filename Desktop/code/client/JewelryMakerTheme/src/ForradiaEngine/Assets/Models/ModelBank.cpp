@@ -5,12 +5,14 @@
 
 /* Includes */ // clang-format off
     #include "ModelBank.hpp"
+
+    #include <filesystem>
+    
+    #include <SDL2/SDL.h>
     
     #include "Construction/Model.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include <SDL2/SDL.h>
-    #include <filesystem>
 // clang-format on
 
 namespace ForradiaEngine

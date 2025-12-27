@@ -6,6 +6,8 @@
 /* Includes */ // clang-format off
     #include "TileHovering.hpp"
     
+    #include <glm/gtx/intersect.hpp>
+    
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/Tile.hpp"
@@ -14,7 +16,6 @@
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-    #include <glm/gtx/intersect.hpp>
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

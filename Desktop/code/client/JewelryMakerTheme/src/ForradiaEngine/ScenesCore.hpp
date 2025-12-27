@@ -6,9 +6,10 @@
 #pragma once
 
 /* Includes */ // clang-format off
-  #include <SDL2/SDL.h>
-  #include <string_view>
-  #include <unordered_map>
+    #include <string_view>
+    #include <unordered_map>
+    
+    #include <SDL2/SDL.h>
 // clang-format on
 
 namespace ForradiaEngine

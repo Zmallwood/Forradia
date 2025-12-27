@@ -8,6 +8,7 @@
 /* Includes */ // clang-format off
     #include <vector>
     #include <string>
+    
     #include <glm/glm.hpp>
 // clang-format on
 

@@ -6,10 +6,11 @@
 /* Includes */ // clang-format off
     #include "GUIComponent.hpp"
     
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include <algorithm>
     #include <ranges>
+    
+    #include "ForradiaEngine/Common/Utilities.hpp"
+    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 // clang-format on
 
 namespace ForradiaEngine

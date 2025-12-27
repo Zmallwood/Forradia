@@ -6,8 +6,9 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
     #include <string_view>
+    
+    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 // clang-format on
 
 namespace ForradiaEngine

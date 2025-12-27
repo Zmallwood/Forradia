@@ -6,13 +6,14 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "PlayerActionTypes.hpp"
-    #include "PlayerMoveDirections.hpp"
     #include <memory>
     #include <string>
     #include <unordered_map>
     #include <vector>
+
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
+    #include "PlayerActionTypes.hpp"
+    #include "PlayerMoveDirections.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

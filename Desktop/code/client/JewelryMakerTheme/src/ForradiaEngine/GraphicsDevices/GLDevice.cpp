@@ -6,11 +6,12 @@
 /* Includes */ // clang-format off
     #include "GLDevice.hpp"
     
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "SDLDevice.hpp"
     #include <SDL2/SDL.h>
     #include <GL/glew.h>
     #include <GL/gl.h>
+    
+    #include "ForradiaEngine/Common/Utilities.hpp"
+    #include "SDLDevice.hpp"
 // clang-format on
 
 namespace ForradiaEngine

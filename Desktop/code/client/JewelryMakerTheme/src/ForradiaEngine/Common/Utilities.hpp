@@ -6,12 +6,14 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <source_location>
     #include <string_view>
     #include <string>
     #include <memory>
+
     #include <glm/glm.hpp>
+
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 // clang-format on
 
 namespace ForradiaEngine

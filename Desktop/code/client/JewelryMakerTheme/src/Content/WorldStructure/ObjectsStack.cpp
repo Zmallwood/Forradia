@@ -6,8 +6,9 @@
 /* Includes */ // clang-format off
     #include "ObjectsStack.hpp"
     
-    #include "Object.hpp"
     #include <algorithm>
+    
+    #include "Object.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

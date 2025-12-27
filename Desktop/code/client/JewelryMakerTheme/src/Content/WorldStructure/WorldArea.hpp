@@ -6,11 +6,12 @@
 #pragma once
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
     #include <map>
     #include <memory>
     #include <set>
     #include <vector>
+
+    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
