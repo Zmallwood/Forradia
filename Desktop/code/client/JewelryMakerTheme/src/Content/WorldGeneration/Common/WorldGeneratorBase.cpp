@@ -3,14 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldGeneratorBase.hpp"
-    
-    #include "Content/Properties/ThemeProperties.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "WorldGeneratorBase.hpp"
+
+#include "Content/Properties/ThemeProperties.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

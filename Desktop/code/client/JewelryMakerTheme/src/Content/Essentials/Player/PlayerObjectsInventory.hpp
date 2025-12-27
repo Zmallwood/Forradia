@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "Content/WorldStructure/ContainedObjects.hpp"
-// clang-format on
+#include "Content/WorldStructure/ContainedObjects.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

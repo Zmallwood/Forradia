@@ -3,15 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldGenerator.hpp"
-    
-    #include "Content/WorldGeneration/Entities/WorldGeneratorEntities.hpp"
-    #include "Content/WorldGeneration/Ground/WorldGeneratorGround.hpp"
-    #include "Content/WorldGeneration/Objects/WorldGeneratorObjects.hpp"
-    #include "Content/WorldGeneration/Water/WorldGeneratorWater.hpp"
-    #include "Content/WorldGeneration/LowerFloors/WorldGeneratorLowerFloors.hpp"
-// clang-format on
+#include "WorldGenerator.hpp"
+
+#include "Content/WorldGeneration/Entities/WorldGeneratorEntities.hpp"
+#include "Content/WorldGeneration/Ground/WorldGeneratorGround.hpp"
+#include "Content/WorldGeneration/Objects/WorldGeneratorObjects.hpp"
+#include "Content/WorldGeneration/Water/WorldGeneratorWater.hpp"
+#include "Content/WorldGeneration/LowerFloors/WorldGeneratorLowerFloors.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

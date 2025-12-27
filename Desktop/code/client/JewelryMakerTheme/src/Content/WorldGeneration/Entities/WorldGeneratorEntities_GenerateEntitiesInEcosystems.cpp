@@ -3,15 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldGeneratorEntities.hpp"
-    
-    #include "Content/WorldStructure/Entity.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "Content/WorldStructure/ObjectsStack.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-// clang-format on
+#include "WorldGeneratorEntities.hpp"
+
+#include "Content/WorldStructure/Entity.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -266,7 +264,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                 // Prefer grass for the ecosystem.
                 if (creatureTile->getGround() == hash("GroundGrass") && getRandomInt(100) < 60)
                 {
-                    auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};
+                    auto newEntity{
+                        std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};
 
                     creatureTile->setEntity(newEntity);
 

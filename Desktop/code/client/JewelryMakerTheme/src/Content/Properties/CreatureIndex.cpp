@@ -3,9 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "CreatureIndex.hpp"
-// clang-format on
+#include "CreatureIndex.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

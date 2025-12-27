@@ -3,19 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Player.hpp"
-    
-    #include "Content/Properties/ObjectIndex.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "Content/WorldStructure/ObjectsStack.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-    #include "PlayerObjectsInventory.hpp"
-// clang-format on
+#include "Player.hpp"
+
+#include "Content/Properties/ObjectIndex.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/Common/General.hpp"
+#include "PlayerObjectsInventory.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -98,284 +96,306 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    /* Player movement */ // clang-format off
-        auto Player::startMovingNorth() -> void
+    auto Player::startMovingNorth() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::North;
+    }
+
+    auto Player::startMovingEast() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::East;
+    }
+
+    auto Player::startMovingSouth() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::South;
+    }
+
+    auto Player::startMovingWest() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::West;
+    }
+
+    auto Player::startMovingNorthWest() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+    }
+
+    auto Player::startMovingNorthEast() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+    }
+
+    auto Player::startMovingSouthWest() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+    }
+
+    auto Player::startMovingSouthEast() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+    }
+
+    auto Player::stopMoving() -> void
+    {
+        m_playerMoveDirection = PlayerMoveDirections::None;
+    }
+
+    auto Player::moveNorth() -> void
+    {
+        auto newX{m_position.x};
+        auto newY{m_position.y - 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (const auto &object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::North;
-        }
 
-        auto Player::startMovingEast() -> void
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
+            {
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
+            }
+        }
+    }
+
+    auto Player::moveEast() -> void
+    {
+        auto newX{m_position.x + 1};
+        auto newY{m_position.y};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (const auto &object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::East;
-        }
 
-        auto Player::startMovingSouth() -> void
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
+            {
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
+            }
+        }
+    }
+
+    auto Player::moveSouth() -> void
+    {
+        auto newX{m_position.x};
+        auto newY{m_position.y + 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::South;
-        }
 
-        auto Player::startMovingWest() -> void
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
+            {
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
+            }
+        }
+    }
+
+    auto Player::moveWest() -> void
+    {
+        auto newX{m_position.x - 1};
+        auto newY{m_position.y};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::West;
-        }
 
-        auto Player::startMovingNorthWest() -> void
-        {
-            m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
+            {
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
+            }
         }
+    }
 
-        auto Player::startMovingNorthEast() -> void
+    auto Player::moveNorthEast() -> void
+    {
+        auto newX{m_position.x + 1};
+        auto newY{m_position.y - 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::NorthEast;
-        }
 
-        auto Player::startMovingSouthWest() -> void
-        {
-            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
+            {
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
+            }
         }
+    }
 
-        auto Player::startMovingSouthEast() -> void
+    auto Player::moveSouthEast() -> void
+    {
+        auto newX{m_position.x + 1};
+        auto newY{m_position.y + 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
+            {
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+                {
+                    return;
+                }
+            }
+
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
             m_playerMoveDirection = PlayerMoveDirections::SouthEast;
-        }
 
-        auto Player::stopMoving() -> void
-        {
-            m_playerMoveDirection = PlayerMoveDirections::None;
-        }
-
-        auto Player::moveNorth() -> void
-        {
-            auto newX{m_position.x};
-            auto newY{m_position.y - 1};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
             {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (const auto &object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::North;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
             }
         }
+    }
 
-        auto Player::moveEast() -> void
+    auto Player::moveSouthWest() -> void
+    {
+        auto newX{m_position.x - 1};
+        auto newY{m_position.y + 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
-            auto newX{m_position.x + 1};
-            auto newY{m_position.y};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
             {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (const auto &object : objectsStack->getObjects())
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::East;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                    return;
                 }
             }
-        }
 
-        auto Player::moveSouth() -> void
-        {
-            auto newX{m_position.x};
-            auto newY{m_position.y + 1};
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
+            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
 
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
             {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::South;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
             }
         }
+    }
 
-        auto Player::moveWest() -> void
+    auto Player::moveNorthWest() -> void
+    {
+        auto newX{m_position.x - 1};
+        auto newY{m_position.y - 1};
+
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+
+        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
-            auto newX{m_position.x - 1};
-            auto newY{m_position.y};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
+            for (auto object : objectsStack->getObjects())
             {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
+                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::West;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                    return;
                 }
             }
-        }
 
-        auto Player::moveNorthEast() -> void
-        {
-            auto newX{m_position.x + 1};
-            auto newY{m_position.y - 1};
+            m_position = {newX, newY};
+            m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
+            m_playerMoveDirection = PlayerMoveDirections::NorthWest;
 
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+            if (worldArea->getTile(newX, newY)
+                    ->getObjectsStack()
+                    ->countHasObject("ObjectMineEntrance") > 0)
             {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::NorthEast;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
+                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                         m_worldAreaCoordinate.z - 1};
             }
         }
-
-        auto Player::moveSouthEast() -> void
-        {
-            auto newX{m_position.x + 1};
-            auto newY{m_position.y + 1};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-            {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::SouthEast;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
-            }
-        }
-
-        auto Player::moveSouthWest() -> void
-        {
-            auto newX{m_position.x - 1};
-            auto newY{m_position.y + 1};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-            {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::SouthWest;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
-            }
-        }
-
-        auto Player::moveNorthWest() -> void
-        {
-            auto newX{m_position.x - 1};
-            auto newY{m_position.y - 1};
-
-            auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
-
-            if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
-            {
-                auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
-                {
-                    if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                    {
-                        return;
-                    }
-                }
-
-                m_position = {newX, newY};
-                m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
-                m_playerMoveDirection = PlayerMoveDirections::NorthWest;
-
-                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
-                {
-                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
-                }
-            }
-        }
-    // clang-format on
+    }
 
     auto Player::addExperience(int experience) -> void
     {

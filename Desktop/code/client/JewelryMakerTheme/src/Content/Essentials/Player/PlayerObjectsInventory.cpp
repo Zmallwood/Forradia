@@ -3,9 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "PlayerObjectsInventory.hpp"
-// clang-format on
+#include "PlayerObjectsInventory.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

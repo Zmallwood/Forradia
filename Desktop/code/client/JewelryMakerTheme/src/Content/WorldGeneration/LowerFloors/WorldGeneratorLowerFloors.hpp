@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-     #include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
-// clang-format on
+#include "Content/WorldGeneration/Common/WorldGeneratorBase.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

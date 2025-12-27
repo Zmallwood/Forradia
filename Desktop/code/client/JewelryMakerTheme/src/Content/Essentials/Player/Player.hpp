@@ -5,16 +5,14 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    #include <string>
-    #include <unordered_map>
-    #include <vector>
+#include <memory>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "PlayerActionTypes.hpp"
-    #include "PlayerMoveDirections.hpp"
-// clang-format on
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "PlayerActionTypes.hpp"
+#include "PlayerMoveDirections.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -43,65 +41,63 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto update() -> void;
 
-        /* Player movement */ // clang-format off
-            auto startMovingNorth() -> void;
+        auto startMovingNorth() -> void;
 
-            auto startMovingEast() -> void;
+        auto startMovingEast() -> void;
 
-            auto startMovingSouth() -> void;
+        auto startMovingSouth() -> void;
 
-            auto startMovingWest() -> void;
+        auto startMovingWest() -> void;
 
-            auto startMovingNorthWest() -> void;
+        auto startMovingNorthWest() -> void;
 
-            auto startMovingNorthEast() -> void;
+        auto startMovingNorthEast() -> void;
 
-            auto startMovingSouthWest() -> void;
+        auto startMovingSouthWest() -> void;
 
-            auto startMovingSouthEast() -> void;
+        auto startMovingSouthEast() -> void;
 
-            auto stopMoving() -> void;
+        auto stopMoving() -> void;
 
-            /**
-            *  Moves the player north.
-            */
-            auto moveNorth() -> void;
+        /**
+         *  Moves the player north.
+         */
+        auto moveNorth() -> void;
 
-            /**
-            *  Moves the player east.
-            */
-            auto moveEast() -> void;
+        /**
+         *  Moves the player east.
+         */
+        auto moveEast() -> void;
 
-            /**
-            *  Moves the player south.
-            */
-            auto moveSouth() -> void;
+        /**
+         *  Moves the player south.
+         */
+        auto moveSouth() -> void;
 
-            /**
-            *  Moves the player west.
-            */
-            auto moveWest() -> void;
+        /**
+         *  Moves the player west.
+         */
+        auto moveWest() -> void;
 
-            /**
-            *  Moves the player north-east.
-            */
-            auto moveNorthEast() -> void;
+        /**
+         *  Moves the player north-east.
+         */
+        auto moveNorthEast() -> void;
 
-            /**
-            *  Moves the player south-east.
-            */
-            auto moveSouthEast() -> void;
+        /**
+         *  Moves the player south-east.
+         */
+        auto moveSouthEast() -> void;
 
-            /**
-            *  Moves the player south-west.
-            */
-            auto moveSouthWest() -> void;
+        /**
+         *  Moves the player south-west.
+         */
+        auto moveSouthWest() -> void;
 
-            /**
-            *  Moves the player north-west.
-            */
-            auto moveNorthWest() -> void;
-        // clang-format on
+        /**
+         *  Moves the player north-west.
+         */
+        auto moveNorthWest() -> void;
 
         /**
          *  Adds experience to the player.

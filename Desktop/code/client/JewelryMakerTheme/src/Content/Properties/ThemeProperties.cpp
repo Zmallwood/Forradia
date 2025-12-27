@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "ThemeProperties.hpp"
-    
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-// clang-format on
+#include "ThemeProperties.hpp"
+
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

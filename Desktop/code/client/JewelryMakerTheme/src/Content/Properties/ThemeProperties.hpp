@@ -5,12 +5,10 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <string>
-    
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-// clang-format on
+#include <string>
+
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
