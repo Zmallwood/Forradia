@@ -64,15 +64,17 @@ namespace ForradiaEngine
         auto Model::processMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
             -> GLMMesh
         {
-            if (mesh == nullptr)
-            {
-                throwError("mesh is nullptr");
-            }
+            /* Validation */ // clang-format off
+                if (mesh == nullptr)
+                {
+                    throwError("mesh is nullptr");
+                }
 
-            if (scene == nullptr)
-            {
-                throwError("scene is nullptr");
-            }
+                if (scene == nullptr)
+                {
+                    throwError("scene is nullptr");
+                }
+            /**/
 
             auto vertices{Model::getVertices(mesh, transformation)};
             auto indices{Model::getIndices(mesh)};
