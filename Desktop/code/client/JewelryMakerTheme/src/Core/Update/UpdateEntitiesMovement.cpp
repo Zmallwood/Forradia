@@ -70,6 +70,39 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 entity->setTicksLastMovement(now);
 
+                if (normalizedDX == 0 && normalizedDY < 0)
+                {
+                    entity->setDirection(Directions::North);
+                }
+                else if (normalizedDX > 0 && normalizedDY == 0)
+                {
+                    entity->setDirection(Directions::East);
+                }
+                else if (normalizedDX == 0 && normalizedDY > 0)
+                {
+                    entity->setDirection(Directions::South);
+                }
+                else if (normalizedDX < 0 && normalizedDY == 0)
+                {
+                    entity->setDirection(Directions::West);
+                }
+                else if (normalizedDX > 0 && normalizedDY < 0)
+                {
+                    entity->setDirection(Directions::NorthEast);
+                }
+                else if (normalizedDX > 0 && normalizedDY > 0)
+                {
+                    entity->setDirection(Directions::SouthEast);
+                }
+                else if (normalizedDX < 0 && normalizedDY > 0)
+                {
+                    entity->setDirection(Directions::SouthWest);
+                }
+                else if (normalizedDX < 0 && normalizedDY < 0)
+                {
+                    entity->setDirection(Directions::NorthWest);
+                }
+
                 auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
                 auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
 

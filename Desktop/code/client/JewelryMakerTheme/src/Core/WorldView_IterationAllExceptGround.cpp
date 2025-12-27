@@ -96,9 +96,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto levitationHeight{CreatureIndex::instance().getLevitationHeight(entityType)};
 
+                auto entitySmoothPosition{entity->getSmoothPosition({xCoordinate, yCoordinate})};
+
                 ModelRenderer::instance().drawModel(
-                    entityType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
-                    (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                    entityType, entitySmoothPosition.x * m_rendTileSize + m_rendTileSize / 2,
+                    entitySmoothPosition.y * m_rendTileSize + m_rendTileSize / 2, elevationMax,
                     totModelScaling, ThemeProperties::getElevationHeight(), levitationHeight);
             }
 

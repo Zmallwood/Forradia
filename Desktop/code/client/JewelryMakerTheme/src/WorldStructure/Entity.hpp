@@ -7,6 +7,7 @@
 
 #include "EntityTypes.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "Directions.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -36,6 +37,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             this->initialize();
         }
+
+        auto getSmoothPosition(Point position) const -> PointF;
 
         /**
          *  Gets the entity type.
@@ -97,6 +100,11 @@ namespace ForradiaEngine::JewelryMakerTheme
             m_destination = value;
         }
 
+        auto setDirection(Directions value) -> void
+        {
+            m_direction = value;
+        }
+
       private:
         auto initialize() -> void;
 
@@ -105,5 +113,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         float m_movementSpeed{2.0F};
         Point m_destination{-1, -1};
         EntityTypes m_entityType{EntityTypes::Creature};
+        Directions m_direction{Directions::None};
     };
 }
