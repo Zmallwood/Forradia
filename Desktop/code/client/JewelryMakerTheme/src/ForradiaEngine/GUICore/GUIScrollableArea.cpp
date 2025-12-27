@@ -3,19 +3,17 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIScrollableArea.hpp"
+#include "GUIScrollableArea.hpp"
 
-    #include <GL/glew.h>
-    #include <GL/gl.h>
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
-    #include "ForradiaEngine/MinorComponents/CursorStyles.hpp"
-    #include "GUI.hpp"
-    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-// clang-format on
+#include <GL/glew.h>
+#include <GL/gl.h>
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/MinorComponents/Cursor.hpp"
+#include "ForradiaEngine/MinorComponents/CursorStyles.hpp"
+#include "GUI.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 
 namespace ForradiaEngine
 {

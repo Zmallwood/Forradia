@@ -5,12 +5,10 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <functional>
-    
-    #include "GUIPanel.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-// clang-format on
+#include <functional>
+
+#include "GUIPanel.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine
 {

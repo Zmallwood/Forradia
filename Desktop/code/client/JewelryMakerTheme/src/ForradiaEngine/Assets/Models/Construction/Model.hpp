@@ -5,11 +5,9 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "assimp/scene.h"
-    
-    #include "ForradiaEngine/Common/Matter/GLMGeometry.hpp"
-// clang-format on
+#include "assimp/scene.h"
+
+#include "ForradiaEngine/Common/Matter/GLMGeometry.hpp"
 
 namespace ForradiaEngine
 {

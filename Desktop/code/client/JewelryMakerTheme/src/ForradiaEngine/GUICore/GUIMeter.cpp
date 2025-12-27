@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIMeter.hpp"
-    
-    #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-// clang-format on
+#include "GUIMeter.hpp"
+
+#include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
 
 namespace ForradiaEngine
 {

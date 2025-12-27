@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "ContainedObjects.hpp"
-    
-    #include "Object.hpp"
-// clang-format on
+#include "ContainedObjects.hpp"
+
+#include "Object.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

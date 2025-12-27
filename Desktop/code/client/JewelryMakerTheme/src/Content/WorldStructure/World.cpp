@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "World.hpp"
-    
-    #include "WorldArea.hpp"
-// clang-format on
+#include "World.hpp"
+
+#include "WorldArea.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

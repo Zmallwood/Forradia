@@ -3,61 +3,47 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "General.hpp"
-    
-    #include <SDL2/SDL.h>
-    #include <SDL2/SDL_ttf.h>
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-// clang-format on
+#include "General.hpp"
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
+#include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine
 {
-    /* Classes */ // clang-format off
-        auto SDLDeleter::operator()(SDL_Window *window) const -> void
-        {
-            /* Validation */ // clang-format off
-            throwOnFalse(window != nullptr, "window is null");
-            // clang-format on */
+    auto SDLDeleter::operator()(SDL_Window *window) const -> void
+    {
+        throwOnFalse(window != nullptr, "window is null");
 
-            SDL_DestroyWindow(window);
-        }
+        SDL_DestroyWindow(window);
+    }
 
-        auto SDLDeleter::operator()(SDL_Renderer *renderer) const -> void
-        {
-            /* Validation */ // clang-format off
-                throwOnFalse(renderer != nullptr, "renderer is null");
-            // clang-format on */
+    auto SDLDeleter::operator()(SDL_Renderer *renderer) const -> void
+    {
+        throwOnFalse(renderer != nullptr, "renderer is null");
 
-            SDL_DestroyRenderer(renderer);
-        }
+        SDL_DestroyRenderer(renderer);
+    }
 
-        auto SDLDeleter::operator()(SDL_Surface *surface) const -> void
-        {
-            /* Validation */ // clang-format off
-                throwOnFalse(surface != nullptr, "surface is null");
-            // clang-format on */
+    auto SDLDeleter::operator()(SDL_Surface *surface) const -> void
+    {
+        throwOnFalse(surface != nullptr, "surface is null");
 
-            SDL_FreeSurface(surface);
-        }
+        SDL_FreeSurface(surface);
+    }
 
-        auto SDLDeleter::operator()(SDL_Texture *texture) const -> void
-        {
-            /* Validation */ // clang-format off
-                throwOnFalse(texture != nullptr, "texture is null");
-            // clang-format on */
+    auto SDLDeleter::operator()(SDL_Texture *texture) const -> void
+    {
+        throwOnFalse(texture != nullptr, "texture is null");
 
-            SDL_DestroyTexture(texture);
-        }
+        SDL_DestroyTexture(texture);
+    }
 
-        auto SDLDeleter::operator()(TTF_Font *font) const -> void
-        {
-            /* Validation */ // clang-format off
-                throwOnFalse(font != nullptr, "font is null");
-            // clang-format on */
+    auto SDLDeleter::operator()(TTF_Font *font) const -> void
+    {
+        throwOnFalse(font != nullptr, "font is null");
 
-            TTF_CloseFont(font);
-        }
-    // clang-format on
+        TTF_CloseFont(font);
+    }
 }

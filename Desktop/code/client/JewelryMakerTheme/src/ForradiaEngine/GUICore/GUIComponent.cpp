@@ -3,15 +3,13 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIComponent.hpp"
-    
-    #include <algorithm>
-    #include <ranges>
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-// clang-format on
+#include "GUIComponent.hpp"
+
+#include <algorithm>
+#include <ranges>
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 
 namespace ForradiaEngine
 {

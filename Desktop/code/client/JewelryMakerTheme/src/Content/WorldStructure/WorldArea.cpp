@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldArea.hpp"
-    
-    #include "ObjectsStack.hpp"
-    #include "Tile.hpp"
-// clang-format on
+#include "WorldArea.hpp"
+
+#include "ObjectsStack.hpp"
+#include "Tile.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

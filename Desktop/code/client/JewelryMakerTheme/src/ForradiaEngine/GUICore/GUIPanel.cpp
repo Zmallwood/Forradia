@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIPanel.hpp"
-    
-    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-// clang-format on
+#include "GUIPanel.hpp"
+
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 
 namespace ForradiaEngine
 {

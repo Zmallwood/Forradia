@@ -49,7 +49,6 @@ namespace ForradiaEngine
          *  @return The color.
          */
         template <int N>
-        // ReSharper disable once CppFunctionIsNotImplemented
         auto getColor() -> Color;
     }
 }

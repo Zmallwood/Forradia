@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "GUIPanel.hpp"
-// clang-format on
+#include "GUIPanel.hpp"
 
 namespace ForradiaEngine
 {
@@ -48,7 +46,6 @@ namespace ForradiaEngine
          */
         auto getBounds() const -> RectF override;
 
-        // ReSharper disable once CppDFAConstantFunctionResult
         static auto getHeight() -> float
         {
             return k_height;

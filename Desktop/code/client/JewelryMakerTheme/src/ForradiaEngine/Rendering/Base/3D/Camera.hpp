@@ -5,11 +5,9 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <glm/glm.hpp>
-    
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-// clang-format on
+#include <glm/glm.hpp>
+
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine
 {

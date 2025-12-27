@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-// clang-format on
+#include <memory>
 
 namespace ForradiaEngine
 {

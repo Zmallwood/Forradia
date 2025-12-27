@@ -3,9 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Entity.hpp"
-// clang-format on
+#include "Entity.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

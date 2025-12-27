@@ -3,16 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIWindowTitleBar.hpp"
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "GUIButton.hpp"
-    #include "GUIWindow.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-// clang-format on
+#include "GUIWindowTitleBar.hpp"
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "GUIButton.hpp"
+#include "GUIWindow.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 
 namespace ForradiaEngine
 {

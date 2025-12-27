@@ -5,12 +5,10 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <vector>
-    
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-// clang-format on
+#include <vector>
+
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine
 {

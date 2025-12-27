@@ -5,10 +5,8 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "CursorStyles.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-// clang-format on
+#include "CursorStyles.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine
 {

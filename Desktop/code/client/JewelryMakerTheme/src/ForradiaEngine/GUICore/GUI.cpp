@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUI.hpp"
-    
-    #include <ranges>
-// clang-format on
+#include "GUI.hpp"
+
+#include <ranges>
 
 namespace ForradiaEngine
 {

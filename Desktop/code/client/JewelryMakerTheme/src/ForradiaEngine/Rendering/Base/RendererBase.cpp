@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "RendererBase.hpp"
-    
-    #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
-// clang-format on
+#include "RendererBase.hpp"
+
+#include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 
 namespace ForradiaEngine
 {

@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Tile.hpp"
-    
-    #include "ObjectsStack.hpp"
-// clang-format on
+#include "Tile.hpp"
+
+#include "ObjectsStack.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

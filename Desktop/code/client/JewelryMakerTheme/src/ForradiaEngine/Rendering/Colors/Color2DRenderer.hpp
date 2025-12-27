@@ -5,13 +5,11 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <unordered_map>
-    
-    #include "Color2DRenderingOperation.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
-// clang-format on
+#include <unordered_map>
+
+#include "Color2DRenderingOperation.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
 
 namespace ForradiaEngine
 {

@@ -5,11 +5,9 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    
-    #include "Directions.hpp"
-// clang-format on
+#include <memory>
+
+#include "Directions.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Object.hpp"
-    
-    #include "ContainedObjects.hpp"
-    #include "Content/Properties/ObjectIndex.hpp"
-// clang-format on
+#include "Object.hpp"
+
+#include "ContainedObjects.hpp"
+#include "Content/Properties/ObjectIndex.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

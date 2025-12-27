@@ -5,14 +5,12 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    #include <vector>
+#include <memory>
+#include <vector>
 
-    #include <SDL2/SDL.h>
-    
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-// clang-format on
+#include <SDL2/SDL.h>
+
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine
 {

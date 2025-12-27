@@ -5,11 +5,9 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <unordered_map>
-    
-    #include "TileDrawGroup.hpp"
-// clang-format on
+#include <unordered_map>
+
+#include "TileDrawGroup.hpp"
 
 namespace ForradiaEngine
 {

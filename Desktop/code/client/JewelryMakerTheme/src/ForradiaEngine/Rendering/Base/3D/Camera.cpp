@@ -3,20 +3,18 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Camera.hpp"
-    
-    #include <glm/gtc/matrix_transform.hpp>
-    
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/ThemeProperties.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "Camera.hpp"
+
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Properties/ThemeProperties.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine
 {

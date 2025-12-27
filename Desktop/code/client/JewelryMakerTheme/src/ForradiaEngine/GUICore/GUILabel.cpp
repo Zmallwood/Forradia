@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUILabel.hpp"
-    
-    #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
-// clang-format on
+#include "GUILabel.hpp"
+
+#include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 
 namespace ForradiaEngine
 {
@@ -15,10 +13,8 @@ namespace ForradiaEngine
     {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
 
-        // ReSharper disable once CppDFAConstantConditions
         if (m_centerAlign)
         {
-            // ReSharper disable once CppDFAUnreachableCode
             bounds.x += bounds.width / 2;
             bounds.y += bounds.height / 2;
         }

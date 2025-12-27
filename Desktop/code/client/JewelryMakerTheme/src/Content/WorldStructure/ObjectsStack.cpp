@@ -3,13 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "ObjectsStack.hpp"
-    
-    #include <algorithm>
-    
-    #include "Object.hpp"
-// clang-format on
+#include "ObjectsStack.hpp"
+
+#include <algorithm>
+
+#include "Object.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

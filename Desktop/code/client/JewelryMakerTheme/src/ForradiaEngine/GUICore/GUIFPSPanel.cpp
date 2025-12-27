@@ -3,14 +3,12 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GUIFPSPanel.hpp"
-    
-    #include <fmt/format.h>
-    
-    #include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
-    #include "GUILabel.hpp"
-// clang-format on
+#include "GUIFPSPanel.hpp"
+
+#include <fmt/format.h>
+
+#include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
+#include "GUILabel.hpp"
 
 namespace ForradiaEngine
 {

@@ -3,16 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Color2DRenderer.hpp"
-    
-    #include <GL/glew.h>
-    #include <GL/gl.h>
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
-// clang-format on
+#include "Color2DRenderer.hpp"
+
+#include <GL/glew.h>
+#include <GL/gl.h>
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 
 namespace ForradiaEngine
 {

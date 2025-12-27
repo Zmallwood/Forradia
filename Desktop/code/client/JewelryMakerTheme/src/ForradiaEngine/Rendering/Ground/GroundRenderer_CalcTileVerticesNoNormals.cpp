@@ -3,11 +3,9 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GroundRenderer.hpp"
-    
-    #include "Content/Properties/ThemeProperties.hpp"
-// clang-format on
+#include "GroundRenderer.hpp"
+
+#include "Content/Properties/ThemeProperties.hpp"
 
 namespace ForradiaEngine
 {

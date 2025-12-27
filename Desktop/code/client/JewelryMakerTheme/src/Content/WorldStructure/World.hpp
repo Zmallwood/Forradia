@@ -5,10 +5,8 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    #include <unordered_map>
-// clang-format on
+#include <memory>
+#include <unordered_map>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "GUIPanel.hpp"
-// clang-format on
+#include "GUIPanel.hpp"
 
 namespace ForradiaEngine
 {
