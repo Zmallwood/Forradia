@@ -15,30 +15,46 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIQuestPanel::initialize() -> void
     {
         /* Add the quest title text panel */ // clang-format off
+            constexpr RectF questTitleTextPanelBounds{0.01F, 0.01F, 0.1F, 0.05F};
+
             m_questTitleTextPanel =
-                std::make_shared<GUILabel>("GUILabelQuestTitlePanel", 0.01f, 0.01f, 0.1f, 0.05f,
+                std::make_shared<GUILabel>("GUILabelQuestTitlePanel",
+                                        questTitleTextPanelBounds.x, questTitleTextPanelBounds.y,
+                                        questTitleTextPanelBounds.width, questTitleTextPanelBounds.height,
                                         "Current Quest", false, Palette::getColor<hash("Yellow")>());
 
             this->addChildComponent(m_questTitleTextPanel);
         // clang-format on
 
         /* Add the quest name text panel */ // clang-format off
+            constexpr RectF questNameTextPanelBounds{0.01F, 0.041F, 0.1F, 0.05F};
+
             m_questNameTextPanel =
-                std::make_shared<GUILabel>("GUILabelQuestNamePanel", 0.01f, 0.041f, 0.1f, 0.05f);
+                std::make_shared<GUILabel>("GUILabelQuestNamePanel",
+                                        questNameTextPanelBounds.x, questNameTextPanelBounds.y,
+                                        questNameTextPanelBounds.width, questNameTextPanelBounds.height);
 
             this->addChildComponent(m_questNameTextPanel);
         // clang-format on
 
         /* Add the quest description text panel */ // clang-format off
+            constexpr RectF questDescriptionTextPanelBounds{0.01F, 0.069F, 0.1F, 0.05F};
+
             m_questDescriptionTextPanel =
-            std::make_shared<GUILabel>("GUILabelQuestDescriptionPanel", 0.01f, 0.069f, 0.1f, 0.05f);
+            std::make_shared<GUILabel>("GUILabelQuestDescriptionPanel",
+                                        questDescriptionTextPanelBounds.x, questDescriptionTextPanelBounds.y,
+                                        questDescriptionTextPanelBounds.width, questDescriptionTextPanelBounds.height);
 
             this->addChildComponent(m_questDescriptionTextPanel);
         // clang-format on
 
         /* Add the quest status text panel */ // clang-format off
+            constexpr RectF questStatusTextPanelBounds{0.01F, 0.097F, 0.1F, 0.05F};
+
             m_questStatusTextPanel =
-                std::make_shared<GUILabel>("GUILabelQuestStatusPanel", 0.01f, 0.097f, 0.1f, 0.05f);
+                std::make_shared<GUILabel>("GUILabelQuestStatusPanel",
+                                          questStatusTextPanelBounds.x, questStatusTextPanelBounds.y,
+                                          questStatusTextPanelBounds.width, questStatusTextPanelBounds.height);
 
             this->addChildComponent(m_questStatusTextPanel);
         // clang-format on
