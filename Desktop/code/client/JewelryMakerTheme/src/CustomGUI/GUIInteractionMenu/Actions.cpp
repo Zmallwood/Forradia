@@ -16,6 +16,8 @@
 #include "ForradiaEngine/ScenesCore.hpp"
 #include "GUIInteractionMenu.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
+#include "WorldStructure/World.hpp"
+#include "WorldStructure/WorldArea.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -32,6 +34,47 @@ namespace ForradiaEngine::JewelryMakerTheme
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
                     tile->getObjectsStack()->addObject("ObjectMineEntrance");
+
+                    auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
+
+                    auto lowerFloorWorldArea{World::instance().getWorldArea(
+                        {worldAreaCoordinate.x, worldAreaCoordinate.y, worldAreaCoordinate.z - 1})};
+
+                    if (lowerFloorWorldArea)
+                    {
+                        auto radius{3};
+
+                        auto clickedCoordinate{
+                            GUIInteractionMenu::instance().getClickedCoordinate()};
+
+                        for (auto y = clickedCoordinate.y - radius;
+                             y <= clickedCoordinate.y + radius; y++)
+                        {
+                            for (auto x = clickedCoordinate.x - radius;
+                                 x <= clickedCoordinate.x + radius; x++)
+                            {
+                                auto dx{x - clickedCoordinate.x};
+                                auto dy{y - clickedCoordinate.y};
+                                auto distance{std::sqrt(dx * dx + dy * dy)};
+
+                                if (distance > radius)
+                                {
+                                    continue;
+                                }
+
+                                if (lowerFloorWorldArea->isValidCoordinate(x, y))
+                                {
+                                    lowerFloorWorldArea->getTile(x, y)
+                                        ->getObjectsStack()
+                                        ->clearObjects();
+                                }
+                            }
+                        }
+
+                        lowerFloorWorldArea->getTile(clickedCoordinate.x, clickedCoordinate.y)
+                            ->getObjectsStack()
+                            ->addObject("ObjectMineEntrance");
+                    }
 
                     GUIChatBox::instance().print("You build a mine entrance.");
                 }};

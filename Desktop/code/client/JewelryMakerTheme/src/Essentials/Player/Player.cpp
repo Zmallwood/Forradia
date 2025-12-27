@@ -166,8 +166,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -198,8 +210,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -230,8 +254,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -262,8 +298,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -294,8 +342,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -326,8 +386,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -358,8 +430,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
@@ -390,8 +474,20 @@ namespace ForradiaEngine::JewelryMakerTheme
                     ->getObjectsStack()
                     ->countHasObject("ObjectMineEntrance") > 0)
             {
+                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+                int newWorldAreaCoordinateZ{};
+
+                if (worldAreaCoordinateZ == 0)
+                {
+                    newWorldAreaCoordinateZ = -1;
+                }
+                else
+                {
+                    newWorldAreaCoordinateZ = 0;
+                }
+
                 m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         m_worldAreaCoordinate.z - 1};
+                                         newWorldAreaCoordinateZ};
             }
         }
     }
