@@ -71,11 +71,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto totModelScaling{1.0F};
 
-                totModelScaling = object->getModelScaling();
+                totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
 
                 if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
                 {
-                    totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
+                    totModelScaling = object->getModelScaling();
                 }
 
                 // totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
