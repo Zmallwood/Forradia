@@ -3,22 +3,20 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "GameSaving.hpp"
-    
-    #include <fstream>
-    #include <string>
-    
-    #include "Content/WorldStructure/Entity.hpp"
-    #include "Content/WorldStructure/Object.hpp"
-    #include "Content/WorldStructure/ObjectsStack.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
-    #include "HashCodes.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "GameSaving.hpp"
+
+#include <fstream>
+#include <string>
+
+#include "Content/WorldStructure/Entity.hpp"
+#include "Content/WorldStructure/Object.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
+#include "HashCodes.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -40,72 +38,74 @@ namespace ForradiaEngine::JewelryMakerTheme
         jsonData["size"]["width"] = worldAreaSize.width;
         jsonData["size"]["height"] = worldAreaSize.height;
 
-        /* Serialize tiles */ // clang-format off
-            jsonData["tiles"] = nlohmann::json::array();
+        jsonData["tiles"] = nlohmann::json::array();
 
-            for (auto yCoord = 0; yCoord < worldAreaSize.height; yCoord++)
+        for (auto yCoord = 0; yCoord < worldAreaSize.height; yCoord++)
+        {
+            for (auto xCoord = 0; xCoord < worldAreaSize.width; xCoord++)
             {
-                for (auto xCoord = 0; xCoord < worldAreaSize.width; xCoord++)
+                auto tile{worldArea->getTile(xCoord, yCoord)};
+
+                if (!tile)
                 {
-                    auto tile{worldArea->getTile(xCoord, yCoord)};
+                    continue;
+                }
 
-                    if (!tile)
-                    {
-                        continue;
-                    }
+                GameSaving::saveTile(tile, {xCoord, yCoord}, jsonData);
+            }
+        }
 
-                    nlohmann::json tileJson;
+        std::ofstream file("savegame.json");
 
-                    tileJson["x"] = xCoord;
-                    tileJson["y"] = yCoord;
-                    tileJson["elevation"] = tile->getElevation();
-                    tileJson["ground"] = getNameFromAnyHash(tile->getGround());
+        if (file.is_open())
+        {
+            file << jsonData.dump(4); // Pretty print with 4-space indent
+            file.close();
+        }
+    }
 
-                    // Serialize objects on this tile
-                    auto objectsStack{tile->getObjectsStack()};
+    auto GameSaving::saveTile(std::shared_ptr<Tile> tile, Point coordinate,
+                              nlohmann::json &jsonData) -> void
+    {
+        nlohmann::json tileJson;
 
-                    if (objectsStack)
-                    {
-                        auto objects{objectsStack->getObjects()};
-                        tileJson["objects"] = nlohmann::json::array();
+        tileJson["x"] = coordinate.x;
+        tileJson["y"] = coordinate.y;
+        tileJson["elevation"] = tile->getElevation();
+        tileJson["ground"] = getNameFromAnyHash(tile->getGround());
 
-                        for (auto &object : objects)
-                        {
-                            if (object)
-                            {
-                                nlohmann::json objectJson;
+        // Serialize objects on this tile
+        auto objectsStack{tile->getObjectsStack()};
 
-                                objectJson["type"] = getNameFromAnyHash(object->getType());
-                                tileJson["objects"].push_back(objectJson);
-                            }
-                        }
-                    }
+        if (objectsStack)
+        {
+            auto objects{objectsStack->getObjects()};
+            tileJson["objects"] = nlohmann::json::array();
 
-                    // Serialize entity on this tile
-                    auto entity{tile->getEntity()};
+            for (auto &object : objects)
+            {
+                if (object)
+                {
+                    nlohmann::json objectJson;
 
-                    if (entity)
-                    {
-                        nlohmann::json entityJson;
-
-                        entityJson["type"] = getNameFromAnyHash(entity->getType());
-                        tileJson["entity"] = entityJson;
-                    }
-
-                    jsonData["tiles"].push_back(tileJson);
+                    objectJson["type"] = getNameFromAnyHash(object->getType());
+                    tileJson["objects"].push_back(objectJson);
                 }
             }
-        // clang-format on
+        }
 
-        /* Save game to file */ // clang-format off
-            std::ofstream file("savegame.json");
+        // Serialize entity on this tile
+        auto entity{tile->getEntity()};
 
-            if (file.is_open())
-            {
-                file << jsonData.dump(4); // Pretty print with 4-space indent
-                file.close();
-            }
-        // clang-format on
+        if (entity)
+        {
+            nlohmann::json entityJson;
+
+            entityJson["type"] = getNameFromAnyHash(entity->getType());
+            tileJson["entity"] = entityJson;
+        }
+
+        jsonData["tiles"].push_back(tileJson);
     }
 
     auto GameSaving::loadGame() -> void

@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <string>
-// clang-format on
+#include <string>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -18,7 +16,6 @@ namespace ForradiaEngine::JewelryMakerTheme
      *  @return The name from the hash code.
      */
     template <int N>
-    // ReSharper disable once CppFunctionIsNotImplemented
     auto getNameFromHash() -> std::string;
 
     /**

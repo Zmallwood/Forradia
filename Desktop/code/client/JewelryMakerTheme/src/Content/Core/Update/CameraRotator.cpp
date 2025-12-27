@@ -3,13 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "CameraRotator.hpp"
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp" 
-    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-// clang-format on
+#include "CameraRotator.hpp"
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -39,17 +37,15 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         if (m_isRotating)
         {
-            /* Rotate camera sideways and vertically */ // clang-format off
-                auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+            auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-                auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
+            auto deltaX{mousePosition.x - m_mousePositionLastUpdate.x};
 
-                Camera::instance().addRotationDeltaSideways(deltaX);
+            Camera::instance().addRotationDeltaSideways(deltaX);
 
-                auto deltaY{mousePosition.y - m_mousePositionLastUpdate.y};
+            auto deltaY{mousePosition.y - m_mousePositionLastUpdate.y};
 
-                Camera::instance().addRotationDeltaVertical(deltaY);
-            // clang-format on
+            Camera::instance().addRotationDeltaVertical(deltaY);
         }
     }
 }

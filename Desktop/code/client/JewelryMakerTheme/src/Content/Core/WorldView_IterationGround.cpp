@@ -3,17 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldView.hpp"
+#include "WorldView.hpp"
 
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Properties/ThemeProperties.hpp"
-    #include "Content/WorldStructure/ObjectsStack.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-// clang-format on
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Properties/ThemeProperties.hpp"
+#include "Content/WorldStructure/ObjectsStack.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -29,22 +27,20 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto tile{m_worldArea->getTile(xCoordinate, yCoordinate)};
 
-        /* Get the coordinates of the current tile (NW) and its surrounding tiles */ // clang-format off
-            auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
-            auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
-            auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
-            auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
-            auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
-            auto coordinateNW{Point{xCoordinate, yCoordinate}};
-            auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
-            auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
-            auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
-            auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
-            auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
-            auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
-            auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
-            auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
-        // clang-format on
+        auto coordinateNWW{Point{xCoordinate - 1, yCoordinate}};
+        auto coordinateNNW{Point{xCoordinate, yCoordinate - 1}};
+        auto coordinateNNWW{Point{xCoordinate - 1, yCoordinate - 1}};
+        auto coordinateNNE{Point{xCoordinate + 1, yCoordinate - 1}};
+        auto coordinateSWW{Point{xCoordinate - 1, yCoordinate + 1}};
+        auto coordinateNW{Point{xCoordinate, yCoordinate}};
+        auto coordinateNE{Point{xCoordinate + 1, yCoordinate}};
+        auto coordinateSW{Point{xCoordinate, yCoordinate + 1}};
+        auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
+        auto coordinateNEE{Point{xCoordinate + 2, yCoordinate}};
+        auto coordinateSEE{Point{xCoordinate + 2, yCoordinate + 1}};
+        auto coordinateSESE{Point{xCoordinate + 2, yCoordinate + 2}};
+        auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
+        auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
         if (!m_worldArea->isValidCoordinate(coordinateNW) ||
             !m_worldArea->isValidCoordinate(coordinateNE) ||
@@ -54,46 +50,42 @@ namespace ForradiaEngine::JewelryMakerTheme
             return;
         }
 
-        /* Get the current tile (NW) and its surrounding tiles */ // clang-format off
-            auto tileNWW{m_worldArea->getTile(coordinateNWW)};
-            auto tileNNW{m_worldArea->getTile(coordinateNNW)};
-            auto tileNNWW{m_worldArea->getTile(coordinateNNWW)};
-            auto tileNNE{m_worldArea->getTile(coordinateNNE)};
-            auto tileSWW{m_worldArea->getTile(coordinateSWW)};
-            auto tileNW{m_worldArea->getTile(coordinateNW)};
-            auto tileNE{m_worldArea->getTile(coordinateNE)};
-            auto tileSW{m_worldArea->getTile(coordinateSW)};
-            auto tileSE{m_worldArea->getTile(coordinateSE)};
-            auto tileNEE{m_worldArea->getTile(coordinateNEE)};
-            auto tileSEE{m_worldArea->getTile(coordinateSEE)};
-            auto tileSESE{m_worldArea->getTile(coordinateSESE)};
-            auto tileSES{m_worldArea->getTile(coordinateSES)};
-            auto tileSS{m_worldArea->getTile(coordinateSS)};
-        // clang-format on
+        auto tileNWW{m_worldArea->getTile(coordinateNWW)};
+        auto tileNNW{m_worldArea->getTile(coordinateNNW)};
+        auto tileNNWW{m_worldArea->getTile(coordinateNNWW)};
+        auto tileNNE{m_worldArea->getTile(coordinateNNE)};
+        auto tileSWW{m_worldArea->getTile(coordinateSWW)};
+        auto tileNW{m_worldArea->getTile(coordinateNW)};
+        auto tileNE{m_worldArea->getTile(coordinateNE)};
+        auto tileSW{m_worldArea->getTile(coordinateSW)};
+        auto tileSE{m_worldArea->getTile(coordinateSE)};
+        auto tileNEE{m_worldArea->getTile(coordinateNEE)};
+        auto tileSEE{m_worldArea->getTile(coordinateSEE)};
+        auto tileSESE{m_worldArea->getTile(coordinateSESE)};
+        auto tileSES{m_worldArea->getTile(coordinateSES)};
+        auto tileSS{m_worldArea->getTile(coordinateSS)};
 
         std::vector<float> elevations;
 
-        /* Get the elevations of the current tile (NW) and its surrounding tiles */ // clang-format off
-            auto elevationNW{tileNW ? tileNW->getElevation() : 0.0F};
-            auto elevationNE{tileNE ? tileNE->getElevation() : 0.0F};
-            auto elevationSE{tileSE ? tileSE->getElevation() : 0.0F};
-            auto elevationSW{tileSW ? tileSW->getElevation() : 0.0F};
-            auto elevationNEE{tileNEE ? tileNEE->getElevation() : 0.0F};
-            auto elevationSEE{tileSEE ? tileSEE->getElevation() : 0.0F};
-            auto elevationSESE{tileSESE ? tileSESE->getElevation() : 0.0F};
-            auto elevationSES{tileSES ? tileSES->getElevation() : 0.0F};
-            auto elevationSS{tileSS ? tileSS->getElevation() : 0.0F};
+        auto elevationNW{tileNW ? tileNW->getElevation() : 0.0F};
+        auto elevationNE{tileNE ? tileNE->getElevation() : 0.0F};
+        auto elevationSE{tileSE ? tileSE->getElevation() : 0.0F};
+        auto elevationSW{tileSW ? tileSW->getElevation() : 0.0F};
+        auto elevationNEE{tileNEE ? tileNEE->getElevation() : 0.0F};
+        auto elevationSEE{tileSEE ? tileSEE->getElevation() : 0.0F};
+        auto elevationSESE{tileSESE ? tileSESE->getElevation() : 0.0F};
+        auto elevationSES{tileSES ? tileSES->getElevation() : 0.0F};
+        auto elevationSS{tileSS ? tileSS->getElevation() : 0.0F};
 
-            elevations.push_back(elevationNW);
-            elevations.push_back(elevationNE);
-            elevations.push_back(elevationNEE);
-            elevations.push_back(elevationSW);
-            elevations.push_back(elevationSE);
-            elevations.push_back(elevationSEE);
-            elevations.push_back(elevationSS);
-            elevations.push_back(elevationSES);
-            elevations.push_back(elevationSESE);
-        // clang-format on
+        elevations.push_back(elevationNW);
+        elevations.push_back(elevationNE);
+        elevations.push_back(elevationNEE);
+        elevations.push_back(elevationSW);
+        elevations.push_back(elevationSE);
+        elevations.push_back(elevationSEE);
+        elevations.push_back(elevationSS);
+        elevations.push_back(elevationSES);
+        elevations.push_back(elevationSESE);
 
         m_elevationsAll[xCoordinate][yCoordinate] = elevations;
 
@@ -104,51 +96,47 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto color11{Palette::getColor<hash("White")>()};
         auto color01{Palette::getColor<hash("White")>()};
 
-        /* Set the colors of the tile */ // clang-format off
-            if (ground != hash("GroundStoneSlab"))
+        if (ground != hash("GroundStoneSlab"))
+        {
+            color00 = getColorByGroundType(ground);
+
+            if (tileNE)
             {
-                color00 = getColorByGroundType(ground);
-
-                if (tileNE)
-                {
-                    color10 = getColorByGroundType(tileNE->getGround());
-                }
-
-                if (tileSE)
-                {
-                    color11 = getColorByGroundType(tileSE->getGround());
-                }
-
-                if (tileSW)
-                {
-                    color01 = getColorByGroundType(tileSW->getGround());
-                }
+                color10 = getColorByGroundType(tileNE->getGround());
             }
-        // clang-format on
+
+            if (tileSE)
+            {
+                color11 = getColorByGroundType(tileSE->getGround());
+            }
+
+            if (tileSW)
+            {
+                color01 = getColorByGroundType(tileSW->getGround());
+            }
+        }
 
         auto forceRedraw{tile->getForceRedraw()};
 
         tile->setForceRedraw(false);
 
-        /* Animate if it is water */ // clang-format off
-            if (ground == hash("GroundWater"))
-            {
-                auto waterDepth{tile->getWaterDepth()};
+        if (ground == hash("GroundWater"))
+        {
+            auto waterDepth{tile->getWaterDepth()};
 
-                waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
+            waterDepth = std::min(waterDepth, k_maxWaterDepthRendering);
 
-                std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
+            std::string waterImageString{"GroundWater_Depth" + std::to_string(waterDepth)};
 
-                // NOLINTNEXTLINE(readability-magic-numbers)
-                auto animationIndex{(getTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            auto animationIndex{(getTicks() + ((xCoordinate + yCoordinate) * 100)) / 500 % 3};
 
-                waterImageString += "_" + std::to_string(animationIndex);
+            waterImageString += "_" + std::to_string(animationIndex);
 
-                ground = hash(waterImageString);
+            ground = hash(waterImageString);
 
-                tile->setForceRedraw(true);
-            }
-        // clang-format on
+            tile->setForceRedraw(true);
+        }
 
         m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
                            yCoordinate, m_rendTileSize, elevations, forceRedraw, color00, color10,

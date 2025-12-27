@@ -3,17 +3,15 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "UpdateEntitiesMovement.hpp"
-    
-    #include "Content/WorldStructure/Entity.hpp"
-    #include "Content/WorldStructure/Tile.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "Content/WorldStructure/WorldArea.hpp" 
-    #include "ForradiaEngine/Common/General.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "UpdateEntitiesMovement.hpp"
+
+#include "Content/WorldStructure/Entity.hpp"
+#include "Content/WorldStructure/Tile.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "Content/WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/General.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -49,18 +47,16 @@ namespace ForradiaEngine::JewelryMakerTheme
                 entity->setDestination({newDestinationX, newDestinationY});
             }
 
-            /* Calculate the new position */ // clang-format off
-                auto deltaX{entity->getDestination().x - position.x};
-                auto deltaY{entity->getDestination().y - position.y};
+            auto deltaX{entity->getDestination().x - position.x};
+            auto deltaY{entity->getDestination().y - position.y};
 
-                auto normalizedDX{normalize(deltaX)};
-                auto normalizedDY{normalize(deltaY)};
+            auto normalizedDX{normalize(deltaX)};
+            auto normalizedDY{normalize(deltaY)};
 
-                auto newX{position.x + normalizedDX};
-                auto newY{position.y + normalizedDY};
+            auto newX{position.x + normalizedDX};
+            auto newY{position.y + normalizedDY};
 
-                Point newPosition{newX, newY};
-            // clang-format on
+            Point newPosition{newX, newY};
 
             if (newPosition == entity->getDestination())
             {
@@ -71,20 +67,18 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (tile && !tile->getEntity() && tile->getGround() != hash("GroundWater"))
             {
-                /* Move entity to the new tile */ // clang-format off
-                    auto oldPosition{entities.at(entity)};
+                auto oldPosition{entities.at(entity)};
 
-                    entity->setTicksLastMovement(now);
+                entity->setTicksLastMovement(now);
 
-                    auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
-                    auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
+                auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
+                auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
 
-                    oldTile->setEntity(nullptr);
-                    newTile->setEntity(entity);
+                oldTile->setEntity(nullptr);
+                newTile->setEntity(entity);
 
-                    entities.erase(entity);
-                    entities.insert({entity, {newPosition.x, newPosition.y}});
-                // clang-format on
+                entities.erase(entity);
+                entities.insert({entity, {newPosition.x, newPosition.y}});
             }
             else
             {

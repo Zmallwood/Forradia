@@ -5,244 +5,218 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <set>
-    
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "Quest.hpp"
-// clang-format on
+#include <set>
+
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "Quest.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    /* Move quest */ // clang-format off
-        class MoveQuest : public Quest
+    class MoveQuest : public Quest
+    {
+      public:
+        MoveQuest()
         {
-          public:
-            MoveQuest()
-            {
-                this->name = "Movement";
-                this->description = "Try to walk somewhere, 3 times.";
-            }
+            this->name = "Movement";
+            this->description = "Try to walk somewhere, 3 times.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            int m_numStepsLeft{3};
-        };
-    // clang-format on
+      private:
+        int m_numStepsLeft{3};
+    };
 
-    /* Forage quest */ // clang-format off
-        class ForageQuest : public Quest
+    class ForageQuest : public Quest
+    {
+      public:
+        ForageQuest()
         {
-          public:
-            ForageQuest()
-            {
-                this->name = "Forage";
-                this->description = "Try to gather some resources, 3 times.";
-            }
+            this->name = "Forage";
+            this->description = "Try to gather some resources, 3 times.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            int m_numForagingsLeft{3};
-        };
-    // clang-format on
+      private:
+        int m_numForagingsLeft{3};
+    };
 
-    /* Craft stone pickaxe quest */ // clang-format off
-        class CraftStonePickaxeQuest : public Quest
+    class CraftStonePickaxeQuest : public Quest
+    {
+      public:
+        CraftStonePickaxeQuest()
         {
-          public:
-            CraftStonePickaxeQuest()
-            {
-                this->name = "First Crafting: Stone Pickaxe";
-                this->description = "Craft a stone pickaxe.";
-            }
+            this->name = "First Crafting: Stone Pickaxe";
+            this->description = "Craft a stone pickaxe.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            bool m_numBranchPicked{false};
-            bool m_numStonePicked{false};
-        };
-    // clang-format on
+      private:
+        bool m_numBranchPicked{false};
+        bool m_numStonePicked{false};
+    };
 
-    /* Craft stone bowl quest */ // clang-format off
-        class CraftStoneBowlQuest : public Quest
+    class CraftStoneBowlQuest : public Quest
+    {
+      public:
+        CraftStoneBowlQuest()
         {
-          public:
-            CraftStoneBowlQuest()
-            {
-                this->name = "Craft Stone Bowl";
-                this->description = "Craft a stone bowl.";
-            }
+            this->name = "Craft Stone Bowl";
+            this->description = "Craft a stone bowl.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            bool m_stonedMined{false};
-        };
-    // clang-format on
+      private:
+        bool m_stonedMined{false};
+    };
 
-    /* Craft campfire quest */ // clang-format off
-        class CraftCampfireQuest : public Quest
+    class CraftCampfireQuest : public Quest
+    {
+      public:
+        CraftCampfireQuest()
         {
-          public:
-            CraftCampfireQuest()
-            {
-                this->name = "Craft Campfire";
-                this->description = "Craft a campfire.";
-            }
+            this->name = "Craft Campfire";
+            this->description = "Craft a campfire.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numBranchesNeeded{8};
-            int m_numBranchesLeft{k_numBranchesNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numBranchesNeeded{8};
+        int m_numBranchesLeft{k_numBranchesNeeded};
+    };
 
-    /* Mine stone from boulder quest 1 */ // clang-format off
-        class MineStoneFromBoulderQuest1 : public Quest
+    class MineStoneFromBoulderQuest1 : public Quest
+    {
+      public:
+        MineStoneFromBoulderQuest1()
         {
-          public:
-            MineStoneFromBoulderQuest1()
-            {
-                this->name = "Mine Stone";
-                this->description = "Mine 10 stones from a boulder.";
-            }
+            this->name = "Mine Stone";
+            this->description = "Mine 10 stones from a boulder.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numStonesNeeded{10};
-            int m_numMinedStonesLeft{k_numStonesNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numStonesNeeded{10};
+        int m_numMinedStonesLeft{k_numStonesNeeded};
+    };
 
-    /* Craft stone slabs quest */ // clang-format off
-        class CraftStoneSlabsQuest : public Quest
+    class CraftStoneSlabsQuest : public Quest
+    {
+      public:
+        CraftStoneSlabsQuest()
         {
-          public:
-            CraftStoneSlabsQuest()
-            {
-                this->name = "Craft Stone Slabs";
-                this->description = "Craft 10 stone slabs.";
-            }
+            this->name = "Craft Stone Slabs";
+            this->description = "Craft 10 stone slabs.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numSlabsNeeded{10};
-            int m_numCraftedSlabsLeft{k_numSlabsNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numSlabsNeeded{10};
+        int m_numCraftedSlabsLeft{k_numSlabsNeeded};
+    };
 
-    /* Lay stone slabs quest */ // clang-format off
-        class LayStoneSlabsQuest : public Quest
+    class LayStoneSlabsQuest : public Quest
+    {
+      public:
+        LayStoneSlabsQuest()
         {
-          public:
-            LayStoneSlabsQuest()
-            {
-                this->name = "Lay Stone Slabs";
-                this->description = "Lay 10 stone slabs.";
-            }
+            this->name = "Lay Stone Slabs";
+            this->description = "Lay 10 stone slabs.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numSlabsPlacedNeeded{10};
-            int m_numLaidSlabsLeft{k_numSlabsPlacedNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numSlabsPlacedNeeded{10};
+        int m_numLaidSlabsLeft{k_numSlabsPlacedNeeded};
+    };
 
-    /* Mine stone from boulder quest 2 */ // clang-format off
-        class MineStoneFromBoulderQuest2 : public Quest
+    class MineStoneFromBoulderQuest2 : public Quest
+    {
+      public:
+        MineStoneFromBoulderQuest2()
         {
-          public:
-            MineStoneFromBoulderQuest2()
-            {
-                this->name = "Mine Stone";
-                this->description = "Mine 10 stones from a boulder.";
-            }
+            this->name = "Mine Stone";
+            this->description = "Mine 10 stones from a boulder.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numMinedStonesNeeded{10};
-            int m_numMinedStonesLeft{k_numMinedStonesNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numMinedStonesNeeded{10};
+        int m_numMinedStonesLeft{k_numMinedStonesNeeded};
+    };
 
-    /* Craft stone bricks quest */ // clang-format off
-        class CraftStoneBricksQuest : public Quest
+    class CraftStoneBricksQuest : public Quest
+    {
+      public:
+        CraftStoneBricksQuest()
         {
-          public:
-            CraftStoneBricksQuest()
-            {
-                this->name = "Craft Stone Bricks";
-                this->description = "Craft 10 stone bricks.";
-            }
+            this->name = "Craft Stone Bricks";
+            this->description = "Craft 10 stone bricks.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            constexpr static int k_numCraftedBricksNeeded{10};
-            int m_numCraftedBricksLeft{k_numCraftedBricksNeeded};
-        };
-    // clang-format on
+      private:
+        constexpr static int k_numCraftedBricksNeeded{10};
+        int m_numCraftedBricksLeft{k_numCraftedBricksNeeded};
+    };
 
-    /* Build stone walls quest */ // clang-format off
-        class BuildStoneWallsQuest : public Quest
+    class BuildStoneWallsQuest : public Quest
+    {
+      public:
+        BuildStoneWallsQuest()
         {
-          public:
-            BuildStoneWallsQuest()
-            {
-                this->name = "Build Stone Wall";
-                this->description = "Build stone walls (and a door) around the stone slabs floor.";
-            }
+            this->name = "Build Stone Wall";
+            this->description = "Build stone walls (and a door) around the stone slabs floor.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
+        [[nodiscard]] auto getStatus() const -> std::string override;
 
-          private:
-            static auto getNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
-        };
-    // clang-format on
+      private:
+        static auto getNumIncompleteWallTiles(const std::set<Point> &wallPositions) -> int;
+    };
 
-    /* Place spouse quest */ // clang-format off
-        class PlaceSpouseQuest : public Quest
+    class PlaceSpouseQuest : public Quest
+    {
+      public:
+        PlaceSpouseQuest()
         {
-          public:
-            PlaceSpouseQuest()
-            {
-                this->name = "Place Spouse";
-                this->description = "Invite your spouse to the house.";
-            }
+            this->name = "Place Spouse";
+            this->description = "Invite your spouse to the house.";
+        }
 
-            auto update() -> void override;
+        auto update() -> void override;
 
-            [[nodiscard]] auto getStatus() const -> std::string override;
-        };
-    // clang-format on
+        [[nodiscard]] auto getStatus() const -> std::string override;
+    };
 }

@@ -3,13 +3,11 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "UpdateKeyboardMovement.hpp"
-    
-    #include <set>
-    
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "UpdateKeyboardMovement.hpp"
+
+#include <set>
+
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -22,12 +20,10 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         pressedKeys.insert(key);
 
-        /* Check if the movement keys are pressed */ // clang-format off
-            auto upPress{pressedKeys.contains(SDLK_UP) || pressedKeys.contains(SDLK_w)};
-            auto rightPress{pressedKeys.contains(SDLK_RIGHT) || pressedKeys.contains(SDLK_d)};
-            auto downPress{pressedKeys.contains(SDLK_DOWN) || pressedKeys.contains(SDLK_s)};
-            auto leftPress{pressedKeys.contains(SDLK_LEFT) || pressedKeys.contains(SDLK_a)};
-        // clang-format on
+        auto upPress{pressedKeys.contains(SDLK_UP) || pressedKeys.contains(SDLK_w)};
+        auto rightPress{pressedKeys.contains(SDLK_RIGHT) || pressedKeys.contains(SDLK_d)};
+        auto downPress{pressedKeys.contains(SDLK_DOWN) || pressedKeys.contains(SDLK_s)};
+        auto leftPress{pressedKeys.contains(SDLK_LEFT) || pressedKeys.contains(SDLK_a)};
 
         if (upPress || rightPress || downPress || leftPress)
         {

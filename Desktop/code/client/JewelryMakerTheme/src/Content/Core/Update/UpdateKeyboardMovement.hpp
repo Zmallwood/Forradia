@@ -5,9 +5,7 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <SDL2/SDL.h>
-// clang-format on
+#include <SDL2/SDL.h>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

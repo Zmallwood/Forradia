@@ -5,11 +5,9 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    
-    #include <nlohmann/json.hpp>
-// clang-format on
+#include <memory>
+
+#include <nlohmann/json.hpp>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -45,6 +43,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         static auto loadGame() -> void;
 
       private:
+        static auto saveTile(std::shared_ptr<Tile> tile, Point coordinate, nlohmann::json &jsonData)
+            -> void;
+
         static auto loadTiles(const std::shared_ptr<WorldArea> &worldArea,
                               const nlohmann::json &jsonData) -> void;
 

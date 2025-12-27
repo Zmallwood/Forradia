@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "UpdateSetPlayerDestination.hpp"
-    
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "TileHovering.hpp"
-// clang-format on
+#include "UpdateSetPlayerDestination.hpp"
+
+#include "Content/Essentials/Player/Player.hpp"
+#include "TileHovering.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

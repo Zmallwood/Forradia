@@ -1,0 +1,4 @@
+Use Google Chrome extension: URL Regex Replace
+use the following settings for the extension:
+Find: ^http://localhost:8080/xref/(.*)$
+Replace: cursor://file:/home/andreas/code/git/Forradia/Desktop/code//$1

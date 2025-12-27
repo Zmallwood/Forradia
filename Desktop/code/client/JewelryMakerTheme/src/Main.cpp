@@ -3,28 +3,22 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "Content/Properties/ThemeProperties.hpp"
-    #include "Content/WorldStructure/World.hpp"
-    #include "ForradiaEngine/Engine.hpp"
-    #include "Scenes/SetupScenes.hpp"
-// clang-format on
+#include "Content/Properties/ThemeProperties.hpp"
+#include "Content/WorldStructure/World.hpp"
+#include "ForradiaEngine/Engine.hpp"
+#include "Scenes/SetupScenes.hpp"
 
 auto main(int argc, char **argv) -> int
 {
-    /* Usings */ // clang-format off
-        using namespace ForradiaEngine;
-        using namespace JewelryMakerTheme;
-    // clang-format on
+    using namespace ForradiaEngine;
+    using namespace JewelryMakerTheme;
 
-    /* Initialization */ // clang-format off
-        Engine::initialize(ThemeProperties::getGameWindowTitle(),
-                                    ThemeProperties::getClearColor());
-        setupScenes();
+    Engine::initialize(ThemeProperties::getGameWindowTitle(), ThemeProperties::getClearColor());
+    
+    setupScenes();
 
-        World::instance().initialize(ThemeProperties::getBaseWorldAreaSize(),
-                                    ThemeProperties::getWorldScaling());
-    // clang-format on
+    World::instance().initialize(ThemeProperties::getBaseWorldAreaSize(),
+                                 ThemeProperties::getWorldScaling());
 
     Engine::instance().run();
 
