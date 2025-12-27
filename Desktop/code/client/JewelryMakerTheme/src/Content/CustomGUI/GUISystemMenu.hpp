@@ -7,6 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "ForradiaEngine/GUICore/GUIComponent.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -35,7 +36,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Constructor.
          */
-        GUISystemMenu() : GUIComponent(0.0f, 0.0f, 1.0f, 1.0f)
+        GUISystemMenu() : GUIComponent(k_bounds.x, k_bounds.y, k_bounds.width, k_bounds.height)
         {
             this->initialize();
         }
@@ -49,14 +50,15 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Does update logic that is specific to the system menu.
          */
-        virtual auto updateDerived() -> void override;
+        auto updateDerived() -> void override;
 
         /**
          *  Does render logic that is specific to the system menu.
          */
-        virtual auto renderDerived() const -> void override;
+        auto renderDerived() const -> void override;
 
       private:
+        constexpr static RectF k_bounds{0.0F, 0.0F, 1.0F, 1.0F};
         const int k_renderIDBackgroundColor{hash("GUISystemMenuBackgroundColor")};
     };
 }

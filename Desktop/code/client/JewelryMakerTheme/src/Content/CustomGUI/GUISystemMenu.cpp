@@ -34,7 +34,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // clang-format on
 
         /* Add the load game button */ // clang-format off
-            constexpr RectF loadGameButtonBounds{0.5F - 0.08F / 2, 0.5F + 0.05F, 0.08F, 0.05F};
+            constexpr RectF loadGameButtonBounds{0.5F - 0.08F / 2, 0.5F + 0.055F, 0.08F, 0.05F};
 
             auto loadGameButton{std::make_shared<GUIButton>(
                 "GUIButtonLoadGame", loadGameButtonBounds.x, loadGameButtonBounds.y,

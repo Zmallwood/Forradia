@@ -4,6 +4,8 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
+    #include <cmath>
+
     #include "ExperienceCalculations.hpp"
 // clang-format on
 

@@ -13,6 +13,7 @@
     #include "Content/WorldStructure/World.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
+    #include "ForradiaEngine/Common/General.hpp"
     #include "PlayerObjectsInventory.hpp"
 // clang-format on
 
@@ -153,7 +154,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
                 auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
+                for (const auto &object : objectsStack->getObjects())
                 {
                     if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                     {
@@ -162,7 +163,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::North;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -182,7 +183,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
             {
                 auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-                for (auto object : objectsStack->getObjects())
+                for (const auto &object : objectsStack->getObjects())
                 {
                     if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                     {
@@ -191,7 +192,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::East;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -220,7 +221,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::South;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -249,7 +250,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::West;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -278,7 +279,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::NorthEast;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -307,7 +308,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::SouthEast;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -336,7 +337,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::SouthWest;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
@@ -365,7 +366,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 m_position = {newX, newY};
-                m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
+                m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
                 m_playerMoveDirection = PlayerMoveDirections::NorthWest;
 
                 if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
