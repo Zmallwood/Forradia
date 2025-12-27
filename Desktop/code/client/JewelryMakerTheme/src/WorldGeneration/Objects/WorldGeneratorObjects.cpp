@@ -41,7 +41,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto radius{static_cast<int>(
                 8 * worldScaling +
                 static_cast<float>(getRandomInt(static_cast<int>(12 * worldScaling))))};
-            auto treeDensity{0.1F + static_cast<float>(getRandomInt(20)) / 100.0F};
+            auto treeDensity{0.05F + static_cast<float>(getRandomInt(5)) / 100.0F};
 
             auto useFir{getRandomInt(100) < 60};
 
