@@ -81,6 +81,14 @@ namespace ForradiaEngine
         {
           public:
             /**
+            *  Add an offset to this point.
+            *
+            *  @param offset The offset to add.
+            *  @return The resulting Point3 with the offset added.
+            */
+            auto offset(Point3 offset) -> Point3;
+
+            /**
             *  The x dimension.
             */
             int x{0};

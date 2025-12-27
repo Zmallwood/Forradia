@@ -22,6 +22,8 @@ namespace ForradiaEngine::JewelryMakerTheme
             addObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8, false);
             addObjectEntry("ObjectLitCampfire", 1.3F, true, 8, false);
             addObjectEntry("ObjectStoneBoulder", 1.0F, false, 0, true);
+            addObjectEntry("ObjectMineEntrance", 1.0F, true, 0, false);
+            addObjectEntry("ObjectStoneBlock", 1.0F, true, 0, true);
         // clang-format on
     }
 

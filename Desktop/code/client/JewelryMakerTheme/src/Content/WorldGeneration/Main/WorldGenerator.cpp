@@ -9,6 +9,7 @@
     #include "Content/WorldGeneration/Ground/WorldGeneratorGround.hpp"
     #include "Content/WorldGeneration/Objects/WorldGeneratorObjects.hpp"
     #include "Content/WorldGeneration/Water/WorldGeneratorWater.hpp"
+    #include "Content/WorldGeneration/LowerFloors/WorldGeneratorLowerFloors.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -21,6 +22,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         WorldGeneratorWater::instance().generateWater();
         WorldGeneratorObjects::instance().generateObjects();
         WorldGeneratorEntities::instance().generateEntities();
+        WorldGeneratorLowerFloors::instance().generateLowerFloors();
     }
 
     auto WorldGenerator::prepare() -> void
@@ -29,5 +31,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         WorldGeneratorWater::instance().prepare();
         WorldGeneratorObjects::instance().prepare();
         WorldGeneratorEntities::instance().prepare();
+        WorldGeneratorLowerFloors::instance().prepare();
     }
 }

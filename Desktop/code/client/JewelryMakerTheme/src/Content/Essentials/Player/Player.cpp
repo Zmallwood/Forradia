@@ -163,6 +163,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveNorth, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::North;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -187,6 +192,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveEast, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::East;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -211,6 +221,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveSouth, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::South;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -235,6 +250,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveWest, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::West;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -259,6 +279,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveNorthEast, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -283,6 +308,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveSouthEast, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -307,6 +337,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveSouthWest, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
 
@@ -331,6 +366,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 m_position = {newX, newY};
                 m_playerActions.push_back({PlayerActionTypes::MoveNorthWest, "", m_position});
                 m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+
+                if (worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") > 0)
+                {
+                    m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y, m_worldAreaCoordinate.z - 1};
+                }
             }
         }
     // clang-format on

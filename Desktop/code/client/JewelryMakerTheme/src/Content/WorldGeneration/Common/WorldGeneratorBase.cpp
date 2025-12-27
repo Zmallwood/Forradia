@@ -19,6 +19,11 @@ namespace ForradiaEngine::JewelryMakerTheme
             Player::instance().getWorldAreaCoordinate());
         m_worldAreaSize = m_worldArea->getSize();
         m_worldScaling = JewelryMakerTheme::ThemeProperties::getWorldScaling();
+
+        m_worldAreaLowerFloors = JewelryMakerTheme::World::instance().getWorldArea(
+            Player::instance().getWorldAreaCoordinate().offset(Point3{0, 0, -1}));
+        m_worldAreaLowerFloorsSize = m_worldAreaLowerFloors->getSize();
+        m_worldScalingLowerFloors = JewelryMakerTheme::ThemeProperties::getWorldScaling();
     }
 
     auto WorldGeneratorBase::getDistance(int x1, int y1, int x2, int y2) -> float

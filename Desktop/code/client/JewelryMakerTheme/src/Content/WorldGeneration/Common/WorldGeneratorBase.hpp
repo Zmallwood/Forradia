@@ -76,10 +76,43 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_worldScaling;
         }
 
+        /**
+         *  Get the world area lower floors.
+         *
+         *  @return The world area lower floors.
+         */
+        [[nodiscard]] auto getWorldAreaLowerFloors() const
+        {
+            return m_worldAreaLowerFloors;
+        }
+
+        /**
+         *  Get the size of the world area lower floors.
+         *
+         *  @return The size of the world area lower floors.
+         */
+        [[nodiscard]] auto getWorldAreaLowerFloorsSize() const
+        {
+            return m_worldAreaLowerFloorsSize;
+        }
+
+        /**
+         *  Get the scale factor of the world area lower floors.
+         *
+         *  @return The scale factor of the world area lower floors.
+         */
+        [[nodiscard]] auto getWorldScalingLowerFloors() const
+        {
+            return m_worldScalingLowerFloors;
+        }
+
       private:
         constexpr static int k_defaultGroundElevation{10};
         std::shared_ptr<WorldArea> m_worldArea{};
+        std::shared_ptr<WorldArea> m_worldAreaLowerFloors{};
         Size m_worldAreaSize{};
+        Size m_worldAreaLowerFloorsSize{};
         float m_worldScaling{};
+        float m_worldScalingLowerFloors{};
     };
 }

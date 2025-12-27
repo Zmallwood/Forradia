@@ -42,6 +42,11 @@ namespace ForradiaEngine
         {
             return {this->x - other.x, this->y - other.y};
         }
+
+        auto Point3::offset(Point3 offset) -> Point3
+        {
+            return {this->x + offset.x, this->y + offset.y, this->z + offset.z};
+        }
     // clang-format on
 
     /* Rectangle types */ // clang-format off

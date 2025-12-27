@@ -15,6 +15,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{std::make_shared<WorldArea>(worldAreaSize, worldScaling)};
 
         m_worldAreas[0][0][0] = worldArea;
+
+        auto worldAreaLowerFloors{std::make_shared<WorldArea>(worldAreaSize, worldScaling)};
+
+        m_worldAreas[0][0][-1] = worldAreaLowerFloors;
     }
 
     auto World::getWorldArea(Point3 coordinate) -> std::shared_ptr<WorldArea>
