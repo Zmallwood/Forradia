@@ -6,11 +6,11 @@
 #include "SetupScenes.hpp"
 
 #include "ForradiaEngine/ScenesCore.hpp"
-#include "IntroScene.hpp"
-#include "MainScene.hpp"
-#include "MainMenuScene.hpp"
-#include "PlayScene.hpp"
-#include "WorldGenerationScene.hpp"
+#include "Scenes/IntroScene.hpp"
+#include "Scenes/MainScene.hpp"
+#include "Scenes/MainMenuScene.hpp"
+#include "Scenes/PlayScene.hpp"
+#include "Scenes/WorldGenerationScene.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
