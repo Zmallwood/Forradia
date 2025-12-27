@@ -25,7 +25,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Constructor.
          */
-        GUIPlayerStatusBox() : GUIPanel("GUIPlayerStatusBox", 0.0f, 0.0f, 0.2f, 0.14f)
+        GUIPlayerStatusBox()
+            : GUIPanel("GUIPlayerStatusBox", k_bounds.x, k_bounds.y, k_bounds.width,
+                       k_bounds.height)
         {
             this->initialize();
         }
@@ -51,6 +53,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         const int k_renderLevelString{hash("GUIPlayerStatusBoxLevel")};
         const int k_renderWellBeingString{hash("GUIPlayerStatusBoxWellBeing")};
         const int k_renderWellBeingValueString{hash("GUIPlayerStatusBoxWellBeingValue")};
+        constexpr static RectF k_bounds{0.0F, 0.0F, 0.2F, 0.14F};
         constexpr static float k_margin{0.01F};
         constexpr static float k_levelTextLabelY{0.04F};
         constexpr static float k_wellBeingTextLabelY{0.095F};

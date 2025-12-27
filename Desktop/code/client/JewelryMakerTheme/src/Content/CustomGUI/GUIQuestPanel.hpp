@@ -25,7 +25,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Constructor.
          */
-        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79f, 0.2f, 0.2f, 0.14f)
+        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79F, 0.2F, 0.2F, 0.14F)
         {
             this->initialize();
         }

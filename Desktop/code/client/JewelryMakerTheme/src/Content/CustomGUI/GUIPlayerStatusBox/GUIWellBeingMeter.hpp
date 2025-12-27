@@ -26,8 +26,8 @@ namespace ForradiaEngine::JewelryMakerTheme
          *  @param width The width of the meter.
          *  @param height The height of the meter.
          */
-        GUIWellBeingMeter(float x, float y, float width, float height)
-            : GUIMeter("GUIWellBeingMeter", x, y, width, height, getFilledColor())
+        GUIWellBeingMeter(float xPos, float yPos, float width, float height)
+            : GUIMeter("GUIWellBeingMeter", xPos, yPos, width, height, getFilledColor())
         {
         }
 
@@ -65,7 +65,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
 
       private:
-        constexpr static float k_height{0.02f};
-        float m_filledPercentage{0.0f};
+        constexpr static float k_height{0.02F};
+        float m_filledPercentage{0.0F};
     };
 }
