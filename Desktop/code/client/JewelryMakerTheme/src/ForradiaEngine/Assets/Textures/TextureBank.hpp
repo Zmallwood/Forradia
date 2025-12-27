@@ -13,13 +13,28 @@
     #include <GL/gl.h>
     
     #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "TextureEntry.hpp"
 // clang-format on
 
 struct SDL_Surface;
 
 namespace ForradiaEngine
 {
+    /**
+     *  Holds information about a texture, used by the TextureBank.
+     */
+    class TextureEntry
+    {
+      public:
+        /**
+         *  The texture ID, used by opengl.
+         */
+        GLuint textureID{};
+        /**
+         *  The texture width and height.
+         */
+        Size dimensions{};
+    };
+
     /**
      *  Manages loading and providing of textures which are being used in opengl rendering.
      */
