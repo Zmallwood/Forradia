@@ -6,7 +6,6 @@
 #pragma once
 
 #include <unordered_map>
-
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
 #include "ForradiaEngine/GUICore/GUIWindow.hpp"

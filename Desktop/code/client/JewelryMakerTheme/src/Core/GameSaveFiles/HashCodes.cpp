@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "HashCodes.hpp"
-
 #include <array>
-
 #include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

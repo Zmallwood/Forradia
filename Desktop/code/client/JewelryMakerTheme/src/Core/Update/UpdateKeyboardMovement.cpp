@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "UpdateKeyboardMovement.hpp"
-
 #include <set>
-
 #include "Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

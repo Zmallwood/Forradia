@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Player.hpp"
-
 #include "Properties/ObjectIndex.hpp"
 #include "WorldStructure/Object.hpp"
 #include "WorldStructure/ObjectsStack.hpp"

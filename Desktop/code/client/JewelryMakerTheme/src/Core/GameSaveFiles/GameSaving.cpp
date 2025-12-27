@@ -4,10 +4,8 @@
  *********************************************************************/
 
 #include "GameSaving.hpp"
-
 #include <fstream>
 #include <string>
-
 #include "WorldStructure/Entity.hpp"
 #include "WorldStructure/Object.hpp"
 #include "WorldStructure/ObjectsStack.hpp"

@@ -5,18 +5,14 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <unordered_map>
-    #include <numbers>
-    #include <memory>
-
-    #include <glm/glm.hpp>
-
-    #include "ForradiaEngine/Common/General.hpp"
-    #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-    #include "ForradiaEngine/Rendering/Ground/TileData.hpp"
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-// clang-format on
+#include <unordered_map>
+#include <numbers>
+#include <memory>
+#include <glm/glm.hpp>
+#include "ForradiaEngine/Common/General.hpp"
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "ForradiaEngine/Rendering/Ground/TileData.hpp"
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

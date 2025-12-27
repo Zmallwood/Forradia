@@ -6,7 +6,6 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

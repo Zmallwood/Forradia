@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIContainerWindowPanel.hpp"
-
 #include "ForradiaEngine/GUICore/GUIComponent.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "ForradiaEngine/GUICore/GUIWindow.hpp"

@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "GUIPlayerStatusBox.hpp"
-
 #include <fmt/format.h>
-
 #include "Essentials/Math/ExperienceCalculations.hpp"
 #include "Essentials/Player/Player.hpp"
 #include "ForradiaEngine/GUICore/GUILabel.hpp"

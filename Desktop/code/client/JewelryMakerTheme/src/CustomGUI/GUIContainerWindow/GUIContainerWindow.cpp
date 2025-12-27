@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIContainerWindow.hpp"
-
 #include "Essentials/Player/Player.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"

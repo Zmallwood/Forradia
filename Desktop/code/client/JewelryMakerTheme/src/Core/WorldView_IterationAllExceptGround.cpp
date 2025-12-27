@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "WorldView.hpp"
-
 #include "Essentials/Player/Player.hpp"
 #include "Properties/CreatureIndex.hpp"
 #include "Properties/ObjectIndex.hpp"

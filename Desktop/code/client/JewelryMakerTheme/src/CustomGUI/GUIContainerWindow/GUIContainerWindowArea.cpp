@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIContainerWindowArea.hpp"
-
 #include "WorldStructure/Object.hpp"
 #include "GUIContainerWindowPanel.hpp"
 

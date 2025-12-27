@@ -6,7 +6,6 @@
 #pragma once
 
 #include <vector>
-
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "GUIInteractionMenuEntry.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"

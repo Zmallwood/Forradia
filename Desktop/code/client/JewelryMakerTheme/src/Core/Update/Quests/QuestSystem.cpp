@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "QuestSystem.hpp"
-
 #include "Quest.hpp"
 #include "Quests.hpp"
 

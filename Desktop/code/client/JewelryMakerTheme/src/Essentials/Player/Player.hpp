@@ -9,7 +9,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "PlayerActionTypes.hpp"
 #include "PlayerMoveDirections.hpp"

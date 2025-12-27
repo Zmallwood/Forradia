@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIExperienceBar.hpp"
-
 #include "Essentials/Math/ExperienceCalculations.hpp"
 #include "Essentials/Player/Player.hpp"
 

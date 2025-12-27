@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "TileHovering.hpp"
-
 #include <glm/gtx/intersect.hpp>
-
 #include "Essentials/Player/Player.hpp"
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/Tile.hpp"

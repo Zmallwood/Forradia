@@ -6,7 +6,6 @@
 #pragma once
 
 #include <set>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "Quest.hpp"
 

@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "UpdateSetPlayerDestination.hpp"
-
 #include "Essentials/Player/Player.hpp"
 #include "TileHovering.hpp"
 

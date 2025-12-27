@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "UpdateMouseMovement.hpp"
-
 #include "Essentials/Player/Player.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 

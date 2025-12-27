@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "UpdateEntitiesMovement.hpp"
-
 #include "WorldStructure/Entity.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/World.hpp"

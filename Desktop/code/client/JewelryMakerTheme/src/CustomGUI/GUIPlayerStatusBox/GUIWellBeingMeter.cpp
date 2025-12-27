@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIWellBeingMeter.hpp"
-
 #include "Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

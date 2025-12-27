@@ -3,9 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include <cmath>
-
 #include "ExperienceCalculations.hpp"
+#include <cmath>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

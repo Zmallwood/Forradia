@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIQuestPanel.hpp"
-
 #include "Core/Update/Quests/QuestSystem.hpp"
 #include "ForradiaEngine/GUICore/GUILabel.hpp"
 

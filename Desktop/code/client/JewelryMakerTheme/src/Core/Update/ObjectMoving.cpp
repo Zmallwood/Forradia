@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "ObjectMoving.hpp"
-
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "WorldStructure/Object.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"

@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Actions.hpp"
-
 #include "CustomGUI/GUIContainerWindow/GUIContainerWindow.hpp"
 #include "Essentials/Player/Player.hpp"
 #include "Essentials/Player/PlayerActionTypes.hpp"

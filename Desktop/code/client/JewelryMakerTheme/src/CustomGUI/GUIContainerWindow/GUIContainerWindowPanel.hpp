@@ -6,7 +6,6 @@
 #pragma once
 
 #include <unordered_map>
-
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 
 namespace ForradiaEngine

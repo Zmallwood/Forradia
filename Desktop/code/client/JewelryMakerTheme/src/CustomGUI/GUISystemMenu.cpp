@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUISystemMenu.hpp"
-
 #include "Core/GameSaveFiles/GameSaving.hpp"
 #include "ForradiaEngine/GUICore/GUIButton.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
