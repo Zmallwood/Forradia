@@ -20,14 +20,22 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIPlayerStatusBox::initialize() -> void
     {
         /* Add the well-being meter */ // clang-format off
-                auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(0.06F, 0.1F, 0.12F, 0.015F)};
+                constexpr RectF wellBeingMeterBounds{0.06F, 0.1F, 0.12F, 0.015F};
+
+                auto wellBeingMeter{std::make_shared<GUIWellBeingMeter>(
+                    wellBeingMeterBounds.x, wellBeingMeterBounds.y,
+                    wellBeingMeterBounds.width, wellBeingMeterBounds.height)};
 
                 this->addChildComponent(wellBeingMeter);
         // clang-format on
 
         /* Add the well-being value text label */ // clang-format off
+            constexpr RectF wellBeingValueTextLabelBounds{0.08F, 0.095F, 0.1F, 0.05F};
+
             m_wellBeingValueTextLabel =
-                std::make_shared<GUILabel>("GUILabelWellBeingValueText", 0.08f, 0.095f, 0.1f, 0.05f, "",
+                std::make_shared<GUILabel>("GUILabelWellBeingValueText",
+                                        wellBeingValueTextLabelBounds.x, wellBeingValueTextLabelBounds.y,
+                                        wellBeingValueTextLabelBounds.width, wellBeingValueTextLabelBounds.height, "",
                                         false, Palette::getColor<hash("Black")>());
 
             this->addChildComponent(m_wellBeingValueTextLabel);
@@ -57,14 +65,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /* Draw the status box components */ // clang-format off
             TextRenderer::instance().drawString(k_renderIDNameString, Player::instance().getName(),
-                                                bounds.x + 0.01f, bounds.y + 0.01f, FontSizes::_26);
+                                                bounds.x + k_margin, bounds.y + k_margin, FontSizes::_26);
 
             TextRenderer::instance().drawString(k_renderLevelString, fmt::format("Level: {}", level),
-                                                bounds.x + 0.01f, bounds.y + 0.04f, FontSizes::_26,
+                                                bounds.x + k_margin, bounds.y + k_levelTextLabelY, FontSizes::_26,
                                                 false, true);
                                                 
-            TextRenderer::instance().drawString(k_renderWellBeingString, "WB", bounds.x + 0.01f,
-                                                bounds.y + 0.095f, FontSizes::_20);
+            TextRenderer::instance().drawString(k_renderWellBeingString, "WB", bounds.x + k_margin,
+                                                bounds.y + k_wellBeingTextLabelY, FontSizes::_20);
         // clang-format on
     }
 }

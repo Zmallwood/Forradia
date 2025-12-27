@@ -51,6 +51,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         const int k_renderLevelString{hash("GUIPlayerStatusBoxLevel")};
         const int k_renderWellBeingString{hash("GUIPlayerStatusBoxWellBeing")};
         const int k_renderWellBeingValueString{hash("GUIPlayerStatusBoxWellBeingValue")};
+        constexpr static float k_margin{0.01F};
+        constexpr static float k_levelTextLabelY{0.04F};
+        constexpr static float k_wellBeingTextLabelY{0.095F};
         std::shared_ptr<GUILabel> m_wellBeingValueTextLabel{};
     };
 }
