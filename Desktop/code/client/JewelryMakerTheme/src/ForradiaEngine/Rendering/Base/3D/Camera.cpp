@@ -7,14 +7,14 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "Content/Essentials/Player/Player.hpp"
-#include "Content/Properties/ThemeProperties.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/World.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
+#include "Essentials/Player/Player.hpp"
+#include "Properties/ThemeProperties.hpp"
+#include "WorldStructure/Tile.hpp"
+#include "WorldStructure/World.hpp"
+#include "WorldStructure/WorldArea.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "Content/Essentials/Player/Player.hpp"
+#include "Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine
 {

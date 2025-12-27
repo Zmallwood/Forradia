@@ -1,0 +1,35 @@
+/*********************************************************************
+ * Copyright 2025 Andreas Åkerberg                                   *
+ * This code is licensed under MIT license (see LICENSE for details) *
+ *********************************************************************/
+
+#include "UpdateKeyboardActions.hpp"
+#include "CustomGUI/GUIInventoryWindow.hpp"
+#include "CustomGUI/GUISystemMenu.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+
+namespace ForradiaEngine::JewelryMakerTheme
+{
+    auto updateKeyboardActions(SDL_Keycode key) -> void
+    {
+        if (key == SDLK_ESCAPE)
+        {
+            GUISystemMenu::instance().toggleVisibility();
+        }
+        else if (key == SDLK_b)
+        {
+            GUIInventoryWindow::instance().toggleVisibility();
+        }
+        else if (key == SDLK_RETURN)
+        {
+            if (GUIChatBox::instance().getInputActive())
+            {
+                GUIChatBox::instance().submitInput();
+            }
+            else
+            {
+                GUIChatBox::instance().enableInput();
+            }
+        }
+    }
+}

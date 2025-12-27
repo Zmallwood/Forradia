@@ -3,8 +3,8 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Content/Properties/ThemeProperties.hpp"
-#include "Content/WorldStructure/World.hpp"
+#include "Properties/ThemeProperties.hpp"
+#include "WorldStructure/World.hpp"
 #include "ForradiaEngine/Engine.hpp"
 #include "SetupScenes.hpp"
 

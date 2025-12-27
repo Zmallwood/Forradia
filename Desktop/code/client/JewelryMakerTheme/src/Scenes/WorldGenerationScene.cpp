@@ -5,7 +5,7 @@
 
 #include "WorldGenerationScene.hpp"
 
-#include "Content/WorldGeneration/Main/WorldGenerator.hpp"
+#include "WorldGeneration/Main/WorldGenerator.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
