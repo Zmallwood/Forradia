@@ -25,7 +25,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Constructor.
          */
-        GUIQuestPanel() : GUIMovablePanel("GUIQuestPanel", 0.79F, 0.2F, 0.2F, 0.14F)
+        GUIQuestPanel()
+            : GUIMovablePanel("GUIQuestPanel", k_bounds.x, k_bounds.y, k_bounds.width,
+                              k_bounds.height)
         {
             this->initialize();
         }
@@ -39,6 +41,7 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto initialize() -> void;
 
+        constexpr static RectF k_bounds{0.79F, 0.2F, 0.2F, 0.14F};
         std::shared_ptr<GUILabel> m_questTitleTextPanel{};
         std::shared_ptr<GUILabel> m_questNameTextPanel{};
         std::shared_ptr<GUILabel> m_questDescriptionTextPanel{};
