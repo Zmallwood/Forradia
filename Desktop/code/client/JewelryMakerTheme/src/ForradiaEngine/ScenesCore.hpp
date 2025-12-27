@@ -5,12 +5,10 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <string_view>
-    #include <unordered_map>
-    
-    #include <SDL2/SDL.h>
-// clang-format on
+#include <string_view>
+#include <unordered_map>
+
+#include <SDL2/SDL.h>
 
 namespace ForradiaEngine
 {

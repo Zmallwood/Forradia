@@ -5,15 +5,13 @@
 
 // TODO: Go through the comments and make sure they are correct.
 
-/* Includes */ // clang-format off
-    #include "SkyRenderer.hpp"
-    
-    #include <cmath>
-    #include <vector>
-    
-    #include <GL/glew.h>
-    #include <GL/gl.h>
-// clang-format on
+#include "SkyRenderer.hpp"
+
+#include <cmath>
+#include <vector>
+
+#include <GL/glew.h>
+#include <GL/gl.h>
 
 namespace ForradiaEngine
 {

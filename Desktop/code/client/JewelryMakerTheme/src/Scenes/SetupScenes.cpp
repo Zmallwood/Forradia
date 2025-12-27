@@ -3,28 +3,24 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "SetupScenes.hpp"
-    
-    #include "ForradiaEngine/ScenesCore.hpp"
-    #include "Intro/IntroScene.hpp"
-    #include "Main/MainScene.hpp"
-    #include "MainMenu/MainMenuScene.hpp"
-    #include "Play/PlayScene.hpp"
-    #include "WorldGeneration/WorldGenerationScene.hpp"
-// clang-format on
+#include "SetupScenes.hpp"
+
+#include "ForradiaEngine/ScenesCore.hpp"
+#include "IntroScene.hpp"
+#include "MainScene.hpp"
+#include "MainMenuScene.hpp"
+#include "PlayScene.hpp"
+#include "WorldGenerationScene.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     auto setupScenes() -> void
     {
-        /* Adding scenes */ // clang-format off
-            SceneManager::instance().addScene("IntroScene", IntroScene::instance());
-            SceneManager::instance().addScene("MainMenuScene", MainMenuScene::instance());
-            SceneManager::instance().addScene("PlayScene", PlayScene::instance());
-            SceneManager::instance().addScene("WorldGenerationScene", WorldGenerationScene::instance());
-            SceneManager::instance().addScene("MainScene", MainScene::instance());
-        // clang-format on
+        SceneManager::instance().addScene("IntroScene", IntroScene::instance());
+        SceneManager::instance().addScene("MainMenuScene", MainMenuScene::instance());
+        SceneManager::instance().addScene("PlayScene", PlayScene::instance());
+        SceneManager::instance().addScene("WorldGenerationScene", WorldGenerationScene::instance());
+        SceneManager::instance().addScene("MainScene", MainScene::instance());
 
         SceneManager::instance().goToScene("IntroScene");
     }

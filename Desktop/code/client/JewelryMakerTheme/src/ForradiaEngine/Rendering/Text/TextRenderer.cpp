@@ -3,16 +3,14 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "TextRenderer.hpp"
-    
-    #include <SDL2/SDL_ttf.h>
-    #include <GL/glew.h>
-    #include <GL/gl.h>
-    
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-// clang-format on
+#include "TextRenderer.hpp"
+
+#include <SDL2/SDL_ttf.h>
+#include <GL/glew.h>
+#include <GL/gl.h>
+
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine
 {

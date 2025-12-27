@@ -3,38 +3,36 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "MainScene.hpp"
-    
-    #include "Content/Core/Update/CameraRotator.hpp"
-    #include "Content/Core/Update/ObjectMoving.hpp"
-    #include "Content/Core/Update/Quests/QuestSystem.hpp"
-    #include "Content/Core/Update/TileHovering.hpp"
-    #include "Content/Core/Update/UpdateEntitiesMovement.hpp"
-    #include "Content/Core/Update/UpdateKeyboardActions.hpp"
-    #include "Content/Core/Update/UpdateKeyboardMovement.hpp"
-    #include "Content/Core/Update/UpdateMouseMovement.hpp"
-    #include "Content/Core/Update/UpdateSetPlayerDestination.hpp"
-    #include "Content/Core/WorldView.hpp"
-    #include "Content/CustomGUI/GUIExperienceBar.hpp"
-    #include "Content/CustomGUI/GUIInteractionMenu/Actions.hpp"
-    #include "Content/CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
-    #include "Content/CustomGUI/GUIInventoryWindow.hpp"
-    #include "Content/CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
-    #include "Content/CustomGUI/GUIQuestPanel.hpp"
-    #include "Content/CustomGUI/GUISystemMenu.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-    #include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
-    #include "ForradiaEngine/Common/Utilities.hpp"
-    #include "ForradiaEngine/GUICore/GUI.hpp"
-    #include "ForradiaEngine/GUICore/GUIButton.hpp"
-    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-    #include "ForradiaEngine/GUICore/GUIFPSPanel.hpp"
-    #include "ForradiaEngine/GUICore/GUIPanel.hpp"
-    #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-    #include "Content/Essentials/Player/Player.hpp"
-// clang-format on
+#include "MainScene.hpp"
+
+#include "Content/Core/Update/CameraRotator.hpp"
+#include "Content/Core/Update/ObjectMoving.hpp"
+#include "Content/Core/Update/Quests/QuestSystem.hpp"
+#include "Content/Core/Update/TileHovering.hpp"
+#include "Content/Core/Update/UpdateEntitiesMovement.hpp"
+#include "Content/Core/Update/UpdateKeyboardActions.hpp"
+#include "Content/Core/Update/UpdateKeyboardMovement.hpp"
+#include "Content/Core/Update/UpdateMouseMovement.hpp"
+#include "Content/Core/Update/UpdateSetPlayerDestination.hpp"
+#include "Content/Core/WorldView.hpp"
+#include "Content/CustomGUI/GUIExperienceBar.hpp"
+#include "Content/CustomGUI/GUIInteractionMenu/Actions.hpp"
+#include "Content/CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
+#include "Content/CustomGUI/GUIInventoryWindow.hpp"
+#include "Content/CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
+#include "Content/CustomGUI/GUIQuestPanel.hpp"
+#include "Content/CustomGUI/GUISystemMenu.hpp"
+#include "Content/Essentials/Player/Player.hpp"
+#include "Content/Essentials/Player/PlayerObjectsInventory.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/GUICore/GUI.hpp"
+#include "ForradiaEngine/GUICore/GUIButton.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUIFPSPanel.hpp"
+#include "ForradiaEngine/GUICore/GUIPanel.hpp"
+#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+#include "Content/Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -44,25 +42,21 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
-        /* Adding Inventory Window button */ // clang-format off
-            auto btnInventoryWindow{std::make_shared<GUIButton>(
-                "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-                convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
-                [] { GUIInventoryWindow::instance().toggleVisibility(); },
-                "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
+        auto btnInventoryWindow{std::make_shared<GUIButton>(
+            "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
+            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            [] { GUIInventoryWindow::instance().toggleVisibility(); },
+            "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
 
-            getGUI()->addChildComponent(btnInventoryWindow);
-        // clang-format on
+        getGUI()->addChildComponent(btnInventoryWindow);
 
-        /* Adding System Menu button */ // clang-format off
-            auto btnSystemMenu{std::make_shared<GUIButton>(
-                "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-                convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
-                [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
-                "GUIButtonSystemMenuHoveredBackground")};
+        auto btnSystemMenu{std::make_shared<GUIButton>(
+            "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
+            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
+            "GUIButtonSystemMenuHoveredBackground")};
 
-            getGUI()->addChildComponent(btnSystemMenu);
-        // clang-format on
+        getGUI()->addChildComponent(btnSystemMenu);
 
         getGUI()->addChildComponent(GUISystemMenu::instancePtr());
 
@@ -72,23 +66,19 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIExperienceBar::instancePtr());
 
-        /* Adding Right Hand Slot Panel */ // clang-format off
-            auto rightHandSlotPanel{std::make_shared<GUIPanel>(
-                "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
-                convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
-                "GUIRightHandSlotBackground")};
+        auto rightHandSlotPanel{std::make_shared<GUIPanel>(
+            "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
+            "GUIRightHandSlotBackground")};
 
-            getGUI()->addChildComponent(rightHandSlotPanel);
-        // clang-format on
+        getGUI()->addChildComponent(rightHandSlotPanel);
 
-        /* Adding Left Hand Slot Panel */ // clang-format off
-            auto leftHandSlotPanel{std::make_shared<GUIPanel>(
-                "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
-                convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
-                "GUILeftHandSlotBackground")};
+        auto leftHandSlotPanel{std::make_shared<GUIPanel>(
+            "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
+            "GUILeftHandSlotBackground")};
 
-            getGUI()->addChildComponent(leftHandSlotPanel);
-        // clang-format on
+        getGUI()->addChildComponent(leftHandSlotPanel);
 
         m_guiInteractionMenu = GUIInteractionMenu::instancePtr();
     }

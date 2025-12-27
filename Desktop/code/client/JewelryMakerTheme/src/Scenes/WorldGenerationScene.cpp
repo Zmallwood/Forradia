@@ -3,12 +3,10 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "WorldGenerationScene.hpp"
-    
-    #include "Content/WorldGeneration/Main/WorldGenerator.hpp"
-    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-// clang-format on
+#include "WorldGenerationScene.hpp"
+
+#include "Content/WorldGeneration/Main/WorldGenerator.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

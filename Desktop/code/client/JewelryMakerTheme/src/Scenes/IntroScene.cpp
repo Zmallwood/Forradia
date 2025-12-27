@@ -3,22 +3,20 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "IntroScene.hpp"
-    
-    #include "ForradiaEngine/GUICore/GUI.hpp"
-    #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-    #include "ForradiaEngine/GUICore/GUILabel.hpp"
-    #include "ForradiaEngine/MinorComponents/Cursor.hpp"
-    #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
-// clang-format on
+#include "IntroScene.hpp"
+
+#include "ForradiaEngine/GUICore/GUI.hpp"
+#include "ForradiaEngine/GUICore/GUIChatBox.hpp"
+#include "ForradiaEngine/GUICore/GUILabel.hpp"
+#include "ForradiaEngine/MinorComponents/Cursor.hpp"
+#include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     auto IntroScene::initializeDerived() -> void
     {
-        auto label{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f, 0.04f,
-                                            "Press to start", true)};
+        auto label{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f,
+                                              0.04f, "Press to start", true)};
 
         m_startText = getGUI()->addChildComponent(label);
     }
@@ -41,7 +39,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto IntroScene::updateDerived() -> void
     {
         m_startText->setVisible(getTicks() % 800 < 400);
-        
+
         Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
     }
 

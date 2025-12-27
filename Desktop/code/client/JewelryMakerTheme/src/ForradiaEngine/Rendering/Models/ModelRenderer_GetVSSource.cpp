@@ -3,9 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-/* Includes */ // clang-format off
-    #include "ModelRenderer.hpp"
-// clang-format on
+#include "ModelRenderer.hpp"
 
 namespace ForradiaEngine
 {

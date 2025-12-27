@@ -5,34 +5,32 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include "ForradiaEngine/ScenesCore.hpp"
-// clang-format on
+#include "ForradiaEngine/ScenesCore.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
-     *  The main menu scene is the second scene that is displayed when the game is started.
-     *  It displays the title of the game and the main menu.
+     *  The play scene is the scene where the player can choose to play a new game or continue a
+     *  saved game.
      */
-    class MainMenuScene : public IScene
+    class PlayScene : public IScene
     {
       public:
-        static MainMenuScene &instance()
+        static PlayScene &instance()
         {
-            static MainMenuScene instance;
+            static PlayScene instance;
             return instance;
         }
 
-        MainMenuScene(const MainMenuScene &) = delete;
+        PlayScene(const PlayScene &) = delete;
 
-        MainMenuScene &operator=(const MainMenuScene &) = delete;
+        PlayScene &operator=(const PlayScene &) = delete;
 
-        MainMenuScene() = default;
+        PlayScene() = default;
 
       protected:
         /**
-         *  Initializes the main menu scene.
+         *  Initializes the play scene.
          */
         virtual auto initializeDerived() -> void override;
 

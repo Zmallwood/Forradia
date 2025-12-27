@@ -5,14 +5,12 @@
 
 #pragma once
 
-/* Includes */ // clang-format off
-    #include <memory>
-    #include <unordered_map>
-    
-    #include "ForradiaEngine/Common/Matter/Coloring.hpp"
-    #include "FontSizes.hpp"
-    #include "ForradiaEngine/Common/General.hpp"
-// clang-format on
+#include <memory>
+#include <unordered_map>
+
+#include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "FontSizes.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 struct SDL_Surface;
 using TTF_Font = struct _TTF_Font;
