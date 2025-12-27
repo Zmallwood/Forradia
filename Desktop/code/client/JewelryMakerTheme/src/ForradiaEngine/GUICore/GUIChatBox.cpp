@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "GUIChatBox.hpp"
-
 #include <fmt/format.h>
-
 #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Engine.hpp"

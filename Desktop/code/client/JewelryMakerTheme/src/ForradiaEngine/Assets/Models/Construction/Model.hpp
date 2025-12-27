@@ -6,7 +6,6 @@
 #pragma once
 
 #include "assimp/scene.h"
-
 #include "ForradiaEngine/Common/Matter/GLMGeometry.hpp"
 
 namespace ForradiaEngine

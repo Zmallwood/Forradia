@@ -6,7 +6,6 @@
 #pragma once
 
 #include <string>
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 

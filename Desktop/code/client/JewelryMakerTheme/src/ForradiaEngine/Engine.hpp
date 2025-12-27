@@ -6,7 +6,6 @@
 #pragma once
 
 #include <string_view>
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 
 namespace ForradiaEngine

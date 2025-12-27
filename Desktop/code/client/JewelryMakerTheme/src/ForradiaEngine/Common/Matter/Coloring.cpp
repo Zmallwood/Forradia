@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "Coloring.hpp"
-
 #include <SDL2/SDL.h>
-
 #include "ForradiaEngine/Common/General.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 

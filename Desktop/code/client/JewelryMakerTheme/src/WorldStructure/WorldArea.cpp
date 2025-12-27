@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "WorldArea.hpp"
-
 #include "ObjectsStack.hpp"
 #include "Tile.hpp"
 

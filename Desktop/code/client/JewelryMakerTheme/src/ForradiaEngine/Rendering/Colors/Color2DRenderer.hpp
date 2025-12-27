@@ -6,7 +6,6 @@
 #pragma once
 
 #include <unordered_map>
-
 #include "Color2DRenderingOperation.hpp"
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"

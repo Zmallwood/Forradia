@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "Camera.hpp"
-
 #include <glm/gtc/matrix_transform.hpp>
-
 #include "Essentials/Player/Player.hpp"
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/Tile.hpp"

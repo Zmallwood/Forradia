@@ -6,7 +6,6 @@
 #pragma once
 
 #include <string_view>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 
 struct SDL_Window;

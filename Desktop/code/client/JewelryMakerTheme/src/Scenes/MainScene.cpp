@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "MainScene.hpp"
-
 #include "Core/Update/CameraRotator.hpp"
 #include "Core/Update/ObjectMoving.hpp"
 #include "Core/Update/Quests/QuestSystem.hpp"

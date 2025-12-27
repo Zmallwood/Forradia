@@ -6,7 +6,6 @@
 #pragma once
 
 #include <vector>
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 

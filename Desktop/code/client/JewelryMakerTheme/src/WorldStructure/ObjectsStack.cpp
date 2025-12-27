@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "ObjectsStack.hpp"
-
 #include <algorithm>
-
 #include "Object.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

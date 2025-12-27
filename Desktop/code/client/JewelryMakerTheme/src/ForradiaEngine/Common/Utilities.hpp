@@ -9,9 +9,7 @@
 #include <string_view>
 #include <string>
 #include <memory>
-
 #include <glm/glm.hpp>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine

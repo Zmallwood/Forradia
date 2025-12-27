@@ -6,10 +6,8 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
-
 #include <cmath>
 #include <vector>
-
 #include <GL/glew.h>
 #include <GL/gl.h>
 

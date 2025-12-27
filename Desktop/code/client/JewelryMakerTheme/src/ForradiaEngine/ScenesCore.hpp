@@ -7,7 +7,6 @@
 
 #include <string_view>
 #include <unordered_map>
-
 #include <SDL2/SDL.h>
 
 namespace ForradiaEngine

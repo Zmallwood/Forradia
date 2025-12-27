@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUI.hpp"
-
 #include <ranges>
 
 namespace ForradiaEngine

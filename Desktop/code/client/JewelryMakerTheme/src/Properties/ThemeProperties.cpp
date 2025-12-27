@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "ThemeProperties.hpp"
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

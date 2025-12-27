@@ -8,7 +8,6 @@
 #include <glm/vec3.hpp>
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
 
 namespace ForradiaEngine

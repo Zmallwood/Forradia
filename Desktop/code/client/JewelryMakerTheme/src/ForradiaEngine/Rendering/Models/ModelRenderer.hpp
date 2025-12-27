@@ -6,10 +6,8 @@
 #pragma once
 
 #include <unordered_map>
-
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ModelRenderingOperation.hpp"
 #include "ForradiaEngine/Rendering/Base/RendererBase.hpp"
 

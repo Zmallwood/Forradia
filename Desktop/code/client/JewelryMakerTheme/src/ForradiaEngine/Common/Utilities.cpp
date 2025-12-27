@@ -4,14 +4,12 @@
  *********************************************************************/
 
 #include "Utilities.hpp"
-
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-
 #include <SDL2/SDL.h>
 
 namespace ForradiaEngine

@@ -9,7 +9,6 @@
 #include <memory>
 #include <set>
 #include <vector>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

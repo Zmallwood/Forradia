@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GUIWindow.hpp"
-
 #include "GUIWindowTitleBar.hpp"
 
 namespace ForradiaEngine

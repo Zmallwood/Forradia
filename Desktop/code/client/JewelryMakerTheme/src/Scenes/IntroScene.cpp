@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "IntroScene.hpp"
-
 #include "ForradiaEngine/GUICore/GUI.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "ForradiaEngine/GUICore/GUILabel.hpp"

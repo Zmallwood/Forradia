@@ -6,7 +6,6 @@
 #pragma once
 
 #include <memory>
-
 #include "Directions.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

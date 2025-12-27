@@ -4,13 +4,10 @@
  *********************************************************************/
 
 #include "TextureBank.hpp"
-
 #include <filesystem>
 #include <ranges>
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 

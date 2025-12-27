@@ -7,7 +7,6 @@
 // cache reaches a certain limit.
 
 #include "Color2DRenderer.hpp"
-
 #include <array>
 
 namespace ForradiaEngine

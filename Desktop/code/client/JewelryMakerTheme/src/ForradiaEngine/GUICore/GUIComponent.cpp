@@ -4,10 +4,8 @@
  *********************************************************************/
 
 #include "GUIComponent.hpp"
-
 #include <algorithm>
 #include <ranges>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 

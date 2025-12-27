@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <string>
-
 #include <glm/glm.hpp>
 
 namespace ForradiaEngine

@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Cursor.hpp"
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"

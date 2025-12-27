@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Tile.hpp"
-
 #include "ObjectsStack.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

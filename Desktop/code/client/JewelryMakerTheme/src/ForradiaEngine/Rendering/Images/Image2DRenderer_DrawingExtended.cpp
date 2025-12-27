@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Image2DRenderer.hpp"
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"

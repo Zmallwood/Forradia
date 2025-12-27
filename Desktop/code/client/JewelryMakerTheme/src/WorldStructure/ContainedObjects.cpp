@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "ContainedObjects.hpp"
-
 #include "Object.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

@@ -6,7 +6,6 @@
 #pragma once
 
 #include <vector>
-
 #include "GUIPanel.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 

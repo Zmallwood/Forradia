@@ -6,7 +6,6 @@
 #pragma once
 
 #include <unordered_map>
-
 #include "ObjectIndexEntry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

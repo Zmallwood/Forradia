@@ -6,7 +6,6 @@
 #pragma once
 
 #include <glm/glm.hpp>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine

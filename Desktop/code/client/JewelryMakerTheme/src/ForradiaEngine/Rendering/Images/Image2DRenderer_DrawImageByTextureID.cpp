@@ -7,9 +7,7 @@
 // cache reaches a certain limit.
 
 #include "Image2DRenderer.hpp"
-
 #include <array>
-
 #include <GL/glew.h>
 #include <GL/gl.h>
 

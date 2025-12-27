@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine

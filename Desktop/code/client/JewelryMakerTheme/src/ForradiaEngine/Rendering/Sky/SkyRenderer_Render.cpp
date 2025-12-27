@@ -6,9 +6,7 @@
 // TODO: Go through the comments and make sure they are correct.
 
 #include "SkyRenderer.hpp"
-
 #include <glm/gtc/matrix_transform.hpp>
-
 #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 
 namespace ForradiaEngine

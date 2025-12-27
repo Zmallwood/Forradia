@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "GUIMovablePanel.hpp"
-
 #include <ranges>
-
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"

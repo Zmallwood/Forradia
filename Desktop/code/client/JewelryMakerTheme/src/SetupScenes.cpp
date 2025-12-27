@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "SetupScenes.hpp"
-
 #include "ForradiaEngine/ScenesCore.hpp"
 #include "Scenes/IntroScene.hpp"
 #include "Scenes/MainScene.hpp"

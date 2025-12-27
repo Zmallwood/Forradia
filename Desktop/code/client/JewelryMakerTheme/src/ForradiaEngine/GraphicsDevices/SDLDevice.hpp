@@ -7,9 +7,7 @@
 
 #include <memory>
 #include <string>
-
 #include <SDL2/SDL.h>
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 

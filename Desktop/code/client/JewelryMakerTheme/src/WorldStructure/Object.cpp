@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "Object.hpp"
-
 #include "ContainedObjects.hpp"
 #include "Properties/ObjectIndex.hpp"
 

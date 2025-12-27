@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "WorldGenerationScene.hpp"
-
 #include "WorldGeneration/Main/WorldGenerator.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 

@@ -4,10 +4,8 @@
  *********************************************************************/
 
 #include "GUIScrollableArea.hpp"
-
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/MinorComponents/CursorStyles.hpp"

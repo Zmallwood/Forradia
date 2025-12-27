@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "ModelRenderer.hpp"
-
 #include <glm/gtx/transform.hpp>
-
 #include "ForradiaEngine/Assets/Models/Construction/Model.hpp"
 #include "ForradiaEngine/Assets/Models/ModelBank.hpp"
 #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"

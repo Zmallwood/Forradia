@@ -7,7 +7,6 @@
 
 #include <memory>
 #include <unordered_map>
-
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "FontSizes.hpp"
 #include "ForradiaEngine/Common/General.hpp"

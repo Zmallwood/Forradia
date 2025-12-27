@@ -4,11 +4,9 @@
  *********************************************************************/
 
 #include "TextRenderer.hpp"
-
 #include <SDL2/SDL_ttf.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 

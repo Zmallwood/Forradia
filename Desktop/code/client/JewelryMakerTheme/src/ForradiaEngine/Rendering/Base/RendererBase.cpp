@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "RendererBase.hpp"
-
 #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 
 namespace ForradiaEngine

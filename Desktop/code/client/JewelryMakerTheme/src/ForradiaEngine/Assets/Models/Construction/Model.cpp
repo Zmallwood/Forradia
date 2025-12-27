@@ -4,11 +4,9 @@
  *********************************************************************/
 
 #include "Model.hpp"
-
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine

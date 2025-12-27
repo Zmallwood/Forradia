@@ -4,11 +4,9 @@
  *********************************************************************/
 
 #include "GLDevice.hpp"
-
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "SDLDevice.hpp"
 

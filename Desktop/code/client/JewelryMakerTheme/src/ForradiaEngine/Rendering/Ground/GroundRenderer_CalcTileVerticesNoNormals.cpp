@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
-
 #include "Properties/ThemeProperties.hpp"
 
 namespace ForradiaEngine

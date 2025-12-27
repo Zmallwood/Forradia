@@ -4,9 +4,7 @@
  *********************************************************************/
 
 #include "GUIFPSPanel.hpp"
-
 #include <fmt/format.h>
-
 #include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
 #include "GUILabel.hpp"
 

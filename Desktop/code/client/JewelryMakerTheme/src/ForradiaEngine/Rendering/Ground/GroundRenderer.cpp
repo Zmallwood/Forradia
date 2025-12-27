@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "GroundRenderer.hpp"
-
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"

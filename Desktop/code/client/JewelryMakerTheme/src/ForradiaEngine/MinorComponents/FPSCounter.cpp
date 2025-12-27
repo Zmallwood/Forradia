@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "FPSCounter.hpp"
-
 #include "ForradiaEngine/Common/General.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 

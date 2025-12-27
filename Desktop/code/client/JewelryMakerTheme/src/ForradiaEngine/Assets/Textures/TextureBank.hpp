@@ -7,10 +7,8 @@
 
 #include <memory>
 #include <unordered_map>
-
 #include <GL/glew.h>
 #include <GL/gl.h>
-
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 struct SDL_Surface;

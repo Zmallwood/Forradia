@@ -4,7 +4,6 @@
  *********************************************************************/
 
 #include "WorldGeneratorObjects.hpp"
-
 #include "WorldStructure/ObjectsStack.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/WorldArea.hpp"
