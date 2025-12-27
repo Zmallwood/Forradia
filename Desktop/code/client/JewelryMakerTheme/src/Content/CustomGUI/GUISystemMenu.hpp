@@ -30,7 +30,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GUISystemMenu(const GUISystemMenu &) = delete;
 
-        GUISystemMenu &operator=(const GUISystemMenu &) = delete;
+        auto operator=(const GUISystemMenu &) -> GUISystemMenu & = delete;
 
         /**
          *  Constructor.

@@ -19,24 +19,30 @@ namespace ForradiaEngine::JewelryMakerTheme
         this->setVisible(false);
 
         /* Add the save game button */ // clang-format off
+            constexpr RectF saveGameButtonBounds{0.5F - 0.08F / 2, 0.5F, 0.08F, 0.05F};
+
             auto saveGameButton{std::make_shared<GUIButton>(
-                "GUIButtonSaveGame", 0.5f - 0.08f / 2, 0.5f, 0.08f, 0.05f, "Save game",
+                "GUIButtonSaveGame", saveGameButtonBounds.x, saveGameButtonBounds.y,
+                saveGameButtonBounds.width, saveGameButtonBounds.height, "Save game",
                 [this]
                 {
                     GUIChatBox::instance().print("Saving game...");
-                    GameSaving::instance().saveGame();
+                    GameSaving::saveGame();
                 })};
 
             this->addChildComponent(saveGameButton);
         // clang-format on
 
         /* Add the load game button */ // clang-format off
+            constexpr RectF loadGameButtonBounds{0.5F - 0.08F / 2, 0.5F + 0.05F, 0.08F, 0.05F};
+
             auto loadGameButton{std::make_shared<GUIButton>(
-                "GUIButtonLoadGame", 0.5f - 0.08f / 2, 0.5f + 0.05f, 0.08f, 0.05f, "Load game",
+                "GUIButtonLoadGame", loadGameButtonBounds.x, loadGameButtonBounds.y,
+                loadGameButtonBounds.width, loadGameButtonBounds.height, "Load game",
                 [this]
                 {
                     GUIChatBox::instance().print("Loading game...");
-                    GameSaving::instance().loadGame();
+                    GameSaving::loadGame();
                 })};
 
             this->addChildComponent(loadGameButton);
@@ -53,7 +59,12 @@ namespace ForradiaEngine::JewelryMakerTheme
         GUIComponent::renderDerived();
 
         // Fill the background of the system menu with a semi-transparent pink color
+
+        constexpr Color backgroundColor{1.0F, 0.0F, 0.7F, 0.5F};
+        constexpr RectF backgroundBounds{0.0F, 0.0F, 1.0F, 1.0F};
+
         Color2DRenderer::instance().drawFilledRectangle(
-            k_renderIDBackgroundColor, {1.0f, 0.0f, 0.7f, 0.5f}, 0.0f, 0.0f, 1.0f, 1.0f);
+            k_renderIDBackgroundColor, backgroundColor, backgroundBounds.x, backgroundBounds.y,
+            backgroundBounds.width, backgroundBounds.height);
     }
 }
