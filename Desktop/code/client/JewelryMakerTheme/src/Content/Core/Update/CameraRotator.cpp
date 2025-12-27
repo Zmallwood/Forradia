@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "CameraRotator.hpp"
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp" 
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"

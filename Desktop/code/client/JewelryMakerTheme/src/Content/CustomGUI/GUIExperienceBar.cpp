@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIExperienceBar.hpp"
+    
     #include "Content/Essentials/Math/ExperienceCalculations.hpp"
     #include "Content/Essentials/Player/Player.hpp"
 // clang-format on

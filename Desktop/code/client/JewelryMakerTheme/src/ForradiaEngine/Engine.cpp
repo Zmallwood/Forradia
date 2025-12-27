@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Engine.hpp"
+    
     #include "ForradiaEngine/GraphicsDevices/GLDevice.hpp"
     #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
     #include "ForradiaEngine/MinorComponents/Cursor.hpp"

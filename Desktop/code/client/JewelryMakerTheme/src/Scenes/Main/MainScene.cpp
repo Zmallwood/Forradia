@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "MainScene.hpp"
+    
     #include "Content/Core/Update/CameraRotator.hpp"
     #include "Content/Core/Update/ObjectMoving.hpp"
     #include "Content/Core/Update/Quests/QuestSystem.hpp"

@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ObjectsStack.hpp"
+    
     #include "Object.hpp"
     #include <algorithm>
 // clang-format on

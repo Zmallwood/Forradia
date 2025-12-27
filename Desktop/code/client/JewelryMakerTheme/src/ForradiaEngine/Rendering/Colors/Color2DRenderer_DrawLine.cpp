@@ -8,6 +8,7 @@
 
 /* Includes */ // clang-format off
     #include "Color2DRenderer.hpp"
+    
     #include <array>
     #include <vector>
 // clang-format on

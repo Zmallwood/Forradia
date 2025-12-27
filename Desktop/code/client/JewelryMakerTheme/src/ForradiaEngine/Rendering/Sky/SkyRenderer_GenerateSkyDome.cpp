@@ -7,6 +7,7 @@
 
 /* Includes */ // clang-format off
     #include "SkyRenderer.hpp"
+    
     #include <cmath>
     #include <vector>
     #include <GL/glew.h>

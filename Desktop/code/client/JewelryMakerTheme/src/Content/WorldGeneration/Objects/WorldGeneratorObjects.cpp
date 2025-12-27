@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "WorldGeneratorObjects.hpp"
+    
     #include "Content/WorldStructure/ObjectsStack.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"

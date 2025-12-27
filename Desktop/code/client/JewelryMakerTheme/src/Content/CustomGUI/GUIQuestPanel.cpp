@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIQuestPanel.hpp"
+    
     #include "Content/Core/Update/Quests/QuestSystem.hpp"
     #include "ForradiaEngine/GUICore/GUILabel.hpp"
 // clang-format on

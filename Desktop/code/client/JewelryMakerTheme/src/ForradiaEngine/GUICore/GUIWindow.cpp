@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIWindow.hpp"
+    
     #include "GUIWindowTitleBar.hpp"
 // clang-format on
 

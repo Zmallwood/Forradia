@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ObjectMoving.hpp"
+    
     #include "Content/CustomGUI/GUIInventoryWindow.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"

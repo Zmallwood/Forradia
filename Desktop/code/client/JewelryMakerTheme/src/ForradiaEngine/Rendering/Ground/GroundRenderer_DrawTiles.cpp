@@ -4,8 +4,9 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
     #include "GroundRenderer.hpp"
+    
+    #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
 // clang-format on
 

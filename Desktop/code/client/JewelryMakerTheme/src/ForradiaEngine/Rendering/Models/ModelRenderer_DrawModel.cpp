@@ -4,11 +4,12 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
+    #include "ModelRenderer.hpp"
+    
     #include "ForradiaEngine/Assets/Models/Construction/Model.hpp"
     #include "ForradiaEngine/Assets/Models/ModelBank.hpp"
     #include "ForradiaEngine/Assets/Textures/TextureBank.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include "ModelRenderer.hpp"
     #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
     #include <glm/gtx/transform.hpp>
 // clang-format on

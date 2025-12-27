@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "WorldArea.hpp"
+    
     #include "ObjectsStack.hpp"
     #include "Tile.hpp"
 // clang-format on

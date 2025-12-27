@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "TextureBank.hpp"
+    
     #include <ranges>
 // clang-format on
 

@@ -4,9 +4,10 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
+    #include "TextureBank.hpp"
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/Common/General.hpp"
-    #include "TextureBank.hpp"
     #include <SDL2/SDL.h>
     #include <SDL2/SDL_image.h>
     #include <filesystem>

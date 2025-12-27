@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIPlayerStatusBox.hpp"
+    
     #include "Content/Essentials/Math/ExperienceCalculations.hpp"
     #include "Content/Essentials/Player/Player.hpp"
     #include "ForradiaEngine/GUICore/GUILabel.hpp"

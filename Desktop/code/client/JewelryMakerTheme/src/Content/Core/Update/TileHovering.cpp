@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "TileHovering.hpp"
+    
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Properties/ThemeProperties.hpp"
     #include "Content/WorldStructure/Tile.hpp"

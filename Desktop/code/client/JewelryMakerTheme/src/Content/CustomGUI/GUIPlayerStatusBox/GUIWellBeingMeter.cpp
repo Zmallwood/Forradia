@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIWellBeingMeter.hpp"
+    
     #include "Content/Essentials/Player/Player.hpp"
 // clang-format on
 

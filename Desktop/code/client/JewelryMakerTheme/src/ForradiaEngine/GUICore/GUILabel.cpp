@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUILabel.hpp"
+    
     #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 // clang-format on
 

@@ -4,10 +4,11 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-#include "WorldGeneratorLowerFloors.hpp"
-#include "Content/WorldStructure/Tile.hpp"
-#include "Content/WorldStructure/WorldArea.hpp"
-#include "Content/WorldStructure/ObjectsStack.hpp"
+    #include "WorldGeneratorLowerFloors.hpp"
+
+    #include "Content/WorldStructure/Tile.hpp"
+    #include "Content/WorldStructure/WorldArea.hpp"
+    #include "Content/WorldStructure/ObjectsStack.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

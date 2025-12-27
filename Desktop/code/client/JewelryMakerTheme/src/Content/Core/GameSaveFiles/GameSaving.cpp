@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GameSaving.hpp"
+    
     #include "Content/WorldStructure/Entity.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"

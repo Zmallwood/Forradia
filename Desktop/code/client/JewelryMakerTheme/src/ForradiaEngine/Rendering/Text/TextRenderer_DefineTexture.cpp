@@ -4,8 +4,9 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/General.hpp"
     #include "TextRenderer.hpp"
+    
+    #include "ForradiaEngine/Common/General.hpp"
     #include <SDL2/SDL.h>
     #include <GL/glew.h>
     #include <GL/gl.h>

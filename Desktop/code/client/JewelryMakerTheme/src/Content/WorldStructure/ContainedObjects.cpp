@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ContainedObjects.hpp"
+    
     #include "Object.hpp"
 // clang-format on
 

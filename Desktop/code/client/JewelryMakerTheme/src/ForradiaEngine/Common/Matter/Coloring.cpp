@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Coloring.hpp"
+    
     #include "ForradiaEngine/Common/General.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include <SDL2/SDL.h>

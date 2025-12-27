@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIContainerWindowArea.hpp"
+    
     #include "Content/WorldStructure/Object.hpp"
     #include "GUIContainerWindowPanel.hpp"
 // clang-format on

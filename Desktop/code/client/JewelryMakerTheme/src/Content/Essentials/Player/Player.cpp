@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Player.hpp"
+    
     #include "Content/Properties/ObjectIndex.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"

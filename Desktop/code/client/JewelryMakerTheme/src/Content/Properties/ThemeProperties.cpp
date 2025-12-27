@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "ThemeProperties.hpp"
+    
     #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 // clang-format on
 

@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Utilities.hpp"
+    
     #include <stdexcept>
     #include <iostream>
     #include <algorithm>

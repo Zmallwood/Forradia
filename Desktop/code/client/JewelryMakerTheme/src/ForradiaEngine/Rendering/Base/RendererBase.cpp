@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "RendererBase.hpp"
+    
     #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 // clang-format on
 

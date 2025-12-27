@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "UpdateMouseMovement.hpp"
+    
     #include "Content/Essentials/Player/Player.hpp"
     #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on

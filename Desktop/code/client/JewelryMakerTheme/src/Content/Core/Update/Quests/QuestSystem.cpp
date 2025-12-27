@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "QuestSystem.hpp"
+    
     #include "Quest.hpp"
     #include "Quests.hpp"
 // clang-format on

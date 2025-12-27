@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GroundRenderer.hpp"
+    
     #include "Content/Properties/ThemeProperties.hpp"
 // clang-format on
 

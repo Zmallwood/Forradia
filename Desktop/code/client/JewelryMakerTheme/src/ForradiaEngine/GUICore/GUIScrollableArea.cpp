@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIScrollableArea.hpp"
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "ForradiaEngine/MinorComponents/Cursor.hpp"
     #include "ForradiaEngine/MinorComponents/CursorStyles.hpp"

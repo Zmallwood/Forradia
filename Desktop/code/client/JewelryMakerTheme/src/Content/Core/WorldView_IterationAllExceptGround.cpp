@@ -4,6 +4,8 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
+    #include "WorldView.hpp"
+
     #include "Content/Essentials/Player/Player.hpp"
     #include "Content/Properties/CreatureIndex.hpp"
     #include "Content/Properties/ObjectIndex.hpp"
@@ -17,7 +19,6 @@
     #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
     #include "ForradiaEngine/Rendering/Models/ModelRenderer.hpp"
     #include "Update/TileHovering.hpp"
-    #include "WorldView.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme

@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIFPSPanel.hpp"
+    
     #include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
     #include "GUILabel.hpp"
     #include <fmt/format.h>

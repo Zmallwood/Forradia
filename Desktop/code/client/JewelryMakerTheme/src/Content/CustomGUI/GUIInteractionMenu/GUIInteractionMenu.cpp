@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIInteractionMenu.hpp"
+    
     #include "Actions.hpp"
     #include "Content/Core/Update/TileHovering.hpp"
     #include "Content/CustomGUI/GUIInventoryWindow.hpp"

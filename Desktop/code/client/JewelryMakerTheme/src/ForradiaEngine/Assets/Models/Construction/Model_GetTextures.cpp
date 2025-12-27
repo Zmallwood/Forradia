@@ -4,8 +4,9 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
-    #include "ForradiaEngine/Common/Utilities.hpp"
     #include "Model.hpp"
+    
+    #include "ForradiaEngine/Common/Utilities.hpp"
 // clang-format on
 
 namespace ForradiaEngine

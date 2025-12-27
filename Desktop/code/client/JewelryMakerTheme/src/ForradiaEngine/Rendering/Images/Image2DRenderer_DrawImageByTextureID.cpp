@@ -8,6 +8,7 @@
 
 /* Includes */ // clang-format off
     #include "Image2DRenderer.hpp"
+    
     #include <GL/glew.h>
     #include <GL/gl.h>
     #include <array>

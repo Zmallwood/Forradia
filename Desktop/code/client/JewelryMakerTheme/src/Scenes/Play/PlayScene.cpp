@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "PlayScene.hpp"
+    
     #include "ForradiaEngine/GUICore/GUI.hpp"
     #include "ForradiaEngine/GUICore/GUIButton.hpp"
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"

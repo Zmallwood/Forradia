@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "UpdateEntitiesMovement.hpp"
+    
     #include "Content/WorldStructure/Entity.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/World.hpp"

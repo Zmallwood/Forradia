@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "Model.hpp"
+    
     #include "ForradiaEngine/Common/Utilities.hpp"
     #include "assimp/Importer.hpp"
     #include "assimp/postprocess.h"

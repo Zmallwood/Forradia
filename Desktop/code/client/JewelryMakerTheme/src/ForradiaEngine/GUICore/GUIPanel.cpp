@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUIPanel.hpp"
+    
     #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 // clang-format on
 

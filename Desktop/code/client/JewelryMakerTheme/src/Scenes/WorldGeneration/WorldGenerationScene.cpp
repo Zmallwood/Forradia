@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "WorldGenerationScene.hpp"
+    
     #include "Content/WorldGeneration/Main/WorldGenerator.hpp"
     #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 // clang-format on

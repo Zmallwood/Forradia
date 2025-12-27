@@ -5,6 +5,7 @@
 
 /* Includes */ // clang-format off
     #include "GUI.hpp"
+    
     #include <ranges>
 // clang-format on
 

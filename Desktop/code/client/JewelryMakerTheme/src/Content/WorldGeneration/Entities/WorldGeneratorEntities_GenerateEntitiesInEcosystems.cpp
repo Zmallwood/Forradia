@@ -4,12 +4,13 @@
  *********************************************************************/
 
 /* Includes */ // clang-format off
+    #include "WorldGeneratorEntities.hpp"
+    
     #include "Content/WorldStructure/Entity.hpp"
     #include "Content/WorldStructure/Object.hpp"
     #include "Content/WorldStructure/ObjectsStack.hpp"
     #include "Content/WorldStructure/Tile.hpp"
     #include "Content/WorldStructure/WorldArea.hpp"
-    #include "WorldGeneratorEntities.hpp"
 // clang-format on
 
 namespace ForradiaEngine::JewelryMakerTheme
