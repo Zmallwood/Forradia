@@ -15,7 +15,7 @@ file(GLOB_RECURSE JEWEWLRYMAKER_LIB_SOURCES
 )
 
 # Remove main.cpp from the library sources
-list(FILTER JEWEWLRYMAKER_LIB_SOURCES EXCLUDE REGEX ".*Main\\.cpp$")
+list(FILTER JEWEWLRYMAKER_LIB_SOURCES EXCLUDE REGEX ".*main\\.cpp$")
 
 add_library(JewelryMakerLib STATIC ${JEWEWLRYMAKER_LIB_SOURCES})
 
@@ -45,7 +45,7 @@ target_link_libraries(JewelryMakerLib
 # -------------------------------------------------
 
 add_executable(JewelryMaker
-    src/Main.cpp
+    src/main.cpp
 )
 
 target_link_libraries(JewelryMaker
