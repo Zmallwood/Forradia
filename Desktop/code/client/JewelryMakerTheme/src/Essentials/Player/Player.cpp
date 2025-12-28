@@ -238,7 +238,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
@@ -282,7 +282,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
@@ -326,7 +326,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
@@ -370,7 +370,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
@@ -414,7 +414,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {
@@ -458,7 +458,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
         {
             auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (auto object : objectsStack->getObjects())
+            for (const auto &object : objectsStack->getObjects())
             {
                 if (ObjectIndex::instance().getBlocksMovement(object->getType()))
                 {

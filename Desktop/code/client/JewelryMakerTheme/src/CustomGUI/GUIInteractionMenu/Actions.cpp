@@ -47,14 +47,14 @@ namespace ForradiaEngine::JewelryMakerTheme
                         auto clickedCoordinate{
                             GUIInteractionMenu::instance().getClickedCoordinate()};
 
-                        for (auto y = clickedCoordinate.y - radius;
-                             y <= clickedCoordinate.y + radius; y++)
+                        for (auto yPos = clickedCoordinate.y - radius;
+                             yPos <= clickedCoordinate.y + radius; yPos++)
                         {
-                            for (auto x = clickedCoordinate.x - radius;
-                                 x <= clickedCoordinate.x + radius; x++)
+                            for (auto xPos = clickedCoordinate.x - radius;
+                                 xPos <= clickedCoordinate.x + radius; xPos++)
                             {
-                                auto dx{x - clickedCoordinate.x};
-                                auto dy{y - clickedCoordinate.y};
+                                auto dx{xPos - clickedCoordinate.x};
+                                auto dy{yPos - clickedCoordinate.y};
                                 auto distance{std::sqrt(dx * dx + dy * dy)};
 
                                 if (distance > radius)
@@ -62,9 +62,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                                     continue;
                                 }
 
-                                if (lowerFloorWorldArea->isValidCoordinate(x, y))
+                                if (lowerFloorWorldArea->isValidCoordinate(xPos, yPos))
                                 {
-                                    lowerFloorWorldArea->getTile(x, y)
+                                    lowerFloorWorldArea->getTile(xPos, yPos)
                                         ->getObjectsStack()
                                         ->clearObjects();
                                 }

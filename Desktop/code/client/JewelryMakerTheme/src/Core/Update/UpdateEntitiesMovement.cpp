@@ -51,38 +51,38 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto destination{entity->getDestination()};
 
-        auto dx{destination.x - oldPosition.x};
-        auto dy{destination.y - oldPosition.y};
+        auto deltaX{destination.x - oldPosition.x};
+        auto deltaY{destination.y - oldPosition.y};
 
-        if (dx == 0 && dy < 0)
+        if (deltaX == 0 && deltaY < 0)
         {
             entity->setDirection(Directions::North);
         }
-        else if (dx > 0 && dy == 0)
+        else if (deltaX > 0 && deltaY == 0)
         {
             entity->setDirection(Directions::East);
         }
-        else if (dx == 0 && dy > 0)
+        else if (deltaX == 0 && deltaY > 0)
         {
             entity->setDirection(Directions::South);
         }
-        else if (dx < 0 && dy == 0)
+        else if (deltaX < 0 && deltaY == 0)
         {
             entity->setDirection(Directions::West);
         }
-        else if (dx > 0 && dy < 0)
+        else if (deltaX > 0 && deltaY < 0)
         {
             entity->setDirection(Directions::NorthEast);
         }
-        else if (dx > 0 && dy > 0)
+        else if (deltaX > 0 && deltaY > 0)
         {
             entity->setDirection(Directions::SouthEast);
         }
-        else if (dx < 0 && dy > 0)
+        else if (deltaX < 0 && deltaY > 0)
         {
             entity->setDirection(Directions::SouthWest);
         }
-        else if (dx < 0 && dy < 0)
+        else if (deltaX < 0 && deltaY < 0)
         {
             entity->setDirection(Directions::NorthWest);
         }

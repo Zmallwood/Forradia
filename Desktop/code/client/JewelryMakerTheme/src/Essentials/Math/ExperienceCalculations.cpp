@@ -10,6 +10,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto calculateCurrentLevel(int experience) -> int
     {
+        // NOLINTNEXTLINE(readability-magic-numbers)
         auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
 
         return static_cast<int>(level);
@@ -17,6 +18,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto calculateExperienceForLevel(int level) -> int
     {
+        // NOLINTNEXTLINE(readability-magic-numbers)
         auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
 
         return static_cast<int>(experience);
