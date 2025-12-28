@@ -501,14 +501,13 @@ namespace ForradiaEngine::JewelryMakerTheme
                                  std::string_view actionFirstArgument, Point actionSecondArgument)
         -> void
     {
-        m_playerActions.push_back(std::tuple<PlayerActionTypes, std::string, Point>{
-            playerAction, actionFirstArgument, actionSecondArgument});
+        m_playerActions.emplace_back(playerAction, actionFirstArgument, actionSecondArgument);
     }
 
     auto Player::getSmoothPosition() const -> PointF
     {
-        auto dx{0.0F};
-        auto dy{0.0F};
+        auto deltaX{0.0F};
+        auto deltaY{0.0F};
 
         auto now{getTicks()};
 
@@ -526,39 +525,39 @@ namespace ForradiaEngine::JewelryMakerTheme
         switch (m_playerMoveDirection)
         {
         case PlayerMoveDirections::North:
-            dy = 1.0f - moveProgress;
+            deltaY = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::East:
-            dx = -1.0f + moveProgress;
+            deltaX = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::South:
-            dy = -1.0f + moveProgress;
+            deltaY = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::West:
-            dx = 1.0f - moveProgress;
+            deltaX = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::NorthEast:
-            dx = -1.0f + moveProgress;
-            dy = 1.0f - moveProgress;
+            deltaX = -1.0f + moveProgress;
+            deltaY = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::SouthEast:
-            dx = -1.0f + moveProgress;
-            dy = -1.0f + moveProgress;
+            deltaX = -1.0f + moveProgress;
+            deltaY = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::SouthWest:
-            dx = 1.0f - moveProgress;
-            dy = -1.0f + moveProgress;
+            deltaX = 1.0f - moveProgress;
+            deltaY = -1.0f + moveProgress;
             break;
 
         case PlayerMoveDirections::NorthWest:
-            dx = 1.0f - moveProgress;
-            dy = 1.0f - moveProgress;
+            deltaX = 1.0f - moveProgress;
+            deltaY = 1.0f - moveProgress;
             break;
 
         case PlayerMoveDirections::None:
@@ -567,6 +566,6 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto position{m_position};
 
-        return {position.x + dx, position.y + dy};
+        return {position.x + deltaX, position.y + deltaY};
     }
 }
