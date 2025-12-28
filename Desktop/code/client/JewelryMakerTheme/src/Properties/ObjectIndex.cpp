@@ -11,9 +11,9 @@ namespace ForradiaEngine::JewelryMakerTheme
     void ObjectIndex::initialize()
     {
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectFirTree", 2.0F, false, 0, false);
+        addObjectEntry("ObjectFirTree", 1.2F, false, 0, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectBirchTree", 2.0F, false, 0, false);
+        addObjectEntry("ObjectBirchTree", 1.2F, false, 0, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBush1", 1.2F, false, 0, false);
         // NOLINTNEXTLINE(readability-magic-numbers)

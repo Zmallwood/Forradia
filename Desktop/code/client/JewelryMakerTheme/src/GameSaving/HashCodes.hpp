@@ -10,15 +10,6 @@
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
-     *  Gets the name from a hash code as a template function, i.e. it reverses the Hash function.
-     *
-     *  @tparam N The hash code to get the name from.
-     *  @return The name from the hash code.
-     */
-    template <int N>
-    auto getNameFromHash() -> std::string;
-
-    /**
      *  Gets the name from a hash code, i.e. it reverses the Hash function.
      *
      *  @param hashCode The hash code to get the name from.

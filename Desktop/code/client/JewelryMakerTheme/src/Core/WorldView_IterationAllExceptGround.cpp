@@ -75,7 +75,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
                 {
-                    totModelScaling = object->getModelScaling();
+                    totModelScaling *= object->getModelScaling();
                 }
 
                 // totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
