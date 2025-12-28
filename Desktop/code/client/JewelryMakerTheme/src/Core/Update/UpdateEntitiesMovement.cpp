@@ -14,6 +14,22 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    auto ensureEntityDestination(std::shared_ptr<Entity> entity, Point position) -> void
+    {
+        auto destination{entity->getDestination()};
+
+        if (destination.x == -1 && destination.y == -1)
+        {
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            auto newDestinationX{position.x + getRandomInt(11) - 5};
+
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            auto newDestinationY{position.y + getRandomInt(11) - 5};
+
+            entity->setDestination({newDestinationX, newDestinationY});
+        }
+    }
+
     auto updateEntitiesMovement() -> void
     {
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
@@ -33,18 +49,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 continue;
             }
 
-            auto destination{entity->getDestination()};
-
-            if (destination.x == -1 && destination.y == -1)
-            {
-                // NOLINTNEXTLINE(readability-magic-numbers)
-                auto newDestinationX{position.x + getRandomInt(11) - 5};
-
-                // NOLINTNEXTLINE(readability-magic-numbers)
-                auto newDestinationY{position.y + getRandomInt(11) - 5};
-
-                entity->setDestination({newDestinationX, newDestinationY});
-            }
+            ensureEntityDestination(entity, position);
 
             auto deltaX{entity->getDestination().x - position.x};
             auto deltaY{entity->getDestination().y - position.y};
