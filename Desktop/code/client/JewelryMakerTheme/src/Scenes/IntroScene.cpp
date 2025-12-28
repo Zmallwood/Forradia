@@ -14,8 +14,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto IntroScene::initializeDerived() -> void
     {
-        auto label{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", 0.45f, 0.5f, 0.1f,
-                                              0.04f, "Press to start", true)};
+        constexpr RectF k_defaultLabelBounds{0.45F, 0.5F, 0.1F, 0.04F};
+
+        auto label{std::make_shared<GUILabel>("GUILabelIntroSceneStartText", k_defaultLabelBounds.x,
+                                              k_defaultLabelBounds.y, k_defaultLabelBounds.width,
+                                              k_defaultLabelBounds.height, "Press to start", true)};
 
         m_startText = getGUI()->addChildComponent(label);
     }
@@ -37,17 +40,27 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto IntroScene::updateDerived() -> void
     {
-        m_startText->setVisible(getTicks() % 800 < 400);
+        constexpr int k_blinkInterval{800};
+        constexpr int k_blinkIntervalHalf{k_blinkInterval / 2};
+
+        m_startText->setVisible(getTicks() % k_blinkInterval < k_blinkIntervalHalf);
 
         Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
     }
 
     auto IntroScene::renderDerived() const -> void
     {
-        Image2DRenderer::instance().drawImageByName(
-            hash("IntroSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+        constexpr RectF k_defaultBackgroundBounds{0.0F, 0.0F, 1.0F, 1.0F};
 
-        Image2DRenderer::instance().drawImageAutoHeight(hash("IntroSceneLogo"), "JewelryMakerLogo",
-                                                        0.25f, 0.2f, 0.5f);
+        Image2DRenderer::instance().drawImageByName(
+            hash("IntroSceneBackground"), "DefaultSceneBackground", k_defaultBackgroundBounds.x,
+            k_defaultBackgroundBounds.y, k_defaultBackgroundBounds.width,
+            k_defaultBackgroundBounds.height);
+
+        constexpr RectF k_defaultLogoBounds{0.25F, 0.2F, 0.5F};
+
+        Image2DRenderer::instance().drawImageAutoHeight(
+            hash("IntroSceneLogo"), "JewelryMakerLogo", k_defaultLogoBounds.x,
+            k_defaultLogoBounds.y, k_defaultLogoBounds.width);
     }
 }
