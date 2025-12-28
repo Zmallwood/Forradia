@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <string_view>
+
 namespace ForradiaEngine::JewelryMakerTheme
 {
     class Object;
