@@ -32,7 +32,7 @@ namespace ForradiaEngine
         return {this->x - other.x, this->y - other.y};
     }
 
-    auto Point3::offset(Point3 offset) -> Point3
+    auto Point3::offset(Point3 offset) const -> Point3
     {
         return {this->x + offset.x, this->y + offset.y, this->z + offset.z};
     }
