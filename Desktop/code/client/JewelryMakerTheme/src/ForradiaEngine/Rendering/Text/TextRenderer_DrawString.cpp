@@ -33,7 +33,7 @@ namespace ForradiaEngine
         auto textureAlreadyExists{
             TextureBank::instance().obtainTextTexture(uniqueTextureID, textureID)};
 
-        this->setupState();
+        TextRenderer::setupState();
 
         glBindTexture(GL_TEXTURE_2D, textureID);
 
@@ -69,6 +69,6 @@ namespace ForradiaEngine
         Image2DRenderer::instance().drawImageByTextureID(uniqueRenderID, textureID, xPos, yPos,
                                                          width, height, true);
 
-        this->restoreState();
+        TextRenderer::restoreState();
     }
 }

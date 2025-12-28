@@ -40,7 +40,7 @@ namespace ForradiaEngine
         /**
          *   Destructor that cleans up the renderer.
          */
-        ~GroundRenderer()
+        ~GroundRenderer() override
         {
             this->cleanup();
         }

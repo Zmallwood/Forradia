@@ -17,7 +17,7 @@ namespace ForradiaEngine
         auto width{tileSize};
         auto height{tileSize};
 
-        auto elevationHeight{JewelryMakerTheme::ThemeProperties::instance().getElevationHeight()};
+        auto elevationHeight{JewelryMakerTheme::ThemeProperties::getElevationHeight()};
 
         constexpr int k_elevIdx00{0};
         constexpr int k_elevIdx10{1};

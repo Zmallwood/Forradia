@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "ShaderProgram.hpp"
+#include <vector>
 
 namespace ForradiaEngine
 {

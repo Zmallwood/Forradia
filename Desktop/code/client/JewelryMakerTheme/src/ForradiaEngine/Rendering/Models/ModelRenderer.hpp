@@ -52,7 +52,7 @@ namespace ForradiaEngine
          *  @param levitationHeight The height of the levitation.
          */
         auto drawModel(int modelNameHash, float xPos, float yPos, float elevations,
-                       float modelScaling = 1.0F, float elevationHeight = 0.15F,
+                       float modelScaling = 1.0F, float elevationHeight = k_defaultElevationHeight,
                        float levitationHeight = 0.0F) -> void;
 
         auto setupState() const -> void;
@@ -89,7 +89,8 @@ namespace ForradiaEngine
 
         [[nodiscard]] auto drawingOperationIsCached(int modelNameHash) const -> bool;
 
-        static constexpr float k_globalModelScaling{0.5F};
+        constexpr static float k_globalModelScaling{0.5F};
+        constexpr static float k_defaultElevationHeight{0.15F};
         std::unordered_map<int, ModelRenderingOperation> m_operationsCache{};
         GLint m_layoutLocationProjectionMatrix{};
         GLint m_layoutLocationViewMatrix{};

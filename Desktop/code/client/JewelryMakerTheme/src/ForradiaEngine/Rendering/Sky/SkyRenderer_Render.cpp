@@ -87,6 +87,6 @@ namespace ForradiaEngine
 
         glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 
-        this->restoreState();
+        SkyRenderer::restoreState();
     }
 }

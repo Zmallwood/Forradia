@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "Color2DRenderer.hpp"
+#include <ranges>
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include "ForradiaEngine/Common/Utilities.hpp"
