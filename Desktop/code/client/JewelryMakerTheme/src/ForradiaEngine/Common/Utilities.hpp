@@ -12,6 +12,8 @@
 #include <glm/glm.hpp>
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
+struct SDL_Window;
+
 namespace ForradiaEngine
 {
     /**

@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <SDL2/SDL.h>
+#include "General.hpp"
 
 namespace ForradiaEngine
 {
