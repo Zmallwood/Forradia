@@ -29,7 +29,7 @@ namespace ForradiaEngine
          */
         auto operator<(const Point &other) const -> bool;
 
-        auto operator=(const Point &other) -> Point & =  default;
+        auto operator=(const Point &other) -> Point & = default;
 
         /**
          *  The x dimension.
@@ -85,7 +85,7 @@ namespace ForradiaEngine
          *  @param offset The offset to add.
          *  @return The resulting Point3 with the offset added.
          */
-        auto offset(Point3 offset) const -> Point3;
+        [[nodiscard]] auto offset(Point3 offset) const -> Point3;
 
         /**
          *  The x dimension.

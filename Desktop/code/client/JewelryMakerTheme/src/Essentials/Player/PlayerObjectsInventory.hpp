@@ -20,12 +20,14 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Constructor.
          */
-        PlayerObjectsInventory() : ContainedObjects(30)
+        PlayerObjectsInventory() : ContainedObjects(k_defaultMaxObjects)
         {
             this->initialize();
         }
 
       private:
+        constexpr static int k_defaultMaxObjects{30};
+
         auto initialize() -> void;
     };
 }

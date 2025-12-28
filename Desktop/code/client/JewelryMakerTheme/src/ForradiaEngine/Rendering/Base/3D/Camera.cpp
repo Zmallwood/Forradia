@@ -12,7 +12,6 @@
 #include "WorldStructure/WorldArea.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
-#include "Essentials/Player/Player.hpp"
 
 namespace ForradiaEngine
 {
@@ -70,10 +69,10 @@ namespace ForradiaEngine
 
         auto worldArea{JewelryMakerTheme::World::instance().getWorldArea(
             JewelryMakerTheme::Player::instance().getWorldAreaCoordinate())};
-        auto rendTileSize{JewelryMakerTheme::ThemeProperties::instance().getTileSize()};
+        auto rendTileSize{JewelryMakerTheme::ThemeProperties::getTileSize()};
         // auto playerPos{JewelryMakerTheme::Player::Instance().GetPosition()};
         auto playerSmoothPos{JewelryMakerTheme::Player::instance().getSmoothPosition()};
-        auto elevHeight{JewelryMakerTheme::ThemeProperties::instance().getElevationHeight()};
+        auto elevHeight{JewelryMakerTheme::ThemeProperties::getElevationHeight()};
         auto playerElevation{
             worldArea->getTile(playerSmoothPos.x, playerSmoothPos.y)->getElevation()};
 
