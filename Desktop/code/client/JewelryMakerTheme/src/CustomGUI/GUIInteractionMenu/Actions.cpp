@@ -53,9 +53,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                             for (auto xPos = clickedCoordinate.x - radius;
                                  xPos <= clickedCoordinate.x + radius; xPos++)
                             {
-                                auto dx{xPos - clickedCoordinate.x};
-                                auto dy{yPos - clickedCoordinate.y};
-                                auto distance{std::sqrt(dx * dx + dy * dy)};
+                                auto deltaX{xPos - clickedCoordinate.x};
+                                auto deltaY{yPos - clickedCoordinate.y};
+                                auto distance{std::sqrt(deltaX * deltaX + deltaY * deltaY)};
 
                                 if (distance > radius)
                                 {

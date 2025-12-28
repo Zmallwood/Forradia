@@ -525,39 +525,39 @@ namespace ForradiaEngine::JewelryMakerTheme
         switch (m_playerMoveDirection)
         {
         case PlayerMoveDirections::North:
-            deltaY = 1.0f - moveProgress;
+            deltaY = 1.0F - moveProgress;
             break;
 
         case PlayerMoveDirections::East:
-            deltaX = -1.0f + moveProgress;
+            deltaX = -1.0F + moveProgress;
             break;
 
         case PlayerMoveDirections::South:
-            deltaY = -1.0f + moveProgress;
+            deltaY = -1.0F + moveProgress;
             break;
 
         case PlayerMoveDirections::West:
-            deltaX = 1.0f - moveProgress;
+            deltaX = 1.0F - moveProgress;
             break;
 
         case PlayerMoveDirections::NorthEast:
-            deltaX = -1.0f + moveProgress;
-            deltaY = 1.0f - moveProgress;
+            deltaX = -1.0F + moveProgress;
+            deltaY = 1.0F - moveProgress;
             break;
 
         case PlayerMoveDirections::SouthEast:
-            deltaX = -1.0f + moveProgress;
-            deltaY = -1.0f + moveProgress;
+            deltaX = -1.0F + moveProgress;
+            deltaY = -1.0F + moveProgress;
             break;
 
         case PlayerMoveDirections::SouthWest:
-            deltaX = 1.0f - moveProgress;
-            deltaY = -1.0f + moveProgress;
+            deltaX = 1.0F - moveProgress;
+            deltaY = -1.0F + moveProgress;
             break;
 
         case PlayerMoveDirections::NorthWest:
-            deltaX = 1.0f - moveProgress;
-            deltaY = 1.0f - moveProgress;
+            deltaX = 1.0F - moveProgress;
+            deltaY = 1.0F - moveProgress;
             break;
 
         case PlayerMoveDirections::None:

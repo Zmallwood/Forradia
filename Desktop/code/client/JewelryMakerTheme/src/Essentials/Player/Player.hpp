@@ -24,7 +24,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class Player
     {
       public:
-        static Player &instance()
+        static auto instance() -> Player &
         {
             static Player instance;
             return instance;
@@ -32,7 +32,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         Player(const Player &) = delete;
 
-        Player &operator=(const Player &) = delete;
+        auto operator=(const Player &) -> Player & = delete;
 
         Player() = default;
 
@@ -282,15 +282,18 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto moveToSuitablePosition() -> void;
 
+        constexpr static Point k_defaultStartPosition{60, 50};
+        constexpr static float k_defaultMovementSpeed{5.0F};
+        constexpr static float k_defaultStartMaxWellBeing{10.0F};
         std::string m_name{"Unnamed Player"};
-        Point m_position{60, 50};
-        float m_movementSpeed{5.0F};
+        Point m_position{k_defaultStartPosition};
+        float m_movementSpeed{k_defaultMovementSpeed};
         int m_ticksLastMovement{0};
         Point m_destination{-1, -1};
         std::shared_ptr<PlayerObjectsInventory> m_playerObjectsInventory{};
         int m_experience{0};
-        float m_wellBeing{10.0F};
-        float m_maxWellBeing{10.0F};
+        float m_wellBeing{k_defaultStartMaxWellBeing};
+        float m_maxWellBeing{k_defaultStartMaxWellBeing};
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions{};
         std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
