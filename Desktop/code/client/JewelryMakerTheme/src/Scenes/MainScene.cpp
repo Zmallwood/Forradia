@@ -6,7 +6,7 @@
 #include "MainScene.hpp"
 #include "Core/Update/CameraRotator.hpp"
 #include "Core/Update/ObjectMoving.hpp"
-#include "Core/Update/Quests/QuestSystem.hpp"
+#include "Core/Update/QuestSystem.hpp"
 #include "Core/Update/TileHovering.hpp"
 #include "Core/Update/UpdateEntitiesMovement.hpp"
 #include "Core/Update/UpdateKeyboardActions.hpp"

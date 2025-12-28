@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIQuestPanel.hpp"
-#include "Core/Update/Quests/QuestSystem.hpp"
+#include "Core/Update/QuestSystem.hpp"
 #include "ForradiaEngine/GUICore/GUILabel.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
