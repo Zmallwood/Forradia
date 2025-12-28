@@ -14,7 +14,8 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto ensureEntityDestination(std::shared_ptr<Entity> entity, Point position) -> void
+    auto ensureEntityDestination(const std::shared_ptr<Entity> &entity, const Point &position)
+        -> void
     {
         auto destination{entity->getDestination()};
 
@@ -27,6 +28,63 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto newDestinationY{position.y + getRandomInt(11) - 5};
 
             entity->setDestination({newDestinationX, newDestinationY});
+        }
+    }
+
+    auto getEntityNewPosition(const std::shared_ptr<Entity> &entity, const Point &position) -> Point
+    {
+        auto destination{entity->getDestination()};
+
+        auto deltaX{destination.x - position.x};
+        auto deltaY{destination.y - position.y};
+
+        auto normalizedDX{normalize(deltaX)};
+        auto normalizedDY{normalize(deltaY)};
+
+        auto newX{position.x + normalizedDX};
+        auto newY{position.y + normalizedDY};
+
+        return {newX, newY};
+    }
+
+    auto setEntityDirection(const std::shared_ptr<Entity> &entity, const Point &oldPosition) -> void
+    {
+        auto destination{entity->getDestination()};
+
+        auto dx{destination.x - oldPosition.x};
+        auto dy{destination.y - oldPosition.y};
+
+        if (dx == 0 && dy < 0)
+        {
+            entity->setDirection(Directions::North);
+        }
+        else if (dx > 0 && dy == 0)
+        {
+            entity->setDirection(Directions::East);
+        }
+        else if (dx == 0 && dy > 0)
+        {
+            entity->setDirection(Directions::South);
+        }
+        else if (dx < 0 && dy == 0)
+        {
+            entity->setDirection(Directions::West);
+        }
+        else if (dx > 0 && dy < 0)
+        {
+            entity->setDirection(Directions::NorthEast);
+        }
+        else if (dx > 0 && dy > 0)
+        {
+            entity->setDirection(Directions::SouthEast);
+        }
+        else if (dx < 0 && dy > 0)
+        {
+            entity->setDirection(Directions::SouthWest);
+        }
+        else if (dx < 0 && dy < 0)
+        {
+            entity->setDirection(Directions::NorthWest);
         }
     }
 
@@ -51,16 +109,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             ensureEntityDestination(entity, position);
 
-            auto deltaX{entity->getDestination().x - position.x};
-            auto deltaY{entity->getDestination().y - position.y};
-
-            auto normalizedDX{normalize(deltaX)};
-            auto normalizedDY{normalize(deltaY)};
-
-            auto newX{position.x + normalizedDX};
-            auto newY{position.y + normalizedDY};
-
-            Point newPosition{newX, newY};
+            auto newPosition{getEntityNewPosition(entity, position)};
 
             if (newPosition == entity->getDestination())
             {
@@ -75,38 +124,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 entity->setTicksLastMovement(now);
 
-                if (normalizedDX == 0 && normalizedDY < 0)
-                {
-                    entity->setDirection(Directions::North);
-                }
-                else if (normalizedDX > 0 && normalizedDY == 0)
-                {
-                    entity->setDirection(Directions::East);
-                }
-                else if (normalizedDX == 0 && normalizedDY > 0)
-                {
-                    entity->setDirection(Directions::South);
-                }
-                else if (normalizedDX < 0 && normalizedDY == 0)
-                {
-                    entity->setDirection(Directions::West);
-                }
-                else if (normalizedDX > 0 && normalizedDY < 0)
-                {
-                    entity->setDirection(Directions::NorthEast);
-                }
-                else if (normalizedDX > 0 && normalizedDY > 0)
-                {
-                    entity->setDirection(Directions::SouthEast);
-                }
-                else if (normalizedDX < 0 && normalizedDY > 0)
-                {
-                    entity->setDirection(Directions::SouthWest);
-                }
-                else if (normalizedDX < 0 && normalizedDY < 0)
-                {
-                    entity->setDirection(Directions::NorthWest);
-                }
+                setEntityDirection(entity, position);
 
                 auto oldTile{worldArea->getTile(oldPosition.x, oldPosition.y)};
                 auto newTile{worldArea->getTile(newPosition.x, newPosition.y)};
