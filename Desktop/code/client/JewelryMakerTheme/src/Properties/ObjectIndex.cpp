@@ -4,22 +4,35 @@
  *********************************************************************/
 
 #include "ObjectIndex.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     void ObjectIndex::initialize()
     {
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectFirTree", 2.0F, false, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBirchTree", 2.0F, false, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBush1", 1.2F, false, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBush2", 1.2F, false, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneWall", 0.8F, true, 0, true);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneBowl", 1.0F, true, 4, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectUnlitCampfire", 1.3F, true, 8, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectLitCampfire", 1.3F, true, 8, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneBoulder", 1.0F, false, 0, true);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectMineEntrance", 1.0F, true, 0, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneBlock", 1.0F, true, 0, true);
     }
 

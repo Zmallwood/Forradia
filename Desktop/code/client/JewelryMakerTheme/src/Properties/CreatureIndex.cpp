@@ -4,11 +4,13 @@
  *********************************************************************/
 
 #include "CreatureIndex.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     void CreatureIndex::initialize()
     {
+        // NOLINTNEXTLINE(readability-magic-numbers)
         addCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
     }
 
