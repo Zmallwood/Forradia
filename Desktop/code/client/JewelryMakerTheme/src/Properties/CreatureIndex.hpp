@@ -6,6 +6,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <string_view>
 #include "CreatureIndexEntry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -16,7 +17,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class CreatureIndex
     {
       public:
-        static CreatureIndex &instance()
+        static auto instance() -> CreatureIndex &
         {
             static CreatureIndex instance;
             return instance;
@@ -24,12 +25,15 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         CreatureIndex(const CreatureIndex &) = delete;
 
-        CreatureIndex &operator=(const CreatureIndex &) = delete;
+        auto operator=(const CreatureIndex &) -> CreatureIndex & = delete;
 
         /**
          *  Constructor.
          */
-        CreatureIndex();
+        CreatureIndex()
+        {
+            this->initialize();
+        }
 
         /**
          *  Get the model scaling for a given creature hash.
@@ -56,6 +60,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto creatureEntryExists(int creatureHash) const -> bool;
 
       private:
+        void initialize();
+
         auto addCreatureEntry(std::string_view creatureName, float modelScaling,
                               float levitationHeight) -> void;
 

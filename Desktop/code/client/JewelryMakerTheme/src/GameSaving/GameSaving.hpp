@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <nlohmann/json.hpp>
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -42,8 +43,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         static auto loadGame() -> void;
 
       private:
-        static auto saveTile(std::shared_ptr<Tile> tile, Point coordinate, nlohmann::json &jsonData)
-            -> void;
+        static auto saveTile(const std::shared_ptr<Tile> &tile, Point coordinate,
+                             nlohmann::json &jsonData) -> void;
 
         static auto loadTiles(const std::shared_ptr<WorldArea> &worldArea,
                               const nlohmann::json &jsonData) -> void;

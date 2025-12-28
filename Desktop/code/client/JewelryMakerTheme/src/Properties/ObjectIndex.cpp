@@ -7,7 +7,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    ObjectIndex::ObjectIndex()
+    void ObjectIndex::initialize()
     {
         addObjectEntry("ObjectFirTree", 2.0F, false, 0, false);
         addObjectEntry("ObjectBirchTree", 2.0F, false, 0, false);

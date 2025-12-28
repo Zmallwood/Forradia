@@ -62,7 +62,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto GameSaving::saveTile(std::shared_ptr<Tile> tile, Point coordinate,
+    auto GameSaving::saveTile(const std::shared_ptr<Tile> &tile, Point coordinate,
                               nlohmann::json &jsonData) -> void
     {
         nlohmann::json tileJson;

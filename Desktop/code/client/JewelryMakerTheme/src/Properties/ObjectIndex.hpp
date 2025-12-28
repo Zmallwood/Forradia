@@ -6,6 +6,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <string_view>
 #include "ObjectIndexEntry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -16,7 +17,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class ObjectIndex
     {
       public:
-        static ObjectIndex &instance()
+        static auto instance() -> ObjectIndex &
         {
             static ObjectIndex instance;
             return instance;
@@ -24,12 +25,15 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         ObjectIndex(const ObjectIndex &) = delete;
 
-        ObjectIndex &operator=(const ObjectIndex &) = delete;
+        auto operator=(const ObjectIndex &) -> ObjectIndex & = delete;
 
         /**
          *  Constructor.
          */
-        ObjectIndex();
+        ObjectIndex()
+        {
+            this->initialize();
+        }
 
         /**
          *  Get the model scaling for a given object hash.
@@ -61,6 +65,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto getBlocksMovement(int objectHash) const -> bool;
 
       private:
+        void initialize();
+
         auto addObjectEntry(std::string_view objectName, float modelScaling,
                             bool ignoreIndividualModelScaling, int numContainerSlots,
                             bool blocksMovement) -> void;

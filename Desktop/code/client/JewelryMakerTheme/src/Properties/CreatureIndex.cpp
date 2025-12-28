@@ -7,7 +7,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    CreatureIndex::CreatureIndex()
+    void CreatureIndex::initialize()
     {
         addCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
     }
