@@ -15,7 +15,7 @@
 #include "Core/Update/UpdateSetPlayerDestination.hpp"
 #include "Core/WorldView.hpp"
 #include "CustomGUI/GUIExperienceBar.hpp"
-#include "CustomGUI/GUIInteractionMenu/Actions.hpp"
+#include "Actions/Actions.hpp"
 #include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"

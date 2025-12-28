@@ -9,7 +9,7 @@
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "GUIInteractionMenuEntry.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
-#include "Action.hpp"
+#include "Actions/Action.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

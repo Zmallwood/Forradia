@@ -15,21 +15,26 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto MainMenuScene::initializeDerived() -> void
     {
-        auto panel{std::make_shared<GUIPanel>("MainMenuScenePanel", 0.4f, 0.32f, 0.2f, 0.2f)};
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        auto panel{std::make_shared<GUIPanel>("MainMenuScenePanel", 0.4F, 0.32F, 0.2F, 0.2F)};
 
         getGUI()->addChildComponent(panel);
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto btnPlay{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonPlay", 0.45f, 0.36f, 0.1f, 0.04f, "",
+            "MainMenuSceneButtonPlay", 0.45F, 0.36F, 0.1F, 0.04F, "",
             [] { SceneManager::instance().goToScene("PlayScene"); }, "GUIButtonPlayBackground",
             "GUIButtonPlayHoveredBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(btnPlay);
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto btnQuit{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonQuit", 0.45f, 0.44f, 0.1f, 0.04f, "",
+            "MainMenuSceneButtonQuit", 0.45F, 0.44F, 0.1F, 0.04F, "",
             [] { Engine::instance().stop(); }, "GUIButtonQuitBackground",
             "GUIButtonQuitHoveredBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(btnQuit);
 
@@ -38,10 +43,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto MainMenuScene::renderDerived() const -> void
     {
+        // NOLINTBEGIN(readability-magic-numbers)
         Image2DRenderer::instance().drawImageByName(
-            hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0f, 0.0f, 1.0f, 1.0f);
+            hash("MainMenuSceneBackground"), "DefaultSceneBackground", 0.0F, 0.0F, 1.0F, 1.0F);
+        // NOLINTEND(readability-magic-numbers)
 
+        // NOLINTBEGIN(readability-magic-numbers)
         Image2DRenderer::instance().drawImageAutoHeight(hash("MainMenuSceneLogo"),
-                                                        "JewelryMakerLogo", 0.35f, 0.1f, 0.3f);
+                                                        "JewelryMakerLogo", 0.35F, 0.1F, 0.3F);
+        // NOLINTEND(readability-magic-numbers)
     }
 }

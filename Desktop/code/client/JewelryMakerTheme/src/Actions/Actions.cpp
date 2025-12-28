@@ -14,7 +14,7 @@
 #include "ForradiaEngine/GUICore/GUI.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "ForradiaEngine/ScenesCore.hpp"
-#include "GUIInteractionMenu.hpp"
+#include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "WorldStructure/World.hpp"
 #include "WorldStructure/WorldArea.hpp"

@@ -16,7 +16,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class MainMenuScene : public IScene
     {
       public:
-        static MainMenuScene &instance()
+        static auto instance() -> MainMenuScene &
         {
             static MainMenuScene instance;
             return instance;
@@ -24,7 +24,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         MainMenuScene(const MainMenuScene &) = delete;
 
-        MainMenuScene &operator=(const MainMenuScene &) = delete;
+        auto operator=(const MainMenuScene &) -> MainMenuScene & = delete;
 
         MainMenuScene() = default;
 
@@ -32,11 +32,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Initializes the main menu scene.
          */
-        virtual auto initializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
          *  Called every frame to render the scene.
          */
-        virtual auto renderDerived() const -> void override;
+        auto renderDerived() const -> void override;
     };
 }
