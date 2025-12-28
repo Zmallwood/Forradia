@@ -137,9 +137,10 @@ namespace ForradiaEngine::JewelryMakerTheme
             tile->setForceRedraw(true);
         }
 
-        m_tiles.push_back({m_renderIDsGround.at(xCoordinate).at(yCoordinate), ground, xCoordinate,
-                           yCoordinate, m_rendTileSize, elevations, forceRedraw, color00, color10,
-                           color11, color01});
+        m_tiles.push_back(
+            {m_renderIDsGround.at(xCoordinate).at(yCoordinate).at(m_worldAreaCoordinate.z), ground,
+             xCoordinate, yCoordinate, m_rendTileSize, elevations, forceRedraw, color00, color10,
+             color11, color01});
     }
 
     auto WorldView::getColorByGroundType(int groundType) -> Color

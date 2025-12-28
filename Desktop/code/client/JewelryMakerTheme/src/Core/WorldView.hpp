@@ -68,10 +68,12 @@ namespace ForradiaEngine::JewelryMakerTheme
         constexpr static float k_sunElevation = std::numbers::pi / 4.0F;
         constexpr static auto k_tilesGroupSize{20};
         glm::vec3 m_sunDirection{};
-        std::unordered_map<int, std::unordered_map<int, int>> m_renderIDsGround{};
+        std::unordered_map<int, std::unordered_map<int, std::unordered_map<int, int>>>
+            m_renderIDsGround{};
         std::unordered_map<int, std::unordered_map<int, std::vector<float>>> m_elevationsAll;
         std::vector<TileData> m_tiles{};
         Point m_playerPos{};
+        Point3 m_worldAreaCoordinate{};
         Size m_gridSize{};
         Size m_worldAreaSize{};
         Size m_groundGridSize{};

@@ -20,12 +20,16 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto worldAreaSize{worldArea->getSize()};
 
-        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
+        for (auto zPos = 0; zPos > -2; zPos--)
         {
-            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
+            for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
             {
-                m_renderIDsGround[xPos][yPos] =
-                    hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos));
+                for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
+                {
+                    m_renderIDsGround[xPos][yPos][zPos] =
+                        hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos) + "_" +
+                             std::to_string(zPos));
+                }
             }
         }
 
@@ -52,6 +56,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_worldAreaSize = m_worldArea->getSize();
         m_rendTileSize = ThemeProperties::getTileSize();
         m_hoveredCoordinate = TileHovering::getHoveredCoordinate();
+        m_worldAreaCoordinate = Player::instance().getWorldAreaCoordinate();
 
         GroundRenderer::instance().setupState();
 
