@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
+
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
@@ -13,7 +15,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class Spouse
     {
       public:
-        auto isPlaced() const -> bool;
+        [[nodiscard]] auto isPlaced() const -> bool;
 
       private:
         Point m_position{-1, -1};

@@ -84,6 +84,7 @@ namespace ForradiaEngine
         return textureID;
     }
 
+    // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
     auto TextureBank::getTexture(int imageNameHash) const -> GLuint
     {
         if (m_textureEntries.contains(imageNameHash))
@@ -104,6 +105,7 @@ namespace ForradiaEngine
         return {-1, -1};
     }
 
+    // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
     auto TextureBank::obtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool
     {
         // Check if the text texture exists.
