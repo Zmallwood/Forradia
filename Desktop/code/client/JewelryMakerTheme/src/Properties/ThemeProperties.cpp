@@ -5,6 +5,7 @@
 
 #include "ThemeProperties.hpp"
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -20,26 +21,36 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ThemeProperties::getGridSize() -> Size
     {
-        return {45, 45};
+        constexpr Size k_defaultValue{45, 45};
+
+        return k_defaultValue;
     }
 
     auto ThemeProperties::getBaseWorldAreaSize() -> Size
     {
-        return {120, 100};
+        constexpr Size k_defaultValue{120, 100};
+
+        return k_defaultValue;
     }
 
     auto ThemeProperties::getWorldScaling() -> float
     {
-        return 5.0F;
+        constexpr float k_defaultValue{5.0F};
+
+        return k_defaultValue;
     }
 
     auto ThemeProperties::getTileSize() -> float
     {
-        return 2.2F;
+        constexpr float k_defaultValue{2.2F};
+
+        return k_defaultValue;
     }
 
     auto ThemeProperties::getElevationHeight() -> float
     {
-        return 0.15F;
+        constexpr float k_defaultValue{0.15F};
+
+        return k_defaultValue;
     }
 }
