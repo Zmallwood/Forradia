@@ -194,76 +194,86 @@ namespace ForradiaEngine::JewelryMakerTheme
                     continue;
                 }
 
-                auto currentElevation{tile->getElevation()};
-                auto globalMaxElevation{getMaxElevation()};
-
-                if (currentElevation >= globalMaxElevation)
+                if (this->setTileElevationForHill(tile, x, y, distance, radius) == false)
                 {
                     continue;
                 }
-
-                auto normalizedDistance{distance / static_cast<float>(radius)};
-
-                auto baseElevationGain{
-                    static_cast<float>((1.0F - normalizedDistance * normalizedDistance) *
-                                       static_cast<float>(globalMaxElevation))};
-
-                // Adjust the elevation gain to avoid abrupt height increases near the peak.
-
-                // Apply smooth falloff as we approach the elevation cap.
-
-                // Start reducing gain when we're above 60% of max elevation for a smoother
-                // transition.
-
-                auto elevationRatio{static_cast<float>(currentElevation) /
-                                    static_cast<float>(globalMaxElevation)};
-
-                // Start falloff at 60 % of max elevation.
-                auto falloffStart{0.6F};
-
-                auto smoothScale{1.0F};
-
-                if (elevationRatio >= falloffStart)
-                {
-                    // Smooth falloff using a smoothstep-like curve for very gradual transition.
-                    // When at falloffStart (60%), scale is 1.0.
-                    // When at 1.0 (100%), scale is 0.0.
-
-                    auto falloffRange{1.0F - falloffStart};
-
-                    // t goes from 0 to 1.
-                    auto t{(elevationRatio - falloffStart) / falloffRange};
-
-                    // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
-                    // This gives a smoother, more natural falloff.
-
-                    smoothScale = 1.0F - (t * t * (3.0F - 2.0F * t));
-                }
-
-                // Apply smooth scaling to elevation gain.
-                auto elevationGain{static_cast<int>(baseElevationGain * smoothScale)};
-
-                if (elevationGain > 0)
-                {
-                    // Calculate the target elevation before applying slope limits.
-                    auto desiredElevation{currentElevation + elevationGain};
-
-                    // Limit elevation based on adjacent tiles to prevent steep slopes.
-                    auto maxAllowedElevation{getMaxAllowedElevation(x, y, currentElevation)};
-
-                    // Use the minimum of desired elevation and max allowed elevation.
-                    auto newElevation{desiredElevation};
-
-                    if (newElevation > maxAllowedElevation)
-                    {
-                        // Respect the slope constraint when the desired elevation is too high.
-                        newElevation = maxAllowedElevation;
-                    }
-
-                    // Final safety clamp (elevation cap and minimum).
-                    tile->setElevation(clampElevation(newElevation));
-                }
             }
         }
+    }
+
+    auto WorldGeneratorGround::setTileElevationForHill(std::shared_ptr<Tile> tile, int x, int y,
+                                                       int distance, int radius) const -> bool
+    {
+        auto currentElevation{tile->getElevation()};
+        auto globalMaxElevation{getMaxElevation()};
+
+        if (currentElevation >= globalMaxElevation)
+        {
+            return false;
+        }
+
+        auto normalizedDistance{distance / static_cast<float>(radius)};
+
+        auto baseElevationGain{static_cast<float>((1.0F - normalizedDistance * normalizedDistance) *
+                                                  static_cast<float>(globalMaxElevation))};
+
+        // Adjust the elevation gain to avoid abrupt height increases near the peak.
+
+        // Apply smooth falloff as we approach the elevation cap.
+
+        // Start reducing gain when we're above 60% of max elevation for a smoother
+        // transition.
+
+        auto elevationRatio{static_cast<float>(currentElevation) /
+                            static_cast<float>(globalMaxElevation)};
+
+        // Start falloff at 60 % of max elevation.
+        auto falloffStart{0.6F};
+
+        auto smoothScale{1.0F};
+
+        if (elevationRatio >= falloffStart)
+        {
+            // Smooth falloff using a smoothstep-like curve for very gradual transition.
+            // When at falloffStart (60%), scale is 1.0.
+            // When at 1.0 (100%), scale is 0.0.
+
+            auto falloffRange{1.0F - falloffStart};
+
+            // t goes from 0 to 1.
+            auto t{(elevationRatio - falloffStart) / falloffRange};
+
+            // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
+            // This gives a smoother, more natural falloff.
+
+            smoothScale = 1.0F - (t * t * (3.0F - 2.0F * t));
+        }
+
+        // Apply smooth scaling to elevation gain.
+        auto elevationGain{static_cast<int>(baseElevationGain * smoothScale)};
+
+        if (elevationGain > 0)
+        {
+            // Calculate the target elevation before applying slope limits.
+            auto desiredElevation{currentElevation + elevationGain};
+
+            // Limit elevation based on adjacent tiles to prevent steep slopes.
+            auto maxAllowedElevation{getMaxAllowedElevation(x, y, currentElevation)};
+
+            // Use the minimum of desired elevation and max allowed elevation.
+            auto newElevation{desiredElevation};
+
+            if (newElevation > maxAllowedElevation)
+            {
+                // Respect the slope constraint when the desired elevation is too high.
+                newElevation = maxAllowedElevation;
+            }
+
+            // Final safety clamp (elevation cap and minimum).
+            tile->setElevation(clampElevation(newElevation));
+        }
+
+        return true;
     }
 }
