@@ -62,23 +62,19 @@ namespace ForradiaEngine::JewelryMakerTheme
                 break;
 
             case PlayerMoveDirections::NorthEast:
-                this->moveNorth();
-                this->moveEast();
+                this->moveNorthEast();
                 break;
 
             case PlayerMoveDirections::SouthEast:
-                this->moveSouth();
-                this->moveEast();
+                this->moveSouthEast();
                 break;
 
             case PlayerMoveDirections::SouthWest:
-                this->moveSouth();
-                this->moveWest();
+                this->moveSouthWest();
                 break;
 
             case PlayerMoveDirections::NorthWest:
-                this->moveNorth();
-                this->moveWest();
+                this->moveNorthWest();
                 break;
 
             case PlayerMoveDirections::None:
