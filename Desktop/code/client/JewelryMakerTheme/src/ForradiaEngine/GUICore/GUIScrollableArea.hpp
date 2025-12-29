@@ -23,17 +23,42 @@ namespace ForradiaEngine
         }
 
       protected:
+        /**
+         *  Handles the mouse down event.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         *  @return True if the mouse down event was handled, false otherwise.
+         *  (Note: currently it only returns false, look at the implementation to see why.)
+         */
         auto onMouseDown(Uint8 mouseButton) -> bool override;
 
+        /**
+         *  Handles the mouse up event.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         *  @return True if the mouse up event was handled, false otherwise.
+         */
         auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         // TODO: Consider implementing this.
-        //auto onMouseWheel(int delta) -> bool override;
+        // auto onMouseWheel(int delta) -> bool override;
 
+        /**
+         *  Update tasks specific to the scrollable area.
+         */
         auto updateDerived() -> void override;
 
+        /**
+         *  Render tasks specific to the scrollable area.
+         */
         auto render() const -> void override;
 
+        /**
+         *  Gets the bounds of the scrollable area.
+         *
+         *  @return The bounds of the scrollable area.
+         */
         auto getBounds() const -> RectF override;
 
       private:

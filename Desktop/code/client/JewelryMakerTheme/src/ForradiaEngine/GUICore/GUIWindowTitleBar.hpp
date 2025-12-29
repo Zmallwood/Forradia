@@ -46,6 +46,11 @@ namespace ForradiaEngine
          */
         auto getBounds() const -> RectF override;
 
+        /**
+         *  Gets the height of the title bar.
+         *
+         *  @return The height of the title bar.
+         */
         static auto getHeight() -> float
         {
             return k_height;
