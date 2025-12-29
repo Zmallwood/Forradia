@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <variant>
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -24,6 +25,22 @@ namespace ForradiaEngine::JewelryMakerTheme
          *  Prepare the world generator.
          */
         static auto prepare() -> void;
+
+        template <typename T>
+        [[nodiscard]] static auto getParam(std::string_view name) -> T
+        {
+            if (m_parameters.contains(hash(name)))
+            {
+                auto ptr{std::get_if<T>(&m_parameters.at(hash(name)))};
+
+                if (ptr)
+                {
+                    return *ptr;
+                }
+            }
+
+            throw std::runtime_error("Parameter not found: " + std::string(name));
+        }
 
       protected:
         /**
@@ -94,22 +111,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         [[nodiscard]] static auto getWorldScalingLowerFloors()
         {
             return m_worldScalingLowerFloors;
-        }
-
-        template <typename T>
-        [[nodiscard]] static T getParam(std::string_view name)
-        {
-            if (m_parameters.contains(hash(name)))
-            {
-                auto ptr{std::get_if<T>(&m_parameters.at(hash(name)))};
-
-                if (ptr)
-                {
-                    return *ptr;
-                }
-            }
-
-            throw std::runtime_error("Parameter not found: " + std::string(name));
         }
 
       private:

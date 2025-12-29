@@ -1,3 +1,10 @@
 {
-    "numWhiteRabbits": 180
+    "numWhiteRabbitsBase": 180,
+    "numWhiteRabbitsRandom": 40,
+    "100Percent": 100,
+    "whiteRabbitPrefersLocationNearWaterProbability": 40,
+    "whiteRabbitPrefersLocationAwayFromWaterProbability": 20,
+    "whiteRabbitPrefersLocationOnDirtProbability": 5,
+    "numWolvesBase": 180,
+    "numWolvesRandom": 40
 }

@@ -3,6 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
+#include "WorldGeneratorBase.hpp"
 #include "WorldGeneratorEntities.hpp"
 #include "WorldStructure/Entity.hpp"
 #include "WorldStructure/Object.hpp"
@@ -50,8 +51,10 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto worldAreaSize{worldArea->getSize()};
 
             // Generate white rabbits - prefer areas near water and in meadows/grass.
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            auto numWhiteRabbits{180 * worldScaling + getRandomInt(40 * worldScaling)};
+            auto numWhiteRabbits{
+                WorldGeneratorBase::getParam<int>("numWhiteRabbitsBase") * worldScaling +
+                getRandomInt(WorldGeneratorBase::getParam<int>("numWhiteRabbitsRandom") *
+                             worldScaling)};
 
             for (auto i = 0; i < numWhiteRabbits; i++)
             {
@@ -69,21 +72,27 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 if (tile->getGround() == hash("GroundGrass"))
                 {
-                    // NOLINTBEGIN(readability-magic-numbers)
                     if (isNearWater(worldArea, xPos, yPos, 8))
                     {
-                        prefersLocation = getRandomInt(100) < 40;
+                        prefersLocation =
+                            getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                            WorldGeneratorBase::getParam<int>(
+                                "whiteRabbitPrefersLocationNearWaterProbability");
                     }
                     else
                     {
-                        prefersLocation = getRandomInt(100) < 20;
+                        prefersLocation =
+                            getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                            WorldGeneratorBase::getParam<int>(
+                                "whiteRabbitPrefersLocationAwayFromWaterProbability");
                     }
-                    // NOLINTEND(readability-magic-numbers)
                 }
                 else if (tile->getGround() == hash("GroundDirt"))
                 {
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    prefersLocation = getRandomInt(100) < 5;
+                    prefersLocation =
+                        getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                        WorldGeneratorBase::getParam<int>(
+                            "whiteRabbitPrefersLocationOnDirtProbability");
                 }
 
                 if (prefersLocation)
@@ -101,11 +110,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto generateScatteredWolves(const std::shared_ptr<WorldArea> &worldArea, int worldScaling)
             -> void
         {
-
             auto worldAreaSize{worldArea->getSize()};
 
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            auto numWolves{180 * worldScaling + getRandomInt(40 * worldScaling)};
+            auto numWolves{
+                WorldGeneratorBase::getParam<int>("numWolvesBase") * worldScaling +
+                getRandomInt(WorldGeneratorBase::getParam<int>("numWolvesRandom") * worldScaling)};
 
             for (auto i = 0; i < numWolves; i++)
             {
