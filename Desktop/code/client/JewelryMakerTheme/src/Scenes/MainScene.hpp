@@ -16,9 +16,6 @@ namespace ForradiaEngine::JewelryMakerTheme
      */
     class MainScene : public IScene
     {
-      public:
-        MainScene() = default;
-
       protected:
         /**
          *  Initializes the main scene.

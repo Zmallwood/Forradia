@@ -24,11 +24,18 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /**
          *  Gets the status of the quest.
+         *
+         *  @return The status of the quest.
          */
         [[nodiscard]] virtual auto getStatus() const -> std::string = 0;
 
-        std::string name{};        ///< The name of the quest.
-        std::string description{}; ///< The description of the quest.
-        bool isCompleted{false};   ///< Whether the quest is completed.
+        /** The name of the quest. */
+        std::string name{};
+
+        /** The description of the quest. */
+        std::string description{};
+
+        /** Whether the quest is completed. */
+        bool isCompleted{false};
     };
 }

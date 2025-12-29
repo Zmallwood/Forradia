@@ -20,9 +20,6 @@ namespace ForradiaEngine::JewelryMakerTheme
      */
     class IntroScene : public IScene
     {
-      public:
-        IntroScene() = default;
-
       protected:
         /**
          *  Initializes the intro scene.

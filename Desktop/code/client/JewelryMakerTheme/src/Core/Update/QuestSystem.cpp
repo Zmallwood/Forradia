@@ -22,7 +22,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest2>());
         m_quests.push_back(std::make_shared<CraftStoneBricksQuest>());
         m_quests.push_back(std::make_shared<BuildStoneWallsQuest>());
-        m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
+        // TODO: Think about if this should be kept or not.
+        // m_quests.push_back(std::make_shared<PlaceSpouseQuest>());
     }
 
     auto QuestSystem::update() const -> void

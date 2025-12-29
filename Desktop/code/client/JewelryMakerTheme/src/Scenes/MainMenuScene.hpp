@@ -15,9 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
      */
     class MainMenuScene : public IScene
     {
-      public:
-        MainMenuScene() = default;
-
       protected:
         /**
          *  Initializes the main menu scene.

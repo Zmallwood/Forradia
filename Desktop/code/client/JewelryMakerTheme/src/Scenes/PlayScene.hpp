@@ -15,9 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
      */
     class PlayScene : public IScene
     {
-      public:
-        PlayScene() = default;
-
       protected:
         /**
          *  Initializes the play scene.

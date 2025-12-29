@@ -552,12 +552,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         return "You need to build more stone walls (and door).";
     }
 
-    auto PlaceSpouseQuest::update() -> void
-    {
-    }
+    // TODO: Think about if this should be kept or not.
+    // auto PlaceSpouseQuest::update() -> void
+    // {
+    // }
 
-    auto PlaceSpouseQuest::getStatus() const -> std::string
-    {
-        return "Place your spouse in the house.";
-    }
+    // auto PlaceSpouseQuest::getStatus() const -> std::string
+    // {
+    //     return "Place your spouse in the house.";
+    // }
 }
