@@ -17,7 +17,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldScaling{getWorldScaling()};
 
         // NOLINTNEXTLINE(readability-magic-numbers)
-        auto numMajorHills{40 + getRandomInt(20)};
+        auto numMajorHills{200 + getRandomInt(20)};
 
         for (auto i = 0; i < numMajorHills; i++)
         {
@@ -42,7 +42,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldAreaSize{getWorldAreaSize()};
         auto worldScaling{getWorldScaling()};
 
-        auto numMountainRanges{3 + getRandomInt(3)};
+        auto numMountainRanges{30 + getRandomInt(3)};
 
         for (auto range = 0; range < numMountainRanges; range++)
         {

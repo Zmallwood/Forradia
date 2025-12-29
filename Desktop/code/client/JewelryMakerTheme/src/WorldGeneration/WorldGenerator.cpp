@@ -25,10 +25,6 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto WorldGenerator::prepare() -> void
     {
-        WorldGeneratorGround::prepare();
-        WorldGeneratorWater::prepare();
-        WorldGeneratorObjects::prepare();
-        WorldGeneratorEntities::prepare();
-        WorldGeneratorLowerFloors::prepare();
+        WorldGeneratorBase::prepare();
     }
 }
