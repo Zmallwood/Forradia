@@ -13,15 +13,16 @@ namespace ForradiaEngine::JewelryMakerTheme
     class ObjectIndexEntry
     {
       public:
-        /**
-         *  The scaling factor for the object model.
-         */
+        /** The scaling factor for the object model. */
         float modelScaling{1.0F};
-        /**
-         *  Whether to ignore the individual model scaling.
-         */
+
+        /** Whether to ignore the individual model scaling. */
         bool ignoreIndividualModelScaling{false};
+
+        /** The number of container slots for the object. 0 means it is not a container. */
         int numContainerSlots{0};
+
+        /** Whether the object should block movement. */
         bool blocksMovement{false};
     };
 }

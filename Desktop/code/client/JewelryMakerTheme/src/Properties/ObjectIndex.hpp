@@ -60,8 +60,21 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto getIgnoreIndividualModelScaling(int objectHash) const -> bool;
 
+        /**
+         *  Gets the number of container slots for a given object hash. 0 means it is not a
+         * container.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return The number of container slots for the given object.
+         */
         auto getNumContainerSlots(int objectHash) const -> int;
 
+        /**
+         *  Gets whether the object type with the given hash should block movement.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return True if the object should block movement, otherwise false.
+         */
         auto getBlocksMovement(int objectHash) const -> bool;
 
       private:
