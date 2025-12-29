@@ -115,25 +115,36 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     auto rockTile{worldArea->getTile(x, y)};
 
-                    // Skip if the tile is not found or the ground is water.
-
-                    if (!rockTile || rockTile->getGround() == hash("GroundWater"))
+                    if (this->setTileGroundToRock(rockTile, x, y) == false)
                     {
                         continue;
-                    }
-
-                    // Place rocks on mountain peaks and high elevation areas. Higher elevation =
-                    // more likely to be rock.
-
-                    auto elevation{rockTile->getElevation()};
-
-                    if (elevation > 60)
-                    {
-                        rockTile->setGround("GroundRock");
                     }
                 }
             }
         }
+    }
+
+    auto WorldGeneratorGround::setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
+                                                   int yPos) const -> bool
+    {
+        // Skip if the tile is not found or the ground is water.
+
+        if (!tile || tile->getGround() == hash("GroundWater"))
+        {
+            return false;
+        }
+
+        // Place rocks on mountain peaks and high elevation areas. Higher elevation =
+        // more likely to be rock.
+
+        auto elevation{tile->getElevation()};
+
+        if (elevation > 60)
+        {
+            tile->setGround("GroundRock");
+        }
+
+        return true;
     }
 
     auto WorldGeneratorGround::createBiomeCluster(int centerX, int centerY, int radius,

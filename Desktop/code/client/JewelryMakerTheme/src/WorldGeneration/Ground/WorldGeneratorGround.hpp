@@ -65,5 +65,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         [[nodiscard]] auto setTileElevationForHill(const std::shared_ptr<Tile> &tile, int xPos,
                                                    int yPos, int distance, int radius) const
             -> bool;
+
+        [[nodiscard]] auto setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
+                                               int yPos) const -> bool;
     };
 }
