@@ -21,11 +21,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{getWorldAreaLowerFloors()};
         auto worldAreaSize{getWorldAreaLowerFloorsSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
+        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
         {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
             {
-                auto tile{worldArea->getTile(x, y)};
+                auto tile{worldArea->getTile(xPos, yPos)};
 
                 if (!tile)
                 {
@@ -42,11 +42,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{getWorldAreaLowerFloors()};
         auto worldAreaSize{getWorldAreaLowerFloorsSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
+        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
         {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
             {
-                auto tile{worldArea->getTile(x, y)};
+                auto tile{worldArea->getTile(xPos, yPos)};
 
                 if (!tile)
                 {
