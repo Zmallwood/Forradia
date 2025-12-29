@@ -9,18 +9,25 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    class WorldGenerator;
+
     /**
      *  The world generation scene is the scene where the world is generated.
      */
     class WorldGenerationScene : public IScene
     {
       public:
-        WorldGenerationScene() = default;
+        WorldGenerationScene(WorldGenerator &worldGenerator) : m_worldGenerator(worldGenerator)
+        {
+        }
 
       protected:
         /**
          *  Called when the world generation scene is entered.
          */
         auto onEnterDerived() -> void override;
+
+      private:
+        WorldGenerator &m_worldGenerator;
     };
 }

@@ -7,6 +7,7 @@
 #include "WorldStructure/World.hpp"
 #include "ForradiaEngine/Engine.hpp"
 #include "setupScenes.hpp"
+#include "WorldGeneration/Main/WorldGenerator.hpp"
 
 auto main(int argc, char **argv) -> int
 {
@@ -14,8 +15,10 @@ auto main(int argc, char **argv) -> int
     using namespace JewelryMakerTheme;
 
     Engine::initialize(ThemeProperties::getGameWindowTitle(), ThemeProperties::getClearColor());
-    
-    setupScenes();
+
+    WorldGenerator worldGenerator;
+
+    setupScenes(worldGenerator);
 
     World::instance().initialize(ThemeProperties::getBaseWorldAreaSize(),
                                  ThemeProperties::getWorldScaling());

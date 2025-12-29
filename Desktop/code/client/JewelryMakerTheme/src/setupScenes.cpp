@@ -13,12 +13,12 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto setupScenes() -> void
+    auto setupScenes(WorldGenerator &worldGenerator) -> void
     {
         SceneManager::instance().addScene("IntroScene", std::make_shared<IntroScene>());
         SceneManager::instance().addScene("MainMenuScene", std::make_shared<MainMenuScene>());
         SceneManager::instance().addScene("PlayScene", std::make_shared<PlayScene>());
-        SceneManager::instance().addScene("WorldGenerationScene", std::make_shared<WorldGenerationScene>());
+        SceneManager::instance().addScene("WorldGenerationScene", std::make_shared<WorldGenerationScene>(worldGenerator));
         SceneManager::instance().addScene("MainScene", std::make_shared<MainScene>());
 
         SceneManager::instance().goToScene("IntroScene");

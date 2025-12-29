@@ -7,8 +7,10 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    class WorldGenerator;
+
     /**
      *  Sets up the scenes for the theme.
      */
-    auto setupScenes() -> void;
+    auto setupScenes(WorldGenerator &worldGenerator) -> void;
 }
