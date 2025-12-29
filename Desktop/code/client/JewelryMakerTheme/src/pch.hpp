@@ -17,6 +17,7 @@
 #include <numbers>
 #include <cmath>
 #include <algorithm>
+#include <variant>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -25,6 +26,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/intersect.hpp>
 #include <glm/gtx/projection.hpp>
+#include <nlohmann/json.hpp>
 
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"

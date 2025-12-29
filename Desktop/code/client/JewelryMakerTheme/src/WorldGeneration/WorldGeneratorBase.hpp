@@ -6,6 +6,8 @@
 #pragma once
 
 #include <memory>
+#include <unordered_map>
+#include <variant>
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -24,7 +26,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         static auto prepare() -> void;
 
       protected:
-
         /**
          *  Get the default ground elevation.
          *
@@ -95,7 +96,25 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_worldScalingLowerFloors;
         }
 
+        template <typename T>
+        [[nodiscard]] static T getParam(std::string_view name)
+        {
+            if (m_parameters.contains(hash(name)))
+            {
+                auto ptr{std::get_if<T>(&m_parameters.at(hash(name)))};
+
+                if (ptr)
+                {
+                    return *ptr;
+                }
+            }
+
+            throw std::runtime_error("Parameter not found: " + std::string(name));
+        }
+
       private:
+        static auto loadParameters() -> void;
+
         constexpr static int k_defaultGroundElevation{10};
         inline static std::shared_ptr<WorldArea> m_worldArea{};
         inline static std::shared_ptr<WorldArea> m_worldAreaLowerFloors{};
@@ -103,5 +122,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         inline static Size m_worldAreaLowerFloorsSize{};
         inline static float m_worldScaling{};
         inline static float m_worldScalingLowerFloors{};
+        inline static std::unordered_map<int, std::variant<int, float>> m_parameters{};
     };
 }
