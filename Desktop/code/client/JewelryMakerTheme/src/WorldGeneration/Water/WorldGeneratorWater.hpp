@@ -15,16 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorWater : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorWater &instance()
-        {
-            static WorldGeneratorWater instance;
-            return instance;
-        }
-
-        WorldGeneratorWater(const WorldGeneratorWater &) = delete;
-
-        WorldGeneratorWater &operator=(const WorldGeneratorWater &) = delete;
-
         WorldGeneratorWater() = default;
 
         /**

@@ -15,16 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
       public:
-        static auto instance() -> WorldGeneratorEntities &
-        {
-            static WorldGeneratorEntities instance;
-            return instance;
-        }
-
-        WorldGeneratorEntities(const WorldGeneratorEntities &) = delete;
-
-        auto operator=(const WorldGeneratorEntities &) -> WorldGeneratorEntities & = delete;
-
         WorldGeneratorEntities() = default;
 
         /**

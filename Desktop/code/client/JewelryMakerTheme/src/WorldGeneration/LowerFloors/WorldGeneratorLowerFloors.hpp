@@ -15,16 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorLowerFloors : public WorldGeneratorBase
     {
       public:
-        static auto instance() -> WorldGeneratorLowerFloors &
-        {
-            static WorldGeneratorLowerFloors instance;
-            return instance;
-        }
-
-        WorldGeneratorLowerFloors(const WorldGeneratorLowerFloors &) = delete;
-
-        auto operator=(const WorldGeneratorLowerFloors &) -> WorldGeneratorLowerFloors & = delete;
-
         WorldGeneratorLowerFloors() = default;
 
         /**
