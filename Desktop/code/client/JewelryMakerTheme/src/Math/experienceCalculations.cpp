@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "experience_calculations.hpp"
+#include "experienceCalculations.hpp"
 #include <cmath>
 
 namespace ForradiaEngine::JewelryMakerTheme
