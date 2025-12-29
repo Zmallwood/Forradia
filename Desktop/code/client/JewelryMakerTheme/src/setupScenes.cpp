@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "SetupScenes.hpp"
+#include "setupScenes.hpp"
 #include "ForradiaEngine/ScenesCore.hpp"
 #include "Scenes/IntroScene.hpp"
 #include "Scenes/MainScene.hpp"

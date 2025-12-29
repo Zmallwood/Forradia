@@ -5,7 +5,7 @@
 
 #include "QuestSystem.hpp"
 #include "Quests/Quest.hpp"
-#include "Quests/Quests.hpp"
+#include "Quests/quests.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

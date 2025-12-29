@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "Actions.hpp"
+#include "actions.hpp"
 #include "CustomGUI/GUIContainerWindow/GUIContainerWindow.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerActionTypes.hpp"

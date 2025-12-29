@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIExperienceBar.hpp"
-#include "Math/ExperienceCalculations.hpp"
+#include "Math/experience_calculations.hpp"
 #include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

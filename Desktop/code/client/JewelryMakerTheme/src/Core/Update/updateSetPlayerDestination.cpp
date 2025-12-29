@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateSetPlayerDestination.hpp"
+#include "updateSetPlayerDestination.hpp"
 #include "Player/Player.hpp"
 #include "TileHovering.hpp"
 

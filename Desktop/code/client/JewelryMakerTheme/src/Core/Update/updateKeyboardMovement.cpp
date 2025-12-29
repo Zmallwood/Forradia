@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateKeyboardMovement.hpp"
+#include "updateKeyboardMovement.hpp"
 #include <set>
 #include "Player/Player.hpp"
 

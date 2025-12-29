@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateEntitiesMovement.hpp"
+#include "updateEntitiesMovement.hpp"
 #include "WorldStructure/Entity.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/World.hpp"

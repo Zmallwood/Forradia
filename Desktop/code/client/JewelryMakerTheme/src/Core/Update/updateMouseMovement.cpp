@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateMouseMovement.hpp"
+#include "updateMouseMovement.hpp"
 #include "Player/Player.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 

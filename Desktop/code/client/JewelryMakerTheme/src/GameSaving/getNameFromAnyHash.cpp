@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "HashCodes.hpp"
+#include "getNameFromAnyHash.hpp"
 #include <array>
 #include "ForradiaEngine/Common/General.hpp"
 

@@ -6,7 +6,7 @@
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/World.hpp"
 #include "ForradiaEngine/Engine.hpp"
-#include "SetupScenes.hpp"
+#include "setupScenes.hpp"
 
 auto main(int argc, char **argv) -> int
 {

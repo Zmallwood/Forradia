@@ -3,7 +3,7 @@
  * This code is licensed under MIT license (see LICENSE for details) *
  *********************************************************************/
 
-#include "UpdateKeyboardActions.hpp"
+#include "updateKeyboardActions.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUISystemMenu.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"

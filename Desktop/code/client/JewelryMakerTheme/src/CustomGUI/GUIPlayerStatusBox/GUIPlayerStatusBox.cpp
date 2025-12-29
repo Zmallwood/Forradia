@@ -5,7 +5,7 @@
 
 #include "GUIPlayerStatusBox.hpp"
 #include <fmt/format.h>
-#include "Math/ExperienceCalculations.hpp"
+#include "Math/experience_calculations.hpp"
 #include "Player/Player.hpp"
 #include "ForradiaEngine/GUICore/GUILabel.hpp"
 #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
