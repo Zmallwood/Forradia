@@ -53,7 +53,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Handles clicks on the menu entries.
          */
-        auto handleClick() -> void;
+        auto handleClickInMenu() -> void;
 
         auto showMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
             -> void;

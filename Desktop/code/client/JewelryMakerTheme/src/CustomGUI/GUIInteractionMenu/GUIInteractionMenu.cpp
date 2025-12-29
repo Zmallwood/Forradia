@@ -63,7 +63,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             if (dynamic_cast<const GUIComponent *>(this)->getVisible())
             {
-                this->handleClick();
+                this->handleClickInMenu();
                 dynamic_cast<GUIPanel *>(this)->setVisible(false);
 
                 return true;
@@ -243,7 +243,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         return goOn;
     }
 
-    auto GUIInteractionMenu::handleClick() -> void
+    auto GUIInteractionMenu::handleClickInMenu() -> void
     {
         auto bounds{this->getBounds()};
 
