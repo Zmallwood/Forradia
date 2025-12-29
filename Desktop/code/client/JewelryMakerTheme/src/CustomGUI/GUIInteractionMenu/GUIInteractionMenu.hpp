@@ -55,6 +55,13 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto handleClickInMenu() -> void;
 
+        /**
+         *  Shows the menu for a clicked object in a container window, or for a tile with its
+         * contained objects.
+         *
+         *  @param groundHash The hash of the ground, if a tile was clicked, otherwise 0.
+         *  @param objectHashes The hashes of the objects to show the menu for.
+         */
         auto showMenuForTileAndObjects(int groundHash, const std::vector<int> &objectHashes)
             -> void;
 
@@ -74,6 +81,9 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto initialize() -> void;
 
+        /**
+         *  Does update logic that is specific to the interaction menu.
+         */
         auto updateDerived() -> void override;
 
         /**

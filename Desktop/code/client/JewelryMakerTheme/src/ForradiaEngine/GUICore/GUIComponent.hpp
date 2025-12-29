@@ -42,16 +42,53 @@ namespace ForradiaEngine
         auto addChildComponent(std::shared_ptr<GUIComponent> component)
             -> std::shared_ptr<GUIComponent>;
 
+        /**
+         *  Handles the mouse down event.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         *  @return True if the mouse down event was handled, false otherwise.
+         */
         virtual auto onMouseDown(Uint8 mouseButton) -> bool;
 
+        /**
+         *  Handles the mouse up event.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         *  @return True if the mouse up event was handled, false otherwise.
+         */
         virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
 
+        /**
+         *  Handles the mouse wheel event.
+         *
+         *  @param delta The delta of the mouse wheel.
+         *  @return True if the mouse wheel event was handled, false otherwise.
+         */
         virtual auto onMouseWheel(int delta) -> bool;
 
+        /**
+         *  Handles the key down event.
+         *
+         *  @param key The key that was pressed.
+         *  @return True if the key down event was handled, false otherwise.
+         */
         virtual auto onKeyDown(SDL_Keycode key) -> bool;
 
+        /**
+         *  Handles the key up event.
+         *
+         *  @param key The key that was released.
+         *  @return True if the key up event was handled, false otherwise.
+         */
         virtual auto onKeyUp(SDL_Keycode key) -> bool;
 
+        /**
+         *  Handles the text input event.
+         *
+         *  @param text The text that was input.
+         *  @return True if the text input event was handled, false otherwise.
+         */
         virtual auto onTextInput(std::string_view text) -> bool;
 
         /**
@@ -71,8 +108,18 @@ namespace ForradiaEngine
          */
         [[nodiscard]] virtual auto getBounds() const -> RectF;
 
+        /**
+         *  Checks if the mouse is hovering over this component or any of its children in the GUI.
+         *
+         *  @return True if the mouse is hovering over any GUI component, false otherwise.
+         */
         virtual auto mouseHoveringGUI() const -> bool;
 
+        /**
+         *  Sets the bounds of the component.
+         *
+         *  @param value The new bounds of the component.
+         */
         auto setBounds(RectF value) -> void
         {
             m_bounds = value;

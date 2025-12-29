@@ -27,6 +27,9 @@ namespace ForradiaEngine
 
         auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
+        // TODO: Consider implementing this.
+        //auto onMouseWheel(int delta) -> bool override;
+
         auto updateDerived() -> void override;
 
         auto render() const -> void override;

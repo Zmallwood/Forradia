@@ -42,6 +42,13 @@ namespace ForradiaEngine
         }
 
       protected:
+        /**
+         *  Handles the mouse up event.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         *  @return True if the mouse up event was handled, false otherwise.
+         */
         auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool override;
 
         /**

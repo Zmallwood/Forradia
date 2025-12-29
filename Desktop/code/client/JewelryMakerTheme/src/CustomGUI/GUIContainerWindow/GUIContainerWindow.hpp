@@ -24,6 +24,8 @@ namespace ForradiaEngine::JewelryMakerTheme
       public:
         /**
          *  Constructor.
+         *
+         *  @param containedObjects The contained objects.
          */
         GUIContainerWindow(ContainedObjects &containedObjects)
             : GUIWindow("GUIContainerWindow", k_defaultBounds.x, k_defaultBounds.y,

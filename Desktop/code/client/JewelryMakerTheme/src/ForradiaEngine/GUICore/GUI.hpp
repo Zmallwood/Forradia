@@ -22,6 +22,11 @@ namespace ForradiaEngine
         {
         }
 
+        /**
+         *  Checks if the mouse is hovering over any component in the GUI.
+         *
+         *  @return True if the mouse is hovering over any component in the GUI, false otherwise.
+         */
         [[nodiscard]] auto mouseHoveringGUI() const -> bool override;
     };
 }

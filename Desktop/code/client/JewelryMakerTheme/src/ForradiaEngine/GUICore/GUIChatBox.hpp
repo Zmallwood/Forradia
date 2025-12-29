@@ -61,6 +61,11 @@ namespace ForradiaEngine
          */
         auto print(std::string_view text) -> void;
 
+        /**
+         *  Adds text input to the chat box.
+         *
+         *  @param text The text to add.
+         */
         auto addTextInput(std::string_view text) -> void;
 
         /**

@@ -24,6 +24,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto operator=(const GUIInventoryWindow &) -> GUIInventoryWindow & = delete;
 
+        /**
+         *  Constructor.
+         *
+         *  @param containedObjects The contained objects.
+         */
         using GUIContainerWindow::GUIContainerWindow;
     };
 }
