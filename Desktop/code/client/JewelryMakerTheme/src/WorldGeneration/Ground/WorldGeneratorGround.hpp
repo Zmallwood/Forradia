@@ -62,7 +62,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto createElevationHill(int centerX, int centerY, int radius, int maxElevation) const
             -> void;
 
-        auto setTileElevationForHill(std::shared_ptr<Tile> tile, int x, int y, int distance,
-                                     int radius) const -> bool;
+        [[nodiscard]] auto setTileElevationForHill(const std::shared_ptr<Tile> &tile, int xPos,
+                                                   int yPos, int distance, int radius) const
+            -> bool;
     };
 }

@@ -166,23 +166,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                                                    int maxElevation) const -> void
     {
         // Traverse the candidate tiles within the bounding square of the hill footprint.
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
+        for (auto yPos = centerY - radius; yPos <= centerY + radius; yPos++)
         {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
+            for (auto xPos = centerX - radius; xPos <= centerX + radius; xPos++)
             {
-                if (!getWorldArea()->isValidCoordinate(x, y))
+                if (!getWorldArea()->isValidCoordinate(xPos, yPos))
                 {
                     continue;
                 }
 
-                auto distance{calcDistance(x, y, centerX, centerY)};
+                auto distance{calcDistance(xPos, yPos, centerX, centerY)};
 
                 if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                auto tile{getWorldArea()->getTile(x, y)};
+                auto tile{getWorldArea()->getTile(xPos, yPos)};
 
                 if (!tile)
                 {
@@ -194,7 +194,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     continue;
                 }
 
-                if (this->setTileElevationForHill(tile, x, y, distance, radius) == false)
+                if (this->setTileElevationForHill(tile, xPos, yPos, distance, radius) == false)
                 {
                     continue;
                 }
@@ -202,8 +202,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorGround::setTileElevationForHill(std::shared_ptr<Tile> tile, int x, int y,
-                                                       int distance, int radius) const -> bool
+    auto WorldGeneratorGround::setTileElevationForHill(const std::shared_ptr<Tile> &tile, int xPos,
+                                                       int yPos, int distance, int radius) const
+        -> bool
     {
         auto currentElevation{tile->getElevation()};
         auto globalMaxElevation{getMaxElevation()};
@@ -229,25 +230,26 @@ namespace ForradiaEngine::JewelryMakerTheme
                             static_cast<float>(globalMaxElevation)};
 
         // Start falloff at 60 % of max elevation.
-        auto falloffStart{0.6F};
+        constexpr float k_falloffStart{0.6F};
 
         auto smoothScale{1.0F};
 
-        if (elevationRatio >= falloffStart)
+        if (elevationRatio >= k_falloffStart)
         {
             // Smooth falloff using a smoothstep-like curve for very gradual transition.
             // When at falloffStart (60%), scale is 1.0.
             // When at 1.0 (100%), scale is 0.0.
 
-            auto falloffRange{1.0F - falloffStart};
+            auto falloffRange{1.0F - k_falloffStart};
 
             // t goes from 0 to 1.
-            auto t{(elevationRatio - falloffStart) / falloffRange};
+            auto num{(elevationRatio - k_falloffStart) / falloffRange};
 
             // Use smoothstep curve: 3t^2 - 2t^3 for smooth S-curve transition.
             // This gives a smoother, more natural falloff.
 
-            smoothScale = 1.0F - (t * t * (3.0F - 2.0F * t));
+            // NOLINTNEXTLINE(readability-magic-numbers)
+            smoothScale = 1.0F - (num * num * (3.0F - 2.0F * num));
         }
 
         // Apply smooth scaling to elevation gain.
@@ -259,7 +261,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto desiredElevation{currentElevation + elevationGain};
 
             // Limit elevation based on adjacent tiles to prevent steep slopes.
-            auto maxAllowedElevation{getMaxAllowedElevation(x, y, currentElevation)};
+            auto maxAllowedElevation{getMaxAllowedElevation(xPos, yPos, currentElevation)};
 
             // Use the minimum of desired elevation and max allowed elevation.
             auto newElevation{desiredElevation};
