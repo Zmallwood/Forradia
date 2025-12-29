@@ -282,6 +282,8 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto moveToSuitablePosition() -> void;
 
+        auto moveToPositionPossible(Point position) -> bool;
+
         constexpr static Point k_defaultStartPosition{60, 50};
         constexpr static float k_defaultMovementSpeed{5.0F};
         constexpr static float k_defaultStartMaxWellBeing{10.0F};

@@ -36,6 +36,29 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
+    auto Player::moveToPositionPossible(Point position) -> bool
+    {
+        auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
+        auto tile{worldArea->getTile(position)};
+
+        if (tile->getGround() == hash("GroundWater"))
+        {
+            return false;
+        }
+
+        auto objectsStack{tile->getObjectsStack()};
+
+        for (const auto &object : objectsStack->getObjects())
+        {
+            if (ObjectIndex::instance().getBlocksMovement(object->getType()))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     auto Player::update() -> void
     {
         auto now{getTicks()};
@@ -141,42 +164,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::North;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::North;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -185,42 +203,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::East;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::East;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -229,42 +242,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::South;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::South;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -273,42 +281,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::West;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::West;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -317,42 +320,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y - 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::NorthEast;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -361,42 +359,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y + 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::SouthEast;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -405,42 +398,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y + 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
@@ -449,42 +437,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y - 1};
 
+        if (this->moveToPositionPossible({newX, newY}) == false)
+        {
+            this->stopMoving();
+
+            return;
+        }
+
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
-        if (worldArea->getTile(newX, newY)->getGround() != hash("GroundWater"))
+        m_position = {newX, newY};
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
+        m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+
+        if (worldArea->getTile(newX, newY)
+                ->getObjectsStack()
+                ->countHasObject("ObjectMineEntrance") > 0)
         {
-            auto objectsStack{worldArea->getTile(newX, newY)->getObjectsStack()};
-            for (const auto &object : objectsStack->getObjects())
+            auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
+            int newWorldAreaCoordinateZ{};
+
+            if (worldAreaCoordinateZ == 0)
             {
-                if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-                {
-                    return;
-                }
+                newWorldAreaCoordinateZ = -1;
+            }
+            else
+            {
+                newWorldAreaCoordinateZ = 0;
             }
 
-            m_position = {newX, newY};
-            m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
-            m_playerMoveDirection = PlayerMoveDirections::NorthWest;
-
-            if (worldArea->getTile(newX, newY)
-                    ->getObjectsStack()
-                    ->countHasObject("ObjectMineEntrance") > 0)
-            {
-                auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
-                int newWorldAreaCoordinateZ{};
-
-                if (worldAreaCoordinateZ == 0)
-                {
-                    newWorldAreaCoordinateZ = -1;
-                }
-                else
-                {
-                    newWorldAreaCoordinateZ = 0;
-                }
-
-                m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
-                                         newWorldAreaCoordinateZ};
-            }
+            m_worldAreaCoordinate = {m_worldAreaCoordinate.x, m_worldAreaCoordinate.y,
+                                     newWorldAreaCoordinateZ};
         }
     }
 
