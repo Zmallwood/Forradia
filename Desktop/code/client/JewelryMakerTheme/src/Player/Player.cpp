@@ -116,42 +116,66 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingNorth() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::North;
+        if (this->moveToPositionPossible({m_position.x, m_position.y - 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::North;
+        }
     }
 
     auto Player::startMovingEast() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::East;
+        if (this->moveToPositionPossible({m_position.x + 1, m_position.y}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::East;
+        }
     }
 
     auto Player::startMovingSouth() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::South;
+        if (this->moveToPositionPossible({m_position.x, m_position.y + 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::South;
+        }
     }
 
     auto Player::startMovingWest() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::West;
+        if (this->moveToPositionPossible({m_position.x - 1, m_position.y}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::West;
+        }
     }
 
     auto Player::startMovingNorthWest() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+        if (this->moveToPositionPossible({m_position.x - 1, m_position.y - 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::NorthWest;
+        }
     }
 
     auto Player::startMovingNorthEast() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+        if (this->moveToPositionPossible({m_position.x + 1, m_position.y - 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::NorthEast;
+        }
     }
 
     auto Player::startMovingSouthWest() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+        if (this->moveToPositionPossible({m_position.x - 1, m_position.y + 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::SouthWest;
+        }
     }
 
     auto Player::startMovingSouthEast() -> void
     {
-        m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+        if (this->moveToPositionPossible({m_position.x + 1, m_position.y + 1}))
+        {
+            m_playerMoveDirection = PlayerMoveDirections::SouthEast;
+        }
     }
 
     auto Player::stopMoving() -> void
