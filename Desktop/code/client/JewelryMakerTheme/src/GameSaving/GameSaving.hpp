@@ -20,18 +20,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class GameSaving
     {
       public:
-        static auto instance() -> GameSaving &
-        {
-            static GameSaving instance;
-            return instance;
-        }
-
-        GameSaving(const GameSaving &) = delete;
-
-        auto operator=(const GameSaving &) -> GameSaving & = delete;
-
-        GameSaving() = default;
-
         /**
          *  Saves the game to a file.
          */
