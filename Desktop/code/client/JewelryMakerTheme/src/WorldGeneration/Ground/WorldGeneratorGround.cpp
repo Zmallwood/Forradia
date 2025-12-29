@@ -6,6 +6,7 @@
 #include "WorldGeneratorGround.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -24,11 +25,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
 
-        for (auto y = 0; y < worldAreaSize.height; y++)
+        for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
         {
-            for (auto x = 0; x < worldAreaSize.width; x++)
+            for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
             {
-                auto tile{worldArea->getTile(x, y)};
+                auto tile{worldArea->getTile(xPos, yPos)};
 
                 if (!tile)
                 {
@@ -44,6 +45,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto WorldGeneratorGround::getMaxElevation() -> int
     {
         // Maximum elevation cap to prevent excessive stacking.
+        // NOLINTNEXTLINE(readability-magic-numbers)
         return 300;
     }
 
@@ -51,11 +53,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         // Maximum elevation difference between adjacent tiles.
         // This prevents mountains from becoming too steep.
+        // NOLINTNEXTLINE(readability-magic-numbers)
         return 8;
     }
 
-    auto WorldGeneratorGround::getMaxAllowedElevation(int x, int y, int currentElevation) const
-        -> int
+    auto WorldGeneratorGround::getMaxAllowedElevation(int xPos, int yPos,
+                                                      int currentElevation) const -> int
     {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.
@@ -68,13 +71,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Check all 8 adjacent tiles (including diagonals) to ensure we don't create too steep
         // a slope.
 
-        for (auto dir = 0; dir < 8; dir++)
-        {
-            int directions[8][2]{{-1, -1}, {0, -1}, {1, -1}, {-1, 0},
-                                 {1, 0},   {-1, 1}, {0, 1},  {1, 1}};
+        std::vector<Point> directions{{Point{-1, -1}, Point{0, -1}, Point{1, -1}, Point{-1, 0},
+                                       Point{1, 0}, Point{-1, 1}, Point{0, 1}, Point{1, 1}}};
 
-            auto adjacentX{x + directions[dir][0]};
-            auto adjacentY{y + directions[dir][1]};
+        for (const auto &direction : directions)
+        {
+            auto adjacentX{xPos + direction.x};
+            auto adjacentY{yPos + direction.y};
 
             if (!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
             {

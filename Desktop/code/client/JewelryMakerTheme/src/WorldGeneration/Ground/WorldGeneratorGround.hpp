@@ -15,7 +15,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorGround : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorGround &instance()
+        static auto instance() -> WorldGeneratorGround &
         {
             static WorldGeneratorGround instance;
             return instance;
@@ -23,7 +23,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         WorldGeneratorGround(const WorldGeneratorGround &) = delete;
 
-        WorldGeneratorGround &operator=(const WorldGeneratorGround &) = delete;
+        auto operator=(const WorldGeneratorGround &) -> WorldGeneratorGround & = delete;
 
         WorldGeneratorGround() = default;
 
@@ -52,7 +52,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         static auto getMaxSlopePerTile() -> int;
 
-        [[nodiscard]] auto getMaxAllowedElevation(int x, int y, int currentElevation) const -> int;
+        [[nodiscard]] auto getMaxAllowedElevation(int xPos, int yPos, int currentElevation) const
+            -> int;
 
         static auto clampElevation(int elevation) -> int;
 
