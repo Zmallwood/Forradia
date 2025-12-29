@@ -44,16 +44,22 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /**
          *  Gets the name of the current quest.
+         *
+         *  @return The name of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestName() const -> std::string;
 
         /**
          *  Gets the description of the current quest.
+         *
+         *  @return The description of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestDescription() const -> std::string;
 
         /**
          *  Gets the status of the current quest.
+         *
+         *  @return The status of the current quest.
          */
         [[nodiscard]] auto getCurrentQuestStatus() const -> std::string;
 

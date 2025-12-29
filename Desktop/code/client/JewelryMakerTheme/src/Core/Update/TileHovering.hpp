@@ -34,6 +34,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /**
          *  Provides the hovered coordinate.
+         *
+         *  @return The hovered coordinate.
          */
         [[nodiscard]] static auto getHoveredCoordinate() -> Point
         {

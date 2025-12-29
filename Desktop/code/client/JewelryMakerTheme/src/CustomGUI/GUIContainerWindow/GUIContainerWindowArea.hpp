@@ -22,6 +22,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     class GUIContainerWindowArea : public GUIScrollableArea
     {
       public:
+        /**
+         *  Constructor.
+         *
+         *  @param parentWindow The parent window of the area.
+         *  @param containedObjects The contained objects.
+         */
         GUIContainerWindowArea(GUIWindow *parentWindow, ContainedObjects &containedObjects)
             : GUIScrollableArea("GUIContainerWindowArea", k_defaultBounds.x, k_defaultBounds.y,
                                 k_defaultBounds.width, k_defaultBounds.height),
@@ -30,6 +36,12 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize(parentWindow, containedObjects);
         }
 
+        /**
+         *  Gets the object pointer pointer at the given position in the area.
+         *
+         *  @param position The position to get the object pointer pointer at in the area.
+         *  @return The object pointer pointer at the given position in the area.
+         */
         auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
       protected:

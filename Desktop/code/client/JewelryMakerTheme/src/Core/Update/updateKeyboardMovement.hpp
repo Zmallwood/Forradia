@@ -10,9 +10,14 @@
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
-     *  Updates the keyboard movement.
+     *  Starts the keyboard movement of the player.
+     *
+     *  @param key The key that was pressed.
      */
     auto updateKeyboardMovementStart(SDL_Keycode key) -> void;
 
+    /**
+     *  Stops the keyboard movement of the player.
+     */
     auto updateKeyboardMovementStop() -> void;
 }

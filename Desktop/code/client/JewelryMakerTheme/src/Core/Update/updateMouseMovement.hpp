@@ -8,7 +8,7 @@
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
-     *  Updates the mouse movement.
+     *  Updates the mouse movement of the player.
      */
     auto updateMouseMovement() -> void;
 }

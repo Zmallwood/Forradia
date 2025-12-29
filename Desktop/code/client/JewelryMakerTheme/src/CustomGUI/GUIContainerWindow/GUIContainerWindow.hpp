@@ -32,6 +32,12 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize(containedObjects);
         }
 
+        /**
+         *  Gets the object pointer pointer at the given position in the window.
+         *
+         *  @param position The position to get the object pointer pointer at in the window.
+         *  @return The object pointer pointer at the given position in the window.
+         */
         auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
       private:

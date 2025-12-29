@@ -28,10 +28,26 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         ObjectMoving() = default;
 
+        /**
+         *  Called when the mouse is pressed down.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         *  @return True if the mouse button was pressed, false otherwise.
+         */
         auto onMouseDown(Uint8 mouseButton) -> bool;
 
+        /**
+         *  Called when the mouse is released.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         *  @return True if the mouse button was released, false otherwise.
+         */
         auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool;
 
+        /**
+         *  Renders the object in air.
+         */
         auto render() const -> void;
 
       private:

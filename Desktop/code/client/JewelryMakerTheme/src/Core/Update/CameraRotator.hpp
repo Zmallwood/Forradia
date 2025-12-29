@@ -28,8 +28,18 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         CameraRotator() = default;
 
+        /**
+         *  Called when the mouse is pressed down.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         */
         auto onMouseDown(Uint8 mouseButton) -> void;
 
+        /**
+         *  Called when the mouse is released.
+         *
+         *  @param mouseButton The mouse button that was released.
+         */
         auto onMouseUp(Uint8 mouseButton) -> void;
 
         /**

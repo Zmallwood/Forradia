@@ -7,5 +7,8 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    /**
+     *  Sets the movement destination of the player.
+     */
     auto updateSetPlayerDestination() -> void;
 }

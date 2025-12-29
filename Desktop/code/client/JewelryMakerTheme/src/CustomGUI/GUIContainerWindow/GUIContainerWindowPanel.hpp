@@ -21,6 +21,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     class GUIContainerWindowPanel : public GUIPanel
     {
       public:
+        /**
+         *  Constructor.
+         *
+         *  @param parentWindow The parent window of the panel.
+         *  @param containedObjects The contained objects.
+         */
         GUIContainerWindowPanel(GUIWindow *parentWindow, ContainedObjects &containedObjects)
             : GUIPanel("GUIContainerWindowPanel", k_defaultBounds.x, k_defaultBounds.y,
                        k_defaultBounds.width, k_defaultBounds.height),
@@ -29,6 +35,12 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize();
         }
 
+        /**
+         *  Gets the object pointer pointer at the given position in the panel.
+         *
+         *  @param position The position to get the object pointer pointer at in the panel.
+         *  @return The object pointer pointer at the given position in the panel.
+         */
         auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
       protected:
