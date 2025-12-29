@@ -37,6 +37,8 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         auto generateForests() const -> void;
 
+        auto shouldAddForestObjects(float treeDensity, float distance, float radius) const -> bool;
+
         auto addTreeToForestTile(const std::shared_ptr<Tile> &forestTile, bool useFir) const
             -> void;
 

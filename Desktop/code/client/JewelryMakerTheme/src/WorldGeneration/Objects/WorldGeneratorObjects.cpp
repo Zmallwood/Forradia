@@ -66,12 +66,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         continue;
                     }
 
-                    auto normalizedDistance{distance / static_cast<float>(radius)};
-
-                    // Calculate the local density. Higher density in center, lower at edges.
-                    auto localDensity{treeDensity * (1.0F - normalizedDistance * 0.5F)};
-
-                    if (getRandomInt(1000) < static_cast<int>(localDensity * 1000.0f))
+                    if (this->shouldAddForestObjects(treeDensity, distance, radius))
                     {
                         if (auto forestTile{worldArea->getTile(x, y)})
                         {
@@ -85,6 +80,17 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
             }
         }
+    }
+
+    auto WorldGeneratorObjects::shouldAddForestObjects(float treeDensity, float distance,
+                                                       float radius) const -> bool
+    {
+        auto normalizedDistance{distance / static_cast<float>(radius)};
+
+        // Calculate the local density. Higher density in center, lower at edges.
+        auto localDensity{treeDensity * (1.0F - normalizedDistance * 0.5F)};
+
+        return getRandomInt(1000) < static_cast<int>(localDensity * 1000.0f);
     }
 
     auto WorldGeneratorObjects::addTreeToForestTile(const std::shared_ptr<Tile> &forestTile,
