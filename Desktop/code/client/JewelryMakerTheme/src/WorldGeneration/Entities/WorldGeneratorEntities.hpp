@@ -15,8 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
       public:
-        WorldGeneratorEntities() = default;
-
         /**
          *  Generates entities for the world.
          */

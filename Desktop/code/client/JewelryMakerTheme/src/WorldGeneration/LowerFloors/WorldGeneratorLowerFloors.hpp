@@ -15,8 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorLowerFloors : public WorldGeneratorBase
     {
       public:
-        WorldGeneratorLowerFloors() = default;
-
         /**
          *  Generates entities for the world.
          */

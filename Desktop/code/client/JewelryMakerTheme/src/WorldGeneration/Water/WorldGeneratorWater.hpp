@@ -15,8 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorWater : public WorldGeneratorBase
     {
       public:
-        WorldGeneratorWater() = default;
-
         /**
          *  Generate water.
          */

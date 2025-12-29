@@ -17,8 +17,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorGround : public WorldGeneratorBase
     {
       public:
-        WorldGeneratorGround() = default;
-
         /**
          *  Do all the steps to generate the ground with elevation.
          */
