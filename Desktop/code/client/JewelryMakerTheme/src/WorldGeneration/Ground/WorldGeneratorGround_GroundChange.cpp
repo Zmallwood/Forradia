@@ -77,6 +77,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldAreaSize{getWorldAreaSize()};
         auto worldScaling{getWorldScaling()};
 
+        // NOLINTNEXTLINE(readability-magic-numbers)
         auto numRockFormations{20 + getRandomInt(15)};
 
         for (auto i = 0; i < numRockFormations; i++)
@@ -86,6 +87,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(xCenter, yCenter)};
 
+            // NOLINTNEXTLINE(readability-magic-numbers)
             if (!tile || tile->getElevation() < 80)
             {
                 continue;
@@ -93,29 +95,31 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             // Create rock formations on high elevation.
 
+            // NOLINTBEGIN(readability-magic-numbers)
             auto radius{static_cast<int>(
                 2 * worldScaling +
                 static_cast<float>(getRandomInt(static_cast<int>(5 * worldScaling))))};
+            // NOLINTEND(readability-magic-numbers)
 
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            for (auto yPos = yCenter - radius; yPos <= yCenter + radius; yPos++)
             {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                for (auto xPos = xCenter - radius; xPos <= xCenter + radius; xPos++)
                 {
-                    if (!worldArea->isValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(xPos, yPos))
                     {
                         continue;
                     }
 
-                    auto distance{calcDistance(x, y, xCenter, yCenter)};
+                    auto distance{calcDistance(xPos, yPos, xCenter, yCenter)};
 
                     if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    auto rockTile{worldArea->getTile(x, y)};
+                    auto rockTile{worldArea->getTile(xPos, yPos)};
 
-                    if (this->setTileGroundToRock(rockTile, x, y) == false)
+                    if (WorldGeneratorGround::setTileGroundToRock(rockTile, xPos, yPos) == false)
                     {
                         continue;
                     }
@@ -125,7 +129,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorGround::setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
-                                                   int yPos) const -> bool
+                                                   int yPos) -> bool
     {
         // Skip if the tile is not found or the ground is water.
 

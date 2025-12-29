@@ -66,7 +66,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                                    int yPos, int distance, int radius) const
             -> bool;
 
-        [[nodiscard]] auto setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
-                                               int yPos) const -> bool;
+        [[nodiscard]] static auto setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
+                                                      int yPos) -> bool;
     };
 }
