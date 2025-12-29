@@ -30,6 +30,9 @@ namespace ForradiaEngine
 
         Camera() = default;
 
+        /**
+         *  Updates the camera.
+         */
         static auto update() -> void;
 
         /**

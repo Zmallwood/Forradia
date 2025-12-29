@@ -16,7 +16,8 @@
 namespace ForradiaEngine::JewelryMakerTheme
 {
     class PlayerObjectsInventory;
-    class Spouse;
+    // TODO: Think about if this should be kept or not.
+    // class Spouse;
 
     /**
      *  Represents the player character.
@@ -36,26 +37,59 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         Player() = default;
 
+        /**
+         *  Initializes the player.
+         */
         auto initialize() -> void;
 
+        /**
+         *  Updates the player.
+         */
         auto update() -> void;
 
+        /**
+         *  Starts moving the player north.
+         */
         auto startMovingNorth() -> void;
 
+        /**
+         *  Starts moving the player east.
+         */
         auto startMovingEast() -> void;
 
+        /**
+         *  Starts moving the player south.
+         */
         auto startMovingSouth() -> void;
 
+        /**
+         *  Starts moving the player west.
+         */
         auto startMovingWest() -> void;
 
+        /**
+         *  Starts moving the player north-west.
+         */
         auto startMovingNorthWest() -> void;
 
+        /**
+         *  Starts moving the player north-east.
+         */
         auto startMovingNorthEast() -> void;
 
+        /**
+         *  Starts moving the player south-west.
+         */
         auto startMovingSouthWest() -> void;
 
+        /**
+         *  Starts moving the player south-east.
+         */
         auto startMovingSouthEast() -> void;
 
+        /**
+         *  Stops the player from moving.
+         */
         auto stopMoving() -> void;
 
         /**
@@ -116,6 +150,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                              std::string_view actionFirstArgument = "",
                              Point actionSecondArgument = {-1, -1}) -> void;
 
+        /**
+         *  Gets the smooth position of the player, used for smooth movement.
+         *
+         *  @return The smooth position of the player.
+         */
         auto getSmoothPosition() const -> PointF;
 
         /**
@@ -259,21 +298,27 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_questCompletionPoints;
         }
 
+        // TODO: Think about if this should be kept or not.
+        // /**
+        //  *  Gets the spouse of the player.
+        //  *
+        //  *  @return The spouse of the player.
+        //  */
+        // auto getSpouse() const
+        // {
+        //     return m_spouse;
+        // }
+
+        // auto setSpouse(const std::shared_ptr<Spouse> &value) -> void
+        // {
+        //     m_spouse = value;
+        // }
+
         /**
-         *  Gets the spouse of the player.
+         *  Gets the world area coordinate of the player.
          *
-         *  @return The spouse of the player.
+         *  @return The world area coordinate of the player.
          */
-        auto getSpouse() const
-        {
-            return m_spouse;
-        }
-
-        auto setSpouse(const std::shared_ptr<Spouse> &value) -> void
-        {
-            m_spouse = value;
-        }
-
         auto getWorldAreaCoordinate() const -> Point3
         {
             return m_worldAreaCoordinate;
@@ -299,7 +344,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions{};
         std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
-        std::shared_ptr<Spouse> m_spouse{};
+        // TODO: Think about if this should be kept or not.
+        // std::shared_ptr<Spouse> m_spouse{};
         Point3 m_worldAreaCoordinate{0, 0, 0};
     };
 }

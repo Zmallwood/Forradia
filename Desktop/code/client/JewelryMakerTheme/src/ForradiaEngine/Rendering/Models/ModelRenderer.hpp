@@ -55,8 +55,14 @@ namespace ForradiaEngine
                        float modelScaling = 1.0F, float elevationHeight = k_defaultElevationHeight,
                        float levitationHeight = 0.0F) -> void;
 
+        /**
+         *  Sets up the state for the model renderer.
+         */
         auto setupState() const -> void;
 
+        /**
+         *  Restores the state for the model renderer.
+         */
         static auto restoreState() -> void;
 
       protected:

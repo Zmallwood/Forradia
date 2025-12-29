@@ -9,15 +9,16 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    /**
-     *  Represents the spouse of the player.
-     */
-    class Spouse
-    {
-      public:
-        [[nodiscard]] auto isPlaced() const -> bool;
+    // TODO: Think about if this should be kept or not.
+    // /**
+    //  *  Represents the spouse of the player.
+    //  */
+    // class Spouse
+    // {
+    //   public:
+    //     [[nodiscard]] auto isPlaced() const -> bool;
 
-      private:
-        Point m_position{-1, -1};
-    };
+    //   private:
+    //     Point m_position{-1, -1};
+    // };
 }

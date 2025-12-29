@@ -7,8 +7,9 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto Spouse::isPlaced() const -> bool
-    {
-        return m_position.x != -1 && m_position.y != -1;
-    }
+    // TODO: Think about if this should be kept or not.
+    // auto Spouse::isPlaced() const -> bool
+    // {
+    //     return m_position.x != -1 && m_position.y != -1;
+    // }
 }

@@ -32,16 +32,47 @@ namespace ForradiaEngine
          */
         auto onEnter() -> void;
 
+        /**
+         *  Called when the mouse is pressed down.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         */
         virtual auto onMouseDown(Uint8 mouseButton) -> void;
 
+        /**
+         *  Called when the mouse is released.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         */
         virtual auto onMouseUp(Uint8 mouseButton, int clickSpeed) -> void;
 
+        /**
+         *  Called when the mouse wheel is scrolled.
+         *
+         *  @param delta The delta of the mouse wheel.
+         */
         virtual auto onMouseWheel(int delta) -> void;
 
+        /**
+         *  Called when a key is pressed down.
+         *
+         *  @param key The key that was pressed.
+         */
         virtual auto onKeyDown(SDL_Keycode key) -> void;
 
+        /**
+         *  Called when a key is released.
+         *
+         *  @param key The key that was released.
+         */
         virtual auto onKeyUp(SDL_Keycode key) -> void;
 
+        /**
+         *  Called when text is input.
+         *
+         *  @param text The text that was input.
+         */
         virtual auto onTextInput(std::string_view text) -> void;
 
         /**
@@ -130,16 +161,47 @@ namespace ForradiaEngine
          */
         auto goToScene(std::string_view sceneName) -> void;
 
+        /**
+         *  Called when the mouse is pressed down in the current scene.
+         *
+         *  @param mouseButton The mouse button that was pressed.
+         */
         auto onMouseDownCurrentScene(Uint8 mouseButton) -> void;
 
+        /**
+         *  Called when the mouse is released in the current scene.
+         *
+         *  @param mouseButton The mouse button that was released.
+         *  @param clickSpeed The speed of the click.
+         */
         auto onMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void;
 
+        /**
+         *  Called when the mouse wheel is scrolled in the current scene.
+         *
+         *  @param delta The delta of the mouse wheel.
+         */
         auto onMouseWheelCurrentScene(int delta) -> void;
 
+        /**
+         *  Called when a key is pressed down in the current scene.
+         *
+         *  @param key The key that was pressed.
+         */
         auto onKeyDownCurrentScene(SDL_Keycode key) -> void;
 
+        /**
+         *  Called when a key is released in the current scene.
+         *
+         *  @param key The key that was released.
+         */
         auto onKeyUpCurrentScene(SDL_Keycode key) -> void;
 
+        /**
+         *  Called when text is input in the current scene.
+         *
+         *  @param text The text that was input.
+         */
         auto onTextInputCurrentScene(std::string_view text) -> void;
 
         /**
@@ -152,6 +214,12 @@ namespace ForradiaEngine
          */
         auto renderCurrentScene() const -> void;
 
+        /**
+         *  Gets a scene by name.
+         *
+         *  @param sceneName The name of the scene to get.
+         *  @return The scene.
+         */
         auto getScene(std::string_view sceneName) -> std::shared_ptr<IScene>;
 
       private:
