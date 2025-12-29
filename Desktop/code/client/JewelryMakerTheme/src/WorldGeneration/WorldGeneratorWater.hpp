@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "WorldGeneration/Common/WorldGeneratorBase.hpp"
+#include "WorldGeneratorBase.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

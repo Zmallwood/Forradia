@@ -4,11 +4,11 @@
  *********************************************************************/
 
 #include "WorldGenerator.hpp"
-#include "WorldGeneration/Entities/WorldGeneratorEntities.hpp"
-#include "WorldGeneration/Ground/WorldGeneratorGround.hpp"
-#include "WorldGeneration/Objects/WorldGeneratorObjects.hpp"
-#include "WorldGeneration/Water/WorldGeneratorWater.hpp"
-#include "WorldGeneration/LowerFloors/WorldGeneratorLowerFloors.hpp"
+#include "WorldGeneratorEntities.hpp"
+#include "WorldGeneratorGround.hpp"
+#include "WorldGeneratorObjects.hpp"
+#include "WorldGeneratorWater.hpp"
+#include "WorldGeneratorLowerFloors.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

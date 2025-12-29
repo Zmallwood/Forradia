@@ -5,22 +5,24 @@
 
 #pragma once
 
-#include "WorldGeneration/Common/WorldGeneratorBase.hpp"
+#include "WorldGeneratorBase.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
-     *  Generates entities for the world.
+     *  Generates lower floors for the world.
      */
-    class WorldGeneratorEntities : public WorldGeneratorBase
+    class WorldGeneratorLowerFloors : public WorldGeneratorBase
     {
       public:
         /**
          *  Generates entities for the world.
          */
-        static auto generateEntities() -> void;
+        static auto generateLowerFloors() -> void;
 
       private:
-        static auto generateEntitiesInEcosystems() -> void;
+        static auto clearWithDirt() -> void;
+
+        static auto fillWithStoneBlocks() -> void;
     };
 }

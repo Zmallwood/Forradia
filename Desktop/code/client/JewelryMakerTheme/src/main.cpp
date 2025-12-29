@@ -7,7 +7,7 @@
 #include "WorldStructure/World.hpp"
 #include "ForradiaEngine/Engine.hpp"
 #include "setupScenes.hpp"
-#include "WorldGeneration/Main/WorldGenerator.hpp"
+#include "WorldGeneration/WorldGenerator.hpp"
 
 auto main(int argc, char **argv) -> int
 {
