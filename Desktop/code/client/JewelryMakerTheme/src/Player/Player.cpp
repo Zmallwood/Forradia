@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "Player.hpp"
+#include <algorithm>
 #include "Properties/ObjectIndex.hpp"
 #include "WorldStructure/Object.hpp"
 #include "WorldStructure/ObjectsStack.hpp"
@@ -36,6 +37,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
+    // NOLINTNEXTLINE(readability-make-member-function-const)
     auto Player::moveToPositionPossible(Point position) -> bool
     {
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
@@ -48,12 +50,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto objectsStack{tile->getObjectsStack()};
 
-        for (const auto &object : objectsStack->getObjects())
+        if (std::ranges::any_of(objectsStack->getObjects(), [](const auto &object) {
+                return ObjectIndex::instance().getBlocksMovement(object->getType());
+            }))
         {
-            if (ObjectIndex::instance().getBlocksMovement(object->getType()))
-            {
-                return false;
-            }
+            return false;
         }
 
         return true;

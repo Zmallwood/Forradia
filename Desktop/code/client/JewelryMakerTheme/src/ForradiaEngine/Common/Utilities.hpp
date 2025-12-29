@@ -70,7 +70,7 @@ namespace ForradiaEngine
      *  @param y2 Second y coordinate.
      *  @return The distance between the two points.
      */
-    auto calcDistance(int x1, int y1, int x2, int y2) -> float;
+    auto calcDistance(int xPos1, int yPos1, int xPos2, int yPos2) -> float;
 
     /**
      *  Compute the normal of a triangle.
