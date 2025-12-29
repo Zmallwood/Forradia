@@ -4,6 +4,7 @@
  *********************************************************************/
 
 #include "WorldGeneratorBase.hpp"
+#include <cmath>
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/World.hpp"
 #include "WorldStructure/WorldArea.hpp"
@@ -24,11 +25,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_worldScalingLowerFloors = JewelryMakerTheme::ThemeProperties::getWorldScaling();
     }
 
-    auto WorldGeneratorBase::getDistance(int x1, int y1, int x2, int y2) -> float
+    auto WorldGeneratorBase::getDistance(int xPos1, int yPos1, int xPos2, int yPos2) -> float
     {
-        auto dx{static_cast<float>(x2 - x1)};
-        auto dy{static_cast<float>(y2 - y1)};
+        auto deltaX{static_cast<float>(xPos2 - xPos1)};
+        auto deltaY{static_cast<float>(yPos2 - yPos1)};
 
-        return std::sqrt(dx * dx + dy * dy);
+        return std::sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 }

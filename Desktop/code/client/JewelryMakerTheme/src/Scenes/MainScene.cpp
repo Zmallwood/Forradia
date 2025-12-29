@@ -31,7 +31,6 @@
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -41,19 +40,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto btnInventoryWindow{std::make_shared<GUIButton>(
-            "MainSceneButtonInventoryWin", 0.85f, 0.9f, 0.05f,
-            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            "MainSceneButtonInventoryWin", 0.85F, 0.9F, 0.05F,
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "",
             [] { GUIInventoryWindow::instance().toggleVisibility(); },
             "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(btnInventoryWindow);
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto btnSystemMenu{std::make_shared<GUIButton>(
-            "MainSceneButtonSystemMenu", 0.92f, 0.9f, 0.05f,
-            convertWidthToHeight(0.05f, SDLDevice::instance().getWindow()), "",
+            "MainSceneButtonSystemMenu", 0.92F, 0.9F, 0.05F,
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "",
             [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
             "GUIButtonSystemMenuHoveredBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(btnSystemMenu);
 
@@ -65,17 +68,21 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIExperienceBar::instancePtr());
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto rightHandSlotPanel{std::make_shared<GUIPanel>(
             "GUIRightHandSlotPanel", 0.5F - 0.03F, 0.02F, 0.05F,
             convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
             "GUIRightHandSlotBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(rightHandSlotPanel);
 
+        // NOLINTBEGIN(readability-magic-numbers)
         auto leftHandSlotPanel{std::make_shared<GUIPanel>(
             "GUILeftHandSlotPanel", 0.5F + 0.03F, 0.02F, 0.05F,
             convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()),
             "GUILeftHandSlotBackground")};
+        // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(leftHandSlotPanel);
 
@@ -90,7 +97,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto experienceBarHeight{GUIExperienceBar::instance().getBounds().height};
 
-        GUIChatBox::instance().setPosition({0.0f, 1.0f - chatBoxHeight - experienceBarHeight});
+        GUIChatBox::instance().setPosition({0.0F, 1.0F - chatBoxHeight - experienceBarHeight});
 
         GUIChatBox::instance().print("You have entered the world.");
     }
@@ -131,7 +138,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             return;
         }
 
-        if (clickSpeed < 200)
+        constexpr int k_clickSpeedThreshold{200};
+
+        if (clickSpeed < k_clickSpeedThreshold)
         {
             if (m_guiInteractionMenu->onMouseUp(mouseButton, clickSpeed))
             {
@@ -194,7 +203,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         updateEntitiesMovement();
 
-        TileHovering::instance().update();
+        TileHovering::update();
 
         Player::instance().update();
 

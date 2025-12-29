@@ -13,7 +13,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         GUIChatBox::instance().print("Generating world...");
 
-        WorldGenerator::instance().generateNewWorld();
+        WorldGenerator::generateNewWorld();
 
         GUIChatBox::instance().print("World generation complete.");
 

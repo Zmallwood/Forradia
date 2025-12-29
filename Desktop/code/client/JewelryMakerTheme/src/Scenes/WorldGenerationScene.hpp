@@ -15,7 +15,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGenerationScene : public IScene
     {
       public:
-        static WorldGenerationScene &instance()
+        static auto instance() -> WorldGenerationScene &
         {
             static WorldGenerationScene instance;
             return instance;
@@ -23,7 +23,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         WorldGenerationScene(const WorldGenerationScene &) = delete;
 
-        WorldGenerationScene &operator=(const WorldGenerationScene &) = delete;
+        auto operator=(const WorldGenerationScene &) -> WorldGenerationScene & = delete;
 
         WorldGenerationScene() = default;
 
@@ -31,6 +31,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Called when the world generation scene is entered.
          */
-        virtual auto onEnterDerived() -> void override;
+        auto onEnterDerived() -> void override;
     };
 }

@@ -61,7 +61,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto removeObject(std::string_view objectName, int count = 1) -> void;
 
-        auto size() const -> int;
+        [[nodiscard]] auto size() const -> int;
 
       private:
         auto initialize(int numSlots) -> void;

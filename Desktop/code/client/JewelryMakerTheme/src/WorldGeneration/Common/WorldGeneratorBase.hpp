@@ -26,13 +26,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Get the distance between two points.
          *
-         *  @param x1 The x coordinate of the first point.
-         *  @param y1 The y coordinate of the first point.
-         *  @param x2 The x coordinate of the second point.
-         *  @param y2 The y coordinate of the second point.
+         *  @param xPos1 The x coordinate of the first point.
+         *  @param yPos1 The y coordinate of the first point.
+         *  @param xPos2 The x coordinate of the second point.
+         *  @param yPos2 The y coordinate of the second point.
          *  @return The distance between the two points.
          */
-        static auto getDistance(int x1, int y1, int x2, int y2) -> float;
+        static auto getDistance(int xPos1, int yPos1, int xPos2, int yPos2) -> float;
 
         /**
          *  Get the default ground elevation.

@@ -16,7 +16,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class PlayScene : public IScene
     {
       public:
-        static PlayScene &instance()
+        static auto instance() -> PlayScene &
         {
             static PlayScene instance;
             return instance;
@@ -24,7 +24,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         PlayScene(const PlayScene &) = delete;
 
-        PlayScene &operator=(const PlayScene &) = delete;
+        auto operator=(const PlayScene &) -> PlayScene & = delete;
 
         PlayScene() = default;
 
@@ -32,11 +32,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Initializes the play scene.
          */
-        virtual auto initializeDerived() -> void override;
+        auto initializeDerived() -> void override;
 
         /**
          *  Called every frame to render the scene.
          */
-        virtual auto renderDerived() const -> void override;
+        auto renderDerived() const -> void override;
     };
 }
