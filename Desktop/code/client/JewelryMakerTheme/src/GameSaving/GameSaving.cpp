@@ -14,7 +14,7 @@
 #include "WorldStructure/WorldArea.hpp"
 #include "ForradiaEngine/Rendering/Ground/GroundRenderer.hpp"
 #include "HashCodes.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

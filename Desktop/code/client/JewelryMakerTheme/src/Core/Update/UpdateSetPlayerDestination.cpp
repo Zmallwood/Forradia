@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "UpdateSetPlayerDestination.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 #include "TileHovering.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

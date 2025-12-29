@@ -5,9 +5,9 @@
 
 #include "Actions.hpp"
 #include "CustomGUI/GUIContainerWindow/GUIContainerWindow.hpp"
-#include "Essentials/Player/Player.hpp"
-#include "Essentials/Player/PlayerActionTypes.hpp"
-#include "Essentials/Player/PlayerObjectsInventory.hpp"
+#include "Player/Player.hpp"
+#include "Player/PlayerActionTypes.hpp"
+#include "Player/PlayerObjectsInventory.hpp"
 #include "WorldStructure/Object.hpp"
 #include "WorldStructure/ObjectsStack.hpp"
 #include "WorldStructure/Tile.hpp"

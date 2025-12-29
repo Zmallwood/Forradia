@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "WorldView.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/World.hpp"
 #include "WorldStructure/WorldArea.hpp"

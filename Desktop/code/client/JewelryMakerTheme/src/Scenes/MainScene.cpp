@@ -21,8 +21,8 @@
 #include "CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "CustomGUI/GUIQuestPanel.hpp"
 #include "CustomGUI/GUISystemMenu.hpp"
-#include "Essentials/Player/Player.hpp"
-#include "Essentials/Player/PlayerObjectsInventory.hpp"
+#include "Player/Player.hpp"
+#include "Player/PlayerObjectsInventory.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GUICore/GUI.hpp"
 #include "ForradiaEngine/GUICore/GUIButton.hpp"
@@ -31,7 +31,7 @@
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

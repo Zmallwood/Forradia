@@ -6,8 +6,8 @@
 #pragma once
 
 #include "GUIContainerWindow/GUIContainerWindow.hpp"
-#include "Essentials/Player/Player.hpp"
-#include "Essentials/Player/PlayerObjectsInventory.hpp"
+#include "Player/Player.hpp"
+#include "Player/PlayerObjectsInventory.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

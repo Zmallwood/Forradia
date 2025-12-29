@@ -10,7 +10,7 @@
 #include "WorldStructure/WorldArea.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

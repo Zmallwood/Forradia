@@ -7,7 +7,7 @@
 #include "Properties/ThemeProperties.hpp"
 #include "WorldStructure/World.hpp"
 #include "WorldStructure/WorldArea.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

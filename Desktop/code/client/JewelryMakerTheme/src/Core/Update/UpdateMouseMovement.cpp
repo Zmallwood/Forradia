@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "UpdateMouseMovement.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

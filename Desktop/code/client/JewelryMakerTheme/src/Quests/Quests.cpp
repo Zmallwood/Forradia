@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "Quests.hpp"
-#include "Essentials/Player/Player.hpp"
+#include "Player/Player.hpp"
 #include "WorldStructure/ObjectsStack.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/World.hpp"
