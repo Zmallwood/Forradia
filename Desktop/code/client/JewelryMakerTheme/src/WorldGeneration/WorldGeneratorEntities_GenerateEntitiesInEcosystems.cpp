@@ -132,21 +132,26 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 if (tile->getGround() == hash("GroundGrass"))
                 {
-                    // NOLINTBEGIN(readability-magic-numbers)
                     if (isNearWater(worldArea, xPos, yPos, 8))
                     {
-                        prefersLocation = getRandomInt(100) < 40;
+                        prefersLocation =
+                            getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                            WorldGeneratorBase::getParam<int>(
+                                "wolfPrefersLocationNearWaterProbability");
                     }
                     else
                     {
-                        prefersLocation = getRandomInt(100) < 20;
+                        prefersLocation =
+                            getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                            WorldGeneratorBase::getParam<int>(
+                                "wolfPrefersLocationAwayFromWaterProbability");
                     }
-                    // NOLINTEND(readability-magic-numbers)
                 }
                 else if (tile->getGround() == hash("GroundDirt"))
                 {
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    prefersLocation = getRandomInt(100) < 5;
+                    prefersLocation =
+                        getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                        WorldGeneratorBase::getParam<int>("wolfPrefersLocationOnDirtProbability");
                 }
 
                 if (prefersLocation)

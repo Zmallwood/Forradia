@@ -6,5 +6,8 @@
     "whiteRabbitPrefersLocationAwayFromWaterProbability": 20,
     "whiteRabbitPrefersLocationOnDirtProbability": 5,
     "numWolvesBase": 180,
-    "numWolvesRandom": 40
+    "numWolvesRandom": 40,
+    "wolfPrefersLocationNearWaterProbability": 40,
+    "wolfPrefersLocationAwayFromWaterProbability": 20,
+    "wolfPrefersLocationOnDirtProbability": 5
 }
