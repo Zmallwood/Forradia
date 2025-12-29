@@ -26,7 +26,7 @@ target_include_directories(JewelryMakerLib
 
 target_precompile_headers(JewelryMakerLib
     PUBLIC
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/PCH.hpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/pch.hpp"
 )
 
 target_link_libraries(JewelryMakerLib

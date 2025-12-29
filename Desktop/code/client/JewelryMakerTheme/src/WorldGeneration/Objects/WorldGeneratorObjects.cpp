@@ -7,6 +7,8 @@
 #include "WorldStructure/ObjectsStack.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
