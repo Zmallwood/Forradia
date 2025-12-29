@@ -9,6 +9,8 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
+    class Tile;
+
     /**
      *  The world generator for objects.
      */
@@ -34,6 +36,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
       private:
         auto generateForests() const -> void;
+
+        auto addTreeToForestTile(const std::shared_ptr<Tile> &forestTile, bool useFir) const
+            -> void;
+
+        auto addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile) const -> void;
 
         auto generateMeadows() const -> void;
 

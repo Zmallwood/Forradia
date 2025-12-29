@@ -77,45 +77,57 @@ namespace ForradiaEngine::JewelryMakerTheme
                         {
                             forestTile->getObjectsStack()->clearObjects();
 
-                            // Check if the forest should use fir or birch trees.
-                            if (useFir)
-                            {
-                                if (getRandomInt(100) < 70)
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectFirTree");
-                                }
-                                else
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectBirchTree");
-                                }
-                            }
-                            else
-                            {
-                                if (getRandomInt(100) < 70)
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectBirchTree");
-                                }
-                                else
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectFirTree");
-                                }
-                            }
+                            this->addTreeToForestTile(forestTile, useFir);
 
-                            // Add undergrowth in forests.
-                            if (getRandomInt(100) < 25)
-                            {
-                                if (getRandomInt(100) < 50)
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectBush1");
-                                }
-                                else
-                                {
-                                    forestTile->getObjectsStack()->addObject("ObjectBush2");
-                                }
-                            }
+                            this->addUndergrowthToForestTile(forestTile);
                         }
                     }
                 }
+            }
+        }
+    }
+
+    auto WorldGeneratorObjects::addTreeToForestTile(const std::shared_ptr<Tile> &forestTile,
+                                                    bool useFir) const -> void
+    { // Check if the forest should use fir or birch trees.
+        if (useFir)
+        {
+            if (getRandomInt(100) < 70)
+            {
+                forestTile->getObjectsStack()->addObject("ObjectFirTree");
+            }
+            else
+            {
+                forestTile->getObjectsStack()->addObject("ObjectBirchTree");
+            }
+        }
+        else
+        {
+            if (getRandomInt(100) < 70)
+            {
+                forestTile->getObjectsStack()->addObject("ObjectBirchTree");
+            }
+            else
+            {
+                forestTile->getObjectsStack()->addObject("ObjectFirTree");
+            }
+        }
+    }
+
+    auto
+    WorldGeneratorObjects::addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile) const
+        -> void
+    {
+        // Add undergrowth in forests.
+        if (getRandomInt(100) < 25)
+        {
+            if (getRandomInt(100) < 50)
+            {
+                forestTile->getObjectsStack()->addObject("ObjectBush1");
+            }
+            else
+            {
+                forestTile->getObjectsStack()->addObject("ObjectBush2");
             }
         }
     }
