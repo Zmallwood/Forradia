@@ -17,16 +17,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class MainScene : public IScene
     {
       public:
-        static auto instance() -> MainScene &
-        {
-            static MainScene instance;
-            return instance;
-        }
-
-        MainScene(const MainScene &) = delete;
-
-        auto operator=(const MainScene &) -> MainScene & = delete;
-
         MainScene() = default;
 
       protected:

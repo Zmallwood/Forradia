@@ -121,7 +121,7 @@ namespace ForradiaEngine
          *  @param sceneName The name of the scene.
          *  @param scene The scene to add.
          */
-        auto addScene(std::string_view sceneName, IScene &scene) -> void;
+        auto addScene(std::string_view sceneName, std::shared_ptr<IScene> scene) -> void;
 
         /**
          *  Goes to a scene.
@@ -152,10 +152,10 @@ namespace ForradiaEngine
          */
         auto renderCurrentScene() const -> void;
 
-        auto getScene(std::string_view sceneName) -> IScene *;
+        auto getScene(std::string_view sceneName) -> std::shared_ptr<IScene>;
 
       private:
-        std::unordered_map<int, IScene &> m_scenes{};
+        std::unordered_map<int, std::shared_ptr<IScene>> m_scenes{};
         int m_currentScene{0};
     };
 }

@@ -16,16 +16,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class MainMenuScene : public IScene
     {
       public:
-        static auto instance() -> MainMenuScene &
-        {
-            static MainMenuScene instance;
-            return instance;
-        }
-
-        MainMenuScene(const MainMenuScene &) = delete;
-
-        auto operator=(const MainMenuScene &) -> MainMenuScene & = delete;
-
         MainMenuScene() = default;
 
       protected:

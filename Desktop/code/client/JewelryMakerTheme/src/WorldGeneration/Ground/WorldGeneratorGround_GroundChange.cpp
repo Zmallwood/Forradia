@@ -143,6 +143,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto elevation{tile->getElevation()};
 
+        // NOLINTNEXTLINE(readability-magic-numbers)
         if (elevation > 60)
         {
             tile->setGround("GroundRock");
@@ -155,23 +156,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                                                   std::string_view groundType) const -> void
     {
         // Enumerate all tiles in the radius.
-        for (auto y = centerY - radius; y <= centerY + radius; y++)
+        for (auto yPos = centerY - radius; yPos <= centerY + radius; yPos++)
         {
-            for (auto x = centerX - radius; x <= centerX + radius; x++)
+            for (auto xPos = centerX - radius; xPos <= centerX + radius; xPos++)
             {
-                if (!getWorldArea()->isValidCoordinate(x, y))
+                if (!getWorldArea()->isValidCoordinate(xPos, yPos))
                 {
                     continue;
                 }
 
-                auto distance{calcDistance(x, y, centerX, centerY)};
+                auto distance{calcDistance(xPos, yPos, centerX, centerY)};
 
                 if (distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                if (auto tile{getWorldArea()->getTile(x, y)})
+                if (auto tile{getWorldArea()->getTile(xPos, yPos)})
                 {
                     tile->setGround(groundType);
                 }

@@ -16,16 +16,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class PlayScene : public IScene
     {
       public:
-        static auto instance() -> PlayScene &
-        {
-            static PlayScene instance;
-            return instance;
-        }
-
-        PlayScene(const PlayScene &) = delete;
-
-        auto operator=(const PlayScene &) -> PlayScene & = delete;
-
         PlayScene() = default;
 
       protected:

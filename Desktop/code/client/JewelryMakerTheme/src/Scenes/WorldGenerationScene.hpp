@@ -15,16 +15,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGenerationScene : public IScene
     {
       public:
-        static auto instance() -> WorldGenerationScene &
-        {
-            static WorldGenerationScene instance;
-            return instance;
-        }
-
-        WorldGenerationScene(const WorldGenerationScene &) = delete;
-
-        auto operator=(const WorldGenerationScene &) -> WorldGenerationScene & = delete;
-
         WorldGenerationScene() = default;
 
       protected:

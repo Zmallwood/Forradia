@@ -21,16 +21,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     class IntroScene : public IScene
     {
       public:
-        static auto instance() -> IntroScene &
-        {
-            static IntroScene instance;
-            return instance;
-        }
-
-        IntroScene(const IntroScene &) = delete;
-
-        auto operator=(const IntroScene &) -> IntroScene & = delete;
-
         IntroScene() = default;
 
       protected:
