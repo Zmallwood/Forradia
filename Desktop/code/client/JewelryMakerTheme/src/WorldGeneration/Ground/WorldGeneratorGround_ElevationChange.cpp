@@ -6,6 +6,8 @@
 #include "WorldGeneratorGround.hpp"
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/WorldArea.hpp"
+#include "ForradiaEngine/Common/Utilities.hpp"
+#include "ForradiaEngine/Common/General.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -14,16 +16,21 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldAreaSize{getWorldAreaSize()};
         auto worldScaling{getWorldScaling()};
 
+        // NOLINTNEXTLINE(readability-magic-numbers)
         auto numMajorHills{40 + getRandomInt(20)};
 
         for (auto i = 0; i < numMajorHills; i++)
         {
             auto xCenter{getRandomInt(worldAreaSize.width)};
             auto yCenter{getRandomInt(worldAreaSize.height)};
+
+            // NOLINTBEGIN(readability-magic-numbers)
             auto radius{static_cast<int>(
                 8 * worldScaling +
                 static_cast<float>(getRandomInt(static_cast<int>(12 * worldScaling))))};
+
             auto maxElevation{30 + getRandomInt(20)};
+            // NOLINTEND(readability-magic-numbers)
 
             createElevationHill(xCenter, yCenter, radius, maxElevation);
         }
@@ -41,35 +48,42 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             auto startX{getRandomInt(worldAreaSize.width)};
             auto startY{getRandomInt(worldAreaSize.height)};
+            // NOLINTNEXTLINE(readability-magic-numbers)
             auto length{30 + getRandomInt(40)};
+            // NOLINTNEXTLINE(readability-magic-numbers)
             auto direction{getRandomInt(360)};
             auto currentX{static_cast<float>(startX)};
             auto currentY{static_cast<float>(startY)};
 
             for (auto i = 0; i < length; i++)
             {
-                auto x{static_cast<int>(currentX)};
-                auto y{static_cast<int>(currentY)};
+                auto xPos{static_cast<int>(currentX)};
+                auto yPos{static_cast<int>(currentY)};
 
-                if (worldArea->isValidCoordinate(x, y))
+                if (worldArea->isValidCoordinate(xPos, yPos))
                 {
+                    // NOLINTBEGIN(readability-magic-numbers)
                     auto radius{static_cast<int>(
                         4 * worldScaling +
                         static_cast<float>(getRandomInt(static_cast<int>(6 * worldScaling))))};
 
                     auto elevation{120 + getRandomInt(160)};
+                    // NOLINTEND(readability-magic-numbers)
 
-                    createElevationHill(x, y, radius, elevation);
+                    createElevationHill(xPos, yPos, radius, elevation);
                 }
 
                 // Move along the mountain range with some variation.
+                // NOLINTBEGIN(readability-magic-numbers)
                 auto angleRadians{
                     static_cast<float>((direction + getRandomInt(60) - 30) * M_PI / 180.0F)};
 
-                currentX += std::cos(angleRadians) * (2.0f + static_cast<float>(getRandomInt(3)));
-                currentY += std::sin(angleRadians) * (2.0f + static_cast<float>(getRandomInt(3)));
+                currentX += std::cos(angleRadians) * (2.0F + static_cast<float>(getRandomInt(3)));
+                currentY += std::sin(angleRadians) * (2.0F + static_cast<float>(getRandomInt(3)));
+                // NOLINTEND(readability-magic-numbers)
 
                 // Occasionally change direction.
+                // NOLINTBEGIN(readability-magic-numbers)
                 if (getRandomInt(100) < 20)
                 {
                     direction += getRandomInt(60) - 30;
@@ -84,6 +98,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         direction -= 360;
                     }
                 }
+                // NOLINTEND(readability-magic-numbers)
             }
         }
     }
@@ -95,33 +110,36 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldScaling{getWorldScaling()};
 
         // Create valleys by reducing elevation in certain areas.
+        // NOLINTNEXTLINE(readability-magic-numbers)
         auto numValleys{15 + getRandomInt(10)};
 
         for (auto i = 0; i < numValleys; i++)
         {
             auto xCenter{getRandomInt(worldAreaSize.width)};
             auto yCenter{getRandomInt(worldAreaSize.height)};
+            // NOLINTBEGIN(readability-magic-numbers)
             auto radius{static_cast<int>(
                 10 * worldScaling +
                 static_cast<float>(getRandomInt(static_cast<int>(15 * worldScaling))))};
+            // NOLINTEND(readability-magic-numbers)
 
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            for (auto yPos = yCenter - radius; yPos <= yCenter + radius; yPos++)
             {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                for (auto xPos = xCenter - radius; xPos <= xCenter + radius; xPos++)
                 {
-                    if (!worldArea->isValidCoordinate(x, y))
+                    if (!worldArea->isValidCoordinate(xPos, yPos))
                     {
                         continue;
                     }
 
-                    auto distance{calcDistance(x, y, xCenter, yCenter)};
+                    auto distance{calcDistance(xPos, yPos, xCenter, yCenter)};
 
                     if (distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    auto tile = worldArea->getTile(x, y);
+                    auto tile = worldArea->getTile(xPos, yPos);
 
                     if (!tile)
                     {
@@ -131,6 +149,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto normalizedDistance{distance / static_cast<float>(radius)};
 
                     // Calculate the elevation reduction based on the normalized distance.
+                    // NOLINTNEXTLINE(readability-magic-numbers)
                     auto elevationReduction{static_cast<int>((1.0F - normalizedDistance) * 40.0F)};
 
                     auto currentElevation{tile->getElevation()};
