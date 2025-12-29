@@ -15,7 +15,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     class WorldGeneratorEntities : public WorldGeneratorBase
     {
       public:
-        static WorldGeneratorEntities &instance()
+        static auto instance() -> WorldGeneratorEntities &
         {
             static WorldGeneratorEntities instance;
             return instance;
@@ -23,7 +23,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         WorldGeneratorEntities(const WorldGeneratorEntities &) = delete;
 
-        WorldGeneratorEntities &operator=(const WorldGeneratorEntities &) = delete;
+        auto operator=(const WorldGeneratorEntities &) -> WorldGeneratorEntities & = delete;
 
         WorldGeneratorEntities() = default;
 
@@ -34,7 +34,5 @@ namespace ForradiaEngine::JewelryMakerTheme
 
       private:
         auto generateEntitiesInEcosystems() const -> void;
-
-        auto isNearWater(int x, int y, int radius) const -> bool;
     };
 }

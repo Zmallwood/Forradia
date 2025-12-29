@@ -21,13 +21,10 @@ namespace ForradiaEngine
     class TextureEntry
     {
       public:
-        /**
-         *  The texture ID, used by opengl.
-         */
+        /** The texture ID, used by opengl. */
         GLuint textureID{};
-        /**
-         *  The texture width and height.
-         */
+
+        /** The texture width and height. */
         Size dimensions{};
     };
 

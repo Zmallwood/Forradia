@@ -62,6 +62,17 @@ namespace ForradiaEngine
     auto ceil(float number, float numDecimalPlaces) -> float;
 
     /**
+     *  Calculate the distance between two points.
+     *
+     *  @param x1 First x coordinate.
+     *  @param y1 First y coordinate.
+     *  @param x2 Second x coordinate.
+     *  @param y2 Second y coordinate.
+     *  @return The distance between the two points.
+     */
+    auto calcDistance(int x1, int y1, int x2, int y2) -> float;
+
+    /**
      *  Compute the normal of a triangle.
      *
      *  @param p1 First point.

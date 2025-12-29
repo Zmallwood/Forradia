@@ -22,21 +22,16 @@ namespace ForradiaEngine
          */
         [[nodiscard]] auto toSDLColor() const -> SDL_Color;
 
-        /**
-         *  Red component.
-         */
+        /** Red component. */
         float r{0.0F};
-        /**
-         *  Green component.
-         */
+
+        /** Green component. */
         float g{0.0F};
-        /**
-         *  Blue component.
-         */
+
+        /** Blue component. */
         float b{0.0F};
-        /**
-         *  Alpha component.
-         */
+
+        /** Alpha component. */
         float a{0.0F};
     };
 

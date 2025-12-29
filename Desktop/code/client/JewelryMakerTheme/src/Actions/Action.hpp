@@ -21,15 +21,21 @@ namespace ForradiaEngine::JewelryMakerTheme
     class Action
     {
       public:
-        std::string label{}; ///< The label for the action shown in the interaction menu.
-        std::vector<int>
-            groundMatches{}; ///< The types of ground that the action can be performed on.
-        std::vector<int>
-            objectMatches{}; ///< The types of objects that the action can be performed on.
-        std::vector<int> objectsInInventory{}; ///< The types of objects that need to be in the
-                                               ///< players inventory.
+        /** The label for the action shown in the interaction menu. */
+        std::string label{};
+
+        /** The types of ground that the action can be performed on. */
+        std::vector<int> groundMatches{};
+
+        /** The types of objects that the action can be performed on. */
+        std::vector<int> objectMatches{};
+
+        /** The types of objects that need to be in the players inventory. */
+        std::vector<int> objectsInInventory{};
+
+        /** The function that performs the action. */
         std::function<void(const std::shared_ptr<Tile> &,
                            const std::vector<std::shared_ptr<Object> *> &)>
-            action{}; ///< The function that performs the action.
+            action{};
     };
 }

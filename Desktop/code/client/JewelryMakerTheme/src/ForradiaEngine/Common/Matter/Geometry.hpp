@@ -31,13 +31,10 @@ namespace ForradiaEngine
 
         auto operator=(const Point &other) -> Point & = default;
 
-        /**
-         *  The x dimension.
-         */
+        /**  The x dimension. */
         int x{0};
-        /**
-         *  The y dimension.
-         */
+
+        /** The y dimension. */
         int y{0};
     };
 
@@ -63,13 +60,10 @@ namespace ForradiaEngine
          */
         auto operator-(const PointF &other) const -> PointF;
 
-        /**
-         *  The x dimension.
-         */
+        /** The x dimension. */
         float x{0.0F};
-        /**
-         *  The y dimension.
-         */
+
+        /** The y dimension. */
         float y{0.0F};
     };
 
@@ -87,17 +81,13 @@ namespace ForradiaEngine
          */
         [[nodiscard]] auto offset(Point3 offset) const -> Point3;
 
-        /**
-         *  The x dimension.
-         */
+        /** The x dimension. */
         int x{0};
-        /**
-         *  The y dimension.
-         */
+
+        /** The y dimension. */
         int y{0};
-        /**
-         *  The z dimension.
-         */
+
+        /** The z dimension. */
         int z{0};
     };
 
@@ -107,17 +97,13 @@ namespace ForradiaEngine
     class Point3F
     {
       public:
-        /**
-         *  The x dimension.
-         */
+        /** The x dimension. */
         float x{0.0F};
-        /**
-         *  The y dimension.
-         */
+
+        /** The y dimension. */
         float y{0.0F};
-        /**
-         *  The z dimension.
-         */
+
+        /** The z dimension. */
         float z{0.0F};
     };
 
@@ -127,8 +113,11 @@ namespace ForradiaEngine
     class Size
     {
       public:
-        int width{0};  ///< The width.
-        int height{0}; ///< The height.
+        /** The width. */
+        int width{0};
+
+        /** The height. */
+        int height{0};
     };
 
     /**
@@ -137,8 +126,11 @@ namespace ForradiaEngine
     class SizeF
     {
       public:
-        float width{0.0F};  ///< The width.
-        float height{0.0F}; ///< The height.
+        /** The width. */
+        float width{0.0F};
+
+        /** The height. */
+        float height{0.0F};
     };
 
     /**
@@ -169,21 +161,16 @@ namespace ForradiaEngine
          */
         auto offset(PointF offset) -> void;
 
-        /**
-         *  The x coordinate.
-         */
+        /** The x coordinate. */
         float x{0.0F};
-        /**
-         *  The y coordinate.
-         */
+
+        /** The y coordinate. */
         float y{0.0F};
-        /**
-         *  The width in the x dimension.
-         */
+
+        /** The width in the x dimension. */
         float width{0.0F};
-        /**
-         *  The height in the y dimension.
-         */
+
+        /** The height in the y dimension. */
         float height{0.0F};
     };
 }

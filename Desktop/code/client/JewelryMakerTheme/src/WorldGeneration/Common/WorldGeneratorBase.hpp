@@ -6,6 +6,7 @@
 #pragma once
 
 #include <memory>
+#include "ForradiaEngine/Common/Matter/Geometry.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -23,16 +24,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto prepare() -> void;
 
       protected:
-        /**
-         *  Get the distance between two points.
-         *
-         *  @param xPos1 The x coordinate of the first point.
-         *  @param yPos1 The y coordinate of the first point.
-         *  @param xPos2 The x coordinate of the second point.
-         *  @param yPos2 The y coordinate of the second point.
-         *  @return The distance between the two points.
-         */
-        static auto getDistance(int xPos1, int yPos1, int xPos2, int yPos2) -> float;
 
         /**
          *  Get the default ground elevation.

@@ -11,7 +11,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     void CreatureIndex::initialize()
     {
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addCreatureEntry("CreatureRedBird", 0.5F, 3.0F);
+        addCreatureEntry("CreatureRedBird", 0.8F, 3.0F);
     }
 
     auto CreatureIndex::addCreatureEntry(std::string_view creatureName, float modelScaling,

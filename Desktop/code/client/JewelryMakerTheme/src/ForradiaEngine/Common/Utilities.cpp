@@ -69,6 +69,14 @@ namespace ForradiaEngine
         return std::ceil(number * factor) / factor;
     }
 
+    auto calcDistance(int xPos1, int yPos1, int xPos2, int yPos2) -> float
+    {
+        auto deltaX{static_cast<float>(xPos2 - xPos1)};
+        auto deltaY{static_cast<float>(yPos2 - yPos1)};
+
+        return std::sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+
     auto computeNormal(const glm::vec3 &vec1, const glm::vec3 &vec2, const glm::vec3 &vec3)
         -> glm::vec3
     {

@@ -162,7 +162,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         continue;
                     }
 
-                    auto distance{getDistance(x, y, centerX, centerY)};
+                    auto distance{calcDistance(x, y, centerX, centerY)};
 
                     if (distance * distance <= static_cast<float>(radius * radius))
                     {
