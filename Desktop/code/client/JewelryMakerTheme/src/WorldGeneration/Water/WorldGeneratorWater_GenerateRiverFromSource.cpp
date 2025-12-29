@@ -9,8 +9,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorWater::generateRiverFromSource(int startX, int startY, int length) const
-        -> void
+    auto WorldGeneratorWater::generateRiverFromSource(int startX, int startY, int length) -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};

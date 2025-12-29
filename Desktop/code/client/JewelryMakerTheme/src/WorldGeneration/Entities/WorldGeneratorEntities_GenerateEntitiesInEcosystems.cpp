@@ -349,7 +349,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorEntities::generateEntitiesInEcosystems() const -> void
+    auto WorldGeneratorEntities::generateEntitiesInEcosystems() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldScaling{getWorldScaling()};

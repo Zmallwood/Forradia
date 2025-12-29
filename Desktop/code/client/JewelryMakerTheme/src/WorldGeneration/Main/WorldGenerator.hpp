@@ -7,8 +7,6 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    class WorldArea;
-
     /**
      *  The WorldGenerator class is responsible for generating a new world.
      */

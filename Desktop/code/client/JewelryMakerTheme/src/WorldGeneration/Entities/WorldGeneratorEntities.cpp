@@ -10,7 +10,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorEntities::generateEntities() const -> void
+    auto WorldGeneratorEntities::generateEntities() -> void
     {
         generateEntitiesInEcosystems();
     }

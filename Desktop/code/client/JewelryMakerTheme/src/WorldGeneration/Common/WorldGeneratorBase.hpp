@@ -21,7 +21,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Prepare the world generator.
          */
-        auto prepare() -> void;
+        static auto prepare() -> void;
 
       protected:
 
@@ -40,7 +40,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The world area.
          */
-        [[nodiscard]] auto getWorldArea() const
+        [[nodiscard]] static auto getWorldArea()
         {
             return m_worldArea;
         }
@@ -50,7 +50,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The size of the world area.
          */
-        [[nodiscard]] auto getWorldAreaSize() const
+        [[nodiscard]] static auto getWorldAreaSize()
         {
             return m_worldAreaSize;
         }
@@ -60,7 +60,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The scale factor of the world.
          */
-        [[nodiscard]] auto getWorldScaling() const
+        [[nodiscard]] static auto getWorldScaling()
         {
             return m_worldScaling;
         }
@@ -70,7 +70,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The world area lower floors.
          */
-        [[nodiscard]] auto getWorldAreaLowerFloors() const
+        [[nodiscard]] static auto getWorldAreaLowerFloors()
         {
             return m_worldAreaLowerFloors;
         }
@@ -80,7 +80,7 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The size of the world area lower floors.
          */
-        [[nodiscard]] auto getWorldAreaLowerFloorsSize() const
+        [[nodiscard]] static auto getWorldAreaLowerFloorsSize()
         {
             return m_worldAreaLowerFloorsSize;
         }
@@ -90,18 +90,18 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The scale factor of the world area lower floors.
          */
-        [[nodiscard]] auto getWorldScalingLowerFloors() const
+        [[nodiscard]] static auto getWorldScalingLowerFloors()
         {
             return m_worldScalingLowerFloors;
         }
 
       private:
         constexpr static int k_defaultGroundElevation{10};
-        std::shared_ptr<WorldArea> m_worldArea{};
-        std::shared_ptr<WorldArea> m_worldAreaLowerFloors{};
-        Size m_worldAreaSize{};
-        Size m_worldAreaLowerFloorsSize{};
-        float m_worldScaling{};
-        float m_worldScalingLowerFloors{};
+        inline static std::shared_ptr<WorldArea> m_worldArea{};
+        inline static std::shared_ptr<WorldArea> m_worldAreaLowerFloors{};
+        inline static Size m_worldAreaSize{};
+        inline static Size m_worldAreaLowerFloorsSize{};
+        inline static float m_worldScaling{};
+        inline static float m_worldScalingLowerFloors{};
     };
 }

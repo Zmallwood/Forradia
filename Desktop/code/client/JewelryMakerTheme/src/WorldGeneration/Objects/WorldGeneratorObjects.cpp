@@ -12,14 +12,14 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorObjects::generateObjects() const -> void
+    auto WorldGeneratorObjects::generateObjects() -> void
     {
         generateForests();
         generateMeadows();
         generateObjectsInBiomes();
     }
 
-    auto WorldGeneratorObjects::generateForests() const -> void
+    auto WorldGeneratorObjects::generateForests() -> void
     {
         auto worldArea{getWorldArea()};
         auto size{worldArea->getSize()};
@@ -68,15 +68,16 @@ namespace ForradiaEngine::JewelryMakerTheme
                         continue;
                     }
 
-                    if (this->shouldAddForestObjects(treeDensity, distance, radius))
+                    if (WorldGeneratorObjects::shouldAddForestObjects(treeDensity, distance,
+                                                                      radius))
                     {
                         if (auto forestTile{worldArea->getTile(x, y)})
                         {
                             forestTile->getObjectsStack()->clearObjects();
 
-                            this->addTreeToForestTile(forestTile, useFir);
+                            WorldGeneratorObjects::addTreeToForestTile(forestTile, useFir);
 
-                            this->addUndergrowthToForestTile(forestTile);
+                            WorldGeneratorObjects::addUndergrowthToForestTile(forestTile);
                         }
                     }
                 }
@@ -85,7 +86,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorObjects::shouldAddForestObjects(float treeDensity, float distance,
-                                                       float radius) const -> bool
+                                                       float radius) -> bool
     {
         auto normalizedDistance{distance / static_cast<float>(radius)};
 
@@ -96,7 +97,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorObjects::addTreeToForestTile(const std::shared_ptr<Tile> &forestTile,
-                                                    bool useFir) const -> void
+                                                    bool useFir) -> void
     { // Check if the forest should use fir or birch trees.
         if (useFir)
         {
@@ -122,8 +123,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto
-    WorldGeneratorObjects::addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile) const
+    auto WorldGeneratorObjects::addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile)
         -> void
     {
         // Add undergrowth in forests.
@@ -140,7 +140,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorObjects::generateMeadows() const -> void
+    auto WorldGeneratorObjects::generateMeadows() -> void
     {
         auto worldArea{getWorldArea()};
         auto size{worldArea->getSize()};
@@ -219,7 +219,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorObjects::isValidForFlora(int x, int y) const -> bool
+    auto WorldGeneratorObjects::isValidForFlora(int x, int y) -> bool
     {
         if (!getWorldArea()->isValidCoordinate(x, y))
         {

@@ -32,22 +32,22 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Generate the objects in the world.
          */
-        auto generateObjects() const -> void;
+        static auto generateObjects() -> void;
 
       private:
-        auto generateForests() const -> void;
+        static auto generateForests() -> void;
 
-        auto shouldAddForestObjects(float treeDensity, float distance, float radius) const -> bool;
+        static auto shouldAddForestObjects(float treeDensity, float distance, float radius) -> bool;
 
-        auto addTreeToForestTile(const std::shared_ptr<Tile> &forestTile, bool useFir) const
+        static auto addTreeToForestTile(const std::shared_ptr<Tile> &forestTile, bool useFir)
             -> void;
 
-        auto addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile) const -> void;
+        static auto addUndergrowthToForestTile(const std::shared_ptr<Tile> &forestTile) -> void;
 
-        auto generateMeadows() const -> void;
+        static auto generateMeadows() -> void;
 
-        auto generateObjectsInBiomes() const -> void;
+        static auto generateObjectsInBiomes() -> void;
 
-        [[nodiscard]] auto isValidForFlora(int x, int y) const -> bool;
+        [[nodiscard]] static auto isValidForFlora(int x, int y) -> bool;
     };
 }

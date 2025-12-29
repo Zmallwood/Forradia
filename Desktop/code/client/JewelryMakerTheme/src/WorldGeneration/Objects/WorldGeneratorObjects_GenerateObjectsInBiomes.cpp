@@ -10,7 +10,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorObjects::generateObjectsInBiomes() const -> void
+    auto WorldGeneratorObjects::generateObjectsInBiomes() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{worldArea->getSize()};

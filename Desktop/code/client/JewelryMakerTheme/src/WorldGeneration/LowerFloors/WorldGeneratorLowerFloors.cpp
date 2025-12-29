@@ -10,13 +10,13 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorLowerFloors::generateLowerFloors() const -> void
+    auto WorldGeneratorLowerFloors::generateLowerFloors() -> void
     {
-        this->clearWithDirt();
-        this->fillWithStoneBlocks();
+        WorldGeneratorLowerFloors::clearWithDirt();
+        WorldGeneratorLowerFloors::fillWithStoneBlocks();
     }
 
-    auto WorldGeneratorLowerFloors::clearWithDirt() const -> void
+    auto WorldGeneratorLowerFloors::clearWithDirt() -> void
     {
         auto worldArea{getWorldAreaLowerFloors()};
         auto worldAreaSize{getWorldAreaLowerFloorsSize()};
@@ -37,7 +37,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorLowerFloors::fillWithStoneBlocks() const -> void
+    auto WorldGeneratorLowerFloors::fillWithStoneBlocks() -> void
     {
         auto worldArea{getWorldAreaLowerFloors()};
         auto worldAreaSize{getWorldAreaLowerFloorsSize()};

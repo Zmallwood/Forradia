@@ -16,19 +16,19 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         WorldGenerator::prepare();
 
-        WorldGeneratorGround::instance().generateGroundWithElevation();
-        WorldGeneratorWater::instance().generateWater();
-        WorldGeneratorObjects::instance().generateObjects();
-        WorldGeneratorEntities::instance().generateEntities();
-        WorldGeneratorLowerFloors::instance().generateLowerFloors();
+        WorldGeneratorGround::generateGroundWithElevation();
+        WorldGeneratorWater::generateWater();
+        WorldGeneratorObjects::generateObjects();
+        WorldGeneratorEntities::generateEntities();
+        WorldGeneratorLowerFloors::generateLowerFloors();
     }
 
     auto WorldGenerator::prepare() -> void
     {
-        WorldGeneratorGround::instance().prepare();
-        WorldGeneratorWater::instance().prepare();
-        WorldGeneratorObjects::instance().prepare();
-        WorldGeneratorEntities::instance().prepare();
-        WorldGeneratorLowerFloors::instance().prepare();
+        WorldGeneratorGround::prepare();
+        WorldGeneratorWater::prepare();
+        WorldGeneratorObjects::prepare();
+        WorldGeneratorEntities::prepare();
+        WorldGeneratorLowerFloors::prepare();
     }
 }

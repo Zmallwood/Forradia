@@ -30,9 +30,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Generates entities for the world.
          */
-        auto generateEntities() const -> void;
+        static auto generateEntities() -> void;
 
       private:
-        auto generateEntitiesInEcosystems() const -> void;
+        static auto generateEntitiesInEcosystems() -> void;
     };
 }

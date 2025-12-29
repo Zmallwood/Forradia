@@ -9,13 +9,13 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorWater::generateWater() const -> void
+    auto WorldGeneratorWater::generateWater() -> void
     {
         generateNaturalRivers();
         generateLakesInValleys();
     }
 
-    auto WorldGeneratorWater::generateNaturalRivers() const -> void
+    auto WorldGeneratorWater::generateNaturalRivers() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -97,7 +97,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorWater::generateLakesInValleys() const -> void
+    auto WorldGeneratorWater::generateLakesInValleys() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -182,7 +182,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorWater::isValidForWater(int x, int y) const -> bool
+    auto WorldGeneratorWater::isValidForWater(int x, int y) -> bool
     {
         if (!getWorldArea()->isValidCoordinate(x, y))
         {
@@ -198,7 +198,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         return tile->getElevation() < 80;
     }
-    auto WorldGeneratorWater::setAdjacentTilesElevationToZero(int x, int y) const -> void
+    auto WorldGeneratorWater::setAdjacentTilesElevationToZero(int x, int y) -> void
     {
         // Set elevation to 0 for all tiles adjacent to a water tile.
         // This creates a shoreline effect where land around water is at sea level.

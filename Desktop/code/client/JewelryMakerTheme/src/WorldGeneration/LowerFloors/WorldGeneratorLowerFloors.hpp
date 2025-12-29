@@ -30,11 +30,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Generates entities for the world.
          */
-        auto generateLowerFloors() const -> void;
+        static auto generateLowerFloors() -> void;
 
       private:
-        auto clearWithDirt() const -> void;
+        static auto clearWithDirt() -> void;
 
-        auto fillWithStoneBlocks() const -> void;
+        static auto fillWithStoneBlocks() -> void;
     };
 }

@@ -32,39 +32,39 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Do all the steps to generate the ground with elevation.
          */
-        auto generateGroundWithElevation() const -> void;
+        static auto generateGroundWithElevation() -> void;
 
       private:
-        auto clearWithDirt() const -> void;
+        static auto clearWithDirt() -> void;
 
-        auto generateGrassBiomes() const -> void;
+        static auto generateGrassBiomes() -> void;
 
-        auto generateRockFormations() const -> void;
+        static auto generateRockFormations() -> void;
 
-        auto generateElevationWithBiomes() const -> void;
+        static auto generateElevationWithBiomes() -> void;
 
-        auto generateMountainRanges() const -> void;
+        static auto generateMountainRanges() -> void;
 
-        auto generateValleys() const -> void;
+        static auto generateValleys() -> void;
 
-        auto createBiomeCluster(int centerX, int centerY, int radius,
-                                std::string_view groundType) const -> void;
+        static auto createBiomeCluster(int centerX, int centerY, int radius,
+                                       std::string_view groundType) -> void;
 
         static auto getMaxElevation() -> int;
 
         static auto getMaxSlopePerTile() -> int;
 
-        [[nodiscard]] auto getMaxAllowedElevation(int xPos, int yPos, int currentElevation) const
+        [[nodiscard]] static auto getMaxAllowedElevation(int xPos, int yPos, int currentElevation)
             -> int;
 
         static auto clampElevation(int elevation) -> int;
 
-        auto createElevationHill(int centerX, int centerY, int radius, int maxElevation) const
+        static auto createElevationHill(int centerX, int centerY, int radius, int maxElevation)
             -> void;
 
-        [[nodiscard]] auto setTileElevationForHill(const std::shared_ptr<Tile> &tile, int xPos,
-                                                   int yPos, int distance, int radius) const
-            -> bool;
+        [[nodiscard]] static auto setTileElevationForHill(const std::shared_ptr<Tile> &tile,
+                                                          int xPos, int yPos, int distance,
+                                                          int radius) -> bool;
 
         [[nodiscard]] static auto setTileGroundToRock(const std::shared_ptr<Tile> &tile, int xPos,
                                                       int yPos) -> bool;

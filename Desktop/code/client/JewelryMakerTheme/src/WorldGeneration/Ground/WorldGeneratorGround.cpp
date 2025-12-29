@@ -10,7 +10,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorGround::generateGroundWithElevation() const -> void
+    auto WorldGeneratorGround::generateGroundWithElevation() -> void
     {
         clearWithDirt();
         generateElevationWithBiomes();
@@ -20,7 +20,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         generateRockFormations();
     }
 
-    auto WorldGeneratorGround::clearWithDirt() const -> void
+    auto WorldGeneratorGround::clearWithDirt() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -57,8 +57,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         return 8;
     }
 
-    auto WorldGeneratorGround::getMaxAllowedElevation(int xPos, int yPos,
-                                                      int currentElevation) const -> int
+    auto WorldGeneratorGround::getMaxAllowedElevation(int xPos, int yPos, int currentElevation)
+        -> int
     {
         // Calculate the maximum elevation this tile can have based on adjacent tiles
         // to prevent steep slopes. This ensures mountains have gradual slopes.

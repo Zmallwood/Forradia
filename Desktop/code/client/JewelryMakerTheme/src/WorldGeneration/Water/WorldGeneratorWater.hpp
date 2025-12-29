@@ -30,17 +30,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Generate water.
          */
-        auto generateWater() const -> void;
+        static auto generateWater() -> void;
 
       private:
-        auto generateNaturalRivers() const -> void;
+        static auto generateNaturalRivers() -> void;
 
-        auto generateRiverFromSource(int startX, int startY, int length) const -> void;
+        static auto generateRiverFromSource(int startX, int startY, int length) -> void;
 
-        auto generateLakesInValleys() const -> void;
+        static auto generateLakesInValleys() -> void;
 
-        auto isValidForWater(int x, int y) const -> bool;
+        static auto isValidForWater(int x, int y) -> bool;
 
-        auto setAdjacentTilesElevationToZero(int x, int y) const -> void;
+        static auto setAdjacentTilesElevationToZero(int x, int y) -> void;
     };
 }

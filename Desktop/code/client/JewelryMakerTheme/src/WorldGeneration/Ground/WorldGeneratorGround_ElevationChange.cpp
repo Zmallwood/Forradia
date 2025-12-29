@@ -11,7 +11,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorGround::generateElevationWithBiomes() const -> void
+    auto WorldGeneratorGround::generateElevationWithBiomes() -> void
     {
         auto worldAreaSize{getWorldAreaSize()};
         auto worldScaling{getWorldScaling()};
@@ -36,7 +36,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorGround::generateMountainRanges() const -> void
+    auto WorldGeneratorGround::generateMountainRanges() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -103,7 +103,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorGround::generateValleys() const -> void
+    auto WorldGeneratorGround::generateValleys() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -163,7 +163,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorGround::createElevationHill(int centerX, int centerY, int radius,
-                                                   int maxElevation) const -> void
+                                                   int maxElevation) -> void
     {
         // Traverse the candidate tiles within the bounding square of the hill footprint.
         for (auto yPos = centerY - radius; yPos <= centerY + radius; yPos++)
@@ -194,7 +194,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                     continue;
                 }
 
-                if (this->setTileElevationForHill(tile, xPos, yPos, distance, radius) == false)
+                if (WorldGeneratorGround::setTileElevationForHill(tile, xPos, yPos, distance,
+                                                                  radius) == false)
                 {
                     continue;
                 }
@@ -203,8 +204,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorGround::setTileElevationForHill(const std::shared_ptr<Tile> &tile, int xPos,
-                                                       int yPos, int distance, int radius) const
-        -> bool
+                                                       int yPos, int distance, int radius) -> bool
     {
         auto currentElevation{tile->getElevation()};
         auto globalMaxElevation{getMaxElevation()};

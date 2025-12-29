@@ -11,7 +11,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    auto WorldGeneratorGround::generateGrassBiomes() const -> void
+    auto WorldGeneratorGround::generateGrassBiomes() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -71,7 +71,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
     }
 
-    auto WorldGeneratorGround::generateRockFormations() const -> void
+    auto WorldGeneratorGround::generateRockFormations() -> void
     {
         auto worldArea{getWorldArea()};
         auto worldAreaSize{getWorldAreaSize()};
@@ -153,7 +153,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto WorldGeneratorGround::createBiomeCluster(int centerX, int centerY, int radius,
-                                                  std::string_view groundType) const -> void
+                                                  std::string_view groundType) -> void
     {
         // Enumerate all tiles in the radius.
         for (auto yPos = centerY - radius; yPos <= centerY + radius; yPos++)
