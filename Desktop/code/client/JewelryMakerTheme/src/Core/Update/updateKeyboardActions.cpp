@@ -6,6 +6,7 @@
 #include "updateKeyboardActions.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUISystemMenu.hpp"
+#include "CustomGUI/GUICraftingWindow.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -19,6 +20,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         else if (key == SDLK_b)
         {
             GUIInventoryWindow::instance().toggleVisibility();
+        }
+        else if (key == SDLK_c)
+        {
+            GUICraftingWindow::instance().toggleVisibility();
         }
         else if (key == SDLK_RETURN)
         {
