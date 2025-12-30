@@ -15,6 +15,7 @@
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
+#include <SDL2/SDL_mouse.h>
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -37,30 +38,34 @@ namespace ForradiaEngine::JewelryMakerTheme
             }
         }
 
-        auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
-
-        auto playerPosition{Player::instance().getPosition()};
-
-        auto absDx{std::abs(hoveredCoordinate.x - playerPosition.x)};
-        auto absDy{std::abs(hoveredCoordinate.y - playerPosition.y)};
-
-        if (absDx > 1 || absDy > 1)
+        if (mouseButton == SDL_BUTTON_LEFT)
         {
-            return false;
-        }
 
-        auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
+            auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
 
-        auto hoveredTile{
-            World::instance().getWorldArea(worldAreaCoordinate)->getTile(hoveredCoordinate)};
+            auto playerPosition{Player::instance().getPosition()};
 
-        auto objectsStack{hoveredTile->getObjectsStack()};
+            auto absDx{std::abs(hoveredCoordinate.x - playerPosition.x)};
+            auto absDy{std::abs(hoveredCoordinate.y - playerPosition.y)};
 
-        if (!m_objectInAir && objectsStack->getSize() > 0)
-        {
-            m_objectInAir = objectsStack->popObject();
+            if (absDx > 1 || absDy > 1)
+            {
+                return false;
+            }
 
-            return true;
+            auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
+
+            auto hoveredTile{
+                World::instance().getWorldArea(worldAreaCoordinate)->getTile(hoveredCoordinate)};
+
+            auto objectsStack{hoveredTile->getObjectsStack()};
+
+            if (!m_objectInAir && objectsStack->getSize() > 0)
+            {
+                m_objectInAir = objectsStack->popObject();
+
+                return true;
+            }
         }
 
         return false;

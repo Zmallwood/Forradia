@@ -52,7 +52,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                      getAction<hash("ActionCraftUnlitCampfire")>(),
                      getAction<hash("ActionOpenCampfire")>(),
                      getAction<hash("ActionLightUnlitCampfire")>(),
-                     getAction<hash("ActionBuildMineEntrance")>()};
+                     getAction<hash("ActionBuildMineEntrance")>(),
+                     getAction<hash("ActionMineStoneBlock")>()};
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
