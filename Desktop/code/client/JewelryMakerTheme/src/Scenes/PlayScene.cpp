@@ -9,6 +9,8 @@
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -45,6 +47,30 @@ namespace ForradiaEngine::JewelryMakerTheme
         getGUI()->addChildComponent(buttonBack);
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
+
+        m_btnToggleMuteMusic = std::make_shared<GUIButton>(
+            "MainMenuSceneButtonToggleMuteMusic", 0.95F, 0.93F, 0.04F,
+            convertWidthToHeight(0.04F, SDLDevice::instance().getWindow()), "",
+            [this]
+            {
+                AudioBank::instance().toggleMuteMusic();
+
+                if (AudioBank::instance().getMusicMuted())
+                {
+                    m_btnToggleMuteMusic->setBackgroundImage("GUIButtonUnmuteMusicBackground");
+                    m_btnToggleMuteMusic->setHoveredBackgroundImage(
+                        "GUIButtonUnmuteMusicHoveredBackground");
+                }
+                else
+                {
+                    m_btnToggleMuteMusic->setBackgroundImage("GUIButtonMuteMusicBackground");
+                    m_btnToggleMuteMusic->setHoveredBackgroundImage(
+                        "GUIButtonMuteMusicHoveredBackground");
+                }
+            },
+            "GUIButtonMuteMusicBackground", "GUIButtonMuteMusicHoveredBackground");
+
+        getGUI()->addChildComponent(m_btnToggleMuteMusic);
     }
 
     auto PlayScene::renderDerived() const -> void

@@ -7,6 +7,11 @@
 
 #include "ForradiaEngine/ScenesCore.hpp"
 
+namespace ForradiaEngine
+{
+    class GUIButton;
+}
+
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
@@ -25,5 +30,8 @@ namespace ForradiaEngine::JewelryMakerTheme
          *  Called every frame to render the scene.
          */
         auto renderDerived() const -> void override;
+
+      private:
+        std::shared_ptr<GUIButton> m_btnToggleMuteMusic;
     };
 }
