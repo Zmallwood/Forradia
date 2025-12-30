@@ -383,20 +383,26 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 1000,
+                        [tile]() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.removeObject("ObjectStoneSlab");
+                            inventory.removeObject("ObjectStoneSlab");
 
-                    if (tile)
-                    {
-                        tile->setGround(hash("GroundStoneSlab"));
-                    }
+                            if (tile)
+                            {
+                                tile->setGround(hash("GroundStoneSlab"));
+                            }
 
-                    GUIChatBox::instance().print("You lay a stone slab.");
+                            GUIChatBox::instance().print("You lay a stone slab.");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Lay, "ObjectStoneSlab");
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Lay,
+                                                               "ObjectStoneSlab");
+                        });
                 }};
     }
 
@@ -661,6 +667,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 s_timedAction = nullptr;
             }
         }
+    }
+
+    auto stopTimedAction() -> void
+    {
+        s_timedAction = nullptr;
     }
 
     auto getTimedActionProgress() -> float

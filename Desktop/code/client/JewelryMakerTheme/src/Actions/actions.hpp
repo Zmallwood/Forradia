@@ -25,6 +25,11 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto updateTimedAction() -> void;
 
     /**
+     *  Stops the timed action if there is one.
+     */
+    auto stopTimedAction() -> void;
+
+    /**
      *  Gets the progress of the timed action.
      *
      *  @return The progress of the timed action.

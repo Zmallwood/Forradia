@@ -14,6 +14,7 @@
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 #include "PlayerObjectsInventory.hpp"
+#include "Actions/actions.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -229,6 +230,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveNorth() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
 
@@ -268,6 +271,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveEast() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
 
@@ -307,6 +312,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveSouth() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
 
@@ -346,6 +353,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveWest() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
 
@@ -385,6 +394,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveNorthEast() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x + 1};
         auto newY{m_position.y - 1};
 
@@ -424,6 +435,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveSouthEast() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x + 1};
         auto newY{m_position.y + 1};
 
@@ -463,6 +476,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveSouthWest() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x - 1};
         auto newY{m_position.y + 1};
 
@@ -502,6 +517,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::moveNorthWest() -> void
     {
+        stopTimedAction();
+
         auto newX{m_position.x - 1};
         auto newY{m_position.y - 1};
 
