@@ -115,6 +115,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         GUIChatBox::instance().setPosition({0.0F, 1.0F - chatBoxHeight - experienceBarHeight});
 
+        AudioBank::instance().unmuteMusic();
+
         AudioBank::instance().playMusic(hash("music1"));
 
         GUIChatBox::instance().print("You have entered the world.");

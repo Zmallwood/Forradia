@@ -105,13 +105,23 @@ namespace ForradiaEngine
     {
         if (m_musicMuted)
         {
-            Mix_VolumeMusic(MIX_MAX_VOLUME);
-            m_musicMuted = false;
+            this->unmuteMusic();
         }
         else
         {
-            Mix_VolumeMusic(0);
-            m_musicMuted = true;
+            this->muteMusic();
         }
+    }
+
+    auto AudioBank::muteMusic() -> void
+    {
+        Mix_VolumeMusic(0);
+        m_musicMuted = true;
+    }
+
+    auto AudioBank::unmuteMusic() -> void
+    {
+        Mix_VolumeMusic(MIX_MAX_VOLUME);
+        m_musicMuted = false;
     }
 }

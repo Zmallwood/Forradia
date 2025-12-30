@@ -44,6 +44,10 @@ namespace ForradiaEngine
 
         auto toggleMuteMusic() -> void;
 
+        auto muteMusic() -> void;
+
+        auto unmuteMusic() -> void;
+
         auto getMusicMuted() const -> bool
         {
             return m_musicMuted;
