@@ -19,9 +19,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBush2", 1.2F, false, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectStoneWall", 0.8F, true, 0, true, false);
+        addObjectEntry("ObjectStoneWall", 1.05F, true, 0, true, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectStoneWallDoor", 0.8F, true, 0, false, false);
+        addObjectEntry("ObjectStoneWallDoor", 1.05F, true, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectStoneBowl", 1.0F, true, 4, false, true);
         // NOLINTNEXTLINE(readability-magic-numbers)
