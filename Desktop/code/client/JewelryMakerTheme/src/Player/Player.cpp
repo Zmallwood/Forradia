@@ -62,7 +62,6 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::updateRotationDegrees() -> void
     {
-        printf("m_playerMoveDirection: %d\n", m_playerMoveDirection);
         switch (m_playerMoveDirection)
         {
         case PlayerMoveDirections::North:
