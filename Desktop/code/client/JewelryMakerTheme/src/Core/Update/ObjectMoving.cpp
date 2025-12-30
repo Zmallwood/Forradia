@@ -9,6 +9,12 @@
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "TileHovering.hpp"
+#include "WorldStructure/World.hpp"
+#include "WorldStructure/WorldArea.hpp"
+#include "WorldStructure/Tile.hpp"
+#include "WorldStructure/ObjectsStack.hpp"
+#include "Player/Player.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -29,6 +35,22 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 return true;
             }
+        }
+
+        auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
+
+        auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
+
+        auto hoveredTile{
+            World::instance().getWorldArea(worldAreaCoordinate)->getTile(hoveredCoordinate)};
+
+        auto objectsStack{hoveredTile->getObjectsStack()};
+
+        if (!m_objectInAir && objectsStack->getSize() > 0)
+        {
+            m_objectInAir = objectsStack->popObject();
+
+            return true;
         }
 
         return false;
@@ -54,6 +76,19 @@ namespace ForradiaEngine::JewelryMakerTheme
                     return true;
                 }
             }
+
+            auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
+
+            auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
+
+            auto hoveredTile{
+                World::instance().getWorldArea(worldAreaCoordinate)->getTile(hoveredCoordinate)};
+
+            auto objectsStack{hoveredTile->getObjectsStack()};
+
+            objectsStack->addObject(m_objectInAir);
+
+            m_objectInAir = nullptr;
         }
 
         return false;

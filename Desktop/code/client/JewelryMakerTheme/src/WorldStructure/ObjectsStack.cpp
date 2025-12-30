@@ -14,6 +14,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_objects.clear();
     }
 
+    auto ObjectsStack::addObject(std::shared_ptr<Object> object) -> void
+    {
+        m_objects.push_back(object);
+    }
+
     auto ObjectsStack::addObject(std::string_view objectName) -> void
     {
         m_objects.push_back(std::make_shared<Object>(hash(objectName)));

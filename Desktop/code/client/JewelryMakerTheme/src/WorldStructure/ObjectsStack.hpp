@@ -25,6 +25,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         /**
          *  Adds a new object to the stack.
          *
+         *  @param object The the object to add.
+         */
+        auto addObject(std::shared_ptr<Object> object) -> void;
+
+        /**
+         *  Adds a new object to the stack.
+         *
          *  @param objectName The object name.
          */
         auto addObject(std::string_view objectName) -> void;
