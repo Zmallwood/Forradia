@@ -110,7 +110,7 @@ namespace ForradiaEngine
         auto getColor<hash("MildBlue")>() -> Color
         {
             constexpr auto red{0.0F};
-            constexpr auto green{0.4F};
+            constexpr auto green{0.5F};
             constexpr auto blue{1.0F};
             constexpr auto alpha{1.0F};
 

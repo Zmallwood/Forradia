@@ -21,7 +21,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Grass appears in areas with moderate elevation (not mountains, not deep valleys).
 
         // NOLINTNEXTLINE(readability-magic-numbers)
-        auto numGrassBiomes{60 + getRandomInt(15)};
+        auto numGrassBiomes{100 + getRandomInt(15)};
 
         for (auto i = 0; i < numGrassBiomes; i++)
         {
