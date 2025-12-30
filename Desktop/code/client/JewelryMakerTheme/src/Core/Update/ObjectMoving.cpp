@@ -7,7 +7,7 @@
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "WorldStructure/Object.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 #include "TileHovering.hpp"
 #include "WorldStructure/World.hpp"

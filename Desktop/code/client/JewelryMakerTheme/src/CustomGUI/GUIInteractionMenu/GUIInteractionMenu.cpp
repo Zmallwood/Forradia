@@ -16,7 +16,7 @@
 #include "WorldStructure/WorldArea.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/Rendering/Colors/Color2DRenderer.hpp"
 #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"

@@ -90,5 +90,19 @@ namespace ForradiaEngine
          *  @param font SDL font pointer to free resources for.
          */
         auto operator()(TTF_Font *font) const -> void;
+
+        /**
+         *  Operator overloading for Mix_Chunk objects.
+         *
+         *  @param chunk Mix chunk pointer to free resources for.
+         */
+        auto operator()(Mix_Chunk *chunk) const -> void;
+
+        /**
+         *  Operator overloading for Mix_Music objects.
+         *
+         *  @param music Mix music pointer to free resources for.
+         */
+        auto operator()(Mix_Music *music) const -> void;
     };
 }

@@ -8,7 +8,7 @@
 #include "ForradiaEngine/Common/Matter/Coloring.hpp"
 #include "GUIButton.hpp"
 #include "GUIWindow.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 
 namespace ForradiaEngine

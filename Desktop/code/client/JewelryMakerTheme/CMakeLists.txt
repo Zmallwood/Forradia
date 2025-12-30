@@ -34,6 +34,7 @@ target_link_libraries(JewelryMakerLib
         SDL2
         SDL2_image
         SDL2_ttf
+        SDL2_mixer
         GL
         GLEW
         fmt

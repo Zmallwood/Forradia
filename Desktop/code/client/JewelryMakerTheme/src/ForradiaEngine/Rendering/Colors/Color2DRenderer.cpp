@@ -8,7 +8,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include "ForradiaEngine/Common/Utilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/ShaderProgram.hpp"
 
 namespace ForradiaEngine

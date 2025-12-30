@@ -5,7 +5,7 @@
 
 #include "GUIContainerWindowPanel.hpp"
 #include "ForradiaEngine/GUICore/GUIComponent.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/GUICore/GUIWindow.hpp"
 #include "ForradiaEngine/GUICore/GUIWindowTitleBar.hpp"
 #include "WorldStructure/ContainedObjects.hpp"

@@ -6,7 +6,7 @@
 #include "GUIButton.hpp"
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Text/TextRenderer.hpp"
 
 namespace ForradiaEngine

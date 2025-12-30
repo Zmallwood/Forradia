@@ -32,7 +32,7 @@
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "ForradiaEngine/GUICore/GUIFPSPanel.hpp"
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme

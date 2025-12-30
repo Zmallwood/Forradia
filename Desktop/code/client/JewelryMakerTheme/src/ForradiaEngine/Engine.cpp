@@ -4,8 +4,8 @@
  *********************************************************************/
 
 #include "Engine.hpp"
-#include "ForradiaEngine/GraphicsDevices/GLDevice.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/GLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/MinorComponents/FPSCounter.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"

@@ -9,6 +9,7 @@
 #include "ForradiaEngine/GUICore/GUILabel.hpp"
 #include "ForradiaEngine/MinorComponents/Cursor.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -26,6 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto IntroScene::onEnterDerived() -> void
     {
         GUIChatBox::instance().print("Game started.");
+        AudioBank::instance().playMusic(hash("music0"));
     }
 
     auto IntroScene::onMouseDown(Uint8 mouseButton) -> void

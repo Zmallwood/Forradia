@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <ranges>
 #include "ForradiaEngine/Common/Utilities.hpp"
-#include "ForradiaEngine/GraphicsDevices/SDLDevice.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 
 namespace ForradiaEngine
 {

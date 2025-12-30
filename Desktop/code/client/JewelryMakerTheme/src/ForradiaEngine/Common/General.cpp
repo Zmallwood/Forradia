@@ -44,4 +44,18 @@ namespace ForradiaEngine
 
         TTF_CloseFont(font);
     }
+
+    auto SDLDeleter::operator()(Mix_Chunk *chunk) const -> void
+    {
+        throwOnFalse(chunk != nullptr, "chunk is null");
+
+        Mix_FreeChunk(chunk);
+    }
+
+    auto SDLDeleter::operator()(Mix_Music *music) const -> void
+    {
+        throwOnFalse(music != nullptr, "music is null");
+
+        Mix_FreeMusic(music);
+    }
 }
