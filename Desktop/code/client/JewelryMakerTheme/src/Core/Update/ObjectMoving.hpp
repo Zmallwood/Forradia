@@ -53,6 +53,8 @@ namespace ForradiaEngine::JewelryMakerTheme
       private:
         constexpr static float k_objectImageWidth{0.05F};
         constexpr static int k_renderIDImage{hash("ObjectInAir")};
+        constexpr static int k_clickSpeedThreshold{200};
+        int m_ticksSinceMouseDownOnTile{0};
         std::shared_ptr<Object> m_objectInAir{};
     };
 }

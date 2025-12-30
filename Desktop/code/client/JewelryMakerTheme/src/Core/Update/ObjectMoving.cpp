@@ -64,6 +64,8 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 m_objectInAir = objectsStack->popObject();
 
+                m_ticksSinceMouseDownOnTile = getTicks();
+
                 return true;
             }
         }
@@ -105,7 +107,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             m_objectInAir = nullptr;
 
-            if (clickSpeed < 200)
+            if (clickSpeed < k_clickSpeedThreshold)
             {
                 return false;
             }
@@ -118,7 +120,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectMoving::render() const -> void
     {
-        if (m_objectInAir)
+        if (m_objectInAir && getTicks() - m_ticksSinceMouseDownOnTile > k_clickSpeedThreshold)
         {
             auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
