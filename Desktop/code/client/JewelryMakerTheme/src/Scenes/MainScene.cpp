@@ -22,6 +22,7 @@
 #include "CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "CustomGUI/GUIQuestPanel.hpp"
 #include "CustomGUI/GUISystemMenu.hpp"
+#include "CustomGUI/GUITimedActionBar.hpp"
 #include "Player/Player.hpp"
 #include "Player/PlayerObjectsInventory.hpp"
 #include "ForradiaEngine/Common/Utilities.hpp"
@@ -68,6 +69,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         getGUI()->addChildComponent(std::make_shared<GUIQuestPanel>());
 
         getGUI()->addChildComponent(GUIExperienceBar::instancePtr());
+
+        getGUI()->addChildComponent(GUITimedActionBar::instancePtr());
 
         // NOLINTBEGIN(readability-magic-numbers)
         auto rightHandSlotPanel{std::make_shared<GUIPanel>(
@@ -212,7 +215,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         CameraRotator::instance().update();
 
-        updateActions();
+        updateTimedAction();
 
         QuestSystem::instance().update();
 

@@ -20,7 +20,14 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto getAction() -> Action;
 
     /**
-     *  Updates the actions which are timed actions.
+     *  Updates the timed action if there is one.
      */
-    auto updateActions() -> void;
+    auto updateTimedAction() -> void;
+
+    /**
+     *  Gets the progress of the timed action.
+     *
+     *  @return The progress of the timed action.
+     */
+    auto getTimedActionProgress() -> float;
 }

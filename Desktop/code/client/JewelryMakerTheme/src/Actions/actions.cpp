@@ -21,7 +21,7 @@
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
-    static std::unordered_map<int, std::function<void()>> s_timedActions;
+    static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
     auto getAction<hash("ActionMineStoneBlock")>() -> Action
@@ -534,7 +534,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    s_timedActions.clear();
+                    s_timedAction = nullptr;
 
                     GUIChatBox::instance().print("You stopped current action.");
                 }};
@@ -550,16 +550,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    auto timedAction{
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.addObject("ObjectBlueberries");
+                            inventory.addObject("ObjectBlueberries");
 
-                    GUIChatBox::instance().print("Foraging... You found some "
-                                                 "blueberries!");
+                            GUIChatBox::instance().print("Foraging... You found some "
+                                                         "blueberries!");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Forage);
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Forage);
+                        }};
+
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 1000, timedAction);
                 }};
     }
 
@@ -608,19 +615,26 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }};
     }
 
-    auto updateActions() -> void
+    auto updateTimedAction() -> void
     {
-        for (auto it = s_timedActions.begin(); it != s_timedActions.end();)
+        if (s_timedAction)
         {
-            if (getTicks() > it->first)
+            if (getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
             {
-                it->second();
-                it = s_timedActions.erase(it);
-            }
-            else
-            {
-                ++it;
+                std::get<2> (*s_timedAction)();
+                s_timedAction = nullptr;
             }
         }
+    }
+
+    auto getTimedActionProgress() -> float
+    {
+        if (s_timedAction)
+        {
+            return static_cast<float>(getTicks() - std::get<0>(*s_timedAction)) /
+                   static_cast<float>(std::get<1>(*s_timedAction));
+        }
+
+        return 0.0F;
     }
 }
