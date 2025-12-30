@@ -26,7 +26,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldScaling{getWorldScaling()};
 
         // Create dense forest clusters.
-        auto numForests{15 + getRandomInt(10)};
+        auto numForests{40 + getRandomInt(10)};
 
         for (auto i = 0; i < numForests; i++)
         {
