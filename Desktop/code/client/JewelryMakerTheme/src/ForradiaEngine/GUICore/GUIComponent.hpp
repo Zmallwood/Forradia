@@ -116,6 +116,13 @@ namespace ForradiaEngine
         virtual auto mouseHoveringGUI() const -> bool;
 
         /**
+         *  Gets all child components recursively.
+         *
+         *  @return All child components recursively.
+         */
+        auto getChildComponentsRecursively() const -> std::vector<std::shared_ptr<GUIComponent>>;
+
+        /**
          *  Sets the bounds of the component.
          *
          *  @param value The new bounds of the component.

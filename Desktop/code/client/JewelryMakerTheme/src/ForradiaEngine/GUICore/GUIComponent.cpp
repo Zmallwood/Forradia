@@ -144,6 +144,24 @@ namespace ForradiaEngine
         return result;
     }
 
+    auto GUIComponent::getChildComponentsRecursively() const
+        -> std::vector<std::shared_ptr<GUIComponent>>
+    {
+        auto result{m_childComponents};
+
+        for (const auto &childComponent : m_childComponents)
+        {
+            auto childChildComponents{childComponent->getChildComponentsRecursively()};
+
+            for (const auto &childChildComponent : childChildComponents)
+            {
+                result.push_back(childChildComponent);
+            }
+        }
+
+        return result;
+    }
+
     auto GUIComponent::update() -> void
     {
         if (!m_visible)

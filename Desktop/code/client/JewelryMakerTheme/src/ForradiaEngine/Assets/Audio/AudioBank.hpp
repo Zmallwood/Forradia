@@ -42,6 +42,8 @@ namespace ForradiaEngine
 
         auto playSound(int audioNameHash) -> void;
 
+        auto toggleMuteMusic() -> void;
+
       private:
         auto initialize() -> void;
 
@@ -55,5 +57,6 @@ namespace ForradiaEngine
         inline static const std::string k_relativeSoundsPath{"./Resources/Sounds/"};
         std::unordered_map<int, std::shared_ptr<Mix_Music>> m_musicEntries{};
         std::unordered_map<int, std::shared_ptr<Mix_Chunk>> m_soundEntries{};
+        bool m_musicMuted{false};
     };
 }

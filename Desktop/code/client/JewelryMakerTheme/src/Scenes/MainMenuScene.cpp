@@ -10,6 +10,7 @@
 #include "ForradiaEngine/GUICore/GUIChatBox.hpp"
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
+#include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -39,6 +40,12 @@ namespace ForradiaEngine::JewelryMakerTheme
         getGUI()->addChildComponent(btnQuit);
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
+
+        auto btnToggleMuteMusic{std::make_shared<GUIButton>(
+            "MainMenuSceneButtonToggleMuteMusic", 0.95F, 0.95F, 0.1F, 0.04F, "",
+            [] { AudioBank::instance().toggleMuteMusic(); })};
+
+        getGUI()->addChildComponent(btnToggleMuteMusic);
     }
 
     auto MainMenuScene::renderDerived() const -> void

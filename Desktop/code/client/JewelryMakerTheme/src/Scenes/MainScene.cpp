@@ -124,12 +124,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         getGUI()->onMouseDown(mouseButton);
 
-        if (getGUI()->mouseHoveringGUI())
+        if (ObjectMoving::instance().onMouseDown(mouseButton))
         {
             return;
         }
 
-        if (ObjectMoving::instance().onMouseDown(mouseButton))
+        if (getGUI()->mouseHoveringGUI())
         {
             return;
         }
@@ -149,13 +149,6 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         CameraRotator::instance().onMouseUp(mouseButton);
 
-        getGUI()->onMouseUp(mouseButton, clickSpeed);
-
-        if (getGUI()->mouseHoveringGUI())
-        {
-            return;
-        }
-
         constexpr int k_clickSpeedThreshold{200};
 
         if (clickSpeed < k_clickSpeedThreshold)
@@ -167,6 +160,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
 
         if (ObjectMoving::instance().onMouseUp(mouseButton, clickSpeed))
+        {
+            return;
+        }
+
+        getGUI()->onMouseUp(mouseButton, clickSpeed);
+
+        if (getGUI()->mouseHoveringGUI())
         {
             return;
         }

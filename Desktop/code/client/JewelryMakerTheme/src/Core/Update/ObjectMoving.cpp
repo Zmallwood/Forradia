@@ -16,6 +16,8 @@
 #include "WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
 #include "Properties/ObjectIndex.hpp"
+#include "ForradiaEngine/ScenesCore.hpp"
+#include "ForradiaEngine/GUICore/GUI.hpp"
 #include <SDL2/SDL_mouse.h>
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -39,9 +41,41 @@ namespace ForradiaEngine::JewelryMakerTheme
             }
         }
 
+        if (!m_objectInAir && mouseButton == SDL_BUTTON_LEFT)
+        {
+            auto mainScene{SceneManager::instance().getScene("MainScene")};
+
+            auto gui{mainScene->getGUI()};
+
+            auto childComponents{gui->getChildComponentsRecursively()};
+
+            for (const auto &childComponent : childComponents)
+            {
+                auto castedToGUIContainerWindow{
+                    std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
+
+                if (castedToGUIContainerWindow)
+                {
+                    auto bounds{castedToGUIContainerWindow->getBounds()};
+
+                    if (bounds.contains(mousePos))
+                    {
+                        if (auto objectPtrPtr{
+                                castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
+                        {
+                            m_objectInAir = *objectPtrPtr;
+
+                            *objectPtrPtr = nullptr;
+
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
         if (mouseButton == SDL_BUTTON_LEFT)
         {
-
             auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
 
             auto playerPosition{Player::instance().getPosition()};
@@ -101,6 +135,39 @@ namespace ForradiaEngine::JewelryMakerTheme
                     m_objectInAir = nullptr;
 
                     return true;
+                }
+            }
+
+            if (mouseButton == SDL_BUTTON_LEFT)
+            {
+                auto mainScene{SceneManager::instance().getScene("MainScene")};
+
+                auto gui{mainScene->getGUI()};
+
+                auto childComponents{gui->getChildComponentsRecursively()};
+
+                for (const auto &childComponent : childComponents)
+                {
+                    auto castedToGUIContainerWindow{
+                        std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
+
+                    if (castedToGUIContainerWindow)
+                    {
+                        auto bounds{castedToGUIContainerWindow->getBounds()};
+
+                        if (bounds.contains(mousePos))
+                        {
+                            if (auto objectPtrPtr{
+                                    castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
+                            {
+                                *objectPtrPtr = m_objectInAir;
+
+                                m_objectInAir = nullptr;
+
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
 

@@ -100,4 +100,18 @@ namespace ForradiaEngine
 
         Mix_PlayChannel(-1, m_soundEntries[audioNameHash].get(), 0);
     }
+
+    auto AudioBank::toggleMuteMusic() -> void
+    {
+        if (m_musicMuted)
+        {
+            Mix_VolumeMusic(MIX_MAX_VOLUME);
+            m_musicMuted = false;
+        }
+        else
+        {
+            Mix_VolumeMusic(0);
+            m_musicMuted = true;
+        }
+    }
 }
