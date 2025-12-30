@@ -19,6 +19,7 @@
 #include "Actions/actions.hpp"
 #include "CustomGUI/GUIInteractionMenu/GUIInteractionMenu.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
+#include "CustomGUI/GUICraftingWindow.hpp"
 #include "CustomGUI/GUIPlayerStatusBox/GUIPlayerStatusBox.hpp"
 #include "CustomGUI/GUIQuestPanel.hpp"
 #include "CustomGUI/GUISystemMenu.hpp"
@@ -44,8 +45,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto btnCraftingWindow{std::make_shared<GUIButton>(
             "MainSceneButtonCraftingWin", 0.78F, 0.89F, 0.05F,
-            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "", [] {},
-            "GUIButtonCraftingBackground", "GUIButtonCraftingHoveredBackground")};
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "",
+            [] { GUICraftingWindow::instance().toggleVisibility(); }, "GUIButtonCraftingBackground",
+            "GUIButtonCraftingHoveredBackground")};
 
         getGUI()->addChildComponent(btnCraftingWindow);
 
@@ -68,6 +70,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         // NOLINTEND(readability-magic-numbers)
 
         getGUI()->addChildComponent(btnSystemMenu);
+
+        getGUI()->addChildComponent(GUICraftingWindow::instancePtr());
 
         getGUI()->addChildComponent(GUISystemMenu::instancePtr());
 
