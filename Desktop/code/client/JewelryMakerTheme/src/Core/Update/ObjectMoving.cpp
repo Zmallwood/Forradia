@@ -39,6 +39,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
 
+        auto playerPosition{Player::instance().getPosition()};
+
+        auto absDx{std::abs(hoveredCoordinate.x - playerPosition.x)};
+        auto absDy{std::abs(hoveredCoordinate.y - playerPosition.y)};
+
+        if (absDx > 1 || absDy > 1)
+        {
+            return false;
+        }
+
         auto worldAreaCoordinate{Player::instance().getWorldAreaCoordinate()};
 
         auto hoveredTile{
