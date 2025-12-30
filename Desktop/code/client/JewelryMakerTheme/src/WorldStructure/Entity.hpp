@@ -38,7 +38,23 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->initialize();
         }
 
+        /**
+         *  Gets the smooth position of the entity.
+         *
+         *  @param position The position of the entity.
+         *  @return The smooth position of the entity.
+         */
         auto getSmoothPosition(Point position) const -> PointF;
+
+        /**
+         *  Updates the entity.
+         */
+        auto update() -> void;
+
+        /**
+         *  Updates the rotation of the entity in degrees.
+         */
+        auto updateRotationDegrees() -> void;
 
         /**
          *  Gets the entity type.
@@ -100,9 +116,24 @@ namespace ForradiaEngine::JewelryMakerTheme
             m_destination = value;
         }
 
+        /**
+         *  Sets the direction of the entity.
+         *
+         *  @param value The new direction of the entity.
+         */
         auto setDirection(Directions value) -> void
         {
             m_direction = value;
+        }
+
+        /**
+         *  Gets the rotation of the entity in degrees.
+         *
+         *  @return The rotation of the entity in degrees.
+         */
+        auto getRotationDegrees() const -> float
+        {
+            return m_rotationDegrees;
         }
 
       private:
@@ -114,5 +145,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         Point m_destination{-1, -1};
         EntityTypes m_entityType{EntityTypes::Creature};
         Directions m_direction{Directions::None};
+        float m_rotationDegrees{0.0F};
     };
 }

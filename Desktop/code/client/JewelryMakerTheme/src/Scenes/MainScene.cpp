@@ -9,6 +9,7 @@
 #include "Core/Update/QuestSystem.hpp"
 #include "Core/Update/TileHovering.hpp"
 #include "Core/Update/updateEntitiesMovement.hpp"
+#include "Core/Update/updateEntitiesDirections.hpp"
 #include "Core/Update/updateKeyboardActions.hpp"
 #include "Core/Update/updateKeyboardMovement.hpp"
 #include "Core/Update/updateMouseMovement.hpp"
@@ -202,6 +203,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         updateMouseMovement();
 
         updateEntitiesMovement();
+
+        updateEntitiesDirections();
 
         TileHovering::update();
 

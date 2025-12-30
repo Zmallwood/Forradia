@@ -75,4 +75,49 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         return {position.x + dx, position.y + dy};
     }
+    auto Entity::update() -> void
+    {
+        this->updateRotationDegrees();
+    }
+
+    auto Entity::updateRotationDegrees() -> void
+    {
+        switch (m_direction)
+        {
+        case Directions::North:
+            m_rotationDegrees = 360.0F + 90.0F;
+            break;
+
+        case Directions::East:
+            m_rotationDegrees = 90.0F + 90.0F;
+            break;
+
+        case Directions::South:
+            m_rotationDegrees = 180.0F + 90.0F;
+            break;
+
+        case Directions::West:
+            m_rotationDegrees = 270.0F + 90.0F;
+            break;
+
+        case Directions::NorthEast:
+            m_rotationDegrees = 45.0F + 90.0F;
+            break;
+
+        case Directions::SouthEast:
+            m_rotationDegrees = 135.0F + 90.0F;
+            break;
+
+        case Directions::SouthWest:
+            m_rotationDegrees = 225.0F + 90.0F;
+            break;
+
+        case Directions::NorthWest:
+            m_rotationDegrees = 315.0F + 90.0F;
+            break;
+
+        case Directions::None:
+            break;
+        }
+    }
 }

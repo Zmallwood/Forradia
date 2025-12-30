@@ -98,10 +98,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto entitySmoothPosition{entity->getSmoothPosition({xCoordinate, yCoordinate})};
 
+                auto entityRotation{entity->getRotationDegrees()};
+
                 ModelRenderer::instance().drawModel(
                     entityType, entitySmoothPosition.x * m_rendTileSize + m_rendTileSize / 2,
                     entitySmoothPosition.y * m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    totModelScaling, 0.0F, ThemeProperties::getElevationHeight(), levitationHeight);
+                    totModelScaling, entityRotation, ThemeProperties::getElevationHeight(),
+                    levitationHeight);
             }
 
             if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
