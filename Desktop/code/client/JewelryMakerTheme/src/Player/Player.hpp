@@ -324,10 +324,22 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_worldAreaCoordinate;
         }
 
+        /**
+         *  Gets the rotation of the player in degrees.
+         *
+         *  @return The rotation of the player in degrees.
+         */
+        auto getRotationDegrees() const -> float
+        {
+            return m_rotationDegrees;
+        }
+
       private:
         auto moveToSuitablePosition() -> void;
 
         auto moveToPositionPossible(Point position) -> bool;
+
+        auto updateRotationDegrees() -> void;
 
         constexpr static Point k_defaultStartPosition{60, 50};
         constexpr static float k_defaultMovementSpeed{5.0F};
@@ -347,5 +359,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         // TODO: Think about if this should be kept or not.
         // std::shared_ptr<Spouse> m_spouse{};
         Point3 m_worldAreaCoordinate{0, 0, 0};
+        float m_rotationDegrees{0.0F};
     };
 }

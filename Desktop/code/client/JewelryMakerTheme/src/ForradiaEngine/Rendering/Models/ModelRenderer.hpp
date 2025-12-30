@@ -52,7 +52,7 @@ namespace ForradiaEngine
          *  @param levitationHeight The height of the levitation.
          */
         auto drawModel(int modelNameHash, float xPos, float yPos, float elevations,
-                       float modelScaling = 1.0F, float elevationHeight = k_defaultElevationHeight,
+                       float modelScaling = 1.0F, float modelRotation = 0.0F, float elevationHeight = k_defaultElevationHeight,
                        float levitationHeight = 0.0F) -> void;
 
         /**

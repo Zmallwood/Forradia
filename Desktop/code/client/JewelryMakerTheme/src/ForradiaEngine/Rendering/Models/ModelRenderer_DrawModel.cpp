@@ -14,8 +14,8 @@
 namespace ForradiaEngine
 {
     auto ModelRenderer::drawModel(int modelNameHash, float xPos, float yPos, float elevation,
-                                  float modelScaling, float elevationHeight, float levitationHeight)
-        -> void
+                                  float modelScaling, float modelRotation, float elevationHeight,
+                                  float levitationHeight) -> void
     {
         this->setupState();
 
@@ -124,6 +124,12 @@ namespace ForradiaEngine
             modelMatrix, glm::vec3(xPos, yPos, elevation * elevationHeight + levitationHeight));
 
         modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
+
+        if (modelRotation != 0.0F)
+        {
+            modelMatrix =
+                glm::rotate(modelMatrix, glm::radians(180.0F + modelRotation), glm::vec3(0.0F, 0.0F, 1.0F));
+        }
 
         auto viewMatrix{Camera::instance().getViewMatrix()};
         auto projectionMatrix{Camera::getProjectionMatrix()};

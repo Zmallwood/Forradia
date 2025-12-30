@@ -83,7 +83,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 ModelRenderer::instance().drawModel(
                     objectType, (xCoordinate)*m_rendTileSize + m_rendTileSize / 2,
                     (yCoordinate)*m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    totModelScaling, ThemeProperties::getElevationHeight());
+                    totModelScaling, 0.0F, ThemeProperties::getElevationHeight());
             }
 
             if (auto entity{tile->getEntity()})
@@ -101,16 +101,19 @@ namespace ForradiaEngine::JewelryMakerTheme
                 ModelRenderer::instance().drawModel(
                     entityType, entitySmoothPosition.x * m_rendTileSize + m_rendTileSize / 2,
                     entitySmoothPosition.y * m_rendTileSize + m_rendTileSize / 2, elevationMax,
-                    totModelScaling, ThemeProperties::getElevationHeight(), levitationHeight);
+                    totModelScaling, 0.0F, ThemeProperties::getElevationHeight(), levitationHeight);
             }
 
             if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
             {
                 auto playerSmoothPosition{Player::instance().getSmoothPosition()};
 
+                auto playerRotation{Player::instance().getRotationDegrees()};
+
                 ModelRenderer::instance().drawModel(
                     hash("Player"), (playerSmoothPosition.x) * m_rendTileSize + m_rendTileSize / 2,
-                    (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax);
+                    (playerSmoothPosition.y) * m_rendTileSize + m_rendTileSize / 2, elevationMax,
+                    1.0F, playerRotation);
             }
         }
 

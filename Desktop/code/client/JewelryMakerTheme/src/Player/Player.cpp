@@ -50,9 +50,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto objectsStack{tile->getObjectsStack()};
 
-        if (std::ranges::any_of(objectsStack->getObjects(), [](const auto &object) {
-                return ObjectIndex::instance().getBlocksMovement(object->getType());
-            }))
+        if (std::ranges::any_of(
+                objectsStack->getObjects(), [](const auto &object)
+                { return ObjectIndex::instance().getBlocksMovement(object->getType()); }))
         {
             return false;
         }
@@ -60,9 +60,53 @@ namespace ForradiaEngine::JewelryMakerTheme
         return true;
     }
 
+    auto Player::updateRotationDegrees() -> void
+    {
+        printf("m_playerMoveDirection: %d\n", m_playerMoveDirection);
+        switch (m_playerMoveDirection)
+        {
+        case PlayerMoveDirections::North:
+            m_rotationDegrees = 360.0F;
+            break;
+
+        case PlayerMoveDirections::East:
+            m_rotationDegrees = 90.0F;
+            break;
+
+        case PlayerMoveDirections::South:
+            m_rotationDegrees = 180.0F;
+            break;
+
+        case PlayerMoveDirections::West:
+            m_rotationDegrees = 270.0F;
+            break;
+
+        case PlayerMoveDirections::NorthEast:
+            m_rotationDegrees = 45.0F;
+            break;
+
+        case PlayerMoveDirections::SouthEast:
+            m_rotationDegrees = 135.0F;
+            break;
+
+        case PlayerMoveDirections::SouthWest:
+            m_rotationDegrees = 225.0F;
+            break;
+
+        case PlayerMoveDirections::NorthWest:
+            m_rotationDegrees = 315.0F;
+            break;
+
+        case PlayerMoveDirections::None:
+            break;
+        }
+    }
+
     auto Player::update() -> void
     {
         auto now{getTicks()};
+
+        this->updateRotationDegrees();
 
         if (now >= m_ticksLastMovement + invertSpeed(m_movementSpeed) &&
             m_playerMoveDirection != PlayerMoveDirections::None)
