@@ -34,6 +34,7 @@
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/Devices/SDLDevice.hpp"
 #include "ForradiaEngine/Rendering/Base/3D/Camera.hpp"
+#include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -113,6 +114,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto experienceBarHeight{GUIExperienceBar::instance().getBounds().height};
 
         GUIChatBox::instance().setPosition({0.0F, 1.0F - chatBoxHeight - experienceBarHeight});
+
+        AudioBank::instance().playMusic(hash("music1"));
 
         GUIChatBox::instance().print("You have entered the world.");
     }
