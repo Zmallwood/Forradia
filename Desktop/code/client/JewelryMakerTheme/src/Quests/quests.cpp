@@ -36,9 +36,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             }
         }
 
-        m_numStepsLeft = 3 - numSteps;
+        m_numStepsLeft = 10 - numSteps;
 
-        if (numSteps >= 3)
+        if (numSteps >= 10)
         {
             isCompleted = true;
 

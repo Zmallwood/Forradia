@@ -39,7 +39,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         [[nodiscard]] auto getStatus() const -> std::string override;
 
       private:
-        int m_numStepsLeft{3};
+        int m_numStepsLeft{10};
     };
 
     /**

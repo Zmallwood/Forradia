@@ -491,21 +491,25 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    auto func = [](auto &&self) -> void
+                    {
+                        auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                        inventory.addObject("ObjectStone");
+
+                        GUIChatBox::instance().print("You mine some stone.");
+
+                        // NOLINTNEXTLINE(readability-magic-numbers)
+                        Player::instance().addExperience(10);
+                        Player::instance().addPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+
+                        s_timedAction =
+                            std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                                getTicks(), 1000, [self]() -> void { self(self); });
+                    };
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 2000,
-                        []() -> void
-                        {
-                            auto &inventory{Player::instance().getObjectsInventoryRef()};
-
-                            inventory.addObject("ObjectStone");
-
-                            GUIChatBox::instance().print("You mine some stone.");
-
-                            // NOLINTNEXTLINE(readability-magic-numbers)
-                            Player::instance().addExperience(10);
-                            Player::instance().addPlayerAction(PlayerActionTypes::Mine,
-                                                               "ObjectStone");
-                        });
+                        getTicks(), 1000, [func]() -> void { func(func); });
                 }};
     }
 
@@ -616,19 +620,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    auto func = [](auto &&self) -> void
+                    {
+                        auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                        inventory.addObject("ObjectBranch");
+
+                        GUIChatBox::instance().print("You picked a branch!");
+
+                        Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+
+                        s_timedAction =
+                            std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                                getTicks(), 1000, [self]() -> void { self(self); });
+                    };
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 1000,
-                        []() -> void
-                        {
-                            auto &inventory{Player::instance().getObjectsInventoryRef()};
-
-                            inventory.addObject("ObjectBranch");
-
-                            GUIChatBox::instance().print("You picked a branch!");
-
-                            Player::instance().addPlayerAction(PlayerActionTypes::Pick,
-                                                               "ObjectBranch");
-                        });
+                        getTicks(), 1000, [func]() -> void { func(func); });
                 }};
     }
 
@@ -664,7 +672,11 @@ namespace ForradiaEngine::JewelryMakerTheme
             if (getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
             {
                 std::get<2> (*s_timedAction)();
-                s_timedAction = nullptr;
+
+                if (getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
+                {
+                    s_timedAction = nullptr;
+                }
             }
         }
     }
