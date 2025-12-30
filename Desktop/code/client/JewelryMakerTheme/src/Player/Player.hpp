@@ -342,7 +342,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto updateRotationDegrees() -> void;
 
         constexpr static Point k_defaultStartPosition{60, 50};
-        constexpr static float k_defaultMovementSpeed{5.0F};
+        constexpr static float k_defaultMovementSpeed{3.0F};
         constexpr static float k_defaultStartMaxWellBeing{10.0F};
         std::string m_name{"Unnamed Player"};
         Point m_position{k_defaultStartPosition};
