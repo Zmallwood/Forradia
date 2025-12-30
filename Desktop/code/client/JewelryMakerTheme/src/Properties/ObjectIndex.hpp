@@ -82,7 +82,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto addObjectEntry(std::string_view objectName, float modelScaling,
                             bool ignoreIndividualModelScaling, int numContainerSlots,
-                            bool blocksMovement) -> void;
+                            bool blocksMovement, bool canBePickedUp) -> void;
 
         std::unordered_map<int, ObjectIndexEntry> m_entries{};
     };

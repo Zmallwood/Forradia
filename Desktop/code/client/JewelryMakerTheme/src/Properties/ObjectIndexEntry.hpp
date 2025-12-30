@@ -24,5 +24,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         /** Whether the object should block movement. */
         bool blocksMovement{false};
+
+        /** Whether the object can be picked up. */
+        bool canBePickedUp{false};
     };
 }
