@@ -15,6 +15,7 @@
 #include "WorldStructure/Tile.hpp"
 #include "WorldStructure/ObjectsStack.hpp"
 #include "Player/Player.hpp"
+#include "Properties/ObjectIndex.hpp"
 #include <SDL2/SDL_mouse.h>
 
 namespace ForradiaEngine::JewelryMakerTheme
@@ -60,8 +61,17 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto objectsStack{hoveredTile->getObjectsStack()};
 
-            if (!m_objectInAir && objectsStack->getSize() > 0)
+            auto topObject{objectsStack->getTopObject()};
+
+            if (!m_objectInAir && topObject)
             {
+                auto canBePickedUp{ObjectIndex::instance().getCanBePickedUp(topObject->getType())};
+
+                if (!canBePickedUp)
+                {
+                    return false;
+                }
+
                 m_objectInAir = objectsStack->popObject();
 
                 m_ticksSinceMouseDownOnTile = getTicks();

@@ -62,8 +62,18 @@ namespace ForradiaEngine::JewelryMakerTheme
         return object;
     }
 
-    auto ObjectsStack::getTopObjectPtrPtr() -> std::shared_ptr<Object> *
+    auto ObjectsStack::getTopObject() const -> std::shared_ptr<Object>
     {
+        if (m_objects.empty())
+        {
+            return nullptr;
+        }
+
+        return m_objects.back();
+    }
+
+    auto ObjectsStack::getTopObjectPtrPtr() -> std::shared_ptr<Object> *
+    { 
         if (m_objects.empty())
         {
             return nullptr;

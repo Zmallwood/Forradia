@@ -42,9 +42,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                                      bool ignoreIndividualModelScaling, int numContainerSlots,
                                      bool blocksMovement, bool canBePickedUp) -> void
     {
-        m_entries.insert(
-            {hash(objectName),
-             {modelScaling, ignoreIndividualModelScaling, numContainerSlots, blocksMovement}});
+        m_entries.insert({hash(objectName),
+                          {modelScaling, ignoreIndividualModelScaling, numContainerSlots,
+                           blocksMovement, canBePickedUp}});
     }
 
     auto ObjectIndex::getModelScaling(int objectHash) const -> float
@@ -87,6 +87,16 @@ namespace ForradiaEngine::JewelryMakerTheme
         if (m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).blocksMovement;
+        }
+
+        return false;
+    }
+
+    auto ObjectIndex::getCanBePickedUp(int objectHash) const -> bool
+    {
+        if (m_entries.contains(objectHash))
+        {
+            return m_entries.at(objectHash).canBePickedUp;
         }
 
         return false;

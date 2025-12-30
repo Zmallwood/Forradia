@@ -77,6 +77,14 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto getBlocksMovement(int objectHash) const -> bool;
 
+        /**
+         *  Gets whether the object type with the given hash can be picked up.
+         *
+         *  @param objectHash The hash of the object.
+         *  @return True if the object can be picked up, otherwise false.
+         */
+        auto getCanBePickedUp(int objectHash) const -> bool;
+
       private:
         void initialize();
 

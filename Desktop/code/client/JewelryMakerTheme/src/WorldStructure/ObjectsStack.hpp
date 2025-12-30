@@ -57,6 +57,13 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto popObject() -> std::shared_ptr<Object>;
 
+        /**
+         *  Gets the top object in the stack.
+         *
+         *  @return The top object in the stack.
+         */
+        auto getTopObject() const -> std::shared_ptr<Object>;
+
         auto getTopObjectPtrPtr() -> std::shared_ptr<Object> *;
 
         /**
