@@ -42,9 +42,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
+        auto btnCraftingWindow{std::make_shared<GUIButton>(
+            "MainSceneButtonCraftingWin", 0.78F, 0.89F, 0.05F,
+            convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "", [] {},
+            "GUIButtonCraftingBackground", "GUIButtonCraftingHoveredBackground")};
+
+        getGUI()->addChildComponent(btnCraftingWindow);
+
         // NOLINTBEGIN(readability-magic-numbers)
         auto btnInventoryWindow{std::make_shared<GUIButton>(
-            "MainSceneButtonInventoryWin", 0.85F, 0.9F, 0.05F,
+            "MainSceneButtonInventoryWin", 0.85F, 0.89F, 0.05F,
             convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "",
             [] { GUIInventoryWindow::instance().toggleVisibility(); },
             "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground")};
@@ -54,7 +61,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         // NOLINTBEGIN(readability-magic-numbers)
         auto btnSystemMenu{std::make_shared<GUIButton>(
-            "MainSceneButtonSystemMenu", 0.92F, 0.9F, 0.05F,
+            "MainSceneButtonSystemMenu", 0.92F, 0.89F, 0.05F,
             convertWidthToHeight(0.05F, SDLDevice::instance().getWindow()), "",
             [] { GUISystemMenu::instance().toggleVisibility(); }, "GUIButtonSystemMenuBackground",
             "GUIButtonSystemMenuHoveredBackground")};
