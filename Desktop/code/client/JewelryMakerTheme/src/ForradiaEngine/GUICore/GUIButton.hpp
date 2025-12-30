@@ -41,6 +41,26 @@ namespace ForradiaEngine
         {
         }
 
+        /**
+         *  Sets the background image of the button.
+         *
+         *  @param value The new background image.
+         */
+        auto setBackgroundImage(std::string_view value) -> void
+        {
+            m_backgroundImage = value;
+        }
+
+        /**
+         *  Sets the hovered background image of the button.
+         *
+         *  @param value The new hovered background image.
+         */
+        auto setHoveredBackgroundImage(std::string_view value) -> void
+        {
+            m_hoveredBackgroundImage = value;
+        }
+
       protected:
         /**
          *  Handles the mouse up event.

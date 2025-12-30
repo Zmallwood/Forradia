@@ -27,9 +27,9 @@ namespace ForradiaEngine
          *  @param backgroundImage The background image of the panel.
          */
         GUIPanel(std::string_view uniqueName, float xPos, float yPos, float width, float height,
-                 std::string_view backgroundImage = k_defaultBackgroundImage)
+                 std::string_view activeBackgroundImage = k_defaultBackgroundImage)
             : GUIComponent(xPos, yPos, width, height), k_renderIDBackground(hash(uniqueName)),
-              m_backgroundImage(backgroundImage)
+              m_activeBackgroundImage(activeBackgroundImage)
         {
         }
 
@@ -43,14 +43,14 @@ namespace ForradiaEngine
          *
          *  @param value The new background image.
          */
-        auto setBackgroundImage(std::string_view value) -> void
+        auto setActiveBackgroundImage(std::string_view value) -> void
         {
-            m_backgroundImage = value;
+            m_activeBackgroundImage = value;
         }
 
       private:
         inline static const std::string k_defaultBackgroundImage{"GUIPanelBackground"};
         const int k_renderIDBackground{};
-        std::string m_backgroundImage{};
+        std::string m_activeBackgroundImage{};
     };
 }

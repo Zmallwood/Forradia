@@ -12,7 +12,7 @@ namespace ForradiaEngine
     {
         auto bounds{this->getBounds()};
 
-        Image2DRenderer::instance().drawImageByName(k_renderIDBackground, m_backgroundImage,
+        Image2DRenderer::instance().drawImageByName(k_renderIDBackground, m_activeBackgroundImage,
                                                     bounds.x, bounds.y, bounds.width, bounds.height,
                                                     true);
     }

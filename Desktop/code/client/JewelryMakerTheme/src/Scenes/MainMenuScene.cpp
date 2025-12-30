@@ -11,6 +11,7 @@
 #include "ForradiaEngine/GUICore/GUIPanel.hpp"
 #include "ForradiaEngine/Rendering/Images/Image2DRenderer.hpp"
 #include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
+#include "ForradiaEngine/Devices/SDLDevice.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -41,11 +42,29 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         getGUI()->addChildComponent(GUIChatBox::instancePtr());
 
-        auto btnToggleMuteMusic{std::make_shared<GUIButton>(
-            "MainMenuSceneButtonToggleMuteMusic", 0.95F, 0.95F, 0.1F, 0.04F, "",
-            [] { AudioBank::instance().toggleMuteMusic(); })};
+        m_btnToggleMuteMusic = std::make_shared<GUIButton>(
+            "MainMenuSceneButtonToggleMuteMusic", 0.95F, 0.93F, 0.04F,
+            convertWidthToHeight(0.04F, SDLDevice::instance().getWindow()), "",
+            [this]
+            {
+                AudioBank::instance().toggleMuteMusic();
 
-        getGUI()->addChildComponent(btnToggleMuteMusic);
+                if (AudioBank::instance().getMusicMuted())
+                {
+                    m_btnToggleMuteMusic->setBackgroundImage("GUIButtonUnmuteMusicBackground");
+                    m_btnToggleMuteMusic->setHoveredBackgroundImage(
+                        "GUIButtonUnmuteMusicHoveredBackground");
+                }
+                else
+                {
+                    m_btnToggleMuteMusic->setBackgroundImage("GUIButtonMuteMusicBackground");
+                    m_btnToggleMuteMusic->setHoveredBackgroundImage(
+                        "GUIButtonMuteMusicHoveredBackground");
+                }
+            },
+            "GUIButtonMuteMusicBackground", "GUIButtonMuteMusicHoveredBackground");
+
+        getGUI()->addChildComponent(m_btnToggleMuteMusic);
     }
 
     auto MainMenuScene::renderDerived() const -> void

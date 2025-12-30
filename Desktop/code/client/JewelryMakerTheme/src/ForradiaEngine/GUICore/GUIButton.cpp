@@ -38,12 +38,12 @@ namespace ForradiaEngine
 
         if (dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePosition))
         {
-            dynamic_cast<GUIPanel *>(this)->setBackgroundImage(m_hoveredBackgroundImage);
+            dynamic_cast<GUIPanel *>(this)->setActiveBackgroundImage(m_hoveredBackgroundImage);
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
         else
         {
-            dynamic_cast<GUIPanel *>(this)->setBackgroundImage(m_backgroundImage);
+            dynamic_cast<GUIPanel *>(this)->setActiveBackgroundImage(m_backgroundImage);
         }
     }
 
