@@ -105,6 +105,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             m_objectInAir = nullptr;
 
+            if (clickSpeed < 200)
+            {
+                return false;
+            }
+
             return true;
         }
 

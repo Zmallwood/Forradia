@@ -39,6 +39,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                     {
                         objectStack->removeOneOfObjectOfType("ObjectStoneBlock");
 
+                        objectStack->addObject("ObjectStone");
+
                         GUIChatBox::instance().print("You mine a stone block.");
                     }
                 }};
