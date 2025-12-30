@@ -89,6 +89,8 @@ namespace ForradiaEngine::JewelryMakerTheme
             objectsStack->addObject(m_objectInAir);
 
             m_objectInAir = nullptr;
+
+            return true;
         }
 
         return false;
