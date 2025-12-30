@@ -183,16 +183,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                     }
                     else
                     {
-                        tile->getObjectsStack()->addObject("ObjectUnlitCampfire");
+                        s_timedAction =
+                            std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                                getTicks(), 3000,
+                                [tile]() -> void
+                                {
+                                    tile->getObjectsStack()->addObject("ObjectUnlitCampfire");
 
-                        inventory.removeObject("ObjectBranch", k_numBranchesRequired);
+                                    Player::instance().getObjectsInventoryRef().removeObject(
+                                        "ObjectBranch", k_numBranchesRequired);
 
-                        GUIChatBox::instance().print("You craft a campfire.");
+                                    GUIChatBox::instance().print("You craft a campfire.");
 
-                        // NOLINTNEXTLINE(readability-magic-numbers)
-                        Player::instance().addExperience(10);
-                        Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                           "ObjectUnlitCampfire");
+                                    // NOLINTNEXTLINE(readability-magic-numbers)
+                                    Player::instance().addExperience(10);
+                                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                                       "ObjectUnlitCampfire");
+                                });
                     }
                 }};
     }
@@ -262,17 +269,23 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 3000,
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.removeObject("ObjectStone");
+                            inventory.removeObject("ObjectStone");
 
-                    inventory.addObject("ObjectStoneBowl");
+                            inventory.addObject("ObjectStoneBowl");
 
-                    GUIChatBox::instance().print("You craft a stone bowl.");
+                            GUIChatBox::instance().print("You craft a stone bowl.");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneBowl");
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                               "ObjectStoneBowl");
+                        });
                 }};
     }
 
@@ -397,16 +410,22 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 2000,
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.removeObject("ObjectStone");
-                    inventory.addObject("ObjectStoneSlab");
+                            inventory.removeObject("ObjectStone");
+                            inventory.addObject("ObjectStoneSlab");
 
-                    GUIChatBox::instance().print("You craft a stone slab.");
+                            GUIChatBox::instance().print("You craft a stone slab.");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneSlab");
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                               "ObjectStoneSlab");
+                        });
                 }};
     }
 
@@ -420,34 +439,39 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 3000,
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    if (inventory.countHasObject("ObjectBranch") < 1)
-                    {
-                        GUIChatBox::instance().print(
-                            "You don't have any branches to craft a stone pickaxe.");
+                            if (inventory.countHasObject("ObjectBranch") < 1)
+                            {
+                                GUIChatBox::instance().print(
+                                    "You don't have any branches to craft a stone pickaxe.");
 
-                        return;
-                    }
+                                return;
+                            }
 
-                    if (inventory.countHasObject("ObjectStone") < 1)
-                    {
-                        GUIChatBox::instance().print(
-                            "You don't have any stones to craft a stone pickaxe.");
+                            if (inventory.countHasObject("ObjectStone") < 1)
+                            {
+                                GUIChatBox::instance().print(
+                                    "You don't have any stones to craft a stone pickaxe.");
 
-                        return;
-                    }
+                                return;
+                            }
 
-                    inventory.removeObject("ObjectBranch");
-                    inventory.removeObject("ObjectStone");
-                    inventory.addObject("ObjectStonePickaxe");
+                            inventory.removeObject("ObjectBranch");
+                            inventory.removeObject("ObjectStone");
+                            inventory.addObject("ObjectStonePickaxe");
 
-                    GUIChatBox::instance().print("You craft a stone pickaxe.");
+                            GUIChatBox::instance().print("You craft a stone pickaxe.");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                       "ObjectStonePickaxe");
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                               "ObjectStonePickaxe");
+                        });
                 }};
     }
 
@@ -461,15 +485,21 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 2000,
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.addObject("ObjectStone");
+                            inventory.addObject("ObjectStone");
 
-                    GUIChatBox::instance().print("You mine some stone.");
+                            GUIChatBox::instance().print("You mine some stone.");
 
-                    // NOLINTNEXTLINE(readability-magic-numbers)
-                    Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+                            // NOLINTNEXTLINE(readability-magic-numbers)
+                            Player::instance().addExperience(10);
+                            Player::instance().addPlayerAction(PlayerActionTypes::Mine,
+                                                               "ObjectStone");
+                        });
                 }};
     }
 
@@ -580,13 +610,19 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+                    s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
+                        getTicks(), 1000,
+                        []() -> void
+                        {
+                            auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                    inventory.addObject("ObjectBranch");
+                            inventory.addObject("ObjectBranch");
 
-                    GUIChatBox::instance().print("You picked a branch!");
+                            GUIChatBox::instance().print("You picked a branch!");
 
-                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+                            Player::instance().addPlayerAction(PlayerActionTypes::Pick,
+                                                               "ObjectBranch");
+                        });
                 }};
     }
 
