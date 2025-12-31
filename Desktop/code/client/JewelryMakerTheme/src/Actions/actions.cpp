@@ -183,9 +183,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                     }
                     else
                     {
+                        constexpr auto k_craftingTime{3000};
+
                         s_timedAction =
                             std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                                getTicks(), 3000,
+                                getTicks(), k_craftingTime,
                                 [tile]() -> void
                                 {
                                     tile->getObjectsStack()->addObject("ObjectUnlitCampfire");
@@ -269,8 +271,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    constexpr auto k_craftingTime{3000};
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 3000,
+                        getTicks(), k_craftingTime,
                         []() -> void
                         {
                             auto &inventory{Player::instance().getObjectsInventoryRef()};
@@ -314,8 +318,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                       hash("ObjectStoneWallDoor"), clickedCoordinate);
+                    Player::instance().addPlayerAction(
+                        PlayerActionTypes::Craft, hash("ObjectStoneWallDoor"), clickedCoordinate);
                 }};
     }
 
@@ -344,8 +348,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, hash("ObjectStoneWall"),
-                                                       clickedCoordinate);
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft,
+                                                       hash("ObjectStoneWall"), clickedCoordinate);
                 }};
     }
 
@@ -383,8 +387,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    constexpr auto k_layingTime{1000};
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 1000,
+                        getTicks(), k_layingTime,
                         [tile]() -> void
                         {
                             auto &inventory{Player::instance().getObjectsInventoryRef()};
@@ -416,8 +422,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    constexpr auto k_craftingTime{2000};
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 2000,
+                        getTicks(), k_craftingTime,
                         []() -> void
                         {
                             auto &inventory{Player::instance().getObjectsInventoryRef()};
@@ -445,8 +453,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
+                    constexpr auto k_craftingTime{3000};
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 3000,
+                        getTicks(), k_craftingTime,
                         []() -> void
                         {
                             auto &inventory{Player::instance().getObjectsInventoryRef()};
@@ -491,7 +501,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto func = [](auto &&self) -> void
+                    constexpr auto k_miningTime{1000};
+
+                    auto func = [k_miningTime](auto &&self) -> void
                     {
                         auto &inventory{Player::instance().getObjectsInventoryRef()};
 
@@ -501,15 +513,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
-                        Player::instance().addPlayerAction(PlayerActionTypes::Mine, hash("ObjectStone"));
+                        Player::instance().addPlayerAction(PlayerActionTypes::Mine,
+                                                           hash("ObjectStone"));
 
                         s_timedAction =
                             std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                                getTicks(), 1000, [self]() -> void { self(self); });
+                                getTicks(), k_miningTime, [self]() -> void { self(self); });
                     };
 
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 1000, [func]() -> void { func(func); });
+                        getTicks(), k_miningTime, [func]() -> void { func(func); });
                 }};
     }
 
@@ -605,8 +618,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                             Player::instance().addPlayerAction(PlayerActionTypes::Forage);
                         }};
 
+                    constexpr auto k_foragingTime{1000};
+
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 1000, timedAction);
+                        getTicks(), k_foragingTime, timedAction);
                 }};
     }
 
@@ -620,7 +635,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    auto func = [](auto &&self) -> void
+                    constexpr auto k_pickingTime{1000};
+
+                    auto func = [k_pickingTime](auto &&self) -> void
                     {
                         auto &inventory{Player::instance().getObjectsInventoryRef()};
 
@@ -628,15 +645,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You picked a branch!");
 
-                        Player::instance().addPlayerAction(PlayerActionTypes::Pick, hash("ObjectBranch"));
+                        Player::instance().addPlayerAction(PlayerActionTypes::Pick,
+                                                           hash("ObjectBranch"));
 
                         s_timedAction =
                             std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                                getTicks(), 1000, [self]() -> void { self(self); });
+                                getTicks(), k_pickingTime, [self]() -> void { self(self); });
                     };
 
                     s_timedAction = std::make_shared<std::tuple<int, int, std::function<void()>>>(
-                        getTicks(), 1000, [func]() -> void { func(func); });
+                        getTicks(), k_pickingTime, [func]() -> void { func(func); });
                 }};
     }
 
@@ -661,7 +679,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     GUIChatBox::instance().print("You picked a stone!");
 
-                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, hash("ObjectStone"));
+                    Player::instance().addPlayerAction(PlayerActionTypes::Pick,
+                                                       hash("ObjectStone"));
                 }};
     }
 

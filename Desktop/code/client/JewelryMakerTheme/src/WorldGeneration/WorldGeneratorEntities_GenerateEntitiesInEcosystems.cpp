@@ -242,7 +242,6 @@ namespace ForradiaEngine::JewelryMakerTheme
                 if (nearbyTreesCount >= 2)
                 {
                     // High probability in forest areas.
-                    // NOLINTNEXTLINE(readability-magic-numbers)
                     prefersLocation =
                         getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                         WorldGeneratorBase::getParam<int>(
@@ -251,7 +250,6 @@ namespace ForradiaEngine::JewelryMakerTheme
                 else if (nearbyTreesCount == 1)
                 {
                     // Moderate probability near a single tree.
-                    // NOLINTNEXTLINE(readability-magic-numbers)
                     prefersLocation =
                         getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                         WorldGeneratorBase::getParam<int>(
@@ -260,7 +258,6 @@ namespace ForradiaEngine::JewelryMakerTheme
                 else if (tile->getGround() == hash("GroundGrass"))
                 {
                     // Lower probability in open grass areas (birds can still be found there).
-                    // NOLINTNEXTLINE(readability-magic-numbers)
                     prefersLocation =
                         getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                         WorldGeneratorBase::getParam<int>(
