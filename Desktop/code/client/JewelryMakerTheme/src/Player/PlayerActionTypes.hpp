@@ -25,6 +25,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         Pick,
         Craft,
         Mine,
-        Lay
+        Lay,
+        Move
     };
 }

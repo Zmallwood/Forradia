@@ -16,7 +16,8 @@ namespace ForradiaEngine::JewelryMakerTheme
       public:
         static auto instance() -> GUIInventoryWindow &
         {
-            static GUIInventoryWindow instance(Player::instance().getObjectsInventoryRef());
+            static GUIInventoryWindow instance(Player::instance().getObjectsInventoryRef(),
+                                               hash("Inventory"));
             return instance;
         }
 

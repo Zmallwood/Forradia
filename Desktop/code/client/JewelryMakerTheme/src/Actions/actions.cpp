@@ -147,7 +147,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             auto gui{mainScene->getGUI()};
 
                             auto containerWindow{std::make_shared<GUIContainerWindow>(
-                                *(*object)->getContainedObjects())};
+                                *(*object)->getContainedObjects(), hash("ObjectUnlitCampfire"))};
 
                             containerWindow->setVisible(true);
 
@@ -198,7 +198,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                     // NOLINTNEXTLINE(readability-magic-numbers)
                                     Player::instance().addExperience(10);
                                     Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                                       "ObjectUnlitCampfire");
+                                                                       hash("ObjectUnlitCampfire"));
                                 });
                     }
                 }};
@@ -224,7 +224,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             auto gui{mainScene->getGUI()};
 
                             auto containerWindow{std::make_shared<GUIContainerWindow>(
-                                *(*object)->getContainedObjects())};
+                                *(*object)->getContainedObjects(), hash("ObjectStoneBowl"))};
 
                             containerWindow->setVisible(true);
 
@@ -284,7 +284,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             // NOLINTNEXTLINE(readability-magic-numbers)
                             Player::instance().addExperience(10);
                             Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                               "ObjectStoneBowl");
+                                                               hash("ObjectStoneBowl"));
                         });
                 }};
     }
@@ -315,7 +315,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
                     Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                       "ObjectStoneWallDoor", clickedCoordinate);
+                                                       hash("ObjectStoneWallDoor"), clickedCoordinate);
                 }};
     }
 
@@ -344,7 +344,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
-                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, "ObjectStoneWall",
+                    Player::instance().addPlayerAction(PlayerActionTypes::Craft, hash("ObjectStoneWall"),
                                                        clickedCoordinate);
                 }};
     }
@@ -367,7 +367,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     // NOLINTNEXTLINE(readability-magic-numbers)
                     Player::instance().addExperience(10);
                     Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                       "ObjectStoneBrick");
+                                                       hash("ObjectStoneBrick"));
 
                     GUIChatBox::instance().print("You craft a stone brick.");
                 }};
@@ -401,7 +401,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             // NOLINTNEXTLINE(readability-magic-numbers)
                             Player::instance().addExperience(10);
                             Player::instance().addPlayerAction(PlayerActionTypes::Lay,
-                                                               "ObjectStoneSlab");
+                                                               hash("ObjectStoneSlab"));
                         });
                 }};
     }
@@ -430,7 +430,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             // NOLINTNEXTLINE(readability-magic-numbers)
                             Player::instance().addExperience(10);
                             Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                               "ObjectStoneSlab");
+                                                               hash("ObjectStoneSlab"));
                         });
                 }};
     }
@@ -476,7 +476,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             // NOLINTNEXTLINE(readability-magic-numbers)
                             Player::instance().addExperience(10);
                             Player::instance().addPlayerAction(PlayerActionTypes::Craft,
-                                                               "ObjectStonePickaxe");
+                                                               hash("ObjectStonePickaxe"));
                         });
                 }};
     }
@@ -501,7 +501,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         // NOLINTNEXTLINE(readability-magic-numbers)
                         Player::instance().addExperience(10);
-                        Player::instance().addPlayerAction(PlayerActionTypes::Mine, "ObjectStone");
+                        Player::instance().addPlayerAction(PlayerActionTypes::Mine, hash("ObjectStone"));
 
                         s_timedAction =
                             std::make_shared<std::tuple<int, int, std::function<void()>>>(
@@ -628,7 +628,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                         GUIChatBox::instance().print("You picked a branch!");
 
-                        Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectBranch");
+                        Player::instance().addPlayerAction(PlayerActionTypes::Pick, hash("ObjectBranch"));
 
                         s_timedAction =
                             std::make_shared<std::tuple<int, int, std::function<void()>>>(
@@ -661,7 +661,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     GUIChatBox::instance().print("You picked a stone!");
 
-                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, "ObjectStone");
+                    Player::instance().addPlayerAction(PlayerActionTypes::Pick, hash("ObjectStone"));
                 }};
     }
 

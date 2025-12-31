@@ -132,6 +132,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     *objectPtrPtr = m_objectInAir;
 
+                    Player::instance().addPlayerAction(PlayerActionTypes::Move,
+                        GUIInventoryWindow::instance().getContainerObjectType(), {-1, -1},
+                                                       *objectPtrPtr);
+
                     m_objectInAir = nullptr;
 
                     return true;
@@ -162,6 +166,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                             {
                                 *objectPtrPtr = m_objectInAir;
 
+                                Player::instance().addPlayerAction(
+                                    PlayerActionTypes::Move,
+                                    castedToGUIContainerWindow->getContainerObjectType(), {-1, -1},
+                                    *objectPtrPtr);
+
                                 m_objectInAir = nullptr;
 
                                 return true;
@@ -181,6 +190,10 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto objectsStack{hoveredTile->getObjectsStack()};
 
             objectsStack->addObject(m_objectInAir);
+
+            Player::instance().addPlayerAction(PlayerActionTypes::Move,
+                                               (*objectsStack->getTopObjectPtrPtr())->getType(),
+                                               {-1, -1}, *objectsStack->getTopObjectPtrPtr());
 
             m_objectInAir = nullptr;
 

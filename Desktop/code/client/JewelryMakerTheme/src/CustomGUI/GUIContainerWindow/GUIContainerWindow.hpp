@@ -27,9 +27,10 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @param containedObjects The contained objects.
          */
-        GUIContainerWindow(ContainedObjects &containedObjects)
+        GUIContainerWindow(ContainedObjects &containedObjects, int containerObjectType)
             : GUIWindow("GUIContainerWindow", k_defaultBounds.x, k_defaultBounds.y,
-                        k_defaultBounds.width, k_defaultBounds.height, "Container")
+                        k_defaultBounds.width, k_defaultBounds.height, "Container"),
+              k_containerObjectType(containerObjectType)
         {
             this->initialize(containedObjects);
         }
@@ -42,10 +43,16 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto getObjectPtrPtr(PointF position) const -> std::shared_ptr<std::shared_ptr<Object>>;
 
+        auto getContainerObjectType() const -> int
+        {
+            return k_containerObjectType;
+        }
+
       private:
         auto initialize(ContainedObjects &containedObjects) -> void;
 
         constexpr static RectF k_defaultBounds{0.5F, 0.2F, 0.2F, 0.5F};
+        const int k_containerObjectType{};
         std::shared_ptr<GUIContainerWindowArea> m_guiContainerWindowArea{};
     };
 }

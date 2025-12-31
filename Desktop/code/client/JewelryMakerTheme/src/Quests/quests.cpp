@@ -104,14 +104,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (action == PlayerActionTypes::Pick)
             {
-                if (actionFirstArg == "ObjectBranch")
+                if (actionFirstArg == hash("ObjectBranch"))
                 {
                     m_numBranchPicked = true;
                     Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"] =
                         idx;
                 }
 
-                if (actionFirstArg == "ObjectStone")
+                if (actionFirstArg == hash("ObjectStone"))
                 {
                     m_numStonePicked = true;
                 }
@@ -119,7 +119,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == "ObjectStonePickaxe")
+                if (actionFirstArg == hash("ObjectStonePickaxe"))
                 {
                     isCompleted = true;
                 }
@@ -156,7 +156,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 m_stonedMined = true;
 
@@ -166,7 +166,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == "ObjectStoneBowl")
+                if (actionFirstArg == hash("ObjectStoneBowl"))
                 {
                     isCompleted = true;
                 }
@@ -184,6 +184,37 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
 
         return "Craft a stone bowl out of the stone.";
+    }
+
+    auto PutForagedItemsInStoneBowlQuest::update() -> void
+    {
+        const auto &playerActions{Player::instance().getPlayerActionsRef()};
+
+        for (const auto &entry : playerActions)
+        {
+            auto action{get<0>(entry)};
+            auto actionFirstArg{get<1>(entry)};
+            // auto actionSecondArg{get<2>(entry)};
+            auto actionThirdArg{get<3>(entry)};
+
+            if (action == PlayerActionTypes::Move)
+            {
+                if (actionFirstArg == hash("ObjectStoneBowl"))
+                {
+                    auto movedObject{actionThirdArg};
+
+                    if (movedObject->getType() == hash("ObjectBlueberries"))
+                    {
+                        isCompleted = true;
+                    }
+                }
+            }
+        }
+    }
+
+    auto PutForagedItemsInStoneBowlQuest::getStatus() const -> std::string
+    {
+        return "Put foraged items in the stone bowl.";
     }
 
     auto CraftCampfireQuest::update() -> void
@@ -210,14 +241,14 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Pick && actionFirstArg == "ObjectBranch")
+            if (action == PlayerActionTypes::Pick && actionFirstArg == hash("ObjectBranch"))
             {
                 ++numPickedBranches;
             }
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == "ObjectUnlitCampfire")
+                if (actionFirstArg == hash("ObjectUnlitCampfire"))
                 {
                     isCompleted = true;
                 }
@@ -263,7 +294,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 numMinedStones++;
 
@@ -311,7 +342,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == "ObjectStoneSlab")
+                if (actionFirstArg == hash("ObjectStoneSlab"))
                 {
                     numCraftedSlabs++;
                 }
@@ -395,7 +426,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == "ObjectStone")
+            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 numMinedStones++;
             }
@@ -435,7 +466,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             if (action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == "ObjectStoneBrick")
+                if (actionFirstArg == hash("ObjectStoneBrick"))
                 {
                     numCraftedBricks++;
                 }
@@ -473,7 +504,8 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionSecondArg{get<2>(entry)};
 
             if (action == PlayerActionTypes::Craft &&
-                (actionFirstArg == "ObjectStoneWall" || actionFirstArg == "ObjectStoneWallDoor"))
+                (actionFirstArg == hash("ObjectStoneWall") ||
+                 actionFirstArg == hash("ObjectStoneWallDoor")))
             {
                 wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
             }

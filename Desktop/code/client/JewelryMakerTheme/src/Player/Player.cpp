@@ -248,7 +248,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::North;
 
         if (worldArea->getTile(newX, newY)
@@ -291,7 +291,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveEast, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::East;
 
         if (worldArea->getTile(newX, newY)
@@ -334,7 +334,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::South;
 
         if (worldArea->getTile(newX, newY)
@@ -377,7 +377,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveWest, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::West;
 
         if (worldArea->getTile(newX, newY)
@@ -420,7 +420,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::NorthEast;
 
         if (worldArea->getTile(newX, newY)
@@ -463,7 +463,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::SouthEast;
 
         if (worldArea->getTile(newX, newY)
@@ -506,7 +506,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::SouthWest;
 
         if (worldArea->getTile(newX, newY)
@@ -549,7 +549,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
 
         m_position = {newX, newY};
-        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, "", m_position);
+        m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::NorthWest;
 
         if (worldArea->getTile(newX, newY)
@@ -578,11 +578,12 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_experience += experience;
     }
 
-    auto Player::addPlayerAction(PlayerActionTypes playerAction,
-                                 std::string_view actionFirstArgument, Point actionSecondArgument)
-        -> void
+    auto Player::addPlayerAction(PlayerActionTypes playerAction, int actionFirstArgument,
+                                 Point actionSecondArgument,
+                                 std::shared_ptr<Object> actionThirdArgument) -> void
     {
-        m_playerActions.emplace_back(playerAction, actionFirstArgument, actionSecondArgument);
+        m_playerActions.emplace_back(playerAction, actionFirstArgument, actionSecondArgument,
+                                     actionThirdArgument);
     }
 
     auto Player::getSmoothPosition() const -> PointF

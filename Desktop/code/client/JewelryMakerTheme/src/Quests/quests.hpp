@@ -136,6 +136,31 @@ namespace ForradiaEngine::JewelryMakerTheme
         bool m_stonedMined{false};
     };
 
+    class PutForagedItemsInStoneBowlQuest : public Quest
+    {
+      public:
+        /**
+         *  Constructs the quest.
+         */
+        PutForagedItemsInStoneBowlQuest()
+        {
+            this->name = "Put Foraged Items in Stone Bowl";
+            this->description = "Put foraged items in a stone bowl.";
+        }
+
+        /**
+         *  Updates the quest.
+         */
+        auto update() -> void override;
+
+        /**
+         *  Gets the status of the quest.
+         *
+         *  @return The status of the quest.
+         */
+        [[nodiscard]] auto getStatus() const -> std::string override;
+    };
+
     /**
      *  A quest to craft a campfire.
      */

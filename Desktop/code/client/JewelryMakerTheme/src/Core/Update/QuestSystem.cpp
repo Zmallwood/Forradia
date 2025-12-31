@@ -15,6 +15,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_quests.push_back(std::make_shared<ForageQuest>());
         m_quests.push_back(std::make_shared<CraftStonePickaxeQuest>());
         m_quests.push_back(std::make_shared<CraftStoneBowlQuest>());
+        m_quests.push_back(std::make_shared<PutForagedItemsInStoneBowlQuest>());
         m_quests.push_back(std::make_shared<CraftCampfireQuest>());
         m_quests.push_back(std::make_shared<MineStoneFromBoulderQuest1>());
         m_quests.push_back(std::make_shared<CraftStoneSlabsQuest>());

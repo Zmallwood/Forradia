@@ -12,6 +12,7 @@
 #include "ForradiaEngine/Common/Matter/Geometry.hpp"
 #include "PlayerActionTypes.hpp"
 #include "PlayerMoveDirections.hpp"
+#include "WorldStructure/Object.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
@@ -146,9 +147,9 @@ namespace ForradiaEngine::JewelryMakerTheme
          *  @param actionFirstArgument The first argument of the player action.
          *  @param actionSecondArgument The second argument of the player action.
          */
-        auto addPlayerAction(PlayerActionTypes playerAction,
-                             std::string_view actionFirstArgument = "",
-                             Point actionSecondArgument = {-1, -1}) -> void;
+        auto addPlayerAction(PlayerActionTypes playerAction, int actionFirstArgument = 0,
+                             Point actionSecondArgument = {-1, -1},
+                             std::shared_ptr<Object> actionThirdArgument = nullptr) -> void;
 
         /**
          *  Gets the smooth position of the player, used for smooth movement.
@@ -282,8 +283,8 @@ namespace ForradiaEngine::JewelryMakerTheme
          *
          *  @return The player actions of the player.
          */
-        auto getPlayerActionsRef() const
-            -> const std::vector<std::tuple<PlayerActionTypes, std::string, Point>> &
+        auto getPlayerActionsRef() const -> const
+            std::vector<std::tuple<PlayerActionTypes, int, Point, std::shared_ptr<Object>>> &
         {
             return m_playerActions;
         }
@@ -353,7 +354,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         int m_experience{0};
         float m_wellBeing{k_defaultStartMaxWellBeing};
         float m_maxWellBeing{k_defaultStartMaxWellBeing};
-        std::vector<std::tuple<PlayerActionTypes, std::string, Point>> m_playerActions{};
+        std::vector<std::tuple<PlayerActionTypes, int, Point, std::shared_ptr<Object>>>
+            m_playerActions{};
         std::unordered_map<std::string, int> m_questCompletionPoints{};
         PlayerMoveDirections m_playerMoveDirection{PlayerMoveDirections::None};
         // TODO: Think about if this should be kept or not.
