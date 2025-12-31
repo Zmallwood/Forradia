@@ -7,6 +7,11 @@
 
 #include "ForradiaEngine/GUICore/GUIWindow.hpp"
 
+namespace ForradiaEngine
+{
+    class GUIScrollableArea;
+}
+
 namespace ForradiaEngine::JewelryMakerTheme
 {
     /**
@@ -45,5 +50,6 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto initialize() -> void;
 
         constexpr static RectF k_defaultBounds{0.2F, 0.2F, 0.2F, 0.5F};
+        std::shared_ptr<GUIScrollableArea> m_scrollableArea;
     };
 }

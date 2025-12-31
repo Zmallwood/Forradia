@@ -9,5 +9,10 @@
     "numWolvesRandom": 40,
     "wolfPrefersLocationNearWaterProbability": 40,
     "wolfPrefersLocationAwayFromWaterProbability": 20,
-    "wolfPrefersLocationOnDirtProbability": 5
+    "wolfPrefersLocationOnDirtProbability": 5,
+    "numRedBirdsBase": 120,
+    "numRedBirdsRandom": 30,
+    "redBirdsPrefersLocationForestAreasProbability": 50,
+    "redBirdsPrefersLocationNearSingleTreeProbability": 25,
+    "redBirdsPrefersLocationOpenGrassAreasProbability": 8
 }

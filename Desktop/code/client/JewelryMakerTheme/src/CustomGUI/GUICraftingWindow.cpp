@@ -4,10 +4,12 @@
  *********************************************************************/
 
 #include "GUICraftingWindow.hpp"
+#include "ForradiaEngine/GUICore/GUIScrollableArea.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {
     auto GUICraftingWindow::initialize() -> void
     {
+        m_scrollableArea = std::make_shared<GUIScrollableArea>("GUICraftingWindowScrollableArea", 0.0F, 0.0F, 1.0F, 1.0F);
     }
 }

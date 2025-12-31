@@ -216,8 +216,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto worldAreaSize{worldArea->getSize()};
 
             // Generate red birds - prefer areas with trees (forests) but also allow in open areas.
-            // NOLINTNEXTLINE(readability-magic-numbers)
-            auto numRedBirds{120 * worldScaling + getRandomInt(30 * worldScaling)};
+            auto numRedBirds{WorldGeneratorBase::getParam<int>("numRedBirdsBase") * worldScaling +
+                             getRandomInt(WorldGeneratorBase::getParam<int>("numRedBirdsRandom") *
+                                          worldScaling)};
 
             for (auto i = 0; i < numRedBirds; i++)
             {
@@ -242,19 +243,28 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     // High probability in forest areas.
                     // NOLINTNEXTLINE(readability-magic-numbers)
-                    prefersLocation = getRandomInt(100) < 50;
+                    prefersLocation =
+                        getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                        WorldGeneratorBase::getParam<int>(
+                            "redBirdsPrefersLocationForestAreasProbability");
                 }
                 else if (nearbyTreesCount == 1)
                 {
                     // Moderate probability near a single tree.
                     // NOLINTNEXTLINE(readability-magic-numbers)
-                    prefersLocation = getRandomInt(100) < 25;
+                    prefersLocation =
+                        getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                        WorldGeneratorBase::getParam<int>(
+                            "redBirdsPrefersLocationNearSingleTreeProbability");
                 }
                 else if (tile->getGround() == hash("GroundGrass"))
                 {
                     // Lower probability in open grass areas (birds can still be found there).
                     // NOLINTNEXTLINE(readability-magic-numbers)
-                    prefersLocation = getRandomInt(100) < 8;
+                    prefersLocation =
+                        getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
+                        WorldGeneratorBase::getParam<int>(
+                            "redBirdsPrefersLocationOpenGrassAreasProbability");
                 }
 
                 if (prefersLocation)
