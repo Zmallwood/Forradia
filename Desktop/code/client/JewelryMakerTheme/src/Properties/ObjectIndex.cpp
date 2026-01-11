@@ -48,6 +48,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         addObjectEntry("ObjectWoodWallEast", 1.3F, true, 0, true, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectWoodWallWest", 1.3F, true, 0, true, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectAnvil", 1.3F, true, 0, false, false);
     }
 
     auto ObjectIndex::addObjectEntry(std::string_view objectName, float modelScaling,
