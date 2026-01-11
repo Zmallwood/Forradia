@@ -52,6 +52,8 @@ namespace ForradiaEngine::JewelryMakerTheme
         addObjectEntry("ObjectAnvil", 1.3F, true, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectIronOre", 1.5F, false, 0, false, true);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectWoodenBox", 1.5F, true, 8, false, true);
     }
 
     auto ObjectIndex::addObjectEntry(std::string_view objectName, float modelScaling,
