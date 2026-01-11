@@ -40,6 +40,14 @@ namespace ForradiaEngine::JewelryMakerTheme
         addObjectEntry("ObjectWoodLog", 1.3F, false, 0, false, true);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectWoodPlank", 1.4F, false, 0, false, true);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectWoodWallNorth", 1.3F, true, 0, true, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectWoodWallSouth", 1.3F, true, 0, true, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectWoodWallEast", 1.3F, true, 0, true, false);
+        // NOLINTNEXTLINE(readability-magic-numbers)
+        addObjectEntry("ObjectWoodWallWest", 1.3F, true, 0, true, false);
     }
 
     auto ObjectIndex::addObjectEntry(std::string_view objectName, float modelScaling,

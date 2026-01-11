@@ -24,6 +24,128 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
+    auto getAction<hash("ActionCreateAnvil")>() -> Action
+    {
+        return {.label = "Create anvil",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectStone")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.removeObject("ObjectStone", 1);
+
+                    auto objectsStack{tile->getObjectsStack()};
+
+                    objectsStack->addObject("ObjectAnvil");
+
+                    GUIChatBox::instance().print("You create an anvil.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionLayWoodFloor")>() -> Action
+    {
+        return {.label = "Lay wood floor",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectWoodPlank")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.removeObject("ObjectWoodPlank", 1);
+
+                    tile->setGround(hash("GroundWoodFloor"));
+
+                    GUIChatBox::instance().print("You lay some wood floor.");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionBuildWoodWallWest")>() -> Action
+    {
+        return {.label = "Build wood wall west",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectWoodPlank")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    auto objectStack{tile->getObjectsStack()};
+
+                    inventory.removeObject("ObjectWoodPlank", 1);
+
+                    objectStack->addObject("ObjectWoodWallWest");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionBuildWoodWallSouth")>() -> Action
+    {
+        return {.label = "Build wood wall south",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectWoodPlank")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    auto objectStack{tile->getObjectsStack()};
+
+                    inventory.removeObject("ObjectWoodPlank", 1);
+
+                    objectStack->addObject("ObjectWoodWallSouth");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionBuildWoodWallEast")>() -> Action
+    {
+        return {.label = "Build wood wall east",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectWoodPlank")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    auto objectStack{tile->getObjectsStack()};
+
+                    inventory.removeObject("ObjectWoodPlank", 1);
+
+                    objectStack->addObject("ObjectWoodWallEast");
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionBuildWoodWallNorth")>() -> Action
+    {
+        return {.label = "Build wood wall north",
+                .groundMatches = {},
+                .objectMatches = {},
+                .objectsInInventory = {hash("ObjectWoodPlank")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    auto objectStack{tile->getObjectsStack()};
+
+                    inventory.removeObject("ObjectWoodPlank", 1);
+
+                    objectStack->addObject("ObjectWoodWallNorth");
+                }};
+    }
+
+    template <>
     auto getAction<hash("ActionSawIntoPlanks")>() -> Action
     {
         return {.label = "Saw into planks",

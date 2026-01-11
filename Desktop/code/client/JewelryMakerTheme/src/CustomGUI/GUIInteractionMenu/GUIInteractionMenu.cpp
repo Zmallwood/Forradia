@@ -56,7 +56,13 @@ namespace ForradiaEngine::JewelryMakerTheme
                      getAction<hash("ActionMineStoneBlock")>(),
                      getAction<hash("ActionChopTree")>(),
                      getAction<hash("ActionChopIntoLogs")>(),
-                     getAction<hash("ActionSawIntoPlanks")>()};
+                     getAction<hash("ActionSawIntoPlanks")>(),
+                     getAction<hash("ActionBuildWoodWallNorth")>(),
+                     getAction<hash("ActionBuildWoodWallSouth")>(),
+                     getAction<hash("ActionBuildWoodWallEast")>(),
+                     getAction<hash("ActionBuildWoodWallWest")>(),
+                     getAction<hash("ActionLayWoodFloor")>(),
+                     getAction<hash("ActionCreateAnvil")>()};
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool

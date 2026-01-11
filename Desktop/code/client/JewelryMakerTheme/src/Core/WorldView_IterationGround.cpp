@@ -95,7 +95,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto color11{Palette::getColor<hash("White")>()};
         auto color01{Palette::getColor<hash("White")>()};
 
-        if (ground != hash("GroundStoneSlab"))
+        if (ground != hash("GroundStoneSlab") && ground != hash("GroundWoodFloor"))
         {
             color00 = getColorByGroundType(ground);
 
