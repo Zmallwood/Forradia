@@ -24,6 +24,26 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
+    auto getAction<hash("ActionCreateIronNail")>() -> Action
+    {
+        return {.label = "Create iron nail",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectAnvil")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    // inventory.removeObject("ObjectStone", 1);
+
+                    inventory.addObject("ObjectIronNail");
+
+                    GUIChatBox::instance().print("You create an iron nail.");
+                }};
+    }
+
+    template <>
     auto getAction<hash("ActionCreateAnvil")>() -> Action
     {
         return {.label = "Create anvil",
@@ -234,7 +254,16 @@ namespace ForradiaEngine::JewelryMakerTheme
                     {
                         objectStack->removeOneOfObjectOfType("ObjectStoneBlock");
 
-                        objectStack->addObject("ObjectStone");
+                        auto dropType{getRandomInt(2)};
+
+                        if (dropType == 0)
+                        {
+                            objectStack->addObject("ObjectStone");
+                        }
+                        else
+                        {
+                            objectStack->addObject("ObjectIronOre");
+                        }
 
                         GUIChatBox::instance().print("You mine a stone block.");
                     }
