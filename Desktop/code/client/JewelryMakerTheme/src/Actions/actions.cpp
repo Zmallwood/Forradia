@@ -24,6 +24,30 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
+    auto getAction<hash("ActionCreateWoodenBox")>() -> Action
+    {
+        return {.label = "Create wooden box",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectWoodPlank")},
+                .objectsInInventory = {hash("ObjectIronNail")},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto &inventory{Player::instance().getObjectsInventoryRef()};
+
+                    inventory.removeObject("ObjectIronNail", 1);
+
+                    auto objectStack{tile->getObjectsStack()};
+
+                    objectStack->removeOneOfObjectOfType("ObjectWoodPlank");
+
+                    objectStack->addObject("ObjectWoodenBox");
+
+                    GUIChatBox::instance().print("You create a wooden box.");
+                }};
+    }
+
+    template <>
     auto getAction<hash("ActionCreateIronNail")>() -> Action
     {
         return {.label = "Create iron nail",
