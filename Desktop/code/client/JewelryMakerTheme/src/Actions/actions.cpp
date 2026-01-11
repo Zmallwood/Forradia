@@ -24,6 +24,79 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
+    auto getAction<hash("ActionSawIntoPlanks")>() -> Action
+    {
+        return {.label = "Saw into planks",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectWoodLog")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto objectStack{tile->getObjectsStack()};
+
+                    if (objectStack->countHasObject("ObjectWoodLog") > 0)
+                    {
+                        objectStack->removeOneOfObjectOfType("ObjectWoodLog");
+
+                        objectStack->addObject("ObjectWoodPlank");
+
+                        GUIChatBox::instance().print("You saw the log into planks.");
+                    }
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionChopIntoLogs")>() -> Action
+    {
+        return {.label = "Chop into logs",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectFelledTree")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto objectStack{tile->getObjectsStack()};
+
+                    if (objectStack->countHasObject("ObjectFelledTree") > 0)
+                    {
+                        objectStack->removeOneOfObjectOfType("ObjectFelledTree");
+
+                        objectStack->addObject("ObjectWoodLog");
+
+                        GUIChatBox::instance().print("You chop the felled tree into logs.");
+                    }
+                }};
+    }
+
+    template <>
+    auto getAction<hash("ActionChopTree")>() -> Action
+    {
+        return {.label = "Chop",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectFirTree"), hash("ObjectBirchTree")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    auto objectStack{tile->getObjectsStack()};
+
+                    if (objectStack->countHasObject("ObjectFirTree") > 0 ||
+                        objectStack->countHasObject("ObjectBirchTree") > 0)
+                    {
+                        auto treeType{objectStack->countHasObject("ObjectFirTree") > 0
+                                          ? "ObjectFirTree"
+                                          : "ObjectBirchTree"};
+                        objectStack->removeOneOfObjectOfType(treeType);
+
+                        objectStack->addObject("ObjectFelledTree");
+
+                        GUIChatBox::instance().print("You chop down a tree.");
+                    }
+                }};
+    }
+
+    template <>
     auto getAction<hash("ActionMineStoneBlock")>() -> Action
     {
         return {.label = "Mine",

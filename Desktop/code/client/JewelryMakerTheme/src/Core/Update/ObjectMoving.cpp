@@ -24,54 +24,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto ObjectMoving::onMouseDown(Uint8 mouseButton) -> bool
     {
-        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
-
-        auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
-
-        if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
-            inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+        if (this->checkMouseDownInInventoryWindow(mouseButton))
         {
-            if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
-            {
-                m_objectInAir = *objectPtrPtr;
-
-                *objectPtrPtr = nullptr;
-
-                return true;
-            }
+            return true;
         }
 
-        if (!m_objectInAir && mouseButton == SDL_BUTTON_LEFT)
+        if (this->checkMouseDownInAnyContainerWindow(mouseButton))
         {
-            auto mainScene{SceneManager::instance().getScene("MainScene")};
-
-            auto gui{mainScene->getGUI()};
-
-            auto childComponents{gui->getChildComponentsRecursively()};
-
-            for (const auto &childComponent : childComponents)
-            {
-                auto castedToGUIContainerWindow{
-                    std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
-
-                if (castedToGUIContainerWindow)
-                {
-                    auto bounds{castedToGUIContainerWindow->getBounds()};
-
-                    if (bounds.contains(mousePos))
-                    {
-                        if (auto objectPtrPtr{
-                                castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
-                        {
-                            m_objectInAir = *objectPtrPtr;
-
-                            *objectPtrPtr = nullptr;
-
-                            return true;
-                        }
-                    }
-                }
-            }
+            return true;
         }
 
         if (mouseButton == SDL_BUTTON_LEFT)
@@ -132,9 +92,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     *objectPtrPtr = m_objectInAir;
 
-                    Player::instance().addPlayerAction(PlayerActionTypes::Move,
+                    Player::instance().addPlayerAction(
+                        PlayerActionTypes::Move,
                         GUIInventoryWindow::instance().getContainerObjectType(), {-1, -1},
-                                                       *objectPtrPtr);
+                        *objectPtrPtr);
 
                     m_objectInAir = nullptr;
 
@@ -206,6 +167,75 @@ namespace ForradiaEngine::JewelryMakerTheme
         }
 
         return false;
+    }
+
+    auto ObjectMoving::checkMouseDownInInventoryWindow(Uint8 mouseButton) -> bool
+    {
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+
+        auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
+
+        if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
+            inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+        {
+            if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+            {
+                m_objectInAir = *objectPtrPtr;
+
+                *objectPtrPtr = nullptr;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    auto ObjectMoving::checkMouseDownInAnyContainerWindow(Uint8 mouseButton) -> bool
+    {
+
+        auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
+
+        if (!m_objectInAir && mouseButton == SDL_BUTTON_LEFT)
+        {
+            auto mainScene{SceneManager::instance().getScene("MainScene")};
+
+            auto gui{mainScene->getGUI()};
+
+            auto childComponents{gui->getChildComponentsRecursively()};
+
+            for (const auto &childComponent : childComponents)
+            {
+                auto castedToGUIContainerWindow{
+                    std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
+
+                if (castedToGUIContainerWindow)
+                {
+                    auto bounds{castedToGUIContainerWindow->getBounds()};
+
+                    if (bounds.contains(mousePos))
+                    {
+                        if (auto objectPtrPtr{
+                                castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
+                        {
+                            m_objectInAir = *objectPtrPtr;
+
+                            *objectPtrPtr = nullptr;
+
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    auto ObjectMoving::checkMouseDownInGameWorld(Uint8 mouseButton) -> bool
+    {
+
     }
 
     auto ObjectMoving::render() const -> void
