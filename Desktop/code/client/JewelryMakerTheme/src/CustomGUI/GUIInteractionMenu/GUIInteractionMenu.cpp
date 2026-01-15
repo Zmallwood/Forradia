@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUIInteractionMenu.hpp"
-#include "Actions/actions.hpp"
+#include "actions.hpp"
 #include "Core/Update/TileHovering.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "Player/Player.hpp"

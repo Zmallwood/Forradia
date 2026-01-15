@@ -4,7 +4,7 @@
  *********************************************************************/
 
 #include "GUITimedActionBar.hpp"
-#include "Actions/actions.hpp"
+#include "actions.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
 {

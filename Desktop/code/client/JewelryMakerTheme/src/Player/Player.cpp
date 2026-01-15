@@ -14,7 +14,7 @@
 #include "ForradiaEngine/Common/Utilities.hpp"
 #include "ForradiaEngine/Common/General.hpp"
 #include "PlayerObjectsInventory.hpp"
-#include "Actions/actions.hpp"
+#include "actions.hpp"
 #include "ForradiaEngine/Assets/Audio/AudioBank.hpp"
 
 namespace ForradiaEngine::JewelryMakerTheme
