@@ -32,7 +32,7 @@ namespace ForradiaEngine
 
         GLenum status{glewInit()};
 
-        if (GLEW_OK != status)
+        If(GLEW_OK != status)
         {
             auto errorString{
                 std::string(reinterpret_cast<const char *>(glewGetErrorString(status)))};

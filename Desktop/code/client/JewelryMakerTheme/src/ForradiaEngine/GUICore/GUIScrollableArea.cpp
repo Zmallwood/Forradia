@@ -17,7 +17,7 @@ namespace ForradiaEngine
 {
     auto GUIScrollableArea::onMouseDown(Uint8 mouseButton) -> bool
     {
-        if (!this->getVisible())
+        If(!this->getVisible())
         {
             return false;
         }
@@ -28,19 +28,19 @@ namespace ForradiaEngine
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (upArrowBounds.contains(mousePos))
+        If(upArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
 
             m_scrollPosition -= k_scrollbarMoveStepSize;
         }
-        else if (downArrowBounds.contains(mousePos))
+        ElseIf(downArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
 
             m_scrollPosition += k_scrollbarMoveStepSize;
         }
-        else if (sliderBounds.contains(mousePos))
+        ElseIf(sliderBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
 
@@ -54,7 +54,7 @@ namespace ForradiaEngine
 
     auto GUIScrollableArea::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (!this->getVisible())
+        If(!this->getVisible())
         {
             return false;
         }
@@ -63,7 +63,7 @@ namespace ForradiaEngine
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (getBounds().contains(mousePos))
+        If(getBounds().contains(mousePos))
         {
             return true;
         }
@@ -83,15 +83,15 @@ namespace ForradiaEngine
 
         auto bounds{GUIComponent::getBounds()};
 
-        if (upArrowBounds.contains(mousePos))
+        If (upArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
-        else if (downArrowBounds.contains(mousePos))
+        ElseIf (downArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
-        else if (sliderBounds.contains(mousePos))
+        ElseIf (sliderBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }

@@ -14,7 +14,7 @@ namespace ForradiaEngine
 
     auto Point::operator<(const Point &other) const -> bool
     {
-        if (this->x != other.x)
+        If(this->x != other.x)
         {
             return this->x < other.x;
         }

@@ -60,7 +60,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 auto xPos{static_cast<int>(currentX)};
                 auto yPos{static_cast<int>(currentY)};
 
-                if (worldArea->isValidCoordinate(xPos, yPos))
+                If(worldArea->isValidCoordinate(xPos, yPos))
                 {
                     // NOLINTBEGIN(readability-magic-numbers)
                     auto radius{static_cast<int>(
@@ -84,16 +84,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 // Occasionally change direction.
                 // NOLINTBEGIN(readability-magic-numbers)
-                if (getRandomInt(100) < 20)
+                If(getRandomInt(100) < 20)
                 {
                     direction += getRandomInt(60) - 30;
 
-                    if (direction < 0)
+                    If(direction < 0)
                     {
                         direction += 360;
                     }
 
-                    if (direction >= 360)
+                    If(direction >= 360)
                     {
                         direction -= 360;
                     }
@@ -127,21 +127,21 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto xPos = xCenter - radius; xPos <= xCenter + radius; xPos++)
                 {
-                    if (!worldArea->isValidCoordinate(xPos, yPos))
+                    If(!worldArea->isValidCoordinate(xPos, yPos))
                     {
                         continue;
                     }
 
                     auto distance{calcDistance(xPos, yPos, xCenter, yCenter)};
 
-                    if (distance > static_cast<float>(radius))
+                    If(distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
                     auto tile = worldArea->getTile(xPos, yPos);
 
-                    if (!tile)
+                    If(!tile)
                     {
                         continue;
                     }
@@ -170,32 +170,32 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             for (auto xPos = centerX - radius; xPos <= centerX + radius; xPos++)
             {
-                if (!getWorldArea()->isValidCoordinate(xPos, yPos))
+                If(!getWorldArea()->isValidCoordinate(xPos, yPos))
                 {
                     continue;
                 }
 
                 auto distance{calcDistance(xPos, yPos, centerX, centerY)};
 
-                if (distance > static_cast<float>(radius))
+                If(distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
                 auto tile{getWorldArea()->getTile(xPos, yPos)};
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }
 
-                if (tile->getGround() == hash("GroundWater"))
+                If(tile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
 
-                if (WorldGeneratorGround::setTileElevationForHill(tile, xPos, yPos, distance,
-                                                                  radius) == false)
+                If(WorldGeneratorGround::setTileElevationForHill(tile, xPos, yPos, distance,
+                                                                 radius) == false)
                 {
                     continue;
                 }
@@ -209,7 +209,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto currentElevation{tile->getElevation()};
         auto globalMaxElevation{getMaxElevation()};
 
-        if (currentElevation >= globalMaxElevation)
+        If(currentElevation >= globalMaxElevation)
         {
             return false;
         }
@@ -234,7 +234,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto smoothScale{1.0F};
 
-        if (elevationRatio >= k_falloffStart)
+        If(elevationRatio >= k_falloffStart)
         {
             // Smooth falloff using a smoothstep-like curve for very gradual transition.
             // When at falloffStart (60%), scale is 1.0.
@@ -255,7 +255,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Apply smooth scaling to elevation gain.
         auto elevationGain{static_cast<int>(baseElevationGain * smoothScale)};
 
-        if (elevationGain > 0)
+        If(elevationGain > 0)
         {
             // Calculate the target elevation before applying slope limits.
             auto desiredElevation{currentElevation + elevationGain};
@@ -266,7 +266,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             // Use the minimum of desired elevation and max allowed elevation.
             auto newElevation{desiredElevation};
 
-            if (newElevation > maxAllowedElevation)
+            If(newElevation > maxAllowedElevation)
             {
                 // Respect the slope constraint when the desired elevation is too high.
                 newElevation = maxAllowedElevation;

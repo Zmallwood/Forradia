@@ -11,9 +11,9 @@ namespace ForradiaEngine::JewelryMakerTheme
     void ObjectIndex::initialize()
     {
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectFirTree", 1.2F, false, 0, false, false);
+        addObjectEntry("ObjectFirTree", 2.2F, false, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
-        addObjectEntry("ObjectBirchTree", 1.2F, false, 0, false, false);
+        addObjectEntry("ObjectBirchTree", 2.2F, false, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
         addObjectEntry("ObjectBush1", 1.2F, false, 0, false, false);
         // NOLINTNEXTLINE(readability-magic-numbers)
@@ -67,7 +67,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectIndex::getModelScaling(int objectHash) const -> float
     {
-        if (m_entries.contains(objectHash))
+        If(m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).modelScaling;
         }
@@ -82,7 +82,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectIndex::getIgnoreIndividualModelScaling(int objectHash) const -> bool
     {
-        if (m_entries.contains(objectHash))
+        If(m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).ignoreIndividualModelScaling;
         }
@@ -92,7 +92,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectIndex::getNumContainerSlots(int objectHash) const -> int
     {
-        if (m_entries.contains(objectHash))
+        If(m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).numContainerSlots;
         }
@@ -102,7 +102,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectIndex::getBlocksMovement(int objectHash) const -> bool
     {
-        if (m_entries.contains(objectHash))
+        If(m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).blocksMovement;
         }
@@ -112,7 +112,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectIndex::getCanBePickedUp(int objectHash) const -> bool
     {
-        if (m_entries.contains(objectHash))
+        If(m_entries.contains(objectHash))
         {
             return m_entries.at(objectHash).canBePickedUp;
         }

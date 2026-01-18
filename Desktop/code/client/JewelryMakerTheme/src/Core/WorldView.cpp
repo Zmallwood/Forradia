@@ -68,7 +68,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-                if (xCoordinate % k_tilesGroupSize == 0 && yCoordinate % k_tilesGroupSize == 0)
+                If(xCoordinate % k_tilesGroupSize == 0 && yCoordinate % k_tilesGroupSize == 0)
                 {
                     m_tiles.clear();
 
@@ -80,7 +80,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         }
                     }
 
-                    if (!m_tiles.empty())
+                    If(!m_tiles.empty())
                     {
                         GroundRenderer::instance().drawTiles(m_tiles);
                     }

@@ -25,7 +25,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
         auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-        if (!m_worldArea->isValidCoordinate(xCoordinate, yCoordinate))
+        If(!m_worldArea->isValidCoordinate(xCoordinate, yCoordinate))
         {
             return;
         }
@@ -35,8 +35,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto objects{objectsStack->getObjects()};
 
-        if (!m_elevationsAll.contains(xCoordinate) ||
-            !m_elevationsAll[xCoordinate].contains(yCoordinate))
+        If(!m_elevationsAll.contains(xCoordinate) ||
+           !m_elevationsAll[xCoordinate].contains(yCoordinate))
         {
             return;
         }
@@ -63,7 +63,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                 yPos < (m_groundGridSize.height + m_gridSize.height) / 2};
 
         // Only render objects, and entities within the normal grid size.
-        if (isWithinNormalGrid)
+        If(isWithinNormalGrid)
         {
             for (const auto &object : objects)
             {
@@ -73,7 +73,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 totModelScaling *= ObjectIndex::instance().getModelScaling(objectType);
 
-                if (!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
+                If(!ObjectIndex::instance().getIgnoreIndividualModelScaling(objectType))
                 {
                     totModelScaling *= object->getModelScaling();
                 }
@@ -86,7 +86,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     totModelScaling, 0.0F, ThemeProperties::getElevationHeight());
             }
 
-            if (auto entity{tile->getEntity()})
+            If(auto entity{tile->getEntity()})
             {
                 auto entityType{entity->getType()};
 
@@ -107,7 +107,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     levitationHeight);
             }
 
-            if (xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
+            If(xCoordinate == m_playerPos.x && yCoordinate == m_playerPos.y)
             {
                 auto playerSmoothPosition{Player::instance().getSmoothPosition()};
 
@@ -120,7 +120,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             }
         }
 
-        if (xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
+        If(xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
         {
             for (auto &elevation : elevations)
             {

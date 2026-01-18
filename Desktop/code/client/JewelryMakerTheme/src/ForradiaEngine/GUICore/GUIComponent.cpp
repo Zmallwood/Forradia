@@ -24,14 +24,14 @@ namespace ForradiaEngine
     // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIComponent::onMouseDown(Uint8 mouseButton) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onMouseDown(mouseButton); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onMouseDown(mouseButton); }))
         {
             return true;
         }
@@ -42,14 +42,14 @@ namespace ForradiaEngine
     // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIComponent::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onMouseUp(mouseButton, clickSpeed); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onMouseUp(mouseButton, clickSpeed); }))
         {
             return true;
         }
@@ -59,14 +59,14 @@ namespace ForradiaEngine
 
     auto GUIComponent::onMouseWheel(int delta) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onMouseWheel(delta); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onMouseWheel(delta); }))
         {
             return true;
         }
@@ -76,14 +76,14 @@ namespace ForradiaEngine
 
     auto GUIComponent::onKeyDown(SDL_Keycode key) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onKeyDown(key); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onKeyDown(key); }))
         {
             return true;
         }
@@ -93,14 +93,14 @@ namespace ForradiaEngine
 
     auto GUIComponent::onKeyUp(SDL_Keycode key) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onKeyUp(key); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onKeyUp(key); }))
         {
             return true;
         }
@@ -110,14 +110,14 @@ namespace ForradiaEngine
 
     auto GUIComponent::onTextInput(std::string_view text) -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
 
-        if (std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
-                        [=](const std::shared_ptr<GUIComponent> &comp)
-                        { return comp->onTextInput(text); }))
+        If(std::any_of(m_childComponents.rbegin(), m_childComponents.rend(),
+                       [=](const std::shared_ptr<GUIComponent> &comp)
+                       { return comp->onTextInput(text); }))
         {
             return true;
         }
@@ -127,7 +127,7 @@ namespace ForradiaEngine
 
     auto GUIComponent::mouseHoveringGUI() const -> bool
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return false;
         }
@@ -164,7 +164,7 @@ namespace ForradiaEngine
 
     auto GUIComponent::update() -> void
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return;
         }
@@ -179,7 +179,7 @@ namespace ForradiaEngine
 
     auto GUIComponent::render() const -> void
     {
-        if (!m_visible)
+        If(!m_visible)
         {
             return;
         }
@@ -197,7 +197,7 @@ namespace ForradiaEngine
         auto boundsResult{m_bounds};
 
         // If this component has a parent, offset bounds by parent's position.
-        if (m_parentComponent != nullptr)
+        If(m_parentComponent != nullptr)
         {
             auto parentPosition{m_parentComponent->getBounds().getPosition()};
 

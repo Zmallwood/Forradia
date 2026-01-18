@@ -34,17 +34,17 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto minElevation{0};
 
-            if (elevationType < 40)
+            If(elevationType < 40)
             {
                 // 40% start from high elevation.
                 minElevation = 50;
             }
-            else if (elevationType < 70)
+            ElseIf(elevationType < 70)
             {
                 // 30% start from medium elevation.
                 minElevation = 20;
             }
-            else
+            Else
             {
                 // 30% start from lower elevation.
                 minElevation = 5;
@@ -60,7 +60,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 // If the tile is found and the elevation is greater than the minimum elevation,
                 // and the tile is a valid water placement location.
-                if (tile && tile->getElevation() > minElevation && isValidForWater(startX, startY))
+                If(tile && tile->getElevation() > minElevation && isValidForWater(startX, startY))
                 {
                     foundStart = true;
                 }
@@ -68,7 +68,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 attempts++;
             }
 
-            if (!foundStart)
+            If(!foundStart)
             {
                 // Just continue to the next river.
                 continue;
@@ -78,13 +78,13 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto baseLength{40};
             auto lengthVariation{60};
 
-            if (startElevation > 40)
+            If(startElevation > 40)
             {
                 // Increase the base length and the length variation.
                 baseLength = 60;
                 lengthVariation = 80;
             }
-            else if (startElevation > 15)
+            ElseIf(startElevation > 15)
             {
                 // Increase the base length and the length variation.
                 baseLength = 50;
@@ -120,7 +120,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto tile{worldArea->getTile(centerX, centerY)};
 
-                if (tile && tile->getElevation() <= 32 && tile->getGround() != hash("GroundWater"))
+                If(tile && tile->getElevation() <= 32 && tile->getGround() != hash("GroundWater"))
                 {
                     // Set the flag to indicate that we found a suitable valley location.
                     foundLocation = true;
@@ -129,7 +129,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 attempts++;
             }
 
-            if (!foundLocation)
+            If(!foundLocation)
             {
                 // Just continue to the next lake.
                 continue;
@@ -143,20 +143,20 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->isValidCoordinate(x, y))
+                    If(!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
                     auto tile{worldArea->getTile(x, y)};
 
-                    if (!tile)
+                    If(!tile)
                     {
                         // Just continue to the next tile.
                         continue;
                     }
 
-                    if (!isValidForWater(x, y))
+                    If(!isValidForWater(x, y))
                     {
                         // Just continue to the next tile.
                         continue;
@@ -164,7 +164,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     auto distance{calcDistance(x, y, centerX, centerY)};
 
-                    if (distance * distance <= static_cast<float>(radius * radius))
+                    If(distance * distance <= static_cast<float>(radius * radius))
                     {
                         tile->setGround("GroundWater");
 
@@ -184,14 +184,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto WorldGeneratorWater::isValidForWater(int x, int y) -> bool
     {
-        if (!getWorldArea()->isValidCoordinate(x, y))
+        If(!getWorldArea()->isValidCoordinate(x, y))
         {
             return false;
         }
 
         auto tile{getWorldArea()->getTile(x, y)};
 
-        if (!tile)
+        If(!tile)
         {
             return false;
         }
@@ -216,19 +216,19 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto adjacentX{x + directions[dir][0]};
             auto adjacentY{y + directions[dir][1]};
 
-            if (!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
+            If(!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
             auto adjacentTile{getWorldArea()->getTile(adjacentX, adjacentY)};
 
-            if (!adjacentTile)
+            If(!adjacentTile)
             {
                 continue;
             }
 
-            if (adjacentTile->getGround() != hash("GroundWater"))
+            If(adjacentTile->getGround() != hash("GroundWater"))
             {
                 adjacentTile->setElevation(0);
             }

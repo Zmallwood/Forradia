@@ -34,7 +34,8 @@ namespace ForradiaEngine
         auto hash{ForradiaEngine::hash(imageName)};
 
         auto imageDimensions{TextureBank::getTextureDimensions(hash)};
-        if (imageDimensions.width <= 0 || imageDimensions.height <= 0)
+
+        If(imageDimensions.width <= 0 || imageDimensions.height <= 0)
         {
             return;
         }

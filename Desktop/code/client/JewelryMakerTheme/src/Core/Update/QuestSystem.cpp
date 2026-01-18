@@ -31,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         for (const auto &quest : this->m_quests)
         {
-            if (quest->isCompleted)
+            If(quest->isCompleted)
             {
                 continue;
             }
@@ -46,7 +46,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         for (const auto &quest : this->m_quests)
         {
-            if (quest->isCompleted)
+            If(quest->isCompleted)
             {
                 continue;
             }
@@ -61,7 +61,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         for (const auto &quest : this->m_quests)
         {
-            if (quest->isCompleted)
+            If(quest->isCompleted)
             {
                 continue;
             }
@@ -75,7 +75,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         for (const auto &quest : this->m_quests)
         {
-            if (quest->isCompleted)
+            If(quest->isCompleted)
             {
                 continue;
             }

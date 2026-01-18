@@ -21,11 +21,11 @@ namespace ForradiaEngine
         // Read the model file.
         const aiScene *scene{importer.ReadFile(filePath.data(), flags)};
 
-        if (nullptr == scene || nullptr == scene->mRootNode)
+        If(nullptr == scene || nullptr == scene->mRootNode)
         {
             throwError("Assimp could not load model: " + std::string(importer.GetErrorString()));
         }
-        else
+        Else
         {
             this->processNode(scene->mRootNode, scene, aiMatrix4x4());
         }
@@ -57,12 +57,12 @@ namespace ForradiaEngine
     auto Model::processMesh(aiMesh *mesh, const aiScene *scene, aiMatrix4x4 transformation)
         -> GLMMesh
     {
-        if (mesh == nullptr)
+        If(mesh == nullptr)
         {
             throwError("mesh is nullptr");
         }
 
-        if (scene == nullptr)
+        If(scene == nullptr)
         {
             throwError("scene is nullptr");
         }
@@ -76,7 +76,7 @@ namespace ForradiaEngine
 
     auto Model::getVertices(aiMesh *mesh, aiMatrix4x4 transformation) -> std::vector<GLMVertex>
     {
-        if (mesh == nullptr)
+        If(mesh == nullptr)
         {
             throwError("mesh is nullptr");
         }
@@ -100,7 +100,7 @@ namespace ForradiaEngine
             vertex.position = position;
 
             // If there are normals.
-            if (mesh->mNormals != nullptr)
+            If(mesh->mNormals != nullptr)
             {
                 glm::vec3 normal;
 
@@ -113,7 +113,7 @@ namespace ForradiaEngine
             }
 
             // If there are texture coordinates.
-            if (mesh->mTextureCoords[0] != nullptr)
+            If(mesh->mTextureCoords[0] != nullptr)
             {
                 glm::vec2 texCoords;
 
@@ -136,7 +136,7 @@ namespace ForradiaEngine
 
     auto Model::getIndices(aiMesh *mesh) -> std::vector<unsigned int>
     {
-        if (mesh == nullptr)
+        If(mesh == nullptr)
         {
             throwError("mesh is null");
         }
@@ -160,12 +160,12 @@ namespace ForradiaEngine
 
     auto Model::getTextures(aiMesh *mesh, const aiScene *scene) -> std::vector<Texture>
     {
-        if (mesh == nullptr)
+        If(mesh == nullptr)
         {
             throwError("mesh is nullptr");
         }
 
-        if (scene == nullptr)
+        If(scene == nullptr)
         {
             throwError("scene is nullptr");
         }

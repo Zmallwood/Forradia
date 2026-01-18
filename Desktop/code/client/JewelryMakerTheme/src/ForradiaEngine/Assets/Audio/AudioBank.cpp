@@ -11,7 +11,7 @@ namespace ForradiaEngine
 {
     auto AudioBank::initialize() -> void
     {
-        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+        If(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
         {
             throwError("Failed to open audio: " + std::string(Mix_GetError()));
         }
@@ -30,7 +30,7 @@ namespace ForradiaEngine
         auto basePath{std::string(SDL_GetBasePath())};
         auto musicPath{basePath + k_relativeMusicPath};
 
-        if (std::filesystem::exists(musicPath) == false)
+        If(std::filesystem::exists(musicPath) == false)
         {
             return;
         }
@@ -41,7 +41,7 @@ namespace ForradiaEngine
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (getFileExtension(filePath) == "ogg" || getFileExtension(filePath) == "mp3")
+            If(getFileExtension(filePath) == "ogg" || getFileExtension(filePath) == "mp3")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
                 auto hash{ForradiaEngine::hash(fileName)};
@@ -58,7 +58,7 @@ namespace ForradiaEngine
         auto basePath{std::string(SDL_GetBasePath())};
         auto soundsPath{basePath + k_relativeSoundsPath};
 
-        if (std::filesystem::exists(soundsPath) == false)
+        If(std::filesystem::exists(soundsPath) == false)
         {
             return;
         }
@@ -69,7 +69,7 @@ namespace ForradiaEngine
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (getFileExtension(filePath) == "wav")
+            If(getFileExtension(filePath) == "wav")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
                 auto hash{ForradiaEngine::hash(fileName)};
@@ -83,7 +83,7 @@ namespace ForradiaEngine
 
     auto AudioBank::playMusic(int musicNameHash) -> void
     {
-        if (m_musicEntries.contains(musicNameHash) == false)
+        If(m_musicEntries.contains(musicNameHash) == false)
         {
             return;
         }
@@ -93,7 +93,7 @@ namespace ForradiaEngine
 
     auto AudioBank::playSound(int audioNameHash) -> void
     {
-        if (m_soundEntries.contains(audioNameHash) == false)
+        If(m_soundEntries.contains(audioNameHash) == false)
         {
             return;
         }
@@ -103,11 +103,11 @@ namespace ForradiaEngine
 
     auto AudioBank::toggleMuteMusic() -> void
     {
-        if (m_musicMuted)
+        If(m_musicMuted)
         {
             this->unmuteMusic();
         }
-        else
+        Else
         {
             this->muteMusic();
         }

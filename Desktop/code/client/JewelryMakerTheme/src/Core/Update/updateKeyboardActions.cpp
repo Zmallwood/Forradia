@@ -13,25 +13,25 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto updateKeyboardActions(SDL_Keycode key) -> void
     {
-        if (key == SDLK_ESCAPE)
+        If(key == SDLK_ESCAPE)
         {
             GUISystemMenu::instance().toggleVisibility();
         }
-        else if (key == SDLK_b)
+        ElseIf(key == SDLK_b)
         {
             GUIInventoryWindow::instance().toggleVisibility();
         }
-        else if (key == SDLK_c)
+        ElseIf(key == SDLK_c)
         {
             GUICraftingWindow::instance().toggleVisibility();
         }
-        else if (key == SDLK_RETURN)
+        ElseIf(key == SDLK_RETURN)
         {
-            if (GUIChatBox::instance().getInputActive())
+            If(GUIChatBox::instance().getInputActive())
             {
                 GUIChatBox::instance().submitInput();
             }
-            else
+            Else
             {
                 GUIChatBox::instance().enableInput();
             }

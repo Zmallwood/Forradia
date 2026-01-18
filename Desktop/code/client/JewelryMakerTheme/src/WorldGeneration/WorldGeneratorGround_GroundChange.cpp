@@ -32,7 +32,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             // Check if this area is suitable for grass (moderate elevation, not water).
             // NOLINTNEXTLINE(readability-magic-numbers)
-            if (!tile || tile->getElevation() > 100 || tile->getGround() == hash("GroundWater"))
+            If(!tile || tile->getElevation() > 100 || tile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
@@ -54,15 +54,15 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 auto tile = worldArea->getTile(xPos, yPos);
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }
 
                 // Grass naturally grows in low-lying areas that aren't water.
                 // NOLINTBEGIN(readability-magic-numbers)
-                if (tile->getElevation() <= 20 && tile->getGround() != hash("GroundWater") &&
-                    tile->getGround() != hash("GroundRock"))
+                If(tile->getElevation() <= 20 && tile->getGround() != hash("GroundWater") &&
+                   tile->getGround() != hash("GroundRock"))
                 {
                     tile->setGround("GroundGrass");
                 }
@@ -88,7 +88,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto tile{worldArea->getTile(xCenter, yCenter)};
 
             // NOLINTNEXTLINE(readability-magic-numbers)
-            if (!tile || tile->getElevation() < 80)
+            If(!tile || tile->getElevation() < 80)
             {
                 continue;
             }
@@ -105,21 +105,21 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto xPos = xCenter - radius; xPos <= xCenter + radius; xPos++)
                 {
-                    if (!worldArea->isValidCoordinate(xPos, yPos))
+                    If(!worldArea->isValidCoordinate(xPos, yPos))
                     {
                         continue;
                     }
 
                     auto distance{calcDistance(xPos, yPos, xCenter, yCenter)};
 
-                    if (distance > static_cast<float>(radius))
+                    If(distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
                     auto rockTile{worldArea->getTile(xPos, yPos)};
 
-                    if (WorldGeneratorGround::setTileGroundToRock(rockTile, xPos, yPos) == false)
+                    If(WorldGeneratorGround::setTileGroundToRock(rockTile, xPos, yPos) == false)
                     {
                         continue;
                     }
@@ -133,7 +133,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         // Skip if the tile is not found or the ground is water.
 
-        if (!tile || tile->getGround() == hash("GroundWater"))
+        If(!tile || tile->getGround() == hash("GroundWater"))
         {
             return false;
         }
@@ -144,7 +144,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto elevation{tile->getElevation()};
 
         // NOLINTNEXTLINE(readability-magic-numbers)
-        if (elevation > 60)
+        If(elevation > 60)
         {
             tile->setGround("GroundRock");
         }
@@ -160,19 +160,19 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
             for (auto xPos = centerX - radius; xPos <= centerX + radius; xPos++)
             {
-                if (!getWorldArea()->isValidCoordinate(xPos, yPos))
+                If(!getWorldArea()->isValidCoordinate(xPos, yPos))
                 {
                     continue;
                 }
 
                 auto distance{calcDistance(xPos, yPos, centerX, centerY)};
 
-                if (distance > static_cast<float>(radius))
+                If(distance > static_cast<float>(radius))
                 {
                     continue;
                 }
 
-                if (auto tile{getWorldArea()->getTile(xPos, yPos)})
+                If(auto tile{getWorldArea()->getTile(xPos, yPos)})
                 {
                     tile->setGround(groundType);
                 }

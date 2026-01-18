@@ -23,7 +23,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
         // Validation
-        if (!worldArea)
+        If(!worldArea)
         {
             return;
         }
@@ -44,7 +44,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 auto tile{worldArea->getTile(xCoord, yCoord)};
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }
@@ -55,7 +55,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         std::ofstream file("savegame.json");
 
-        if (file.is_open())
+        If(file.is_open())
         {
             file << jsonData.dump(4); // Pretty print with 4-space indent
             file.close();
@@ -75,14 +75,14 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Serialize objects on this tile
         auto objectsStack{tile->getObjectsStack()};
 
-        if (objectsStack)
+        If(objectsStack)
         {
             auto objects{objectsStack->getObjects()};
             tileJson["objects"] = nlohmann::json::array();
 
             for (auto &object : objects)
             {
-                if (object)
+                If(object)
                 {
                     nlohmann::json objectJson;
 
@@ -95,7 +95,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Serialize entity on this tile
         auto entity{tile->getEntity()};
 
-        if (entity)
+        If(entity)
         {
             nlohmann::json entityJson;
 
@@ -112,7 +112,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         std::ifstream file("savegame.json");
 
-        if (!file.is_open())
+        If(!file.is_open())
         {
             return;
         }
@@ -131,7 +131,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
-        if (!worldArea)
+        If(!worldArea)
         {
             return;
         }
@@ -146,14 +146,14 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto &entities{worldArea->getEntitiesMirrorRef()};
 
-        if (!jsonData.contains("tiles") || !jsonData["tiles"].is_array())
+        If(!jsonData.contains("tiles") || !jsonData["tiles"].is_array())
         {
             return;
         }
 
         for (const auto &tileJson : jsonData["tiles"])
         {
-            if (!tileJson.contains("x") || !tileJson.contains("y"))
+            If(!tileJson.contains("x") || !tileJson.contains("y"))
             {
                 continue;
             }
@@ -161,25 +161,25 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto xCoord{tileJson["x"].get<int>()};
             auto yCoord{tileJson["y"].get<int>()};
 
-            if (!worldArea->isValidCoordinate(xCoord, yCoord))
+            If(!worldArea->isValidCoordinate(xCoord, yCoord))
             {
                 continue;
             }
 
             auto tile{worldArea->getTile(xCoord, yCoord)};
 
-            if (!tile)
+            If(!tile)
             {
                 continue;
             }
 
-            if (tileJson.contains("elevation"))
+            If(tileJson.contains("elevation"))
             {
                 auto elevation{tileJson["elevation"].get<float>()};
                 tile->setElevation(elevation);
             }
 
-            if (tileJson.contains("ground"))
+            If(tileJson.contains("ground"))
             {
                 auto groundHash{hash(tileJson["ground"].get<std::string>())};
                 tile->setGround(groundHash);
@@ -187,7 +187,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             GameSaving::loadTileObjects(tile, tileJson);
 
-            if (tileJson.contains("entity"))
+            If(tileJson.contains("entity"))
             {
                 auto entityType{hash(tileJson["entity"]["type"].get<std::string>())};
 
@@ -203,16 +203,16 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GameSaving::loadTileObjects(const std::shared_ptr<Tile> &tile,
                                      const nlohmann::json &tileJson) -> void
     {
-        if (tileJson.contains("objects") && tileJson["objects"].is_array())
+        If(tileJson.contains("objects") && tileJson["objects"].is_array())
         {
             auto objectsStack{tile->getObjectsStack()};
-            if (objectsStack)
+            If(objectsStack)
             {
                 objectsStack->clearObjects();
 
                 for (const auto &objectJson : tileJson["objects"])
                 {
-                    if (objectJson.contains("type"))
+                    If(objectJson.contains("type"))
                     {
                         auto objectType{objectJson["type"].get<std::string>()};
 

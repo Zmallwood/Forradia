@@ -111,7 +111,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (auto i = 0; i < names.size(); i++)
         {
-            if (hashCode == hash(names[i]))
+            If(hashCode == hash(names[i]))
             {
                 return nameResults[i];
             }

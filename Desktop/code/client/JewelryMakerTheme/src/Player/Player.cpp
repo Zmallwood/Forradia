@@ -45,16 +45,16 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(this->getWorldAreaCoordinate())};
         auto tile{worldArea->getTile(position)};
 
-        if (tile->getGround() == hash("GroundWater"))
+        If(tile->getGround() == hash("GroundWater"))
         {
             return false;
         }
 
         auto objectsStack{tile->getObjectsStack()};
 
-        if (std::ranges::any_of(
-                objectsStack->getObjects(), [](const auto &object)
-                { return ObjectIndex::instance().getBlocksMovement(object->getType()); }))
+        If(std::ranges::any_of(
+            objectsStack->getObjects(), [](const auto &object)
+            { return ObjectIndex::instance().getBlocksMovement(object->getType()); }))
         {
             return false;
         }
@@ -109,8 +109,8 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         this->updateRotationDegrees();
 
-        if (now >= m_ticksLastMovement + invertSpeed(m_movementSpeed) &&
-            m_playerMoveDirection != PlayerMoveDirections::None)
+        If(now >= m_ticksLastMovement + invertSpeed(m_movementSpeed) &&
+           m_playerMoveDirection != PlayerMoveDirections::None)
         {
             switch (m_playerMoveDirection)
             {
@@ -152,7 +152,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             m_ticksLastMovement = now;
 
-            if (m_position == m_destination)
+            If(m_position == m_destination)
             {
                 m_destination = {-1, -1};
                 m_playerMoveDirection = PlayerMoveDirections::None;
@@ -162,7 +162,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingNorth() -> void
     {
-        if (this->moveToPositionPossible({m_position.x, m_position.y - 1}))
+        If(this->moveToPositionPossible({m_position.x, m_position.y - 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::North;
         }
@@ -170,7 +170,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingEast() -> void
     {
-        if (this->moveToPositionPossible({m_position.x + 1, m_position.y}))
+        If(this->moveToPositionPossible({m_position.x + 1, m_position.y}))
         {
             m_playerMoveDirection = PlayerMoveDirections::East;
         }
@@ -178,7 +178,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingSouth() -> void
     {
-        if (this->moveToPositionPossible({m_position.x, m_position.y + 1}))
+        If(this->moveToPositionPossible({m_position.x, m_position.y + 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::South;
         }
@@ -186,7 +186,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingWest() -> void
     {
-        if (this->moveToPositionPossible({m_position.x - 1, m_position.y}))
+        If(this->moveToPositionPossible({m_position.x - 1, m_position.y}))
         {
             m_playerMoveDirection = PlayerMoveDirections::West;
         }
@@ -194,7 +194,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingNorthWest() -> void
     {
-        if (this->moveToPositionPossible({m_position.x - 1, m_position.y - 1}))
+        If(this->moveToPositionPossible({m_position.x - 1, m_position.y - 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::NorthWest;
         }
@@ -202,7 +202,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingNorthEast() -> void
     {
-        if (this->moveToPositionPossible({m_position.x + 1, m_position.y - 1}))
+        If(this->moveToPositionPossible({m_position.x + 1, m_position.y - 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::NorthEast;
         }
@@ -210,7 +210,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingSouthWest() -> void
     {
-        if (this->moveToPositionPossible({m_position.x - 1, m_position.y + 1}))
+        If(this->moveToPositionPossible({m_position.x - 1, m_position.y + 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::SouthWest;
         }
@@ -218,7 +218,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto Player::startMovingSouthEast() -> void
     {
-        if (this->moveToPositionPossible({m_position.x + 1, m_position.y + 1}))
+        If(this->moveToPositionPossible({m_position.x + 1, m_position.y + 1}))
         {
             m_playerMoveDirection = PlayerMoveDirections::SouthEast;
         }
@@ -238,7 +238,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x};
         auto newY{m_position.y - 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -251,18 +251,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveNorth, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::North;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -281,7 +280,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -294,18 +293,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::East;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -324,7 +322,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x};
         auto newY{m_position.y + 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -337,18 +335,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveSouth, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::South;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -367,7 +364,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -380,18 +377,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::West;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -410,7 +406,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y - 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -423,18 +419,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveNorthEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::NorthEast;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -453,7 +448,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x + 1};
         auto newY{m_position.y + 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -466,18 +461,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveSouthEast, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::SouthEast;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -496,7 +490,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y + 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -509,18 +503,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveSouthWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::SouthWest;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -539,7 +532,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto newX{m_position.x - 1};
         auto newY{m_position.y - 1};
 
-        if (this->moveToPositionPossible({newX, newY}) == false)
+        If(this->moveToPositionPossible({newX, newY}) == false)
         {
             this->stopMoving();
 
@@ -552,18 +545,17 @@ namespace ForradiaEngine::JewelryMakerTheme
         m_playerActions.emplace_back(PlayerActionTypes::MoveNorthWest, 0, m_position, nullptr);
         m_playerMoveDirection = PlayerMoveDirections::NorthWest;
 
-        if (worldArea->getTile(newX, newY)
-                ->getObjectsStack()
-                ->countHasObject("ObjectMineEntrance") > 0)
+        If(worldArea->getTile(newX, newY)->getObjectsStack()->countHasObject("ObjectMineEntrance") >
+           0)
         {
             auto worldAreaCoordinateZ{m_worldAreaCoordinate.z};
             int newWorldAreaCoordinateZ{};
 
-            if (worldAreaCoordinateZ == 0)
+            If(worldAreaCoordinateZ == 0)
             {
                 newWorldAreaCoordinateZ = -1;
             }
-            else
+            Else
             {
                 newWorldAreaCoordinateZ = 0;
             }
@@ -598,7 +590,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto moveProgress{static_cast<float>(elapsedTime) / timeForOneStep};
 
-        if (moveProgress >= 1.0F)
+        If(moveProgress >= 1.0F)
         {
             moveProgress = 0.0F;
             return {static_cast<float>(m_position.x), static_cast<float>(m_position.y)};
@@ -649,5 +641,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto position{m_position};
 
         return {position.x + deltaX, position.y + deltaY};
+    }
+
+    auto Player::addToClimbingHeight(float value) -> void
+    {
+        m_climbingHeight += value;
     }
 }

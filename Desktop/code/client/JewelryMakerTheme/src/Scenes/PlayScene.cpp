@@ -55,13 +55,13 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 AudioBank::instance().toggleMuteMusic();
 
-                if (AudioBank::instance().getMusicMuted())
+                If(AudioBank::instance().getMusicMuted())
                 {
                     m_btnToggleMuteMusic->setBackgroundImage("GUIButtonUnmuteMusicBackground");
                     m_btnToggleMuteMusic->setHoveredBackgroundImage(
                         "GUIButtonUnmuteMusicHoveredBackground");
                 }
-                else
+                Else
                 {
                     m_btnToggleMuteMusic->setBackgroundImage("GUIButtonMuteMusicBackground");
                     m_btnToggleMuteMusic->setHoveredBackgroundImage(

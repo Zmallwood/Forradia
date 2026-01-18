@@ -77,7 +77,7 @@ namespace ForradiaEngine
     {
         m_currentScene = hash(sceneName);
 
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onEnter();
         }
@@ -85,7 +85,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onMouseDownCurrentScene(Uint8 mouseButton) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onMouseDown(mouseButton);
         }
@@ -93,7 +93,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onMouseUpCurrentScene(Uint8 mouseButton, int clickSpeed) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onMouseUp(mouseButton, clickSpeed);
         }
@@ -101,7 +101,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onMouseWheelCurrentScene(int delta) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onMouseWheel(delta);
         }
@@ -109,7 +109,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onKeyDownCurrentScene(SDL_Keycode key) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onKeyDown(key);
         }
@@ -117,7 +117,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onKeyUpCurrentScene(SDL_Keycode key) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onKeyUp(key);
         }
@@ -125,7 +125,7 @@ namespace ForradiaEngine
 
     auto SceneManager::onTextInputCurrentScene(std::string_view text) -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->onTextInput(text);
         }
@@ -133,7 +133,7 @@ namespace ForradiaEngine
 
     auto SceneManager::updateCurrentScene() -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->update();
         }
@@ -141,7 +141,7 @@ namespace ForradiaEngine
 
     auto SceneManager::renderCurrentScene() const -> void
     {
-        if (m_scenes.contains(m_currentScene))
+        If(m_scenes.contains(m_currentScene))
         {
             m_scenes.at(m_currentScene)->render();
         }
@@ -151,7 +151,7 @@ namespace ForradiaEngine
     {
         auto sceneHash{hash(sceneName)};
 
-        if (m_scenes.contains(sceneHash))
+        If(m_scenes.contains(sceneHash))
         {
             return m_scenes.at(sceneHash);
         }

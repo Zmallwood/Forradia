@@ -29,7 +29,7 @@ namespace ForradiaEngine
 
     auto throwOnFalse(bool condition, std::string_view message, std::source_location loc) -> void
     {
-        if (condition == false)
+        If(condition == false)
         {
             throwError(message, loc);
         }
@@ -39,7 +39,7 @@ namespace ForradiaEngine
     {
         auto result{0.0F};
 
-        if (speed != 0.0F)
+        If(speed != 0.0F)
         {
             result = k_oneSecMillis / speed;
         }
@@ -52,7 +52,7 @@ namespace ForradiaEngine
         auto absValue{std::abs(value)};
         auto normalized{0};
 
-        if (value != 0)
+        If(value != 0)
         {
             normalized = value / absValue;
         }

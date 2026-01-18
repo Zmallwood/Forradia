@@ -13,7 +13,7 @@ namespace ForradiaEngine
 {
     auto SkyRenderer::render(const glm::vec3 &sunDirection, float sunElevation) -> void
     {
-        if (!m_initialized)
+        If(!m_initialized)
         {
             this->generateSkyDome();
         }

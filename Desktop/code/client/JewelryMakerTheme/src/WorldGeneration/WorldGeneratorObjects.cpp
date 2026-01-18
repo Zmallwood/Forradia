@@ -35,7 +35,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(centerX, centerY)};
 
-            if (!tile || !isValidForFlora(centerX, centerY))
+            If(!tile || !isValidForFlora(centerX, centerY))
             {
                 continue;
             }
@@ -51,27 +51,26 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->isValidCoordinate(x, y))
+                    If(!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    if (!isValidForFlora(x, y))
+                    If(!isValidForFlora(x, y))
                     {
                         continue;
                     }
 
                     auto distance{calcDistance(x, y, centerX, centerY)};
 
-                    if (distance > static_cast<float>(radius))
+                    If(distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
-                    if (WorldGeneratorObjects::shouldAddForestObjects(treeDensity, distance,
-                                                                      radius))
+                    If(WorldGeneratorObjects::shouldAddForestObjects(treeDensity, distance, radius))
                     {
-                        if (auto forestTile{worldArea->getTile(x, y)})
+                        If(auto forestTile{worldArea->getTile(x, y)})
                         {
                             forestTile->getObjectsStack()->clearObjects();
 
@@ -99,24 +98,24 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto WorldGeneratorObjects::addTreeToForestTile(const std::shared_ptr<Tile> &forestTile,
                                                     bool useFir) -> void
     { // Check if the forest should use fir or birch trees.
-        if (useFir)
+        If(useFir)
         {
-            if (getRandomInt(100) < 70)
+            If(getRandomInt(100) < 70)
             {
                 forestTile->getObjectsStack()->addObject("ObjectFirTree");
             }
-            else
+            Else
             {
                 forestTile->getObjectsStack()->addObject("ObjectBirchTree");
             }
         }
-        else
+        Else
         {
-            if (getRandomInt(100) < 70)
+            If(getRandomInt(100) < 70)
             {
                 forestTile->getObjectsStack()->addObject("ObjectBirchTree");
             }
-            else
+            Else
             {
                 forestTile->getObjectsStack()->addObject("ObjectFirTree");
             }
@@ -127,13 +126,13 @@ namespace ForradiaEngine::JewelryMakerTheme
         -> void
     {
         // Add undergrowth in forests.
-        if (getRandomInt(100) < 25)
+        If(getRandomInt(100) < 25)
         {
-            if (getRandomInt(100) < 50)
+            If(getRandomInt(100) < 50)
             {
                 forestTile->getObjectsStack()->addObject("ObjectBush1");
             }
-            else
+            Else
             {
                 forestTile->getObjectsStack()->addObject("ObjectBush2");
             }
@@ -156,12 +155,12 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(centerX, centerY)};
 
-            if (!tile || !isValidForFlora(centerX, centerY))
+            If(!tile || !isValidForFlora(centerX, centerY))
             {
                 continue;
             }
 
-            if (tile->getGround() != hash("GroundGrass"))
+            If(tile->getGround() != hash("GroundGrass"))
             {
                 continue;
             }
@@ -178,38 +177,38 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto x = centerX - radius; x <= centerX + radius; x++)
                 {
-                    if (!worldArea->isValidCoordinate(x, y))
+                    If(!worldArea->isValidCoordinate(x, y))
                     {
                         continue;
                     }
 
-                    if (!isValidForFlora(x, y))
+                    If(!isValidForFlora(x, y))
                     {
                         continue;
                     }
 
                     auto meadowTile{worldArea->getTile(x, y)};
 
-                    if (!meadowTile || meadowTile->getGround() != hash("GroundGrass"))
+                    If(!meadowTile || meadowTile->getGround() != hash("GroundGrass"))
                     {
                         continue;
                     }
 
                     auto distance{calcDistance(x, y, centerX, centerY)};
 
-                    if (distance > static_cast<float>(radius))
+                    If(distance > static_cast<float>(radius))
                     {
                         continue;
                     }
 
                     // Add flowers.
 
-                    if (getRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
+                    If(getRandomInt(1000) < static_cast<int>(flowerDensity * 1000.0f))
                     {
                         meadowTile->getObjectsStack()->clearObjects();
                         meadowTile->getObjectsStack()->addObject("ObjectPinkFlower");
                     }
-                    else if (getRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
+                    ElseIf(getRandomInt(1000) < static_cast<int>(grassDensity * 1000.0f))
                     {
                         meadowTile->getObjectsStack()->clearObjects();
                         meadowTile->getObjectsStack()->addObject("ObjectTallGrass");
@@ -221,14 +220,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto WorldGeneratorObjects::isValidForFlora(int x, int y) -> bool
     {
-        if (!getWorldArea()->isValidCoordinate(x, y))
+        If(!getWorldArea()->isValidCoordinate(x, y))
         {
             return false;
         }
 
         auto tile = getWorldArea()->getTile(x, y);
 
-        if (!tile)
+        If(!tile)
         {
             return false;
         }

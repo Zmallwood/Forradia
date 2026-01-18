@@ -21,7 +21,7 @@ namespace ForradiaEngine
         bool tileIsCached{this->drawingOperationIsCached(uniqueRenderID)};
 
         // If the tile is cached.
-        if (tileIsCached)
+        If(tileIsCached)
         {
             auto &entry{m_operationsCache.at(uniqueRenderID)};
 
@@ -33,7 +33,7 @@ namespace ForradiaEngine
             glBindBuffer(GL_ARRAY_BUFFER, entry.vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entry.ibo);
         }
-        else
+        Else
         {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
@@ -51,7 +51,7 @@ namespace ForradiaEngine
             m_operationsCache[uniqueRenderID] = entry;
         }
 
-        if (false == tileIsCached || forceUpdate)
+        If(false == tileIsCached || forceUpdate)
         {
             std::vector<Color> colors{
                 Palette::getColor<hash("White")>(), Palette::getColor<hash("White")>(),

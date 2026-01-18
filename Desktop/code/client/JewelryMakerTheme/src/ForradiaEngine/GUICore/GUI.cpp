@@ -10,7 +10,7 @@ namespace ForradiaEngine
 {
     auto GUI::mouseHoveringGUI() const -> bool
     {
-        if (!dynamic_cast<const GUIComponent *>(this)->getVisible())
+        If(!dynamic_cast<const GUIComponent *>(this)->getVisible())
         {
             return false;
         }

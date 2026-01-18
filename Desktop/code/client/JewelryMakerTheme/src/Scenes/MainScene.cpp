@@ -126,22 +126,22 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         getGUI()->onMouseDown(mouseButton);
 
-        if (ObjectMoving::instance().onMouseDown(mouseButton))
+        If(ObjectMoving::instance().onMouseDown(mouseButton))
         {
             return;
         }
 
-        if (getGUI()->mouseHoveringGUI())
+        If(getGUI()->mouseHoveringGUI())
         {
             return;
         }
 
-        if (GUIInventoryWindow::instance().onMouseDown(mouseButton))
+        If(GUIInventoryWindow::instance().onMouseDown(mouseButton))
         {
             return;
         }
 
-        if (!GUIInventoryWindow::instance().mouseHoveringGUI())
+        If(!GUIInventoryWindow::instance().mouseHoveringGUI())
         {
             CameraRotator::instance().onMouseDown(mouseButton);
         }
@@ -153,32 +153,32 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         constexpr int k_clickSpeedThreshold{200};
 
-        if (clickSpeed < k_clickSpeedThreshold)
+        If(clickSpeed < k_clickSpeedThreshold)
         {
-            if (m_guiInteractionMenu->onMouseUp(mouseButton, clickSpeed))
+            If(m_guiInteractionMenu->onMouseUp(mouseButton, clickSpeed))
             {
                 return;
             }
         }
 
-        if (ObjectMoving::instance().onMouseUp(mouseButton, clickSpeed))
+        If(ObjectMoving::instance().onMouseUp(mouseButton, clickSpeed))
         {
             return;
         }
 
         getGUI()->onMouseUp(mouseButton, clickSpeed);
 
-        if (getGUI()->mouseHoveringGUI())
+        If(getGUI()->mouseHoveringGUI())
         {
             return;
         }
 
-        if (GUIInventoryWindow::instance().onMouseUp(mouseButton, clickSpeed))
+        If(GUIInventoryWindow::instance().onMouseUp(mouseButton, clickSpeed))
         {
             return;
         }
 
-        if (!GUIInventoryWindow::instance().mouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
+        If(!GUIInventoryWindow::instance().mouseHoveringGUI() && mouseButton == SDL_BUTTON_LEFT)
         {
             updateSetPlayerDestination();
         }
@@ -207,7 +207,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto MainScene::onTextInput(std::string_view text) -> void
     {
-        if (GUIChatBox::instance().getInputActive())
+        If(GUIChatBox::instance().getInputActive())
         {
             GUIChatBox::instance().addTextInput(text);
         }

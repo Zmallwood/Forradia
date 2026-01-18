@@ -13,14 +13,16 @@ namespace ForradiaEngine
 {
     auto GUIMovablePanel::onMouseDown(Uint8 mouseButton) -> bool
     {
-        if (!this->getVisible())
+        If (!this->getVisible())
+        {
             return false;
+        }
 
         auto childComponents{this->getChildComponents()};
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
-            if (childComponent->onMouseDown(mouseButton))
+            If (childComponent->onMouseDown(mouseButton))
             {
                 return true;
             }
@@ -29,7 +31,7 @@ namespace ForradiaEngine
         auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
         auto draggableArea{this->getDraggableArea()};
 
-        if (draggableArea.contains(mousePosition))
+        If (draggableArea.contains(mousePosition))
         {
             this->startMove();
 
@@ -43,7 +45,7 @@ namespace ForradiaEngine
     {
         this->stopMove();
 
-        if (!this->getVisible())
+        If (!this->getVisible())
         {
             return false;
         }
@@ -52,7 +54,7 @@ namespace ForradiaEngine
 
         for (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
-            if (childComponent->onMouseUp(mouseButton, clickSpeed))
+            If (childComponent->onMouseUp(mouseButton, clickSpeed))
             {
                 return true;
             }
@@ -60,7 +62,7 @@ namespace ForradiaEngine
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (getBounds().contains(mousePos))
+        If (getBounds().contains(mousePos))
         {
             return true;
         }
@@ -73,12 +75,12 @@ namespace ForradiaEngine
         auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
         auto draggableArea{this->getDraggableArea()};
 
-        if (draggableArea.contains(mousePosition))
+        If (draggableArea.contains(mousePosition))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
-        if (getIsBeingMoved())
+        If (getIsBeingMoved())
         {
             auto newPosition{getMoveStartingPosition() + mousePosition -
                              getMoveStartingMousePosition()};

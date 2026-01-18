@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto destination{entity->getDestination()};
 
-        if (destination.x == -1 && destination.y == -1)
+        If(destination.x == -1 && destination.y == -1)
         {
             // NOLINTNEXTLINE(readability-magic-numbers)
             auto newDestinationX{position.x + getRandomInt(11) - 5};
@@ -54,35 +54,35 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto deltaX{destination.x - oldPosition.x};
         auto deltaY{destination.y - oldPosition.y};
 
-        if (deltaX == 0 && deltaY < 0)
+        If(deltaX == 0 && deltaY < 0)
         {
             entity->setDirection(Directions::North);
         }
-        else if (deltaX > 0 && deltaY == 0)
+        ElseIf(deltaX > 0 && deltaY == 0)
         {
             entity->setDirection(Directions::East);
         }
-        else if (deltaX == 0 && deltaY > 0)
+        ElseIf(deltaX == 0 && deltaY > 0)
         {
             entity->setDirection(Directions::South);
         }
-        else if (deltaX < 0 && deltaY == 0)
+        ElseIf(deltaX < 0 && deltaY == 0)
         {
             entity->setDirection(Directions::West);
         }
-        else if (deltaX > 0 && deltaY < 0)
+        ElseIf(deltaX > 0 && deltaY < 0)
         {
             entity->setDirection(Directions::NorthEast);
         }
-        else if (deltaX > 0 && deltaY > 0)
+        ElseIf(deltaX > 0 && deltaY > 0)
         {
             entity->setDirection(Directions::SouthEast);
         }
-        else if (deltaX < 0 && deltaY > 0)
+        ElseIf(deltaX < 0 && deltaY > 0)
         {
             entity->setDirection(Directions::SouthWest);
         }
-        else if (deltaX < 0 && deltaY < 0)
+        ElseIf(deltaX < 0 && deltaY < 0)
         {
             entity->setDirection(Directions::NorthWest);
         }
@@ -100,7 +100,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto entity{it->first};
             auto position{it->second};
 
-            if (now < entity->getTicksLastMovement() + invertSpeed(entity->getMovementSpeed()))
+            If(now < entity->getTicksLastMovement() + invertSpeed(entity->getMovementSpeed()))
             {
                 ++it;
 
@@ -111,14 +111,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto newPosition{getEntityNewPosition(entity, position)};
 
-            if (newPosition == entity->getDestination())
+            If(newPosition == entity->getDestination())
             {
                 entity->setDestination({-1, -1});
             }
 
             auto tile{worldArea->getTile(newPosition.x, newPosition.y)};
 
-            if (tile && !tile->getEntity() && tile->getGround() != hash("GroundWater"))
+            If(tile && !tile->getEntity() && tile->getGround() != hash("GroundWater"))
             {
                 auto oldPosition{entities.at(entity)};
 
@@ -135,7 +135,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 entities.erase(entity);
                 entities.insert({entity, {newPosition.x, newPosition.y}});
             }
-            else
+            Else
             {
                 entity->setDestination({-1, -1});
             }

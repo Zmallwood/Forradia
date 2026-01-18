@@ -13,14 +13,14 @@ namespace ForradiaEngine
 {
     auto GUIButton::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (!dynamic_cast<const GUIComponent *>(this)->getVisible())
+        If(!dynamic_cast<const GUIComponent *>(this)->getVisible())
         {
             return false;
         }
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePos))
+        If(dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePos))
         {
             m_action();
 
@@ -36,12 +36,12 @@ namespace ForradiaEngine
 
         auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePosition))
+        If(dynamic_cast<const GUIComponent *>(this)->getBounds().contains(mousePosition))
         {
             dynamic_cast<GUIPanel *>(this)->setActiveBackgroundImage(m_hoveredBackgroundImage);
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
-        else
+        Else
         {
             dynamic_cast<GUIPanel *>(this)->setActiveBackgroundImage(m_backgroundImage);
         }

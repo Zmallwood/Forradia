@@ -22,7 +22,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CreatureIndex::getModelScaling(int creatureHash) const -> float
     {
-        if (m_entries.contains(creatureHash))
+        If(m_entries.contains(creatureHash))
         {
             return m_entries.at(creatureHash).modelScaling;
         }
@@ -32,7 +32,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CreatureIndex::getLevitationHeight(int creatureHash) const -> float
     {
-        if (m_entries.contains(creatureHash))
+        If(m_entries.contains(creatureHash))
         {
             return m_entries.at(creatureHash).levitationHeight;
         }

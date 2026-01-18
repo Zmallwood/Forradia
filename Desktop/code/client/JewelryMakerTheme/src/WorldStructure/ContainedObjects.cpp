@@ -18,7 +18,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ContainedObjects::getObject(int index) -> std::shared_ptr<Object>
     {
-        if (index >= 0 && index < m_objects.size())
+        If(index >= 0 && index < m_objects.size())
         {
             return *m_objects[index];
         }
@@ -28,7 +28,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ContainedObjects::getObjectPtrPtr(int index) -> std::shared_ptr<std::shared_ptr<Object>>
     {
-        if (index >= 0 && index < m_objects.size())
+        If(index >= 0 && index < m_objects.size())
         {
             return m_objects[index];
         }
@@ -42,7 +42,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         for (size_t i = 0; i < m_objects.size(); i++)
         {
             // Check if slot is empty.
-            if (!*m_objects[i])
+            If(!*m_objects[i])
             {
                 // Add object to slot.
                 *m_objects[i] = std::make_shared<Object>(objectType);
@@ -71,10 +71,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         for (size_t i = 0; i < m_objects.size(); i++)
         {
             // Check if slot is not empty.
-            if (*m_objects[i])
+            If(*m_objects[i])
             {
                 // Check if object type matches.
-                if ((*m_objects[i])->getType() == objectHash)
+                If((*m_objects[i])->getType() == objectHash)
                 {
                     // Increment count if object type matches.
                     ++findCount;
@@ -91,10 +91,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         for (size_t i = 0; i < m_objects.size() && count > 0; i++)
         {
             // Check if slot is not empty.
-            if (*m_objects[i])
+            If(*m_objects[i])
             {
                 // Check if object type matches.
-                if ((*m_objects[i])->getType() == hash(objectName))
+                If((*m_objects[i])->getType() == hash(objectName))
                 {
                     // Remove object from slot.
                     *m_objects[i] = nullptr;

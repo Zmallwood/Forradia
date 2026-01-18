@@ -19,7 +19,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
         auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
 
-        if (!m_worldArea->isValidCoordinate(xCoordinate, yCoordinate))
+        If(!m_worldArea->isValidCoordinate(xCoordinate, yCoordinate))
         {
             return;
         }
@@ -41,10 +41,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto coordinateSES{Point{xCoordinate + 1, yCoordinate + 2}};
         auto coordinateSS{Point{xCoordinate, yCoordinate + 2}};
 
-        if (!m_worldArea->isValidCoordinate(coordinateNW) ||
-            !m_worldArea->isValidCoordinate(coordinateNE) ||
-            !m_worldArea->isValidCoordinate(coordinateSW) ||
-            !m_worldArea->isValidCoordinate(coordinateSE))
+        If(!m_worldArea->isValidCoordinate(coordinateNW) ||
+           !m_worldArea->isValidCoordinate(coordinateNE) ||
+           !m_worldArea->isValidCoordinate(coordinateSW) ||
+           !m_worldArea->isValidCoordinate(coordinateSE))
         {
             return;
         }
@@ -95,21 +95,21 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto color11{Palette::getColor<hash("White")>()};
         auto color01{Palette::getColor<hash("White")>()};
 
-        if (ground != hash("GroundStoneSlab") && ground != hash("GroundWoodFloor"))
+        If(ground != hash("GroundStoneSlab") && ground != hash("GroundWoodFloor"))
         {
             color00 = getColorByGroundType(ground);
 
-            if (tileNE)
+            If(tileNE)
             {
                 color10 = getColorByGroundType(tileNE->getGround());
             }
 
-            if (tileSE)
+            If(tileSE)
             {
                 color11 = getColorByGroundType(tileSE->getGround());
             }
 
-            if (tileSW)
+            If(tileSW)
             {
                 color01 = getColorByGroundType(tileSW->getGround());
             }
@@ -119,7 +119,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         tile->setForceRedraw(false);
 
-        if (ground == hash("GroundWater"))
+        If(ground == hash("GroundWater"))
         {
             auto waterDepth{tile->getWaterDepth()};
 

@@ -25,7 +25,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto moveProgress{static_cast<float>(elapsedTime) / timeForOneStep};
 
-        if (moveProgress >= 1.0F)
+        If(moveProgress >= 1.0F)
         {
             moveProgress = 0.0F;
             return {static_cast<float>(position.x), static_cast<float>(position.y)};

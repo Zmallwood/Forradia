@@ -28,35 +28,35 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto x{static_cast<int>(currentX)};
             auto y{static_cast<int>(currentY)};
 
-            if (x < 0)
+            If(x < 0)
             {
                 x = 0;
             }
 
-            if (x >= worldAreaSize.width)
+            If(x >= worldAreaSize.width)
             {
                 x = worldAreaSize.width - 1;
             }
 
-            if (y < 0)
+            If(y < 0)
             {
                 y = 0;
             }
 
-            if (y >= worldAreaSize.height)
+            If(y >= worldAreaSize.height)
             {
                 y = worldAreaSize.height - 1;
             }
 
-            if ((x == 0 || x == worldAreaSize.width - 1 || y == 0 ||
-                 y == worldAreaSize.height - 1) &&
-                tilesPlaced >= minRiverLength)
+            If((x == 0 || x == worldAreaSize.width - 1 || y == 0 ||
+                y == worldAreaSize.height - 1) &&
+               tilesPlaced >= minRiverLength)
             {
                 // Try to place water at the edge if valid.
 
                 auto edgeTile{worldArea->getTile(x, y)};
 
-                if (edgeTile && isValidForWater(x, y))
+                If(edgeTile && isValidForWater(x, y))
                 {
                     edgeTile->setGround("GroundWater");
                     edgeTile->setWaterDepth(1);
@@ -68,9 +68,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(x, y)};
 
-            if (!tile)
+            If(!tile)
             {
-                if (tilesPlaced >= minRiverLength)
+                If(tilesPlaced >= minRiverLength)
                 {
                     break;
                 }
@@ -87,19 +87,19 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto canPlace{isValidForWater(x, y)};
 
-            if (!canPlace && tilesPlaced < minRiverLength)
+            If(!canPlace && tilesPlaced < minRiverLength)
             {
                 // Allow water in slightly higher elevation areas if we haven't reached minimum.
-                if (tile->getElevation() < 90 && tile->getGround() != hash("GroundRock"))
+                If(tile->getElevation() < 90 && tile->getGround() != hash("GroundRock"))
                 {
                     canPlace = true;
                 }
             }
 
             // If we can't place water, try to find an adjacent valid tile.
-            if (!canPlace)
+            If(!canPlace)
             {
-                if (tilesPlaced >= minRiverLength)
+                If(tilesPlaced >= minRiverLength)
                 {
                     break;
                 }
@@ -112,11 +112,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto adjacentX{x + directions[dir][0]};
                     auto adjacentY{y + directions[dir][1]};
 
-                    if (worldArea->isValidCoordinate(adjacentX, adjacentY))
+                    If(worldArea->isValidCoordinate(adjacentX, adjacentY))
                     {
                         auto adjacentTile{worldArea->getTile(adjacentX, adjacentY)};
 
-                        if (adjacentTile && isValidForWater(adjacentX, adjacentY))
+                        If(adjacentTile && isValidForWater(adjacentX, adjacentY))
                         {
                             x = adjacentX;
                             y = adjacentY;
@@ -133,7 +133,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     }
                 }
 
-                if (!foundAdjacent)
+                If(!foundAdjacent)
                 {
                     // Continue in a random direction.
 
@@ -156,7 +156,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             tilesPlaced++;
 
             // Occasionally create wider river sections.
-            if (getRandomInt(100) < 25)
+            If(getRandomInt(100) < 25)
             {
                 // Visit each neighboring tile and update elevation when needed.
                 for (auto &direction : directions)
@@ -164,11 +164,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto adjX{x + direction[0]};
                     auto adjY{y + direction[1]};
 
-                    if (worldArea->isValidCoordinate(adjX, adjY) && isValidForWater(adjX, adjY))
+                    If(worldArea->isValidCoordinate(adjX, adjY) && isValidForWater(adjX, adjY))
                     {
                         auto adjacentTile{worldArea->getTile(adjX, adjY)};
 
-                        if (adjacentTile && getRandomInt(100) < 40)
+                        If(adjacentTile && getRandomInt(100) < 40)
                         {
                             adjacentTile->setGround("GroundWater");
                             adjacentTile->setWaterDepth(1);
@@ -192,14 +192,14 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto checkX{x + direction[0]};
                     auto checkY{y + direction[1]};
 
-                    if (!worldArea->isValidCoordinate(checkX, checkY))
+                    If(!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
                     auto checkTile{worldArea->getTile(checkX, checkY)};
 
-                    if (!checkTile)
+                    If(!checkTile)
                     {
                         continue;
                     }
@@ -208,23 +208,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     // If the adjacent tile is not a valid water placement location, and we
                     // haven't placed enough tiles, try to place water here.
-                    if (!canPlaceHere && tilesPlaced < minRiverLength)
+                    If(!canPlaceHere && tilesPlaced < minRiverLength)
                     {
-                        if (checkTile->getElevation() < 90 &&
-                            checkTile->getGround() != hash("GroundRock"))
+                        If(checkTile->getElevation() < 90 &&
+                           checkTile->getGround() != hash("GroundRock"))
                         {
                             canPlaceHere = true;
                         }
                     }
 
-                    if (!canPlaceHere)
+                    If(!canPlaceHere)
                     {
                         continue;
                     }
 
                     auto checkElevation{checkTile->getElevation()};
 
-                    if (checkElevation < bestElevation)
+                    If(checkElevation < bestElevation)
                     {
                         // Update the best elevation.
                         bestElevation = checkElevation;
@@ -239,12 +239,12 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 // If we found a downhill direction, move in the chosen direction.
-                if (foundDownhill)
+                If(foundDownhill)
                 {
                     currentX += bestDX;
                     currentY += bestDY;
                 }
-                else
+                Else
                 {
                     // No clear downhill path - choose a random valid direction.
                     // Rivers don't need to flow downhill, they can flow in any direction.
@@ -262,24 +262,24 @@ namespace ForradiaEngine::JewelryMakerTheme
                         auto checkX{x + directions[dir][0]};
                         auto checkY{y + directions[dir][1]};
 
-                        if (worldArea->isValidCoordinate(checkX, checkY))
+                        If(worldArea->isValidCoordinate(checkX, checkY))
                         {
-                            if (auto checkTile{worldArea->getTile(checkX, checkY)})
+                            If(auto checkTile{worldArea->getTile(checkX, checkY)})
                             {
                                 auto canPlaceHere{isValidForWater(checkX, checkY)};
 
                                 // If the tile is not a valid water placement location, and we
                                 // haven't placed enough tiles, try to place water here.
-                                if (!canPlaceHere && tilesPlaced < minRiverLength)
+                                If(!canPlaceHere && tilesPlaced < minRiverLength)
                                 {
-                                    if (checkTile->getElevation() < 90 &&
-                                        checkTile->getGround() != hash("GroundRock"))
+                                    If(checkTile->getElevation() < 90 &&
+                                       checkTile->getGround() != hash("GroundRock"))
                                     {
                                         canPlaceHere = true;
                                     }
                                 }
 
-                                if (canPlaceHere)
+                                If(canPlaceHere)
                                 {
                                     currentX = static_cast<float>(checkX);
                                     currentY = static_cast<float>(checkY);
@@ -292,7 +292,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         attempts++;
                     }
 
-                    if (!foundDirection)
+                    If(!foundDirection)
                     {
                         // Just move in a random direction.
                         auto angle{getRandomInt(360) * M_PI / 180.0F};
@@ -303,7 +303,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
 
                 // Stop if we've placed enough tiles and reached very low elevation.
-                if (tilesPlaced >= minRiverLength && tile->getElevation() <= 5)
+                If(tilesPlaced >= minRiverLength && tile->getElevation() <= 5)
                 {
                     break;
                 }

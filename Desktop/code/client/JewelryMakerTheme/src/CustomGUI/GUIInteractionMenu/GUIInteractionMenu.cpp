@@ -65,7 +65,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                      getAction<hash("ActionCreateAnvil")>(),
                      getAction<hash("ActionCreateIronNail")>(),
                      getAction<hash("ActionCreateWoodenBox")>(),
-                     getAction<hash("ActionCutDownBush")>()};
+                     getAction<hash("ActionCutDownBush")>(),
+                     getAction<hash("ActionClimbTree")>()};
     }
 
     auto GUIInteractionMenu::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
@@ -74,7 +75,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         {
         case SDL_BUTTON_LEFT:
         {
-            if (dynamic_cast<const GUIComponent *>(this)->getVisible())
+            If(dynamic_cast<const GUIComponent *>(this)->getVisible())
             {
                 this->handleClickInMenu();
                 dynamic_cast<GUIPanel *>(this)->setVisible(false);
@@ -86,7 +87,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         case SDL_BUTTON_RIGHT:
         {
-            if (dynamic_cast<const GUIComponent *>(this)->getVisible() == false)
+            If(dynamic_cast<const GUIComponent *>(this)->getVisible() == false)
             {
                 dynamic_cast<GUIPanel *>(this)->setVisible(true);
                 dynamic_cast<GUIPanel *>(this)->setPosition(
@@ -114,7 +115,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto rightClickedInInventoryWindow{
             GUIInventoryWindow::instance().getBounds().contains(mousePos)};
 
-        if (GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
+        If(GUIInventoryWindow::instance().getVisible() && rightClickedInInventoryWindow)
         {
             m_clickedCoordinate = {-1, -1};
 
@@ -122,7 +123,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto object{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)};
 
-            if (object)
+            If(object)
             {
                 std::vector<int> objectHashes;
 
@@ -147,7 +148,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto ground{0};
 
-        if (tile)
+        If(tile)
         {
             ground = tile->getGround();
         }
@@ -173,14 +174,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             goOn = GUIInteractionMenu::checkActionGroundMatches(action, groundHash);
 
-            if (goOn == false)
+            If(goOn == false)
             {
                 continue;
             }
 
             goOn = GUIInteractionMenu::checkActionObjectMatches(action, objectHashes);
 
-            if (goOn == false)
+            If(goOn == false)
             {
                 continue;
             }
@@ -188,7 +189,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             goOn = GUIInteractionMenu::checkActionInventoryObjectsMatches(action);
 
             // If the action passed all checks, then add it to the menu.
-            if (goOn)
+            If(goOn)
             {
                 m_entries.emplace_back(action.label, action.action);
             }
@@ -269,21 +270,21 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto rowBounds{
                 RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
-            if (rowBounds.contains(mousePosition))
+            If(rowBounds.contains(mousePosition))
             {
                 auto worldArea{
                     World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
 
                 auto tile{worldArea->getTile(m_clickedCoordinate)};
 
-                if (tile)
+                If(tile)
                 {
                     auto playerPos{Player::instance().getPosition()};
 
                     auto absDx{std::abs(m_clickedCoordinate.x - playerPos.x)};
                     auto absDy{std::abs(m_clickedCoordinate.y - playerPos.y)};
 
-                    if (absDx > 1 || absDy > 1)
+                    If(absDx > 1 || absDy > 1)
                     {
                         GUIChatBox::instance().print("You are too far away to do the action.");
 
@@ -323,7 +324,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         bounds.height -= k_lineHeight + 2 * k_margin;
 
-        if (bounds.contains(mousePos))
+        If(bounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
@@ -348,7 +349,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto rowBounds{
                 RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};
 
-            if (rowBounds.contains(mousePos))
+            If(rowBounds.contains(mousePos))
             {
                 Color2DRenderer::instance().drawFilledRectangle(
                     k_renderIDHoveredRow, Palette::getColor<hash("MildBlueTransparent")>(),

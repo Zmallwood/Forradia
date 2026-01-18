@@ -5,6 +5,10 @@
 
 #pragma once
 
+#define If if
+#define ElseIf else if
+#define Else else
+
 #include <string_view>
 #include "ForradiaEngine/Common/Utilities.hpp"
 

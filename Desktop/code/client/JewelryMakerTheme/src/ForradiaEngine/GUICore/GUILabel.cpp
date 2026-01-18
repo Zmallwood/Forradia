@@ -12,7 +12,7 @@ namespace ForradiaEngine
     {
         auto bounds{dynamic_cast<const GUIComponent *>(this)->getBounds()};
 
-        if (m_centerAlign)
+        If (m_centerAlign)
         {
             bounds.x += bounds.width / 2;
             bounds.y += bounds.height / 2;

@@ -48,7 +48,7 @@ namespace ForradiaEngine
         {
             auto index{m_lines.size() - maxNumLines + i};
 
-            if (index < 0 || index >= m_lines.size())
+            If(index < 0 || index >= m_lines.size())
             {
                 continue;
             }
@@ -71,7 +71,7 @@ namespace ForradiaEngine
             k_renderIDSeparator, Palette::getColor<hash("Black")>(), separatorX, separatorY,
             separatorX + separatorWidth, separatorY, separatorHeight, true);
 
-        if (m_inputActive)
+        If(m_inputActive)
         {
             // TODO: Calculate the cursor x-coordinate based on the text input.
 
@@ -110,7 +110,7 @@ namespace ForradiaEngine
     {
         // TODO: Act on the typed input.
 
-        if (m_input == "/quit")
+        If(m_input == "/quit")
         {
             Engine::instance().stop();
         }

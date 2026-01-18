@@ -13,7 +13,7 @@ namespace ForradiaEngine
     {
         auto now{getTicks()};
 
-        if (now > m_ticksLastUpdate + k_oneSecMillis)
+        If(now > m_ticksLastUpdate + k_oneSecMillis)
         {
             m_fps = m_framesCount;
             m_framesCount = 0;

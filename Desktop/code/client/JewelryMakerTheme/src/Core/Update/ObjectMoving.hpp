@@ -55,8 +55,6 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto checkMouseDownInAnyContainerWindow(Uint8 mouseButton) -> bool;
 
-        auto checkMouseDownInGameWorld(Uint8 mouseButton) -> bool;
-
         constexpr static float k_objectImageWidth{0.05F};
         constexpr static int k_renderIDImage{hash("ObjectInAir")};
         constexpr static int k_clickSpeedThreshold{200};

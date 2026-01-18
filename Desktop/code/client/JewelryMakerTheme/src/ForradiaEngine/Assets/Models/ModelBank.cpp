@@ -22,7 +22,7 @@ namespace ForradiaEngine
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeModelsPath};
 
-        if (false == std::filesystem::exists(imagesPath))
+        If(false == std::filesystem::exists(imagesPath))
         {
             return;
         }
@@ -34,7 +34,7 @@ namespace ForradiaEngine
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (getFileExtension(filePath) == "obj" || getFileExtension(filePath) == "dae")
+            If(getFileExtension(filePath) == "obj" || getFileExtension(filePath) == "dae")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
                 auto hash{ForradiaEngine::hash(fileName)};
@@ -48,7 +48,7 @@ namespace ForradiaEngine
     // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
     auto ModelBank::getModel(int modelNameHash) const -> std::shared_ptr<Model>
     {
-        if (m_models.contains(modelNameHash))
+        If(m_models.contains(modelNameHash))
         {
             return m_models.at(modelNameHash);
         }

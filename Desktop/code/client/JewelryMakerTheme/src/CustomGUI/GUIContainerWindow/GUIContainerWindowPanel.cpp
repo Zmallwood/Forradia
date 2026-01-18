@@ -59,7 +59,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto slotArea{RectF{slotX, slotY, slotWidth, slotHeight}};
 
-                if (slotArea.contains(mousePos))
+                If(slotArea.contains(mousePos))
                 {
                     auto inventoryObject{objectsContainer.getObject(index)};
 
@@ -98,7 +98,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             for (auto xPos = 0; xPos < numColumns; xPos++)
             {
 
-                if (index >= m_containedObjects.size())
+                If(index >= m_containedObjects.size())
                 {
                     continue;
                 }
@@ -109,11 +109,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 int renderIDBackground{0};
 
-                if (m_renderIDsSlotsBackground.contains(index))
+                If(m_renderIDsSlotsBackground.contains(index))
                 {
                     renderIDBackground = m_renderIDsSlotsBackground.at(index);
                 }
-                else
+                Else
                 {
                     printLine("GUIContainerWindow: Render ID not "
                               "found for index: " +
@@ -127,15 +127,15 @@ namespace ForradiaEngine::JewelryMakerTheme
                     yStart + static_cast<float>(yPos) * (slotHeight + marginY), slotWidth,
                     slotHeight, true);
 
-                if (auto inventoryObject{objectsContainer.getObject(index)})
+                If(auto inventoryObject{objectsContainer.getObject(index)})
                 {
                     int renderIDObject{0};
 
-                    if (m_renderIDsSlotsObject.contains(index))
+                    If(m_renderIDsSlotsObject.contains(index))
                     {
                         renderIDObject = m_renderIDsSlotsObject.at(index);
                     }
-                    else
+                    Else
                     {
                         printLine("GUIContainerWindow: "
                                   "Render ID not "

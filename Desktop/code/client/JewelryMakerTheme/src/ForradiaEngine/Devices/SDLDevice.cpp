@@ -38,7 +38,7 @@ namespace ForradiaEngine
                              k_windowFlags),
             SDLDeleter());
 
-        if (m_window == nullptr)
+        If(m_window == nullptr)
         {
             throwError("Window could not be created. "
                        "SDL Error: " +

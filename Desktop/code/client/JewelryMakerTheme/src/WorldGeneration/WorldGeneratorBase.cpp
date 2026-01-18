@@ -34,7 +34,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         std::ifstream file("Resources/Data/WorldGenerationParameters.json");
 
-        if (!file.is_open())
+        If(!file.is_open())
         {
             return;
         }
@@ -53,15 +53,15 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (auto &[key, val] : jsonData.items())
         {
-            if (val.is_number_integer())
+            If(val.is_number_integer())
             {
                 m_parameters[hash(key)] = val.get<int>();
             }
-            else if (val.is_number_float())
+            ElseIf(val.is_number_float())
             {
                 m_parameters[hash(key)] = val.get<float>();
             }
-            else
+            Else
             {
                 printLine("Unsupported type for key: " + key);
             }

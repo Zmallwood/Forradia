@@ -12,11 +12,11 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         constexpr float EPSILON = 1e-6f;
 
-        if (std::fabs(m_filledPercentage) < EPSILON)
+        If(std::fabs(m_filledPercentage) < EPSILON)
         {
             this->setVisible(false);
         }
-        else
+        Else
         {
             this->setVisible(true);
         }

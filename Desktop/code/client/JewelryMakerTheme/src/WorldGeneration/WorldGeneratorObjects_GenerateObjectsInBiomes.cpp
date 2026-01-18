@@ -32,23 +32,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile = worldArea->getTile(x, y);
 
-            if (!tile || !isValidForFlora(x, y))
+            If(!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
 
             // Check if the tile has grass ground and if the random number is less than 8.
-            if (tile->getGround() == hash("GroundGrass") && getRandomInt(100) < 8)
+            If(tile->getGround() == hash("GroundGrass") && getRandomInt(100) < 8)
             {
                 tile->getObjectsStack()->clearObjects();
 
                 // Add a tree with type of either fir or birch with a 50% chance.
 
-                if (getRandomInt(100) < 50)
+                If(getRandomInt(100) < 50)
                 {
                     tile->getObjectsStack()->addObject("ObjectFirTree");
                 }
-                else
+                Else
                 {
                     tile->getObjectsStack()->addObject("ObjectBirchTree");
                 }
@@ -67,21 +67,21 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || !isValidForFlora(x, y))
+            If(!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
 
-            if (getRandomInt(100) < 8)
+            If(getRandomInt(100) < 8)
             {
                 tile->getObjectsStack()->clearObjects();
 
                 // Add a bush with type of either bush1 or bush2 with a 50% chance.
-                if (getRandomInt(100) < 50)
+                If(getRandomInt(100) < 50)
                 {
                     tile->getObjectsStack()->addObject("ObjectBush1");
                 }
-                else
+                Else
                 {
                     tile->getObjectsStack()->addObject("ObjectBush2");
                 }
@@ -100,7 +100,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->getWaterDepth() >= 4)
+            If(!tile || tile->getWaterDepth() >= 4)
             {
                 continue;
             }
@@ -125,7 +125,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || !isValidForFlora(x, y))
+            If(!tile || !isValidForFlora(x, y))
             {
                 continue;
             }
@@ -133,7 +133,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto ground{tile->getGround()};
 
             // Mushrooms prefer grass or dirt ground.
-            if (ground != hash("GroundGrass") && ground != hash("GroundDirt"))
+            If(ground != hash("GroundGrass") && ground != hash("GroundDirt"))
             {
                 continue;
             }
@@ -143,7 +143,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto objectsStack{tile->getObjectsStack()};
 
-            if (objectsStack->getSize() > 0)
+            If(objectsStack->getSize() > 0)
             {
                 continue;
             }
@@ -157,19 +157,19 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto checkX = x - 2; checkX <= x + 2; checkX++)
                 {
-                    if (checkX == x && checkY == y)
+                    If(checkX == x && checkY == y)
                     {
                         continue;
                     }
 
-                    if (!worldArea->isValidCoordinate(checkX, checkY))
+                    If(!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
                     auto nearbyTile{worldArea->getTile(checkX, checkY)};
 
-                    if (nearbyTile && nearbyTile->getObjectsStack()->getSize() > 0)
+                    If(nearbyTile && nearbyTile->getObjectsStack()->getSize() > 0)
                     {
                         nearbyObjectsCount++;
                     }
@@ -187,12 +187,12 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto mushroomProbability{baseProbability + forestBonus};
 
-            if (mushroomProbability > 25)
+            If(mushroomProbability > 25)
             {
                 mushroomProbability = 25;
             }
 
-            if (getRandomInt(100) < mushroomProbability)
+            If(getRandomInt(100) < mushroomProbability)
             {
                 tile->getObjectsStack()->clearObjects();
                 tile->getObjectsStack()->addObject("ObjectBrownMushroom");
@@ -210,14 +210,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto tile{worldArea->getTile(x, y)};
 
-            if (!tile || tile->getGround() == hash("GroundWater") || tile->getWaterDepth() > 0)
+            If(!tile || tile->getGround() == hash("GroundWater") || tile->getWaterDepth() > 0)
             {
                 continue;
             }
 
             auto objectsStack{tile->getObjectsStack()};
 
-            if (objectsStack->getSize() > 0)
+            If(objectsStack->getSize() > 0)
             {
                 continue;
             }

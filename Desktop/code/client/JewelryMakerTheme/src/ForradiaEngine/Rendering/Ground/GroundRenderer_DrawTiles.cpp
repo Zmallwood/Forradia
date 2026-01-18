@@ -16,7 +16,7 @@ namespace ForradiaEngine
 
         for (const auto &tile : tiles)
         {
-            if (tile.forceUpdate)
+            If(tile.forceUpdate)
             {
                 forceUpdate = true;
 
@@ -29,7 +29,7 @@ namespace ForradiaEngine
         bool tileIsCached{m_groupOperationsCache.contains(uniqueRenderID)};
 
         // If the tile is not cached or the force update flag is set.
-        if (false == tileIsCached || forceUpdate)
+        If(false == tileIsCached || forceUpdate)
         {
             std::unordered_map<int, std::vector<TileData>> tileDataByTexture;
 
@@ -37,8 +37,10 @@ namespace ForradiaEngine
             {
                 auto textureNameHash = tile.imageNameHash;
 
-                if (!tileDataByTexture.contains(textureNameHash))
+                If(!tileDataByTexture.contains(textureNameHash))
+                {
                     tileDataByTexture[textureNameHash] = std::vector<TileData>();
+                }
 
                 tileDataByTexture[textureNameHash].push_back(tile);
             }
@@ -120,7 +122,7 @@ namespace ForradiaEngine
 
             m_groupOperationsCache[uniqueRenderID] = groupOperation;
         }
-        else
+        Else
         {
             groupOperation.tilesByTexture =
                 m_groupOperationsCache.at(uniqueRenderID).tilesByTexture;
@@ -139,7 +141,7 @@ namespace ForradiaEngine
         {
             auto imageNameHash = entry.first;
 
-            if (imageNameHash == 0)
+            If(imageNameHash == 0)
             {
                 continue;
             }

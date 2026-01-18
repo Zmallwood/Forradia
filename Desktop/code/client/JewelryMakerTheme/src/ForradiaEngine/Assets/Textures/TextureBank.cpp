@@ -40,7 +40,7 @@ namespace ForradiaEngine
         auto basePath{std::string(SDL_GetBasePath())};
         auto imagesPath{basePath + k_relativeImagesPath};
 
-        if (std::filesystem::exists(imagesPath) == false)
+        If(std::filesystem::exists(imagesPath) == false)
         {
             return;
         }
@@ -51,7 +51,7 @@ namespace ForradiaEngine
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
-            if (getFileExtension(filePath) == "png")
+            If(getFileExtension(filePath) == "png")
             {
                 auto fileName{getFileNameNoExtension(filePath)};
                 auto hash{ForradiaEngine::hash(fileName)};
@@ -87,7 +87,7 @@ namespace ForradiaEngine
     // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
     auto TextureBank::getTexture(int imageNameHash) const -> GLuint
     {
-        if (m_textureEntries.contains(imageNameHash))
+        If(m_textureEntries.contains(imageNameHash))
         {
             return m_textureEntries.at(imageNameHash).textureID;
         }
@@ -97,7 +97,7 @@ namespace ForradiaEngine
 
     auto TextureBank::getTextureDimensions(int imageNameHash) -> Size
     {
-        if (m_textureEntries.contains(imageNameHash))
+        If(m_textureEntries.contains(imageNameHash))
         {
             return m_textureEntries.at(imageNameHash).dimensions;
         }
@@ -109,7 +109,7 @@ namespace ForradiaEngine
     auto TextureBank::obtainTextTexture(int uniqueTextureID, GLuint &textureID) const -> bool
     {
         // Check if the text texture exists.
-        if (m_textTextureIDs.contains(uniqueTextureID))
+        If(m_textTextureIDs.contains(uniqueTextureID))
         {
             textureID = m_textTextureIDs.at(uniqueTextureID);
 

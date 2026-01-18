@@ -23,46 +23,62 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto downPress{pressedKeys.contains(SDLK_DOWN) || pressedKeys.contains(SDLK_s)};
         auto leftPress{pressedKeys.contains(SDLK_LEFT) || pressedKeys.contains(SDLK_a)};
 
-        if (upPress || rightPress || downPress || leftPress)
-        {
-            Player::instance().setDestination({-1, -1});
-        }
+        auto isClimbingTree{Player::instance().getIsClimbingTree()};
 
-        if (upPress && rightPress)
+        If(!isClimbingTree)
         {
-            Player::instance().startMovingNorthEast();
+            If(upPress || rightPress || downPress || leftPress)
+            {
+                Player::instance().setDestination({-1, -1});
+            }
+
+            If(upPress && rightPress)
+            {
+                Player::instance().startMovingNorthEast();
+            }
+            ElseIf(downPress && rightPress)
+            {
+                Player::instance().startMovingSouthEast();
+            }
+            ElseIf(downPress && leftPress)
+            {
+                Player::instance().startMovingSouthWest();
+            }
+            ElseIf(upPress && leftPress)
+            {
+                Player::instance().startMovingNorthWest();
+            }
+            ElseIf(leftPress)
+            {
+                Player::instance().startMovingWest();
+            }
+            ElseIf(upPress)
+            {
+                Player::instance().startMovingNorth();
+            }
+            ElseIf(rightPress)
+            {
+                Player::instance().startMovingEast();
+            }
+            ElseIf(downPress)
+            {
+                Player::instance().startMovingSouth();
+            }
+            ElseIf(leftPress)
+            {
+                Player::instance().startMovingWest();
+            }
         }
-        else if (downPress && rightPress)
+        Else
         {
-            Player::instance().startMovingSouthEast();
-        }
-        else if (downPress && leftPress)
-        {
-            Player::instance().startMovingSouthWest();
-        }
-        else if (upPress && leftPress)
-        {
-            Player::instance().startMovingNorthWest();
-        }
-        else if (leftPress)
-        {
-            Player::instance().startMovingWest();
-        }
-        else if (upPress)
-        {
-            Player::instance().startMovingNorth();
-        }
-        else if (rightPress)
-        {
-            Player::instance().startMovingEast();
-        }
-        else if (downPress)
-        {
-            Player::instance().startMovingSouth();
-        }
-        else if (leftPress)
-        {
-            Player::instance().startMovingWest();
+            If(upPress)
+            {
+                Player::instance().addToClimbingHeight(1.0F);
+            }
+            ElseIf(downPress)
+            {
+                Player::instance().addToClimbingHeight(-1.0F);
+            }
         }
     }
 

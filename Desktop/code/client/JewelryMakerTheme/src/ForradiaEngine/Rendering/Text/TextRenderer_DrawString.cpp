@@ -17,7 +17,7 @@ namespace ForradiaEngine
                                   FontSizes fontSize, bool centerAlign, bool forceRerender,
                                   Color textColor) const -> void
     {
-        if (text.empty())
+        If(text.empty())
         {
             return;
         }
@@ -38,7 +38,7 @@ namespace ForradiaEngine
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         // If the texture doesn't exist yet, create it from the text surface.
-        if (!textureAlreadyExists || forceRerender)
+        If(!textureAlreadyExists || forceRerender)
         {
             auto sdlColor{textColor.toSDLColor()};
 
@@ -46,7 +46,7 @@ namespace ForradiaEngine
             auto surface{std::shared_ptr<SDL_Surface>(
                 TTF_RenderText_Solid(fontRaw, text.data(), sdlColor), SDLDeleter())};
 
-            if (surface == nullptr)
+            If(surface == nullptr)
             {
                 throwError(std::string("Error rendering text: ") + text.data());
             }
@@ -60,7 +60,7 @@ namespace ForradiaEngine
         auto width{static_cast<float>(textureDimensions.width) / canvasSize.width};
         auto height{static_cast<float>(textureDimensions.height) / canvasSize.height};
 
-        if (centerAlign)
+        If(centerAlign)
         {
             xPos -= width / 2;
             yPos -= height / 2;

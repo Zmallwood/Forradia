@@ -27,7 +27,7 @@ namespace ForradiaEngine
         const auto &meshes{model->getMeshesRef()};
 
         // If the drawing operation is cached.
-        if (this->drawingOperationIsCached(modelNameHash))
+        If(this->drawingOperationIsCached(modelNameHash))
         {
             auto &entry{m_operationsCache.at(modelNameHash)};
 
@@ -39,7 +39,7 @@ namespace ForradiaEngine
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
         }
-        else
+        Else
         {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
@@ -125,10 +125,10 @@ namespace ForradiaEngine
 
         modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
-        if (modelRotation != 0.0F)
+        If (modelRotation != 0.0F)
         {
-            modelMatrix =
-                glm::rotate(modelMatrix, glm::radians(180.0F + modelRotation), glm::vec3(0.0F, 0.0F, 1.0F));
+            modelMatrix = glm::rotate(modelMatrix, glm::radians(180.0F + modelRotation),
+                                      glm::vec3(0.0F, 0.0F, 1.0F));
         }
 
         auto viewMatrix{Camera::instance().getViewMatrix()};

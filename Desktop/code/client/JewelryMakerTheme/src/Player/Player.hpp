@@ -158,6 +158,8 @@ namespace ForradiaEngine::JewelryMakerTheme
          */
         auto getSmoothPosition() const -> PointF;
 
+        auto addToClimbingHeight(float value) -> void;
+
         /**
          *  Gets the name of the player.
          *
@@ -335,6 +337,21 @@ namespace ForradiaEngine::JewelryMakerTheme
             return m_rotationDegrees;
         }
 
+        auto getIsClimbingTree() const -> bool
+        {
+            return m_isClimbingTree;
+        }
+
+        auto setIsClimbingTree(bool value) -> void
+        {
+            m_isClimbingTree = value;
+        }
+
+        auto getClimbingHeight() const -> float
+        {
+            return m_climbingHeight;
+        }
+
       private:
         auto moveToSuitablePosition() -> void;
 
@@ -362,5 +379,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // std::shared_ptr<Spouse> m_spouse{};
         Point3 m_worldAreaCoordinate{0, 0, 0};
         float m_rotationDegrees{0.0F};
+        bool m_isClimbingTree{false};
+        float m_climbingHeight{0.0F};
     };
 }

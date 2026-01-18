@@ -29,7 +29,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         for (auto it = m_objects.begin(); it != m_objects.end();)
         {
             // If the object type matches.
-            if ((*it)->getType() == hash(objectTypeName))
+            If((*it)->getType() == hash(objectTypeName))
             {
                 // Delete the object.
                 m_objects.erase(it);
@@ -37,7 +37,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 // Stop iterating since only one object should be removed.
                 return;
             }
-            else
+            Else
             {
                 ++it;
             }
@@ -51,7 +51,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectsStack::popObject() -> std::shared_ptr<Object>
     {
-        if (m_objects.empty())
+        If(m_objects.empty())
         {
             return nullptr;
         }
@@ -64,7 +64,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectsStack::getTopObject() const -> std::shared_ptr<Object>
     {
-        if (m_objects.empty())
+        If(m_objects.empty())
         {
             return nullptr;
         }
@@ -73,8 +73,8 @@ namespace ForradiaEngine::JewelryMakerTheme
     }
 
     auto ObjectsStack::getTopObjectPtrPtr() -> std::shared_ptr<Object> *
-    { 
-        if (m_objects.empty())
+    {
+        If(m_objects.empty())
         {
             return nullptr;
         }

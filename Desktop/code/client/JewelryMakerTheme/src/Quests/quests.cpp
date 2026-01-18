@@ -25,12 +25,12 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
-                action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest ||
-                action == PlayerActionTypes::MoveNorthEast ||
-                action == PlayerActionTypes::MoveSouthEast ||
-                action == PlayerActionTypes::MoveSouthWest ||
-                action == PlayerActionTypes::MoveNorthWest)
+            If(action == PlayerActionTypes::MoveNorth || action == PlayerActionTypes::MoveEast ||
+               action == PlayerActionTypes::MoveSouth || action == PlayerActionTypes::MoveWest ||
+               action == PlayerActionTypes::MoveNorthEast ||
+               action == PlayerActionTypes::MoveSouthEast ||
+               action == PlayerActionTypes::MoveSouthWest ||
+               action == PlayerActionTypes::MoveNorthWest)
             {
                 numSteps++;
             }
@@ -38,7 +38,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numStepsLeft = 10 - numSteps;
 
-        if (numSteps >= 10)
+        If(numSteps >= 10)
         {
             isCompleted = true;
 
@@ -66,7 +66,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Forage)
+            If(action == PlayerActionTypes::Forage)
             {
                 numForagings++;
             }
@@ -74,7 +74,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numForagingsLeft = 3 - numForagings;
 
-        if (numForagings >= 3)
+        If(numForagings >= 3)
         {
             isCompleted = true;
 
@@ -102,24 +102,24 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Pick)
+            If(action == PlayerActionTypes::Pick)
             {
-                if (actionFirstArg == hash("ObjectBranch"))
+                If(actionFirstArg == hash("ObjectBranch"))
                 {
                     m_numBranchPicked = true;
                     Player::instance().getQuestCompletionPointsRef()["CraftStonePickaxeQuest"] =
                         idx;
                 }
 
-                if (actionFirstArg == hash("ObjectStone"))
+                If(actionFirstArg == hash("ObjectStone"))
                 {
                     m_numStonePicked = true;
                 }
             }
 
-            if (action == PlayerActionTypes::Craft)
+            If(action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == hash("ObjectStonePickaxe"))
+                If(actionFirstArg == hash("ObjectStonePickaxe"))
                 {
                     isCompleted = true;
                 }
@@ -131,12 +131,12 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStonePickaxeQuest::getStatus() const -> std::string
     {
-        if (!m_numBranchPicked)
+        If(!m_numBranchPicked)
         {
             return "Pick a branch.";
         }
 
-        if (!m_numStonePicked)
+        If(!m_numStonePicked)
         {
             return "Branch picked. Now pick a stone.";
         }
@@ -156,7 +156,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
+            If(action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 m_stonedMined = true;
 
@@ -164,9 +164,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                     idx;
             }
 
-            if (action == PlayerActionTypes::Craft)
+            If(action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == hash("ObjectStoneBowl"))
+                If(actionFirstArg == hash("ObjectStoneBowl"))
                 {
                     isCompleted = true;
                 }
@@ -178,7 +178,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftStoneBowlQuest::getStatus() const -> std::string
     {
-        if (!m_stonedMined)
+        If(!m_stonedMined)
         {
             return "Mine a stone.";
         }
@@ -197,13 +197,13 @@ namespace ForradiaEngine::JewelryMakerTheme
             // auto actionSecondArg{get<2>(entry)};
             auto actionThirdArg{get<3>(entry)};
 
-            if (action == PlayerActionTypes::Move)
+            If(action == PlayerActionTypes::Move)
             {
-                if (actionFirstArg == hash("ObjectStoneBowl"))
+                If(actionFirstArg == hash("ObjectStoneBowl"))
                 {
                     auto movedObject{actionThirdArg};
 
-                    if (movedObject->getType() == hash("ObjectBlueberries"))
+                    If(movedObject->getType() == hash("ObjectBlueberries"))
                     {
                         isCompleted = true;
                     }
@@ -230,7 +230,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (const auto &entry : playerActions)
         {
-            if (idx <= previousBranchPickQuestCompletionPoint)
+            If(idx <= previousBranchPickQuestCompletionPoint)
             {
                 idx++;
 
@@ -241,14 +241,14 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Pick && actionFirstArg == hash("ObjectBranch"))
+            If(action == PlayerActionTypes::Pick && actionFirstArg == hash("ObjectBranch"))
             {
                 ++numPickedBranches;
             }
 
-            if (action == PlayerActionTypes::Craft)
+            If(action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == hash("ObjectUnlitCampfire"))
+                If(actionFirstArg == hash("ObjectUnlitCampfire"))
                 {
                     isCompleted = true;
                 }
@@ -262,7 +262,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CraftCampfireQuest::getStatus() const -> std::string
     {
-        if (m_numBranchesLeft > 0)
+        If(m_numBranchesLeft > 0)
         {
             return "Branches left: " + std::to_string(m_numBranchesLeft);
         }
@@ -283,7 +283,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (const auto &entry : playerActions)
         {
-            if (idx <= previousMineQuestCompletionPoint)
+            If(idx <= previousMineQuestCompletionPoint)
             {
                 idx++;
 
@@ -294,11 +294,11 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
+            If(action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 numMinedStones++;
 
-                if (numMinedStones == k_numStonesNeeded)
+                If(numMinedStones == k_numStonesNeeded)
                 {
                     Player::instance().getQuestCompletionPointsRef()["MineStoneFromBoulderQuest1"] =
                         idx;
@@ -312,7 +312,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numMinedStonesLeft = k_numStonesNeeded - numMinedStones;
 
-        if (numMinedStones >= k_numStonesNeeded)
+        If(numMinedStones >= k_numStonesNeeded)
         {
             isCompleted = true;
 
@@ -340,9 +340,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Craft)
+            If(action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == hash("ObjectStoneSlab"))
+                If(actionFirstArg == hash("ObjectStoneSlab"))
                 {
                     numCraftedSlabs++;
                 }
@@ -351,7 +351,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numCraftedSlabsLeft = k_numSlabsNeeded - numCraftedSlabs;
 
-        if (numCraftedSlabs >= k_numSlabsNeeded)
+        If(numCraftedSlabs >= k_numSlabsNeeded)
         {
             isCompleted = true;
 
@@ -379,7 +379,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Lay)
+            If(action == PlayerActionTypes::Lay)
             {
                 numLaidSlabs++;
             }
@@ -387,7 +387,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numLaidSlabsLeft = k_numSlabsPlacedNeeded - numLaidSlabs;
 
-        if (numLaidSlabs >= k_numSlabsPlacedNeeded)
+        If(numLaidSlabs >= k_numSlabsPlacedNeeded)
         {
             isCompleted = true;
 
@@ -416,7 +416,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         for (const auto &entry : playerActions)
         {
-            if (idx <= previousMineQuestCompletionPoint)
+            If(idx <= previousMineQuestCompletionPoint)
             {
                 idx++;
                 continue;
@@ -426,7 +426,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
+            If(action == PlayerActionTypes::Mine && actionFirstArg == hash("ObjectStone"))
             {
                 numMinedStones++;
             }
@@ -436,7 +436,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numMinedStonesLeft = k_numMinedStonesNeeded - numMinedStones;
 
-        if (numMinedStones >= k_numMinedStonesNeeded)
+        If(numMinedStones >= k_numMinedStonesNeeded)
         {
             isCompleted = true;
 
@@ -464,9 +464,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             // auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Craft)
+            If(action == PlayerActionTypes::Craft)
             {
-                if (actionFirstArg == hash("ObjectStoneBrick"))
+                If(actionFirstArg == hash("ObjectStoneBrick"))
                 {
                     numCraftedBricks++;
                 }
@@ -475,7 +475,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         m_numCraftedBricksLeft = k_numCraftedBricksNeeded - numCraftedBricks;
 
-        if (numCraftedBricks >= k_numCraftedBricksNeeded)
+        If(numCraftedBricks >= k_numCraftedBricksNeeded)
         {
             isCompleted = true;
 
@@ -503,9 +503,9 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto actionFirstArg{get<1>(entry)};
             auto actionSecondArg{get<2>(entry)};
 
-            if (action == PlayerActionTypes::Craft &&
-                (actionFirstArg == hash("ObjectStoneWall") ||
-                 actionFirstArg == hash("ObjectStoneWallDoor")))
+            If(action == PlayerActionTypes::Craft &&
+               (actionFirstArg == hash("ObjectStoneWall") ||
+                actionFirstArg == hash("ObjectStoneWallDoor")))
             {
                 wallPositions.insert({actionSecondArg.x, actionSecondArg.y});
             }
@@ -513,7 +513,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto numIncompleteWallTiles{BuildStoneWallsQuest::getNumIncompleteWallTiles(wallPositions)};
 
-        if (!wallPositions.empty() && numIncompleteWallTiles == 0)
+        If(!wallPositions.empty() && numIncompleteWallTiles == 0)
         {
             isCompleted = true;
 
@@ -553,7 +553,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             for (const auto &tile : tilesWithDiagonals)
             {
-                if (tile && tile->getGround() == hash("GroundStoneSlab"))
+                If(tile && tile->getGround() == hash("GroundStoneSlab"))
                 {
                     adjacentStoneSlabTiles++;
                 }
@@ -563,14 +563,14 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             for (const auto &tile : tilesWithoutDiagonals)
             {
-                if (tile && (tile->getObjectsStack()->countHasObject("ObjectStoneWall") > 0 ||
-                             tile->getObjectsStack()->countHasObject("ObjectStoneWallDoor") > 0))
+                If(tile && (tile->getObjectsStack()->countHasObject("ObjectStoneWall") > 0 ||
+                            tile->getObjectsStack()->countHasObject("ObjectStoneWallDoor") > 0))
                 {
                     adjacentStoneWallOrDoorTiles++;
                 }
             }
 
-            if (adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
+            If(adjacentStoneSlabTiles < 1 || adjacentStoneWallOrDoorTiles < 2)
             {
                 numIncompleteWallTiles++;
             }

@@ -14,7 +14,7 @@ namespace ForradiaEngine
         auto vertexShader{ShaderProgram::getShader(vertexShaderSource, GL_VERTEX_SHADER)};
 
         // If the vertex shader failed.
-        if (0 == vertexShader)
+        If(0 == vertexShader)
         {
             glDeleteShader(vertexShader);
 
@@ -24,7 +24,7 @@ namespace ForradiaEngine
         auto fragmentShader{ShaderProgram::getShader(fragmentShaderSource, GL_FRAGMENT_SHADER)};
 
         // If the fragment shader failed.
-        if (0 == fragmentShader)
+        If(0 == fragmentShader)
         {
             glDeleteShader(vertexShader);
             glDeleteShader(fragmentShader);
@@ -35,7 +35,7 @@ namespace ForradiaEngine
         auto isLinked{this->createProgram(vertexShader, fragmentShader)};
 
         // If the link failed, dont continue.
-        if (GL_FALSE == isLinked)
+        If(GL_FALSE == isLinked)
         {
             return;
         }
@@ -64,7 +64,7 @@ namespace ForradiaEngine
         glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
         // If the compile failed.
-        if (isCompiled == GL_FALSE)
+        If(isCompiled == GL_FALSE)
         {
             GLint maxLength{0};
             glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
@@ -88,7 +88,7 @@ namespace ForradiaEngine
         glGetProgramiv(m_programID, GL_LINK_STATUS, static_cast<int *>(&isLinked));
 
         // If the link failed.
-        if (isLinked == GL_FALSE)
+        If(isLinked == GL_FALSE)
         {
             GLint maxLength{0};
             glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &maxLength);

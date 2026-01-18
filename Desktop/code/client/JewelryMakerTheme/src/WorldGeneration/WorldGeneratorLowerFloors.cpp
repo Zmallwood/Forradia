@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }
@@ -48,7 +48,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }

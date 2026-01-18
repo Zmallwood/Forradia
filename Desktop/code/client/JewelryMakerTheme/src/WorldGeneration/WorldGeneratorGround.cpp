@@ -31,7 +31,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile)
+                If(!tile)
                 {
                     continue;
                 }
@@ -79,20 +79,20 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto adjacentX{xPos + direction.x};
             auto adjacentY{yPos + direction.y};
 
-            if (!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
+            If(!getWorldArea()->isValidCoordinate(adjacentX, adjacentY))
             {
                 continue;
             }
 
             auto adjacentTile{getWorldArea()->getTile(adjacentX, adjacentY)};
 
-            if (!adjacentTile)
+            If(!adjacentTile)
             {
                 continue;
             }
 
             // Skip water tiles - they have their own elevation rules (set to 0).
-            if (adjacentTile->getGround() == hash("GroundWater"))
+            If(adjacentTile->getGround() == hash("GroundWater"))
             {
                 continue;
             }
@@ -105,7 +105,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto maxFromAdjacent{adjacentElevation + maxSlope};
 
             // Update the maximum allowed elevation if the adjacent tile elevation is lower.
-            if (maxFromAdjacent < maxAllowedElevation)
+            If(maxFromAdjacent < maxAllowedElevation)
             {
                 maxAllowedElevation = maxFromAdjacent;
             }
@@ -118,12 +118,12 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         auto maxElevation{getMaxElevation()};
 
-        if (elevation > maxElevation)
+        If(elevation > maxElevation)
         {
             return maxElevation;
         }
 
-        if (elevation < getDefaultGroundElevation())
+        If(elevation < getDefaultGroundElevation())
         {
             return getDefaultGroundElevation();
         }

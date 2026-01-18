@@ -24,17 +24,17 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto ObjectMoving::onMouseDown(Uint8 mouseButton) -> bool
     {
-        if (this->checkMouseDownInInventoryWindow(mouseButton))
+        If(this->checkMouseDownInInventoryWindow(mouseButton))
         {
             return true;
         }
 
-        if (this->checkMouseDownInAnyContainerWindow(mouseButton))
+        If(this->checkMouseDownInAnyContainerWindow(mouseButton))
         {
             return true;
         }
 
-        if (mouseButton == SDL_BUTTON_LEFT)
+        If(mouseButton == SDL_BUTTON_LEFT)
         {
             auto hoveredCoordinate{TileHovering::instance().getHoveredCoordinate()};
 
@@ -43,7 +43,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             auto absDx{std::abs(hoveredCoordinate.x - playerPosition.x)};
             auto absDy{std::abs(hoveredCoordinate.y - playerPosition.y)};
 
-            if (absDx > 1 || absDy > 1)
+            If(absDx > 1 || absDy > 1)
             {
                 return false;
             }
@@ -57,11 +57,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto topObject{objectsStack->getTopObject()};
 
-            if (!m_objectInAir && topObject)
+            If(!m_objectInAir && topObject)
             {
                 auto canBePickedUp{ObjectIndex::instance().getCanBePickedUp(topObject->getType())};
 
-                if (!canBePickedUp)
+                If(!canBePickedUp)
                 {
                     return false;
                 }
@@ -79,16 +79,16 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto ObjectMoving::onMouseUp(Uint8 mouseButton, int clickSpeed) -> bool
     {
-        if (m_objectInAir)
+        If(m_objectInAir)
         {
             auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
             auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-            if (GUIInventoryWindow::instance().getVisible() &&
-                inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+            If(GUIInventoryWindow::instance().getVisible() &&
+               inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
             {
-                if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+                If(auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
                 {
                     *objectPtrPtr = m_objectInAir;
 
@@ -103,7 +103,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 }
             }
 
-            if (mouseButton == SDL_BUTTON_LEFT)
+            If(mouseButton == SDL_BUTTON_LEFT)
             {
                 auto mainScene{SceneManager::instance().getScene("MainScene")};
 
@@ -116,14 +116,14 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto castedToGUIContainerWindow{
                         std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
 
-                    if (castedToGUIContainerWindow)
+                    If(castedToGUIContainerWindow)
                     {
                         auto bounds{castedToGUIContainerWindow->getBounds()};
 
-                        if (bounds.contains(mousePos))
+                        If(bounds.contains(mousePos))
                         {
-                            if (auto objectPtrPtr{
-                                    castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
+                            If(auto objectPtrPtr{
+                                castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
                             {
                                 *objectPtrPtr = m_objectInAir;
 
@@ -158,7 +158,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             m_objectInAir = nullptr;
 
-            if (clickSpeed < k_clickSpeedThreshold)
+            If(clickSpeed < k_clickSpeedThreshold)
             {
                 return false;
             }
@@ -175,10 +175,10 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto inventoryWindowBounds{GUIInventoryWindow::instance().getBounds()};
 
-        if (!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
-            inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
+        If(!m_objectInAir && GUIInventoryWindow::instance().getVisible() &&
+           inventoryWindowBounds.contains(mousePos) && mouseButton == SDL_BUTTON_LEFT)
         {
-            if (auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
+            If(auto objectPtrPtr{GUIInventoryWindow::instance().getObjectPtrPtr(mousePos)})
             {
                 m_objectInAir = *objectPtrPtr;
 
@@ -196,7 +196,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        if (!m_objectInAir && mouseButton == SDL_BUTTON_LEFT)
+        If(!m_objectInAir && mouseButton == SDL_BUTTON_LEFT)
         {
             auto mainScene{SceneManager::instance().getScene("MainScene")};
 
@@ -209,14 +209,13 @@ namespace ForradiaEngine::JewelryMakerTheme
                 auto castedToGUIContainerWindow{
                     std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
 
-                if (castedToGUIContainerWindow)
+                If(castedToGUIContainerWindow)
                 {
                     auto bounds{castedToGUIContainerWindow->getBounds()};
 
-                    if (bounds.contains(mousePos))
+                    If(bounds.contains(mousePos))
                     {
-                        if (auto objectPtrPtr{
-                                castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
+                        If(auto objectPtrPtr{castedToGUIContainerWindow->getObjectPtrPtr(mousePos)})
                         {
                             m_objectInAir = *objectPtrPtr;
 
@@ -232,15 +231,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         return false;
     }
 
-
-    auto ObjectMoving::checkMouseDownInGameWorld(Uint8 mouseButton) -> bool
-    {
-
-    }
-
     auto ObjectMoving::render() const -> void
     {
-        if (m_objectInAir && getTicks() - m_ticksSinceMouseDownOnTile > k_clickSpeedThreshold)
+        If(m_objectInAir && getTicks() - m_ticksSinceMouseDownOnTile > k_clickSpeedThreshold)
         {
             auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 

@@ -40,7 +40,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + yPos};
 
-                if (TileHovering::determineIfTileIsHovered(xCoordinate, yCoordinate))
+                If(TileHovering::determineIfTileIsHovered(xCoordinate, yCoordinate))
                 {
                     m_hoveredCoordinate = {xCoordinate, yCoordinate};
 
@@ -84,13 +84,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         // Perspective divide.
         // NOLINTNEXTLINE(readability-magic-numbers)
-        if (std::abs(nearPoint.w) > 0.0001F)
+        If(std::abs(nearPoint.w) > 0.0001F)
         {
             nearPoint /= nearPoint.w;
         }
 
         // NOLINTNEXTLINE(readability-magic-numbers)
-        if (std::abs(farPoint.w) > 0.0001F)
+        If(std::abs(farPoint.w) > 0.0001F)
         {
             farPoint /= farPoint.w;
         }
@@ -109,10 +109,10 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto coordinateSE{Point{xCoordinate + 1, yCoordinate + 1}};
 
         // Check if coordinates are valid.
-        if (!worldArea->isValidCoordinate(coordinateNW) ||
-            !worldArea->isValidCoordinate(coordinateNE) ||
-            !worldArea->isValidCoordinate(coordinateSW) ||
-            !worldArea->isValidCoordinate(coordinateSE))
+        If(!worldArea->isValidCoordinate(coordinateNW) ||
+           !worldArea->isValidCoordinate(coordinateNE) ||
+           !worldArea->isValidCoordinate(coordinateSW) ||
+           !worldArea->isValidCoordinate(coordinateSE))
         {
             return false;
         }

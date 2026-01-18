@@ -12,17 +12,17 @@ namespace ForradiaEngine
 {
     auto SkyRenderer::cleanup() -> void
     {
-        if (m_vao != 0)
+        If(m_vao != 0)
         {
             glDeleteVertexArrays(1, &m_vao);
         }
 
-        if (m_ibo != 0)
+        If(m_ibo != 0)
         {
             glDeleteBuffers(1, &m_ibo);
         }
 
-        if (m_vbo != 0)
+        If(m_vbo != 0)
         {
             glDeleteBuffers(1, &m_vbo);
         }
@@ -85,8 +85,8 @@ namespace ForradiaEngine
             glGetUniformLocation(getShaderProgram()->getProgramID(), "sunElevation");
 
         // Check if uniform locations are valid (should not be -1).
-        if (m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
-            m_layoutLocationSunElevation == -1)
+        If(m_layoutLocationMVP == -1 || m_layoutLocationSunDirection == -1 ||
+           m_layoutLocationSunElevation == -1)
         {
             throwError("Uniform locations not found - shader might have compilation errors.");
         }

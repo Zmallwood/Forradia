@@ -24,6 +24,33 @@ namespace ForradiaEngine::JewelryMakerTheme
     static std::shared_ptr<std::tuple<int, int, std::function<void()>>> s_timedAction;
 
     template <>
+    auto getAction<hash("ActionClimbTree")>() -> Action
+    {
+        return {.label = "Climb tree",
+                .groundMatches = {},
+                .objectMatches = {hash("ObjectFirTree"), hash("ObjectBirchTree")},
+                .objectsInInventory = {},
+                .action = [](const std::shared_ptr<Tile> &tile,
+                             const std::vector<std::shared_ptr<Object> *> &objects)
+                {
+                    Player::instance().setIsClimbingTree(true);
+
+                    // auto objectStack{tile->getObjectsStack()};
+
+                    // if (objectStack->countHasObject("ObjectBush1"))
+                    // {
+                    //     objectStack->removeOneOfObjectOfType("ObjectBush1");
+                    // }
+                    // else if (objectStack->countHasObject("ObjectBush2"))
+                    // {
+                    //     objectStack->removeOneOfObjectOfType("ObjectBush2");
+                    // }
+
+                    GUIChatBox::instance().print("You start climbing the tree.");
+                }};
+    }
+
+    template <>
     auto getAction<hash("ActionCutDownBush")>() -> Action
     {
         return {.label = "Cut down bush",
@@ -35,11 +62,11 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     auto objectStack{tile->getObjectsStack()};
 
-                    if (objectStack->countHasObject("ObjectBush1"))
+                    If(objectStack->countHasObject("ObjectBush1"))
                     {
                         objectStack->removeOneOfObjectOfType("ObjectBush1");
                     }
-                    else if (objectStack->countHasObject("ObjectBush2"))
+                    ElseIf(objectStack->countHasObject("ObjectBush2"))
                     {
                         objectStack->removeOneOfObjectOfType("ObjectBush2");
                     }
@@ -228,7 +255,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     auto objectStack{tile->getObjectsStack()};
 
-                    if (objectStack->countHasObject("ObjectWoodLog") > 0)
+                    If(objectStack->countHasObject("ObjectWoodLog") > 0)
                     {
                         objectStack->removeOneOfObjectOfType("ObjectWoodLog");
 
@@ -251,7 +278,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     auto objectStack{tile->getObjectsStack()};
 
-                    if (objectStack->countHasObject("ObjectFelledTree") > 0)
+                    If(objectStack->countHasObject("ObjectFelledTree") > 0)
                     {
                         objectStack->removeOneOfObjectOfType("ObjectFelledTree");
 
@@ -274,8 +301,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     auto objectStack{tile->getObjectsStack()};
 
-                    if (objectStack->countHasObject("ObjectFirTree") > 0 ||
-                        objectStack->countHasObject("ObjectBirchTree") > 0)
+                    If(objectStack->countHasObject("ObjectFirTree") > 0 ||
+                       objectStack->countHasObject("ObjectBirchTree") > 0)
                     {
                         auto treeType{objectStack->countHasObject("ObjectFirTree") > 0
                                           ? "ObjectFirTree"
@@ -301,17 +328,17 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     auto objectStack{tile->getObjectsStack()};
 
-                    if (objectStack->countHasObject("ObjectStoneBlock") > 0)
+                    If(objectStack->countHasObject("ObjectStoneBlock") > 0)
                     {
                         objectStack->removeOneOfObjectOfType("ObjectStoneBlock");
 
                         auto dropType{getRandomInt(2)};
 
-                        if (dropType == 0)
+                        If(dropType == 0)
                         {
                             objectStack->addObject("ObjectStone");
                         }
-                        else
+                        Else
                         {
                             objectStack->addObject("ObjectIronOre");
                         }
@@ -338,7 +365,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto lowerFloorWorldArea{World::instance().getWorldArea(
                         {worldAreaCoordinate.x, worldAreaCoordinate.y, worldAreaCoordinate.z - 1})};
 
-                    if (lowerFloorWorldArea)
+                    If(lowerFloorWorldArea)
                     {
                         auto radius{3};
 
@@ -355,12 +382,12 @@ namespace ForradiaEngine::JewelryMakerTheme
                                 auto deltaY{yPos - clickedCoordinate.y};
                                 auto distance{std::sqrt(deltaX * deltaX + deltaY * deltaY)};
 
-                                if (distance > radius)
+                                If(distance > radius)
                                 {
                                     continue;
                                 }
 
-                                if (lowerFloorWorldArea->isValidCoordinate(xPos, yPos))
+                                If(lowerFloorWorldArea->isValidCoordinate(xPos, yPos))
                                 {
                                     lowerFloorWorldArea->getTile(xPos, yPos)
                                         ->getObjectsStack()
@@ -389,7 +416,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     for (const auto &object : objects)
                     {
-                        if ((*object)->getType() == hash("ObjectUnlitCampfire"))
+                        If((*object)->getType() == hash("ObjectUnlitCampfire"))
                         {
                             (*object)->setType(hash("ObjectLitCampfire"));
 
@@ -413,8 +440,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     for (const auto &object : objects)
                     {
-                        if ((*object)->getType() == hash("ObjectUnlitCampfire") ||
-                            (*object)->getType() == hash("ObjectLitCampfire"))
+                        If((*object)->getType() == hash("ObjectUnlitCampfire") ||
+                           (*object)->getType() == hash("ObjectLitCampfire"))
                         {
                             // NOLINTNEXTLINE(readability-qualified-auto)
                             auto mainScene{SceneManager::instance().getScene("MainScene")};
@@ -452,11 +479,11 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     constexpr auto k_numBranchesRequired{8};
 
-                    if (numBranchesInInventory < k_numBranchesRequired)
+                    If(numBranchesInInventory < k_numBranchesRequired)
                     {
                         GUIChatBox::instance().print("You need 8 branches to craft a campfire.");
                     }
-                    else
+                    Else
                     {
                         constexpr auto k_craftingTime{3000};
 
@@ -493,7 +520,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     for (const auto &object : objects)
                     {
-                        if ((*object)->getType() == hash("ObjectStoneBowl"))
+                        If((*object)->getType() == hash("ObjectStoneBowl"))
                         {
                             // NOLINTNEXTLINE(readability-qualified-auto)
                             auto mainScene{SceneManager::instance().getScene("MainScene")};
@@ -528,7 +555,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                     // NOLINTNEXTLINE(readability-qualified-auto)
                     for (const auto &objPtr : objects)
                     {
-                        if ((*objPtr)->getType() == hash("ObjectRedApple"))
+                        If((*objPtr)->getType() == hash("ObjectRedApple"))
                         {
                         }
                     }
@@ -584,7 +611,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     auto clickedCoordinate{GUIInteractionMenu::instance().getClickedCoordinate()};
 
-                    if (tile)
+                    If(tile)
                     {
                         tile->getObjectsStack()->addObject("ObjectStoneWallDoor");
                     }
@@ -614,7 +641,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     auto clickedCoordinate{GUIInteractionMenu::instance().getClickedCoordinate()};
 
-                    if (tile)
+                    If(tile)
                     {
                         tile->getObjectsStack()->addObject("ObjectStoneWall");
                     }
@@ -672,7 +699,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                             inventory.removeObject("ObjectStoneSlab");
 
-                            if (tile)
+                            If(tile)
                             {
                                 tile->setGround(hash("GroundStoneSlab"));
                             }
@@ -736,7 +763,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         {
                             auto &inventory{Player::instance().getObjectsInventoryRef()};
 
-                            if (inventory.countHasObject("ObjectBranch") < 1)
+                            If(inventory.countHasObject("ObjectBranch") < 1)
                             {
                                 GUIChatBox::instance().print(
                                     "You don't have any branches to craft a stone pickaxe.");
@@ -744,7 +771,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                 return;
                             }
 
-                            if (inventory.countHasObject("ObjectStone") < 1)
+                            If(inventory.countHasObject("ObjectStone") < 1)
                             {
                                 GUIChatBox::instance().print(
                                     "You don't have any stones to craft a stone pickaxe.");
@@ -815,7 +842,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     auto numSmallStonesInInventory{inventory.countHasObject("ObjectSmallStones")};
 
-                    if (numSmallStonesInInventory <= 0)
+                    If(numSmallStonesInInventory <= 0)
                     {
                         GUIChatBox::instance().print("You don't have any small stones to lay.");
 
@@ -824,7 +851,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     inventory.removeObject("ObjectSmallStones");
 
-                    if (tile)
+                    If(tile)
                     {
                         tile->setGround(hash("GroundCobbleStone"));
                     }
@@ -843,7 +870,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    if (tile)
+                    If(tile)
                     {
                         tile->setGround(hash("GroundPlowedLand"));
                     }
@@ -943,7 +970,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                 .action = [](const std::shared_ptr<Tile> &tile,
                              const std::vector<std::shared_ptr<Object> *> &objects)
                 {
-                    if (tile)
+                    If(tile)
                     {
                         tile->getObjectsStack()->removeOneOfObjectOfType("ObjectStone");
                     }
@@ -961,13 +988,13 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto updateTimedAction() -> void
     {
-        if (s_timedAction)
+        If(s_timedAction)
         {
-            if (getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
+            If(getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
             {
                 std::get<2> (*s_timedAction)();
 
-                if (getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
+                If(getTicks() > std::get<0>(*s_timedAction) + std::get<1>(*s_timedAction))
                 {
                     s_timedAction = nullptr;
                 }
@@ -982,7 +1009,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto getTimedActionProgress() -> float
     {
-        if (s_timedAction)
+        If(s_timedAction)
         {
             return static_cast<float>(getTicks() - std::get<0>(*s_timedAction)) /
                    static_cast<float>(std::get<1>(*s_timedAction));

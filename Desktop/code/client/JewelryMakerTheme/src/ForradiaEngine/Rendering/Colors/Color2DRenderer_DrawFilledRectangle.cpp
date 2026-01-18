@@ -24,7 +24,7 @@ namespace ForradiaEngine
         auto needFillBuffers{false};
 
         // If the operation is cached, use the cached operation.
-        if (this->drawingOperationIsCached(uniqueRenderID))
+        If (this->drawingOperationIsCached(uniqueRenderID))
         {
             auto &entry = m_operationsCache.at(uniqueRenderID);
 
@@ -36,7 +36,7 @@ namespace ForradiaEngine
             glBindBuffer(GL_ARRAY_BUFFER, vbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
         }
-        else
+        Else
         {
             glGenVertexArrays(1, &vao);
             glGenBuffers(1, &vbo);
@@ -58,7 +58,7 @@ namespace ForradiaEngine
         constexpr auto k_indicesCount{4};
 
         // If the buffers need to be filled or the operation is being updated, fill the buffers.
-        if (needFillBuffers || updateExisting)
+        If (needFillBuffers || updateExisting)
         {
             constexpr auto k_verticesCount{4};
 

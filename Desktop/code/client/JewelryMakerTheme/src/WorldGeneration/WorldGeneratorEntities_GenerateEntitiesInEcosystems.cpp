@@ -23,18 +23,18 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto checkX = xPos - radius; checkX <= xPos + radius; checkX++)
                 {
-                    if (!worldArea->isValidCoordinate(checkX, checkY))
+                    If(!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
                     auto tile{worldArea->getTile(checkX, checkY)};
 
-                    if (tile && tile->getGround() == hash("GroundWater"))
+                    If(tile && tile->getGround() == hash("GroundWater"))
                     {
                         auto distance{calcDistance(xPos, yPos, checkX, checkY)};
 
-                        if (distance <= radius)
+                        If(distance <= radius)
                         {
                             return true;
                         }
@@ -63,23 +63,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
+                If(!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
 
                 auto prefersLocation{false};
 
-                if (tile->getGround() == hash("GroundGrass"))
+                If(tile->getGround() == hash("GroundGrass"))
                 {
-                    if (isNearWater(worldArea, xPos, yPos, 8))
+                    If(isNearWater(worldArea, xPos, yPos, 8))
                     {
                         prefersLocation =
                             getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                             WorldGeneratorBase::getParam<int>(
                                 "whiteRabbitPrefersLocationNearWaterProbability");
                     }
-                    else
+                    Else
                     {
                         prefersLocation =
                             getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
@@ -87,7 +87,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                                 "whiteRabbitPrefersLocationAwayFromWaterProbability");
                     }
                 }
-                else if (tile->getGround() == hash("GroundDirt"))
+                ElseIf(tile->getGround() == hash("GroundDirt"))
                 {
                     prefersLocation =
                         getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
@@ -95,7 +95,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             "whiteRabbitPrefersLocationOnDirtProbability");
                 }
 
-                if (prefersLocation)
+                If(prefersLocation)
                 {
                     auto newEntity{
                         std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};
@@ -123,23 +123,23 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
+                If(!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
 
                 auto prefersLocation{false};
 
-                if (tile->getGround() == hash("GroundGrass"))
+                If(tile->getGround() == hash("GroundGrass"))
                 {
-                    if (isNearWater(worldArea, xPos, yPos, 8))
+                    If(isNearWater(worldArea, xPos, yPos, 8))
                     {
                         prefersLocation =
                             getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                             WorldGeneratorBase::getParam<int>(
                                 "wolfPrefersLocationNearWaterProbability");
                     }
-                    else
+                    Else
                     {
                         prefersLocation =
                             getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
@@ -147,14 +147,14 @@ namespace ForradiaEngine::JewelryMakerTheme
                                 "wolfPrefersLocationAwayFromWaterProbability");
                     }
                 }
-                else if (tile->getGround() == hash("GroundDirt"))
+                ElseIf(tile->getGround() == hash("GroundDirt"))
                 {
                     prefersLocation =
                         getRandomInt(WorldGeneratorBase::getParam<int>("100Percent")) <
                         WorldGeneratorBase::getParam<int>("wolfPrefersLocationOnDirtProbability");
                 }
 
-                if (prefersLocation)
+                If(prefersLocation)
                 {
                     auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureWolf")};
 
@@ -175,19 +175,19 @@ namespace ForradiaEngine::JewelryMakerTheme
             {
                 for (auto checkX = xPos - 3; checkX <= xPos + 3; checkX++)
                 {
-                    if (checkX == xPos && checkY == yPos)
+                    If(checkX == xPos && checkY == yPos)
                     {
                         continue;
                     }
 
-                    if (!worldArea->isValidCoordinate(checkX, checkY))
+                    If(!worldArea->isValidCoordinate(checkX, checkY))
                     {
                         continue;
                     }
 
                     auto nearbyTile{worldArea->getTile(checkX, checkY)};
 
-                    if (nearbyTile)
+                    If(nearbyTile)
                     {
                         auto objectsStack{nearbyTile->getObjectsStack()};
 
@@ -195,8 +195,8 @@ namespace ForradiaEngine::JewelryMakerTheme
                         {
                             auto objectType{object->getType()};
 
-                            if (objectType == hash("ObjectFirTree") ||
-                                objectType == hash("ObjectBirchTree"))
+                            If(objectType == hash("ObjectFirTree") ||
+                               objectType == hash("ObjectBirchTree"))
                             {
                                 // Birds can perch on trees, so nearby trees increase
                                 // probability.
@@ -227,7 +227,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto tile{worldArea->getTile(xPos, yPos)};
 
-                if (!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
+                If(!tile || tile->getEntity() || tile->getGround() == hash("GroundWater"))
                 {
                     continue;
                 }
@@ -239,7 +239,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto prefersLocation{false};
 
-                if (nearbyTreesCount >= 2)
+                If(nearbyTreesCount >= 2)
                 {
                     // High probability in forest areas.
                     prefersLocation =
@@ -247,7 +247,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         WorldGeneratorBase::getParam<int>(
                             "redBirdsPrefersLocationForestAreasProbability");
                 }
-                else if (nearbyTreesCount == 1)
+                ElseIf(nearbyTreesCount == 1)
                 {
                     // Moderate probability near a single tree.
                     prefersLocation =
@@ -255,7 +255,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                         WorldGeneratorBase::getParam<int>(
                             "redBirdsPrefersLocationNearSingleTreeProbability");
                 }
-                else if (tile->getGround() == hash("GroundGrass"))
+                ElseIf(tile->getGround() == hash("GroundGrass"))
                 {
                     // Lower probability in open grass areas (birds can still be found there).
                     prefersLocation =
@@ -264,7 +264,7 @@ namespace ForradiaEngine::JewelryMakerTheme
                             "redBirdsPrefersLocationOpenGrassAreasProbability");
                 }
 
-                if (prefersLocation)
+                If(prefersLocation)
                 {
                     auto newEntity{std::make_shared<JewelryMakerTheme::Entity>("CreatureRedBird")};
 
@@ -315,8 +315,10 @@ namespace ForradiaEngine::JewelryMakerTheme
                     attempts++;
                 }
 
-                if (!foundWater)
+                If(!foundWater)
+                {
                     continue;
+                }
 
                 // Create a small ecosystem around the water source.
 
@@ -340,22 +342,22 @@ namespace ForradiaEngine::JewelryMakerTheme
                     auto creatureY{waterY + static_cast<int>(std::sin(angle) * distance)};
 
                     // If the coordinates are out of bounds.
-                    if (!worldArea->isValidCoordinate(creatureX, creatureY))
+                    If(!worldArea->isValidCoordinate(creatureX, creatureY))
                     {
                         continue;
                     }
 
                     auto creatureTile{worldArea->getTile(creatureX, creatureY)};
 
-                    if (!creatureTile || creatureTile->getEntity() ||
-                        creatureTile->getGround() == hash("GroundWater"))
+                    If(!creatureTile || creatureTile->getEntity() ||
+                       creatureTile->getGround() == hash("GroundWater"))
                     {
                         continue;
                     }
 
                     // Prefer grass for the ecosystem.
                     // NOLINTNEXTLINE(readability-magic-numbers)
-                    if (creatureTile->getGround() == hash("GroundGrass") && getRandomInt(100) < 60)
+                    If(creatureTile->getGround() == hash("GroundGrass") && getRandomInt(100) < 60)
                     {
                         auto newEntity{
                             std::make_shared<JewelryMakerTheme::Entity>("CreatureWhiteRabbit")};

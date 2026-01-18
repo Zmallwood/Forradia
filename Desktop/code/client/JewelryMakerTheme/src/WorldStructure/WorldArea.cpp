@@ -53,7 +53,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto width{static_cast<int>(m_tiles.size())};
         auto height{0};
 
-        if (width)
+        If(width)
         {
             height = m_tiles.at(0).size();
         }
@@ -75,7 +75,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto WorldArea::getTile(int x, int y) const -> std::shared_ptr<Tile>
     {
-        if (this->isValidCoordinate(x, y))
+        If(this->isValidCoordinate(x, y))
         {
             return m_tiles.at(x).at(y);
         }
