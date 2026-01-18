@@ -29,7 +29,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto QuestSystem::update() const -> void
     {
-        for (const auto &quest : this->m_quests)
+        Loop(const auto &quest : this->m_quests)
         {
             If(quest->isCompleted)
             {
@@ -44,7 +44,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto QuestSystem::getCurrentQuestName() const -> std::string
     {
-        for (const auto &quest : this->m_quests)
+        Loop(const auto &quest : this->m_quests)
         {
             If(quest->isCompleted)
             {
@@ -59,7 +59,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto QuestSystem::getCurrentQuestDescription() const -> std::string
     {
-        for (const auto &quest : this->m_quests)
+        Loop(const auto &quest : this->m_quests)
         {
             If(quest->isCompleted)
             {
@@ -73,7 +73,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto QuestSystem::getCurrentQuestStatus() const -> std::string
     {
-        for (const auto &quest : this->m_quests)
+        Loop(const auto &quest : this->m_quests)
         {
             If(quest->isCompleted)
             {

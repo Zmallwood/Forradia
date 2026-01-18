@@ -13,7 +13,7 @@ namespace ForradiaEngine
 {
     auto Image2DRenderer::cleanup() const -> void
     {
-        for (const auto &val : m_operationsCache | std::views::values)
+        Loop(const auto &val : m_operationsCache | std::views::values)
         {
             glDeleteBuffers(1, &val.ibo);
             glDeleteBuffers(1, &val.vbo);

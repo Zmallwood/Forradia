@@ -30,7 +30,7 @@ namespace ForradiaEngine
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
         // Iterate through the directory using the rdi.
-        for (const auto &file : rdi)
+        Loop(const auto &file : rdi)
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 

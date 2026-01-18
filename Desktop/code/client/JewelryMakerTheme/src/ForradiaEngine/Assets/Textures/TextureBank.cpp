@@ -20,12 +20,12 @@ namespace ForradiaEngine
 
     auto TextureBank::cleanup() -> void
     {
-        for (auto val : m_textureEntries | std::views::values)
+        Loop(auto val : m_textureEntries | std::views::values)
         {
             glDeleteTextures(1, &val.textureID);
         }
 
-        for (auto val : m_textTextureIDs | std::views::values)
+        Loop(auto val : m_textTextureIDs | std::views::values)
         {
             glDeleteTextures(1, &val);
         }
@@ -47,7 +47,7 @@ namespace ForradiaEngine
 
         std::filesystem::recursive_directory_iterator rdi{imagesPath};
 
-        for (const auto &file : rdi)
+        Loop(const auto &file : rdi)
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 

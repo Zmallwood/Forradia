@@ -17,7 +17,7 @@ namespace ForradiaEngine
     {
         auto maxNumLines{this->getMaxNumLines()};
 
-        for (auto i = 0; i < maxNumLines; i++)
+        Loop(auto i = 0; i < maxNumLines; i++)
         {
             m_renderIDsTextLines.push_back(hash(fmt::format("RenderIDTextLine{}", i)));
         }
@@ -44,7 +44,7 @@ namespace ForradiaEngine
         auto yPos{bounds.y + k_margin};
 
         // Loop through the text lines.
-        for (auto i = 0; i < maxNumLines; i++)
+        Loop(auto i = 0; i < maxNumLines; i++)
         {
             auto index{m_lines.size() - maxNumLines + i};
 

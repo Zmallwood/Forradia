@@ -18,6 +18,8 @@ namespace ForradiaEngine
 
         this->loadMusic();
         this->loadSound();
+
+        Mix_VolumeMusic(k_maxVolume);
     }
 
     auto AudioBank::cleanup() -> void
@@ -37,7 +39,7 @@ namespace ForradiaEngine
 
         std::filesystem::recursive_directory_iterator rdi{musicPath};
 
-        for (const auto &file : rdi)
+        Loop(const auto &file : rdi)
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
@@ -65,7 +67,7 @@ namespace ForradiaEngine
 
         std::filesystem::recursive_directory_iterator rdi{soundsPath};
 
-        for (const auto &file : rdi)
+        Loop(const auto &file : rdi)
         {
             auto filePath{replace(file.path().string(), '\\', '/')};
 
@@ -121,7 +123,7 @@ namespace ForradiaEngine
 
     auto AudioBank::unmuteMusic() -> void
     {
-        Mix_VolumeMusic(MIX_MAX_VOLUME);
+        Mix_VolumeMusic(k_maxVolume);
         m_musicMuted = false;
     }
 }

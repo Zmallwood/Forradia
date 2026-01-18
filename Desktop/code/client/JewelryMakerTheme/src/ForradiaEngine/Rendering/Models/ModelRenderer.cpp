@@ -13,7 +13,7 @@ namespace ForradiaEngine
 {
     auto ModelRenderer::cleanup() -> void
     {
-        for (auto &val : m_operationsCache | std::views::values)
+        Loop(auto &val : m_operationsCache | std::views::values)
         {
             glDeleteBuffers(1, &val.ibo);
             glDeleteBuffers(1, &val.vbo);

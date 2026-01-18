@@ -14,7 +14,7 @@ namespace ForradiaEngine
         auto uniqueRenderID{tiles.at(0).uniqueRenderID};
         auto forceUpdate{false};
 
-        for (const auto &tile : tiles)
+        Loop(const auto &tile : tiles)
         {
             If(tile.forceUpdate)
             {
@@ -33,7 +33,7 @@ namespace ForradiaEngine
         {
             std::unordered_map<int, std::vector<TileData>> tileDataByTexture;
 
-            for (const auto &tile : tiles)
+            Loop(const auto &tile : tiles)
             {
                 auto textureNameHash = tile.imageNameHash;
 
@@ -47,7 +47,7 @@ namespace ForradiaEngine
 
             std::unordered_map<int, TileDrawGroup> tilesByTexture;
 
-            for (auto &entry : tileDataByTexture)
+            Loop(auto &entry : tileDataByTexture)
             {
                 TileDrawGroup group;
 
@@ -67,7 +67,7 @@ namespace ForradiaEngine
                 std::vector<float> combinedVertices;
                 std::vector<unsigned short> combinedIndices;
 
-                for (const auto &tile : tileData)
+                Loop(const auto &tile : tileData)
                 {
                     auto xCoordinate{tile.xCoordinate};
                     auto yCoordinate{tile.yCoordinate};
@@ -137,7 +137,7 @@ namespace ForradiaEngine
         // Upload the MVP matrix to the shader.
         glUniformMatrix4fv(m_layoutLocationMVP, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-        for (auto &entry : groupOperation.tilesByTexture)
+        Loop(auto &entry : groupOperation.tilesByTexture)
         {
             auto imageNameHash = entry.first;
 

@@ -95,7 +95,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto now{getTicks()};
 
-        for (auto it = entities.begin(); it != entities.end();)
+        Loop(auto it = entities.begin(); it != entities.end();)
         {
             auto entity{it->first};
             auto position{it->second};

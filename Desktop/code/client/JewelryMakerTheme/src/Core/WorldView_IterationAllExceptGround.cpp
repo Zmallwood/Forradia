@@ -65,7 +65,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         // Only render objects, and entities within the normal grid size.
         If(isWithinNormalGrid)
         {
-            for (const auto &object : objects)
+            Loop(const auto &object : objects)
             {
                 auto objectType{object->getType()};
 
@@ -122,7 +122,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         If(xCoordinate == m_hoveredCoordinate.x && yCoordinate == m_hoveredCoordinate.y)
         {
-            for (auto &elevation : elevations)
+            Loop(auto &elevation : elevations)
             {
                 // NOLINTNEXTLINE(readability-magic-numbers)
                 elevation += 0.01F;

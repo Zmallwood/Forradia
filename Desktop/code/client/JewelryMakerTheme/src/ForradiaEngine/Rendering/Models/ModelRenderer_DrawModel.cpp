@@ -63,10 +63,10 @@ namespace ForradiaEngine
             float totalModelScaling{k_globalModelScaling * modelScaling};
 
             // For each mesh.
-            for (const auto &mesh : meshes)
+            Loop(const auto &mesh : meshes)
             {
                 // For each vertex.
-                for (const auto &vertex : mesh.vertices)
+                Loop(const auto &vertex : mesh.vertices)
                 {
                     // Add position.
                     verticesVector.push_back(vertex.position.x * totalModelScaling);
@@ -84,7 +84,7 @@ namespace ForradiaEngine
                 }
 
                 // For each index of the mesh.
-                for (const auto &index : mesh.indices)
+                Loop(const auto &index : mesh.indices)
                 {
                     // Calculate the total index.
                     auto totalIndex{indexFirstVertexOfMesh + mesh.indices[index]};
@@ -125,7 +125,7 @@ namespace ForradiaEngine
 
         modelMatrix = glm::scale(modelMatrix, glm::vec3(modelScaling));
 
-        If (modelRotation != 0.0F)
+        If(modelRotation != 0.0F)
         {
             modelMatrix = glm::rotate(modelMatrix, glm::radians(180.0F + modelRotation),
                                       glm::vec3(0.0F, 0.0F, 1.0F));

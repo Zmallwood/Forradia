@@ -8,6 +8,7 @@
 #define If if
 #define ElseIf else if
 #define Else else
+#define Loop for
 
 #include <string_view>
 #include "ForradiaEngine/Common/Utilities.hpp"

@@ -12,7 +12,7 @@ namespace ForradiaEngine
 {
     auto GroundRenderer::cleanup() -> void
     {
-        for (auto &entry : m_operationsCache)
+        Loop(auto &entry : m_operationsCache)
         {
             glDeleteBuffers(1, &entry.second.ibo);
             glDeleteBuffers(1, &entry.second.vbo);

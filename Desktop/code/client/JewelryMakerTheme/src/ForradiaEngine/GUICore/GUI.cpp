@@ -19,7 +19,7 @@ namespace ForradiaEngine
 
         auto childComponents{this->getChildComponents()};
 
-        for (auto &childComponent : std::ranges::reverse_view(childComponents))
+        Loop(auto &childComponent : std::ranges::reverse_view(childComponents))
         {
             result |= childComponent->mouseHoveringGUI();
         }

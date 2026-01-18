@@ -136,7 +136,7 @@ namespace ForradiaEngine
 
         auto result{getBounds().contains(mousePos)};
 
-        for (const auto &childComponent : std::ranges::reverse_view(m_childComponents))
+        Loop(const auto &childComponent : std::ranges::reverse_view(m_childComponents))
         {
             result |= childComponent->mouseHoveringGUI();
         }
@@ -149,11 +149,11 @@ namespace ForradiaEngine
     {
         auto result{m_childComponents};
 
-        for (const auto &childComponent : m_childComponents)
+        Loop(const auto &childComponent : m_childComponents)
         {
             auto childChildComponents{childComponent->getChildComponentsRecursively()};
 
-            for (const auto &childChildComponent : childChildComponents)
+            Loop(const auto &childChildComponent : childChildComponents)
             {
                 result.push_back(childChildComponent);
             }
@@ -169,7 +169,7 @@ namespace ForradiaEngine
             return;
         }
 
-        for (auto &childComponent : std::ranges::reverse_view(m_childComponents))
+        Loop(auto &childComponent : std::ranges::reverse_view(m_childComponents))
         {
             childComponent->update();
         }
@@ -186,7 +186,7 @@ namespace ForradiaEngine
 
         this->renderDerived();
 
-        for (const auto &component : m_childComponents)
+        Loop(const auto &component : m_childComponents)
         {
             component->render();
         }

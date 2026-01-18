@@ -27,7 +27,7 @@ namespace ForradiaEngine
         std::vector<unsigned short> indices;
 
         // Generate vertices.
-        for (int ring = 0; ring <= rings; ++ring)
+        Loop(int ring = 0; ring <= rings; ++ring)
         {
             // Elevation angle (0 to PI/2).
             // NOLINTNEXTLINE(readability-magic-numbers)

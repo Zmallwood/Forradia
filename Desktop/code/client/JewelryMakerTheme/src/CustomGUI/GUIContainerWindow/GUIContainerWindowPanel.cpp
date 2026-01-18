@@ -18,7 +18,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     // NOLINTNEXTLINE(readability-make-member-function-const)
     auto GUIContainerWindowPanel::initialize() -> void
     {
-        for (auto i = 0; i < k_maxNumSlots; i++)
+        Loop(auto i = 0; i < k_maxNumSlots; i++)
         {
             m_renderIDsSlotsBackground[i] =
                 hash("GUIContainerWindowSlotBackground" + std::to_string(i));
@@ -48,9 +48,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto &objectsContainer{m_containedObjects};
 
-        for (auto yPos = 0; yPos < numRows; yPos++)
+        Loop(auto yPos = 0; yPos < numRows; yPos++)
         {
-            for (auto xPos = 0; xPos < numColumns; xPos++)
+            Loop(auto xPos = 0; xPos < numColumns; xPos++)
             {
                 auto index{xPos + yPos * numColumns};
 
@@ -93,9 +93,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto index{0};
 
-        for (auto yPos = 0; yPos < numRows; yPos++)
+        Loop(auto yPos = 0; yPos < numRows; yPos++)
         {
-            for (auto xPos = 0; xPos < numColumns; xPos++)
+            Loop(auto xPos = 0; xPos < numColumns; xPos++)
             {
 
                 If(index >= m_containedObjects.size())

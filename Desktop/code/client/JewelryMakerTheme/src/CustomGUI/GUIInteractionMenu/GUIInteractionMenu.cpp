@@ -27,7 +27,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     {
         dynamic_cast<GUIPanel *>(this)->setVisible(false);
 
-        for (auto i = 0; i < k_maxNumMenuEntries; i++)
+        Loop(auto i = 0; i < k_maxNumMenuEntries; i++)
         {
             m_renderIDsMenuEntryStrings.push_back(
                 hash("GUIInteractionMenuEntryString" + std::to_string(i)));
@@ -155,7 +155,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         std::vector<int> objectHashes;
 
-        for (auto &object : objects)
+        Loop(auto &object : objects)
         {
             auto type{object->getType()};
 
@@ -168,7 +168,7 @@ namespace ForradiaEngine::JewelryMakerTheme
     auto GUIInteractionMenu::showMenuForTileAndObjects(int groundHash,
                                                        const std::vector<int> &objectHashes) -> void
     {
-        for (auto &action : m_actions)
+        Loop(auto &action : m_actions)
         {
             bool goOn{false};
 
@@ -205,7 +205,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         bool goOn{false};
 
         // Check if the ground need to match a specific ground hash.
-        for (auto groundMatch : action.groundMatches)
+        Loop(auto groundMatch : action.groundMatches)
         {
             goOn = groundMatch == groundHash ? true : goOn;
         }
@@ -222,11 +222,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         bool goOn{false};
 
         // Check if the object need to match a specific object hash.
-        for (auto objectMatch : action.objectMatches)
+        Loop(auto objectMatch : action.objectMatches)
         {
             // Check if the object need to match a specific object hash, looking through the
             // object hashes where the mouse was clicked.
-            for (auto objectHash : objectHashes)
+            Loop(auto objectHash : objectHashes)
             {
                 goOn = objectMatch == objectHash ? true : goOn;
             }
@@ -245,7 +245,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         bool goOn{false};
 
         // Check if the action need to match a specific object in the inventory.
-        for (auto invObjectMatch : action.objectsInInventory)
+        Loop(auto invObjectMatch : action.objectsInInventory)
         {
             // Check if the object to match is in the inventory.
             goOn = inventory.countHasObject(invObjectMatch) > 0 ? true : goOn;
@@ -265,7 +265,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto idx{0};
 
-        for (auto &entry : m_entries)
+        Loop(auto &entry : m_entries)
         {
             auto rowBounds{
                 RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};
@@ -295,7 +295,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                     m_clickedObjects.clear();
 
-                    for (auto obj : tile->getObjectsStack()->getObjects())
+                    Loop(auto obj : tile->getObjectsStack()->getObjects())
                     {
                         m_clickedObjects.push_back(&obj);
                     }
@@ -344,7 +344,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
         auto mousePos{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 
-        for (const auto &entry : m_entries)
+        Loop(const auto &entry : m_entries)
         {
             auto rowBounds{
                 RectF{bounds.x, bounds.y + (idx + 1) * k_lineHeight, bounds.width, k_lineHeight}};

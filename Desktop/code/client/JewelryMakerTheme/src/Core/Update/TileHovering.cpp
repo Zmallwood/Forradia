@@ -33,9 +33,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto gridSize{ThemeProperties::getGridSize()};
 
         // Iterate over the rendered tiles.
-        for (auto yPos = 0; yPos < gridSize.height; yPos++)
+        Loop(auto yPos = 0; yPos < gridSize.height; yPos++)
         {
-            for (auto xPos = 0; xPos < gridSize.width; xPos++)
+            Loop(auto xPos = 0; xPos < gridSize.width; xPos++)
             {
                 auto xCoordinate{playerPos.x - (gridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{playerPos.y - (gridSize.height - 1) / 2 + yPos};

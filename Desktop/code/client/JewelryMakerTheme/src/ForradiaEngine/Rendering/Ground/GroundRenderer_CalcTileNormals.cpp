@@ -26,9 +26,9 @@ namespace ForradiaEngine
         std::unordered_map<int, std::unordered_map<int, glm::vec3>> coords;
 
         // Loop through the vertices and store them in the map.
-        for (auto yIdx = 0; yIdx < 3; yIdx++)
+        Loop(auto yIdx = 0; yIdx < 3; yIdx++)
         {
-            for (auto xIdx = 0; xIdx < 3; xIdx++)
+            Loop(auto xIdx = 0; xIdx < 3; xIdx++)
             {
                 // Calculate the index of the vertex.
                 auto idx{yIdx * 3 + xIdx};

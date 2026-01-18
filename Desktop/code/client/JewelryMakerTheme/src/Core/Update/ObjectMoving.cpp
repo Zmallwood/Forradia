@@ -111,7 +111,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
                 auto childComponents{gui->getChildComponentsRecursively()};
 
-                for (const auto &childComponent : childComponents)
+                Loop(const auto &childComponent : childComponents)
                 {
                     auto castedToGUIContainerWindow{
                         std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};
@@ -204,7 +204,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
             auto childComponents{gui->getChildComponentsRecursively()};
 
-            for (const auto &childComponent : childComponents)
+            Loop(const auto &childComponent : childComponents)
             {
                 auto castedToGUIContainerWindow{
                     std::dynamic_pointer_cast<GUIContainerWindow>(childComponent)};

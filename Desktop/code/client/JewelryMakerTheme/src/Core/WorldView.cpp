@@ -20,11 +20,11 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto worldAreaSize{worldArea->getSize()};
 
-        for (auto zPos = 0; zPos > -2; zPos--)
+        Loop(auto zPos = 0; zPos > -2; zPos--)
         {
-            for (auto yPos = 0; yPos < worldAreaSize.height; yPos++)
+            Loop(auto yPos = 0; yPos < worldAreaSize.height; yPos++)
             {
-                for (auto xPos = 0; xPos < worldAreaSize.width; xPos++)
+                Loop(auto xPos = 0; xPos < worldAreaSize.width; xPos++)
                 {
                     m_renderIDsGround[xPos][yPos][zPos] =
                         hash("Ground_" + std::to_string(xPos) + "_" + std::to_string(yPos) + "_" +
@@ -61,9 +61,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         GroundRenderer::instance().setupState();
 
         // First pass: Render ground tiles at extended distance
-        for (auto yPos = 0; yPos < m_groundGridSize.height; yPos++)
+        Loop(auto yPos = 0; yPos < m_groundGridSize.height; yPos++)
         {
-            for (auto xPos = 0; xPos < m_groundGridSize.width; xPos++)
+            Loop(auto xPos = 0; xPos < m_groundGridSize.width; xPos++)
             {
                 auto xCoordinate{m_playerPos.x - (m_groundGridSize.width - 1) / 2 + xPos};
                 auto yCoordinate{m_playerPos.y - (m_groundGridSize.height - 1) / 2 + yPos};
@@ -72,9 +72,9 @@ namespace ForradiaEngine::JewelryMakerTheme
                 {
                     m_tiles.clear();
 
-                    for (auto yy = 0; yy < k_tilesGroupSize; yy++)
+                    Loop(auto yy = 0; yy < k_tilesGroupSize; yy++)
                     {
-                        for (auto xx = 0; xx < k_tilesGroupSize; xx++)
+                        Loop(auto xx = 0; xx < k_tilesGroupSize; xx++)
                         {
                             this->iterationGround(xPos + xx, yPos + yy);
                         }
@@ -95,9 +95,9 @@ namespace ForradiaEngine::JewelryMakerTheme
         // ModelRenderer::Instance().SetupState();
 
         // Second pass: Render all except ground tiles
-        for (auto yPos = 0; yPos < m_worldAreaSize.height; yPos++)
+        Loop(auto yPos = 0; yPos < m_worldAreaSize.height; yPos++)
         {
-            for (auto xPos = 0; xPos < m_worldAreaSize.width; xPos++)
+            Loop(auto xPos = 0; xPos < m_worldAreaSize.width; xPos++)
             {
                 this->iterationAllExceptGround(xPos, yPos);
             }

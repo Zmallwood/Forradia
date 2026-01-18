@@ -83,20 +83,20 @@ namespace ForradiaEngine
 
         auto bounds{GUIComponent::getBounds()};
 
-        If (upArrowBounds.contains(mousePos))
+        If(upArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
-        ElseIf (downArrowBounds.contains(mousePos))
+        ElseIf(downArrowBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
-        ElseIf (sliderBounds.contains(mousePos))
+        ElseIf(sliderBounds.contains(mousePos))
         {
             Cursor::instance().setCursorStyle(CursorStyles::HoveringClickableGUI);
         }
 
-        if (m_movingSlider)
+        If(m_movingSlider)
         {
             auto delta{(mousePos.y - m_sliderStartMoveMouseYPos)};
 
@@ -110,7 +110,7 @@ namespace ForradiaEngine
 
     auto GUIScrollableArea::render() const -> void
     {
-        if (!this->getVisible())
+        If(!this->getVisible())
         {
             return;
         }
@@ -130,8 +130,10 @@ namespace ForradiaEngine
 
         auto childComponents{this->getChildComponents()};
 
-        for (const auto &component : childComponents)
+        Loop(const auto &component : childComponents)
+        {
             component->render();
+        }
 
         glDisable(GL_SCISSOR_TEST);
 

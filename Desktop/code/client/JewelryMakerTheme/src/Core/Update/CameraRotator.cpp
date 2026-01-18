@@ -12,7 +12,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 {
     auto CameraRotator::onMouseDown(Uint8 mouseButton) -> void
     {
-        If (mouseButton == SDL_BUTTON_RIGHT)
+        If(mouseButton == SDL_BUTTON_RIGHT)
         {
             m_isRotating = true;
 
@@ -23,9 +23,9 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CameraRotator::onMouseUp(Uint8 mouseButton) -> void
     {
-        If (mouseButton == SDL_BUTTON_RIGHT)
+        If(mouseButton == SDL_BUTTON_RIGHT)
         {
-            If (m_isRotating)
+            If(m_isRotating)
             {
                 m_isRotating = false;
             }
@@ -34,7 +34,7 @@ namespace ForradiaEngine::JewelryMakerTheme
 
     auto CameraRotator::update() const -> void
     {
-        If (m_isRotating)
+        If(m_isRotating)
         {
             auto mousePosition{getNormalizedMousePosition(SDLDevice::instance().getWindow())};
 

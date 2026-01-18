@@ -20,7 +20,7 @@ namespace ForradiaEngine
 
         auto childComponents{this->getChildComponents()};
 
-        for (auto &childComponent : std::ranges::reverse_view(childComponents))
+        Loop (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
             If (childComponent->onMouseDown(mouseButton))
             {
@@ -52,7 +52,7 @@ namespace ForradiaEngine
 
         auto childComponents{this->getChildComponents()};
 
-        for (auto &childComponent : std::ranges::reverse_view(childComponents))
+        Loop (auto &childComponent : std::ranges::reverse_view(childComponents))
         {
             If (childComponent->onMouseUp(mouseButton, clickSpeed))
             {

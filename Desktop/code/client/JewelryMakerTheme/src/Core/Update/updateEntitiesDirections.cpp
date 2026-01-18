@@ -17,7 +17,7 @@ namespace ForradiaEngine::JewelryMakerTheme
         auto worldArea{World::instance().getWorldArea(Player::instance().getWorldAreaCoordinate())};
         auto &entities{worldArea->getEntitiesMirrorRef()};
 
-        for (auto entry = entities.begin(); entry != entities.end();)
+        Loop(auto entry = entities.begin(); entry != entities.end();)
         {
             auto &entity{entry->first};
 

@@ -21,7 +21,7 @@ namespace ForradiaEngine::JewelryMakerTheme
             this->setVisible(true);
         }
 
-        for (auto &childComponent : std::ranges::reverse_view(this->getChildComponents()))
+        Loop(auto &childComponent : std::ranges::reverse_view(this->getChildComponents()))
         {
             childComponent->update();
         }

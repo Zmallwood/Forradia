@@ -34,7 +34,7 @@ namespace ForradiaEngine
     auto Model::processNode(aiNode *node, const aiScene *scene, aiMatrix4x4 transformation) -> void
     {
         // Iterate over all meshes in the node.
-        for (unsigned int i = 0; i < node->mNumMeshes; i++)
+        Loop(unsigned int i = 0; i < node->mNumMeshes; i++)
         {
             // Access the mesh.
             auto *mesh{scene->mMeshes[node->mMeshes[i]]};
@@ -47,7 +47,7 @@ namespace ForradiaEngine
         }
 
         // Iterate over all child nodes.
-        for (unsigned int i = 0; i < node->mNumChildren; i++)
+        Loop(unsigned int i = 0; i < node->mNumChildren; i++)
         {
             // Process the child node (recursively).
             this->processNode(node->mChildren[i], scene, transformation);
@@ -84,7 +84,7 @@ namespace ForradiaEngine
         std::vector<GLMVertex> vertices;
 
         // Iterate over all vertices.
-        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+        Loop(unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
             GLMVertex vertex;
             glm::vec3 position;
@@ -144,17 +144,18 @@ namespace ForradiaEngine
         std::vector<unsigned int> indices;
 
         // Iterate over all faces.
-        for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+        Loop(unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
             // Access the face.
             auto face{mesh->mFaces[i]};
 
             // Iterate over all indices in the face.
-            for (unsigned int j = 0; j < face.mNumIndices; j++)
+            Loop(unsigned int j = 0; j < face.mNumIndices; j++)
             {
                 indices.push_back(face.mIndices[j]);
             }
         }
+
         return indices;
     }
 
